@@ -2005,7 +2005,13 @@ specialpower()      /* Special class abilites [modified by Tom] */
 			else     u.uhp += (u.ulevel * 4);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			u.unextuse = 3000;
-		} else pline(nothing_happens);
+		} else {
+			pline(nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 		break;
 	    case 'S':
 		You("scream \"KIIILLL!\"");
@@ -2181,6 +2187,10 @@ wiz_level_change()
 
     if (ret != 1) {
 	pline("%s", Never_mind);
+	if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+		pline("Oh wait, actually I do mind...");
+		badeffect();
+	}
 	return 0;
     }
     if (newlevel == u.ulevel) {
@@ -11628,6 +11638,10 @@ coord *cc;
 	xchar new_x, new_y;
 	if (!getdir(prompt)) {
 		pline("%s", Never_mind);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually I do mind...");
+			badeffect();
+		}
 		return 0;
 	}
 	new_x = x + u.dx;

@@ -673,8 +673,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 	const char *otypes = flags.pickup_types;
 
 	/* first count the number of eligible items */
-	for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
+	for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow)) {
 
+		if (AlwaysAutopickup || u.uprops[AUTOPICKUP_ALWAYS].extrinsic || have_autopickupstone()) n++;
+		else {
 
 #ifndef AUTOPICKUP_EXCEPTIONS
 	    if (!*otypes || index(otypes, curr->oclass) ||
@@ -686,22 +688,35 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 		!is_autopickup_exception(curr, FALSE))
 #endif
 		n++;
+		}
+	}
 
 	if (n) {
 	    *pick_list = pi = (menu_item *) alloc(sizeof(menu_item) * n);
-	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
+	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow)) {
+
+			if (AlwaysAutopickup || u.uprops[AUTOPICKUP_ALWAYS].extrinsic || have_autopickupstone()) {
+				pi[n].item.a_obj = curr;
+				pi[n].count = curr->quan;
+				n++;
+
+			} else {
+
 #ifndef AUTOPICKUP_EXCEPTIONS
-		if (!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ) {
+				if (!*otypes || index(otypes, curr->oclass) ||
+					(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ) {
 #else
-		if ((!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ||
-			is_autopickup_exception(curr, TRUE)) &&
-			!is_autopickup_exception(curr, FALSE)) {
+				if ((!*otypes || index(otypes, curr->oclass) ||
+					(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ||
+					is_autopickup_exception(curr, TRUE)) && !is_autopickup_exception(curr, FALSE)) {
 #endif
-		    pi[n].item.a_obj = curr;
-		    pi[n].count = curr->quan;
-		    n++;
+				    pi[n].item.a_obj = curr;
+				    pi[n].count = curr->quan;
+				    n++;
+				}
+
+			}
+
 		}
 	}
 	return n;
@@ -1236,10 +1251,10 @@ boolean telekinesis;
 	if (prev_encumbr < flags.pickup_burden)
 		prev_encumbr = flags.pickup_burden;
 	next_encumbr = calc_capacity(new_wt - old_wt);
-	if (next_encumbr > prev_encumbr) {
-	    if (telekinesis) {
-		result = 0;	/* don't lift */
-	    } else {
+	if (next_encumbr > prev_encumbr && !(AlwaysAutopickup || u.uprops[AUTOPICKUP_ALWAYS].extrinsic || have_autopickupstone()) ) {
+	    /* if (telekinesis) {
+		result = 0; */	/* don't lift */ /* Amy edit: nonsense! let the player pick up the goddamn item! */
+	    /*} else*/ {
 		char qbuf[BUFSZ];
 		long savequan = obj->quan;
 

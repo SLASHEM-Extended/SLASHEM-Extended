@@ -589,7 +589,7 @@ register struct obj *obj;
 			if(obj->cursed) {
 			    if (!Blind)
 				pline_The("water glows for a moment.");
-			    uncurse(obj);
+			    uncurse(obj, FALSE);
 			} else {
 			    pline("A feeling of loss comes over you.");
 			}
@@ -980,7 +980,7 @@ register struct obj *obj;
 			if(obj->cursed && !stack_too_big(obj)) {
 			    if (!Blind)
 				pline_The("water glows for a moment.");
-			    uncurse(obj);
+			    uncurse(obj, FALSE);
 			} else {
 			    pline("A feeling of loss comes over you.");
 			}

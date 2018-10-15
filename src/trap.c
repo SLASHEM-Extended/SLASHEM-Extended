@@ -9616,44 +9616,8 @@ madnesseffect:
 		case PERMANENT_STAT_DAMAGE_TRAP:
 
 			seetrap(trap);
-		{
 			pline("CLICK! You have triggered a trap!");
-
-			int statdrained = rn2(A_MAX);
-			if (ABASE(statdrained) < 4) {
-				pline("But you resist the effects.");
-				break;
-			}
-			if (ABASE(statdrained) < (3 + rnd(8)) ) {
-				pline("But you resist the effects.");
-				break;
-			}
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
-				pline("The stat drain doesn't seem to affect you.");
-				break;
-			}
-
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
-
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
-
-			}
-		}
+			statdrain();
 
 		 break;
 
@@ -14586,7 +14550,7 @@ register boolean force, here;
 		    /* The Lethe strips blessed and cursed status... */
 		    if (level.flags.lethe) {
 			/* Amy edit: you cannot easily uncurse everything, sorry */
-			if (obj->otyp == POT_WATER) uncurse(obj);
+			if (obj->otyp == POT_WATER) uncurse(obj, TRUE);
 			unbless(obj);
 		    }
 
@@ -14752,7 +14716,7 @@ register boolean force, here;
 		if (stack_too_big(obj) && !issoviet) continue;
 
 		{
-			if (obj->otyp == POT_WATER) uncurse(obj);
+			if (obj->otyp == POT_WATER) uncurse(obj, TRUE);
 			unbless(obj);
 
 		    switch (obj->oclass) {
@@ -16670,32 +16634,32 @@ register int bodypart;
 
 	/* Grunthack door traps are evil, so they have to be evil in the Evil Variant too --Amy */
 
-	if (evilfriday) {
+	if (evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
 		(void) destroy_item(POTION_CLASS, AD_FIRE);
 		(void) destroy_item(SCROLL_CLASS, AD_FIRE);
 		(void) destroy_item(SPBOOK_CLASS, AD_FIRE);
 		burnarmor(&youmonst);
 	}
 
-	if (evilfriday && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
 		pline("SCREEEEEECH!");
 		aggravate();
 	}
 
-	if (evilfriday && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
 		pline("A static discharge shoots through your entire body!");
 		destroy_item(WAND_CLASS, AD_ELEC);
 		destroy_item(RING_CLASS, AD_ELEC);
 		destroy_item(AMULET_CLASS, AD_ELEC);
 	}
 
-	if (evilfriday && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
 		pline("Hahaha, a water bucket falls on top of you and all your shit gets wet! LOL!");
 		water_damage(invent, FALSE, FALSE);
 		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 	}
 
-	if (evilfriday && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
 		register struct obj *otmp3;
 		otmp3 = mksobj(BOULDER, FALSE, FALSE);
 		if (!otmp3) goto boulderdone;
@@ -16717,7 +16681,7 @@ register int bodypart;
 
 boulderdone:
 
-	if (evilfriday && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
 		badeffect();
 		if (!rn2(5)) {
 			badeffect();
@@ -16725,7 +16689,7 @@ boulderdone:
 		}
 	}
 
-	if (!rn2(10) || evilfriday) {
+	if (!rn2(10) || evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
 
 		int i, j;
 

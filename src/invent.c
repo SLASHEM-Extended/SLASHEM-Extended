@@ -4904,8 +4904,13 @@ register const char *let,*word;
 
 		}
 		if(index(quitchars,ilet)) {
-		    if(flags.verbose)
+		    if(flags.verbose) {
 			pline("%s", Never_mind);
+		    }
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually I do mind...");
+				badeffect();
+			}
 		    return((struct obj *)0);
 		}
 		if(ilet == '-') {
@@ -4972,8 +4977,13 @@ register const char *let,*word;
 			    floorfollow|INVORDER_SORT|SIGNAL_CANCEL, &pick_list,
 			    PICK_ONE, allowall ? allow_all : allow_ugly);
 		    if (n<0) {
-			if (flags.verbose)
+			if (flags.verbose) {
 			    pline("%s", Never_mind);
+			}
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually I do mind...");
+				badeffect();
+			}
 			return (struct obj *)0;
 		    } else if (!n)
 			continue;
@@ -5002,8 +5012,13 @@ register const char *let,*word;
 			allowcnt = 2;
 		    }
 		    if(ilet == '\033') {
-			if(flags.verbose)
+			if(flags.verbose) {
 			    pline("%s", Never_mind);
+			}
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually I do mind...");
+				badeffect();
+			}
 			return((struct obj *)0);
 		    }
 		    /* they typed a letter (not a space) at the prompt */
@@ -7108,6 +7123,10 @@ doorganize()	/* inventory organizer by Del Lamb */
 		let = yn_function(qbuf, (char *)0, '\0');
 		if(index(quitchars,let)) {
 			pline("%s", Never_mind);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually I do mind...");
+				badeffect();
+			}
 			return(0);
 		}
 		if (let == '@' || !letter(let))

@@ -1551,7 +1551,7 @@ E void bless(struct obj *);
 E void unbless(struct obj *);
 E void curse(struct obj *);
 E void curse_on_creation(struct obj *);
-E void uncurse(struct obj *);
+E void uncurse(struct obj *, BOOLEAN_P);
 E void blessorcurse(struct obj *,int);
 E void blessorcurse_on_creation(struct obj *,int);
 E boolean is_flammable(struct obj *);
@@ -2204,6 +2204,7 @@ E const char *bottlename(void);
 E void bad_equipment(void);
 E void bad_equipment_heel(void);
 E void increasesanity(int);
+E void statdrain(void);
 
 /* ### pray.c ### */
 

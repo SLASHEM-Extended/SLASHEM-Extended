@@ -231,6 +231,8 @@ do_mname()
 	register struct monst *mtmp;
 	char qbuf[QBUFSZ];
 
+	if (UncalledEffect || u.uprops[UNCALLED_EFFECT].extrinsic || have_uncalledstone()) return 0;
+
 	if (Hallucination) {
 		You("would never recognize it anyway.");
 		return 0;
@@ -497,6 +499,8 @@ ddocall()
 	char	ch;
 	char allowall[2];
 
+	if (UncalledEffect || u.uprops[UNCALLED_EFFECT].extrinsic || have_uncalledstone()) return 0;
+
 	switch(ch = ynq("Name an individual object?")) {
 	case 'q':
 		break;
@@ -533,6 +537,8 @@ register struct obj *obj;
 	char buf[BUFSZ], qbuf[QBUFSZ];
 	struct obj otemp;
 	register char **str1;
+
+	if (UncalledEffect || u.uprops[UNCALLED_EFFECT].extrinsic || have_uncalledstone()) return;
 
 	if (!obj->dknown) return; /* probably blind */
 	otemp = *obj;

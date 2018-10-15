@@ -901,6 +901,9 @@ doread()
 			is_silent(youmonst.data) ? "understand" : "pronounce");
 	  }
 	}
+
+	if (CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone() ) curse(scroll);
+
 	/*
 	 * When reading scrolls of teleportation off the floor special
 	 * care needs to be taken so that the scroll is used up before
@@ -972,14 +975,26 @@ static void
 stripspe(obj)
 register struct obj *obj;
 {
-	if (obj->blessed) pline("%s", nothing_happens);
+	if (obj->blessed) {
+		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
+	}
 	else {
 		if (obj->spe > 0) {
 		    obj->spe = 0;
 		    if (obj->otyp == OIL_LAMP || obj->otyp == BRASS_LANTERN)
 			obj->age = 0;
 		    Your("%s %s briefly.",xname(obj), otense(obj, "vibrate"));
-		} else pline("%s", nothing_happens);
+		} else {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 	}
 }
 
@@ -1108,6 +1123,10 @@ int curse_bless;
 
 	    if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 	    	pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
 		return;
 	    }
    
@@ -1216,8 +1235,13 @@ int curse_bless;
 		    obj->recharged = 1;	/* override increment done above */
 		    if (obj->spe < 3)
 			Your("marker seems permanently dried out.");
-		    else
-			pline("%s", nothing_happens);
+		    else {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+		    }
 		} else if (is_blessed) {
 		    n = rnd(30);		/* 15..30 */
 		    if (rn2(2)) n += rnd(30);
@@ -1322,7 +1346,13 @@ int curse_bless;
 		    if (obj->spe < 5) {
 			obj->spe++;
 			p_glow1(obj);
-		    } else pline("%s", nothing_happens);
+		    } else {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+		    }
 		}
 		break;
 	    case HORN_OF_PLENTY:
@@ -3135,7 +3165,7 @@ proofarmorchoice:
 			     is_nastygraystone(obj) ||
 			     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
 			    if(confused) blessorcurse(obj, 2);
-			    else if (!(sobj->otyp == SPE_REMOVE_CURSE) || !rn2(5) ) uncurse(obj);
+			    else if (!(sobj->otyp == SPE_REMOVE_CURSE) || !rn2(5) ) uncurse(obj, FALSE);
 			}
 		    }
 		}
@@ -6320,6 +6350,10 @@ newbossC:
 		cc.y = u.uy;
 		if (getpos(&cc, TRUE, "the desired position") < 0) {
 		    pline("%s", Never_mind);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually I do mind...");
+				badeffect();
+			}
 		    return 0;
 		}
 		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
@@ -7056,8 +7090,13 @@ int how;
 		}
 	    if (cnt)
 		pline("Sent in some %s.", makeplural(buf));
-	    else
+	    else {
 		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
+	    }
 	}
 }
 

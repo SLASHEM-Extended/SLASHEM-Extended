@@ -829,6 +829,8 @@ int how;
 	struct obj *otmp, *otmp2;
 	int  n;
 
+	boolean wanttodie = 0;
+
 	if (how == TRICKED) {
 	    if (killer) {
 		paniclog("trickery", killer);
@@ -856,6 +858,19 @@ int how;
 	killer = kilbuf;
 
 	if (how < PANICKED) u.umortality++;
+
+	if (DywypiProblem || u.uprops[DYWYPI_PROBLEM].extrinsic || have_dywypistone()) {
+		wanttodie = 1;
+		char qbuf[QBUFSZ];
+		char possid = 0;
+		sprintf(qbuf, "Do you want your possessions identified? DYWYPI?");
+		possid = yn_function(qbuf, ynqchars, 'y');
+		if (possid != 'n') {
+			u.youaredead = 1;
+			wanttodie = 1;
+		} else wanttodie = 0;
+	}
+
 	if (how == STONING && uamul && uamul->otyp == AMULET_VERSUS_STONE) {
 		pline("But wait...");
 		makeknown(AMULET_VERSUS_STONE);
@@ -869,6 +884,11 @@ int how;
 			unbless(uamul);
 		else
 			curse(uamul);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto stoningdone;
+		}
 
 		uunstone();
 		(void) adjattrib(A_CON, -1, TRUE);
@@ -885,10 +905,17 @@ int how;
 
 		return;
 	}
+stoningdone:
 
 	if (uarmg && uarmg->oartifact == ART_COME_BACK_TO_LIFE && rn2(2)) {
 		pline("But wait...");
 		pline("You come back to life!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto cbldone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;
@@ -902,10 +929,17 @@ int how;
 		return;
 
 	}
+cbldone:
 
 	if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION && !rn2(10)) {
 		pline("But wait...");
 		pline("You come back to life!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto luxidone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;
@@ -919,10 +953,17 @@ int how;
 		return;
 
 	}
+luxidone:
 
 	if (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE && !rn2(5)) {
 		pline("But wait...");
 		pline("Eru Iluvatar saves your life!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto erudone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;
@@ -936,11 +977,18 @@ int how;
 		return;
 
 	}
+erudone:
 
 	/* cursed ruffled shirt or victorian underwear may actually be helpful... */
 	if (uarmu && how < GENOCIDED && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR) && uarmu->cursed && !rn2(4) ) {
 		pline("But wait...");
 		pline("For some reason, you're not dead!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto ruffledone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;
@@ -954,10 +1002,17 @@ int how;
 		return;
 
 	}
+ruffledone:
 
 	if (uarmf && how < GENOCIDED && uarmf->oartifact == ART_PRINCE_OF_PERSIA && !rn2(2) ) {
 		pline("But wait...");
 		pline("You respawn because you're the Prince of Persia!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto persiadone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;
@@ -971,6 +1026,7 @@ int how;
 		return;
 
 	}
+persiadone:
 
 	/* Troll characters have a chance of reviving. --Amy */
 	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
@@ -978,6 +1034,12 @@ int how;
 		losexp("failed troll revival", TRUE, FALSE);
 		losexp("failed troll revival", TRUE, FALSE);
 		pline("You come back to life!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto trolldone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;
@@ -991,6 +1053,7 @@ int how;
 		return;
 
 	}
+trolldone:
 
 	/* Felids have 9 lives --Amy */
 	if (Race_if(PM_FELID) && how < GENOCIDED && u.ulevel > 2 && (u.felidlives > 1) ) {
@@ -999,6 +1062,12 @@ int how;
 		losexp("failed felid revival", TRUE, FALSE);
 		losexp("failed felid revival", TRUE, FALSE);
 		pline("Thanks to being a felid, you only used up one of your lives, and have %d left!", u.felidlives);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto feliddone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;
@@ -1012,10 +1081,18 @@ int how;
 		return;
 
 	}
+feliddone:
 
 	if (u.extralives && how <= GENOCIDED) {
 		pline("But wait...");
 		pline("You have an extra life!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			u.extralives--;
+			goto oneupdone;
+		}
+
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		u.extralives--;
@@ -1030,6 +1107,7 @@ int how;
 		return;
 
 	}
+oneupdone:
 
 	if ((Second_chance || Lifesaved) && how <= GENOCIDED) {
 		pline("But wait...");
@@ -1042,6 +1120,12 @@ int how;
 		/* KMH -- Bullet-proofing */
 		/*if (uamul)*/
 			/*useup(uamul);*/
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			useup(uamul);
+			goto lsdone;
+		}
 
 		(void) adjattrib(A_CON, -1, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
@@ -1063,6 +1147,7 @@ int how;
 			return;
 		}
 	}
+lsdone:
 
 	if (uimplant && uimplant->oartifact == ART_DECAPITATION_UP && how <= GENOCIDED) {
 		pline("But wait...");
@@ -1070,6 +1155,12 @@ int how;
 		You_feel("much better!");
 		pline_The("implant crumbles to dust!");
 		useup(uimplant);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto implantdone;
+		}
+
 		(void) adjattrib(A_CON, -1, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
@@ -1089,10 +1180,17 @@ int how;
 
 	}
 
+implantdone:
+
 	if (MenuIsBugged && how < GENOCIDED) {
 		pline("But wait! You still have the menu bug!");
 
 		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {
+
+			if (wanttodie) {
+				pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+				goto menunosedone;
+			}
 
 			if (u.ulevel > 2) {
 			    losexp("menu bug", TRUE, FALSE);
@@ -1152,11 +1250,17 @@ int how;
 		}
 
 	}
+menunosedone:
 
 	if (Race_if(PM_RODNEYAN) && how < GENOCIDED) {
 		pline("But you're Rodney, so your death isn't permanent!");
 
 		if (yn_function("Revive?", ynchars, 'y') == 'y' ) {
+
+			if (wanttodie) {
+				pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+				goto rodneydone;
+			}
 
 			if (u.ulevel > 2) {
 			    losexp("Rodneyan resurrection", TRUE, FALSE);
@@ -1216,6 +1320,7 @@ int how;
 		}
 
 	}
+rodneydone:
 
 	/* if you triggered a bones trap, bad luck - you can now leave bones even if you disabled them :P --Amy */
 	bones_ok = (iflags.bones || (BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone()) ) && (how < GENOCIDED) && can_make_bones(); /* dthexpl patch */

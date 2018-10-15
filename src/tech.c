@@ -2843,8 +2843,13 @@ secureidchoice:
 		    pline("A warm glow spreads through your body!");
 		    healup(techlevX(tech_no) * 4, 0, FALSE, FALSE);
 		    t_timeout = rnz(3000);
-		} else
-		    pline("%s", nothing_happens);
+		} else {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 		break;
             case T_KIII:
 		You("scream \"KIIILLL!\"");
@@ -2978,7 +2983,7 @@ secureidchoice:
                     		pline("%s %s %s.",Your_buf,
 						  aobjnam(obj, "softly glow"),
 						  hcolor(NH_AMBER));
-				if (!stack_too_big(obj)) uncurse(obj);
+				if (!stack_too_big(obj)) uncurse(obj, FALSE);
 				else pline("But it failed! The stack was too big...");
 				obj->bknown=1;
 		} else if(!obj->blessed) {
@@ -4152,6 +4157,10 @@ chargingchoice:
 		      t_timeout = rnz(200);
 			You("were not contaminated to begin with.");
 			pline("Nothing happens.");
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
 			break;
 		}
 
@@ -4355,6 +4364,10 @@ resettechdone:
 			cc.y = u.uy;
 			if (getpos(&cc, TRUE, "the desired position") < 0) {
 			    pline("%s", Never_mind);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually I do mind...");
+					badeffect();
+				}
 			    return 0;
 			}
 			if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
@@ -5443,7 +5456,7 @@ revid_end:
 		t_timeout = rnz(500);
 		if (uwep) {
 			pline("Your lightsaber is surrounded by a holy aura.");
-			uncurse(uwep);
+			uncurse(uwep, TRUE);
 		}
 		break;
 
@@ -5958,7 +5971,7 @@ revid_end:
 				break;
 			}
 			pline("Your staff is surrounded by a shimmering aura.");
-			uncurse(uwep);
+			uncurse(uwep, TRUE);
 
 			if (uwep && uwep->spe < 2) {
 				uwep->spe++;

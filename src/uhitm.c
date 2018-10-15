@@ -7358,34 +7358,7 @@ uchar aatyp;
 	    case AD_STAT:
 
 		if (!rn2(3)) {
-			int statdrained = rn2(A_MAX);
-			if (ABASE(statdrained) < 4) break;
-			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
-				pline("The stat drain doesn't seem to affect you.");
-				break;
-			}
-
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
-
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
-
-			}
+			statdrain();
 		}
 
 		break;

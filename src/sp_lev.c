@@ -3122,7 +3122,7 @@ struct mkroom	*croom;
 
 	switch (o->curse_state) {
 	      case 1:	bless(otmp); break; /* BLESSED */
-	      case 2:	unbless(otmp); uncurse(otmp); break; /* uncursed */
+	      case 2:	unbless(otmp); uncurse(otmp, TRUE); break; /* uncursed */
 	      case 3:	curse(otmp); break; /* CURSED */
 	      default:	break;	/* Otherwise it's random and we're happy
 				 * with what mkobj gave us! */

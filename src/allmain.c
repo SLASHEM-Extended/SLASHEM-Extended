@@ -1887,6 +1887,105 @@ trapsdone:
 
 		}
 
+		if (RecurringSpellLoss && !rn2(1000)) {
+			spellmemoryloss((level_difficulty() * rnd(3)) + 1);
+		}
+
+		if (u.uprops[RECURRING_SPELL_LOSS].extrinsic && !rn2(1000)) {
+			spellmemoryloss((level_difficulty() * rnd(3)) + 1);
+		}
+
+		if (have_recurringspelllossstone() && !rn2(1000)) {
+			spellmemoryloss((level_difficulty() * rnd(3)) + 1);
+		}
+
+		if (TechoutBug && !rn2(1000)) {
+			techcapincrease((level_difficulty() + 1) * rnd(150));
+		}
+
+		if (u.uprops[TECHOUT_BUG].extrinsic && !rn2(1000)) {
+			techcapincrease((level_difficulty() + 1) * rnd(150));
+		}
+
+		if (have_techoutstone() && !rn2(1000)) {
+			techcapincrease((level_difficulty() + 1) * rnd(150));
+		}
+
+		if (StatDecay && !rn2(1000)) {
+			statdrain();
+		}
+
+		if (u.uprops[STAT_DECAY].extrinsic && !rn2(1000)) {
+			statdrain();
+		}
+
+		if (have_statdecaystone() && !rn2(1000)) {
+			statdrain();
+		}
+
+		if (AntitrainingEffect && !rn2(1000)) {
+			skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+		}
+
+		if (u.uprops[ANTI_TRAINING_EFFECT].extrinsic && !rn2(1000)) {
+			skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+		}
+
+		if (have_antitrainingstone() && !rn2(1000)) {
+			skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
+		}
+
+		if (FalloutEffect && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (u.uprops[FALLOUT_EFFECT].extrinsic && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
+			if (IS_DOOR(levl[u.ux][u.uy].typ) && !rn2(2) && !(t_at(u.ux, u.uy)) ) {
+
+				int i, j;
+
+				for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+					if (!isok(u.ux + i, u.uy + j)) continue;
+					if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+					if (t_at(u.ux + i, u.uy + j)) continue;
+
+					ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100);
+					if (ttmp) {
+						ttmp->tseen = 0;
+						ttmp->hiddentrap = 1;
+					}
+				}
+
+				int tryct = 0;
+				int x, y;
+
+				for (tryct = 0; tryct < 2000; tryct++) {
+					x = rn1(COLNO-3,2);
+					y = rn2(ROWNO);
+
+					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+							ttmp = maketrap(x, y, randomtrap(), 100);
+						if (ttmp) {
+							ttmp->tseen = 0;
+							ttmp->hiddentrap = 1;
+						}
+						if (rn2(3)) break;
+					}
+				}
+
+				if (!rn2(10)) b_trapped("door", 0);
+
+			}
+		}
+
+		if (have_falloutstone() && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
 		if (!rn2(2500) && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "demolition gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki dlya snosa") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "buzilgan qo'lqoplar")) ) {
 			struct obj *dynamite;
 			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE);
@@ -10639,6 +10738,11 @@ boolean new_game;	/* false => restoring an old game */
 	if (TheInfoIsFucked) {
 		pline("You've forgotten who you are, but you are back.");
 		return;
+	}
+
+	if (new_game && (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone())) {
+		nomul(-2, "acclimating in the dungeon", FALSE);
+		nomovemsg = "You are now ready to explore the dungeon.";
 	}
 
 	/* prevent hangup cheating when special game modes haven't teleported you yet --Amy */

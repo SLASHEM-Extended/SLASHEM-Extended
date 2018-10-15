@@ -20367,6 +20367,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The footerers were waiting for you here, and will attack now.",
 	"Your breath control helmet keeps pumping the farting gas into your nose...",
 	"Suddenly, your gauntlets kiss you!",
+	"You are now ready to explore the dungeon.",
 
 };
 

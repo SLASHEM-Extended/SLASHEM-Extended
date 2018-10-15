@@ -2506,7 +2506,13 @@ doinvoke()
 					if (acqo) {
 						acqo->bknown = acqo->known = TRUE;
 						pline("A book appeared at your %s!", makeplural(body_part(FOOT)));
-					} else pline("Nothing happens...");
+					} else {
+						pline("Nothing happens...");
+						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+							pline("Oh wait, actually something bad happens...");
+							badeffect();
+						}
+					  }
 					}
 					break;
 				case 3:
@@ -2855,7 +2861,13 @@ doinvoke()
 						u.uhunger = 1500;
 						u.uhs = 1; /* NOT_HUNGRY */
 						flags.botl = 1;
-					} else pline("Nothing happens...");
+					} else {
+						pline("Nothing happens...");
+						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+							pline("Oh wait, actually something bad happens...");
+							badeffect();
+						}
+					}
 					break;
 				case 15:
 					if (u.ualign.record < -1) {
@@ -2902,6 +2914,10 @@ doinvoke()
 					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2);
 					if (!pseudo) {
 						pline("Nothing happens...");
+						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+							pline("Oh wait, actually something bad happens...");
+							badeffect();
+						}
 						break;
 					}
 					if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SCR_ITEM_GENOCIDE;
@@ -3169,6 +3185,10 @@ doinvoke()
 							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxtrainingamount >= 540 ? "supreme master" : maxtrainingamount >= 160 ? "grand master" : maxtrainingamount >= 20 ? "master" : "expert");
 						} else {
 							pline("Nothing happens...");
+							if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+								pline("Oh wait, actually something bad happens...");
+								badeffect();
+							}
 						}
 
 					}
@@ -3222,8 +3242,13 @@ arti_invoke(obj)
     if(!oart || !oart->inv_prop) {
 	if(obj->otyp == CRYSTAL_BALL)
 	    use_crystal_ball(obj);
-	else
-	    pline("%s", nothing_happens);
+	else {
+		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
+	}
 	return 1;
     }
 

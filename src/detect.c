@@ -1112,6 +1112,10 @@ struct obj *obj;
     /* Don't filter out ' ' here; it has a use */
     if ((ch != def_monsyms[S_GHOST]) && index(quitchars,ch)) { 
 	if (flags.verbose) pline("%s", Never_mind);
+	if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+		pline("Oh wait, actually I do mind...");
+		badeffect();
+	}
 	return 0;
     }
     You("peer into %s...", the(xname(obj)));

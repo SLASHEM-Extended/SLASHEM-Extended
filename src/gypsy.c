@@ -111,6 +111,10 @@ gypsy_bet (mtmp, minimum)
 	/* Validate the amount */
 	if (bet == 0L) {
 		pline("Never mind.");
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually I do mind...");
+			badeffect();
+		}
 		return (0L);
 	}
 	if (bet < minimum) {

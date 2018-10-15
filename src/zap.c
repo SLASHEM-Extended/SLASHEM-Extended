@@ -1784,7 +1784,7 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_
 	}
 	if (holy) costly_cancel(obj);
 	unbless(obj);
-	if (obj->oclass == WAND_CLASS || obj->spe >= 0) uncurse(obj);
+	if (obj->oclass == WAND_CLASS || obj->spe >= 0) uncurse(obj, FALSE);
 	if (obj->oinvis) obj->oinvis = 0;
 	if (obj->oinvisreal) obj->oinvisreal = 0;
 
@@ -4119,6 +4119,10 @@ secureidchoice:
 			cc.y = u.uy;
 			if (getpos(&cc, TRUE, "the desired position") < 0) {
 			    pline("%s", Never_mind);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually I do mind...");
+					badeffect();
+				}
 			    return;
 			}
 			if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
@@ -4282,7 +4286,7 @@ secureidchoice:
 				}
 
 				if ( (!rn2(5) || wornmask) && obj->cursed && !stack_too_big(obj))
-					uncurse(obj);
+					uncurse(obj, FALSE);
 			}
 
 			break;
@@ -4330,6 +4334,10 @@ chargingchoice:
 				break;
 			case 6 : 
 				pline("Nothing happens.");
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
 				break;
 			case 7 : 
 				You_feel("self-knowledgeable...");
@@ -4386,7 +4394,7 @@ chargingchoice:
 				register struct obj *obj;
 	
 				for(obj = invent; obj ; obj = obj->nobj)
-					if (!rn2(5) && obj->cursed && !stack_too_big(obj))	uncurse(obj);
+					if (!rn2(5) && obj->cursed && !stack_too_big(obj))	uncurse(obj, FALSE);
 	
 				break;
 			case 13 : 
@@ -4402,6 +4410,10 @@ chargingchoice:
 			case 20 : 
 			default:
 				pline("Nothing happens.");
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
 				break;
 			}
 			break;
@@ -4461,6 +4473,8 @@ dozap()
 	obj = getobj(zap_syms, "zap");
 	if(!obj) return(0);
 
+	if (CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone()) curse(obj);
+
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
 		nomul(-(rnd(5)), "zapping a wand", TRUE);
 	}
@@ -4478,7 +4492,12 @@ dozap()
 	}
 
 	/* zappable addition done by GAN 11/03/86 */
-	if(!zappable(obj)) {pline("%s", nothing_happens);
+	if(!zappable(obj)) {
+		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 
@@ -6504,6 +6523,10 @@ struct obj *obj;	/* wand or spell */
 	    if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz) ||
 		     Underwater || (Is_qstart(&u.uz) && u.dz < 0)) {
 		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
 	    } else if (u.dz < 0) {	/* we should do more... */
 		pline("Blood drips on your %s.", body_part(FACE));
 	    } else if (u.dz > 0 && !OBJ_AT(u.ux, u.uy)) {
@@ -6513,9 +6536,13 @@ struct obj *obj;	/* wand or spell */
 		*/
 		e = engr_at(u.ux, u.uy);
 		if (!(e && e->engr_type == ENGRAVE)) {
-		    if (is_waterypool(u.ux, u.uy) || is_ice(u.ux, u.uy))
+		    if (is_waterypool(u.ux, u.uy) || is_ice(u.ux, u.uy)) {
 			pline("%s", nothing_happens);
-		    else
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		    } else
 			pline("Blood %ss %s your %s.",
 			      is_lava(u.ux, u.uy) ? "boil" : "pool",
 			      Levitation ? "beneath" : "at",

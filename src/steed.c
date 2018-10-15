@@ -110,6 +110,10 @@ use_saddle(otmp)
 	/* Select an animal */
 	if (u.uswallow || Underwater || !getdir((char *)0)) {
 	    pline("%s", Never_mind);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually I do mind...");
+			badeffect();
+		}
 	    return 0;
 	}
 	if (!u.dx && !u.dy) {

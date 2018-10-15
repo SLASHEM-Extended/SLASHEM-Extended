@@ -2953,9 +2953,12 @@ register struct obj *otmp;
 }
 
 void
-uncurse(otmp)
+uncurse(otmp, guaranteed)
 register struct obj *otmp;
+boolean guaranteed;
 {
+	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone()) ) return;
+
 	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}

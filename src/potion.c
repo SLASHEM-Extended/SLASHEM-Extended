@@ -1777,38 +1777,7 @@ badeffect()
 		break;
 
 		case 411:
-
-		{
-			int statdrained = rn2(A_MAX);
-			if (ABASE(statdrained) < 4) break;
-			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
-				pline("The stat drain doesn't seem to affect you.");
-				break;
-			}
-
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
-
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
-
-			}
-		}
-
+			statdrain();
 		break;
 
 		case 412:
@@ -1839,6 +1808,40 @@ badeffect()
 
 		default:
 		break;
+	}
+
+}
+
+void
+statdrain()
+{
+	int statdrained = rn2(A_MAX);
+	if (ABASE(statdrained) < 4) return;
+	if (ABASE(statdrained) < (3 + rnd(8)) ) return;
+
+	if (Race_if(PM_SUSTAINER) && rn2(50)) {
+		pline("The stat drain doesn't seem to affect you.");
+		return;
+	}
+
+	ABASE(statdrained) -= 1;
+	AMAX(statdrained) -= 1;
+	flags.botl = 1;
+	switch (statdrained) {
+
+		case A_STR:
+			pline("Your strength falls off!"); break;
+		case A_DEX:
+			pline("Your dexterity falls off!"); break;
+		case A_CON:
+			pline("Your constitution falls off!"); break;
+		case A_CHA:
+			pline("Your charisma falls off!"); break;
+		case A_INT:
+			pline("Your intelligence falls off!"); break;
+		case A_WIS:
+			pline("Your wisdom falls off!"); break;
+
 	}
 
 }
@@ -3061,6 +3064,8 @@ dodrink()
 		bad_equipment_heel();
 	    }
 	}
+
+	if ((CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone()) && otmp) curse(otmp);
 	return dopotion(otmp);
 }
 
@@ -6394,7 +6399,7 @@ boolean amnesia;
 		used = TRUE;
 	    }
 		/* Amy edit: you cannot easily uncurse everything, sorry */
-	    if (obj->otyp == POT_WATER) uncurse(obj);
+	    if (obj->otyp == POT_WATER) uncurse(obj, FALSE);
 	    unbless(obj);
 	}
 
@@ -7118,7 +7123,7 @@ dodip()
 					  Your_buf,
 					  aobjnam(obj, "softly glow"),
 					  hcolor(NH_AMBER));
-				if (!stack_too_big(obj)) uncurse(obj);
+				if (!stack_too_big(obj)) uncurse(obj, FALSE);
 				else pline("Unfortunately, the stack was too big, so nothing happened.");
 				obj->bknown=1;
 	poof:
@@ -7220,6 +7225,10 @@ dodip()
 		    obj_resists( (obj->otyp == POT_POLYMORPH || obj->otyp == POT_MUTATION) ?
 				potion : obj, 5, 95)) {
 		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
 	    } else {
 	    	boolean was_wep = FALSE, was_swapwep = FALSE, was_quiver = FALSE;
 		short save_otyp = obj->otyp;

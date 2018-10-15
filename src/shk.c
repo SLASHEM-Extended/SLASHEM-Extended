@@ -5599,7 +5599,7 @@ shk_uncurse(slang, shkp)
 		*/
 		if (!rn2(5)) {
 			verbalize("Success!");
-			if (!stack_too_big(obj)) uncurse(obj);
+			if (!stack_too_big(obj)) uncurse(obj, TRUE);
 			else pline("Whoops, sorry, actually no success because the stack was too big!");
 		} else {
 			verbalize("Sorry.  I guess it's not your lucky day.");
@@ -5609,7 +5609,7 @@ shk_uncurse(slang, shkp)
 	else
 	{
 		verbalize("All done - safe to handle, now!");
-		if (!stack_too_big(obj)) uncurse(obj);
+		if (!stack_too_big(obj)) uncurse(obj, TRUE);
 		else pline("But the stack was so big that the shopkeeper failed to uncurse it.");
 	}
 }
@@ -5801,8 +5801,14 @@ struct monst *shkp;
     /* Here we go */
     if (service > 0)
 	verbalize(we_offer);
-    else
+    else {
 	pline("%s", Never_mind);
+	if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+		pline("Oh wait, actually I do mind...");
+		badeffect();
+	}
+
+    }
 
     switch(service) {
 	case 0:

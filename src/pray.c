@@ -428,7 +428,7 @@ decurse:
 			impossible("fix_worst_trouble: nothing to uncurse.");
 			return;
 		    }
-		    if (!stack_too_big(otmp)) uncurse(otmp);
+		    if (!stack_too_big(otmp)) uncurse(otmp, TRUE);
 		    if (!Blind) {
 			Your("%s %s.", what ? what :
 				(const char *)aobjnam(otmp, "softly glow"),
@@ -497,7 +497,7 @@ decurse:
 		    break;
 	    case TROUBLE_SADDLE:
 		    otmp = which_armor(u.usteed, W_SADDLE);
-		    uncurse(otmp);
+		    uncurse(otmp, TRUE);
 		    if (!Blind) {
 			pline("%s %s %s.",
 			      s_suffix(upstart(y_monnam(u.usteed))),
@@ -872,7 +872,7 @@ gcrownu()
 		    if (obj->spe < 3) obj->spe = 3;
 		    if (!rn2(2)) obj->spe += rnd(3);
 		    if (!rn2(10)) obj->spe += rnd(7);
-		    if (obj->cursed) uncurse(obj);
+		    if (obj->cursed) uncurse(obj, TRUE);
 		    if (!obj->blessed) bless(obj);
 		    obj->oerodeproof = TRUE;
 		    dropy(obj);
@@ -1249,7 +1249,7 @@ pleased(g_align)
 			    otense(uwep, "are"));
 
 		if (uwep->cursed) {
-		    uncurse(uwep);
+		    uncurse(uwep, TRUE);
 		    uwep->bknown = TRUE;
 		    if (!Blind)
 			Your("%s %s%s.", aobjnam(uwep, "softly glow"),
@@ -1331,7 +1331,7 @@ pleased(g_align)
 		     an(hcolor(NH_LIGHT_BLUE)));
 	    for(otmp=invent; otmp; otmp=otmp->nobj) {
 		if (otmp->cursed && !stack_too_big(otmp) ) {
-		    uncurse(otmp);
+		    uncurse(otmp, TRUE);
 		    if (!Blind) {
 			Your("%s %s.", aobjnam(otmp, "softly glow"),
 			     hcolor(NH_AMBER));
@@ -1653,6 +1653,10 @@ offer_oracle (mtmp, otmp)
 	/* Make sure it's a corpse */
     if (otmp->otyp != CORPSE) {
 		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
 		return (1);
 	}
 
@@ -2014,6 +2018,10 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 
     if (value == 0) {
 	pline("%s", nothing_happens);
+	if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+		pline("Oh wait, actually something bad happens...");
+		badeffect();
+	}
 	return (1);
     }
 
@@ -2277,7 +2285,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		otmp = mk_artifact((struct obj *)0, a_align(u.ux,u.uy), TRUE);
 		if (otmp) {
 		    if (otmp->spe < 0) otmp->spe = 0;
-		    if (otmp->cursed) uncurse(otmp);
+		    if (otmp->cursed) uncurse(otmp, TRUE);
 		    otmp->oerodeproof = TRUE;
 		    dropy(otmp);
 		    at_your_feet("An object");

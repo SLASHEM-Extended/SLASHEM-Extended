@@ -242,7 +242,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 			    ROBE_OF_PROTECTION : ROBE_OF_POWER, TRUE, FALSE);
 		    if (obj) { /* this should fix a STUPID segfault for minimalist characters --Amy */
 			    if (p_coaligned(priest))
-				uncurse(obj);
+				uncurse(obj, TRUE);
 			    else
 				curse(obj);
 			    if (obj) {

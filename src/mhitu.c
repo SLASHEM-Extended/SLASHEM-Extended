@@ -5682,34 +5682,7 @@ hitmu(mtmp, mattk)
 		if (statsavingthrow) break;
 
 		if (uncancelled && !rn2(3)) {
-			int statdrained = rn2(A_MAX);
-			if (ABASE(statdrained) < 4) break;
-			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
-				pline("The stat drain doesn't seem to affect you.");
-				break;
-			}
-
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
-
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
-
-			}
+			statdrain();
 		}
 
 		break;
@@ -9272,34 +9245,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		pline("The very essence of you seems to be sapped!");
 		if (!rn2(3)) {
-			int statdrained = rn2(A_MAX);
-			if (ABASE(statdrained) < 4) break;
-			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
-				pline("The stat drain doesn't seem to affect you.");
-				break;
-			}
-
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
-
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
-
-			}
+			statdrain();
 		}
 
 		break;
@@ -11079,6 +11025,10 @@ do_stone2:
 		case 4: case 3: case 2: case 1: case 0:
 		    if (Antimagic) shieldeff(u.ux, u.uy);
 		    pline("Nothing happens.");
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
 		    tmp = 0;
 		    break;
 		}
@@ -13140,36 +13090,7 @@ common:
 
 	    case AD_STAT:
 
-		{
-			int statdrained = rn2(A_MAX);
-			if (ABASE(statdrained) < 4) break;
-			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
-				pline("The stat drain doesn't seem to affect you.");
-				break;
-			}
-
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
-
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
-
-			}
-		}
+		statdrain();
 
 		break;
 
@@ -17335,36 +17256,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
             	pline("%s tries to drain your very soul!", Monnam(mtmp));
 
-		if (!rn2(3)) {
-			int statdrained = rn2(A_MAX);
-			if (ABASE(statdrained) < 4) break;
-			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
-				pline("The stat drain doesn't seem to affect you.");
-				break;
+			if (!rn2(3)) {
+				statdrain();
 			}
-
-			ABASE(statdrained) -= 1;
-			AMAX(statdrained) -= 1;
-			flags.botl = 1;
-			switch (statdrained) {
-
-				case A_STR:
-					pline("Your strength falls off!"); break;
-				case A_DEX:
-					pline("Your dexterity falls off!"); break;
-				case A_CON:
-					pline("Your constitution falls off!"); break;
-				case A_CHA:
-					pline("Your charisma falls off!"); break;
-				case A_INT:
-					pline("Your intelligence falls off!"); break;
-				case A_WIS:
-					pline("Your wisdom falls off!"); break;
-
-			}
-		}
 		}
 
 		break;
@@ -17666,13 +17560,18 @@ register int n;
 		if (!rn2(500)) antimatter_damage(invent, FALSE, FALSE);
 	}
 
+	if (ExplodingDiceEffect || u.uprops[EXPLODING_DICE].extrinsic || have_explodingdicestone()) {
+		int basedamage = n;
+		while (!rn2(6)) n += basedamage;
+	}
+
 	/* sometimes you take less damage. The game is deadly enough already. High constitution helps. --Amy */
 	if (!issoviet && rn2(ABASE(A_CON))) {
 	if (!rn2(3) && n >= 1) {n = n / 2; if (n < 1) n = 1;}
-	if (!rn2(10) && n >= 1 && u.ulevel >= 10) {n = n / 3; if (n < 1) n = 1;}
-	if (!rn2(15) && n >= 1 && u.ulevel >= 14) {n = n / 4; if (n < 1) n = 1;}
-	if (!rn2(20) && n >= 1 && u.ulevel >= 20) {n = n / 5; if (n < 1) n = 1;}
-	if (!rn2(50) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
+	if (!rn2(10) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 10) {n = n / 3; if (n < 1) n = 1;}
+	if (!rn2(15) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 14) {n = n / 4; if (n < 1) n = 1;}
+	if (!rn2(20) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 20) {n = n / 5; if (n < 1) n = 1;}
+	if (!rn2(50) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
 	}
 
 	if (PlayerInConeHeels && n > 0) {

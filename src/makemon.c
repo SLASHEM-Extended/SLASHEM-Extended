@@ -14931,6 +14931,8 @@ register int	mmflags;
 
 	mtmp->sagesvisible = !rn2(10);
 
+	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
+
 	/* Everything that can hide under an object will now do so. --Amy */
       if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
 
@@ -16706,7 +16708,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -17022,7 +17024,7 @@ rndmonst()
 	    if (issoviet && !rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
 		if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
-		if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(3)) {
+		if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(3)) {
 			minmlev += u.ulevel;
 		}
 
@@ -17707,7 +17709,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -17730,11 +17732,11 @@ int     spc;
 		uncommonten = rn2(5) ? 1 : 0;
 	}
 
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && rn2(2)) uncommontwo = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(3)) uncommonthree = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(5)) uncommonfive = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(7)) uncommonseven = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(10)) uncommonten = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && rn2(2)) uncommontwo = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(3)) uncommonthree = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(5)) uncommonfive = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(7)) uncommonseven = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(10)) uncommonten = 0;
 
 	if (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
 		uncommontwo = 0;
@@ -17756,17 +17758,17 @@ int     spc;
 	int uncommonnewsixty = rn2(20) ? 1 : 0;
 	int uncommonnewseventy = rn2(50) ? 1 : 0;
 
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && rn2(5)) uncommonnewten = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && rn2(4)) uncommonnewfifteen = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && rn2(3)) uncommonnewtwenty = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && rn2(2)) uncommonnewtwentyfive = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(3)) uncommonnewthirty = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(4)) uncommonnewthirtyfive = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(5)) uncommonnewforty = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(6)) uncommonnewfortyfive = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(7)) uncommonnewfifty = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(8)) uncommonnewsixty = 0;
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(9)) uncommonnewseventy = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && rn2(5)) uncommonnewten = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && rn2(4)) uncommonnewfifteen = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && rn2(3)) uncommonnewtwenty = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && rn2(2)) uncommonnewtwentyfive = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(3)) uncommonnewthirty = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(4)) uncommonnewthirtyfive = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(5)) uncommonnewforty = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(6)) uncommonnewfortyfive = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(7)) uncommonnewfifty = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(8)) uncommonnewsixty = 0;
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(9)) uncommonnewseventy = 0;
 
 	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
 		uncommonnewten = 0;
@@ -17817,7 +17819,7 @@ int     spc;
 	if (issoviet && rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
 	if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
-	if (((u.aggravation || isaggravator || isextravator) && ((ExtAggravate_monster || isextravator) || !rn2(2))) && !rn2(3)) {
+	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(3)) {
 		minmlev += u.ulevel;
 	}
 
@@ -20095,6 +20097,10 @@ struct obj *bag;
 	impossible("bad bag o' tricks");
     } else if (bag->spe < 1) {
 	pline("%s", nothing_happens);
+	if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+		pline("Oh wait, actually something bad happens...");
+		badeffect();
+	}
     } else {
 	boolean gotone = FALSE;
 	int cnt = 1;

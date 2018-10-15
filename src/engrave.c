@@ -2264,6 +2264,10 @@ doengrave()
 				ynqchars, 'y');
 		if (c == 'q') {
 		    pline("%s", Never_mind);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually I do mind...");
+				badeffect();
+			}
 		    return(0);
 		}
 	    }
@@ -2357,6 +2361,10 @@ doengrave()
 		return(1);
 	    } else {
 		pline("%s", Never_mind);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually I do mind...");
+			badeffect();
+		}
 		return(0);
 	    }
 	}

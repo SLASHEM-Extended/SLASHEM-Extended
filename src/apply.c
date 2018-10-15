@@ -65,6 +65,10 @@ use_camera(obj)
 
 	if (obj->spe <= 0) {
 		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
 		return (1);
 	}
 	if (obj->oartifact == ART_LIGHTS__CAMERA__ACTION) {
@@ -1099,8 +1103,13 @@ struct obj **optr;
 	    if (u.uswallow) {
 		if (!obj->cursed && !rn2(10))
 		    (void) openit();
-		else
-		    pline("%s", nothing_happens);
+		else {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 
 	    } else if (obj->cursed && (!invoking || !rn2(2)) ) {
 		coord mm;
@@ -1136,7 +1145,13 @@ struct obj **optr;
 		 * it's *only* meant to make sure you won't run out as easily during the ritual! */
 		if (!rn2(10)) res += openit();
 		switch (res) {
-		  case 0:  pline("%s", nothing_happens); break;
+		  case 0:
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+			break;
 		  case 1:  pline("%s opens...", Something);
 			   learno = TRUE; break;
 		  default: pline("Things open around you...");
@@ -1149,8 +1164,20 @@ struct obj **optr;
 #endif
 		if (!rn2(10)) {
 			if (findit() != 0) learno = TRUE;
-			else pline("%s", nothing_happens);
-		} else pline("%s", nothing_happens);
+			else {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+			}
+		} else {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 	    }
 
 	}	/* charged BofO */
@@ -1645,12 +1672,24 @@ dorub()
 		update_inventory();
 	    } else if (rn2(2) && !Blind)
 		You("see a puff of smoke.");
-	    else pline("%s", nothing_happens);
+	    else {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 	} else if (obj->otyp == BRASS_LANTERN) {
 	    /* message from Adventure */
 	    pline("Rubbing the electric lamp is not particularly rewarding.");
 	    pline("Anyway, nothing exciting happens.");
-	} else pline("%s", nothing_happens);
+	} else {
+		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
+	}
 	return 1;
 }
 
@@ -2276,7 +2315,13 @@ degradeagain:
 
 fixthings:
 	if (trouble_count == 0) {
-	    if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION)) pline("%s", nothing_happens);
+	    if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION)) {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 	    return 0;
 	} else if (trouble_count > 1) {		/* shuffle */
 	    int i, j, k;
@@ -3727,9 +3772,14 @@ use_pole (obj)
 		    }
 
 	    }
-	} else
-	    /* Now you know that nothing is there... */
-	    pline("%s", nothing_happens);
+	} else {
+		/* Now you know that nothing is there... */
+		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
+	}
 	return (1);
 }
 
@@ -3892,6 +3942,10 @@ use_grapple (obj)
 	    break;
 	}
 	pline("%s", nothing_happens);
+	if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+		pline("Oh wait, actually something bad happens...");
+		badeffect();
+	}
 	return (1);
 }
 
@@ -4475,6 +4529,8 @@ doapply()
 	obj = getobj(class_list, "use or apply");
 	if(!obj) return 0;
 
+	if (CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone()) curse(obj);
+
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
 		nomul(-(rnd(5)), "applying a tool", TRUE);
 	}
@@ -4970,7 +5026,13 @@ doapply()
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				You_feel("better.");
 				flags.botl = TRUE;
-			    } else pline("%s", nothing_happens);
+			    } else {
+					pline("%s", nothing_happens);
+					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+						pline("Oh wait, actually something bad happens...");
+						badeffect();
+					}
+				}
 			} else if (!rn2(3))
 			    pline("Nothing seems to happen.");
 			else if (!Sick)
@@ -5044,8 +5106,13 @@ doapply()
 				use_skill(P_DEVICES,1);
 				use_skill(P_DEVICES,1);
 			}
-		} else
-		    pline("%s", nothing_happens);
+		} else {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
 		break;
 	case LAND_MINE:
 	case BEARTRAP:
