@@ -8,7 +8,6 @@ extern const char * const destroy_strings[];	/* from zap.c */
 
 STATIC_DCL void rocks_fall(int, int);
 
-STATIC_DCL void dofiretrap(struct obj *);
 STATIC_DCL void doplasmatrap(struct obj *);
 STATIC_DCL void doicetrap(struct obj *);
 STATIC_DCL void doshocktrap(struct obj *);
@@ -14062,7 +14061,7 @@ struct obj *box;        /* at the moment only for floor traps */
 
 }
 
-STATIC_OVL void
+void
 dofiretrap(box)
 struct obj *box;	/* null for floor trap */
 {

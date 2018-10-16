@@ -1148,6 +1148,10 @@ struct you {
 
 	int usanity;
 
+	int tarmustrokingturn;	/* for tarmustrokingnora trap */
+
+	int frequentationtrait;	/* for frequentation spawn trap */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

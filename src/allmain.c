@@ -1926,6 +1926,11 @@ trapsdone:
 
 		}
 
+		if (u.tarmustrokingturn) {
+			u.tarmustrokingturn--;
+			if (u.tarmustrokingturn < 0) u.tarmustrokingturn = 0; /* fail safe */
+		}
+
 		if (SkillLossEffect || u.uprops[SKILL_LOSS_EFFECT].extrinsic || have_skilllossstone()) {
 			skillcaploss_severe();
 		}
@@ -10324,6 +10329,13 @@ newboss:
 		iflags.winggraphics = FALSE;
 	}
 
+	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
+	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
+		u.frequentationtrait = rnd(359); /* same as monstercolor function */
+	} else {
+		u.frequentationtrait = 0;
+	}
+
 	if (u.shiftingsandsinking && !(is_shiftingsand(u.ux, u.uy))) {
 		u.shiftingsandsinking = 0;
 		You("escaped the shifting sand.");
@@ -13317,6 +13329,23 @@ contaminationcheck()
 	if (In_sewerplant(&u.uz) && rn2(2) && !Breathless) return 1;
 
 	return 0;
+}
+
+/* cyan spell trap: highlight tiles that have at least one adjacent monster but don't have a monster themselves --Amy */
+boolean
+cyanspellok(x, y)
+int x, y;
+{
+	if (MON_AT(x, y)) return FALSE;
+
+	int i, j;
+	for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+		if (!isok(x + i, y + j)) continue;
+		if (MON_AT(x + i, y + j)) return TRUE;
+	}
+
+	return FALSE;
+
 }
 
 #endif /* OVLB */

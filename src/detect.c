@@ -1818,6 +1818,24 @@ sokoban_detect()
 int
 dosearch()
 {
+	if ((TarmuStrokingNora || u.uprops[TARMU_STROKING_NORA].extrinsic || have_tarmustrokingnorastone()) && u.tarmustrokingturn < 1) {
+		u.tarmustrokingturn = rnd(100);
+
+		int tryct = 0;
+		int x, y;
+
+		for (tryct = 0; tryct < 2000; tryct++) {
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				(void) maketrap(x, y, randomtrap(), 100);
+				break;
+				}
+		}
+
+	}
+
 	return(dosearch0(0));
 }
 

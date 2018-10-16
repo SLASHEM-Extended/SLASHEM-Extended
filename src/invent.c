@@ -963,6 +963,12 @@ struct obj *obj;
 		if ((uleft && uleft->oartifact == ART_EVIL_DETECTOR) || (uright && uright->oartifact == ART_EVIL_DETECTOR)) obj->bknown = TRUE;
 	}
 
+	if (obj && (LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone())) {
+		obj->known = obj->bknown = obj->rknown = obj->dknown = FALSE;
+		if (OBJ_DESCR(objects[obj->otyp]) && (objects[obj->otyp].oc_name_known || objects[obj->otyp].oc_uname)) 
+			forget_single_object(obj->otyp);
+	}
+
 }
 
 /* remove an object from the hero's inventory */

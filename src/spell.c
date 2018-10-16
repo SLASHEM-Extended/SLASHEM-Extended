@@ -2190,8 +2190,16 @@ boolean atme;
 	if (Role_if(PM_MAHOU_SHOUJO)) { /* Casting any sort of magic causes all monsters on a level to 
       become alert of your location, due to mahou shoujo always announcing their attacks. */
 
-	wake_nearby();
-	verbalize("%s!",spellname(spell) );
+		wake_nearby();
+		verbalize("%s!",spellname(spell) );
+
+	}
+
+	if (SpellColorBrightCyan) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+		(void) makemon((struct permonst *)0, 0, 0, MM_ANGRY);
+		u.aggravation = 0;
 
 	}
 

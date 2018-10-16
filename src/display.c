@@ -427,6 +427,10 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
+	if (SpellColorBrightCyan && cyanspellok(x,y)) { 	\
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
+	return;								\
+	}								\
 	if (SpellColorBrown && (distu(x,y) % 3 == 0)) { 	\
 	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));			\
 	return;								\
@@ -504,6 +508,10 @@ int memory_glyph(x, y)
 	}
 
 	if (SpellColorOrange && (distu(x,y) > 100)) {
+	return cmap_to_glyph(S_grayglyph);
+	}
+
+	if (SpellColorBrightCyan && cyanspellok(x,y)) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -1035,6 +1043,11 @@ newsym(x,y)
 	return;
 	}
 
+	if (SpellColorBrightCyan && cyanspellok(x,y)) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
 	if (SpellColorBrown && (distu(x,y) % 3 == 0)) {
 	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));
 	return;
@@ -1336,6 +1349,11 @@ newsymX(x,y)
 	}
 
 	if (SpellColorOrange && (distu(x,y) > 100)) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if (SpellColorBrightCyan && cyanspellok(x,y)) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}

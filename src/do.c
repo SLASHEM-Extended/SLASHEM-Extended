@@ -356,7 +356,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		There("is %s flash as %s %s the altar.",
 			an(hcolor(obj->blessed ? NH_AMBER : NH_BLACK)),
 			doname(obj), otense(obj, "hit"));
-		if (!Hallucination) {
+		if (!Hallucination && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) ) {
 			/* prevent skill farming if the player drops individual rocks or stuff --Amy */
 			if (!obj->bknown && !objects[obj->otyp].oc_merge)
 				use_skill(P_SPIRITUALITY,3);
@@ -365,7 +365,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 	} else {
 		pline("%s %s on the altar.", Doname2(obj),
 			otense(obj, "land"));
-		if (!obj->bknown && !objects[obj->otyp].oc_merge)
+		if (!obj->bknown && !objects[obj->otyp].oc_merge && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) )
 			use_skill(P_SPIRITUALITY,3);
 		obj->bknown = 1;
 	}

@@ -3837,6 +3837,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone())) {
 		sprintf(buf, "the following problem: Some monster trait is more common than usual.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FrequentationSpawns);
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%s)", montraitname(u.frequentationtrait));
 		you_have(buf);
 	}
 
@@ -7334,6 +7335,7 @@ int final;
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
 		sprintf(buf, "the following problem: Some monster trait is more common than usual.");
 	      sprintf(eos(buf), " (%d)", FrequentationSpawns);
+		sprintf(eos(buf), " (%s)", montraitname(u.frequentationtrait));
 		dump(youhad, buf);
 	}
 

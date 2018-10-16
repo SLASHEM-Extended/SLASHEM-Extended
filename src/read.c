@@ -183,7 +183,6 @@ static void stripspe(struct obj *);
 static void p_glow1(struct obj *);
 static void p_glow2(struct obj *,const char *);
 static void randomize(int *, int);
-static void forget_single_object(int);
 static void maybe_tame(struct monst *,struct obj *);
 static void undo_genocide(void);
 
@@ -1480,7 +1479,7 @@ boolean confused;
 }
 
 /* Forget known information about this object class. */
-static void
+void
 forget_single_object(obj_id)
 	int obj_id;
 {

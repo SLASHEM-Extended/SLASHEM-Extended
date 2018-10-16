@@ -2782,7 +2782,7 @@ boolean credit_hero;
 	}
 	if (moves > 1L) update_inventory();
 
-	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
+	if ((Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) ) {
 		use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
 
 	}

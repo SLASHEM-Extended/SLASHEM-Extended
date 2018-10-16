@@ -166,6 +166,12 @@ stealarm()
 			freeinv(otmp);
 			if (evilfriday) pline("Something seems missing...");
 			else pline("%s steals %s!", Monnam(mtmp), doname(otmp));
+
+			if (StealDegrading || u.uprops[STEAL_DEGRADING].extrinsic || have_stealdegradestone()) {
+				if (!stack_too_big(otmp)) curse(otmp);
+				if (!stack_too_big(otmp) && otmp->spe > -20) otmp->spe--;
+			}
+
 			(void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 			/* Implies seduction, "you gladly hand over ..."
 			   so we don't set mavenge bit here. */
@@ -592,6 +598,12 @@ gotobj:
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
+
+	if (StealDegrading || u.uprops[STEAL_DEGRADING].extrinsic || have_stealdegradestone()) {
+		if (!stack_too_big(otmp)) curse(otmp);
+		if (!stack_too_big(otmp) && otmp->spe > -20) otmp->spe--;
+	}
+
 	(void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 	if (could_petrify && !(mtmp->misc_worn_check & W_ARMG) && !rn2(4)) {
 	    minstapetrify(mtmp, TRUE);
@@ -693,6 +705,12 @@ struct monst *mtmp;
 	freeinv(otmp);
 	/* mpickobj wont merge otmp because none of the above things
 	   to steal are mergable */
+
+	if (StealDegrading || u.uprops[STEAL_DEGRADING].extrinsic || have_stealdegradestone()) {
+		if (!stack_too_big(otmp)) curse(otmp);
+		if (!stack_too_big(otmp) && otmp->spe > -20) otmp->spe--;
+	}
+
 	(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
 	if (evilfriday) pline("Something seems missing...");
 	else pline("%s stole %s!", Monnam(mtmp), doname(otmp));

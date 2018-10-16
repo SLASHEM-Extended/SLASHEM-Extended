@@ -17555,6 +17555,8 @@ loopback:
 		if (ct > 0 && u.frequenttrait9 && monster_with_trait(ptr, u.frequenttrait9)) ct += u.freqtraitbonus9;
 		if (ct > 0 && u.frequenttrait10 && monster_with_trait(ptr, u.frequenttrait10)) ct += u.freqtraitbonus10;
 
+		if (ct > 0 && (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) && u.frequentationtrait && monster_with_trait(ptr, u.frequentationtrait) ) ct += 10;
+
 		if (ct > 0 && (mndx == u.frequentspecies)) ct += u.freqspeciesbonus;
 		if (ct > 0 && (mndx == u.frequentspecies2)) ct += u.freqspeciesbonus2;
 		if (ct > 0 && (mndx == u.frequentspecies3)) ct += u.freqspeciesbonus3;
@@ -18336,6 +18338,8 @@ int     spc;
 		if (u.frequenttrait9 && monster_with_trait(&mons[last], u.frequenttrait9)) num += u.freqtraitbonus9;
 		if (u.frequenttrait10 && monster_with_trait(&mons[last], u.frequenttrait10)) num += u.freqtraitbonus10;
 
+		if ((FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) && u.frequentationtrait && monster_with_trait(&mons[last], u.frequentationtrait) ) num += 10;
+
 		if (RngeExtinction && mvitals[last].born) num += mvitals[last].born;
 
 		if (last == urole.nemesnum) num += 100;
@@ -18834,6 +18838,8 @@ int     spc;
 		if (u.frequenttrait8 && monster_with_trait(&mons[first], u.frequenttrait8)) num -= u.freqtraitbonus8;
 		if (u.frequenttrait9 && monster_with_trait(&mons[first], u.frequenttrait9)) num -= u.freqtraitbonus9;
 		if (u.frequenttrait10 && monster_with_trait(&mons[first], u.frequenttrait10)) num -= u.freqtraitbonus10;
+
+		if ((FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) && u.frequentationtrait && monster_with_trait(&mons[first], u.frequentationtrait) ) num -= 10;
 
 		if (RngeExtinction && mvitals[first].born) num -= mvitals[first].born;
 

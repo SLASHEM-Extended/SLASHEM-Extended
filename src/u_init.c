@@ -7384,6 +7384,8 @@ u_init()
 	u.oldrecursionrole = -1;
 	u.oldrecursionrace = -1;
 
+	u.tarmustrokingturn = 0;
+
 	u.dehydrationtime = 0;
 
 	u.fakeartifacts = 0; /* does nothing special; just provides interesting statistics for enlightenment --Amy */
@@ -7443,6 +7445,8 @@ u_init()
 	if (!rn2(36360)) u.freqcolorbonus *= (1 + rne(5));
 	if (u.freqcolorbonus > 100) u.freqcolorbonus = 100; /* fail safe */
 	}
+
+	u.frequentationtrait = 0;
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 

@@ -58,6 +58,7 @@ E void reset_trapset(void);
 E void fig_transform(void *, long);
 E int unfixable_trouble_count(BOOLEAN_P);
 E int wand_explode(struct obj *,BOOLEAN_P);
+E boolean cyanspellok(int, int);
 
 /* ### artifact.c ### */
 
@@ -2311,6 +2312,7 @@ E boolean cant_create(int *, BOOLEAN_P);
 E struct monst *create_particular(void);
 #endif
 E void gmmode_genesis(const char *);
+E void forget_single_object(int);
 
 /* ### rect.c ### */
 
@@ -2785,6 +2787,8 @@ E boolean burnarmor(struct monst *);
 E boolean rust_dmg(struct obj *,const char *,int,BOOLEAN_P,struct monst *);
 
 E boolean wither_dmg(struct obj *,const char *,int,BOOLEAN_P,struct monst *);
+
+E void dofiretrap(struct obj *);
 
 E void grease_protect(struct obj *,const char *,struct monst *);
 E struct trap *maketrap(int,int,int,int);
