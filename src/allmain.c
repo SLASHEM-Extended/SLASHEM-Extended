@@ -10257,6 +10257,13 @@ newboss:
 	/* once-per-player-input things go here */
 	/****************************************/
 
+	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
+		iflags.winggraphics = TRUE;
+		assignwinggraphics();
+	} else {
+		iflags.winggraphics = FALSE;
+	}
+
 	if (u.shiftingsandsinking && !(is_shiftingsand(u.ux, u.uy))) {
 		u.shiftingsandsinking = 0;
 		You("escaped the shifting sand.");
@@ -10734,6 +10741,13 @@ boolean new_game;	/* false => restoring an old game */
      * restores it's only shown if different from its original value.
      */
     *buf = '\0';
+
+	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
+		iflags.winggraphics = TRUE;
+		assignwinggraphics();
+	} else {
+		iflags.winggraphics = FALSE;
+	}
 
 	if (TheInfoIsFucked) {
 		pline("You've forgotten who you are, but you are back.");

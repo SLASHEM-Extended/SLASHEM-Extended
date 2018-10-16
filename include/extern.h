@@ -571,6 +571,7 @@ E int def_char_to_objclass(CHAR_P);
 E int def_char_to_monclass(CHAR_P);
 #if !defined(MAKEDEFS_C) && !defined(LEV_LEX_C)
 E void assign_graphics(uchar *,int,int,int);
+E void assignwinggraphics();
 E void switch_graphics(int);
 #ifdef REINCARNATION
 E void assign_rogue_graphics(BOOLEAN_P);

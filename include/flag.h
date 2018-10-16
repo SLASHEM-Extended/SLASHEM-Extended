@@ -273,6 +273,7 @@ struct instance_flags {
 				  * on some non-move commands */
 	boolean numpadmessage; /* because Elronnd is so weird and keeps inputting invalid commands, so we have to
 					    * make it possible to disable the message you're getting */
+	boolean winggraphics;	/* wing yellow graphics */
 	boolean bones;
 	boolean use_menu_glyphs;
 	uchar num_pad_mode;

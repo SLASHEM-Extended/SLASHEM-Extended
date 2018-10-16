@@ -309,6 +309,7 @@ static struct Bool_Opt
 #endif
 	{"verbose", &flags.verbose, TRUE, SET_IN_GAME},
 	{"wallglyph", &flags.wallglyph, TRUE, SET_IN_GAME},
+	{"winggraphics", &iflags.winggraphics, FALSE, DISP_IN_GAME},
 	{"wraptext", &iflags.wc2_wraptext, FALSE, SET_IN_GAME},
 
 	{"blindfox", &flags.blindfox, FALSE, DISP_IN_GAME}, 

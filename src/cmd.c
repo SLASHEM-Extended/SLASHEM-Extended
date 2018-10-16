@@ -11283,6 +11283,104 @@ register char *cmd;
 
 	}
 
+	/* Autopilot means your char does random things depending on your contamination --Amy */
+	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || have_autopilotstone()) ) {
+		int autopilotchance = u.contamination;
+		if (isevilvariant && (autopilotchance > 900)) autopilotchance = 900;
+		else if (!isevilvariant && (autopilotchance > 500)) autopilotchance = 500;
+
+		if (u.contamination > 600 && !rn2(100)) {
+			pline("Client %s sent a bogus command packet.", playeraliasname);
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (isevilvariant) dosave();
+		}
+
+		if (u.contamination > 1000 && !rn2(100)) {
+			pline("Client %s sent an unreadable command packet.", playeraliasname);
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (isevilvariant) done(QUIT);
+		}
+
+		if (rn2(1000) < autopilotchance) {
+
+			if (rn2(10)) {
+				u.dx = !rn2(3) ? -1 : !rn2(2) ? 0 : 1;
+				u.dy = !rn2(3) ? -1 : !rn2(2) ? 0 : 1;
+				do_walk = TRUE;
+				*cmd = ' ';
+				goto walkwalkwalk;
+			} else { switch (rnd(34)) {
+				case 1:
+					*cmd = 'a'; break;
+				case 2:
+					*cmd = 'A'; break;
+				case 3:
+					*cmd = 'c'; break;
+				case 4:
+					*cmd = 'd'; break;
+				case 5:
+					*cmd = 'e'; break;
+				case 6:
+					*cmd = 'E'; break;
+				case 7:
+					*cmd = 'f'; break;
+				case 8:
+					*cmd = 'F'; break;
+				case 9:
+					*cmd = 'i'; break;
+				case 10:
+					*cmd = 'j'; break;
+				case 11:
+					*cmd = 'k'; break;
+				case 12:
+					*cmd = 'l'; break;
+				case 13:
+					*cmd = 'o'; break;
+				case 14:
+					*cmd = 'p'; break;
+				case 15:
+					*cmd = 'P'; break;
+				case 16:
+					*cmd = 'q'; break;
+				case 17:
+					*cmd = 'Q'; break;
+				case 18:
+					*cmd = 'r'; break;
+				case 19:
+					*cmd = 'R'; break;
+				case 20:
+					*cmd = 's'; break;
+				case 21:
+					*cmd = 't'; break;
+				case 22:
+					*cmd = 'T'; break;
+				case 23:
+					*cmd = 'u'; break;
+				case 24:
+					*cmd = 'v'; break;
+				case 25:
+					*cmd = 'w'; break;
+				case 26:
+					*cmd = 'W'; break;
+				case 27:
+					*cmd = 'x'; break;
+				case 28:
+					*cmd = '<'; break;
+				case 29:
+					*cmd = '>'; break;
+				case 30:
+					*cmd = '.'; break;
+				case 31:
+					*cmd = ','; break;
+				case 32:
+					*cmd = ':'; break;
+				case 33:
+					*cmd = ';'; break;
+				}
+			}
+		}
+	}
+
     if (*cmd && !u.hangupcheat) {
         u.hangupcheat = 1;
     }
@@ -11397,6 +11495,7 @@ register char *cmd;
 		++cmd;
 	}
 
+walkwalkwalk:
 	if (do_walk) {
 	    if (multi) flags.mv = TRUE;
 	    domove();

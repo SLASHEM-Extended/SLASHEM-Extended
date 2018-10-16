@@ -139,6 +139,8 @@ STATIC_DCL int back_to_cmap(XCHAR_P, XCHAR_P);
 
 STATIC_VAR boolean transp;    /* cached transparency flag for current tileset */
 
+STATIC_DCL int randomglyph(void);
+
 /*
  * vobj_at()
  *
@@ -159,6 +161,13 @@ vobj_at(x,y)
 	obj = obj->nexthere;
     }
     return ((struct obj *) 0);
+}
+
+int
+randomglyph()
+{
+	if (rn2(20)) return rnd(S_grayglyph);
+	else return (S_arrow_trap + rn2(S_timerun_trap + 1 - S_arrow_trap));
 }
 
 /*
@@ -406,6 +415,10 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));			\
 	return;								\
 	}								\
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) { 	\
+	show_glyph(x, y, cmap_to_glyph(randomglyph()) );			\
+	return;								\
+	}								\
 	if (SpellColorBlue && !rn2(10)) { 	\
 	show_glyph(x, y, cmap_to_glyph(S_room));			\
 	return;								\
@@ -481,6 +494,10 @@ int memory_glyph(x, y)
 	}
 
 	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { return cmap_to_glyph(S_stone); }
+
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
+	return cmap_to_glyph(randomglyph());
+	}
 
 	if (SpellColorBlue && !rn2(10)) {
 	return cmap_to_glyph(S_room);
@@ -1003,6 +1020,11 @@ newsym(x,y)
 	return;
 	}
 
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
+	show_glyph(x, y, cmap_to_glyph(randomglyph()));
+	return;
+	}
+
 	if (SpellColorBlue && !rn2(10)) {
 	show_glyph(x, y, cmap_to_glyph(S_room));
 	return;
@@ -1300,6 +1322,11 @@ newsymX(x,y)
 
 	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
+	show_glyph(x, y, cmap_to_glyph(randomglyph()));
 	return;
 	}
 

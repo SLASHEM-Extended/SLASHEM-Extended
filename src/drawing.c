@@ -3,6 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "extern.h"
 #include "tcap.h"
 /* Relevent header information in rm.h and objclass.h. */
 
@@ -2056,6 +2057,611 @@ static uchar dec_graphics[MAXPCHARS] = {
 };
 #endif  /* TERMLIB */
 
+static uchar wing_graphics[MAXPCHARS] = {
+/* 0*/	g_FILLER(S_stone),
+	0x64,	/* d */
+	0x40,	/* @ */
+	0x37,	/* 7 */
+	0x7b,	/* { */
+	0x5b,	/* [ */
+	0x21,	/* ! */
+	0x4E,	/* N */
+	0x6f,	/* o */
+	0x7c,	/* | */
+/*10*/	0x3a,	/* : */
+	0x47,	/* G */
+	0x5f,	/* _ */
+	0x4c,	/* L */
+	0x24,	/* $ */
+	0x7e,	/* ~ */
+	0x5c,	/* closing slash */
+	0x33,	/* " */
+	0x2e, /* . */
+	0x67, /* g */
+/*20*/	0x44,	/* D */
+
+	0x74,	/* t */
+	0x3d,	/* = */
+	0x30,	/* 0 */
+	0x55,	/* U */
+	0x25,	/* % */
+	0x3f, /* ? */
+	0x79, /* y */
+	0x2d, /* - */
+	0x28, /* ( */
+/*30*/	0x6c,	/* l */
+	0x5e,	/* ^ */
+	0x23,	/* # */
+	0x76, /* v */
+	0x54, /* T */
+	0x2b, /* + */
+	0x63, /* c */
+	0x3c, /* < */
+	0x50,	/* P */
+	0x69,	/* i */
+/*40*/	0x31,	/* 1 */
+	0x62,	/* b */
+	0x5a,	/* Z */
+	0x4b, /* K */
+	0x58, /* X */
+	0x26, /* & */
+	0x2a, /* * */
+	0x3b, /* ; */
+	0x2f,	/* opening slash */
+	0x57, /* W */
+/*50*/	0x34,	/* 4 */
+	0x6d, /* m */
+	0x60, /* ` */
+	0x6a, /* j */
+	0x28, /* ( */
+	0x42, /* B */
+	0x70, /* p */
+	0x7d, /* } */
+	0x52, /* R */
+	0x71, /* q */
+/*60*/	0x51, /* Q */
+	0x27, /* apostroph */
+	0x39, /* 9 */
+	0x65, /* e */
+	0x6e, /* n */
+	0x68, /* h */
+	0x3e, /* > */
+	0x46, /* F */
+	0x49, /* I */
+	0x4f, /* O */
+/*70*/	0x36, /* 6 */
+	0x66, /* f */
+	0x56, /* V */
+	0x6b, /* k */
+	0x29, /* ) */
+	g_FILLER(S_arrow_trap),
+	g_FILLER(S_dart_trap),
+	g_FILLER(S_falling_rock_trap),
+	g_FILLER(S_squeaky_board),
+	g_FILLER(S_bear_trap),
+	g_FILLER(S_land_mine),
+	g_FILLER(S_rolling_boulder_trap),
+	g_FILLER(S_sleeping_gas_trap),
+	g_FILLER(S_rust_trap),
+	g_FILLER(S_fire_trap),
+	g_FILLER(S_pit),
+	g_FILLER(S_spiked_pit),
+	g_FILLER(S_hole),
+	g_FILLER(S_trap_door),
+	g_FILLER(S_teleportation_trap),
+	g_FILLER(S_level_teleporter),
+	g_FILLER(S_magic_portal),
+	g_FILLER(S_web),	/* 0xbd, \E)3: meta-=, int'l currency */
+	g_FILLER(S_statue_trap),
+	g_FILLER(S_magic_trap),
+	g_FILLER(S_anti_magic_trap),
+	g_FILLER(S_polymorph_trap),
+	g_FILLER(S_ice_trap),
+	g_FILLER(S_spear_trap),
+	g_FILLER(S_falling_rocks_trap),
+	g_FILLER(S_magic_beam_trap),
+	g_FILLER(S_pile_of_shit),
+	g_FILLER(S_animation_trap),
+	g_FILLER(S_glyph_of_warding),
+	g_FILLER(S_scything_blade),
+	g_FILLER(S_bolt_trap),
+	g_FILLER(S_acid_pool),
+	g_FILLER(S_water_pool),
+	g_FILLER(S_poison_gas_trap),
+	g_FILLER(S_slow_gas_trap),
+	g_FILLER(S_shock_trap),
+	g_FILLER(S_rmb_loss_trap),
+	g_FILLER(S_display_trap),
+	g_FILLER(S_spell_loss_trap),
+	g_FILLER(S_yellow_spell_trap),
+	g_FILLER(S_auto_destruct_trap),
+	g_FILLER(S_memory_trap),
+	g_FILLER(S_inventory_trap),
+	g_FILLER(S_black_ng_wall_trap),
+	g_FILLER(S_menu_trap),
+	g_FILLER(S_speed_trap),
+	g_FILLER(S_superscroller_trap),
+	g_FILLER(S_active_superscroller_trap),
+	g_FILLER(S_swarm_trap),
+	g_FILLER(S_automatic_switcher),
+	g_FILLER(S_unknown_trap),
+	g_FILLER(S_heel_trap),
+	g_FILLER(S_vuln_trap),
+
+	g_FILLER(S_lava_trap),
+	g_FILLER(S_flood_trap),
+	g_FILLER(S_drain_trap),
+	g_FILLER(S_free_hand_trap),
+	g_FILLER(S_disintegration_trap),
+	g_FILLER(S_unidentify_trap),
+	g_FILLER(S_thirst_trap),
+	g_FILLER(S_luck_trap),
+	g_FILLER(S_shades_of_grey_trap),
+	g_FILLER(S_item_telep_trap),
+	g_FILLER(S_gravity_trap),
+	g_FILLER(S_death_trap),
+	g_FILLER(S_stone_to_flesh_trap),
+	g_FILLER(S_quicksand_trap),
+	g_FILLER(S_faint_trap),
+	g_FILLER(S_curse_trap),
+	g_FILLER(S_difficulty_trap),
+	g_FILLER(S_sound_trap),
+	g_FILLER(S_caster_trap),
+	g_FILLER(S_weakness_trap),
+	g_FILLER(S_rot_thirteen_trap),
+	g_FILLER(S_bishop_trap),
+	g_FILLER(S_confusion_trap),
+	g_FILLER(S_nupesell_trap),
+	g_FILLER(S_drop_trap),
+	g_FILLER(S_dstw_trap),
+	g_FILLER(S_status_trap),
+	g_FILLER(S_alignment_trap),
+	g_FILLER(S_stairs_trap),
+
+	g_FILLER(S_pestilence_trap),
+	g_FILLER(S_famine_trap),
+
+	g_FILLER(S_relocation_trap),
+
+	g_FILLER(S_uninformation_trap),
+
+	g_FILLER(S_intrinsic_loss_trap),
+	g_FILLER(S_blood_loss_trap),
+	g_FILLER(S_bad_effect_trap),
+	g_FILLER(S_multiplying_trap),
+	g_FILLER(S_auto_vuln_trap),
+	g_FILLER(S_tele_items_trap),
+	g_FILLER(S_nastiness_trap),
+
+	g_FILLER(S_recursion_trap),
+	g_FILLER(S_respawn_trap),
+	g_FILLER(S_warp_zone),
+	g_FILLER(S_captcha_trap),
+	g_FILLER(S_mind_wipe_trap),
+	g_FILLER(S_shuriken_trap),
+	g_FILLER(S_shit_pit),
+	g_FILLER(S_shaft_trap),
+	g_FILLER(S_lock_trap),
+	g_FILLER(S_mc_trap),
+	g_FILLER(S_farlook_trap),
+	g_FILLER(S_gateway_trap),
+	g_FILLER(S_growing_trap),
+	g_FILLER(S_cooling_trap),
+	g_FILLER(S_bar_trap),
+	g_FILLER(S_locking_trap),
+	g_FILLER(S_air_trap),
+	g_FILLER(S_terrain_trap),
+
+	g_FILLER(S_loudspeaker),
+	g_FILLER(S_nest_trap),
+	g_FILLER(S_bullet_trap),
+	g_FILLER(S_paralysis_trap),
+	g_FILLER(S_cyanide_trap),
+	g_FILLER(S_laser_trap),
+	g_FILLER(S_giant_chasm),
+	g_FILLER(S_fart_trap),
+	g_FILLER(S_confuse_trap),
+	g_FILLER(S_stun_trap),
+	g_FILLER(S_hallucination_trap),
+	g_FILLER(S_petrification_trap),
+	g_FILLER(S_numbness_trap),
+	g_FILLER(S_freezing_trap),
+	g_FILLER(S_burning_trap),
+	g_FILLER(S_fear_trap),
+	g_FILLER(S_blindness_trap),
+	g_FILLER(S_glib_trap),
+	g_FILLER(S_slime_trap),
+	g_FILLER(S_inertia_trap),
+	g_FILLER(S_time_trap),
+	g_FILLER(S_lycanthropy_trap),
+	g_FILLER(S_unlight_trap),
+	g_FILLER(S_elemental_trap),
+	g_FILLER(S_escalating_trap),
+	g_FILLER(S_negative_trap),
+	g_FILLER(S_mana_trap),
+	g_FILLER(S_sin_trap),
+	g_FILLER(S_destroy_armor_trap),
+	g_FILLER(S_divine_anger_trap),
+	g_FILLER(S_genetic_trap),
+	g_FILLER(S_missingno_trap),
+	g_FILLER(S_cancellation_trap),
+	g_FILLER(S_hostility_trap),
+	g_FILLER(S_boss_trap),
+	g_FILLER(S_wishing_trap),
+	g_FILLER(S_recurring_amn_trap),
+	g_FILLER(S_bigscript_trap),
+	g_FILLER(S_bank_trap),
+	g_FILLER(S_only_trap),
+	g_FILLER(S_map_trap),
+	g_FILLER(S_tech_trap),
+	g_FILLER(S_disenchant_trap),
+	g_FILLER(S_verisiert),
+	g_FILLER(S_chaos_trap),
+	g_FILLER(S_muteness_trap),
+	g_FILLER(S_ntll_trap),
+	g_FILLER(S_engraving_trap),
+	g_FILLER(S_magic_device_trap),
+	g_FILLER(S_book_trap),
+	g_FILLER(S_level_trap),
+	g_FILLER(S_quiz_trap),
+
+	g_FILLER(S_falling_boulder_trap),
+	g_FILLER(S_glass_arrow_trap),
+	g_FILLER(S_glass_bolt_trap),
+	g_FILLER(S_out_of_magic_trap),
+	g_FILLER(S_plasma_trap),
+	g_FILLER(S_bomb_trap),
+	g_FILLER(S_earthquake_trap),
+	g_FILLER(S_noise_trap),
+	g_FILLER(S_glue_trap),
+	g_FILLER(S_guillotine_trap),
+	g_FILLER(S_bisection_trap),
+	g_FILLER(S_volt_trap),
+	g_FILLER(S_horde_trap),
+	g_FILLER(S_immobility_trap),
+	g_FILLER(S_green_glyph_trap),
+	g_FILLER(S_blue_glyph_trap),
+	g_FILLER(S_yellow_glyph_trap),
+	g_FILLER(S_orange_glyph_trap),
+	g_FILLER(S_black_glyph_trap),
+	g_FILLER(S_purple_glyph_trap),
+
+	g_FILLER(S_metabolic_trap),
+	g_FILLER(S_no_return_trap),
+	g_FILLER(S_ego_trap),
+	g_FILLER(S_fast_forward_trap),
+	g_FILLER(S_rotten_trap),
+	g_FILLER(S_unskilled_trap),
+	g_FILLER(S_low_stats_trap),
+	g_FILLER(S_training_trap),
+	g_FILLER(S_exercise_trap),
+	g_FILLER(S_falling_loadstone_trap),
+	g_FILLER(S_summon_undead_trap),
+	g_FILLER(S_falling_nastystone_trap),
+
+	g_FILLER(S_spined_ball_trap),
+	g_FILLER(S_pendulum_trap),
+	g_FILLER(S_turn_table),
+	g_FILLER(S_scent_trap),
+	g_FILLER(S_banana_trap),
+	g_FILLER(S_falling_tub_trap),
+	g_FILLER(S_alarm),
+	g_FILLER(S_caltrops_trap),
+	g_FILLER(S_blade_wire),
+	g_FILLER(S_magnet_trap),
+	g_FILLER(S_slingshot_trap),
+	g_FILLER(S_cannon_trap),
+	g_FILLER(S_venom_sprinkler),
+	g_FILLER(S_fumarole),
+
+	g_FILLER(S_mana_pit),
+	g_FILLER(S_elemental_portal),
+	g_FILLER(S_girliness_trap),
+	g_FILLER(S_fumbling_trap),
+	g_FILLER(S_egomonster_trap),
+	g_FILLER(S_flooding_trap),
+	g_FILLER(S_monster_cube),
+	g_FILLER(S_cursed_grave),
+	g_FILLER(S_limitation_trap),
+	g_FILLER(S_weak_sight_trap),
+	g_FILLER(S_random_message_trap),
+
+	g_FILLER(S_desecration_trap),
+	g_FILLER(S_starvation_trap),
+	g_FILLER(S_dropless_trap),
+	g_FILLER(S_low_effect_trap),
+	g_FILLER(S_invisible_trap),
+	g_FILLER(S_ghost_world_trap),
+	g_FILLER(S_dehydration_trap),
+	g_FILLER(S_hate_trap),
+	g_FILLER(S_spacewars_trap),
+	g_FILLER(S_temporary_recursion_trap),
+	g_FILLER(S_totter_trap),
+	g_FILLER(S_nonintrinsical_trap),
+	g_FILLER(S_dropcurse_trap),
+	g_FILLER(S_nakedness_trap),
+	g_FILLER(S_antilevel_trap),
+	g_FILLER(S_ventilator),
+	g_FILLER(S_stealer_trap),
+	g_FILLER(S_rebellion_trap),
+	g_FILLER(S_crap_trap),
+	g_FILLER(S_misfire_trap),
+	g_FILLER(S_trap_of_walls),
+
+	g_FILLER(S_disconnect_trap),
+	g_FILLER(S_interface_screw_trap),
+	g_FILLER(S_dimness_trap),
+	g_FILLER(S_evil_artifact_trap),
+	g_FILLER(S_bossfight_trap),
+	g_FILLER(S_entire_level_trap),
+	g_FILLER(S_bones_trap),
+	g_FILLER(S_rodney_trap),
+	g_FILLER(S_autocurse_trap),
+	g_FILLER(S_highlevel_trap),
+	g_FILLER(S_spell_forgetting_trap),
+	g_FILLER(S_sound_effect_trap),
+
+	g_FILLER(S_trap_percents),
+
+	g_FILLER(S_nexus_trap),
+	g_FILLER(S_leg_trap),
+	g_FILLER(S_artifact_jackpot_trap),
+	g_FILLER(S_map_amnesia_trap),
+	g_FILLER(S_spreading_trap),
+	g_FILLER(S_adjacent_trap),
+	g_FILLER(S_superthing_trap),
+	g_FILLER(S_current_shaft),
+	g_FILLER(S_levitation_trap),
+	g_FILLER(S_bowel_cramps_trap),
+	g_FILLER(S_unequipping_trap),
+	g_FILLER(S_good_artifact_trap),
+	g_FILLER(S_gender_trap),
+	g_FILLER(S_trap_of_oa),
+	g_FILLER(S_sincount_trap),
+	g_FILLER(S_beamer_trap),
+	g_FILLER(S_level_beamer),
+	g_FILLER(S_pet_trap),
+	g_FILLER(S_piercing_beam_trap),
+	g_FILLER(S_wrenching_trap),
+	g_FILLER(S_tracker_trap),
+	g_FILLER(S_nurse_trap),
+	g_FILLER(S_back_to_start_trap),
+	g_FILLER(S_nemesis_trap),
+	g_FILLER(S_strew_trap),
+	g_FILLER(S_outta_depth_trap),
+	g_FILLER(S_punishment_trap),
+	g_FILLER(S_boon_trap),
+	g_FILLER(S_fountain_trap),
+	g_FILLER(S_throne_trap),
+	g_FILLER(S_anoxic_pit),
+	g_FILLER(S_arabella_speaker),
+	g_FILLER(S_femmy_trap),
+	g_FILLER(S_madeleine_trap),
+	g_FILLER(S_marlena_trap),
+	g_FILLER(S_anastasia_trap),
+	g_FILLER(S_filler_trap),
+	g_FILLER(S_toxic_venom_trap),
+	g_FILLER(S_insanity_trap),
+	g_FILLER(S_madness_trap),
+	g_FILLER(S_jessica_trap),
+	g_FILLER(S_solvejg_trap),
+	g_FILLER(S_wendy_trap),
+	g_FILLER(S_katharina_trap),
+	g_FILLER(S_elena_trap),
+	g_FILLER(S_thai_trap),
+	g_FILLER(S_elif_trap),
+	g_FILLER(S_nadja_trap),
+	g_FILLER(S_sandra_trap),
+	g_FILLER(S_natalje_trap),
+	g_FILLER(S_jeanetta_trap),
+	g_FILLER(S_yvonne_trap),
+	g_FILLER(S_maurah_trap),
+
+	g_FILLER(S_lootcut_trap),
+	g_FILLER(S_monster_speed_trap),
+	g_FILLER(S_scaling_trap),
+	g_FILLER(S_enmity_trap),
+	g_FILLER(S_white_spell_trap),
+	g_FILLER(S_gray_spell_trap),
+	g_FILLER(S_quasar_trap),
+	g_FILLER(S_momma_trap),
+	g_FILLER(S_horror_trap),
+	g_FILLER(S_artificer_trap),
+	g_FILLER(S_wereform_trap),
+	g_FILLER(S_nonprayer_trap),
+	g_FILLER(S_evil_patch_trap),
+	g_FILLER(S_hard_mode_trap),
+	g_FILLER(S_secret_attack_trap),
+	g_FILLER(S_eater_trap),
+	g_FILLER(S_covetous_trap),
+	g_FILLER(S_not_seen_trap),
+	g_FILLER(S_dark_mode_trap),
+	g_FILLER(S_antisearch_trap),
+	g_FILLER(S_homicide_trap),
+	g_FILLER(S_nasty_nation_trap),
+	g_FILLER(S_wakeup_call_trap),
+	g_FILLER(S_grayout_trap),
+	g_FILLER(S_gray_center_trap),
+	g_FILLER(S_checkerboard_trap),
+	g_FILLER(S_clockwise_spin_trap),
+	g_FILLER(S_counterclockwise_trap),
+	g_FILLER(S_lag_trap),
+	g_FILLER(S_blesscurse_trap),
+	g_FILLER(S_delight_trap),
+	g_FILLER(S_discharge_trap),
+	g_FILLER(S_trashing_trap),
+	g_FILLER(S_filtering_trap),
+	g_FILLER(S_deformatting_trap),
+	g_FILLER(S_flicker_strip_trap),
+	g_FILLER(S_undressing_trap),
+	g_FILLER(S_hyperbluewall_trap),
+	g_FILLER(S_nolite_trap),
+	g_FILLER(S_paranoia_trap),
+	g_FILLER(S_fleecescript_trap),
+	g_FILLER(S_interrupt_trap),
+	g_FILLER(S_dustbin_trap),
+	g_FILLER(S_mana_battery_trap),
+	g_FILLER(S_monsterfingers_trap),
+	g_FILLER(S_miscast_trap),
+	g_FILLER(S_message_suppression_trap),
+	g_FILLER(S_stuck_announcement_trap),
+	g_FILLER(S_bloodthirsty_trap),
+	g_FILLER(S_maximum_damage_trap),
+	g_FILLER(S_latency_trap),
+	g_FILLER(S_starlit_trap),
+	g_FILLER(S_knowledge_trap),
+	g_FILLER(S_highscore_trap),
+	g_FILLER(S_pink_spell_trap),
+	g_FILLER(S_green_spell_trap),
+	g_FILLER(S_evc_trap),
+	g_FILLER(S_underlayer_trap),
+	g_FILLER(S_damage_meter_trap),
+	g_FILLER(S_arbitrary_weight_trap),
+	g_FILLER(S_fucked_info_trap),
+	g_FILLER(S_black_spell_trap),
+	g_FILLER(S_cyan_spell_trap),
+	g_FILLER(S_heap_trap),
+	g_FILLER(S_blue_spell_trap),
+	g_FILLER(S_tron_trap),
+	g_FILLER(S_red_spell_trap),
+	g_FILLER(S_too_heavy_trap),
+	g_FILLER(S_elongation_trap),
+	g_FILLER(S_wrapover_trap),
+	g_FILLER(S_destruction_trap),
+	g_FILLER(S_melee_prefix_trap),
+	g_FILLER(S_automore_trap),
+	g_FILLER(S_unfair_attack_trap),
+
+	g_FILLER(S_kop_cube),
+	g_FILLER(S_boss_spawner),
+	g_FILLER(S_contamination_trap),
+
+	g_FILLER(S_evil_heel_trap),
+	g_FILLER(S_bad_equipment_trap),
+	g_FILLER(S_tempoconflict_trap),
+	g_FILLER(S_tempohunger_trap),
+	g_FILLER(S_teleportitis_trap),
+	g_FILLER(S_polymorphitis_trap),
+	g_FILLER(S_premature_death_trap),
+	g_FILLER(S_lasting_amnesia_trap),
+	g_FILLER(S_ragnarok_trap),
+	g_FILLER(S_single_disenchant_trap),
+	g_FILLER(S_acid_pit),
+
+	g_FILLER(S_severe_disenchant_trap),
+	g_FILLER(S_pain_trap),
+	g_FILLER(S_trembling_trap),
+	g_FILLER(S_techcap_trap),
+	g_FILLER(S_spell_memory_trap),
+	g_FILLER(S_skill_reduction_trap),
+	g_FILLER(S_skillcap_trap),
+	g_FILLER(S_permanent_stat_damage_trap),
+
+	g_FILLER(S_orange_spell_trap),
+	g_FILLER(S_violet_spell_trap),
+	g_FILLER(S_trap_of_longing),
+	g_FILLER(S_cursed_part_trap),
+	g_FILLER(S_quaversal_trap),
+	g_FILLER(S_appearance_shuffling_trap),
+	g_FILLER(S_brown_spell_trap),
+	g_FILLER(S_choiceless_trap),
+	g_FILLER(S_goldspell_trap),
+	g_FILLER(S_deprovement_trap),
+	g_FILLER(S_initialization_trap),
+	g_FILLER(S_gushlush_trap),
+	g_FILLER(S_soiltype_trap),
+	g_FILLER(S_dangerous_terrain_trap),
+	g_FILLER(S_fallout_trap),
+	g_FILLER(S_mojibake_trap),
+	g_FILLER(S_gravation_trap),
+	g_FILLER(S_uncalled_trap),
+	g_FILLER(S_exploding_dice_trap),
+	g_FILLER(S_permacurse_trap),
+	g_FILLER(S_shrouded_identity_trap),
+	g_FILLER(S_feeler_gauges_trap),
+	g_FILLER(S_long_screwup_trap),
+	g_FILLER(S_wing_yellow_changer),
+	g_FILLER(S_life_saving_trap),
+	g_FILLER(S_curseuse_trap),
+	g_FILLER(S_cut_nutrition_trap),
+	g_FILLER(S_skill_loss_trap),
+	g_FILLER(S_autopilot_trap),
+	g_FILLER(S_force_trap),
+	g_FILLER(S_monster_glyph_trap),
+	g_FILLER(S_changing_directive_trap),
+	g_FILLER(S_container_kaboom_trap),
+	g_FILLER(S_steal_degrade_trap),
+	g_FILLER(S_left_inventory_trap),
+	g_FILLER(S_fluctuating_speed_trap),
+	g_FILLER(S_tarmustrokingnora_trap),
+	g_FILLER(S_failure_trap),
+	g_FILLER(S_bright_cyan_spell_trap),
+	g_FILLER(S_frequentation_spawn_trap),
+	g_FILLER(S_pet_ai_trap),
+	g_FILLER(S_satan_trap),
+	g_FILLER(S_rememberance_trap),
+	g_FILLER(S_pokelie_trap),
+	g_FILLER(S_autopickup_trap),
+	g_FILLER(S_dywypi_trap),
+	g_FILLER(S_silver_spell_trap),
+	g_FILLER(S_metal_spell_trap),
+	g_FILLER(S_platinum_spell_trap),
+	g_FILLER(S_manler_trap),
+	g_FILLER(S_doorning_trap),
+	g_FILLER(S_nownsible_trap),
+	g_FILLER(S_elm_street_trap),
+	g_FILLER(S_monnoise_trap),
+	g_FILLER(S_rang_call_trap),
+	g_FILLER(S_recurring_spell_loss_trap),
+	g_FILLER(S_antitraining_trap),
+	g_FILLER(S_techout_trap),
+	g_FILLER(S_stat_decay_trap),
+	g_FILLER(S_movemork_trap),
+
+	g_FILLER(S_hybrid_trap),
+	g_FILLER(S_shapechange_trap),
+	g_FILLER(S_meltem_trap),
+	g_FILLER(S_miguc_trap),
+	g_FILLER(S_directive_trap),
+	g_FILLER(S_satatue_trap),
+	g_FILLER(S_farting_web),
+	g_FILLER(S_cataclysm_trap),
+	g_FILLER(S_data_delete_trap),
+	g_FILLER(S_elder_tentacling_trap),
+	g_FILLER(S_footerer_trap),
+
+	g_FILLER(S_timerun_trap),
+	0xf8,	/* S_vbeam:	meta-x, vertical rule */
+	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
+	g_FILLER(S_lslant),
+	g_FILLER(S_rslant),
+	g_FILLER(S_digbeam),
+	g_FILLER(S_flashbeam),
+/*70*/	g_FILLER(S_boomleft),
+	g_FILLER(S_boomright),
+	g_FILLER(S_ss1),
+	g_FILLER(S_ss2),
+	g_FILLER(S_ss3),
+	g_FILLER(S_ss4),
+	g_FILLER(S_sw_tl),
+	0xef,	/* S_sw_tc:	meta-o, high horizontal line */
+	g_FILLER(S_sw_tr),
+	0xf8,	/* S_sw_ml:	meta-x, vertical rule */
+/*80*/	0xf8,	/* S_sw_mr:	meta-x, vertical rule */
+	g_FILLER(S_sw_bl),
+	0xf3,	/* S_sw_bc:	meta-s, low horizontal line */
+	g_FILLER(S_sw_br),
+	g_FILLER(S_explode1),
+	0xef,	/* S_explode2:	meta-o, high horizontal line */
+	g_FILLER(S_explode3),
+	0xf8,	/* S_explode4:	meta-x, vertical rule */
+	g_FILLER(S_explode5),
+	0xf8,	/* S_explode6:	meta-x, vertical rule */
+/*90*/	g_FILLER(S_explode7),
+	0xf3,	/* S_explode8:	meta-s, low horizontal line */
+	g_FILLER(S_explode9),
+};
+
 #ifdef MAC_GRAPHICS_ENV
 static uchar mac_graphics[MAXPCHARS] = {
 /* 0*/	g_FILLER(S_stone),
@@ -2704,9 +3310,32 @@ int glth, maxlen, offset;
 {
     register int i;
 
+	if (iflags.winggraphics) {
+
+	    for (i = 0; i < maxlen; i++)
+		showsyms[i+offset] = (((i < glth) && wing_graphics[i]) ? wing_graphics[i] : defsyms[i+offset].sym);
+
+	return;
+	}
+
     for (i = 0; i < maxlen; i++)
 	showsyms[i+offset] = (((i < glth) && graph_chars[i]) ?
 		       graph_chars[i] : defsyms[i+offset].sym);
+}
+
+void
+assignwinggraphics()
+{
+    register int i;
+
+	if (iflags.winggraphics) {
+
+	    for (i = 0; i < MAXPCHARS; i++)
+		showsyms[i] = (((i < (SIZE(wing_graphics)) ) && wing_graphics[i]) ? wing_graphics[i] : defsyms[i].sym);
+
+	return;
+	}
+
 }
 
 void
