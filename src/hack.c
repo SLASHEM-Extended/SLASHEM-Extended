@@ -4223,7 +4223,7 @@ showdmg(n)
 #ifdef WIZARD
 		if (wizard) lev = 1;
 #endif
-		if(u.ulevel >= lev)
+		if(GushLevel >= lev)
 			pline("(%d pts.)", n);
     }
 	return;
@@ -4398,10 +4398,10 @@ int k_format; /* WAC k_format is an int */
 	/* let's allow the player to deflect some damage if he's lucky (higher chance with good constitution). --Amy */
 	if (rn2(ABASE(A_CON))) {
 	if (!rn2(3) && n >= 1) {n = n / 2; if (n < 1) n = 1;}
-	if (!rn2(10) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 10) {n = n / 3; if (n < 1) n = 1;}
-	if (!rn2(15) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 14) {n = n / 4; if (n < 1) n = 1;}
-	if (!rn2(20) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 20) {n = n / 5; if (n < 1) n = 1;}
-	if (!rn2(50) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
+	if (!rn2(10) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 10) {n = n / 3; if (n < 1) n = 1;}
+	if (!rn2(15) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 14) {n = n / 4; if (n < 1) n = 1;}
+	if (!rn2(20) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 20) {n = n / 5; if (n < 1) n = 1;}
+	if (!rn2(50) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 30) {n = n / 10; if (n < 1) n = 1;}
 	}
 
 	if (PlayerInConeHeels && n > 0) {

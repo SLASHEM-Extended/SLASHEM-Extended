@@ -7550,7 +7550,7 @@ blitz_g_slam()
 	    else if (need_one(&youmonst)) objenchant = 1;
 	    else objenchant = 0;
 	} else
-	    objenchant = u.ulevel / 4;
+	    objenchant = GushLevel / 4;
 
 	tmp = (5 + rnd(6) + (techlevX(tech_no) / 5));
 	

@@ -388,12 +388,12 @@ register struct monst *mtmp;
 	/* idea gotten from watching Chris's to-hit discussion: high luck gave too big boosts --Amy */
 
 	tmp = 1 + ( (rn2(2) && Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + ((u.uhitinc > 1) ? rnd(u.uhitinc) : u.uhitinc) +
-		(rn2(2) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel))) : (maybe_polyd(youmonst.data->mlevel + 1, u.ulevel)) );
+		(rn2(2) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(GushLevel))) : (maybe_polyd(youmonst.data->mlevel + 1, GushLevel)) );
 
 	/* another extra boost --Amy */
 	/* In Soviet Russia, to-hit bonuses generally get trashed. Nobody needs to be able to hit a -40 AC monster anyway,
 	 * and if you do, well, tough luck! Communism isn't prepared to handle such rare situations! --Amy */
-	if (!issoviet && !Upolyd && !rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
+	if (!issoviet && !Upolyd && !rn2(20 - (GushLevel / 2) )) tmp += rnd(GushLevel);
 
 	if (Feared) tmp -= rn2(21); /* being feared reduces to-hit by something between 0 and 20 --Amy */
 
@@ -680,18 +680,18 @@ register struct monst *mtmp;
 	if (u.ulevel < 5 && rn2(2)) tmp += 1;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
 
-	if (u.ulevel > 5) tmp += 1;
-	if (u.ulevel > 9) tmp += 1;
-	if (u.ulevel > 12) tmp += 1;
-	if (u.ulevel > 15) tmp += 1;
-	if (u.ulevel > 19) tmp += 1;
-	if (u.ulevel > 23) tmp += 1;
-	if (u.ulevel > 26) tmp += 1;
-	if (u.ulevel > 29) tmp += 1;
+	if (GushLevel > 5) tmp += 1;
+	if (GushLevel > 9) tmp += 1;
+	if (GushLevel > 12) tmp += 1;
+	if (GushLevel > 15) tmp += 1;
+	if (GushLevel > 19) tmp += 1;
+	if (GushLevel > 23) tmp += 1;
+	if (GushLevel > 26) tmp += 1;
+	if (GushLevel > 29) tmp += 1;
 
 	if (tech_inuse(T_STEADY_HAND)) tmp += 5;
 
-	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
+	if (!issoviet && !rn2(3)) tmp += rno(GushLevel);
 
 	if (Numbed) {
 		if (tmp > 1) {
@@ -1264,8 +1264,8 @@ int dieroll;
 	wakeup(mon);
 
 	if(!thrown && no_obj) {      /* attack with bare hands */
-	    if (Role_if(PM_MONK) && !Upolyd && u.ulevel/4 > objenchant)
-		objenchant = u.ulevel/4;
+	    if (Role_if(PM_MONK) && !Upolyd && GushLevel/4 > objenchant)
+		objenchant = GushLevel/4;
 	    /* if you have gloves and they have enough enchantment, you should be able to hit the monster --Amy */
 	    noeffect = objenchant < canhitmon && !(uarmg && uarmg->spe >= canhitmon) && (issoviet || rn2(isfriday ? 5 : 3));
 
@@ -1668,7 +1668,7 @@ int dieroll;
 		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
-			tmp += issoviet ? u.ulevel : rno(u.ulevel); /* nerf by Amy */
+			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
 			hittxt = TRUE;
 		    } else if ((dieroll == 2 || (juyohelpchance >= rnd(100))) && obj == uwep &&
 			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) ||
@@ -2417,7 +2417,7 @@ int dieroll;
 
 		if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
 
-		if (Race_if(PM_RODNEYAN)) tmp += (1 + (u.ulevel / 3) );
+		if (Race_if(PM_RODNEYAN)) tmp += (1 + (GushLevel / 3) );
 		/* If you throw using a propellor, you don't get a strength
 		 * bonus but you do get an increase-damage bonus.
 		 */
@@ -5196,7 +5196,7 @@ register struct attack *mattk;
 
 	    case AD_SPEL:
 		/* obvious rule patch because the rodneyan race is way too overpowered otherwise --Amy */
-		if (Race_if(PM_RODNEYAN) && !Upolyd && (rnd(u.ulevel + 100) < 100)) tmp = 0;
+		if (Race_if(PM_RODNEYAN) && !Upolyd && (rnd(GushLevel + 100) < 100)) tmp = 0;
 
 		break;
 

@@ -1199,7 +1199,7 @@ boolean hitsroof;
 
 	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) dmg += 1;
 
-	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
+	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 
@@ -1762,7 +1762,7 @@ int thrown;
 	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
 
 	tmp = -1 + ( (!rn2(3) && Luck > 0) ? rnd(Luck) : Luck) + find_mac(mon) + ((u.uhitinc > 1) ? rnd(u.uhitinc) : u.uhitinc) +
-			(!rn2(3) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel))) : (maybe_polyd(youmonst.data->mlevel + 1, u.ulevel)) );
+			(!rn2(3) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(GushLevel))) : (maybe_polyd(youmonst.data->mlevel + 1, GushLevel)) );
 
 	/* early-game bonuses to make starting characters not suck too badly --Amy */
 	if (u.ulevel < 6) tmp += 1;
@@ -1771,16 +1771,16 @@ int thrown;
 	if (u.ulevel < 5 && rn2(2)) tmp += 1;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
 
-	if (u.ulevel > 5) tmp += 1;
-	if (u.ulevel > 9) tmp += 1;
-	if (u.ulevel > 12) tmp += 1;
-	if (u.ulevel > 15) tmp += 1;
-	if (u.ulevel > 19) tmp += 1;
-	if (u.ulevel > 23) tmp += 1;
-	if (u.ulevel > 26) tmp += 1;
-	if (u.ulevel > 29) tmp += 1;
+	if (GushLevel > 5) tmp += 1;
+	if (GushLevel > 9) tmp += 1;
+	if (GushLevel > 12) tmp += 1;
+	if (GushLevel > 15) tmp += 1;
+	if (GushLevel > 19) tmp += 1;
+	if (GushLevel > 23) tmp += 1;
+	if (GushLevel > 26) tmp += 1;
+	if (GushLevel > 29) tmp += 1;
 
-	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
+	if (!issoviet && !rn2(3)) tmp += rno(GushLevel);
 
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
@@ -1819,7 +1819,7 @@ int thrown;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) tmp += 5;
 
-	if (!issoviet && !rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
+	if (!issoviet && !rn2(20 - (GushLevel / 2) )) tmp += rnd(GushLevel);
 
 	/* let's just add that bonus anyway. --Amy */
 	if(mon->mstun) tmp += 2;
@@ -1907,11 +1907,11 @@ int thrown;
 			tmp = -100;
 			pline("%s avoids the projectile!", Monnam(mon));
 		}
-		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
+		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(GushLevel) ) ) {
 			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
-		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(u.ulevel) ) ) {
+		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(GushLevel) ) ) {
 			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
@@ -1958,11 +1958,11 @@ int thrown;
 			tmp = -100;
 			pline("%s avoids the projectile!", Monnam(mon));
 		}
-		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
+		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(GushLevel) ) ) {
 			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
-		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(u.ulevel) ) ) {
+		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(GushLevel) ) ) {
 			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}

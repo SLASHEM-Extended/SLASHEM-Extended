@@ -167,7 +167,7 @@
  * given.
  */
 #define what_obj(obj)	(Hallucination ? random_object()  : obj)
-#define what_mon(mon)	(Hallucination ? random_monster() : (u.usanity > 900 && (u.usanity > rn2(10000)) && rn2(10) ) ? random_monster() : mon)
+#define what_mon(mon)	(Hallucination ? random_monster() : (u.usanity > 900 && (u.usanity > rn2(10000)) && rn2(10) ) ? random_monster() : MonsterGlyphHallu ? random_monster() : mon)
 #define what_trap(trp)	(Hallucination ? random_trap()	  : trp)
 
 /*

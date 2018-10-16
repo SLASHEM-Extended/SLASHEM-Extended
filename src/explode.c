@@ -575,10 +575,10 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		/* player may get lucky and take less damage --Amy */
 		if (!rn2(3) && damu >= 1) {damu = damu / 2; if (damu < 1) damu = 1;}
-		if (!rn2(10) && damu >= 1 && u.ulevel >= 10) {damu = damu / 3; if (damu < 1) damu = 1;}
-		if (!rn2(15) && damu >= 1 && u.ulevel >= 14) {damu = damu / 4; if (damu < 1) damu = 1;}
-		if (!rn2(20) && damu >= 1 && u.ulevel >= 20) {damu = damu / 5; if (damu < 1) damu = 1;}
-		if (!rn2(50) && damu >= 1 && u.ulevel >= 30) {damu = damu / 10; if (damu < 1) damu= 1;}
+		if (!rn2(10) && damu >= 1 && GushLevel >= 10) {damu = damu / 3; if (damu < 1) damu = 1;}
+		if (!rn2(15) && damu >= 1 && GushLevel >= 14) {damu = damu / 4; if (damu < 1) damu = 1;}
+		if (!rn2(20) && damu >= 1 && GushLevel >= 20) {damu = damu / 5; if (damu < 1) damu = 1;}
+		if (!rn2(50) && damu >= 1 && GushLevel >= 30) {damu = damu / 10; if (damu < 1) damu= 1;}
 
 		if (PlayerInConeHeels && damu > 0) {
 			register int dmgreductor = 95;

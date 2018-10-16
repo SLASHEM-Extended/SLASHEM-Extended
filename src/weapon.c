@@ -2297,15 +2297,15 @@ abon()		/* attack bonus for strength & dexterity */
 	}
 	if (Upolyd) sbon += (adj_lev(&mons[u.umonnum]) - 3);
 
-	if (!rn2(2) && u.ulevel > 14) sbon += 1;
+	if (!rn2(2) && GushLevel > 14) sbon += 1;
 	if (u.menoraget && u.bookofthedeadget && u.silverbellget && rn2(3)) sbon += 1;
 	if (!rn2(3) && u.chaoskeyget && u.neutralkeyget && u.lawfulkeyget) sbon += 1;
 	if (!rn2(10) && u.medusaremoved) sbon += 1;
 	if (!rn2(5) && u.luckstoneget && u.sokobanfinished && u.deepminefinished) sbon += 1;
-	if (!rn2(5) && u.ulevel > 10) sbon += 1;
-	if (!rn2(5) && u.ulevel > 17) sbon += 1;
-	if (!rn2(5) && u.ulevel > 23) sbon += 1;
-	if (!rn2(5) && u.ulevel > 29) sbon += 1;
+	if (!rn2(5) && GushLevel > 10) sbon += 1;
+	if (!rn2(5) && GushLevel > 17) sbon += 1;
+	if (!rn2(5) && GushLevel > 23) sbon += 1;
+	if (!rn2(5) && GushLevel > 29) sbon += 1;
 
 	/* In Soviet Russia, strength and dexterity bonuses are lower because seriously, who needs bonuses??? --Amy */
 	if (issoviet && sbon > 1) sbon /= 2;

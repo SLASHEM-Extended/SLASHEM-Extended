@@ -350,7 +350,7 @@ const char *name;	/* if null, then format `obj' */
 			else pline("Your force field causes %s to miss you.", onm);
 			return(0);
 
-	} else if (!rn2(extrachance) && rnd(30) < (2 + (u.ulevel / 2) ) ) {
+	} else if (!rn2(extrachance) && rnd(30) < (2 + (GushLevel / 2) ) ) {
 
 			/* depending on your character level, you may be able to dodge --Amy */
 			if(Blind || !flags.verbose) pline("You dodge a projectile.");
@@ -412,7 +412,7 @@ const char *name;	/* if null, then format `obj' */
 				if (dam < 1) dam = 1;
 			}
 
-			if (dam >= 2 && u.ulevel > rnd(100)) dam = (dam+1) / 2;
+			if (dam >= 2 && GushLevel > rnd(100)) dam = (dam+1) / 2;
 
 			losehp(dam, knm, kprefix);
 			exercise(A_STR, FALSE);

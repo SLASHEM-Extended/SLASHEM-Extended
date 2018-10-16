@@ -161,7 +161,7 @@ use_saddle(otmp)
 
 	/* Calculate your chance */
 	chance = ACURR(A_DEX) + ACURR(A_CHA)/2 + 2*mtmp->mtame;
-	chance += u.ulevel * (mtmp->mtame ? 20 : 5);
+	chance += GushLevel * (mtmp->mtame ? 20 : 5);
 	if (!mtmp->mtame) {
 		if (mtmp->mpeaceful) chance -= 5*mtmp->m_lev;
 		else chance -= 10*mtmp->m_lev;
@@ -429,7 +429,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && ((Confusion && !Conf_resist) || Fumbling || IsGlib || Wounded_legs ||
-		otmp->cursed || (u.ulevel+mtmp->mtame < rnd(MAXULEV/2+5) && ( (!Role_if(PM_KNIGHT) || !rn2(5)) && (!Role_if(PM_CHEVALIER) || !rn2(5)) && (!Role_if(PM_YEOMAN) || !rn2(5)) && ((!Role_if(PM_TRANSVESTITE) && !Role_if(PM_TOPMODEL)) || !rn2(5)) ) ) )) {
+		otmp->cursed || (GushLevel+mtmp->mtame < rnd(MAXULEV/2+5) && ( (!Role_if(PM_KNIGHT) || !rn2(5)) && (!Role_if(PM_CHEVALIER) || !rn2(5)) && (!Role_if(PM_YEOMAN) || !rn2(5)) && ((!Role_if(PM_TRANSVESTITE) && !Role_if(PM_TOPMODEL)) || !rn2(5)) ) ) )) {
 	    if (Levitation) {
 		pline("%s slips away from you.", Monnam(mtmp));
 		return FALSE;

@@ -423,16 +423,16 @@ struct obj *instr;
 			use_skill(P_DEVICES,9);
 
 		You("produce soft music.");
-		put_monsters_to_sleep(u.ulevel * 5);
+		put_monsters_to_sleep(GushLevel * 5);
 		exercise(A_DEX, TRUE);
 		break;
 	    } /* else FALLTHRU */
 	case WOODEN_FLUTE:		/* May charm snakes */
 	/* KMH, balance patch -- removed
 	case PAN_PIPE: */
-	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > (25 + rn2(40)) );
+	    do_spec &= (rn2(ACURR(A_DEX)) + GushLevel > (25 + rn2(40)) );
 	    pline("%s.", Tobjnam(instr, do_spec ? "trill" : "toot"));
-	    if (do_spec) charm_snakes(u.ulevel * 3);
+	    if (do_spec) charm_snakes(GushLevel * 3);
 	    exercise(A_DEX, TRUE);
 	    break;
 	case FROST_HORN:		/* Idem wand of cold */
@@ -484,7 +484,7 @@ hornchoice:
 		pline("In fact, the sound of your vuvuzela is so annoying, I bet the entire dungeon population wants to flog you now.");
 	    }
 
-	    awaken_monsters(u.ulevel * 30);
+	    awaken_monsters(GushLevel * 30);
 
 	    switch (rn2(17)) {
 		    case 0:
@@ -543,15 +543,15 @@ hornchoice:
 			use_skill(P_DEVICES,9);
 
 		pline("%s very attractive music.", Tobjnam(instr, "produce"));
-		charm_monsters((u.ulevel - 1) / 3 + 1);
+		charm_monsters((GushLevel - 1) / 3 + 1);
 		exercise(A_DEX, TRUE);
 		break;
 	    } /* else FALLTHRU */
 	case WOODEN_HARP:		/* May calm Nymph */
-	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > (25 + rn2(40)) );
+	    do_spec &= (rn2(ACURR(A_DEX)) + GushLevel > (25 + rn2(40)) );
 	    pline("%s %s.", The(xname(instr)),
 		  do_spec ? "produces a lilting melody" : "twangs");
-	    if (do_spec) calm_nymphs(u.ulevel * 3);
+	    if (do_spec) calm_nymphs(GushLevel * 3);
 	    exercise(A_DEX, TRUE);
 	    break;
 	case DRUM_OF_EARTHQUAKE:	/* create several pits */
@@ -570,7 +570,7 @@ hornchoice:
 
 		You("produce a heavy, thunderous rolling!");
 		pline_The("entire dungeon is shaking around you!");
-		do_earthquake((u.ulevel - 1) / 3 + 1);
+		do_earthquake((GushLevel - 1) / 3 + 1);
 		/* shake up monsters in a much larger radius... */
 		awaken_monsters(ROWNO * COLNO);
 		makeknown(DRUM_OF_EARTHQUAKE);
@@ -603,8 +603,8 @@ hornchoice:
 #endif
 	case LEATHER_DRUM:		/* Awaken monsters */
 	    You("beat a deafening row!");
-	    awaken_monsters(u.ulevel * 40);
-	    Deafness += (u.ulevel * 40);
+	    awaken_monsters(GushLevel * 40);
+	    Deafness += (GushLevel * 40);
 	    flags.soundok = 0;
 
 	    switch (rn2(52)) {

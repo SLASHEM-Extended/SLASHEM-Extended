@@ -6926,7 +6926,7 @@ register int booktype;
 
 
 	if (intell < 10) tmp = -1;      /* Punish low intell. before level else low */
-	else if (u.ulevel < 5) tmp = 0; /* intell. gets punished only when high level*/
+	else if (GushLevel < 5) tmp = 0; /* intell. gets punished only when high level*/
 	else if (intell < 14)  tmp = 1;
 	else if (intell <= 18) tmp = 2;            
 	else tmp = 3;                   /* Hero may have helm of brilliance on */
@@ -7961,7 +7961,7 @@ int type;
 {
     int chance = rn2(20);
     int spell_bonus = type ? spell_hit_bonus(type) : 0;
-    if (!issoviet && !rn2(2)) spell_bonus += rnd(u.ulevel); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
+    if (!issoviet && !rn2(2)) spell_bonus += rnd(GushLevel); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
     if (!issoviet && !rn2(2)) spell_bonus += rnd(ACURR(A_DEX));
 	/* In Soviet Russia, nobody needs a spell bonus of any kind. It's cool if your death rays miss Rodney 90% of the
 	 * time! And it's also cool if your wands of magic missile are absolute trash in the late game! --Amy */
@@ -9291,13 +9291,13 @@ int damage, tell;
 
 	/* attack level */
 	switch (oclass) {
-	    case WAND_CLASS:	alev = 12 + (Role_if(PM_WANDKEEPER) ? u.ulevel : (u.ulevel / 2));	 break;
-	    case TOOL_CLASS:	alev = 10 + (Role_if(PM_GRADUATE) ? (u.ulevel * 2) : (Role_if(PM_GEEK) || Role_if(PM_ARCHEOLOGIST)) ? u.ulevel : (u.ulevel / 2));	 break;	/* instrument */
-	    case WEAPON_CLASS:	alev = 10 + (Role_if(PM_GOFF) ? u.ulevel : Role_if(PM_ARTIST) ? (u.ulevel / 2) : (u.ulevel / 3));	 break;	/* artifact */
-	    case SCROLL_CLASS:	alev =  9 + (Role_if(PM_INTEL_SCRIBE) ? u.ulevel : Role_if(PM_LIBRARIAN) ? (u.ulevel / 2) : (u.ulevel / 3));	 break;
-	    case POTION_CLASS:	alev =  6 + (Role_if(PM_DRUNK) ? u.ulevel : (Role_if(PM_SCIENTIST) || Race_if(PM_ALCHEMIST)) ? (u.ulevel / 2) : (u.ulevel / 4));	 break;
-	    case RING_CLASS:	alev =  5 + (Role_if(PM_LADIESMAN) ? (u.ulevel / 2) : Role_if(PM_DOLL_MISTRESS) ? (u.ulevel / 3) : (u.ulevel / 5));	 break;
-	    default:		alev = rnd(u.ulevel); break;	/* spell */
+	    case WAND_CLASS:	alev = 12 + (Role_if(PM_WANDKEEPER) ? GushLevel : (GushLevel / 2));	 break;
+	    case TOOL_CLASS:	alev = 10 + (Role_if(PM_GRADUATE) ? (GushLevel * 2) : (Role_if(PM_GEEK) || Role_if(PM_ARCHEOLOGIST)) ? GushLevel : (GushLevel / 2));	 break;	/* instrument */
+	    case WEAPON_CLASS:	alev = 10 + (Role_if(PM_GOFF) ? GushLevel : Role_if(PM_ARTIST) ? (GushLevel / 2) : (GushLevel / 3));	 break;	/* artifact */
+	    case SCROLL_CLASS:	alev =  9 + (Role_if(PM_INTEL_SCRIBE) ? GushLevel : Role_if(PM_LIBRARIAN) ? (GushLevel / 2) : (GushLevel / 3));	 break;
+	    case POTION_CLASS:	alev =  6 + (Role_if(PM_DRUNK) ? GushLevel : (Role_if(PM_SCIENTIST) || Race_if(PM_ALCHEMIST)) ? (GushLevel / 2) : (GushLevel / 4));	 break;
+	    case RING_CLASS:	alev =  5 + (Role_if(PM_LADIESMAN) ? (GushLevel / 2) : Role_if(PM_DOLL_MISTRESS) ? (GushLevel / 3) : (GushLevel / 5));	 break;
+	    default:		alev = rnd(GushLevel); break;	/* spell */
 	}
 
 	if (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || (uamul && uamul->oartifact == ART_MYSTERIOUS_MAGIC) || have_loweffectstone() ) alev = 1;

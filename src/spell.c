@@ -1200,7 +1200,7 @@ register struct obj *spellbook;
 			too_hard = TRUE;
 		    } else {
 			/* uncursed - chance to fail */
-			int read_ability = ACURR(A_INT) + 4 + u.ulevel/2
+			int read_ability = ACURR(A_INT) + 4 + GushLevel/2
 			    - 2*objects[booktype].oc_level
 			    + ((ublindf && (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == BOSS_VISOR)) ? 2 : 0);
 			/* only wizards know if a spell is too difficult */
@@ -1610,7 +1610,7 @@ STATIC_OVL void
 cast_protection()
 {
 	int loglev = 0;
-	int l = u.ulevel;
+	int l = GushLevel;
 	int natac = u.uac - u.uspellprot;
 	int gain;
 
@@ -4463,7 +4463,7 @@ secureidchoice:
 
 	case SPE_EARTHQUAKE:
 		pline_The("entire dungeon is shaking around you!");
-		do_earthquake((u.ulevel - 1) / 3 + 1);
+		do_earthquake((GushLevel - 1) / 3 + 1);
 		if (!rn2(3)) {
 			int disableamount = rnd(3);
 			while (disableamount) {

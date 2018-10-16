@@ -1887,6 +1887,66 @@ trapsdone:
 
 		}
 
+		if ((ChangingDirectives || u.uprops[CHANGING_DIRECTIVES].extrinsic || have_changingdirectivestone()) && !rn2(100)) {
+			switch (rnd(5)) {
+
+				case 1:
+					if (u.petcollectitems) {
+						u.petcollectitems = 0;
+					} else {
+						u.petcollectitems = 1;
+					}
+					break;
+				case 2:
+					if (u.petattackenemies) {
+						u.petattackenemies = 0;
+					} else {
+						u.petattackenemies = 1;
+					}
+					break;
+				case 3:
+					if (u.petcaneat) {
+						u.petcaneat = 0;
+					} else {
+						u.petcaneat = 1;
+					}
+					break;
+				case 4:
+					if (u.petcanfollow) {
+						u.petcanfollow = 0;
+					} else {
+						u.petcanfollow = 1;
+					}
+					break;
+				case 5:
+					u.steedhitchance = rn2(101);
+					break;
+
+			}
+
+		}
+
+		if (SkillLossEffect || u.uprops[SKILL_LOSS_EFFECT].extrinsic || have_skilllossstone()) {
+			skillcaploss_severe();
+		}
+
+		if ((DangerousTerrains || u.uprops[DANGEROUS_TERRAINS].extrinsic || have_dangerousterrainstone()) && !(HStun && HConfusion)) {
+			int terraindanger = 0;
+			int i, j;
+
+			for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ == POOL || levl[u.ux + i][u.uy + j].typ == MOAT || levl[u.ux + i][u.uy + j].typ == WATER || levl[u.ux + i][u.uy + j].typ == WATERTUNNEL || levl[u.ux + i][u.uy + j].typ == CRYSTALWATER || levl[u.ux + i][u.uy + j].typ == MOORLAND || levl[u.ux + i][u.uy + j].typ == SHIFTINGSAND || levl[u.ux + i][u.uy + j].typ ==  LAVAPOOL || levl[u.ux + i][u.uy + j].typ == STYXRIVER || levl[u.ux + i][u.uy + j].typ == NETHERMIST || levl[u.ux + i][u.uy + j].typ == STALACTITE || levl[u.ux + i][u.uy + j].typ == RAINCLOUD) terraindanger++;
+			}
+
+			if (terraindanger > rn2(10)) {
+				if (!HStun) make_stunned(5, FALSE);
+				if (!HConfusion) make_confused(5, FALSE);
+			}
+			/* It is not a bug that these aren't giving a message; this is a nasty trap. --Amy */
+
+		}
+
 		if (RecurringSpellLoss && !rn2(1000)) {
 			spellmemoryloss((level_difficulty() * rnd(3)) + 1);
 		}
@@ -9271,7 +9331,7 @@ newboss:
 		    } else if (Upolyd && u.mh < u.mhmax && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 
 			/* faster regeneration --Amy */
-			regenrate = (20 - (u.ulevel / 3));
+			regenrate = (20 - (GushLevel / 3));
 			if (regenrate < 6) regenrate = 6;
 			if (Race_if(PM_HAXOR)) regenrate /= 2;
 			if (is_grassland(u.ux, u.uy)) regenrate *= 2;
@@ -9297,7 +9357,7 @@ newboss:
  */
 
 			/* adjustments by Amy - make it slower, because otherwise intrinsic regeneration is useless later on */
- 			int efflev = rnd(u.ulevel) + (u.uhealbonus);
+ 			int efflev = rnd(GushLevel) + (u.uhealbonus);
  			int effcon = rnd(ACURR(A_CON)) + (u.uhealbonus);
 
 			if (!(PlayerCannotUseSkills)) {
@@ -9360,28 +9420,28 @@ newboss:
 				u.uhp = u.uhpmax;
 			} else if (Regeneration ||
 			     (efflev <= 9 &&
-			      !(moves % ((MAXULEV+12) / (u.ulevel+2) + 1)))) {
+			      !(moves % ((MAXULEV+12) / (GushLevel+2) + 1)))) {
 			    flags.botl = 1;
 			    if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.uhp++;
 			}
 		    }
 
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
-				u.uhp += rnd(5 + (u.ulevel / 5));
+				u.uhp += rnd(5 + (GushLevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
-				u.mh += rnd(5 + (u.ulevel / 5));
+				u.mh += rnd(5 + (GushLevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) ) {
+			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) ) {
 				u.uhp++;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / u.ulevel) && Upolyd ) {
+			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) && Upolyd ) {
 				u.mh++;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
@@ -9389,18 +9449,18 @@ newboss:
 
 			/* nice patch addition by Amy - sometimes regenerate more */
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
-				u.uhp += rnz(2 + u.ulevel);
+				u.uhp += rnz(2 + GushLevel);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ){
-				u.mh += rnz(2 + u.ulevel);
+				u.mh += rnz(2 + GushLevel);
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
 
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) ) {
-				u.uen += rnd(5 + (u.ulevel / 5));
+				u.uen += rnd(5 + (GushLevel / 5));
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				flags.botl = 1;
 			}
@@ -9433,7 +9493,7 @@ newboss:
 				((Energy_regeneration && !rn2(3)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
-				(!(moves%((MAXULEV + 15 - u.ulevel) *                                    
+				(!(moves%((MAXULEV + 15 - GushLevel) *                                    
 				(Role_if(PM_WIZARD) ? 3 : 4) / 6)))))) {
 			u.uen += rn1((int)(ACURR(A_WIS) + ACURR(A_INT)) / 15 + 1,1);
 
@@ -9448,14 +9508,14 @@ newboss:
 			/* nice patch addition by Amy - sometimes regenerate more */
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax)) {
 
-				u.uen += rnz(2 + u.ulevel);
+				u.uen += rnz(2 + GushLevel);
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 
 			}
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
 
-				u.uen += rnz(2 + u.ulevel);
+				u.uen += rnz(2 + GushLevel);
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 
@@ -9475,7 +9535,7 @@ newboss:
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / u.ulevel) ) {
+			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / GushLevel) ) {
 				u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
@@ -9483,13 +9543,13 @@ newboss:
 
 		/* leveling up will give a small boost to mana regeneration now --Amy */
 		    if ( !Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && u.uen < u.uenmax && ( 
-			(u.ulevel >= 5 && !rn2(200)) ||
-			(u.ulevel >= 10 && !rn2(100)) ||
-			(u.ulevel >= 14 && !rn2(100)) ||
-			(u.ulevel >= 15 && !rn2(50)) ||
-			(u.ulevel >= 20 && !rn2(30)) ||
-			(u.ulevel >= 25 && !rn2(20)) ||
-			(u.ulevel >= 30 && !rn2(10)) ||
+			(GushLevel >= 5 && !rn2(200)) ||
+			(GushLevel >= 10 && !rn2(100)) ||
+			(GushLevel >= 14 && !rn2(100)) ||
+			(GushLevel >= 15 && !rn2(50)) ||
+			(GushLevel >= 20 && !rn2(30)) ||
+			(GushLevel >= 25 && !rn2(20)) ||
+			(GushLevel >= 30 && !rn2(10)) ||
 			(u.menoraget && !rn2(200)) ||
 			(u.bookofthedeadget && !rn2(200)) ||
 			(u.silverbellget && !rn2(200)) ||

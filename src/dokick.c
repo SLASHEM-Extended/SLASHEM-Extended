@@ -281,7 +281,7 @@ register boolean clumsy;
 	if (RngeBloodlust) dmg += 1;
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
 
-	if (Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
+	if (Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 
 	if (Race_if(PM_PLAYER_SKELETON) && dmg > 1) {
 		dmg /= 5;
@@ -624,8 +624,8 @@ register xchar x, y;
 	if (need_four(mon))   canhitmon = 4;         
 
 	if (Role_if(PM_MONK) && !Upolyd) {
-		if (!uwep && !uarm && !uarms) objenchant = u.ulevel / 4;
-		else if (!uwep) objenchant = u.ulevel / 12;
+		if (!uwep && !uarm && !uarms) objenchant = GushLevel / 4;
+		else if (!uwep) objenchant = GushLevel / 12;
 		else objenchant = 0;
 		if (objenchant < 0) objenchant = 0;
 		if (uarmf && (uarmf->spe > 0)) objenchant += uarmf->spe;

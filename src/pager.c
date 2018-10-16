@@ -1148,7 +1148,7 @@ bad_data_file:	impossible("'data' file in wrong format");
 		return;
 	}
 
-	if (user_typed_name || without_asking || yn("More info?") == 'y') {
+	if (user_typed_name || without_asking || (!MonsterGlyphHallu && yn("More info?") == 'y' ) ) {
 	    winid datawin;
 
 	    if (dlb_fseek(fp, txt_offset + entry_offset, SEEK_SET) < 0) {
@@ -2357,10 +2357,10 @@ get_description_of_monster_type(struct permonst * ptr, char * description)
 	char main_temp_buf[BUFSZ] = "";
 
 	temp_buf[0]='\0';
-	sprintf(temp_buf, "Accessing Pokedex entry for %s... ", (!missingnoprotect || !Upolyd || ((int)ptr < NUMMONS) ) ? ptr->mname : "this weird creature");
+	sprintf(temp_buf, "Accessing Pokedex entry for %s... ", MonsterGlyphHallu ? "monster" : (!missingnoprotect || !Upolyd || monsndx(ptr) < NUMMONS) ? ptr->mname : "this weird creature");
 	strcat(description, temp_buf);
 
-	if (DeformattingBug || u.uprops[DEFORMATTING_BUG].extrinsic || have_deformattingstone()) {
+	if (DeformattingBug || u.uprops[DEFORMATTING_BUG].extrinsic || have_deformattingstone() || MonsterGlyphHallu) {
 		strcat(description, "Pokedex communication failure. Damn.");
 		return description;
 	}
@@ -2709,6 +2709,53 @@ static NEARDATA const char * const longinglines[] = {
 "You know that %s can produce very beautiful farting noises.",
 "You absolutely love it if %s makes air current noises.",
 "The clacking sounds of %s's high heels are so sexy that just thinking about them makes you wet.",
+"You want to clean the dog shit from %s's shoes.",
+"Would you like it if %s steps on your hand with her heels?",
+"Do you like having your fingers squeezed underneath %s's female footwear?",
+"Isn't it wonderful to be kicked in the nuts by %s?",
+"You want to feel up %s's sexy knee.",
+"You want to present your delicate nuts so that %s can push her knee into them very painfully.",
+"One of your wet dreams is to have %s fart you in the face for several hours straight.",
+"Do you want to go to the toilet together with %s?",
+"Don't you agree that %s's female shoes are really elegant?",
+"%s stepped into dog shit specially for you, because you want to clean her shoes by hand!",
+"%s is so athletic and feminine!",
+"%s is such a lovely, fleecy girl! <3",
+"You absolutely want to hug the beautiful %s.",
+"Isn't it wonderful to listen to %s squeaking the farting gas out of her butt?",
+"%s can really produce very tender farting noises.",
+"You absolutely want to listen to %s's toilet noises.",
+"You feel like sharing a bed with %s.",
+"You hope that %s will marry you one day.",
+"You want to have slex with %s, admit it.",
+"%s is soooooooooooo sexy and fleece-bundle-gentle-soft!",
+"%s must really be the sexiest woman you ever saw.",
+"If %s slaps you, you can't fight back because she's so beautiful and sexy.",
+"%s's sexy wedge sandals absolutely want to bludgeon you and you're really looking forward to it too.",
+"Do you like the very fleecy combat boot heels that %s is wearing?",
+"Can you imagine what %s's extra fleecy block heels can do to you?",
+"Look at %s and her incredibly cute stilettos!",
+"Wow, %s is wearing cone heels today, and they're looking absolutely gorgeous!",
+"It's absolutely wonderful if %s kicks you in the shins with her lovely girl shoes.",
+"You want to heart and kiss %s's wonderful female body.",
+"You want %s to sit on you and crush you underneath her weight.",
+"Isn't it just wonderful to caress %s's sexy butt cheeks while she scratches up and down your leg with her heels?",
+"You want to lie in %s's arms while she continuously whacks you over the head with sexy leather pumps.",
+"Want to feel up %s's breasts? Then you have to allow her to repeatedly kick you in the nuts while you do.",
+"It's pure lust if %s alternates between massaging your nuts with her fleecy hands and ramming her knee into them.",
+"Do you want to untie %s's sexy female shoes?",
+"Do you agree that it's fun to have %s step on your hands with her female hugging boots?",
+"Did you see it? %s's sandals even have buckles, which are very cute!",
+"%s is wearing very cute velcro shoes today, which can cause a lot of damage with their lashes!",
+"You long to open the zippers of %s's fleecy combat boots.",
+"You like it a lot if %s's zippers snatch at your unprotected skin and try to scratch you.",
+"You marvel at the cute spikes that are attached to the bottom of %s's lady boots.",
+"Pulling down %s's underwear would be quite an erotic act.",
+"Would you love to put lube on %s's incredibly female butt cheeks?",
+"Did you know that %s really loves it if you bash her but in a sexy way with your palm?",
+"Do you want %s to bite you in the neck with her female teeth?",
+"If %s's lady shoes slide along your hands, the blood can squirt in all directions.",
+"%s's pointy fingernails are very capable of cutting your unprotected skin!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {

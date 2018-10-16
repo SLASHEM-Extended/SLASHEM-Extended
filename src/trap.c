@@ -5896,7 +5896,7 @@ madnesseffect:
 		pline("CLICK! You have triggered a trap!");
 		deltrap(trap);
 		pline_The("entire dungeon is shaking around you!");
-		do_earthquake((u.ulevel - 1) / 3 + 1);
+		do_earthquake((GushLevel - 1) / 3 + 1);
 		break;
 
 	    case CONTAMINATION_TRAP:
