@@ -6534,7 +6534,7 @@ boolean picked_some;
 
 	}
 
-	if (!otmp || is_lava(u.ux,u.uy) || (is_waterypool(u.ux,u.uy) && !Underwater) || (is_watertunnel(u.ux,u.uy) && !Underwater)) {
+	if (!otmp || is_lava(u.ux,u.uy) || (is_waterypool(u.ux,u.uy) && !is_crystalwater(u.ux, u.uy) && !Underwater) || (is_watertunnel(u.ux,u.uy) && !Underwater)) {
 		if (dfeature) pline("%s", fbuf);
 		sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 		if (!skip_objects && (Blind || !dfeature))

@@ -409,7 +409,7 @@ int what;		/* should be a long */
 		struct trap *ttmp = t_at(u.ux, u.uy);
 		/* no auto-pick if no-pick move, nothing there, or in a pool */
 		if (autopickup && (flags.nopick || !OBJ_AT(u.ux, u.uy) ||
-			(is_waterypool(u.ux, u.uy) && !Underwater) || (is_watertunnel(u.ux, u.uy) && !Underwater) || is_lava(u.ux, u.uy))) {
+			(is_waterypool(u.ux, u.uy) && !is_crystalwater(u.ux, u.uy) && !Underwater) || (is_watertunnel(u.ux, u.uy) && !Underwater) || is_lava(u.ux, u.uy))) {
 			sense_engr_at(u.ux, u.uy, FALSE);
 			return (0);
 		}
@@ -1611,7 +1611,7 @@ int x, y;
 
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
-	} else if (is_waterypool(x, y) || is_watertunnel(x,y) || is_lava(x, y)) {
+	} else if ((is_waterypool(x, y) || is_watertunnel(x,y) || is_lava(x, y)) && !is_crystalwater(x, y)) {
 		/* at present, can't loot in water even when Underwater */
 		You("cannot loot things that are deep in the %s.",
 		    is_lava(x, y) ? "lava" : "water");
