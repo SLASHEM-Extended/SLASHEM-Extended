@@ -2148,18 +2148,24 @@ char		*tmp_levels;
 	    	flags.initrole = len;
 	} else if (match_varname(buf, "DOGNAME", 3)) {
 	    (void) strncpy(dogname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "MONKEYNAME", 3)) {
+	    (void) strncpy(monkeyname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "PARROTNAME", 3)) {
+	    (void) strncpy(parrotname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "GIRLNAME", 3)) {
+	    (void) strncpy(girlname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "BOYNAME", 3)) {
+	    (void) strncpy(boyname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "RAVENNAME", 3)) {
+	    (void) strncpy(ravenname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "DRAGONNAME", 3)) {
+	    (void) strncpy(dragonname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "PLALIAS", 3)) {
 	    (void) strncpy(plalias, bufp, PL_NSIZ-1);
 	} else if (match_varname(buf, "CATNAME", 3)) {
 	    (void) strncpy(catname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "RATNAME", 3)) {
 	    (void) strncpy(ratname, bufp, PL_PSIZ-1);
-/*	} else if (match_varname(buf, "LICHENNAME", 3)) {
-	    (void) strncpy(lichenname, bufp, PL_PSIZ-1);
-	} else if (match_varname(buf, "COINSNAME", 3)) {
-	    (void) strncpy(coinsname, bufp, PL_PSIZ-1);
-	} else if (match_varname(buf, "ROTHENAME", 3)) {
-	    (void) strncpy(rothename, bufp, PL_PSIZ-1);*/
 	} else if (match_varname(buf, "WOLFNAME", 3)) {
             (void) strncpy(wolfname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "GHOULNAME", 3)) {

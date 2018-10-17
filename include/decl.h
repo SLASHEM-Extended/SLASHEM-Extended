@@ -302,13 +302,17 @@ E const char *configfile;
 E NEARDATA char plname[PL_NSIZ];
 E NEARDATA char plalias[PL_NSIZ];
 E NEARDATA char dogname[];
+E NEARDATA char dragonname[];
+E NEARDATA char monkeyname[];
+E NEARDATA char parrotname[];
+E NEARDATA char girlname[];
+E NEARDATA char boyname[];
+E NEARDATA char snipername[];
+E NEARDATA char ravenname[];
 E NEARDATA char catname[];
 E NEARDATA char ghoulname[];
 E NEARDATA char horsename[];
 E NEARDATA char ratname[];
-/*E NEARDATA char coinsname[];
-E NEARDATA char lichenname[];
-E NEARDATA char rothename[];*/
 E NEARDATA char wolfname[];
 #if 0
 E NEARDATA char batname[];

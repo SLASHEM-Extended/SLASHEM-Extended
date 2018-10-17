@@ -214,6 +214,12 @@ NEARDATA struct obj thisplace = DUMMY;
 
 /* originally from dog.c */
 NEARDATA char dogname[PL_PSIZ] = DUMMY;
+NEARDATA char dragonname[PL_PSIZ] = DUMMY;
+NEARDATA char monkeyname[PL_PSIZ] = DUMMY;
+NEARDATA char parrotname[PL_PSIZ] = DUMMY;
+NEARDATA char girlname[PL_PSIZ] = DUMMY;
+NEARDATA char boyname[PL_PSIZ] = DUMMY;
+NEARDATA char ravenname[PL_PSIZ] = DUMMY;
 NEARDATA char catname[PL_PSIZ] = DUMMY;
 NEARDATA char ghoulname[PL_PSIZ] = DUMMY;
 NEARDATA char horsename[PL_PSIZ] = DUMMY;

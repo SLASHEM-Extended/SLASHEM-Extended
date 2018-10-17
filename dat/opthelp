@@ -168,8 +168,10 @@ Compound options which may be set only on startup are:
 
 align      Your starting alignment (align:lawful, align:neutral,
            or align:chaotic).  You may specify just the first letter.  [RANDOM]
+boyname    the name of your first boy  [NONE]
 catname    the name of your first cat  [NONE]
 dogname    the name of your first dog  [NONE]
+dragonname the name of your first dragon  [NONE]
 dungeon    a list of symbols to be used in place of the default ones for
            drawing the dungeon.
            The symbols are subjected to a fair amount of processing, so
@@ -225,6 +227,7 @@ gender     Your starting gender (gender:male or gender:female).
            You may specify just the first letter.  Although you can
            still denote your gender using the "male" and "female"
            options, the "gender" option will take precedence.  [RANDOM]
+girlname   the name of your first girl  [NONE]
 horsename  the name of your first horse  [NONE]
 ghoulname  the name of your first ghoul  [NONE]
 menucolor  Set colors for menus. (menucolor:"regex_string"=color)
@@ -255,6 +258,7 @@ menu_*     create single character accelerators for menu commands.  Below
            menu_search        search for a menu item [:](gxa)
            menu_select_all    select all items in a menu [.](gxta)
            menu_select_page   select all items on this page of a menu [,](gta)
+monkeyname the name of your first monkey  [NONE]
 monsters   like dungeon, but for monster symbols
            default:  abcdefghijklmnopqrstuvwxyz
                      ABCDEFGHIJKLMNOPQRSTUVWXYZ@\ \\&;:~]
@@ -263,9 +267,11 @@ name       the name of your character  [obtained by asking the system or
            the player]
 objects    like dungeon, but for object symbols
            default:  ])[="(%!?+/$*`0_.
+parrotname the name of your first parrot  [NONE]
 pettype    your preferred type of pet (cat or dog), if your character
            class uses both types; or none for no pet  [RANDOM]
 race       Your starting race (e.g., race:Human, race:Elf).  [RANDOM]
+ravenname  the name of your first raven  [NONE]
 role       Your starting role (e.g., role:Barbarian, role:Valk).
            Although you can specify just the first letter(s), it will
            choose only the first role it finds that matches; thus, it

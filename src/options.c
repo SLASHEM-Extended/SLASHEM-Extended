@@ -395,6 +395,18 @@ static struct Comp_Opt
 						SET_IN_GAME },
 	{ "dogname",  "the name of your (first) dog (e.g., dogname:Fang)",
 						PL_PSIZ, DISP_IN_GAME },
+	{ "dragonname",  "the name of your (first) dragon (e.g., dragonname:Wintersdotir)",
+						PL_PSIZ, DISP_IN_GAME },
+	{ "monkeyname",  "the name of your (first) monkey (e.g., monkeyname:DonkeyKong)",
+						PL_PSIZ, DISP_IN_GAME },
+	{ "parrotname",  "the name of your (first) parrot (e.g., parrotname:Polly)",
+						PL_PSIZ, DISP_IN_GAME },
+	{ "girlname",  "the name of your (first) girl (e.g., girlname:Sarah)",
+						PL_PSIZ, DISP_IN_GAME },
+	{ "boyname",  "the name of your (first) boy (e.g., boyname:Jonas)",
+						PL_PSIZ, DISP_IN_GAME },
+	{ "ravenname",  "the name of your (first) raven (e.g., ravenname:Nevermore)",
+						PL_PSIZ, DISP_IN_GAME },
 #ifdef DUMP_LOG
 	{ "dumpfile", "where to dump data (e.g., dumpfile:/tmp/dump.nh)",
 #ifdef DUMP_FN
@@ -1738,6 +1750,54 @@ boolean tinitial, tfrom_file;
 		if (negated) bad_negation(fullname, FALSE);
 		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
 			nmcpy(dogname, op, PL_PSIZ);
+		return;
+	}
+
+	fullname = "monkeyname";
+	if (match_optname(opts, fullname, 3, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
+			nmcpy(monkeyname, op, PL_PSIZ);
+		return;
+	}
+
+	fullname = "parrotname";
+	if (match_optname(opts, fullname, 3, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
+			nmcpy(parrotname, op, PL_PSIZ);
+		return;
+	}
+
+	fullname = "girlname";
+	if (match_optname(opts, fullname, 3, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
+			nmcpy(girlname, op, PL_PSIZ);
+		return;
+	}
+
+	fullname = "boyname";
+	if (match_optname(opts, fullname, 3, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
+			nmcpy(boyname, op, PL_PSIZ);
+		return;
+	}
+
+	fullname = "ravenname";
+	if (match_optname(opts, fullname, 3, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
+			nmcpy(ravenname, op, PL_PSIZ);
+		return;
+	}
+
+	fullname = "dragonname";
+	if (match_optname(opts, fullname, 3, TRUE)) {
+		if (negated) bad_negation(fullname, FALSE);
+		else if ((op = string_for_env_opt(fullname, opts, FALSE)) != 0)
+			nmcpy(dragonname, op, PL_PSIZ);
 		return;
 	}
 
@@ -4016,6 +4076,18 @@ char *buf;
 	}
 	else if (!strcmp(optname, "dogname")) 
 		sprintf(buf, "%s", dogname[0] ? dogname : none );
+	else if (!strcmp(optname, "dragonname")) 
+		sprintf(buf, "%s", dragonname[0] ? dragonname : none );
+	else if (!strcmp(optname, "monkeyname")) 
+		sprintf(buf, "%s", monkeyname[0] ? monkeyname : none );
+	else if (!strcmp(optname, "parrotname")) 
+		sprintf(buf, "%s", parrotname[0] ? parrotname : none );
+	else if (!strcmp(optname, "girlname")) 
+		sprintf(buf, "%s", girlname[0] ? girlname : none );
+	else if (!strcmp(optname, "boyname")) 
+		sprintf(buf, "%s", boyname[0] ? boyname : none );
+	else if (!strcmp(optname, "ravenname")) 
+		sprintf(buf, "%s", ravenname[0] ? ravenname : none );
 	else if (!strcmp(optname, "plalias")) 
 		sprintf(buf, "%s", plalias[0] ? plalias : none );
 #ifdef DUMP_LOG

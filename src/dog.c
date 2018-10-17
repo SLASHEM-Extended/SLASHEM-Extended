@@ -261,9 +261,9 @@ makedog()
 	petsym = mons[pettype].mlet;
 	if (pettype == PM_WINTER_WOLF_CUB || pettype == PM_WOLF)
 		petname = wolfname;
-	else if (pettype == PM_GHOUL)
+	else if (petsym == S_ZOMBIE)
 		petname = ghoulname;
-	else if (pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE)
+	else if (pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE || pettype == PM_DARK_NIGHTMARE || pettype == PM_SPEEDHORSE)
 		petname = horsename;
 	else if (pettype == PM_SEWER_RAT)
 		petname = ratname;
@@ -283,6 +283,18 @@ makedog()
 #endif
 	else if (petsym == S_DOG)
 		petname = dogname;
+	else if (petsym == S_DRAGON)
+		petname = dragonname;
+	else if (pettype == PM_MONKEY)
+		petname = monkeyname;
+	else if (pettype == PM_AIRBORNE_PARROT || pettype == PM_PARROT)
+		petname = parrotname;
+	else if (pettype == PM_BLOCK_HEELED_GIRL || pettype == PM_KICKBOXING_GIRL || pettype == PM_NINJA_GIRL || pettype == PM_GOODWIFE || pettype == PM_DANCING_GIRL || pettype == PM_LITTLE_GIRL || pettype == PM_ASIAN_GIRL || pettype == PM_ESTRELLA_GIRL || pettype == PM_DARK_GIRL || pettype == PM_REDGUARD_GIRL || pettype == PM_THIEVING_GIRL || pettype == PM_SEXY_GIRL)
+		petname = girlname;
+	else if (pettype == PM_NINJA_BOY || pettype == PM_LITTLE_BOY)
+		petname = boyname;
+	else if (pettype == PM_RAVEN)
+		petname = ravenname;
 	else
 		petname = catname;
 
@@ -297,6 +309,7 @@ makedog()
 	if (!*petname && pettype == PM_SEWER_RAT) {
 	    if(Role_if(PM_CONVICT)) petname = "Nicodemus"; /* Rats of NIMH */
     }
+	if (!*petname) {
 	if (pettype == PM_MONKEY) petname = "Ugga-Ugga";
 	if (pettype == PM_AIRBORNE_PARROT) petname = "Squawks";
 	if (pettype == PM_SPEEDHORSE) petname = "Harley Davidson";
@@ -391,6 +404,7 @@ makedog()
 	if (pettype == PM_ACTIVISTOR) petname = "Helen"; /* yet another common first name */
 
 	if (pettype == PM_BABY_YELLOW_DRAGON || pettype == PM_BABY_GREEN_DRAGON || pettype == PM_BABY_BLUE_DRAGON || pettype == PM_BABY_RED_DRAGON || pettype == PM_BABY_ORANGE_DRAGON || pettype == PM_BABY_WHITE_DRAGON || pettype == PM_BABY_BLACK_DRAGON || pettype == PM_BABY_DEEP_DRAGON || pettype == PM_BABY_SHIMMERING_DRAGON || pettype == PM_BABY_GRAY_DRAGON || pettype == PM_BABY_SILVER_DRAGON) petname = "Odahviing";
+	}
 
 	if (petname && !(strcmp(petname, "Glorious Dead") ) ) petname = "Glorious Alive";
 
