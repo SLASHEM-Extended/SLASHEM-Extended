@@ -878,6 +878,8 @@ struct obj *obj;
 		result = "shatter";
 	    } else if (otmp->otyp == EGG && !rn2(3) && !stack_too_big(otmp)) {
 		result = "cracking";
+	    } else if (evilfriday && !obj_resists(otmp, 50, 100) && !stack_too_big(otmp)) {
+		result = "breaking sound, followed by evil laughter";
 	    }
 	    if (result) {
 		if (otmp->otyp == MIRROR) change_luck(-2);
