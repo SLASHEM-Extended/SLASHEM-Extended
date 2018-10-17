@@ -20415,6 +20415,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your breath control helmet keeps pumping the farting gas into your nose...",
 	"Suddenly, your gauntlets kiss you!",
 	"You are now ready to explore the dungeon.",
+	"IMHO if you throw salt at a snail, you should instantly get -200 alignment and a very angry god, you murderer.",
+	"The origin of life is easy to explain, in the beginning there was a goddess, and she decided she needed something to cover her feet, so she made shoes. And she was also of small stature, so she wanted to be bigger and therefore invented the heel. Her creations have since started to take over the world...",
+	"You have a smaller compiler, which could be written in C for this example since most Unix systems have a basic C compiler included with the system; that compiles a temporary compiler, which then compiles the compiler?",
+	"Error: syntax error before 'sexy'.",
 
 };
 

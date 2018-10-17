@@ -938,6 +938,10 @@ register int pm;
 	}
 
 	switch(pm) {
+	    case PM_KAMIKAZE_COCKATRICE: /* will normally not leave a corpse anyway */
+		ragnarok(FALSE);
+		if (evilfriday) evilragnarok(FALSE,level_difficulty());
+		break;
 	    case PM_LITTLE_DOG:
 	    case PM_DOG:
 	    case PM_LARGE_DOG:

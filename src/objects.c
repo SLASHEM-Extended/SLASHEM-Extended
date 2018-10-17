@@ -5442,6 +5442,10 @@ SCROLL((char *)0,               "STRAIGHT ONES STILL PRODUCTION",  P_NONE,     1
 SCROLL((char *)0,               "STRAIGHT LINES IT SIGNED ME",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 SCROLL((char *)0,               "IN THE CHAPEL WAS AN AID OF ME",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 SCROLL((char *)0,               "BROOK MAN THE SUPERBORER",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "MR LUXI YELLS AT THE NETHACK DEV TEAM",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "FIRE BIRD BELLE",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "BIMMELBAHN DIE SICH EILZUG NENNT",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "YITH GETS ONESHOT BY A MOTHERFUCKING BABY",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

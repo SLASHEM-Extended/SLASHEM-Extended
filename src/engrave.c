@@ -960,6 +960,8 @@ static const char *random_mesg[] = {
 	"The Amy believes, unironically, in the pantheon of Nethack and engages in 'fleecy' sexual rituals with her harem loves in which she hopes to immunize the eschaton to prevent diseases so that the demiurge may contain infinite control over the world.", /* from 4chan */
 	"The Amy routinely uses SLEX servers to meet lesbians and promises updates/game secrets in return for 'favors' from lesbian players.",
 	"Vanilla Nethack getting BORING? Doing soko mazes in your sleep and while sitting on the train? Want a CHANGE? Try.... LAGOBAN! Do Sokoban from a server halfway around the planet, and bounce your signal off a server in yet another country while you're doing it! Make sure your wifi router is no closer than 40m from your current position for the full experience!",
+	"A fortune cookie told me if you try to set message history to before you were born, it angers your god!",
+	"GOOGL EM: Greased Outlandish Opportunist's Guide to Legends: Extended Magic",
 
 };
 
@@ -4754,6 +4756,9 @@ static const char *epitaphs[] = {
 	"did this terra guy make it so that there's no land on the stupid plane of stupidity at all??? are you going to autodie when going there without magical breathing? WTF",
 	"goddamn it what did terra do to the water plane??? I wizmode-levported to it, instantly drowned due to being in water, came back to life because wizmode and was teleported into a different water square where it now loops on 'Die? (y/n)' with no way out",
 	"It's probably not a good time for a picnic...",
+	"I bought an antibundling shield but I think I got fleeced.",
+	"somehow I don't think of variant paranoia as applying to SLEX because the variant actually IS out to get you!", /* by ais523 */
+	"Where does the insidious woman picture put?",
 
 };
 

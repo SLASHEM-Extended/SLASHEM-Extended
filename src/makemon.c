@@ -7026,6 +7026,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ARMOR_GNOME]) (void) mongets(mtmp, PLATE_MAIL);
 		if (mtmp->data == &mons[PM_UNDERPANTS_GNOME]) (void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 		if (mtmp->data == &mons[PM_HC_BEARDFREAK]) m_initthrow(mtmp, FRAG_GRENADE, 8);
+		if (mtmp->data == &mons[PM_GWAWOL]) (void) mongets(mtmp, WAN_LIGHTNING);
 
 		if (mtmp->data == &mons[PM_SAMURAI_GNOME]) {
 			(void) mongets(mtmp, KATANA);
@@ -7907,6 +7908,9 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_RONJA_S_BLOCK_HEELED_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (mtmp->data == &mons[PM_HORN_HORSE]) (void) mongets(mtmp, UNICORN_HORN);
 		if (mtmp->data == &mons[PM_HORNPEEK_HORSE]) (void) mongets(mtmp, UNICORN_HORN);
+
+		if (mtmp->data == &mons[PM_POLECORN]) (void) mongets(mtmp, SPETUM);
+		if (mtmp->data == &mons[PM_HUGE_POLECORN]) (void) mongets(mtmp, HALBERD);
 
 		break;
 
@@ -15949,6 +15953,7 @@ register int	mmflags;
 			if (mndx == PM_SHADOW_SHAPE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_TOP_SECRET_AGENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_UNSEEN_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_FRIGHTGHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 		case S_QUADRUPED:

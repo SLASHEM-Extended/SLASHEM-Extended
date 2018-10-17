@@ -813,6 +813,8 @@ doread()
 	"here's looking at you, bhaak ;) *äugeläugel*", /* pun because of the "Schwebäugler" <3 */
 	"it's septembernethack, a cross variant bug fixing shitshow", /* by Demo */
 	"But I want my own house and not a girl!",
+	"whoa boy I did that 'slex with amy' thing last night, i got bundled twice. i think i fleecied 3 times!", /* by K2 */
+	"After years of research, I have developed the ultimate counter to bundling: eldnubeldnubeldnub :D", /* aosdict I think? */
 
 	    };
 	    char buf[BUFSZ];
