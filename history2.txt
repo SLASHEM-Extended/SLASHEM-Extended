@@ -1,6 +1,12 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.7 - October 2018
+- If the same rider or deadly sin is killed at least 50 times, the player's sanity will increase greatly whenever the monster in question resurrects.
+- Fixed some issues where the player could not interact with items on crystal water tiles correctly.
+- In evilvariant mode, kicking a container can break any non-artifact inside.
+- Ragnarok now also causes some turns of the contamination nasty trap effect.
+- New naming options for the player's starting pets: dragonname, boyname, girlname, monkeyname, parrotname, ravenname.
+- Added a "sanity" concept. The player's sanity starts at 0 and goes up if certain things happen, with bad effects becoming increasingly more common with higher sanity.
 - The gun, ammo and banging shops no longer spawn tons of artifacts.
 - Randomly generated artifacts can also be ones that already exist.
 - Angel race player characters will get temporary weak sight when hit by a darkness attack.
