@@ -1865,6 +1865,8 @@ boolean guaranteed;
 
 	pline("Let's Ragnarok!");
 
+	FalloutEffect += rnz(200);
+
 	for (x = 0; x < COLNO; x++)
 	  for (y = 0; y < ROWNO; y++) {
 
