@@ -1152,6 +1152,15 @@ struct you {
 
 	int frequentationtrait;	/* for frequentation spawn trap */
 
+	int pokelieresistances;
+	int pokeliegeneration;
+	int pokelieflags;
+	int pokeliespeed;
+	int pokelieattacktype;
+	int pokeliedamagetype;
+
+	boolean seesilverspell;
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

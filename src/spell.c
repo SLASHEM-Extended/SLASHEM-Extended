@@ -1452,6 +1452,21 @@ getspell(spell_no, goldspellpossible)
 			if (choicenumber > 0 && thisone >= 0) {
 				pline("You cast %s.", spellname(thisone));
 				spelleffects(thisone, FALSE);
+				if (SpellColorPlatinum && u.uen < 0) {
+					u.uenmax -= (0 - u.uen);
+					if (u.uenmax < 0) {
+						u.uhpmax -= (0 - u.uenmax);
+						if (u.uhpmax < 1) u.uhpmax = 1;
+						if (Upolyd) {
+							u.mhmax -= (0 - u.uenmax);
+							if (u.mhmax < 1) u.mhmax = 1;
+						}
+						losehp((0 - u.uenmax) * 10, "overcasting a spell", KILLED_BY);
+						u.uenmax = 0;
+					}
+					u.uen = 0;
+					if (u.uenmax < 0) u.uenmax = 0;
+				}
 				TimerunBug += 1; /* ugh, ugly hack --Amy */
 				return FALSE;
 			}
@@ -1520,6 +1535,8 @@ docast()
 {
 	int spell_no;
 
+	int whatreturn;
+
 	if (u.antimagicshell || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
@@ -1545,7 +1562,25 @@ docast()
 			else if (u.spellbinder7 == -1) u.spellbinder7 = spell_no;
 		}
 
-		return spelleffects(spell_no, FALSE);
+		whatreturn = spelleffects(spell_no, FALSE);
+
+		if (SpellColorPlatinum && u.uen < 0) {
+			u.uenmax -= (0 - u.uen);
+			if (u.uenmax < 0) {
+				u.uhpmax -= (0 - u.uenmax);
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (Upolyd) {
+					u.mhmax -= (0 - u.uenmax);
+					if (u.mhmax < 1) u.mhmax = 1;
+				}
+				losehp((0 - u.uenmax) * 10, "overcasting a spell", KILLED_BY);
+				u.uenmax = 0;
+			}
+			u.uen = 0;
+			if (u.uenmax < 0) u.uenmax = 0;
+		}
+
+		return whatreturn;
 	}
 	return 0;
 }
@@ -1565,6 +1600,22 @@ castinertiaspell()
 			return;
 		}
 		spelleffects(u.inertiacontrolspellno, FALSE);
+
+		if (SpellColorPlatinum && u.uen < 0) {
+			u.uenmax -= (0 - u.uen);
+			if (u.uenmax < 0) {
+				u.uhpmax -= (0 - u.uenmax);
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (Upolyd) {
+					u.mhmax -= (0 - u.uenmax);
+					if (u.mhmax < 1) u.mhmax = 1;
+				}
+				losehp((0 - u.uenmax) * 10, "overcasting a spell", KILLED_BY);
+				u.uenmax = 0;
+			}
+			u.uen = 0;
+			if (u.uenmax < 0) u.uenmax = 0;
+		}
 
 	}
 }
@@ -1958,6 +2009,11 @@ boolean atme;
 			if (hungr > u.uhunger-3)
 				hungr = u.uhunger-3;
 	if (energy > u.uen)  {
+		if (SpellColorPlatinum) {
+			You("overcast the spell. Magic reaction hurts you!");
+			goto castanyway;
+		}
+
 		if (role_skill >= P_SKILLED) You("don't have enough energy to cast that spell.");
 		else You("don't have enough energy to cast that spell. The required amount was %d.",energy);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -1988,6 +2044,8 @@ boolean atme;
 			return 0;
 		}
 	}
+
+castanyway:
 
 	/* come on, you should be able to cast using less nutrition if your skill is higher! --Amy */
 
@@ -2114,6 +2172,8 @@ boolean atme;
 			badeffect();
 		}
 
+		if (SpellColorSilver) u.seesilverspell = 0;
+
 #ifdef ALLEG_FX
                 if (iflags.usealleg) alleg_aura(u.ux, u.uy, P_ATTACK_SPELL-1);
 #endif
@@ -2141,6 +2201,8 @@ boolean atme;
 				badeffect();
 			}
 
+			if (SpellColorSilver) u.seesilverspell = 0;
+
 			register int confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
 
 			u.uen -= confusedcost;
@@ -2165,11 +2227,14 @@ boolean atme;
 
 	if (SpellColorOrange) losehp(energy, "casting an orange spell with too little health", KILLED_BY);
 
+	if (SpellColorSilver) u.seesilverspell = 1;
+
 	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
 	if (u.uhave.amulet && u.amuletcompletelyimbued && u.uen < 0) {
 		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		u.uen = 0;
+		if (SpellColorSilver) u.seesilverspell = 0;
 		return(1);
 	}
 
@@ -7311,11 +7376,11 @@ int spell;
 	statused = ACURR(urole.spelstat);
 
 	/* Calculate armor penalties */
-	if (uarm && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) 
+	if (uarm && !SpellColorMetal && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) 
 	    splcaster += 2;
 
 	/* Robes are body armour in SLASH'EM */
-	if (uarm && is_metallic(uarm) && !is_etheritem(uarm)) {
+	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarm)->otyp].oc_material) {
@@ -7339,7 +7404,19 @@ int spell;
 
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
-	if (uarmc && is_metallic(uarmc) && !is_etheritem(uarmc)) {
+	if (SpellColorMetal && (!uarm || !is_metallic(uarm))) {
+		armorpenalties = 15;
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 12);
+	}
+
+	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmc)->otyp].oc_material) {
@@ -7363,7 +7440,20 @@ int spell;
 
 		splcaster += (urole.spelarmr * armorpenalties / 36);
 	}
-	if (uarmu && is_metallic(uarmu) && !is_etheritem(uarmu)) {
+	if (SpellColorMetal && (!uarmc || !is_metallic(uarmc))) {
+		armorpenalties = 15;
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 36);
+
+	}
+
+	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmu)->otyp].oc_material) {
@@ -7387,7 +7477,20 @@ int spell;
 
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 	}
-	if (uarms) {
+	if (SpellColorMetal && (!uarmu || !is_metallic(uarmu))) {
+		armorpenalties = 15;
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 100);
+
+	}
+
+	if (uarms && !SpellColorMetal) {
 		shieldpenalties = 15;
 		if (!is_metallic(uarms) || is_etheritem(uarms)) shieldpenalties /= 3;
 
@@ -7412,8 +7515,20 @@ int spell;
 
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 	}
+	if (SpellColorMetal && (!uarms || !is_metallic(uarms))) {
+		shieldpenalties = 15;
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			shieldpenalties *= 4;
+			shieldpenalties /= 5;
+		}
 
-	if (uarmh && is_metallic(uarmh) && !is_etheritem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) shieldpenalties /= 2;
+
+		splcaster += (urole.spelshld * shieldpenalties / 12);
+
+	}
+
+	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmh)->otyp].oc_material) {
@@ -7437,7 +7552,20 @@ int spell;
 
 		splcaster += (uarmhbon * armorpenalties / 12);
 	}
-	if (uarmg && is_metallic(uarmg) && !is_etheritem(uarmg)) {
+	if (SpellColorMetal && (!uarmh || !is_metallic(uarmh))) {
+		armorpenalties = 15;
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
+		splcaster += (uarmhbon * armorpenalties / 12);
+
+	}
+
+	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmg)->otyp].oc_material) {
@@ -7461,7 +7589,20 @@ int spell;
 
 		splcaster += (uarmgbon * armorpenalties / 12);
 	}
-	if (uarmf && is_metallic(uarmf) && !is_etheritem(uarmf)) {
+	if (SpellColorMetal && (!uarmg || !is_metallic(uarmg))) {
+		armorpenalties = 15;
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
+		splcaster += (uarmgbon * armorpenalties / 12);
+
+	}
+
+	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmf)->otyp].oc_material) {
@@ -7484,6 +7625,19 @@ int spell;
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / 12);
+	}
+
+	if (SpellColorMetal && (!uarmf || !is_metallic(uarmf))) {
+		armorpenalties = 15;
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
+		splcaster += (uarmfbon * armorpenalties / 12);
+
 	}
 
 	if (spellid(spell) == urole.spelspec)
@@ -7773,6 +7927,10 @@ int spell;
 		chance /= 6;
 	}
 
+	if (RememberanceEffect || u.uprops[REMEMBERANCE_EFFECT].extrinsic || have_rememberancestone()) {
+		if (chance > (spellknow(spell) / 100)) chance = (spellknow(spell) / 100);
+	}
+
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "failuncap cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya s provalom") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "noto'g'ri plash")) ) chance += 5;
@@ -7791,6 +7949,15 @@ int spell;
 	if (chance > 100) chance = 100;
 
 	if (chance < (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10) ) chance = (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
+
+	if (SpellColorSilver) {
+
+		if (chance == 50) chance = 100;
+		else if (chance == 100) chance = 10;
+		else if (chance > 50) chance -= ((chance - 50) * 2);
+		else if (chance > 0) chance *= 2;
+
+	}
 
 	return chance;
 }

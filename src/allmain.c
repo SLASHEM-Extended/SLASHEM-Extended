@@ -10329,6 +10329,25 @@ newboss:
 		iflags.winggraphics = FALSE;
 	}
 
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+		if (!u.pokelieresistances) {
+			u.pokelieresistances = rnd(17);
+			u.pokeliegeneration = 0;
+			u.pokelieflags = 0;
+			u.pokeliespeed = rnd(50);
+			u.pokelieattacktype = rnd(21);
+			u.pokeliedamagetype = rnd(143);
+		}
+	} else {
+		u.pokelieresistances = 0;
+		u.pokeliegeneration = 0;
+		u.pokelieflags = 0;
+		u.pokeliespeed = 0;
+		u.pokelieattacktype = 0;
+		u.pokeliedamagetype = 0;
+	}
+
+
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
 		u.frequentationtrait = rnd(359); /* same as monstercolor function */

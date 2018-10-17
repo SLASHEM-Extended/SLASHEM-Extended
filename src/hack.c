@@ -1040,9 +1040,9 @@ int mode;
     /*
      *  Check for physical obstacles.  First, the place we are going.
      */
-    if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS || tmpr->typ == WOODENTABLE || tmpr->typ == WATERTUNNEL) {
+    if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS || (SpellColorPlatinum && (glyph_to_cmap(glyph_at(x,y)) == S_bars) ) || tmpr->typ == WOODENTABLE || tmpr->typ == WATERTUNNEL) {
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
-	if (tmpr->typ == IRONBARS) {
+	if (tmpr->typ == IRONBARS || (SpellColorPlatinum && (glyph_to_cmap(glyph_at(x,y)) == S_bars) ) ) {
 	    if (!(Passes_walls || passes_bars(youmonst.data) || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) )) {
 		if (mode == DO_MOVE) {
 			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) {
@@ -1278,7 +1278,7 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }

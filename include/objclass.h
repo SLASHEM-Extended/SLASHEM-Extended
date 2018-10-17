@@ -85,7 +85,7 @@ struct objclass {
 
 /* primary damage: fire/rust/--- */
 /* is_flammable(otmp), is_rottable(otmp) in mkobj.c */
-#define is_rustprone(otmp)	(objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == ETHER || objects[(otmp)->otyp].oc_material == BRICK)
+#define is_rustprone(otmp)	(SpellColorMetal ? (!(is_metallic(otmp))) : (objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == ETHER || objects[(otmp)->otyp].oc_material == BRICK))
 
 /* secondary damage: rot/acid/acid */
 #define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER || ((objects[otmp->otyp].oc_material == METAL || objects[otmp->otyp].oc_material == SILVER || objects[otmp->otyp].oc_material == PLATINUM) && evilfriday ) || objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == BRICK)

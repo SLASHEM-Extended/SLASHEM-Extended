@@ -148,7 +148,7 @@ lookat(x, y, buf, monbuf)
 			(how & 4) ? "monster detection" : "");
 	}
 
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -315,7 +315,7 @@ lookat(x, y, buf, monbuf)
 
 		/* tell player what the terrain is, as long as no nasty trap effects are active and the tile has
 		 * already been seen, because this information really should be available to the player --Amy */
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -851,7 +851,7 @@ lookat(x, y, buf, monbuf)
 
 	strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
 
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -1001,7 +1001,7 @@ lookat(x, y, buf, monbuf)
 	break;
 	} /* switch end */
 
-	if (!Hallucination && levl[x][y].seenv && !(SpellColorOrange || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+	if (!Hallucination && levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 		register struct trap *seethetrap;
 		register int tt;
 		if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
@@ -1414,7 +1414,7 @@ do_look(quick)
 			strcat(out_str, " co-located with a boulder");
 
 		/* guh, need to paste all the code here too... --Amy */
-		if (from_screen && levl[cc.x][cc.y].seenv && !(SpellColorOrange || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+		if (from_screen && levl[cc.x][cc.y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 			if (IS_TREE(levl[cc.x][cc.y].typ))
 			    sprintf(eos(out_str), ", on a tree");
 			else if (IS_IRONBAR(levl[cc.x][cc.y].typ))
@@ -1744,6 +1744,661 @@ append(char * buf, int condition, char * text, boolean many)
 int
 generate_list_of_resistances(char * temp_buf, /*uchar*/unsigned long flags)
 {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+		/* UGH. If anyone knows of a better way to implement this, please let me know and I'll refactor. --Amy */
+		int many = 0;
+		if (flags & MR_FIRE) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+		}
+		if (flags & MR_COLD) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "fire", many); break;
+		}
+		if (flags & MR_SLEEP) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "cold", many); break;
+		}
+		if (flags & MR_DISINT) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+		}
+		if (flags & MR_ELEC) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+		}
+		if (flags & MR_POISON) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+		}
+		if (flags & MR_ACID) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "poison", many); break;
+		}
+		if (flags & MR_STONE) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "acid", many); break;
+		}
+		if (flags & MR_DRAIN) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+		}
+		if (flags & MR_DEATH) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+		}
+		if (flags & MR_PLUSONE) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+		}
+		if (flags & MR_PLUSTWO) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+		}
+		if (flags & MR_PLUSTHREE) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+		}
+		if (flags & MR_PLUSFOUR) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+		}
+		if (flags & MR_HITASONE) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+		}
+		if (flags & MR_HITASTWO) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+		}
+		if (flags & MR_HITASTHREE) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "hits as a +4 weapon", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+		}
+		if (flags & MR_HITASFOUR) switch (u.pokelieresistances) {
+			case 1:
+				many = append(temp_buf, TRUE, "fire", many); break;
+			case 2:
+				many = append(temp_buf, TRUE, "cold", many); break;
+			case 3:
+				many = append(temp_buf, TRUE, "sleep", many); break;
+			case 4:
+				many = append(temp_buf, TRUE, "disintegration", many); break;
+			case 5:
+				many = append(temp_buf, TRUE, "electricity", many); break;
+			case 6:
+				many = append(temp_buf, TRUE, "poison", many); break;
+			case 7:
+				many = append(temp_buf, TRUE, "acid", many); break;
+			case 8:
+				many = append(temp_buf, TRUE, "petrification", many); break;
+			case 9:
+				many = append(temp_buf, TRUE, "level drain", many); break;
+			case 10:
+				many = append(temp_buf, TRUE, "death magic", many); break;
+			case 11:
+				many = append(temp_buf, TRUE, "needs +1 weapon to hit", many); break;
+			case 12:
+				many = append(temp_buf, TRUE, "needs +2 weapon to hit", many); break;
+			case 13:
+				many = append(temp_buf, TRUE, "needs +3 weapon to hit", many); break;
+			case 14:
+				many = append(temp_buf, TRUE, "needs +4 weapon to hit", many); break;
+			case 15:
+				many = append(temp_buf, TRUE, "hits as a +1 weapon", many); break;
+			case 16:
+				many = append(temp_buf, TRUE, "hits as a +2 weapon", many); break;
+			case 17:
+				many = append(temp_buf, TRUE, "hits as a +3 weapon", many); break;
+		}
+
+		return many;
+	}
+
 	int many = 0;
 	many = append(temp_buf, (flags & MR_FIRE), "fire", many);
 	many = append(temp_buf, (flags & MR_COLD), "cold", many);
@@ -2093,25 +2748,31 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 char *
 get_speed_description_of_monster_type(struct permonst * ptr, char * description)
 {
-	if(ptr->mmove > 35) {
-		sprintf(description, "Extremely fast (%d). ", ptr->mmove);
-	} else if(ptr->mmove > 19) {
-		sprintf(description, "Very fast (%d). ", ptr->mmove);
-	} else if(ptr->mmove > 12) {
-		sprintf(description, "Fast (%d). ", ptr->mmove);
-	} else if(ptr->mmove == 12) {
-		sprintf(description, "Normal speed (%d). ", ptr->mmove);
-	} else if(ptr->mmove > 8) {
-		sprintf(description, "Slow (%d). ", ptr->mmove);
-	} else if(ptr->mmove > 3) {
-		sprintf(description, "Very slow (%d). ", ptr->mmove);
-	} else if(ptr->mmove > 0) {
-		sprintf(description, "Almost immobile (%d). ", ptr->mmove);
-	} else {
-		sprintf(description, "Sessile (%d). ", ptr->mmove);
+	int displayspeed = ptr->mmove;
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+		displayspeed += u.pokeliespeed;
+		if (displayspeed > 49) displayspeed -= 50;
 	}
 
-	if (is_nonmoving(ptr)) sprintf(description, "Can't move around. Speed %d. ", ptr->mmove);
+	if(displayspeed > 35) {
+		sprintf(description, "Extremely fast (%d). ", displayspeed);
+	} else if(displayspeed > 19) {
+		sprintf(description, "Very fast (%d). ", displayspeed);
+	} else if(displayspeed > 12) {
+		sprintf(description, "Fast (%d). ", displayspeed);
+	} else if(displayspeed == 12) {
+		sprintf(description, "Normal speed (%d). ", displayspeed);
+	} else if(displayspeed > 8) {
+		sprintf(description, "Slow (%d). ", displayspeed);
+	} else if(displayspeed > 3) {
+		sprintf(description, "Very slow (%d). ", displayspeed);
+	} else if(displayspeed > 0) {
+		sprintf(description, "Almost immobile (%d). ", displayspeed);
+	} else {
+		sprintf(description, "Sessile (%d). ", displayspeed);
+	}
+
+	if (is_nonmoving(ptr)) sprintf(description, "Can't move around. Speed %d. ", displayspeed);
 
 	return description;
 }
@@ -2119,30 +2780,89 @@ get_speed_description_of_monster_type(struct permonst * ptr, char * description)
 char *
 get_description_of_attack_type(uchar id)
 {
-	switch(id){
+	int attackid;
+
+	switch (id) {
+		case AT_NONE:
+			attackid = 1; break;
+		case AT_CLAW:
+			attackid = 2; break;
+		case AT_BITE:
+			attackid = 3; break;
+		case AT_KICK:
+			attackid = 4; break;
+		case AT_BUTT:
+			attackid = 5; break;
+		case AT_TUCH:
+			attackid = 6; break;
+		case AT_STNG:
+			attackid = 7; break;
+		case AT_HUGS:
+			attackid = 8; break;
+		case AT_SPIT:
+			attackid = 9; break;
+		case AT_ENGL:
+			attackid = 10; break;
+		case AT_BREA:
+			attackid = 11; break;
+		case AT_EXPL:
+			attackid = 12; break;
+		case AT_BOOM:
+			attackid = 13; break;
+		case AT_GAZE:
+			attackid = 14; break;
+		case AT_TENT:
+			attackid = 15; break;
+		case AT_SCRA:
+			attackid = 16; break;
+		case AT_LASH:
+			attackid = 17; break;
+		case AT_TRAM:
+			attackid = 18; break;
+		case AT_WEAP:
+			attackid = 19; break;
+		case AT_MAGC:
+			attackid = 20; break;
+		case AT_MULTIPLY:
+			attackid = 21; break;
+		case AT_BEAM:
+			attackid = 22; break;
+		default: 
+		if (!missingnoprotect) {
+		impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";
+		}
+		else return "undefined attack";
+	}
+
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+		attackid += u.pokelieattacktype;
+		if (attackid > 22) attackid -= 22;
+	}
+
+	switch(attackid){
 		/*case AT_ANY: return "fake attack; dmgtype_fromattack wildcard";*/ /* no monster has that... --Amy */
-		case AT_NONE: return "passive";
-		case AT_CLAW: return "claw (punch, hit, etc.)";
-		case AT_BITE: return "bite";
-		case AT_KICK: return "kick";
-		case AT_BUTT: return "head butt";
-		case AT_TUCH: return "touches";
-		case AT_STNG: return "sting";
-		case AT_HUGS: return "crushing bearhug";
-		case AT_SPIT: return "spits substance";
-		case AT_ENGL: return "engulf";
-		case AT_BREA: return "breath";
-		case AT_EXPL: return "explodes - proximity";
-		case AT_BOOM: return "explodes when killed";
-		case AT_GAZE: return "gaze";
-		case AT_TENT: return "tentacles";
-		case AT_SCRA: return "scratch";
-		case AT_LASH: return "lash";
-		case AT_TRAM: return "trample";
-		case AT_WEAP: return "uses weapon";
-		case AT_MAGC: return "uses magic spell(s)";
-		case AT_MULTIPLY: return "multiplies";
-		case AT_BEAM: return "beam";
+		case 1: return "passive";
+		case 2: return "claw (punch, hit, etc.)";
+		case 3: return "bite";
+		case 4: return "kick";
+		case 5: return "head butt";
+		case 6: return "touches";
+		case 7: return "sting";
+		case 8: return "crushing bearhug";
+		case 9: return "spits substance";
+		case 10: return "engulf";
+		case 11: return "breath";
+		case 12: return "explodes - proximity";
+		case 13: return "explodes when killed";
+		case 14: return "gaze";
+		case 15: return "tentacles";
+		case 16: return "scratch";
+		case 17: return "lash";
+		case 18: return "trample";
+		case 19: return "uses weapon";
+		case 20: return "uses magic spell(s)";
+		case 21: return "multiplies";
+		case 22: return "beam";
 		default: 
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";
@@ -2154,158 +2874,461 @@ get_description_of_attack_type(uchar id)
 char *
 get_description_of_damage_type(uchar id)
 {
+	int damageid;
+
 	switch(id){
-		case AD_ANY: return "fake damage; attacktype_fordmg wildcard";
-		case AD_PHYS: return "ordinary physical";
-		case AD_MAGM: return "magic missiles";
-		case AD_FIRE: return "fire damage";
-		case AD_COLD: return "frost damage";
-		case AD_SLEE: return "sleep";
-		case AD_DISN: return "disintegration";
-		case AD_ELEC: return "shock damage";
-		case AD_DRST: return "drains strength";
-		case AD_ACID: return "acid damage";
-		case AD_SPC2: return "psybeam";
-		case AD_BLND: return "blinds";
-		case AD_STUN: return "stuns";
-		case AD_SLOW: return "slows";
-		case AD_PLYS: return "paralyses";
-		case AD_DRLI: return "drains life levels";
-		case AD_DREN: return "drains magic energy";
-		case AD_LEGS: return "damages legs";
-		case AD_STON: return "petrifies";
-		case AD_STCK: return "sticks to you";
-		case AD_SGLD: return "steals gold";
-		case AD_SITM: return "steals item";
-		case AD_SEDU: return "seduces and steals multiple items";
-		case AD_TLPT: return "teleports you";
-		case AD_RUST: return "rusts items";
-		case AD_CONF: return "confuses";
-		case AD_DGST: return "digestion";
-		case AD_HEAL: return "heals wounds";
-		case AD_WRAP: return "wraps around";
-		case AD_WERE: return "confers lycanthropy";
-		case AD_DRDX: return "drains dexterity";
-		case AD_DRCO: return "drains constitution";
-		case AD_DRIN: return "drains intelligence";
-		case AD_DISE: return "confers diseases";
-		case AD_DCAY: return "decays organics";
-		case AD_SSEX: return "foocubus seduction";
-		case AD_HALU: return "causes hallucination";
-		case AD_DETH: return "unique Death attack";
-		case AD_PEST: return "unique Pestilence attack";
-		case AD_FAMN: return "unique Famine attack";
-		case AD_SLIM: return "turns you into green slime";
-		case AD_ENCH: return "remove enchantment";
-		case AD_CORR: return "corrode armor";
-		case AD_CLRC: return "random clerical spell";
-		case AD_SPEL: return "random magic spell";
-		case AD_RBRE: return "random effect";
-		case AD_SAMU: return "hits, may steal Amulet";
-		case AD_CURS: return "random curse";
-		case AD_LITE: return "light";
-		case AD_CALM: return "calms";
-		case AD_POLY: return "polymorphs you";
-		case AD_TCKL: return "tickles you";
-		case AD_NGRA: return "removes engravings";
-		case AD_GLIB: return "disarms you";
-		case AD_DARK: return "causes darkness around you";
-		case AD_WTHR: return "withers items";
-		case AD_LUCK: return "drains luck";
-		case AD_NUMB: return "numbness";
-		case AD_FRZE: return "freezes you solid";
-		case AD_BURN: return "burns you";
-		case AD_DIMN: return "dims you";
-		case AD_FEAR: return "causes fear";
-		case AD_DISP: return "pushes you away";
+		case AD_ANY:
+			damageid = 1; break;
+		case AD_PHYS:
+			damageid = 2; break;
+		case AD_MAGM:
+			damageid = 3; break;
+		case AD_FIRE:
+			damageid = 4; break;
+		case AD_COLD:
+			damageid = 5; break;
+		case AD_SLEE:
+			damageid = 6; break;
+		case AD_DISN:
+			damageid = 7; break;
+		case AD_ELEC:
+			damageid = 8; break;
+		case AD_DRST:
+			damageid = 9; break;
+		case AD_ACID:
+			damageid = 10; break;
+		case AD_SPC2:
+			damageid = 11; break;
+		case AD_BLND:
+			damageid = 12; break;
+		case AD_STUN:
+			damageid = 13; break;
+		case AD_SLOW:
+			damageid = 14; break;
+		case AD_PLYS:
+			damageid = 15; break;
+		case AD_DRLI:
+			damageid = 16; break;
+		case AD_DREN:
+			damageid = 17; break;
+		case AD_LEGS:
+			damageid = 18; break;
+		case AD_STON:
+			damageid = 19; break;
+		case AD_STCK:
+			damageid = 20; break;
+		case AD_SGLD:
+			damageid = 21; break;
+		case AD_SITM:
+			damageid = 22; break;
+		case AD_SEDU:
+			damageid = 23; break;
+		case AD_TLPT:
+			damageid = 24; break;
+		case AD_RUST:
+			damageid = 25; break;
+		case AD_CONF:
+			damageid = 26; break;
+		case AD_DGST:
+			damageid = 27; break;
+		case AD_HEAL:
+			damageid = 28; break;
+		case AD_WRAP:
+			damageid = 29; break;
+		case AD_WERE:
+			damageid = 30; break;
+		case AD_DRDX:
+			damageid = 31; break;
+		case AD_DRCO:
+			damageid = 32; break;
+		case AD_DRIN:
+			damageid = 33; break;
+		case AD_DISE:
+			damageid = 34; break;
+		case AD_DCAY:
+			damageid = 35; break;
+		case AD_SSEX:
+			damageid = 36; break;
+		case AD_HALU:
+			damageid = 37; break;
+		case AD_DETH:
+			damageid = 38; break;
+		case AD_PEST:
+			damageid = 39; break;
+		case AD_FAMN:
+			damageid = 40; break;
+		case AD_SLIM:
+			damageid = 41; break;
+		case AD_ENCH:
+			damageid = 42; break;
+		case AD_CORR:
+			damageid = 43; break;
+		case AD_CLRC:
+			damageid = 44; break;
+		case AD_SPEL:
+			damageid = 45; break;
+		case AD_RBRE:
+			damageid = 46; break;
+		case AD_SAMU:
+			damageid = 47; break;
+		case AD_CURS:
+			damageid = 48; break;
+		case AD_LITE:
+			damageid = 49; break;
+		case AD_CALM:
+			damageid = 50; break;
+		case AD_POLY:
+			damageid = 51; break;
+		case AD_TCKL:
+			damageid = 52; break;
+		case AD_NGRA:
+			damageid = 53; break;
+		case AD_GLIB:
+			damageid = 54; break;
+		case AD_DARK:
+			damageid = 55; break;
+		case AD_WTHR:
+			damageid = 56; break;
+		case AD_LUCK:
+			damageid = 57; break;
+		case AD_NUMB:
+			damageid = 58; break;
+		case AD_FRZE:
+			damageid = 59; break;
+		case AD_BURN:
+			damageid = 60; break;
+		case AD_DIMN:
+			damageid = 61; break;
+		case AD_FEAR:
+			damageid = 62; break;
+		case AD_DISP:
+			damageid = 63; break;
+		case AD_NPRO:
+			damageid = 64; break;
+		case AD_POIS:
+			damageid = 65; break;
+		case AD_THIR:
+			damageid = 66; break;
+		case AD_LAVA:
+			damageid = 67; break;
+		case AD_FAKE:
+			damageid = 68; break;
+		case AD_LETH:
+			damageid = 69; break;
+		case AD_AMNE:
+			damageid = 70; break;
+		case AD_CNCL:
+			damageid = 71; break;
+		case AD_BANI:
+			damageid = 72; break;
+		case AD_WISD:
+			damageid = 73; break;
+		case AD_SHRD:
+			damageid = 74; break;
+		case AD_WET:
+			damageid = 75; break;
+		case AD_SUCK:
+			damageid = 76; break;
+		case AD_MALK:
+			damageid = 77; break;
+		case AD_UVUU:
+			damageid = 78; break;
+		case AD_ABDC:
+			damageid = 79; break;
+		case AD_AXUS:
+			damageid = 80; break;
+		case AD_CHKH:
+			damageid = 81; break;
+		case AD_HODS:
+			damageid = 82; break;
+		case AD_CHRN:
+			damageid = 83; break;
+		case AD_WEEP:
+			damageid = 84; break;
+		case AD_VAMP:
+			damageid = 85; break;
+		case AD_WEBS:
+			damageid = 86; break;
+		case AD_STTP:
+			damageid = 87; break;
+		case AD_DEPR:
+			damageid = 88; break;
+		case AD_WRAT:
+			damageid = 89; break;
+		case AD_LAZY:
+			damageid = 90; break;
+		case AD_DRCH:
+			damageid = 91; break;
+		case AD_DFOO:
+			damageid = 92; break;
+		case AD_NEXU:
+			damageid = 93; break;
+		case AD_TIME:
+			damageid = 94; break;
+		case AD_PLAS:
+			damageid = 95; break;
+		case AD_MANA:
+			damageid = 96; break;
+		case AD_SOUN:
+			damageid = 97; break;
+		case AD_GRAV:
+			damageid = 98; break;
+		case AD_INER:
+			damageid = 99; break;
+		case AD_SKIL:
+			damageid = 100; break;
+		case AD_VENO:
+			damageid = 101; break;
+		case AD_DREA:
+			damageid = 102; break;
+		case AD_NAST:
+			damageid = 103; break;
+		case AD_BADE:
+			damageid = 104; break;
+		case AD_SLUD:
+			damageid = 105; break;
+		case AD_ICUR:
+			damageid = 106; break;
+		case AD_VULN:
+			damageid = 107; break;
+		case AD_FUMB:
+			damageid = 108; break;
+		case AD_ICEB:
+			damageid = 109; break;
+		case AD_VAPO:
+			damageid = 110; break;
+		case AD_EDGE:
+			damageid = 111; break;
+		case AD_VOMT:
+			damageid = 112; break;
+		case AD_LITT:
+			damageid = 113; break;
+		case AD_FREN:
+			damageid = 114; break;
+		case AD_NGEN:
+			damageid = 115; break;
+		case AD_CHAO:
+			damageid = 116; break;
+		case AD_INSA:
+			damageid = 117; break;
+		case AD_TRAP:
+			damageid = 118; break;
+		case AD_WGHT:
+			damageid = 119; break;
+		case AD_NTHR:
+			damageid = 120; break;
+		case AD_RNG:
+			damageid = 121; break;
+		case AD_MIDI:
+			damageid = 122; break;
+		case AD_CAST:
+			damageid = 123; break;
+		case AD_ALIN:
+			damageid = 124; break;
+		case AD_SIN:
+			damageid = 125; break;
+		case AD_MINA:
+			damageid = 126; break;
+		case AD_AGGR:
+			damageid = 127; break;
+		case AD_CONT:
+			damageid = 128; break;
+		case AD_DATA:
+			damageid = 129; break;
+		case AD_DEST:
+			damageid = 130; break;
+		case AD_TREM:
+			damageid = 131; break;
+		case AD_RAGN:
+			damageid = 132; break;
+		case AD_IDAM:
+			damageid = 133; break;
+		case AD_ANTI:
+			damageid = 134; break;
+		case AD_PAIN:
+			damageid = 135; break;
+		case AD_TECH:
+			damageid = 136; break;
+		case AD_MEMO:
+			damageid = 137; break;
+		case AD_TRAI:
+			damageid = 138; break;
+		case AD_STAT:
+			damageid = 139; break;
+		case AD_DAMA:
+			damageid = 140; break;
+		case AD_THIE:
+			damageid = 141; break;
+		case AD_PART:
+			damageid = 142; break;
+		case AD_RUNS:
+			damageid = 143; break;
+		case AD_ENDS:
+			damageid = 144; break;
+		default:
+		if (!missingnoprotect) {
+		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
+		}
+		else return "undefined damage";
+	}
 
-		case AD_NPRO: return "negative protection";
-		case AD_POIS: return "poison damage";
-		case AD_THIR: return "thirsty attack";
-		case AD_LAVA: return "lava";
-		case AD_FAKE: return "plines";
-		case AD_LETH: return "lethe";
-		case AD_AMNE: return "map amnesia";
-		case AD_CNCL: return "cancellation";
-		case AD_BANI: return "banishment";
-		case AD_WISD: return "drains wisdom";
-		case AD_SHRD: return "shredding";
-		case AD_WET: return "water damage";
-		case AD_SUCK: return "sucking";
-		case AD_MALK: return "high voltage";
-		case AD_UVUU: return "nasty head spike";
-		case AD_ABDC: return "abduction";
-		case AD_AXUS: return "multi-element counterattack";
-		case AD_CHKH: return "escalating damage";
-		case AD_HODS: return "mirror attack";
-		case AD_CHRN: return "cursed unicorn horn";
-		case AD_WEEP: return "level teleport or level drain";
-		case AD_VAMP: return "bloodsucking";
-		case AD_WEBS: return "webbing";
-		case AD_STTP: return "item teleportation";
-		case AD_DEPR: return "depression";
-		case AD_WRAT: return "unique Wrath attack";
-		case AD_LAZY: return "unique Sloth attack";
-		case AD_DRCH: return "drains charisma";
-		case AD_DFOO: return "unique Pride attack";
-		case AD_NEXU: return "nexus";
-		case AD_TIME: return "time";
-		case AD_PLAS: return "plasma";
-		case AD_MANA: return "mana";
-		case AD_SOUN: return "sound";
-		case AD_GRAV: return "gravity";
-		case AD_INER: return "inertia";
-		case AD_SKIL: return "skill point drain";
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+		damageid += u.pokeliedamagetype;
+		if (damageid > 144) damageid -= 144;
+	}
 
-		case AD_VENO: return "toxic venom";
-		case AD_DREA: return "dream eater";
-		case AD_NAST: return "nastiness";
-		case AD_BADE: return "bad effect";
-		case AD_SLUD: return "sludge";
-		case AD_ICUR: return "item cursing";
-		case AD_VULN: return "vulnerability";
-		case AD_FUMB: return "fumbling";
+	switch(damageid){
+		case 1: return "fake damage; attacktype_fordmg wildcard";
+		case 2: return "ordinary physical";
+		case 3: return "magic missiles";
+		case 4: return "fire damage";
+		case 5: return "frost damage";
+		case 6: return "sleep";
+		case 7: return "disintegration";
+		case 8: return "shock damage";
+		case 9: return "drains strength";
+		case 10: return "acid damage";
+		case 11: return "psybeam";
+		case 12: return "blinds";
+		case 13: return "stuns";
+		case 14: return "slows";
+		case 15: return "paralyses";
+		case 16: return "drains life levels";
+		case 17: return "drains magic energy";
+		case 18: return "damages legs";
+		case 19: return "petrifies";
+		case 20: return "sticks to you";
+		case 21: return "steals gold";
+		case 22: return "steals item";
+		case 23: return "seduces and steals multiple items";
+		case 24: return "teleports you";
+		case 25: return "rusts items";
+		case 26: return "confuses";
+		case 27: return "digestion";
+		case 28: return "heals wounds";
+		case 29: return "wraps around";
+		case 30: return "confers lycanthropy";
+		case 31: return "drains dexterity";
+		case 32: return "drains constitution";
+		case 33: return "drains intelligence";
+		case 34: return "confers diseases";
+		case 35: return "decays organics";
+		case 36: return "foocubus seduction";
+		case 37: return "causes hallucination";
+		case 38: return "unique Death attack";
+		case 39: return "unique Pestilence attack";
+		case 40: return "unique Famine attack";
+		case 41: return "turns you into green slime";
+		case 42: return "remove enchantment";
+		case 43: return "corrode armor";
+		case 44: return "random clerical spell";
+		case 45: return "random magic spell";
+		case 46: return "random effect";
+		case 47: return "hits, may steal Amulet";
+		case 48: return "random curse";
+		case 49: return "light";
+		case 50: return "calms";
+		case 51: return "polymorphs you";
+		case 52: return "tickles you";
+		case 53: return "removes engravings";
+		case 54: return "disarms you";
+		case 55: return "causes darkness around you";
+		case 56: return "withers items";
+		case 57: return "drains luck";
+		case 58: return "numbness";
+		case 59: return "freezes you solid";
+		case 60: return "burns you";
+		case 61: return "dims you";
+		case 62: return "causes fear";
+		case 63: return "pushes you away";
 
-		case AD_ICEB: return "ice blocks";
-		case AD_VAPO: return "vaporization";
-		case AD_EDGE: return "stone edge";
-		case AD_VOMT: return "vomiting";
-		case AD_LITT: return "litter";
-		case AD_FREN: return "frenzy";
-		case AD_NGEN: return "negative enchantment";
-		case AD_CHAO: return "chaos";
-		case AD_INSA: return "insanity";
-		case AD_TRAP: return "trapping";
-		case AD_WGHT: return "weight increase";
-		case AD_NTHR: return "nether";
-		case AD_RNG: return "RNG intervention";
-		case AD_MIDI: return "identity-specific attack";
-		case AD_CAST: return "evil spellcasting";
+		case 64: return "negative protection";
+		case 65: return "poison damage";
+		case 66: return "thirsty attack";
+		case 67: return "lava";
+		case 68: return "plines";
+		case 69: return "lethe";
+		case 70: return "map amnesia";
+		case 71: return "cancellation";
+		case 72: return "banishment";
+		case 73: return "drains wisdom";
+		case 74: return "shredding";
+		case 75: return "water damage";
+		case 76: return "sucking";
+		case 77: return "high voltage";
+		case 78: return "nasty head spike";
+		case 79: return "abduction";
+		case 80: return "multi-element counterattack";
+		case 81: return "escalating damage";
+		case 82: return "mirror attack";
+		case 83: return "cursed unicorn horn";
+		case 84: return "level teleport or level drain";
+		case 85: return "bloodsucking";
+		case 86: return "webbing";
+		case 87: return "item teleportation";
+		case 88: return "depression";
+		case 89: return "unique Wrath attack";
+		case 90: return "unique Sloth attack";
+		case 91: return "drains charisma";
+		case 92: return "unique Pride attack";
+		case 93: return "nexus";
+		case 94: return "time";
+		case 95: return "plasma";
+		case 96: return "mana";
+		case 97: return "sound";
+		case 98: return "gravity";
+		case 99: return "inertia";
+		case 100: return "skill point drain";
 
-		case AD_ALIN: return "reduce alignment record";
-		case AD_SIN: return "increase sin counter";
-		case AD_MINA: return "identity-specific nastiness";
-		case AD_AGGR: return "aggravate monster";
-		case AD_CONT: return "contamination";
-		case AD_DATA: return "data delete";
-		case AD_DEST: return "destroy armor or weapon";
-		case AD_TREM: return "trembling";
-		case AD_RAGN: return "ragnarok";
+		case 101: return "toxic venom";
+		case 102: return "dream eater";
+		case 103: return "nastiness";
+		case 104: return "bad effect";
+		case 105: return "sludge";
+		case 106: return "item cursing";
+		case 107: return "vulnerability";
+		case 108: return "fumbling";
 
-		case AD_IDAM: return "random item damage";
-		case AD_ANTI: return "antimatter";
-		case AD_PAIN: return "extra pain";
-		case AD_TECH: return "technique timeout";
-		case AD_MEMO: return "reduce spell memory";
-		case AD_TRAI: return "reduce skill training";
-		case AD_STAT: return "permanent stat damage";
-		case AD_DAMA: return "random damage screwup";
-		case AD_THIE: return "thieving";
+		case 109: return "ice blocks";
+		case 110: return "vaporization";
+		case 111: return "stone edge";
+		case 112: return "vomiting";
+		case 113: return "litter";
+		case 114: return "frenzy";
+		case 115: return "negative enchantment";
+		case 116: return "chaos";
+		case 117: return "insanity";
+		case 118: return "trapping";
+		case 119: return "weight increase";
+		case 120: return "nether";
+		case 121: return "RNG intervention";
+		case 122: return "identity-specific attack";
+		case 123: return "evil spellcasting";
 
-		case AD_PART: return "specific regular attack";
-		case AD_RUNS: return "specific nastytrap effect";
+		case 124: return "reduce alignment record";
+		case 125: return "increase sin counter";
+		case 126: return "identity-specific nastiness";
+		case 127: return "aggravate monster";
+		case 128: return "contamination";
+		case 129: return "data delete";
+		case 130: return "destroy armor or weapon";
+		case 131: return "trembling";
+		case 132: return "ragnarok";
 
-		case AD_ENDS: return "placeholder attack";
+		case 133: return "random item damage";
+		case 134: return "antimatter";
+		case 135: return "extra pain";
+		case 136: return "technique timeout";
+		case 137: return "reduce spell memory";
+		case 138: return "reduce skill training";
+		case 139: return "permanent stat damage";
+		case 140: return "random damage screwup";
+		case 141: return "thieving";
+
+		case 142: return "specific regular attack";
+		case 143: return "specific nastytrap effect";
+
+		case 144: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";

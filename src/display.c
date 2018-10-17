@@ -399,6 +399,10 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
+	if (!u.seesilverspell && SpellColorSilver) {	\
+	show_glyph(x, y, cmap_to_glyph(S_stone));	\
+	return;	\
+	}	\
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0))  ) {	\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
@@ -425,6 +429,10 @@ unmap_object(x, y)
 	}								\
 	if (SpellColorOrange && (distu(x,y) > 100)) { 	\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
+	return;								\
+	}								\
+	if (SpellColorPlatinum && !rn2(5)) { 	\
+	show_glyph(x, y, cmap_to_glyph(S_bars));			\
 	return;								\
 	}								\
 	if (SpellColorBrightCyan && cyanspellok(x,y)) { 	\
@@ -485,6 +493,10 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_stone);
 	}
 
+	if (!u.seesilverspell && SpellColorSilver) {
+	return cmap_to_glyph(S_stone);
+	}
+
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
@@ -509,6 +521,10 @@ int memory_glyph(x, y)
 
 	if (SpellColorOrange && (distu(x,y) > 100)) {
 	return cmap_to_glyph(S_grayglyph);
+	}
+
+	if (SpellColorPlatinum && !rn2(5)) {
+	return cmap_to_glyph(S_bars);
 	}
 
 	if (SpellColorBrightCyan && cyanspellok(x,y)) {
@@ -1008,6 +1024,11 @@ newsym(x,y)
 	return;
 	}
 
+	if (!u.seesilverspell && SpellColorSilver) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
@@ -1040,6 +1061,11 @@ newsym(x,y)
 
 	if (SpellColorOrange && (distu(x,y) > 100)) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if (SpellColorPlatinum && !rn2(5)) {
+	show_glyph(x, y, cmap_to_glyph(S_bars));
 	return;
 	}
 
@@ -1318,6 +1344,11 @@ newsymX(x,y)
 	return;
 	}
 
+	if (!u.seesilverspell && SpellColorSilver) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
@@ -1350,6 +1381,11 @@ newsymX(x,y)
 
 	if (SpellColorOrange && (distu(x,y) > 100)) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if (SpellColorPlatinum && !rn2(5)) {
+	show_glyph(x, y, cmap_to_glyph(S_bars));
 	return;
 	}
 

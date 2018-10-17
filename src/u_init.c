@@ -7379,6 +7379,15 @@ u_init()
 	u.ragnaroktimer = 0; /* if nonzero, ragnarok will happen */
 	u.footererlevel = 0; /* if nonzero, entering the level with that number spawns mean bastards */
 
+	u.seesilverspell = 1;	/* if this is zero, the entire playing field will be black */
+
+	u.pokelieresistances = 0;
+	u.pokeliegeneration = 0;
+	u.pokelieflags = 0;
+	u.pokeliespeed = 0;
+	u.pokelieattacktype = 0;
+	u.pokeliedamagetype = 0;
+
 	u.temprecursion = 0;
 	u.temprecursiontime = 0;
 	u.oldrecursionrole = -1;
