@@ -18411,8 +18411,18 @@ enjoyable:
             }
 
             slextest(5000, 25000) {
+		stdmsg("power anemia");
+                u.uprops[GUSHLUSH].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
 		stdmsg("forced atheism");
                 u.uprops[NON_PRAYER_BUG].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("speech stroke");
+                u.uprops[UNCALLED_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
@@ -18440,6 +18450,21 @@ enjoyable:
                 u.uprops[WEREFORM_BUG].intrinsic |= FROMOUTSIDE;
             }
 
+            slextest(5000, 25000) {
+		stdmsg("slexual deprivation");
+                u.uprops[LONGING_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("indecisiveness");
+                u.uprops[CHOICELESSNESS].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("development disorder");
+                u.uprops[DEPROVEMENT].intrinsic |= FROMOUTSIDE;
+            }
+
             slextest(2000, 10000) {
 		stdmsg("Dudley's disease");
                 u.uprops[LUCK_LOSS].intrinsic |= FROMOUTSIDE;
@@ -18458,6 +18483,26 @@ enjoyable:
             slextest(5000, 25000) {
 		stdmsg("Tourette's syndrome");
                 u.uprops[MOMMA_BUG].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("bad boss disease");
+                u.uprops[CHANGING_DIRECTIVES].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("K-Measurer disease");
+                u.uprops[FLUCTUATING_SPEED].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("Satan disease");
+                u.uprops[SATAN_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("collectomania");
+                u.uprops[AUTOPICKUP_ALWAYS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
@@ -18516,6 +18561,16 @@ enjoyable:
             }
 
             slextest(10000, 50000) {
+		stdmsg("rupturization");
+                u.uprops[DYWYPI_PROBLEM].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(10000, 50000) {
+		stdmsg("mass murder syndrome");
+                u.uprops[ELM_STREET_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(10000, 50000) {
 		stdmsg("checkerboard disease");
                 u.uprops[CHECKERBOARD_BUG].intrinsic |= FROMOUTSIDE;
             }
@@ -18548,6 +18603,11 @@ enjoyable:
             slextest(5000, 25000) {
 		stdmsg("exhibitionism");
                 u.uprops[UNDRESSING_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(5000, 25000) {
+		stdmsg("dysentery");
+                u.uprops[CUT_NUTRITION].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(8000, 40000) {
@@ -18593,6 +18653,11 @@ enjoyable:
             slextest(10000, 50000) {
 		stdmsg("quasar vision");
                 u.uprops[QUASAR_BUG].intrinsic |= FROMOUTSIDE;
+            }
+
+            slextest(10000, 50000) {
+		stdmsg("bomber disease");
+                u.uprops[AUTOPILOT_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {

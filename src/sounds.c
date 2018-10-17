@@ -2581,6 +2581,15 @@ register struct monst *mtmp;
 		if (!flags.female) verbalize("Hey, baby, want to have some fun?");
 		else verbalize("I don't have many female customers, but do you want to have fun with me?");
 		if (yn("Accept the offer?") == 'y') {
+
+			if (u.homosexual == 0) {
+				pline("You're discovering your sexuality...");
+				getlin("Are you homosexual? [yes/no] (If you answer no, you're heterosexual.)", buf);
+				(void) lcase (buf);
+				if (!(strcmp (buf, "yes"))) u.homosexual = 2;
+				else u.homosexual = 1;
+			}
+
 			(void) doseduce(mtmp);
 			break;
 		}
@@ -2802,6 +2811,7 @@ dochat()
     register struct monst *mtmp;
     register int tx,ty;
     struct obj *otmp;
+	char buf[BUFSZ];
 
     if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
 	pline("You're muted!");
@@ -2960,6 +2970,15 @@ dochat()
 	if ((Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA)) && humanoid(mtmp->data) ) {
 
 		if (!(mtmp->mtame)) {
+
+			if (u.homosexual == 0) {
+				pline("You're discovering your sexuality...");
+				getlin("Are you homosexual? [yes/no] (If you answer no, you're heterosexual.)", buf);
+				(void) lcase (buf);
+				if (!(strcmp (buf, "yes"))) u.homosexual = 2;
+				else u.homosexual = 1;
+			}
+
 			(void) doseduce(mtmp);
 			return 1;
 		}
