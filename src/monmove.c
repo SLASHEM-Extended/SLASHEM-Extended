@@ -861,6 +861,192 @@ register struct monst *mtmp;
 		}
 	}
 
+	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
+	if ((MonnoiseEffect || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !rn2(250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+		switch (mdat->msound) {
+
+			case MS_PRIEST:
+				verbalize(rn2(2) ? "Hoyo hoyo!" : "Wololo");
+				adjalign(-(mtmp->m_lev + 1));
+				You_feel("less faithful!");
+				break;
+			case MS_VAMPIRE:
+				verbalize("I vill suck you dry!");
+				if (!rn2(3)) {
+					You("are too scared to move.");
+					nomul(-5, "scared by a vampire", TRUE);
+					nomovemsg = 0;
+				}
+				break;
+			case MS_WERE:
+				if (canseemon(mtmp))
+					pline("%s throws back %s head and lets out a blood curdling %s!", Monnam(mtmp), mhis(mtmp), mtmp->data == &mons[PM_HUMAN_WERERAT] ? "shriek" : "howl");
+				else You_hear("a blood curdling sound!");
+				make_numbed(HNumbed + rnz((2 * level_difficulty()) + 1), FALSE);
+				break;
+			case MS_BARK:
+				if (canseemon(mtmp)) pline("%s %s!", Monnam(mtmp), rn2(2) ? "growls" : "barks");
+				else You_hear("a barking sound!");
+				break;
+			case MS_MEW:
+				if (canseemon(mtmp)) pline("%s %s!", Monnam(mtmp), rn2(2) ? "growls" : "hisses");
+				else You_hear("a growling sound!");
+				break;
+			case MS_ROAR:
+				if (canseemon(mtmp)) pline("%s roars!", Monnam(mtmp));
+				else You_hear("a loud roar nearby!");
+				if (!rn2(3)) make_feared(HFeared + rnz((2 * level_difficulty()) + 1), TRUE);
+				break;
+			case MS_SQEEK:
+				if (canseemon(mtmp)) pline("%s squeaks!", Monnam(mtmp));
+				else You_hear("a squeak nearby!");
+				break;
+			case MS_SQAWK:
+				if (canseemon(mtmp)) pline("%s squawks!", Monnam(mtmp));
+				else You_hear("a squawk nearby!");
+				break;
+			case MS_HISS:
+				if (canseemon(mtmp)) pline("%s hisses!", Monnam(mtmp));
+				else You_hear("a hiss nearby!");
+				break;
+			case MS_BUZZ:
+				if (canseemon(mtmp)) pline("%s buzzes!", Monnam(mtmp));
+				else You_hear("a buzzing nearby!");
+				break;
+			case MS_GRUNT:
+				if (canseemon(mtmp)) pline("%s grunts!", Monnam(mtmp));
+				else You_hear("a grunting nearby!");
+				break;
+			case MS_NEIGH:
+				if (canseemon(mtmp)) pline("%s neighs!", Monnam(mtmp));
+				else You_hear("a neighing nearby!");
+				break;
+			case MS_WAIL:
+				if (canseemon(mtmp)) pline("%s wails frighteningly.", Monnam(mtmp));
+				else You_hear("a nearby wail.");
+				break;
+			case MS_GURGLE:
+				if (canseemon(mtmp)) pline("%s gurgles.", Monnam(mtmp));
+				else You_hear("a nearby gurgle.");
+				break;
+			case MS_BURBLE:
+				if (canseemon(mtmp)) pline("%s burbles.", Monnam(mtmp));
+				else You_hear("a nearby burble.");
+				break;
+			case MS_FART_QUIET:
+			case MS_FART_NORMAL:
+			case MS_FART_LOUD:
+				if (canseemon(mtmp)) pline("%s makes woman noises.", Monnam(mtmp));
+				else You_hear("nearby woman noises.");
+				break;
+			case MS_IMITATE:
+				if (canseemon(mtmp)) {
+					pline("%s seems to imitate you.", Monnam(mtmp));
+					make_confused(HConfusion + rnz((2 * level_difficulty()) + 1), FALSE);
+				}
+				break;
+			case MS_SHEEP:
+				if (canseemon(mtmp)) pline("%s baaaas!", Monnam(mtmp));
+				else You_hear("a nearby 'baaaa!'");
+				break;
+			case MS_CHICKEN:
+				if (canseemon(mtmp)) pline("%s clucks!", Monnam(mtmp));
+				else You_hear("a clucking sound!");
+				break;
+			case MS_COW:
+				if (canseemon(mtmp)) pline("%s bellows!", Monnam(mtmp));
+				else You_hear("a bellowing sound!");
+				break;
+			case MS_LAUGH:
+				if (canseemon(mtmp)) pline("%s laughs at you!", Monnam(mtmp));
+				else You_hear("someone laughing at you!");
+				if (!rn2(10)) {
+					pline("You are trembling!");
+					u.tremblingamount++;
+				}
+				break;
+			case MS_MUMBLE:
+				if (canseemon(mtmp)) pline("%s mumbles incomprehensibly.", Monnam(mtmp));
+				else You_hear("an incomprehensible mumbling.");
+				break;
+			case MS_SHOE:
+				verbalize("We absolutely want to kick you. Hopefully you enjoy pain!");
+				break;
+			case MS_STENCH:
+				if (canseemon(mtmp)) pline("%s sprays %sself with perfume.", Monnam(mtmp), mhim(mtmp));
+				else You_hear("the sound of a spray box.");
+				break;
+			case MS_BOAST:
+				if (canseemon(mtmp)) pline("%s boasts!", Monnam(mtmp));
+				else You_hear("someone boasting!");
+				break;
+			case MS_SEDUCE:
+				if (canseemon(mtmp)) pline("%s looks at you seductively!", Monnam(mtmp));
+				else You_hear("a seductive voice!");
+
+				if (!rn2(100)) {
+					char bufof[BUFSZ];
+					bufof[0] = '\0';
+					steal(mtmp, bufof, FALSE);
+				}
+
+				break;
+			case MS_ARREST:
+				verbalize("I will hold you, you for asshole!");
+				break;
+			case MS_SPELL:
+				if (canseemon(mtmp)) pline("%s casts furiously!", Monnam(mtmp));
+				else You_hear("a furious chant!");
+				break;
+			case MS_NURSE:
+				verbalize("Hold still and let me JAM this needle into you.");
+				increasesanity(1);
+				break;
+			case MS_SOLDIER:
+				verbalize("My commander will be very pleased if I kill you!");
+				break;
+			case MS_RIDER:
+				verbalize("You're going down, War.");
+				break;
+			case MS_VICE:
+				verbalize("I shall taint your soul before I send you to Hell.");
+				break;
+			case MS_DOUGLAS_ADAMS:
+				{
+					static const char *da_msgs[] = {
+						"42",
+						"It's a nice day today!",
+						"Have a Pan Galactic Gargle Blaster?",
+						"Time is relative. Lunchtime doubly so.",
+						"This is some strange usage of the word 'safe' that I wasn't aware of.",
+					};
+					if (mtmp->data == &mons[PM_MARVIN]) {
+						verbalize("Life, loathe it or ignore it, you cannot like it.");
+					} else if (mtmp->data == &mons[PM_DEEP_THOUGHT]) {
+						verbalize("6*9 = 42");
+					} else if (mtmp->data == &mons[PM_EDDIE]) {
+						verbalize("I'm feeling just great, guys!");
+					} else {
+						verbalize("%s", da_msgs[rn2(SIZE(da_msgs))]);
+					}
+				}
+				break;
+			case MS_PUPIL:
+				verbalize("No, I do not have the homework today and you are a shitty teacher anyway.");
+				break;
+			case MS_TEACHER:
+				verbalize("You get 10 hours of detention for your misbehavior!");
+				break;
+			case MS_PRINCIPAL:
+				verbalize("Now come here, little rascal! We're gonna have a SERIOUS talk about the things you did!");
+				break;
+
+			default: /* nothing happens */
+				break;
+
+		}
+	}
+
 	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 
 		static const char *conversion_msgs[] = {

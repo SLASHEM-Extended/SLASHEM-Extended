@@ -1159,6 +1159,8 @@ struct you {
 	int pokelieattacktype;
 	int pokeliedamagetype;
 
+	int manlerx, manlery;
+
 	boolean seesilverspell;
 
 };	/* end of `struct you' */

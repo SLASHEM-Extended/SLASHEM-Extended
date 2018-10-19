@@ -1887,6 +1887,86 @@ trapsdone:
 
 		}
 
+		/* the manler chases after the player; he often moves randomly but not always */
+		if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && (u.manlerx >= 0 && u.manlery >= 0) ) {
+			if (u.manlerx == u.ux && u.manlery == u.uy) {
+				pline("Daedeldidaet! The manler caught you...");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				losehp(rnd(u.ulevel * 5), "being caught by the manler", KILLED_BY);
+
+				if (u.ux < 39) u.manlerx = 69;
+				else u.manlerx = 9;
+
+				if (u.uy < 9) u.manlery = 14;
+				else u.manlery = 4;
+
+			}
+
+			int manleroldx = u.manlerx, manleroldy = u.manlery;
+
+			if (!rn2(5)) {
+				if (u.ux < u.manlerx && u.ux >= 1) u.manlerx--;
+				else if (u.ux > u.manlerx && u.ux <= COLNO-1) u.manlerx++;
+
+				if (u.uy < u.manlery && u.uy >= 0) u.manlery--;
+				else if (u.uy > u.manlery && u.uy <= ROWNO-1) u.manlery++;
+
+			} else switch (rnd(8)) {
+				case 1:
+					if (u.manlerx > 1) u.manlerx--;
+					break;
+				case 2:
+					if (u.manlerx < COLNO-1) u.manlerx++;
+					break;
+				case 3:
+					if (u.manlery > 0) u.manlery--;
+					break;
+				case 4:
+					if (u.manlery < ROWNO-1) u.manlery++;
+					break;
+				case 5:
+					if (u.manlerx > 1) u.manlerx--;
+					if (u.manlery > 0) u.manlery--;
+					break;
+				case 6:
+					if (u.manlerx < COLNO-1) u.manlerx++;
+					if (u.manlery > 0) u.manlery--;
+					break;
+				case 7:
+					if (u.manlerx > 1) u.manlerx--;
+					if (u.manlery < ROWNO-1) u.manlery++;
+					break;
+				case 8:
+					if (u.manlerx < COLNO-1) u.manlerx++;
+					if (u.manlery < ROWNO-1) u.manlery++;
+					break;
+			}
+			if (isok(u.manlerx, u.manlery)) newsym(u.manlerx, u.manlery);
+			if (isok(manleroldx, manleroldy)) newsym(manleroldx, manleroldy);
+
+			if (u.manlerx == u.ux && u.manlery == u.uy) {
+				pline("Daedeldidaet! The manler caught you...");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				losehp(rnd(u.ulevel * 5), "being caught by the manler", KILLED_BY);
+
+				if (u.ux < 39) u.manlerx = 69;
+				else u.manlerx = 9;
+
+				if (u.uy < 9) u.manlery = 14;
+				else u.manlery = 4;
+
+			}
+
+		}
+
 		if ((ChangingDirectives || u.uprops[CHANGING_DIRECTIVES].extrinsic || have_changingdirectivestone()) && !rn2(100)) {
 			switch (rnd(5)) {
 
@@ -10327,6 +10407,19 @@ newboss:
 		assignwinggraphics();
 	} else {
 		iflags.winggraphics = FALSE;
+	}
+
+	if (ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) {
+		if (u.manlerx < 0) {
+			if (u.ux < 39) u.manlerx = 69;
+			else u.manlerx = 9;
+		}
+		if (u.manlery < 0) {
+			if (u.uy < 9) u.manlery = 14;
+			else u.manlery = 4;
+		}
+	} else {
+		u.manlerx = u.manlery = -1;
 	}
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {

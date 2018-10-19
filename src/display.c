@@ -395,6 +395,10 @@ unmap_object(x, y)
     register struct obj   *obj;						\
     register struct trap  *trap;					\
 									\
+	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {	\
+	show_glyph(x, y, (GLYPH_MON_OFF + rn2(NUMMONS)));	\
+	return;	\
+	}	\
 	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
@@ -488,6 +492,10 @@ int memory_glyph(x, y)
     int x, y;
 {
 #ifdef DISPLAY_LAYERS
+
+	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {
+	return (GLYPH_MON_OFF + rn2(NUMMONS));
+	}
 
 	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	return cmap_to_glyph(S_stone);
@@ -1019,6 +1027,11 @@ newsym(x,y)
 
     if (in_mklev) return;
 
+	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {
+	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
+	return;
+	}
+
 	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
@@ -1338,6 +1351,11 @@ newsymX(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
+
+	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {
+	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
+	return;
+	}
 
 	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));

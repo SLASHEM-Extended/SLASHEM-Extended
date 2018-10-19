@@ -7388,6 +7388,8 @@ u_init()
 	u.pokelieattacktype = 0;
 	u.pokeliedamagetype = 0;
 
+	u.manlerx = u.manlery = -1;
+
 	u.temprecursion = 0;
 	u.temprecursiontime = 0;
 	u.oldrecursionrole = -1;
