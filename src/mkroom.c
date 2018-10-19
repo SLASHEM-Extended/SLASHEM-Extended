@@ -1165,6 +1165,8 @@ struct mkroom *sroom;
 		}
 	      case ARMORY:
 
+		  level.flags.has_armory = 1;
+
 		  if (!rn2(10)) {
 			  if (somexy(sroom, &mm))
 				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);

@@ -4611,6 +4611,9 @@ retryrandtype:
 	    case VOIDROOM:
 		level.flags.has_voidroom = TRUE;
 		break;
+	    case ARMORY:
+		level.flags.has_armory = TRUE;
+		break;
 	    case HAMLETROOM:
 		level.flags.has_hamletroom = TRUE;
 		break;

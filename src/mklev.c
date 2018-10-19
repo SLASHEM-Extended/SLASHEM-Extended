@@ -2003,6 +2003,7 @@ clear_level_structures()
 	level.flags.has_meadowroom = 0;
 	level.flags.has_coolingchamber = 0;
 	level.flags.has_voidroom = 0;
+	level.flags.has_armory = 0;
 	level.flags.has_hamletroom = 0;
 	level.flags.has_kopstation = 0;
 	level.flags.has_bossroom = 0;

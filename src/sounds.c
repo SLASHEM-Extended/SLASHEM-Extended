@@ -91,11 +91,12 @@ dosounds()
 		"a slow drip.",
 		"a gurgling noise.",
 		"a metallic plinking sound.",
+		"dripping water.",
 		"dishes being washed!",
 		"a neverending dripping sound that is driving you crazy!",
 		"someone getting in on the action with a hot foocubus!",
 	};
-	You_hear("%s", sink_msg[rn2(3+hallu*3)]);
+	You_hear("%s", sink_msg[rn2(4+hallu*3)]);
     }
 #endif
     if (level.flags.has_court && !rn2(200)) {
@@ -479,8 +480,9 @@ dosounds()
 			"hear a sales pitcher praising a new branded costume.",
 			"hear a seemingly neverending, disgusting sound.", /* crapping noise */
 			"listen to very tender female noises.",
+			"a librarian yelling at someone to be SILENT!",
 		};
-		You("%s", feminismroom_msg[rn2(8+hallu*8)]);
+		You("%s", feminismroom_msg[rn2(8+hallu*9)]);
 		return;
 	    }
 
@@ -522,6 +524,7 @@ dosounds()
 			"feel that a special challenge awaits you.", /* ToME */
 			"feel the presence of spirits from the netherworld.",
 			"hear a sucking sound.",
+			"audible silence.",
 			"notice that this area is disturbingly quiet.",
 			"hear the absence of nosie.", /* sic by AntiGulp, and deemed too funny to fix */
 			"hear Galadriel whispering 'It is very likely that you die on your journey, but you must go anyway...'",
@@ -532,7 +535,22 @@ dosounds()
 			"hear the sounds of the gene splicing machine!", /* Elona */
 			"listen to someone complaining about a splintered nail.", /* Harry Potter disappearing (or whatever it's called, it's actually magical teleportation) mishap */
 		};
-		You("%s", voidroom_msg[rn2(7+hallu*7)]);
+		You("%s", voidroom_msg[rn2(8+hallu*7)]);
+		return;
+	    }
+
+	    if (level.flags.has_armory && !rn2(5000)) { /* from dnethack, intentionally VERY rare --Amy */
+		static const char *library_msg[] = {
+			"hear water dripping onto metal.",
+			"hear a loud crunching sound.",
+			"hear a ceiling tile fall.",
+			"smell a lot of rust.",
+			"hear iron oxidize.",
+			"hear a military contractor making out like a bandit.",
+			"fear that your +7 artifact weapon might get eaten!",
+			"hear the sound of a toilet latch.",
+		};
+		You("%s", library_msg[rn2(4)+hallu*4]);
 		return;
 	    }
 
@@ -977,6 +995,7 @@ dosounds()
 			"listen to the cackle of poultry.",
 			"feel like reaching the next town.",
 			"seem to be in a nice atmosphere.",
+			"pages turning.",
 			"listen to the villagers' conversations.",
 			"inhale the sharp smell of burning thatch!",
 			"suddenly see the hill giant lord throwing enormous rocks on the shops! And he's killing the shopkeeper with a giant club! Ack!",
@@ -986,7 +1005,7 @@ dosounds()
 			"have 100 turns left to find the secret entrance to an otherwise unreachable dungeon level before the hidden warp portal dissipates.",
 			"somehow feel that the secret advice hussies can't get you for now.",
 		};
-		You("%s", greencrossroom_msg[rn2(5+hallu*7)]);
+		You("%s", greencrossroom_msg[rn2(6+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_ruinedchurch && !rn2(200)) {
@@ -1113,6 +1132,8 @@ dosounds()
 
 	    if (level.flags.has_riverroom && !rn2(200)) {
 		static const char *riverroom_msg[] = {
+			"hear seagulls.",
+			"hear waves on sand.",
 			"hear the trickle of water.",
 			"sense a watery smell mixed with grass.",
 			"listen to an unusual ambient sound.",
@@ -1123,8 +1144,10 @@ dosounds()
 			"return to your hiding place, only to find a cursed called. Shit.",
 			"return to your weapon camp, but to your dismay Arabella has looted almost everything, leaving only a single wand of magic missile for you.",
 			"get the dreaded 'Can't write to save file' error. Bullshit.",
+			"hear burly voices singing shanties.",
+			"here someone ask about warez.",
 		};
-		You("%s", riverroom_msg[rn2(5+hallu*5)]);
+		You("%s", riverroom_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 

@@ -3708,6 +3708,9 @@ register boolean newlev;
                       case VOIDROOM:
                         level.flags.has_voidroom = 0;
                         break;
+                      case ARMORY:
+                        level.flags.has_armory = 0;
+                        break;
                       case HAMLETROOM:
                         level.flags.has_hamletroom = 0;
                         break;

@@ -815,6 +815,7 @@ doread()
 	"But I want my own house and not a girl!",
 	"whoa boy I did that 'slex with amy' thing last night, i got bundled twice. i think i fleecied 3 times!", /* by K2 */
 	"After years of research, I have developed the ultimate counter to bundling: eldnubeldnubeldnub :D", /* aosdict I think? */
+	"Demo: making slex more retarded, one bad idea at a time.", /* he said that himself because I keep implementing stuff he suggests :D */
 
 	    };
 	    char buf[BUFSZ];

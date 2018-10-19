@@ -4391,8 +4391,11 @@ struct obj *otmp;
 
 			if (rn2(100)) { /* make wishes much less common --Amy */
 
-			    make_sick(rn1(15,15), "bad pill", TRUE,
-			      SICK_VOMITABLE);
+				if (rn2(2)) make_sick(rn1(15,15), "bad pill", TRUE, SICK_VOMITABLE);
+				else {
+					pline("Oh god, it was a sex change drug...");
+					change_sex();
+				}
 				break;
 			}
 
