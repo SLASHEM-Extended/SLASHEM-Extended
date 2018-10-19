@@ -21443,6 +21443,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have a smaller compiler, which could be written in C for this example since most Unix systems have a basic C compiler included with the system; that compiles a temporary compiler, which then compiles the compiler?",
 	"Error: syntax error before 'sexy'.",
 	"That brought you completely much, you amusing head cloth.",
+	"You apply the lovely lip gloss that was contained inside.",
 
 };
 

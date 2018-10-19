@@ -2776,9 +2776,11 @@ int snamount;
 
 	if (u.usanity > 9000) {
 		You("realize in shock that this dungeon is a truly atrocious place.");
-		flags.soundok = 0;
-		nomul(-(rnd(5) ), "paralyzed by sanity", TRUE);
-		nomovemsg = "You regain consciousness.";
+		if (multi >= 0) {
+			flags.soundok = 0;
+			nomul(-(rnd(4 + ((u.usanity / 1000) - 8) ) ), "paralyzed by sanity", TRUE);
+			nomovemsg = "You regain consciousness.";
+		}
 	}
 
 	if (rn2(10) && (u.usanity > rn2(1000)) ) badeffect();
@@ -3064,6 +3066,14 @@ dodrink()
 	    } else if (!strcmp(potion_descr, "maleen") && !rn2(10)) {
 		pline("Some sinister force causes you to wear a pair of heels!");
 		bad_equipment_heel();
+	    } else if (!strcmp(potion_descr, "gloss") && !rn2(10)) {
+		You("apply the lovely lip gloss that was contained inside.");
+		(void) adjattrib(A_CHA, 1, FALSE);
+	    } else if (!strcmp(potion_descr, "glam")) {
+		if (u.nailpolish < 10) {
+			u.nailpolish++;
+			pline("The potion contained nail polish! You use it to dye your nails.");
+		} else pline("Sadly, the nail polish in the potion goes to waste since you've painted all your nails already.");
 	    }
 	}
 

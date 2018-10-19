@@ -3710,6 +3710,9 @@ POTION((char *)0, "moonshine", 0, 0,           0,   0, CLR_YELLOW, 1),
 POTION((char *)0, "gasoline", 0, 0,           0,   0, CLR_CYAN, 1),
 POTION((char *)0, "essential", 0, 0,           0,   0, CLR_GREEN, 1),
 POTION((char *)0, "streamlined", 0, 0,           0,   0, CLR_YELLOW, 1),
+POTION((char *)0, "glassy", 0, 0,           0,   0, CLR_CYAN, 1),
+POTION((char *)0, "gloss", 0, 0,           0,   0, CLR_RED, 1),
+POTION((char *)0, "glam", 0, 0,           0,   0, CLR_WHITE, 1),
 
 POTION("water", "clear",                0, 0,          550, 300, CLR_CYAN, 1),
 POTION("blood", "blood-red",            0, 0,          50, 300, CLR_RED, 1),
@@ -5524,6 +5527,7 @@ SCROLL((char *)0,               "IMBA HAND OF VECNA",  P_NONE,     1,   0, 300, 
 SCROLL((char *)0,               "THIS MOD IS EXEMPLARY",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "HHHHHHHHHHHHHHHHHHHHHHH",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "PURPLE PAIN PLUS",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "DEUTSCHLAND KANN KEIN DEUTSCH MEHR",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

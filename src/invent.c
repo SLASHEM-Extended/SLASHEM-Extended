@@ -11273,6 +11273,10 @@ struct obj *obj;
 			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed artifact.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "maleen")))
 			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed pair of high heels. (Thanks Malena for the inspiration.)");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gloss")))
+			pline("This potion may contain lipstick that you'll automatically apply if you quaff it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "glam")))
+			pline("This potion contains nail polish that you'll automatically apply if you quaff it.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
