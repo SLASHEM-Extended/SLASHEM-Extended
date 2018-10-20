@@ -1,6 +1,9 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.7 - October 2018
+- Fixed a bug that caused certain musical instruments to be tonal when they shouldn't be.
+- Pills can occasionally cause a sex change.
+- Kurwas now get to decide their sexuality when they chat to a monster for sex.
 - If the same rider or deadly sin is killed at least 50 times, the player's sanity will increase greatly whenever the monster in question resurrects.
 - Fixed some issues where the player could not interact with items on crystal water tiles correctly.
 - In evilvariant mode, kicking a container can break any non-artifact inside.
