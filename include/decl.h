@@ -307,7 +307,6 @@ E NEARDATA char monkeyname[];
 E NEARDATA char parrotname[];
 E NEARDATA char girlname[];
 E NEARDATA char boyname[];
-E NEARDATA char snipername[];
 E NEARDATA char ravenname[];
 E NEARDATA char catname[];
 E NEARDATA char ghoulname[];
