@@ -80,6 +80,7 @@ int thrown;
 	boolean fullmultishot; /* depends on missile weapons skill --Amy */
 	int angeramount; /* for blade anger technique */
 
+	if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) multishot += 1;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
 	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
@@ -1437,6 +1438,8 @@ int thrown;
 		    } else if (obj->oclass != GEM_CLASS)
 			range /= 2;
 		}
+
+		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
 
 		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 5;
 		if (uwep && uwep->oartifact == ART_SNIPER_CROSSHAIR && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 30;

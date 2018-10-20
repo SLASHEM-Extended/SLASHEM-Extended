@@ -7803,7 +7803,7 @@ dopois:
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		pline("Your ears are blasted by hellish noise!");
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
+		if (YouAreDeaf) dmg /= 2;
 		make_stunned(HStun + dmg, TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
@@ -10685,7 +10685,7 @@ do_stone2:
 	    case AD_SOUN:
 		if (mtmp->mcan) break;
 		pline("AUUUUUUGGGGGHHHHHGGHH - the noise in here is unbearable!");
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
+		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
@@ -13457,7 +13457,7 @@ common:
 	    case AD_SOUN:
 
 		pline("Your ears are blasted by hellish noise!");
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
+		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
 		if (isevilvariant || issoviet || !rn2(2)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
@@ -15885,7 +15885,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
 		    pline("%s sends a deafening wave of sound in your direction!", Monnam(mtmp));
 		    stop_occupation();
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmgplus /= 2;
+		if (YouAreDeaf) dmgplus /= 2;
 		make_stunned(HStun + dmgplus, TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();

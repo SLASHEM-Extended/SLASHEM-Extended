@@ -75,6 +75,12 @@ lookat(x, y, buf, monbuf)
 
     buf[0] = monbuf[0] = 0;
     glyph = glyph_at(x,y);
+
+    if (isok(x, y) && (levl[x][y].wall_info & W_QUASAROK) && (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) ) {
+	pline("Trip clicked!");
+	badeffect();
+    }
+
     if (u.ux == x && u.uy == y && senseself()) {
 	char race[QBUFSZ];
 

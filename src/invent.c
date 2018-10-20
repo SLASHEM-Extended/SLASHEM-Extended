@@ -16564,6 +16564,118 @@ struct obj *obj;
 					pline("Artifact specs: May be used several times before it's used up."); break;
 				case ART_SUCK_THE_MIND_FLAYER:
 					pline("Artifact specs: Increases your intelligence by more than the standard amount when used."); break;
+				case ART_FAILSET_GAMBLE:
+					pline("Artifact specs: yellow spells and flying when worn."); break;
+				case ART_KANGAROO_SNORT:
+					pline("Artifact specs: resist acid and very fast speed when worn, but you can't cure hallucination effects and have to wait them out."); break;
+				case ART_ULTRAGGRAVATE:
+					pline("Artifact specs: multiplies monster difficulty by 2 and forces heavy aggravation when worn."); break;
+				case ART_ZIRATHA_S_CASTING_LEGEND:
+					pline("Artifact specs: slightly reduces spellcasting costs when worn."); break;
+				case ART_TRIP_TERRAIN:
+					pline("Artifact specs: you can Ctrl-T to teleport and it costs way less mana, but trying to farlook a quasar square causes bad effects."); break;
+				case ART_JESTES_TAKA_KURWA:
+					pline("Artifact specs: resist fire, cold, sleep and petrification when worn, but leveling up gives you bad effects as if you were playing a kurwa, chaotic."); break;
+				case ART_FULLY_WORKING_AT_HALF_MAXI:
+					pline("Artifact specs: halves the cost of casting spells."); break;
+				case ART_CLAUDIA_S_DIRECTION_FINDER:
+					pline("Artifact specs: resist confusion and stun when worn."); break;
+				case ART_BOMB_BLOW:
+					pline("Artifact specs: greatly increases the chance that a cataclysm trap is spawned."); break;
+				case ART_YOU_DON_T_KNOW_SHIT:
+					pline("Artifact specs: unidentify effect and -3 intelligence and wisdom when worn."); break;
+				case ART_TURKISH_EMPIRE:
+					pline("Artifact specs: warning and ESP when worn; if you have the create ammo technique, using it will give extra bullets and rockets."); break;
+				case ART_VIRUS_ATTACK:
+					pline("Artifact specs: increases the range of your missile weapons and also adds multishot."); break;
+				case ART_BAD_LUCK_IN_DROVES:
+					pline("Artifact specs: if you have positive luck while wearing it, you'll constantly lose luck until it's no longer positive."); break;
+				case ART_YITH_VERSUS_BABY:
+					pline("Artifact specs: magic resistance and deafness when worn."); break;
+				case ART_STOUT_IMMURRING:
+					pline("Artifact specs: free action and wall trap effect when worn, also grants 8 extra points of AC."); break;
+				case ART_JONADAB_S_KEYCODE:
+					pline("Artifact specs: searching when worn, and 20%% of all glyphs are fleecy-colored."); break;
+				case ART_VOLCANO_BOOM:
+					pline("Artifact specs: fire resistance when worn, occasionally causes something to explode underneath your feet."); break;
+				case ART_HUGGING__GROPING_AND_STROK:
+					pline("Artifact specs: half physical damage if you're being grabbed by a monster, being kicked in the nuts or having your breasts ripped will heal you, being lashed restores your mana, +10 charisma, your hammer shoes do +2 damage and kicking enemies does +5 damage, and you can kick thick-skinned monsters effectively."); break;
+				case ART_SMEXY_BERRIES:
+					pline("Artifact specs: if you wear them for long enough, the next time you chat to a female boss monster may tame her."); break;
+				case ART_SMELL_LIKE_DOG_SHIT:
+					pline("Artifact specs: generates heaps of shit over time, and stepping into them damages your charisma, disintegration resistance when worn, reduces the chance that monsters approach you because they're repelled by the stench of shit."); break;
+				case ART_ELENETTES:
+					pline("Artifact specs: displays any monster whose health is lower than the maximum, resist petrification and disintegration when worn, sustain ability, +5 charisma, and your kick can't be clumsy and also deals 2 extra points of damage. They count as wedge heels."); break;
+				case ART_HEADCRUNCH:
+					pline("Artifact specs: if you kick a monster that has a head, your kick deals an additional +10 damage."); break;
+				case ART_VARIANTISH_DESIGN:
+					pline("Artifact specs: if you convert a Moloch altar, orcs are summoned; angering any peaceful monster can make other nearby peaceful and tame monsters hostile; hostile vampires may lifesave; and of course, Elbereth doesn't work because this artifact basically tries to simulate a player-hostile variant."); break;
+				case ART_WUMSHIN:
+					pline("Artifact specs: 1 in 200 turns they will kick you, which causes damage and stun. But kicking a monster with them has a good chance of paralyzing the monster."); break;
+				case ART_JONADAB_S_BUG_MASTERY:
+					pline("Artifact specs: as long as the base item type is 'fluckering boots', they allow you to go faster for a period of time. But the bunch of turns on which you're super slow will still happen."); break;
+				case ART_CRUEL_GODDESS_ANA:
+					pline("Artifact specs: urgh, I sure hope you eat enough IRL... anyway, wearing them can sometimes cause you to vomit and you can't cure the vomiting, +5 charisma, -5 strength and constitution, and monsters will occasionally spawn peaceful."); break;
+				case ART_KRISTIN_S_NOBILITY:
+					pline("Artifact specs: wearing them makes all shops buy all your items even when they're of a type that they normally don't want, +5 charisma, and the dimness and stun effects time out much faster. But confusion can't be cured, so you have to wait it out."); break;
+				case ART_SATAN_S_CHOPPING_BLOCK:
+					pline("Artifact specs: disables disintegration resistance, and monsters that breathe disintegration are spawned way more often."); break;
+				case ART_SATAN_S_HYPERCHARGE:
+					pline("Artifact specs: teleport control when worn, but monsters are initialized with extra movement energy when they spawn."); break;
+				case ART_A_SPOONFUL_OF_FO_U_RK:
+					pline("Artifact specs: teleport control when worn but also makes the game behave as if you were playing evilvariant mode. While wearing them, your carry capacity is maxxed to simulate Nethack Fourk's magic chest. Gotta love the magic chest!"); break;
+				case ART_FIRE_NIGHT:
+					pline("Artifact specs: resist fire and sleep when worn. If you put it on while having at least 10000 zorkmids in your open inventory, it will teach you the beauty charm technique if you didn't have it already, but in that case the 10000 zorkmids are removed."); break;
+				case ART_ARABELLA_S_SWOONING_BEAUTY:
+					pline("Artifact specs: resist disintegration and death rays, plus clairvoyance when worn. It may have other effects but they're not obvious."); break;
+				case ART_YOU_HAVE_UGH_MEMORY:
+					pline("Artifact specs: makes you immune to death rays and highly resistant to gaze attacks, but your right mouse button will not go any longer."); break;
+				case ART_ANASTASIA_S_LURE: /* do not mention the nasty trap effect, this is intentional --Amy */
+					pline("Artifact specs: makes you very fast when worn and also grants half physical and spell damage, regeneration and energy regeneration, so you'll become really powerful when wearing it!"); break;
+				case ART_APATHY_STRATEGY:
+					pline("Artifact specs: makes both you and monsters slower if you wear it, but you also randomly faint."); break;
+				case ART_MOSH_PIT_SCRAMBLE:
+					pline("Artifact specs: causes female monsters with kick attacks to spawn more often, regeneration, free action and aggravate monster when worn, increases your constitution for every worn piece of metal armor and if none of your worn armor pieces are non-metallic, you also get a bunch of extra AC."); break;
+				case ART_ARABELLA_S_WEAPON_STORAGE: /* don't tell anything :P --Amy */
+					pline("Artifact specs: Dunno. Apparently it increases the chance that you find weapons or something."); break;
+				case ART_KYS_YOURSELF:
+					pline("Artifact specs: premature death when worn, and as a homage to ponyposter and animeposter, horses and female monsters may spawn peaceful more often."); break;
+				case ART_INA_S_SORROW:
+					pline("Artifact specs: walking over a toilet causes you to take a crap and lose alignment, enforces anorexia conduct, but if you are fainting or worse, your kick and weapons deal extra damage and you gain resist lightning, contamination and petrification."); break;
+				case ART_WHY_NOT_DO_THE_REAL_THING:
+					pline("Artifact specs: sickness effects are less likely to make you sick, but evilvariant mode is activated to simulate Grunthack. Armor pieces spawn with random enchantments more often while you wear this."); break;
+				case ART_CLAUDIA_S_SEXY_SCENT:
+					pline("Artifact specs: monsters with perfume attacks are almost always spawned peaceful and you can hire them for 1000 zorkmids by chatting to them. Your kick does extra damage and may paralyze the target, but your sexy butt will occasionally do certain things."); break;
+				case ART_VACUUM_CLEANER_DEATH:
+					pline("Artifact specs: putting on amulets of strangulation instakills you, farting effects are more dangerous to you, gas traps also become more dangerous, but you get magical breathing. Monsters with sucking attacks will spawn more often. Very occasionally, a sweet blonde will come to your aid."); break;
+				case ART_NYPHERISBANE:
+					pline("Artifact specs: resist poison and sickness when worn, kicking snakes or nagas does huge amounts of extra damage to them, autocurses."); break;
+				case ART_CHRISTMAS_MEDAL:
+					pline("Artifact specs: see invisible and magic resistance when worn."); break;
+				case ART_LONGEST_RAY:
+					pline("Artifact specs: beams and rays have extra range."); break;
+				case ART_ENDORPHIC_SCRATCHING:
+					pline("Artifact specs: they sometimes want to play with you."); break;
+				case ART_SONJA_S_TORN_SOUL:
+					pline("Artifact specs: if you wear them, you'll often deposit your money in the bank and gain alignment."); break;
+				case ART_RUEA_S_FAILED_CONVERSION:
+					pline("Artifact specs: converting monsters have a much harder time to affect you, +10 charisma, but clawing monsters will tear you up, neutral."); break;
+				case ART_HAWAIIAN_KAMEHAMEHA:
+					pline("Artifact specs: teleport control, and you can Ctrl-T to teleport at will when wearing them."); break;
+				case ART_LARISSA_S_GENTLE_SLEEP:
+					pline("Artifact specs: sleeping on a bed will stop time."); break;
+				case ART_STEFANJE_S_PROBLEM:
+					pline("Artifact specs: if someone kicks you while you wear them, you'll be stunned and occasionally suffer other bad effects, but you can also reduce a monster's maximum health by kicking them. They increase all of your stats by two points."); break;
+				case ART_MALENA_S_LADYNESS:
+					pline("Artifact specs: polymorphitis and polymorph control when worn, you won't break your stuff when polymorphing and the shoes themselves will always stay on when you polymorph."); break;
+				case ART_ELEVECULT:
+					pline("Artifact specs: slightly reduces your speed but monsters may also sometimes miss turns, +5 charisma and discount action when worn, and you fumble less often if you otherwise would."); break;
+				case ART_SHIT_KICKERS:
+					pline("Artifact specs: Demo invented these because he wants to be able to kick the shit out of monsters, which these boots will do by stunning and confusing them."); break;
+				case ART_SARAH_S_GRANNY_WEAR:
+					pline("Artifact specs: if someone produces soft farting noises while you wear them, you'll be healed, and you resist confusion and sleep, but you also have your items stolen more often and they may even teleport out of your inventory."); break;
+				case ART_CLICHE_WEAR:
+					pline("Artifact specs: resist fire, cold, sleep, shock and poison when worn, but monsters whose attacks can damage items will spawn more often."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -8204,7 +8204,7 @@ uchar aatyp;
 
 	    case AD_SOUN:
 		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
+		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();

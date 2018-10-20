@@ -1169,6 +1169,8 @@ register int x, y, typ, replacechance;
 	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && !rn2(u.traprandomizing)) {
 		typ = rnd(TRAPNUM-1);
 		while (typ == MAGIC_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == DATA_DELETE_TRAP || typ == ELDER_TENTACLING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
+	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && uarmh && uarmh->oartifact == ART_BOMB_BLOW && !rn2(100)) {
+		typ = CATACLYSM_TRAP;
 	}
 
 	if ((ttmp = t_at(x,y)) != 0) {
@@ -2620,7 +2622,7 @@ unsigned trflags;
 			}
 			pline("Your ears are blasted by hellish noise!");
 			int dmg = rnd(16) + rnd( (monster_difficulty() * 2 / 3) + 1);
-			if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
+			if (YouAreDeaf) dmg /= 2;
 			make_stunned(HStun + dmg, TRUE);
 			if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 	      	if (dmg) losehp(dmg, "noise trap", KILLED_BY_AN);

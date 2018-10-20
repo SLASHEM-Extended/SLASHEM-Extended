@@ -1855,8 +1855,23 @@ boolean atme;
 	if (role_skill == P_GRAND_MASTER) { if (rn2(10)) energy += 1; energy *= 16; energy /= 20;}
 	if (role_skill == P_SUPREME_MASTER) { if (rn2(10)) energy += 1; energy *= 15; energy /= 20;}
 
-	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) { if (rn2(10)) energy += 1; energy /= 2; } /* Casting any sort of magic uses half power for them */
+	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) {  /* Casting any sort of magic uses half power for them */
+		if (rn2(10)) energy += 1;
+		energy /= 2;
+	}
+
+	if (uarmh && uarmh->oartifact == ART_FULLY_WORKING_AT_HALF_MAXI) {
+		if (rn2(10)) energy += 1;
+		energy /= 2;
+	}
+
 	if (uwep && uwep->oartifact == ART_MANA_METER_BOOSTER) {
+		if (rn2(10)) energy += 1;
+		energy *= 9;
+		energy /= 10;
+	}
+
+	if (uarmc && uarmc->oartifact == ART_ZIRATHA_S_CASTING_LEGEND) {
 		if (rn2(10)) energy += 1;
 		energy *= 9;
 		energy /= 10;

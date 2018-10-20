@@ -3903,6 +3903,7 @@ secureidchoice:
 				uammo->quan *= 3;
 				if (uarmf) curse(uarmf);
 			}
+			if (uammo && ammotype == 1 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
 			if (ammotype == 5) uammo->quan *= 4;
 			if (ammotype == 4) uammo->quan /= 10;
 			if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
@@ -3910,6 +3911,20 @@ secureidchoice:
 			uammo->owt = weight(uammo);
 			dropy(uammo);
 			stackobj(uammo);
+		}
+
+		if (uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) {
+			uammo = mksobj(ROCKET, TRUE, FALSE);
+			if (uammo) {
+				uammo->quan = techlevX(tech_no);
+				uammo->quan /= 10;
+				if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
 		}
 
 	      t_timeout = rnz(500);

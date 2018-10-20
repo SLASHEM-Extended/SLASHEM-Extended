@@ -717,6 +717,16 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		}
 
+		if (uarmh && uarmh->oartifact == ART_JESTES_TAKA_KURWA) {
+			if (u.urmaxlvlUP == 4) NotSeenBug |= FROMOUTSIDE;
+			else if (u.urmaxlvlUP == 8) GrayoutBug |= FROMOUTSIDE;
+			else if (u.urmaxlvlUP == 12) DifficultyIncreased |= FROMOUTSIDE;
+			else if (u.urmaxlvlUP == 16) UnfairAttackBug |= FROMOUTSIDE;
+			else if (u.urmaxlvlUP == 20) EnmityBug |= FROMOUTSIDE;
+			else if (u.urmaxlvlUP == 25) ElongationBug |= FROMOUTSIDE;
+			else if (u.urmaxlvlUP == 30) Antileveling |= FROMOUTSIDE;
+		}
+
 		if (Role_if(PM_FEMINIST) && !rn2(3)) {
 
 			boolean femintcheck = 0;

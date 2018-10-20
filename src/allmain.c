@@ -1887,6 +1887,13 @@ trapsdone:
 
 		}
 
+		if (uarmg && uarmg->oartifact == ART_VOLCANO_BOOM && !rn2(2000)) {
+			pline("Kaboom!");
+			explode(u.ux, u.uy, ZT_FIRE, rnd(u.ulevel * 5), WAND_CLASS, EXPL_FIERY);
+		}
+
+		if (uarmh && uarmh->oartifact == ART_BAD_LUCK_IN_DROVES && Luck > 0) change_luck(-1);
+
 		/* the manler chases after the player; he often moves randomly but not always */
 		if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && (u.manlerx >= 0 && u.manlery >= 0) ) {
 			if (u.manlerx == u.ux && u.manlery == u.uy) {
@@ -8575,11 +8582,11 @@ newboss:
 			break;
 		}
 
-		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) flags.soundok = 0;
+		if (YouAreDeaf) flags.soundok = 0;
 		else if (!multi) flags.soundok = 1;
 
 		/* Let's throw a bone to permablind races. --Amy */
-		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() ) {
+		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() && !(uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) ) {
 
 			if (invent) {
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
@@ -8685,6 +8692,29 @@ newboss:
 		}
 
 		if (have_unidentifystone() ) {
+
+			if (invent) {
+			    for (otmpi = invent; otmpi; otmpi = otmpii) {
+			      otmpii = otmpi->nobj;
+	
+				if (!rn2(4000)) {
+					otmpi->bknown = FALSE;
+				}
+				if (!rn2(4000)) {
+					otmpi->dknown = FALSE;
+				}
+				if (!rn2(4000)) {
+					otmpi->rknown = FALSE;
+				}
+				if (!rn2(4000)) {
+					otmpi->known = FALSE;
+				}
+			    }
+			}
+
+		}
+
+		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) {
 
 			if (invent) {
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
@@ -10401,6 +10431,10 @@ newboss:
 	/****************************************/
 	/* once-per-player-input things go here */
 	/****************************************/
+
+	if (uarmc && uarmc->oartifact == ART_ULTRAGGRAVATE) {
+		u.heavyaggravation = 1;
+	}
 
 	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
 		iflags.winggraphics = TRUE;

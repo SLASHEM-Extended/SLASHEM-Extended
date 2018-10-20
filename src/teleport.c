@@ -881,8 +881,7 @@ dotele()
 	    boolean castit = FALSE;
 	    register int sp_no = 0, energy = 0;
 
-	    if (!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Race_if(PM_RODNEYAN) ? 1 : Role_if(PM_WIZARD) ? 8 : 12)
-					&& !can_teleport(youmonst.data))) {
+	    if ((!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Race_if(PM_RODNEYAN) ? 1 : Role_if(PM_WIZARD) ? 8 : 12) && !can_teleport(youmonst.data))) && !(uarmh && uarmh->oartifact == ART_TRIP_TERRAIN)) {
 		/* Try to use teleport away spell. */
 		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion)
 		    for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
@@ -918,6 +917,7 @@ dotele()
 
 	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5;
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
+		if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
 	    if (u.uen < energy) {
 #ifdef WIZARD
 		if (wizard)

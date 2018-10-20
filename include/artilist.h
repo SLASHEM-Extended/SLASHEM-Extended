@@ -5935,6 +5935,233 @@ A("Elona's Snail Trail",				HELMET, /* initialized to always be rubynus helmet; 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Henrietta's Little Problem",				BROWN_SHIT_CLOAK, /* can walk on ice and snow while wearing this, but 1 in 200 times you move, you get the shit trap effect, and 1 in 2000 times you move, items can fall out of your inventory like if you were wearing cone heels while restricted */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Failset Gamble",				YELLOW_WING, /* yellow spells, flying */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kangaroo Snort",				ELESDE_CLOAK, /* very fast speed, but hallucination always becomes heavy */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ultraggravate",				CLOAK_OF_GRAVATION, /* multiplies monster difficulty by 2, forces heavy aggravation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ziratha's Casting Legend",				SPELL_RETAIN_CLOAK, /* spells cost 10% less mana to cast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Trip Terrain",				QUAVERSAL_HELMET, /* farlooking a quasar square gives a bad effect; can always Ctrl-T to teleport and it costs 10 mana only */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Jestes Taka Kurwa",				HELM_OF_SHUFFLING, /* leveling up gives you the same stuff that a kurwa would get, resist fire, cold, sleep and petrification */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Fully Working at Half Maximum",				GOLDSPELL_HELMET, /* spells cost half the usual amount */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Claudia's Direction Finder",				AIRHEAD_CAP, /* resist confusion and stun */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Bomb Blow",				FALLOUT_HELMET, /* 1 in 100 randomly generated traps is a cataclysm trap */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("You Don't Know Shit",				IDENTIFY_CURD_HELMET, /* unidentify effect, -3 INT/WIS when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Turkish Empire",				BAEAEAEP_SPY_HELMET, /* if you use create ammo while wearing it, you get double the amount of bullets and also a bunch of rockets */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Virus Attack",				DISTORTED_GRIMACE, /* +2 range for all missile weapons and +1 multishot */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bad Luck In Droves",				ELM_ET, /* if your luck is ever greater than 0, you lose one point of it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Yith Versus Baby",				SANEMAKER_HELMET, /* deafness */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Stout Immurring",				ORANGE_SPELL_GLOVES, /* wall trap effect, +8 AC, free action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jonadab's Keycode",				MOJIBAKE_GLOVES, /* 20% of all glyphs are fleecy-colored */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Volcano Boom",				DIXPLOSION_GLOVES, /* creates an explosion centered on you 1 in 2000 turns */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hugging, Groping and Stroking",				VIOLET_BEAUTY_HEELS, /* half physical damage when a monster has grabbed you, being kicked in the nuts or clawed in the breasts heals you instead of dealing damage, and being lashed restores your mana; +10 CHA, +2 damage when bashing with heels and +5 kick damage, thick-skinned monsters don't get damage reduction when you kick them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Smexy Berries",				LONG_POINTY_HEELS, /* while you wear them, a counter goes up that starts at 1000, and if you chat to a female G_UNIQ with MS_BOSS or MS_FART_(something) while wearing them and having at least 1000 on the counter, the boss monster in question becomes tame */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Smell Like Dog Shit",				SOIL_CLINGING_BOOTS, /* triggering a heap of shit damages your charisma, and 1 in 1000 chance that a heap of shit is generated somewhere, monsters have a 1 in 10 chance of getting appr=0, disintegration resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Elenettes",				PERMANENTLY_BLACK_SHOES, /* any monster that has less than 90% of its max HP is shown to you, resist petrification and disintegration, sustain ability, +5 charisma, your kick cannot be clumsy and does +2 damage, count as wedge heels */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Headcrunch",				AUTOSCOOTER_HEELS, /* kicking a monster that has a head deals +10 damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Variantish Design",				FORCEFUL_BOOTS, /* converting a Moloch altar summons orcs, angering a peaceful monster causes an enrage effect, Elbereth doesn't work, hostile V have 50% chance of life saving */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wumshin",				BUM_BUM_BOOTS, /* 1 in 200 chance to take some damage and be stunned for d10 turns, kicking a monster has 75% chance of paralyzing it for one turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Jonadab's Bug Mastery",				FLUCKERING_BOOTS, /* uses different calculation for the nasty trap effect that makes you faster on average */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Cruel Goddess Ana",				SPRAP_BOOTS, /* 1 in 250 turns you start vomiting if you aren't already, and the vomiting cannot be cured at all, +5 CHA, -5 STR/CON, monsters have 1% chance to spawn peaceful */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Kristin's Nobility",				BRIGHT_CYAN_BEAUTIES, /* while wearing them, shops will buy stuff even if they normally wouldn't, +5 CHA, dimness and stun time out much faster but confusion is always heavy confusion */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Satan's Chopping Block",				SIA_BOOTS, /* deactivates disintegration resistance, and disintegration breathers have +200 spawn frequency */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Satan's Hypercharge",				MORK_BOOTS, /* gives d24 extra movement energy to randomly generated monsters */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("A Spoonful Of Fo(u)rk",				MORK_BOOTS, /* evilvariant mode while worn, maxxes out your carry capacity no matter what */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fire Night",				RIN_DAYSHIFT, /* resist fire and sleep, teaches beauty charm technique if you don't know it and have at least 10000 zorkmids in open inventory (but you then lose those 10000 zorkmids) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Arabella's Swooning Beauty",				AMULET_OF_ITEM_INSECURITY, /* disintegration and death ray resistance, anti-teleportation, clairvoyance, can't drop items */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("You Have Ugh Memory",				AMULET_OF_INITIALIZATION_FAILU, /* rmb loss, death ray resistance, gaze attacks only have 10% chance of affecting you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Anastasia's Lure",				AMULET_OF_REAL_SCREWERY, /* all bad traps have the same chance of being spawned, very fast speed */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_HSPDAM|SPFX_REGEN|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Apathy Strategy",				AMULET_OF_ENEMY_SAVING, /* 50% chance of halving your speed, random fainting, but monsters with a speed of at least 2 also have their speed halved */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mosh Pit Scramble",				AMULET_OF_SPELL_METAL, /* female monsters that have kick attacks get +20 spawn frequency, aggravate monster, +2 AC for every worn armor piece as long as no single worn piece is non-metallic, +1 CON for every worn metallic piece, free action */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Arabella's Weapon Storage",				ORCISH_CLOAK, /* initialized to always be a cursed called cloak, 1 in 1000 chance per turn to generate a random weapon at your feet, 1 in 10000 chance for evil artifact effect, your wands (not wishing or other powerful ones) only lose a charge 1 in 4 times, firearm ammos are generated with double stack size (also applies to techniques), mulchable ranged weapons have 50% unconditional chance to not mulch, 1 in 10000 chance per turn to curse your entire inventory including stuff in containers with increased chance of giving more dangerous types of curses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Kys Yourself",				ORCISH_CLOAK, /* initialized to always be a fourchan cloak, premature death, horses are 90% spawned peaceful and intelligent female monsters 25% */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ina's Sorrow",				ORCISH_CLOAK, /* initialized to always be an inalish cloak, walking over a toilet with enough nutrition causes you to crap and lose more nutrition than normal and -20 alignment/+1 sins, enforces anorexia conduct when worn; when fainting or worse, your kick does +10 damage and your weapons do +3 plus you get resistance to lightning, contamination and petrification */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Why Not Do The Real Thing",				HELMET, /* initialized to always be a grunter helmet, 75% chance to not become sick from a sickness effect, but activates evilvariant mode; armor pieces have 5% extra chance to be spawned with a random enchantment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Claudia's Sexy Scent",				HELMET, /* initialized to always be a cloudy helmet, monsters with MS_STENCH are 99% peaceful and chatting to them with at least 1000 zorkmids allows you to hire them, your kick does +10 damage and has 25% chance to paralyze a monster for d10 turns, but you occasionally have to fart and also have the shit trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Vacuum Cleaner Death",				HELMET, /* initialized to always be a breath control helmet, amulets of strangulation kill you instantly while wearing this, farting effects deal extra damage and cause additional bad effects, sleep/slow/poison gas traps damage and paralyze you, magical breathing, monsters with AD_SUCK have +50 spawn frequency, 1 in 25000 chance per turn to spawn a tame sweet blonde next to you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Nypherisbane",				HELMET, /* initialized to always be a gas mask, poison and sickness resistance, kicking a snake or naga does +100 extra damage, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Christmas Medal",				HELMET, /* initialized to always be a sages helmet, see invisible */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Longest Ray",				LEATHER_GLOVES, /* initialized to always be rayductnay gloves, adds extra range to beams like over-ray (and stacks with that) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Endorphic Scratching",				LOW_BOOTS, /* initialized to always be orgasm pumps, 1 in 4000 chance that you have to play a minigame */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sonja's Torn Soul",				LOW_BOOTS, /* initialized to always be worn-out sneakers, bank trap effect, but for every 100 gold you deposit you gain a point of alignment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ruea's Failed Conversion",				LOW_BOOTS, /* initialized to always be noble sandals, MS_CONVERT has 95% chance to fail on you, +10 CHA, but you get the kurwa claw effects and spawn chance increase */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 12000L ),
+
+A("Hawaiian Kamehameha",				LOW_BOOTS, /* initialized to always be doctor claw boots, allows you to use Ctrl-T to teleport at will */
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Larissa's Gentle Sleep",				LOW_BOOTS, /* initialized to always be feelgood heels, sleeping on a bed stops time for longer than the amount of turns you sleep for */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Stefanje's Problem",				LOW_BOOTS, /* initialized to always be plof heels, being kicked stuns you and has 5% chance of causing a bad effect, but if you kick a monster, it permanently loses 1 max HP; +2 to all stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Malena's Ladyness",				LOW_BOOTS, /* initialized to always be princess pumps, give controlled polymorphitis and you don't break your stuff if you polymorph and they will stay on your feet no matter what */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Elevecult",				LOW_BOOTS, /* initialized to always be ballet heels, reduces your speed like the spirit race but monsters also have 33% chance to waste their turns, +5 CHA, 75% chance to not fumble if you otherwise would, discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Shit Kickers",				LOW_BOOTS, /* initialized to always be steel toed boots, confuses and stuns monsters with a kick (but they get a resistance check) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sarah's Granny Wear",				LOW_BOOTS, /* initialized to always be marji shoes, soft farting noises heal you instead of dealing damage, but you get the stealer trap and teleporting items effects, resist confusion and sleep */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Cliche Wear",				LOW_BOOTS, /* initialized to always be mary janes, resist fire/cold/shock/sleep/poison, monsters with item damage attacks have +5 spawn frequency */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 
 /*

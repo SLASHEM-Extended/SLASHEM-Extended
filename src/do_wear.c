@@ -5158,6 +5158,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_DUE_DUE_DUE_DUE_BRMMMMMMM) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_CAN_T_TOUCH_THIS) uac -= 10;
 	if (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) uac -= 5;
+	if (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) uac -= 10;
 	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;

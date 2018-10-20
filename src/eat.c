@@ -3973,7 +3973,7 @@ no_opener:
 int
 Hear_again()		/* called when waking up after fainting */
 {
-	if (!Deafness && !(uwep && uwep->oartifact == ART_MEMETAL) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) && !(uwep && uwep->oartifact == ART_BANG_BANG) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) && !u.uprops[DEAFNESS].extrinsic && !have_deafnessstone() ) flags.soundok = 1;
+	if (!(YouAreDeaf)) flags.soundok = 1;
 	return 0;
 }
 

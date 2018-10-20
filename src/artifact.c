@@ -589,6 +589,27 @@ hack_artifacts()
 	artilist[ART_KATIE_MELUA_S_FLEECINESS].otyp = find_weapon_light_boots();
 	artilist[ART_ELONA_S_SNAIL_TRAIL].otyp = find_rubynus_helmet();
 
+	artilist[ART_ARABELLA_S_WEAPON_STORAGE].otyp = find_cursed_called_cloak();
+	artilist[ART_KYS_YOURSELF].otyp = find_fourchan_cloak();
+	artilist[ART_INA_S_SORROW].otyp = find_inalish_cloak();
+	artilist[ART_WHY_NOT_DO_THE_REAL_THING].otyp = find_grunter_helmet();
+	artilist[ART_CLAUDIA_S_SEXY_SCENT].otyp = find_cloudy_helmet();
+	artilist[ART_VACUUM_CLEANER_DEATH].otyp = find_breath_control_helmet();
+	artilist[ART_NYPHERISBANE].otyp = find_gas_mask();
+	artilist[ART_CHRISTMAS_MEDAL].otyp = find_sages_helmet();
+	artilist[ART_LONGEST_RAY].otyp = find_rayductnay_gloves();
+	artilist[ART_ENDORPHIC_SCRATCHING].otyp = find_orgasm_pumps();
+	artilist[ART_SONJA_S_TORN_SOUL].otyp = find_worn_out_sneakers();
+	artilist[ART_RUEA_S_FAILED_CONVERSION].otyp = find_noble_sandals();
+	artilist[ART_HAWAIIAN_KAMEHAMEHA].otyp = find_doctor_claw_boots();
+	artilist[ART_LARISSA_S_GENTLE_SLEEP].otyp = find_feelgood_heels();
+	artilist[ART_STEFANJE_S_PROBLEM].otyp = find_plof_heels();
+	artilist[ART_MALENA_S_LADYNESS].otyp = find_princess_pumps();
+	artilist[ART_ELEVECULT].otyp = find_ballet_heels();
+	artilist[ART_SHIT_KICKERS].otyp = find_steel_toed_boots();
+	artilist[ART_SARAH_S_GRANNY_WEAR].otyp = find_marji_shoes();
+	artilist[ART_CLICHE_WEAR].otyp = find_mary_janes();
+
 #if 0
 	/* Fix up the gifts */
 	if (urole.gift1arti) {

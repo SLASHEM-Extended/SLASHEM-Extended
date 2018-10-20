@@ -507,6 +507,7 @@ long mask;	/* nonzero if resistance status should change by mask */
 			set_itimeout(&HeavyHallu, xtime);
 		}
 		if (xtime && (StatusTrapProblem || u.uprops[STATUS_FAILURE].extrinsic || have_statusstone()) ) set_itimeout(&HeavyHallu, xtime);
+		if (xtime && uarmc && uarmc->oartifact == ART_KANGAROO_SNORT) set_itimeout(&HeavyHallu, xtime);
 
 	    /* clearing temporary hallucination without toggling vision */
 	    if (!changed && !HHallucination && old && talk) {
