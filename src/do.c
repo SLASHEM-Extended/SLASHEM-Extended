@@ -38,7 +38,7 @@ int
 dodrop()
 {
 
-	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() ) {
+	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) ) {
 
 		pline("For some reason, you cannot drop items!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -1298,7 +1298,7 @@ int
 doddrop()
 {
 
-	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() ) {
+	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) ) {
 
 		pline("For some reason, you cannot drop items!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

@@ -88,6 +88,7 @@ boolean talk;
 		set_itimeout(&HeavyConfusion, xtime);
 	}
 	if (xtime && (StatusTrapProblem || u.uprops[STATUS_FAILURE].extrinsic || have_statusstone()) ) set_itimeout(&HeavyConfusion, xtime);
+	if (xtime && uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) set_itimeout(&HeavyConfusion, xtime);
 }
 
 void
@@ -276,6 +277,11 @@ int type;
 
 	if (xtime > 0L) {
 	    if (Sick_resistance) return;
+
+		if (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING && rn2(4)) {
+			pline("Your helmet prevents the sickness from affecting you!");
+			return;
+		}
 
 		/* Copper has fungicidal properties and therefore also sometimes kills the microorganisms that make you sick --Amy */
 		if (uarm && objects[uarm->otyp].oc_material == COPPER && !rn2(10)) {
@@ -4184,7 +4190,7 @@ peffects(otmp)
 		    else {
 			int typ = rn2(A_MAX);
 
-			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uarms && uarms->oartifact == ART_BONUS_HOLD) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
+			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uarms && uarms->oartifact == ART_BONUS_HOLD) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) && !(uarmf && uarmf->oartifact == ART_ELENETTES) ) {
 			    poisontell(typ);
 			    (void) adjattrib(typ,
 			    		Poison_resistance ? -1 : -rn1(4,3),
@@ -4288,7 +4294,7 @@ peffects(otmp)
 			adjattrib(rn2(A_MAX), -1, 0);
 		    }
 		    unkn++;
-		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
+		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) {
 		    nothing++;
 		} else {      /* If blessed, increase all; if not, try up to */
 		    int itmp; /* 6 times to find one which can be increased. */

@@ -346,6 +346,9 @@ STATIC_DCL boolean help_dir(CHAR_P,const char *);
 
 STATIC_PTR int domenusystem(void); /* WAC the menus*/
 
+STATIC_PTR int stefanjerepair(void);
+static NEARDATA schar delay;            /* moves left for stefanje repairs */
+
 #ifdef OVL1
 
 STATIC_VAR NEARDATA const char *names[] = { 0,
@@ -1441,7 +1444,17 @@ domonability()
 		zap_dig(FALSE); /* dig only one tile, just like in Elona */
 		return TRUE;
 	}
-	if (can_breathe(youmonst.data) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
+	else if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM && yn("Do you want to repair your 'Stefanje' sandals?")=='y') {
+		if (uarmf->spe >= 0) {
+			pline("Your sandals don't need repairs right now!");
+			return TRUE;
+		} else {
+			delay = (uarmf->spe < -10) ? (-((uarmf->spe + 51) * 3)) : (-((uarmf->spe + 23) * 10));
+			set_occupation(stefanjerepair, "repairing your 'Stefanje' sandals", 0);
+			return TRUE;
+		}
+	}
+	else if (can_breathe(youmonst.data) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
 	else if (attacktype(youmonst.data, AT_SPIT) && yn("Do you want to use your spit attack?")=='y' ) return dospit();
 	else if (youmonst.data->mlet == S_NYMPH && yn("Do you want to remove an iron ball?")=='y' ) return doremove();
 	else if (attacktype(youmonst.data, AT_GAZE) && yn("Do you want to use your gaze attack?")=='y' ) return dogaze();
@@ -1469,6 +1482,13 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "tender" : "soft", flags.female ? "sexy" : "ugly");
+
+			if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
+				healup((level_difficulty() + 5), 0, FALSE, FALSE);
+				morehungry(200);
+				return 1;
+			}
+
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
 			      useup(uarmf);
@@ -1486,6 +1506,16 @@ domonability()
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
+			}
+
+			if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+				pline("The farting gas almost asphyxiates you!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 			}
 
 			return 1;
@@ -1516,6 +1546,16 @@ domonability()
 				badeffect();
 			}
 
+			if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+				pline("The farting gas almost asphyxiates you!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+			}
+
 			return 1;
 		}
 	} else if ((youmonst.data->msound == MS_FART_LOUD || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_LOUD)) && yn("Do you want to fart?")=='y' ) {
@@ -1542,6 +1582,16 @@ domonability()
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
+			}
+
+			if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+				pline("The farting gas almost asphyxiates you!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 			}
 
 			return 1;
@@ -5921,7 +5971,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) )) you_are("very slow");
 	if ((guaranteed || !rn2(10)) && Reflecting) you_have("reflection");
 	if ((guaranteed || !rn2(10)) && Free_action) you_have("free action");
-	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) )) you_have("fixed abilities");
+	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) )) you_have("fixed abilities");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_VERSUS_STONE))
 		enl_msg("You ", "will be", "would have been", " depetrified");
 	if ((guaranteed || !rn2(10)) && Lifesaved)
@@ -9372,7 +9422,7 @@ int final;
 	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) ) dump(youwere, "very slow");
 	if (Reflecting) dump(youhad, "reflection");
 	if (Free_action) dump(youhad, "free action");
-	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) dump(youhad, "fixed abilities");
+	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) dump(youhad, "fixed abilities");
 	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
 		dump("  ", "You would have been depetrified");
 	if (Lifesaved)
@@ -12350,5 +12400,22 @@ char def;
 	return (*windowprocs.win_yn_function)(qbuf, resp, def);
 }
 #endif
+
+STATIC_PTR int
+stefanjerepair()
+{
+	if (delay) {
+		delay++;
+		return(1);
+	} else {
+		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM && (uarmf->spe < 0)) {
+			uarmf->spe++;
+			pline("Your 'Stefanje' sandals are surrounded by a cyan glow.");
+		} else {
+			pline("Somehow, your 'Stefanje' sandals are no longer there...");
+		}
+		return(0);
+	}
+}
 
 /*cmd.c*/

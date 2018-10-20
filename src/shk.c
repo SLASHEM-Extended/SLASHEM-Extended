@@ -2998,7 +2998,7 @@ xchar x, y;
 
 	/* get one case out of the way: nothing to sell, and no gold */
 	if(!isgold &&
-	   ((offer + gltmp) == 0L || sell_how == SELL_DONTSELL)) {
+	   ((offer + gltmp) == 0L || (sell_how == SELL_DONTSELL && !(uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) ) )) {
 		register boolean unpaid = (obj->unpaid ||
 				  (container && count_unpaid(obj->cobj)));
 

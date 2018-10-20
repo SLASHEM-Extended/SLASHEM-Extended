@@ -769,7 +769,7 @@ tele()
 #ifdef WIZARD
         (
 #endif
-        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
+        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
 	|| (u.usteed && mon_has_amulet(u.usteed))
 	)
 #ifdef WIZARD
@@ -820,7 +820,7 @@ teleX()
 	if (!Blinded) make_blinded(0L,FALSE);
 
 	if
-        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
+        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
 	|| (u.usteed && mon_has_amulet(u.usteed))
 	)
 	{
@@ -841,7 +841,7 @@ boolean confused;
 	}
 
 	if
-        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz)
+        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
 	|| (u.usteed && mon_has_amulet(u.usteed))
 	)
 	{
@@ -881,7 +881,7 @@ dotele()
 	    boolean castit = FALSE;
 	    register int sp_no = 0, energy = 0;
 
-	    if ((!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Race_if(PM_RODNEYAN) ? 1 : Role_if(PM_WIZARD) ? 8 : 12) && !can_teleport(youmonst.data))) && !(uarmh && uarmh->oartifact == ART_TRIP_TERRAIN)) {
+	    if ((!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Race_if(PM_RODNEYAN) ? 1 : Role_if(PM_WIZARD) ? 8 : 12) && !can_teleport(youmonst.data))) && !(uarmf && uarmf->oartifact == ART_HAWAIIAN_KAMEHAMEHA) && !(uarmh && uarmh->oartifact == ART_TRIP_TERRAIN)) {
 		/* Try to use teleport away spell. */
 		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion)
 		    for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
@@ -971,7 +971,7 @@ level_tele()
 	char buf[BUFSZ];
 	boolean force_dest = FALSE;
 
-	if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) )
+	if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) )
 #ifdef WIZARD
 						&& !wizard
 #endif

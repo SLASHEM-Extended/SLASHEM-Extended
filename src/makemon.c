@@ -14936,6 +14936,7 @@ register int	mmflags;
 	mtmp->sagesvisible = !rn2(10);
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
+	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
 
 	/* Everything that can hide under an object will now do so. --Amy */
       if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
@@ -17106,6 +17107,13 @@ loopback:
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && dmgtype(ptr, AD_SPC2) )) ct += 1;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && is_covetous(ptr) )) ct += 2;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(ptr))) ct += 5;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK && attackdamagetype(ptr, AT_BREA, AD_DISN) )) ct += 200;
+		if (ct > 0 && (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(ptr) && attacktype(ptr, AT_KICK) )) ct += 20;
+		if (ct > 0 && (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(ptr, AD_SUCK) )) ct += 50;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(ptr, AD_RUST) )) ct += 5;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(ptr, AD_CORR) )) ct += 5;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(ptr, AD_WTHR) )) ct += 5;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(ptr, AD_DCAY) )) ct += 5;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && cannot_be_tamed(ptr) )) ct += 1;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && is_shade(ptr) )) ct += 2;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && dmgtype(ptr, AD_RBRE) )) ct += 2;
@@ -17309,6 +17317,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_KURWA) && (ptr->msound == MS_SHOE))) ct += 5;
 		if (ct > 0 && (Role_if(PM_PROSTITUTE) && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (Role_if(PM_KURWA) && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(ptr, AT_CLAW) && (ptr->msound == MS_SQEEK))) ct += 30;
 		if (ct > 0 && (Role_if(PM_PROSTITUTE) && dmgtype(ptr, AD_SSEX))) ct += 20;
 		if (ct > 0 && (Role_if(PM_KURWA) && dmgtype(ptr, AD_SSEX))) ct += 20;
 		if (ct > 0 && (Role_if(PM_UNBELIEVER) && is_angbandmonster(ptr))) ct += 10;
@@ -17922,6 +17931,13 @@ int     spc;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[last], AD_SPC2) )) num += 1;
 		if ((Is_lawful_quest(&u.uz) && is_covetous(&mons[last]) )) num += 2;
 		if ((uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(&mons[last]) )) num += 5;
+		if ((uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK && attackdamagetype(&mons[last], AT_BREA, AD_DISN) )) num += 200;
+		if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(&mons[last]) && attacktype(&mons[last], AT_KICK) )) num += 20;
+		if ((uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(&mons[last], AD_SUCK) )) num += 50;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[last], AD_RUST) )) num += 5;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[last], AD_CORR) )) num += 5;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[last], AD_WTHR) )) num += 5;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[last], AD_DCAY) )) num += 5;
 		if ((Is_lawful_quest(&u.uz) && cannot_be_tamed(&mons[last]) )) num += 1;
 		if ((Is_lawful_quest(&u.uz) && is_shade(&mons[last]) )) num += 2;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[last], AD_RBRE) )) num += 2;
@@ -18096,6 +18112,7 @@ int     spc;
 		if ((Role_if(PM_KURWA) && (mons[last].msound == MS_SHOE))) num += 5;
 		if ((Role_if(PM_PROSTITUTE) && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((Role_if(PM_KURWA) && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
+		if ((uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(&mons[last], AT_CLAW) && (mons[last].msound == MS_SQEEK))) num += 30;
 		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[last], AD_SSEX))) num += 20;
 		if ((Role_if(PM_KURWA) && dmgtype(&mons[last], AD_SSEX))) num += 20;
 		if ((Role_if(PM_UNBELIEVER) && is_angbandmonster(&mons[last]))) num += 10;
@@ -18423,6 +18440,13 @@ int     spc;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[first], AD_SPC2) )) num -= 1;
 		if ((Is_lawful_quest(&u.uz) && is_covetous(&mons[first]) )) num -= 2;
 		if ((uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(&mons[first]) )) num -= 5;
+		if ((uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK && attackdamagetype(&mons[first], AT_BREA, AD_DISN) )) num -= 200;
+		if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(&mons[first]) && attacktype(&mons[first], AT_KICK) )) num -= 20;
+		if ((uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(&mons[first], AD_SUCK) )) num -= 50;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[first], AD_RUST) )) num -= 5;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[first], AD_CORR) )) num -= 5;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[first], AD_WTHR) )) num -= 5;
+		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[first], AD_DCAY) )) num -= 5;
 		if ((Is_lawful_quest(&u.uz) && cannot_be_tamed(&mons[first]) )) num -= 1;
 		if ((Is_lawful_quest(&u.uz) && is_shade(&mons[first]) )) num -= 2;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[first], AD_RBRE) )) num -= 2;
@@ -18597,6 +18621,7 @@ int     spc;
 		if ((Role_if(PM_KURWA) && (mons[first].msound == MS_SHOE))) num -= 5;
 		if ((Role_if(PM_PROSTITUTE) && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((Role_if(PM_KURWA) && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
+		if ((uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && attacktype(&mons[first], AT_CLAW) && (mons[first].msound == MS_SQEEK))) num -= 30;
 		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
 		if ((Role_if(PM_KURWA) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
 		if ((Role_if(PM_UNBELIEVER) && is_angbandmonster(&mons[first]))) num -= 10;
@@ -19601,6 +19626,13 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_CENTAUR && Race_if(PM_HUMANOID_CENTAUR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+
+	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && ptr->msound == MS_STENCH && rn2(100)) return TRUE;
+
+	if (ptr->mlet == S_UNICORN && uarmc && uarmc->oartifact == ART_KYS_YOURSELF && !rn2(4)) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_KYS_YOURSELF && is_female(ptr) && humanoid(ptr) && rn2(10)) return TRUE;
+
+	if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA && !rn2(100)) return TRUE;
 
 	if (ptr->msound == MS_SHOE && Race_if(PM_SHOE) && rn2(100) ) return TRUE;
 

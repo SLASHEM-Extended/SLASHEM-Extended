@@ -2324,6 +2324,12 @@ unsigned trflags;
 		else if (trap->launch_otyp < 31) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 
+		if (trap->launch_otyp < 12 && uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
+			healup((level_difficulty() + 5), 0, FALSE, FALSE);
+			if (!rn2(100)) deltrap(trap);
+			break;
+		}
+
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
 		      useup(uarmf);
@@ -2343,6 +2349,16 @@ unsigned trflags;
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
+		}
+
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The farting gas almost asphyxiates you!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 		}
 
 		if (!rn2(20)) increasesanity(1);
@@ -2696,6 +2712,11 @@ unsigned trflags;
 	    case SLP_GAS_TRAP:
 		seetrap(trap);
 
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The gas asphyxiates you!");
+			losehp(rnd(u.ulevel * 3), "suffocating in a gas trap", KILLED_BY);
+		}
+
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
@@ -2731,6 +2752,11 @@ unsigned trflags;
 	    case POISON_GAS_TRAP:
 		seetrap(trap);
 
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The gas asphyxiates you!");
+			losehp(rnd(u.ulevel * 3), "suffocating in a gas trap", KILLED_BY);
+		}
+
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
 		    pline("A cloud of gas surrounds you!");
 		    break;
@@ -2754,6 +2780,11 @@ unsigned trflags;
 
 	    case SLOW_GAS_TRAP:
 		seetrap(trap);
+
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The gas asphyxiates you!");
+			losehp(rnd(u.ulevel * 3), "suffocating in a gas trap", KILLED_BY);
+		}
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
 		    pline("A cloud of foggy gas shoots out at you!");
@@ -4455,7 +4486,7 @@ rerollX:
 				break;
 			}
 
-			if ( ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			if ( ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 				You_feel("disoriented for a moment.");
 				break;
 			}
@@ -5439,7 +5470,7 @@ rerollX:
 	    case WARP_ZONE:
 		deltrap(trap);
 
-		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 			pline("For some reason you resist the banishment!"); break;}
@@ -5460,7 +5491,7 @@ rerollX:
 	    case BACK_TO_START_TRAP:
 		deltrap(trap);
 
-		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 			pline("For some reason you resist the banishment!"); break;}
@@ -14001,6 +14032,11 @@ struct obj *box;        /* at the moment only for floor traps */
 
         pline("You stepped into a heap of shit!");
 
+		if (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT) {
+			pline("Now you smell even worse than before.");
+			(void) adjattrib(A_CHA, -1, TRUE);
+		}
+
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("But your footwear is unaffected.");
 			return;
@@ -16819,6 +16855,16 @@ fartingweb()
 		pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 		badeffect();
 		badeffect();
+	}
+
+	if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+		pline("The farting gas almost asphyxiates you!");
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 	}
 
 	if (!rn2(20)) increasesanity(1);

@@ -554,6 +554,8 @@ int x,y;
 		create = 1;
 	    if (objects[obj->otyp].oc_material == MINERAL && uarm && uarm->oartifact == ART_QUARRY && !create && !rn2(2))
 		create = 1;
+	    if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !create && !rn2(2))
+		create = 1;
 
 	    if (obj->otyp == DART_OF_DISINTEGRATION && rn2(10)) create = 0;
 

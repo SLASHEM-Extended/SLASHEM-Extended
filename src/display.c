@@ -166,8 +166,19 @@ vobj_at(x,y)
 int
 randomglyph()
 {
-	if (rn2(20)) return rnd(S_grayglyph);
-	else return (S_arrow_trap + rn2(S_timerun_trap + 1 - S_arrow_trap));
+	switch (rnd(5)) {
+
+		case 1:
+			return cmap_to_glyph(rnd(S_grayglyph));
+		case 2:
+			return cmap_to_glyph((S_arrow_trap + rn2(S_timerun_trap + 1 - S_arrow_trap)));
+		case 3:
+			return (GLYPH_MON_OFF + rn2(NUMMONS));
+		case 4:
+			return (GLYPH_OBJ_OFF + rn2(NUM_OBJECTS));
+		case 5:
+			return (GLYPH_WARNING_OFF + rn2(WARNCOUNT));
+	}
 }
 
 /*
@@ -424,7 +435,7 @@ unmap_object(x, y)
 	return;								\
 	}								\
 	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) { 	\
-	show_glyph(x, y, cmap_to_glyph(randomglyph()) );			\
+	show_glyph(x, y, randomglyph() );			\
 	return;								\
 	}								\
 	if (SpellColorBlue && !rn2(10)) { 	\
@@ -520,7 +531,7 @@ int memory_glyph(x, y)
 	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { return cmap_to_glyph(S_stone); }
 
 	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
-	return cmap_to_glyph(randomglyph());
+	return randomglyph();
 	}
 
 	if (SpellColorBlue && !rn2(10)) {
@@ -1063,7 +1074,7 @@ newsym(x,y)
 	}
 
 	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
-	show_glyph(x, y, cmap_to_glyph(randomglyph()));
+	show_glyph(x, y, randomglyph());
 	return;
 	}
 
@@ -1173,6 +1184,7 @@ newsym(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -1259,6 +1271,7 @@ newsym(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -1388,7 +1401,7 @@ newsymX(x,y)
 	}
 
 	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
-	show_glyph(x, y, cmap_to_glyph(randomglyph()));
+	show_glyph(x, y, randomglyph());
 	return;
 	}
 
@@ -1498,6 +1511,7 @@ newsymX(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -1584,6 +1598,7 @@ newsymX(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -2346,7 +2361,7 @@ show_glyph(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
 	return;
 
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
@@ -2425,7 +2440,7 @@ show_glyphX(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
 	return;
 
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )

@@ -2107,6 +2107,15 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		    } else {
 			    pline("%s's voice penetrates your mind from the distance: 'Oh it's just %s, I don't care, I'm on the phone'.", a_gname(), playeraliasname); /* thanks Lorskel, it's about time that I actually implement this --Amy */
 		    }
+		    if (altaralign == A_NONE && uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) {
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, MM_ANGRY);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, MM_ANGRY);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, MM_ANGRY);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, MM_ANGRY);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, MM_ANGRY);
+				pline("Orctown woes!");
+		    }
+
 		    u.ublesscnt = 0;  /* WAC You deserve this ... */
 		    exercise(A_WIS, TRUE);
 #ifdef NOARTIFACTWISH

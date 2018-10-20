@@ -7381,6 +7381,8 @@ u_init()
 
 	u.seesilverspell = 1;	/* if this is zero, the entire playing field will be black */
 
+	u.smexyberries = 0;	/* for a specific artifact */
+
 	u.pokelieresistances = 0;
 	u.pokeliegeneration = 0;
 	u.pokelieflags = 0;

@@ -1161,6 +1161,8 @@ struct you {
 
 	int manlerx, manlery;
 
+	int smexyberries;
+
 	boolean seesilverspell;
 
 };	/* end of `struct you' */

@@ -16665,7 +16665,7 @@ struct obj *obj;
 				case ART_LARISSA_S_GENTLE_SLEEP:
 					pline("Artifact specs: sleeping on a bed will stop time."); break;
 				case ART_STEFANJE_S_PROBLEM:
-					pline("Artifact specs: if someone kicks you while you wear them, you'll be stunned and occasionally suffer other bad effects, but you can also reduce a monster's maximum health by kicking them. They increase all of your stats by two points."); break;
+					pline("Artifact specs: if someone kicks you while you wear them, you'll be stunned and occasionally suffer other bad effects, but you can also reduce a monster's maximum health by kicking them. They increase all of your stats by two points. You can try to #monster to repair them if their enchantment is negative, which will gradually bring the enchantment closer to +0 again, but that takes a while and if a monster interrupts your repair attempts, you'll have to start over."); break;
 				case ART_MALENA_S_LADYNESS:
 					pline("Artifact specs: polymorphitis and polymorph control when worn, you won't break your stuff when polymorphing and the shoes themselves will always stay on when you polymorph."); break;
 				case ART_ELEVECULT:

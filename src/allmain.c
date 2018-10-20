@@ -17,6 +17,7 @@ STATIC_DCL void do_positionbar(void);
 #endif
 
 STATIC_PTR int unfaintX(void);
+STATIC_DCL void pumpsminigame(void);
 
 #define decrnknow(spell)	spl_book[spell].sp_know--
 #define spellid(spell)		spl_book[spell].sp_id
@@ -1062,7 +1063,13 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (uarmf && !rn2(6) && (moveamt > 1) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "balet poshnali")))
+				moveamt /= 2;
+
+			if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && (moveamt > 1) && !rn2(2))
 				moveamt /= 2;
 
 			/* nasty equipment generally makes you slower because it needs a guaranteed downside, even if the
@@ -1391,9 +1398,15 @@ moveloop()
 
 			/* fluctuating speed - sadly jonadab never fully disclosed how that bug worked in fourk... */
 		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone()) && moveamt > 0) {
-			moveamt *= ((moves % 50) + 1);
-			moveamt /= 12;
-			if (moveamt < 1) moveamt = 1;
+			if (uarmf && uarmf->oartifact == ART_JONADAB_S_BUG_MASTERY) {
+				moveamt *= ((moves % 100) + 1);
+				moveamt /= 12;	
+				if (moveamt < 1) moveamt = 1;
+			} else {
+				moveamt *= ((moves % 50) + 1);
+				moveamt /= 12;	
+				if (moveamt < 1) moveamt = 1;
+			}
 		    }
 
 		    youmonst.movement += moveamt;
@@ -1475,6 +1488,11 @@ moveloop()
 
 			}
 
+		}
+
+		if (uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) {
+			if (HStun > 10) HStun -= 5;
+			if (HDimmed > 10) HDimmed -= 5;
 		}
 
 		/* beauty charm: tries each turn to pacify monsters around you, but only humanoids or animals --Amy */
@@ -1887,6 +1905,77 @@ trapsdone:
 
 		}
 
+		if (uarmf && uarmf->oartifact == ART_ENDORPHIC_SCRATCHING && !rn2(4000)) {
+			pline("Your pumps challenge you to a fight!");
+			pumpsminigame();
+		}
+
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && !rn2(25000)) {
+			register struct monst *blonde;
+			blonde = makemon(&mons[PM_SWEET_BLONDE], u.ux, u.uy, 0);
+			if (blonde) {
+				tamedog(blonde, (struct obj *) 0, FALSE);
+				pline("Suddenly, a sweet blonde appears!");
+			}
+		}
+
+		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(1000)) {
+			acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);
+			if (acqo) pline("Someting appeared on the ground beneath you!");
+		}
+
+		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(10000)) {
+			bad_artifact();
+		}
+
+		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(10000)) {
+			register struct obj *crsobj, *crsXXX;
+			for(crsobj = invent; crsobj ; crsobj = crsobj->nobj) {
+				if (crsobj && Has_contents(crsobj)) {
+					for (crsXXX = crsobj->cobj; crsXXX; crsXXX = crsXXX->nobj) {
+						curse(crsXXX);
+						curse(crsXXX);
+						curse(crsXXX);
+						if (!rn2(20)) crsXXX->stckcurse = TRUE;
+					}
+				}
+			}
+
+			for(crsobj = invent; crsobj ; crsobj = crsobj->nobj) {
+				if (crsobj && !stack_too_big(crsobj)) {
+					curse(crsobj);
+					curse(crsobj);
+					curse(crsobj);
+					if (!rn2(20)) crsobj->stckcurse = TRUE;
+				}
+			}
+
+		}
+
+		if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && !rn2(100) && multi >= 0) {
+
+			You("faint from exertion.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA && !rn2(250) && !Vomiting) {
+			You_feel("like you're going to throw up.");
+		      make_vomiting(Vomiting+20, TRUE);
+			if (Sick && Sick < 100) set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		}
+
+		if (!rn2(200) && uarmf && uarmf->oartifact == ART_WUMSHIN) {
+			pline("Wumm! Your lovely boots kick you in the shins.");
+			losehp(rnd(u.ulevel), "being kicked by the bum bum boots", KILLED_BY);
+			make_stunned(HStun + rnd(10), TRUE);
+		}
+
+		if (uarmf && uarmf->oartifact == ART_SMEXY_BERRIES) u.smexyberries++;
+
 		if (uarmg && uarmg->oartifact == ART_VOLCANO_BOOM && !rn2(2000)) {
 			pline("Kaboom!");
 			explode(u.ux, u.uy, ZT_FIRE, rnd(u.ulevel * 5), WAND_CLASS, EXPL_FIERY);
@@ -2279,6 +2368,25 @@ trapsdone:
 
 		}
 
+		if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
+			pline("For some reason, you have to take a shit right now.");
+
+			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
+			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+			morehungry(rn2(1200)+600);
+
+			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
+				You("produce very erotic noises.");
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+			}
+
+			pline("But you were such a bitch and crapped on the lid!");
+			adjalign(-20);
+			u.ualign.sins++;
+			u.alignlim--;
+
+		}
+
 		if (FemaleTrapThai && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
 			pline("For some reason, you have to take a shit right now.");
 
@@ -2330,6 +2438,14 @@ trapsdone:
 
 		}
 
+		if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && !rn2(100)) {
+
+			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
+			badeffect();
+			stop_occupation();
+
+		}
+
 		if (FemaleTrapElif && !rn2(100)) {
 
 			switch (rnd(4)) {
@@ -2341,7 +2457,8 @@ trapsdone:
 					break;
 				case 2:
 					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
-					badeffect();
+					if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) healup((level_difficulty() + 5), 0, FALSE, FALSE);
+					else badeffect();
 					break;
 				case 3:
 					pline("Elif suddenly uses her very sharp-edged female fingernails and cuts your unprotected skin!");
@@ -7454,6 +7571,21 @@ newbossB:
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(1000) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
 		if (SpellColorBrown && !rn2(500) ) {
 			int tryct = 0;
 			int x, y;
@@ -9276,7 +9408,7 @@ newboss:
 
 		}
 
-		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
+		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
 			You("suddenly have to take a shit!");
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {
@@ -10111,7 +10243,7 @@ newboss:
 
 			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xitoy plash") ) ) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					break;
@@ -10138,7 +10270,7 @@ newboss:
 
 			if (!rn2(10000) && RngeChina) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					break;
@@ -10165,7 +10297,7 @@ newboss:
 
 			if (!rn2(10000) && uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					break;
@@ -10295,7 +10427,7 @@ newboss:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
-				if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
 				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -10319,7 +10451,7 @@ newboss:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
-				if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
 				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -10557,11 +10689,17 @@ newboss:
 		}
 	}
 
-	if ((BankTrapEffect || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || (uleft && uleft->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uright && uright->oartifact == ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
 
 		u.bankcashamount += u.ugold;
+
+		if (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) {
+			adjalign(u.ugold / 100);
+			if (u.ugold > 999) u.alignlim += (u.ugold / 1000);
+		}
+
 		u.ugold = 0;
 		Your("money was stored, thanks.");
 		if (u.bankcashamount > u.bankcashlimit) {
@@ -10707,7 +10845,7 @@ newboss:
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
-		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
+		if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 
@@ -13492,6 +13630,12 @@ int x, y;
 
 	return FALSE;
 
+}
+
+STATIC_OVL void
+pumpsminigame()
+{
+	pline("The pumps minigame has not yet been implemented. Sorry.");
 }
 
 #endif /* OVLB */

@@ -1647,6 +1647,13 @@ Helmet_on()
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
     }
 
+    if (uarmh && uarmh->oartifact == ART_NYPHERISBANE) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Whoops, the gas mask curses itself.");
+		}
+    }
+
     if (uarmh && uarmh->oartifact == ART_DARK_NADIR) {
 		if (!uarmh->cursed) {
 		    if (Blind)
@@ -2871,6 +2878,16 @@ Amulet_on()
 		break;
 	case AMULET_OF_STRANGULATION:
 		makeknown(AMULET_OF_STRANGULATION);
+
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			u.youaredead = 1;
+			pline("You suffocate."); /* magical breathing doesn't help --Amy */
+			killer = "amulet of strangulation";
+			killer_format = KILLED_BY;
+			done(CHOKING);
+			u.youaredead = 0;
+		}
+
 		pline("It constricts your throat!");
 		Strangled = 6;
 		break;
@@ -3787,6 +3804,15 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = obj->prmcurse = 1;
 		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
+    }
+
+    if (obj->oartifact == ART_FIRE_NIGHT) {
+		if (!tech_known(T_BEAUTY_CHARM) && u.ugold >= 10000) {
+		    	learntech(T_BEAUTY_CHARM, FROMOUTSIDE, 1);
+			u.ugold -= 10000;
+		    	pline("You learn the beauty charm technique for 10000 zorkmids!");
+		}
+
     }
 
     if (obj->oartifact == ART_ABSOLUTE_AUTOCURSE) {
@@ -5166,6 +5192,18 @@ find_ac()
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) uac -= 1;
+
+	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
+		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
+			if (uarm && is_metallic(uarm)) uac -= 2;
+			if (uarmu && is_metallic(uarmu)) uac -= 2;
+			if (uarmc && is_metallic(uarmc)) uac -= 2;
+			if (uarmh && is_metallic(uarmh)) uac -= 2;
+			if (uarmf && is_metallic(uarmf)) uac -= 2;
+			if (uarms && is_metallic(uarms)) uac -= 2;
+			if (uarmg && is_metallic(uarmg)) uac -= 2;
+		}
+	}
 
 	if (Numbed) uac += 5;
 

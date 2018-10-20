@@ -3904,6 +3904,7 @@ secureidchoice:
 				if (uarmf) curse(uarmf);
 			}
 			if (uammo && ammotype == 1 && uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) uammo->quan *= 2;
+			if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
 			if (ammotype == 5) uammo->quan *= 4;
 			if (ammotype == 4) uammo->quan /= 10;
 			if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
@@ -3917,6 +3918,7 @@ secureidchoice:
 			uammo = mksobj(ROCKET, TRUE, FALSE);
 			if (uammo) {
 				uammo->quan = techlevX(tech_no);
+				if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
 				uammo->quan /= 10;
 				if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
 				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;

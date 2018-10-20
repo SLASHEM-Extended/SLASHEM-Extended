@@ -899,9 +899,9 @@ struct obj *obj;
 			You(look_str, hcolor((char *)0));
 		    else if (Sick)
 			You(look_str, "peaked");
-		    else if (u.uhs >= WEAK && !RngeAnorexia && !Role_if(PM_TOPMODEL) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))  )
+		    else if (u.uhs >= WEAK && !RngeAnorexia && !Role_if(PM_TOPMODEL) && !(uarmc && uarmc->oartifact == ART_INA_S_SORROW) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))  )
 			You(look_str, "undernourished");
-		    else if (u.uhs >= WEAK && (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))) )
+		    else if (u.uhs >= WEAK && (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))) )
 			You(look_str, "beautiful and skinny");
 		    else You("look as %s as ever.",
 				ACURR(A_CHA) > 14 ?
@@ -2278,7 +2278,7 @@ degradeagain:
 
 	if (Blinded > (long)u.ucreamed) prop_trouble(BLINDED);
 	if (HHallucination) prop_trouble(HALLUC);
-	if (Vomiting) prop_trouble(VOMITING);
+	if (Vomiting && !(uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) ) prop_trouble(VOMITING);
 	if (HConfusion) prop_trouble(CONFUSION);
 	if (HStun) prop_trouble(STUNNED); /* trying to prevent players from fixing everything */
 	if (HNumbed) prop_trouble(NUMBED);
@@ -5013,7 +5013,7 @@ doapply()
 					(long)(u.ucreamed+1) : 0L, TRUE);
 			    else if (HHallucination)
 				make_hallucinated(0L, TRUE, 0L);
-			    else if (Vomiting) make_vomiting(0L, TRUE);
+			    else if (Vomiting && !(uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA)) make_vomiting(0L, TRUE);
 			    else if (HConfusion) make_confused(0L, TRUE);
 			    else if (HStun) make_stunned(0L, TRUE);
 			    else if (HNumbed) make_numbed(0L, TRUE);

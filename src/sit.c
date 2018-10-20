@@ -362,6 +362,11 @@ dosit()
 			u.bedsleeping = moves + 100;
 			fall_asleep(-rnd(20), TRUE);
 
+			if (uarmf && uarmf->oartifact == ART_LARISSA_S_GENTLE_SLEEP) {
+				pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+				TimeStopped += rnd(30);
+			}
+
 		}
 
 	} else if(IS_THRONE(typ)) {

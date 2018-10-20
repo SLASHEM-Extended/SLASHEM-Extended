@@ -177,12 +177,18 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
 	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT) dmg += 5;
+	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) dmg += 10;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "steel toed boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "stal'nyye kosolapyy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "po'latdan yasalgan poyafzal")) ) dmg++;
+
+	if (uarmf && uarmf->oartifact == ART_HEADCRUNCH && has_head(mon->data) ) dmg += 10;
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS && !rn2(20)) dmg += 10000; /* instant death */
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) dmg += rnd(10);
+
+	if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_ELENETTES) dmg += 2;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qurol engil etigi") )) {
 		dmg += u.ulevel;
@@ -191,6 +197,8 @@ register boolean clumsy;
 		pline("Using such a dangerous pair of boots without permission is very sinful.");
 	}
 
+	if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) dmg += 10;
+
 	if (uarmf && uarmf->oartifact == ART_MADELEINE_S_GIRL_FOOTSTEPS) adjalign(1);
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") )) dmg *= 2;
@@ -198,12 +206,13 @@ register boolean clumsy;
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
 
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
 
 	/* kicking a dragon or an elephant will not harm it */
-	if (thick_skinned(mon->data) && dmg) dmg = 1;
+	if (thick_skinned(mon->data) && dmg && !(uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) ) dmg = 1;
 	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) && dmg) dmg = 1;
 
 	/* high heels are the elder priest's kryptonite; he's thick-skinned so this must come after the above line */
@@ -212,6 +221,11 @@ register boolean clumsy;
 		dmg += 50;
 		pline("Your high heels severely wound the elder priest's tentacles!");
 
+	}
+
+	if (uarmh && uarmh->oartifact == ART_NYPHERISBANE && (mon->data->mlet == S_SNAKE || mon->data->mlet == S_NAGA) ) {
+		You("totally stomp that stupid snake.");
+		dmg += 100;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_LENG_S_KRYPTONITE && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) {
@@ -412,6 +426,12 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM && mon->mhpmax > 1) {
+		pline("Your 'Stefanje' sandals stomp %s with their lovely heels.", mon_nam(mon));
+		mon->mhpmax--;
+		if (mon->mhp > mon->mhpmax) mon->mhp--;
+	}
+
 	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) {
 
 		if (!mon->mstun || !mon->mconf) {
@@ -421,7 +441,7 @@ register boolean clumsy;
 
 	}
 
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && !rn2(3)) {
+	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && !rn2(3) && mon->mcanmove) {
 		pline("Your velcro lashes severely hurt %s.", mon_nam(mon) );
 		mon->mstun = TRUE;
 		mon->mcanmove = 0;
@@ -430,7 +450,15 @@ register boolean clumsy;
 
 	}
 
-	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT && !rn2(10) ) {
+	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && !rn2(4)) {
+		pline("%s is paralyzed by your powerful kick!", Monnam(mon));
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(10);
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
+	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT && !rn2(10) && mon->mcanmove ) {
 
 		pline("You place an incredibly strong kick at %s's body, who staggers and can't fight back for now.", mon_nam(mon) );
 		mon->mstun = TRUE;
@@ -448,7 +476,7 @@ register boolean clumsy;
 
 	}
 
-	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH && mon->mcanmove) {
 
 		pline("You smash %s's shins with a powerful kick.", mon_nam(mon) );
 		mon->mcanmove = 0;
@@ -457,7 +485,7 @@ register boolean clumsy;
 
 	}
 
-	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !rn2(4) ) {
+	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !rn2(4) && mon->mcanmove ) {
 
 		pline("Your very elegant snakeskin boots stop %s in its tracks.", mon_nam(mon) );
 		if (Hallucination) pline("You wonder if the PETA activists saw that.");
@@ -471,7 +499,7 @@ register boolean clumsy;
 
 		pline("As you drive the stiletto heel up against %s's nuts, his %s gets a shocked expression. You kicked his nuts in such a way that they're forced out of their original position, and several internal blood vessels are lacerated in the process. He falls over unconscious and most certainly won't get up for a long while!", mon_nam(mon), mbodypart(mon, FACE) );
 		mon->mcanmove = 0;
-		mon->mfrozen = rnz(100);
+		mon->mfrozen += rnz(100);
 		mon->mstrategy &= ~STRAT_WAITFORU;
 
 		stopsingletechnique(T_ASIAN_KICK);
@@ -512,7 +540,7 @@ register boolean clumsy;
 		if (!resist(mon, TOOL_CLASS, 0, NOTELL)) {
 
 			sleep_monst(mon, rnd(10), -1);
-			if (resists_sleep(mon) && !rn2(10)) {
+			if (resists_sleep(mon) && !rn2(10) && mon->mcanmove) {
 				mon->mcanmove = 0;
 				mon->mfrozen = rnd(10);
 			}
@@ -524,11 +552,31 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_WUMSHIN && rn2(4) && mon->mcanmove) {
+
+		pline("Wumm! You kick %s in the shins with your bum bum boots.", mon_nam(mon));
+		mon->mcanmove = 0;
+		mon->mfrozen = 1;
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {
 		pline("Your very lovely female 'Vera' sneakers clamp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
 		if (!resist(mon, RING_CLASS, 0, NOTELL)) {
 			mon_adjust_speed(mon, -1, (struct obj *)0 );
 			m_dowear(mon, FALSE); /* might want speed boots */
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SHIT_KICKERS) {
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !mon->mconf) {
+			mon->mconf = TRUE;
+			pline("You kick the shit out of %s!", mon_nam(mon));
+		}
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !mon->mstun) {
+			mon->mstun = TRUE;
+			pline("You absolutely kick %s in the ass!", mon_nam(mon));
 		}
 	}
 
@@ -670,7 +718,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -689,6 +737,7 @@ register xchar x, y;
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
 

@@ -3307,7 +3307,7 @@ register struct obj *wand;
 		return 0;
 	if(wand->spe == 0)
 		You("wrest one last charge from the worn-out wand.");
-	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
+	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && !(uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !(wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
 
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 
@@ -6019,7 +6019,7 @@ boolean ordinary;
 		    break;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 			 pline("For some reason you resist the banishment!"); break;}
 
@@ -6214,7 +6214,7 @@ struct obj *obj;	/* wand or spell */
 
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
-			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+			if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 			pline("For some reason you resist the banishment!"); break;}
 
@@ -6657,6 +6657,10 @@ struct obj *obj;
 			beamrange *= 3;
 			beamrange /= 2;
 		}
+		if (uarmg && uarmg->oartifact == ART_LONGEST_RAY) {
+			beamrange *= 3;
+			beamrange /= 2;
+		}
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 
@@ -6683,6 +6687,10 @@ struct obj *obj;
 	    } else {
 		int beamrange = (EnglandMode ? rn1(10,10) : rn1(8,6));
 		if (tech_inuse(T_OVER_RAY)) {
+			beamrange *= 3;
+			beamrange /= 2;
+		}
+		if (uarmg && uarmg->oartifact == ART_LONGEST_RAY) {
 			beamrange *= 3;
 			beamrange /= 2;
 		}
@@ -8069,6 +8077,10 @@ register int dx,dy;
 	range *= 3;
 	range /= 2;
     }
+    if (uarmg && uarmg->oartifact == ART_LONGEST_RAY) {
+	range *= 3;
+	range /= 2;
+    }
 
     if(dx == 0 && dy == 0) range = 1;
     save_bhitpos = bhitpos;
@@ -8469,6 +8481,7 @@ sigilcontroldirection:
 	    if(!dx || !dy || !rn2(20)) {
 
 		if (tech_inuse(T_OVER_RAY) && !rn2(2) && (!dx || !dy)) range--;
+		if (uarmg && uarmg->oartifact == ART_LONGEST_RAY && !rn2(2) && (!dx || !dy)) range--;
 
 		dx = -dx;
 		dy = -dy;
@@ -8481,6 +8494,12 @@ sigilcontroldirection:
 	    } else {
 
 		if (tech_inuse(T_OVER_RAY) && !rn2(2)) {
+			range++;
+			if (!rn2(10)) range++;
+			if (!rn2(50)) range += 5;
+			if (!rn2(500)) range += 25;
+		}
+		if (uarmg && uarmg->oartifact == ART_LONGEST_RAY && !rn2(2)) {
 			range++;
 			if (!rn2(10)) range++;
 			if (!rn2(50)) range += 5;

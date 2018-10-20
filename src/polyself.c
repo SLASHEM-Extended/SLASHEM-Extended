@@ -996,7 +996,7 @@ break_armor()
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !armorkeep) {
-	    if(otmp->oartifact || (otmp->fakeartifact && rn2(2)) ) {
+	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
 		(void) Armor_gone();
@@ -1021,7 +1021,7 @@ break_armor()
 	}
 	}
 	if (!cloakkeep && (otmp = uarmc) != 0) {
-	    if(otmp->oartifact || (otmp->fakeartifact && rn2(2)) ) {
+	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
@@ -1044,7 +1044,7 @@ break_armor()
 	}
 	if (!shirtkeep && (otmp = uarmu) != 0) {
 
-	    if(otmp->oartifact || (otmp->fakeartifact && rn2(2)) ) {
+	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		Your("shirt falls off!");
 		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
 		dropx(otmp);
@@ -1103,10 +1103,10 @@ break_armor()
 	}
     }
     if ((otmp = uarmh) != 0 && !uarmh->stckcurse && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
-	    if (!otmp->cursed){
+	    if (!otmp->cursed) {
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();
-	    } else {
+	    } else if (!(uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS)) {
 	      Your("tentacles break through %s.", the(xname(otmp)));
 	      useup(uarmh);
 	    }
@@ -1173,7 +1173,7 @@ helmetdone:
 
 	}
 
-	if ((otmp = uarmf) != 0 && !uarmf->stckcurse) {
+	if ((otmp = uarmf) != 0 && !(uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) && !uarmf->stckcurse) {
 	    if (donning(otmp)) cancel_don();
 	    if (is_whirly(youmonst.data))
 		Your("boots fall away!");

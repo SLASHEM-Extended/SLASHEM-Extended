@@ -1392,7 +1392,7 @@ struct obj *obj;
     int i, shp_indx = ESHK(shkp)->shoptype - SHOPBASE;
     const struct shclass *shp = &shtypes[shp_indx];
 
-    if (shp->symb == RANDOM_CLASS) return TRUE;
+    if (shp->symb == RANDOM_CLASS || (uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) ) return TRUE;
     else for (i = 0; i < SIZE(shtypes[0].iprobs) && shp->iprobs[i].iprob; i++)
 		if (shp->iprobs[i].itype < 0 ?
 			shp->iprobs[i].itype == - obj->otyp :

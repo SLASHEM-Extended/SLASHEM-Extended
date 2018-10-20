@@ -203,7 +203,7 @@ struct monst *mtmp;
 	scmresists = rn2(100) < resist_percentage;
 
 	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(2)) && !scmresists)
-			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone()) )
+			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
 			 || (is_vampire(mtmp->data)
 			     && IS_ALTAR(levl[x][y].typ)));
 }
@@ -560,6 +560,7 @@ register struct monst *mtmp;
 
 	if (TimeStopped) return 0;	/* time stop completely prevents monsters from doing anything --Amy */
 	if (u.stasistime) return 0;	/* stasis does the same --Amy */
+	if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(3)) return 0;
 
 	if (mtmp->mstrategy & STRAT_ARRIVE) {
 	    int res = m_arrival(mtmp);
@@ -699,6 +700,16 @@ register struct monst *mtmp;
 			badeffect();
 		}
 
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The farting gas almost asphyxiates you!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+		}
+
 		if (!rn2(20)) increasesanity(1);
 
 		while (FemaleTrapElena && !rn2(3)) {
@@ -723,6 +734,16 @@ register struct monst *mtmp;
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
+			}
+
+			if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+				pline("The farting gas almost asphyxiates you!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+				losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 			}
 
 			if (!rn2(20)) increasesanity(1);
@@ -1191,6 +1212,8 @@ register struct monst *mtmp;
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
 
+			if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) goto convertdone;
+
 			You_feel("less faithful!");
 
 			if (u.ualign.record < -20 && !rn2(100) && (mtmp->data->maligntyp != u.ualign.type) ) { /* You have been converted! */
@@ -1228,6 +1251,8 @@ register struct monst *mtmp;
 		}
 
 	}
+
+convertdone:
 
 	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(15)) {
 
@@ -2040,6 +2065,8 @@ not_special:
 	}
 
 	if (appr == 1 && !rn2(5) && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflaj to'n") )) ) appr = 0;
+
+	if (appr == 1 && uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(10)) appr = 0;
 
 	if (appr == 1 && !rn2(5) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
 

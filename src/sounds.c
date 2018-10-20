@@ -1954,7 +1954,7 @@ register struct monst *mtmp;
 
 				mtmp->mcan = TRUE;
 
-				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 				pline("For some reason you resist the banishment!"); break;}
 
@@ -2121,6 +2121,8 @@ register struct monst *mtmp;
 			verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 
 		}
+
+		if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) break;
 
 		if (u.ualign.record < -20 && !rn2(100) && (mtmp->data->maligntyp != u.ualign.type) ) { /* You have been converted! */
 
@@ -2951,6 +2953,30 @@ dochat()
         }
         return 0;
     }
+
+    if (u.ugold >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && mtmp->data->msound == MS_STENCH) {
+
+		if (yn("Hire this pretty lady for 1000 dollars") == 'y') {
+
+			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			u.ugold -= 1000;
+			return 1;
+
+		}
+
+    }
+
+    if (u.smexyberries >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmf && uarmf->oartifact == ART_SMEXY_BERRIES && mtmp->female && mtmp->data->geno & G_UNIQ && (mtmp->data->msound == MS_BOSS || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD) ) {
+
+		if (yn("This lady wants to join your team. Do you want to tame her?") == 'y') {
+
+		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+
+		return 1;
+
+		}
+
+	}
 
     if ( (Role_if(PM_FEAT_MASTER) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX)) && mtmp->data->mlet == S_VORTEX && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 

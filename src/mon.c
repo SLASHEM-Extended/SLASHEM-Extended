@@ -1738,6 +1738,8 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
+	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
+
     if (mmove && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) mmove += 1;
 
 	if (uarmh && mmove && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) mmove += 1;
@@ -3499,6 +3501,33 @@ struct monst *mtmp;
 		if (visible) {
 			pline("But wait...");
 			pline("%s lifesaves!", Monnam(mtmp));
+			if (attacktype(mtmp->data, AT_EXPL)
+			    || attacktype(mtmp->data, AT_BOOM))
+				pline("%s reconstitutes!", Monnam(mtmp));
+			else
+				pline("%s looks much better!", Monnam(mtmp));
+		}
+		mtmp->mcanmove = 1;
+		mtmp->masleep = 0;
+		mtmp->mfrozen = 0;
+		if (mtmp->mtame && !mtmp->isminion) {
+			wary_dog(mtmp, FALSE);
+		}
+		if (mtmp->mhpmax <= 0) mtmp->mhpmax = 10;
+		mtmp->mhp = mtmp->mhpmax;
+		if (mvitals[monsndx(mtmp->data)].mvflags & G_GENOD) {
+			if (visible)
+			    pline("Unfortunately %s is still genocided...",
+				mon_nam(mtmp));
+		} else
+			return;
+
+	} else if (!rn2(2) && !mtmp->mpeaceful && mtmp->data->mlet == S_VAMPIRE && uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN ) {
+		visible = u.uswallow && u.ustuck == mtmp ||
+			cansee(mtmp->mx, mtmp->my);
+		if (visible) {
+			pline("But wait...");
+			pline("%s laughs all the time, and is back at full health instead of dying!", Monnam(mtmp));
 			if (attacktype(mtmp->data, AT_EXPL)
 			    || attacktype(mtmp->data, AT_BOOM))
 				pline("%s reconstitutes!", Monnam(mtmp));
@@ -5868,6 +5897,12 @@ register struct monst *mtmp;
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+
+		if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
+			healup((level_difficulty() + 5), 0, FALSE, FALSE);
+			goto sarahdone;
+		}
+
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
 		      useup(uarmf);
@@ -5890,8 +5925,19 @@ register struct monst *mtmp;
 			badeffect();
 		}
 
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The farting gas almost asphyxiates you!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+		}
+
 		if (!rn2(20)) increasesanity(1);
     }
+sarahdone:
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
@@ -5913,6 +5959,16 @@ register struct monst *mtmp;
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
+		}
+
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The farting gas almost asphyxiates you!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 		}
 
 		if (!rn2(20)) increasesanity(1);
@@ -5939,6 +5995,16 @@ register struct monst *mtmp;
 			badeffect();
 		}
 
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The farting gas almost asphyxiates you!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+		}
+
 		if (!rn2(20)) increasesanity(1);
     }
     if (mtmp->egotype_farter) {
@@ -5960,6 +6026,16 @@ register struct monst *mtmp;
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
+		}
+
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The farting gas almost asphyxiates you!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+			losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
 		}
 
 		if (!rn2(20)) increasesanity(1);
@@ -6001,6 +6077,52 @@ register struct monst *mtmp;
 	if(!mtmp->mpeaceful) return;
 	if(mtmp->mtame) return;
 	mtmp->mpeaceful = 0;
+
+	if (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) {
+		{
+		int effectradius = 20;
+	      register struct monst *mtmp2;
+		struct edog* edog;
+
+		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+			if (rn2(3) && distu(mtmp2->mx,mtmp2->my) < effectradius && (mtmp != mtmp2) ) {
+				if (mtmp2->mtame) {
+					edog = (mtmp2->isminion) ? 0 : EDOG(mtmp2);
+					if (mtmp2->mtame <= rnd(21) || (edog && edog->abuse >= rn2(6) )) {
+
+						int untamingchance = 10;
+
+						if (!(PlayerCannotUseSkills)) {
+							switch (P_SKILL(P_PETKEEPING)) {
+								default: untamingchance = 10; break;
+								case P_BASIC: untamingchance = 9; break;
+								case P_SKILLED: untamingchance = 8; break;
+								case P_EXPERT: untamingchance = 7; break;
+								case P_MASTER: untamingchance = 6; break;
+								case P_GRAND_MASTER: untamingchance = 5; break;
+								case P_SUPREME_MASTER: untamingchance = 4; break;
+							}
+						}
+
+						if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
+
+							mtmp2->mtame = mtmp2->mpeaceful = 0;
+							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+
+						}
+					}
+				} else if (mtmp2->mpeaceful) {
+					mtmp2->mpeaceful = 0;
+				} else {
+					if (!rn2(5)) mtmp2->mfrenzied = 1;
+					mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
+				}
+			}
+		}
+
+		}
+
+	}
 
 	if ((mtmp->isshk || mtmp->ispriest || mtmp->isgd || (mdat == &mons[PM_WATCHMAN]) || (mdat == &mons[PM_WATCH_CAPTAIN]) || (mdat == &mons[PM_WATCH_LEADER]) || (mdat == &mons[PM_WATCH_LIEUTENANT])) && !rn2(20)) {
 
