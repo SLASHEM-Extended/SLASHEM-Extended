@@ -788,7 +788,7 @@ boolean existingagain;	/* if TRUE, existing ones can be generated again */
 		if (hostile)
 		    continue;
 		/* Amy evil patch change: remove guaranteed sacrifice gifts because we want variety. */
-		if (by_align && !rn2(issoviet ? 2 : 5) && Role_if(a->role))
+		if (by_align && !rn2(issoviet ? 2 : 5) && Role_if(a->role) && !artiexist[m])
 		/* Now, you're still more likely than usual to get artifacts that are aligned with your role, but they are
 		 * by no means guaranteed. Instead, you're supposed to use whatever you get now. --Amy */
 		    goto make_artif;	/* 'a' points to the desired one */
