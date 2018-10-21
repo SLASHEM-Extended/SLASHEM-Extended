@@ -1165,6 +1165,8 @@ struct you {
 
 	boolean seesilverspell;
 
+	boolean polyprotected;
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

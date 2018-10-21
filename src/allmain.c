@@ -188,6 +188,7 @@ moveloop()
 			u.comboactive = u.combostrike = 0;
 		}
 
+		u.polyprotected = 0;
 		u.aggravation = 0;
 		u.heavyaggravation = 0;
 		/* note by Amy: It is not a bug that we're setting this variable to zero regardless of whether you currently

@@ -3309,7 +3309,9 @@ newegomon:
 			case 4:
 				if (!Unchanging) {
 					You_feel("a change coming over you.");
+					if (moves < 1000) u.polyprotected = TRUE;
 					polyself(FALSE);
+					u.polyprotected = FALSE;
 				}
 				break;
 
@@ -4841,14 +4843,20 @@ rerollX:
 			    case 1:
 				if (!Unchanging && !Antimagic) {
 					You("undergo a freakish metamorphosis!");
-				      polyself(FALSE);
+					if (moves < 1000) u.polyprotected = TRUE;
+					polyself(FALSE);
+					u.polyprotected = FALSE;
 				}
 				break;
 			    case 2:
 				You("need reboot.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
-				else polyself(FALSE);
+				else {
+					if (moves < 1000) u.polyprotected = TRUE;
+					polyself(FALSE);
+					u.polyprotected = FALSE;
+				}
 				break;
 			    case 3: case 4:
 				if(!rn2(4) && u.ulycn == NON_PM &&
@@ -6199,7 +6207,9 @@ madnesseffect:
 		    deltrap(trap);	/* delete trap before polymorph */
 		    newsym(u.ux,u.uy);	/* get rid of trap symbol */
 		    You_feel("a change coming over you.");
-		    polyself(FALSE);
+			if (moves < 1000) u.polyprotected = TRUE;
+			polyself(FALSE);
+			u.polyprotected = FALSE;
 		}
 		break;
 	    }
@@ -6225,7 +6235,9 @@ madnesseffect:
 				u.wormpolymorph = rn2(NUMMONS);
 			} while(( (notake(&mons[u.wormpolymorph]) && rn2(4) ) || ((mons[u.wormpolymorph].mlet == S_BAT) && rn2(2)) || ((mons[u.wormpolymorph].mlet == S_EYE) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 1) && rn2(4) ) || ((mons[u.wormpolymorph].mmove == 2) && rn2(3) ) || ((mons[u.wormpolymorph].mmove == 3) && rn2(2) ) || ((mons[u.wormpolymorph].mmove == 4) && !rn2(3) ) || ( (mons[u.wormpolymorph].mlevel < 10) && ((mons[u.wormpolymorph].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[u.wormpolymorph]) && rn2(2) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_nonmoving(&mons[u.wormpolymorph]) && rn2(20) ) || ( uncommon2(&mons[u.wormpolymorph]) && !rn2(4) ) || ( uncommon3(&mons[u.wormpolymorph]) && !rn2(3) ) || ( uncommon5(&mons[u.wormpolymorph]) && !rn2(2) ) || ( uncommon7(&mons[u.wormpolymorph]) && rn2(3) ) || ( uncommon10(&mons[u.wormpolymorph]) && rn2(5) ) || ( is_eel(&mons[u.wormpolymorph]) && rn2(20) ) ) );
 
-		    polyself(FALSE);
+			if (moves < 1000) u.polyprotected = TRUE;
+			polyself(FALSE);
+			u.polyprotected = FALSE;
 		}
 
 		break;
@@ -6249,7 +6261,9 @@ madnesseffect:
 		    You_feel("a change coming over you.");
 			u.wormpolymorph = (NUMMONS + rnd(MISSINGNORANGE));
 			u.ughmemory = 1;
-		    polyself(FALSE);
+			if (moves < 1000) u.polyprotected = TRUE;
+			polyself(FALSE);
+			u.polyprotected = FALSE;
 		}
 
 		break;

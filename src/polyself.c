@@ -257,7 +257,13 @@ newman()
 		if (u.uenmax <= u.ulevel) u.uenmax = u.ulevel;
 	}
 	if (u.uhp <= 0 || u.uhpmax <= 0) {
-		if (Polymorph_control || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_MISSINGNO) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) || Race_if(PM_UNGENOMOLD) ) {
+
+		/* Amy edit: We allow polymorph traps and such stuff to generate as early as dungeon level 1. This can
+		 * result in the player's attributes being redistributed, including possibly death, so we'll be nice and
+		 * prevent such a death if the turn counter is below 1000. After all, we fixed that stupid drain for gain
+		 * exploit and therefore this should not be abusable. If it is, I'll devise another fix :P */
+
+		if (Polymorph_control || Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_MISSINGNO) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) || Race_if(PM_UNGENOMOLD) || u.polyprotected ) {
 		    if (u.uhp <= 0) u.uhp = 1;
 		    if (u.uhpmax <= 0) u.uhpmax = 1;
 		} else {
@@ -311,9 +317,11 @@ boolean forcecontrol;
 	/* [Tom] I made the chance of dying from Con check only possible for
 		 really weak people (it was out of 20) */
 
+	/* Amy edit: early polymorph traps shouldn't kill you by system shock either because that would suck */
+
 	if(!Polymorph_control && !(tech_inuse(T_POLYFORM) || tech_inuse(T_FUNGOISM) || tech_inuse(T_BECOME_UNDEAD)) && !u.wormpolymorph && !forcecontrol && !draconian && !iswere &&
 			!isvamp && !Race_if(PM_DOPPELGANGER) && !Role_if(PM_SHAPESHIFTER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
-		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) ) {
+		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !u.polyprotected && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) ) {
 
 		You("%s", shudder_for_moment);
 		losehp(rnd(30), "system shock", KILLED_BY_AN);
