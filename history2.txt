@@ -1,5 +1,11 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.8 - October 2018
+- Gods can now also give artifact gifts to player characters whose level is below 3.
+- Adjusted calculations for the fluctuating speed trap to make it nastier.
+- Prevent players from getting role-specific sacrifice gifts too often.
+- Early on, the player is protected from bad polymorph results if the polymorph was due to a trap.
+
 2.3.7 - October 2018
 - Fixed a bug that caused certain musical instruments to be tonal when they shouldn't be.
 - Pills can occasionally cause a sex change.
