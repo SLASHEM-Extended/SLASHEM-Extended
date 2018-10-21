@@ -4374,6 +4374,7 @@ potion_charge_cost(struct obj *pot)
 	case POT_TRAINING: cost += 8; break;
 	case POT_EXTREME_POWER: cost += 2; break;
 	case POT_WONDER: cost += 10; break;
+	case POT_CURE_INSANITY: cost += 10; break;
 	case POT_TERCES_DLU: cost += 10; break;
 	case POT_HEROISM: cost += 18; break;
 	case POT_ULTIMATE_TSUYOSHI_SPECIAL: cost += 18; break;

@@ -3277,6 +3277,22 @@ peffects(otmp)
 					    rn1(100, 100 - 25 * bcsign(otmp))), FALSE);
 
 		break;
+	case POT_CURE_INSANITY:
+		if (otmp->cursed) {
+			increasesanity(rnz(1000));
+			unkn++;
+			break;
+		}
+		if (!u.usanity) {
+			unkn++;
+			break;
+		}
+		if (otmp->blessed) decontaminate(100);
+		while (u.usanity > 0) reducesanity(9999999);
+		if (u.usanity < 0) u.usanity = 0;
+            makeknown(POT_CURE_INSANITY);
+		break;
+
 	case POT_DIMNESS:
 		if(!Dimmed) {
 		    if (Hallucination) {
@@ -3289,6 +3305,11 @@ peffects(otmp)
 		make_dimmed(itimeout_incr(HDimmed,
 					    rn1(100, 100 - 25 * bcsign(otmp))), FALSE);
 
+		break;
+	case POT_SANITY:
+            makeknown(POT_SANITY);
+		pline("UGH! This tastes incredibly repulsive...");
+		increasesanity(rnz(1000));
 		break;
 	case POT_STUNNING:
 		if(!Stunned) {
@@ -5640,6 +5661,9 @@ register struct obj *obj;
 		if(!Burned)
 			pline("You caught fire!");
 		make_burned(itimeout_incr(HBurned, rnd(30)), FALSE);
+		break;
+	case POT_SANITY:
+		increasesanity(rnd((level_difficulty() * 5) + 20));
 		break;
 	case POT_DIMNESS:
 		if(!Dimmed)

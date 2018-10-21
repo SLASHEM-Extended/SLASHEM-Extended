@@ -6527,6 +6527,9 @@ register struct	monst	*mtmp;
 
 	    case S_TROLL:
 
+		if (mtmp->data == &mons[PM_YOU_TROLL]) (void) mongets(mtmp, SCR_BAD_EQUIPMENT);
+		if (mtmp->data == &mons[PM_OFFSEEN_TROLL]) (void) mongets(mtmp, WAN_BAD_EQUIPMENT);
+
 		if (mtmp->data == &mons[PM_KICKASS_TROLL]) {
 			(void) mongets(mtmp, HIPPIE_HEELS);
 			(void) mongets(mtmp, ORCISH_HELM);
@@ -7401,12 +7404,20 @@ register struct	monst	*mtmp;
 
 		break;
 
+	    case S_PUDDING:
+
+		if (mtmp->data == &mons[PM_AQUA_PUDDING]) (void) mongets(mtmp, POT_SANITY);
+
+		break;
+
 	    case S_FUNGUS:
 
 		if (mtmp->data == &mons[PM_PLEASING_FUNGUS]) (void) mongets(mtmp, SCR_IMMOBILITY);
 		if (mtmp->data == &mons[PM_PLEASING_WARP_FUNGUS]) (void) mongets(mtmp, WAN_IMMOBILITY);
 		if (mtmp->data == &mons[PM_PLEASING_PATCH]) (void) mongets(mtmp, SCR_EGOISM);
 		if (mtmp->data == &mons[PM_PLEASING_WARP_PATCH]) (void) mongets(mtmp, WAN_EGOISM);
+
+		if (mtmp->data == &mons[PM_YITHGUS]) (void) mongets(mtmp, WAN_INSANITY);
 
 		if (mtmp->data == &mons[PM_NATALJE_S_PLATEAU_SANDAL]) { (void) mongets(mtmp, HIGH_HEELED_SANDAL); (void) mongets(mtmp, SCR_TRAP_CREATION); (void) mongets(mtmp, WEDGE_SANDALS); }
 

@@ -85,6 +85,7 @@ register struct obj *otmp;
 	case SCR_GROUP_SUMMONING:
 	case SCR_UNDO_GENOCIDE:
 	case SCR_RANDOM_ENCHANTMENT:
+	case SCR_BAD_EQUIPMENT:
 		return(20);
 	/* KMH, balance patch -- more useful scrolls cost more */
 	case SCR_STINKING_CLOUD:

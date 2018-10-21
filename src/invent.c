@@ -11371,6 +11371,10 @@ struct obj *obj;
 				pline("This potion temporarily makes you resistant to fire."); break;
 			case POT_DIMNESS:
 				pline("Quaffing this potion causes dimness. You might want to throw it at a monster instead."); break;
+			case POT_CURE_INSANITY:
+				pline("This very rare and powerful potion will instantly cure you of your sanity. Yes, this is actually beneficial, because having zero sanity means you're fully healthy. Use this potion when your sanity is so high that you're already seeing things."); break;
+			case POT_SANITY:
+				pline("If you quaff this potion, your sanity will increase. That is a bad thing."); break;
 			case POT_ICE:
 				pline("You will freeze solid if you quaff this potion, which is usually a bad thing. Better use it as a missile to slow down enemies."); break;
 			case POT_FEAR:
@@ -11614,6 +11618,8 @@ struct obj *obj;
 				pline("You will summon a player ghost by reading this, which can be extremely dangerous."); break;
 			case SCR_MEGALOAD:
 				pline("A nasty scroll that puts a loadstone in your inventory if anyone reads it."); break;
+			case SCR_BAD_EQUIPMENT:
+				pline("If anyone reads this scroll, you're forced to wear a cursed piece of equipment."); break;
 			case SCR_VILENESS: 
 				pline("If this is scroll is read, regardless of who is doing the reading, an evil artifact will be put into your inventory. You will then automatically equip it, and if the artifact didn't autocurse anyway, it will get cursed."); break;
 			case SCR_ENRAGE: 
@@ -12418,6 +12424,10 @@ struct obj *obj;
 				pline("Your fingers will be unable to hold anything for a while after this wand is zapped. Unfortunately it doesn't remove cursed items though."); break;
 			case WAN_IMMOBILITY:
 				pline("Every time this wand is zapped, a bunch of nonmoving monsters will materialize from nowhere."); break;
+			case WAN_INSANITY:
+				pline("Zapping this wand increases your sanity, which is bad. And it happens regardless of who is doing the zapping, because this is one of the items specifically designed to screw you over."); break;
+			case WAN_BAD_EQUIPMENT:
+				pline("Every time someone zaps this wand, you are forced to wear some cursed item."); break;
 			case WAN_EGOISM:
 				pline("Zapping this wand creates egotype monsters."); break;
 			case WAN_SIN:

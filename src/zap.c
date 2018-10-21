@@ -3856,6 +3856,18 @@ secureidchoice:
 
 		break;
 
+		case WAN_INSANITY:
+
+			increasesanity(rnd((level_difficulty() * 5) + 20));
+			known = TRUE;
+			break;
+
+		case WAN_BAD_EQUIPMENT:
+
+			bad_equipment();
+			known = TRUE;
+			break;
+
 		case WAN_DRAIN_MANA:
 
 			pline("You lose  Mana");

@@ -2752,8 +2752,6 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ STAT_DECAY_STONE, "staticheskiy kamen' raspada" },
 	{ MOVEMORK_STONE, "peremeshchat' morkov' kamen'" },
 
-	/* todo area */
-
 	{ BROWN_SHIT_CLOAK, "korichnevyy der'movyy plashch" },
 	{ ANTICALL_CLOAK, "antikvarnyy plashch" },
 	{ YELLOW_WING, "zheltoye krylo" },
@@ -2814,6 +2812,14 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AMULET_OF_INCREASED_FREQUENCY, "amulet of uvelichennaya chastota" },
 	{ AMULET_OF_SPELL_METAL, "amulet of orfografii zaklinaniye" },
 	{ AMULET_OF_TECHOUT, "amulet of tekhnika iz" },
+
+	{ POT_SANITY, "vmenyayemost'" },
+	{ POT_CURE_INSANITY, "istselyayushcheye bezumiye" },
+	{ WAN_INSANITY, "nevmenyayemost'" },
+	{ SCR_BAD_EQUIPMENT, "plokhoye oborudovaniye" },
+	{ WAN_BAD_EQUIPMENT, "plokhoye oborudovaniye" },
+
+	/* todo area */
 
 	{0, "" }
 };
@@ -5033,8 +5039,6 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ STAT_DECAY_STONE, "stat pasayishi" },
 	{ MOVEMORK_STONE, "moviy tosh" },
 
-	/* todo area */
-
 	{ BROWN_SHIT_CLOAK, "jigarrang bokira pardasi" },
 	{ ANTICALL_CLOAK, "oldingi plash" },
 	{ YELLOW_WING, "sariq qanot" },
@@ -5095,6 +5099,14 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_INCREASED_FREQUENCY, "amulet of chastotani ko'paytirish" },
 	{ AMULET_OF_SPELL_METAL, "amulet of mo''jizaviy metall" },
 	{ AMULET_OF_TECHOUT, "amulet of texnologiya tashqaridan" },
+
+	{ POT_SANITY, "aql-idrok" },
+	{ POT_CURE_INSANITY, "jinnilikni davolash" },
+	{ WAN_INSANITY, "jinnilik" },
+	{ SCR_BAD_EQUIPMENT, "yomon uskunalar" },
+	{ WAN_BAD_EQUIPMENT, "yomon uskunalar" },
+
+	/* todo area */
 
 	{0, "" }
 };

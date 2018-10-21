@@ -1706,6 +1706,8 @@ doengrave()
 		    case WAN_FINGER_BENDING:
 		    case WAN_LYCANTHROPY:
 		    case WAN_IMMOBILITY:
+		    case WAN_INSANITY:
+		    case WAN_BAD_EQUIPMENT:
 		    case WAN_EGOISM:
 		    case WAN_SIN:
 			zapnodir(otmp);

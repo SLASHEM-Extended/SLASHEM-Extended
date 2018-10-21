@@ -3156,6 +3156,10 @@ struct monst *mtmp;
 #define MUSE_POT_SALT_WATER 119
 #define MUSE_SCR_OFFLEVEL_ITEM 120
 #define MUSE_SCR_RAGNAROK 121
+#define MUSE_POT_SANITY 122
+#define MUSE_SCR_BAD_EQUIPMENT 123
+#define MUSE_WAN_INSANITY 124
+#define MUSE_WAN_BAD_EQUIPMENT 125
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -3436,6 +3440,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_DIMNESS;
 		}
+		nomore(MUSE_POT_SANITY);
+		if(obj->otyp == POT_SANITY) {
+			m.offensive = obj;
+			m.has_offense = MUSE_POT_SANITY;
+		}
 		nomore(MUSE_POT_NUMBNESS);
 		if(obj->otyp == POT_NUMBNESS) {
 			m.offensive = obj;
@@ -3646,6 +3655,11 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_VILENESS;
 		}
+		nomore(MUSE_SCR_BAD_EQUIPMENT);
+		if(obj->otyp == SCR_BAD_EQUIPMENT) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_BAD_EQUIPMENT;
+		}
 		nomore(MUSE_SCR_ANTIMATTER);
 		if(obj->otyp == SCR_ANTIMATTER) {
 			m.offensive = obj;
@@ -3710,6 +3724,16 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_IMMOBILITY && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_IMMOBILITY;
+		}
+		nomore(MUSE_WAN_INSANITY);
+		if(obj->otyp == WAN_INSANITY && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_INSANITY;
+		}
+		nomore(MUSE_WAN_BAD_EQUIPMENT);
+		if(obj->otyp == WAN_BAD_EQUIPMENT && obj->spe > 0) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_BAD_EQUIPMENT;
 		}
 		nomore(MUSE_WAN_EGOISM);
 		if(obj->otyp == WAN_EGOISM && obj->spe > 0) {
@@ -5196,6 +5220,17 @@ struct monst *mtmp;
 
 		return 2;
 
+	case MUSE_SCR_BAD_EQUIPMENT:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		bad_equipment();
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
 	case MUSE_SCR_VILENESS:
 
 		mreadmsg(mtmp, otmp);
@@ -6225,6 +6260,30 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_BAD_EQUIPMENT:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		bad_equipment();
+
+		if (oseen) makeknown(WAN_BAD_EQUIPMENT);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_INSANITY:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		increasesanity(rnd((level_difficulty() * 5) + 20));
+
+		if (oseen) makeknown(WAN_INSANITY);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_WAN_IMMOBILITY:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -7043,6 +7102,7 @@ newboss:
 	case MUSE_POT_FIRE:
 	case MUSE_POT_SALT_WATER:
 	case MUSE_POT_DIMNESS:
+	case MUSE_POT_SANITY:
 	case MUSE_POT_NUMBNESS:
 	case MUSE_POT_URINE:
 	case MUSE_POT_SLIME:
@@ -7121,7 +7181,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(223)) {
+	switch (rn2(230)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -7346,6 +7406,13 @@ struct monst *mtmp;
 		case 220: return POT_DIMNESS;
 		case 221: return POT_DIMNESS;
 		case 222: return SCR_OFFLEVEL_ITEM;
+		case 223: return POT_SANITY;
+		case 224: return POT_SANITY;
+		case 225: return POT_SANITY;
+		case 226: return POT_SANITY;
+		case 227: return SCR_BAD_EQUIPMENT;
+		case 228: return WAN_INSANITY;
+		case 229: return WAN_BAD_EQUIPMENT;
 
 	}
 	/*NOTREACHED*/
@@ -8628,6 +8695,8 @@ struct obj *obj;
 		    typ == WAN_AMNESIA ||
 		    typ == WAN_LEVITATION ||
 		    typ == WAN_IMMOBILITY ||
+		    typ == WAN_INSANITY ||
+		    typ == WAN_BAD_EQUIPMENT ||
 		    typ == WAN_EGOISM ||
 		    typ == WAN_MUTATION ||
 		    typ == WAN_BAD_LUCK ||
@@ -8684,6 +8753,7 @@ struct obj *obj;
 			 * but they'll only throw them if you're actually in snail form --Amy */
 		    (typ == POT_SALT_WATER && Race_if(PM_ELONA_SNAIL)) ||
 		    typ == POT_DIMNESS ||
+		    typ == POT_SANITY ||
 		    typ == POT_CURE_WOUNDS ||
 		    typ == POT_CURE_SERIOUS_WOUNDS ||
 		    typ == POT_CURE_CRITICAL_WOUNDS ||
@@ -8693,7 +8763,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_EXTRA_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_OFFLEVEL_ITEM || typ == SCR_RAGNAROK || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
+	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_EXTRA_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_BAD_EQUIPMENT || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_OFFLEVEL_ITEM || typ == SCR_RAGNAROK || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
 		return TRUE;
 	    break;
 	case AMULET_CLASS:

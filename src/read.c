@@ -3270,6 +3270,13 @@ proofarmorchoice:
 
 		break;
 
+	case SCR_BAD_EQUIPMENT:
+		known = TRUE;
+
+		bad_equipment();
+
+		break;
+
 	case SCR_ANTIMATTER:
 		known = TRUE;
 
