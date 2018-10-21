@@ -1400,13 +1400,23 @@ moveloop()
 			/* fluctuating speed - sadly jonadab never fully disclosed how that bug worked in fourk... */
 		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone()) && moveamt > 0) {
 			if (uarmf && uarmf->oartifact == ART_JONADAB_S_BUG_MASTERY) {
-				moveamt *= ((moves % 100) + 1);
-				moveamt /= 12;	
-				if (moveamt < 1) moveamt = 1;
+				if ((moves % 80) < 10) {
+					moveamt /= 12;
+					if (moveamt < 1) moveamt = 1;
+				} else {
+					moveamt *= ((moves % 80) - 10);
+					moveamt /= 12;	
+					if (moveamt < 1) moveamt = 1;
+				}
 			} else {
-				moveamt *= ((moves % 50) + 1);
-				moveamt /= 12;	
-				if (moveamt < 1) moveamt = 1;
+				if ((moves % 60) < 10) {
+					moveamt /= 12;
+					if (moveamt < 1) moveamt = 1;
+				} else {
+					moveamt *= ((moves % 60) - 10);
+					moveamt /= 12;	
+					if (moveamt < 1) moveamt = 1;
+				}
 			}
 		    }
 
