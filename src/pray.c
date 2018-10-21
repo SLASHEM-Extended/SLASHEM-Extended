@@ -2289,7 +2289,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 	    /* you were already in pretty good standing */
 	    /* The player can gain an artifact */
 	    /* The chance goes down as the number of artifacts goes up */
-	    if (u.ulevel > 2 && u.uluck >= 0 &&
+	    if ((u.ulevel > 2 || !issoviet) && u.uluck >= 0 &&
 		!rn2(Role_if(PM_GANG_SCHOLAR) ? (2 + (u.ugifts) + (nartifacts)) : (10 + (5 * u.ugifts) + (nartifacts)))) { /* modified chance --Amy */
 		otmp = mk_artifact((struct obj *)0, a_align(u.ux,u.uy), TRUE);
 		if (otmp) {
