@@ -2033,7 +2033,7 @@ register struct monst *mtmp;
 				"Hepinizi inatci koepekler yapacagiz!",
 				"Inanilmaz, ama simdi yeterli! Simdi Allah'in gazabi sana vuracak!",
 				"Inkar edenler iki seceneginiz var. Hemen Islam'a itiraf edin ya da yueksek savas botlarim ciddi yaralar acacak.",
-				"Oyuncu bir guevensiz! Onu Islam’a doenuestuerme zamani.",
+				"Oyuncu bir guevensiz! Onu Islam'a doenuestuerme zamani.",
 				"Inkar edenler yenilir. Derhal Islam'in tek gercek din oldugunu ya da kutsal Allah'in gazabini hissettirdigini itiraf edin!",
 				"Oyuncu ve adamlari... pah. Buetuen inanmayanlar. Sadece askerlerim kimin dine inanmalari gerektigini biliyor!",
 				"Hahahaha Hahahaha! Tuerk savas botlari bedeninizi yok etti, siz kafirler!",

@@ -17298,7 +17298,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Splicehack adds little birds as monsters, which are domestic and therefore shouldn't be eaten. They can be tamed with food though.",
 	"Man this is sooooooooo annoying, why do statues look like monsters? now I have to farlook every white b to see if it's an alive quivering blob or just a statue!"
 	"I want a boolean option that makes statues look like statues again, because to me it clearly doesn't look right if they look like monsters.",
-	"TSX seems like a variant when you find statues that look like monsters. I (Amy) am used to statues looking like a ´ glyph.",
+	"TSX seems like a variant when you find statues that look like monsters. I (Amy) am used to statues looking like a ` glyph.",
 	"Of course you can't always restore stats via unihorn!",
 	"Bugles aren't tonal instruments anymore. That has 'piss off the player' written all over it because speedrunners need such an instrument for the castle.",
 	"If Loki sends a succubus to make you 'pay for your indiscretion', it means he basically says fuck you.",
@@ -17407,7 +17407,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Hepinizi inatci koepekler yapacagiz!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inanilmaz, ama simdi yeterli! Simdi Allah'in gazabi sana vuracak!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inkar edenler iki seceneginiz var. Hemen Islam'a itiraf edin ya da yueksek savas botlarim ciddi yaralar acacak.'",
-	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Oyuncu bir guevensiz! Onu Islam’a doenuestuerme zamani.'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Oyuncu bir guevensiz! Onu Islam'a doenuestuerme zamani.'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inkar edenler yenilir. Derhal Islam'in tek gercek din oldugunu ya da kutsal Allah'in gazabini hissettirdigini itiraf edin!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Oyuncu ve adamlari... pah. Buetuen inanmayanlar. Sadece askerlerim kimin dine inanmalari gerektigini biliyor!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Hahahaha Hahahaha! Tuerk savas botlari bedeninizi yok etti, siz kafirler!'",
