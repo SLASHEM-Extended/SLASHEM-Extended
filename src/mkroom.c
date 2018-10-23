@@ -1187,7 +1187,7 @@ struct mkroom *sroom;
 
 			}
 
-			(void) mkobj_at(SPBOOK_CLASS, sx, sy, FALSE);
+			(void) mkobj_at(SPBOOK_CLASS, mm.x, mm.y, FALSE);
 
 		  }
               level.flags.has_ruinedchurch = 1;

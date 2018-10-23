@@ -2956,7 +2956,7 @@ dochat()
 
     if (u.ugold >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && mtmp->data->msound == MS_STENCH) {
 
-		if (yn("Hire this pretty lady for 1000 dollars") == 'y') {
+		if (yn("Hire this pretty lady for 1000 dollars?") == 'y') {
 
 			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 			u.ugold -= 1000;
