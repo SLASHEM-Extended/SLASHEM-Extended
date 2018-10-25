@@ -4761,6 +4761,23 @@ static const char *epitaphs[] = {
 	"I bought an antibundling shield but I think I got fleeced.",
 	"somehow I don't think of variant paranoia as applying to SLEX because the variant actually IS out to get you!", /* by ais523 */
 	"Where does the insidious woman picture put?",
+	"All this, because of a dream?",
+	"Why are they doing this?",
+	"I thought these religions had nothing to do with each other!?",
+	"Lolth, help me!",
+	"I can't control my arms!",
+	"I can't stop!  Look out!!",
+	"Cut me lose, please!",
+	"It's so dark!",
+	"Free me!",
+	"Lolth, why have you forsaken me!?",
+	"It was waiting for us!",
+	"Kill me!  Please, just kill me...",
+	"Could you tell me where the Amulet of Yendor is?",
+	"I must leave now!",
+	"I tried to catch an Entei and it used roar and now it's forever unobtainable, hence I suicided.",
+	"Cursed are you who calls me forth. I damn you to bear my sign and my flames, alone in this world of darkness!",
+	"Sometimes, what was broken cannot be restored.",
 
 };
 
