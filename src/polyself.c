@@ -335,7 +335,7 @@ boolean forcecontrol;
 
 		do {
 			mntmp = rn2(NUMMONS);
-		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 		if (polymon(mntmp)) u.polyformed = 1;
 
@@ -350,7 +350,7 @@ boolean forcecontrol;
 
 		do {
 			mntmp = rn2(NUMMONS);
-		} while(( (notake(&mons[mntmp]) && rn2(4) ) || (mons[mntmp].mlet != S_FUNGUS) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || (mons[mntmp].mlet != S_FUNGUS) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 		if (polymon(mntmp)) u.polyformed = 1;
 
@@ -365,7 +365,7 @@ boolean forcecontrol;
 
 		do {
 			mntmp = rn2(NUMMONS);
-		} while(( (notake(&mons[mntmp]) && rn2(4) ) || (!(is_undead(&mons[mntmp])) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || (!(is_undead(&mons[mntmp])) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 		if (polymon(mntmp)) u.polyformed = 1;
 
@@ -380,7 +380,7 @@ boolean forcecontrol;
 
 		do {
 			mntmp = rn2(NUMMONS);
-		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 		if (polymon(mntmp)) u.polyformed = 1;
 
@@ -398,7 +398,7 @@ boolean forcecontrol;
 		do {
 			/* randomly pick any monster, but reroll if it sucks too much --Amy */
 			mntmp = rn2(NUMMONS);
-		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 	}
 	else if (Race_if(PM_DEATHMOLD)) mntmp = (PM_WHITE_MISSINGNO + rn2(14 + (u.ulevel / 2) ) );
@@ -422,7 +422,7 @@ boolean forcecontrol;
 			}
 			/* uncommon forms are difficult to polymorph into, because the usual reason why they're uncommon is
 			 * that they are very powerful, so we need to reduce the player's chance of becoming one --Amy */
-			else if (!forcecontrol && ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) ) {
+			else if (!forcecontrol && ( (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 			else if (!forcecontrol && ((PlayerCannotUseSkills) && (rnd(18) > 7) ) ) {
@@ -466,7 +466,7 @@ boolean forcecontrol;
 
 				/* lower chance if form is uncommon, see above --Amy */
 				}
-				else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
+				else if ( (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
 				else if ((PlayerCannotUseSkills) && (rnd(12) > 3) ) {
@@ -537,7 +537,7 @@ boolean forcecontrol;
 		do {
 			/* randomly pick an "ordinary" monster */
 			mntmp = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
-		} while((!polyok(&mons[mntmp]) || is_placeholder(&mons[mntmp]) || (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) ) ) || ( is_eel(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) ) ) )
+		} while((!polyok(&mons[mntmp]) || is_placeholder(&mons[mntmp]) || (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) ) ) || ( is_eel(&mons[mntmp]) && rn2(20) && (Race_if(PM_UNGENOMOLD) || Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) ) ) )
 	/* Polymorphing into a nonmoving monster can really ruin your day as an ungenomold character, so the chances
 	 * of ending up as one are greatly reduced now. Eels are sucky polymorph forms too.
 	 * And of course stuff that can't pick up items or is otherwise stunted should be more rare as well. --Amy */
