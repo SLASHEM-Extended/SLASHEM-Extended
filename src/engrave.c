@@ -4778,6 +4778,13 @@ static const char *epitaphs[] = {
 	"I tried to catch an Entei and it used roar and now it's forever unobtainable, hence I suicided.",
 	"Cursed are you who calls me forth. I damn you to bear my sign and my flames, alone in this world of darkness!",
 	"Sometimes, what was broken cannot be restored.",
+	"By your hand was this done, therefore you shall be stained by my blood.",
+	"Phanto from Super Mario Bros 2 is a sow retard and I wish I could genocide his ass.",
+	"Evil f-u-c-k-i-t!",
+	"I hope you visit again some time.",
+	"Free me from this place, and I and my brood shall fight for your cause.",
+	"God does not exist. After all, he allowed the holocaust to happen, and if he really existed and cared about humans he'd have conjured divine lightning to kill all the fucking nazis before they can do their evil deeds.",
+	"None shall rest until my vengeance is complete.",
 
 };
 

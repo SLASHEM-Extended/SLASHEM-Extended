@@ -104,6 +104,7 @@ dosounds()
 		"the tones of courtly conversation.",
 		"a sceptre pounded in judgment.",
 		"Someone shouts \"Off with %s head!\"",
+		"royal trumpets.",
 		"what sounds like a royal ceremony.",
 		"Queen Beruthiel's cats!",
 	};
@@ -114,7 +115,7 @@ dosounds()
 		!is_animal(mtmp->data) &&
 		mon_in_room(mtmp, COURT)) {
 		/* finding one is enough, at least for now */
-		int which = rn2(4+hallu);
+		int which = rn2(5+hallu);
 
 		if (which != 2) You_hear("%s", throne_msg[which]);
 		else		pline(throne_msg[2], uhis());
@@ -450,6 +451,7 @@ dosounds()
 		static const char *hellpit_msg[] = {
 			"smell brimstone.",
 			"hear the bubbling of lava.",
+			"smell sulfur.",
 			"chime in on a pack of demons performing a satanic ritual.",
 			"sense the presence of hellish beings.",
 			"see that the ceiling has turned red-hot!", /* Oblivion gate, but you're presumably in a dungeon and not the outskirts, so instead of the sky changing colors, the ceiling does so */
@@ -458,7 +460,7 @@ dosounds()
 			"sense the presence of a gate to Oblivion.",
 			"suddenly encounter the giant siege caterpillar and have 10 minutes to destroy it or everything is lost.",
 		};
-		You("%s", hellpit_msg[rn2(5+hallu*4)]);
+		You("%s", hellpit_msg[rn2(6+hallu*4)]);
 		return;
 	    }
 
