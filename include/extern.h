@@ -522,7 +522,7 @@ E void losedogs(void);
 E void mon_arrive(struct monst *,BOOLEAN_P);
 E void mon_catchup_elapsed_time(struct monst *,long);
 E void keepdogs(BOOLEAN_P);
-E void migrate_to_level(struct monst *,XCHAR_P,XCHAR_P,coord *);
+E void migrate_to_level(struct monst *,int,XCHAR_P,coord *);
 E int dogfood(struct monst *,struct obj *);
 E struct monst *tamedog(struct monst *,struct obj *, BOOLEAN_P);
 E int make_pet_minion(int,ALIGNTYP_P);

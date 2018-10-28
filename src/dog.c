@@ -978,7 +978,7 @@ boolean pets_only;	/* true for ascension or final escape */
 void
 migrate_to_level(mtmp, tolev, xyloc, cc)
 	register struct monst *mtmp;
-	xchar tolev;	/* destination level */
+	int tolev;	/* destination level */
 	xchar xyloc;	/* MIGR_xxx destination xy location: */
 	coord *cc;	/* optional destination coordinates */
 {
@@ -1014,8 +1014,8 @@ migrate_to_level(mtmp, tolev, xyloc, cc)
 	migrating_mons = mtmp;
 	newsym(mtmp->mx,mtmp->my);
 
-	new_lev.dnum = ledger_to_dnum((xchar)tolev);
-	new_lev.dlevel = ledger_to_dlev((xchar)tolev);
+	new_lev.dnum = ledger_to_dnum(tolev);
+	new_lev.dlevel = ledger_to_dlev(tolev);
 	/* overload mtmp->[mx,my], mtmp->[mux,muy], and mtmp->mtrack[] as */
 	/* destination codes (setup flag bits before altering mx or my) */
 	xyflags = (depth(&new_lev) < depth(&u.uz));	/* 1 => up */
