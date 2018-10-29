@@ -1768,15 +1768,16 @@ struct permonst *ptr;
 	    if ((tmp2 == AD_DRLI) || (tmp2 == AD_STON) || (tmp2 == AD_DRST)
 		|| (tmp2 == AD_DRDX) || (tmp2 == AD_DRCO) || (tmp2 == AD_WERE))
 			n += 2;
-	    else if (strcmp(ptr->mname, "grid bug")) n += (tmp2 != AD_PHYS);
+	    n += (tmp2 != AD_PHYS); /* don't special-case grid bugs --Amy */
 	    n += ((int) (ptr->mattk[i].damd * ptr->mattk[i].damn) > 23);
 	}
 	/* tom's nasties */
 	if (extra_nasty(ptr)) n += 5;
 
 /*	Leprechauns are special cases.  They have many hit dice so they
-	can hit and are hard to kill, but they don't really do much damage. */
-	if (!strcmp(ptr->mname, "leprechaun")) n -= 2;
+	can hit and are hard to kill, but they don't really do much damage.
+	Amy edit: I don't care, we don't need special cases :P */
+/*	if (!strcmp(ptr->mname, "leprechaun")) n -= 2;*/
 
 /*	Finally, adjust the monster level  0 <= n <= 24 (approx.) */
 	if(n == 0) tmp--;
