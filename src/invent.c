@@ -5343,7 +5343,7 @@ unsigned *resultflags;
 
 	if (m_seen)
 	    return (allflag || (!oletct && ckfn != ckunpaid)) ? -2 : -3;
-	else if (flags.menu_style != MENU_TRADITIONAL && combo && !allflag)
+	else if (flags.menu_style != MENU_TRADITIONAL && !InventoryDoesNotGo && combo && !allflag)
 	    return 0;
 #ifndef GOLDOBJ
 	else if (allowgold == 2 && !oletct)
@@ -5664,7 +5664,7 @@ boolean wizmodeflag;
     } else {
 	/* identify up to `id_limit' items */
 	n = 0;
-	if (flags.menu_style == MENU_TRADITIONAL)
+	if (flags.menu_style == MENU_TRADITIONAL || InventoryDoesNotGo)
 	    do {
 		n = ggetobj("identify", identify, id_limit, FALSE, (unsigned *)0);
 		if (n < 0) break; /* quit or no eligible items */
@@ -6234,7 +6234,7 @@ dotypeinv()
 	    return 0;
 	}
 	unpaid_count = count_unpaid(invent);
-	if (flags.menu_style != MENU_TRADITIONAL) {
+	if (flags.menu_style != MENU_TRADITIONAL && !InventoryDoesNotGo) {
 	    if (flags.menu_style == MENU_FULL ||
 				flags.menu_style == MENU_PARTIAL) {
 		traditional = FALSE;

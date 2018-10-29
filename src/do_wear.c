@@ -5814,7 +5814,7 @@ doddoremarm()
     }
 
     add_valid_menu_class(0); /* reset */
-    if (flags.menu_style != MENU_TRADITIONAL ||
+    if ((flags.menu_style != MENU_TRADITIONAL && !InventoryDoesNotGo) ||
 	    (result = ggetobj("take off", select_off, 0, FALSE, (unsigned *)0)) < -1)
 	result = menu_remarm(result);
 
@@ -5844,7 +5844,7 @@ int retry;
 
     if (retry) {
 	all_worn_categories = (retry == -2);
-    } else if (flags.menu_style == MENU_FULL) {
+    } else if (flags.menu_style == MENU_FULL && !InventoryDoesNotGo) {
 	all_worn_categories = FALSE;
 	n = query_category("What type of things do you want to take off?",
 			   invent, WORN_TYPES|ALL_TYPES, &pick_list, PICK_ANY);
@@ -5856,7 +5856,7 @@ int retry;
 		add_valid_menu_class(pick_list[i].item.a_int);
 	}
 	free((void *) pick_list);
-    } else if (flags.menu_style == MENU_COMBINATION) {
+    } else if (flags.menu_style == MENU_COMBINATION && !InventoryDoesNotGo) {
 	all_worn_categories = FALSE;
 	if (ggetobj("take off", select_off, 0, TRUE, (unsigned *)0) == -2)
 	    all_worn_categories = TRUE;

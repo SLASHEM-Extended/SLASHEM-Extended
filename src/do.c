@@ -1310,7 +1310,7 @@ doddrop()
 
 	add_valid_menu_class(0); /* clear any classes already there */
 	if (*u.ushops) sellobj_state(SELL_DELIBERATE);
-	if (flags.menu_style != MENU_TRADITIONAL ||
+	if ((flags.menu_style != MENU_TRADITIONAL && !InventoryDoesNotGo) ||
 		(result = ggetobj("drop", drop, 0, FALSE, (unsigned *)0)) < -1)
 	    result = menu_drop(result);
 	if (*u.ushops) sellobj_state(SELL_NORMAL);
@@ -1348,7 +1348,7 @@ int retry;
 #endif
     if (retry) {
 	all_categories = (retry == -2);
-    } else if (flags.menu_style == MENU_FULL) {
+    } else if (flags.menu_style == MENU_FULL && !InventoryDoesNotGo) {
 	all_categories = FALSE;
 	n = query_category("Drop what type of items?",
 			invent,
@@ -1365,7 +1365,7 @@ int retry;
 		add_valid_menu_class(pick_list[i].item.a_int);
 	}
 	free((void *) pick_list);
-    } else if (flags.menu_style == MENU_COMBINATION) {
+    } else if (flags.menu_style == MENU_COMBINATION && !InventoryDoesNotGo) {
 	unsigned ggoresults = 0;
 	all_categories = FALSE;
 	/* Gather valid classes via traditional NetHack method */

@@ -490,7 +490,7 @@ int what;		/* should be a long */
 	    goto menu_pickup;
 	}
 
-	if (flags.menu_style != MENU_TRADITIONAL || iflags.menu_requested) {
+	if ((flags.menu_style != MENU_TRADITIONAL && !InventoryDoesNotGo) || iflags.menu_requested) {
 
 	    /* use menus exclusively */
 	    if (count) {	/* looking for N of something */
@@ -2654,11 +2654,11 @@ int held;
 		(void) display_cinventory(current_container);
 	    return 0;
 	}
-	if (cnt || flags.menu_style == MENU_FULL) {
+	if (cnt || (flags.menu_style == MENU_FULL && !InventoryDoesNotGo)) {
 	    strcpy(qbuf, "Do you want to take something out of ");
 	    sprintf(eos(qbuf), "%s?",
 		    safe_qbuf(qbuf, 1, yname(obj), ysimple_name(obj), "it"));
-	    if (flags.menu_style != MENU_TRADITIONAL) {
+	    if (flags.menu_style != MENU_TRADITIONAL && !InventoryDoesNotGo) {
 		if (flags.menu_style == MENU_FULL) {
 		    int t;
 		    char menuprompt[BUFSZ];
@@ -2700,6 +2700,10 @@ ask_again2:
 		if (cnt) strcat(pbuf, "m");
 		switch (yn_function(qbuf, pbuf, 'n')) {
 		case ':':
+		    if (InventoryDoesNotGo) {
+			pline("Not enough memory to create inventory window");
+			goto ask_again2;
+		    }
 		    container_contents(current_container, FALSE, FALSE);
 		    goto ask_again2;
 		case 'y':
@@ -2745,10 +2749,10 @@ ask_again2:
 	    You("don't have anything to put in.");
 	    goto containerdone;
 	}
-	if (flags.menu_style != MENU_FULL) {
+	if (flags.menu_style != MENU_FULL || InventoryDoesNotGo) {
 	    sprintf(qbuf, "Do you wish to put %s in?", something);
 	    strcpy(pbuf, ynqchars);
-	    if (flags.menu_style == MENU_TRADITIONAL && invent && inv_cnt() > 0)
+	    if ((flags.menu_style == MENU_TRADITIONAL || InventoryDoesNotGo) && invent && inv_cnt() > 0)
 		strcat(pbuf, "m");
 	    switch (yn_function(qbuf, pbuf, 'n')) {
 		case 'y':
@@ -2786,7 +2790,7 @@ ask_again2:
 	    }
 #endif
 	    add_valid_menu_class(0);	  /* reset */
-	    if (flags.menu_style != MENU_TRADITIONAL) {
+	    if (flags.menu_style != MENU_TRADITIONAL && !InventoryDoesNotGo) {
 		used |= menu_loot(0, current_container, TRUE) > 0;
 	    } else {
 		/* traditional code */
@@ -2842,7 +2846,7 @@ boolean put_in;
 
     if (retry) {
 	all_categories = (retry == -2);
-    } else if (flags.menu_style == MENU_FULL) {
+    } else if (flags.menu_style == MENU_FULL && !InventoryDoesNotGo) {
 	all_categories = FALSE;
 	sprintf(buf,"%s what type of objects?", put_in ? putin : takeout);
 	mflags = put_in ? ALL_TYPES | NOTFULLYIDED | BUC_ALLBKNOWN | BUC_UNKNOWN :
