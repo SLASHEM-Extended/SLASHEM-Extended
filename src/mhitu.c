@@ -1346,7 +1346,7 @@ register struct attack *mattk;
 		}
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && !(objects[blocker->otyp].oc_material == SECREE || objects[blocker->otyp].oc_material == ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
+		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && !(objects[blocker->otyp].oc_material == SECREE || objects[blocker->otyp].oc_material == ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
 			if (blocker->greased) {
 				blocker->greased--;
 				pline("Your %s loses its grease.", simple_typename(blocker->otyp));
