@@ -10973,7 +10973,7 @@ newgame()
 		int aliaslength;
 		int testx;
 
-		pline("Your character: %s %s %s %s", aligns[1 - u.ualign.type].adj, genders[flags.female].adj, urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+		pline("Your character: %s %s %s %s", aligns[1 - u.ualign.type].adj, flags.female ? "female" : "male", urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 aliasagain:
 		sprintf(aliasbuf,"What is your alias name?");
 		getlin(aliasbuf, eliasbuf);
