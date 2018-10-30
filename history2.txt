@@ -1,6 +1,14 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.8 - October 2018
+- Artifacts with multiple attack effects can now actually use all of them.
+- Cursed potions of gain level can no longer transport the player to the plane of Earth when the amulet is not fully imbued.
+- Equipment with low enchantment values will dull less often.
+- Leprechauns and grid bugs no longer have artificially low monster difficulty.
+- Several nasty trap effects have been nerfed in effectiveness, making their effects more palatable for the player.
+- When the player is asked for an alias name, the game now uses the correct gender.
+- Polymorphing into jonadab-script-generated monsters is much more difficult for both players and monsters.
+- Fixed a bug in ruined churches that caused the spellbook to appear in an odd location.
 - Gods can now also give artifact gifts to player characters whose level is below 3.
 - Adjusted calculations for the fluctuating speed trap to make it nastier.
 - Prevent players from getting role-specific sacrifice gifts too often.
