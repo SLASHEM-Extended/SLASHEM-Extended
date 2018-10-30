@@ -3693,13 +3693,13 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone())) {
-		sprintf(buf, "the following problem: Direction prompts don't allow you to select anything.");
+		sprintf(buf, "the following problem: Direction prompts often don't allow you to select anything.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", Choicelessness);
 		you_have(buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && (Goldspells || u.uprops[GOLDSPELLS].extrinsic || have_goldspellstone())) {
-		sprintf(buf, "the following problem: You can't choose which spell you want to cast.");
+		sprintf(buf, "the following problem: You often can't choose which spell you want to cast.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", Goldspells);
 		you_have(buf);
 	}
@@ -4558,7 +4558,7 @@ boolean guaranteed;
 		you_have(buf);
 	}
 	if ((guaranteed || !rn2(10)) && (TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone())) {
-		sprintf(buf, "the following problem: Your techniques don't work.");
+		sprintf(buf, "the following problem: Your techniques frequently don't work.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", TechTrapEffect);
 		you_have(buf);
 	}
@@ -4578,7 +4578,7 @@ boolean guaranteed;
 		you_have(buf);
 	}
 	if ((guaranteed || !rn2(10)) && (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone())) {
-		sprintf(buf, "the following problem: You're completely unable to cast spells.");
+		sprintf(buf, "the following problem: You're mute, and have great difficulty when trying to cast spells.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", Muteness);
 		you_have(buf);
 	}
@@ -4809,7 +4809,7 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && (u.uprops[ANTILEVELING].extrinsic || Antileveling || have_antilevelstone() )) {
-		sprintf(buf, "unable to gain experience");
+		sprintf(buf, "unable to gain experience past experience level 10, and slower to reach XL10");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", Antileveling);
 		you_are(buf);
 	}
@@ -7191,13 +7191,13 @@ int final;
 	}
 
 	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone()) {
-		sprintf(buf, "the following problem: Direction prompts don't allow you to select anything.");
+		sprintf(buf, "the following problem: Direction prompts often don't allow you to select anything.");
 	      sprintf(eos(buf), " (%d)", Choicelessness);
 		dump(youhad, buf);
 	}
 
 	if (Goldspells || u.uprops[GOLDSPELLS].extrinsic || have_goldspellstone()) {
-		sprintf(buf, "the following problem: You can't choose which spell you want to cast.");
+		sprintf(buf, "the following problem: You often can't choose which spell you want to cast.");
 	      sprintf(eos(buf), " (%d)", Goldspells);
 		dump(youhad, buf);
 	}
@@ -8052,7 +8052,7 @@ int final;
 		dump(youhad, buf);
 	}
 	if (TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) {
-		sprintf(buf, "the following problem: Your techniques didn't work.");
+		sprintf(buf, "the following problem: Your techniques frequently didn't work.");
 	      sprintf(eos(buf), " (%d)", TechTrapEffect);
 		dump(youhad, buf);
 	}
@@ -8072,7 +8072,7 @@ int final;
 		dump(youhad, buf);
 	}
 	if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
-		sprintf(buf, "the following problem: You were completely unable to cast spells.");
+		sprintf(buf, "the following problem: You were mute, and had great difficulty when trying to cast spells.");
 	      sprintf(eos(buf), " (%d)", Muteness);
 		dump(youhad, buf);
 	}
@@ -8279,7 +8279,7 @@ int final;
 	}
 
 	if (u.uprops[ANTILEVELING].extrinsic || Antileveling || have_antilevelstone() ) {
-		sprintf(buf, "unable to gain experience");
+		sprintf(buf, "unable to gain experience past experience level 10, and slower to reach XL10");
 	      sprintf(eos(buf), " (%d)", Antileveling);
 		dump(youwere, buf);
 	}
@@ -11815,10 +11815,17 @@ const char *s;
 	/* WAC add dirsymbols to generic prompt */
 	char buf[BUFSZ];
 
+	/* choicelessness by Amy; it would be far too evil to unconditionally prevent you from choosing... */
 	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone()) {
-		u.dx = u.dy = u.dz = 0;
-		confdir();
-		return 1;
+		int choicelesschance;
+		choicelesschance = 20 + (u.uen * 80 / u.uenmax);
+		if (choicelesschance < 20) choicelesschance = 20;
+		if (choicelesschance > 80) choicelesschance = 80;
+		if (choicelesschance > rn2(100)) {
+			u.dx = u.dy = u.dz = 0;
+			confdir();
+			return 1;
+		}
 	}
 
 	sprintf(buf, "In what direction? [%s]",

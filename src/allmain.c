@@ -247,7 +247,7 @@ moveloop()
 			monclock = 70;
 
 			if ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
-				monclock = 15;
+				monclock = 20;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
 					monclock = 60;
@@ -259,7 +259,7 @@ moveloop()
 			}
 			/* make sure we don't fall off the bottom */
 			if (monclock < 30 && !(u.uevent.udemigod && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { monclock = 30; }
-			if (monclock < 15) { monclock = 15; }
+			if (monclock < 20) { monclock = 20; }
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
@@ -1437,17 +1437,30 @@ moveloop()
 
 			if (u.uprops[FAST_FORWARD].extrinsic) {
 
-			    monstermoves++;
-			    moves++;
-			    nh_timeout();
-
+			    if (rn2(10)) {
+				    monstermoves++;
+				    moves++;
+				    nh_timeout();
+			    } else if (!rn2(2)) {
+				    monstermoves += 2;
+				    moves += 2;
+				    nh_timeout();
+				    nh_timeout();
+			    }
 			}
 
 			if (have_fastforwardstone()) {
 
-			    monstermoves++;
-			    moves++;
-			    nh_timeout();
+			    if (rn2(10)) {
+				    monstermoves++;
+				    moves++;
+				    nh_timeout();
+			    } else if (!rn2(2)) {
+				    monstermoves += 2;
+				    moves += 2;
+				    nh_timeout();
+				    nh_timeout();
+			    }
 
 			}
 
@@ -1455,9 +1468,16 @@ moveloop()
 
 				int veryfasttime;
 
-			    monstermoves++;
-			    moves++;
-			    nh_timeout();
+			    if (rn2(10)) {
+				    monstermoves++;
+				    moves++;
+				    nh_timeout();
+			    } else if (!rn2(2)) {
+				    monstermoves += 2;
+				    moves += 2;
+				    nh_timeout();
+				    nh_timeout();
+			    }
 
 				veryfasttime = TimeGoesByFaster / 5000;
 				if (veryfasttime) {

@@ -270,6 +270,7 @@ E boolean is_grassland(int,int);
 E boolean is_snow(int,int);
 E boolean is_table(int,int);
 E boolean is_mattress(int,int);
+E boolean isimportantlocation(int,int);
 E int is_drawbridge_wall(int,int);
 E boolean is_db_wall(int,int);
 E boolean find_drawbridge(int *,int*);

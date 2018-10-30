@@ -270,6 +270,19 @@ int x,y;
 }
 
 boolean
+isimportantlocation(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == STAIRS) return TRUE;
+    if (invocation_pos(x, y)) return TRUE;
+    return FALSE;
+}
+
+boolean
 is_mattress(x,y)
 int x,y;
 {

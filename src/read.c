@@ -904,7 +904,7 @@ doread()
 	  }
 	}
 
-	if (CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone() ) curse(scroll);
+	if ((CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone()) && scroll && scroll->otyp != CANDELABRUM_OF_INVOCATION && scroll->otyp != SPE_BOOK_OF_THE_DEAD && scroll->otyp != BELL_OF_OPENING) curse(scroll);
 
 	/*
 	 * When reading scrolls of teleportation off the floor special

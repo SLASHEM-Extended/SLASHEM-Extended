@@ -3905,20 +3905,50 @@ register struct monst *mtmp;
 	    }
 	}
 
+	/* Respawn trap effect by Amy. Gotta limit it somehow, to ensure that the game doesn't become completely impossible
+	 * for characters who have the effect intrinsically. It used to be that the # of newly spawned monsters was
+	 * on average exactly the amount that you killed, which is very problematic for trolls and other revivers.
+	 * So, now the born counter (which can go over 255, yay!) matters and will make it less and less likely for
+	 * a monster to respawn if many of it were already spawned. Good thing this mechanism of monster "respawn" uses
+	 * a function that increases the counter, huh? */
 	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_respawnstone() ) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
 	    switch(rnd(10)) {
 		case 1:
+			if (mvitals[mtmp->mnum].born > 100 && rn2(10)) break;
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
 		case 2:
+			if (mvitals[mtmp->mnum].born > 200 && rn2(10)) break;
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
 		case 3:
+			if (mvitals[mtmp->mnum].born > 500 && rn2(10)) break;
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
 		case 4:
+			if (mvitals[mtmp->mnum].born > 750 && rn2(10)) break;
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
 		case 5:
+			if (mvitals[mtmp->mnum].born > 1000 && rn2(10)) break;
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
 		case 6:
+			if (mvitals[mtmp->mnum].born > 1500 && rn2(10)) break;
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
 		case 7:
+			if (mvitals[mtmp->mnum].born > 2000 && rn2(10)) break;
+			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			break;
 		case 8:
+			if (mvitals[mtmp->mnum].born > 50 && rn2(10)) break;
 			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
 			break;
 		case 9:
+			if (mvitals[mtmp->mnum].born > 5000 && rn2(10)) break;
 			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
+			if (rn2(10)) break;
 			(void) makemon(mtmp->data,0,0,NO_MM_FLAGS);
 			break;
 		case 10:

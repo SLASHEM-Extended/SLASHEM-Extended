@@ -1435,7 +1435,7 @@ getspell(spell_no, goldspellpossible)
 	    return FALSE;
 	}
 
-	if ((Goldspells || u.uprops[GOLDSPELLS].extrinsic || have_goldspellstone()) && goldspellpossible) {
+	if ((Goldspells || u.uprops[GOLDSPELLS].extrinsic || have_goldspellstone()) && goldspellpossible && rn2(10)) {
 
 		for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
 			continue;
@@ -1960,9 +1960,11 @@ boolean atme;
 		Your("arms are not free to cast!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
-	} else if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
-		pline("You're muted!");
+	} else if ((Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) && rn2(10)) {
+		pline("You're muted, and fail to cast the spell!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		u.uen -= rnd(20); /* arbitrary; you're supposed to still be able to cast a little sometimes --Amy */
+		if (u.uen < 0) u.uen = 0;
 		return (0);
 	} else if (tech_inuse(T_SILENT_OCEAN)) {
 		pline("The silent ocean prevents you from spellcasting.");

@@ -14813,7 +14813,11 @@ register int	mmflags;
 
 	if (LevelTrapEffect || u.uprops[LEVELBUG].extrinsic || have_levelstone() || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) ) {
 
-		mtmp->m_lev += rnd(mvitals[mtmp->mnum].born + 1);
+		int leveltrapbonus = mvitals[mtmp->mnum].born + 1;
+		if (leveltrapbonus < 1) leveltrapbonus = 1;
+		if (leveltrapbonus > 120) leveltrapbonus = 120; /* for sanity reasons --Amy */
+
+		mtmp->m_lev += rnd(leveltrapbonus);
 		if (mtmp->m_lev > 49) mtmp->m_lev = 49;
 
 	}

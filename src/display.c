@@ -410,11 +410,11 @@ unmap_object(x, y)
 	show_glyph(x, y, (GLYPH_MON_OFF + rn2(NUMMONS)));	\
 	return;	\
 	}	\
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
-	if (!u.seesilverspell && SpellColorSilver) {	\
+	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
@@ -430,11 +430,11 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
-	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) {	\
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !isimportantlocation(x, y) && !(levl[x][y].wall_info & W_QUASAROK) ) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));			\
 	return;								\
 	}								\
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) { 	\
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(10)) { 	\
 	show_glyph(x, y, randomglyph() );			\
 	return;								\
 	}								\
@@ -446,7 +446,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
-	if (SpellColorPlatinum && !rn2(5)) { 	\
+	if (SpellColorPlatinum && !rn2(10)) { 	\
 	show_glyph(x, y, cmap_to_glyph(S_bars));			\
 	return;								\
 	}								\
@@ -508,11 +508,11 @@ int memory_glyph(x, y)
 	return (GLYPH_MON_OFF + rn2(NUMMONS));
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	return cmap_to_glyph(S_stone);
 	}
 
-	if (!u.seesilverspell && SpellColorSilver) {
+	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {
 	return cmap_to_glyph(S_stone);
 	}
 
@@ -528,9 +528,9 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_grayglyph);
 	}
 
-	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { return cmap_to_glyph(S_stone); }
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !isimportantlocation(x, y) && !(levl[x][y].wall_info & W_QUASAROK) ) { return cmap_to_glyph(S_stone); }
 
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(10)) {
 	return randomglyph();
 	}
 
@@ -542,7 +542,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_grayglyph);
 	}
 
-	if (SpellColorPlatinum && !rn2(5)) {
+	if (SpellColorPlatinum && !rn2(10)) {
 	return cmap_to_glyph(S_bars);
 	}
 
@@ -1043,12 +1043,12 @@ newsym(x,y)
 	return;
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
 
-	if (!u.seesilverspell && SpellColorSilver) {
+	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
@@ -1068,12 +1068,12 @@ newsym(x,y)
 	return;
 	}
 
-	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) {
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !isimportantlocation(x, y) && !(levl[x][y].wall_info & W_QUASAROK) ) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
 
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(10)) {
 	show_glyph(x, y, randomglyph());
 	return;
 	}
@@ -1088,7 +1088,7 @@ newsym(x,y)
 	return;
 	}
 
-	if (SpellColorPlatinum && !rn2(5)) {
+	if (SpellColorPlatinum && !rn2(10)) {
 	show_glyph(x, y, cmap_to_glyph(S_bars));
 	return;
 	}
@@ -1103,7 +1103,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_SPLINTER_ARMAMENT) || (uarm && uarm->oartifact == ART_TAPE_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
+	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_SPLINTER_ARMAMENT) || (uarm && uarm->oartifact == ART_TAPE_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && !isimportantlocation(x, y) && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
 
     /* only permit updating the hero when swallowed */
     if (u.uswallow) {
@@ -1370,12 +1370,12 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !isimportantlocation(x, y) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
 
-	if (!u.seesilverspell && SpellColorSilver) {
+	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
@@ -1395,12 +1395,12 @@ newsymX(x,y)
 	return;
 	}
 
-	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) {
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !isimportantlocation(x, y) && !(levl[x][y].wall_info & W_QUASAROK) ) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}
 
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(5)) {
+	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone()) && !rn2(10)) {
 	show_glyph(x, y, randomglyph());
 	return;
 	}
@@ -1415,7 +1415,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if (SpellColorPlatinum && !rn2(5)) {
+	if (SpellColorPlatinum && !rn2(10)) {
 	show_glyph(x, y, cmap_to_glyph(S_bars));
 	return;
 	}
@@ -1430,7 +1430,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_SPLINTER_ARMAMENT) || (uarm && uarm->oartifact == ART_TAPE_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && rn2(10) ) { show_glyphX(x, y, cmap_to_glyph(S_stone)); return;}
+	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_SPLINTER_ARMAMENT) || (uarm && uarm->oartifact == ART_TAPE_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && !isimportantlocation(x, y) && rn2(10) ) { show_glyphX(x, y, cmap_to_glyph(S_stone)); return;}
 
     /* only permit updating the hero when swallowed */
     if (u.uswallow) {
@@ -2361,13 +2361,13 @@ show_glyph(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
-	return;
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !isimportantlocation(x, y) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
+	glyph = cmap_to_glyph(S_stone);
 
-	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
-	return;
+	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && !isimportantlocation(x, y) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
+	glyph = cmap_to_glyph(S_stone);
 
-	if (!flags.wallglyph && glyph == (GLYPH_CMAP_OFF + 47)) return;
+	if (!flags.wallglyph && !isimportantlocation(x, y) && glyph == (GLYPH_CMAP_OFF + 47)) glyph = cmap_to_glyph(S_stone);
 
     if (glyph >= MAX_GLYPH) {
 	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
@@ -2440,13 +2440,13 @@ show_glyphX(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
-	return;
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !isimportantlocation(x, y) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
+	glyph = cmap_to_glyph(S_stone);
 
-	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
-	return;
+	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && !isimportantlocation(x, y) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
+	glyph = cmap_to_glyph(S_stone);
 
-	if (!flags.wallglyph && glyph == (GLYPH_CMAP_OFF + 47)) return;
+	if (!flags.wallglyph && !isimportantlocation(x, y) && glyph == (GLYPH_CMAP_OFF + 47)) glyph = cmap_to_glyph(S_stone);
 
     if (glyph >= MAX_GLYPH) {
 	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
