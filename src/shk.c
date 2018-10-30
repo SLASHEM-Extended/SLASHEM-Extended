@@ -6178,22 +6178,24 @@ shk_charge(slang, shkp)
 	if (obj->oclass == WAND_CLASS)
 	{
 		/* Wand of wishing? */
-		if (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT)
+		if (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_BAD_EQUIPMENT || obj->otyp == WAN_ACQUIREMENT)
 		{
 			/* Premier gives you ONE more charge */
 			/* KMH -- Okay, but that's pretty generous */
 			if (type == 'p') obj->spe++;
 
 			/* Fun */
-			verbalize("Since you'll have everything you always wanted,");
-			verbalize("...How about loaning me some money?");
+			if (obj->otyp == WAN_WISHING) {
+				verbalize("Since you'll have everything you always wanted,");
+				verbalize("...How about loaning me some money?");
 #ifndef GOLDOBJ
-			if (rn2(2)) shkp->mgold += u.ugold;
-			u.ugold = 0;
+				if (rn2(2)) shkp->mgold += u.ugold;
+				u.ugold = 0;
 #else
-			money2mon(shkp, money_cnt(invent));
+				money2mon(shkp, money_cnt(invent));
 #endif
-			makeknown(obj->otyp);
+				makeknown(obj->otyp);
+			}
 			bot();
 		}
 		else if (type == 'p')

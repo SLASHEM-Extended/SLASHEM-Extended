@@ -2524,7 +2524,7 @@ unsigned trflags;
 			    if (!Blind) otmp->dknown = 1;
 			    if (otmp) {
 			      pline("%s lands in your knapsack!", Doname2(otmp));
-				(void) pickup_object(otmp, 1L, TRUE);
+				(void) pickup_object(otmp, 1L, TRUE, TRUE);
 			    }
 
 			    losehp(dmg, "falling loadstone", KILLED_BY_AN);
@@ -2560,7 +2560,7 @@ unsigned trflags;
 			    if (!Blind) otmp->dknown = 1;
 			    if (otmp) {
 			      pline("%s lands in your knapsack!", Doname2(otmp));
-				(void) pickup_object(otmp, 1L, TRUE);
+				(void) pickup_object(otmp, 1L, TRUE, TRUE);
 			    }
 
 			    losehp(dmg, "falling loadstone", KILLED_BY_AN);

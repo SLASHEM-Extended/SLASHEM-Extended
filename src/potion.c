@@ -830,7 +830,7 @@ badeffect()
 
 		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
 		You_feel("burdened");
-		if (pickup_object(otmp, 1, FALSE) <= 0) {
+		if (pickup_object(otmp, 1, FALSE, TRUE) <= 0) {
 		obj_extract_self(otmp);
 		place_object(otmp, u.ux, u.uy);
 		newsym(u.ux, u.uy); }
@@ -2600,7 +2600,7 @@ newbadtry:
 	}
 
 	if (otmp) {
-		(void) pickup_object(otmp, 1L, TRUE);
+		(void) pickup_object(otmp, 1L, TRUE, TRUE);
 	}
 
 	/* try to equip it! */
@@ -2739,7 +2739,7 @@ newbadheeltry:
 	}
 
 	if (otmp) {
-		(void) pickup_object(otmp, 1L, TRUE);
+		(void) pickup_object(otmp, 1L, TRUE, TRUE);
 	}
 
 	/* try to equip it! */

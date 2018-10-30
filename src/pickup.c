@@ -25,7 +25,7 @@ STATIC_DCL boolean allow_cat_no_uchain(struct obj *);
 STATIC_DCL int autopick(struct obj*, int, menu_item **);
 STATIC_DCL int count_categories(struct obj *,int);
 STATIC_DCL long carry_count(struct obj *,struct obj *,long,BOOLEAN_P,int *,int *);
-STATIC_DCL int lift_object(struct obj *,struct obj *,long *,BOOLEAN_P);
+STATIC_DCL int lift_object(struct obj *,struct obj *,long *,BOOLEAN_P,BOOLEAN_P);
 STATIC_PTR int in_container_(struct obj *,BOOLEAN_P);
 STATIC_PTR int in_container(struct obj *);
 STATIC_PTR int ck_bag(struct obj *);
@@ -512,7 +512,7 @@ menu_pickup:
 	    n_tried = n;
 	    for (n_picked = i = 0 ; i < n; i++) {
 		res = pickup_object(pick_list[i].item.a_obj,pick_list[i].count,
-					FALSE);
+					FALSE, FALSE);
 		if (res < 0) break;	/* can't continue */
 		n_picked += res;
 	    }
@@ -540,7 +540,7 @@ menu_pickup:
 		obj = objchain;
 		lcount = min(obj->quan, (long)count);
 		n_tried++;
-		if (pickup_object(obj, lcount, FALSE) > 0)
+		if (pickup_object(obj, lcount, FALSE, FALSE) > 0)
 		    n_picked++;	/* picked something */
 		goto end_query;
 
@@ -604,7 +604,7 @@ menu_pickup:
 		if (lcount == -1L) lcount = obj->quan;
 
 		n_tried++;
-		if ((res = pickup_object(obj, lcount, FALSE)) < 0) break;
+		if ((res = pickup_object(obj, lcount, FALSE, FALSE)) < 0) break;
 		n_picked += res;
 	    }
 end_query:
@@ -1214,10 +1214,11 @@ int *wt_before, *wt_after;
 /* determine whether character is able and player is willing to carry `obj' */
 STATIC_OVL
 int 
-lift_object(obj, container, cnt_p, telekinesis)
+lift_object(obj, container, cnt_p, telekinesis, alwaysflag)
 struct obj *obj, *container;	/* object to pick up, bag it's coming out of */
 long *cnt_p;
 boolean telekinesis;
+boolean alwaysflag;
 {
     int result, old_wt, new_wt, prev_encumbr, next_encumbr;
 
@@ -1226,7 +1227,7 @@ boolean telekinesis;
 			body_part(HAND), xname(obj));
 	return -1;
     }
-    if (obj->otyp == LOADSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE ||
+    if (obj->otyp == LOADSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || alwaysflag ||
 	    (obj->otyp == BOULDER && throws_rocks(youmonst.data)) || (obj->oartifact && arti_is_evil(obj)) )
 	return 1;		/* lift regardless of current situation */
 
@@ -1314,10 +1315,11 @@ unsigned padlength;
  * up, 1 if otherwise.
  */
 int
-pickup_object(obj, count, telekinesis)
+pickup_object(obj, count, telekinesis, alwaysflag)
 struct obj *obj;
 long count;
 boolean telekinesis;	/* not picking it up directly by hand */
+boolean alwaysflag;	/* force the item to be picked up even if it burdens you --Amy */
 {
 	int res, nearload;
 #ifndef GOLDOBJ
@@ -1472,7 +1474,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		obj->blessed = 1;
 	}
 
-	if ((res = lift_object(obj, (struct obj *)0, &count, telekinesis)) <= 0)
+	if ((res = lift_object(obj, (struct obj *)0, &count, telekinesis, alwaysflag)) <= 0)
 	    return res;
 
 #ifdef GOLDOBJ
@@ -2291,7 +2293,7 @@ register struct obj *obj;
 	}
 
 	count = obj->quan;
-	if ((res = lift_object(obj, current_container, &count, FALSE)) <= 0)
+	if ((res = lift_object(obj, current_container, &count, FALSE, FALSE)) <= 0)
 	    return res;
 
 	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )

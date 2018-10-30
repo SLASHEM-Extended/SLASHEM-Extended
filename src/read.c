@@ -1099,7 +1099,7 @@ int curse_bless;
 	    if (is_cursed) {
 		stripspe(obj);
 	    } else {
-		int lim = (obj->otyp == WAN_WISHING) ? 2 : (obj->otyp == WAN_GENOCIDE) ? 4 : (obj->otyp == WAN_GAIN_LEVEL) ? 5 : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? 6 : ( (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ) ? 3 : ( (obj->otyp == WAN_PARALYSIS || obj->otyp == WAN_DISINTEGRATION || obj->otyp == WAN_DISINTEGRATION_BEAM || obj->otyp == WAN_STONING || obj->otyp == WAN_INERTIA || obj->otyp == WAN_TIME || obj->otyp == WAN_IDENTIFY || obj->otyp == WAN_REMOVE_CURSE || obj->otyp == WAN_TIME_STOP || obj->otyp == WAN_TELE_LEVEL || obj->otyp == WAN_ENTRAPPING || obj->otyp == WAN_MAGIC_MAPPING || obj->otyp == WAN_CREATE_FAMILIAR ) ) ? 5 : (obj->otyp == WAN_ENLIGHTENMENT || obj->otyp == WAN_TRAP_DISARMING || obj->otyp == WAN_CANCELLATION || obj->otyp == WAN_POLYMORPH || obj->otyp == WAN_MUTATION || obj->otyp == WAN_CHARGING) ? 7 : (obj->otyp == WAN_VENOM_SCATTERING) ? 20 : (objects[obj->otyp].oc_dir == IMMEDIATE) ? (12 + n) : (objects[obj->otyp].oc_dir != NODIR) ? (10 + n) : (20 + n);
+		int lim = (obj->otyp == WAN_WISHING) ? 2 : (obj->otyp == WAN_GENOCIDE) ? 4 : (obj->otyp == WAN_GAIN_LEVEL) ? 5  : (obj->otyp == WAN_BAD_EQUIPMENT) ? 7 : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? 6 : ( (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ) ? 3 : ( (obj->otyp == WAN_PARALYSIS || obj->otyp == WAN_DISINTEGRATION || obj->otyp == WAN_DISINTEGRATION_BEAM || obj->otyp == WAN_STONING || obj->otyp == WAN_INERTIA || obj->otyp == WAN_TIME || obj->otyp == WAN_IDENTIFY || obj->otyp == WAN_REMOVE_CURSE || obj->otyp == WAN_TIME_STOP || obj->otyp == WAN_TELE_LEVEL || obj->otyp == WAN_ENTRAPPING || obj->otyp == WAN_MAGIC_MAPPING || obj->otyp == WAN_CREATE_FAMILIAR ) ) ? 5 : (obj->otyp == WAN_ENLIGHTENMENT || obj->otyp == WAN_TRAP_DISARMING || obj->otyp == WAN_CANCELLATION || obj->otyp == WAN_POLYMORPH || obj->otyp == WAN_MUTATION) ? 7 : (obj->otyp == WAN_VENOM_SCATTERING) ? 20 : (objects[obj->otyp].oc_dir == IMMEDIATE) ? (12 + n) : (objects[obj->otyp].oc_dir != NODIR) ? (10 + n) : (20 + n);
 
 		n = (lim == 2) ? 2 : (lim == 3) ? 3 : (is_blessed ? rn1(5, lim + 1 - 5) : rnd(lim) ) ;
 		/*if (!is_blessed) {enspe = rnd(n); n = enspe;}*/ /* no longer needed */
@@ -1108,7 +1108,7 @@ int curse_bless;
 		if (is_blessed && obj->spe < n && rn2(3) ) obj->spe = n;
 		}
 
-		if (Role_if(PM_WANDKEEPER) && obj->spe < 100) obj->spe += ((obj->otyp == WAN_WISHING) ? 1 : (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ? rnd(3) : (obj->otyp == WAN_GENOCIDE) ? rnd(4) : (obj->otyp == WAN_GAIN_LEVEL) ? rnd(5) : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? rnd(6) : rnd(10));
+		if (Role_if(PM_WANDKEEPER) && obj->spe < 100) obj->spe += ((obj->otyp == WAN_WISHING) ? 1 : (obj->otyp == WAN_CHARGING || obj->otyp == WAN_BAD_EQUIPMENT || obj->otyp == WAN_ACQUIREMENT ) ? rnd(3) : (obj->otyp == WAN_GENOCIDE) ? rnd(4) : (obj->otyp == WAN_GAIN_LEVEL) ? rnd(5) : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? rnd(6) : rnd(10));
 
 		/* let's make charging a bit more useful, considering wands spawn with less charges now --Amy */
 		/*else*/ obj->spe += obj->recharged; /* cannot be higher than 1 for wishing/charging anyway */
@@ -3255,7 +3255,7 @@ proofarmorchoice:
 			if (!Blind) ldstone->dknown = 1;
 			if (ldstone) {
 			      pline("The stone automatically wanders into your knapsack!");
-				(void) pickup_object(ldstone, 1L, TRUE);
+				(void) pickup_object(ldstone, 1L, TRUE, TRUE);
 			}
 		}
 

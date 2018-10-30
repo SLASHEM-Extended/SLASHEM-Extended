@@ -5210,7 +5210,7 @@ struct monst *mtmp;
 			if (!Blind) ldstone->dknown = 1;
 			if (ldstone) {
 			      pline("The stone automatically wanders into your knapsack!");
-				(void) pickup_object(ldstone, 1L, TRUE);
+				(void) pickup_object(ldstone, 1L, TRUE, TRUE);
 			}
 		}
 

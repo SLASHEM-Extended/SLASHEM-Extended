@@ -6384,7 +6384,7 @@ revid_end:
 		  }
 
 		  You("pick up an object from the %s.", surface(cc.x,cc.y));
-		  (void) pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, TRUE);
+		  (void) pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, TRUE, FALSE);
 		  newsym(cc.x, cc.y);
 		  t_timeout = rnz(250);
 		} else {

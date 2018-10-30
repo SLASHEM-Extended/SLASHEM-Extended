@@ -410,7 +410,7 @@ fortune (mtmp)
 			if ((otmp = mksobj(otyp, TRUE, FALSE)) != (struct obj *)0) {
 				pline("%s reaches behind your %s and pulls out %s.",
 						Monnam(mtmp), body_part(HEAD), doname(otmp));
-				if (pickup_object(otmp, otmp->quan, FALSE) <= 0) {
+				if (pickup_object(otmp, otmp->quan, FALSE, FALSE) <= 0) {
 					obj_extract_self(otmp);
 					place_object(otmp, u.ux, u.uy);
 					newsym(u.ux, u.uy);

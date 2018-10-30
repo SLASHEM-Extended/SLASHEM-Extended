@@ -3301,13 +3301,13 @@ register struct obj *wand;
 			case P_GRAND_MASTER: nochargechange = 5; break;
 			case P_SUPREME_MASTER: nochargechange = 4; break;
 		}
-		if (wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS ) nochargechange = 10;
+		if (wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS ) nochargechange = 10;
 	}
 	if(wand->spe < 0 || (wand->spe == 0 && rn2(20))) /* make wresting easier --Amy */
 		return 0;
 	if(wand->spe == 0)
 		You("wrest one last charge from the worn-out wand.");
-	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && !(uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !(wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
+	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && !(uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !(wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
 
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 

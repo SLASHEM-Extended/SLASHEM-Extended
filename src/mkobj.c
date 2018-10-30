@@ -2501,7 +2501,7 @@ int artif;
 			else otmp->spe = rnd(ishaxor ? 10 : 8); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(10)) otmp->recharged = rnd(7);
-		} else if(otmp->otyp == WAN_ENLIGHTENMENT || otmp->otyp == WAN_TRAP_DISARMING || otmp->otyp == WAN_CANCELLATION || otmp->otyp == WAN_POLYMORPH || otmp->otyp == WAN_MUTATION || otmp->otyp == WAN_CHARGING) {
+		} else if(otmp->otyp == WAN_ENLIGHTENMENT || otmp->otyp == WAN_TRAP_DISARMING || otmp->otyp == WAN_CANCELLATION || otmp->otyp == WAN_POLYMORPH || otmp->otyp == WAN_MUTATION || otmp->otyp == WAN_CHARGING || otmp->otyp == WAN_BAD_EQUIPMENT) {
 			if (rn2(20)) otmp->spe = rnd(ishaxor ? 10 : 7);
 			else otmp->spe = rnd(ishaxor ? 15 : 10); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;

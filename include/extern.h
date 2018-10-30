@@ -2126,7 +2126,7 @@ E int in_container(struct obj *);
 E int out_container(struct obj *);
 #endif
 E int pickup(int);
-E int pickup_object(struct obj *, long, BOOLEAN_P);
+E int pickup_object(struct obj *, long, BOOLEAN_P, BOOLEAN_P);
 E int dump_container(struct obj *, BOOLEAN_P);
 E int query_category(const char *, struct obj *, int, menu_item **, int);
 E int query_objlist(const char *, struct obj *, int, menu_item **, int, boolean (*)(OBJ_P));

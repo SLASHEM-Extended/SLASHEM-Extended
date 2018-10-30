@@ -616,7 +616,7 @@ int x,y;
 			    /* evil patch idea: monsters shooting nasty gray stones cause them to end up in your pack --Amy */
 			    if (obj && x == u.ux && y == u.uy && is_nastygraystone(obj)) {
 			      pline("%s lands in your knapsack!", Doname2(obj));
-				(void) pickup_object(obj, 1L, TRUE);
+				(void) pickup_object(obj, 1L, TRUE, TRUE);
 			    } else stackobj(obj);
 			    retvalu = 0;
 

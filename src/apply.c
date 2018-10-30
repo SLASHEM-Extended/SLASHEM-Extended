@@ -3290,7 +3290,7 @@ struct obj *obj;
 	    if (otmp && proficient) {
 		You("wrap your bullwhip around %s on the %s.",
 		    an(singular(otmp, xname)), surface(u.ux, u.uy));
-		if (rnl(6 - proficient) || pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, TRUE) < 1)
+		if (rnl(6 - proficient) || pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, TRUE, FALSE) < 1)
 		    pline("%s", msg_slipsfree);
 		return 1;
 	    }
@@ -3592,7 +3592,7 @@ use_pole (obj)
 		    /* Snag an existing object */
 		    if ((otmp = level.objects[cc.x][cc.y]) != (struct obj *)0) {
 			You("snag an object from the %s!", surface(cc.x, cc.y));
-			pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1, FALSE);
+			pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1, FALSE, FALSE);
 			/* If pickup fails, leave it alone */
 			newsym(cc.x, cc.y);
 			return 1;
@@ -3606,7 +3606,7 @@ use_pole (obj)
 			flags.boot_count++;
 			You("snag some garbage from the %s!",
 				surface(cc.x, cc.y));
-			if (pickup_object(otmp, 1, FALSE) <= 0) {
+			if (pickup_object(otmp, 1, FALSE, FALSE) <= 0) {
 			    obj_extract_self(otmp);
 			    place_object(otmp, u.ux, u.uy);
 			    newsym(u.ux, u.uy);
@@ -3631,7 +3631,7 @@ use_pole (obj)
 			flags.cram_count++; /* I swear I implemented that once already, but apparently the change got eaten,
 							just like that annoying polearms code... --Amy */
 			You("catch tonight's dinner!");
-			if (pickup_object(otmp, 1, FALSE) <= 0) {
+			if (pickup_object(otmp, 1, FALSE, FALSE) <= 0) {
 			    obj_extract_self(otmp);
 			    place_object(otmp, u.ux, u.uy);
 			    newsym(u.ux, u.uy);
@@ -3904,7 +3904,7 @@ use_grapple (obj)
 	case 1:	/* Object */
 	    if ((otmp = level.objects[cc.x][cc.y]) != 0) {
 		You("snag an object from the %s!", surface(cc.x, cc.y));
-		(void) pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, FALSE);
+		(void) pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, FALSE, FALSE);
 		/* If pickup fails, leave it alone */
 		newsym(cc.x, cc.y);
 		return (1);

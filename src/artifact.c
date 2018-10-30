@@ -854,7 +854,7 @@ bad_artifact()
 	}
 
 	if (otmp) {
-		(void) pickup_object(otmp, 1L, TRUE);
+		(void) pickup_object(otmp, 1L, TRUE, TRUE);
 	}
 
 	/* try to equip it! */
@@ -1014,7 +1014,7 @@ bad_artifact_xtra()
 			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SUPREME_MASTER;
 		}
 
-		(void) pickup_object(otmp, 1L, TRUE);
+		(void) pickup_object(otmp, 1L, TRUE, TRUE);
 
 	}
 
