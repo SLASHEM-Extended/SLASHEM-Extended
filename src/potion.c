@@ -4373,7 +4373,7 @@ peffects(otmp)
 			}
 			unkn++;
 			/* they went up a level */
-			if((ledger_no(&u.uz) == 1 && u.uhave.amulet) ||
+			if((ledger_no(&u.uz) == 1 && u.uhave.amulet && u.amuletcompletelyimbued) ||
 				Can_rise_up(u.ux, u.uy, &u.uz)) {
 			    const char *riseup ="rise up, through the %s!";
 			    /* [ALI] Special handling for quaffing potions
@@ -4429,7 +4429,7 @@ peffects(otmp)
 		if (otmp->cursed) {
 			unkn++;
 			/* they went up a level */
-			if((ledger_no(&u.uz) == 1 && u.uhave.amulet) ||
+			if((ledger_no(&u.uz) == 1 && u.uhave.amulet && u.amuletcompletelyimbued) ||
 				Can_rise_up(u.ux, u.uy, &u.uz)) {
 			    const char *riseup ="rise up, through the %s!";
 			    /* [ALI] Special handling for quaffing potions
