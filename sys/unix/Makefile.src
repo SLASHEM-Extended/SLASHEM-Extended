@@ -1064,7 +1064,7 @@ attrib.o: attrib.c $(HACK_H)
 ball.o: ball.c $(HACK_H)
 bones.o: bones.c $(HACK_H) ../include/lev.h
 botl.o: botl.c $(HACK_H)
-cmd.o: cmd.c $(HACK_H) ../include/func_tab.h
+cmd.o: cmd.c $(HACK_H) ../include/func_tab.h ../include/date.h
 dbridge.o: dbridge.c $(HACK_H)
 decl.o: decl.c $(HACK_H)
 detect.o: detect.c $(HACK_H) ../include/artifact.h
