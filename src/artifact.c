@@ -2040,6 +2040,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	static const char you[] = "you";
 	char hittee[BUFSIZ];
 	boolean special_applies;
+	boolean willreturntrue = 0;
 
 	strcpy(hittee, youdefend ? you : mon_nam(mdef));
 
@@ -2077,7 +2078,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    if (!rn2(50)) (void) destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
 	    if (!rn2(75)) (void) destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
 	    if (youdefend && Slimed) burn_away_slime();
-	    return realizes_damage;
+	    if (realizes_damage) willreturntrue = 1;
 	}
 	if (attacks(AD_COLD, otmp)) {
 	    if (realizes_damage)
@@ -2085,7 +2086,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			!spec_dbon_applies ? "hits" : "freezes",
 			hittee, !spec_dbon_applies ? '.' : '!');
 	    if (!rn2(100)) (void) destroy_mitem(mdef, POTION_CLASS, AD_COLD);
-	    return realizes_damage;
+	    if (realizes_damage) willreturntrue = 1;
 	}
 	if (attacks(AD_ELEC, otmp)) {
 	    if (realizes_damage)
@@ -2094,7 +2095,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			  hittee, !spec_dbon_applies ? '.' : '!');
 	    if (!rn2(150)) (void) destroy_mitem(mdef, RING_CLASS, AD_ELEC);
 	    if (!rn2(150)) (void) destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
-	    return realizes_damage;
+	    if (realizes_damage) willreturntrue = 1;
 	}
 	if (attacks(AD_MAGM, otmp)) {
 	    if (realizes_damage)
@@ -2102,23 +2103,26 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			  !spec_dbon_applies ? "" :
 				"!  A hail of magic missiles strikes",
 			  hittee, !spec_dbon_applies ? '.' : '!');
-	    return realizes_damage;
+	    if (realizes_damage) willreturntrue = 1;
 	}
 
 	if (attacks(AD_STUN, otmp) && dieroll <= MB_MAX_DIEROLL) {
 	    /* Magicbane's special attacks (possibly modifies hittee[]) */
-	    return Mb_hit(magr, mdef, otmp, dmgptr, dieroll, vis, hittee);
+	    if (Mb_hit(magr, mdef, otmp, dmgptr, dieroll, vis, hittee)) willreturntrue = 1;
 	}
 
-	if (!spec_dbon_applies && !spec_ability(otmp, SPFX_BEHEAD) ||
-		!special_applies) {
+/*	if (!spec_dbon_applies && !spec_ability(otmp, SPFX_BEHEAD) ||
+		!special_applies) {*/
 	    /* since damage bonus didn't apply, nothing more to do;  
 	       no further attacks have side-effects on inventory */
 	    /* [ALI] The Tsurugi of Muramasa has no damage bonus but
 	       is handled below so avoid early exit if SPFX_BEHEAD set
 	       and the defender is vulnerable */
-	    return FALSE;
-	}
+	    /* Amy edit: way too many special cases, in the case of
+		 doubt we have to go through the remaining possibilities
+		 anyway to ensure none are missed */
+/*	    return FALSE;
+	}*/
 
 	if(otmp->oartifact == ART_REAVER){
 	 if(youattack){
@@ -2220,7 +2224,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    You("are not affected by the poison.");
 		else
 		    pline("%s seems unaffected by the poison.", Monnam(mdef));
-		return TRUE;
+		willreturntrue = 1;
 	    }
 	    switch (rnd(10)) {
 		case 1:
@@ -2248,7 +2252,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			else { *dmgptr += d(4,6) + 6; }
 		    break;
 	    }
-	    return TRUE;
+	    willreturntrue = 1;
 	}
 
        if (otmp->oartifact == ART_DOOMBLADE && dieroll < 6) {
@@ -2260,7 +2264,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			Monnam(magr), hittee);
 		if (youattack && (PlayerHearsSoundEffects)) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
 	    *dmgptr += rnd(4) * 5;
-	    return TRUE;
+	    willreturntrue = 1;
        }
       /* END OF STEPHEN WHITE'S NEW CODE */
 
@@ -2295,12 +2299,14 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		if (youattack && u.uswallow && mdef == u.ustuck) {
 		    You("slice %s wide open!", mon_nam(mdef));
 		    *dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
-		    return TRUE;
+		    willreturntrue = 1;
+		    goto beheadingdone;
 		}
 		if (!youdefend) {
 			/* allow normal cutworm() call to add extra damage */
-			if(notonhead)
-			    return FALSE;
+			if(notonhead) {
+				goto beheadingdone;
+			}
 
 			if (bigmonst(mdef->data)) {
 				if (youattack)
@@ -2310,19 +2316,22 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 					pline("%s cuts deeply into %s!",
 					      Monnam(magr), hittee);
 				*dmgptr *= 2;
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 			*dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
 			pline("%s cuts %s in half!", wepdesc, mon_nam(mdef));
 			otmp->dknown = TRUE;
-			return TRUE;
+			willreturntrue = 1;
+			goto beheadingdone;
 		} else {
 			/* Invulnerable player won't be bisected */
 			if (bigmonst(youmonst.data) || Invulnerable || (Stoned_chiller && Stoned) ) {
 				pline("%s cuts deeply into you!",
 				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 
 			/* Players with negative AC's take less damage instead
@@ -2333,7 +2342,8 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			*dmgptr = 2 * (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE_MODIFIER;
 			pline("%s cuts you in half!", wepdesc);
 			otmp->dknown = TRUE;
-			return TRUE;
+			willreturntrue = 1;
+			goto beheadingdone;
 		}
 	    } else if (dieroll < 2 || otmp->oartifact == ART_VORPAL_BLADE &&
 				      mdef->data == &mons[PM_JABBERWOCK]) {
@@ -2342,8 +2352,9 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		     "%s decapitates %s!"
 		};
 
-		if (youattack && u.uswallow && mdef == u.ustuck)
-			return FALSE;
+		if (youattack && u.uswallow && mdef == u.ustuck) {
+			goto beheadingdone;
+		}
 		wepdesc = artilist[otmp->oartifact].name;
 		if (!youdefend) {
 			if (!has_head(mdef->data) || notonhead || u.uswallow) {
@@ -2354,77 +2365,90 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 					pline("Somehow, %s misses wildly.",
 						mon_nam(magr));
 				*dmgptr = 0;
-				return ((boolean)(youattack || vis));
+				if (youattack || vis) willreturntrue = 1;
+				goto beheadingdone;
 			}
 			if (noncorporeal(mdef->data) || amorphous(mdef->data)) {
 				pline("%s slices through %s %s.", wepdesc,
 				      s_suffix(mon_nam(mdef)),
 				      mbodypart(mdef,NECK));
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 			*dmgptr = 2 * mdef->mhp + FATAL_DAMAGE_MODIFIER;
 			pline(behead_msg[rn2(SIZE(behead_msg))],
 			      wepdesc, mon_nam(mdef));
 			otmp->dknown = TRUE;
-			return TRUE;
+			willreturntrue = 1;
+			goto beheadingdone;
 		} else {
 
 			if (!has_head(youmonst.data) || Role_if(PM_COURIER)) {
 				pline("Somehow, %s misses you wildly.",
 				      magr ? mon_nam(magr) : wepdesc);
 				*dmgptr = 0;
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 
 			if (uamul && uamul->otyp == AMULET_OF_NECK_BRACE) {
 				pline("Somehow, %s misses you wildly.",
 				      magr ? mon_nam(magr) : wepdesc);
 				*dmgptr = 0;
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 
 			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DECAPITATION_UP) {
 				pline("Somehow, %s misses you wildly.",
 				      magr ? mon_nam(magr) : wepdesc);
 				*dmgptr = 0;
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 
 			}
 
 			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "complete helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polnaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "to'liq dubulg'a") ) ) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 
 			}
 			if (RngeAntiBeheading) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 
 			}
 
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
 				pline("%s slices through your %s.",
 				      wepdesc, body_part(NECK));
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 			*dmgptr = 2 * (Upolyd ? u.mh : u.uhp)
 				  + FATAL_DAMAGE_MODIFIER;
 			if (Invulnerable || (Stoned_chiller && Stoned)) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
-				return TRUE;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 			pline(behead_msg[rn2(SIZE(behead_msg))],
 			      wepdesc, "you");
 			otmp->dknown = TRUE;
 			/* Should amulets fall off? */
-			return TRUE;
+			willreturntrue = 1;
+			goto beheadingdone;
 		}
 	    }
 	}
+beheadingdone:
 	if (spec_ability(otmp, SPFX_DRLI)) {
+
 		if (!youdefend) {
 		    if (!resists_drli(mdef)) {
 			if (vis) {
@@ -2452,7 +2476,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			    drain /= 2;
 			    if (drain) healup(drain, 0, FALSE, FALSE);
 			}
-			return vis;
+			if (vis) willreturntrue = 1;
 		    }
 		} else if (!Drain_resistance) { /* youdefend */
 			int oldhpmax = u.uhpmax;
@@ -2472,7 +2496,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			    magr->mhp += (oldhpmax - u.uhpmax)/2;
 			    if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 			}
-			return TRUE;
+			willreturntrue = 1;
 		}
 	}
 	/* WAC -- 1/6 chance of cancellation with foobane weapons */
@@ -2492,9 +2516,11 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			pline("It strikes %s!", hittee);
 		    }
 		    cancel_monst(mdef, otmp, youattack, TRUE, magr == mdef);
-		    return TRUE;
+		    willreturntrue = 1;
 		}
 	}
+	if (willreturntrue) return TRUE;
+
 	return FALSE;
 }
 
