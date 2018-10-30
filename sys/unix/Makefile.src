@@ -699,7 +699,8 @@ tags: $(CSOURCES)
 	@( cd ../util ; $(MAKE) tags )
 
 clean:
-	-rm -f *.o nhwin.a $(HACK_H) $(CONFIG_H)
+	-rm -f *.o nhwin.a $(HACK_H)
+# used to have $(CONFIG_H) too but we might be doing changes to it
 
 spotless: clean
 	-rm -f a.out core $(GAME) Sys*
