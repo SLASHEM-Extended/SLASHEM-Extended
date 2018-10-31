@@ -127,10 +127,14 @@ dosounds()
 	static const char * const swamp_msg[] = {
 		"hear mosquitoes!",
 		"smell marsh gas!",	/* so it's a smell...*/
+		"hear a muffled splash.",
+		"are frightened by the calm atmosphere for some reason.",
 		"hear Donald Duck!",
 		"inhale a vile stench that reminds you of what kissing a frog is probably like!",
+		"hear someone falling in the water and losing a life.",
+		"suddenly encounter the hamming fish, which can devour and instakill you!", /* Big Bill from Super Mario Bros 3 */
 	};
-	You("%s", swamp_msg[rn2(2+hallu*2)]);
+	You("%s", swamp_msg[rn2(4+hallu*4)]);
 	return;
     }
     if (level.flags.spooky && !rn2(200)) {
@@ -307,8 +311,9 @@ dosounds()
 			"listen to patients screaming while the doctor is conducting the sectio.",
 			"seem to hear Doctor Frankenstein.",
 			"hear someone scream 'NOOOOOO! Get away from my teeth! Dentists are TERRIBLE people!!!'",
+			"suddenly have a flashback to your last OP!",
 		};
-		You("%s", hospital_msg[rn2(4+hallu*2)]);
+		You("%s", hospital_msg[rn2(4+hallu*3)]);
 		return;
 	    }
 	    if (level.flags.has_nymphhall && !rn2(200)) {
@@ -322,8 +327,9 @@ dosounds()
 			"hear wind in the willows!",
 			"seem mesmerized.",
 			"feel like giving all your possessions to a beautiful woman.",
+			"want to pull down your pants.",
 		};
-		You("%s", nymphhall_msg[rn2(5+hallu*4)]);
+		You("%s", nymphhall_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_lemurepit && !rn2(2000)) { /* from unnethack, deliberately made rare */
@@ -337,8 +343,11 @@ dosounds()
 			"screams of lust!",
 			"the crack of your mistress's whip!",
 			"a weeping willow!",
+			"wonderful scratching noises!",
+			"erotic rubbing noises!",
+			"cheerful squeaking noises!",
 		};
-		You_hear("%s", lemurepit_msg[rn2(6+hallu*3)]);
+		You_hear("%s", lemurepit_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 	    if (level.flags.has_spiderhall && !rn2(200)) {
@@ -406,8 +415,9 @@ dosounds()
 			"feel that you're near death!",
 			"don't have much longer to live...",
 			"listen to a tune that gets ever more dissonant...", /* crypt music from Robin Hood, Prince of Thieves */
+			"hear your ancestors laughing at you!",
 		};
-		You("%s", cryptroom_msg[rn2(4+hallu*3)]);
+		You("%s", cryptroom_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 
@@ -420,13 +430,17 @@ dosounds()
 			"notice an electrical feeling in the air.",
 			"are afraid of something.",
 			"hear the voices of vaguely humanoid beings.",
+			"feel vexed.",
 			"have to count to three, and if you fail, you can forget about your game!", /* this and the next few are from the obscure Trouble Zone game for the Nintendo Gameboy */
 			"are way in over your head!",
 			"must sort the blocks according to the numbers, and pronto!",
 			"fall asleep while the line very slowly dissolves.",
 			"listen to the military music broadcast from Radio Enclave.", /* Fallout 3 */
+			"are being fully gouged by the type!",
+			"collected too many speed increasing pickups and your speed wrapped over so you're super slow now!",
+			"realize that the game has resetted itself, so you'll have to start over at dungeon level 1.",
 		};
-		You("%s", troublezone_msg[rn2(7+hallu*5)]);
+		You("%s", troublezone_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 
@@ -459,8 +473,9 @@ dosounds()
 			"realize that the hellspawn invasion has already begun...",
 			"sense the presence of a gate to Oblivion.",
 			"suddenly encounter the giant siege caterpillar and have 10 minutes to destroy it or everything is lost.",
+			"need to protect Annoying Head Martin from the 200 storm atronachs and dremora valkynaz.",
 		};
-		You("%s", hellpit_msg[rn2(6+hallu*4)]);
+		You("%s", hellpit_msg[rn2(6+hallu*5)]);
 		return;
 	    }
 
@@ -498,8 +513,10 @@ dosounds()
 			"hear someone sing 'Old Mac Donald had a farm...'",
 			"can't help it but feel that something that looks normal is terribly amiss.",
 			"listen to the palomita, which is Spanish for parrot.", /* or at least the Amy always thought that's what it meant */
+			"wonder what's the color of the giant red ant.",
+			"feel that the one grass tile is greener than the rest for some reason.",
 		};
-		You("%s", meadowroom_msg[rn2(5+hallu*3)]);
+		You("%s", meadowroom_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -514,8 +531,9 @@ dosounds()
 			"hear someone calling you to the iceblock shooting.", /* reference to GNTM, where the models had to do a photo shooting in an ice chamber once */
 			"can smell the mildew on the walls.",
 			"listen to the type of ice block laughing all the time. Harharharharharharhar!",
+			"know that if you're walking on ice all the time, you'll unlearn the ability to walk on a non-slippery floor.",
 		};
-		You("%s", coolingchamber_msg[rn2(5+hallu*4)]);
+		You("%s", coolingchamber_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -536,8 +554,9 @@ dosounds()
 			"feel a ghostly touch on your nosie and inhale the scent of a rosie!",
 			"hear the sounds of the gene splicing machine!", /* Elona */
 			"listen to someone complaining about a splintered nail.", /* Harry Potter disappearing (or whatever it's called, it's actually magical teleportation) mishap */
+			"neither hear nor see the words, yet somehow they're still there.",
 		};
-		You("%s", voidroom_msg[rn2(8+hallu*7)]);
+		You("%s", voidroom_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 
@@ -547,12 +566,15 @@ dosounds()
 			"hear a loud crunching sound.",
 			"hear a ceiling tile fall.",
 			"smell a lot of rust.",
+			"hear a gun clank.",
 			"hear iron oxidize.",
 			"hear a military contractor making out like a bandit.",
 			"fear that your +7 artifact weapon might get eaten!",
 			"hear the sound of a toilet latch.",
+			"wonder why the hell this set of messages is called 'library_msg' in the game's source.",
+			"feel that parts of the floor have been washed away.",
 		};
-		You("%s", library_msg[rn2(4)+hallu*4]);
+		You("%s", library_msg[rn2(5)+hallu*6]);
 		return;
 	    }
 
@@ -579,12 +601,13 @@ dosounds()
 			"can hear a police officer requesting reinforcement.",
 			"hear the whipping sound of a rubber hose.", /* default keystone kop weapon */
 			"overhear the police radio and find out to your shock that you're wanted.",
+			"hear an officer giving commands hectically.",
 			"realize that your cop wanted level is 6, and the forces of law are coming to bust you!",
 			"are chased by a speeding police car!",
 			"feel that the safest place in existence is right in the middle of the enemies' base camp.", /* a joke from one of Amy's fanfics where the robbers were discussing where to hide and one of them sarcastically suggested hiding in the cop station */
 			"hear the sound of a fucking army helicopter!", /* in GTA games, the army comes for you if your cop wanted level is maxed */
 		};
-		if (rn2(5)) You("%s", kopstation_msg[rn2(4+hallu*4)]);
+		if (rn2(5)) You("%s", kopstation_msg[rn2(5+hallu*4)]);
 		else verbalize("Alert! All units, apprehend %s immediately!", playeraliasname);
 		return;
 	    }
@@ -751,8 +774,9 @@ dosounds()
 			"really have to hurry - if you don't free the prisoner in 10 turns, he will be killed!",
 			"were so stupid and accidentally attacked the prisoner, causing him to die! Now you'll never get the reward for freeing him!",
 			"procrastinated for too long and now the prisoner is history. You failure!",
+			"noticed that the drums are beating faster!",
 		};
-		You("%s", prisonchamber_msg[rn2(5+hallu*4)]);
+		You("%s", prisonchamber_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -762,11 +786,14 @@ dosounds()
 			"smell the stench of contamination in the air.",
 			"listen to scientists talking about their experiments.",
 			"hear the sounds of a nuclear facility.",
+			"detect gamma radiation.",
 			"feel the presence of the ether generator!",
 			"can overhear the president saying 'That was the last straw! I'll bomb that fucking country now! I just need to get the code and press the big red button!'",
 			"are in the extended hazardous course and will have to beat it without cheats, which is very difficult!", /* Hazardous Course 2, also known as Super Kaizo Half-Life */
+			"fear that the politicians will abolish their nuclear peace treaties!",
+			"are glad that you have a HEV suit, which must be very HEVvy.",
 		};
-		You("%s", nuclearchamber_msg[rn2(4+hallu*3)]);
+		You("%s", nuclearchamber_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -826,6 +853,7 @@ dosounds()
 			"sense a strong gust of wind.",
 			"hear a wave of water.",
 			"feel the presence of astral beings.",
+			"hear distant thunder.",
 			"get the impression that the laws of Nature itself are conspiring against you!",
 			"suffer from severe inundation!",
 			"realize that you're on a hot plate that was just turned on! Step off or you'll get the tip of your toes burned!",
@@ -834,7 +862,7 @@ dosounds()
 			"wonder why 'astral' elementals exist, because astral is not an element.",
 			"can hear Laura chanting spells.", /* she's supposed to be a master of elemental spells */
 		};
-		You("%s", elemhall_msg[rn2(5+hallu*7)]);
+		You("%s", elemhall_msg[rn2(6+hallu*7)]);
 		return;
 	    }
 
@@ -853,8 +881,13 @@ dosounds()
 			"will die, but not before you've witnessed the evil perpetrators taking your beloved toys and breaking them into pieces.",
 			"are going to get disintegrated even if you are resistant.", /* Nethack Fourk */
 			"will never be able to kill a bugbear in less than 5 hits, and woe to you if an actually difficult monster comes, e.g. a stone golem.", /* Sporkhack */
+			"don't look forward to encountering the elder priest at all.", /* dnethack */
+			"just love it when intrinsically obtained resistances time out.", /* ditto */
+			"have to eat hundreds of corpses to obtain full resistance.", /* sporkhack */
+			"feel that magic resistance will not protect you from the destroy armor spell.", /* ditto */
+			"finally understand that interface screws are not fake difficulty.",
 		};
-		You("%s", evilroom_msg[rn2(9+hallu*4)]);
+		You("%s", evilroom_msg[rn2(9+hallu*9)]);
 		return;
 	    }
 	    if (level.flags.has_religioncenter && !rn2(200)) {
@@ -919,6 +952,7 @@ dosounds()
 			"realize some unexpected hard disk activity.",
 			"have to use phase door if you want to get inside.",
 			"wonder whether teleportation will work on this floor.",
+			"wonder whether shooting the percents will make it go away.",
 			"have the urge to click on that gray tile!",
 			"get a NTLL - Not a valid save file!",
 			"suddenly notice the superdeep type over there!",
@@ -926,8 +960,9 @@ dosounds()
 			"just lost another continue! If you keep playing that badly, you'll run out and be eliminated prematurely!",
 			"need to use clairvoyance in a very specific place or you won't be able to teleport!",
 			"suddenly remember the highscore cheat that Amy's roommate discovered!",
+			"are challenged by Julietta, and have to defeat her in the auto racer duel!",
 		};
-		You("%s", levelffroom_msg[rn2(7+hallu*7)]);
+		You("%s", levelffroom_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 	    if (level.flags.has_verminroom && !rn2(200)) {
@@ -999,6 +1034,7 @@ dosounds()
 			"seem to be in a nice atmosphere.",
 			"pages turning.",
 			"listen to the villagers' conversations.",
+			"want to check whether the secret path is open.",
 			"inhale the sharp smell of burning thatch!",
 			"suddenly see the hill giant lord throwing enormous rocks on the shops! And he's killing the shopkeeper with a giant club! Ack!",
 			"must be in a town that's not very easy to reach.",
@@ -1007,7 +1043,7 @@ dosounds()
 			"have 100 turns left to find the secret entrance to an otherwise unreachable dungeon level before the hidden warp portal dissipates.",
 			"somehow feel that the secret advice hussies can't get you for now.",
 		};
-		You("%s", greencrossroom_msg[rn2(6+hallu*7)]);
+		You("%s", greencrossroom_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_ruinedchurch && !rn2(200)) {
@@ -1034,6 +1070,7 @@ dosounds()
 			"seem to catch earshot of a dragon shout from Skyrim.",
 			"encounter a tiny lag that indicates monsters being spawned.",
 			"have to click OK on the shareware notice.",
+			"see the accursed crashy graphics card logo.",
 			"hear a speedrunner curse at Super Kaizo Mario because the game is too damn hard!",
 			"suddenly feel that you're really playing GTA! A cop car appears! The cop wields a shotgun! The cop fires a shotgun shell!--More--",
 			"lost your last hitpoint and jump out of the picture!",
@@ -1045,7 +1082,7 @@ dosounds()
 			"hear someone say 'Die-Far-ben-sind-sehr-flau-schel-bau-schig!'",
 			"push buttons and your stupid PC responds by making annoying 'DIE-DIE-DOE' sounds instead of executing your commands!",
 		};
-		You("%s", gamecorner_msg[rn2(8+hallu*10)]);
+		You("%s", gamecorner_msg[rn2(9+hallu*10)]);
 		return;
 	    }
 	    if (level.flags.has_illusionroom && !rn2(200)) {
