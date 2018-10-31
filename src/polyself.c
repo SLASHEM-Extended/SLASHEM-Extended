@@ -2143,7 +2143,38 @@ dosummon()
 	if (u.ulycn == PM_WERESTILETTOSANDAL) somanymana = 250;
 	if (u.ulycn == PM_WEREUNFAIRSTILETTO) somanymana = 260;
 	if (u.ulycn == PM_WEREWINTERSTILETTO) somanymana = 300;
-	
+
+	if (u.umonnum == PM_WERESOLDIERANT && somanymana < 15) somanymana = 15;
+	if (u.umonnum == PM_WEREWOLF && somanymana < 20) somanymana = 20;
+	if (u.umonnum == PM_WEREPIRANHA && somanymana < 20) somanymana = 20;
+	if (u.umonnum == PM_WEREEEL && somanymana < 25) somanymana = 25;
+	if (u.umonnum == PM_WEREKRAKEN && somanymana < 45) somanymana = 45;
+	if (u.umonnum == PM_WEREFLYFISH && somanymana < 45) somanymana = 45;
+	if (u.umonnum == PM_WEREPANTHER && somanymana < 30) somanymana = 30;
+	if (u.umonnum == PM_WERETIGER && somanymana < 30) somanymana = 30;
+	if (u.umonnum == PM_WERESNAKE && somanymana < 20) somanymana = 20;
+	if (u.umonnum == PM_WERECOW && somanymana < 20) somanymana = 20;
+	if (u.umonnum == PM_WEREBEAR && somanymana < 75) somanymana = 75;
+	if (u.umonnum == PM_WEREVORTEX && somanymana < 50) somanymana = 50;
+	if (u.umonnum == PM_WERETROLL && somanymana < 50) somanymana = 50;
+	if (u.umonnum == PM_WEREGIANT && somanymana < 50) somanymana = 50;
+	if (u.umonnum == PM_WEREGHOST && somanymana < 30) somanymana = 30;
+	if (u.umonnum == PM_WERECOCKATRICE && somanymana < 60) somanymana = 60;
+	if (u.umonnum == PM_WERELICH && somanymana < 100) somanymana = 100;
+	if (u.umonnum == PM_WEREMINDFLAYER && somanymana < 150) somanymana = 150;
+	if (u.umonnum == PM_WEREJABBERWOCK && somanymana < 200) somanymana = 200;
+	if (u.umonnum == PM_WEREWEDGESANDAL && somanymana < 80) somanymana = 80;
+	if (u.umonnum == PM_WEREHUGGINGBOOT && somanymana < 120) somanymana = 120;
+	if (u.umonnum == PM_WEREPEEPTOE && somanymana < 140) somanymana = 140;
+	if (u.umonnum == PM_WERESEXYLEATHERPUMP && somanymana < 160) somanymana = 160;
+	if (u.umonnum == PM_WEREBLOCKHEELEDCOMBATBOOT && somanymana < 160) somanymana = 160;
+	if (u.umonnum == PM_WERECOMBATSTILETTO && somanymana < 200) somanymana = 200;
+	if (u.umonnum == PM_WEREBEAUTIFULFUNNELHEELEDPUMP && somanymana < 240) somanymana = 240;
+	if (u.umonnum == PM_WEREPROSTITUTESHOE && somanymana < 240) somanymana = 240;
+	if (u.umonnum == PM_WERESTILETTOSANDAL && somanymana < 250) somanymana = 250;
+	if (u.umonnum == PM_WEREUNFAIRSTILETTO && somanymana < 260) somanymana = 260;
+	if (u.umonnum == PM_WEREWINTERSTILETTO && somanymana < 300) somanymana = 300;
+
 	if (u.uen < somanymana) {
 	    You("lack the energy to send forth a call for help! You need at least %d!",somanymana);
 	    return(0);
