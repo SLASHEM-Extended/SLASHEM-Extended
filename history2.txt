@@ -1418,6 +1418,23 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added playable DQ Slime and Erdrick roles, and 7 new races.
 - In soviet mode, performing operations on stacks of items will always work again.
 
+1.3.4 - August 2015
+- Eating corpses is much faster for both players and monsters.
+- Cthulhu no longer gets an Amulet of Yendor, because the high priest already has one.
+- Artifacts resist theft attempts with a certain chance.
+- New option "showlongstats" that shortens stuff displayed on the bottom status line for those who want to fit everything into an 80x24 terminal (the recommended terminal size is 80x25 though).
+
+1.3.3 - August 2015
+- The nasty trap effect that causes the player's items to repeatedly curse themselves triggers less often.
+- Tweaked the odds of items being heavily/prime cursed.
+- Made many boss monsters immune to disintegration.
+- Increased the average timeout of power surge.
+- If the player gains a level while already XL30, they now receive smaller boosts to maximum HP and Pw than before.
+- Wands of gain level and increase max hitpoints spawn with less charges and can only be recharged once.
+- Fixed a certain level freezing the game on loading.
+- Monsters will now only delete musable items if they were part of their starting inventory.
+- Certain beneficial effects happen less often the longer a game goes on.
+
 (older stuff still needs to be added here)
 
 :-) <3 *bundlebundlebundle* <3 :D
