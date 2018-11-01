@@ -544,7 +544,7 @@ dosounds()
 			"feel that a special challenge awaits you.", /* ToME */
 			"feel the presence of spirits from the netherworld.",
 			"hear a sucking sound.",
-			"audible silence.",
+			"hear audible silence.",
 			"notice that this area is disturbingly quiet.",
 			"hear the absence of nosie.", /* sic by AntiGulp, and deemed too funny to fix */
 			"hear Galadriel whispering 'It is very likely that you die on your journey, but you must go anyway...'",

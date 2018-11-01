@@ -2853,6 +2853,7 @@ E void blow_up_landmine(struct trap *);
 E int launch_obj(SHORT_P,int,int,int,int,int);
 /* KMH, balance patch -- new function */
 E int uunstone(void);
+E void fartingweb(void);
 
 /* ### u_init.c ### */
 

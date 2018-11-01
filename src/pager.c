@@ -10874,25 +10874,25 @@ static NEARDATA const char * const fake_plines[] = {
 	"Beautiful Arcturian babes are waiting to meet you!",
 	"You could meet a real Asari Consort!",
 	"In need of help?  Syreen rescue crew can take care of all your needs!",
-	"Invest in Bentusi technology and get rich quick!"
+	"Invest in Bentusi technology and get rich quick!",
 	"Transmit 10000 buckazoids to Meta-Net Systems for an upgrade?",
 	"Upload $10000 to Hyperpyramid Industries to buy business plan?",
 	"Beam over your Arcturian bride for only 50000 buckazoids?",
 	"Book an interview with Asari Consort for only 5000 buckazoids?",
 	"Hire a Syreen rescue crew for only 2000 buckazoids?",
-	"Pay $3000 buckazoids for a blueprint of breaktrough Bentusi technology?"
+	"Pay $3000 buckazoids for a blueprint of breaktrough Bentusi technology?",
 	"Upgrading ... done!  Enjoy the supremely speedy warpspace connection!",
 	"Your plan should appear in your mailbox shortly.",
 	"Thank you for your order.  Please wait 4-6 orbit cycles for delivery.",
 	"Your appointment is being scheduled, thank you for your patience.",
 	"The Penetrator has departed!  ETA in 2-4 orbits.",
-	"Expect to receive the blueprints by courier in 2-3 orbit cycles."
+	"Expect to receive the blueprints by courier in 2-3 orbit cycles.",
 	"Help feed starving alien babies from Mars!",
 	"Please provide for the needs of elderly citizens of the Death Star!",
-	"Aid poor earthling patients at Venus Planetary Clinic!"
+	"Aid poor earthling patients at Venus Planetary Clinic!",
 	"Donate 10000 buckazoids to the Nursery?",
 	"Give $5000 to Non-profit House of Serene Elder Life of BOFH?",
-	"Send 50000 buckazoids to Venus Planetary Clinic?"
+	"Send 50000 buckazoids to Venus Planetary Clinic?",
 	"Thank you!  Here, have this picture of adorable Darth Vader baby.",
 	"Thank you for your most generous donation.",
 	"Your selfless gesture has helped save -1 lives.",
@@ -15010,7 +15010,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"SS_LoadSound: Could not load blablabla",
 	"SS_LoadSound: Could not load blablabla       SS_LoadSound: Could not load blablabla",
 	"Switching to a double SAA can result in the game buggedly reloading a bullet, even if you have no bullets left. So for example, if you have 6/0 ammo (6 ammo in the gun and 0 in reserve), it buggedly reloads and suddenly you have 7/0 ammo.",
-	"Switching to a double SAA can result in the game buggedly reloading a bullet, even if your fingers were very far away from the reloading hotkey. This can result in you dying if there's an enemy shooting at you, because the unwanted reloading prevents you from actually firing and killing the enemy."
+	"Switching to a double SAA can result in the game buggedly reloading a bullet, even if your fingers were very far away from the reloading hotkey. This can result in you dying if there's an enemy shooting at you, because the unwanted reloading prevents you from actually firing and killing the enemy.",
 	"If you want to make sniping waypoints for AHL bots, you have to pray. Cause setting such a waypoint helpfully changes the index numbers of ALL other waypoints, and you have to set a target waypoint for the sniping waypoint to work. Since its number changes, sniping waypoints will never work. The bot will either zoom right into the wall with his sniper rifle, or he'll zoom into the moon and hope that another player flies past in a UFO or something.",
 	"AHL bots can only snipe if their skill level is at least 3. That's completely retarded, because sniping is similar to camping, and a thing noobs do. So realistically, bots with lower skill should actually snipe MORE often (and miss more often due to their lack of skill, but that's another matter), but instead they run around constantly, which actually requires effort for a real player.",
 	"The bot FOV field in AHL doesn't work at all, no matter what their field of view allegedly is, they always instantly see where you are.",
@@ -15607,8 +15607,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Doormash and K-Measurer both recolor a bunch of things, leading to a lot of confusion. They also change monster letters, leading to even more confusion. But the worst part is that they're not consistent with each other, so you can't simply divide things into 'looks the way it's supposed to' and 'looks off', no, you have to make two new categories, 'looks off' and 'also looks off but in a different way'.",
 	"In doormash, treasure zoos generate only animals and they don't step through the doorway. This means that as long as your yumi still has ya left, you can pick them off at your leisure, but once you run out you have to step in and survive the attacks of three mumaks (or what have you) per turn in order to finish Sokoban. Good luck!",
 	"Terrahack does something completely questionable: it makes it so that bumping into peaceful monsters tries to chat with them by default. Usually the default is to ask whether you really want to attack the monster, which doesn't waste turns...",
-	"I'm not paranoid, the other members of the cartel are really after my sanity by trying to make everything so hair-tearingly annoying that I just HAVE to bitch about it. There's no other choice!"
-	"Do you want to know what 'autopickup defaults to on' does? Watch this: 'You have extreme difficulty lifting E - an ogre corpse. You stagger under your heavy load. Movement is very hard. The killer bee stings! The killer bee stings! The killer bee stings! The killer bee stings! The sting was poisoned! You die...'"
+	"I'm not paranoid, the other members of the cartel are really after my sanity by trying to make everything so hair-tearingly annoying that I just HAVE to bitch about it. There's no other choice!",
+	"Do you want to know what 'autopickup defaults to on' does? Watch this: 'You have extreme difficulty lifting E - an ogre corpse. You stagger under your heavy load. Movement is very hard. The killer bee stings! The killer bee stings! The killer bee stings! The killer bee stings! The sting was poisoned! You die...'",
 	"Apparently I ascended Nethack Fourk without ever accidentally bumping into a peaceful monster. Well, I guess there aren't all that many peaceful monsters in the game to begin with.",
 	"Incoming message for Player 1. The message is from 'Martin the MoA chobo'. It reads: 'oh my god now you probably spray and of course wont hit...'",
 	"Incoming message for Player 1. The message is from 'Martin the MoA chobo'. It reads: 'i hope you didnt set your guns fire mode to automatic again!'",
@@ -17387,7 +17387,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your attributes were damaged!",
 	"There were thoughts to make it so that you don't have to ascend SLEX to become 'king' of the world in Junethack. But Tariru went ahead and ascended everything anyway, thereby proving that you can ascend all variants in one month :)",
 	"Your sexiness seems to have attracted some monsters...",
-	"Kicking an engulfer's weapon from the inside would be quite the feat."
+	"Kicking an engulfer's weapon from the inside would be quite the feat.",
 	"Since you don't have nuts, you cannot try to smash them with your feet either.",
 	"For a moment, you feel the itch to ram your footwear into your own nuts, but then remember that you have a task to complete, and therefore decide against the idea.",
 	"You perform a powerful kick, and listen to very sexy air current noises as your foot whirls through thin air.",
@@ -17402,7 +17402,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"I guess in slex it's more or less impossible to create a bug sufficiently large to be amusing because it'd be hard to distinguish it from intended behaviour.",
 	"Wow, there's still the age-old drawbridge bug, even though it should be rather easy to reproduce. What's so difficult about the drawbridge code that it can't easily be fixed?",
 	"Splicehack adds little birds as monsters, which are domestic and therefore shouldn't be eaten. They can be tamed with food though.",
-	"Man this is sooooooooo annoying, why do statues look like monsters? now I have to farlook every white b to see if it's an alive quivering blob or just a statue!"
+	"Man this is sooooooooo annoying, why do statues look like monsters? now I have to farlook every white b to see if it's an alive quivering blob or just a statue!",
 	"I want a boolean option that makes statues look like statues again, because to me it clearly doesn't look right if they look like monsters.",
 	"TSX seems like a variant when you find statues that look like monsters. I (Amy) am used to statues looking like a ` glyph.",
 	"Of course you can't always restore stats via unihorn!",
@@ -19745,12 +19745,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are very afraid for some reason.",
 	"You listen to a really evil sound.",
 	"You listen to a not so evil sound.",
-	"You hear a very deep grunt."
-	"You hear a very deep grunt. Apparently someone is playing Grunthack."
-	"You sense a great danger."
-	"You sense a great danger. The Death Eaters are after you and want to kill you."
-	"You know that you won't make it through this level alive..."
-	"You hear religious chants."
+	"You hear a very deep grunt.",
+	"You hear a very deep grunt. Apparently someone is playing Grunthack.",
+	"You sense a great danger.",
+	"You sense a great danger. The Death Eaters are after you and want to kill you.",
+	"You know that you won't make it through this level alive...",
+	"You hear religious chants.",
 	"You hear the sound of a preacher.",
 	"You listen to some gibberish talk.",
 	"You hear voices chanting a prayer.",
@@ -19835,19 +19835,19 @@ static NEARDATA const char * const fake_plines[] = {
 	"You need to stay alert for anything out of the ordinary.",
 	"You notice that your weapon has no effect! Get a shield!",
 	"Why don't I have internet access? Did some menis pull out my cable???",
-	"Play Grunthack! *bundlebundlebundle*"
-	"Play Sporkhack! *bundlebundlebundle*"
-	"Play Nethack 3.4.3! *bundlebundlebundle*"
-	"Play Nethack 3.6.x! *bundlebundlebundle*"
-	"Play FIQhack! *bundlebundlebundle*"
-	"Play Nethack Fourk! *bundlebundlebundle*"
-	"Play Dynahack! *bundlebundlebundle*"
-	"Play Nethack4! *bundlebundlebundle*"
-	"Play Splicehack! *bundlebundlebundle*"
-	"Play XNethack! *bundlebundlebundle*"
-	"Play DNethack! *bundlebundlebundle*"
-	"Play DNHslex! *bundlebundlebundle*"
-	"Play Unnethack! *bundlebundlebundle*"
+	"Play Grunthack! *bundlebundlebundle*",
+	"Play Sporkhack! *bundlebundlebundle*",
+	"Play Nethack 3.4.3! *bundlebundlebundle*",
+	"Play Nethack 3.6.x! *bundlebundlebundle*",
+	"Play FIQhack! *bundlebundlebundle*",
+	"Play Nethack Fourk! *bundlebundlebundle*",
+	"Play Dynahack! *bundlebundlebundle*",
+	"Play Nethack4! *bundlebundlebundle*",
+	"Play Splicehack! *bundlebundlebundle*",
+	"Play XNethack! *bundlebundlebundle*",
+	"Play DNethack! *bundlebundlebundle*",
+	"Play DNHslex! *bundlebundlebundle*",
+	"Play Unnethack! *bundlebundlebundle*",
 	"Nethack4 allows the player to play in polyinit mode, i.e. pick a polymorph form and play the game permanently in that form. Luxidream managed to ascend as a zruty and thereby proved that zruties aren't an irrelevant monster type :)",
 	"The pasta golem throws its meat ball at you. Of course those meatballs are poisonous, hopefully you're poison resistant!",
 	"The spaghetti monster swings itself around you! You're being strangled by the spaghetti noodles!",
@@ -20795,9 +20795,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have to update the game version because of cookie reasons.",
 	"The new seat disorder is the same as the old one and we had to mention this because cookie!",
 	"You have to bake the goddamn little places.",
-	"Some sinister force causes you to wear an item!"
-	"Some sinister force causes you to wear an artifact!"
-	"Some sinister force causes you to wear a pair of heels!"
+	"Some sinister force causes you to wear an item!",
+	"Some sinister force causes you to wear an artifact!",
+	"Some sinister force causes you to wear a pair of heels!",
 	"You miss wildly and stumble forwards.",
 	"The titan is engulfed in fury!",
 	"The painalope is already berserk.",
@@ -20829,7 +20829,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The slime engulfs the feather.",
 	"The slime burps loudly!",
 	"You are pushed a few steps back!",
-	"You hear a repeating monotonous melody."
+	"You hear a repeating monotonous melody.",
 	"You smell stale honey.",
 	"You smell ripe honey. Gotta steal some of that and eat it to increase your strength!",
 	"This place seems haunted.",
@@ -21459,7 +21459,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear a vampire complaining about the architecture!",
 	"You hear someone offering three wishes to a lucky person!",
 	"You hear the moaning noises of an adventurer caught in hot sexual pleasure with a nymph!",
-	"You hear Indiana Jones screaming for help!"
+	"You hear Indiana Jones screaming for help!",
 	"You hear a metallic plinking sound.",
 	"You hear a neverending dripping sound that is driving you crazy!",
 	"You hear someone getting in on the action with a hot foocubus!",
@@ -22102,6 +22102,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You wonder whether shooting the percents will make it go away.",
 	"You want to check whether the secret path is open.",
 	"You see the accursed crashy graphics card logo.",
+	"A board beneath you hisses loudly!",
 
 };
 

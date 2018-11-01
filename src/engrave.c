@@ -4444,7 +4444,7 @@ static const char *epitaphs[] = {
 	"Slash'EM Extended combines both of these traits into one variant and cranks them both up to eleven and then some, so starting with that one would definitely be jumping in at the deep end of the lava pool, with a heavy iron ball shackled to each ankle.", /* ditto */
 	"Tried to polymorph into a yellow mold in Burphack to cure the zombification disease and got a SIGFPE.",
 	"Died from whacking a wall in Rodney's Tower with my katana. What the hell?",
-	"GAH the CURSED resistance change in Rodney's Tower made it so that I lost strength from eating a poisonous corpse even though I was resistant from eating a killer bee earlier! And as a result, my strength was so trashy that I died when a lone soldier ant appeared!"
+	"GAH the CURSED resistance change in Rodney's Tower made it so that I lost strength from eating a poisonous corpse even though I was resistant from eating a killer bee earlier! And as a result, my strength was so trashy that I died when a lone soldier ant appeared!",
 	"Tried to play the newest version of Rodney's Tower and got annoyed to death by all the annoyance factors.",
 	"Tried to do Sokoban in Rodney's Tower, using autotravel to skip past boring walking segments, and OF COURSE it pushed a boulder into a corner. I then committed sudoku because I don't want to have the travelto command trashed. It should work normally, dammit!",
 	"Something in Rodney's Tower used a scroll of summoning, and even though the monster reading it was standing very far away, the minotaur appeared right next to me and owned me. Yet another scroll that can randomly end your game! Genius!",

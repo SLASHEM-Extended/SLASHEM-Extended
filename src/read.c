@@ -816,6 +816,7 @@ doread()
 	"whoa boy I did that 'slex with amy' thing last night, i got bundled twice. i think i fleecied 3 times!", /* by K2 */
 	"After years of research, I have developed the ultimate counter to bundling: eldnubeldnubeldnub :D", /* aosdict I think? */
 	"Demo: making slex more retarded, one bad idea at a time.", /* he said that himself because I keep implementing stuff he suggests :D */
+	"do these yoga pants make my butt look big? no your butt makes your butt look big", /* by K2 */
 
 	    };
 	    char buf[BUFSZ];
