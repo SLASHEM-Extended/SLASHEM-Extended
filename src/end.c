@@ -2141,9 +2141,9 @@ mk_dgl_extrainfo()
         if (Is_knox(&u.uz)) {
 		sortval = 1000;
             sprintf(tmpdng, "%i|%s", sortval, "Knx");
-        } else if (In_quest(&u.uz)) {
+        } else if (In_quest(&u.uz)) { /* this depends on the fact that the quest is never longer than 7 levels --Amy */
 		sortval = 1500 + depth(&u.uz);
-            sprintf(tmpdng, "%i|%s%i", sortval, "Q", dunlev(&u.uz));
+            sprintf(tmpdng, "%i|%s%i", sortval, "  Q", dunlev(&u.uz));
         } else if (In_endgame(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "End");
 		sortval = 10000;
@@ -2235,6 +2235,8 @@ mk_dgl_extrainfo()
             sprintf(tmpdng, "%i|%s", sortval, "Mol");
 		sortval = 1000 + depth(&u.uz);
         } else {
+		if (depth(&u.uz) < 10) sprintf(tmpdng, "%i|  D%i", sortval, depth(&u.uz));
+		else if (depth(&u.uz) < 100) sprintf(tmpdng, "%i| D%i", sortval, depth(&u.uz));
             sprintf(tmpdng, "%i|D%i", sortval, depth(&u.uz));
         }
 
