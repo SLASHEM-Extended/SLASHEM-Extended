@@ -333,6 +333,13 @@ dosit()
 	} else if(IS_WOODENTABLE(typ)) {
 		pline("Sitting on a table isn't very fruitful.");
 
+	} else if(IS_FOUNTAIN(typ)) {
+		if (youmonst.data->mlet == S_BAD_COINS) { /* by GoldenIvy */
+			You("toss yourself into the fountain.");
+			if (rn2(2)) pline("Heads!"); /* this is purely cosmetical */
+			else pline("Tails!");
+		} else You(sit_message, "fountain");
+
 	} else if(IS_PENTAGRAM(typ)) {
 		You(sit_message, "pentagram");
 		pline("Nothing happens. In order to interact with the pentagram, use #invoke.");
