@@ -165,8 +165,11 @@ void livelog_achieve_update() {
 	}
 
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:achieve=0x%lx:achieve_diff=0x%lx:achieveX=0x%lx:achieveX_diff=0x%lx\n",
-		plname, 
+		"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:achieve=0x%lx:achieve_diff=0x%lx:achieveX=0x%lx:achieveX_diff=0x%lx\n",
+		plalias[0] ? plalias : plname,
+		plalias[0] ? "(" : "",
+		plalias[0] ? plname : "",
+		plalias[0] ? ")" : "",
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 		hybrid_strcode(),
 		moves, 
@@ -187,8 +190,11 @@ livelog_wish(item)
 char *item;
 {
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:wish=%s\n",
-		plname,
+		"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:wish=%s\n",
+		plalias[0] ? plalias : plname,
+		plalias[0] ? "(" : "",
+		plalias[0] ? plname : "",
+		plalias[0] ? ")" : "",
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 		hybrid_strcode(),
 		moves,
@@ -202,8 +208,11 @@ livelog_report_trophy(string)
 char *string;
 {
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:trophy=%s\n",
-		plname,
+		"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:trophy=%s\n",
+		plalias[0] ? plalias : plname,
+		plalias[0] ? "(" : "",
+		plalias[0] ? plname : "",
+		plalias[0] ? ")" : "",
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 		hybrid_strcode(),
 		moves,
@@ -216,8 +225,11 @@ void
 livelog_avert_death()
 {
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:message=%s\n",
-		plname,
+		"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:message=%s\n",
+		plalias[0] ? plalias : plname,
+		plalias[0] ? "(" : "",
+		plalias[0] ? plname : "",
+		plalias[0] ? ")" : "",
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 		hybrid_strcode(),
 		moves,
@@ -245,8 +257,11 @@ doshout()
 			*p = ' ';
 
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:shout=%s\n",
-		plname,
+		"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:shout=%s\n",
+		plalias[0] ? plalias : plname,
+		plalias[0] ? "(" : "",
+		plalias[0] ? plname : "",
+		plalias[0] ? ")" : "",
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 		hybrid_strcode(),
 		moves,
@@ -269,9 +284,12 @@ struct monst *mtmp;
 		/* $player killed the $bones_monst of $bones_killed the former 
 		 * $bones_rank on $turns on dungeon level $dlev! */ 
 		snprintf(strbuf, STRBUF_LEN, 
-				"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:dlev=%d:" 
+				"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:dlev=%d:" 
 				"bones_killed=%s:bones_rank=%s:bones_monst=%s\n", 
-				plname, 
+				plalias[0] ? plalias : plname,
+				plalias[0] ? "(" : "",
+				plalias[0] ? plname : "",
+				plalias[0] ? ")" : "",
 				urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 				hybrid_strcode(),
 				moves, 
@@ -286,8 +304,11 @@ struct monst *mtmp;
 		char *n = noit_mon_nam(mtmp); 
 		/* $player killed a uniq monster */ 
 		snprintf(strbuf, STRBUF_LEN, 
-				"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:killed_uniq=%s\n", 
-				plname, 
+				"player=%s%s%s%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:killed_uniq=%s\n", 
+				plalias[0] ? plalias : plname,
+				plalias[0] ? "(" : "",
+				plalias[0] ? plname : "",
+				plalias[0] ? ")" : "",
 				urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 				hybrid_strcode(),
 				moves, 
