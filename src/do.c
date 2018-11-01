@@ -228,7 +228,7 @@ const char *verb;
 				    "fills a pit");
 			}
 		}
-		if (t && !(t->ttyp == GIANT_CHASM)) deltrap(t);
+		if (t && !(t->ttyp == GIANT_CHASM && !In_sokoban(&u.uz)) ) deltrap(t);
 		obfree(obj, (struct obj *)0);
 		bury_objs(x, y);
 		newsym(x,y);

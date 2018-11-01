@@ -3849,6 +3849,8 @@ register struct monst *mtmp;
 					rtrap = rnd(TRAPNUM-1);
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;
 					if (rtrap == WISHING_TRAP) rtrap = BLINDNESS_TRAP;
+					if (In_sokoban(&u.uz) && rn2(10) && (rtrap == HOLE || rtrap == TRAPDOOR || rtrap == SHAFT_TRAP || rtrap == CURRENT_SHAFT || rtrap == PIT || rtrap == SPIKED_PIT || rtrap == GIANT_CHASM || rtrap == SHIT_PIT || rtrap == MANA_PIT || rtrap == ANOXIC_PIT || rtrap == ACID_PIT)) rtrap = ROCKTRAP;
+					if (In_sokoban(&u.uz) && rn2(100) && rtrap == NUPESELL_TRAP) rtrap = FIRE_TRAP;
 					if (rtrap == ELDER_TENTACLING_TRAP) rtrap = FIRE_TRAP;
 					if (rtrap == DATA_DELETE_TRAP) rtrap = RUST_TRAP;
 					if (rtrap == ARTIFACT_JACKPOT_TRAP) rtrap = MAGIC_TRAP;

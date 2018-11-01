@@ -12474,6 +12474,19 @@ selecttrap:
 		    case MAGIC_PORTAL:
 			goto selecttrap;
 			break;
+		    case NUPESELL_TRAP:
+			if (In_sokoban(&u.uz) && rn2(100)) goto selecttrap;
+			break;
+		    case TRAPDOOR:
+		    case SHAFT_TRAP:
+		    case PIT:
+		    case SPIKED_PIT:
+		    case GIANT_CHASM:
+		    case SHIT_PIT:
+		    case MANA_PIT:
+		    case ACID_PIT:
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
+			break;
 		    case LEVEL_TELEP:
 		    case LEVEL_BEAMER:
 		    case NEXUS_TRAP:
@@ -12488,6 +12501,7 @@ selecttrap:
 		    case HOLE:
 			/* make these much less often than other traps */
 			if (rn2(7)) goto selecttrap;
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			break;
 		    case MENU_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 8)) goto selecttrap;
@@ -13354,6 +13368,7 @@ selecttrap:
 			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case CURRENT_SHAFT:
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			if (rn2(3) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case LEVITATION_TRAP:
@@ -13390,6 +13405,7 @@ selecttrap:
 			if (rn2(200)) goto selecttrap;
 			break;
 		    case ANOXIC_PIT:
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			if ((rn2(3) && !evilfriday) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ARABELLA_SPEAKER:

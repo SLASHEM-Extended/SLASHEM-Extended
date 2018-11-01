@@ -7651,6 +7651,8 @@ newbossB:
 					hussytraptype = rnd(TRAPNUM-1);
 					if (hussytraptype == MAGIC_PORTAL) hussytraptype = ROCKTRAP;
 					if (hussytraptype == WISHING_TRAP) hussytraptype = BLINDNESS_TRAP;
+					if (In_sokoban(&u.uz) && rn2(10) && (hussytraptype == HOLE || hussytraptype == TRAPDOOR || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT || hussytraptype == PIT || hussytraptype == SPIKED_PIT || hussytraptype == GIANT_CHASM || hussytraptype == SHIT_PIT || hussytraptype == MANA_PIT || hussytraptype == ANOXIC_PIT || hussytraptype == ACID_PIT)) hussytraptype = ROCKTRAP;
+					if (In_sokoban(&u.uz) && rn2(100) && hussytraptype == NUPESELL_TRAP) hussytraptype = FIRE_TRAP;
 					if (hussytraptype == ELDER_TENTACLING_TRAP) hussytraptype = FIRE_TRAP;
 					if (hussytraptype == DATA_DELETE_TRAP) hussytraptype = RUST_TRAP;
 					if (hussytraptype == ARTIFACT_JACKPOT_TRAP) hussytraptype = MAGIC_TRAP;

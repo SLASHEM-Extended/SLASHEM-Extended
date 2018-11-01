@@ -569,13 +569,27 @@ selecttrap:
 	     case HOLE:		/* no random holes on special levels */
 	     case MAGIC_PORTAL:	goto selecttrap;
 			break;
+	     case NUPESELL_TRAP:
+			if (In_sokoban(&u.uz) && rn2(100)) goto selecttrap;
+			break;
 	     case SHAFT_TRAP:
-	     case TRAPDOOR:	if (!Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
+	     case TRAPDOOR:
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
+			if (!Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
 			break;
 
 	     case CURRENT_SHAFT:
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			if (!Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
 			if (rn2(3)) goto selecttrap;
+			break;
+	     case PIT:
+	     case SPIKED_PIT:
+	     case GIANT_CHASM:
+	     case SHIT_PIT:
+	     case MANA_PIT:
+	     case ACID_PIT:
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			break;
 
 	     case LEVEL_TELEP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
@@ -1491,6 +1505,7 @@ selecttrap:
 			if (rn2(200)) goto selecttrap;
 			break;
 		    case ANOXIC_PIT:
+			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			if ((rn2(3) && !evilfriday) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ARABELLA_SPEAKER:
@@ -1646,6 +1661,8 @@ selecttrap2:
 	    rtrap = rnd(TRAPNUM-1);
 	    if (!Race_if(PM_DEVELOPER) && !rn2(issoviet ? 2 : 3)) rtrap = rnd(rn2(3) ? ANTI_MAGIC : POLY_TRAP);
 		if (rtrap == HOLE && !Is_stronghold(&u.uz) ) goto selecttrap2;
+		if (In_sokoban(&u.uz) && rn2(10) && (rtrap == HOLE || rtrap == TRAPDOOR || rtrap == SHAFT_TRAP || rtrap == CURRENT_SHAFT || rtrap == PIT || rtrap == SPIKED_PIT || rtrap == GIANT_CHASM || rtrap == SHIT_PIT || rtrap == MANA_PIT || rtrap == ANOXIC_PIT || rtrap == ACID_PIT)) goto selecttrap2;
+		if (In_sokoban(&u.uz) && rn2(100) && rtrap == NUPESELL_TRAP) goto selecttrap2;
 		if (rtrap == MAGIC_PORTAL) goto selecttrap2;
 		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;
 		if (rtrap == SHAFT_TRAP && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;

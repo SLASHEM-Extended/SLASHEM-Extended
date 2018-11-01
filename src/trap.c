@@ -1153,6 +1153,8 @@ register int x, y, typ, replacechance;
 		typ = u.frequenttrap;
 		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
 		if (typ == WISHING_TRAP) typ = BLINDNESS_TRAP;
+		if (In_sokoban(&u.uz) && rn2(10) && (typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT || typ == PIT || typ == SPIKED_PIT || typ == GIANT_CHASM || typ == SHIT_PIT || typ == MANA_PIT || typ == ANOXIC_PIT || typ == ACID_PIT)) typ = ROCKTRAP;
+		if (In_sokoban(&u.uz) && rn2(100) && typ == NUPESELL_TRAP) typ = FIRE_TRAP;
 		if (typ == ELDER_TENTACLING_TRAP) typ = FIRE_TRAP;
 		if (typ == DATA_DELETE_TRAP) typ = RUST_TRAP;
 		if (typ == ARTIFACT_JACKPOT_TRAP) typ = MAGIC_TRAP;
@@ -1168,6 +1170,8 @@ register int x, y, typ, replacechance;
 		
 	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && !rn2(u.traprandomizing)) {
 		typ = rnd(TRAPNUM-1);
+		if (In_sokoban(&u.uz) && rn2(10) && (typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT || typ == PIT || typ == SPIKED_PIT || typ == GIANT_CHASM || typ == SHIT_PIT || typ == MANA_PIT || typ == ANOXIC_PIT || typ == ACID_PIT)) typ = ROCKTRAP;
+		if (In_sokoban(&u.uz) && rn2(100) && typ == NUPESELL_TRAP) typ = FIRE_TRAP;
 		while (typ == MAGIC_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == DATA_DELETE_TRAP || typ == ELDER_TENTACLING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
 	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && uarmh && uarmh->oartifact == ART_BOMB_BLOW && !rn2(100)) {
 		typ = CATACLYSM_TRAP;
