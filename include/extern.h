@@ -2873,7 +2873,7 @@ E boolean attack(struct monst *);
 E boolean hmon(struct monst *,struct obj *,int,int);
 E int damageum(struct monst *,struct attack *);
 E void missum(struct monst *,int, int, struct attack *);
-E int passive(struct monst *,int,int,UCHAR_P);
+E int passive(struct monst *,int,int,UCHAR_P,BOOLEAN_P);
 E void passive_obj(struct monst *,struct obj *,struct attack *);
 E void stumble_onto_mimic(struct monst *);
 E int flash_hits_mon(struct monst *,struct obj *);
