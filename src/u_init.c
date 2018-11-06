@@ -7390,6 +7390,10 @@ u_init()
 	u.pokelieattacktype = 0;
 	u.pokeliedamagetype = 0;
 
+	/* sokosolver special abilities timeout; these will time out even if you're a different race */
+	u.sokosolveboulder = rnz(1000);
+	u.sokosolveuntrap = rnz(4000);
+
 	u.manlerx = u.manlery = -1;
 
 	u.temprecursion = 0;

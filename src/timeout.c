@@ -248,6 +248,18 @@ nh_timeout()
 		}
 	}
 
+	if (u.sokosolveboulder) {
+		u.sokosolveboulder--;
+		if (!u.sokosolveboulder && issokosolver) pline("You're capable of using #monster to create a boulder.");
+		if (u.sokosolveboulder < 0) u.sokosolveboulder = 0; /* fail safe */
+	}
+
+	if (u.sokosolveuntrap) {
+		u.sokosolveuntrap--;
+		if (!u.sokosolveuntrap && issokosolver) pline("You're capable of using #monster to remove adjacent traps.");
+		if (u.sokosolveuntrap < 0) u.sokosolveuntrap = 0; /* fail safe */
+	}
+
 	if (u.inertia && rn2(10)) {
 		u.inertia--;
 		if (!u.inertia) You_feel("less slow.");

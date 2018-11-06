@@ -1453,8 +1453,43 @@ domonability()
 			set_occupation(stefanjerepair, "repairing your 'Stefanje' sandals", 0);
 			return TRUE;
 		}
-	}
-	else if (can_breathe(youmonst.data) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
+	} else if (issokosolver && !u.sokosolveboulder && yn("Do you want to create a boulder?")=='y' ) {
+		u.sokosolveboulder = rnz(1000);
+		register struct obj *otmp2;
+		otmp2 = mksobj(BOULDER, FALSE, FALSE);
+		if (!otmp2) {
+			pline("For some strange reason, no boulder appeared!");
+			return TRUE;
+		}
+		otmp2->quan = 1;
+		otmp2->owt = weight(otmp2);
+		place_object(otmp2, u.ux, u.uy);
+		stackobj(otmp2);
+		newsym(u.ux, u.uy);
+		pline("Kadoom! A boulder appeared underneath you.");
+		return TRUE;
+	} else if (issokosolver && !u.sokosolveuntrap && yn("Do you want to disarm adjacent traps? (this doesn't work on pits, holes or other boulder-swallowing traps)")=='y' ) {
+		int i, j, bd = 1, trpcount = 0, undtrpcnt = 0;
+		struct trap *ttmp;
+
+		u.sokosolveuntrap = rnz(4000);
+
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+
+			if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
+				if (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HOLE || ttmp->ttyp == TRAPDOOR || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT || ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT) {
+					undtrpcnt++;
+					continue;
+				}
+				deltrap(ttmp);
+				trpcount++;
+			}
+
+		}
+		pline("%d traps were disarmed.", trpcount);
+		if (undtrpcnt) pline("%d traps could not be disarmed.", undtrpcnt);
+		return TRUE;
+	} else if (can_breathe(youmonst.data) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
 	else if (attacktype(youmonst.data, AT_SPIT) && yn("Do you want to use your spit attack?")=='y' ) return dospit();
 	else if (youmonst.data->mlet == S_NYMPH && yn("Do you want to remove an iron ball?")=='y' ) return doremove();
 	else if (attacktype(youmonst.data, AT_GAZE) && yn("Do you want to use your gaze attack?")=='y' ) return dogaze();
@@ -4865,6 +4900,18 @@ boolean guaranteed;
 		sprintf(buf, "going to experience Ragnarok.");
 	      if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.ragnaroktimer);
 		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.sokosolveboulder && issokosolver) {
+		sprintf(buf, "to wait until you can create boulders again.");
+	      if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.sokosolveboulder);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.sokosolveuntrap && issokosolver) {
+		sprintf(buf, "to wait until you can disarm traps again.");
+	      if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.sokosolveuntrap);
+		you_have(buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.footererlevel) {
@@ -8360,6 +8407,18 @@ int final;
 		sprintf(buf, "going to experience Ragnarok.");
 	      sprintf(eos(buf), " (%d)", u.ragnaroktimer);
 		dump(youwere, buf);
+	}
+
+	if (u.sokosolveboulder && issokosolver) {
+		sprintf(buf, "to wait until you can create boulders again.");
+	      sprintf(eos(buf), " (%d)", u.sokosolveboulder);
+		dump(youhad, buf);
+	}
+
+	if (u.sokosolveuntrap && issokosolver) {
+		sprintf(buf, "to wait until you can disarm traps again.");
+	      sprintf(eos(buf), " (%d)", u.sokosolveuntrap);
+		dump(youhad, buf);
 	}
 
 	if (u.footererlevel) {

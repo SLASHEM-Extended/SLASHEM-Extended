@@ -1171,6 +1171,9 @@ struct you {
 
 	boolean captchahack;
 
+	int sokosolveboulder;
+	int sokosolveuntrap;
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)
