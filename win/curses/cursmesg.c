@@ -402,7 +402,7 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
     tmpbuf = alloc(strlen(prompt) + buffer + 2);
     maxlines = buffer / width * 2;
 
-	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3) && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -410,7 +410,7 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
 
 	) prompt = fauxmessage();
 
-	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -418,7 +418,7 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
 
 	) prompt = generate_garbage_string();
 
-	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -426,7 +426,7 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
 
 	) prompt = "Warning: Low Local Memory. Freeing description strings.";
 
-	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 #if defined(WIN32)
 && !program_state.exiting
 #endif

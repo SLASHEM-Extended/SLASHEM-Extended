@@ -83,7 +83,7 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
     int prompt_height = 1;
     int height = prompt_height;
 
-	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3) && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -91,7 +91,7 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
 
 	) prompt = fauxmessage();
 
-	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -99,7 +99,7 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
 
 	) prompt = generate_garbage_string();
 
-	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -107,7 +107,7 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
 
 	) prompt = "Warning: Low Local Memory. Freeing description strings.";
 
-	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 #if defined(WIN32)
 && !program_state.exiting
 #endif
@@ -186,7 +186,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
     boolean any_choice = FALSE;
     boolean accept_count = FALSE;
 
-	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3) && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -194,7 +194,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
 
 	) prompt = fauxmessage();
 
-	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -202,7 +202,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
 
 	) prompt = generate_garbage_string();
 
-	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -210,7 +210,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
 
 	) prompt = "Warning: Low Local Memory. Freeing description strings.";
 
-	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 #if defined(WIN32)
 && !program_state.exiting
 #endif

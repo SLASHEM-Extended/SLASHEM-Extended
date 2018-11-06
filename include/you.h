@@ -1169,6 +1169,8 @@ struct you {
 
 	boolean wingyellowhack;
 
+	boolean captchahack;
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

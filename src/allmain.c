@@ -8899,6 +8899,7 @@ newboss:
 		}
 
 		if (!rn2(100) && CaptchaProblem) {
+			u.captchahack = 1;
 			strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
@@ -8935,6 +8936,7 @@ newboss:
 
 			}
 			else pline("Alright. Please move on.");
+			u.captchahack = 0;
 		}
 
 		if (!rn2(2000)) {
@@ -8947,6 +8949,7 @@ newboss:
 		}
 
 		if (!rn2(100) && QuizTrapEffect) {
+			u.captchahack = 1;
 			boolean rumoristrue = rn2(2);
 
 			pline("NetHack Quiz! You will now tell me whether the following rumor is true or not!");
@@ -8981,10 +8984,12 @@ newboss:
 				}
 
 			}
+			u.captchahack = 0;
 
 		}
 
 		if (!rn2(100) && uarmf && uarmf->oartifact == ART_RIDDLE_ME_THIS) {
+			u.captchahack = 1;
 			boolean rumoristrue = rn2(2);
 
 			pline("Alright, riddle me this: Is the following rumor true or not?");
@@ -9019,10 +9024,12 @@ newboss:
 				}
 
 			}
+			u.captchahack = 0;
 
 		}
 
 		if (!rn2(100) && u.uprops[QUIZZES].extrinsic) {
+			u.captchahack = 1;
 			boolean rumoristrue = rn2(2);
 
 			pline("NetHack Quiz! You will now tell me whether the following rumor is true or not!");
@@ -9057,10 +9064,12 @@ newboss:
 				}
 
 			}
+			u.captchahack = 0;
 
 		}
 
 		if (!rn2(100) && have_quizstone()) {
+			u.captchahack = 1;
 			boolean rumoristrue = rn2(2);
 
 			pline("NetHack Quiz! You will now tell me whether the following rumor is true or not!");
@@ -9095,10 +9104,12 @@ newboss:
 				}
 
 			}
+			u.captchahack = 0;
 
 		}
 
 		if (!rn2(100) && u.uprops[CAPTCHA].extrinsic) {
+			u.captchahack = 1;
 			strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
@@ -9135,9 +9146,11 @@ newboss:
 
 			}
 			else pline("Alright. Please move on.");
+			u.captchahack = 0;
 		}
 
 		if (!rn2(100) && have_captchastone()) {
+			u.captchahack = 1;
 			strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
@@ -9174,6 +9187,7 @@ newboss:
 
 			}
 			else pline("Alright. Please move on.");
+			u.captchahack = 0;
 		}
 
 		if (Race_if(PM_BATMAN) && u.ualign.record > 0 && (rnd(300000) < u.ualign.record) ) {
@@ -10592,6 +10606,8 @@ newboss:
 	/****************************************/
 	/* once-per-player-input things go here */
 	/****************************************/
+
+	u.captchahack = 0;
 
 	if (uarmc && uarmc->oartifact == ART_ULTRAGGRAVATE) {
 		u.heavyaggravation = 1;

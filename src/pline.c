@@ -101,7 +101,7 @@ pline VA_DECL(const char *, line)
 
 	if (!line || !*line) return;
 
-	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3) && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -109,7 +109,7 @@ pline VA_DECL(const char *, line)
 
 ) line = fauxmessage();
 
-	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -117,7 +117,7 @@ pline VA_DECL(const char *, line)
 
 ) line = generate_garbage_string();
 
-	if (LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 
 /* buildfix by EternalEye: sinfo.exiting only exists on win32 */
 #if defined(WIN32)
@@ -126,7 +126,7 @@ pline VA_DECL(const char *, line)
 
 ) line = "Warning: Low Local Memory. Freeing description strings.";
 
-	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && !u.captchahack
 #if defined(WIN32)
 && !program_state.exiting
 #endif
