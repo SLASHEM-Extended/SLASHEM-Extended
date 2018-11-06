@@ -5928,7 +5928,11 @@ dlb *fd;
 		levl[x][y].flags = 0;
 	    }
 
+#ifdef BIGSLEX
+	    if ((y % 2)) {
+#else
 	    if (!(y % 2)) {
+#endif
 		if (dir == W_SOUTH)
 		    y++;
 		else
