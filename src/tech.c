@@ -1392,7 +1392,7 @@ static const struct innate_tech
 #define techt_inuse(tech)       tech_list[tech].t_inuse
 #define techtout(tech)        tech_list[tech].t_tout
 #define techlev(tech)         (u.ulevel - tech_list[tech].t_lev)
-#define techlevX(tech)         (Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
+#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
 #define techid(tech)          tech_list[tech].t_id
 #define techname(tech)        (tech_names[techid(tech)])
 #define techlet(tech)  \
@@ -2958,7 +2958,7 @@ secureidchoice:
 			else {
 			    int tmp = 0;
 
-			    if (rn2(5) < (techlevX(tech_no)/10 + 1)) {
+			    if (rn2(8) < (techlevX(tech_no)/10 + 1)) {
 				You("sever %s head!", s_suffix(mon_nam(mtmp)));
 				tmp = mtmp->mhp;
 			    } else {
@@ -3157,6 +3157,7 @@ secureidchoice:
             case T_SIGIL_TEMPEST: 
 		/* Have enough power? */
 		num = 50 - techlevX(tech_no);
+		if (num < 10) num = 10;
 		if (u.uen < num) {
 			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
@@ -3173,6 +3174,7 @@ secureidchoice:
             case T_SIGIL_CONTROL:
 		/* Have enough power? */
 		num = 30 - techlevX(tech_no)/2;
+		if (num < 10) num = 10;
 		if (u.uen < num) {
 			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
@@ -3189,6 +3191,7 @@ secureidchoice:
             case T_SIGIL_DISCHARGE:
 		/* Have enough power? */
 		num = 100 - techlevX(tech_no)*2;
+		if (num < 10) num = 10;
 		if (u.uen < num) {
 			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
@@ -3244,6 +3247,7 @@ secureidchoice:
 		    return 0;
 		}
             	num = 100 - techlevX(tech_no); /* WAC make this depend on mon? */
+			if (num < 25) num = 25;
             	if ((Upolyd && u.mh <= num) || (!Upolyd && u.uhp <= num)){
 		    You("don't have the strength to perform revivification!");
 		    return 0;
@@ -3267,7 +3271,10 @@ secureidchoice:
             	break;
 	    case T_WARD_FIRE:
 		/* Already have it intrinsically? */
-		if (HFire_resistance & FROMOUTSIDE) return (0);
+		if (HFire_resistance & FROMOUTSIDE) {
+			You("are already fire resistant.");
+			return (0);
+		}
 
 		You("invoke the ward against flame!");
 		HFire_resistance += rn1(100,50);
@@ -3277,7 +3284,10 @@ secureidchoice:
 	    	break;
 	    case T_WARD_COLD:
 		/* Already have it intrinsically? */
-		if (HCold_resistance & FROMOUTSIDE) return (0);
+		if (HCold_resistance & FROMOUTSIDE) {
+			You("are already cold resistant.");
+			return (0);
+		}
 
 		You("invoke the ward against ice!");
 		HCold_resistance += rn1(100,50);
@@ -3287,7 +3297,10 @@ secureidchoice:
 	    	break;
 	    case T_WARD_ELEC:
 		/* Already have it intrinsically? */
-		if (HShock_resistance & FROMOUTSIDE) return (0);
+		if (HShock_resistance & FROMOUTSIDE) {
+			You("are already shock resistant.");
+			return (0);
+		}
 
 		You("invoke the ward against lightning!");
 		HShock_resistance += rn1(100,50);
@@ -3307,7 +3320,8 @@ secureidchoice:
 		You("are holding %s.", doname(uwep));
 		if (yn("Start tinkering on this?") != 'y') return(0);
 		You("start working on %s",doname(uwep));
-		delay=-150 + techlevX(tech_no);
+		delay = -150 + techlevX(tech_no);
+		if (delay > -100) delay = -100;
 		set_occupation(tinker, "tinkering", 0);
 		t_timeout = rnz(200);
 		break;
@@ -3462,7 +3476,7 @@ secureidchoice:
 				    xname(obj));
 			    if (obj->otyp == CORPSE &&
 				    touch_petrifies(&mons[obj->corpsenm]) &&
-				    (!uarmg || FingerlessGloves) && !Stone_resistance &&
+				    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 				    !(poly_when_stoned(youmonst.data) &&
 					polymon(PM_STONE_GOLEM))) {
 				char kbuf[BUFSZ];
@@ -3734,7 +3748,10 @@ secureidchoice:
 		break;
 	    case T_SUMMON_TEAM_ANT:
 
-		    pline("Go Team Ant!");
+		{
+		int maxchance = techlevX(tech_no);
+		if (maxchance > 45) maxchance = 45;
+		pline("Go Team Ant!");
 
 		int caughtY;
 		caughtY = 0;
@@ -3746,15 +3763,21 @@ secureidchoice:
 		/*mtmp->mtame = 10;*/
 	      /*maybe_tameX(mtmp);*/
 		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
-		if (techlevX(tech_no) < rnd(50)) caughtY++;
+		if (maxchance < rnd(50)) caughtY++;
 		}
 
 		/* A high level Insectoid character can create quite the army of insects sometimes. --Amy */
+
+		}
 
 		t_timeout = rnz(1000);
 		break;
 
 	    case T_DOUBLE_TROUBLE:	/* inspired by Khor */
+
+		{
+		int maxchance = techlevX(tech_no);
+		if (maxchance > 45) maxchance = 45;
 
 		pline("Double Trouble...");
 
@@ -3774,7 +3797,9 @@ secureidchoice:
 	 	      mtmp = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 			if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
 
-			if ((techlevX(tech_no)) < rnd(50)) familiardone = 1;
+			if (maxchance < rnd(50)) familiardone = 1;
+		}
+
 		}
 
 		t_timeout = rnz(5000);
@@ -3965,6 +3990,10 @@ secureidchoice:
 
 	    case T_BOOZE:
 
+		{
+		int maxchance = techlevX(tech_no);
+		if (maxchance > 45) maxchance = 45;
+
 	    You("procure some refreshing drinks.");
 
 	    make_confused(HConfusion + d(3,8), FALSE);
@@ -3987,8 +4016,10 @@ secureidchoice:
 				dropy(udrink);
 				stackobj(udrink);
 			}
-			if (techlevX(tech_no) < rnd(50)) caughtW++;
+			if (maxchance < rnd(50)) caughtW++;
 			if (!rn2(10) && caughtW > 0) caughtW = 0;
+
+		}
 
 		}
 

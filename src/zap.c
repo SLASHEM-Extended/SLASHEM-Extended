@@ -3545,14 +3545,14 @@ secureidchoice:
 					break;
 				    case 1: /* sleep */
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) {pline("You yawn."); break;}
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action && rn2(20)) {
+					    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -3681,7 +3681,7 @@ secureidchoice:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(4) )
+					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -3711,7 +3711,7 @@ secureidchoice:
 				    u.ulycn = PM_WERECOW;
 				} else {
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) break;
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
@@ -3734,11 +3734,13 @@ secureidchoice:
 			    case 10:
 			    case 11:
 			    case 12:
-				water_damage(invent, FALSE, FALSE);
+				if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+					water_damage(invent, FALSE, FALSE);
+				}
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action && rn2(20)) {
+				    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
@@ -3886,8 +3888,10 @@ secureidchoice:
 
 			pline("A sudden geyser slams into you from nowhere!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
-			water_damage(invent, FALSE, FALSE);
-			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+				water_damage(invent, FALSE, FALSE);
+				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			}
 			if (Burned) make_burned(0L, TRUE);
 
 		break;
@@ -4469,7 +4473,7 @@ dozap()
 	register struct obj *obj;
 	int	damage;
 
-	if (u.powerfailure || (isselfhybrid && (moves % 3 == 0) )) {
+	if (u.powerfailure || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) )) {
 		pline("Your power's down, and therefore you cannot zap anything.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -4547,12 +4551,12 @@ dozap()
 	}
 
 	/* evil patch idea by jondab: zapping a wand while impaired can cause it to explode */
-	else if ( Stunned && !rn2(Stun_resist ? 200 : 20) ) {
+	else if ( Stunned && !rn2(StrongStun_resist ? 2000 : Stun_resist ? 200 : 20) ) {
 		backfire(obj);
 		exercise(A_STR, FALSE);
 		return(1);
 	}
-	else if ( Confusion && !rn2(Conf_resist ? 1500 : 150) ) {
+	else if ( Confusion && !rn2(StrongConf_resist ? 15000 : Conf_resist ? 1500 : 150) ) {
 		backfire(obj);
 		exercise(A_STR, FALSE);
 		return(1);
@@ -4761,7 +4765,7 @@ boolean ordinary;
 		case WAN_STRIKING:
 		    makeknown(WAN_STRIKING);
 		case SPE_FORCE_BOLT:
-		    if(Antimagic && rn2(20)) {
+		    if(Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
 			pline("Boing!");
 		    } else {
@@ -4871,7 +4875,7 @@ boolean ordinary;
 		    break;
 		case SPE_ACID_STREAM:
         	    /* KMH, balance patch -- new intrinsic */
-        	    if (Acid_resistance && rn2(20)) {
+        	    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
 			damage = 0;
         	    } else {
 			pline_The("acid burns!");
@@ -4888,7 +4892,7 @@ boolean ordinary;
 		case WAN_ACID:
 		    makeknown(WAN_ACID);
 		if (Stoned) fix_petrification();
-		    if (Acid_resistance && rn2(20)) {
+		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
 			shieldeff(u.ux,u.uy);
 			pline("Ugh!");
 		    } else {
@@ -4901,7 +4905,7 @@ boolean ordinary;
 		    makeknown(WAN_SLUDGE);
 		case SPE_SLUDGE:
 		if (Stoned) fix_petrification();
-		    if (Acid_resistance && rn2(20)) {
+		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
 			shieldeff(u.ux,u.uy);
 			pline("Ugh!");
 		    } else {
@@ -4938,7 +4942,7 @@ boolean ordinary;
 		   break;
 
 		case SPE_PSYBEAM:
-			if (Psi_resist && rn2(20) ) {
+			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) {
 				pline("You blast yourself with soothing psychic energy.");
 				break;
 			}
@@ -4995,7 +4999,7 @@ boolean ordinary;
         	    break;
 		case WAN_PSYBEAM:
 		    makeknown(WAN_PSYBEAM);
-			if (Psi_resist && rn2(20) ) {
+			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) {
 				pline("You blast yourself with soothing psychic energy.");
 				break;
 			}
@@ -5059,7 +5063,7 @@ boolean ordinary;
 			else if (!Upolyd && u.uhp > 1) u.uhp /= 2;
 			losehp(1, "their own nether beam", KILLED_BY);
 
-			if (Psi_resist && rn2(20) ) {
+			if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) {
 				pline("You blast yourself with nether energy.");
 				break;
 			}
@@ -5136,7 +5140,7 @@ boolean ordinary;
 		case WAN_VENOM_SCATTERING:
 		    makeknown(obj->otyp);
 			You("poison yourself!");
-			if (Poison_resistance && rn2(20)) {
+			if (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5)) {
 			  shieldeff(u.ux,u.uy);
 			} else {
 			  damage = d(7,7);
@@ -5148,18 +5152,18 @@ boolean ordinary;
 		    makeknown(WAN_TOXIC);
 		case SPE_TOXIC:
 			You("badly poison yourself!");
-			if (Poison_resistance && rn2(20)) {
+			if (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5)) {
 			  shieldeff(u.ux,u.uy);
 			} else {
 			  damage = d(14,7);
 			  poisoned("blast", A_DEX, "toxic blast", 15);
 			}
-			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 
 		   break;
 
@@ -5467,7 +5471,7 @@ boolean ordinary;
 		case WAN_MAGIC_MISSILE:
 		    makeknown(WAN_MAGIC_MISSILE);
 		case SPE_MAGIC_MISSILE:
-		    if(Antimagic && rn2(20)) {
+		    if(Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
 			pline_The("missiles bounce!");
 		    } else {
@@ -5479,7 +5483,7 @@ boolean ordinary;
 		case WAN_HYPER_BEAM:
 		    makeknown(WAN_HYPER_BEAM);
 		case SPE_HYPER_BEAM:
-		    if(Antimagic && rn2(20)) {
+		    if(Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
 			pline_The("beam bounces!");
 		    } else {
@@ -5565,14 +5569,14 @@ boolean ordinary;
 					polyself(FALSE);
 				}
 			} else if (!rn2(2)) {
-				if (!Drain_resistance || !rn2(4) ) {
+				if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) {
 					losexp("life drainage", FALSE, TRUE);
 				} else {
 					shieldeff(u.ux, u.uy);
 					pline("Boing!");
 				}
 			} else {
-				if (!Free_action || !rn2(5)) {
+				if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 				    pline("You are frozen in place!");
 				    nomul(-rnz(20), "frozen by their own spell", TRUE);
 				    nomovemsg = You_can_move_again;
@@ -5608,7 +5612,7 @@ boolean ordinary;
 
 		case WAN_PARALYSIS:
 			makeknown(obj->otyp);
-			if (!Free_action || !rn2(5)) {
+			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own wand", TRUE);
@@ -5618,7 +5622,7 @@ boolean ordinary;
 
 		    break;
 		case SPE_PARALYSIS:
-			if (!Free_action || !rn2(5)) {
+			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own spell", TRUE);
@@ -5632,7 +5636,7 @@ boolean ordinary;
 		case SPE_DISINTEGRATION:
 		case SPE_DISINTEGRATION_BEAM:
 
-			if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
+			if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
 	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -5673,7 +5677,7 @@ boolean ordinary;
 		case WAN_STONING:
 		case SPE_PETRIFY:
 
-		    if (!Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
@@ -5690,7 +5694,7 @@ boolean ordinary;
 		case WAN_DRAINING:	/* KMH */
 			makeknown(obj->otyp);
 		case SPE_DRAIN_LIFE:
-			if (!Drain_resistance || !rn2(4) ) {
+			if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) {
 				losexp("life drainage", FALSE, TRUE);
 			} else {
 				shieldeff(u.ux, u.uy);
@@ -5946,7 +5950,7 @@ boolean ordinary;
 		    makeknown(WAN_SLEEP);
 		case SPE_SLEEP:
 		    if(Sleep_resistance) {
-			if (!rn2(20)) {
+			if (!rn2(StrongSleep_resistance ? 20 : 5)) {
 			You_feel("a little drowsy.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(5), TRUE);}
@@ -5964,7 +5968,7 @@ boolean ordinary;
 		    makeknown(WAN_CHLOROFORM);
 		case SPE_CHLOROFORM:
 		    if(Sleep_resistance) {
-			if (!rn2(20)) {
+			if (!rn2(StrongSleep_resistance ? 20 : 5)) {
 			You_feel("drowsy.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(15), TRUE);}
@@ -6342,7 +6346,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
 	}
 
-	if (youdefend ? (!youattack && Antimagic && rn2(20) ) /* no longer complete protection --Amy */
+	if (youdefend ? (!youattack && Antimagic && rn2(StrongAntimagic ? 20 : 5) ) /* no longer complete protection --Amy */
 		      : resist(mdef, obj->oclass, 0, NOTELL))
 		return FALSE;	/* resisted cancellation */
 
@@ -6352,7 +6356,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	 * the hero also have a small chance of affecting the monster's
 	 * inventory
 	 */
-	if (!(youdefend? Antimagic : resists_magm(mdef)) || !rn2(6)) {
+	if (!(youdefend ? Antimagic : resists_magm(mdef)) || !rn2(6)) {
 	    struct obj *otmp;
 	    boolean did_cancel = FALSE;
 
@@ -7679,7 +7683,7 @@ xchar sx, sy;
 
 	switch (abs(type) % 10) {
 	case ZT_MAGIC_MISSILE:
-	    if (Antimagic && rn2(20)) {
+	    if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 		shieldeff(sx, sy);
 		pline_The("missiles bounce off!");
 	    } else {
@@ -7688,7 +7692,7 @@ xchar sx, sy;
 	    }
 	    break;
 	case ZT_FIRE:
-	    if (Fire_resistance && rn2(20)) {
+	    if (Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) {
 		shieldeff(sx, sy);
 		You("don't feel hot!");
 		ugolemeffects(AD_FIRE, d(nd, 6));
@@ -7716,7 +7720,7 @@ xchar sx, sy;
 	    if (isevilvariant || !rn2(issoviet ? 15 : 75)) destroy_item(POTION_CLASS, AD_COLD);
 	    break;
 	case ZT_SLEEP:
-	    if (Sleep_resistance && rn2(20)) {
+	    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) {
 		shieldeff(u.ux, u.uy);
 		You("don't feel sleepy.");
 	    } else {
@@ -7727,10 +7731,10 @@ xchar sx, sy;
 	case ZT_DEATH:
 	    if (abs(type) == ZT_BREATH(ZT_DEATH)) {
 
-		dam = d(nd, Disint_resistance ? 3 : 6);
+		dam = d(nd, StrongDisint_resistance ? 2 : Disint_resistance ? 3 : 6);
 		losehp(dam, "a disintegration beam", KILLED_BY);
 
-		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -7765,6 +7769,7 @@ xchar sx, sy;
 		break;
 	    } else if (Antimagic) { /* Sorry people, but being magic resistant no longer makes you immune. --Amy */
 	            dam = d(2,4);
+			if (StrongAntimagic && dam > 1) dam /= 2;
 			u.uhpmax -= dam/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 	            pline("You resist the attack, but it hurts!");
@@ -7792,7 +7797,7 @@ xchar sx, sy;
                 pline("This hurts a lot!");
 		break;
 	case ZT_LIGHTNING:
-	    if (Shock_resistance && rn2(20)) {
+	    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
 		shieldeff(sx, sy);
 		You("aren't affected.");
 		ugolemeffects(AD_ELEC, d(nd, 6));
@@ -7812,7 +7817,7 @@ xchar sx, sy;
 		if (Stoned) fix_petrification();
 
 		/* KMH, balance patch -- new intrinsic */
-	    if (Acid_resistance && rn2(20)) {
+	    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
 		dam = 0;
 	    } else {
 		pline_The("acid burns!");
@@ -7840,7 +7845,7 @@ xchar sx, sy;
 	    break;
 	case ZT_SPC2:
 
-		if (Psi_resist && rn2(20)) {
+		if (Psi_resist && rn2(StrongPsi_resist ? 100 : 20)) {
 			shieldeff(sx, sy);
 			pline("You aren't affected.");
 			dam = 0;
@@ -7901,6 +7906,9 @@ xchar sx, sy;
 	}
 
 	if (Half_spell_damage && rn2(2) && dam &&
+	   type < 0 && (type > -20 || type < -29)) /* !Breath */
+	    dam = (dam + 1) / 2;
+	if (StrongHalf_spell_damage && rn2(2) && dam &&
 	   type < 0 && (type > -20 || type < -29)) /* !Breath */
 	    dam = (dam + 1) / 2;
 
@@ -8224,6 +8232,7 @@ sigilcontroldirection:
 
 /*                    if ( (is_rider(mon->data) || is_deadlysin(mon->data)) && abs(type) && type == ZT_BREATH(ZT_DEATH)) {*/
 /*WAC rider and disintegration check*/
+
                     if ( (is_rider(mon->data) || is_deadlysin(mon->data)) && abstype == ZT_DEATH && tmp == MAGIC_COOKIE) {
 			if (canseemon(mon)) {
 			    hit(fltxt, mon, ".");
@@ -8307,11 +8316,11 @@ sigilcontroldirection:
 		    mon = u.usteed;
 		    goto buzzmonst;
 	    } else
-	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) ) {
+	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) || (StrongConflict && (zap_hit_player((int) u.uac, 0)) ) ) {
 
 		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")))) range -= 2;
 		pline("%s hits you!", The(fltxt));
-		if (Reflecting && rn2(20) && abs(type) != ZT_SPELL(ZT_FIRE)) {
+		if (Reflecting && (abstype == ZT_DEATH && rn2(StrongReflecting ? 100 : 20)) || (abstype != ZT_DEATH && rn2(StrongReflecting ? 20 : 5)) && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else

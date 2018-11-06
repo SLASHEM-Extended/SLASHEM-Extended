@@ -14949,6 +14949,15 @@ register int	mmflags;
 	if (!rn2(30)) mtmp->crapbonus += rnd(50);
 
 	mtmp->sagesvisible = !rn2(10);
+	mtmp->internetvisible = !rn2(9);
+	mtmp->stunnovisible = rn2(4);
+	mtmp->selfhybridvisible = !rn2(2);
+	mtmp->warningvisible = 0;
+	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
+	mtmp->telepatvisible = 0;
+	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);
+	mtmp->seeinvisble = rn2(3);
+	mtmp->infravisble = rn2(3);
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);

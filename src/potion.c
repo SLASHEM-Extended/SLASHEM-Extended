@@ -276,7 +276,7 @@ int type;
 	long old = Sick;
 
 	if (xtime > 0L) {
-	    if (Sick_resistance) return;
+	    if (IntSick_resistance || (ExtSick_resistance && rn2(20)) ) return;
 
 		if (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING && rn2(4)) {
 			pline("Your helmet prevents the sickness from affecting you!");
@@ -911,7 +911,7 @@ badeffect()
 		break;
 
 		case 139:
-			if (!Antimagic || !rn2(20)) {
+			if (!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) {
 				struct obj *otmp2;
 
 				otmp2 = some_armor(&youmonst);
@@ -944,7 +944,7 @@ badeffect()
 		break;
 
 		case 141:
-			if (!Antimagic || !rn2(20)) {
+			if (!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) {
 			    You("suddenly feel weaker!");
 			    losestr(rnz(4));
 			    if (u.uhp < 1) {
@@ -962,8 +962,10 @@ badeffect()
 
 		case 142:
 		case 143:
-		water_damage(invent, FALSE, FALSE);
-		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
 		if (Burned) make_burned(0L, TRUE);
 
 		break;
@@ -975,7 +977,7 @@ badeffect()
 		break;
 
 		case 145:
-		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
 			if (Hallucination && rn2(10)) pline("You are already stoned.");
 			else {
 				You("start turning to stone!");
@@ -1430,7 +1432,7 @@ badeffect()
 
 		case 329:
 
-			if (!Disint_resistance || !rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
+			if (!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
 				You_feel("like you're falling apart!");
 	
 				if (uarms) {
@@ -1684,7 +1686,7 @@ badeffect()
 		break;
 
 		case 373:
-			if (!Antimagic || !rn2(20)) {
+			if (!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) {
 				struct obj *otmp2;
 
 				otmp2 = uwep;
@@ -1953,7 +1955,7 @@ destroyarmorattack()
 
 	struct obj *otmp2;
 
-	if (Antimagic && rn2(20)) {
+	if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 		shieldeff(u.ux, u.uy);
 		pline("A field of force surrounds you!");
 		return;
@@ -2882,12 +2884,12 @@ dodrink()
 		    losestr(rnd(4));
 		    losehp(rnd(15), "quaffing from a poisoned well", KILLED_BY);
 		} else You("resist the effects but still don't feel so good.");
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 		poisoned("The water", rn2(A_MAX), "poisoned well", 30);
 		if (!rn2(20)) {
 			levl[u.ux][u.uy].typ = CORR;
@@ -3157,7 +3159,7 @@ peffects(otmp)
 				break;
 
 			case 3:
-				if (Poison_resistance) break;
+				if (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) break;
 				You_feel("sick.");
 				losehp(rnd(20),"bad chemical knowledge",KILLED_BY);
 				break;
@@ -4118,7 +4120,7 @@ peffects(otmp)
 		break;
 
 	case POT_PARALYSIS:
-		if (Free_action && rn2(20))
+		if (Free_action && rn2(StrongFree_action ? 100 : 20))
 		    You("stiffen momentarily.");
 		else {
 		    if (Levitation || Is_airlevel(&u.uz)||Is_waterlevel(&u.uz))
@@ -4135,7 +4137,7 @@ peffects(otmp)
 		}
 		break;
 	case POT_SLEEPING:
-		if((Sleep_resistance || Free_action) && rn2(20))
+		if((Sleep_resistance || Free_action) && rn2(StrongSleep_resistance ? 20 : 5))
 		    You("yawn.");
 		else {
 		    You("suddenly fall asleep!");
@@ -4202,7 +4204,7 @@ peffects(otmp)
 			losehp(1, "mildly contaminated potion", KILLED_BY_AN);
 		    }
 		} else {
-		    if(Poison_resistance)
+		    if(Poison_resistance && (StrongPoison_resistance || rn2(10)) )
 			pline(
 			  "(But in fact it was biologically contaminated %s.)",
 			      fruitname(TRUE));
@@ -4213,9 +4215,9 @@ peffects(otmp)
 
 			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uarms && uarms->oartifact == ART_BONUS_HOLD) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) && !(uarmf && uarmf->oartifact == ART_ELENETTES) ) {
 			    poisontell(typ);
-			    (void) adjattrib(typ,
-			    		Poison_resistance ? -1 : -rn1(4,3),
-			    		TRUE);
+			    if (!StrongPoison_resistance || !rn2(3)) {
+				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE);
+			    }
 			}
 			if(!Poison_resistance) {
 			    if (otmp->fromsink)
@@ -4472,7 +4474,7 @@ peffects(otmp)
 			else You("have an uneasy feeling.");
 			break;
 		}
-		if (Drain_resistance) {
+		if (Drain_resistance && (StrongDrain_resistance || rn2(10)) ) {
 		    You_feel("rejuvenating momentarily.");
 		} else {
 		    You("restore youth!");
@@ -4666,7 +4668,7 @@ peffects(otmp)
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) exercise(A_WIS, TRUE);
 		break;
 	case POT_ACID:
-		if (Acid_resistance)
+		if (Acid_resistance && (StrongAcid_resistance || rn2(10)) )
 			/* Not necessarily a creature who _likes_ acid */
 			pline("This tastes %s.", Hallucination ? "tangy" : "sour");
 		else {
@@ -5130,7 +5132,7 @@ boolean your_fault;
 		if (!Unchanging && !Antimagic) polyself(FALSE);
 		break;
 	case POT_ACID:
-		if (!Acid_resistance) {
+		if (!Acid_resistance || (!StrongAcid_resistance && !rn2(5)) ) {
 		    pline("This burns%s!", obj->blessed ? " a little" :
 				    obj->cursed ? " a lot" : "");
 		    losehp(d(obj->cursed ? 2 : 1, obj->blessed ? 4 : 8),
@@ -5702,7 +5704,7 @@ register struct obj *obj;
 		break;
 	case POT_PARALYSIS:
 		kn++;
-		if (!Free_action || !rn2(20)) {
+		if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 		    pline("%s seems to be holding you.", Something);
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnd(5), "frozen by breathing a potion", TRUE);
@@ -5712,7 +5714,7 @@ register struct obj *obj;
 		break;
 	case POT_SLEEPING:
 		kn++;
-		if ((!Free_action && !Sleep_resistance) || !rn2(20)) {
+		if ((!Free_action && !Sleep_resistance) || !rn2(StrongSleep_resistance ? 20 : 5)) {
 		    You_feel("rather tired.");
 		    nomul(-rnd(5), "sleeping off a magical draught", TRUE);
 		    nomovemsg = You_can_move_again;
@@ -6223,7 +6225,7 @@ boolean amnesia;
 		if (obj->otyp == POT_ACID) {
 			pline("It boils vigorously!");
 			You("are caught in the explosion!");
-			losehp(Acid_resistance ? rnd(5) : rnd(10),
+			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10),
 			       "elementary chemistry", KILLED_BY);
 			if (amnesia) {
 			    You_feel("a momentary lapse of reason!");
@@ -7326,7 +7328,7 @@ dodip()
 			useup(potion);
 			/* MRKR: an alchemy smock ought to be */
 			/* some protection against this: */
-			losehp(Acid_resistance ? rnd(5) : rnd(10),
+			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10),
 			       "alchemic blast", KILLED_BY_AN);
 			return(1);
 		}
@@ -7566,7 +7568,7 @@ dodip()
 			potion->in_use = TRUE;
 			if (!breathless(youmonst.data) || haseyes(youmonst.data)) potionbreathe(potion);
 			useup(potion);
-			losehp(Acid_resistance ? rnd(5) : rnd(10), "a cursed explosion", KILLED_BY);
+			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10), "a cursed explosion", KILLED_BY);
 			return(1);
 		}
 
@@ -7607,7 +7609,7 @@ dodip()
 			useup(singlepotion);
 			/* MRKR: an alchemy smock ought to be */
 			/* some protection against this: */
-			losehp(Acid_resistance ? rnd(5) : rnd(10), 
+			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10), 
 			       "alchemic blast", KILLED_BY_AN);
 			return(1);	  
 		    }

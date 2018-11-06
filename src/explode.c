@@ -595,6 +595,12 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (damu < 1) damu = 1;
 		}
 
+		if (StrongDetect_monsters && damu > 0) {
+			damu *= 9;
+			damu /= 10;
+			if (damu < 1) damu = 1;
+		}
+
 		if (damu > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
 			damu *= 9;
 			damu /= 10;
@@ -619,8 +625,11 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (Invulnerable || (Stoned_chiller && Stoned)) {
 		    damu = 0;
 		    You("are unharmed!");
-		} else if (Half_physical_damage && adtyp == AD_PHYS && rn2(2) )
-		    damu = (damu+1) / 2;
+		} else {
+			if (Half_physical_damage && adtyp == AD_PHYS && rn2(2) ) damu = (damu+1) / 2;
+			if (StrongHalf_physical_damage && adtyp == AD_PHYS && rn2(2) ) damu = (damu+1) / 2;
+		}
+
 		if (adtyp == AD_FIRE) {if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);}
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, (int) adtyp);
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, (int) adtyp);

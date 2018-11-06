@@ -651,16 +651,16 @@ vision_recalc(control)
 	    }
 	}
 
-	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) && u.xray_range < (u.nv_range + Sight_bonus) ) {
-	    if (!(u.nv_range + Sight_bonus) ) {	/* range is 0 */
+	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) && u.xray_range < (u.nv_range + Sight_bonus + StrongSight_bonus) ) {
+	    if (!(u.nv_range + Sight_bonus + StrongSight_bonus) ) {	/* range is 0 */
 		next_array[u.uy][u.ux] |= IN_SIGHT;
 		levl[u.ux][u.uy].seenv = SVALL;
 		next_rmin[u.uy] = min(u.ux, next_rmin[u.uy]);
 		next_rmax[u.uy] = max(u.ux, next_rmax[u.uy]);
-	    } else if (( (u.nv_range + Sight_bonus) > 0) && !(u.uprops[WEAKSIGHT].extrinsic || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) ) {
-		ranges = circle_ptr(u.nv_range + Sight_bonus);
+	    } else if (( (u.nv_range + Sight_bonus + StrongSight_bonus) > 0) && !(u.uprops[WEAKSIGHT].extrinsic || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) ) {
+		ranges = circle_ptr(u.nv_range + Sight_bonus + StrongSight_bonus);
 
-		for (row = u.uy-(u.nv_range + Sight_bonus); row <= u.uy+(u.nv_range + Sight_bonus); row++) {
+		for (row = u.uy-(u.nv_range + Sight_bonus + StrongSight_bonus); row <= u.uy+(u.nv_range + Sight_bonus + StrongSight_bonus); row++) {
 		    if (row < 0) continue;	if (row >= ROWNO) break;
 		    dy = v_abs(u.uy-row);	next_row = next_array[row];
 

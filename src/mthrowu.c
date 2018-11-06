@@ -230,6 +230,10 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
 		}
+		if (StrongConflict && shieldblockrate > 0) {
+			shieldblockrate *= 2;
+			shieldblockrate /= 3;
+		}
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -293,11 +297,11 @@ const char *name;	/* if null, then format `obj' */
 
 	}
 
-	if((u.uac + tlev <= rnd(20)) && (!rn2(Conflict ? 4 : 3))) {
+	if((u.uac + tlev <= rnd(20)) && (!rn2(StrongConflict ? 5 : Conflict ? 4 : 3))) {
 		if(Blind || !flags.verbose) pline("It misses.");
 		else You("are almost hit by %s.", onm);
 		return(0);
-	} else if ( (u.uac < 0) && (!rn2(Conflict ? 3 : 2)) && !rn2(extrachance) && (rnd(50) < (-(u.uac))) )    {
+	} else if ( (u.uac < 0) && (!rn2(StrongConflict ? 4 : Conflict ? 3 : 2)) && !rn2(extrachance) && (rnd(50) < (-(u.uac))) )    {
 		/* more negative AC means a higher chance to deflect projectiles with armor --Amy */
 		if(Blind || !flags.verbose) pline("Your armor deflects a projectile.");
 		else You("deflect %s with your armor.", onm);
@@ -386,7 +390,7 @@ const char *name;	/* if null, then format `obj' */
 			pline("You inhale the horrific odor!");
 			exercise(A_CON, FALSE);
 		}
-		if (is_acid && Acid_resistance) {
+		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
 		} else if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && obj && obj->spe < 2) {
@@ -402,6 +406,7 @@ const char *name;	/* if null, then format `obj' */
 			else if (!is_bulletammo && (tlev > 10) && !rn2(3)) dam += rnd(tlev - 10);
 
 			if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
+			if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 
 			if (dam && u.uac < /*-1*/0) { /* AC protects against this damage now, at least a bit --Amy */
 				int tempval;
@@ -426,7 +431,7 @@ const char *name;	/* if null, then format `obj' */
 		/* evil patch: darts of disintegration can disintegrate the player
 		 * only have a 10% chance of actually doing so, because otherwise it would be really unbalanced --Amy */
 		if (obj && obj->otyp == DART_OF_DISINTEGRATION) {
-			if ((!Disint_resistance || !rn2(100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
+			if ((!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
 				You_feel("like you're falling apart!");
 	
 				if (uarms) {
@@ -965,7 +970,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		    }
 
 		    if (hitu && singleobj->otyp == EGG) {
-			if (!Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else if (Stoned) pline("You are already stoned.");
 				else {

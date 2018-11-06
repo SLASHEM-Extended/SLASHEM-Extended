@@ -4112,7 +4112,8 @@ register struct monst *shkp;
 	if((udist = distu(omx,omy)) < 3 &&
 	   (!(isgridbug(shkp->data)) || (omx==u.ux || omy==u.uy))) {
 		if(ANGRY(shkp) ||
-		   (Conflict && !resist(shkp, RING_CLASS, 0, 0))) {
+		   (Conflict && !resist(shkp, RING_CLASS, 0, 0)) ||
+		   (StrongConflict && !resist(shkp, RING_CLASS, 0, 0))) {
 			if(Displaced)
 			  Your("displaced image doesn't fool %s!",
 				mon_nam(shkp));

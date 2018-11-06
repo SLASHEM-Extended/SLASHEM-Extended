@@ -349,6 +349,14 @@ struct monst {
 	Bitfield(wastame,1);	/* for re-taming technique */
 
 	Bitfield(sagesvisible,1);	/* for seeing the monster via sages helmet */
+	Bitfield(internetvisible,1);	/* 1 in 9 chance to be visible to internet access */
+	Bitfield(stunnovisible,1);	/* 3 in 4 chance to be visible to stunnopathy */
+	Bitfield(selfhybridvisible,1);	/* 1 in 2 chance to be visible for self-hybridization */
+	Bitfield(warningvisible,2);	/* 1 in 4 chance to be visible to warning (1 in 2 if double warning) */
+	Bitfield(telepatvisible,2);	/* 1 in 6 chance to be visible to telepathy (1 in 3 if double telepathy) */
+	/* these bigger bitfields mean: 1 = single source is enough, 2 = only see monster if two sources */
+	Bitfield(seeinvisble,1);	/* 2 in 3 chance that single see invisible is enough */
+	Bitfield(infravisble,1);	/* 2 in 3 chance that single infravision is enough */
 
 	struct obj *mw;
 	long misc_worn_check;

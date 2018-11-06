@@ -202,8 +202,8 @@ struct monst *mtmp;
 	mresists = rn2(100) < resist_percentage;
 	scmresists = rn2(100) < resist_percentage;
 
-	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(2)) && !scmresists)
-			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
+	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !scmresists)
+			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
 			 || (is_vampire(mtmp->data)
 			     && IS_ALTAR(levl[x][y].typ)));
 }
@@ -225,7 +225,7 @@ boolean digest_meal;
 	if (ishaxor) regenrate /= 2;
 
 	if (mon->mhp < mon->mhpmax && !is_golem(mon->data) &&
-	    (moves % /*20*/regenrate == 0 || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
+	    (!rn2(regenrate) || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
 
 	if (mon->data == &mons[PM_GROGGY_GUY]) {
 		mon->mhp += rnd(5);
@@ -233,7 +233,7 @@ boolean digest_meal;
 	}
 
 	if (mon->m_en < mon->m_enmax && 
-	    (moves % /*20*/regenrate == 0 || (rn2(mon->m_lev + 5) > 15))) {
+	    (!rn2(regenrate) || (rn2(mon->m_lev + 5) > 15))) {
 	    	mon->m_en += rn1((mon->m_lev % 10 + 1),1);
 	    	if (mon->m_en > mon->m_enmax) mon->m_en = mon->m_enmax;
 	}
@@ -402,7 +402,7 @@ disturb(mtmp)
 	 */
 	if(couldsee(mtmp->mx,mtmp->my) &&
 		distu(mtmp->mx,mtmp->my) <= 100 &&
-		(!Stealth || (Aggravate_monster && !rn2(3) ) || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
+		(!Stealth || (Stealth && !StrongStealth && !rn2(5)) || (Aggravate_monster && !rn2(3) ) || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
 		(!(mtmp->data->mlet == S_NYMPH
 			|| mtmp->data == &mons[PM_JABBERWOCK]
 			|| mtmp->data == &mons[PM_VORPAL_JABBERWOCK]
@@ -483,7 +483,7 @@ int *inrange, *nearby, *scared;
 	 * running into you by accident but possibly attacking the spot
 	 * where it guesses you are.
 	 */
-	if (!mtmp->mcansee || (Invis && !perceives(mtmp->data))) {
+	if (!mtmp->mcansee || (Invis && (StrongInvis || !rn2(3)) && !perceives(mtmp->data))) {
 		seescaryx = mtmp->mux;
 		seescaryy = mtmp->muy;
 	} else {
@@ -1406,7 +1406,7 @@ convertdone:
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
-		if ( (mtmp->mpeaceful || (Psi_resist && rn2(20) ) ) &&
+		if ( (mtmp->mpeaceful || (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) ) &&
 		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0)))
 			pline("It feels quite soothing.");
 		else {
@@ -1421,6 +1421,7 @@ convertdone:
 					rn1(10, 10) :
 					rn1(4, 4);
 				if (Half_spell_damage && rn2(2) ) dmg = (dmg+1) / 2;
+				if (StrongHalf_spell_damage && rn2(2) ) dmg = (dmg+1) / 2;
 				if (!rn2(100)) { /* evil patch idea by jonadab: 1% chance of causing amnesia */
 					forget(1 + rn2(5));
 				}
@@ -1439,7 +1440,7 @@ convertdone:
 				}
 				if (!rn2(100)) {
 					(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
-					if (!Free_action || !rn2(20)) {
+					if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 					    pline("You are frozen in place!");
 					    nomul(-rnz(10), "frozen by an eldritch blast", TRUE);
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
@@ -1540,7 +1541,7 @@ toofar:
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
-	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && !resist(mtmp, RING_CLASS, 0, 0) && !mtmp->iswiz
+	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && (!resist(mtmp, RING_CLASS, 0, 0) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) ) && !mtmp->iswiz
 	   && !Is_blackmarket(&u.uz)
 	   ) ||
 	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 4)) || mtmp->mpeaceful) {
@@ -1622,10 +1623,7 @@ toofar:
 
 /*	Now, attack the player if possible - one attack set per monst	*/
 
-	if (!mtmp->mpeaceful ||
-	    (Conflict && !resist(mtmp, RING_CLASS, 0, 0)
-		&& !Is_blackmarket(&u.uz)
-	)) {
+	if (!mtmp->mpeaceful || ((Conflict && !resist(mtmp, RING_CLASS, 0, 0)) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) && !Is_blackmarket(&u.uz)) ) {
 
 		/* FIQ found out that self-genocide while polymorphed can make monsters stop attacking entirely. Fixed. */
 
@@ -2034,9 +2032,9 @@ not_special:
 
 		if (!mtmp->mcansee ||
 		/* monsters no longer automatically know where you are. That was just incredibly annoying. --Amy */
-		( (!Aggravate_monster || !rn2(5)) && !should_see && distu(mtmp->mx,mtmp->my) > 10 && (Stealth ? (can_track(ptr) ? !rn2(4) : rn2(2) ) : (can_track(ptr) ? !rn2(10) : !rn2(4) ) ) ) ||
-			 ( (!Aggravate_monster || !rn2(20)) && is_wanderer(mtmp->data) ? (Stealth ? !rn2(3) : !rn2(5) ) : (Stealth ? !rn2(5) : !rn2(25) ) ) ||
-		    (should_see && Invis && haseyes(ptr) && !perceives(ptr) && rn2(3)) ||
+		( (!Aggravate_monster || !rn2(5)) && !should_see && distu(mtmp->mx,mtmp->my) > 10 && ((Stealth && (StrongStealth || !rn2(3))) ? (can_track(ptr) ? !rn2(4) : rn2(2) ) : (can_track(ptr) ? !rn2(10) : !rn2(4) ) ) ) ||
+			 ( (!Aggravate_monster || !rn2(20)) && is_wanderer(mtmp->data) ? ((Stealth && (StrongStealth || !rn2(3))) ? !rn2(3) : !rn2(5) ) : ((Stealth && (StrongStealth || !rn2(3))) ? !rn2(5) : !rn2(25) ) ) ||
+		    (should_see && Invis && (StrongInvis || !rn2(3)) && haseyes(ptr) && !perceives(ptr) && rn2(3)) ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == STRANGE_OBJECT) || u.uundetected ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == GOLD_PIECE && !likes_gold(ptr)) ||
 		    (mtmp->mpeaceful && !mtmp->isshk) ||  /* allow shks to follow */
@@ -2209,7 +2207,7 @@ not_special:
 	nix = omx;
 	niy = omy;
 	flag = 0L;
-	if (mtmp->mpeaceful && (!Conflict || resist(mtmp, RING_CLASS, 0, 0)))
+	if (mtmp->mpeaceful && (!Conflict || (resist(mtmp, RING_CLASS, 0, 0) && (!StrongConflict || resist(mtmp, RING_CLASS, 0, 0)) ) ))
 	    flag |= (ALLOW_SANCT | ALLOW_SSM);
 	else flag |= ALLOW_U;
 	if (is_minion(ptr) || is_rider(ptr) || is_deadlysin(ptr)) flag |= ALLOW_SANCT;
@@ -2625,7 +2623,7 @@ register struct monst *mtmp;
 	   if you haven't moved away */
 	if (mx == u.ux && my == u.uy) goto found_you;
 
-	notseen = (!mtmp->mcansee || (Invis && haseyes(mtmp->data) && !perceives(mtmp->data)));
+	notseen = (!mtmp->mcansee || (Invis && (StrongInvis || !rn2(3)) && haseyes(mtmp->data) && !perceives(mtmp->data)));
 	/* add cases as required.  eg. Displacement ... */
 	if (notseen || Underwater) {
 	    /* Xorns can smell valuable metal like gold, treat as seen */
@@ -2639,7 +2637,7 @@ register struct monst *mtmp;
 		disp = 0;
 	    else
 		disp = 1;
-	} else if (Displaced && !(dmgtype(mtmp->data, AD_DISP) ) && !(dmgtype(mtmp->data, AD_MAGM) ) && mtmp->data != &mons[PM_BABY_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_ADULT_GRAY_DRAGON] &&
+	} else if (Displaced && (StrongDisplaced || !rn2(3)) && !(dmgtype(mtmp->data, AD_DISP) ) && !(dmgtype(mtmp->data, AD_MAGM) ) && mtmp->data != &mons[PM_BABY_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_ADULT_GRAY_DRAGON] &&
 		!(dmgtype(mtmp->data, AD_RBRE)) && !(dmgtype(mtmp->data, AD_RNG)) ) {
 	    disp = couldsee(mx, my) ? 2 : 1;
 	} else disp = 0;
@@ -2647,7 +2645,7 @@ register struct monst *mtmp;
 
 	/* without something like the following, invis. and displ.
 	   are too powerful */
-	gotu = notseen ? rn2(3) : Displaced ? rn2(2) : FALSE;
+	gotu = notseen ? rn2(3) : StrongDisplaced ? rn2(2) : Displaced ? rn2(2) : FALSE;
 
 #if 0		/* this never worked as intended & isn't needed anyway */
 	/* If invis but not displaced, staying around gets you 'discovered' */

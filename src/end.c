@@ -1004,6 +1004,31 @@ erudone:
 	}
 ruffledone:
 
+	/* double detect monsters can let you lifesave too */
+	if (StrongDetect_monsters && how < GENOCIDED && !rn2(10) ) {
+		pline("But wait...");
+		pline("For some reason, you're not dead!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto detectmonstersdone;
+		}
+
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		u.youaredead = 0;
+
+		return;
+
+	}
+detectmonstersdone:
+
 	if (uarmf && how < GENOCIDED && uarmf->oartifact == ART_PRINCE_OF_PERSIA && !rn2(2) ) {
 		pline("But wait...");
 		pline("You respawn because you're the Prince of Persia!");

@@ -21,7 +21,7 @@
  * monsters that are hiding or mimicing other monsters.
  */
 #define tp_sensemon(mon) (	/* The hero can always sense a monster IF:  */\
-      (mon)->mhp % 3 != 0 && /* 0. the monster passes a 66 percent chance check to be visible (addition by Amy) AND */\
+      (mon->telepatvisible == 1 || (mon->telepatvisible == 2 && StrongTelepat) ) && /* 0. the monster passes a 66 percent chance check to be visible (addition by Amy) AND */\
 	(!mindless((mon)->data) && (!mon->egotype_undead) ) &&	/* 1. the monster has a brain to sense AND  */\
       ((Blind && Blind_telepat) ||	/* 2a. hero is blind and telepathic OR	    */\
 				/* 2b. hero is using a telepathy inducing   */\
@@ -30,7 +30,7 @@
 	(distu((mon)->mx, (mon)->my) <= (BOLT_LIM * BOLT_LIM))))		      \
 )
 
-#define sensemon(mon) ( (tp_sensemon(mon) || Detect_monsters || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) /*|| (EUndeadWarning && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) || (RngeInternetAccess && (mon)->mhp % 9 == 0) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) || (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) || (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) || (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) || (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) || (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) || (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) || (uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) || (uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  ) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) && !(isselfhybrid && (moves % 3 == 0) ) )
+#define sensemon(mon) ( (tp_sensemon(mon) || Detect_monsters || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) /*|| (EUndeadWarning && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) || (RngeInternetAccess && mon->internetvisible) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) || (Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) || (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) || (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) || (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) || (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) || (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) || (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) || (uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) || (uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible ) )  ) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) && !(isselfhybrid && (moves % 3 == 0) ) )
 
 /*
  * mon_warning() is used to warn of any dangerous monsters in your
@@ -38,7 +38,7 @@
  */
 
 /* Only 50 percent of monsters are visible to warning. --Amy */
-#define mon_warning(mon) ((mon)->mhp % 2 != 0 && Warning && !(mon)->mpeaceful && 				\
+#define mon_warning(mon) ((mon->warningvisible == 1 || (mon->warningvisible == 2 && StrongWarning) ) && Warning && !(mon)->mpeaceful && 				\
 			 (distu((mon)->mx, (mon)->my) < 100) &&				\
 			 (((int) ((mon)->m_lev / 6)) >= flags.warnlevel))
 
@@ -53,8 +53,8 @@
  */
 #define mon_visible(mon) (		/* The hero can see the monster     */\
 					/* IF the monster		    */\
-    (!((mon)->minvis) || See_invisible) &&	/* 1. is not invisible AND	    */\
-    (!((mon)->mundetected))	&&		/* 2. not an undetected hider	    */\
+    (!((mon)->minvis) || (See_invisible && (mon->seeinvisble || StrongSee_invisible) ) ) &&	/* 1. is not invisible AND	    */\
+    (!((mon)->mundetected && !StrongPeacevision))	&&		/* 2. not an undetected hider	    */\
     (!((mon)->mburied || u.uburied)) &&	/* 3. neither you or it is buried   */\
 	(!(mon)->minvisreal)	/* 4. monster is not permanently invisible */\
 )
@@ -67,7 +67,7 @@
  * invisible to infravision), because this is usually called from within
  * canseemon() or canspotmon() which already check that.
  */
-#define see_with_infrared(mon) (!Blind && Infravision && infravisible(mon->data) && couldsee(mon->mx, mon->my))
+#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my))
 
 /*
  * see_with_infrared()
@@ -77,7 +77,7 @@
  * invisible to infravision), because this is usually called from within
  * canseemon() or canspotmon() which already check that.
  */
-#define see_with_infrared(mon) (!Blind && Infravision && infravisible(mon->data) && couldsee(mon->mx, mon->my))
+#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my))
 
 
 /*
@@ -115,7 +115,7 @@
  */
 #define knowninvisible(mon) \
 	(mon->minvis && \
-	    ((cansee(mon->mx, mon->my) && ( (See_invisible && !mon->minvisreal) || Detect_monsters)) || \
+	    ((cansee(mon->mx, mon->my) && ( (See_invisible && !mon->minvisreal && (StrongSee_invisible || mon->seeinvisble) ) || Detect_monsters)) || \
 		(!Blind && (HTelepat & ~INTRINSIC) && \
 		    distu(mon->mx, mon->my) <= (BOLT_LIM * BOLT_LIM) \
 		) \

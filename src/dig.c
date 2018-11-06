@@ -1134,7 +1134,7 @@ struct obj *obj;
 		flags.botl=1;
 		return(1);
 	} else if(u.dz == 0) {
-		if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
+		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8))) confdir();
 		rx = u.ux + u.dx;
 		ry = u.uy + u.dy;
 		if(!isok(rx, ry)) {

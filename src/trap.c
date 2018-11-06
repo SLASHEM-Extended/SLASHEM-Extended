@@ -2731,7 +2731,7 @@ unsigned trflags;
 		    break;
 		}
 
-		if((Sleep_resistance && rn2(20)) || breathless(youmonst.data)) {
+		if((Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) || breathless(youmonst.data)) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
 		}
@@ -2743,7 +2743,7 @@ unsigned trflags;
 	    case PARALYSIS_TRAP:
 	      pline("You stepped on a trigger!");
 		seetrap(trap);
-		if (!Free_action || !rn2(10)) {
+		if (!Free_action || !rn2(StrongFree_action ? 100 : 10)) {
 		    pline("You are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnz(10), "frozen by a paralysis trap", TRUE);
@@ -2871,8 +2871,10 @@ unsigned trflags;
 	        else pline("You fell into a pool of water!");
 
 			if (!rn2(20)) { /* A higher chance would be incredibly annoying. --Amy */
-			water_damage(invent, FALSE, FALSE);
-			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+				if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+					water_damage(invent, FALSE, FALSE);
+					if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+				}
 			}
 
 	        if (numX) losehp(numX, "waterpool", KILLED_BY_AN);
@@ -2887,6 +2889,7 @@ unsigned trflags;
 		    pline("%s you!", A_gush_of_water_hits);
 		    You("are covered with rust!");
 		    if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
+		    if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 		    losehp(dam, "rusting away", KILLED_BY);
 		    break;
 		} else if (u.umonnum == PM_FLAMING_SPHERE) {
@@ -2895,6 +2898,7 @@ unsigned trflags;
 		    pline("%s you!", A_gush_of_water_hits);
 		    You("are extinguished!");
 		    if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
+		    if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 		    losehp(dam, "drenching", KILLED_BY);
 		    break;
 		} else if (u.umonnum == PM_GREMLIN && rn2(3)) {
@@ -3375,7 +3379,7 @@ newegomon:
 				break;
 			case 12:
 				pline_The("water is contaminated!");
-				if (Poison_resistance) {
+				if (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) {
 				   pline("Perhaps it is runoff from the nearby %s farm.", fruitname(FALSE));
 				   losehp(rnd(4),"unrefrigerated sip of juice", KILLED_BY_AN);
 				   break;
@@ -3544,7 +3548,7 @@ newegomon:
 		    case 3:
 			pline("A%s electric shock shoots through your body!",
 			      (Shock_resistance) ? "n" : " massive");
-			losehp(Shock_resistance ? rnd(6) : rnd(30),
+			losehp(StrongShock_resistance ? rnd(2) : Shock_resistance ? rnd(6) : rnd(30),
 			       "electric chair", KILLED_BY_AN);
 			exercise(A_CON, FALSE);
 			break;
@@ -4446,7 +4450,7 @@ rerollX:
 					Your("gloves %s completely corroded.",
 					     Blind ? "feel" : "look");
 				}
-				losestr(Poison_resistance ? rn1(2,1) : rn1(4,3));
+				losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3));
 				losehp(rnd(Poison_resistance ? 6 : 10), "wrenching poison", KILLED_BY_AN);
 
 				break;
@@ -4556,7 +4560,7 @@ rerollX:
 		seetrap(trap);
 		pline("CLICK! You have triggered a trap!");
 
-		if (!Drain_resistance || !rn2(4) ) {
+		if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) ) {
 			pline("A malevolent black glow suddenly surrounds you...");
 			losexp("life drainage", FALSE, TRUE);
 		}
@@ -4585,7 +4589,8 @@ rerollX:
 
 		      int dmgnum = 0;
 		      dmgnum = d(2, 6) + rnd((monster_difficulty() * 2) + 1);
-			if (Antimagic || (Half_spell_damage && rn2(2)) ) dmgnum /= 2;
+			if (Antimagic || (Half_spell_damage && rn2(2)) || (StrongHalf_spell_damage && rn2(2)) ) dmgnum /= 2;
+			if (StrongAntimagic && dmgnum > 1) dmgnum /= 2;
 			You_feel("drained...");
 			u.uhpmax -= dmgnum/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -4604,7 +4609,7 @@ rerollX:
 		seetrap(trap);
 		pline("CLICK! You have triggered a trap!");
 
-		if (Sick_resistance) {
+		if (IntSick_resistance || (ExtSick_resistance && rn2(20)) ) {
 			You_feel("fever and chills for a moment, but you seem unharmed.");
 		} else {
 			You_feel("fever and chills...");
@@ -4702,14 +4707,14 @@ rerollX:
 					break;
 				    case 1: /* sleep */
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) {pline("You yawn."); break;}
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action && rn2(20)) {
+					    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -4836,7 +4841,7 @@ rerollX:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(4) )
+					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -4872,7 +4877,7 @@ rerollX:
 				    u.ulycn = PM_WERECOW;
 				} else {
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) break;
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
@@ -4895,11 +4900,13 @@ rerollX:
 			    case 10:
 			    case 11:
 			    case 12:
-				water_damage(invent, FALSE, FALSE);
+				if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+					water_damage(invent, FALSE, FALSE);
+				}
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action && rn2(20)) {
+				    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
@@ -4966,7 +4973,7 @@ rerollX:
 		seetrap(trap);
 		pline("CLICK! You have triggered a trap!");
 
-		if (!Disint_resistance || !rn2(100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
+		if (!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
 			You_feel("like you're falling apart!");
 
 			if (uarms) {
@@ -5594,7 +5601,7 @@ rerollX:
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if(Shock_resistance)  {
+			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    break;
@@ -5608,7 +5615,7 @@ rerollX:
 		case 5:
 		case 4:
 		case 3:
-			if (!Free_action || !rn2(20)) {
+			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a lock trap", TRUE);
@@ -5673,12 +5680,12 @@ rerollX:
 
 		if (!Poison_resistance) pline("You're badly poisoned!");
 		else pline("You're poisoned!");
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
@@ -5887,7 +5894,7 @@ madnesseffect:
 	    case PETRIFICATION_TRAP:
 		pline("CLICK! You have triggered a trap!");
 		seetrap(trap);
-		    if (!Stone_resistance &&
+		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
@@ -6163,6 +6170,9 @@ madnesseffect:
 		if(Antimagic && rn2(2) ) {
 		    shieldeff(u.ux, u.uy);
 		    You_feel("momentarily lethargic.");
+		} else if(StrongAntimagic && rn2(2) ) {
+		    shieldeff(u.ux, u.uy);
+		    You_feel("momentarily lethargic.");
 		} else drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
 		break;
 
@@ -6176,6 +6186,9 @@ madnesseffect:
 	    case OUT_OF_MAGIC_TRAP:
 		seetrap(trap);
 		if(Antimagic && !rn2(5) ) {
+		    shieldeff(u.ux, u.uy);
+		    You_feel("momentarily lethargic.");
+		} else if(StrongAntimagic && !rn2(3) ) {
 		    shieldeff(u.ux, u.uy);
 		    You_feel("momentarily lethargic.");
 		} else if (u.uen > ((u.uenmax / 9) + 1)) {
@@ -6648,7 +6661,7 @@ madnesseffect:
 					You_feel("hungry%s.", (u.uhunger > 500) ? " a bit" : "");
 					if (u.uhunger > 500) u.uhunger = 500;
 					else if (u.uhunger > 200) u.uhunger = 200;
-					else u.uhunger -= rnd(Full_nutrient ? 200 : 400);
+					else u.uhunger -= rnd(StrongFull_nutrient ? 100 : Full_nutrient ? 200 : 400);
 
 				    }
 
@@ -6730,7 +6743,9 @@ madnesseffect:
 			/*from NetHack brass 08.03.25, and arrange [Sakusha]*/
 			if(!rn2(5)) {
 				pline("The water splashes all over you!");
-				water_damage(invent, FALSE, FALSE);
+				if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+					water_damage(invent, FALSE, FALSE);
+				}
 			}
 			make_stunned(HStun + rn1(14, 32), TRUE);
 
@@ -7006,7 +7021,7 @@ madnesseffect:
 
 		} else {
 			pline("You hear a splash, and are covered in acid!");
-			if (Acid_resistance && rn2(20)) {
+			if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
 				pline("But it seems harmless.");
 			} else {
 				losehp(rnd(6)+ rnd( (monster_difficulty() / 3) + 1),"sprinkled acid venom",KILLED_BY_AN);
@@ -13663,7 +13678,7 @@ void
 instapetrify(str)
 const char *str;
 {
-	if (Stone_resistance) return;
+	if (Stone_resistance && IntStone_resistance) return;
 	if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 	    return;
 	/* You("turn to stone...");
@@ -13712,7 +13727,7 @@ const char *arg;
 	char kbuf[BUFSZ];
 
 	if(uwep && uwep->otyp == CORPSE && touch_petrifies(&mons[uwep->corpsenm])
-			&& !Stone_resistance) {
+			&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		pline("%s touch the %s corpse.", arg,
 		        mons[uwep->corpsenm].mname);
 		sprintf(kbuf, "%s corpse", an(mons[uwep->corpsenm].mname));
@@ -13720,7 +13735,7 @@ const char *arg;
 	}
 	/* Or your secondary weapon, if wielded */
 	if(u.twoweap && uswapwep && uswapwep->otyp == CORPSE &&
-			touch_petrifies(&mons[uswapwep->corpsenm]) && !Stone_resistance){
+			touch_petrifies(&mons[uswapwep->corpsenm]) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )){
 		pline("%s touch the %s corpse.", arg,
 		        mons[uswapwep->corpsenm].mname);
 		sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
@@ -13967,6 +13982,7 @@ struct obj *box;        /* at the moment only for floor traps */
         if (Cold_resistance) {
                 shieldeff(u.ux, u.uy);
                 num = d(2, 2) + rnd((monster_difficulty() / 5) + 1);
+		    if (StrongCold_resistance && num > 1) num /= 2;
         }
 
         if (!num)
@@ -13992,6 +14008,7 @@ struct obj *box;        /* at the moment only for floor traps */
         if (Shock_resistance) {
                 shieldeff(u.ux, u.uy);
                 num = d(2, 2) + rnd((monster_difficulty() / 5) + 1);
+		    if (StrongShock_resistance && num > 1) num /= 2;
         }
 
         if (!num)
@@ -14019,6 +14036,7 @@ struct obj *box;        /* at the moment only for floor traps */
         if (Shock_resistance) {
                 shieldeff(u.ux, u.uy);
                 num = d(6, 3) + rnd((monster_difficulty() / 2) + 1);
+		    if (StrongShock_resistance && num > 1) num /= 2;
         }
 
         if (!num)
@@ -14030,7 +14048,7 @@ struct obj *box;        /* at the moment only for floor traps */
 		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 10 : 50)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (!rn2(3)) {
-				if (!Free_action || !rn2(5)) {
+				if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 				    pline("You are frozen in place!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				    nomul(-rnz(10), "frozen by a volt trap", TRUE);
@@ -14110,7 +14128,7 @@ struct obj *box;        /* at the moment only for floor traps */
 
 		} else if (!rn2(20)) u_slow_down();
 
-		if ( !rn2(100) || (!Free_action && !rn2(10)))	{
+		if ( !rn2(StrongFree_action ? 1000 : 100) || (!Free_action && !rn2(10)))	{
 			You("inhale the intense smell of shit! The world spins and goes dark.");
 			nomovemsg = "You are conscious again.";	/* default: "you can move again" */
 			nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
@@ -14218,7 +14236,7 @@ struct obj *box;	/* null for floor trap */
     }
 	if (Fire_resistance) {
 	    shieldeff(u.ux, u.uy);
-	    num = rnd(12);
+	    num = rnd(StrongFire_resistance ? 4 : 12);
 	} else if (Upolyd) {
 	    num = d(6,4);
 	    switch (u.umonnum) {
@@ -15085,8 +15103,10 @@ drown()
 	    forget(5); /* used to be 25 --Amy */
 	}
 
-	water_damage(invent, FALSE, FALSE);
-	if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+	if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+		water_damage(invent, FALSE, FALSE);
+		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+	}
 	if (Burned) make_burned(0L, TRUE);
 
 	if (u.umonnum == PM_GREMLIN && rn2(3))
@@ -15252,8 +15272,10 @@ crystaldrown()
 	    forget(5); /* used to be 25 --Amy */
 	}
 
-	water_damage(invent, FALSE, FALSE);
-	if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+	if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+		water_damage(invent, FALSE, FALSE);
+		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+	}
 	if (Burned) make_burned(0L, TRUE);
 
 	if (u.umonnum == PM_GREMLIN && rn2(3))
@@ -16072,7 +16094,7 @@ struct trap *ttmp;
 
 
 	/* is it a cockatrice?... */
-	if (touch_petrifies(mtmp->data) && (!uarmg || FingerlessGloves) && !Stone_resistance) {
+	if (touch_petrifies(mtmp->data) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		You("grab the trapped %s using your bare %s.",
 				mtmp->data->mname, makeplural(body_part(HAND)));
 
@@ -16547,7 +16569,7 @@ boolean disarm;
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if(Shock_resistance)  {
+			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    dmg = 0;
@@ -16562,7 +16584,7 @@ boolean disarm;
 		case 5:
 		case 4:
 		case 3:
-			if (!Free_action || !rn2(20)) {                        
+			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {                        
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a container trap", TRUE);
@@ -16715,8 +16737,10 @@ register int bodypart;
 
 	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
 		pline("Hahaha, a water bucket falls on top of you and all your shit gets wet! LOL!");
-		water_damage(invent, FALSE, FALSE);
-		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
 	}
 
 	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {

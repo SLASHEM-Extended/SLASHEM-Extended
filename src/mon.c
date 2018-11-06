@@ -1868,6 +1868,21 @@ movemon()
 							fightm(mtmp))
 		continue;	/* mon might have died */
 	}
+	if (StrongConflict && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
+	    /* Note:
+	     *  Conflict does not take effect in the first round.
+	     *  Therefore, A monster when stepping into the area will
+	     *  get to swing at you.
+	     *
+	     *  The call to fightm() must be _last_.  The monster might
+	     *  have died if it returns 1.
+	     */
+		/* Amy addition: monsters without eyes are now immune, because the Astral Plane is easy enough already! */
+	    if (couldsee(mtmp->mx,mtmp->my) &&
+		(distu(mtmp->mx,mtmp->my) <= /*BOLT_LIM*BOLT_LIM*/ 4) &&
+							fightm(mtmp))
+		continue;	/* mon might have died */
+	}
 	if(dochugw(mtmp))		/* otherwise just move the monster */
 	    continue;
     }
@@ -2612,13 +2627,13 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 		 (is_lava(nx,ny) && wantlava) || (is_styxriver(nx,ny) && wantlava) || poolok) &&
 	       (lavaok || wantlava || (!is_lava(nx,ny) && !is_styxriver(nx,ny)) )) {
 		int dispx, dispy;
-		boolean monseeu = (mon->mcansee && (!Invis || perceives(mdat)));
+		boolean monseeu = (mon->mcansee && (!Invis || perceives(mdat) || (!StrongInvis && rn2(3)) ));
 		boolean checkobj = OBJ_AT(nx,ny);
 
 		/* Displacement also displaces the Elbereth/scare monster,
 		 * as long as you are visible.
 		 */
-		if(Displaced && monseeu && (mon->mux==nx) && (mon->muy==ny)) {
+		if(Displaced && (StrongDisplaced || !rn2(3)) && monseeu && (mon->mux==nx) && (mon->muy==ny)) {
 		    dispx = u.ux;
 		    dispy = u.uy;
 		} else {
@@ -4723,6 +4738,7 @@ boolean was_swallowed;			/* digestion */
 			sprintf(killer_buf, "%s explosion",
 				s_suffix(mdat->mname));
 			if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			if (StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			losehp(tmp, killer_buf, KILLED_BY_AN);
 		    } else {
 			if (flags.soundok) You_hear("an explosion.");
@@ -4754,6 +4770,7 @@ boolean was_swallowed;			/* digestion */
 			sprintf(killer_buf, "%s explosion",
 				s_suffix(mdat->mname));
 			if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			if (StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			losehp(tmp, killer_buf, KILLED_BY_AN);
 		    } else {
 			if (flags.soundok) You_hear("an explosion.");
@@ -5075,6 +5092,11 @@ xkilled(mtmp, dest)
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "red sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasnyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qizil shippak") )) healup( (mtmp->m_lev / 3), 0, FALSE, FALSE);
 
 	if (Manaleech && !rn2(3) ) { /* leech mana from killed monsters */
+		u.uen += rno(mtmp->m_lev + 1); /* rno instead of rnd, and added rn2 above, due to this property being too unbalanced --Amy */
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+	}
+
+	if (StrongManaleech && !rn2(3) ) { /* leech mana from killed monsters */
 		u.uen += rno(mtmp->m_lev + 1); /* rno instead of rnd, and added rn2 above, due to this property being too unbalanced --Amy */
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 	}
@@ -5839,11 +5861,11 @@ int  typ, fatal;
 			string, plural ? "were" : "was");
 	}
 
-	if(Poison_resistance && rn2(20) ) {
+	if(Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) {
 		if(!strcmp(string, "blast")) shieldeff(u.ux, u.uy);
 		pline_The("poison doesn't seem to affect you.");
 
-		if(!rn2(20)) {
+		if(!rn2(StrongPoison_resistance ? 100 : 20)) {
 		/* Check that a stat change was made */
 		if (adjattrib(typ, -1, 1)) {
 		    pline("You%s!", poiseff[typ]);
@@ -5871,7 +5893,7 @@ int  typ, fatal;
 		}
 	} else if(i <= 5) {
 		/* Check that a stat change was made */
-		if (adjattrib(typ, thrown_weapon ? -1 : -rn1(3,3), 1)) {
+		if (adjattrib(typ, thrown_weapon ? -1 : StrongPoison_resistance ? -1 : Poison_resistance ? -rn1(2,2) : -rn1(3,3), 1)) {
 		    pline("You%s!", poiseff[typ]);
 			pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");
 		}
@@ -5879,11 +5901,13 @@ int  typ, fatal;
 		/* still does damage --Amy */
 		i = thrown_weapon ? rnd(6) : rn1(10,6);
 		if(Half_physical_damage && rn2(2) ) i = (i+1) / 2;
+		if(StrongHalf_physical_damage && rn2(2) ) i = (i+1) / 2;
 		losehp(i, pname, kprefix);
 
 	} else {
 		i = thrown_weapon ? rnd(6) : rn1(10,6);
 		if(Half_physical_damage && rn2(2) ) i = (i+1) / 2;
+		if(StrongHalf_physical_damage && rn2(2) ) i = (i+1) / 2;
 		losehp(i, pname, kprefix);
 	}
 	if(u.uhp < 1) {
@@ -7033,7 +7057,7 @@ boolean msg;
 			!(mdat->mlet == S_EEL && (is_waterypool(mtmp->mx, mtmp->my) || is_watertunnel(mtmp->mx, mtmp->my) || is_shiftingsand(mtmp->mx, mtmp->my) ) ))
 		mtmp->mundetected = 0;
 	if (u.usteed) {
-	    if (touch_petrifies(u.usteed->data) && !Stone_resistance && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
+	    if (touch_petrifies(u.usteed->data) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
 	    	char buf[BUFSZ];
 
 	    	pline("You touch %s.", mon_nam(u.usteed));

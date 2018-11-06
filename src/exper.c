@@ -356,7 +356,7 @@ boolean dresistance;	/* level drain resistance can protect you */
 		drainer = 0;
 #endif
 
-	if (dresistance && Drain_resistance && rn2(5) ) return;
+	if (dresistance && Drain_resistance && rn2(StrongDrain_resistance ? 10 : 5) ) return;
 
 	/* level drain is too strong. Let's nerf it a bit. --Amy */
 	/* In Soviet Russia, level drain will always drain at least one level, because fuck you, stupid player. You're

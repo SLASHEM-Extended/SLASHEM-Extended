@@ -318,7 +318,7 @@ dosit()
 	       pline("The slime is burned away!");
 	       Slimed = 0;
 	    }
-	    losehp(d((Fire_resistance ? 2 : 10), 10),
+	    losehp(d((StrongFire_resistance ? 1 : Fire_resistance ? 2 : 10), 10),
 		   "sitting on lava", KILLED_BY);
 
 	} else if (is_ice(u.ux, u.uy)) {
@@ -433,7 +433,7 @@ dosit()
 		    case 3:
 			pline("A%s electric shock shoots through your body!",
 			      (Shock_resistance) ? "n" : " massive");
-			losehp(Shock_resistance ? rnd(6) : rnd(30),
+			losehp(StrongShock_resistance ? rnd(2) : Shock_resistance ? rnd(6) : rnd(30),
 			       "electric chair", KILLED_BY_AN);
 			exercise(A_CON, FALSE);
 			break;
@@ -991,7 +991,7 @@ rndcurse()			/* curse a few inventory items at random! */
 		return;
 	}
 
-	if (Versus_curses && rn2(20)) { /* curse resistance, by Chris_ANG */
+	if (Versus_curses && rn2(StrongVersus_curses ? 20 : 4)) { /* curse resistance, by Chris_ANG */
 		pline("A malignant aura surrounds you but is absorbed by your magical shield!");
 	    return;
 	}
@@ -1036,6 +1036,8 @@ rndcurse()			/* curse a few inventory items at random! */
 	}
 
 	if (isfriday) verymanyitems *= 2;
+	if (StrongAntimagic && verymanyitems > 1) verymanyitems /= 2;
+	if (StrongHalf_spell_damage && verymanyitems > 1) verymanyitems /= 2;
 
 	if (nobj) {
 	    for (cnt = rnd(verymanyitems/((!!Antimagic) + (!!Half_spell_damage) + 1));

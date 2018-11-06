@@ -779,7 +779,7 @@ tele()
 	    You_feel("disoriented for a moment.");
 	    return;
 	}
-	if ((Teleport_control && !Stunned && rn2(20)) /* low chance for tele control to fail --Amy */
+	if ((Teleport_control && !Stunned && rn2(StrongTeleport_control ? 20 : 4)) /* low chance for tele control to fail --Amy */
 #ifdef WIZARD
 			    || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')
 #endif
@@ -995,7 +995,7 @@ level_tele()
 	    return;
 	}
 	/* Skipping the quest via teleport control is lame. --Amy */
-	if ((Teleport_control && !(In_quest(&u.uz)) && !Stunned && rn2(10)) /* Teleport control might not always work. --Amy */
+	if ((Teleport_control && !(In_quest(&u.uz)) && !Stunned && rn2(StrongTeleport_control ? 10 : 3)) /* Teleport control might not always work. --Amy */
 #ifdef WIZARD
 	   || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')
 #endif

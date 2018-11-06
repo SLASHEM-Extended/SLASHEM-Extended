@@ -1935,7 +1935,7 @@ domove()
 	/* In Soviet Russia, stunning is a crippling status effect that will fuck you up. You're not supposed to stand
 	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
 
-		if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8) || ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) && !rn2(8) ) )
+		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) && !rn2(8) ) )
 			/* toned down so it's less crippling --Amy
 			 * nerf for extremely fast steeds: they cause you to sometimes walk randomly */
 			|| (u.usteed && (u.usteed->mconf || (u.usteed->data->mmove > 36 && rnd(u.usteed->data->mmove) > 36) ) )
@@ -2234,7 +2234,7 @@ domove()
 
 				} else if (!rn2(20)) u_slow_down();
 
-				if ( !rn2(100) || (!Free_action && !rn2(10)))	{
+				if ( !rn2(StrongFree_action ? 1000 : 100) || (!Free_action && !rn2(10)))	{
 					You("inhale the intense smell of shit! The world spins and goes dark.");
 					nomovemsg = "You are conscious again.";	/* default: "you can move again" */
 					nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
@@ -3027,6 +3027,7 @@ stillinwater:;
 				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
 			    dmg = d(4,6);
 			    if(Half_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
+			    if(StrongHalf_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
 			    mdamageu(mtmp, dmg);
 			}
 			break;
@@ -3880,10 +3881,10 @@ dopickup()
 	}
 	if((is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_moorland(u.ux, u.uy) || is_urinelake(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) ) {
 	    if (Wwalking || is_floater(youmonst.data) || is_clinger(youmonst.data)
-			|| (Flying && !Breathless && !Swimming)) {
+			|| (Flying && !StrongFlying && !Breathless && !Swimming)) {
 		You("cannot dive into the water to pick things up.");
 		return(0);
-	    } else if (!Underwater && !Swimming) {
+	    } else if (!Underwater && !Swimming && !StrongFlying) {
 		You_cant("even see the bottom, let alone pick up %s.",
 				something);
 		return(0);
@@ -3891,7 +3892,7 @@ dopickup()
 	}
 	if (is_lava(u.ux, u.uy)) {
 	    if (Wwalking || is_floater(youmonst.data) || is_clinger(youmonst.data)
-			|| (Flying && !Breathless)) {
+			|| (Flying && !StrongFlying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
 	    } else if (!likes_lava(youmonst.data) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
@@ -3961,7 +3962,7 @@ lookaround()
 	if((mtmp = m_at(x,y)) &&
 		    mtmp->m_ap_type != M_AP_FURNITURE &&
 		    mtmp->m_ap_type != M_AP_OBJECT &&
-		    (!mtmp->minvis || See_invisible) && !mtmp->minvisreal && !mtmp->mundetected) {
+		    (!mtmp->minvis || (See_invisible && (StrongSee_invisible || mtmp->seeinvisble) ) ) && !mtmp->minvisreal && !mtmp->mundetected) {
 	    if((flags.run != 1 && !mtmp->mtame)
 					|| (x == u.ux+u.dx && y == u.uy+u.dy))
 		goto stop;
@@ -4154,6 +4155,7 @@ nomul(nval, txt, discountpossible)
 
 	/* Discount action will halve paralysis duration, but some paralysis sources ignore it --Amy */
 	if (Discount_action && discountpossible && (nval < -1)) nval /= 2;
+	if (StrongDiscount_action && discountpossible && (nval < -1)) nval /= 2;
 	multi = nval;
 	if (multi < 0) flags.botl = 1;
 	if (txt && txt[0])
@@ -4260,6 +4262,14 @@ boolean tellplayer;
 	if (Cont_resist && amount > 1) {
 		amount /= 5;
 		if (amount < 1) amount = 1;
+	}
+	if (StrongCont_resist) {
+		amount /= 2;
+		if (amount < 1 && rn2(2)) amount = 1;
+		if (amount < 1) {
+			if (tellplayer) pline("Somehow, the contamination doesn't affect you.");
+			return;
+		}
 	}
 
 	if (isfriday && !rn2(5)) amount *= 2;
@@ -4419,6 +4429,12 @@ int k_format; /* WAC k_format is an int */
 		}
 		n *= dmgreductor;
 		n /= 100;
+		if (n < 1) n = 1;
+	}
+
+	if (n > 0 && StrongDetect_monsters) {
+		n *= 9;
+		n /= 10;
 		if (n < 1) n = 1;
 	}
 

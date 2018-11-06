@@ -215,13 +215,13 @@ nh_timeout()
 	if (flags.friday13) baseluck -= 1;
 
 	/* get extra uses out of the (now limited) #youpoly command after a while --Amy */
-	if (Race_if(PM_WARPER) && moves % 10000 == 0) u.youpolyamount++;
-	if (Race_if(PM_DOPPELGANGER) && moves % 5000 == 0) u.youpolyamount++;
-	if (Role_if(PM_SHAPESHIFTER) && moves % 5000 == 0) u.youpolyamount++;
-	if (Race_if(PM_HEMI_DOPPELGANGER) && moves % 4000 == 0) u.youpolyamount++;
-	if (Race_if(PM_DEATHMOLD) && moves % 3000 == 0) u.youpolyamount++;
-	if (Race_if(PM_UNGENOMOLD) && moves % 2000 == 0) u.youpolyamount++;
-	if (Race_if(PM_MOULD) && moves % 1000 == 0) u.youpolyamount++;
+	if (Race_if(PM_WARPER) && !rn2(10000)) u.youpolyamount++;
+	if (Race_if(PM_DOPPELGANGER) && !rn2(5000)) u.youpolyamount++;
+	if (Role_if(PM_SHAPESHIFTER) && !rn2(5000)) u.youpolyamount++;
+	if (Race_if(PM_HEMI_DOPPELGANGER) && !rn2(4000)) u.youpolyamount++;
+	if (Race_if(PM_DEATHMOLD) && !rn2(3000)) u.youpolyamount++;
+	if (Race_if(PM_UNGENOMOLD) && !rn2(2000)) u.youpolyamount++;
+	if (Race_if(PM_MOULD) && !rn2(1000)) u.youpolyamount++;
 
 	if (MCReduction && MCReduction % 5000 == 0) pline("Your magic cancellation seems to work a bit better again.");
 
@@ -343,7 +343,7 @@ nh_timeout()
 	}
 	if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
 
-	if (u.legscratching > 1 && !FemaleTrapJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !FemaleTrapJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
@@ -1887,8 +1887,7 @@ nh_timeout()
 		u.legscratching++;
 	}
 
-	if (u.uluck != baseluck &&
-		moves % (((u.uhave.amulet && u.amuletcompletelyimbued) || u.ugangr) ? 300 : 600) == 0) {
+	if (u.uluck != baseluck && !rn2(((u.uhave.amulet && u.amuletcompletelyimbued) || u.ugangr) ? 300 : 600) ) {
 	/* Cursed luckstones stop bad luck from timing out; blessed luckstones
 	 * stop good luck from timing out; normal luckstones stop both;
 	 * neither is stopped if you don't have a luckstone.

@@ -3868,7 +3868,7 @@ register struct obj *otmp;
 		reveal_invis = TRUE;
 		if (mtmp == &youmonst) {
 			if (zap_oseen) makeknown(WAN_STRIKING);
-			if (Antimagic) {
+			if (Antimagic && rn2(StrongAntimagic ? 20 : 5) ) {
 			    shieldeff(u.ux, u.uy);
 			    pline("Boing!");
 			} else if (rnd(20) < 10 + u.uac || !rn2(3) ) { /* good ac will no longer be 100% protection --Amy */
@@ -3876,6 +3876,7 @@ register struct obj *otmp;
 			    tmp = d(2,12);
 			    tmp += rnd(monster_difficulty() + 1);
 			    if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			    if(StrongHalf_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			    losehp(tmp, "wand of striking", KILLED_BY_AN);
 			} else pline_The("wand misses you.");
 			stop_occupation();
@@ -3903,6 +3904,7 @@ register struct obj *otmp;
 			tmp = d(6,12);
 			tmp += rnd( (monster_difficulty() * 2) + 1);
 			if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			if(StrongHalf_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			losehp(tmp, "wand of gravity beam", KILLED_BY_AN);
 			stop_occupation();
 			nomul(0, 0, FALSE);
@@ -3957,7 +3959,7 @@ register struct obj *otmp;
 
 		if (mtmp == &youmonst) {
 
-			if (!Free_action || !rn2(5)) {
+			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(5), "frozen by a wand", TRUE);
@@ -4012,7 +4014,7 @@ register struct obj *otmp;
 
 		if (mtmp == &youmonst) {
 
-			if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
+			if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
 	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -4116,7 +4118,7 @@ register struct obj *otmp;
 
 		if (mtmp == &youmonst) {
 
-		    if (!Stone_resistance &&
+		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
@@ -4142,7 +4144,7 @@ register struct obj *otmp;
 	case WAN_DRAINING:	/* KMH */
 		tmp = d(2,6);
 		if (mtmp == &youmonst) {
-			if (Drain_resistance && !rn2(4) ) {
+			if (Drain_resistance && !rn2(StrongDrain_resistance ? 16 : 4) ) {
 				shieldeff(u.ux, u.uy);
 				pline("Boing!");
 			} else
@@ -4336,6 +4338,7 @@ register struct obj *otmp;
 		    if (u.ualign.type == A_CHAOTIC) tmp /= 2;
 		    if (nonliving(youmonst.data)) tmp /= 2;
 		    if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
+		    if(StrongHalf_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 		    pline("Good night, %s!", playeraliasname);
 		    losehp(tmp, "wand of good night", KILLED_BY_AN);
 		    make_blinded(Blinded+rnz(100),FALSE);
@@ -4744,12 +4747,12 @@ struct monst *mtmp;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
 		if (!Poison_resistance) pline("You're badly poisoned!");
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 
 		buzz((int)(-26), 12 + (rnd(monster_difficulty()) / 4),
 			mtmp->mx, mtmp->my,
@@ -5170,7 +5173,7 @@ struct monst *mtmp;
 		/* extra saving throw for highly enchanted armors --Amy */
 		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
 		/* being magic resistant also offers protection */
-		else if (Antimagic && rn2(5)) pline("Your body shakes violently!");
+		else if (Antimagic && rn2(StrongAntimagic ? 5 : 3)) pline("Your body shakes violently!");
 		/* artifacts are highly resistant */
 		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
 		/* and grease will always offer protection but can wear off */
@@ -5365,14 +5368,14 @@ struct monst *mtmp;
 					break;
 				    case 1: /* sleep */
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) {pline("You yawn."); break;}
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action && rn2(20)) {
+					    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -5501,7 +5504,7 @@ struct monst *mtmp;
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(4) )
+					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -5531,7 +5534,7 @@ struct monst *mtmp;
 				    u.ulycn = PM_WERECOW;
 				} else {
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) break;
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
@@ -5554,11 +5557,13 @@ struct monst *mtmp;
 			    case 10:
 			    case 11:
 			    case 12:
-				water_damage(invent, FALSE, FALSE);
+				if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+					water_damage(invent, FALSE, FALSE);
+				}
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action && rn2(20)) {
+				    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
@@ -5765,7 +5770,7 @@ struct monst *mtmp;
 		/* extra saving throw for highly enchanted weapons --Amy */
 		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your fingers shake violently!");
 		/* being magic resistant also offers protection */
-		else if (Antimagic && rn2(5)) pline("Your fingers shake violently!");
+		else if (Antimagic && rn2(StrongAntimagic ? 5 : 3)) pline("Your fingers shake violently!");
 		/* artifacts are highly resistant */
 		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your fingers shake violently!");
 		/* and grease will always offer protection but can wear off */
@@ -5861,7 +5866,7 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
-		    if (!Stone_resistance &&
+		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
@@ -6462,14 +6467,14 @@ newboss:
 					break;
 				    case 1: /* sleep */
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) {pline("You yawn."); break;}
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action && rn2(20)) {
+					    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -6598,7 +6603,7 @@ newboss:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(4) )
+					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -6628,7 +6633,7 @@ newboss:
 				    u.ulycn = PM_WERECOW;
 				} else {
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) break;
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
@@ -6651,11 +6656,13 @@ newboss:
 			    case 10:
 			    case 11:
 			    case 12:
-				water_damage(invent, FALSE, FALSE);
+				if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+					water_damage(invent, FALSE, FALSE);
+				}
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action && rn2(20)) {
+				    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
@@ -6783,8 +6790,10 @@ newboss:
 
 		pline("A sudden geyser slams into you from nowhere!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
-		water_damage(invent, FALSE, FALSE);
-		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
 		if (Burned) make_burned(0L, TRUE);
 
 		if (oseen) makeknown(WAN_TIDAL_WAVE);
@@ -7068,6 +7077,7 @@ newboss:
 			}
 			burn_away_slime();
 			if (Half_spell_damage && rn2(2) ) num = (num+1) / 2;
+			if (StrongHalf_spell_damage && rn2(2) ) num = (num+1) / 2;
 			else losehp(num, "scroll of fire", KILLED_BY_AN);
 			for(mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 			   if(DEADMONSTER(mtmp2)) continue;

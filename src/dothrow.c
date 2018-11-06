@@ -157,14 +157,14 @@ int thrown;
 		return(0);
 	}
 	u_wipe_engr(2);
-	if ( (!uarmg || FingerlessGloves) && !Stone_resistance && (obj->otyp == CORPSE &&
+	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == CORPSE &&
 		    touch_petrifies(&mons[obj->corpsenm]))) {
 		You("throw the %s corpse with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
 		sprintf(killer_buf, "%s corpse", an(mons[obj->corpsenm].mname));
 		instapetrify(killer_buf);
 	}
-	if ( (!uarmg || FingerlessGloves) && !Stone_resistance && (obj->otyp == EGG &&
+	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == EGG &&
 		    touch_petrifies(&mons[obj->corpsenm]))) {
 		You("throw the %s egg with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
@@ -1132,7 +1132,7 @@ boolean hitsroof;
 	switch (otyp) {
 	case EGG:
 		if (touch_petrifies(&mons[ocorpsenm]) &&
-		    !uarmh && !Stone_resistance &&
+		    !uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)))
 		goto petrify;
 	case CREAM_PIE:
@@ -1204,6 +1204,7 @@ boolean hitsroof;
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	if (StrongHalf_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 
 	if (uarmh) {
 	    if (less_damage && dmg < (Upolyd ? u.mh : u.uhp)) {
@@ -1213,7 +1214,7 @@ boolean hitsroof;
 		    !(obj->otyp == CORPSE && touch_petrifies(&mons[obj->corpsenm])))
 		Your("%s does not protect you.", xname(uarmh));
 	} else if (obj->otyp == CORPSE && touch_petrifies(&mons[obj->corpsenm])) {
-	    if (!Stone_resistance &&
+	    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 		petrify:
 		/* killer_format = KILLED_BY;

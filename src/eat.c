@@ -902,7 +902,7 @@ register int pm;
 {
 	(void) maybe_cannibal(pm,TRUE);
 	if (touch_petrifies(&mons[pm]) || pm == PM_MEDUSA) {
-	    if (!Stone_resistance &&
+	    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 		/* sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
 		killer_format = KILLED_BY;
@@ -4077,7 +4077,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	long rotted = 0L;
 	boolean uniq = !!(mons[mnum].geno & G_UNIQ);
 	int retcode = 0;
-	boolean stoneable = (touch_petrifies(&mons[mnum]) && !Stone_resistance &&
+	boolean stoneable = (touch_petrifies(&mons[mnum]) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 				!poly_when_stoned(youmonst.data));
 
 	register struct permonst *ptr = &mons[mnum];
@@ -4184,7 +4184,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		      mons[mnum].mlet == S_FUNGUS ? "fungoid vegetation" :
 		      !vegetarian(&mons[mnum]) ? "meat" : "protoplasm",
 		      cannibal ? ", cannibal" : "");
-		if (Sick_resistance) {
+		if (IntSick_resistance || (ExtSick_resistance && rn2(20)) ) {
 			pline(Hallucination ? "Interesting taste, though..." : "It doesn't seem at all sickening, though...");
 		} else {
 			char buf[BUFSZ];
@@ -4214,7 +4214,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		   youmonst.data == &mons[PM_GHAST] || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
 		pline (Hallucination ? "You can't seem to find any manky bits!" : "This corpse is too fresh!");
 		return 3;
-	} else if (acidic(&mons[mnum]) && !Acid_resistance) {
+	} else if (acidic(&mons[mnum]) && (!Acid_resistance || (!StrongAcid_resistance && !rn2(10))) ) {
 		tp++;
 		You("have a very bad case of stomach acid."); /* not body_part() */
 		losehp(rnd(15 + ptr->mlevel), "acidic corpse", KILLED_BY_AN);
@@ -4228,7 +4228,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		} else	You("seem unaffected by the poison.");
 	/* now any corpse left too long will make you mildly ill */
 	} else if ((rotted > 5L || (rotted > 3L && rn2(5)))
-					&& !Sick_resistance) {
+					&& !(IntSick_resistance || (ExtSick_resistance && rn2(20))) ) {
 		tp++;
 		You_feel("%ssick.", (Sick) ? "very " : "");
 		losehp(rnd(8 + ptr->mlevel), "cadaver", KILLED_BY_AN);
@@ -4408,7 +4408,7 @@ struct obj *otmp;
 			break;
 			}
 		   case 1:
-			if(!Poison_resistance) {
+			if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
 				You_feel("your stomach twinge.");
 				losestr(rnd(4));
 				losehp(rnd(15), "poisonous pill", KILLED_BY_AN);
@@ -4427,7 +4427,7 @@ struct obj *otmp;
 			lesshungry(600);
 			break;
 		   case 5:
-			if(Sleep_resistance) {
+			if(Sleep_resistance && (StrongSleep_resistance || rn2(10)) ) {
 				pline("Hmm. Nothing happens.");
 			} else {
 				You_feel("drowsy...");
@@ -4451,7 +4451,7 @@ struct obj *otmp;
 		{
 		   case 0:
 		   case 1:
-			if(!Poison_resistance) {
+			if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
 				You_feel("rather ill....");
 				losestr(rnd(4));
 				losehp(rnd(15), "poisonous mushroom", KILLED_BY_AN);
@@ -4760,7 +4760,7 @@ struct obj *otmp;
 	    case AMULET_OF_STONE:
 		accessory_has_effect(otmp);
 		makeknown(typ);
-		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {
 			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
 			else {
@@ -5693,7 +5693,7 @@ register struct obj *otmp;
 		}
 
 		if (touch_petrifies(&mons[otmp->corpsenm])) {
-		    if (!Stone_resistance &&
+		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
@@ -5787,7 +5787,7 @@ struct obj *otmp;
 	 * order from most detrimental to least detrimental.
 	 */
 
-	if (cadaver && mnum != PM_ACID_BLOB && rotted > 5L && !Sick_resistance) {
+	if (cadaver && mnum != PM_ACID_BLOB && rotted > 5L && !(IntSick_resistance || (ExtSick_resistance && rn2(20))) ) {
 		/* Tainted meat */
 		sprintf(buf, "%s like %s could be tainted! %s",
 			foodsmell, it_or_they, eat_it_anyway);
@@ -6326,70 +6326,74 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	if ((!u.usleep || !rn2(10))	/* slow metabolic rate while asleep */
 		&& (carnivorous(youmonst.data) || herbivorous(youmonst.data) || metallivorous(youmonst.data) || lithivorous(youmonst.data))
         /* Convicts can last twice as long at hungry and below */
-        && (!Role_if(PM_CONVICT) || (moves % 2) || (u.uhs < HUNGRY))
-		&& !Slow_digestion && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) )
+        && (!Role_if(PM_CONVICT) || (rn2(2)) || (u.uhs < HUNGRY))
+		&& !Slow_digestion && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500) )
 	    u.uhunger--;		/* ordinary food consumption */
 
 	/* cloak of slow digestion is not supposed to be cloak of no digestion --Amy */
-	if (uarmc && uarmc->otyp == CLOAK_OF_SLOW_DIGESTION && !rn2(10) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	if (uarmc && uarmc->otyp == CLOAK_OF_SLOW_DIGESTION && !rn2(10) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
-	if (u.uprops[FAST_METABOLISM].extrinsic && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
-	if (have_metabolicstone() && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	if (u.uprops[FAST_METABOLISM].extrinsic && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	if (have_metabolicstone() && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	if (FastMetabolismEffect) {
 
 		int extrahungerpoints;
 
-		if (!(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+		if (!(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongSlow_digestion && rn2(3)) ) u.uhunger--;
 
 		extrahungerpoints = FastMetabolismEffect;
 		if (extrahungerpoints >= 67108864) extrahungerpoints -= 67108864;
 		if (extrahungerpoints >= 33554432) extrahungerpoints -= 33554432;
 		if (extrahungerpoints >= 16777216) extrahungerpoints -= 16777216;
 		extrahungerpoints /= 5000;
-		if (extrahungerpoints > 0 && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= extrahungerpoints;
+		if (extrahungerpoints > 0 && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= extrahungerpoints;
 	}
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") ) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 2;
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") ) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 2;
 
 	/* ancipital's slow digestion is not supposed to be no digestion --Amy */
-	if (Race_if(PM_ANCIPITAL) && !(moves % 20) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	if (Race_if(PM_ANCIPITAL) && !rn2(20) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
-	if (moves % 2) {	/* odd turns */
+	if (!rn2(2)) {	/* used to be odd turns, but nasty traps that speed up turncount exist --Amy */
 	    /* Regeneration uses up food, unless due to an artifact */
 	    /*if (HRegeneration || ((ERegeneration & (~W_ART)) &&
 				(ERegeneration != W_WEP || !uwep->oartifact)))
 			u.uhunger--;*/
 
 		/* rewrite by Amy */
-		if (Regeneration && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
-		if (Energy_regeneration && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--;}
+		if (Regeneration && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+		if (StrongRegeneration && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+		if (Energy_regeneration && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--;}
+		if (StrongEnergy_regeneration && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--;}
 
-	    if (near_capacity() > SLT_ENCUMBER && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	    if (near_capacity() > SLT_ENCUMBER && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	} else {		/* even turns */
-	    if (Hunger && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
-		if (Race_if(PM_CLOCKWORK_AUTOMATON) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--; /* to prevent =oSD from being overpowered --Amy */
+	    if (Hunger && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	    if (StrongHunger && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+		if (Race_if(PM_CLOCKWORK_AUTOMATON) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--; /* to prevent =oSD from being overpowered --Amy */
 	    /* Conflict uses up food too */
 		/* and a lot of it because conflict is so overpowered --Amy */
-	    if (HConflict || EConflict && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
-	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
-	    if (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
-	    if (uwep && uwep->oartifact == ART_GARNET_ROD && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 3;
-	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TENSA_ZANGETSU && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
-	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
-	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GARNET_ROD && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 3;
+	    if (Conflict && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
+	    if (StrongConflict && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
+	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (uwep && uwep->oartifact == ART_GARNET_ROD && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 3;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TENSA_ZANGETSU && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GARNET_ROD && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 3;
 	    /* +0 charged rings don't do anything, so don't affect hunger */
 	    /* Slow digestion still uses ring hunger */
-	    switch ((int)(moves % 20)) {	/* note: use even cases only */
+	    switch (rnd(10)) {	/* used to depend on turn count too... */
 	     case  4: if (uleft &&
-			  (uleft->spe || !objects[uleft->otyp].oc_charged) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500))
+			  (uleft->spe || !objects[uleft->otyp].oc_charged) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500))
 			    u.uhunger--;
 		    break;
-	     case  8: if (uamul && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	     case  8: if (uamul && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 		    break;
 	     case 12: if (uright &&
-			  (uright->spe || !objects[uright->otyp].oc_charged) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500))
+			  (uright->spe || !objects[uright->otyp].oc_charged) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500))
 			    u.uhunger--;
 		    break;
-	     case 16: if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	     case 16: if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 		    break;
 	     default: break;
 	    }
@@ -6405,7 +6409,9 @@ morehungry(num)	/* called after vomiting and after performing feats of magic */
 register int num;
 {
 	if (Full_nutrient && num == 1 && rn2(2) && u.uhunger < 2500) num = 0;
+	if (StrongFull_nutrient && num == 1 && rn2(2) && u.uhunger < 2500) num = 0;
 	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
+	if (StrongFull_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 
 	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone()) ) num /= 3;
 

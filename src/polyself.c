@@ -402,7 +402,7 @@ boolean forcecontrol;
 
 	}
 	else if (Race_if(PM_DEATHMOLD)) mntmp = (PM_WHITE_MISSINGNO + rn2(14 + (u.ulevel / 2) ) );
-	else if ((Polymorph_control || forcecontrol) && !u.wormpolymorph && rn2(5)) {
+	else if ((Polymorph_control || forcecontrol) && !u.wormpolymorph && rn2(StrongPolymorph_control ? 5 : 3)) {
 		do {
 			getlin("Become what kind of monster? [type the name]",
 				buf);
@@ -425,10 +425,10 @@ boolean forcecontrol;
 			else if (!forcecontrol && ( (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!forcecontrol && ((PlayerCannotUseSkills) && (rnd(18) > 7) ) ) {
+			else if (!forcecontrol && ((PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 12 : 18) > 7) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!forcecontrol && (!(PlayerCannotUseSkills) && (rnd(18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) ) {
+			else if (!forcecontrol && (!(PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 15 : 18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -440,7 +440,7 @@ boolean forcecontrol;
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
 		    goto do_merge;
-	} else if ((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) && rn2(5)) {
+	} else if ((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) && rn2(StrongPolymorph_control ? 10 : 5)) {
 		/* Not an experienced Doppelganger yet */
 		do {
 			/* Slightly different wording */
@@ -469,10 +469,10 @@ boolean forcecontrol;
 				else if ( (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
-				else if ((PlayerCannotUseSkills) && (rnd(12) > 3) ) {
+				else if ((PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 6 : 12) > 3) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
-				else if (!(PlayerCannotUseSkills) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+				else if (!(PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 9 : 12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
 
@@ -486,10 +486,10 @@ boolean forcecontrol;
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
-			else if ((PlayerCannotUseSkills) && (rnd(12) > 3) ) {
+			else if ((PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 6 : 12) > 3) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!(PlayerCannotUseSkills) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+			else if (!(PlayerCannotUseSkills) && (rnd(StrongPolymorph_control ? 9 : 12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -848,7 +848,7 @@ int	mntmp;
 	if (!sticky && !u.uswallow && u.ustuck && sticks(youmonst.data)) setustuck(0);
 	else if (sticky && !sticks(youmonst.data)) uunstick();
 	if (u.usteed) {
-	    if (touch_petrifies(u.usteed->data) && !Stone_resistance && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
+	    if (touch_petrifies(u.usteed->data) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
 	    	char buf[BUFSZ];
 
 	    	pline("No longer petrifying-resistant, you touch %s.",
@@ -1366,7 +1366,7 @@ dogaze()
 
 	You("gaze at %s...", mon_nam(mtmp));
 
-	if ((mtmp->data==&mons[PM_MEDUSA]) && !mtmp->mcan && !Stone_resistance) {
+	if ((mtmp->data==&mons[PM_MEDUSA]) && !mtmp->mcan && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		pline("Gazing at the awake Medusa is not a very good idea.");
 		/* as if gazing at a sleeping anything is fruitful... */
 		/*You("turn to stone...");
@@ -2230,7 +2230,7 @@ dogaze()
 		looked++;
 		if (Invis && !perceives(mtmp->data))
 		    pline("%s seems not to notice your gaze.", Monnam(mtmp));
-		else if ((mtmp->minvis && !See_invisible) || mtmp->minvisreal)
+		else if ((mtmp->minvis && (!See_invisible || (!StrongSee_invisible && !mtmp->seeinvisble)) ) || mtmp->minvisreal)
 		    You_cant("see where to gaze at %s.", Monnam(mtmp));
 		else if (mtmp->m_ap_type == M_AP_FURNITURE
 			|| mtmp->m_ap_type == M_AP_OBJECT) {

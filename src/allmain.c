@@ -28,7 +28,7 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 static void p_glow2(struct obj *,const char *);
 
-#define techlevX(tech)         (Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
+#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
 
 /* hunger texts used on bottom line (each 8 chars long) */
 #define SATIATED	0
@@ -1254,11 +1254,11 @@ moveloop()
 
 			/* double and quad attack are teh pwnz0r, so they need to have a downside --Amy */
 			if (Double_attack && moveamt > 1) {
-				if ((youmonst.data->mmove > 1 || !rn2(2)) && rn2(3))
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && rn2(StrongDouble_attack ? 2 : 3))
 				moveamt /= 2;
 			}
 			if (Quad_attack && moveamt > 1) {
-				if (youmonst.data->mmove > 1 || !rn2(2))
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && (!StrongQuad_attack || rn2(3)) )
 				moveamt /= 2;
 			}
 
@@ -1267,19 +1267,25 @@ moveloop()
 				moveamt /= 2; /* punishment for attempting hangup cheat --Amy */
 			}
 
-			if ( (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
+			if (YouHaveTheSpeedBug && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
+				if (rn2(5)) moveamt *= rnd(5);
+				moveamt /= rnd(6);
+				if (!rn2(5)) moveamt /= 2;
+			}
+
+			if (YouHaveTheSpeedBug && moveamt > 1 && StrongFast) {
 				if (rn2(5)) moveamt *= rnd(5);
 				moveamt /= rnd(6);
 				if (!rn2(5)) moveamt /= 2;
 			}
 
 			/* speed bug reverses speed effects --Amy */
-			if (Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
+			if (Very_fast && YouHaveTheSpeedBug && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
 			    /* average movement is 0.5625 times normal */
 
 				moveamt /= 2;
 
-			} else if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) && !rn2(4) && moveamt > 1 ) {
+			} else if (Fast && YouHaveTheSpeedBug && !rn2(4) && moveamt > 1 ) {
 			    /* average movement is 0.75 times normal */
 
 				moveamt /= 2;
@@ -1287,11 +1293,11 @@ moveloop()
 
 			if (moveamt < 0) moveamt = 0;
 
-			if (Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) {	/* speed boots or potion */
+			if (Very_fast && !YouHaveTheSpeedBug) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
 			    moveamt += NORMAL_SPEED / 2;
 			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
-			} else if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) {
+			} else if (Fast && !YouHaveTheSpeedBug) {
 			    /* average movement is 1.33 times normal */
 			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
 			}
@@ -1350,6 +1356,8 @@ moveloop()
 			if (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) moveamt += NORMAL_SPEED / 2;
 			if (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) moveamt += NORMAL_SPEED / 2;
 			if (uarmg && !rn2(10) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) moveamt += NORMAL_SPEED / 2;
+			if (StrongDetect_monsters && !rn2(10)) moveamt += NORMAL_SPEED / 2;
+			if (StrongFlying && !rn2(20)) moveamt += NORMAL_SPEED / 2;
 
 			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
 			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += NORMAL_SPEED / 2;
@@ -1358,6 +1366,9 @@ moveloop()
 			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) moveamt += NORMAL_SPEED / 2;
 
 			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (NORMAL_SPEED * 5);
+
+			if (StrongPasses_walls && !rn2(3) && isok(u.ux, u.uy) && IS_STWALL(levl[u.ux][u.uy].typ) ) moveamt += NORMAL_SPEED / 2;
+			if (StrongFast && !rn2(10) && !YouHaveTheSpeedBug) moveamt += NORMAL_SPEED / 2;
 
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
@@ -1849,7 +1860,7 @@ newbossS:
 					 poisoned("spores", A_STR, "fumarole spores", 30);
 			       } else {
 					 pline("A cloud of spores surrounds you!");
-					 if (rn2(2)) poisoned("spores", A_STR, "fumarole spores", 30);
+					 if (!rn2(StrongMagical_breathing ? 5 : 2)) poisoned("spores", A_STR, "fumarole spores", 30);
 			       }
 
 			}
@@ -3801,7 +3812,7 @@ fukrosionchoice:
 
 		if (!rn2(Aggravate_monster ? 4 : 20)) reset_rndmonst(NON_PM);
 
-		if (IntAggravate_monster && !rn2(Stealth ? 50000 : 5000)) {
+		if (IntAggravate_monster && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -3855,7 +3866,7 @@ fukrosionchoice:
 
 		}
 
-		if (ExtAggravate_monster && !rn2(Stealth ? 5000 : 1000)) {
+		if (ExtAggravate_monster && !rn2(StrongStealth ? 10000 : Stealth ? 5000 : 1000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -3872,7 +3883,7 @@ fukrosionchoice:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
-		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(Stealth ? 50000 : 5000)) {
+		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 		/* feminist aggravation idea by bugsniper */
 
 			int aggroamount = rnd(6);
@@ -6761,14 +6772,14 @@ newbossX:
 
 		if (is_mattress(u.ux, u.uy) && (multi >= 0)) {
 
-			if (!rn2(Sleep_resistance ? 200 : 20)) {
+			if (!rn2(StrongSleep_resistance ? 1000 : Sleep_resistance ? 200 : 20)) {
 
 				You("suddenly feel an immense need to lie down on the mattress and sleep for a bit.");
 				fall_asleep(-rnd(5), TRUE);
 
 			}
 
-			if (isfriday && (multi >= 0) && !rn2(Sleep_resistance ? 200 : 20)) {
+			if (isfriday && (multi >= 0) && !rn2(StrongSleep_resistance ? 1000 : Sleep_resistance ? 200 : 20)) {
 
 				You("suddenly feel an immense need to lie down on the mattress and sleep for a bit.");
 				fall_asleep(-rnd(5), TRUE);
@@ -7472,7 +7483,7 @@ newbossB:
 
 		if (is_nethermist(u.ux, u.uy) && !rn2(isfriday ? 3 : 5)) {
 
-			if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
+			if ((!Drain_resistance || !rn2(StrongDrain_resistance ? 20 : 5)) && u.uexp > 100) {
 				u.uexp -= (u.uexp / 100);
 				You_feel("your life slipping away!");
 				if (u.uexp < newuexp(u.ulevel - 1)) {
@@ -7500,7 +7511,7 @@ newbossB:
 		if (is_burningwagon(u.ux, u.uy)) {
 			pline("The wagon burns you!");
 			make_burned(HBurned + rnd(10 + level_difficulty()), FALSE);
-			if (!Fire_resistance || !rn2(20)) losehp(rnd(5 + (level_difficulty() / 3)), "a burning wagon", KILLED_BY);
+			if (!Fire_resistance || !rn2(StrongFire_resistance ? 20 : 5)) losehp(rnd(5 + (level_difficulty() / 3)), "a burning wagon", KILLED_BY);
 
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
@@ -7532,8 +7543,10 @@ newbossB:
 
 			}
 
-			water_damage(invent, FALSE, FALSE);
-			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+				water_damage(invent, FALSE, FALSE);
+				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			}
 
 		}
 
@@ -7969,6 +7982,12 @@ newbossB:
 
 		}
 
+		if (StrongConflict && !rn2(500)) { /* bullshit downside --Amy :P */
+
+			makerandomtrap();
+
+		}
+
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(500) ) {
 			pline("Wielding such a beautiful, erotic lady boot for so long makes your %s turn.", body_part(STOMACH));
 		      make_vomiting(Vomiting+20, TRUE);
@@ -8048,7 +8067,8 @@ newbossB:
 				case 17:
 				case 18: /* paralysis: up to 3 turns with free action, up to 13 without */
 					You_feel("like a statue!");
-					if (Free_action) nomul(-rnd(3), "paralyzed by the ancient morgotian curse", TRUE);
+					if (StrongFree_action) nomul(-rnd(2), "paralyzed by the ancient morgotian curse", TRUE);
+					else if (Free_action) nomul(-rnd(3), "paralyzed by the ancient morgotian curse", TRUE);
 					else nomul(-rnd(13), "paralyzed by the ancient morgotian curse", TRUE);
 					break;
 				case 19:
@@ -8140,7 +8160,7 @@ newbossB:
 				case 13:
 				case 14:
 				case 15: /* level drain */
-					if(!Drain_resistance || !rn2(4) )
+					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
 					    losexp("topi ylinen drainage", FALSE, TRUE);
 					break;
 				case 16:
@@ -8149,7 +8169,8 @@ newbossB:
 				case 19:
 				case 20: /* paralysis: up to 3 turns with free action, up to 13 without */
 					You_feel("like a statue!");
-					if (Free_action) nomul(-rnd(3), "paralyzed by topi ylinen's curse", TRUE);
+					if (StrongFree_action) nomul(-rnd(2), "paralyzed by topi ylinen's curse", TRUE);
+					else if (Free_action) nomul(-rnd(3), "paralyzed by topi ylinen's curse", TRUE);
 					else nomul(-rnd(13), "paralyzed by topi ylinen's curse", TRUE);
 					break;
 				case 21:
@@ -8206,7 +8227,7 @@ newboss:
 		if ( (have_blackbreathcurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
 			if (!rn2(5)) { /* level drain */
-				if(!Drain_resistance || !rn2(4) )
+				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
 				    losexp("black breath drainage", FALSE, TRUE);
 				break;
 			} else { /* drain a random stat */
@@ -8216,7 +8237,7 @@ newboss:
 
 		if ( (have_blackbreathcurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			if (!rn2(5)) { /* level drain */
-				if(!Drain_resistance || !rn2(4) )
+				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
 				    losexp("black breath drainage", FALSE, TRUE);
 				break;
 			} else { /* drain a random stat */
@@ -9496,8 +9517,7 @@ newboss:
 		}
 
 		if (( (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) && !rn2(5)) || Clairvoyant) &&
-		    !In_endgame(&u.uz) && !BClairvoyant &&
-		    !(moves % 15) && !rn2(2))
+		    !In_endgame(&u.uz) && !BClairvoyant && !rn2(StrongClairvoyant ? 15 : 40) && !rn2(2))
 			do_vicinity_map();
 
 		/* farting webs place you at the mercy of whoever is the farting girl */
@@ -9525,7 +9545,7 @@ newboss:
 			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 		    }
 
-			if (!Acid_resistance || !rn2(20)) {
+			if (!Acid_resistance || !rn2(StrongAcid_resistance ? 20 : 5)) {
 				pline_The("acid inside the pit burns you!");
 				losehp((rnd(10) + rnd(monster_difficulty() + 1)), "being stuck in an acid pit", KILLED_BY);
 			}
@@ -9646,6 +9666,7 @@ newboss:
 				    (wtcap < MOD_ENCUMBER && !(moves%/*20*/regenrate))) {
 			    flags.botl = 1;
 			    if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.mh++;
+			    if (StrongRegeneration && !Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.mh++;
 			}
 
 		/* evil patch idea by b_jonas: slower HP regeneration while standing on Elbereth
@@ -9727,6 +9748,7 @@ newboss:
 			      !(moves % ((MAXULEV+12) / (GushLevel+2) + 1)))) {
 			    flags.botl = 1;
 			    if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.uhp++;
+			    if (StrongRegeneration && !Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) u.uhp++;
 			}
 		    }
 
@@ -9794,7 +9816,7 @@ newboss:
 		    
 		    /* KMH -- OK to regenerate if you don't move */
 		    if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
-				((Energy_regeneration && !rn2(3)) || /* greatly nerfed overpowered wizard artifact --Amy */
+				((Energy_regeneration && !rn2(StrongEnergy_regeneration ? 2 : 3)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
 				(!(moves%((MAXULEV + 15 - GushLevel) *                                    
@@ -9820,6 +9842,7 @@ newboss:
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
 
 				u.uen += rnz(2 + GushLevel);
+				if (StrongEnergy_regeneration) u.uen += rnz(2 + GushLevel);
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 
@@ -10246,6 +10269,21 @@ newboss:
 			    }
 			}
 
+			if(StrongTeleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
+			    xchar old_ux = u.ux, old_uy = u.uy;
+				You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
+			    tele();
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			    if (u.ux != old_ux || u.uy != old_uy) {
+				if (!next_to_u()) {
+				    check_leash(old_ux, old_uy);
+				}
+				/* clear doagain keystrokes */
+				pushch(0);
+				savech(0);
+			    }
+			}
+
 			if (tech_inuse(T_REFUGE)) {
 
 				register struct monst *refmon, *refmon2;
@@ -10386,7 +10424,7 @@ newboss:
 			}
 
 			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "contaminated coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zagryaznennoye pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ifloslangan palto") )) {
-				if (Sick_resistance) {
+				if (IntSick_resistance || (ExtSick_resistance && rn2(20)) ) {
 					You_feel("a slight illness.");
 				} else {
 					make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
@@ -10397,7 +10435,7 @@ newboss:
 			}
 
 			if (!rn2(2000) && RngeSickness) {
-				if (Sick_resistance) {
+				if (IntSick_resistance || (ExtSick_resistance && rn2(20)) ) {
 					You_feel("a slight illness.");
 				} else {
 					make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
@@ -10553,6 +10591,8 @@ newboss:
 			    change = 0;
 			if(Polymorph && (ishaxor ? !rn2(500) : !rn2(1000)) )
 			    change = 1;
+			else if(StrongPolymorph && (ishaxor ? !rn2(500) : !rn2(1000)) )
+			    change = 1;
 	/* let's allow the moulds to stop sucking so much. Make them polymorph more often. --Amy */
 			else if(Polymorph && !rn2(200) && !Upolyd && (Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD)) )
 			    change = 1;
@@ -10573,6 +10613,7 @@ newboss:
 		}	/* !u.uinvulnerable */
 
 		    if(Searching && multi >= 0 && (!Role_if(PM_CAMPERSTRIKER) || !rn2(3) ) ) (void) dosearch0(1);
+		    if(StrongSearching && multi >= 0 && (!Role_if(PM_CAMPERSTRIKER) || !rn2(3) ) ) (void) dosearch0(1);
 		    dosounds();
 		    do_storms();
 		    gethungry();

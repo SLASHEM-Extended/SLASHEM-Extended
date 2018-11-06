@@ -1152,7 +1152,7 @@ newsym(x,y)
 	    mon = m_at(x,y);
 	    worm_tail = is_worm_tail(mon);
 	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && !(isselfhybrid && (moves % 3 == 0) ) && (worm_tail
-		? ((!mon->minvis || See_invisible) && !mon->minvisreal)
+		? ((!mon->minvis || (See_invisible && (StrongSee_invisible || mon->seeinvisble) ) ) && !mon->minvisreal)
 		: (mon_visible(mon)) ||
 		tp_sensemon(mon) ||
 		MATCH_WARN_OF_MON(mon) ||
@@ -1169,10 +1169,10 @@ newsym(x,y)
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
-		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
-		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		(RngeInternetAccess && mon->internetvisible) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
@@ -1208,7 +1208,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
 		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
-		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  );
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible) )  );
 	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
@@ -1256,10 +1256,10 @@ newsym(x,y)
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
-		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
-		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		(RngeInternetAccess && mon->internetvisible) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
@@ -1295,7 +1295,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
 		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
-		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) ) ||
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible ) ) ||
 		(see_with_infrared(mon) && mon_visible(mon))))
 		    || Detect_monsters)
 		&& !is_worm_tail(mon)) {
@@ -1479,7 +1479,7 @@ newsymX(x,y)
 	    mon = m_at(x,y);
 	    worm_tail = is_worm_tail(mon);
 	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && !(isselfhybrid && (moves % 3 == 0) ) && (worm_tail
-		? ((!mon->minvis || See_invisible) && !mon->minvisreal)
+		? ((!mon->minvis || (See_invisible && (StrongSee_invisible || mon->seeinvisble) ) ) && !mon->minvisreal)
 		: (mon_visible(mon)) ||
 		tp_sensemon(mon) ||
 		MATCH_WARN_OF_MON(mon) ||
@@ -1496,10 +1496,10 @@ newsymX(x,y)
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
-		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
-		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		(RngeInternetAccess && mon->internetvisible) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
@@ -1535,7 +1535,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
 		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
-		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  );
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible ) )  );
 	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
@@ -1583,10 +1583,10 @@ newsymX(x,y)
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
-		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
-		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
-		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		(RngeInternetAccess && mon->internetvisible) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
 		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
@@ -1622,7 +1622,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
 		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
-		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) ) ||
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible ) ) ||
 		(see_with_infrared(mon) && mon_visible(mon))))
 		    || Detect_monsters)
 		&& !is_worm_tail(mon)) {

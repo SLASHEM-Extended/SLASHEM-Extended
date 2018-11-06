@@ -943,7 +943,7 @@ void * p2;
 	    return FALSE;
 	if (!Blind)
 	    make_blinded(1L, FALSE);
-	if (!Poison_resistance) {
+	if (!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
 	    pline("%s is burning your %s!", Something, makeplural(body_part(LUNG)));
 	    You("cough and spit blood!");
 	    losehp(rnd(dam) + 5, "gas cloud", KILLED_BY_AN);

@@ -1541,7 +1541,7 @@ forget_objects(percent)
 	int i, count;
 	int indices[NUM_OBJECTS];
 
-	if (Keen_memory && rn2(20)) return;
+	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	if (isfriday) {
@@ -1589,7 +1589,7 @@ forget_map(howmuch)
 	/*if (In_sokoban(&u.uz) && rn2(20) )
 	    return;*/
 
-	if (Keen_memory && rn2(20)) return;
+	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	known = TRUE;
@@ -1614,7 +1614,7 @@ maprot()
 		if (percentage > 100) percentage = 100;
 	}
 
-	if (Keen_memory && rn2(20)) {
+	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) {
 		percentage /= 10;
 		if (percentage < 1) return;
 	}
@@ -1635,7 +1635,7 @@ forget_traps()
 {
 	register struct trap *trap;
 
-	if (Keen_memory && rn2(20)) return;
+	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	/* forget all traps (except the one the hero is in :-) */
@@ -1663,7 +1663,7 @@ forget_levels(percent)
 		if (percent > 100) percent = 100;
 	}
 
-	if (Keen_memory && rn2(20)) return;
+	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	if (percent <= 0 || percent > 100) {
@@ -3342,14 +3342,14 @@ proofarmorchoice:
 					break;
 				    case 1: /* sleep */
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) {pline("You yawn."); break;}
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) {pline("You yawn."); break;}
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action && rn2(20)) {
+					    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -3478,7 +3478,7 @@ proofarmorchoice:
 					if(u.uen > u.uenmax) u.uen = u.uenmax;
 				}
 				if (!rn2(4)) {
-					if(!Drain_resistance || !rn2(4) )
+					if(!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )
 					    losexp("life drainage", FALSE, TRUE);
 					else You_feel("woozy for an instant, but shrug it off.");
 				}
@@ -3508,7 +3508,7 @@ proofarmorchoice:
 				    u.ulycn = PM_WERECOW;
 				} else {
 					if (multi >= 0) {
-					    if (Sleep_resistance && rn2(20)) break;
+					    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) break;
 					    fall_asleep(-rnd(10), TRUE);
 					    You("are put to sleep!");
 					}
@@ -3531,11 +3531,13 @@ proofarmorchoice:
 			    case 10:
 			    case 11:
 			    case 12:
-				water_damage(invent, FALSE, FALSE);
+				if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+					water_damage(invent, FALSE, FALSE);
+				}
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action && rn2(20)) {
+				    if (Free_action && rn2(StrongFree_action ? 100 : 20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
@@ -4228,7 +4230,7 @@ newboss:
 			else {incr_itimeout(&HSleep_resistance, 100);}
 		}
 		else {
-			if(Sleep_resistance) You("yawn.");
+			if(Sleep_resistance && (StrongSleep_resistance || rn2(10)) ) You("yawn.");
 			else {You("fall asleep!");
 			if (sobj->cursed) fall_asleep(-50, FALSE);
 			else if (sobj->blessed) fall_asleep(-10, FALSE);
@@ -4612,7 +4614,7 @@ newboss:
 
 		} else {
 
-		    if (!Stone_resistance &&
+		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("You are already stoned.");

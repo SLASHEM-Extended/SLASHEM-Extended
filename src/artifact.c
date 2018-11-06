@@ -1547,7 +1547,7 @@ touch_artifact(obj,mon)
 
 	if (!yours) return 0;
 	You("are blasted by %s power!", s_suffix(the(xname(obj))));
-	dmg = d((Antimagic ? 6 : 8), (self_willed ? 10 : 6));
+	dmg = d((StrongAntimagic ? 3 : Antimagic ? 6 : 8), (self_willed ? 10 : 6));
 	if (!issoviet && (u.ulevel < 10)) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
 		dmg *= u.ulevel;
 		dmg /= 10;
@@ -2219,7 +2219,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    otmp->dknown = TRUE;
 	    pline_The("twisted blade poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
-	    if (youdefend ? Poison_resistance : resists_poison(mdef)) {
+	    if (youdefend ? (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) : resists_poison(mdef)) {
 		if (youdefend)
 		    You("are not affected by the poison.");
 		else

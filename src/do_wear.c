@@ -751,7 +751,7 @@ Cloak_on()
 		}
 		break;
 	case POISONOUS_CLOAK:
-		if (Poison_resistance)
+		if (Poison_resistance && (StrongPoison_resistance || rn2(10)) )
 			pline(Hallucination ? "Very tight, like a latex shirt!" : "This cloak feels a little itchy.");
 		else {
 		    makeknown(uarmc->otyp);
@@ -765,10 +765,10 @@ Cloak_on()
 		    makeknown(uarmc->otyp);
 		if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 		    You("seem no deader than before.");
-		} else if (!Antimagic && rn2(50) > 12) {
+		} else if ((!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) && rn2(50) > 12) {
 		    if (Hallucination) {
 			You("have an out of body experience.");
-		    } else if (!rnd(50)) {
+		    } else if (!rnd(50) && !Antimagic) {
 			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "cloak of death";
@@ -894,16 +894,19 @@ Cloak_on()
 		}
 	case CLOAK_OF_WATER_SQUIRTING:
 		pline("A gush of water squirts all over your body!");
-		water_damage(invent, FALSE, FALSE);
+		if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+			water_damage(invent, FALSE, FALSE);
+		}
 		break;
 	case CLOAK_OF_PARALYSIS:
 		pline("You're paralyzed!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-		if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis", TRUE);
+		if (StrongFree_action) nomul(-rnd(5), "putting on a cloak of paralysis", TRUE);
+		else if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis", TRUE);
 		else nomul(-rnd(20), "putting on a cloak of paralysis", TRUE);
 		break;
 	case CLOAK_OF_SICKNESS:
-		if (Sick_resistance || !rn2(10) ) { /* small chance to not get infected even if not resistant --Amy */
+		if (IntSick_resistance || (ExtSick_resistance && rn2(20)) || !rn2(10) ) { /* small chance to not get infected even if not resistant --Amy */
 			You_feel("a slight illness.");
 		} else {
 			make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
@@ -922,7 +925,7 @@ Cloak_on()
 		break;
 	case CLOAK_OF_STARVING:
 		if (u.uhunger > 0) u.uhunger = -1;
-		else u.uhunger -= rnd(Full_nutrient ? 500 : 1000);
+		else u.uhunger -= rnd(StrongFull_nutrient ? 250 : Full_nutrient ? 500 : 1000);
 		break;
 	case CLOAK_OF_CURSE:
 		attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
@@ -946,7 +949,7 @@ Cloak_on()
 		}
 		break;
 	case CLOAK_OF_STONE:
-		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {
 			pline("You start turning to stone!");
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
@@ -2894,7 +2897,7 @@ Amulet_on()
 
 	case AMULET_OF_STONE:
 		makeknown(AMULET_OF_STONE);
-		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {
 			pline("You start turning to stone!");
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");

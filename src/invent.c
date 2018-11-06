@@ -6663,10 +6663,10 @@ boolean force_touch;
 		badeffect();
 	}
 
-	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && !Stone_resistance &&
+	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		(otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])))
 			return TRUE;
-	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && !Stone_resistance &&
+	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		(otmp->otyp == EGG && touch_petrifies(&mons[otmp->corpsenm])))
 			return TRUE;
 	return FALSE;

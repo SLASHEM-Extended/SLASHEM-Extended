@@ -1388,7 +1388,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 #endif
 	} else if (obj->otyp == CORPSE) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
-				&& !Stone_resistance && !telekinesis) {
+				&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
@@ -1409,7 +1409,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 	    }
 	} else if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
-				&& !Stone_resistance && !telekinesis) {
+				&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
@@ -1708,6 +1708,7 @@ lootcont:
 		    pline("It develops a huge set of teeth and bites you!");
 		    tmp = rnd(10);
 		    if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+		    if (StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
 		    losehp(tmp, "carnivorous bag", KILLED_BY_AN);
 		    makeknown(BAG_OF_TRICKS);
 		    timepassed = 1;
@@ -2089,7 +2090,7 @@ boolean invobj;
 
 	if (obj->otyp == CORPSE) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
-		 && !Stone_resistance) {
+		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
@@ -2106,7 +2107,7 @@ boolean invobj;
 
 	if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
-		 && !Stone_resistance) {
+		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
@@ -2260,7 +2261,7 @@ register struct obj *obj;
 
 	if (obj->otyp == CORPSE) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
-		 && !Stone_resistance) {
+		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
@@ -2277,7 +2278,7 @@ register struct obj *obj;
 
 	if (obj->otyp == EGG) {
 	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
-		 && !Stone_resistance) {
+		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
@@ -2602,7 +2603,7 @@ int held;
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if(Shock_resistance)  {
+			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    break;
@@ -2616,7 +2617,7 @@ int held;
 		case 5:
 		case 4:
 		case 3:
-			if (!Free_action || !rn2(20)) {
+			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a container kaboom", TRUE);

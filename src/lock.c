@@ -23,7 +23,7 @@ STATIC_DCL const char *lock_action(void);
 STATIC_DCL boolean obstructed(int,int);
 STATIC_DCL void chest_shatter_msg(struct obj *);
 
-#define techlevX(tech)         (Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
+#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
 
 boolean
 picking_lock(x, y)
@@ -779,16 +779,19 @@ doforce()		/* try to force a chest with your weapon */
 			if (Role_if(PM_JEDI) ? (u.uen < 5) : Race_if(PM_BORG) ? (u.uen < 7) : (u.uen < 10) ) pline("I don't think %s would appreciate that. Besides, you need %d mana in order to use the force.", mon_nam(mtmp), Role_if(PM_JEDI) ? 5 : 10);
 			else {
 
-				if (!UseTheForce || rn2(10)) u.uen -= (Role_if(PM_JEDI) ? 5 : Race_if(PM_BORG) ? 7 : 10);
+				if (!UseTheForce || rn2(StrongUseTheForce ? 3 : 10)) u.uen -= (Role_if(PM_JEDI) ? 5 : Race_if(PM_BORG) ? 7 : 10);
 
 				int dmg;
 				int mdx, mdy;
 				dmg = rnd(2) + dbon() + uwep->spe;
 				if (UseTheForce) dmg += 5;
+				if (StrongUseTheForce) dmg += 5;
 				if (tech_inuse(T_USE_THE_FORCE_LUKE)) dmg += techlevX(get_tech_no(T_USE_THE_FORCE_LUKE));
 				if (uarmg && uarmg->oartifact == ART_USE_THE_FORCE_LUKE) dmg += 10;
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && UseTheForce) dmg += rnd(u.ulevel);
+				if (Role_if(PM_JEDI) && StrongUseTheForce) dmg += u.ulevel;
+				else if (Race_if(PM_BORG) && StrongUseTheForce) dmg += rnd(u.ulevel);
 
 				if (!PlayerCannotUseSkills) {
 					switch (P_SKILL(P_WEDI)) {
@@ -846,7 +849,7 @@ doforce()		/* try to force a chest with your weapon */
 #endif
 				}
 
-				if (mtmp->mhp > 0 && ( (UseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || (Role_if(PM_JEDI) ? (rnd(100) < (u.ulevel * 2) ) : (rnd(100) < u.ulevel) ) ) &&
+				if (mtmp->mhp > 0 && ( (UseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || (StrongUseTheForce && uwep && is_lightsaber(uwep) && uwep->lamplit && rn2(2) ) || (Role_if(PM_JEDI) ? (rnd(100) < (u.ulevel * 2) ) : (rnd(100) < u.ulevel) ) ) &&
 	    mtmp->mcanmove && mtmp != u.ustuck && !mtmp->mtrapped) {
 		/* see if the monster has a place to move into */
 				mdx = mtmp->mx + u.dx;

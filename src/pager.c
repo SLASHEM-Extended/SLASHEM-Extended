@@ -447,7 +447,7 @@ lookat(x, y, buf, monbuf)
 		if (useemon && mtmp->minvis)
 		    ways_seen++;
 		/* infravision */
-		if ((!mtmp->minvis || See_invisible) && !mtmp->minvisreal && see_with_infrared(mtmp))
+		if ((!mtmp->minvis || (See_invisible && (StrongSee_invisible || mtmp->seeinvisble) )) && !mtmp->minvisreal && see_with_infrared(mtmp))
 		    ways_seen++;
 		/* telepathy */
 		if (tp_sensemon(mtmp))
@@ -477,7 +477,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
 		    ways_seen++;
-		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || ((mtmp)->mhp % 2 != 0) ) ) 
+		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || mtmp->selfhybridvisible) ) 
 		    ways_seen++;
 		if (Race_if(PM_VORTEX) && unsolid(mtmp->data))
 		    ways_seen++;
@@ -491,13 +491,13 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Race_if(PM_RODNEYAN) && mon_has_special(mtmp))
 		    ways_seen++;
-		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0)
+		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible)
 		    ways_seen++;
-		if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mtmp)->mhp % 9 == 0)
+		if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mtmp->internetvisible)
 		    ways_seen++;
-		if (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mtmp)->mhp % 9 == 0)
+		if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mtmp->internetvisible)
 		    ways_seen++;
-		if (RngeInternetAccess && (mtmp)->mhp % 9 == 0)
+		if (RngeInternetAccess && mtmp->internetvisible)
 		    ways_seen++;
 		if (Numbopathy && Numbed && (avoid_player(mtmp->data) || mtmp->egotype_avoider) )
 		    ways_seen++;
@@ -542,7 +542,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "see invisible");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if ((!mtmp->minvis || See_invisible) && !mtmp->minvisreal &&
+		    if ((!mtmp->minvis || (See_invisible && (StrongSee_invisible || mtmp->seeinvisble) )) && !mtmp->minvisreal &&
 			    see_with_infrared(mtmp)) {
 			strcat(monbuf, "infravision");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -597,7 +597,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "self-hybridization");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || ((mtmp)->mhp % 2 != 0) )) {
+		    if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || mtmp->selfhybridvisible )) {
 			strcat(monbuf, "self-hybridization");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -630,19 +630,19 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 
-		    if (Stunnopathy && Stunned && always_hostile(mtmp->data) && (mtmp)->mhp % 4 != 0) {
+		    if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible) {
 			strcat(monbuf, "stunnopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mtmp)->mhp % 9 == 0) {
+		    if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mtmp->internetvisible) {
 			strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mtmp)->mhp % 9 == 0) {
+		    if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mtmp->internetvisible) {
 			strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (RngeInternetAccess && (mtmp)->mhp % 9 == 0) {
+		    if (RngeInternetAccess && mtmp->internetvisible) {
 			strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }

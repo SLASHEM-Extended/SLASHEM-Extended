@@ -332,7 +332,7 @@ drinkfountain()
 		case 21: /* Poisonous */
 
 			pline_The("water is contaminated!");
-			if (Poison_resistance) {
+			if (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) {
 			   pline(
 			      "Perhaps it is runoff from the nearby %s farm.",
 				 fruitname(FALSE));
@@ -881,16 +881,20 @@ drinksink()
                   break;
             case 15: pline("A strong jet of %s water splashes all over you!",
                   rn2(3) ? (rn2(2) ? "cold" : "warm") : "hot");
-			water_damage(invent, FALSE, FALSE);
-			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+				water_damage(invent, FALSE, FALSE);
+				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			}
                   break;
             case 16: pline("A strong jet of scalding hot water splashes all over you!");
                   if (Fire_resistance)
                        pline("It feels quite refreshing.");
                   else if (!Fire_resistance)
                        losehp(d(4,6), "jet of boiling water", KILLED_BY_AN);
-			water_damage(invent, FALSE, FALSE);
-			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+				water_damage(invent, FALSE, FALSE);
+				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			}
                   break;
             case 17: if (Hallucination)
                   pline_The("water flies out of the plughole and into the faucet!");

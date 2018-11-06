@@ -3359,19 +3359,19 @@ boolean guaranteed;
 	}
 
 	/*** Resistances to troubles ***/
-	if ((guaranteed || !rn2(10)) && Fire_resistance) you_are("fire resistant");
-	if ((guaranteed || !rn2(10)) && Cold_resistance) you_are("cold resistant");
-	if ((guaranteed || !rn2(10)) && Sleep_resistance) you_are("sleep resistant");
-	if ((guaranteed || !rn2(10)) && Disint_resistance) you_are("disintegration-resistant");
-	if ((guaranteed || !rn2(10)) && Shock_resistance) you_are("shock resistant");
-	if ((guaranteed || !rn2(10)) && Poison_resistance) you_are("poison resistant");
-	if ((guaranteed || !rn2(10)) && Drain_resistance) you_are("level-drain resistant");
-	if ((guaranteed || !rn2(10)) && Sick_resistance) you_are("immune to sickness");
-	if ((guaranteed || !rn2(10)) && Antimagic) you_are("magic-protected");
-	if ((guaranteed || !rn2(10)) && Acid_resistance) you_are("acid resistant");
-	if ((guaranteed || !rn2(10)) && Fear_resistance) you_are("resistant to fear");
+	if ((guaranteed || !rn2(10)) && Fire_resistance) you_are(StrongFire_resistance ? "doubly fire resistant" : "fire resistant");
+	if ((guaranteed || !rn2(10)) && Cold_resistance) you_are(StrongCold_resistance ? "doubly cold resistant" : "cold resistant");
+	if ((guaranteed || !rn2(10)) && Sleep_resistance) you_are(StrongSleep_resistance ? "doubly sleep resistant" : "sleep resistant");
+	if ((guaranteed || !rn2(10)) && Disint_resistance) you_are(StrongDisint_resistance ? "doubly disintegration-resistant" : "disintegration-resistant");
+	if ((guaranteed || !rn2(10)) && Shock_resistance) you_are(StrongShock_resistance ? "doubly shock resistant" : "shock resistant");
+	if ((guaranteed || !rn2(10)) && Poison_resistance) you_are(StrongPoison_resistance ? "doubly poison resistant" : "poison resistant");
+	if ((guaranteed || !rn2(10)) && Drain_resistance) you_are(StrongDrain_resistance ? "doubly level-drain resistant" : "level-drain resistant");
+	if ((guaranteed || !rn2(10)) && Sick_resistance) you_are(StrongSick_resistance ? "completely immune to sickness" : IntSick_resistance ? "immune to sickness" : "resistant to sickness");
+	if ((guaranteed || !rn2(10)) && Antimagic) you_are(StrongAntimagic ? "doubly magic-protected" : "magic-protected");
+	if ((guaranteed || !rn2(10)) && Acid_resistance) you_are(StrongAcid_resistance ? "doubly acid resistant" : "acid resistant");
+	if ((guaranteed || !rn2(10)) && Fear_resistance) you_are(StrongFear_resistance ? "highly resistant to fear" : "resistant to fear");
 	if ((guaranteed || !rn2(10)) && Stone_resistance)
-		you_are("petrification resistant");
+		you_are(StrongStone_resistance ? "completely immune to petrification" : IntStone_resistance ? "immune to petrification" : "petrification resistant");
 	if ((guaranteed || !rn2(10)) && Invulnerable) {
 		sprintf(buf, "invulnerable");
 	    if (wizard || (!rn2(10)) || final >= 1  ) sprintf(eos(buf), " (%d)", Invulnerable);
@@ -5214,7 +5214,7 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && UseTheForce) {
-		sprintf(buf, "able to use the force like a true jedi");
+		sprintf(buf, StrongUseTheForce ? "able to use the force like a jedi grandmaster" : "able to use the force like a true jedi");
 		you_are(buf);
 	}
 
@@ -5742,6 +5742,10 @@ boolean guaranteed;
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
 		}
+		if (StrongConflict && shieldblockrate > 0) {
+			shieldblockrate *= 2;
+			shieldblockrate /= 3;
+		}
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -5764,17 +5768,20 @@ boolean guaranteed;
 	}
 #endif
 	if ((guaranteed || !rn2(10)) && Sleeping) enl_msg("You ", "fall", "fell", " asleep");
-	if ((guaranteed || !rn2(10)) && Hunger) enl_msg("You hunger", "", "ed", " rapidly");
+	if ((guaranteed || !rn2(10)) && Hunger && !StrongHunger) enl_msg("You hunger", "", "ed", " rapidly");
+	if ((guaranteed || !rn2(10)) && Hunger && StrongHunger) enl_msg("You hunger", "", "ed", " extremely rapidly");
 
 	if ((guaranteed || !rn2(10)) && have_sleepstone()) enl_msg("You ", "are", "were", " very tired");
 	if ((guaranteed || !rn2(10)) && have_cursedmagicresstone()) enl_msg("You ", "take", "took", " double damage");
 	if ((guaranteed || !rn2(10)) && uamul && uamul->otyp == AMULET_OF_VULNERABILITY) enl_msg("You ", "take", "took", " extra damage");
 
 	/*** Vision and senses ***/
-	if ((guaranteed || !rn2(10)) && See_invisible) enl_msg(You_, "see", "saw", " invisible");
-	if ((guaranteed || !rn2(10)) && Manaleech) enl_msg(You_, "leech", "leeched", " mana");
-	if ((guaranteed || !rn2(10)) && Peacevision) enl_msg(You_, "recognize", "recognized", " peaceful creatures");
-	if ((guaranteed || !rn2(10)) && Blind_telepat) you_are("telepathic");
+	if ((guaranteed || !rn2(10)) && See_invisible && !StrongSee_invisible) enl_msg(You_, "see", "saw", " invisible");
+	if ((guaranteed || !rn2(10)) && See_invisible && StrongSee_invisible) enl_msg(You_, "see", "saw", " invisible and hidden");
+	if ((guaranteed || !rn2(10)) && Manaleech) enl_msg(You_, "leech", "leeched", StrongManaleech ? " a lot of mana" : " mana");
+	if ((guaranteed || !rn2(10)) && Peacevision) enl_msg(You_, "recognize", "recognized", StrongPeacevision ? " peaceful creatures and other stuff" : " peaceful creatures");
+	if ((guaranteed || !rn2(10)) && (Blind_telepat || Unblind_telepat) && !StrongTelepat) you_are("telepathic");
+	if ((guaranteed || !rn2(10)) && (Blind_telepat || Unblind_telepat) && StrongTelepat) you_are("very telepathic");
 	if ((guaranteed || !rn2(10)) && Map_amnesia) enl_msg(You_, "have", "had", " map amnesia");
 
 	if ((guaranteed || !rn2(10)) && Hallu_party) you_are("hallu partying");
@@ -5791,7 +5798,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Wonderlegs) you_have("wonderlegs");
 	if ((guaranteed || !rn2(10)) && Glib_combat) you_are("a glibbery fighter");
 
-	if ((guaranteed || !rn2(10)) && Warning) you_are("warned");
+	if ((guaranteed || !rn2(10)) && Warning) you_are(StrongWarning ? "definitely warned" : "warned");
 	if ((guaranteed || !rn2(10)) && (Warn_of_mon && flags.warntype)) {
 	    /* [ALI] Add support for undead */
 	    int i, nth = 0;
@@ -5848,15 +5855,15 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && isselfhybrid) you_are("aware of the presence of strong wanderers");
 	if ((guaranteed || !rn2(10)) && isselfhybrid) you_are("aware of the presence of monsters that are valid polymorph forms for monsters only");
 
-	if ((guaranteed || !rn2(10)) && Searching) you_have("automatic searching");
+	if ((guaranteed || !rn2(10)) && Searching) you_have(StrongSearching ? "quick autosearching" : "automatic searching");
 
 	if ((guaranteed || !rn2(10)) && Clairvoyant) {
-		sprintf(buf, "clairvoyant");
+		sprintf(buf, StrongClairvoyant ? "highly clairvoyant" : "clairvoyant");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", HClairvoyant);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && Infravision) you_have("infravision");
+	if ((guaranteed || !rn2(10)) && Infravision) you_have(StrongInfravision ? "strong infravision" : "infravision");
 
 	if ((guaranteed || !rn2(10)) && u.banishmentbeam) you_are("going to be banished");
 	if ((guaranteed || !rn2(10)) && u.levelporting) you_are("going to be levelported");
@@ -5874,7 +5881,7 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && Detect_monsters) {
-		sprintf(buf, "sensing the presence of monsters");
+		sprintf(buf, StrongDetect_monsters ? "sensing all monsters" : "sensing the presence of monsters");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", HDetect_monsters);
 		you_are(buf);
 	}
@@ -5896,23 +5903,25 @@ boolean guaranteed;
 	    else
 		you_are("adorned");
 	}
-	if ((guaranteed || !rn2(10)) && Invisible) you_are("invisible");
-	else if ((guaranteed || !rn2(10)) && Invis) you_are("invisible to others");
+	if ((guaranteed || !rn2(10)) && Invisible) you_are(StrongInvis ? "very invisible" : "invisible");
+	else if ((guaranteed || !rn2(10)) && Invis) you_are(StrongInvis ? "very invisible to others" : "invisible to others");
 	/* ordinarily "visible" is redundant; this is a special case for
 	   the situation when invisibility would be an expected attribute */
 	else if ((guaranteed || !rn2(10)) && ((HInvis || EInvis || pm_invisible(youmonst.data)) && BInvis))
 	    you_are("visible");
-	if ((guaranteed || !rn2(10)) && Displaced) you_are("displaced");
-	if ((guaranteed || !rn2(10)) && Stealth) you_are("stealthy");
-	if ((guaranteed || !rn2(10)) && Aggravate_monster) enl_msg("You aggravate", "", "d", " monsters");
-	if ((guaranteed || !rn2(10)) && Conflict) enl_msg("You cause", "", "d", " conflict");
+	if ((guaranteed || !rn2(10)) && Displaced) you_are(StrongDisplaced ? "very displaced" : "displaced");
+	if ((guaranteed || !rn2(10)) && Stealth) you_are(StrongStealth ? "very stealthy" : "stealthy");
+	if ((guaranteed || !rn2(10)) && StrongAggravate_monster) enl_msg("You completely aggravate", "", "d", " monsters");
+	if ((guaranteed || !rn2(10)) && !StrongAggravate_monster && ExtAggravate_monster) enl_msg("You strongly aggravate", "", "d", " monsters");
+	if ((guaranteed || !rn2(10)) && !StrongAggravate_monster && IntAggravate_monster) enl_msg("You aggravate", "", "d", " monsters");
+	if ((guaranteed || !rn2(10)) && Conflict) enl_msg("You cause", "", "d", StrongConflict ? " lots of conflict" : " conflict");
 
 	/*** Transportation ***/
-	if ((guaranteed || !rn2(10)) && Jumping) you_can("jump");
-	if ((guaranteed || !rn2(10)) && Teleportation) you_have("teleportitis");
-	if ((guaranteed || !rn2(10)) && Teleport_control) you_have("teleport control");
+	if ((guaranteed || !rn2(10)) && Jumping) you_can(StrongJumping ? "jump far" : "jump");
+	if ((guaranteed || !rn2(10)) && Teleportation) you_have(StrongTeleportation ? "chronic teleportitis" : "teleportitis");
+	if ((guaranteed || !rn2(10)) && Teleport_control) you_have(StrongTeleport_control ? "complete teleport control" : "teleport control");
 	/*if (Lev_at_will) you_are("levitating, at will");
-	else if ((guaranteed || !rn2(10)) && Levitation) you_are("levitating");*/	/* without control */
+	else if ((guaranteed || !rn2(10)) && Levitation) you_are(StrongLevitation ? "floatitating" : "levitating");*/	/* without control */
 
 	if ((guaranteed || !rn2(10)) && Lev_at_will)  {
 	    sprintf(buf, "levitating, at will");
@@ -5922,19 +5931,19 @@ boolean guaranteed;
 	    you_are(buf);
 	}
 	if ((guaranteed || !rn2(10)) && Levitation)  {
-	    sprintf(buf, "levitating");
+	    sprintf(buf, StrongLevitation ? "floatitating" : "levitating");
 #ifdef WIZARD
 	    if (wizard || !rn2(10) || final >= 1 ) sprintf(eos(buf), " (%d)", HLevitation);
 #endif /*same like above --Amy */
 	    you_are(buf);
 	}
 
-	else if ((guaranteed || !rn2(10)) && Flying) you_can("fly");
+	else if ((guaranteed || !rn2(10)) && Flying) you_can(StrongFlying ? "fly up and down" : "fly");
 	if ((guaranteed || !rn2(10)) && Wwalking) you_can("walk on water");
-	if ((guaranteed || !rn2(10)) && Swimming) you_can("swim");        
-	if ((guaranteed || !rn2(10)) && Breathless) you_can("survive without air");
+	if ((guaranteed || !rn2(10)) && Swimming) you_can(StrongSwimming ? "swim like a world champion" : "swim");        
+	if ((guaranteed || !rn2(10)) && Breathless) you_can(StrongMagical_breathing ? "survive everywhere without needing to breathe" : "survive without air");
 	else if ((guaranteed || !rn2(10)) && Amphibious) you_can("breathe water");
-	if ((guaranteed || !rn2(10)) && Passes_walls) you_can("walk through walls");
+	if ((guaranteed || !rn2(10)) && Passes_walls) you_can(StrongPasses_walls ? "walk through every wall" : "walk through walls");
 	/* If you die while dismounting, u.usteed is still set.  Since several
 	 * places in the done() sequence depend on u.usteed, just detect this
 	 * special case. */
@@ -5960,28 +5969,28 @@ boolean guaranteed;
 	    you_have(enlght_combatinc("to hit", u.uhitinc, final, buf));
 	if ((guaranteed || !rn2(10)) && u.udaminc)
 	    you_have(enlght_combatinc("damage", u.udaminc, final, buf));
-	if ((guaranteed || !rn2(10)) && Slow_digestion) you_have("slower digestion");
+	if ((guaranteed || !rn2(10)) && Slow_digestion) you_have(StrongSlow_digestion ? "extremely slow digestion" : "slower digestion");
 	if ((guaranteed || !rn2(10)) && Keen_memory)
-		enl_msg("Your memory ", "is", "was", " keen");
-	if ((guaranteed || !rn2(10)) && Sight_bonus) enl_msg("Your sight ", "is", "was", " improved");
-	if ((guaranteed || !rn2(10)) && Versus_curses) you_have("curse resistance");
+		enl_msg("Your memory ", "is", "was", StrongKeen_memory ? " very keen" : " keen");
+	if ((guaranteed || !rn2(10)) && Sight_bonus) enl_msg("Your sight ", "is", "was", StrongSight_bonus ? " greatly improved" : " improved");
+	if ((guaranteed || !rn2(10)) && Versus_curses) you_have(StrongVersus_curses ? "double curse resistance" : "curse resistance");
 
-	if ((guaranteed || !rn2(10)) && Stun_resist) you_have("stun resistance");
-	if ((guaranteed || !rn2(10)) && Conf_resist) you_have("confusion resistance");
-	if ((guaranteed || !rn2(10)) && Cont_resist) you_have("contamination resistance");
-	if ((guaranteed || !rn2(10)) && Discount_action) you_have("discount action");
-	if ((guaranteed || !rn2(10)) && Full_nutrient) you_have("full nutrients");
-	if ((guaranteed || !rn2(10)) && Technicality) you_have("improved technique levels");
-	if ((guaranteed || !rn2(10)) && Psi_resist) you_have("psi resistance");
-	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", " train skills and attributes faster");
+	if ((guaranteed || !rn2(10)) && Stun_resist) you_have(StrongStun_resist ? "double stun resistance" : "stun resistance");
+	if ((guaranteed || !rn2(10)) && Conf_resist) you_have(StrongConf_resist ? "double confusion resistance" : "confusion resistance");
+	if ((guaranteed || !rn2(10)) && Cont_resist) you_have(StrongCont_resist ? "double contamination resistance" : "contamination resistance");
+	if ((guaranteed || !rn2(10)) && Discount_action) you_have(StrongDiscount_action ? "high discount action" : "discount action");
+	if ((guaranteed || !rn2(10)) && Full_nutrient) you_have(StrongFull_nutrient ? "very full nutrients" : "full nutrients");
+	if ((guaranteed || !rn2(10)) && Technicality) you_have(StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
+	if ((guaranteed || !rn2(10)) && Psi_resist) you_have(StrongPsi_resist ? "double psi resistance" : "psi resistance");
+	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", StrongExtra_wpn_practice ? " train skills and attributes much faster" : " train skills and attributes faster");
 	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
-	if ((guaranteed || !rn2(10)) && Double_attack) you_have("double attacks");
-	if ((guaranteed || !rn2(10)) && Quad_attack) you_have("quad attacks");
+	if ((guaranteed || !rn2(10)) && Double_attack) you_have(StrongDouble_attack ? "super double attacks" : "double attacks");
+	if ((guaranteed || !rn2(10)) && Quad_attack) you_have(StrongQuad_attack ? "super quad attacks" : "quad attacks");
 
-	if ((guaranteed || !rn2(10)) && Half_physical_damage) you_have("physical resistance");
-	if ((guaranteed || !rn2(10)) && Half_spell_damage) you_have("spell resistance");
-	if ((guaranteed || !rn2(10)) && Regeneration) enl_msg("You regenerate", "", "d", "");
-	if ((guaranteed || !rn2(10)) && Energy_regeneration) you_have("mana regeneration");
+	if ((guaranteed || !rn2(10)) && Half_physical_damage) you_have(StrongHalf_physical_damage ? "strong physical resistance" : "physical resistance");
+	if ((guaranteed || !rn2(10)) && Half_spell_damage) you_have(StrongHalf_spell_damage ? "strong spell resistance" : "spell resistance");
+	if ((guaranteed || !rn2(10)) && Regeneration) enl_msg(StrongRegeneration ? "You quickly regenerate" : "You regenerate", "", "d", "");
+	if ((guaranteed || !rn2(10)) && Energy_regeneration) you_have(StrongEnergy_regeneration ? "quick mana regeneration" : "mana regeneration");
 	if ((guaranteed || !rn2(10)) && (u.uspellprot || Protection)) {
 	    int prot = 0;
 
@@ -5997,8 +6006,8 @@ boolean guaranteed;
 	}
 	if ((guaranteed || !rn2(10)) && Protection_from_shape_changers)
 		you_are("protected from shape changers");
-	if ((guaranteed || !rn2(10)) && Polymorph) you_have("polymorphitis");
-	if ((guaranteed || !rn2(10)) && Polymorph_control) you_have("polymorph control");
+	if ((guaranteed || !rn2(10)) && Polymorph) you_have(StrongPolymorph ? "chronic polymorphitis" : "polymorphitis");
+	if ((guaranteed || !rn2(10)) && Polymorph_control) you_have(StrongPolymorph_control ? "complete polymorph control" : "polymorph control");
 	if ((guaranteed || !rn2(10)) && (u.ulycn >= LOW_PM)) {
 		strcpy(buf, an(mons[u.ulycn].mname));
 		you_are(buf);
@@ -6012,12 +6021,12 @@ boolean guaranteed;
 	    you_are(buf);
 	}
 	if ((guaranteed || !rn2(10)) && Unchanging) you_can("not change from your current form");
-	if ((guaranteed || !rn2(10)) && (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone())) you_are(Very_fast ? "very fast" : "fast");
-	if ((guaranteed || !rn2(10)) && (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) )) you_are(Very_fast ? "very slow" : "slow");
+	if ((guaranteed || !rn2(10)) && (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone())) you_are(StrongFast ? "ultra fast" : Very_fast ? "very fast" : "fast");
+	if ((guaranteed || !rn2(10)) && (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) )) you_are(StrongFast ? "ultra slow" : Very_fast ? "very slow" : "slow");
 	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone())) you_are("very fast");
 	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) )) you_are("very slow");
-	if ((guaranteed || !rn2(10)) && Reflecting) you_have("reflection");
-	if ((guaranteed || !rn2(10)) && Free_action) you_have("free action");
+	if ((guaranteed || !rn2(10)) && Reflecting) you_have(StrongReflecting ? "powerful reflection" : "reflection");
+	if ((guaranteed || !rn2(10)) && Free_action) you_have(StrongFree_action ? "very free action" : "free action");
 	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) )) you_have("fixed abilities");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_VERSUS_STONE))
 		enl_msg("You ", "will be", "would have been", " depetrified");
@@ -6886,18 +6895,18 @@ int final;
 	}
 
 	/*** Resistances to troubles ***/
-	if (Fire_resistance) dump(youwere, "fire resistant");
-	if (Cold_resistance) dump(youwere, "cold resistant");
-	if (Sleep_resistance) dump(youwere, "sleep resistant");
-	if (Disint_resistance) dump(youwere, "disintegration-resistant");
-	if (Shock_resistance) dump(youwere, "shock resistant");
-	if (Poison_resistance) dump(youwere, "poison resistant");
-	if (Drain_resistance) dump(youwere, "level-drain resistant");
-	if (Sick_resistance) dump(youwere, "immune to sickness");
-	if (Antimagic) dump(youwere, "magic-protected");
-	if (Acid_resistance) dump(youwere, "acid resistant");
-	if (Fear_resistance) dump(youwere, "resistant to fear");
-	if (Stone_resistance) dump(youwere, "petrification resistant");
+	if (Fire_resistance) dump(youwere, StrongFire_resistance ? "doubly fire resistant" : "fire resistant");
+	if (Cold_resistance) dump(youwere, StrongCold_resistance ? "doubly cold resistant" : "cold resistant");
+	if (Sleep_resistance) dump(youwere, StrongSleep_resistance ? "doubly sleep resistant" : "sleep resistant");
+	if (Disint_resistance) dump(youwere, StrongDisint_resistance ? "doubly disintegration-resistant" : "disintegration-resistant");
+	if (Shock_resistance) dump(youwere, StrongShock_resistance ? "doubly shock resistant" : "shock resistant");
+	if (Poison_resistance) dump(youwere, StrongPoison_resistance ? "doubly poison resistant" : "poison resistant");
+	if (Drain_resistance) dump(youwere, StrongDrain_resistance ? "doubly level-drain resistant" : "level-drain resistant");
+	if (Sick_resistance) dump(youwere, StrongSick_resistance ? "completely immune to sickness" : IntSick_resistance ? "immune to sickness" : "resistant to sickness");
+	if (Antimagic) dump(youwere, StrongAntimagic ? "doubly magic-protected" : "magic-protected");
+	if (Acid_resistance) dump(youwere, StrongAcid_resistance ? "doubly acid resistant" : "acid resistant");
+	if (Fear_resistance) dump(youwere, StrongFear_resistance ? "highly resistant to fear" : "resistant to fear");
+	if (Stone_resistance) dump(youwere, StrongStone_resistance ? "completely immune to petrification" : IntStone_resistance ? "immune to petrification" : "petrification resistant");
 	if (Invulnerable) dump(youwere, "invulnerable");
 	if (u.urealedibility) {
 		sprintf(buf, "recognize detrimental food");
@@ -8720,7 +8729,7 @@ int final;
 	}
 
 	if (UseTheForce) {
-		sprintf(buf, "able to use the force like a true jedi");
+		sprintf(buf, StrongUseTheForce ? "able to use the force like a jedi grandmaster" : "able to use the force like a true jedi");
 		dump(youwere, buf);
 	}
 
@@ -9243,6 +9252,10 @@ int final;
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
 		}
+		if (StrongConflict && shieldblockrate > 0) {
+			shieldblockrate *= 2;
+			shieldblockrate /= 3;
+		}
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -9264,18 +9277,22 @@ int final;
 	    dump("  ", buf);
 	}
 	if (Sleeping) dump("  ", "You fell asleep");
-	if (Hunger) dump("  ", "You hungered rapidly");
+	if (Hunger && !StrongHunger) dump("  ", "You hungered rapidly");
+	if (Hunger && StrongHunger) dump("  ", "You hungered extremely rapidly");
 
 	if (have_sleepstone())  dump("  ", "You were very tired");
 	if (have_cursedmagicresstone()) dump("  ", "You took double damage");
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) dump("  ", "You took extra damage");
 
 	/*** Vision and senses ***/
-	if (See_invisible) dump("  ", "You saw invisible");
-	if (Manaleech) dump("  ", "You leeched mana");
-	if (Peacevision) dump("  ", "You recognized peaceful creatures");
+	if (See_invisible && !StrongSee_invisible) dump("  ", "You saw invisible");
+	if (See_invisible && StrongSee_invisible) dump("  ", "You saw invisible and hidden");
+	if (Manaleech && !StrongManaleech) dump("  ", "You leeched mana");
+	if (Manaleech && StrongManaleech) dump("  ", "You leeched a lot of mana");
+	if (Peacevision) dump("  ", StrongPeacevision ? "You recognized peaceful creatures and other stuff" : "You recognized peaceful creatures");
 	if (Map_amnesia) dump("  ", "You had map amnesia");
-	if (Blind_telepat) dump(youwere, "telepathic");
+	if ((Blind_telepat || Unblind_telepat) && !StrongTelepat) dump(youwere, "telepathic");
+	if ((Blind_telepat || Unblind_telepat) && StrongTelepat) dump(youwere, "very telepathic");
 
 	if (Hallu_party) dump(youwere, "hallu partying");
 	if (Drunken_boxing) dump(youwere, "a drunken boxer");
@@ -9291,7 +9308,7 @@ int final;
 	if (Wonderlegs) dump(youhad, "wonderlegs");
 	if (Glib_combat) dump(youwere, "a glibbery fighter");
 
-	if (Warning) dump(youwere, "warned");
+	if (Warning) dump(youwere, StrongWarning ? "definitely warned" : "warned");
 	if (Warn_of_mon && flags.warntype) {
 		sprintf(buf, "aware of the presence of %s",
 			(flags.warntype & M2_ORC) ? "orcs" :
@@ -9319,14 +9336,14 @@ int final;
 	if (isselfhybrid) dump(youwere, "aware of the presence of strong wanderers");
 	if (isselfhybrid) dump(youwere, "aware of the presence of monsters that are valid polymorph forms for monsters only");
 
-	if (Searching) dump(youhad, "automatic searching");
+	if (Searching) dump(youhad, StrongSearching ? "quick autosearching" : "automatic searching");
 	if (Clairvoyant) {
-		sprintf(buf, "clairvoyant");
+		sprintf(buf, StrongClairvoyant ? "highly clairvoyant" : "clairvoyant");
 	      sprintf(eos(buf), " (%d)", HClairvoyant);
 		dump(youwere, buf);
 
 	}
-	if (Infravision) dump(youhad, "infravision");
+	if (Infravision) dump(youhad, StrongInfravision ? "strong infravision" : "infravision");
 
 	if (u.banishmentbeam) dump(youwere, "going to be banished");
 	if (u.levelporting) dump(youwere, "going to be levelported");
@@ -9344,7 +9361,7 @@ int final;
 	}
 
 	if (Detect_monsters) {
-		sprintf(buf, "sensing the presence of monsters");
+		sprintf(buf, StrongDetect_monsters ? "sensing all monsters" : "sensing the presence of monsters");
 	      sprintf(eos(buf), " (%d)", HDetect_monsters);
 		dump(youwere, buf);
 	}
@@ -9364,21 +9381,23 @@ int final;
 	    else
 		dump(youwere, "adorned");
 	}
-	if (Invisible) dump(youwere, "invisible");
-	else if (Invis) dump(youwere, "invisible to others");
+	if (Invisible) dump(youwere, StrongInvis ? "very invisible" : "invisible");
+	else if (Invis) dump(youwere, StrongInvis ? "very invisible to others" : "invisible to others");
 	/* ordinarily "visible" is redundant; this is a special case for
 	   the situation when invisibility would be an expected attribute */
 	else if ((HInvis || EInvis || pm_invisible(youmonst.data)) && BInvis)
 	    dump(youwere, "visible");
-	if (Displaced) dump(youwere, "displaced");
-	if (Stealth) dump(youwere, "stealthy");
-	if (Aggravate_monster) dump("  ", "You aggravated monsters");
-	if (Conflict) dump("  ", "You caused conflict");
+	if (Displaced) dump(youwere, StrongDisplaced ? "very displaced" : "displaced");
+	if (Stealth) dump(youwere, StrongStealth ? "very stealthy" : "stealthy");
+	if (StrongAggravate_monster) dump("  ", "You completely aggravated monsters");
+	if (!StrongAggravate_monster && ExtAggravate_monster) dump("  ", "You strongly aggravated monsters");
+	if (!StrongAggravate_monster && IntAggravate_monster) dump("  ", "You aggravated monsters");
+	if (Conflict) dump("  ", StrongConflict ? "You caused lots of conflict" : "You caused conflict");
 
 	/*** Transportation ***/
-	if (Jumping) dump(youcould, "jump");
-	if (Teleportation) dump(youcould, "teleport");
-	if (Teleport_control) dump(youhad, "teleport control");
+	if (Jumping) dump(youcould, StrongJumping ? "jump far" : "jump");
+	if (Teleportation) dump(youhad, StrongTeleportation ? "chronic teleportitis" : "teleportitis");
+	if (Teleport_control) dump(youhad, StrongTeleport_control ? "complete teleport control" : "teleport control");
 
 	if (Lev_at_will)  {
 	    sprintf(buf, "levitating, at will");
@@ -9386,17 +9405,17 @@ int final;
 	    dump(youwere, buf);
 	}
 	if (Levitation)  {
-	    sprintf(buf, "levitating");
+	    sprintf(buf, StrongLevitation ? "floatitating" : "levitating");
 	    sprintf(eos(buf), " (%d)", HLevitation);
 	    dump(youwere, buf);
 	}
 
-	else if (Flying) dump(youcould, "fly");
+	else if (Flying) dump(youcould, StrongFlying ? "fly up and down" : "fly");
 	if (Wwalking) dump(youcould, "walk on water");
-	if (Swimming) dump(youcould, "swim");
-	if (Breathless) dump(youcould, "survive without air");
+	if (Swimming) dump(youcould, StrongSwimming ? "swim like a world champion" : "swim");
+	if (Breathless) dump(youcould, StrongMagical_breathing ? "survive everywhere without needing to breathe" : "survive without air");
 	else if (Amphibious) dump(youcould, "breathe water");
-	if (Passes_walls) dump(youcould, "walk through walls");
+	if (Passes_walls) dump(youcould, StrongPasses_walls ? "walk through every wall" : "walk through walls");
 	if (u.usteed && (final < 2 || strcmp(killer, "riding accident"))) {
 	    sprintf(buf, "riding %s", y_monnam(u.usteed));
 	    dump(youwere, buf);
@@ -9421,28 +9440,29 @@ int final;
 	if (u.udaminc)
 	    dump(youhad,
 		enlght_combatinc("damage", u.udaminc, final, buf));
-	if (Slow_digestion) dump(youhad, "slower digestion");
-	if (Keen_memory) dump("  ", "Your memory was keen");
+	if (Slow_digestion) dump(youhad, StrongSlow_digestion ? "extremely slow digestion" : "slower digestion");
+	if (Keen_memory) dump("  ", StrongKeen_memory ? "Your memory was very keen" : "Your memory was keen");
 
-	if (Sight_bonus) dump("  ", "Your sight was improved");
-	if (Versus_curses) dump(youhad, "curse resistance");
+	if (Sight_bonus) dump("  ", StrongSight_bonus ? "Your sight was greatly improved" : "Your sight was improved");
+	if (Versus_curses) dump(youhad, StrongVersus_curses ? "double curse resistance" : "curse resistance");
 
-	if (Stun_resist) dump(youhad, "stun resistance");
-	if (Conf_resist) dump(youhad, "confusion resistance");
-	if (Cont_resist) dump(youhad, "contamination resistance");
-	if (Discount_action) dump(youhad, "discount action");
-	if (Full_nutrient) dump(youhad, "full nutrients");
-	if (Technicality) dump(youhad, "improved technique levels");
-	if (Psi_resist) dump(youhad, "psi resistance");
-	if (Extra_wpn_practice) dump("  ", "You could train skills and attributes faster");
+	if (Stun_resist) dump(youhad, StrongStun_resist ? "double stun resistance" : "stun resistance");
+	if (Conf_resist) dump(youhad, StrongConf_resist ? "double confusion resistance" : "confusion resistance");
+	if (Cont_resist) dump(youhad, StrongCont_resist ? "double contamination resistance" : "contamination resistance");
+	if (Discount_action) dump(youhad, StrongDiscount_action ? "high discount action" : "discount action");
+	if (Full_nutrient) dump(youhad, StrongFull_nutrient ? "very full nutrients" : "full nutrients");
+	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
+	if (Psi_resist) dump(youhad, StrongPsi_resist ? "double psi resistance" : "psi resistance");
+	if (Extra_wpn_practice) dump("  ", StrongExtra_wpn_practice ? "You could train skills and attributes much faster" : "You could train skills and attributes faster");
 	if (Death_resistance) dump(youhad, "resistance to death rays");
-	if (Double_attack) dump(youhad, "double attacks");
-	if (Quad_attack) dump(youhad, "quad attacks");
+	if (Double_attack) dump(youhad, StrongDouble_attack ? "super double attacks" : "double attacks");
+	if (Quad_attack) dump(youhad, StrongQuad_attack ? "super quad attacks" : "quad attacks");
 
-	if (Half_physical_damage) dump(youhad, "physical resistance");
-	if (Half_spell_damage) dump(youhad, "spell resistance");
+	if (Half_physical_damage) dump(youhad, StrongHalf_physical_damage ? "strong physical resistance" : "physical resistance");
+	if (Half_spell_damage) dump(youhad, StrongHalf_spell_damage ? "strong spell resistance" : "spell resistance");
 
-	if (Regeneration) dump("  ", "You regenerated");
+	if (Regeneration) dump("  ", StrongRegeneration ? "You quickly regenerated" : "You regenerated");
+	if (Energy_regeneration) dump("  ", StrongEnergy_regeneration ? "You quickly regenerated mana" : "You regenerated mana");
 	if (u.uspellprot || Protection) {
 	    int prot = 0;
 
@@ -9458,8 +9478,8 @@ int final;
 	}
 	if (Protection_from_shape_changers)
 		dump(youwere, "protected from shape changers");
-	if (Polymorph) dump(youwere, "polymorphing");
-	if (Polymorph_control) dump(youhad, "polymorph control");
+	if (Polymorph) dump(youhad, StrongPolymorph ? "chronic polymorphitis" : "polymorphitis");
+	if (Polymorph_control) dump(youhad, StrongPolymorph_control ? "complete polymorph control" : "polymorph control");
 	if (u.ulycn >= LOW_PM) {
 		strcpy(buf, an(mons[u.ulycn].mname));
 		dump(youwere, buf);
@@ -9475,12 +9495,12 @@ int final;
 	}
 	if (Unchanging)
 	  dump(youcould, "not change from your current form");
-	if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) dump(youwere, Very_fast ? "very fast" : "fast");
-	if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) ) dump(youwere, Very_fast ? "very slow" : "slow");
+	if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) dump(youwere, StrongFast ? "ultra fast" : Very_fast ? "very fast" : "fast");
+	if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) ) dump(youwere, StrongFast ? "ultra slow" : Very_fast ? "very slow" : "slow");
 	if (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) dump(youwere, "very fast");
 	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) ) dump(youwere, "very slow");
-	if (Reflecting) dump(youhad, "reflection");
-	if (Free_action) dump(youhad, "free action");
+	if (Reflecting) dump(youhad, StrongReflecting ? "powerful reflection" : "reflection");
+	if (Free_action) dump(youhad, StrongFree_action ? "very free action" : "free action");
 	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) dump(youhad, "fixed abilities");
 	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
 		dump("  ", "You would have been depetrified");
@@ -9650,8 +9670,8 @@ minimal_enlightenment()
 		if (Vomiting) sprintf(eos(statline), "vomiting, ");
 		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
-		if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && u.urealedibility && u.uhunger >= 4500) sprintf(eos(statline), "oversatiated, ");
-		else if(!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && strcmp(hux_stat[u.uhs], "        ")) sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
+		if (!YouAreThirsty && u.urealedibility && u.uhunger >= 4500) sprintf(eos(statline), "oversatiated, ");
+		else if(!YouAreThirsty && strcmp(hux_stat[u.uhs], "        ")) sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);
 
 		sprintf(eos(statline), ".");
 
@@ -11910,7 +11930,7 @@ const char *s;
 		}
 		return 0;
 	}
-	if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
+	if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8))) confdir();
 	return 1;
 }
 

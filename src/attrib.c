@@ -1212,6 +1212,9 @@ boolean	inc_or_dec;
 		if (Extra_wpn_practice) 
 			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : 0;
 
+		if (StrongExtra_wpn_practice) 
+			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : 0;
+
 #ifdef DEBUG
 		pline("%s, %s AEXE = %d",
 			(i == A_STR) ? "Str" : (i == A_WIS) ? "Wis" :
@@ -1236,7 +1239,7 @@ exerper()
 {
 	/* changes by Amy to make these happen less often, because they shouldn't dominate attribute training/abuse */
 
-	if(!(moves % 10)) {
+	if(!rn2(10)) {
 		/* Hunger Checks */
 
 		int hs = (u.uhunger > 2500) ? SATIATED :
@@ -1288,7 +1291,7 @@ exerper()
 	}
 
 	/* status checks */
-	if(!(moves % 50)) {
+	if(!rn2(50)) {
 #ifdef DEBUG
 		pline("exerper: Status checks");
 #endif

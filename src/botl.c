@@ -849,14 +849,14 @@ bot2str(char *newbot2)
 	}
 */
 
-	if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && u.urealedibility && u.uhunger >= 4500) 
+	if (!YouAreThirsty && u.urealedibility && u.uhunger >= 4500) 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Oversatiated" : "Ovs", newbot2);
 #else
 		strcat(nb = eos(nb), flags.showlongstats ? " Oversatiated" : " Ovs");
 #endif
 
-	else if(!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && strcmp(hu_stat[u.uhs], "        "))
+	else if(!YouAreThirsty && strcmp(hu_stat[u.uhs], "        "))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? hu_stat[u.uhs] : hu_abbrev_stat[u.uhs], newbot2);
 #else
@@ -1204,7 +1204,7 @@ boolean reconfig;
 #endif
     if (flags.time)
 	*rv++ = reconfig ? "time" : (sprintf(tim, "%ld", moves), tim);
-    if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) ) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
+    if (!YouAreThirsty) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
 	    hu_stat[u.uhs] : "";
     *rv++ = reconfig ? "encumberance" : enc_stat[near_capacity()];
     *rv++ = reconfig ? "flags" : (sprintf(flgs, "%lX",

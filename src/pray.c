@@ -768,8 +768,10 @@ aligntyp resp_god;
 	    case 13:	
 			godvoice(resp_god,(char *)0);
 			verbalize("Apres moi, le deluge!");
-			water_damage(invent, FALSE, FALSE);
-			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+				water_damage(invent, FALSE, FALSE);
+				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			}
 			if (Burned) make_burned(0L, TRUE);
 			break;
 	    case 14:	
@@ -2375,7 +2377,7 @@ boolean praying;	/* false means no messages should be given */
     int alignment;
 	int maedhrosbonus = (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) ? 250 : 0;
 
-    p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(Conf_resist ? 1000 : 100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
+    p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(StrongConf_resist ? 10000 : Conf_resist ? 1000 : 100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
     p_trouble = in_trouble();
 
     if (is_demon(youmonst.data) && (p_aligntyp != A_CHAOTIC) && !Race_if(PM_MAZKE) && !Race_if(PM_BORG) && !Race_if(PM_AUREAL) ) {

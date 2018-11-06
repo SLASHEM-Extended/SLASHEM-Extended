@@ -391,7 +391,7 @@ use_stethoscope(obj)
 		}
 		return res;
 	}
-	if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
+	if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8))) confdir();
 	if (!u.dx && !u.dy) {
 		ustatusline();
 		return res;
@@ -883,7 +883,7 @@ struct obj *obj;
 	if(!u.dx && !u.dy && !u.dz) {
 		if(vis && !Invisible) {
 		    if (u.umonnum == PM_FLOATING_EYE) {
-			if (!Free_action || !rn2(20)) {
+			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
 			pline(Hallucination ?
 			      "Yow!  The mirror stares back!" :
 			      "Yikes!  You've frozen yourself!");
@@ -1811,7 +1811,7 @@ int magic; /* 0=Physical, otherwise skill level */
 		 */
 		pline(Hallucination ? "The referee suggests you to try another move!" : "Illegal move!");
 		return 0;
-	} else if (distu(cc.x, cc.y) > (magic ? 6+magic*3 : 9)) {
+	} else if (distu(cc.x, cc.y) > (magic ? (6 + magic * 3 + (StrongJumping ? 3 : 0) ) : StrongJumping ? 12 : 9)) {
 		pline(Hallucination ? "Now that would be a world-class jump." : "Too far!");
 		return 0;
 	} else if (!cansee(cc.x, cc.y)) {
@@ -1932,7 +1932,7 @@ register struct obj *obj;
 		return;
 	}
 	if (touch_petrifies(&mons[corpse->corpsenm])
-		&& !Stone_resistance && (!uarmg || FingerlessGloves) ) {
+		&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (!uarmg || FingerlessGloves) ) {
 	    char kbuf[BUFSZ];
 
 	    if (poly_when_stoned(youmonst.data))
@@ -2061,7 +2061,7 @@ register struct obj *obj;
 		return;
 	}
 	if (touch_petrifies(&mons[corpse->corpsenm])
-		&& !Stone_resistance && (!uarmg || FingerlessGloves) ) {
+		&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (!uarmg || FingerlessGloves) ) {
 	    char kbuf[BUFSZ];
 
 	    if (poly_when_stoned(youmonst.data))
@@ -3240,7 +3240,7 @@ struct obj *obj;
     }
     if (!getdir((char *)0)) return res;
 
-    if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))) confdir();
+    if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8))) confdir();
     rx = u.ux + u.dx;
     ry = u.uy + u.dy;
 
@@ -3427,7 +3427,7 @@ struct obj *obj;
 		    You("snatch %s %s!", s_suffix(mon_nam(mtmp)), onambuf);
 		    if (otmp->otyp == CORPSE &&
 			    touch_petrifies(&mons[otmp->corpsenm]) &&
-			    (!uarmg || FingerlessGloves) && !Stone_resistance &&
+			    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			    !(poly_when_stoned(youmonst.data) &&
 				polymon(PM_STONE_GOLEM))) {
 			char kbuf[BUFSZ];
@@ -4512,7 +4512,7 @@ doapply()
 	char class_list[MAXOCLASSES+2];
 	boolean noartispeak = FALSE; /* if item was vaporized, don't call arti_speaks because segfaults despite fail safe */
 
-	if (u.powerfailure || (isselfhybrid && (moves % 3 == 0) ) ) {
+	if (u.powerfailure || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) {
 		pline("Your power's down, and therefore you cannot apply anything.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;

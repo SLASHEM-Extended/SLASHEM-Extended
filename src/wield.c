@@ -394,7 +394,7 @@ boolean put_away;
 		}
 	    } else
 		You("are already empty %s.", body_part(HANDED));
-	} else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && wep->otyp == CORPSE
+	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == CORPSE
 				&& touch_petrifies(&mons[wep->corpsenm])) {
 	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
 	    char kbuf[BUFSZ];
@@ -403,7 +403,7 @@ boolean put_away;
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
 	    sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
-	} else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && wep->otyp == EGG
+	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == EGG
 				&& touch_petrifies(&mons[wep->corpsenm])) {
 	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
 	    char kbuf[BUFSZ];
@@ -937,7 +937,7 @@ can_twoweapon()
 	    pline("%s resists being held second to another weapon!",
 		    Yname2(uswapwep));
 #endif
-	else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && 
+	else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && 
 		(uswapwep && uswapwep->otyp == CORPSE &&                   
                 (touch_petrifies(&mons[uswapwep->corpsenm])))) {
 	    char kbuf[BUFSZ];
@@ -946,7 +946,7 @@ can_twoweapon()
 		    mons[uswapwep->corpsenm].mname, body_part(HAND));
 	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
-        } 	else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && 
+        } 	else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && 
 		(uswapwep && uswapwep->otyp == EGG &&
                 (touch_petrifies(&mons[uswapwep->corpsenm])))) {
 	    char kbuf[BUFSZ];

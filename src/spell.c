@@ -358,13 +358,13 @@ cursed_book(bp)
 		}
 		/* temp disable in_use; death should not destroy the book */
 		bp->in_use = FALSE;
-		losestr(Poison_resistance ? rn1(2,1) : rn1(4,3));
+		losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3));
 		losehp(rnd(Poison_resistance ? 6 : 10),
 		       "contact-poisoned spellbook", KILLED_BY_AN);
 		bp->in_use = TRUE;
 		break;
 	case 6:
-		if(Antimagic) {
+		if(Antimagic && rn2(StrongAntimagic ? 20 : 5) ) {
 		    shieldeff(u.ux, u.uy);
 		    pline_The("book %s, but you are unharmed!", explodes);
 		} else {
@@ -1361,7 +1361,7 @@ void
 age_spells()
 {
 	int i;
-	if (Keen_memory && moves % 3 == 0)
+	if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5))
 		return;
 	/*
 	 * The time relative to the hero (a pass through move
@@ -2180,7 +2180,7 @@ castanyway:
 		}
 	}
 
-	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && rn2(Conf_resist ? 2 : 10) ) || (rnd(100) > chance)) {
+	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && (!StrongConf_resist || !rn2(3)) && rn2(Conf_resist ? 2 : 10) ) || (rnd(100) > chance)) {
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -2635,7 +2635,7 @@ magicalenergychoice:
 		    case 3:
 			pline("A%s electric shock shoots through your body!",
 			      (Shock_resistance) ? "n" : " massive");
-			losehp(Shock_resistance ? rnd(6) : rnd(30),
+			losehp(StrongShock_resistance ? rnd(2) : Shock_resistance ? rnd(6) : rnd(30),
 			       "electric chair", KILLED_BY_AN);
 			exercise(A_CON, FALSE);
 			break;
@@ -5082,7 +5082,7 @@ secureidchoice:
 
 	case SPE_ACID_INGESTION:
 		pline("Sulfuric acid forms in your mouth...");
-		if (Acid_resistance) {
+		if (Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
 			pline("This tastes %s.", Hallucination ? "tangy" : "sour");
 		} else {
 			pline("This burns a lot!");
@@ -5680,7 +5680,10 @@ totemsummonchoice:
 				u.uenmax -= rnd(5);
 				if (u.uenmax < 0) u.uenmax = 0;
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
-				if (Free_action) {
+				if (StrongFree_action) {
+				    nomul(-(rnd(3)), "buried by an avalanche", TRUE);
+					nomovemsg = "You finally dig yourself out of the debris.";
+				} else if (Free_action) {
 				    nomul(-(rnd(5)), "buried by an avalanche", TRUE);
 					nomovemsg = "You finally dig yourself out of the debris.";
 				} else {
@@ -5933,7 +5936,7 @@ totemsummonchoice:
 
 			pline("The poison spills over you!");
 
-			if (!rn2(Poison_resistance ? 5 : 3)) {
+			if (!rn2(StrongPoison_resistance ? 10 : Poison_resistance ? 5 : 3)) {
 				int typ = rn2(A_MAX);
 				poisontell(typ);
 				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE);
@@ -7061,7 +7064,7 @@ losespells()
 	boolean confused = (Confusion != 0);
 	int  n, nzap, i;
 
-	if (Keen_memory && rn2(20)) return;
+	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 
 	book = 0;
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)

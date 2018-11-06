@@ -163,7 +163,8 @@ register struct monst *priest;
 	gy += rn1(3,-1);
 
 	if(!priest->mpeaceful ||
-	   (Conflict && !resist(priest, RING_CLASS, 0, 0))) {
+	   (Conflict && !resist(priest, RING_CLASS, 0, 0)) ||
+	   (StrongConflict && !resist(priest, RING_CLASS, 0, 0))) {
 		if(monnear(priest, u.ux, u.uy)) {
 			if(Displaced)
 				Your("displaced image doesn't fool %s!",

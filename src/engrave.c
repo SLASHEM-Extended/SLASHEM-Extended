@@ -1076,7 +1076,7 @@ can_reach_floor()
 	return (boolean)(!u.uswallow &&
 			/* Restricted/unskilled riders can't reach the floor */
 			!(u.usteed && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
-			 (!Levitation || is_table(u.ux, u.uy) ||
+			 ((!Levitation || StrongLevitation) || is_table(u.ux, u.uy) ||
 			  Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)));
 }
 #endif /* OVLB */

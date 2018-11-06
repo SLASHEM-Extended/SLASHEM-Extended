@@ -3725,6 +3725,7 @@ int degree;
     if (skill != P_NONE) {
 	advance_before = can_advance(skill, FALSE);
 	if (Extra_wpn_practice) degree *= 2;
+	if (StrongExtra_wpn_practice) degree *= 2;
 
 	if (Role_if(PM_ANACHRONOUNBINDER) && u.acutraining > 0) degree *= 2;
 

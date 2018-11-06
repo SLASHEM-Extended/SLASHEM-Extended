@@ -134,7 +134,7 @@ use_saddle(otmp)
 	    return 1;
 	}
 	ptr = mtmp->data;
-	if (touch_petrifies(ptr) && (!uarmg || FingerlessGloves) && !Stone_resistance) {
+	if (touch_petrifies(ptr) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 	    char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
@@ -377,7 +377,7 @@ mount_steed(mtmp, force)
 	}
 	ptr = mtmp->data;
 	/* Amy edit: you should be able to ride as long as your body is sufficiently covered in clothing */
-	if (touch_petrifies(ptr) && !Stone_resistance && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) ) {
+	if (touch_petrifies(ptr) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) ) {
 	    char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
