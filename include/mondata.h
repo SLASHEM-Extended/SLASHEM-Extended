@@ -325,6 +325,7 @@
 
 #define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \
 				 (ptr)->mlet == S_VORTEX || \
+				 (ptr)->mlet == S_TURRET || \
 				 (ptr)->mlet == S_TROVE || \
 				 (ptr) == &mons[PM_MANES] || (ptr) == &mons[PM_SPECTRAL_WARRIOR])
 
