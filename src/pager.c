@@ -1734,7 +1734,12 @@ append_newline_to_pline_string(char * buf)
 		/* there is limited amount of lines available for message and wide text field. Adding enters would make text hard to read */
 		return;
 	#endif
+#ifdef BIGSLEX
+	if (addditional_required > 125) addditional_required = 125;
+#else
 	if (addditional_required > 80) addditional_required = 80;
+#endif
+
 	while(addditional_required--) {
 		strcat(buf, " ");
 	}
