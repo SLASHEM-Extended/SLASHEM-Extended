@@ -2,7 +2,11 @@
 #	MS/PC-DOS ANSI.SYS termcap
 #
 ansi|color|ansi-color|ibm|ibmpc|ANSI.SYS color:\
+#ifdef BIGSLEX
+	:co#125:li#44:bs:pt:bl=^G:le=^H:do=^J:\
+#else
 	:co#80:li#24:bs:pt:bl=^G:le=^H:do=^J:\
+#endif
 	:cl=\E[H\E[2J:ce=\E[K:\
 	:ho=\E[H:cm=\E[%i%d;%dH:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -11,7 +15,11 @@ ansi|color|ansi-color|ibm|ibmpc|ANSI.SYS color:\
 	:us=\E[1;31;44m:ue=\E[0;44m:\
 	:mb=\E[5m:md=\E[1m:me=\E[0;44m:
 mono|ansi-mono|ANSI.SYS:\
+#ifdef BIGSLEX
+	:co#125:li#44:bs:pt:bl=^G:le=^H:do=^J:\
+#else
 	:co#80:li#24:bs:pt:bl=^G:le=^H:do=^J:\
+#endif
 	:cl=\E[H\E[2J:ce=\E[K:\
 	:ho=\E[H:cm=\E[%i%d;%dH:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -31,7 +39,11 @@ mono|ansi-mono|ANSI.SYS:\
 #	and end of underline (ue).
 #
 nnansi-mono|NNANSI.SYS:\
+#ifdef BIGSLEX
+	:co#125:li#45:bs:pt:bl=^G:le=^H:do=^J:\
+#else
 	:co#80:li#25:bs:pt:bl=^G:le=^H:do=^J:\
+#endif
 	:cl=\E[2J:cd=\E[J:ce=\E[K:\
 	:ho=\E[H:cm=\E[%i%d;%dH:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -40,7 +52,11 @@ nnansi-mono|NNANSI.SYS:\
 	:mb=\E[5m:md=\E[1m:mh=\E[2m:mr=\E[7m:me=\E[m:\
 	:al=\E[L:dl=\E[M:ic=\E[@:dc=\E[P:
 nnansi|NNANSI.SYS color:\
+#ifdef BIGSLEX
+	:co#125:li#45:bs:pt:bl=^G:le=^H:do=^J:\
+#else
 	:co#80:li#25:bs:pt:bl=^G:le=^H:do=^J:\
+#endif
 	:cl=\E[2J:cd=\E[J:ce=\E[K:\
 	:ho=\E[H:cm=\E[%i%d;%dH:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -50,7 +66,11 @@ nnansi|NNANSI.SYS color:\
 	:mb=\E[5m:md=\E[1m:mh=\E[2m:mr=\E[7m:me=\E[0;44m:\
 	:al=\E[L:dl=\E[M:ic=\E[@:dc=\E[P:
 nansi-mono|zansi-mono|N/ZANSI.SYS:\
+#ifdef BIGSLEX
+	:co#125:li#45:bs:pt:bl=^G:le=^H:do=^J:\
+#else
 	:co#80:li#25:bs:pt:bl=^G:le=^H:do=^J:\
+#endif
 	:cl=\E[2J:ce=\E[K:\
 	:ho=\E[H:cm=\E[%i%d;%dH:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -60,7 +80,11 @@ nansi-mono|zansi-mono|N/ZANSI.SYS:\
 	:mb=\E[5m:md=\E[1m:mr=\E[7m:me=\E[m:\
 	:al=\E[L:dl=\E[M:ic=\E[@:dc=\E[P:
 nansi|zansi|N/ZANSI.SYS color:\
+#ifdef BIGSLEX
+	:co#125:li#45:bs:pt:bl=^G:le=^H:do=^J:\
+#else
 	:co#80:li#25:bs:pt:bl=^G:le=^H:do=^J:\
+#endif
 	:cl=\E[2J:ce=\E[K:\
 	:ho=\E[H:cm=\E[%i%d;%dH:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -73,7 +97,11 @@ nansi|zansi|N/ZANSI.SYS color:\
 # For ST NetHack:
 #       for VT100/200/&c in VT52 mode, add :ti=\E[?2l:
 vt52|atari|DEC VT52:\
+#ifdef BIGSLEX
+	:co#125:li#44:bs:pt:bl=^G:le=^H:do=^J:\
+#else
 	:co#80:li#24:bs:pt:bl=^G:le=^H:do=^J:\
+#endif
 	:cl=\EH\EJ:ce=\EK:cd=\EJ:\
 	:ho=\EH:cm=\EY%+ %+ :\
 	:up=\EA:do=\EB:le=\EC:ri=\ED:nd=\EC:\
@@ -83,7 +111,11 @@ vt52|atari|DEC VT52:\
 # For Amiga or VMS NetHack:
 #       VT100 or clone without the advanced video option installed
 vt100|amiga|vt100-80|vt100-noavo|DEC VT100:\
+#ifdef BIGSLEX
+	:co#125:li#44:bs:pt:am:mi:bl=^G:le=^H:do=^J:xo:vt#3:\
+#else
 	:co#80:li#24:bs:pt:am:mi:bl=^G:le=^H:do=^J:xo:vt#3:\
+#endif
 	:cl=50\E[H\E[J:ce=3\E[K:cd=50\E[J:\
 	:ho=\E[H:cm=5\E[%i%d;%dH:cs=\E[%i%d;%dr:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -121,7 +153,11 @@ vt200-132|vt300-132:\
 # For really complete ANSI emulations (FANSI-CONSOLE?):
 #
 AX|ANSI X3.64|full ANSI X3.64 (1977) standard:\
+#ifdef BIGSLEX
+	:co#125:li#44:bs:pt:am:mi:bl=^G:le=^H:\
+#else
 	:co#80:li#24:bs:pt:am:mi:bl=^G:le=^H:\
+#endif
 	:cl=\E[2J:ce=\E[K:cd=\E[J:\
 	:ho=\E[H:cm=\E[%i%d;%dH:cs=\E[%i%d;%dr:\
 	:up=\E[A:do=\E[B:le=\E[C:ri=\E[D:nd=\E[C:\
@@ -135,7 +171,11 @@ AX|ANSI X3.64|full ANSI X3.64 (1977) standard:\
 # For PC-9800 NetHack:
 #
 pc9800|pc9801|pc98|NEC PC-9800 Series:\
+#ifdef BIGSLEX
+	:co#125:li#45:\
+#else
 	:co#80:li#25:\
+#endif
 	:cm=\E[%i%d;%dH:ho=\E[H:ll=\E[25;1H:cr=^M:le=^H:nd=^L:\
 	:up=\EM:do=\ED:bw:nw=\EE:sc=\E[s:rc=\E[u:ta=^I:bc=^H:bs:nl=\ED:\
 	:am:xn:\
@@ -158,11 +198,19 @@ pc9800|pc9801|pc98|NEC PC-9800 Series:\
 #
 debug|debugging entry:\
 	:ae=<ae>:AL=<AL%d>:al=<al>:am:as=<as>:bl=<bl>:bs:bt=<bt>:bw:CC=<CC>:\
+#ifdef BIGSLEX
+	:cd=<cd>:ce=<ce>:ch=<ch%d>:cl=<cl>:cm=<cm%d,%d>:co#125:cr=<cr>:\
+#else
 	:cd=<cd>:ce=<ce>:ch=<ch%d>:cl=<cl>:cm=<cm%d,%d>:co#80:cr=<cr>:\
+#endif
 	:cs=<cs%d,%d>:ct=<ct>:cv=<cv%d>:da:db:DC=<DC%d>:dc=<dc>:DL=<DL%d>:\
 	:dl=<dl>:dm=<dm>:DO=<DO%d>:do=<do>:ds=<ds>:ec=<ec%d>:ed=<ed>:ei=<ei>:\
 	:es:fs=<fs>:ho=<ho>:hs:IC=<IC%d>:ic=<ic>:im=<im>:ip=<ip>:is=<is>:\
+#ifdef BIGSLEX
+	:it#8:ke=<ke>:LE=<LE%d>:le=<le>:li#44:ll=<ll>:mb=<mb>:md=<md>:me=<me>:\
+#else
 	:it#8:ke=<ke>:LE=<LE%d>:le=<le>:li#24:ll=<ll>:mb=<mb>:md=<md>:me=<me>:\
+#endif
 	:mh=<mh>:mi:mk=<mk>:mm=<mm>:mo=<mo>:mp=<mp>:mr=<mr>:ms=<ms>:nd=<nd>:\
 	:nw=<nw>:pc=<pc>:pf=<pf>:pO=<pO%d>:po=<po>:ps=<ps>:rc=<rc>:RI=<RI%d>:\
 	:rp=<rp%.%d>:rs=<rs>:sc=<sc>:se=<se>:SF=<SF%d>:sf=<sf>:so=<so>:\
