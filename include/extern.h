@@ -1245,6 +1245,8 @@ E boolean have_blackbreathcurse(void);
 
 E boolean have_mothrelay(void);
 
+E boolean usingquestarti(void);
+
 E struct obj *o_on(unsigned int,struct obj *);
 E boolean obj_here(struct obj *,int,int);
 E boolean wearing_armor(void);

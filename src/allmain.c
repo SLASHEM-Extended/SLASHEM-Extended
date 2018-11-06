@@ -1926,6 +1926,20 @@ newbossS:
 		/* put things that don't have anything to do with traps below the trapsdone mark --Amy */
 trapsdone:
 
+		if (quest_status.touched_artifact) { /* using the artifact a lot improves alignment --Amy */
+
+			if (usingquestarti()) {
+				u.artifactaffinity++;
+				if (u.artifactaffinity > (u.artifinitythreshold + 1000)) {
+					u.artifinitythreshold += 1000;
+					if (u.artifinitythreshold >= 10000) u.alignlim += 1;
+					adjalign(rnd(10));
+				}
+			} else {
+				u.artifactaffinity -= 10;
+			}
+		}
+
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");

@@ -1174,6 +1174,9 @@ struct you {
 	int sokosolveboulder;
 	int sokosolveuntrap;
 
+	int artifactaffinity;	/* to check how much (or not) you use your quest artifact */
+	int artifinitythreshold;	/* highest value reached */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

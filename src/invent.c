@@ -1287,6 +1287,63 @@ have_mothrelay()
 	return(FALSE);
 }
 
+/* are you using your quest artifact? if it's equippable, you need to actually have it equipped --Amy */
+boolean
+usingquestarti()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+
+		if (otmp->oartifact && is_quest_artifact(otmp)) {
+			if (otmp->oclass == WEAPON_CLASS || is_weptool(otmp)) {
+				if (uwep && uwep == otmp) return TRUE;
+				else if (uswapwep && uswapwep == otmp && u.twoweap) return TRUE;
+				else return FALSE;
+			} else if (is_blindfold_slot(otmp)) {
+				if (ublindf && ublindf == otmp) return TRUE;
+				else return FALSE;
+			} else if (otmp->oclass == RING_CLASS) {
+				if (uleft && uleft == otmp) return TRUE;
+				else if (uright && uright == otmp) return TRUE;
+				else return FALSE;
+			} else if (otmp->oclass == AMULET_CLASS) {
+				if (uamul && uamul == otmp) return TRUE;
+				else return FALSE;
+			} else if (otmp->oclass == IMPLANT_CLASS) {
+				if (uimplant && uimplant == otmp) return TRUE;
+				else return FALSE;
+			} else if (is_boots(otmp)) {
+				if (uarmf && uarmf == otmp) return TRUE;
+				else return FALSE;
+			} else if (is_gloves(otmp)) {
+				if (uarmg && uarmg == otmp) return TRUE;
+				else return FALSE;
+			} else if (is_helmet(otmp)) {
+				if (uarmh && uarmh == otmp) return TRUE;
+				else return FALSE;
+			} else if (is_cloak(otmp)) {
+				if (uarmc && uarmc == otmp) return TRUE;
+				else return FALSE;
+			} else if (is_shield(otmp)) {
+				if (uarms && uarms == otmp) return TRUE;
+				else return FALSE;
+			} else if (is_shirt(otmp)) {
+				if (uarmu && uarmu == otmp) return TRUE;
+				else return FALSE;
+			} else if (is_suit(otmp)) {
+				if (uarm && uarm == otmp) return TRUE;
+				if (uskin && uskin == otmp) return TRUE;
+				else return FALSE;
+			} else { /* not equippable - enough to have it in open inventory */
+				return TRUE;
+			}
+
+		}
+	}
+	return(FALSE);
+}
+
 boolean
 have_sleepstone()
 {

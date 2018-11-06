@@ -7383,6 +7383,9 @@ u_init()
 
 	u.smexyberries = 0;	/* for a specific artifact */
 
+	u.artifactaffinity = 0;
+	u.artifinitythreshold = 0;
+
 	u.pokelieresistances = 0;
 	u.pokeliegeneration = 0;
 	u.pokelieflags = 0;
