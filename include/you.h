@@ -1114,7 +1114,7 @@ struct you {
 	int homosexual;	/* starts at 0 = undefined; 1 = hetero, 2 = homo, defined when you have intercourse with a foocubus */
 
 	boolean petcollectitems; /* variables for directive technique */
-	boolean petattackenemies;
+	int petattackenemies;
 	boolean petcaneat;
 	boolean petcanfollow;
 

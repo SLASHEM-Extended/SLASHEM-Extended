@@ -8981,13 +8981,18 @@ madnesseffect:
 					}
 					break;
 				case 2:
-					if (u.petattackenemies) {
-						u.petattackenemies = 0;
-						pline("Your pets can no longer attack monsters.");
-					} else {
-						u.petattackenemies = 1;
-						pline("Your pets can attack monsters now.");
+					if (u.petattackenemies == 2) {
+						u.petattackenemies = rn2(3) ? 0 : 1;
+					} else if (u.petattackenemies == 1) {
+						u.petattackenemies = rn2(3) ? 0 : 2;
+					} else if (u.petattackenemies == 0) {
+						u.petattackenemies = rn2(2) ? 2 : 1;
 					}
+					if (u.petattackenemies == 2) pline("Your pets can attack all monsters now.");
+					else if (u.petattackenemies == 1) pline("Your pets can attack hostile monsters now, but will leave peaceful ones alone.");
+					else pline("Your pets can't attack monsters now.");
+
+
 					break;
 				case 3:
 					if (u.petcaneat) {

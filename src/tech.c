@@ -5359,11 +5359,19 @@ revid_end:
 		}
 
 		if (P_SKILL(P_PETKEEPING) >= P_EXPERT) {
-			pline("Currently your pets can%s attack monsters.", u.petattackenemies ? "" : "'t");
+			pline("Currently your pets can%s attack%s monsters.", u.petattackenemies ? "" : "'t", u.petattackenemies == 2 ? " both hostile and peaceful" : u.petattackenemies == 1 ? " only hostile" : "");
 			if (yn("Change it?") == 'y') {
-				if (u.petattackenemies) u.petattackenemies = 0;
-				else u.petattackenemies = 1;
-				pline("Your pets can%s attack monsters now.", u.petattackenemies ? "" : "'t");
+				pline("You got the following options: make the pet attack everything, make it attack only hostile monsters, or prevent it from attacking anything.");
+				if (yn("Do you want your pets to attack everything?") == 'y') {
+					u.petattackenemies = 2;
+					pline("Your pets can attack all monsters now.");
+				} else if (yn("Do you want your pets to only attack hostile creatures?") == 'y') {
+					u.petattackenemies = 1;
+					pline("Your pets can attack hostile monsters now, but will leave peaceful ones alone.");
+				} else if (yn("Do you want your pets to not attack any monsters?") == 'y') {
+					u.petattackenemies = 0;
+					pline("Your pets can't attack monsters now.");
+				}
 			}
 		}
 

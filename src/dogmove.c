@@ -957,6 +957,8 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data->mlet == S_TROVE) ||
 	/* petshielder egotype is never attacked by pets either */
 			 (mtmp2->egotype_petshielder) ||
+	/* directive can be used to make them not attack peacefuls */
+			 (u.petattackenemies == 1 && mtmp2->mpeaceful) ||
 	/* Moldoux is special-cased */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
 	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them

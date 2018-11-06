@@ -2105,11 +2105,7 @@ trapsdone:
 					}
 					break;
 				case 2:
-					if (u.petattackenemies) {
-						u.petattackenemies = 0;
-					} else {
-						u.petattackenemies = 1;
-					}
+					u.petattackenemies = rn2(2) ? 0 : rn2(2) ? 1 : 2;
 					break;
 				case 3:
 					if (u.petcaneat) {
