@@ -193,6 +193,7 @@ int otyp,oquan;
 	}
 	otmp->owt = weight(otmp);
 	if (otyp == ORCISH_ARROW) otmp->opoisoned = TRUE;
+	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_POISON_ARROW_FROG]) otmp->opoisoned = TRUE;
 	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
@@ -6517,6 +6518,11 @@ register struct	monst	*mtmp;
 
 	    case S_LIZARD:
 
+		if (mtmp->data == &mons[PM_POISON_ARROW_FROG]) {
+			(void) mongets(mtmp, CROSSBOW);
+			m_initthrow(mtmp, CROSSBOW_BOLT, 40);
+		}
+
 		if (mtmp->data == &mons[PM_ALMUTH_S_CUDDLY_SOFT_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); }
 		if (mtmp->data == &mons[PM_YVONNE_S_SOFT_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); }
 		if (mtmp->data == &mons[PM_JENNIFER_S_LOVELY_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); }
@@ -7382,6 +7388,11 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_GHOST:
+
+		if (ptr == &mons[PM_GUN_SPIRIT]) {
+		  	(void) mongets(mtmp, FLINTLOCK);
+		  	m_initthrow(mtmp, BULLET, 10);
+		}
 
 		if (mtmp->data == &mons[PM_CACKLING_SPIRIT]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (mtmp->data == &mons[PM_HAUNTED_SPIRIT]) (void) mongets(mtmp, WAN_CURSE_ITEMS);
@@ -8416,6 +8427,11 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ANNE_S_SNEAKER]) {
 			(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
 			(void) mongets(mtmp, SOFT_SNEAKERS);
+		}
+
+		if (mtmp->data == &mons[PM_GUNFISH]) {
+			(void) mongets(mtmp, HAND_BLASTER);
+			m_initthrow(mtmp, BLASTER_BOLT, 20);
 		}
 
 		if (mtmp->data == &mons[PM_DARK_FORCE_GIRL]) {
@@ -17284,6 +17300,9 @@ loopback:
 		if (ct > 0 && (Role_if(PM_NOBLEMAN) && is_dnethackmonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(ptr))) ct += 3;
 		if (ct > 0 && (Role_if(PM_OTAKU) && is_elonamonster(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_WISP) && is_elonamonster(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_ELONA_SNAIL) && is_elonamonster(ptr))) ct += 10;
+		if (ct > 0 && (Race_if(PM_WEAPONIZED_DINOSAUR) && is_elonamonster(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_OFFICER) && always_hostile(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_OTAKU) && is_animemonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_PALADIN) && is_diablomonster(ptr))) ct += 5;
@@ -18080,6 +18099,9 @@ int     spc;
 		if ((Role_if(PM_NOBLEMAN) && is_dnethackmonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(&mons[last]))) num += 3;
 		if ((Role_if(PM_OTAKU) && is_elonamonster(&mons[last]))) num += 3;
+		if ((Race_if(PM_WISP) && is_elonamonster(&mons[last]))) num += 3;
+		if ((Race_if(PM_ELONA_SNAIL) && is_elonamonster(&mons[last]))) num += 10;
+		if ((Race_if(PM_WEAPONIZED_DINOSAUR) && is_elonamonster(&mons[last]))) num += 2;
 		if ((Role_if(PM_OFFICER) && always_hostile(&mons[last]))) num += 2;
 		if ((Role_if(PM_OTAKU) && is_animemonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_PALADIN) && is_diablomonster(&mons[last]))) num += 5;
@@ -18590,6 +18612,9 @@ int     spc;
 		if ((Role_if(PM_NOBLEMAN) && is_dnethackmonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(&mons[first]))) num -= 3;
 		if ((Role_if(PM_OTAKU) && is_elonamonster(&mons[first]))) num -= 3;
+		if ((Race_if(PM_WISP) && is_elonamonster(&mons[first]))) num -= 3;
+		if ((Race_if(PM_ELONA_SNAIL) && is_elonamonster(&mons[first]))) num -= 10;
+		if ((Race_if(PM_WEAPONIZED_DINOSAUR) && is_elonamonster(&mons[first]))) num -= 2;
 		if ((Role_if(PM_OFFICER) && always_hostile(&mons[first]))) num -= 2;
 		if ((Role_if(PM_OTAKU) && is_animemonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_PALADIN) && is_diablomonster(&mons[first]))) num -= 5;

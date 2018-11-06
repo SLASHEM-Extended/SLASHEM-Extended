@@ -1951,6 +1951,20 @@ trapsdone:
 			}
 		}
 
+#ifdef BIGSLEX
+
+		/* ugh ugly hack because plane of air is weird with the bigger dungeon */
+		if (Is_airlevel(&u.uz) && u.ux == 1 && u.uy == 0) {
+			int telehackx, telehacky;
+			telehackx = 26 + rn2(11);
+			telehacky = 21 + rn2(11);
+
+			if (teleok(telehackx, telehacky, FALSE)) {
+			teleds(telehackx, telehacky, FALSE);
+			}
+		}
+#endif
+
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");
