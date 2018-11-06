@@ -83,12 +83,21 @@ int variety;
 	xlou = ylou = 1;
 	xreal = 2 + rn2(10);
 	yreal = 2 + rn2(5);
+#ifdef BIGSLEX
+	if (!rn2(100)) xreal += rnd(80);
+	if (!rn2(100)) yreal += rnd(24);
+	if (!rn2(10)) xreal += rnd(40);
+	if (!rn2(10)) yreal += rnd(12);
+	if (xreal > 80) xreal = 80;
+	if (yreal > 20) yreal = 20;
+#else
 	if (!rn2(100)) xreal += rnd(40);
 	if (!rn2(100)) yreal += rnd(12);
 	if (!rn2(10)) xreal += rnd(20);
 	if (!rn2(10)) yreal += rnd(6);
 	if (xreal > 50) xreal = 50;
 	if (yreal > 10) yreal = 10;
+#endif
 
 	xlou += rn2(COLNO - (xreal + 1));
 	ylou += rn2(ROWNO - (yreal + 1));

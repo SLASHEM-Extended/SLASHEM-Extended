@@ -437,6 +437,8 @@ typedef unsigned char	uchar;
 #define EATEN_MEMORY	/* WAC -- Remember which monsters have been eaten (unconditionally enabled by Amy) */
 #define STEED		/* The ability to ride monsters (unconditionally enabled by Amy) */
 
+/* #define BIGSLEX */	/* BIGslex - increases dungeon level size, by Amy */
+
 /* Roles */
 #define TOURIST		/* Tourist players with cameras and Hawaiian shirts (unconditionally enabled by Amy) */
 #define YEOMAN		/* KMH -- Yeoman class (unconditionally enabled by Amy) */
@@ -484,7 +486,7 @@ typedef unsigned char	uchar;
                       /* Only supported on Qt with NAS - Network Audio System */
 
 
-// #define BORG            // Fixed for non-DOS --ELR
+/* #define BORG */            // Fixed for non-DOS --ELR
 /* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
 /* #define CHARON */	/* Charon's boat, enables Cerebus - not implemented */
 #define SHOW_DMG        /* WAC made dmg reports optional (wac@intergate.bc.ca)*/

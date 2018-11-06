@@ -2516,6 +2516,19 @@ boolean anywhere;
 			if (vault)
 			    dx = dy = 1;
 			else {
+#ifdef BIGSLEX
+				dx = 2 + rn2((hx-lx > 28) ? 20 : 12);
+				dy = 2 + rn2(6);
+
+				if (!rn2(500) && trycnt < 200) dx += rnd(160);
+				if (!rn2(500) && trycnt < 200) dy += rnd(48);
+
+				if (!rn2(50) && trycnt < 200) dx += rnd(80);
+				if (!rn2(50) && trycnt < 200) dy += rnd(24);
+
+				if (!rn2(5) && trycnt < 200) dx += rnd(30);
+				if (!rn2(5) && trycnt < 200) dy += rnd(10);
+#else
 				dx = 2 + rn2((hx-lx > 28) ? 12 : 8);
 				dy = 2 + rn2(4);
 
@@ -2527,7 +2540,7 @@ boolean anywhere;
 
 				if (!rn2(10) && trycnt < 200) dx += rnd(20);
 				if (!rn2(10) && trycnt < 200) dy += rnd(6);
-
+#endif
 
 				/*if(dx*dy > 50)
 				    dy = 50/dx;*/

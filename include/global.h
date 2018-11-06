@@ -347,8 +347,13 @@ struct version_info {
  */
 
 /* size of terminal screen is (at least) (ROWNO+3) by COLNO */
+#ifdef BIGSLEX
+#define COLNO	125
+#define ROWNO	41
+#else
 #define COLNO	80
 #define ROWNO	21
+#endif
 
 #define MAXNROFROOMS	40	/* max number of rooms per level */
 #define MAX_SUBROOMS	24	/* max # of subrooms in a given room */

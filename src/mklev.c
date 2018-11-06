@@ -1060,6 +1060,9 @@ makecorridors()
 
 	int style = 0;
 	if (!rn2(5)) style = rnd(4);
+#ifdef BIGSLEX
+	style = rnd(4);
+#endif
 
 	/* sporkhack code to have different join mechanisms */
 	switch (style) {
