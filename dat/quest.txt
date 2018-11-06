@@ -490,6 +490,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Arc 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 #
 #       Occult Master
@@ -882,6 +889,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Occ 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -1277,6 +1291,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Cha 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -1670,6 +1691,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Elm 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -2116,6 +2144,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Gol 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -2516,6 +2551,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Abu 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -2947,6 +2989,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ama 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -3337,6 +3386,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Drd 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -3784,6 +3840,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Zoo 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -4228,6 +4291,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Lun 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -4676,6 +4746,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Sci 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -5120,6 +5197,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Nuc 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -5588,6 +5672,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Brd 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -6054,6 +6145,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Use 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -6499,6 +6597,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Div 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -6964,6 +7069,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Pok 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -7397,6 +7509,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Dea 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -7792,6 +7911,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Gan 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -8194,6 +8320,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ele 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -8595,6 +8728,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Poi 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -9048,6 +9188,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Spa 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -9515,6 +9662,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Cam 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -9917,6 +10071,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Aci 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -10336,6 +10497,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Tra 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -10736,6 +10904,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Pro 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -11135,6 +11310,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Kur 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -11541,6 +11723,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Trs 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -12000,6 +12189,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Top 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -12376,6 +12572,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Cou 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -12751,6 +12954,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Mys 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -13111,6 +13321,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Gof 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -13579,6 +13796,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Bar 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -14045,6 +14269,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Unb 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -14519,6 +14750,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Blo 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -14987,6 +15225,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Gun 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -15419,6 +15664,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Mar 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -15890,6 +16142,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Dru 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -16358,6 +16617,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Gla 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -16829,6 +17095,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Bin 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 #
 #	Anachronounbinder
@@ -17260,6 +17533,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Acu 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -17721,6 +18001,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ble 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -18176,6 +18463,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Cav 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -18635,6 +18929,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Fla 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -19092,6 +19393,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Fir 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -19591,6 +19899,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Con 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -20088,6 +20403,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Mur 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -20505,6 +20827,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Act 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -20974,6 +21303,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Hea 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -21428,6 +21764,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ice 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -21859,6 +22202,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Jed 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -22292,6 +22642,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Ana 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -22741,6 +23098,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Kni 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -23189,6 +23553,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Trc 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -23636,6 +24007,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Pal 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -24086,6 +24464,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Stu 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -24534,6 +24919,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Roc 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -24984,6 +25376,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Zyb 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -25431,6 +25830,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc War 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -25880,6 +26286,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Fen 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -26328,6 +26741,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Jus 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -26774,6 +27194,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Fig 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -27223,6 +27650,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Che 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -27664,6 +28098,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Mon 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -28107,6 +28548,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ota 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -28549,6 +28997,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Sai 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -28995,6 +29450,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Psi 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -29437,6 +29899,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Med 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -29882,6 +30351,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Nob 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -30321,6 +30797,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Pir 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -30759,6 +31242,13 @@ Bell Kaves is the location where imbuing takes place.
 You must also make sure to attach seven kandles
 to the kandelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be kursed...
+%E
+%Cc Kor 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -31215,6 +31705,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Nec 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -31618,6 +32115,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Fai 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -32067,6 +32571,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Pri 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -32529,6 +33040,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ran 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -32989,6 +33507,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Mas 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -33452,6 +33977,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Coo 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -33900,6 +34432,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Elp 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -34350,6 +34889,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Twe 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -34798,6 +35344,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Erd 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -35249,6 +35802,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Sli 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -35697,6 +36257,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Alt 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -36147,6 +36714,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Bos 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -36595,6 +37169,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Dun 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -37045,6 +37626,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ord 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -37494,6 +38082,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Tha 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -37947,6 +38542,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Mus 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -38396,6 +38998,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Gee 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -38844,6 +39453,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Gra 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -39289,6 +39905,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Rog 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -39731,6 +40354,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Pic 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -40181,6 +40811,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Ass 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -40623,6 +41260,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Fox 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -41067,6 +41711,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Loc 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -41526,6 +42177,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Sam 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -41980,6 +42638,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Mah 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -42387,6 +43052,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Fem 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -42845,6 +43517,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Dol 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -43306,6 +43985,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Nin 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -43751,6 +44437,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Sla 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -44203,6 +44896,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Tou 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -44654,6 +45354,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Wil 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -45101,6 +45808,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Art 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -45553,6 +46267,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Lad 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -46002,6 +46723,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Sex 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -46443,6 +47171,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Bul 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -46887,6 +47622,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Sup 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -47341,6 +48083,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Off 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -47749,6 +48498,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Sco 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -48173,6 +48929,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Hus 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -48622,6 +49385,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Gam 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -49065,6 +49835,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Und 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -49506,6 +50283,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Wan 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -49949,6 +50733,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Unt 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -50395,6 +51186,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Val 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -50839,6 +51637,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Jes 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -51307,6 +52112,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Yeo 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 #
@@ -51764,6 +52576,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Wiz 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -52224,6 +53043,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Rin 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -52682,6 +53508,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Sha 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -53142,6 +53975,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc For 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -53601,6 +54441,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Mid 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -54059,6 +54906,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Scr 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -54520,6 +55374,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Pol 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -54978,6 +55839,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Aug 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 
@@ -55438,6 +56306,13 @@ You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
 %E
+%Cc Lib 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
+%E
 
 
 
@@ -55897,6 +56772,13 @@ Bell Caves is the location where imbuing takes place.
 You must also make sure to attach seven candles
 to the candelabrum, otherwise it won't do what it ought to do.
 And the invocation tools better don't be cursed...
+%E
+%Cc Sag 00117
+This peculiar gray stone makes you feel both good and bad at once.
+It must surely have great magical power, but there seems to be
+some sort of curse on it too.
+Maybe if you somehow lift the curse, it will become a truly
+useful talisman that can protect you from harm?
 %E
 
 

@@ -552,7 +552,7 @@ struct obj *obj;
 		}
 
             achieveX.get_magresstone = 1;
-		/*qt_pager(QT_DEEPMINES);*/
+		qt_pager(QT_MAGRESSTONE);
 		obj->record_achieve_special = 0;
 		if (!u.deepminefinished) {
 			u.deepminefinished = 1;

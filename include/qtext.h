@@ -119,6 +119,8 @@ struct	qtlists {
 
 #define QT_VIBRATINGSQUARE	116	/* you stepped on the vibrating square for the first time */
 
+#define QT_MAGRESSTONE	117	/* you obtained the stone of magic resistance from the deep mines */
+
 /*
  *	Message defines for common text used in maledictions.
  */
