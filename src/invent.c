@@ -963,10 +963,19 @@ struct obj *obj;
 		if ((uleft && uleft->oartifact == ART_EVIL_DETECTOR) || (uright && uright->oartifact == ART_EVIL_DETECTOR)) obj->bknown = TRUE;
 	}
 
-	if (obj && (LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone())) {
-		obj->known = obj->bknown = obj->rknown = obj->dknown = FALSE;
-		if (OBJ_DESCR(objects[obj->otyp]) && (objects[obj->otyp].oc_name_known || objects[obj->otyp].oc_uname)) 
-			forget_single_object(obj->otyp);
+	if (obj && !rn2(4) && (LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone())) {
+		if (!rn2(5)) obj->known = FALSE;
+		if (!rn2(5)) obj->bknown = FALSE;
+		if (!rn2(5)) obj->rknown = FALSE;
+		if (!rn2(5)) obj->dknown = FALSE;
+		if (!rn2(5)) {
+			if (OBJ_DESCR(objects[obj->otyp]) && (objects[obj->otyp].oc_name_known || objects[obj->otyp].oc_uname)) 
+				forget_single_object(obj->otyp);
+			if (!obj->oartifact && !obj->fakeartifact && obj->onamelth) {
+				obj->onamelth = 0;
+				*ONAME(obj) = '\0';
+			}
+		}
 	}
 
 }
