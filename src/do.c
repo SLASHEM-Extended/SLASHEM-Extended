@@ -4036,7 +4036,11 @@ rerollchaloc:
 			    register xchar x, y;
 
 			    do {
+#ifdef BIGSLEX
+				x = (COLNO - 25 - rnd(5));
+#else
 				x = (COLNO - 2 - rnd(5));
+#endif
 				y = rn1(ROWNO - 4, 3);
 			    } while(occupied(x, y) ||
 				    IS_WALL(levl[x][y].typ) || IS_WATERTUNNEL(levl[x][y].typ));
