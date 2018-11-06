@@ -259,6 +259,7 @@
 #define M5_RANDOMIZED	0x00000200L		/* shambling horrors and similar monsters that are initialized in u_init.c */
 #define M5_JONADAB	0x00000400L		/* silly randomized monster created by jonadab's script */
 #define M5_EVIL	0x00000800L		/* evil patch monster; which ones count as such is determined by Amy :D */
+#define M5_ELONA	0x00001000L		/* Elona monster */
 
 #define MZ_TINY		0		/* < 2' */
 #define MZ_SMALL	1		/* 2-4' */

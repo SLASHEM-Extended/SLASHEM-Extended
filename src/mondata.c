@@ -451,7 +451,7 @@ max_passive_dmg(mdef, magr)
     uchar adtyp;
 
     for(i = 0; i < NATTK; i++)
-	if(mdef->data->mattk[i].aatyp == AT_NONE ||
+	if(mdef->data->mattk[i].aatyp == AT_NONE || mdef->data->mattk[i].aatyp == AT_RATH ||
 		mdef->data->mattk[i].aatyp == AT_BOOM) {
 	    adtyp = mdef->data->mattk[i].adtyp;
 	    if ((adtyp == AD_ACID && !resists_acid(magr)) ||

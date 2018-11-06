@@ -2747,6 +2747,9 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (ptr->mflags5 & M5_EVIL) {
 		strcat(description, " Origin: Evil Variant.");
 	}
+	if (ptr->mflags5 & M5_ELONA) {
+		strcat(description, " Origin: Elona.");
+	}
 
 	
 	if (polyok(ptr)) {
@@ -2841,6 +2844,8 @@ get_description_of_attack_type(uchar id)
 			attackid = 21; break;
 		case AT_BEAM:
 			attackid = 22; break;
+		case AT_RATH:
+			attackid = 23; break;
 		default: 
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";
@@ -2850,7 +2855,7 @@ get_description_of_attack_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		attackid += u.pokelieattacktype;
-		if (attackid > 22) attackid -= 22;
+		if (attackid > 23) attackid -= 23;
 	}
 
 	switch(attackid){
@@ -2877,6 +2882,7 @@ get_description_of_attack_type(uchar id)
 		case 20: return "uses magic spell(s)";
 		case 21: return "multiplies";
 		case 22: return "beam";
+		case 23: return "ranged thorns";
 		default: 
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_attack_type(%d)", id); return "<MISSING DECRIPTION, THIS IS A BUG>";

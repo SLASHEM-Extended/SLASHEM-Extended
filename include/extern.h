@@ -2877,6 +2877,7 @@ E int passive(struct monst *,int,int,UCHAR_P);
 E void passive_obj(struct monst *,struct obj *,struct attack *);
 E void stumble_onto_mimic(struct monst *);
 E int flash_hits_mon(struct monst *,struct obj *);
+E void ranged_thorns(struct monst *);
 
 /* ### unixmain.c ### */
 

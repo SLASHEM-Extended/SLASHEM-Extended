@@ -1066,7 +1066,7 @@ struct attack *uattk;
 	}
 	
 	malive = known_hitum(mon, mattack, &mhit, uattk, dieroll);
-	(void) passive(mon, mhit, malive, AT_WEAP);
+	(void) passive(mon, mhit, malive, AT_WEAP, FALSE);
 	/* berserk lycanthropes calm down after the enemy is dead */
 	if (!malive) repeat_hit = 0;
 	return(malive);
@@ -7069,6 +7069,7 @@ use_weapon:
 				)) goto use_weapon;*/
 
 		case AT_NONE:
+		case AT_RATH:
 		case AT_BOOM:
 			continue;
 			/* Not break--avoid passive attacks from enemy */
@@ -7135,10 +7136,10 @@ use_weapon:
 		else polyself(FALSE);
 	    }
 	    if (sum[i] & HIT_FATAL)
-		return((boolean)passive(mon, sum[i], 0, mattk->aatyp));
+		return((boolean)passive(mon, sum[i], 0, mattk->aatyp, FALSE));
 							/* defender dead */
 	    else {
-		(void) passive(mon, sum[i], 1, mattk->aatyp);
+		(void) passive(mon, sum[i], 1, mattk->aatyp, FALSE);
 		nsum |= sum[i];
 	    }
 	    if (Upolyd != Old_Upolyd)
@@ -7152,11 +7153,12 @@ use_weapon:
 /*	Special (passive) attacks on you by monsters done here.		*/
 
 int
-passive(mon, mhit, malive, aatyp)
+passive(mon, mhit, malive, aatyp, ranged)
 register struct monst *mon;
 register int mhit;
 register int malive;
 uchar aatyp;
+boolean ranged;
 {
 	register struct permonst *ptr = mon->data;
 	register int i, tmp;
@@ -7189,8 +7191,8 @@ uchar aatyp;
 
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return(malive | mhit);	/* no passive attacks */
-	    if(ptr->mattk[i].aatyp == AT_NONE ||
-	       (!malive && ptr->mattk[i].aatyp == AT_BOOM) ) { /* try this one */
+	    if((!ranged && (ptr->mattk[i].aatyp == AT_NONE || (!malive && ptr->mattk[i].aatyp == AT_BOOM)) ) ||
+		  (ranged && ptr->mattk[i].aatyp == AT_RATH) ) { /* try this one */
 
 	/*}*/ /* the above allows multiple passive attacks on a single monster; code from FHS --Amy */
 
@@ -10222,6 +10224,18 @@ struct obj *otmp;	/* source of flash */
 	    }
 	}
 	return res;
+}
+
+/* AT_RATH: monster retaliates if you try a ranged action against it --Amy */
+void
+ranged_thorns(mon)
+register struct monst *mon;
+{
+
+	if (!attacktype(mon->data, AT_RATH)) return;
+	if (!rn2(4)) return; /* some randomness --Amy */
+	(void) passive(mon, FALSE, TRUE, AT_WEAP, TRUE);
+
 }
 
 STATIC_PTR void

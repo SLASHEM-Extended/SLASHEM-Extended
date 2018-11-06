@@ -77,9 +77,10 @@ extern char *attk_dname(Attk);
 #define AT_TENT     16      /* tentacles */
 #define AT_TRAM     17      /* trample */
 #define AT_BEAM		18	/* non-contact ranged beam attack from dnethack - thanks Chris for the implementation */
+#define AT_RATH		19	/* ranged thorns */
 
 /* AT_MULTIPLY is also used in u_init.c as a placeholder - please put all "standard" attack types above it! --Amy */
-#define AT_MULTIPLY	19	/* RJ - multiplies (yes, it's an attack) */
+#define AT_MULTIPLY	20	/* RJ - multiplies (yes, it's an attack) */
 
 #define AT_WEAP		64		/* Hand-to-hand weapon (monster or character) */
 #define AT_THRO		65		/* Thrown object */

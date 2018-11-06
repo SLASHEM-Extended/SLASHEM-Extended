@@ -19030,7 +19030,7 @@ register struct attack *mattk;
 
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return 1;
-	    if (olduasmon->mattk[i].aatyp == AT_NONE ||
+	    if (olduasmon->mattk[i].aatyp == AT_NONE || olduasmon->mattk[i].aatyp == AT_RATH ||
 	    		olduasmon->mattk[i].aatyp == AT_BOOM) break;
 	}
 	if (olduasmon->mattk[i].damn)

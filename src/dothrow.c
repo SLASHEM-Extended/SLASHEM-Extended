@@ -2305,6 +2305,7 @@ int thrown;
 #endif
 
 	    if (tmp >= dieroll) {
+		ranged_thorns(mon);
 		if (hmon(mon,obj,thrown?thrown:3,dieroll)) {  /* mon still alive */
 		    (void) cutworm(mon, bhitpos.x, bhitpos.y, obj);
 		}
@@ -2457,6 +2458,7 @@ int thrown;
 		int was_swallowed = guaranteed_hit;
 
 		exercise(A_DEX, TRUE);
+		ranged_thorns(mon);
 		if (!hmon(mon,obj,thrown?thrown:3,dieroll)) {         /* mon killed */
 		    if (was_swallowed && !u.uswallow && obj == uball)
 			return 1;	/* already did placebc() */
@@ -2469,6 +2471,7 @@ int thrown;
 	    exercise(A_STR, TRUE);
 	    if (tmp >= dieroll) {
 		exercise(A_DEX, TRUE);
+		ranged_thorns(mon);
 		(void) hmon(mon,obj,thrown?thrown:3,dieroll);
 	    } else {
 		tmiss(obj, mon);
@@ -2477,7 +2480,9 @@ int thrown;
 	} else if ((otyp == EGG || otyp == CREAM_PIE ||
 		    otyp == BLINDING_VENOM || otyp == FAERIE_FLOSS_RHING || otyp == ACID_VENOM || otyp == SEGFAULT_VENOM || otyp == TAIL_SPIKES) &&
 		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* F this stupidity. Sorry. --Amy */
-	    (void) hmon(mon, obj, thrown?thrown:3,dieroll);
+
+		ranged_thorns(mon);
+		(void) hmon(mon, obj, thrown?thrown:3,dieroll);
 		if (issegfaulter && otyp == SEGFAULT_VENOM && !rn2(5)) { /* segfault panic! */
 			u.segfaultpanic = TRUE;
 		} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */
@@ -2488,6 +2493,7 @@ int thrown;
 
 	} else if (obj->oclass == POTION_CLASS &&
 		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* The damn things missed way too often. */
+	    ranged_thorns(mon);
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
@@ -2505,6 +2511,7 @@ int thrown;
 	} else if (guaranteed_hit) {
 	    /* this assumes that guaranteed_hit is due to swallowing */
 	    wakeup(mon);
+	    ranged_thorns(mon);
 	    if (obj->otyp == CORPSE && touch_petrifies(&mons[obj->corpsenm]) && !rn2(4)) {
 		if (is_animal(u.ustuck->data)) {
 			minstapetrify(u.ustuck, TRUE);

@@ -1096,6 +1096,10 @@ int traitno;
 			return "monsters with a game-specific regular attack";
 		case 359:
 			return "monsters with a game-specific nastiness attack";
+		case 360:
+			return "monsters with ranged thorns";
+		case 361:
+			return "monsters that originate from Elona";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

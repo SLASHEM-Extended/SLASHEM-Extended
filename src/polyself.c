@@ -1366,6 +1366,8 @@ dogaze()
 
 	You("gaze at %s...", mon_nam(mtmp));
 
+	ranged_thorns(mtmp);
+
 	if ((mtmp->data==&mons[PM_MEDUSA]) && !mtmp->mcan && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		pline("Gazing at the awake Medusa is not a very good idea.");
 		/* as if gazing at a sleeping anything is fruitful... */

@@ -2450,6 +2450,10 @@ register struct obj *obj;
 	    is_acid = TRUE;
 	} else if (attackdamagetype(mdef->data, AT_NONE, AD_RUST)) {
 	    is_acid = FALSE;
+	} else if (attackdamagetype(mdef->data, AT_RATH, AD_CORR)) {
+	    is_acid = TRUE;
+	} else if (attackdamagetype(mdef->data, AT_RATH, AD_RUST)) {
+	    is_acid = FALSE;
 
 	/* In Soviet Russia, the Amy is considered the antichrist and everything she does must be bad. She can go ahead and
 	 * do obvious bug fixes that every sane person would immediately recognize as such, but the type of ice block goes
@@ -2514,7 +2518,7 @@ int mdead;
 
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return (mdead | mhit); /* no passive attacks */
-	    if(mddat->mattk[i].aatyp == AT_NONE /*||
+	    if(mddat->mattk[i].aatyp == AT_NONE || mddat->mattk[i].aatyp == AT_RATH /*||
 	       mddat->mattk[i].aatyp == AT_BOOM*/) break;
 	}
 	if (mddat->mattk[i].damn)
@@ -2992,6 +2996,7 @@ int aatyp;
 
     switch (aatyp) {
     case AT_NONE:
+    case AT_RATH:
     case AT_SPIT:
     case AT_EXPL:
     case AT_BOOM:

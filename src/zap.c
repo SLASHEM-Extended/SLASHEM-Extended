@@ -158,6 +158,8 @@ struct obj *otmp;
 	if (u.uswallow && mtmp == u.ustuck)
 	    reveal_invis = FALSE;
 
+	ranged_thorns(mtmp);
+
 	switch(otyp) {
 
 	case WAN_GOOD_NIGHT:
@@ -8211,6 +8213,7 @@ sigilcontroldirection:
 		    }
                     delay_output();
 		} else {
+		    if (type >= 0) ranged_thorns(mon);
 		    boolean mon_could_move = mon->mcanmove;
 		    int tmp = zhitm(mon, type, nd, &otmp);
 

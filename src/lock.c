@@ -872,7 +872,7 @@ doforce()		/* try to force a chest with your weapon */
 					}
 				}
 
-				(void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH);
+				(void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH, FALSE);
 				if (mtmp->mhp <= 0 && !trapkilled) killed(mtmp);
 
 				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_QUIET || (!rn2(5) && mtmp->egotype_farter) ) ) {
