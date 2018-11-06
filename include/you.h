@@ -1167,6 +1167,8 @@ struct you {
 
 	boolean polyprotected;
 
+	boolean wingyellowhack;
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

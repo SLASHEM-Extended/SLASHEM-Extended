@@ -10604,8 +10604,13 @@ newboss:
 	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
 		iflags.winggraphics = TRUE;
 		assignwinggraphics();
+		u.wingyellowhack = TRUE;
 	} else {
 		iflags.winggraphics = FALSE;
+		if (u.wingyellowhack == TRUE) {
+			u.wingyellowhack = FALSE;
+			switch_graphics(iflags.DECgraphics ? DEC_GRAPHICS : iflags.IBMgraphics ? IBM_GRAPHICS : ASCII_GRAPHICS);
+		}
 	}
 
 	if (ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) {
