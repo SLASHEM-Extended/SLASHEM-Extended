@@ -72,7 +72,7 @@ unsigned gpflags;
 		if (mtmp == &youmonst)
 			return (HLevitation || Flying || Wwalking ||
 				    Swimming || Amphibious) ? is_badpos : -1;
-		else	return (is_flyer(mdat) /*|| mtmp->egotype_flying*/ || is_swimmer(mdat) ||
+		else	return (is_flyer(mdat) || is_swimmer(mdat) ||
 				    is_clinger(mdat)) ? is_badpos : -1;
 		/* note by Amy: the egotype check causes eternal phantom bugs in this function. According to FIQ, mtmp is
 		 * never initialized correctly due to being a filler monster, instead of the actual one teleported. */
@@ -81,14 +81,16 @@ unsigned gpflags;
 		if (mtmp == &youmonst)
 		    return HLevitation ? is_badpos : -1;
 		else
-		    return (is_flyer(mdat) /*|| mtmp->egotype_flying*/ || likes_lava(mdat)) ?
+		    return (is_flyer(mdat) || likes_lava(mdat)) ?
 			    is_badpos : -1;
 	    }
 	    if (passes_walls(mdat) && may_passwall(x,y)) return is_badpos;
-	    /*if ( (mtmp != &youmonst) && mtmp->egotype_wallwalk && may_passwall(x,y)) return is_badpos;*/
+	    if (u.roommatehack) {
+			return is_badpos;
+	    }
 	}
 	if (!ACCESSIBLE(levl[x][y].typ) ) {
-		if (!(is_waterypool(x,y) && (ignorewater || crystalornot))) return -1;
+		if (!(is_waterypool(x,y) && !u.roommatehack && (ignorewater || crystalornot))) return -1;
 	}
 
 	if (closed_door(x, y) && (!mdat || !amorphous(mdat)))

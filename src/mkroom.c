@@ -80,6 +80,10 @@ int variety;
 	if (variety == 0 && rn2(5)) wallremoving = 1;
 	if (variety == 1 && !rn2(5)) wallremoving = 1;
 
+	u.roommatehack = FALSE;
+	if (wallremoving == 0 && rn2(3)) u.roommatehack = TRUE; /* allow monsters to be placed inside walls sometimes */
+	if (wallremoving == 1 && !rn2(4)) u.roommatehack = TRUE; /* allow monsters to be placed inside walls sometimes */
+
 	xlou = ylou = 1;
 	xreal = 2 + rn2(10);
 	yreal = 2 + rn2(5);
@@ -113,6 +117,8 @@ int variety;
 
 	add_room(xlou, ylou, (xlou + xreal), (ylou + yreal), rn2(2), RANDOMROOM, FALSE, FALSE, wallremoving ? 1 : 2);
 	fill_room(&rooms[nroom - 1], FALSE);
+
+	u.roommatehack = FALSE;
 
 }
 
@@ -664,7 +670,7 @@ struct mkroom *sroom;
 			  (sroom->doorct &&
 			   distmin(sx, sy, doors[sh].x, doors[sh].y) <= 1)*/)
 			continue;
-		} else if(!SPACE_POS(levl[sx][sy].typ) /*||
+		} else if(!u.roommatehack && !SPACE_POS(levl[sx][sy].typ) /*||
 			  (sroom->doorct &&
 			   ((sx == sroom->lx && doors[sh].x == sx-1) ||
 			    (sx == sroom->hx && doors[sh].x == sx+1) ||

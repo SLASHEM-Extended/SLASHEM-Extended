@@ -1177,6 +1177,8 @@ struct you {
 	int artifactaffinity;	/* to check how much (or not) you use your quest artifact */
 	int artifinitythreshold;	/* highest value reached */
 
+	boolean roommatehack;	/* to allow monsters to spawn inside walls */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)
