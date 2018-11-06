@@ -2147,7 +2147,7 @@ mk_dgl_extrainfo()
         } else if (In_endgame(&u.uz)) {
             sprintf(tmpdng, "%i|%s", sortval, "End");
 		sortval = 10000;
-        } else if (In_sokoban(&u.uz)) {
+        } else if (In_sokoban_real(&u.uz)) {
             sprintf(tmpdng, "%i|Sok%i", sortval, depth(&u.uz));
 		sortval = 200 + depth(&u.uz);
         } else if (In_mines(&u.uz)) {
