@@ -500,9 +500,9 @@ register struct obj *obj;
 	if (obj->otyp == LONG_SWORD && obj->quan == 1L
 		/* it's supposed to be rare to get the thing if you're not a knight --Amy */
 	    && u.ulevel > 4 && (!isfriday || !rn2(3)) && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact
-	    && !exist_artifact(LONG_SWORD, artiname(ART_EXCALIBUR))) {
+	    && !exist_artifact(LONG_SWORD, u.ualign.type == A_CHAOTIC ? artiname(ART_DIRGE) : artiname(ART_EXCALIBUR))) {
 
-		if (u.ualign.type != A_LAWFUL) {
+		if (u.ualign.type == A_NEUTRAL || (u.ualign.type == A_CHAOTIC && !Role_if(PM_KNIGHT)) ) {
 			/* Ha!  Trying to cheat her. */
 			pline("A freezing mist rises from the water and envelopes the sword.");
 			pline_The("fountain disappears!");
@@ -510,6 +510,19 @@ register struct obj *obj;
 			if (obj->spe > -6 && !rn2(3)) obj->spe--;
 			obj->oerodeproof = FALSE;
 			exercise(A_WIS, FALSE);
+		} else if (u.ualign.type == A_CHAOTIC) {
+			pline("Your sword slithers in your hand and seems to change!");
+			pline("The fountain disappears!");
+			obj = oname(obj, artiname(ART_DIRGE));
+			discover_artifact(ART_DIRGE);
+			curse(obj);
+			if (obj->spe < 10) obj->spe++;
+			obj->oeroded = obj->oeroded2 = 0;
+			obj->oerodeproof = TRUE;
+			exercise(A_WIS, TRUE);
+#ifdef LIVELOGFILE
+			livelog_report_trophy("had Dirge thrown to them by some watery tart");
+#endif
 		} else {
 			/* The lady of the lake acts! - Eric Backus */
 			/* Be *REAL* nice */

@@ -16752,6 +16752,16 @@ struct obj *obj;
 					pline("Artifact specs: if someone produces soft farting noises while you wear them, you'll be healed, and you resist confusion and sleep, but you also have your items stolen more often and they may even teleport out of your inventory."); break;
 				case ART_CLICHE_WEAR:
 					pline("Artifact specs: resist fire, cold, sleep, shock and poison when worn, but monsters whose attacks can damage items will spawn more often."); break;
+				case ART_DIRGE:
+					pline("Artifact specs: Diiiiiiiiiiiiiirge (DIRGE) :D +5 to-hit and +2 damage, drain resistance when wielded, does extra poison damage to targets, chaotic. A chaotic knight may receive it by dipping a long sword in a fountain."); break;
+				case ART_KEOLEWA:
+					pline("Artifact specs: +5 to-hit and +6 damage, neutral. Originally from Sporkhack and meant for the caveman, but here everyone can use it."); break;
+				case ART_SWORD_OF_BHELEU:
+					pline("Artifact specs: +10 to-hit and +10 damage to crossaligned monsters, petrification resistance when wielded, does extra poison damage to targets, chaotic."); break;
+				case ART_RING_OF_P_HUL:
+					pline("Artifact specs: regeneration and sickness resistance when worn, neutral. In K2's Evilhack variant, this is the barbarian quest artifact; the fact that its base item type is superfluous for a barbarian is probably intentional because their original quest artifact was also rather useless."); break;
+				case ART_REALLY_COOL_SHIRT:
+					pline("Artifact specs: warning and acts as a luckstone when worn. Congratulations, you returned all three scrolls of missing code to the devteam... just kidding :D"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -6163,6 +6163,25 @@ A("Cliche Wear",				LOW_BOOTS, /* initialized to always be mary janes, resist fi
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Dirge",			LONG_SWORD,
+	(SPFX_ATTK|SPFX_RESTR|SPFX_DEFN|SPFX_INTEL),0,0,
+	PHYS(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Keolewa",CLUB,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5,6), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("The Sword of Bheleu", TWO_HANDED_SWORD, /* petrification resistance */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_INTEL|SPFX_DALIGN), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 12000L),
+
+A("The Ring of P'hul", RIN_POISON_RESISTANCE, /* sickness resistance */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L),
+
+A("The Really Cool Shirt", T_SHIRT,
+	(SPFX_RESTR|SPFX_LUCK|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

@@ -2215,9 +2215,9 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
-	    pline_The("twisted blade poisons %s!",
+	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
 	    if (youdefend ? (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) : resists_poison(mdef)) {
 		if (youdefend)
