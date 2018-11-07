@@ -2770,6 +2770,102 @@ int snamount;
 	if (Upolyd && dmgtype(youmonst.data, AD_SPC2) && rn2(5)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
 
+	if (!(PlayerCannotUseSkills)) {
+		int sanityprotection = 0;
+
+		switch (P_SKILL(P_SHII_CHO)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_MAKASHI)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_SORESU)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_ATARU)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_SHIEN)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_DJEM_SO)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_NIMAN)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_JUYO)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_VAAPAD)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		switch (P_SKILL(P_WEDI)) {
+			case P_BASIC:	sanityprotection +=  1; break;
+			case P_SKILLED:	sanityprotection +=  2; break;
+			case P_EXPERT:	sanityprotection +=  3; break;
+			case P_MASTER:	sanityprotection +=  4; break;
+			case P_GRAND_MASTER:	sanityprotection +=  5; break;
+			case P_SUPREME_MASTER:	sanityprotection +=  6; break;
+			default: sanityprotection += 0; break;
+		}
+		if (sanityprotection > rn2(100)) return;
+	}
+
 	if (Race_if(PM_HUMANOID_ANGEL)) snamount *= 2;
 
 	u.usanity += snamount;
