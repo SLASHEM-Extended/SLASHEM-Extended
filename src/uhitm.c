@@ -1202,6 +1202,7 @@ int dieroll;
 	boolean silvermsg = FALSE, silverobj = FALSE;
 	boolean vivaobj = FALSE;
 	boolean copperobj = FALSE;
+	int cursedobj = 0;
 	boolean inkaobj = FALSE;
 	boolean odorobj = FALSE;
 	boolean valid_weapon_attack = FALSE;
@@ -1826,6 +1827,14 @@ int dieroll;
 		    if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdat)) {
 			copperobj = TRUE;
 		    }
+		    if (obj->cursed && hates_cursed(mdat)) {
+			cursedobj = 1;
+			if (obj->hvycurse) cursedobj++;
+			if (obj->prmcurse) cursedobj++;
+			if (obj->bbrcurse) cursedobj++;
+			if (obj->evilcurse) cursedobj++;
+			if (obj->morgcurse) cursedobj++;
+		    }
 		    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdat)) {
 			inkaobj = TRUE;
 		    }
@@ -2334,6 +2343,20 @@ int dieroll;
 			if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdat)) {
 				tmp += 20;
 				copperobj = TRUE;
+			}
+			if (obj->cursed && hates_cursed(mdat)) {
+				tmp += 4;
+				if (obj->hvycurse) tmp += 4;
+				if (obj->prmcurse) tmp += 7;
+				if (obj->bbrcurse) tmp += 15;
+				if (obj->evilcurse) tmp += 15;
+				if (obj->morgcurse) tmp += 15;
+				cursedobj = 1;
+				if (obj->hvycurse) cursedobj++;
+				if (obj->prmcurse) cursedobj++;
+				if (obj->bbrcurse) cursedobj++;
+				if (obj->evilcurse) cursedobj++;
+				if (obj->morgcurse) cursedobj++;
 			}
 			if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdat)) {
 				tmp += 20;
@@ -3346,6 +3369,7 @@ int dieroll;
 	if (inkaobj) pline("The inka string hurts %s!", mon_nam(mon));
 	if (odorobj) pline("The odor beguils %s!", mon_nam(mon));
 	if (copperobj) pline("The copper decomposes %s!", mon_nam(mon));
+	if (cursedobj) pline("A black aura blasts %s!", mon_nam(mon));
 
 	if (needpoismsg) {
 		pline_The("poison doesn't seem to affect %s.", mon_nam(mon));
@@ -10256,6 +10280,29 @@ register struct monst *mon;
 {
 
 	if (!attacktype(mon->data, AT_RATH)) return;
+
+	int mithrilitemcount = 0;
+
+	if (uwep && objects[uwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uarm && objects[uarm->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uarmc && objects[uarmc->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uarmh && objects[uarmh->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uarms && objects[uarms->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uarmg && objects[uarmg->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uarmf && objects[uarmf->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uarmu && objects[uarmu->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uamul && objects[uamul->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uimplant && objects[uimplant->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uleft && objects[uleft->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uright && objects[uright->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (ublindf && objects[ublindf->otyp].oc_material == MITHRIL) mithrilitemcount++;
+
+	if (mithrilitemcount > 0 && (mithrilitemcount >= rnd(20))) {
+		pline("Your mithril equipment prevents %s's retaliation!", mon_nam(mon));
+		return;
+	}
+
 	if (!rn2(4)) return; /* some randomness --Amy */
 	(void) passive(mon, FALSE, TRUE, AT_WEAP, TRUE);
 
