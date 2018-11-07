@@ -7,6 +7,7 @@
 #include "emin.h"
 #include "edog.h"
 #include "quest.h"
+#include "qtext.h"
 #ifdef REINCARNATION
 #include <ctype.h>
 #endif
@@ -17638,7 +17639,7 @@ loopback:
 		if (ct > 0 && (mndx == u.frequentspecies19)) ct += u.freqspeciesbonus19;
 		if (ct > 0 && (mndx == u.frequentspecies20)) ct += u.freqspeciesbonus20;
 
-		if (ct > 0 && (mndx == urole.nemesnum)) ct += 100;
+		if (ct > 0 && (mndx == urole.nemesnum)) ct += (Qstats(killed_nemesis) ? 500 : 100);
 
 		if (ct > 0 && (urole.enemy1num != NON_PM) && (mndx == urole.enemy1num)) ct += 125;
 		if (ct > 0 && (urole.enemy2num != NON_PM) && (mndx == urole.enemy2num)) ct += 25;
@@ -18414,7 +18415,7 @@ int     spc;
 
 		if (RngeExtinction && mvitals[last].born) num += mvitals[last].born;
 
-		if (last == urole.nemesnum) num += 100;
+		if (last == urole.nemesnum) num += (Qstats(killed_nemesis) ? 500 : 100);
 
 		if ((urole.enemy1num != NON_PM) && (last == urole.enemy1num)) num += 125;
 		if ((urole.enemy2num != NON_PM) && (last == urole.enemy2num)) num += 25;
@@ -18927,7 +18928,7 @@ int     spc;
 
 		if (RngeExtinction && mvitals[first].born) num -= mvitals[first].born;
 
-		if (first == urole.nemesnum) num -= 100;
+		if (first == urole.nemesnum) num -= (Qstats(killed_nemesis) ? 500 : 100);
 
 		if ((urole.enemy1num != NON_PM) && (first == urole.enemy1num)) num -= 125;
 		if ((urole.enemy2num != NON_PM) && (first == urole.enemy2num)) num -= 25;
