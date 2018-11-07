@@ -8323,7 +8323,7 @@ sigilcontroldirection:
 
 		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")))) range -= 2;
 		pline("%s hits you!", The(fltxt));
-		if (Reflecting && (abstype == ZT_DEATH && rn2(StrongReflecting ? 100 : 20)) || (abstype != ZT_DEATH && rn2(StrongReflecting ? 20 : 5)) && abs(type) != ZT_SPELL(ZT_FIRE)) {
+		if (Reflecting && ((abstype == ZT_DEATH && rn2(StrongReflecting ? 100 : 20)) || (abstype != ZT_DEATH && rn2(StrongReflecting ? 20 : 5)) ) && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {
 		    	(void) ureflects("But %s reflects from your %s!", "it");
 		    } else
