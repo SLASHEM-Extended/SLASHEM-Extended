@@ -22116,6 +22116,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"A board beneath you hisses loudly!",
 	"You were cured of sanity, while strapped to a gurney.",
 	"An unholy aura blasts you!",
+	"The ghost ages you!",
 
 };
 

@@ -4215,6 +4215,19 @@ elena37:
 		}
 	}
 
+	if (evilfriday && mtmp->data->mlet == S_GHOST) {
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
+			if (foundyou && tmp > (j = rnd(20+i))) {
+				pline("%s ages you!", Monnam(mtmp));
+			      u_slow_down();
+				u.uprops[DEAC_FAST].intrinsic += ((mtmp->m_lev + 2) * 4);
+				u.inertia += (mtmp->m_lev + 2);
+				monstermoves += (mtmp->m_lev + 2);
+				moves += (mtmp->m_lev + 2);
+			}
+		}
+	}
+
 	if (uimplant && uimplant->oartifact == ART_POTATOROK && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok(FALSE);
 		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
