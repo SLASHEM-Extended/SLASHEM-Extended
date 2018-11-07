@@ -1998,6 +1998,7 @@ register int pm;
 	    case PM_PETRO_FUNGUS:
 	    case PM_PETRO_PATCH:
 	    case PM_PETRO_FORCE_FUNGUS:
+	    case PM_PETRO_WORT:
 	    case PM_PETRO_FORCE_PATCH:
 	    case PM_PETRO_WARP_FUNGUS:
 	    case PM_PETRO_WARP_PATCH:

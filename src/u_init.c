@@ -7019,6 +7019,7 @@ u_init()
 	struct permonst* randomfungusb = &mons[PM_COLORLESS_FUNGUS];
 	struct permonst* randomfungusba = &mons[PM_COLORLESS_PATCH];
 	struct permonst* randomfungusbb = &mons[PM_COLORLESS_FORCE_FUNGUS];
+	struct permonst* randomfungusbbe = &mons[PM_COLORLESS_WORT];
 	struct permonst* randomfungusbc = &mons[PM_COLORLESS_FORCE_PATCH];
 	struct permonst* randomfungusbd = &mons[PM_COLORLESS_WARP_FUNGUS];
 	struct permonst* randomfungusbe = &mons[PM_COLORLESS_WARP_PATCH];
@@ -7026,6 +7027,7 @@ u_init()
 	struct permonst* randomfungusd = &mons[PM_NONDESCRIPT_FUNGUS];
 	struct permonst* randomfungusda = &mons[PM_NONDESCRIPT_PATCH];
 	struct permonst* randomfungusdb = &mons[PM_NONDESCRIPT_FORCE_FUNGUS];
+	struct permonst* randomfungusdbx = &mons[PM_NONDESCRIPT_WORT];
 	struct permonst* randomfungusdc = &mons[PM_NONDESCRIPT_FORCE_PATCH];
 	struct permonst* randomfungusdd = &mons[PM_NONDESCRIPT_WARP_FUNGUS];
 	struct permonst* randomfungusde = &mons[PM_NONDESCRIPT_WARP_PATCH];
@@ -7044,6 +7046,7 @@ u_init()
 	struct permonst* rrandomfungusb = &mons[PM_COLORLESS_FUNGUS_X];
 	struct permonst* rrandomfungusc = &mons[PM_COLORLESS_PATCH_X];
 	struct permonst* rrandomfungusd = &mons[PM_COLORLESS_FORCE_FUNGUS_X];
+	struct permonst* rrandomfungusdx = &mons[PM_COLORLESS_WORT_X];
 	struct permonst* rrandomfunguse = &mons[PM_COLORLESS_FORCE_PATCH_X];
 	struct permonst* rrandomfungusf = &mons[PM_COLORLESS_WARP_FUNGUS_X];
 	struct permonst* rrandomfungusg = &mons[PM_COLORLESS_WARP_PATCH_X];
@@ -20385,6 +20388,19 @@ u_init()
 
 	}
 
+	randomfungusbbe->mmove = rnd(12);
+	randomfungusbbe->ac = 10-rnd(25);
+	randomfungusbbe->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusbbe->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
 	randomfungusbc->mmove = rnd(12);
 	randomfungusbc->ac = 10-rnd(25);
 	randomfungusbc->mr = rn2(101);
@@ -20467,6 +20483,19 @@ u_init()
 	randomfungusdb->mr = rn2(101);
 	for (i = 0; i < 3; i++) {
 		attkptr = &randomfungusdb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusdbx->mmove = rnd(15);
+	randomfungusdbx->ac = 10-rnd(35);
+	randomfungusdbx->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusdbx->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
@@ -20708,6 +20737,23 @@ u_init()
 	sprintf(buf, "%s", generate_garbage_string() );
 	(void) strncpy(u.strandomfungusd, buf, sizeof(buf) );
 	rrandomfungusd->mname = u.strandomfungusd;
+
+	rrandomfungusdx->mmove = rnd(12);
+	rrandomfungusdx->ac = 10-rnd(30);
+	rrandomfungusdx->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusdx->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	sprintf(buf, "%s", generate_garbage_string() );
+	(void) strncpy(u.strandomfungusdx, buf, sizeof(buf) );
+	rrandomfungusdx->mname = u.strandomfungusd;
 
 	rrandomfunguse->mmove = rnd(12);
 	rrandomfunguse->ac = 10-rnd(30);
@@ -27131,6 +27177,7 @@ alter_reality()
 	struct permonst* randomfungusb = &mons[PM_COLORLESS_FUNGUS];
 	struct permonst* randomfungusba = &mons[PM_COLORLESS_PATCH];
 	struct permonst* randomfungusbb = &mons[PM_COLORLESS_FORCE_FUNGUS];
+	struct permonst* randomfungusbbx = &mons[PM_COLORLESS_WORT];
 	struct permonst* randomfungusbc = &mons[PM_COLORLESS_FORCE_PATCH];
 	struct permonst* randomfungusbd = &mons[PM_COLORLESS_WARP_FUNGUS];
 	struct permonst* randomfungusbe = &mons[PM_COLORLESS_WARP_PATCH];
@@ -27138,6 +27185,7 @@ alter_reality()
 	struct permonst* randomfungusd = &mons[PM_NONDESCRIPT_FUNGUS];
 	struct permonst* randomfungusda = &mons[PM_NONDESCRIPT_PATCH];
 	struct permonst* randomfungusdb = &mons[PM_NONDESCRIPT_FORCE_FUNGUS];
+	struct permonst* randomfungusdbx = &mons[PM_NONDESCRIPT_WORT];
 	struct permonst* randomfungusdc = &mons[PM_NONDESCRIPT_FORCE_PATCH];
 	struct permonst* randomfungusdd = &mons[PM_NONDESCRIPT_WARP_FUNGUS];
 	struct permonst* randomfungusde = &mons[PM_NONDESCRIPT_WARP_PATCH];
@@ -27155,6 +27203,7 @@ alter_reality()
 	struct permonst* rrandomfungusb = &mons[PM_COLORLESS_FUNGUS_X];
 	struct permonst* rrandomfungusc = &mons[PM_COLORLESS_PATCH_X];
 	struct permonst* rrandomfungusd = &mons[PM_COLORLESS_FORCE_FUNGUS_X];
+	struct permonst* rrandomfungusdx = &mons[PM_COLORLESS_WORT_X];
 	struct permonst* rrandomfunguse = &mons[PM_COLORLESS_FORCE_PATCH_X];
 	struct permonst* rrandomfungusf = &mons[PM_COLORLESS_WARP_FUNGUS_X];
 	struct permonst* rrandomfungusg = &mons[PM_COLORLESS_WARP_PATCH_X];
@@ -34507,6 +34556,19 @@ alter_reality()
 
 	}
 
+	randomfungusbbx->mmove = rnd(12);
+	randomfungusbbx->ac = 10-rnd(25);
+	randomfungusbbx->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusbbx->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
 	randomfungusbc->mmove = rnd(12);
 	randomfungusbc->ac = 10-rnd(25);
 	randomfungusbc->mr = rn2(101);
@@ -34589,6 +34651,19 @@ alter_reality()
 	randomfungusdb->mr = rn2(101);
 	for (i = 0; i < 3; i++) {
 		attkptr = &randomfungusdb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	randomfungusdbx->mmove = rnd(15);
+	randomfungusdbx->ac = 10-rnd(35);
+	randomfungusdbx->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomfungusdbx->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
@@ -34830,6 +34905,23 @@ alter_reality()
 	sprintf(buf, "%s", generate_garbage_string() );
 	(void) strncpy(u.strandomfungusd, buf, sizeof(buf) );
 	rrandomfungusd->mname = u.strandomfungusd;
+
+	rrandomfungusdx->mmove = rnd(12);
+	rrandomfungusdx->ac = 10-rnd(30);
+	rrandomfungusdx->mr = rn2(101);
+	for (i = 0; i < 3; i++) {
+		attkptr = &rrandomfungusdx->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	sprintf(buf, "%s", generate_garbage_string() );
+	(void) strncpy(u.strandomfungusdx, buf, sizeof(buf) );
+	rrandomfungusdx->mname = u.strandomfungusd;
 
 	rrandomfunguse->mmove = rnd(12);
 	rrandomfunguse->ac = 10-rnd(30);

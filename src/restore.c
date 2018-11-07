@@ -743,6 +743,9 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_COLORLESS_FORCE_FUNGUS].mname;
 	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_FUNGUS], sizeof(struct permonst));
 	mons[PM_COLORLESS_FORCE_FUNGUS].mname = tname;
+	tname = mons[PM_COLORLESS_WORT].mname;
+	mread(fd, (void *) &mons[PM_COLORLESS_WORT], sizeof(struct permonst));
+	mons[PM_COLORLESS_WORT].mname = tname;
 	tname = mons[PM_COLORLESS_FORCE_PATCH].mname;
 	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_PATCH], sizeof(struct permonst));
 	mons[PM_COLORLESS_FORCE_PATCH].mname = tname;
@@ -793,6 +796,12 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mons[PM_COLORLESS_FORCE_FUNGUS_X].mname = u.strandomfungusd;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_FORCE_FUNGUS_X].mname = tname;
+	tname = mons[PM_COLORLESS_WORT_X].mname;
+#endif
+	mread(fd, (void *) &mons[PM_COLORLESS_WORT_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_WORT_X].mname = u.strandomfungusd;
+#ifdef STUPIDRANDOMMONSTERBUG
+	mons[PM_COLORLESS_WORT_X].mname = tname;
 	tname = mons[PM_COLORLESS_FORCE_PATCH_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_PATCH_X], sizeof(struct permonst));
@@ -855,6 +864,9 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_NONDESCRIPT_FORCE_FUNGUS].mname;
 	mread(fd, (void *) &mons[PM_NONDESCRIPT_FORCE_FUNGUS], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_FORCE_FUNGUS].mname = tname;
+	tname = mons[PM_NONDESCRIPT_WORT].mname;
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_WORT], sizeof(struct permonst));
+	mons[PM_NONDESCRIPT_WORT].mname = tname;
 	tname = mons[PM_NONDESCRIPT_FORCE_PATCH].mname;
 	mread(fd, (void *) &mons[PM_NONDESCRIPT_FORCE_PATCH], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_FORCE_PATCH].mname = tname;

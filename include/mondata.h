@@ -273,6 +273,7 @@
 				 ((ptr) == &mons[PM_LUMINESCENT_SPORE]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_COLONY]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_FORCE_FUNGUS]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_WORT]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_FORCE_PATCH]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_FUNGUS]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_PATCH]) ? 3 : \

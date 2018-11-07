@@ -16063,11 +16063,11 @@ register int	mmflags;
 
 			break;
 		case S_FUNGUS:
-			if (mndx == PM_INVISIBLE_MOLD || mndx == PM_INVISIBLE_FUNGUS || mndx == PM_INVISIBLE_PATCH || mndx == PM_INVISIBLE_FORCE_FUNGUS || mndx == PM_INVISIBLE_FORCE_PATCH || mndx == PM_INVISIBLE_WARP_FUNGUS || mndx == PM_INVISIBLE_WARP_PATCH || mndx == PM_INVISIBLE_STALK || mndx == PM_INVISIBLE_SPORE || mndx == PM_INVISIBLE_MUSHROOM || mndx == PM_INVISIBLE_GROWTH || mndx == PM_INVISIBLE_COLONY ) {
+			if (mndx == PM_INVISIBLE_MOLD || mndx == PM_INVISIBLE_FUNGUS || mndx == PM_INVISIBLE_PATCH || mndx == PM_INVISIBLE_FORCE_FUNGUS || mndx == PM_INVISIBLE_WORT || mndx == PM_INVISIBLE_FORCE_PATCH || mndx == PM_INVISIBLE_WARP_FUNGUS || mndx == PM_INVISIBLE_WARP_PATCH || mndx == PM_INVISIBLE_STALK || mndx == PM_INVISIBLE_SPORE || mndx == PM_INVISIBLE_MUSHROOM || mndx == PM_INVISIBLE_GROWTH || mndx == PM_INVISIBLE_COLONY ) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}
-			if (mndx == PM_FALSE_MOLD || mndx == PM_DECEIVING_MOLD || mndx == PM_FALSE_FUNGUS || mndx == PM_DECEIVING_FUNGUS || mndx == PM_FALSE_PATCH || mndx == PM_DECEIVING_PATCH || mndx == PM_FALSE_FORCE_FUNGUS || mndx == PM_DECEIVING_FORCE_FUNGUS || mndx == PM_FALSE_FORCE_PATCH || mndx == PM_DECEIVING_FORCE_PATCH || mndx == PM_FALSE_WARP_FUNGUS || mndx == PM_DECEIVING_WARP_FUNGUS || mndx == PM_FALSE_WARP_PATCH || mndx == PM_DECEIVING_WARP_PATCH || mndx == PM_FALSE_STALK || mndx == PM_DECEIVING_STALK || mndx == PM_FALSE_SPORE || mndx == PM_DECEIVING_SPORE || mndx == PM_FALSE_MUSHROOM || mndx == PM_DECEIVING_MUSHROOM || mndx == PM_FALSE_GROWTH || mndx == PM_DECEIVING_GROWTH || mndx == PM_FALSE_COLONY || mndx == PM_DECEIVING_COLONY) mtmp->mpeaceful = TRUE;
+			if (mndx == PM_FALSE_MOLD || mndx == PM_DECEIVING_MOLD || mndx == PM_FALSE_FUNGUS || mndx == PM_DECEIVING_FUNGUS || mndx == PM_FALSE_PATCH || mndx == PM_DECEIVING_PATCH || mndx == PM_FALSE_FORCE_FUNGUS || mndx == PM_FALSE_WORT || mndx == PM_DECEIVING_FORCE_FUNGUS || mndx == PM_DECEIVING_WORT || mndx == PM_FALSE_FORCE_PATCH || mndx == PM_DECEIVING_FORCE_PATCH || mndx == PM_FALSE_WARP_FUNGUS || mndx == PM_DECEIVING_WARP_FUNGUS || mndx == PM_FALSE_WARP_PATCH || mndx == PM_DECEIVING_WARP_PATCH || mndx == PM_FALSE_STALK || mndx == PM_DECEIVING_STALK || mndx == PM_FALSE_SPORE || mndx == PM_DECEIVING_SPORE || mndx == PM_FALSE_MUSHROOM || mndx == PM_DECEIVING_MUSHROOM || mndx == PM_FALSE_GROWTH || mndx == PM_DECEIVING_GROWTH || mndx == PM_FALSE_COLONY || mndx == PM_DECEIVING_COLONY) mtmp->mpeaceful = TRUE;
 			if (mndx == PM_HIDDEN_MOLD) set_mimic_sym(mtmp);
 			if (mndx == PM_SECLUDED_MOLD) set_mimic_sym(mtmp);
 			if (mndx == PM_HIDDEN_FUNGUS) set_mimic_sym(mtmp);
@@ -16075,7 +16075,9 @@ register int	mmflags;
 			if (mndx == PM_HIDDEN_PATCH) set_mimic_sym(mtmp);
 			if (mndx == PM_SECLUDED_PATCH) set_mimic_sym(mtmp);
 			if (mndx == PM_HIDDEN_FORCE_FUNGUS) set_mimic_sym(mtmp);
+			if (mndx == PM_HIDDEN_WORT) set_mimic_sym(mtmp);
 			if (mndx == PM_SECLUDED_FORCE_FUNGUS) set_mimic_sym(mtmp);
+			if (mndx == PM_SECLUDED_WORT) set_mimic_sym(mtmp);
 			if (mndx == PM_HIDDEN_FORCE_PATCH) set_mimic_sym(mtmp);
 			if (mndx == PM_SECLUDED_FORCE_PATCH) set_mimic_sym(mtmp);
 			if (mndx == PM_HIDDEN_WARP_FUNGUS) set_mimic_sym(mtmp);

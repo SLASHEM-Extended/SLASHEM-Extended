@@ -8642,44 +8642,67 @@ boolean ranged;
 	    break;
 
 	  case AD_RUST:
-	    if(mhit && !mon->mcan) {
-		if (aatyp == AT_KICK) {
-		    if (uarmf)
-			(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
-		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
-			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, target, &(ptr->mattk[i]));
-	    }
+
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			hurtarmor(AD_RUST);
+		} else {
+
+		    if(mhit && !mon->mcan) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH)
+			    passive_obj(mon, target, &(ptr->mattk[i]));
+		    }
+		}
 	    break;
 	  case AD_CORR:
-	    if(mhit && !mon->mcan) {
-		if (aatyp == AT_KICK) {
-		    if (uarmf)
-			(void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
-		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
-			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, target, &(ptr->mattk[i]));
-	    }
+
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			hurtarmor(AD_CORR);
+		} else {
+
+		    if(mhit && !mon->mcan) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH)
+			    passive_obj(mon, target, &(ptr->mattk[i]));
+		    }
+		}
 	    break;
 	  case AD_WTHR:
-	    if(mhit && !mon->mcan) {
-		if (aatyp == AT_KICK) {
-		    if (uarmf)
-			(void)wither_dmg(uarmf, xname(uarmf), rn2(4), TRUE, &youmonst);
-		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
-			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, target, &(ptr->mattk[i]));
-	    }
+
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			witherarmor();
+		} else {
+		    if(mhit && !mon->mcan) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)wither_dmg(uarmf, xname(uarmf), rn2(4), TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH)
+			    passive_obj(mon, target, &(ptr->mattk[i]));
+		    }
+		}
 	    break;
 	  case AD_DCAY:
-	    if(mhit && !mon->mcan) {
-		if (aatyp == AT_KICK) {
-		    if (uarmf)
-			(void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
-		} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
-			   aatyp == AT_MAGC || aatyp == AT_TUCH)
-		    passive_obj(mon, target, &(ptr->mattk[i]));
-	    }
+
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			hurtarmor(AD_DCAY);
+		} else {
+
+		    if(mhit && !mon->mcan) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH)
+			    passive_obj(mon, target, &(ptr->mattk[i]));
+		    }
+		}
 	    break;
         case AD_CURS:
 	  case AD_LITE:
