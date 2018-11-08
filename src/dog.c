@@ -295,7 +295,7 @@ makedog()
 		petname = boyname;
 	else if (pettype == PM_RAVEN)
 		petname = ravenname;
-	else
+	else if (petsym == S_FELINE)
 		petname = catname;
 
 	/* default pet names */
