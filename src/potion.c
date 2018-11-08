@@ -2654,7 +2654,7 @@ newbadtry:
 			if (otmp) curse(otmp);
 		}
 
-		else if (is_boots(otmp)) {
+		else if (is_boots(otmp) && !(Race_if(PM_ELONA_SNAIL) && !ishighheeled(otmp)) ) {
 			if (uarmf) remove_worn_item(uarmf, TRUE);
 			setworn(otmp, W_ARMF);
 			Boots_on();
