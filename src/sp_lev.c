@@ -5452,7 +5452,7 @@ dlb *fd;
 	if ((ystart % 2)) ystart++;
 #else
 	if (!(ystart % 2)) ystart++;
-#endof
+#endif
 	if ((ystart < 0) || (ystart + ysize > ROWNO)) {
 	    /* try to move the start a bit */
 	    ystart += (ystart > 0) ? -2 : 2;
