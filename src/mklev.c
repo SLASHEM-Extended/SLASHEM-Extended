@@ -12306,6 +12306,11 @@ xchar x, y;	/* location */
 			x = m.x;
 			y = m.y;
 	    }
+	    while (On_stairs(x, y) && stairtryct++ < 50000) {
+			br_room = find_branch_room(&m);
+			x = m.x;
+			y = m.y;
+	    }
 
 	} else {
 	    br_room = pos_to_room(x, y);
