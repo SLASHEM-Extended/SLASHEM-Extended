@@ -5448,7 +5448,11 @@ dlb *fd;
 	    case BOTTOM:    ystart = y_maze_max-ysize-1;		break;
 	}
 	if (!(xstart % 2)) xstart++;
+#ifdef BIGSLEX
+	if ((ystart % 2)) ystart++;
+#else
 	if (!(ystart % 2)) ystart++;
+#endof
 	if ((ystart < 0) || (ystart + ysize > ROWNO)) {
 	    /* try to move the start a bit */
 	    ystart += (ystart > 0) ? -2 : 2;
