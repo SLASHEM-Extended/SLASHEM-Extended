@@ -1032,7 +1032,7 @@ dosounds()
 			"listen to the cackle of poultry.",
 			"feel like reaching the next town.",
 			"seem to be in a nice atmosphere.",
-			"pages turning.",
+			"hear pages turning.",
 			"listen to the villagers' conversations.",
 			"want to check whether the secret path is open.",
 			"inhale the sharp smell of burning thatch!",
