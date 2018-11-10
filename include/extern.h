@@ -1460,6 +1460,8 @@ E void mdamageu(struct monst *,int);
 E int could_seduce(struct monst *,struct monst *,struct attack *);
 E int could_seduceX(struct monst *,struct monst *,struct attack *);
 E int doseduce(struct monst *);
+E void hurtarmor(int);
+E void witherarmor(void);
 
 /* ### minion.c ### */
 

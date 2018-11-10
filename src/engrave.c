@@ -4785,6 +4785,8 @@ static const char *epitaphs[] = {
 	"Free me from this place, and I and my brood shall fight for your cause.",
 	"God does not exist. After all, he allowed the holocaust to happen, and if he really existed and cared about humans he'd have conjured divine lightning to kill all the fucking nazis before they can do their evil deeds.",
 	"None shall rest until my vengeance is complete.",
+	"Here lies Vera, calm and placid...",
+	"You see here a python corpse. You feel that python is dead.",
 
 };
 

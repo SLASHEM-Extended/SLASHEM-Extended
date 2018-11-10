@@ -295,7 +295,7 @@ makedog()
 		petname = boyname;
 	else if (pettype == PM_RAVEN)
 		petname = ravenname;
-	else
+	else if (petsym == S_FELINE)
 		petname = catname;
 
 	/* default pet names */
@@ -1140,6 +1140,8 @@ register struct obj *obj;
 		return(TABU);
 	    if (hates_copper(mon->data) &&
 		objects[obj->otyp].oc_material == COPPER)
+		return(TABU);
+	    if (hates_cursed(mon->data) && obj->cursed)
 		return(TABU);
 	    if (hates_viva(mon->data) &&
 		objects[obj->otyp].oc_material == VIVA)

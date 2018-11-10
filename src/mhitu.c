@@ -27,8 +27,8 @@ STATIC_DCL void missmu(struct monst *,int,int,struct attack *);
 STATIC_DCL void mswings(struct monst *,struct obj *);
 STATIC_DCL void wildmiss(struct monst *,struct attack *);
 
-STATIC_DCL void hurtarmor(int);
-STATIC_DCL void witherarmor(void);
+/*STATIC_DCL void hurtarmor(int);*/
+/*STATIC_DCL void witherarmor(void);*/
 STATIC_DCL void hitmsg(struct monst *,struct attack *);
 
 /* See comment in mhitm.c.  If we use this a lot it probably should be */
@@ -4215,6 +4215,19 @@ elena37:
 		}
 	}
 
+	if (evilfriday && mtmp->data->mlet == S_GHOST) {
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
+			if (foundyou && tmp > (j = rnd(20+i))) {
+				pline("%s ages you!", Monnam(mtmp));
+			      u_slow_down();
+				u.uprops[DEAC_FAST].intrinsic += ((mtmp->m_lev + 2) * 4);
+				u.inertia += (mtmp->m_lev + 2);
+				monstermoves += (mtmp->m_lev + 2);
+				moves += (mtmp->m_lev + 2);
+			}
+		}
+	}
+
 	if (uimplant && uimplant->oartifact == ART_POTATOROK && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok(FALSE);
 		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
@@ -4728,7 +4741,7 @@ elena37:
  * helper function for some compilers that have trouble with hitmu
  */
 
-STATIC_OVL void
+void
 hurtarmor(attk)
 int attk;
 {
@@ -4792,7 +4805,7 @@ int attk;
 	}
 }
 
-STATIC_OVL void
+void
 witherarmor()
 {
 
@@ -5231,6 +5244,9 @@ hitmu(mtmp, mattk)
 			if (objects[otmp->otyp].oc_material == COPPER &&
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
+			}
+			if (otmp->cursed && hates_cursed(youmonst.data)) {
+			    pline("An unholy aura blasts you!");
 			}
 			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
 			    pline("The irradiation severely hurts you!");
@@ -8754,6 +8770,9 @@ dopois:
 			if (objects[otmp->otyp].oc_material == COPPER &&
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
+			}
+			if (otmp->cursed && hates_cursed(youmonst.data)) {
+			    pline("An unholy aura blasts you!");
 			}
 			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
 			    pline("The irradiation severely hurts you!");

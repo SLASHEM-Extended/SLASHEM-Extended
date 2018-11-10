@@ -22114,6 +22114,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You want to check whether the secret path is open.",
 	"You see the accursed crashy graphics card logo.",
 	"A board beneath you hisses loudly!",
+	"You were cured of sanity, while strapped to a gurney.",
+	"An unholy aura blasts you!",
+	"The ghost ages you!",
 
 };
 

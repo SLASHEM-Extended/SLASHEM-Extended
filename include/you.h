@@ -892,6 +892,7 @@ struct you {
 	char	strandomfungusb[BUFSZ];
 	char	strandomfungusc[BUFSZ];
 	char	strandomfungusd[BUFSZ];
+	char	strandomfungusdx[BUFSZ];
 	char	strandomfunguse[BUFSZ];
 	char	strandomfungusf[BUFSZ];
 	char	strandomfungusg[BUFSZ];

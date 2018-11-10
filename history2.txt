@@ -1,6 +1,32 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.9 - November 2018
+- In evilvariant mode, ghosts have aging attacks.
+- Every point in a lightsaber form gives a small chance of avoiding sanity.
+- Killing the quest nemesis makes clones of him even more likely to spawn.
+- Cursed weapons deal extra damage to angels.
+- Monsters in roommate rooms can sometimes spawn in walls.
+- Added a BIGSLEX define to config.h that can be turned on to make the dungeon levels much bigger.
+- Monsters can have ranged thorns now, an "attack" that retaliates if the player uses ranged attacks.
+- It's now possible to successfully pick a lock while under the auto destruct trap effect.
+- Nerfed the effect of the left inventory trap.
+- Having a property both intrinsically and extrinsically now improves its effect, and is also reflected in enlightenment.
+- Added a message when the player completes the Deep Mines.
+- Using the quest artifact for a prolonged time will increase the player's alignment record.
+- Turret-class monsters are nonliving now.
+- Artifacts that are supposed to drain life now actually do so.
+- The sokosolver can now #monster to create boulders or disarm traps.
+- Captcha and quiz trap prompts no longer get mangled by other nasty trap effects.
+- Fixed extrainfo bug that caused it to always report the player as being in Sokoban when playing the sokosolver race.
+- The pet attack directive can now be set so that pets will only attack hostile monsters.
+- The wing yellow changer effect now correctly switches back to the original tileset when it times out.
+
 2.3.8 - October 2018
+- Using #sit on a fountain while polymorphed into a coin monster gives a YAFM.
+- Randomly generated traps on Sokoban are much less likely to be ones that swallow boulders, and boulders will now plug giant chasms on Sokoban.
+- Fixed erroneous flag on snow rabbit monster.
+- Fixed an oversight that allowed players under the effect of a wereform trap to summon too many minions.
+- The wand/scroll of bad equipment will now force the player to equip the generated item even if it would burden them.
 - Artifacts with multiple attack effects can now actually use all of them.
 - Cursed potions of gain level can no longer transport the player to the plane of Earth when the amulet is not fully imbued.
 - Equipment with low enchantment values will dull less often.

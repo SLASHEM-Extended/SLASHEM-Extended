@@ -10067,6 +10067,10 @@ gehennomxtra:
 	/* If we make a rooms-and-corridors level in Gehennom, or generally anywhere with a depth greater than castle,
 	 * we'll have a chance of more special rooms because this part of the game is supposed to be harder --Amy */
 	if (!rn2(3) && u_depth > 40) goto gehennomxtra;
+#ifdef BIGSLEX
+	/* big dungeon levels need more special rooms on average or they'll get boring quickly... */
+	if (!rn2(2)) goto gehennomxtra;
+#endif
 
 		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || u_depth > 1) ) {
 			mkroom(RANDOMROOM);
@@ -12298,6 +12302,11 @@ xchar x, y;	/* location */
 	    /* somehow this genius code can place the branch staircase on an existing branch!!! we can't have that --Amy */
 	    if (On_stairs(x, y) && stairtryct++ < 50000) {
 			impossible("placing branch on existing staircase?");
+			br_room = find_branch_room(&m);
+			x = m.x;
+			y = m.y;
+	    }
+	    while (On_stairs(x, y) && stairtryct++ < 50000) {
 			br_room = find_branch_room(&m);
 			x = m.x;
 			y = m.y;

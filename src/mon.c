@@ -889,7 +889,9 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_PATCH:
 	    case PM_MOLDY_PATCH:
 	    case PM_UNDEAD_FORCE_FUNGUS:
+	    case PM_UNDEAD_WORT:
 	    case PM_MOLDY_FORCE_FUNGUS:
+	    case PM_MOLDY_WORT:
 	    case PM_UNDEAD_FORCE_PATCH:
 	    case PM_MOLDY_FORCE_PATCH:
 	    case PM_UNDEAD_WARP_FUNGUS:

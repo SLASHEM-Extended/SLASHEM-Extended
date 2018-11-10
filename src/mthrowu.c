@@ -375,6 +375,16 @@ const char *name;	/* if null, then format `obj' */
 			pline_The("copper decomposes you!");
 			exercise(A_CON, FALSE);
 		}
+		if (obj && obj->cursed && hates_cursed(youmonst.data)) {
+			dam += 4;
+			if (obj->hvycurse) dam += 4;
+			if (obj->prmcurse) dam += 7;
+			if (obj->bbrcurse) dam += 15;
+			if (obj->evilcurse) dam += 15;
+			if (obj->morgcurse) dam += 15;
+			pline("An unholy aura blasts you!");
+			exercise(A_CON, FALSE);
+		}
 		if (obj && objects[obj->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
 			dam += 20;
 			pline_The("irradiation severely hurts you!");
@@ -714,6 +724,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    }
 	    if (objects[otmp->otyp].oc_material == COPPER && hates_copper(mtmp->data)) {
 		if (verbose) pline("It is decomposed!");
+	    }
+	    if (otmp->cursed && hates_cursed(mtmp->data)) {
+		if (verbose) pline("It is blasted by darkness!");
 	    }
 	    if (objects[otmp->otyp].oc_material == INKA && hates_inka(mtmp->data)) {
 		if (verbose) pline("It is hurt!");

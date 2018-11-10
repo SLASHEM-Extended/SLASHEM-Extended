@@ -669,6 +669,9 @@ struct monst *magr, *mdef;
 	    if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdef->data) && canseemon(mdef)) {
 		    pline("%s decomposes from the contact with copper!", s_suffix(Monnam(mdef)));
 	    }
+	    if (obj->cursed && hates_cursed(mdef->data) && canseemon(mdef)) {
+		    pline("%s is blasted by darkness!", s_suffix(Monnam(mdef)));
+	    }
 	    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdef->data) && canseemon(mdef)) {
 		    pline("%s is hurt by the inka string!", s_suffix(Monnam(mdef)));
 	    }
@@ -1317,6 +1320,15 @@ physical:
                         if(otmp && objects[otmp->otyp].oc_material == COPPER && (hates_copper(pd))) { 
                                 tmp += 20;
                                 if (vis) pline("The copper decomposes %s!", mon_nam(mdef));
+                        }
+                        if(otmp && otmp->cursed && (hates_cursed(pd))) { 
+                                tmp += 4;
+					  if (otmp->hvycurse) tmp += 4;
+					  if (otmp->prmcurse) tmp += 7;
+					  if (otmp->bbrcurse) tmp += 15;
+					  if (otmp->evilcurse) tmp += 15;
+					  if (otmp->morgcurse) tmp += 15;
+                                if (vis) pline("The unholy aura blasts %s!", mon_nam(mdef));
                         }
                         if(otmp && objects[otmp->otyp].oc_material == VIVA && (hates_viva(pd))) { 
                                 tmp += 20;

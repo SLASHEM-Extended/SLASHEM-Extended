@@ -599,6 +599,14 @@ struct monst *mon;
 		bonus += rnd(20);
 	    if (objects[otyp].oc_material == COPPER && hates_copper(ptr))
 		bonus += 20;
+	    if (otmp->cursed && hates_cursed(ptr)) {
+		bonus += 4;
+		if (otmp->hvycurse) bonus += 4;
+		if (otmp->prmcurse) bonus += 7;
+		if (otmp->bbrcurse) bonus += 15;
+		if (otmp->evilcurse) bonus += 15;
+		if (otmp->morgcurse) bonus += 15;
+		}
 	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
 		bonus += 20;
 	    if (objects[otyp].oc_material == INKA && hates_inka(ptr))
@@ -960,6 +968,14 @@ struct monst *mon;
 		bonus += rnd(20);
 	    if (objects[otyp].oc_material == COPPER && hates_copper(ptr))
 		bonus += 20;
+	    if (otmp->cursed && hates_cursed(ptr)) {
+		bonus += 4;
+		if (otmp->hvycurse) bonus += 4;
+		if (otmp->prmcurse) bonus += 7;
+		if (otmp->bbrcurse) bonus += 15;
+		if (otmp->evilcurse) bonus += 15;
+		if (otmp->morgcurse) bonus += 15;
+		}
 	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
 		bonus += 20;
 	    if (otyp == ODOR_SHOT && hates_odor(ptr))
