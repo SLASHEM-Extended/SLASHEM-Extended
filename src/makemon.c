@@ -15105,6 +15105,16 @@ register int	mmflags;
 		mtmp->egotype_steed = 1;
 	}
 
+	if (!rn2(15) && mtmp->data->msound == MS_STENCH) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_farter = 1;
+	}
+
+	if (!rn2(40) && mtmp->data->msound == MS_CONVERT && is_female(mtmp->data)) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_perfumespreader = 1;
+	}
+
 	if (!rn2(200) && mtmp->data->msound == MS_STENCH) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_steed = 1;
