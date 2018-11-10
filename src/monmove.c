@@ -1360,6 +1360,7 @@ convertdone:
 		} else {
 
 			badeffect();
+			if (rn2(2)) increasesanity(rnz(20));
 			stop_occupation();
 		}
 	}

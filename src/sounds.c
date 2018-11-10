@@ -1986,6 +1986,7 @@ register struct monst *mtmp;
 						pline("But the gas mask protects you from the effects.");
 					} else {
 						badeffect();
+						if (rn2(2)) increasesanity(rnz(20));
 					}
 				}
 
@@ -2020,6 +2021,7 @@ register struct monst *mtmp;
 				pline("But the gas mask protects you from the effects.");
 			} else {
 				badeffect();
+				if (rn2(2)) increasesanity(rnz(20));
 			}
 		}
 

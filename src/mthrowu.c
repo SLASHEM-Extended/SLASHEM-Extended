@@ -398,6 +398,7 @@ const char *name;	/* if null, then format `obj' */
 		if (obj && obj->otyp == ODOR_SHOT) {
 			dam += rnd(10);
 			pline("You inhale the horrific odor!");
+			increasesanity(rnz(tlev * 5));
 			exercise(A_CON, FALSE);
 		}
 		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
