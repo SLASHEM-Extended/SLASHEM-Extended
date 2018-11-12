@@ -817,6 +817,22 @@ doread()
 	"After years of research, I have developed the ultimate counter to bundling: eldnubeldnubeldnub :D", /* aosdict I think? */
 	"Demo: making slex more retarded, one bad idea at a time.", /* he said that himself because I keep implementing stuff he suggests :D */
 	"do these yoga pants make my butt look big? no your butt makes your butt look big", /* by K2 */
+	"here have a potion on me buddy!",
+	"i'm siyenne! nice to meet you!",
+	"i'm really a friendly fairy! don't listen to what they're saying about me",
+	"i'm actually kind of shy, but i'm hoping talking to people will help make me more approachable!",
+	"the crown on my head? oh, i'm not royalty, i just thought it looked cute",
+	"i'm a fairy, but i'm really more of a butterfly i guess--i have a second pair of arms but i can't use them here...that's what the empty sleeves are for",
+	"i'm rather pale...i don't get out much",
+	"Even the God of Chaos cowers beneath my power!",
+	"Do I have something on my face?",
+	"You don't wanna play hardball with me.",
+	"This is not proper corporate attire.",
+	"Do you want me?",
+	"I may just be a flunky - but I'm real spunky.",
+	"I am Najelith of the wind. Asking helps.",
+	"I may be small, but I'm also tough.",
+	"I'm No. 2!",
 
 	    };
 	    char buf[BUFSZ];
