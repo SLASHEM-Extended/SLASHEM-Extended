@@ -3839,6 +3839,13 @@ static NEARDATA const char * const longinglines[] = {
 "%s is the absolute dream woman. You really want to make her your wife.",
 "%s can repeatedly stomp your cute, unprotected toes underneath her heels.",
 "If you present your legs to %s, she can use her heels on them in a very painful way, but then they'll be completely blood-smeared.",
+"%s's lady boots are especially sexy because even the heels have treaded soles!",
+"You want to kiss %s's sexy butt cheeks.",
+"Do you like it if %s hangs her long bundle into your face?",
+"%s is very sexy!",
+"%s is the dream of your sleepless nights.",
+"I know why you always have trouble falling asleep at night. It's because you're constantly thinking about the sexy %s!",
+"You want to have your body crushed underneath %s's soft butt cheeks.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -3964,6 +3971,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "V svoyem stremlenii vernut' vse obratno k urovnyam vanili sovetskiy tip ledyanogo bloka sdelal eto tak, chto molniya snova oslepit vas kazhdyy raz, a prodolzhitel'nost' slepoty slishkom velika.",
 "Vy mozhete vzyat' der'mo, dazhe yesli vy nichego ne yeli tol'ko potomu, chto vy bol'ny, chto ne imeyet nikakogo smysla, no ey, eto sovetskaya rossiya dlya vas, predstavlennaya tipom ledyanogo bloka.",
 "Yesli kakoy-libo iz instrumentov obrashcheniya slishkom sil'no proklinayet, vy mozhete takzhe udalit' personazha i brosit' novyy, potomu chto teper' oni ne dolzhny byt' proklyaty ili oni nikogda ne budut rabotat'. Potomu chto tip ledyanogo bloka khochet, chtoby igra byla pogranichnoy.",
+"Vy ne poluchite artefakt na pervykh dvukh urovnyakh, potomu chto vy ne v vanile, i nichto ne mozhet byt' izmeneno po sravneniyu s sovetskoy rossiyey.",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -4008,6 +4016,13 @@ static NEARDATA const char * const hussylines[] = {
 "Admit it, you think my yellow socks are super erotic. Well, once I defeat and subsequently imprison you, I'll make you smell their sweaty odor for many hours straight.",
 "My red socks look very innocent, but the smell they emanate is powerful enough to completely infiltrate your nose and incapacitate you!",
 "Woe to you if you lay a hand on my white socks. They exist to punish you by forcing you to smell them after I wore them for a while, and that's what I'm gonna do after knocking you out!",
+"Us Hussies have better things to do than obeying the teachers' commands. That loser Walt can suck it!",
+"Player 1, creep back to your useless Walt 'protector'! We don't want you here!",
+"No one tells ME what to do, and I'll certainly not make an exception for you, 'gang scholar'!",
+"The main rule is that the gang scholar's life has to be made miserable.",
+"Player 1, you have two choices. Either you give up voluntarily, or I'll make you suffer a fate worse than death.",
+"I'll use my femininity as a weapon against you.",
+"You should surrender, for if you descend one more dungeon level you'll step in the huge perfume trap I've set up and be knocked out.",
 };
 
 static NEARDATA const char * const bangganglines[] = {
@@ -4055,6 +4070,13 @@ static NEARDATA const char * const bangganglines[] = {
 "Only an autistic self-harming social justice warrior like you could be foolish enough to challenge the Bang Gang! We'll send you back home with a couple broken bones, you little crybaby!",
 "Hey you, better leave the dungeon before I get you, or I'll send you with some proper injuries to the school doctor.",
 "I'm gonna smash out your ugly teeth.",
+"You're not as stalwart as you pretend to be!",
+"You puny gang scholar, you're just one 'hero' against our gang! You don't stand no chance!",
+"Player 1, you know that the Bang Gang cannot be defeated by one single person.",
+"Anna has us AND the hussies! No lone gang scholar can ever hope to even get close to defeating her!",
+"Gimme 5 euros or I'll break your face.",
+"You don't get it, Player 1, huh? All right. I'm gonna torture your classmate whom I captured, and their cries will be broadcast by loudspeaker so you can hear it too.",
+"Just so you know, Player 1, I have one of your classmates at knife point right now. If you descend one more dungeon level, your friend dies. Surrender now to save their life!",
 };
 
 static NEARDATA const char * const hussylines_specific[] = {
@@ -4097,6 +4119,13 @@ static NEARDATA const char * const hussylines_specific[] = {
 "Level %d smells like mildew and sweat now, thanks to me. No gang scholar will make it through the stench without passing out.",
 "Player 1, you may have gotten this far, but your journey will end on level %d. For I'm a powerful Hussy and I'll knock you out.",
 "Large alarm! Hans Walt is on level %d! He may not escape! I'm trying to spray him with my perfume, and hopefully he'll step in the heaps of shit I made!",
+"I've emptied two flasks of perfume on level %d, creating a scent cloud that could knock out an elephant.",
+"Found Player 1's markings on level %d. If I just put a couple heaps of shit there, they'll step into them on the way back.",
+"Level %d smells like Player 1's aunt at christmas now! That gang scholar will be an easy picking once they enter!",
+"Better tell the bang gang that Player 1 has passed through level %d recently, maybe they can hunt that gang scholar down?",
+"Sorry girls, but I've run into distress on level %d! Apparently Walt's guards are setting up a base there! We'll have to postpone our hunt for Player 1 until we got that taken care of!",
+"And so, another scholar falls on level %d. The same will happen to YOU, Player 1.",
+"Player 1, I captured one of your fellow scholars and imprisoned them on level %d. Now I dare you to try and free them, ha ha ha...",
 };
 
 static NEARDATA const char * const bangganglines_specific[] = {
@@ -4143,6 +4172,16 @@ static NEARDATA const char * const bangganglines_specific[] = {
 "I locked out level %d completely! Player 1 will find nothing but walls there!",
 "What do you all think, shall we read our collection of scrolls of chaos terrain on level %d so that Player 1 will have no chance to get past all the obstacles?",
 "I've sprayed some amnesia gas on level %d that will affect Player 1 as soon as they enter!",
+"We've got a defensible special room on level %d. Guys, some of us should camp out there and shoot down Player 1 on sight.",
+"There's only one path to go from upstair to downstair on level %d! If we fortify that with our firepower, no gang scholar will get past, ever!",
+"Hey, new plan guys: we'll completely block off level %d so that Player 1 will either have to try to get past our barrier and die, or starve to death.",
+"Death trap set up on level %d, all Bang Gangers please beware. We'll have to make sure that only the gang scholar triggers it.",
+"Cool, there's some funny monsters on level %d, maybe if I put down some wands of egoism and immobility for them to grab they'll be able to stop Player 1?",
+"Gang scholar contact on level %d! I'm trying to line myself up for a shot with my wand of paralysis!",
+"Hey guys, there's an aligned temple on level %d! I think I'm gonna convert it and teleport out, so that Player 1 will be fooled into chatting to the priest and get clobbered!",
+"You're not gonna get past level %d, but you're welcome to try anyway because then I can kill you. Hahahahahahaha!",
+"Player 1: You have 1000 turns to bring the key back to level %d from where you've stolen it. Otherwise you'll be reported to the principal.",
+"I've captured twelve of your classmates on level %d, Player 1, and you can surrender until noon or I'll start executing one of them every 20 minutes.",
 };
 
 static NEARDATA const char * const bangganglines_femaleonly[] = {
@@ -4192,6 +4231,13 @@ static NEARDATA const char * const bangganglines_femaleonly[] = {
 "If I get you, my female footwear will hit your groin with a full-on axe kick that breaks your pubic bone.",
 "Hahaha I took your ball away and I will not give it back to you!",
 "I'll taunt you until you make the error to attack me, and then the one teacher that likes the Bang Gang will come out of hiding and give you detention for hitting a girl, you pervert.",
+"You're the bastard who always treats women badly! But I will execute you!",
+"Your way of addressing the Bang Gang is not inclusive! I'll teach you to respect women like me!",
+"I can't wait to crush you underneath my heels.",
+"My female high heels will successively stomp each of your body parts.",
+"What, you dared using the word 'slut' as an insult against me??? I'll tell the teachers that you said that!",
+"I'll denigrate you by telling the teachers that you sexually harassed me. They'll believe me because I'm a girl, and you will be expelled with no way of proving that my accusations are actually untrue.",
+"I will smash your kneecap with my female shoes!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -4362,7 +4408,7 @@ static NEARDATA const char * const bosstaunts[] = {
 "says, 'NT is the solution for ALL your needs!'",
 "hacks out some code and calls it a Service Pack.",
 "says, 'We don't have a monopoly... Mac OS still exists!'",
-"wonders if (s)he should buy a small country.",
+"wonders if it should buy a small country.",
 "says, 'Where will we let you go today?  The Recycle Bin!'",
 "says, 'Ho ho ho! You're gonna die!'",
 "says, 'You're gettin' COAL in your stocking!'",
@@ -4718,6 +4764,29 @@ static NEARDATA const char * const bosstaunts[] = {
 "mutters: 'I can smell the weaknesses others try to hide.'",
 "says: 'Sleep for all eternity.'",
 "mutters: 'Impure pack.'",
+"mutters: 'Dust to dust.'",
+"announces: 'My power will devour you!'",
+"summons an elder priest!",
+"recharges its wand of disintegration!",
+"pulls a scroll of ragnarok from its bag!",
+"starts changing weapons in real time!",
+"twirls its sword!",
+"gets ready to shoot an arrow at your knee, like the retarded cop wueu wueus from Skyrim!",
+"announces: 'Prepare to be raided.'",
+"laughs: 'You're looking rather vulnerable.'",
+"laughs: 'You're an easy target. This won't take long.'",
+"says: 'Don't ask me to lay off.'",
+"sneers: 'Your options are shrinking.'",
+"laughs: 'What's goin' down? You!'",
+"laughs: 'Your time is up around here, you're being sacked!'",
+"announces: 'You're no longer wanted around here.'",
+"giggles: 'Are you frightened? You've turned pink!'",
+"laughs: 'You tripped over your own sword! Ha-ha!'",
+"shouts: 'I think I'll dispose of you right now.'",
+"readies its gun!",
+"sneers: 'You're in a dead end position.'",
+"threatens: 'You're going down, clown.'",
+"announces: 'I'm going to rub you out.'",
 
 };
 
@@ -22409,7 +22478,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Guess I'll have to sharpen things up.",
 	"Step right up for the performance of a lifetime! Only 599 gold!",
 	"You notice an energy fluckering.",
-	"SayÅIGyobou!.",
+	"Say IGyobou!.",
 	"Oh!Good place!",
 	"new clear!",
 	"Unyuhow.",
