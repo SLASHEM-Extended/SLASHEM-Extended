@@ -375,7 +375,7 @@ const char *name;	/* if null, then format `obj' */
 			pline_The("copper decomposes you!");
 			exercise(A_CON, FALSE);
 		}
-		if (obj && obj->cursed && hates_cursed(youmonst.data)) {
+		if (obj && obj->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL))) {
 			dam += 4;
 			if (obj->hvycurse) dam += 4;
 			if (obj->prmcurse) dam += 7;

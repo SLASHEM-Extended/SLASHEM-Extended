@@ -5245,7 +5245,7 @@ hitmu(mtmp, mattk)
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
 			}
-			if (otmp->cursed && hates_cursed(youmonst.data)) {
+			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");
 			}
 			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
@@ -8771,7 +8771,7 @@ dopois:
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
 			}
-			if (otmp->cursed && hates_cursed(youmonst.data)) {
+			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");
 			}
 			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {

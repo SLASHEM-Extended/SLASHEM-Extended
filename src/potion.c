@@ -2866,7 +2866,7 @@ int snamount;
 		if (sanityprotection > rn2(100)) return;
 	}
 
-	if (Race_if(PM_HUMANOID_ANGEL)) snamount *= 2;
+	if (Race_if(PM_HUMANOID_ANGEL) || youmonst.data->mlet == S_ANGEL) snamount *= 2;
 
 	u.usanity += snamount;
 	if (snamount < 10) pline("Your sanity increases.");
