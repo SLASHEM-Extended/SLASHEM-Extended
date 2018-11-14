@@ -4806,6 +4806,11 @@ static const char *epitaphs[] = {
 	"maydey meydey",
 	"This was a mismanaged venture.",
 	"This just ain't my day.",
+	"I can say this all day. Let me vote! This is a national disgrace! Let me vo-", /* Red Dead Redemption 2 */
+	"RIP suffragette, beaten up by Arthur Morgan.",
+	"RIP suffragette, she got rolled over by a train.",
+	"RIP suffragette, she got eaten by an alligator.",
+	"RIP suffragette, she got dropped in a mine shaft and fed to the devil.",
 
 };
 

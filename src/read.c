@@ -833,6 +833,8 @@ doread()
 	"I am Najelith of the wind. Asking helps.",
 	"I may be small, but I'm also tough.",
 	"I'm No. 2!",
+	"Votes for Women - Abolish Discrimination Against Half Of Every Home", /* Red Dead Redemption 2 */
+	"You're asking if the apocalypse will happen soon? Well, here's a newsflash: it has already happened and right now we're dealing with the aftermath!",
 
 	    };
 	    char buf[BUFSZ];
