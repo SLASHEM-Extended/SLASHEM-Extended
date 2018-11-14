@@ -1317,7 +1317,7 @@ convertdone:
 		    case 16: make_dimmed(HDimmed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
 			    break;
 		    }
-			if (!rn2(20)) increasesanity(rnd(10));
+			if (!rn2(20)) increasesanity(rnd(10 + (mtmp->m_lev * 2) ));
 		}
 
 	}
@@ -1360,7 +1360,7 @@ convertdone:
 		} else {
 
 			badeffect();
-			if (rn2(2)) increasesanity(rnz(20));
+			if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
 			stop_occupation();
 		}
 	}
@@ -1776,7 +1776,7 @@ toofar:
 
 		verbalize("%s", superman_msgs[rn2(SIZE(superman_msgs))]);
 		badeffect();
-		increasesanity(rnz(50));
+		increasesanity(rnz(50 + (mtmp->m_lev * 5) ));
 		stop_occupation();
 		}
 

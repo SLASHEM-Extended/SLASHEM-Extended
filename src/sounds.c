@@ -1986,7 +1986,7 @@ register struct monst *mtmp;
 						pline("But the gas mask protects you from the effects.");
 					} else {
 						badeffect();
-						if (rn2(2)) increasesanity(rnz(20));
+						if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
 					}
 				}
 
@@ -2021,7 +2021,7 @@ register struct monst *mtmp;
 				pline("But the gas mask protects you from the effects.");
 			} else {
 				badeffect();
-				if (rn2(2)) increasesanity(rnz(20));
+				if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
 			}
 		}
 
@@ -2256,7 +2256,7 @@ register struct monst *mtmp;
 	    case 16: make_dimmed(HDimmed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
 		    break;
 	    }
-		if (!rn2(20)) increasesanity(rnd(10));
+		if (!rn2(20)) increasesanity(rnd(10 + (mtmp->m_lev * 2) ));
 
 	    break;
 
@@ -2734,7 +2734,7 @@ register struct monst *mtmp;
 
 		verbalize("%s", superman_msgs[rn2(SIZE(superman_msgs))]);
 		badeffect();
-		increasesanity(rnz(50));
+		increasesanity(rnz(50 + (mtmp->m_lev * 5) ));
 		}
 		break;
 
