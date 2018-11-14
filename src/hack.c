@@ -1346,12 +1346,12 @@ int mode;
 	    }
 	} else {
 	testdiag:
-	    if (dx && dy && !Passes_walls
+	    if ((dx && dy && !Passes_walls
 		&& ((tmpr->doormask & ~D_BROKEN)
 #ifdef REINCARNATION
 		    || Is_rogue_level(&u.uz)
 #endif
-		    || block_door(x,y))) {
+		    || block_door(x,y))) && !can_ooze(&youmonst)) {
 		/* Diagonal moves into a door are not allowed. */
 		if (Blind && mode == DO_MOVE)
 		    feel_location(x,y);
@@ -1396,7 +1396,7 @@ int mode;
     ust = &levl[ux][uy];
 
     /* Now see if other things block our way . . */
-    if (dx && dy && !Passes_walls
+    if (dx && dy && !Passes_walls && !can_ooze(&youmonst)
 		     && (IS_DOOR(ust->typ) && ((ust->doormask & ~D_BROKEN)
 #ifdef REINCARNATION
 			     || Is_rogue_level(&u.uz)
