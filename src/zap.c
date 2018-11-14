@@ -7907,6 +7907,13 @@ xchar sx, sy;
 	    break;
 	}
 
+	if (type >= 0) {
+		if (!issoviet) {
+			if (rn2(2)) dam = (dam + 1) / 2;
+			else dam = (dam + 2) / 3;
+		} else pline("Vy ochen' glupyy chelovek, kotoryy prosto zastrelilsya, i poetomu teper' vy budete stradat'.");
+	}
+
 	if (Half_spell_damage && rn2(2) && dam &&
 	   type < 0 && (type > -20 || type < -29)) /* !Breath */
 	    dam = (dam + 1) / 2;
