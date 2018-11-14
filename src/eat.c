@@ -4598,7 +4598,7 @@ struct obj *otmp;
 		      (otmp->otyp == CRAM_RATION
 		      || otmp->otyp == K_RATION
 		      || otmp->otyp == C_RATION)
-		      ? "bland." :
+		      ? (Hallucination ? "enjoyable." : "bland.") :
 		      Hallucination ? "gnarly!" : "delicious!");
 		}
 		if (otmp->otyp == EGG && otmp->oartifact == ART_EGG_OF_SPLAT) {
