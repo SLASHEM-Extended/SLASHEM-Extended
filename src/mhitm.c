@@ -1717,6 +1717,7 @@ physical:
 	    case AD_DARK:
 		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
 		if (vis) pline("A sinister darkness fills the area!");
+		if (mdef->data->mlet == S_ANGEL) tmp *= 2;
 		break;
 
 	    case AD_THIR:
@@ -2736,6 +2737,7 @@ int mdead;
 	    case AD_DARK:
 		do_clear_area(magr->mx,magr->my, 7, set_lit, (void *)((char *)0));
 		if (canseemon(magr)) pline("A sinister darkness fills the area!");
+		if (magr->data->mlet == S_ANGEL) tmp *= 2;
 		break;
 
 	    case AD_THIR:

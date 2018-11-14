@@ -4686,6 +4686,7 @@ register struct attack *mattk;
 	    case AD_DARK:
 		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
 		pline("You generate a sinister darkness!");
+		if (mdef->data->mlet == S_ANGEL) tmp *= 2;
 		break;
 	    case AD_THIR:
 	    case AD_NTHR:
@@ -5529,6 +5530,7 @@ register struct attack *mattk;
 	    case AD_DARK:
 		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
 		pline("You generate a sinister darkness!");
+		if (mdef->data->mlet == S_ANGEL) tmp *= 2;
 		break;
 	    case AD_THIR:
 	    case AD_NTHR:

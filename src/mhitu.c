@@ -5395,6 +5395,8 @@ hitmu(mtmp, mattk)
 
 		break;
 	    case AD_DARK:
+
+		if (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) dmg *= 2;
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
@@ -10372,6 +10374,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	    case AD_DARK:
 
+			if (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) tmp *= 2;
+
 			You_feel("a constricting darkness...");
 
 			/* create darkness around the player --Amy */
@@ -14142,6 +14146,7 @@ common:
 	    case AD_DARK:
 		pline("Everything gets dark!");
 		litroomlite(FALSE);
+		if (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) tmp *= 2;
 	      mdamageu(mtmp, tmp);
 
 		break;
@@ -19259,6 +19264,7 @@ register struct attack *mattk;
 	    case AD_DARK:
 		litroomlite(FALSE);
 		pline("A sinister darkness fills the area!");
+		if (mtmp->data->mlet == S_ANGEL) tmp *= 2;
 		break;
 
 	    case AD_THIR:
