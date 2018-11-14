@@ -973,7 +973,7 @@ level_tele()
 	char buf[BUFSZ];
 	boolean force_dest = FALSE;
 
-	if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) )
+	if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || In_sokoban_real(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) )
 #ifdef WIZARD
 						&& !wizard
 #endif
