@@ -5531,6 +5531,14 @@ SCROLL((char *)0,               "THIS MOD IS EXEMPLARY",  P_NONE,     1,   0, 30
 SCROLL((char *)0,               "HHHHHHHHHHHHHHHHHHHHHHH",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "PURPLE PAIN PLUS",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "DEUTSCHLAND KANN KEIN DEUTSCH MEHR",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "WOE TO THE PLIERS",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "BLOWS YOU IF I YOU GET",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "THE BUTTERFLY PROJECT IS A MIRACLE",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "POUCH TSCHCKTSCHCK",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "OUCH THAT REALLY HURT MY FEFES",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
+SCROLL((char *)0,               "LET ME VOTE LET ME VOTE LET ME VOTE",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "VDF ADAHOEH",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "SCHLAF KINDLEIN SCHLAF DEI MUDDA IS N SCHAF",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
