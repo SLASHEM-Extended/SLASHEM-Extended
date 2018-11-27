@@ -8035,11 +8035,35 @@ int type;
     if (!rn2(5)) chance += rn2(100);
     int spell_bonus = type ? spell_hit_bonus(type) : 0;
 
+    int yourarmorclass;
+
     /* small chance for naked target to avoid being hit */
     if (!chance) return rnd(10) < ac+spell_bonus;
 
     /* very high armor protection does not achieve invulnerability */
-    ac = AC_VALUE(ac);
+
+	if (u.uac >= 0) yourarmorclass = u.uac;
+	else if (u.uac > -40) yourarmorclass = -rnd(-(u.uac));
+	else if (u.uac > -80) {
+		yourarmorclass = -u.uac;
+		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass = -rnd(yourarmorclass);
+	}
+	else if (u.uac > -120) {
+		yourarmorclass = -u.uac;
+		yourarmorclass -= rn3(-(u.uac) - 78);
+		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass = -rnd(yourarmorclass);
+	}
+	else { /* AC of -120 or better */
+		yourarmorclass = -u.uac;
+		yourarmorclass -= rn3(-(u.uac) - 118);
+		yourarmorclass -= rn3(-(u.uac) - 78);
+		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass = -rnd(yourarmorclass);
+	}
+
+	ac = yourarmorclass;
 
     /* do you have the force field technique active? if yes, 3 out of 4 zaps miss you unconditionally --Amy */
     if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {

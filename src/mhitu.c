@@ -1619,6 +1619,9 @@ mattacku(mtmp)
 		 * invisible, or you might be blind....
 		 */
 
+	int yourarmorclass;
+	int hittmp;
+
 	/* you can attack land-based monsters while underwater, so why should YOU be protected from THEIR attacks??? --Amy */
 	if(!ranged) nomul(0, 0, FALSE);
 	if(mtmp->mhp <= 0 /*|| (Underwater && !is_swimmer(mtmp->data))*/)
@@ -1773,7 +1776,31 @@ mattacku(mtmp)
 	}
 
 /*	Work out the armor class differential	*/
-	tmp = AC_VALUE(u.uac) + 10;		/* tmp ~= 0 - 20 */
+	/*tmp = AC_VALUE(u.uac) + 10;*/		/* tmp ~= 0 - 20 */
+
+	if (u.uac >= 0) yourarmorclass = u.uac;
+	else if (u.uac > -40) yourarmorclass = -rnd(-(u.uac));
+	else if (u.uac > -80) {
+		yourarmorclass = -u.uac;
+		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass = -rnd(yourarmorclass);
+	}
+	else if (u.uac > -120) {
+		yourarmorclass = -u.uac;
+		yourarmorclass -= rn3(-(u.uac) - 78);
+		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass = -rnd(yourarmorclass);
+	}
+	else { /* AC of -120 or better */
+		yourarmorclass = -u.uac;
+		yourarmorclass -= rn3(-(u.uac) - 118);
+		yourarmorclass -= rn3(-(u.uac) - 78);
+		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass = -rnd(yourarmorclass);
+	}
+
+	tmp = yourarmorclass + 10;
+
 	tmp += mtmp->m_lev;
 	if (mtmp->egotype_hitter) tmp += 10;
 	if (mtmp->egotype_piercer) tmp += 25;
@@ -2116,13 +2143,21 @@ cursesatyou:
 swingweapon:
 
 			if(range2 || !rn2(4) ) {
+				register struct obj *rangewepon;
 #ifdef REINCARNATION
-				if (!Is_rogue_level(&u.uz) || !rn2(3) )
+				if (!Is_rogue_level(&u.uz) || !rn2(3) ) {
 #endif
-				    if (!blue_on_blue(mtmp))
-					thrwmu(mtmp);
+
+					rangewepon = select_rwep(mtmp);
+					if (!rangewepon && !range2) goto usemelee;
+
+					if (!blue_on_blue(mtmp)) thrwmu(mtmp);
+#ifdef REINCARNATION
+				}
+#endif
 			} else {
-			    int hittmp = 0;
+usemelee:
+			    hittmp = 0;
 
 			    /* Rare but not impossible.  Normally the monster
 			     * wields when 2 spaces away, but it can be
@@ -8885,9 +8920,25 @@ dopois:
  */
 	if (dmg && u.uac < /*-1*/ (issoviet ? -20 : 0) ) {  /* damage reduction will start at -1 rather than -11 AC now --Amy */
 		int tempval;
-		tempval = rnd(-(issoviet ? (u.uac - 20) : u.uac)/5+1);
+
+		int effectiveac = (-(u.uac));
+		if (issoviet) effectiveac -= 20;
+		if (effectiveac > (issoviet ? 100 : 120)) {
+			if (issoviet) effectiveac -= rn3(effectiveac - 99);
+			else effectiveac -= rn3(effectiveac - 119);
+		}
+		if (effectiveac > (issoviet ? 60 : 80)) {
+			if (issoviet) effectiveac -= rn3(effectiveac - 59);
+			else effectiveac -= rn3(effectiveac - 79);
+		}
+		if (effectiveac > (issoviet ? 20 : 40)) {
+			if (issoviet) effectiveac -= rn2(effectiveac - 19);
+			else effectiveac -= rn2(effectiveac - 39);
+		}
+
+		tempval = rnd((effectiveac / (issoviet ? 5 : 4)) + 1);
 		if (tempval < 1)  tempval = 1;
-		if (tempval > 20) tempval = 20; /* max limit increased --Amy */
+		if (tempval > (issoviet ? 20 : 30)) tempval = (issoviet ? 20 : 30); /* max limit increased --Amy */
 
 		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qahramoni mokasen") )) tempval *= 2;
 
@@ -8895,8 +8946,19 @@ dopois:
 		if (Conflict) tempval /= 2; /* conflict is so powerful that it requires a bunch of nerfs --Amy */
 		if (StrongConflict) tempval /= 2; /* conflict is so powerful that it requires a bunch of nerfs --Amy */
 
-		dmg -= tempval;
-		if (dmg < 1) dmg = 1;
+		/* Amy edit: high AC is just far too strong, especially against already weak monsters! */
+		if (issoviet) {
+			dmg -= tempval;
+			if (dmg < 1) dmg = 1;
+		}
+
+		/* so outside of soviet russia, have it give percentage-based damage reduction instead */
+		if (dmg > 1 && tempval > 0) {
+			dmg *= (100 - rnd(tempval));
+			dmg++;
+			dmg /= 100;
+			if (dmg < 1) dmg = 1;
+		}
 	}
 
 	if(dmg) {
