@@ -7535,7 +7535,7 @@ struct monst *mtmp;
 		nomore(MUSE_WAN_MAKE_INVISIBLE);
 		if(obj->otyp == WAN_MAKE_INVISIBLE && obj->spe > 0 &&
 		    !mtmp->minvis && !mtmp->invis_blkd &&
-		    (!mtmp->mpeaceful || See_invisible) &&
+		    (!mtmp->mpeaceful || (See_invisible && mtmp->seeinvisble) || StrongSee_invisible) &&
 		    (!attacktype(mtmp->data, AT_GAZE) || mtmp->mcan)) {
 			m.misc = obj;
 			m.has_misc = MUSE_WAN_MAKE_INVISIBLE;
@@ -7543,7 +7543,7 @@ struct monst *mtmp;
 		nomore(MUSE_POT_INVISIBILITY);
 		if(obj->otyp == POT_INVISIBILITY &&
 		    !mtmp->minvis && !mtmp->invis_blkd &&
-		    (!mtmp->mpeaceful || See_invisible) &&
+		    (!mtmp->mpeaceful || (See_invisible && mtmp->seeinvisble) || StrongSee_invisible) &&
 		    (!attacktype(mtmp->data, AT_GAZE) || mtmp->mcan)) {
 			m.misc = obj;
 			m.has_misc = MUSE_POT_INVISIBILITY;
@@ -7750,10 +7750,10 @@ skipmsg:
 		} else
 		    mquaffmsg(mtmp, otmp);
 		/* format monster's name before altering its visibility */
-		strcpy(nambuf, See_invisible ? Monnam(mtmp) : mon_nam(mtmp));
+		strcpy(nambuf, ((See_invisible && mtmp->seeinvisble) || StrongSee_invisible) ? Monnam(mtmp) : mon_nam(mtmp));
 		mon_set_minvis(mtmp);
 		if (vismon && mtmp->minvis) {	/* was seen, now invisible */
-		    if (See_invisible)
+		    if ((See_invisible && mtmp->seeinvisble) || StrongSee_invisible)
 			pline("%s body takes on a %s transparency.",
 			      s_suffix(nambuf),
 			      Hallucination ? "normal" : "strange");
@@ -8603,7 +8603,7 @@ struct monst *mtmp;
 			if (mtmp->isgd) return 0;
 			return rn2(6) ? POT_SPEED : WAN_SPEED_MONSTER;
 		case 1:
-			if (mtmp->mpeaceful && !See_invisible) return 0;
+			if (mtmp->mpeaceful && !StrongSee_invisible) return 0;
 			return rn2(6) ? POT_INVISIBILITY : WAN_MAKE_INVISIBLE;
 		case 2:
 			return POT_GAIN_LEVEL;
