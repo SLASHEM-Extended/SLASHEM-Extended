@@ -3973,6 +3973,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli kakoy-libo iz instrumentov obrashcheniya slishkom sil'no proklinayet, vy mozhete takzhe udalit' personazha i brosit' novyy, potomu chto teper' oni ne dolzhny byt' proklyaty ili oni nikogda ne budut rabotat'. Potomu chto tip ledyanogo bloka khochet, chtoby igra byla pogranichnoy.",
 "Vy ne poluchite artefakt na pervykh dvukh urovnyakh, potomu chto vy ne v vanile, i nichto ne mozhet byt' izmeneno po sravneniyu s sovetskoy rossiyey.",
 "Yesli vy strelyayete v palochku, vy poluchite polnyy uron, potomu chto tip ledyanogo bloka prosto ignoriruyet tot fakt, chto vashi sobstvennyye palochki nanosyat bol'she bazovogo urona, potomu chto har har har.",
+"Yesli vzryv palochki porazhayet vas, vy vsegda poluchayete polnyy uron. Potomu chto rannyaya igra vsegda dolzhna byt' slozhneye, chem pozdnyaya igra, khotya eto i yest' chush'. Sovetskaya pyaterka ne odobryayet khoroshuyu model' trudnosti i vmesto etogo khochet, chtoby pozdnyaya igra byla legkomyslennoy.",
 };
 
 static NEARDATA const char * const hussylines[] = {

@@ -4029,6 +4029,8 @@ wand_explode(obj, hero_broke)
     dmg = obj->spe * 4;
     affects_objects = FALSE;
 
+	if (issoviet) pline("Kabum, ty byl glup, i teper' tvoya palochka vzorvalas', i ty vzyal na sebya der'mo. Obsluzhivayet vas pravil'no, chtoby byt' takoy zatormozhennost'yu.");
+
     switch (obj->otyp) {
     case WAN_WISHING:
     case WAN_ACQUIREMENT:
