@@ -4906,7 +4906,12 @@ find_ac()
 	if(uarms) uac -= ARM_BONUS(uarms);
 	if(uarmg) uac -= ARM_BONUS(uarmg);
 	if(uarmu) uac -= ARM_BONUS(uarmu);
-	if(uimplant) uac -= ARM_BONUS(uimplant);
+
+	/* implants are mainly meant for those who lack hands --Amy */
+	if(uimplant) uac -= (!Race_if(PM_TRANSFORMER) && nohands(youmonst.data) && ARM_BONUS(uimplant) > 1) ? ARM_BONUS(uimplant) : (ARM_BONUS(uimplant) / 2);
+	/* are you restricted? if yes, the implant may be actively bad for you */
+	if (P_RESTRICTED(P_IMPLANTS) && !nohands(youmonst.data)) uac += 2;
+
 	if(uleft && uleft->otyp == RIN_PROTECTION) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_PROTECTION) uac -= uright->spe;
 	if (HProtection & INTRINSIC) uac -= u.ublessed;
