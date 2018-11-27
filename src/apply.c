@@ -4087,14 +4087,18 @@ wand_explode(obj, hero_broke)
 	dmg *= 2;
     case WAN_MAGIC_MISSILE:
     wanexpl:
+	u.explodewandhack = 1;
 	explode(u.ux, u.uy, ZT_MAGIC_MISSILE, dmg, WAND_CLASS, expltype);
+	u.explodewandhack = 0;
 	makeknown(obj->otyp);	/* explode described the effect */
 	goto discard_broken_wand;
     case WAN_ACID:
     case WAN_SLUDGE:
 	expltype = EXPL_NOXIOUS;
 	dmg *= 2;
+	u.explodewandhack = 1;
 	explode(u.ux, u.uy, ZT_MAGIC_MISSILE, dmg, WAND_CLASS, expltype);
+	u.explodewandhack = 0;
 	makeknown(obj->otyp);	/* explode described the effect */
 	goto discard_broken_wand;
 /*WAC for wands of fireball- no double damage
@@ -4106,7 +4110,9 @@ wand_explode(obj, hero_broke)
 	dmg *= 2;
     case WAN_FIREBALL:
 	expltype = EXPL_FIERY;
+	  u.explodewandhack = 1;
         explode(u.ux, u.uy, ZT_FIRE, dmg, WAND_CLASS, expltype);
+	  u.explodewandhack = 0;
 	if (obj->dknown && !objects[obj->otyp].oc_name_known &&
 		!objects[obj->otyp].oc_uname)
         docall(obj);
@@ -4193,9 +4199,13 @@ wand_explode(obj, hero_broke)
 	break;
     }
 
+    u.explodewandhack = 1;
+
     /* magical explosion and its visual effect occur before specific effects */
     explode(obj->ox, obj->oy, ZT_MAGIC_MISSILE, dmg ? rnd(dmg) : 0, WAND_CLASS,
 	    EXPL_MAGICAL);
+
+    u.explodewandhack = 0;
 
     /* this makes it hit us last, so that we can see the action first */
     for (i = 0; i <= 8; i++) {

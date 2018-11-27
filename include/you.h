@@ -1172,6 +1172,8 @@ struct you {
 
 	boolean captchahack;
 
+	boolean explodewandhack;
+
 	int sokosolveboulder;
 	int sokosolveuntrap;
 

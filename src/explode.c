@@ -580,6 +580,14 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (!rn2(20) && damu >= 1 && GushLevel >= 20) {damu = damu / 5; if (damu < 1) damu = 1;}
 		if (!rn2(50) && damu >= 1 && GushLevel >= 30) {damu = damu / 10; if (damu < 1) damu= 1;}
 
+		/* exploding wands were too strong, a cursed wand of solar beam at XL1 shouldn't be instant death all the time */
+		if (u.explodewandhack && damu >= 1 && u.ulevel < 20) {
+
+			damu *= u.ulevel;
+			damu /= 20;
+			if (damu < 1) damu = 1;
+		}
+
 		if (PlayerInConeHeels && damu > 0) {
 			register int dmgreductor = 95;
 			if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {

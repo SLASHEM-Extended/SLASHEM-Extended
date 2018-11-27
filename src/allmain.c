@@ -10678,6 +10678,7 @@ newboss:
 
 	u.captchahack = 0;
 	u.roommatehack = 0;
+	u.explodewandhack = 0;
 
 	if (uarmc && uarmc->oartifact == ART_ULTRAGGRAVATE) {
 		u.heavyaggravation = 1;
