@@ -14962,7 +14962,10 @@ register int	mmflags;
 	mtmp->mtraitor  = FALSE;
 	mtmp->masleep = 0;
 
-	if (!rn2(30)) mtmp->fartbonus += rnd(9);
+	if (!rn2(30)) {
+		mtmp->fartbonus += rnd(9);
+		if (mtmp->fartbonus > 9) mtmp->fartbonus = 9;
+	}
 	if (!rn2(30)) mtmp->crapbonus += rnd(50);
 
 	mtmp->sagesvisible = !rn2(10);
