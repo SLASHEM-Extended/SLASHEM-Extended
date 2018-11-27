@@ -13640,7 +13640,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The NO_CURSES_KEYPAD define is planned to become an option from 2.3. (well, it did not make there)",
 	"Default to I/O handled by Free Pascal libs. NCurses proved to be unreliable on newest Mac OS X for unknwon reason.",
 	"Default to I/O handled by Free Pascal libs. NCurses proved to be unreliable on newest Mac OS X for unknwon reason. The spell checker proved to be unreliable too for the same unknWOn reason.",
-	"The developer of Noxico just programmed a porn engine that keeps track of tit size and 'number of dog dicks' and then hoped some volunteers would appear to contribute content.",
+	"What do you think of a porn engine that keeps track of tit size and 'number of dog dicks'? Would you be part of a group of volunteers who appear to contribute content?",
 	"exitPRIME(const code)  declared in Global.h",
 	"Sorry, the internal state of the game is inconsistent and SLASH'EM Extended needs to close. Please bitch at Amy on the IRC channel #em.slashem.me on Freenode",
 	"Information on keybindings.",
