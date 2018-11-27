@@ -292,6 +292,7 @@ struct obj {
 
 #define is_blindfold_slot(otmp)	((otmp)->otyp == BLINDFOLD\
 				|| (otmp)->otyp == CONDOME\
+				|| (otmp)->otyp == TOWEL\
 				|| (otmp)->otyp == SOFT_CHASTITY_BELT\
 				|| (otmp)->otyp == EYECLOSER\
 				|| (otmp)->otyp == DRAGON_EYEPATCH\
@@ -301,6 +302,7 @@ struct obj {
 
 #define is_blindfoldbase(o)	(o == BLINDFOLD\
 				|| o == CONDOME\
+				|| o == TOWEL\
 				|| o == SOFT_CHASTITY_BELT\
 				|| o == EYECLOSER\
 				|| o == DRAGON_EYEPATCH\
