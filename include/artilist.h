@@ -6171,8 +6171,8 @@ A("Keolewa",CLUB,
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,6), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
 
-A("The Sword of Bheleu", TWO_HANDED_SWORD, /* petrification resistance */
-	(SPFX_RESTR|SPFX_ATTK|SPFX_INTEL|SPFX_DALIGN), 0, 0,
+A("The Sword of Bheleu", TWO_HANDED_SWORD, /* petrification resistance, disables poison resistance when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_INTEL|SPFX_DALIGN|SPFX_EVIL), 0, 0,
 	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 12000L),
 
 A("The Ring of P'hul", RIN_POISON_RESISTANCE, /* sickness resistance */

@@ -16757,7 +16757,7 @@ struct obj *obj;
 				case ART_KEOLEWA:
 					pline("Artifact specs: +5 to-hit and +6 damage, neutral. Originally from Sporkhack and meant for the caveman, but here everyone can use it."); break;
 				case ART_SWORD_OF_BHELEU:
-					pline("Artifact specs: +10 to-hit and +10 damage to crossaligned monsters, petrification resistance when wielded, does extra poison damage to targets, chaotic."); break;
+					pline("Artifact specs: +10 to-hit and +10 damage to crossaligned monsters, petrification resistance when wielded, does extra poison damage to targets, disables your poison resistance, chaotic."); break;
 				case ART_RING_OF_P_HUL:
 					pline("Artifact specs: regeneration and sickness resistance when worn, neutral. In K2's Evilhack variant, this is the barbarian quest artifact; the fact that its base item type is superfluous for a barbarian is probably intentional because their original quest artifact was also rather useless."); break;
 				case ART_REALLY_COOL_SHIRT:

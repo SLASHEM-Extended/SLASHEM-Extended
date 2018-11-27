@@ -197,7 +197,7 @@
 #define Poison_resistance	(((IntPoison_resistance && u.nonintrinsicproperty != POISON_RES) || (ExtPoison_resistance && u.nonextrinsicproperty != POISON_RES)) && !NoPoison_resistance && !Race_if(PM_POISONER) )
 #define StrongPoison_resistance	(IntPoison_resistance && ExtPoison_resistance && Poison_resistance)
 
-#define NoPoison_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_POISON_RES].intrinsic || RngeAids || (u.impossibleproperty == POISON_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPoison_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_POISON_RES].intrinsic || RngeAids || (u.impossibleproperty == POISON_RES) || (uwep && uwep->oartifact == ART_SWORD_OF_BHELEU) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SWORD_OF_BHELEU) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HDrain_resistance	u.uprops[DRAIN_RES].intrinsic
 #define EDrain_resistance	u.uprops[DRAIN_RES].extrinsic
