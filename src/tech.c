@@ -6087,7 +6087,7 @@ revid_end:
 				break;
 			}
 
-			num = 200 + (techlevX(tech_no) * 10);
+			num = 50 + (techlevX(tech_no) * 3);
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Escrobism started - your bare hands or lightsaber will temporarily deal extra damage while you are wearing a robe.");
 
@@ -6444,7 +6444,7 @@ revid_end:
 	      You("start charging %s.", the(xname(uwep)));
 	      delay=-10;
 	      set_occupation(charge_saber, "charging", 0);
-	      t_timeout = rnz(500);
+	      t_timeout = rnz(2500);
 	      break;
 	    default:
 	    	pline ("Error!  No such effect (%i)", tech_no);
@@ -7067,7 +7067,7 @@ int monnum;
 STATIC_PTR int
 charge_saber()
 {
-	int i, tlevel;
+	int i, tlevel, yourmana, manamultiply, calchelpvar, effectlevel;
 	if(delay) {
 		delay++;
 		return(1);
@@ -7081,14 +7081,40 @@ charge_saber()
 	}
 	if (tlevel >= 10 && !rn2(5)){
 		You("manage to channel the force perfectly!");
-		uwep->age+=1500; // Jackpot!
+		uwep->age += 1500; // Jackpot!
 	} else
 		You("channel the force into %s.", the(xname(uwep)));
 
-	// yes no return above, it's a bonus :)
-	uwep->age+=u.uen*(( (techlevX(T_CHARGE_SABER) + rnd(5 + techlevX(T_CHARGE_SABER)) ) /rnd(10))+3); /* improved results by Amy */
-	u.uen=0;
-	flags.botl=1;
+	/* it was simply too strong... arbitrarily lower the amount you'll get --Amy */
+	yourmana = u.uen;
+	manamultiply = 0;
+	while (yourmana > 99) {
+		manamultiply++;
+		yourmana -= 100;
+	}
+	yourmana = u.uen;
+	while (manamultiply > 0) {
+		calchelpvar = (yourmana - (manamultiply * 100));
+		if (calchelpvar < 1) goto manacalccomplete;
+		yourmana -= rnd(calchelpvar);
+		manamultiply--;
+
+	}
+manacalccomplete:
+	if (yourmana < 1) yourmana = 1; /* fail safe, shouldn't happen */
+
+	if (techlevX(T_CHARGE_SABER) < 1) {
+		pline("Your ability to charge the saber is beyond recall, and therefore nothing happens.");
+		return(0);
+	}
+	effectlevel = rno(techlevX(T_CHARGE_SABER));
+
+	/* yes no return above, it's a bonus :) */
+	uwep->age += (yourmana * (( (effectlevel + rnd(5 + effectlevel) ) / rnd(10)) + rno(3)));
+	/* improved results by Amy */
+
+	u.uen = 0;
+	flags.botl = 1;
 	return(0);
 }
 

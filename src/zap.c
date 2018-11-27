@@ -283,7 +283,7 @@ struct obj *otmp;
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		break;
 
-	case SPE_BLANK_PAPER: /* placeholder for blade anger */
+	case SPE_BLANK_PAPER: /* placeholder for blade anger and beamsword; sadly you can't be using both at the same time */
 
 		if (tech_inuse(T_BLADE_ANGER)) {
 			dmg = bigmonst(mtmp->data) ? 6 : 8;
@@ -295,7 +295,21 @@ struct obj *otmp;
 		}
 
 		if (tech_inuse(T_BEAMSWORD)) {
-			dmg = 10;
+			dmg = rnd(20);
+
+			/* djem so skill will most probably be pretty high, but just in case it isn't, reduce damage --Amy */
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_DJEM_SO)) {
+					case P_BASIC: dmg = rnd(28); break;
+					case P_SKILLED: dmg = rnd(36); break;
+					case P_EXPERT: dmg = rnd(44); break;
+					case P_MASTER: dmg = rnd(52); break;
+					case P_GRAND_MASTER: dmg = rnd(60); break;
+					case P_SUPREME_MASTER: dmg = rnd(70); break;
+					default: break;
+				}
+			}
+
 			if (canseemon(mtmp)) pline("%s is hit by your lightsaber beam!", Monnam(mtmp));
 			else pline("It is hit by your lightsaber beam!");
 			(void) resist(mtmp, WEAPON_CLASS, dmg, NOTELL);

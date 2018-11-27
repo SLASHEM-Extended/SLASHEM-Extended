@@ -476,20 +476,20 @@ struct monst *mon;
 		case SCIMITAR:
 			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
 
-		case GREEN_LIGHTSABER:  tmp += 13; break;
-		case BLUE_LIGHTSABER:   tmp += 12; break;
-		case VIOLET_LIGHTSABER:	tmp += 8; break;
-		case YELLOW_LIGHTSABER:	tmp += 12; break;
+		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
+		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
+		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
+		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
 
 		case WHITE_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(12);
 					/* fallthrough */
-		case WHITE_LIGHTSABER:	tmp += 14; break;
+		case WHITE_LIGHTSABER:	tmp += rnd(14); break;
 
 		case RED_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(15);
 					/* fallthrough */
-		case RED_LIGHTSABER:    tmp +=10; break;
+		case RED_LIGHTSABER:    tmp += rnd(10); break;
 	    }
 	} else {
 	    if (objects[otyp].oc_wsdam)
@@ -540,20 +540,20 @@ struct monst *mon;
 		case WHITE_FLOWER_SWORD:
 						tmp += rnd(2); break;
 
-		case GREEN_LIGHTSABER:  tmp += 9; break;
-		case BLUE_LIGHTSABER:   tmp += 8; break;
-		case VIOLET_LIGHTSABER:	tmp += 6; break;
-		case YELLOW_LIGHTSABER:	tmp += 10; break;
+		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
+		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
+		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
+		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
 
 		case WHITE_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(15);
 					/* fallthrough */
-		case WHITE_LIGHTSABER:	tmp += 11; break;
+		case WHITE_LIGHTSABER:	tmp += rnd(11); break;
 
 		case RED_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(12);
 					/* fallthrough */
-		case RED_LIGHTSABER:    tmp +=6; break;
+		case RED_LIGHTSABER:    tmp += rnd(6); break;
 
 		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
@@ -844,20 +844,20 @@ struct monst *mon;
 		case SCIMITAR:
 			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
 
-		case GREEN_LIGHTSABER:  tmp += 13; break;
-		case BLUE_LIGHTSABER:   tmp += 12; break;
-		case VIOLET_LIGHTSABER:	tmp += 8; break;
-		case YELLOW_LIGHTSABER:	tmp += 12; break;
+		case GREEN_LIGHTSABER:  tmp += rnd(13); break;
+		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
+		case VIOLET_LIGHTSABER:	tmp += rnd(8); break;
+		case YELLOW_LIGHTSABER:	tmp += rnd(12); break;
 
 		case WHITE_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(12);
 					/* fallthrough */
-		case WHITE_LIGHTSABER:	tmp += 14; break;
+		case WHITE_LIGHTSABER:	tmp += rnd(14); break;
 
 		case RED_DOUBLE_LIGHTSABER: 
 					if (otmp->altmode) tmp += rnd(15);
 					/* fallthrough */
-		case RED_LIGHTSABER:    tmp +=10; break;
+		case RED_LIGHTSABER:    tmp += rnd(10); break;
 
 	    }
 	} else {
@@ -909,20 +909,20 @@ struct monst *mon;
 		case WHITE_FLOWER_SWORD:
 						tmp += rnd(2); break;
 
-		case GREEN_LIGHTSABER:  tmp += 9; break;
-		case BLUE_LIGHTSABER:   tmp += 8; break;
-		case VIOLET_LIGHTSABER:	tmp += 6; break;
-		case YELLOW_LIGHTSABER:	tmp += 10; break;
+		case GREEN_LIGHTSABER:  tmp += rnd(9); break;
+		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
+		case VIOLET_LIGHTSABER:	tmp += rnd(6); break;
+		case YELLOW_LIGHTSABER:	tmp += rnd(10); break;
 
 		case WHITE_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(15);
 					/* fallthrough */
-		case WHITE_LIGHTSABER:	tmp += 11; break;
+		case WHITE_LIGHTSABER:	tmp += rnd(11); break;
 
 		case RED_DOUBLE_LIGHTSABER:
 					if (otmp->altmode) tmp += rnd(12);
 					/* fallthrough */
-		case RED_LIGHTSABER:    tmp +=6; break;
+		case RED_LIGHTSABER:    tmp += rnd(6); break;
 
 		case SEGFAULT_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
@@ -4095,28 +4095,28 @@ struct obj *weapon;
 		}
 	}
 
-	/* Jedi are simply better */
-	if (Role_if(PM_JEDI) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
+	/* Jedi are simply better... but not as much as they used to --Amy */
+	if (Role_if(PM_JEDI) && !rn2(2) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
-			case P_SUPREME_MASTER: bonus +=15; break; /* fall through removed by Amy */
-			case P_GRAND_MASTER: bonus +=10; break; /* fall through removed by Amy */
-			case P_MASTER: bonus +=7; break; /* fall through removed by Amy */
-			case P_EXPERT: bonus +=4; break; /* fall through removed by Amy */
-			case P_SKILLED: bonus +=2; break;
-			case P_BASIC: bonus += 1; break;
+			case P_SUPREME_MASTER: bonus += rnd(5); break; /* fall through removed by Amy */
+			case P_GRAND_MASTER: bonus += rnd(4); break; /* fall through removed by Amy */
+			case P_MASTER: bonus += rnd(3); break; /* fall through removed by Amy */
+			case P_EXPERT: bonus += rnd(2); break; /* fall through removed by Amy */
+			case P_SKILLED: bonus += 1; break;
+			case P_BASIC: bonus += (rn2(2) ? 1 : 0); break;
 			case P_UNSKILLED: break;
 			case P_ISRESTRICTED: break;
 			default: impossible("unknown lightsaber skill for a jedi"); break;
 		}
 	}
-	else if (Race_if(PM_BORG) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
+	else if (Race_if(PM_BORG) && !rn2(4) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
-			case P_SUPREME_MASTER: bonus +=6; break; /* fall through removed by Amy */
-			case P_GRAND_MASTER: bonus +=5; break; /* fall through removed by Amy */
-			case P_MASTER: bonus +=4; break; /* fall through removed by Amy */
-			case P_EXPERT: bonus +=3; break; /* fall through removed by Amy */
-			case P_SKILLED: bonus +=2; break;
-			case P_BASIC: bonus += 1; break;
+			case P_SUPREME_MASTER: bonus += rno(4); break; /* fall through removed by Amy */
+			case P_GRAND_MASTER: bonus += rno(3); break; /* fall through removed by Amy */
+			case P_MASTER: bonus += rno(2); break; /* fall through removed by Amy */
+			case P_EXPERT: bonus += 1; break; /* fall through removed by Amy */
+			case P_SKILLED: bonus += (rn2(2) ? 1 : 0); break;
+			case P_BASIC: bonus += (!rn2(3) ? 1 : 0); break;
 			case P_UNSKILLED: break;
 			case P_ISRESTRICTED: break;
 			default: impossible("unknown lightsaber skill for a borg"); break;
@@ -4381,12 +4381,12 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit && !uarms && !u.twoweap) {
 		switch (P_SKILL(P_MAKASHI)) {
 
-			case P_BASIC:	bonus +=  2; break;
-			case P_SKILLED:	bonus +=  4; break;
-			case P_EXPERT:	bonus +=  6; break;
-			case P_MASTER:	bonus +=  8; break;
-			case P_GRAND_MASTER:	bonus +=  10; break;
-			case P_SUPREME_MASTER:	bonus +=  12; break;
+			case P_BASIC:	bonus +=  rnd(3); break;
+			case P_SKILLED:	bonus +=  rnd(5); break;
+			case P_EXPERT:	bonus +=  rnd(7); break;
+			case P_MASTER:	bonus +=  rnd(10); break;
+			case P_GRAND_MASTER:	bonus +=  rnd(12); break;
+			case P_SUPREME_MASTER:	bonus +=  rnd(15); break;
 			default: bonus += 0; break;
 		}
 	}
@@ -4394,12 +4394,12 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills) && uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {
 		switch (P_SKILL(P_ATARU)) {
 
-			case P_BASIC:	bonus +=  2; break;
-			case P_SKILLED:	bonus +=  4; break;
-			case P_EXPERT:	bonus +=  6; break;
-			case P_MASTER:	bonus +=  8; break;
-			case P_GRAND_MASTER:	bonus +=  10; break;
-			case P_SUPREME_MASTER:	bonus +=  12; break;
+			case P_BASIC:	bonus +=  rnd(2); break;
+			case P_SKILLED:	bonus +=  rnd(4); break;
+			case P_EXPERT:	bonus +=  rnd(6); break;
+			case P_MASTER:	bonus +=  rnd(8); break;
+			case P_GRAND_MASTER:	bonus +=  rnd(10); break;
+			case P_SUPREME_MASTER:	bonus +=  rnd(12); break;
 			default: bonus += 0; break;
 		}
 	}
@@ -4423,12 +4423,12 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit && bimanual(weapon) && weapon->altmode) {
 		switch (P_SKILL(P_VAAPAD)) {
 
-			case P_BASIC:	bonus +=  3; break;
-			case P_SKILLED:	bonus +=  6; break;
-			case P_EXPERT:	bonus +=  9; break;
-			case P_MASTER:	bonus +=  12; break;
-			case P_GRAND_MASTER:	bonus +=  15; break;
-			case P_SUPREME_MASTER:	bonus +=  18; break;
+			case P_BASIC:	bonus +=  rnd(5); break;
+			case P_SKILLED:	bonus +=  rnd(8); break;
+			case P_EXPERT:	bonus +=  rnd(12); break;
+			case P_MASTER:	bonus +=  rnd(16); break;
+			case P_GRAND_MASTER:	bonus +=  rnd(20); break;
+			case P_SUPREME_MASTER:	bonus +=  rnd(25); break;
 			default: bonus += 0; break;
 		}
 

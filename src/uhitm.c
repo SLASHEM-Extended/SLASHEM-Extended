@@ -582,6 +582,7 @@ register struct monst *mtmp;
 
 	if (uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit && tech_inuse(T_WILD_SLASHING)) {
 		tmp -= 10;
+		tmp -= rn2(21);
 	}
 
 	/* special class effect uses... */
