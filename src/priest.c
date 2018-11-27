@@ -553,16 +553,17 @@ register struct monst *priest;
 		    /* KMH, intrinsic patch */
 		    incr_itimeout(&HClairvoyant, rn1(500,500));
 		}
+		/* Amy edit: it's way too easy to get lots of protection. Fixing that. */
 	    } else if(offer < (issoviet ? (u.ulevel * 600) : 6000) &&
 		      u.ublessed < 20 &&
-		      (u.ublessed < 9 || !rn2(u.ublessed))) {
+		      (u.ublessed < 1 || !rn2(u.ublessed))) {
 		verbalize("Thy devotion has been rewarded.");
 		if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
 			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
 		}
 		if (!(HProtection & INTRINSIC))  {
 			HProtection |= FROMOUTSIDE;
-			if (!u.ublessed)  u.ublessed = rn1(3, 2);
+			if (!u.ublessed)  u.ublessed = rno(4);
 		} else u.ublessed++;
 	    } else {
 		verbalize("Thy selfless generosity is deeply appreciated.");
