@@ -4056,7 +4056,7 @@ newbossA:
 		if (uwep && uwep->oartifact == ART_ETHER_PENETRATOR && !rn2(100)) contaminate(rnd(10), FALSE);
 		if (uswapwep && uswapwep->oartifact == ART_ETHER_PENETRATOR && !rn2(100)) contaminate(rnd(10), FALSE);
 
-		if (In_gammacaves(&u.uz) && !rn2(100)) {
+		if (In_gammacaves(&u.uz) && !rn2(StrongCont_resist ? 1000 : Cont_resist ? 200 : 100)) {
 			if (!rn2(5)) {
 				pline("The background radiation in the Gamma Caves contaminates you.");
 				contaminate(rnz(25), TRUE);
