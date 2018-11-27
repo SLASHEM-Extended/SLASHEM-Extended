@@ -3133,6 +3133,7 @@ E int welded(struct obj *);
 E void weldmsg(struct obj *);
 E void setmnotwielded(struct monst *,struct obj *);
 E void unwield(struct obj *,BOOLEAN_P);
+E int ready_weapon(struct obj *, BOOLEAN_P);
 
 /* ### windows.c ### */
 

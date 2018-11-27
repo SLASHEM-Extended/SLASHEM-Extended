@@ -49,7 +49,7 @@
  * No item may be in more than one of these slots.
  */
 
-STATIC_DCL int ready_weapon(struct obj *, BOOLEAN_P);
+/*STATIC_DCL int ready_weapon(struct obj *, BOOLEAN_P);*/
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 /* used by will_weld() */
@@ -371,7 +371,7 @@ swapweaponchoice:
 
 }
 
-STATIC_OVL int
+int
 ready_weapon(wep, put_away)
 struct obj *wep;
 boolean put_away;

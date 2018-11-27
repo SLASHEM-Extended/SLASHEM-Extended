@@ -760,6 +760,7 @@ int spellnum;
     case MGC_MEGALOAD:
 	if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
 	pline(Hallucination ? "Aww, something's killing your good feelings!" : "You feel burdened");
+	otmp->quan = 1;
 	if (pickup_object(otmp, 1, FALSE, TRUE) <= 0) {
 	obj_extract_self(otmp);
 	place_object(otmp, u.ux, u.uy);
