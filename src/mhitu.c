@@ -1621,6 +1621,7 @@ mattacku(mtmp)
 
 	int yourarmorclass;
 	int hittmp;
+	int mlevfortohit;
 
 	/* you can attack land-based monsters while underwater, so why should YOU be protected from THEIR attacks??? --Amy */
 	if(!ranged) nomul(0, 0, FALSE);
@@ -1782,26 +1783,47 @@ mattacku(mtmp)
 	else if (u.uac > -40) yourarmorclass = -rnd(-(u.uac));
 	else if (u.uac > -80) {
 		yourarmorclass = -u.uac;
-		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass -= rn2(yourarmorclass - 38);
 		yourarmorclass = -rnd(yourarmorclass);
 	}
 	else if (u.uac > -120) {
 		yourarmorclass = -u.uac;
-		yourarmorclass -= rn3(-(u.uac) - 78);
-		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass -= rn3(yourarmorclass - 78);
+		yourarmorclass -= rn2(yourarmorclass - 38);
 		yourarmorclass = -rnd(yourarmorclass);
 	}
 	else { /* AC of -120 or better */
 		yourarmorclass = -u.uac;
-		yourarmorclass -= rn3(-(u.uac) - 118);
-		yourarmorclass -= rn3(-(u.uac) - 78);
-		yourarmorclass -= rn2(-(u.uac) - 38);
+		yourarmorclass -= rn3(yourarmorclass - 118);
+		yourarmorclass -= rn3(yourarmorclass - 78);
+		yourarmorclass -= rn2(yourarmorclass - 38);
 		yourarmorclass = -rnd(yourarmorclass);
 	}
 
 	tmp = yourarmorclass + 10;
 
-	tmp += mtmp->m_lev;
+	/* very high-level monsters shouldn't require absurd amounts of AC --Amy */
+	mlevfortohit = mtmp->m_lev;
+	if (mlevfortohit > 39) mlevfortohit -= rn3(mlevfortohit - 38);
+	if (mlevfortohit > 19) mlevfortohit -= rn2(mlevfortohit - 18);
+
+	/* deep down, the "chaff" monsters shouldn't be completely irrelevant */
+	if (!rn2(5) && (level_difficulty() > 20) && mlevfortohit < 5) mlevfortohit = 5;
+	if (!rn2(5) && (level_difficulty() > 40) && mlevfortohit < 10) mlevfortohit = 10;
+	if (!rn2(5) && (level_difficulty() > 60) && mlevfortohit < 15) mlevfortohit = 15;
+	if (!rn2(5) && (level_difficulty() > 80) && mlevfortohit < 20) mlevfortohit = 20;
+
+	/* and here we give them another little boost */
+	if (level_difficulty() > 5 && mlevfortohit < 5 && !rn2(5)) mlevfortohit++;
+	if (level_difficulty() > 10 && mlevfortohit < 5 && !rn2(2)) mlevfortohit++;
+	if (level_difficulty() > 10 && mlevfortohit < 10 && !rn2(5)) mlevfortohit++;
+	if (level_difficulty() > 20 && mlevfortohit < 10 && !rn2(2)) mlevfortohit++;
+	if (level_difficulty() > 20 && mlevfortohit < 15 && !rn2(5)) mlevfortohit++;
+	if (level_difficulty() > 40 && mlevfortohit < 15 && !rn2(2)) mlevfortohit++;
+	if (level_difficulty() > 30 && mlevfortohit < 20 && !rn2(5)) mlevfortohit++;
+	if (level_difficulty() > 60 && mlevfortohit < 20 && !rn2(2)) mlevfortohit++;
+
+	tmp += mlevfortohit;
 	if (mtmp->egotype_hitter) tmp += 10;
 	if (mtmp->egotype_piercer) tmp += 25;
 	if(multi < 0) tmp += 4;
@@ -1837,8 +1859,8 @@ mattacku(mtmp)
 
 	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
 
-	if (Conflict) tmp += rnd(1 + mtmp->m_lev);
-	if (StrongConflict) tmp += rnd(1 + mtmp->m_lev);
+	if (Conflict) tmp += rnd(1 + mlevfortohit);
+	if (StrongConflict) tmp += rnd(1 + mlevfortohit);
 	/* after all, they're also hitting each other, so need to make things more difficult for you --Amy */
 
 	if (!rn2(2) && (tmp > 1)) tmp /= 2; /* don't make high-level monsters automatically hit you --Amy */
@@ -8938,7 +8960,7 @@ dopois:
 
 		tempval = rnd((effectiveac / (issoviet ? 5 : 4)) + 1);
 		if (tempval < 1)  tempval = 1;
-		if (tempval > (issoviet ? 20 : 30)) tempval = (issoviet ? 20 : 30); /* max limit increased --Amy */
+		if (tempval > (issoviet ? 20 : 50)) tempval = (issoviet ? 20 : 50); /* max limit increased --Amy */
 
 		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qahramoni mokasen") )) tempval *= 2;
 

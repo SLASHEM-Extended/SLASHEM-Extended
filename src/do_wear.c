@@ -4891,8 +4891,9 @@ doputon()
 #ifdef OVL0
 
 /* Limits of uac (conveniently equal to the limits of an schar ;) */
-#define UAC_MIN (-128)
-#define UAC_LIM 127
+#define UAC_MIN /*(-128)*/(-9999999)
+#define UAC_LIM /*127*/9999999
+/* Amy edit: why the hell is that an schar, I decided that limitations are stupid and should be removed */
 
 void
 find_ac()

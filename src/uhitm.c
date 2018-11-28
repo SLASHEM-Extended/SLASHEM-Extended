@@ -378,7 +378,7 @@ struct monst *mtmp;
 
 }
 
-schar
+int
 find_roll_to_hit(mtmp)
 register struct monst *mtmp;
 {
@@ -712,8 +712,9 @@ register struct monst *mtmp;
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
-	if (tmp < -127) tmp = -127; /* fail safe, and to ensure that the end result is a schar */
-	if (tmp > 127) tmp = 127; /* however, why is it a schar anyway??? --Amy */
+	/*if (tmp < -127) tmp = -127;*/ /* fail safe, and to ensure that the end result is a schar */
+	/*if (tmp > 127) tmp = 127;*/ /* however, why is it a schar anyway??? --Amy */
+	/* trying to make it an int instead --Amy */
 
 	return tmp;
 }
@@ -724,7 +725,7 @@ boolean
 attack(mtmp)
 register struct monst *mtmp;
 {
-	schar tmp;
+	int tmp; /* used to be an schar for a reason not known to me, after all hmonas() uses an int --Amy */
 	register struct permonst *mdat = mtmp->data;
 	int mhit;
 

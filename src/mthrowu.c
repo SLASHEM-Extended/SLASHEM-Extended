@@ -301,7 +301,7 @@ const char *name;	/* if null, then format `obj' */
 		if(Blind || !flags.verbose) pline("It misses.");
 		else You("are almost hit by %s.", onm);
 		return(0);
-	} else if ( (u.uac < 0) && (!rn2(StrongConflict ? 4 : Conflict ? 3 : 2)) && !rn2(extrachance) && (rnd(50) < (-(u.uac))) )    {
+	} else if ( (u.uac < 0) && (!rn2(StrongConflict ? 4 : Conflict ? 3 : 2)) && !rn2(extrachance) && (rnd(100) < (-(u.uac))) )    {
 		/* more negative AC means a higher chance to deflect projectiles with armor --Amy */
 		if(Blind || !flags.verbose) pline("Your armor deflects a projectile.");
 		else You("deflect %s with your armor.", onm);
@@ -420,12 +420,40 @@ const char *name;	/* if null, then format `obj' */
 			if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 
 			if (dam && u.uac < /*-1*/0) { /* AC protects against this damage now, at least a bit --Amy */
+
 				int tempval;
-				tempval = rnd(-(u.uac)/5+1);
+
+				int effectiveac = (-(u.uac));
+				if (issoviet) effectiveac -= 20;
+				if (effectiveac > (issoviet ? 100 : 120)) {
+					if (issoviet) effectiveac -= rn3(effectiveac - 99);
+					else effectiveac -= rn3(effectiveac - 119);
+				}
+				if (effectiveac > (issoviet ? 60 : 80)) {
+					if (issoviet) effectiveac -= rn3(effectiveac - 59);
+					else effectiveac -= rn3(effectiveac - 79);
+				}
+				if (effectiveac > (issoviet ? 20 : 40)) {
+					if (issoviet) effectiveac -= rn2(effectiveac - 19);
+					else effectiveac -= rn2(effectiveac - 39);
+				}
+
+				tempval = rnd((effectiveac / (issoviet ? 5 : 4)) + 1);
 				if (tempval < 1)  tempval = 1;
-				if (tempval > 20) tempval = 20;
-				dam -= tempval;
-				if (dam < 1) dam = 1;
+				if (tempval > (issoviet ? 20 : 50)) tempval = (issoviet ? 20 : 50); /* max limit increased --Amy */
+
+				if (issoviet) {
+					dam -= tempval;
+					if (dam < 1) dam = 1;
+				}
+
+				if (dam > 1 && tempval > 0) {
+					dam *= (100 - rnd(tempval));
+					dam++;
+					dam /= 100;
+					if (dam < 1) dam = 1;
+				}
+
 			}
 
 			if (dam >= 2 && GushLevel > rnd(100)) dam = (dam+1) / 2;
