@@ -310,7 +310,7 @@ mount_steed(mtmp, force)
 #endif
 	    if (yn("But you can try to get on your steed anyway. Do it?") == 'y') {
 		if (rn2(3)) {
-			losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
+			losehp(rn1(10,20), "trying an illegal ride", KILLED_BY);
 			pline("Ouch! You slip and hurt yourself a lot!");
 			if (rn2(3)) {
 				pline("Due to your leg injury, you don't manage to swing yourself onto your steed.");

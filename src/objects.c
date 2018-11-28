@@ -5539,6 +5539,10 @@ SCROLL((char *)0,               "OUCH THAT REALLY HURT MY FEFES",  P_NONE,     1
 SCROLL((char *)0,               "LET ME VOTE LET ME VOTE LET ME VOTE",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "VDF ADAHOEH",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "SCHLAF KINDLEIN SCHLAF DEI MUDDA IS N SCHAF",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "WOERTER WIE DICHTFETZIG ODER SEHNSUCHTSWELKEN SOLLTEN NICHT EXISTIEREN",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "EXIT IN THE GAY DIRECTION OF TRAVEL",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "ZA WARUDO",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "BUEYUE BRIGITTE",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

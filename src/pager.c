@@ -3974,6 +3974,15 @@ static NEARDATA const char * const soviettaunts[] = {
 "Vy ne poluchite artefakt na pervykh dvukh urovnyakh, potomu chto vy ne v vanile, i nichto ne mozhet byt' izmeneno po sravneniyu s sovetskoy rossiyey.",
 "Yesli vy strelyayete v palochku, vy poluchite polnyy uron, potomu chto tip ledyanogo bloka prosto ignoriruyet tot fakt, chto vashi sobstvennyye palochki nanosyat bol'she bazovogo urona, potomu chto har har har.",
 "Yesli vzryv palochki porazhayet vas, vy vsegda poluchayete polnyy uron. Potomu chto rannyaya igra vsegda dolzhna byt' slozhneye, chem pozdnyaya igra, khotya eto i yest' chush'. Sovetskaya pyaterka ne odobryayet khoroshuyu model' trudnosti i vmesto etogo khochet, chtoby pozdnyaya igra byla legkomyslennoy.",
+"Tip ledyanogo bloka prosto nenavidit zabavu, i poetomu on sdelal ochen' skuchnuyu i monotonnuyu igru, gde vy zasypayete cherez pyat' minut.",
+"Mozhete li vy poverit', chto sovetskaya pyaterka snimayet vse, chto ya delal, i zastavlyaya igru vesti sebya kak obychnaya kosaya cherta? Pochemu on prosto ne izmenil koshelek vmesto nikh.",
+"Yesli Emi vneset izmeneniya, ona dolzhna sosat', eto tochno. I poetomu slesh ikh vernet obratno, vernet yego i vse vremya smeyetsya, potomu chto igrovoy balans dlya manekenov.",
+"Razrabotchik skazal, chto rol' transvestita byla udalena, potomu chto on ne mozhet sozdat' khoroshiy kvest dlya nego, chto yavlyayetsya neveroyatno khromym opravdaniyem. My vse znayem, pochemu on deystvitel'no udalil eto: potomu chto on takaya chertovskaya khanzha (mozhno bylo by poverit', chto on na samom dele amerikanets) i imeyet problemu s tem, chto sushchestvuyet rol', nazyvayemaya transvestitom!",
+"Vezde, gde vy idete po kose, ikh spisok fiksatsii, vy vidite der'mo! Izmeneniya, kotoryye sdelany radi ikh sozdaniya, ili, chto yeshche khuzhe, radi ustraneniya vsekh sledov Emi, kogda-libo imeyushchikh zakodirovannuyu chast', potomu chto ona antikhrist ili chto-to v etom rode!",
+"Bud' ami. Sdelayte ispravleniye. Podozhdite, poka ne poyavitsya sovetskiy ledovyy blok tipa Pyat' Lo. Ston v agonii, kogda on vozvrashchayet yego s kommentariyem, govoryashchim, chto vashi izmeneniya ne imeyut nikakogo smysla, potomu chto on ne znayet C i/ili deystvitel'no ne chital kod i prosto zavyazal sebe glaza, snimaya vse, chto vy delali, potomu chto vy antikhrist.",
+"Khuzhe vsego to, chto yesli ya, Emi, obvinyayus' v oshibkakh, vvedennykh slesh ikh. Naprimer, oshibka zhurnala dampa. U moyego varianta net takoy oshibki, i ya by ne vypustil chto-to, chto imeyet takuyu ??oshibku. Tem ne meneye, lyudi chasto podrazumevayut, chto slex takzhe poterpit krakh, yesli vy podnimetes', chego, bezuslovno, net.",
+"Chto sdelal sovetskiy pyat' v novykh gonkakh, kotoryye ya dobavil? Pravil'no: on udalil vse, chto sdelalo ikh unikal'nymi, i teper' vse, chto ostalos', eto ikh imena, krome togo, chto oni deystvitel'no chelovecheskiye. Yon.",
+"Slesh ikh yavlyayetsya okonchatel'nym dokazatel'stvom togo, chto vy ne dolzhny izmenyat' Emi yeye rabotu! Konechno, eto ne zapreshcheno zakonom ili chem-to yeshche, no rezul'tat tipa l'da blokiruyet yego variant, kotoryy pokazyvayet, chto nikto ne khochet otsenit' rabotu, kotoruyu ya vlozhil v moy variant, - v sluchaye somneniy on prosto vsegda UDALYAYET UDALIT' UDALENIYe BYULLETKI!",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -22549,6 +22558,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Kore wa tabetemo ii no kashira?",
 	"Dareka- kore chouri shite-",
 	"Ara irasshai",
+	"The world is moving through pudding!",
+	"I'm not sure if it's just me, but having forced draft for only one gender totally sounds like 'women are supposed to be baby-making machines' to me.",
+	"Harharhar you stupid bitch, a falling rock hits your head harharhar!",
+	"The magic-absorbing blade stuns Yeenoghu! Yeenoghu looks fed up. Yeenoghu is still annoyed about the deadly touch bug having been fixed in 3.4.0. Yeenoghu has noped out of the dungeon!",
+
 
 };
 
