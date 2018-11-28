@@ -6340,6 +6340,8 @@ A("Katia's Soft Cotton", BATH_TOWEL, /* if you take a crap while wearing it, you
 
 /*** The artifacts for the quest dungeon, all self-willed ***/
 
+/* Amy note: The Orb of Detection MUST be the first one!!! see foreignartifactcount() in invent.c */
+
 A("The Orb of Detection",	CRYSTAL_BALL,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_ESP|SPFX_HSPDAM), 0,
 	NO_ATTK,	NO_DFNS,	CARY(AD_MAGM),
@@ -6976,6 +6978,8 @@ A("The Ultimate Pick", DWARVISH_MATTOCK,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
 	PHYS(0, 20),	NO_DFNS, NO_CARY,
 	0,	A_NEUTRAL, PM_MASON, NON_PM, 2500L ),
+
+/* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */
 
 /*
  *  terminator; otyp must be zero

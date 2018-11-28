@@ -1353,6 +1353,52 @@ usingquestarti()
 	return(FALSE);
 }
 
+/* are you carrying or even using quest artifacts that aren't your own? if yes, you might get downsides --Amy */
+int
+foreignartifactcount()
+{
+	register struct obj *otmp;
+	int facount = 0;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+
+		if (otmp->oartifact && otmp->oartifact >= ART_ORB_OF_DETECTION && !is_quest_artifact(otmp)) {
+			if (otmp->oclass == WEAPON_CLASS || is_weptool(otmp)) {
+				if (uwep && uwep == otmp) facount += 4;
+				else if (uswapwep && uswapwep == otmp && u.twoweap) facount += 4;
+			} else if (is_blindfold_slot(otmp)) {
+				if (ublindf && ublindf == otmp) facount += 4;
+			} else if (otmp->oclass == RING_CLASS) {
+				if (uleft && uleft == otmp) facount += 4;
+				else if (uright && uright == otmp) facount += 4;
+			} else if (otmp->oclass == AMULET_CLASS) {
+				if (uamul && uamul == otmp) facount += 4;
+			} else if (otmp->oclass == IMPLANT_CLASS) {
+				if (uimplant && uimplant == otmp) facount += 4;
+			} else if (is_boots(otmp)) {
+				if (uarmf && uarmf == otmp) facount += 4;
+			} else if (is_gloves(otmp)) {
+				if (uarmg && uarmg == otmp) facount += 4;
+			} else if (is_helmet(otmp)) {
+				if (uarmh && uarmh == otmp) facount += 4;
+			} else if (is_cloak(otmp)) {
+				if (uarmc && uarmc == otmp) facount += 4;
+			} else if (is_shield(otmp)) {
+				if (uarms && uarms == otmp) facount += 4;
+			} else if (is_shirt(otmp)) {
+				if (uarmu && uarmu == otmp) facount += 4;
+			} else if (is_suit(otmp)) {
+				if (uarm && uarm == otmp) facount += 4;
+				if (uskin && uskin == otmp) facount += 4;
+			}
+			facount++;
+
+		}
+
+	}
+	return facount;
+}
+
 boolean
 have_sleepstone()
 {

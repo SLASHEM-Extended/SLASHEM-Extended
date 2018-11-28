@@ -1247,6 +1247,8 @@ E boolean have_mothrelay(void);
 
 E boolean usingquestarti(void);
 
+E int foreignartifactcount(void);
+
 E struct obj *o_on(unsigned int,struct obj *);
 E boolean obj_here(struct obj *,int,int);
 E boolean wearing_armor(void);
@@ -2870,7 +2872,7 @@ E void polyinitors(void);
 E void hurtmarmor(struct monst *,int);
 E int attack_checks(struct monst *,BOOLEAN_P);
 E void check_caitiff(struct monst *);
-E schar find_roll_to_hit(struct monst *);
+E int find_roll_to_hit(struct monst *);
 E boolean attack(struct monst *);
 E boolean hmon(struct monst *,struct obj *,int,int);
 E int damageum(struct monst *,struct attack *);

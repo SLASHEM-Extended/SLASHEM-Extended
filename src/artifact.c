@@ -3301,6 +3301,14 @@ arti_invoke(obj)
 
     if(oart->inv_prop > LAST_PROP) {
 	/* It's a special power, not "just" a property */
+
+	if (obj->oartifact >= ART_ORB_OF_DETECTION && !is_quest_artifact(obj)) {
+		pline("Tapping into the powers of artifacts that don't belong to you is dangerous.");
+		contaminate(rnz(100), TRUE);
+		increasesanity(rnz(100));
+		adjalign(-rnz(100));
+	}
+
 	if(obj->age > monstermoves) {
 	    /* the artifact is tired :-) */
 	    You_feel("that %s %s ignoring you.",
@@ -3683,6 +3691,13 @@ chargingchoice:
 	long eprop = (u.uprops[oart->inv_prop].extrinsic ^= W_ARTI),
 	     iprop = u.uprops[oart->inv_prop].intrinsic;
 	boolean on = (eprop & W_ARTI) != 0; /* true if invoked prop just set */
+
+	if (obj->oartifact >= ART_ORB_OF_DETECTION && !is_quest_artifact(obj)) {
+		pline("Tapping into the powers of artifacts that don't belong to you is dangerous.");
+		contaminate(rnz(100), TRUE);
+		increasesanity(rnz(100));
+		adjalign(-rnz(100));
+	}
 
 	if(on && obj->age > monstermoves) {
 	    /* the artifact is tired :-) */
