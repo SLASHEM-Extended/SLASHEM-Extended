@@ -1,6 +1,41 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.4.1 - November 2018
+- Fixed the bug where if the game tried to destroy indestructible items, it would still say that one of your items was destroyed when it really wasn't.
+- Added two new attacks that monsters can use.
+- Increased the rate at which the Djem So skill is trained.
+- In evilvariant mode, shoe monsters can attack with their sweaty inlays.
+- Monsters that trigger magic portals or recursion traps will reveal those traps now.
+- Items in crystal water are shown only if the player can reach them without having to touch the water.
+- Added a failsafe to a light source related function in the hopes of fixing a rare crash.
+- Carrying around another role's quest artifact, and especially equipping or invoking it, will increase the player's sanity and contamination, and reduce the alignment record.
+- Player's AC and to-hit are no longer capped at +-127.
+
+2.4.0 - November 2018
+- Fixed the bug that caused bad equipment/artifact effects to sometimes leave the player stuck with a phantom weapon in their hands that is not listed in the inventory screen and goes away when saving and loading.
+- Players with very good AC are a bit more likely to be hit now compared to before.
+- Fixed the error message spam caused by farting monsters, which was also introduced in an earlier version.
+- Fixed a bug that was introduced earlier which made it impossible to wear towels.
+- The Sword of Bheleu has a downside now.
+- Nerfed a bunch of lightsaber-related things.
+- Made contamination resistance more useful in the Gamma Caves.
+- Peaceful monsters should no longer make themselves invisible if you won't be able to see them.
+- Made it much harder to get a lot of protection from priests. The costs are the same but more donations are required on average.
+- Wearing an implant while in a form with hands gives less extra AC now, and if the player is also restricted in the implants skill they may actually make the player's AC worse.
+- The roommate race will now encounter special rooms on levels with branch entrances too.
+- Exploding wands deal less damage to low-level players to make them less of a game-ender.
+
 2.3.9 - November 2018
+- Darkness attacks deal extra damage to angels.
+- If the player is capable of oozing through doors, it should now work regardless of the open/closed state of the door and regardless of whether the player is trying to ooze into or out of the door.
+- Early on, the player hitting themselves with ray wands (rebounds) deals less damage to increase the player's survivability.
+- Certain special behavior in Sokoban no longer applies to the entire dungeon when playing a sokosolver.
+- Toned down the effect of deprovement traps.
+- Perfume monsters, odor shots and certain other things cause sanity now.
+- Perfume and converter monsters now have a higher than average chance of getting certain egotypes.
+- Made it less likely that the game ends up placing a branch stair/portal on top of an existing staircase.
+- Snails can no longer be forced to wear flat shoes.
+- Fixed a bug that caused many starting pets to have the player's cat name, if one was set.
 - In evilvariant mode, ghosts have aging attacks.
 - Every point in a lightsaber form gives a small chance of avoiding sanity.
 - Killing the quest nemesis makes clones of him even more likely to spawn.
