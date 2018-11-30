@@ -1816,6 +1816,10 @@ badeffect()
 
 		break;
 
+		case 417:
+			nastytrapcurse();
+		break;
+
 		default:
 		break;
 	}
@@ -2763,6 +2767,72 @@ newbadheeltry:
 
 }
 
+/* nastycurse: select a random worn piece of armor and curse it, plus add a nastytrap egotype to it --Amy */
+void
+nastytrapcurse()
+{
+	register struct obj *ntobj;
+	int tryct = 0;
+	long savewornmask;
+
+	while (tryct++ < 1000) {
+		switch (rnd(7)) {
+			case 1:
+				if (uarmc) {
+					tryct = 1000;
+					ntobj = uarmc;
+				}
+				break;
+			case 2:
+				if (uarm) {
+					tryct = 1000;
+					ntobj = uarm;
+				}
+				break;
+			case 3:
+				if (uarmu) {
+					tryct = 1000;
+					ntobj = uarmu;
+				}
+				break;
+			case 4:
+				if (uarmh) {
+					tryct = 1000;
+					ntobj = uarmh;
+				}
+				break;
+			case 5:
+				if (uarms) {
+					tryct = 1000;
+					ntobj = uarms;
+				}
+				break;
+			case 6:
+				if (uarmf) {
+					tryct = 1000;
+					ntobj = uarmf;
+				}
+				break;
+			case 7:
+				if (uarmg) {
+					tryct = 1000;
+					ntobj = uarmg;
+				}
+				break;
+		}
+	}
+
+	if (!ntobj) return; /* Nothing happens... */
+
+	savewornmask = ntobj->owornmask;
+	setworn((struct obj *)0, ntobj->owornmask);
+	ntobj->enchantment = randnastyenchantment();
+	setworn(ntobj, savewornmask);
+	curse(ntobj);
+	pline("You hear the devils laugh, and your %s is surrounded by an aura of evilness...", xname(ntobj) );
+
+}
+
 /* sanity - yes it's not a bug that you start at 0 sanity and gradually become more sane :P --Amy */
 void
 increasesanity(snamount)
@@ -2770,6 +2840,7 @@ int snamount;
 {
 	if (Upolyd && dmgtype(youmonst.data, AD_SPC2) && rn2(5)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
+	if (Upolyd && dmgtype(youmonst.data, AD_SANI) && rn2(100)) return;
 
 	if (!(PlayerCannotUseSkills)) {
 		int sanityprotection = 0;

@@ -1100,6 +1100,10 @@ int traitno;
 			return "monsters with ranged thorns";
 		case 361:
 			return "monsters that originate from Elona";
+		case 362:
+			return "monsters that put nasty curses on your equipment";
+		case 363:
+			return "monsters whose attacks increase your sanity";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

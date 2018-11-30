@@ -2235,6 +2235,7 @@ E void bad_equipment(void);
 E void bad_equipment_heel(void);
 E void increasesanity(int);
 E void statdrain(void);
+E void nastytrapcurse(void);
 
 /* ### pray.c ### */
 

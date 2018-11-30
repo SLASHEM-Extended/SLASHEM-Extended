@@ -10814,7 +10814,7 @@ madnesseffect:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(361);
+			monstercolor = rnd(363);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -11074,7 +11074,7 @@ madnesseffect:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(361);
+			monstercolor = rnd(363);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -11423,7 +11423,7 @@ madnesseffect:
 #else
 			randsp = 1680;
 #endif
-			monstercolor = rnd(361);
+			monstercolor = rnd(363);
 
 			pline("CLICK! The entire area is filled with monsters! And they have one thing in common: they want to make your life miserable!");
 

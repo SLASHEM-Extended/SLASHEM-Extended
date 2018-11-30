@@ -243,7 +243,10 @@ extern char *attk_dname(Attk);
 #define AD_TRAI		125	/* reduces skill training */
 #define AD_STAT		126	/* permanently damages stats */
 
-#define AD_ENDS		127	/* placeholder */
+#define AD_NACU		127	/* curse a random worn armor piece and replace its egotype with a nastytrap one */
+#define AD_SANI		128	/* increase sanity */
+
+#define AD_ENDS		129	/* placeholder */
 
 #define AD_PART		230	/* specific regular attack (rolled at game start) */
 #define AD_RUNS		231	/* specific nastytrap effect (rolled at game start) */

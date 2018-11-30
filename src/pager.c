@@ -3188,8 +3188,12 @@ get_description_of_damage_type(uchar id)
 			damageid = 142; break;
 		case AD_RUNS:
 			damageid = 143; break;
-		case AD_ENDS:
+		case AD_NACU:
 			damageid = 144; break;
+		case AD_SANI:
+			damageid = 145; break;
+		case AD_ENDS:
+			damageid = 146; break;
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -3199,7 +3203,7 @@ get_description_of_damage_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		damageid += u.pokeliedamagetype;
-		if (damageid > 144) damageid -= 144;
+		if (damageid > 146) damageid -= 146;
 	}
 
 	switch(damageid){
@@ -3353,7 +3357,10 @@ get_description_of_damage_type(uchar id)
 		case 142: return "specific regular attack";
 		case 143: return "specific nastytrap effect";
 
-		case 144: return "placeholder attack";
+		case 144: return "nastycurse";
+		case 145: return "increase sanity";
+
+		case 146: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -22563,6 +22570,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Harharhar you stupid bitch, a falling rock hits your head harharhar!",
 	"The magic-absorbing blade stuns Yeenoghu! Yeenoghu looks fed up. Yeenoghu is still annoyed about the deadly touch bug having been fixed in 3.4.0. Yeenoghu has noped out of the dungeon!",
 	"Ruth's sneaker uses her sweaty inlay, causing you to become unconscious from the stench!",
+	"You see the shub-niggurath chow dead bodies.",
+	"You shudder at the spiral king's terrifying eyes.",
+	"You feel sick at entrails caught in the elder priests's tentacles.",
+	"You see maggots breed in the rent stomach of the strange void.",
+	"You hear the devils laugh, and your enchanted (of premature death) silver dragon scale mail is surrounded by an aura of evilness...",
 
 };
 

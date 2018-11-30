@@ -1901,6 +1901,28 @@ physical:
 
 		break;
 
+	    case AD_SANI:
+		if (!rn2(10)) {
+			mdef->mconf = 1;
+			if (vis) {
+			switch (rnd(4)) {
+
+				case 1:
+					pline("%s sees %s chow dead bodies.", Monnam(mdef), mon_nam(magr)); break;
+				case 2:
+					pline("%s shudders at %s's terrifying %s.", Monnam(mdef), mon_nam(magr), makeplural(mbodypart(magr, EYE)) ); break;
+				case 3:
+					pline("%s feels sick at entrails caught in %s's tentacles.", Monnam(mdef), mon_nam(magr)); break;
+				case 4:
+					pline("%s sees maggots breed in the rent %s of %s.", Monnam(mdef), mbodypart(magr, STOMACH), mon_nam(magr)); break;
+
+			}
+			}
+
+		}
+
+		break;
+
 	    case AD_INSA:
 		if (rnd(100) > mdef->data->mr) {
 		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
@@ -1992,6 +2014,7 @@ physical:
 		break;
 	    case AD_CURS:
 	    case AD_ICUR:
+	    case AD_NACU:
 		if (nohit) break;
 		
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
@@ -2883,6 +2906,7 @@ int mdead;
 		}
 		break;
 	    case AD_ICUR:
+	    case AD_NACU:
 	    case AD_CURS:
 		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
 			magr->mcan = 1;
@@ -2910,6 +2934,25 @@ int mdead;
 		    magr->mconf = 1;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
+		break;
+	    case AD_SANI:
+		if (!rn2(10)) {
+			magr->mconf = 1;
+			switch (rnd(4)) {
+
+				case 1:
+					pline("%s sees %s chow dead bodies.", Monnam(magr), mon_nam(mdef)); break;
+				case 2:
+					pline("%s shudders at %s's terrifying %s.", Monnam(magr), mon_nam(mdef), makeplural(mbodypart(mdef, EYE)) ); break;
+				case 3:
+					pline("%s feels sick at entrails caught in %s's tentacles.", Monnam(magr), mon_nam(mdef)); break;
+				case 4:
+					pline("%s sees maggots breed in the rent %s of %s.", Monnam(magr), mbodypart(mdef, STOMACH), mon_nam(magr)); break;
+
+			}
+
+		}
+
 		break;
 	    case AD_DREA:
 		if (!magr->mcanmove) {

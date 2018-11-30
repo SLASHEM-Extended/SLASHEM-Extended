@@ -1808,6 +1808,7 @@ register int pm;
 	    case PM_EMPEROR_NEWT:
 	    case PM_LARGE_NEWT:
 	    case PM_ORE_NEWT:
+	    case PM_MINNEWT:
 	    case PM_SENSEI_NEWT:
 	    case PM_GRANDMASTER_NEWT:
 	    case PM_ASPHYNX:
@@ -1886,6 +1887,7 @@ register int pm;
 	    case PM_GRANDMASTER_TWEN:
 	    case PM_LARGE_TWEN:
 	    case PM_ORE_TWEN:
+	    case PM_MINTWEN:
 	    case PM_EMPEROR_TWEN:
 	    case PM_SENSEI_TWEN:
 	    case PM_YELDUD_TWEN:
@@ -2919,6 +2921,7 @@ register int pm;
 	    case PM_ARMY_MIND_FLAYER:
 	    case PM_UNDEAD_MIND_FLAYER:
 	    case PM_ELDRITCH_MIND_FLAYER:
+	    case PM_BLANK_MIND_FLAYER:
 	    case PM_SOPHISTICATED_MIND_FLAYER:
 	    case PM_SWAPPED_MASTER_MIND_FLAYER:
 	    case PM_GIGANTIC_MIND_FLAYER:
@@ -2960,6 +2963,7 @@ register int pm;
 		case PM_REGENERATING_MIND_FLAYER:
 		case PM_PSYCHO_MIND_FLAYER:
 		case PM_PSYCH_FLAYER:
+		case PM_CLEAR_FLAYER:
 		case PM_CHIEF_MIND_FLAYER:
 		case PM_PASSIVE_MIND_FLAYER:
 		case PM_MINDFLAY_WRAITH:
@@ -3067,6 +3071,10 @@ register int pm;
 
 	/* insanity monsters should not be eaten... --Amy */
 		if (dmgtype(ptr, AD_INSA)) {
+			pline("It tasted really, really strange.");
+			increasesanity(rnz(100));
+		}
+		if (dmgtype(ptr, AD_SANI)) {
 			pline("It tasted really, really strange.");
 			increasesanity(rnz(100));
 		}

@@ -251,7 +251,7 @@ int
 randattack()
 {
 
-	switch (rnd(326)) {
+	switch (rnd(330)) {
 
 		case 1:
 		case 2:
@@ -702,6 +702,12 @@ randattack()
 			return AD_TRAI;
 		case 326:
 			return AD_STAT;
+		case 327:
+			return AD_NACU;
+		case 328:
+		case 329:
+		case 330:
+			return AD_SANI;
 		default:
 			return AD_PHYS;
 
@@ -712,7 +718,7 @@ randattack()
 int
 randomdamageattack()
 {
-	switch (rnd(24)) {
+	switch (rnd(25)) {
 		case 1:
 			return AD_ACID;
 		case 2:
@@ -761,6 +767,8 @@ randomdamageattack()
 			return AD_IDAM;
 		case 24:
 			return AD_ANTI;
+		case 25:
+			return AD_NACU;
 		default:
 			return AD_PHYS;
 	}

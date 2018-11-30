@@ -4558,6 +4558,7 @@ register struct attack *mattk;
 		break;
 	    case AD_CURS:
 	    case AD_ICUR:
+	    case AD_NACU:
 
 		if (night() && !rn2(10) && !mdef->mcan && (rnd(100) > mdef->data->mr) ) {
 
@@ -4878,6 +4879,26 @@ register struct attack *mattk;
 		if (rnd(100) > mdef->data->mr) {
 		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
 			pline("%s screams in fear!",Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_SANI:
+		if (!rn2(10)) {
+			mdef->mconf = 1;
+			switch (rnd(4)) {
+
+				case 1:
+					pline("%s sees you chow dead bodies.", Monnam(mdef)); break;
+				case 2:
+					pline("%s shudders at your terrifying %s.", Monnam(mdef), makeplural(body_part(EYE)) ); break;
+				case 3:
+					pline("%s feels sick at entrails caught in your tentacles.", Monnam(mdef)); break;
+				case 4:
+					pline("%s sees maggots breed in your rent stomach.", Monnam(mdef), body_part(STOMACH)); break;
+
+			}
+
 		}
 
 		break;
@@ -5448,6 +5469,7 @@ register struct attack *mattk;
 		break;
 	    case AD_CURS:
 	    case AD_ICUR:
+	    case AD_NACU:
 		if (night() && !rn2(10) && !mdef->mcan && (rnd(100) > mdef->data->mr) ) {
 
 		    if (mdef->data == &mons[PM_CLAY_GOLEM]) {
@@ -5696,6 +5718,26 @@ register struct attack *mattk;
 			pline("%s screams in fear!",Monnam(mdef));
 		}
 		break;
+	    case AD_SANI:
+		if (!rn2(10)) {
+			mdef->mconf = 1;
+			switch (rnd(4)) {
+
+				case 1:
+					pline("%s sees you chow dead bodies.", Monnam(mdef)); break;
+				case 2:
+					pline("%s shudders at your terrifying %s.", Monnam(mdef), makeplural(body_part(EYE)) ); break;
+				case 3:
+					pline("%s feels sick at entrails caught in your tentacles.", Monnam(mdef)); break;
+				case 4:
+					pline("%s sees maggots breed in your rent stomach.", Monnam(mdef), body_part(STOMACH)); break;
+
+			}
+
+		}
+
+		break;
+
 	    case AD_INSA:
 
 		if (rnd(100) > mdef->data->mr) {
@@ -7407,6 +7449,11 @@ boolean ranged;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 		}
+		break;
+
+	    case AD_NACU:
+
+		if (!rn2(4)) nastytrapcurse();
 		break;
 
 	    case AD_SLUD:
@@ -9745,6 +9792,10 @@ boolean ranged;
 	      case AD_FEAR:
 		    make_feared(HFeared + (long)tmp, TRUE);
 		break;
+		case AD_SANI:
+			increasesanity(tmp);
+		break;
+
 	      case AD_INSA:
 		    make_feared(HFeared + (long)tmp, TRUE);
 		    make_stunned(HStun + (long)tmp, TRUE);

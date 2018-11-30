@@ -4257,7 +4257,7 @@ elena37:
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
-		a->adtyp = AD_ICUR;
+		a->adtyp = rn2(20) ? AD_ICUR : AD_NACU;
 		a->damn = 0;
 		a->damd = 0;
 
@@ -5816,6 +5816,13 @@ hitmu(mtmp, mattk)
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 		}
+
+		break;
+
+	    case AD_NACU:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (uncancelled) nastytrapcurse();
 
 		break;
 
@@ -8376,6 +8383,13 @@ dopois:
 		}
 		break;
 
+	    case AD_SANI:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		increasesanity(dmg);
+
+		break;
+
 	    case AD_INSA:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -9410,6 +9424,13 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			break;
 
+		case AD_NACU:
+
+			pline("A hideous-sounding curse resonates all around you...");
+			if (!rn2(7)) nastytrapcurse();
+
+		break;
+
 	      case AD_ICUR:
 				pline("You are sapped by dark magic!");
 
@@ -10156,6 +10177,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!rn2(2)) {
 			    make_feared(HFeared + tmp, TRUE);
 			}
+			break;
+		case AD_SANI:
+				You_feel("atrocious!");
+				increasesanity(tmp);
 			break;
 		case AD_INSA:
 				You_feel("insane!");
@@ -12730,6 +12755,11 @@ common:
 		}
 		break;
 
+	    case AD_NACU:
+
+		nastytrapcurse();
+		break;
+
 	    case AD_ICUR:
 
 		You_feel("as if you need some help.");
@@ -14269,6 +14299,10 @@ common:
 			else pline("%s FEARED",urole.name.m);
 			make_feared(HFeared + (long)tmp, FALSE);
 		}
+		break;
+
+	    case AD_SANI:
+		increasesanity(tmp);
 		break;
 
 	    case AD_INSA:
@@ -15915,6 +15949,27 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
+	    case AD_SANI:
+		if(!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+
+			switch (rnd(4)) {
+
+				case 1:
+					pline("You see %s chow dead bodies.", mon_nam(mtmp)); break;
+				case 2:
+					pline("You shudder at %s's terrifying %s.", mon_nam(mtmp), makeplural(mbodypart(mtmp, EYE)) ); break;
+				case 3:
+					pline("You feel sick at entrails caught in %s's tentacles.", mon_nam(mtmp)); break;
+				case 4:
+					pline("You see maggots breed in the rent %s of %s.", mbodypart(mtmp, STOMACH), mon_nam(mtmp)); break;
+
+			}
+
+			increasesanity(dmgplus);
+		}
+		break;
+
 	    case AD_INSA:
 		if(!mtmp->mcan && canseemon(mtmp) &&
 		   couldsee(mtmp->mx, mtmp->my) &&
@@ -17444,6 +17499,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
             	pline("%s laughs devilishly!", Monnam(mtmp));
 			deacrandomintrinsic(rnz( (dmgplus * rnd(30) ) + 1));
+		}
+
+		break;
+
+	    case AD_NACU:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
+
+                pline("%s points at you and mumbles an especially heinous curse!", Monnam(mtmp));
+			nastytrapcurse();
+
 		}
 
 		break;
@@ -19504,6 +19569,7 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_ICUR:
+	    case AD_NACU:
 	    case AD_CURS:
 		if (!rn2(10) && (rnd(100) > mtmp->data->mr)) {
 			mtmp->mcan = 1;
@@ -19514,6 +19580,25 @@ register struct attack *mattk;
 		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE);
 			pline("%s is suddenly very afraid!",Monnam(mtmp));
 		}
+		break;
+	    case AD_SANI:
+		if (!rn2(10)) {
+			mtmp->mconf = 1;
+			switch (rnd(4)) {
+
+				case 1:
+					pline("%s sees you chow dead bodies.", Monnam(mtmp)); break;
+				case 2:
+					pline("%s shudders at your terrifying %s.", Monnam(mtmp), makeplural(body_part(EYE)) ); break;
+				case 3:
+					pline("%s feels sick at entrails caught in your tentacles.", Monnam(mtmp)); break;
+				case 4:
+					pline("%s sees maggots breed in your rent stomach.", Monnam(mtmp), body_part(STOMACH)); break;
+
+			}
+
+		}
+
 		break;
 	    case AD_INSA:
 		if (rnd(100) > mtmp->data->mr) {
