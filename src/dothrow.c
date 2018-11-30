@@ -1561,6 +1561,9 @@ int thrown;
 			u.uen -= 5;
 		    sho_obj_return_to_u(obj);	    /* display its flight */
 
+			/* djem so just trains so damn slowly... so here's an improvement --Amy */
+			if (is_lightsaber(obj)) use_skill(P_DJEM_SO, 1);
+
 		    if (!impaired && rn2(100)) {
 			pline("%s to your hand!", Tobjnam(obj, "return"));
 			obj = addinv(obj);

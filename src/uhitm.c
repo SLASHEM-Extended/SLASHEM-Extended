@@ -2598,8 +2598,9 @@ int dieroll;
 					u.umissileweaponturns = 0;
 					use_skill(P_MISSILE_WEAPONS, 1);
 				}
+				/* djem so was also training ultra slowly, so here's a multiplier */
 				if (wep && is_lightsaber(wep) && wep->lamplit) {
-					use_skill(P_DJEM_SO, 1);
+					use_skill(P_DJEM_SO, rnd(4));
 				}
 
 			}
