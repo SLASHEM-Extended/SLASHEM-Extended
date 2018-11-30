@@ -22562,7 +22562,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"I'm not sure if it's just me, but having forced draft for only one gender totally sounds like 'women are supposed to be baby-making machines' to me.",
 	"Harharhar you stupid bitch, a falling rock hits your head harharhar!",
 	"The magic-absorbing blade stuns Yeenoghu! Yeenoghu looks fed up. Yeenoghu is still annoyed about the deadly touch bug having been fixed in 3.4.0. Yeenoghu has noped out of the dungeon!",
-
+	"Ruth's sneaker uses her sweaty inlay, causing you to become unconscious from the stench!",
 
 };
 

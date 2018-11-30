@@ -1322,6 +1322,11 @@ convertdone:
 
 	}
 
+	if (mdat->msound == MS_SHOE && !mtmp->mpeaceful && evilfriday && !rn2(50) && (distu(mtmp->mx, mtmp->my) <= 12)) {
+		pline("%s uses %s sweaty inlay, causing you to become unconscious from the stench!", Monnam(mtmp), mhis(mtmp));
+		nomul(-(rnd(5) + (mtmp->m_lev / 4) ), "smelling sweaty inlays", TRUE);
+	}
+
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		switch (rnd(9)) {
 
