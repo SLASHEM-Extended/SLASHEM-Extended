@@ -1228,7 +1228,13 @@ struct monst *mon;
 xchar *xp, *yp;
 int locflags;	/* non-zero means get location even if monster is buried */
 {
-	if (mon == &youmonst) {
+	/* somehow "mon" isn't always defined; I don't know exactly how this is caused but it segfaults the game, so...
+	 * need a failsafe that makes nothing important happen if the monster isn't there --Amy */
+	if (!mon) {
+	    impossible("get_mon_location called with nonexistant monster");
+	    *xp = *yp = 0;
+	    return FALSE;
+	} else if (mon == &youmonst) {
 	    *xp = u.ux;
 	    *yp = u.uy;
 	    return TRUE;
