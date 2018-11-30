@@ -14592,7 +14592,7 @@ register boolean force, here;
 				if (rn2(2)) {
 
 					if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && !((obj->blessed && !rnl(4)))) obj->oeroded++;
-					else if (obj->oeroded == MAX_ERODE && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
+					else if (obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
 					{
 				    
 					pline("One of your objects withered away!");
@@ -14604,7 +14604,7 @@ register boolean force, here;
 				else {
 
 					if (obj->oeroded2 < MAX_ERODE && !(obj->oartifact && rn2(4)) && !((obj->blessed && !rnl(4)))) obj->oeroded2++;
-					else if (obj->oeroded2 == MAX_ERODE && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
+					else if (obj->oeroded2 == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
 					{
 				    
 					pline("One of your objects withered away!");
@@ -14830,7 +14830,7 @@ register boolean force, here;
 					!(obj->oerodeproof || 
 					 (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (is_rustprone(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE && !hard_to_destruct(obj) &&
+			else if (is_rustprone(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) &&
 					!(obj->oerodeproof ))
 			{
 			    
@@ -14991,7 +14991,7 @@ register boolean force, here;
 
 			if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (obj->oeroded == MAX_ERODE && !hard_to_destruct(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -15003,7 +15003,7 @@ register boolean force, here;
 
 			if (obj->oeroded2 < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded2++;
-			else if (obj->oeroded2 == MAX_ERODE && !hard_to_destruct(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded2 == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -15048,7 +15048,7 @@ register boolean force, here;
 
 			if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (obj->oeroded == MAX_ERODE && !(obj->oartifact && rn2(4)) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded == MAX_ERODE && !(obj->oartifact && rn2(4)) && !evades_destruction(obj) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -15060,7 +15060,7 @@ register boolean force, here;
 
 			if (obj->oeroded2 < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded2++;
-			else if (obj->oeroded2 == MAX_ERODE && !(obj->oartifact && rn2(4)) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded2 == MAX_ERODE && !(obj->oartifact && rn2(4)) && !evades_destruction(obj) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
