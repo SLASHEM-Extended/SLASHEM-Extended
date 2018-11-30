@@ -353,7 +353,7 @@ struct you {
 
 	schar	udaminc;		/* Additional damage bonus */
 	int udamincxtra;
-	schar	uac;
+	int	uac;
 
 	uchar	uspellprot;		/* protection by SPE_PROTECTION */
 	uchar	usptime;		/* #moves until uspellprot-- */
