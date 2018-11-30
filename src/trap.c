@@ -12985,6 +12985,13 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 		case MAGIC_PORTAL: /* no longer allows players to simply get rid of them --Amy */
 		case RELOCATION_TRAP:
+
+			if (rn2(2)) break; /* don't trigger too often */
+			if (in_sight) {
+				pline("%s seems very disoriented!", mon_nam(mtmp));
+				seetrap(trap);
+			}
+
 			rloc(mtmp, FALSE);
 			break;
 
