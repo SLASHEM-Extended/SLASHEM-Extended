@@ -10048,6 +10048,8 @@ gehennomxtra:
 			mkroom(NUCLEARCHAMBER);
 		}
 
+		if (In_illusorycastle(&u.uz)) mkroom(ILLUSIONROOM);
+
 		if (In_swimmingpool(&u.uz)) {
 			mkroom(!rn2(3) ? MIXEDPOOL : rn2(10) ? DIVERPARADISE : SWAMP);
 			mkroom(!rn2(3) ? MIXEDPOOL : rn2(10) ? DIVERPARADISE : SWAMP);
