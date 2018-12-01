@@ -113,7 +113,11 @@ struct monst {
 #define CHAM_OFFDIVER	36	/* joke mon */
 #define CHAM_SLUMBER_HULK	37	/* randomized monster */
 #define CHAM_IVEL_WUXTINA	38	/* evil variant */
-#define CHAM_GIANT_CHAMELEON		39	/* animal */
+#define CHAM_EARLY_LEON		39	/* only select forms of level 5 or lower */
+#define CHAM_CHAMECHAUN		40	/* animal */
+#define CHAM_METAL_DOPPELGANGER	41	/* demi-human */
+#define CHAM_GHELEON		42	/* animal */
+#define CHAM_GIANT_CHAMELEON		43	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,

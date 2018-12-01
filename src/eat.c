@@ -1764,6 +1764,7 @@ register int pm;
 		pushplayer();
 		break;
 
+	    case PM_EVILISK:
 	    case PM_ADULT_SHIMMERING_DRAGON:
 	    case PM_OLD_SHIMMERING_DRAGON:
 	    case PM_SHIMMERING_DRAGON:
@@ -2081,6 +2082,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_ACID_WRAITH:
 	    case PM_HUMAN_WRAITH:
 	    case PM_BIG_WRAITH:
 	    case PM_HUGE_WRAITH:
@@ -2624,6 +2626,8 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_QUANTUM_ABERRATION:
+	    case PM_QUANTUMMOID:
 	    case PM_ATOMIC_QUANTUM_MECHANIC:
 	    case PM_FORCE_QUANTUM_MECHANIC:
 	    case PM_METAL_MECHANIC:
@@ -2717,10 +2721,13 @@ register int pm;
 		break;
 
 	    case PM_CHAMELEON:
+	    case PM_CHAMECHAUN:
+	    case PM_GHELEON:
 	    case PM_POLYFESHNEE:
 	    case PM_FOREPREACHER_CONVERTER:
 	    case PM_MARTIIN:
 	    case PM_IVEL_WUXTINA:
+	    case PM_EARLY_LEON:
 	    case PM_SLUMBER_HULK:
 	    case PM_OFFDIVER:
 	    case PM_ELEROTIC_DREAM_WOMAN:
@@ -2733,6 +2740,7 @@ register int pm;
 	    case PM_VERY_POLY_NYMPH:
 	    case PM_KARMA_CHAMELEON:
 	    case PM_DOPPELGANGER:
+	    case PM_METAL_DOPPELGANGER:
 	    case PM_LAURA_S_PARLOR_TRICK:
 	    case PM_LAURA_S_MASTERPIECE:
 	    case PM_CHANGE_EXPLODER:
@@ -2753,6 +2761,7 @@ register int pm;
 	    case PM_COVETOUSLEON:
 	    case PM_GIANT_CHAMELEON:
 	    case PM_MEDUQUASIT:
+	    case PM_FICKATRICE:
 
 		/* evil patch idea by jonadab: eating shapeshifters has a 5% chance of conveying polymorphitis */
 		if (!rn2(20)) {
@@ -2906,7 +2915,13 @@ register int pm;
 	    case PM_NEOTHELID:
 	    case PM_VILLITHID:
 	    case PM_ULITHARID:
+	    case PM_ABERRATION_FLAYER:
+	    case PM_MASTER_ABERRATION_FLAYER:
 	    case PM_MASTER_MIND_FLAYER:
+	    case PM_VORPAL_MIND_FLAYER:
+	    case PM_MEAN_FLAYER:
+	    case PM_BRIGHT_MIND_FLAYER:
+	    case PM_BRIGHT_MASTER_MIND_FLAYER:
 	    case PM_MISTRESS_MIND_FLAYER:
 	    case PM_FOOCUBUS_MIND_FLAYER:
 	    case PM_HUGE_MIND_FLAYER:

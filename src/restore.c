@@ -402,6 +402,12 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_DNETHACK_HORROR].mname;
 	mread(fd, (void *) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
 	mons[PM_DNETHACK_HORROR].mname = tname;
+	tname = mons[PM_BEGINNER_HORROR].mname;
+	mread(fd, (void *) &mons[PM_BEGINNER_HORROR], sizeof(struct permonst));
+	mons[PM_BEGINNER_HORROR].mname = tname;
+	tname = mons[PM_NOOB_HORROR].mname;
+	mread(fd, (void *) &mons[PM_NOOB_HORROR], sizeof(struct permonst));
+	mons[PM_NOOB_HORROR].mname = tname;
 	tname = mons[PM_NETHACKBRASS_HORROR].mname;
 	mread(fd, (void *) &mons[PM_NETHACKBRASS_HORROR], sizeof(struct permonst));
 	mons[PM_NETHACKBRASS_HORROR].mname = tname;

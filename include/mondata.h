@@ -123,7 +123,7 @@
 #define is_orc(ptr)		(((ptr)->mflags2 & M2_ORC) != 0L)
 #define is_human(ptr)		(((ptr)->mflags2 & M2_HUMAN) != 0L)
 #define is_hobbit(ptr)		(((ptr)->mflags2 & M2_HOBBIT) != 0L)
-#define your_race(ptr)		(((ptr)->mflags2 & urace.selfmask) != 0L)
+#define your_race(ptr)		((((ptr)->mflags2 & urace.selfmask) != 0L) || (ptr) == &mons[PM_STOANING_EYE])
 #define is_bat(ptr)		(((ptr)->mflags4 & M4_BAT) != 0L)
 #define is_bird(ptr)		((ptr)->mlet == S_BAT && !is_bat(ptr))
 #define is_giant(ptr)		(((ptr)->mflags2 & M2_GIANT) != 0L)
@@ -290,6 +290,7 @@
 				 ptr == &mons[PM_SALAMANDER] || ptr == &mons[PM_PLAYER_SALAMANDER] || ptr == &mons[PM_FIRE_GOLEM] || ptr == &mons[PM_CHARMANDER] || ptr == &mons[PM_CHARMELEON]  || ptr == &mons[PM_CHARIZARD] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
 #define pm_invisible(ptr)	((ptr) == &mons[PM_STALKER] || \
 				 (ptr) == &mons[PM_BLACK_LIGHT] || \
+				 (ptr) == &mons[PM_BLACK_LEYE] || \
 				 (ptr) == &mons[PM_BLACK_BEAM] || \
 				 (ptr) == &mons[PM_BLACK_RAY] || \
 				 (ptr) == &mons[PM_WEREBLACKLIGHT] || \

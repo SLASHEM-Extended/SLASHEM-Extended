@@ -802,6 +802,24 @@ register struct monst *mtmp;
 		if (rn2(2)) (void)mongets(mtmp, (mm != PM_ETTIN) ?
 				    BOULDER : CLUB);
 
+		if (ptr == &mons[PM_HILL_GIANT_WITH_NO_DOTS_ON_THE_U]) {
+			otmp = mksobj(BOULDER, FALSE, FALSE);
+			if (otmp) {
+				otmp->oinvis = TRUE;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+			otmp = mksobj(BOULDER, FALSE, FALSE);
+			if (otmp) {
+				otmp->oinvis = TRUE;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+			otmp = mksobj(BOULDER, FALSE, FALSE);
+			if (otmp) {
+				otmp->oinvis = TRUE;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+		}
+
 		if (ptr == &mons[PM_OPERATION]) (void)mongets(mtmp, FEMININE_PUMPS);
 		if (ptr == &mons[PM_SUNBEAM]) (void)mongets(mtmp, WAN_SOLAR_BEAM);
 		if (ptr == &mons[PM_CLUB_RACQUET]) (void)mongets(mtmp, MACE);
@@ -4834,6 +4852,7 @@ register struct monst *mtmp;
 	    case S_GNOME:
 
 			if(ptr == &mons[PM_RADIOACTIVE_GNOLL]) (void) mongets(mtmp, POT_RADIUM);
+			if(ptr == &mons[PM_NET_GNOME]) (void) mongets(mtmp, TRIDENT);
 
 			if (!rn2(10)) {
 				(void) mongets(mtmp, CROSSBOW);
@@ -6476,6 +6495,10 @@ register struct	monst	*mtmp;
 			 (void) mongets(mtmp, RAYGUN);
 			m_initthrow(mtmp, LASER_BEAM, 50);
 		}
+		if (mtmp->data == &mons[PM_JESUS]) {
+			 (void) mongets(mtmp, ARM_BLASTER);
+			m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : HEAVY_BLASTER_BOLT, 50);
+		}
 
 		if (mtmp->data == &mons[PM_ARROGANCE]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (mtmp->data == &mons[PM_OCK]) (void) mongets(mtmp, MORNING_STAR);
@@ -6522,6 +6545,12 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_POISON_ARROW_FROG]) {
 			(void) mongets(mtmp, CROSSBOW);
 			m_initthrow(mtmp, CROSSBOW_BOLT, 40);
+		}
+
+		if (mtmp->data == &mons[PM_SEIASHIN]) {
+			(void) mongets(mtmp, SLING);
+			m_initthrow(mtmp, ROCK, 50);
+			m_initthrow(mtmp, ROCK, 50);
 		}
 
 		if (mtmp->data == &mons[PM_ALMUTH_S_CUDDLY_SOFT_SNEAKER]) { (void) mongets(mtmp, SOFT_SNEAKERS); (void) mongets(mtmp, SOFT_GIRL_SNEAKER); }
@@ -6985,6 +7014,11 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_HARROWBARK_WALKER]) m_initthrow(mtmp, JAVELIN, 5);
 		if (mtmp->data == &mons[PM_HARROWBARK_WANDLE]) m_initthrow(mtmp, SPEAR, 5);
 
+		if (mtmp->data == &mons[PM_NIN_NINZIN]) {
+			m_initthrow(mtmp, SHURIKEN, 50);
+			m_initthrow(mtmp, SHURIKEN, 50);
+		}
+
 		if (mtmp->data == &mons[PM_CYBER_FLOWER]) {
 			(void)mongets(mtmp, ROCKET_LAUNCHER);
 			m_initthrow(mtmp, ROCKET, 25);
@@ -7428,6 +7462,11 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_PLEASING_WARP_FUNGUS]) (void) mongets(mtmp, WAN_IMMOBILITY);
 		if (mtmp->data == &mons[PM_PLEASING_PATCH]) (void) mongets(mtmp, SCR_EGOISM);
 		if (mtmp->data == &mons[PM_PLEASING_WARP_PATCH]) (void) mongets(mtmp, WAN_EGOISM);
+
+		if (ptr == &mons[PM_RHED_MUSHROOM]) {
+		  	(void) mongets(mtmp, SLING);
+		  	m_initthrow(mtmp, ROCK, 50);
+		}
 
 		if (mtmp->data == &mons[PM_YITHGUS]) (void) mongets(mtmp, WAN_INSANITY);
 
@@ -7934,6 +7973,11 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_POLECORN]) (void) mongets(mtmp, SPETUM);
 		if (mtmp->data == &mons[PM_HUGE_POLECORN]) (void) mongets(mtmp, HALBERD);
+
+		if (mtmp->data == &mons[PM_BALLISTALLION]) {
+			(void) mongets(mtmp, BALLISTA);
+			m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+		}
 
 		break;
 
@@ -15907,6 +15951,7 @@ register int	mmflags;
 			if (mndx == PM_CAMO_DWARF) set_mimic_sym(mtmp);
 			if (mndx == PM_DWARF_KING_PERMAMIMIC) set_mimic_sym(mtmp);
 			if (mndx == PM_ONE_RING_HOBBIT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_MEAN_FLAYER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 
@@ -16050,6 +16095,11 @@ register int	mmflags;
 		case S_EYE:
 			if (mtmp->data == &mons[PM_VOLTORB]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_ELECTRODE]) set_mimic_sym(mtmp);
+
+			if (mndx == PM_BLACK_LEYE) {
+			    mtmp->perminvis = TRUE;
+			    mtmp->minvis = TRUE;
+			}
 			break;
 		case S_COCKATRICE:
 			if (mtmp->data == &mons[PM_MIMIC_CHICKEN]) set_mimic_sym(mtmp);
@@ -19267,6 +19317,8 @@ int type;
 		case PM_PAPER_GOLEM: return 36;
 		case PM_GREY_CYBORG: return 36;
 		case PM_STRAW_GOLEM: return 40;
+		case PM_WTF_STRAW_GOLEM: return 40;
+		case PM_UAAH_STRAW_GOLEM: return 40;
 		case PM_GARGOYLE: return 46;
 		case PM_FLYING_SCIMITAR: return 50;
 		case PM_CLOTH_GOLEM: return 50;
@@ -19308,6 +19360,7 @@ int type;
 		case PM_VENOM_ATRONACH: return 200;
 
 		case PM_SPROOK: return 90;
+		case PM_BOEH_BABY: return 10;
 		case PM_BLOWSTREAM_BABY: return 1000;
 
 		case PM_HULL_ALIEN: return 255;
@@ -19319,6 +19372,8 @@ int type;
 		case PM_ANIMATED_DAGGER: return 100;
 		case PM_SWORD_FAMILIAR: return 150;
 		case PM_ROPE_GOLEM: return 60;
+		case PM_LHAW_ROPE_GOLEM: return 60;
+		case PM_TUDAK_ROPE_GOLEM: return 60;
 		case PM_ANIMATED_STATUE: return 30;
 		case PM_SLUDGE_GOLEM: return 150;
 		case PM_CORROSLUDGE_GOLEM: return 150;
@@ -19486,6 +19541,8 @@ int type;
 		case PM_STATUE_GARGOYLE: return 140;
 		case PM_STATUE_GOLEM: return 140;
 		case PM_CLAY_GOLEM: return 150;
+		case PM_FUCK_THIS_CLAY_GOLEM: return 150;
+		case PM_UNNECESSARY_CLAY_GOLEM: return 150;
 		case PM_SEMBLANCE: return 150;
 		case PM_SANDMAN: return 150;
 		case PM_TONE_GOLEM: return 150;
@@ -19504,6 +19561,7 @@ int type;
 		case PM_GRAY_STONE_GOLEM: return 180;
 		case PM_STONE_STATUE: return 180;
 		case PM_GLASS_GOLEM: return 140;
+		case PM_BRONZE_GLASS_GOLEM: return 140;
 		case PM_FIBERGLASS_INSULATION_GOLEM: return 140;
 		case PM_SERVANT_OF_THE_UNKNOWN_GOD: return 140;
 		case PM_HEAD_OF_THE_UNKNOWN_GOD: return 140;

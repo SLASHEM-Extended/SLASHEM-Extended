@@ -212,6 +212,7 @@ int mndx;
 {
 	switch (mndx) {
 	case PM_KOBOLD_ZOMBIE:
+	case PM_GHEY_KOBOLD_ZOMBIE:
 	case PM_KOBOLD_MUMMY:	mndx = PM_KOBOLD;  break;
 	case PM_OGRE_ZOMBIE:
 	case PM_OGRE_MUMMY:	mndx = PM_OGRE;  break;
@@ -220,6 +221,8 @@ int mndx;
 	case PM_GNOME_ZOMBIE:
 	case PM_GNOME_MUMMY:	mndx = PM_GNOME;  break;
 	case PM_ORC_ZOMBIE:
+	case PM_NEVER_AN_ORC_ZOMBIE:
+	case PM_DEFINITELY_NOT_ORC_MUMMY:
 	case PM_ORC_MUMMY:	mndx = PM_ORC;  break;
 	case PM_DROW_MUMMY:
 	case PM_DROW_ZOMBIE:
@@ -281,6 +284,8 @@ int mndx;
 	case PM_GIANT_ZOMBIE:
 	case PM_GIANT_MUMMY:	mndx = PM_GIANT;  break;
 	case PM_ETTIN_ZOMBIE:
+	case PM_PROTESTAINST_ETTIN_ZOMBIE:
+	case PM_CALLS_ITSELF_ETTIN_MUMMY:
 	case PM_ETTIN_MUMMY:	mndx = PM_ETTIN;  break;
 	case PM_TROLL_ZOMBIE:
 	case PM_EGO_TROLL_MUMMY:
@@ -344,8 +349,11 @@ int mndx;
 
 	switch (mndx) {
 	case PM_CHAMELEON:	mcham = CHAM_CHAMELEON; break;
+	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
+	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
 	case PM_KARMA_CHAMELEON:	mcham = CHAM_KARMA_CHAMELEON; break;
 	case PM_DOPPELGANGER:	mcham = CHAM_DOPPELGANGER; break;
+	case PM_METAL_DOPPELGANGER:	mcham = CHAM_METAL_DOPPELGANGER; break;
 	case PM_DOPPLEZON:	mcham = CHAM_DOPPLEZON; break;
 	case PM_SANDESTIN:	mcham = CHAM_SANDESTIN; break;
 	case PM_MISSINGNO:	mcham = CHAM_MISSINGNO; break;
@@ -381,6 +389,7 @@ int mndx;
 	case PM_OFFDIVER:	mcham = CHAM_OFFDIVER; break;
 	case PM_SLUMBER_HULK:	mcham = CHAM_SLUMBER_HULK; break;
 	case PM_IVEL_WUXTINA:	mcham = CHAM_IVEL_WUXTINA; break;
+	case PM_EARLY_LEON:	mcham = CHAM_EARLY_LEON; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -428,6 +437,10 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_OFFDIVER,
 		PM_SLUMBER_HULK,
 		PM_IVEL_WUXTINA,
+		PM_EARLY_LEON,
+		PM_CHAMECHAUN,
+		PM_METAL_DOPPELGANGER,
+		PM_GHELEON,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -609,6 +622,7 @@ register struct monst *mtmp;
 	    case PM_DWARF_MUMMY:
 	    case PM_GNOME_MUMMY:
 	    case PM_ORC_MUMMY:
+	    case PM_DEFINITELY_NOT_ORC_MUMMY:
 	    case PM_ELF_MUMMY:
 	    case PM_HUMAN_MUMMY:
 	    case PM_MUMMY:
@@ -617,17 +631,20 @@ register struct monst *mtmp;
 	    case PM_MIMIC_MUMMY:
 	    case PM_GIANT_MUMMY:
 	    case PM_ETTIN_MUMMY:
+	    case PM_CALLS_ITSELF_ETTIN_MUMMY:
 	    case PM_TROLL_MUMMY:            
 	    case PM_EGO_TROLL_MUMMY:            
 	    case PM_TROLL_PERMAMIMIC_MUMMY:
 	    case PM_TROLL_ZOMBIE:            
 	    case PM_KOBOLD_ZOMBIE:
+	    case PM_GHEY_KOBOLD_ZOMBIE:
 	    case PM_OGRE_ZOMBIE:
 	    case PM_JUJU_ZOMBI:
 	    case PM_OGRE_MUMMY:
 	    case PM_DWARF_ZOMBIE:
 	    case PM_GNOME_ZOMBIE:
 	    case PM_ORC_ZOMBIE:
+	    case PM_NEVER_AN_ORC_ZOMBIE:
 	    case PM_ELF_ZOMBIE:
 	    case PM_HUMAN_ZOMBIE:
 	case PM_GRUNTHACK_ZOMBIE:
@@ -671,6 +688,7 @@ register struct monst *mtmp;
 	case PM_WEAUM_ZOMBIE:
 	    case PM_GIANT_ZOMBIE:
 	    case PM_ETTIN_ZOMBIE:
+	    case PM_PROTESTAINST_ETTIN_ZOMBIE:
 		case PM_GNOLL_GHOUL:
 	    case PM_DRAUGR_ZOMBIE:
 	    case PM_STEEL_ZOMBIE:
@@ -707,6 +725,7 @@ register struct monst *mtmp;
 	    case PM_GRAVE_WARRIOR:
 	    case PM_ULTRA_WIGHT:
 	    case PM_GHOUL:
+	    case PM_OH_GOD_GHOUL:
 	    case PM_GHAST:
 	    case PM_GASTLY:
 	    case PM_HAUNTER:
@@ -6841,7 +6860,21 @@ evilchoice:
 			if (is_jonadabmonster(pm) && rn2(20)) goto evilchoice;
 			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto evilchoice;
 		break;
+	    case CHAM_EARLY_LEON:
+earlyleonchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto earlyleonchoice;
+			if (uncommon2(pm) && !rn2(4)) goto earlyleonchoice;
+			if (uncommon3(pm) && !rn2(3)) goto earlyleonchoice;
+			if (uncommon5(pm) && !rn2(2)) goto earlyleonchoice;
+			if (uncommon7(pm) && rn2(3)) goto earlyleonchoice;
+			if (uncommon10(pm) && rn2(5)) goto earlyleonchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto earlyleonchoice;
+			if (rn2(10000) && (pm->mlevel > 5)) goto earlyleonchoice;
+		break;
 	    case CHAM_DOPPELGANGER:
+	    case CHAM_METAL_DOPPELGANGER:
 	    case CHAM_MISSINGNO:
 	    case CHAM_TRANSFORMER:
 		if (!rn2(20)) mndx = pick_nasty();
@@ -6849,6 +6882,8 @@ evilchoice:
 					    PM_ARCHEOLOGIST);
 		break;
 	    case CHAM_CHAMELEON:
+	    case CHAM_CHAMECHAUN:
+	    case CHAM_GHELEON:
 	    case CHAM_KARMA_CHAMELEON:
 	    case CHAM_GIANT_CHAMELEON:
 		if (!rn2(7)) {

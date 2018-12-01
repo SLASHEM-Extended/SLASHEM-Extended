@@ -385,6 +385,8 @@ register int fd, mode;
 	bwrite(fd, (void *) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_SPEEDHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BEGINNER_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NOOB_HORROR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_NETHACKBRASS_HORROR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_INTERHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_NHTNG_HORROR], sizeof(struct permonst));

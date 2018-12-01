@@ -6930,6 +6930,8 @@ u_init()
 	struct permonst* shamblern = &mons[PM_NETHACKFOUR_HORROR];
 	struct permonst* shamblerna = &mons[PM_DEVTEAM_HORROR];
 	struct permonst* shamblerl = &mons[PM_DNETHACK_HORROR];
+	struct permonst* shamblerln = &mons[PM_BEGINNER_HORROR];
+	struct permonst* shamblerlo = &mons[PM_NOOB_HORROR];
 	struct permonst* shamblerla = &mons[PM_NETHACKBRASS_HORROR];
 	struct permonst* shamblerx = &mons[PM_INTERHACK_HORROR];
 	struct permonst* shamblerxa = &mons[PM_NHTNG_HORROR];
@@ -17399,6 +17401,122 @@ u_init()
 	shamblerl->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerl->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
+	shamblerln->mmove = rn2(3)+6;				/* slow to very fast */
+	shamblerln->ac = 10 - rn2(6);				/* any AC */
+	shamblerln->mr = rn2(5)*25;				/* varying amounts of MR */
+	shamblerln->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(2); i++) {
+		attkptr = &shamblerln->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(2);				/* either too high or too low */
+	}
+	shamblerln->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	shamblerln->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerln->cnutrit = rnd(2000);					/* see above */
+	shamblerln->msound = randmonsound();			/* any but the specials */
+	shamblerln->mresists = 0;
+	for (i = 0; i < rnd(3); i++) {
+		shamblerln->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(2); i++) {
+		shamblerln->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	shamblerln->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	shamblerln->mflags1 = 0;
+	for (i = 0; i < rnd(7); i++) {
+		shamblerln->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*shamblerln->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*shamblerln->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	shamblerln->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(7); i++) {
+		shamblerln->mflags2 |= (1 << rn2(31));
+	}
+	shamblerln->mflags2 &= ~M2_MERC;				/* no guards */
+	shamblerln->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	shamblerln->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	shamblerln->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	shamblerlo->mmove = rn2(3)+6;				/* slow to very fast */
+	shamblerlo->ac = 10 - rn2(6);				/* any AC */
+	shamblerlo->mr = rn2(5)*25;				/* varying amounts of MR */
+	shamblerlo->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(2); i++) {
+		attkptr = &shamblerlo->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(2);				/* either too high or too low */
+	}
+	shamblerlo->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	shamblerlo->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerlo->cnutrit = rnd(2000);					/* see above */
+	shamblerlo->msound = randmonsound();			/* any but the specials */
+	shamblerlo->mresists = 0;
+	for (i = 0; i < rnd(3); i++) {
+		shamblerlo->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(2); i++) {
+		shamblerlo->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	shamblerlo->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	shamblerlo->mflags1 = 0;
+	for (i = 0; i < rnd(7); i++) {
+		shamblerlo->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*shamblerlo->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*shamblerlo->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	shamblerlo->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(7); i++) {
+		shamblerlo->mflags2 |= (1 << rn2(31));
+	}
+	shamblerlo->mflags2 &= ~M2_MERC;				/* no guards */
+	shamblerlo->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	shamblerlo->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	shamblerlo->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(12)-9;*/				/* shuffle level */
 	shamblerla->mmove = rn2(8)+9;				/* slow to very fast */
@@ -27088,6 +27206,8 @@ alter_reality()
 	struct permonst* shamblern = &mons[PM_NETHACKFOUR_HORROR];
 	struct permonst* shamblerna = &mons[PM_DEVTEAM_HORROR];
 	struct permonst* shamblerl = &mons[PM_DNETHACK_HORROR];
+	struct permonst* shamblerln = &mons[PM_BEGINNER_HORROR];
+	struct permonst* shamblerlo = &mons[PM_NOOB_HORROR];
 	struct permonst* shamblerla = &mons[PM_NETHACKBRASS_HORROR];
 	struct permonst* shamblerx = &mons[PM_INTERHACK_HORROR];
 	struct permonst* shamblerxa = &mons[PM_NHTNG_HORROR];
@@ -31566,6 +31686,122 @@ alter_reality()
 	shamblerl->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	shamblerl->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerl->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	shamblerln->mmove = rn2(3)+6;				/* slow to very fast */
+	shamblerln->ac = 10 - rn2(6);				/* any AC */
+	shamblerln->mr = rn2(5)*25;				/* varying amounts of MR */
+	shamblerln->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(2); i++) {
+		attkptr = &shamblerln->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(2);				/* either too high or too low */
+	}
+	shamblerln->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	shamblerln->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerln->cnutrit = rnd(2000);					/* see above */
+	shamblerln->msound = randmonsound();			/* any but the specials */
+	shamblerln->mresists = 0;
+	for (i = 0; i < rnd(3); i++) {
+		shamblerln->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(2); i++) {
+		shamblerln->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	shamblerln->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	shamblerln->mflags1 = 0;
+	for (i = 0; i < rnd(7); i++) {
+		shamblerln->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*shamblerln->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*shamblerln->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	shamblerln->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(7); i++) {
+		shamblerln->mflags2 |= (1 << rn2(31));
+	}
+	shamblerln->mflags2 &= ~M2_MERC;				/* no guards */
+	shamblerln->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	shamblerln->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	shamblerln->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	shamblerlo->mmove = rn2(3)+6;				/* slow to very fast */
+	shamblerlo->ac = 10 - rn2(6);				/* any AC */
+	shamblerlo->mr = rn2(5)*25;				/* varying amounts of MR */
+	shamblerlo->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(2); i++) {
+		attkptr = &shamblerlo->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(2);				/* either too high or too low */
+	}
+	shamblerlo->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	shamblerlo->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerlo->cnutrit = rnd(2000);					/* see above */
+	shamblerlo->msound = randmonsound();			/* any but the specials */
+	shamblerlo->mresists = 0;
+	for (i = 0; i < rnd(3); i++) {
+		shamblerlo->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(2); i++) {
+		shamblerlo->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	shamblerlo->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	shamblerlo->mflags1 = 0;
+	for (i = 0; i < rnd(7); i++) {
+		shamblerlo->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*shamblerlo->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*shamblerlo->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	shamblerlo->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(7); i++) {
+		shamblerlo->mflags2 |= (1 << rn2(31));
+	}
+	shamblerlo->mflags2 &= ~M2_MERC;				/* no guards */
+	shamblerlo->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	shamblerlo->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	shamblerlo->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
 	/* what a horrible night to have a curse */
 	/*shambler->mlevel += rnd(12)-9;*/				/* shuffle level */
