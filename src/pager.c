@@ -3990,6 +3990,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Khuzhe vsego to, chto yesli ya, Emi, obvinyayus' v oshibkakh, vvedennykh slesh ikh. Naprimer, oshibka zhurnala dampa. U moyego varianta net takoy oshibki, i ya by ne vypustil chto-to, chto imeyet takuyu ??oshibku. Tem ne meneye, lyudi chasto podrazumevayut, chto slex takzhe poterpit krakh, yesli vy podnimetes', chego, bezuslovno, net.",
 "Chto sdelal sovetskiy pyat' v novykh gonkakh, kotoryye ya dobavil? Pravil'no: on udalil vse, chto sdelalo ikh unikal'nymi, i teper' vse, chto ostalos', eto ikh imena, krome togo, chto oni deystvitel'no chelovecheskiye. Yon.",
 "Slesh ikh yavlyayetsya okonchatel'nym dokazatel'stvom togo, chto vy ne dolzhny izmenyat' Emi yeye rabotu! Konechno, eto ne zapreshcheno zakonom ili chem-to yeshche, no rezul'tat tipa l'da blokiruyet yego variant, kotoryy pokazyvayet, chto nikto ne khochet otsenit' rabotu, kotoruyu ya vlozhil v moy variant, - v sluchaye somneniy on prosto vsegda UDALYAYET UDALIT' UDALENIYe BYULLETKI!",
+"Snizheniye urona ot klassa broni takzhe po-prezhnemu dayet ploskoye sokrashcheniye, potomu chto vy takoy gryaznyy moshennik.",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -22575,6 +22576,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel sick at entrails caught in the elder priests's tentacles.",
 	"You see maggots breed in the rent stomach of the strange void.",
 	"You hear the devils laugh, and your enchanted (of premature death) silver dragon scale mail is surrounded by an aura of evilness...",
+	"Dieau-dieau-dieau-dieau-dieaudieaudieaudieaudieaudieauDIEDIMM! Da-da-da-DIMM-damm-di-dimm-damm-DIMM-damm-dadimm-dammDIMM DAMM DI DA daaaaaa, dadadadada, DADADADADA, da DIIIIII, da daaaa, dadadadada DADADADADA, dee-da-di-da-da-de-di-da-di-deeeeeee, DIIIIII, diiiii, da da-didaaaaaaam, daaaaaaam, DIIIIIIII, DA DA DADAAAAAAM, *DAAAAAAM* DIDADADAMM DAMM DAMM-DAMM DAMM-*DAMM DAMM*-*DAMM DAMM*-DIIIIIIII DIEDAEDIEDAEDAE DIE-DAE-DAE *DIII DIII*, DIEDEDADIDEDADADADAA, dedadadieda die da da die, diedadadadaa daa daa daa, da die da die daaa! (diedadedidedaediedadediededededded) Daaaaa DIIIIIII dee da, daaaaaa, dadadadada, DADADADADA, da DIIIIII, da daaaa (and so on)",
 
 };
 
