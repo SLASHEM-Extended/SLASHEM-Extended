@@ -266,6 +266,12 @@ nh_timeout()
 		if (u.inertia < 0) u.inertia = 0; /* fail safe */
 	}
 
+	if (u.duriworking) {
+		u.duriworking--;
+		if (u.duriworking < 0) u.duriworking = 0; /* fail safe */
+		if (!u.duriworking) pline("Duri should be finished with your artifact by now.");
+	}
+
 	if (u.powerfailure) {
 		u.powerfailure--;
 		if (u.powerfailure < 0) u.powerfailure = 0; /* fail safe */

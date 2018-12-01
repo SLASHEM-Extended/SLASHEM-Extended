@@ -7402,6 +7402,14 @@ u_init()
 	u.sokosolveboulder = rnz(1000);
 	u.sokosolveuntrap = rnz(4000);
 
+	/* Duri the Blacksmith (if he exists) has special values with which he's initialized */
+	u.durirepaircost = 1000;
+	u.durienchantcost = 10000;
+	u.duriarticostevil = 15000;
+	u.duriarticostnormal = 50000;
+	u.durirequest = 0;
+	u.duriworking = 0;
+
 	u.manlerx = u.manlery = -1;
 
 	u.temprecursion = 0;

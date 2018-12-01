@@ -1180,6 +1180,13 @@ struct you {
 	int artifactaffinity;	/* to check how much (or not) you use your quest artifact */
 	int artifinitythreshold;	/* highest value reached */
 
+	int durirepaircost;
+	int durienchantcost;
+	int duriarticostevil;
+	int duriarticostnormal;
+	int durirequest;
+	int duriworking;
+
 	boolean roommatehack;	/* to allow monsters to spawn inside walls */
 
 };	/* end of `struct you' */

@@ -54,6 +54,8 @@ int rmtyp;
 					- ROOMOFFSET].rtype == (rmtype))
 #endif
 
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+
 void
 dosounds()
 {
@@ -2798,7 +2800,175 @@ register struct monst *mtmp;
 		break;
 
 	case MS_SMITH:
-		verbalize("I'm working. Please don't disturb me again!");
+		/* this assumes that it's Duri, however actually there's also other monsters using this... --Amy
+		 * you can only request services at his forge, but other monsters can bring you the artifacts */
+		if (u.duriworking) {
+			verbalize("I'm working. Please don't disturb me again!");
+			break;
+		}
+
+		if (!mtmp->mpeaceful) {
+			verbalize("That's it. No soup for you!");
+			break;
+		}
+
+		/* request variable: 0 = nothing, 1 = evil artifact, 2 = good artifact */
+		if (u.durirequest == 1) {
+			u.durirequest = 0;
+			bad_artifact();
+			if (mtmp->data == &mons[PM_BLACKSMITH]) verbalize("Here's your artifact. Watch out, it's cursed and may well have downsides.");
+			else verbalize("Here, I'm supposed to give you this cursed artifact from the blacksmith. Watch out, it may well have downsides.");
+			break;
+		}
+
+		if (u.durirequest == 2) {
+			struct obj *durifact;
+			u.durirequest = 0;
+
+			boolean havegifts = u.ugifts;
+			if (!havegifts) u.ugifts++;
+
+			durifact = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+			if (durifact) {
+
+				if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_ISRESTRICTED) {
+				    unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
+				}
+
+				dropy(durifact);
+				discover_artifact(durifact->oartifact);
+			}
+
+			if (!havegifts) u.ugifts--;
+
+			if (mtmp->data == &mons[PM_BLACKSMITH]) verbalize("Here's your artifact. You'll find it on the floor beneath you. Have fun!");
+			else verbalize("Duri sent me to give you this artifact, so I'm dropping it at the floor beneath you. Have fun!");
+			break;
+		}
+
+		if (mtmp->data == &mons[PM_BLACKSMITH]) {
+			verbalize("Welcome to Duri's forge! I offer various services, including equipment repair, proofing, and artifact forging.");
+
+			winid tmpwin;
+			anything any;
+			menu_item *selected;
+			int n;
+
+			any.a_void = 0;         /* zero out all bits */
+			tmpwin = create_nhwindow(NHW_MENU);
+			start_menu(tmpwin);
+			any.a_int = 1;
+			add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Repair", MENU_UNSELECTED);
+			any.a_int = 2;
+			add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, "Erosionproofing", MENU_UNSELECTED);
+			any.a_int = 3;
+			add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, "Bad artifact", MENU_UNSELECTED);
+			any.a_int = 4;
+			add_menu(tmpwin, NO_GLYPH, &any , 'g', 0, ATR_NONE, "Good artifact", MENU_UNSELECTED);
+
+			end_menu(tmpwin, "Services Available:");
+			n = select_menu(tmpwin, PICK_ONE, &selected);
+			destroy_nhwindow(tmpwin);
+
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						verbalize("For only %d zorkmids, I can repair all damage on an item of your choice!", u.durirepaircost);
+						if (u.ugold < u.durirepaircost) {
+							verbalize("But sadly you don't seem to have enough money.");
+							break;
+						}
+						struct obj *repairobj;
+						repairobj = getobj(all_count, "repair");
+						if (!repairobj) break;
+						if (repairobj) {
+							if (!(repairobj->oeroded) && !(repairobj->oeroded2)) {
+								verbalize("That item isn't damaged. You don't need to repair it!");
+								break;
+							}
+							if (yn("Pay for the repairs?") == 'y') {
+								u.ugold -= u.durirepaircost;
+								u.durirepaircost += 500;
+								if (!stack_too_big(repairobj)) {
+									repairobj->oeroded = repairobj->oeroded2 = 0;
+									verbalize("Alright! Your item is in tiptop shape again!");
+								} else verbalize("Oh no! The stack was too big, causing my repair attempt to fail!");
+							}
+						}
+						break;
+					case 2:
+						verbalize("So you want to erodeproof your items? All you need to do is give me %d zorkmids!", u.durienchantcost);
+						if (u.ugold < u.durienchantcost) {
+							verbalize("Well %d, it seems you can't afford it. Bummer.", flags.female ? "lady" : "dude");
+							break;
+						}
+						struct obj *proofobj;
+						proofobj = getobj(all_count, "erosionproof");
+						if (!proofobj) break;
+						if (proofobj) {
+							if (proofobj->oerodeproof) {
+								verbalize("That item is erosionproof already!");
+								break;
+							}
+							if (yn("Pay for erosionproofing?") == 'y') {
+								u.ugold -= u.durienchantcost;
+								u.durienchantcost += 2000;
+								if (!stack_too_big(repairobj)) {
+									proofobj->oerodeproof = 1;
+									verbalize("Your item is untouchable now!");
+								} else verbalize("Bad luck, %d - proofing such a large stack of items can fail, and it seems you didn't get lucky this time.", flags.female ? "gal" : "lad");
+							}
+						}
+						break;
+					case 3:
+						verbalize("Forging a bad artifact will cost %d zorkmids.", u.duriarticostevil);
+						if (u.ugold < u.duriarticostevil) {
+							verbalize("Unfortunately you don't have enough money!");
+							break;
+						}
+						if (yn("Forge a bad artifact?") == 'y') {
+							u.ugold -= u.duriarticostevil;
+							u.duriarticostevil += 5000;
+							u.duriworking = 1000;
+							u.durirequest = 1;
+							verbalize("Alright, give me about 1000 turns and I'll have something for you.");
+						}
+						break;
+					case 4:
+						verbalize("Forging a good artifact will cost %d zorkmids.", u.duriarticostnormal);
+						if (u.ugold < u.duriarticostnormal) {
+							verbalize("Unfortunately you don't have enough money!");
+							break;
+						}
+						if (yn("Forge a good artifact?") == 'y') {
+							u.ugold -= u.duriarticostnormal;
+							u.duriarticostnormal += 10000;
+							u.duriworking = 2000;
+							u.durirequest = 2;
+							verbalize("Alright, give me about 2000 turns and I'll have something for you. It'll be worth the wait, I promise!");
+						}
+						break;
+				}
+			}
+			break;
+
+		}
+
+		verbalize("Sorry, I don't think I can help you. Look for Duri in the Blacksmith's Forge.");
+
 		break;
 
     }
