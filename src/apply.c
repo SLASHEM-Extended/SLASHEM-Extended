@@ -3529,6 +3529,13 @@ use_pole (obj)
 	max_range = 8;
 #endif
 
+	typ = weapon_type(obj);
+	if (typ == P_FLAIL || typ == P_CLUB || typ == P_MORNING_STAR) {
+		if (PlayerCannotUseSkills || P_SKILL(typ) <= P_BASIC) max_range = 4;
+		else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
+		else max_range = 8;
+	}
+
 	if (obj->otyp == NOOB_POLLAX || obj->otyp == GREAT_POLLAX) max_range += 5;
 	if (obj->oartifact == ART_ETHER_PENETRATOR) max_range += 5;
 	if (obj->oartifact == ART_FUURKER) max_range += 6;
@@ -3650,7 +3657,34 @@ use_pole (obj)
 	/* The effect didn't apply.  Attack the monster there. */
 	if (mtmp) {
 
-	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
+		if (obj->oartifact == ART_DESTRUCTION_BALL && !rn2(3)) {
+			if (obj->spe > -20) {
+				obj->spe--;
+				pline("Your ball sustains damage.");
+			} else {
+				uwepgone();              /* set unweapon */
+				pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
+				useup(obj);
+				return (1);
+
+			}
+		}
+		if (obj->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3)) {
+			if (obj->spe > -20) {
+				obj->spe--;
+				pline("Your weapon sustains damage.");
+			} else {
+				uwepgone();              /* set unweapon */
+				pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
+				useup(obj);
+				return (1);
+
+			}
+		}
+
+	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && obj->otyp == AKLYS && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 		if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
 			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
@@ -3664,7 +3698,7 @@ use_pole (obj)
 		}
 	    }
 
-	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
+	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && obj->otyp == AKLYS && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 
 		if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
 			uwepgone();              /* set unweapon */
@@ -3678,16 +3712,16 @@ use_pole (obj)
 
 	    }
 
-	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && obj->otyp == AKLYS)) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mtmp->mfrenzied = 1;
 		pline("%s is frenzied!", Monnam(mtmp));
 	    }
 
-	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && obj->otyp == AKLYS)) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mon_adjust_speed(mtmp, 1, (struct obj *)0);
 	    }
 
-	    if ((!rn2(isfriday ? 100 : 200) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR)) && attacktype(mtmp->data, AT_WEAP)) {
+	    if ((!rn2(isfriday ? 100 : 200) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && obj->otyp == AKLYS)) && attacktype(mtmp->data, AT_WEAP)) {
 		pline("%s laughs fiendishly, and snatches your weapon!", Monnam(mtmp));
 		setnotworn(obj);
 		freeinv(obj);
@@ -3695,7 +3729,7 @@ use_pole (obj)
 		return (1);
 	    }
 
-	    if ((!rn2(isfriday ? 125 : 250) || (!rn2(10) && mtmp->data == &mons[PM_GREUVENENE] ) || (!rn2(isfriday ? 25 : 50) && obj->otyp == WOODEN_BAR)) && humanoid(mtmp->data) && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
+	    if ((!rn2(isfriday ? 125 : 250) || (!rn2(10) && mtmp->data == &mons[PM_GREUVENENE] ) || (!rn2(isfriday ? 25 : 50) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 25 : 50) && obj->otyp == AKLYS)) && humanoid(mtmp->data) && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
@@ -5906,7 +5940,7 @@ chargingchoice:
 	default:
 		/* KMH, balance patch -- polearms can strike at a distance */
 
-		if (is_pole(obj)) {
+		if (is_applypole(obj)) {
 			if (uwep && uwep == obj) res = use_pole(obj);
 			else {pline("You must wield this item first if you want to apply it!"); 
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

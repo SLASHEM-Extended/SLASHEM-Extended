@@ -624,7 +624,7 @@ struct monst *magr, *mdef;
     obj = select_rwep(magr);
     if (!obj) return MM_MISS;
 
-    if (is_pole(obj)) {
+    if (is_applypole(obj)) {
 	int dam, hitv, vis = canseemon(magr);
 
 	if (dist2(magr->mx, magr->my, mdef->mx, mdef->my) > POLE_LIM ||

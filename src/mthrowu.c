@@ -1115,7 +1115,7 @@ struct monst *mtmp;
 	otmp = select_rwep(mtmp);
 	if (!otmp) return;
 
-	if ((MON_WEP(mtmp) == otmp) && is_pole(otmp)) {
+	if ((MON_WEP(mtmp) == otmp) && is_applypole(otmp)) {
 	    int dam, hitv;
 
 		if (otmp->otyp == NOOB_POLLAX || otmp->otyp == GREAT_POLLAX) polelimit += 5;

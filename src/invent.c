@@ -4735,7 +4735,7 @@ struct obj *otmp;
 		      otyp != FRAG_GRENADE &&
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&
-		      !is_axe(otmp) && !is_antibar(otmp) && !is_pole(otmp) && otyp != BULLWHIP) ||
+		      !is_axe(otmp) && !is_antibar(otmp) && !is_applypole(otmp) && otyp != BULLWHIP) ||
 		    (otmp->oclass == POTION_CLASS &&
 		     /* only applicable potion is oil, and it will only
 			be offered as a choice when already discovered */
@@ -7642,71 +7642,71 @@ struct obj *obj;
 				pline("A rare saber made of pure gold. It can do good damage. It can be applied to bash iron bars."); break;
 			case CLUB: 
 				pline("Don't bother with this weapon. The club just doesn't ever deal any meaningful damage."); break;
-			case AKLYS: 
-				pline("Stronger than a regular club, but still crappy."); break;
-			case BASEBALL_BAT: 
+			case AKLYS:
+				pline("Stronger than a regular club, but still crappy. You can apply it to hit monsters standing two tiles away, with your skill determining the actual maximum range."); break;
+			case BASEBALL_BAT:
 				pline("This wooden club does respectable damage for its type."); break;
-			case METAL_CLUB: 
+			case METAL_CLUB:
 				pline("A club made of hard metal. It does solid damage. It can be applied to bash iron bars."); break;
-			case BONE_CLUB: 
+			case BONE_CLUB:
 				pline("A club made of bone that deals just as little damage as a normal club."); break;
-			case SPIKED_CLUB: 
+			case SPIKED_CLUB:
 				pline("This club isn't that bad, for a club at least."); break;
-			case HUGE_CLUB: 
+			case HUGE_CLUB:
 				pline("Thankfully this club isn't overpowered at all despite dealing a ton and a half of damage per hit."); break;
-			case LOG: 
+			case LOG:
 				pline("This gigantic log of wood requires two hands to be used and requires the club skill, but wow does it do a lot of damage or what?"); break;
-			case FLY_SWATTER: 
+			case FLY_SWATTER:
 				pline("This paddle has good to-hit and small damage, but low large damage."); break;
-			case BROOM: 
+			case BROOM:
 				pline("A two-handed paddle that doesn't deal a lot of damage."); break;
-			case MOP: 
+			case MOP:
 				pline("This two-handed paddle is fairly useless."); break;
-			case SPECIAL_MOP: 
+			case SPECIAL_MOP:
 				pline("Better than an ordinary mop. It's two-handed and uses the paddle skill."); break;
-			case BOAT_OAR: 
+			case BOAT_OAR:
 				pline("Looking for a reason to use the paddle skill? Then this two-handed weapon might be your first choice."); break;
-			case MAGICAL_PAINTBRUSH: 
+			case MAGICAL_PAINTBRUSH:
 				pline("It sure sounds like something special, but it's just a two-handed paddle with low damage output."); break;
-			case FUTON_SWATTER: 
+			case FUTON_SWATTER:
 				pline("A moderately usable paddle."); break;
-			case CARDBOARD_FAN: 
+			case CARDBOARD_FAN:
 				pline("Might as well attack with a trout instead. Just about every weapon in this game does more damage than this paddle!"); break;
-			case OTAMA: 
+			case OTAMA:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Paddle-class weapon that does next to no damage so you're probably better off fighting barehanded."); break;
 #else
 				pline("Good luck figuring out what this is! But I'll help you: I don't know what an 'otama' is supposed to be either, but it's a paddle-class weapon that does next to no damage so you're probably better off fighting barehanded."); break;
 #endif
-			case INSECT_SQUASHER: 
+			case INSECT_SQUASHER:
 				pline("A paddle that does superb damage against small foes but next to no damage against large foes."); break;
-			case SILVER_MACE: 
+			case SILVER_MACE:
 				pline("The main use of this mace is to bash undead, which take extra damage from it."); break;
-			case MACE: 
+			case MACE:
 				pline("A mace. It's quite a weak weapon, actually."); break;
-			case ELVEN_MACE: 
+			case ELVEN_MACE:
 				pline("A mace made of wood. It's slightly better than a standard mace."); break;
-			case FLANGED_MACE: 
+			case FLANGED_MACE:
 				pline("This mace does moderate damage but it's nothing to get excited about."); break;
-			case REINFORCED_MACE: 
+			case REINFORCED_MACE:
 				pline("If you want a mace that does respectable damage, use this one."); break;
-			case MORNING_STAR: 
+			case MORNING_STAR:
 				pline("The morning star can be used to whack enemies. Its damage output is mediocre."); break;
-			case BRONZE_MORNING_STAR: 
+			case BRONZE_MORNING_STAR:
 				pline("This morning star does respectable damage."); break;
-			case SPINED_BALL: 
-				pline("A metal ball that counts as a morning star. It does good damage."); break;
-			case JAGGED_STAR: 
+			case SPINED_BALL:
+				pline("A metal ball that counts as a morning star. It does good damage. You can apply it to hit monsters standing two tiles away, with your skill determining the actual maximum range."); break;
+			case JAGGED_STAR:
 				pline("An improved morning star that actually packs a punch."); break;
-			case DEVIL_STAR: 
+			case DEVIL_STAR:
 				pline("The strongest version of the morning star. A very strong one-handed melee weapon. It can be applied to bash iron bars."); break;
-			case FLAIL: 
+			case FLAIL:
 				pline("A basic flail. It doesn't do a lot of damage."); break;
-			case KNOUT: 
+			case KNOUT:
 				pline("A better flail that does mediocre damage."); break;
-			case CHAIN_AND_SICKLE: 
-				pline("Forget using this weapon. Even a regular flail is probably better."); break;
-			case TWO_HANDED_FLAIL: 
+			case CHAIN_AND_SICKLE:
+				pline("You might as well forget using this weapon in melee because even a regular flail is better, but you can apply it to hit monsters standing two tiles away, with your skill determining the actual maximum range."); break;
+			case TWO_HANDED_FLAIL:
 				pline("This flail does quite good damage but at the expense of occupying both of your hands."); break;
 			case OBSID: 
 				pline("A strong flail that does good damage and has good to-hit. It can be applied to bash iron bars."); break;
