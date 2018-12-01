@@ -32,6 +32,7 @@ E void welcome(BOOLEAN_P);
 E time_t get_realtime(void);
 #endif
 E boolean timebasedlowerchance(void);
+E int speedbonus(int, int);
 
 /* ### apply.c ### */
 

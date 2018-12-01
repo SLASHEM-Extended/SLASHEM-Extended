@@ -1023,6 +1023,211 @@ moveloop()
 				moveamt = 17 + speedreduction;
 			}
 
+			/* if you are slowed, you shouldn't be able to just completely ignore the slowness just because you're
+			 * riding; "heavyweight" races (arbitrary) are affected more because they're harder to carry --Amy */
+
+			if ((Race_if(PM_WEAPONIZED_DINOSAUR) || Race_if(PM_TURTLE) || Race_if(PM_LOWER_ENT)) ? rn2(3) : !rn2(3)) {
+				if (youmonst.data->mmove < 12 && moveamt > 1) {
+					moveamt *= youmonst.data->mmove;
+					moveamt /= 12;
+				}
+
+				if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1)
+					moveamt /= 2;
+
+				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (uarmf && !rn2(6) && (moveamt > 1) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "balet poshnali")))
+					moveamt /= 2;
+
+				if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && (moveamt > 1) && !rn2(2))
+					moveamt /= 2;
+
+				if (uarmc && uarmc->otyp == NASTY_CLOAK && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarm && uarm->otyp == ROBE_OF_NASTINESS && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarmh && uarmh->otyp == UNWANTED_HELMET && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarmg && uarmg->otyp == EVIL_GLOVES && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarmf && uarmf->otyp == UNFAIR_STILETTOS && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarm && uarm->otyp == EVIL_DRAGON_SCALE_MAIL && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarm && uarm->otyp == EVIL_DRAGON_SCALES && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarms && uarms->otyp == DIFFICULT_SHIELD && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarmu && uarmu->otyp == BAD_SHIRT && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarm && uarm->otyp == EVIL_PLATE_MAIL && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (is_sand(u.ux,u.uy) && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
+				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (uarm && (uarm->oartifact == ART_CD_ROME_ARENA) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "roman sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rimskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rim fuqarosi kavushlari") ) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
+					moveamt /= 2;
+
+				if (Race_if(PM_SOVIET) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (Race_if(PM_ARMED_COCKATRICE) && !Upolyd && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
+				if (Race_if(PM_WEAPON_CUBE) && !Upolyd && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
+				if (Race_if(PM_CORTEX) && !Upolyd && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
+				if (Numbed && moveamt > 1) {
+					if (!rn2(10))
+					moveamt = 0;
+				}
+				if (Frozen && (!(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || !rn2(3)) && moveamt > 1) {
+					moveamt /= 2;
+				}
+
+				if (is_snow(u.ux, u.uy) && !Flying && !Levitation) {
+						static boolean canwalkonsnow = 0;
+					    static int skates = 0;
+					    if (!skates) skates = find_skates();
+					    static int skates2 = 0;
+					    if (!skates2) skates2 = find_skates2();
+					    static int skates3 = 0;
+					    if (!skates3) skates3 = find_skates3();
+					    static int skates4 = 0;
+					    if (!skates4) skates4 = find_skates4();
+					    if ((uarmf && uarmf->otyp == skates)
+						    || (uarmf && uarmf->otyp == skates2)
+						    || (uarmf && uarmf->otyp == skates3)
+						    || (uarmf && uarmf->otyp == skates4)
+						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
+
+					if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
+
+					if (!canwalkonsnow)
+					moveamt /= 4;
+
+				}
+
+				if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if ((uwep && uwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if ((u.twoweap && uswapwep && uswapwep->otyp == COLOSSUS_BLADE) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (Race_if(PM_DUFFLEPUD) && uarmf && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (Race_if(PM_WEAPONIZED_DINOSAUR) && uarmf && !PlayerInHighHeels && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sekinlashuvi libos") ) ) && moveamt > 1) {
+					moveamt /= 2;
+				}
+
+				if (uarmh && uarmh->oartifact == ART_ELONA_S_SNAIL_TRAIL && !Race_if(PM_ELONA_SNAIL) && moveamt > 1) {
+					moveamt /= 2;
+				}
+
+				if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (u.inertia && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (Race_if(PM_TURTLE) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (Race_if(PM_ELONA_SNAIL) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (Race_if(PM_LOWER_ENT) && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (Role_if(PM_TRANSSYLVANIAN) && (moveamt > 1) && (!PlayerInHighHeels) ) {
+					moveamt /= 2;
+				}
+				if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (uarm && uarm->oartifact == ART_ROFLCOPTER_WEB && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (uwep && uwep->oartifact == ART_ARABELLA_S_WARDING_HOE && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_WARDING_HOE && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (uarmf && uarmf->oartifact == ART_GOEFFELBOEFFEL && moveamt > 1) {
+					moveamt /= 2;
+				}
+
+				if (Double_attack && moveamt > 1) {
+					if (rn2(StrongDouble_attack ? 2 : 3))
+					moveamt /= 2;
+				}
+				if (Quad_attack && moveamt > 1) {
+					if (!StrongQuad_attack || rn2(3))
+					moveamt /= 2;
+				}
+
+				if (u.hanguppenalty && moveamt > 1) {
+					moveamt /= 2;
+				}
+
+				if (YouHaveTheSpeedBug && moveamt > 1) {
+					if (rn2(5)) moveamt *= rnd(5);
+					moveamt /= rnd(6);
+					if (!rn2(5)) moveamt /= 2;
+				}
+
+				if (YouHaveTheSpeedBug && moveamt > 1 && StrongFast) {
+					if (rn2(5)) moveamt *= rnd(5);
+					moveamt /= rnd(6);
+					if (!rn2(5)) moveamt /= 2;
+				}
+
+				if (Very_fast && YouHaveTheSpeedBug && rn2(4) && rn2(4) && moveamt > 1 ) {
+					moveamt /= 2;
+				} else if (Fast && YouHaveTheSpeedBug && !rn2(4) && moveamt > 1 ) {
+					moveamt /= 2;
+				}
+
+			} /* chance to reduce speed end */
+			if (moveamt < 1) moveamt = 1; /* don't reduce it too much, no matter what happens --Amy */
+
+			/* clockworks can't become too fast even when riding (sorry) --Amy */
+			if (Race_if(PM_CLOCKWORK_AUTOMATON) && rn2(3) && moveamt > 12) moveamt = 12;
+
 		    } else
 		    {
 			moveamt = youmonst.data->mmove;
@@ -1295,15 +1500,17 @@ moveloop()
 
 			if (Very_fast && !YouHaveTheSpeedBug) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
-			    moveamt += NORMAL_SPEED / 2;
-			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
+			    if (StrongFast || rn2(3)) {
+				    moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+				    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			    }
 			} else if (Fast && !YouHaveTheSpeedBug) {
 			    /* average movement is 1.33 times normal */
-			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
+			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
 			if (Fear_factor && Feared) {
-			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
+			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
 			if (Wonderlegs && Wounded_legs) {
@@ -1347,28 +1554,28 @@ moveloop()
 
 			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) moveamt *= 2;
 
-			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
-			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += NORMAL_SPEED / 2;
-			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
-			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += NORMAL_SPEED / 2;
-			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
-			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
-			if (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) moveamt += NORMAL_SPEED / 2;
-			if (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) moveamt += NORMAL_SPEED / 2;
-			if (uarmg && !rn2(10) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) moveamt += NORMAL_SPEED / 2;
-			if (StrongDetect_monsters && !rn2(10)) moveamt += NORMAL_SPEED / 2;
-			if (StrongFlying && !rn2(20)) moveamt += NORMAL_SPEED / 2;
+			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmg && !rn2(10) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (StrongDetect_monsters && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (StrongFlying && !rn2(20)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
-			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
-			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += NORMAL_SPEED / 2;
-			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_SUPREME_MASTER) ) moveamt += NORMAL_SPEED / 2;
+			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_SUPREME_MASTER) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
-			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) moveamt += NORMAL_SPEED / 2;
+			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
-			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (NORMAL_SPEED * 5);
+			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (speedbonus(moveamt * 5, NORMAL_SPEED * 5));
 
-			if (StrongPasses_walls && !rn2(3) && isok(u.ux, u.uy) && IS_STWALL(levl[u.ux][u.uy].typ) ) moveamt += NORMAL_SPEED / 2;
-			if (StrongFast && !rn2(10) && !YouHaveTheSpeedBug) moveamt += NORMAL_SPEED / 2;
+			if (StrongPasses_walls && !rn2(3) && isok(u.ux, u.uy) && IS_STWALL(levl[u.ux][u.uy].typ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (StrongFast && !rn2(10) && !YouHaveTheSpeedBug) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
@@ -1380,14 +1587,20 @@ moveloop()
 			     * F & B     28        18
 			     * V F & B   30        18
 			     */
-			    moveamt += NORMAL_SPEED * 2 / 3;
-			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
+			    moveamt += speedbonus(moveamt * 2 / 3, NORMAL_SPEED * 2 / 3);
+			    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
 			if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL) {
-			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
+			    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
-		    }
+
+			/* clockwork gets bullshit downside: I know this is heavy-handed, but they're just plain too strong
+			 * once they manage to control their food woes. So I decided that "since it would otherwise cause them
+			 * to become overwound", they have cruise control that prevents them from being much faster than
+			 * normal speed (12). Speed boots will still help a little but certainly not that much. */
+			if (Race_if(PM_CLOCKWORK_AUTOMATON) && rn2(10) && moveamt > 12) moveamt = 12;
+		    } /* end adjustment for when player is not riding */
 
 		    switch (wtcap) { /* tweaked so the player is slowed down less --Amy */
 			case UNENCUMBERED: break;
@@ -13763,6 +13976,14 @@ int x, y;
 
 	return FALSE;
 
+}
+
+int
+speedbonus(amount, max)
+int amount, max;
+{
+	if (amount > max) amount = max;
+	return amount;
 }
 
 STATIC_OVL void
