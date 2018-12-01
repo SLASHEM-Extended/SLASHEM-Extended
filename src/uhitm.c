@@ -179,6 +179,9 @@ boolean barehanded;
 		} else
 		pline("Wait!  There's %s there you can't see!",
 			something);
+
+		if (!rn2(2)) (void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH, FALSE);
+
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		map_invisible(u.ux+u.dx, u.uy+u.dy);
 		/* if it was an invisible mimic, treat it as if we stumbled
@@ -240,6 +243,9 @@ boolean barehanded;
 			} else
 			pline("Wait!  There's %s hiding under %s!", an(l_monnam(mtmp)), doname(obj));
 		}
+
+		if (!rn2(2)) (void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH, FALSE);
+
 		return 0;
 	    }
 	}
@@ -10252,6 +10258,8 @@ struct monst *mtmp;
 		what = a_noit_monnam(mtmp);
 	}
 	if (what) pline(fmt, what);
+
+	if (!rn2(2)) (void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH, FALSE);
 
 	wakeup(mtmp);	/* clears mimicking */
 }
