@@ -1725,7 +1725,7 @@ dotechmenu(how, tech_no)
 			techtout(i) > 100 ? "Reloading" : "Soon");
 
 	    add_menu(tmpwin, NO_GLYPH, &any,
-		    techtout(i) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
+		    (techtout(i) || (tlevel <= 0)) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    if (let++ == 'z') let = 'A';
 	    if (let == 'Z') let = 'a';
 	}
