@@ -7919,7 +7919,8 @@ int kind;
 	default: verbalize("You disturbed me, fool!");
 		break;
 	}
-	make_bottle(FALSE);
+	/* fix by Soviet5lo: don't make a bottle if it's from a lamp */
+	if (obj->otyp != MAGIC_LAMP) make_bottle(FALSE);
 }
 
 /* clone a gremlin or mold (2nd arg non-null implies heat as the trigger);
