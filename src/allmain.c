@@ -1226,7 +1226,7 @@ moveloop()
 			if (moveamt < 1) moveamt = 1; /* don't reduce it too much, no matter what happens --Amy */
 
 			/* clockworks can't become too fast even when riding (sorry) --Amy */
-			if (Race_if(PM_CLOCKWORK_AUTOMATON) && rn2(3) && moveamt > 12) moveamt = 12;
+			if (Race_if(PM_CLOCKWORK_AUTOMATON) && rn2(Upolyd ? 2 : 3) && moveamt > 12) moveamt = 12;
 
 		    } else
 		    {
@@ -1599,7 +1599,7 @@ moveloop()
 			 * once they manage to control their food woes. So I decided that "since it would otherwise cause them
 			 * to become overwound", they have cruise control that prevents them from being much faster than
 			 * normal speed (12). Speed boots will still help a little but certainly not that much. */
-			if (Race_if(PM_CLOCKWORK_AUTOMATON) && rn2(10) && moveamt > 12) moveamt = 12;
+			if (Race_if(PM_CLOCKWORK_AUTOMATON) && rn2(Upolyd ? 3 : 10) && moveamt > 12) moveamt = 12;
 		    } /* end adjustment for when player is not riding */
 
 		    switch (wtcap) { /* tweaked so the player is slowed down less --Amy */
