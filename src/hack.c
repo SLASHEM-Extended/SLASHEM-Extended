@@ -801,7 +801,7 @@ still_chewing(x,y)
 	You("start chewing %s %s.",
 	    (boulder || IS_TREE(lev->typ)) ? "on a" : "a hole in the",
 	    boulder ? "boulder" :
-	    IS_TREE(lev->typ) ? "tree" : IS_ROCK(lev->typ) ? "rock" : "door");
+	    IS_TREE(lev->typ) ? "tree" : IS_WATERTUNNEL(lev->typ) ? "rock above the water" : IS_ROCK(lev->typ) ? "rock" : "door");
 	watch_dig((struct monst *)0, x, y, FALSE);
 	return 1;
     } else if ((digging.effort += (30 + u.udaminc)) <= 100)  {
@@ -838,6 +838,9 @@ still_chewing(x,y)
 	    return 1;
 	}
 
+    } else if (IS_WATERTUNNEL(lev->typ)) {
+	digtxt = "chew away the rock above the water.";
+	lev->typ = MOAT;
     } else if (IS_WALL(lev->typ)) {
 	if (*in_rooms(x, y, SHOPBASE)) {
 	    add_damage(x, y, 10L * ACURRSTR);
@@ -1172,7 +1175,13 @@ int mode;
 	} else if (tmpr->typ == WATERTUNNEL) {
 		if (mode != DO_MOVE) return FALSE;
 
-		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation)) {
+		if ( ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) ) && flags.eatingwalls && (Flying || Levitation) ) {
+		/* can eat the stupid things */
+			if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
+		}
+
+		/* if you just ate it, you shouldn't crash into a no-longer-existing rock part above the tunnel */
+		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation) && (levl[x][y].typ == WATERTUNNEL) ) {
 
 			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 				You("crash into a water tunnel! Ouch!");
