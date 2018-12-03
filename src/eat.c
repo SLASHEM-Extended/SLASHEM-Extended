@@ -2759,6 +2759,7 @@ register int pm;
 	    case PM_SANDESTIN:
 	    case PM_POLYMORPHITIC_WOLF:
 	    case PM_COVETOUSLEON:
+	    case PM_THE_ZRUTINATOR:
 	    case PM_GIANT_CHAMELEON:
 	    case PM_MEDUQUASIT:
 	    case PM_FICKATRICE:

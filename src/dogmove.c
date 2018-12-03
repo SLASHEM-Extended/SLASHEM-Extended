@@ -977,6 +977,7 @@ register int after;	/* this is extra fast monster movement */
 			 (Race_if(PM_PEACEMAKER) && mtmp2->data == &mons[PM_TOPMODEL]) || 
 	/* for Rodneyan race characters, the real Rodney is supposed to be their buddy so he doesn't get attacked */
 			 (mtmp2->data == &mons[PM_WIZARD_OF_YENDOR] && Race_if(PM_RODNEYAN)) ||
+			 (mtmp2->data == &mons[PM_THE_ZRUTINATOR] && Race_if(PM_RODNEYAN)) ||
 	/* troves only drop their items if the player kills them, so keep pets away from them */
 			 (mtmp2->data->mlet == S_TROVE) ||
 	/* petshielder egotype is never attacked by pets either */

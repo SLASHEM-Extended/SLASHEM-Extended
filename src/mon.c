@@ -378,6 +378,7 @@ int mndx;
 	case PM_SHOEMELEON:	mcham = CHAM_SHOEMELEON; break;
 	case PM_POLYFESHNEE:	mcham = CHAM_POLYFESHNEE; break;
 	case PM_COVETOUSLEON:	mcham = CHAM_COVETOUSLEON; break;
+	case PM_THE_ZRUTINATOR:	mcham = CHAM_ZRUTINATOR; break;
 	case PM_WHORED_HORE:	mcham = CHAM_WHORED_HORE; break;
 	case PM_LULU_ASS:	mcham = CHAM_LULU_ASS; break;
 	case PM_TENDER_JESSE:	mcham = CHAM_TENDER_JESSE; break;
@@ -441,6 +442,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_CHAMECHAUN,
 		PM_METAL_DOPPELGANGER,
 		PM_GHELEON,
+		PM_THE_ZRUTINATOR,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -1793,8 +1795,9 @@ mcalcdistress()
 	/* regenerate hit points */
 	mon_regen(mtmp, FALSE);
 
-	/* possibly polymorph shapechangers and lycanthropes */
-	if (mtmp->cham && !rn2(6) && !Protection_from_shape_changers)
+	/* possibly polymorph shapechangers and lycanthropes
+	 * Amy edit: zrutinator (Rodney's special pet) has a low polymorph chance; he likes to be in his natural form */
+	if (mtmp->cham && !rn2(mtmp->cham == CHAM_ZRUTINATOR ? 100 : 6) && !Protection_from_shape_changers)
 	    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,
 		    cansee(mtmp->mx,mtmp->my) && flags.verbose, FALSE, FALSE);
 	were_change(mtmp);
@@ -6859,6 +6862,20 @@ evilchoice:
 			if (uncommon10(pm) && rn2(5)) goto evilchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto evilchoice;
 			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto evilchoice;
+		break;
+	    case CHAM_ZRUTINATOR:
+
+zevilchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto zevilchoice;
+			if (uncommon2(pm) && !rn2(4)) goto zevilchoice;
+			if (uncommon3(pm) && !rn2(3)) goto zevilchoice;
+			if (uncommon5(pm) && !rn2(2)) goto zevilchoice;
+			if (uncommon7(pm) && rn2(3)) goto zevilchoice;
+			if (uncommon10(pm) && rn2(5)) goto zevilchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto zevilchoice;
+			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto zevilchoice;
 		break;
 	    case CHAM_EARLY_LEON:
 earlyleonchoice:

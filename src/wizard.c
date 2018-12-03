@@ -493,6 +493,7 @@ void
 resurrect()
 {
 	struct monst *mtmp, **mmtmp;
+	struct monst *zruti;
 	long elapsed;
 	const char *verb;
 
@@ -538,6 +539,13 @@ resurrect()
 		pline("A voice booms out...");
 		if (!Race_if(PM_RODNEYAN)) verbalize("So thou thought thou couldst %s me, fool.", verb);
 		else verbalize("Hi there again, %s", flags.female ? "sister" : "brother");
+	}
+
+	zruti = makemon(&mons[PM_THE_ZRUTINATOR], u.ux, u.uy, MM_NOWAIT);
+	if (zruti) {
+		zruti->msleeping = zruti->mtame = zruti->mpeaceful = 0;
+		if (Race_if(PM_RODNEYAN)) zruti->mpeaceful = 1;
+		set_malign(zruti);
 	}
 
 }

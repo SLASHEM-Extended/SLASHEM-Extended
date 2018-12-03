@@ -16410,15 +16410,17 @@ register int	mmflags;
 			mtmp->cham = CHAM_ORDINARY;
 		else {
 			mtmp->cham = mcham;
-			(void) mon_spec_poly(mtmp, rndmonst(), 0L, FALSE, FALSE, FALSE, FALSE);
+			if (mndx != PM_THE_ZRUTINATOR) (void) mon_spec_poly(mtmp, rndmonst(), 0L, FALSE, FALSE, FALSE, FALSE);
 		}
+
 	} else if (mndx == PM_WIZARD_OF_YENDOR) {
 		mtmp->iswiz = TRUE;
 		flags.no_of_wizards++;
 		if (flags.no_of_wizards == 1 && Is_earthlevel(&u.uz))
 			mitem = SPE_DIG;
 		if (Race_if(PM_RODNEYAN)) mtmp->mpeaceful = 1;
-
+	} else if (mndx == PM_THE_ZRUTINATOR) {
+		if (Race_if(PM_RODNEYAN)) mtmp->mpeaceful = 1;
 	} else if (mndx == PM_DJINNI) {
 		flags.djinni_count++;
 	} else if (mndx == PM_DAO) {
@@ -19023,6 +19025,13 @@ register struct permonst *ptr;
 		 * every time he is killed
 		 */
 		tmp = ptr->mlevel + mvitals[PM_WIZARD_OF_YENDOR].died;
+		if (tmp > 49) tmp = 49;
+		return tmp;
+	}
+
+	if (ptr == &mons[PM_THE_ZRUTINATOR]) {
+		/* like Rodney, he's Rodney's pet after all */
+		tmp = ptr->mlevel + mvitals[PM_THE_ZRUTINATOR].died;
 		if (tmp > 49) tmp = 49;
 		return tmp;
 	}
