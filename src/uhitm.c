@@ -8786,6 +8786,56 @@ boolean ranged;
 		    }
 		}
 	    break;
+
+	    case AD_HEAL:
+		if (mon->mcan) {
+		    break;
+		}
+		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		    boolean goaway = FALSE;
+		    pline("You are healed!", Monnam(mon));
+		    if (Upolyd) {
+			u.mh += rnd(7);
+			if (!rn2(7)) {
+			    /* no upper limit necessary; effect is temporary */
+			    u.mhmax++;
+			    if (!rn2(4)) goaway = TRUE;
+			}
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		    } else {
+			u.uhp += rnd(7);
+			if (!rn2(10)) {
+			    /* hard upper limit via nurse care: 25 * ulevel */
+			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
+				u.uhpmax++;
+			    }
+			    if (!rn2(3)) goaway = TRUE;
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		    }
+		    if (!rn2(3)) exercise(A_STR, TRUE);
+		    if (!rn2(3)) exercise(A_CON, TRUE);
+		    if (Sick) make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+		    flags.botl = 1;
+		    if (goaway) {
+			mon->mcan = TRUE; /* not "mongone" because of segfault danger --Amy */
+			return 2;
+		    } else if (!rn2(5)) {
+			if (!tele_restrict(mon) || !rn2(2) ) (void) rloc(mon, FALSE); /* sometimes ignore noteleport --Amy */
+			monflee(mon, d(3, 6), TRUE, FALSE);
+			return 3;
+		    }
+		    tmp = 0;
+		} else {
+		    if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST)) {
+			tmp = 0;
+		    } else {
+			pline("Ouch!");
+			mdamageu(mon, tmp);
+		    }
+		}
+		break;
+
         case AD_CURS:
 	  case AD_LITE:
 

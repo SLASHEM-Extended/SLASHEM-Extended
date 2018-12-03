@@ -9203,6 +9203,53 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			exercise(A_STR, FALSE);
 		    }
 		    break;
+
+	    case AD_HEAL:
+		if (mtmp->mcan) {
+		    break;
+		}
+		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		    boolean goaway = FALSE;
+		    pline("It hits!  (I hope you don't mind.)", Monnam(mtmp));
+		    if (Upolyd) {
+			u.mh += rnd(7);
+			if (!rn2(7)) {
+			    /* no upper limit necessary; effect is temporary */
+			    u.mhmax++;
+			    if (!rn2(13)) goaway = TRUE;
+			}
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		    } else {
+			u.uhp += rnd(7);
+			if (!rn2(10)) {
+			    /* hard upper limit via nurse care: 25 * ulevel */
+			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
+				u.uhpmax++;
+			    }
+			    if (!rn2(10)) goaway = TRUE;
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		    }
+		    if (!rn2(3)) exercise(A_STR, TRUE);
+		    if (!rn2(3)) exercise(A_CON, TRUE);
+		    if (Sick) make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+		    flags.botl = 1;
+		    if (goaway) {
+			mongone(mtmp);
+			return 2;
+		    } else if (!rn2(15)) {
+			if (!tele_restrict(mtmp) || !rn2(5) ) (void) rloc(mtmp, FALSE); /* sometimes ignore noteleport --Amy */
+			monflee(mtmp, d(3, 6), TRUE, FALSE);
+			return 3;
+		    }
+		    tmp = 0;
+		} else {
+		    if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST)) {
+			tmp = 0;
+		    }
+		}
+		break;
+
 	      case AD_CURS:
 	    case AD_LITE:
 			pline("It curses you!");
@@ -14549,6 +14596,56 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
 		}
 		break;
+
+	    case AD_HEAL:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5) ) ) {
+		pline("%s casts a healing spell!", Monnam(mtmp));
+		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		    boolean goaway = FALSE;
+		    pline("You are healed.", Monnam(mtmp));
+		    if (Upolyd) {
+			u.mh += rnd(7);
+			if (!rn2(7)) {
+			    /* no upper limit necessary; effect is temporary */
+			    u.mhmax++;
+			    if (!rn2(13)) goaway = TRUE;
+			}
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		    } else {
+			u.uhp += rnd(7);
+			if (!rn2(10)) {
+			    /* hard upper limit via nurse care: 25 * ulevel */
+			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
+				u.uhpmax++;
+			    }
+			    if (!rn2(10)) goaway = TRUE;
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		    }
+		    if (!rn2(3)) exercise(A_STR, TRUE);
+		    if (!rn2(3)) exercise(A_CON, TRUE);
+		    if (Sick) make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+		    flags.botl = 1;
+		    if (goaway) {
+			mongone(mtmp);
+			return 2;
+		    } else if (!rn2(15)) {
+			if (!tele_restrict(mtmp) || !rn2(5) ) (void) rloc(mtmp, FALSE); /* sometimes ignore noteleport --Amy */
+			monflee(mtmp, d(3, 6), TRUE, FALSE);
+			return 3;
+		    }
+		    dmgplus = 0;
+		} else {
+		    if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST)) {
+			dmgplus = 0;
+		    } else {
+			pline("The healing spell hurts you...");
+			mdamageu(mtmp, dmgplus);
+		    }
+		}
+		}
+		break;
+
 	    case AD_CURS:
 	    case AD_LITE:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5) ) )
