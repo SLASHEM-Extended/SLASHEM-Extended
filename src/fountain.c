@@ -479,6 +479,10 @@ dipfountain(obj)
 register struct obj *obj;
 {
 	int pm;
+	coord cc;
+	int cx, cy;
+	struct permonst *ppm = 0;
+	int attempts;
 
 	if (Levitation) {
 		floating_above("fountain");
@@ -565,6 +569,7 @@ register struct obj *obj;
 	switch (rnd(30)) {
 
 		case 8:
+			{
 			pline("Something comes out of the fountain!");
 
 			int aggroamount = rnd(6);
@@ -578,6 +583,7 @@ register struct obj *obj;
 				if (aggroamount < 0) aggroamount = 0;
 			}
 			u.aggravation = 0;
+			}
 			break;
 
 		case 9:
@@ -631,11 +637,46 @@ register struct obj *obj;
 			dogushforth(FALSE);
 			break;
 		case 26: /* Strange feeling */
-			pline("A strange tingling runs up your %s.",
-							body_part(ARM));
+			pline("A strange tingling runs up your %s.", body_part(ARM));
+			attrcurse();
 			break;
 		case 27: /* Strange feeling */
 			You_feel("a sudden chill.");
+
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+
+			while (aggroamount) {
+
+			attempts = 0;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
+
+newhamburger:
+			do {
+				ppm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ppm || (ppm && !(dmgtype(ppm, AD_COLD)) && !(dmgtype(ppm, AD_FRZE)) && !(dmgtype(ppm, AD_ICEB)) )) && attempts < 50000);
+
+			if (!ppm && rn2(50) ) {
+				attempts = 0;
+				goto newhamburger;
+			}
+			if (ppm && !(dmgtype(ppm, AD_COLD)) && !(dmgtype(ppm, AD_FRZE)) && !(dmgtype(ppm, AD_ICEB)) && rn2(50) ) {
+				attempts = 0;
+				goto newhamburger;
+			}
+
+			if (ppm) (void) makemon(ppm, u.ux, u.uy, MM_ANGRY);
+			aggroamount--;
+
+			} /* while (aggroamount) */
+
+			u.aggravation = 0;
+
 			break;
 		case 28: /* Strange feeling */
 			pline("An urge to take a bath overwhelms you.");
@@ -777,6 +818,9 @@ drinksink()
 {
 	struct obj *otmp;
 	struct monst *mtmp;
+	int cx, cy, attempts;
+	coord cc;
+	struct permonst *pm = 0;
 
 	if (Levitation) {
 		floating_above("sink");
@@ -868,9 +912,47 @@ drinksink()
 			}
 			break;
 		/* more odd messages --JJB */
-		case 11: You_hear("clanking from the pipes...");
+		case 11:
+			You_hear("clanking from the pipes...");
+
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
+
+			makemon(mkclass(S_GOLEM,0), u.ux, u.uy, MM_ANGRY);
+
+			u.aggravation = 0;
+
 			break;
-		case 12: You_hear("snatches of song from among the sewers...");
+		case 12:
+			You_hear("snatches of song from among the sewers...");
+
+			attempts = 0;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
+
+newwere:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SOUND))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newwere;
+			}
+			if (pm && !(pm->msound == MS_SOUND) && rn2(50) ) {
+				attempts = 0;
+				goto newwere;
+			}
+
+			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
+
+			u.aggravation = 0;
+
 			break;
 
 		/* evil patch idea by jonadab - playing around with sinks can generate a green slime */
@@ -1026,8 +1108,7 @@ register struct obj *obj;
 			dogushforth(FALSE);
 			break;
 		case 26: /* Strange feeling */
-			pline("A strange tingling runs up your %s.",
-							body_part(ARM));
+			pline("A strange tingling runs up your %s.", body_part(ARM));
 			break;
 		case 27: /* Strange feeling */
 			You_feel("a sudden chill.");

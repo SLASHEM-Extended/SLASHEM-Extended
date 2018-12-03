@@ -14348,6 +14348,9 @@ STATIC_OVL void
 domagictrap()
 {
 	register int fate = rnd(20);
+	int cx, cy, attempts;
+	coord cc;
+	struct permonst *pm = 0;
 
 	/* What happened to the poor sucker? */
 
@@ -14386,12 +14389,53 @@ domagictrap()
 			break;
 
 	     /* odd feelings */
-	     case 13:	pline("A shiver runs up and down your %s!",
-			      body_part(SPINE));
+	     case 13:
+			pline("A shiver runs up and down your %s!", body_part(SPINE));
+
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
+
+			makemon(mkclass(S_GHOST,0), cx, cy, MM_ANGRY);
+
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+
 			break;
-	     case 14:	You_hear(Hallucination ?
-				"the moon howling at you." :
-				"distant howling.");
+	     case 14:
+			You_hear(Hallucination ? "the moon howling at you." : "distant howling.");
+
+			attempts = 0;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
+
+newwere:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(dmgtype(pm, AD_WERE)))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newwere;
+			}
+			if (pm && !(dmgtype(pm, AD_WERE)) && rn2(50) ) {
+				attempts = 0;
+				goto newwere;
+			}
+
+			if (pm) (void) makemon(pm, cx, cy, MM_ANGRY);
+
+			u.aggravation = 0;
+
 			break;
 	     case 15:	if (on_level(&u.uz, &qstart_level))
 			    You_feel("%slike the prodigal son.",
@@ -14403,6 +14447,17 @@ domagictrap()
 			    (In_quest(&u.uz) || at_dgn_entrance("The Quest")) ?
 						"your nearby homeland" :
 						"your distant homeland");
+
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
+
+			makemon(mkclass(S_NEMESE,0), cx, cy, MM_ANGRY);
+
+			u.aggravation = 0;
+
 			break;
 	     case 16:
 			{
@@ -14415,11 +14470,55 @@ domagictrap()
 					losehp(dmg, "violence", KILLED_BY);
 			break;
 			}
-	     case 17:	You(Hallucination ?
-				"smell hamburgers." :
-				"smell charred flesh.");
+	     case 17:
+			You(Hallucination ? "smell hamburgers." : "smell charred flesh.");
+
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+
+			while (aggroamount) {
+
+			attempts = 0;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
+
+newhamburger:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(is_undead(pm)))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newhamburger;
+			}
+			if (pm && !(is_undead(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newhamburger;
+			}
+
+			if (pm) (void) makemon(pm, cx, cy, MM_ANGRY);
+			aggroamount--;
+
+			} /* while (aggroamount) */
+
+			u.aggravation = 0;
+
 			break;
-	     case 18:	You_feel("tired.");
+	     case 18:
+			You_feel("tired.");
+			if(HSleep_resistance & INTRINSIC) {
+				HSleep_resistance &= ~INTRINSIC;
+			} 
+			if(HSleep_resistance & TIMEOUT) {
+				HSleep_resistance &= ~TIMEOUT;
+			}
+			if (!rn2(5)) attrcurse();
 			break;
 
 	     /* very occasionally something nice happens. */
