@@ -11334,7 +11334,7 @@ aliasagain:
 
 		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
 			strcpy(plalias, eliasbuf);
-			(void) strncpy(u.aliasname, eliasbuf, sizeof(eliasbuf));
+			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
 		}
 	}
 
