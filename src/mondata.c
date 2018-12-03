@@ -75,6 +75,17 @@ int atyp, dtyp;
     return attacktype_fordmg(ptr, atyp, dtyp) ? TRUE : FALSE;
 }
 
+/* function to check whether a monster has an actual passive attack; AD_PHYS doesn't count --Amy */
+boolean
+haspassive(ptr)
+struct permonst *ptr;
+{
+	int i;
+	for (i = 0; ; i++) {
+		if(i >= NATTK) return FALSE; /* no passive attacks */
+		if (ptr->mattk[i].aatyp == AT_NONE && ptr->mattk[i].adtyp != AD_PHYS) return TRUE;
+	}
+}
 
 #endif /* OVL0 */
 #ifdef OVLB

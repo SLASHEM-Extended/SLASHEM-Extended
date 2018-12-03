@@ -1677,6 +1677,7 @@ E struct attack *attacktype_fordmg(struct permonst *,int,int);
 E boolean attacktype(struct permonst *,int);
 E struct attack *attdmgtype_fromattack(struct permonst *,int,int);
 E boolean attackdamagetype(struct permonst *,int,int);
+E boolean haspassive(struct permonst *);
 E boolean poly_when_stoned(struct permonst *);
 E boolean resists_drli(struct monst *);
 E boolean resists_magm(struct monst *);
