@@ -4011,9 +4011,14 @@ register struct monst *mtmp;
 
 	}
 
+	if (tmp == PM_ALIGNED_PRIEST || tmp == PM_HIGH_PRIEST || tmp == PM_DNETHACK_ELDER_PRIEST_TM_) { /* you murderer! */
+		angry_guards(FALSE); /* The guards are on the side of Moloch's priests (not a bug). */
+	}
+
 	if(tmp == PM_SHOPKEEPER || tmp == PM_BLACK_MARKETEER || tmp == PM_GUARD) /* punishment */ {
 
 		pline("The twit quickly called the kops, and it seems they're out to get you!");
+		angry_guards(FALSE); /* Porkman observed the towns remaining peaceful if you murder all the shopkeepers... */
 		copcnt = rnd(monster_difficulty() ) + 1;
 		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
