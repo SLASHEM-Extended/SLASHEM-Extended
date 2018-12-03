@@ -14595,7 +14595,8 @@ register boolean force, here;
 					else if (obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
 					{
 				    
-					pline("One of your objects withered away!");
+					if (!evilfriday) pline("Your %s withered away!", xname(obj));
+					else pline("One of your items withered away!");
 					delobj(obj);
 					update_inventory();
 			    
@@ -14607,7 +14608,8 @@ register boolean force, here;
 					else if (obj->oeroded2 == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)))
 					{
 				    
-					pline("One of your objects withered away!");
+					if (!evilfriday) pline("Your %s withered away!", xname(obj));
+					else pline("One of your items withered away!");
 					delobj(obj);
 					update_inventory();
 			    
@@ -14834,7 +14836,8 @@ register boolean force, here;
 					!(obj->oerodeproof ))
 			{
 			    
-				pline("One of your objects was destroyed by rust!");
+				if (!evilfriday) pline("Your %s was destroyed by rust!", xname(obj));
+				else pline("One of your items was destroyed by rust!");
 				if (obj == uball) unpunish();
 				if (obj == uchain) unpunish();
 				delobj(obj);
@@ -14994,7 +14997,8 @@ register boolean force, here;
 			else if (obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
-				pline("One of your objects withered away!");
+				if (!evilfriday) pline("Your %s withered away!", xname(obj));
+				else pline("One of your items withered away!");
 				delobj(obj);
 				update_inventory();
 			    
@@ -15006,7 +15010,8 @@ register boolean force, here;
 			else if (obj->oeroded2 == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
-				pline("One of your objects withered away!");
+				if (!evilfriday) pline("Your %s withered away!", xname(obj));
+				else pline("One of your items withered away!");
 				delobj(obj);
 				update_inventory();
 			    
@@ -15051,7 +15056,8 @@ register boolean force, here;
 			else if (obj->oeroded == MAX_ERODE && !(obj->oartifact && rn2(4)) && !evades_destruction(obj) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
-				pline("One of your objects withered away!");
+				if (!evilfriday) pline("Your %s withered away!", xname(obj));
+				else pline("One of your items withered away!");
 				delobj(obj);
 				update_inventory();
 			    
@@ -15063,7 +15069,8 @@ register boolean force, here;
 			else if (obj->oeroded2 == MAX_ERODE && !(obj->oartifact && rn2(4)) && !evades_destruction(obj) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
-				pline("One of your objects withered away!");
+				if (!evilfriday) pline("Your %s withered away!", xname(obj));
+				else pline("One of your items withered away!");
 				delobj(obj);
 				update_inventory();
 			    
