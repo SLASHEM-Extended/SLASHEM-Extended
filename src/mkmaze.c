@@ -146,7 +146,7 @@ int floortype;		/* The 'wall' floortype */
 	    for(y = y1; y <= y2; y++) {
 		lev = &levl[x][y];
 		type = lev->typ;
-		if ( IS_WALL(type) && (rnd(density) < 4))
+		if ( IS_WALL(type) && type != GRAVEWALL && (rnd(density) < 4))
 		    lev->typ = (floortype == CROSSWALL) ? randomwalltype() : floortype;
 		else if IS_WALL(type)
 		    lev->typ = STONE;
