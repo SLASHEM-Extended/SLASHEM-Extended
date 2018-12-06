@@ -2048,6 +2048,28 @@ not_special:
 		      ptr->mlet == S_LIGHT) && !rn2(3)))
 			appr = 0;
 
+		/* monsters that are very far away shouldn't know where you are --Amy */
+		int nositerange = 900, siterange = 2500;
+		if (Aggravate_monster) {
+			nositerange *= 3;
+			siterange *= 3;
+		}
+		if (StrongAggravate_monster) {
+			nositerange *= 3;
+			siterange *= 3;
+		}
+		if (Stealth) {
+			nositerange /= 2;
+			siterange /= 2;
+		}
+		if (StrongStealth) {
+			nositerange /= 2;
+			siterange /= 2;
+		}
+
+		if (clear_path(u.ux, u.uy, mtmp->mx, mtmp->my) && (distu(mtmp->mx,mtmp->my) > siterange)) appr = 0;
+		if (!clear_path(u.ux, u.uy, mtmp->mx, mtmp->my) && (distu(mtmp->mx,mtmp->my) > nositerange)) appr = 0;
+
 /*		if(monsndx(ptr) == PM_LEPRECHAUN && (appr == 1) &&
 #ifndef GOLDOBJ
 		   (mtmp->mgold > u.ugold))
