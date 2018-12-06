@@ -7466,6 +7466,15 @@ boolean from_user;
 			ispoisoned=1;
 		} else if(!strncmpi(bp, "greased ",l=8)) {
 			isgreased=1;
+		} else if(!strncmpi(bp, "bgf ",l=4)) {
+			isgreased = 1;
+			blessed = 1;
+			erodeproof = 1;
+		} else if(!strncmpi(bp, "bgfi ",l=4)) {
+			isgreased = 1;
+			blessed = 1;
+			erodeproof = 1;
+			isinvisible = 1;
 		} else if (!strncmpi(bp, "very ", l=5)) {
 			/* very rusted very heavy iron ball */
 			very = 1;
