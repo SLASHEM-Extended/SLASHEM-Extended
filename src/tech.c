@@ -3994,9 +3994,9 @@ secureidchoice:
 		int maxchance = techlevX(tech_no);
 		if (maxchance > 45) maxchance = 45;
 
-	    You("procure some refreshing drinks.");
+		You("procure some refreshing drinks.");
 
-	    make_confused(HConfusion + d(3,8), FALSE);
+		make_confused(HConfusion + d(3,8), FALSE);
 		healup(Role_if(PM_DRUNK) ? rnz(20 + u.ulevel) : 1, 0, FALSE, FALSE);
 		u.uhunger += 20;
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 200;
@@ -4013,6 +4013,7 @@ secureidchoice:
 			udrink = mksobj(POT_BOOZE, TRUE, FALSE);
 			if (udrink) {
 				udrink->known = udrink->dknown = 1;
+				udrink->finalcancel = 1; /* goddamn it, these aren't supposed to be free holy water... */
 				dropy(udrink);
 				stackobj(udrink);
 			}
