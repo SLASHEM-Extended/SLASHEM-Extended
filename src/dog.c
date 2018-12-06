@@ -1301,7 +1301,7 @@ boolean guaranteed;
 		}
 
 	/* failsafe for things that REALLY cannot be tamed --Amy */
-	if (cannot_be_tamed(mtmp->data) || mtmp->mfrenzied || mtmp->mtame || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp)
+	if (cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->mfrenzied || mtmp->mtame || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp)
 		return (struct monst *)0;
 
 	if (mtmp->m_id == quest_status.leader_m_id)
