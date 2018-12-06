@@ -6192,7 +6192,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(542)) {
+		switch (rnd(543)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -6736,7 +6736,8 @@ register int roll;
 		case 540: pline("%s squeaks like a little girl, and you're so fascinated that you just stand there instead of fighting.", Monnam(mdef)); break;
 		case 541: pline("%s converts you to %s religion just as you're about to attack.", Monnam(mdef), mhis(mdef)); break;
 		case 542: pline("Your stinking boots cannot hurt %s.", mon_nam(mdef)); break;
-
+		case 543: pline("%s grabs your nuts and squeezes them tight!", Monnam(mdef)); break;
+	
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
 		}

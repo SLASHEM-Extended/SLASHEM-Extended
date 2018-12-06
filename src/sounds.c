@@ -348,8 +348,9 @@ dosounds()
 			"wonderful scratching noises!",
 			"erotic rubbing noises!",
 			"cheerful squeaking noises!",
+			"sexy licking noises!",
 		};
-		You_hear("%s", lemurepit_msg[rn2(6+hallu*6)]);
+		You_hear("%s", lemurepit_msg[rn2(6+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_spiderhall && !rn2(200)) {

@@ -22608,6 +22608,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You see maggots breed in the rent stomach of the strange void.",
 	"You hear the devils laugh, and your enchanted (of premature death) silver dragon scale mail is surrounded by an aura of evilness...",
 	"Dieau-dieau-dieau-dieau-dieaudieaudieaudieaudieaudieauDIEDIMM! Da-da-da-DIMM-damm-di-dimm-damm-DIMM-damm-dadimm-dammDIMM DAMM DI DA daaaaaa, dadadadada, DADADADADA, da DIIIIII, da daaaa, dadadadada DADADADADA, dee-da-di-da-da-de-di-da-di-deeeeeee, DIIIIII, diiiii, da da-didaaaaaaam, daaaaaaam, DIIIIIIII, DA DA DADAAAAAAM, *DAAAAAAM* DIDADADAMM DAMM DAMM-DAMM DAMM-*DAMM DAMM*-*DAMM DAMM*-DIIIIIIII DIEDAEDIEDAEDAE DIE-DAE-DAE *DIII DIII*, DIEDEDADIDEDADADADAA, dedadadieda die da da die, diedadadadaa daa daa daa, da die da die daaa! (diedadedidedaediedadediededededded) Daaaaa DIIIIIII dee da, daaaaaa, dadadadada, DADADADADA, da DIIIIII, da daaaa (and so on)",
+	"You wish you had brought your towel to the sauna.",
+	"You wish you had brought your towel to the sauna, because you're a fucking prude who is mortally scared of other people seeing his penis. Wimp.",
+	"You hear sexy licking noises!",
 
 };
 
