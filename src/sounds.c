@@ -1354,7 +1354,7 @@ dosounds()
         "You feel the presence of some sort of force.",
         "There seems to be something special about this place.",
 	  "You detect the presence of an alignment quest portal!",
-	  "You hear an evil figure taunting you to step through the magic portal!"
+	  "You hear an evil figure taunting you to step through the magic portal!",
         "You hear someone say: \"Force field activated!\"",
         "You hear someone say: \"Warp panel test sequence is starting in three... two... one...\"",
 	  "You see Diablo 2, the boss from the game with the same name, and he's holding your mother hostage!",
