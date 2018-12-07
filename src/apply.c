@@ -5341,6 +5341,9 @@ doapply()
 	case SPELL_MEMORY_STONE:
 	case SOUND_EFFECT_STONE:
 	case TIME_USE_STONE:
+	case BAD_PART_STONE:
+	case COMPLETELY_BAD_PART_STONE:
+	case EVIL_VARIANT_STONE:
 
 	case LOOTCUT_STONE:
 	case MONSTER_SPEED_STONE:
@@ -5901,6 +5904,9 @@ chargingchoice:
 		TechoutBug = 0L;
 		StatDecay = 0L;
 		Movemork = 0L;
+		BadPartBug = 0L;
+		CompletelyBadPartBug = 0L;
+		EvilVariantActive = 0L;
 
 		break;
 	case GOD_O_METER:

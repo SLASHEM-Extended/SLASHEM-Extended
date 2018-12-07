@@ -992,6 +992,12 @@ register struct obj *obj;
 	case AMULET_OF_TECHOUT:
 		pline_The("toilet looks primitive.");
 		break;
+	case AMULET_OF_BAD_PART:
+		pline("Suddenly all sorts of random garbage appear in the toilet!");
+		break;
+	case AMULET_OF_EVIL_VARIANT:
+		You("see a chunk of silver get corroded by the toilet water!"); /* evilvariant makes silver corrodeable */
+		break;
 
 	case AMULET_OF_HOSTILITY:
 		pline_The("toilet suddenly threatens to attack you!");

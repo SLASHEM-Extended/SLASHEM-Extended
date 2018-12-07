@@ -954,6 +954,14 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, monsters are generated with movement energy.");
 						else pline("Your auspices say: 13 8");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, you will be in the bad part.");
+						else pline("Your auspices say: 13 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, you will be in the completely bad part.");
+						else pline("Your auspices say: 13 10");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 14) {
@@ -1239,7 +1247,7 @@ boolean incr;	/* true iff via incremental experience growth */
 		if (isproblematic && !rn2(3)) {
 			/* no xlvl check - if you get drained repeatedly, your loss! I'm really mean :D --Amy */
 
-			switch (rnd(229)) {
+			switch (rnd(232)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -1699,6 +1707,12 @@ boolean incr;	/* true iff via incremental experience growth */
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 			}
 
 		}

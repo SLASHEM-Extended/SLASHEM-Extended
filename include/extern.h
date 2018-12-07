@@ -1238,6 +1238,10 @@ E boolean have_meleeprefixstone(void);
 E boolean have_automorestone(void);
 E boolean have_unfairattackstone(void);
 
+E boolean have_badpartstone(void);
+E boolean have_completelybadpartstone(void);
+E boolean have_evilvariantstone(void);
+
 E boolean have_primecurse(void);
 
 E boolean have_morgothiancurse(void);

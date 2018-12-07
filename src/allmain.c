@@ -4353,7 +4353,7 @@ newbossA:
 
 		if (!rn2(2000) && EvilPatchEffect) {
 			
-			switch (rnd(229)) {
+			switch (rnd(232)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4813,6 +4813,12 @@ newbossA:
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 
 
 			}
@@ -4821,7 +4827,7 @@ newbossA:
 
 		if (!rn2(2000) && uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
 			
-			switch (rnd(229)) {
+			switch (rnd(232)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -5281,13 +5287,19 @@ newbossA:
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 			}
 
 		}
 
 		if (!rn2(2000) && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
 
-			switch (rnd(229)) {
+			switch (rnd(232)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -5747,13 +5759,19 @@ newbossA:
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 			}
 
 		}
 
 		if (!rn2(2000) && u.uprops[EVIL_PATCH_EFFECT].extrinsic) {
 			
-			switch (rnd(229)) {
+			switch (rnd(232)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -6213,13 +6231,19 @@ newbossA:
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 			}
 
 		}
 
 		if (!rn2(2000) && have_evilpatchstone()) {
 			
-			switch (rnd(229)) {
+			switch (rnd(232)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -6679,6 +6703,12 @@ newbossA:
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 			}
 
 		}
@@ -8626,6 +8656,147 @@ newboss:
 				block_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
+			}
+
+		}
+
+		if (BadPartBug && !rn2(20) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				boolean neighborbad = 0;
+				int bpx, bpy;
+
+				for (bpx= -1; bpx<=1; bpx++) for(bpy= -1; bpy<=1; bpy++) {
+					if (!bpx && !bpy) continue;
+					if (!isok(chaosx+bpx, chaosy+bpy)) continue;
+					if (levl[chaosx+bpx][chaosy+bpy].typ == DOOR || levl[chaosx+bpx][chaosy+bpy].typ == CORR || levl[chaosx+bpx][chaosy+bpy].typ == ROOM || levl[chaosx+bpx][chaosy+bpy].typ == STAIRS || levl[chaosx+bpx][chaosy+bpy].typ == LADDER) neighborbad = 1;
+				}
+
+				if (!neighborbad) {
+					levl[chaosx][chaosy].typ = randomwalltype();
+					del_engr_at(chaosx,chaosy);
+					newsym(chaosx,chaosy);
+					unblock_point(chaosx,chaosy);
+
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				}
+
+			}
+
+		}
+
+		if (u.uprops[BAD_PARTS].extrinsic && !rn2(20) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				boolean neighborbad = 0;
+				int bpx, bpy;
+
+				for (bpx= -1; bpx<=1; bpx++) for(bpy= -1; bpy<=1; bpy++) {
+					if (!bpx && !bpy) continue;
+					if (!isok(chaosx+bpx, chaosy+bpy)) continue;
+					if (levl[chaosx+bpx][chaosy+bpy].typ == DOOR || levl[chaosx+bpx][chaosy+bpy].typ == CORR || levl[chaosx+bpx][chaosy+bpy].typ == ROOM || levl[chaosx+bpx][chaosy+bpy].typ == STAIRS || levl[chaosx+bpx][chaosy+bpy].typ == LADDER) neighborbad = 1;
+				}
+
+				if (!neighborbad) {
+					levl[chaosx][chaosy].typ = randomwalltype();
+					del_engr_at(chaosx,chaosy);
+					newsym(chaosx,chaosy);
+					unblock_point(chaosx,chaosy);
+
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				}
+
+			}
+
+		}
+
+		if (have_badpartstone() && !rn2(20) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				boolean neighborbad = 0;
+				int bpx, bpy;
+
+				for (bpx= -1; bpx<=1; bpx++) for(bpy= -1; bpy<=1; bpy++) {
+					if (!bpx && !bpy) continue;
+					if (!isok(chaosx+bpx, chaosy+bpy)) continue;
+					if (levl[chaosx+bpx][chaosy+bpy].typ == DOOR || levl[chaosx+bpx][chaosy+bpy].typ == CORR || levl[chaosx+bpx][chaosy+bpy].typ == ROOM || levl[chaosx+bpx][chaosy+bpy].typ == STAIRS || levl[chaosx+bpx][chaosy+bpy].typ == LADDER) neighborbad = 1;
+				}
+
+				if (!neighborbad) {
+					levl[chaosx][chaosy].typ = randomwalltype();
+					del_engr_at(chaosx,chaosy);
+					newsym(chaosx,chaosy);
+					unblock_point(chaosx,chaosy);
+
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				}
+
+			}
+
+		}
+
+		if (CompletelyBadPartBug && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				levl[chaosx][chaosy].typ = randomwalltype();
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+				unblock_point(chaosx,chaosy);
+
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+
+			}
+
+		}
+
+		if (u.uprops[COMPLETELY_BAD_PARTS].extrinsic && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				levl[chaosx][chaosy].typ = randomwalltype();
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+				unblock_point(chaosx,chaosy);
+
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+
+			}
+
+		}
+
+		if (have_completelybadpartstone() && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				levl[chaosx][chaosy].typ = randomwalltype();
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+				unblock_point(chaosx,chaosy);
+
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+
 			}
 
 		}
@@ -12430,7 +12601,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric cloak")) OBJ_DESCR(objects[i]) = "efirnyy plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick helmet")) OBJ_DESCR(objects[i]) = "kirpichnyy shlem";
 
-		/* todo area */
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "old-fashioned cloak")) OBJ_DESCR(objects[i]) = "staromodnyy plashch";
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rifling power cloak")) OBJ_DESCR(objects[i]) = "naplechnyy shchit sily";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cursed called cloak")) OBJ_DESCR(objects[i]) = "proklyatyy pod nazvaniyem plashch";
@@ -12477,6 +12648,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel toed boots")) OBJ_DESCR(objects[i]) = "stal'nyye kosolapyy sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "marji shoes")) OBJ_DESCR(objects[i]) = "obuv' marzhi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mary janes")) OBJ_DESCR(objects[i]) = "meri dzheyn";
+
+		/* todo area */
 
 	}
 	}
@@ -13361,7 +13534,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric cloak")) OBJ_DESCR(objects[i]) = "eterik plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick helmet")) OBJ_DESCR(objects[i]) = "g'isht kaskasi";
 
-		/* todo area */
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "old-fashioned cloak")) OBJ_DESCR(objects[i]) = "qadimgi plash";
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rifling power cloak")) OBJ_DESCR(objects[i]) = "miltig'idan tortib, kuch-quvvat plashi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cursed called cloak")) OBJ_DESCR(objects[i]) = "la'natlangan la'nati";
@@ -13408,6 +13581,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel toed boots")) OBJ_DESCR(objects[i]) = "po'latdan yasalgan poyafzal";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "marji shoes")) OBJ_DESCR(objects[i]) = "oz maryam poyafzallari";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mary janes")) OBJ_DESCR(objects[i]) = "meri janes";
+
+		/* todo area */
 
 	}
 	}

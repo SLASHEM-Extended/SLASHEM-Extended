@@ -3693,6 +3693,24 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (BadPartBug || u.uprops[BAD_PARTS].extrinsic || have_badpartstone())) {
+		sprintf(buf, "in the bad part.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", BadPartBug);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CompletelyBadPartBug || u.uprops[COMPLETELY_BAD_PARTS].extrinsic || have_completelybadpartstone())) {
+		sprintf(buf, "in the completely bad part.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", CompletelyBadPartBug);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EvilVariantActive || u.uprops[EVIL_VARIANT_ACTIVE].extrinsic || have_evilvariantstone())) {
+		sprintf(buf, "the following problem: You're forced to play the evil variant.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", EvilVariantActive);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (OrangeSpells || u.uprops[ORANGE_SPELLS].extrinsic || have_orangespellstone())) {
 		sprintf(buf, "the following problem: Your spells became orange.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", OrangeSpells);
@@ -7209,6 +7227,24 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%d)", TimerunBug);
+		dump(youhad, buf);
+	}
+
+	if (BadPartBug || u.uprops[BAD_PARTS].extrinsic || have_badpartstone()) {
+		sprintf(buf, "in the bad part.");
+	      sprintf(eos(buf), " (%d)", BadPartBug);
+		dump(youwere, buf);
+	}
+
+	if (CompletelyBadPartBug || u.uprops[COMPLETELY_BAD_PARTS].extrinsic || have_completelybadpartstone()) {
+		sprintf(buf, "in the completely bad part.");
+	      sprintf(eos(buf), " (%d)", CompletelyBadPartBug);
+		dump(youwere, buf);
+	}
+
+	if (EvilVariantActive || u.uprops[EVIL_VARIANT_ACTIVE].extrinsic || have_evilvariantstone()) {
+		sprintf(buf, "the following problem: You're forced to play the evil variant.");
+	      sprintf(eos(buf), " (%d)", EvilVariantActive);
 		dump(youhad, buf);
 	}
 

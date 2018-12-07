@@ -8203,7 +8203,7 @@ u_init()
 	u.femauspices6 = rnd(8);
 	u.femauspices8 = rnd(8);
 	u.femauspices11 = rnd(16);
-	u.femauspices13 = rnd(8);
+	u.femauspices13 = rnd(10);
 	u.femauspices15 = rnd(8);
 	u.femauspices17 = rnd(7);
 	u.femauspices20 = rnd(8);
@@ -8214,7 +8214,7 @@ u_init()
 
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
-	u.adrunsattack = rnd(229); /* timerun etc. */
+	u.adrunsattack = rnd(232); /* timerun etc. */
 
 	u.scholarturns = 0;
 
@@ -28345,7 +28345,7 @@ alter_reality()
 	u.femauspices6 = rnd(8);
 	u.femauspices8 = rnd(8);
 	u.femauspices11 = rnd(16);
-	u.femauspices13 = rnd(8);
+	u.femauspices13 = rnd(10);
 	u.femauspices15 = rnd(8);
 	u.femauspices17 = rnd(7);
 	u.femauspices20 = rnd(8);
@@ -28356,7 +28356,7 @@ alter_reality()
 
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
-	u.adrunsattack = rnd(229); /* timerun etc. */
+	u.adrunsattack = rnd(232); /* timerun etc. */
 
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);

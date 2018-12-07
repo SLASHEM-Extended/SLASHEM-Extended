@@ -4548,6 +4548,47 @@ have_movemorkstone()
 	return(FALSE);
 }
 
+boolean
+have_badpartstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BAD_PART_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator230) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_completelybadpartstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == COMPLETELY_BAD_PART_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator231) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_evilvariantstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == EVIL_VARIANT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator232) return TRUE;
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -9109,6 +9150,8 @@ struct obj *obj;
 				pline("This cloak increases the range of certain monster attacks. It grants quite good armor class and 3 points of magic cancellation."); break;
 			case UNFAIR_ATTACK_CLOAK:
 				pline("This cloak allows monsters to use unfair attacks on you. It grants great armor class and 7 points of magic cancellation."); break;
+			case CLOAK_OF_BAD_PART:
+				pline("This cloak makes it so that you're in the bad part. It grants mediocre armor class and 3 points of magic cancellation."); break;
 
 			case CLOAK_OF_QUENCHING: 
 				pline("Wearing this cloak grants fire resistance and 3 points of magic cancellation."); break;
@@ -10850,6 +10893,10 @@ struct obj *obj;
 				pline("This amulet causes metal spells."); break;
 			case AMULET_OF_TECHOUT:
 				pline("This amulet occasionally increases the timeouts of your techniques."); break;
+			case AMULET_OF_BAD_PART:
+				pline("This amulet puts you in the completely bad part."); break;
+			case AMULET_OF_EVIL_VARIANT:
+				pline("This amulet forces you to play in evilvariant mode."); break;
 
 			case AMULET_OF_ANTI_TELEPORTATION:
 				pline("This amulet blocks all of your attempts to self-teleport."); break;
@@ -13349,6 +13396,12 @@ struct obj *obj;
 				pline("A stone that curses itself and causes verbalized sound effects."); break;
 			case TIME_USE_STONE:
 				pline("A stone that curses itself and causes every action to take time."); break;
+			case BAD_PART_STONE:
+				pline("A stone that curses itself and causes you to be in the bad part."); break;
+			case COMPLETELY_BAD_PART_STONE:
+				pline("A stone that curses itself and causes you to be in the completely bad part."); break;
+			case EVIL_VARIANT_STONE:
+				pline("A stone that curses itself and causes you to play the evil variant."); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 

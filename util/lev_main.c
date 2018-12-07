@@ -612,6 +612,10 @@ static struct {
 	{ "elder tentacling", ELDER_TENTACLING_TRAP },
 	{ "footerer", FOOTERER_TRAP },
 
+	{ "bad part", BAD_PART_TRAP },
+	{ "completely bad part", COMPLETELY_BAD_PART_TRAP },
+	{ "evil variant", EVIL_VARIANT_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

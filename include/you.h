@@ -871,6 +871,9 @@ struct you {
 	boolean nastinator227;
 	boolean nastinator228;
 	boolean nastinator229;
+	boolean nastinator230;
+	boolean nastinator231;
+	boolean nastinator232;
 
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];

@@ -3920,6 +3920,9 @@ secureidchoice:
 		SpellForgetting = 0L;
 		SoundEffectBug = 0L;
 		TimerunBug = 0L;
+		BadPartBug = 0L;
+		CompletelyBadPartBug = 0L;
+		EvilVariantActive = 0L;
 		OrangeSpells = 0L;
 		VioletSpells = 0L;
 		LongingEffect = 0L;
@@ -3999,7 +4002,7 @@ secureidchoice:
 		pline("Okay, if that's really what you want... you feel corrupted.");
 		if (Hallucination) pline("At least this isn't ADOM, where having too many corruptions would instakill you!");
 
-		switch (rnd(229)) {
+		switch (rnd(232)) {
 
 			case 1: 
 			    SpeedBug |= FROMOUTSIDE; break;
@@ -4459,6 +4462,12 @@ secureidchoice:
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 		}
 
 		break;

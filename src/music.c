@@ -671,7 +671,7 @@ struct obj *instr;
     }
 
     if (instr->oartifact == ART_KILLER_PIANO) {
-		switch (rnd(229)) {
+		switch (rnd(232)) {
 
 			case 1: 
 			    SpeedBug |= FROMOUTSIDE; break;
@@ -1131,6 +1131,12 @@ struct obj *instr;
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 		}
 
     }

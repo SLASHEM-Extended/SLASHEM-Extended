@@ -794,6 +794,10 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "elder tentacling trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "footerer trap", C(CLR_GREEN)},	/* trap */
 
+	{'^', "bad part trap", C(CLR_BLACK)},	/* trap */
+	{'^', "completely bad part trap", C(CLR_GRAY)},	/* trap */
+	{'^', "evil variant trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1415,6 +1419,10 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_elder_tentacling_trap),
 	g_FILLER(S_footerer_trap),
 
+	g_FILLER(S_bad_part_trap),
+	g_FILLER(S_completely_bad_part_trap),
+	g_FILLER(S_evil_variant_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2024,6 +2032,10 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_elder_tentacling_trap),
 	g_FILLER(S_footerer_trap),
 
+	g_FILLER(S_bad_part_trap),
+	g_FILLER(S_completely_bad_part_trap),
+	g_FILLER(S_evil_variant_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -2629,6 +2641,10 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_data_delete_trap),
 	g_FILLER(S_elder_tentacling_trap),
 	g_FILLER(S_footerer_trap),
+
+	g_FILLER(S_bad_part_trap),
+	g_FILLER(S_completely_bad_part_trap),
+	g_FILLER(S_evil_variant_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3236,6 +3252,10 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_data_delete_trap),
 	g_FILLER(S_elder_tentacling_trap),
 	g_FILLER(S_footerer_trap),
+
+	g_FILLER(S_bad_part_trap),
+	g_FILLER(S_completely_bad_part_trap),
+	g_FILLER(S_evil_variant_trap),
 
 	g_FILLER(S_timerun_trap),
 	g_FILLER(S_vbeam),
@@ -4042,6 +4062,10 @@ boolean is_rlevel;
 	    showsyms[S_data_delete_trap] = 0x04;
 	    showsyms[S_elder_tentacling_trap] = 0x04;
 	    showsyms[S_footerer_trap] = 0x04;
+
+	    showsyms[S_bad_part_trap] = 0x04;
+	    showsyms[S_completely_bad_part_trap] = 0x04;
+	    showsyms[S_evil_variant_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif

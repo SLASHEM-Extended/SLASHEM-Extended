@@ -2819,6 +2819,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SCR_BAD_EQUIPMENT, "plokhoye oborudovaniye" },
 	{ WAN_BAD_EQUIPMENT, "plokhoye oborudovaniye" },
 
+	{ CLOAK_OF_BAD_PART, "plashch plokhoy chasti" },
+	{ AMULET_OF_BAD_PART, "amulet of plokhoy chasti" },
+	{ AMULET_OF_EVIL_VARIANT, "amulet of zlogo varianta" },
+	{ BAD_PART_STONE, "plokhaya chast' kamnya" },
+	{ COMPLETELY_BAD_PART_STONE, "polnost'yu plokhaya chast' kamnya" },
+	{ EVIL_VARIANT_STONE, "zloy variant kamnya" },
+
 	/* todo area */
 
 	{0, "" }
@@ -5105,6 +5112,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ WAN_INSANITY, "jinnilik" },
 	{ SCR_BAD_EQUIPMENT, "yomon uskunalar" },
 	{ WAN_BAD_EQUIPMENT, "yomon uskunalar" },
+
+	{ CLOAK_OF_BAD_PART, "yomon qismning plashi" },
+	{ AMULET_OF_BAD_PART, "amulet of yomon qism" },
+	{ AMULET_OF_EVIL_VARIANT, "amulet of yomon tuyalar tulusi" },
+	{ BAD_PART_STONE, "yomon qismi tosh" },
+	{ COMPLETELY_BAD_PART_STONE, "butunlay yomon qism tosh" },
+	{ EVIL_VARIANT_STONE, "yomon har xil tosh" },
 
 	/* todo area */
 

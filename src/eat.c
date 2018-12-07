@@ -5432,6 +5432,12 @@ eatspecial() /* called after eating non-food */
 			    StatDecay |= FROMOUTSIDE; break;
 			case MOVEMORK_STONE:
 			    Movemork |= FROMOUTSIDE; break;
+			case BAD_PART_STONE:
+			    BadPartBug |= FROMOUTSIDE; break;
+			case COMPLETELY_BAD_PART_STONE:
+			    CompletelyBadPartBug |= FROMOUTSIDE; break;
+			case EVIL_VARIANT_STONE:
+			    EvilVariantActive |= FROMOUTSIDE; break;
 
 		}
 	}

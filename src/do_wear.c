@@ -828,6 +828,7 @@ Cloak_on()
 	case CYAN_SPELL_CLOAK:
 	case ELONGATION_CLOAK:
 	case UNFAIR_ATTACK_CLOAK:
+	case CLOAK_OF_BAD_PART:
 
 	case HEAVY_STATUS_CLOAK:
 	case CLOAK_OF_LUCK_NEGATION:
@@ -1359,6 +1360,7 @@ Cloak_off()
 	case CYAN_SPELL_CLOAK:
 	case ELONGATION_CLOAK:
 	case UNFAIR_ATTACK_CLOAK:
+	case CLOAK_OF_BAD_PART:
 
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
@@ -2822,6 +2824,8 @@ Amulet_on()
 	case AMULET_OF_INCREASED_FREQUENCY:
 	case AMULET_OF_SPELL_METAL:
 	case AMULET_OF_TECHOUT:
+	case AMULET_OF_BAD_PART:
+	case AMULET_OF_EVIL_VARIANT:
 
 	case AMULET_OF_HOSTILITY:
 	case AMULET_OF_EVIL_CRAFTING:
@@ -3087,7 +3091,7 @@ Implant_on()
 		u.uhpmax++;
 		flags.botl = TRUE;
 
-			switch (rnd(229)) {
+			switch (rnd(232)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -3547,6 +3551,12 @@ Implant_on()
 				    StatDecay |= FROMOUTSIDE; break;
 				case 229:
 				    Movemork |= FROMOUTSIDE; break;
+				case 230:
+				    BadPartBug |= FROMOUTSIDE; break;
+				case 231:
+				    CompletelyBadPartBug |= FROMOUTSIDE; break;
+				case 232:
+				    EvilVariantActive |= FROMOUTSIDE; break;
 			}
 
     }

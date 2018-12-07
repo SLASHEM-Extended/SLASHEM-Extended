@@ -319,7 +319,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define isproblematic (Race_if(PM_PROBLEMATIC) || flags.hybridproblematic)
 #define iswindinhabitant (Race_if(PM_WIND_INHABITANT) || flags.hybridwindinhabitant)
 #define isaggravator (Race_if(PM_AGGRAVATOR) || flags.hybridaggravator)
-#define isevilvariant (Race_if(PM_EVILVARIANT) || flags.hybridevilvariant || (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) || (uwep && uwep->oartifact == ART_FUURKER) || (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING) || (uswapwep && uswapwep->oartifact == ART_FUURKER) )
+#define isevilvariant (Race_if(PM_EVILVARIANT) || flags.hybridevilvariant || EvilVariantActive || u.uprops[EVIL_VARIANT_ACTIVE].extrinsic || have_evilvariantstone() || (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) || (uwep && uwep->oartifact == ART_FUURKER) || (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING) || (uswapwep && uswapwep->oartifact == ART_FUURKER) )
 #define islevelscaler (Race_if(PM_LEVELSCALER) || flags.hybridlevelscaler)
 #define iserosator (Race_if(PM_EROSATOR) || flags.hybriderosator)
 #define isroommate (Race_if(PM_ROOMMATE) || flags.hybridroommate)

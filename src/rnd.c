@@ -1107,7 +1107,7 @@ randenchantment()
 		case 113:
 		case 114:
 		case 115:
-			switch (rnd(231)) {
+			switch (rnd(234)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1341,6 +1341,9 @@ randenchantment()
 			case 229: return TECHOUT_BUG;
 			case 230: return STAT_DECAY;
 			case 231: return MOVEMORKING;
+			case 232: return BAD_PARTS;
+			case 233: return COMPLETELY_BAD_PARTS;
+			case 234: return EVIL_VARIANT_ACTIVE;
 
 			}
 		case 116:
@@ -1522,7 +1525,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(231)) {
+	switch (rnd(234)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -1755,6 +1758,9 @@ randnastyenchantment()
 			case 229: return TECHOUT_BUG;
 			case 230: return STAT_DECAY;
 			case 231: return MOVEMORKING;
+			case 232: return BAD_PARTS;
+			case 233: return COMPLETELY_BAD_PARTS;
+			case 234: return EVIL_VARIANT_ACTIVE;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -1909,7 +1915,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(231)) {
+	else switch (rnd(234)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2142,6 +2148,9 @@ randominsidetrap()
 		case 229: return TECHOUT_TRAP;
 		case 230: return STAT_DECAY_TRAP;
 		case 231: return MOVEMORK_TRAP;
+		case 232: return BAD_PART_TRAP;
+		case 233: return COMPLETELY_BAD_PART_TRAP;
+		case 234: return EVIL_VARIANT_TRAP;
 
 	}
 
@@ -2868,7 +2877,7 @@ int duration, blackngvar;
 {
 		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
-		switch (rnd(229)) {
+		switch (rnd(232)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -3128,6 +3137,9 @@ int duration, blackngvar;
 			case 227: TechoutBug += rnz(duration); break;
 			case 228: StatDecay += rnz(duration); break;
 			case 229: Movemork += rnz(duration); break;
+			case 230: BadPartBug += rnz(duration); break;
+			case 231: CompletelyBadPartBug += rnz(duration); break;
+			case 232: EvilVariantActive += rnz(duration); break;
 
 		}
 

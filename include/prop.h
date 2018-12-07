@@ -558,7 +558,11 @@
 
 #define FEMTRAP_MELTEM 513
 
-#define SECOND_CHANCE		514
+#define BAD_PARTS 514
+#define COMPLETELY_BAD_PARTS 515
+#define EVIL_VARIANT_ACTIVE 516
+
+#define SECOND_CHANCE		517
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

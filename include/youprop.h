@@ -440,6 +440,10 @@
 #define SoundEffectBug		u.uprops[SOUND_EFFECT_BUG].intrinsic
 #define TimerunBug		u.uprops[TIMERUN_BUG].intrinsic
 
+#define BadPartBug	u.uprops[BAD_PARTS].intrinsic
+#define CompletelyBadPartBug	u.uprops[COMPLETELY_BAD_PARTS].intrinsic
+#define EvilVariantActive	u.uprops[EVIL_VARIANT_ACTIVE].intrinsic
+
 #define OrangeSpells		u.uprops[ORANGE_SPELLS].intrinsic
 #define VioletSpells		u.uprops[VIOLET_SPELLS].intrinsic
 #define LongingEffect		u.uprops[LONGING_EFFECT].intrinsic

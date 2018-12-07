@@ -547,8 +547,12 @@ extern struct trap *ftrap;
 #define ELDER_TENTACLING_TRAP 473
 #define FOOTERER_TRAP 474
 
-#define TIMERUN_TRAP	475
+#define BAD_PART_TRAP 475
+#define COMPLETELY_BAD_PART_TRAP 476
+#define EVIL_VARIANT_TRAP 477
 
-#define TRAPNUM 476
+#define TIMERUN_TRAP	478
+
+#define TRAPNUM 479
 
 #endif /* TRAP_H */

@@ -3579,6 +3579,9 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != BAD_PART_TRAP
+				&& ttmp->ttyp != COMPLETELY_BAD_PART_TRAP
+				&& ttmp->ttyp != EVIL_VARIANT_TRAP
 				&& ttmp->ttyp != INTRINSIC_LOSS_TRAP
 				&& ttmp->ttyp != BLOOD_LOSS_TRAP
 				&& ttmp->ttyp != BAD_EFFECT_TRAP
