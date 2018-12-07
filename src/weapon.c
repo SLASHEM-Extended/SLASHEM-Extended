@@ -5149,6 +5149,7 @@ rerollthree:
 		case PM_WORM_THAT_WALKS: implantbonus = 4; break;
 		case PM_HUMAN_WRAITH: implantbonus = 3; break;
 		case PM_WEAPON_XORN: implantbonus = 2; break;
+		case PM_PLAYER_ZRUTY: implantbonus = 4; break;
 	}
 
 	if (implantbonus == 1) {

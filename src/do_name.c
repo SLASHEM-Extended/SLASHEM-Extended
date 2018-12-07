@@ -989,6 +989,8 @@ boolean called;
 	    if (mtmp->egotype_converter) sprintf(eos(buf), " Converter");
 	    if (mtmp->egotype_wouwouer) sprintf(eos(buf), " Wouwouer");
 	    if (mtmp->egotype_allivore) sprintf(eos(buf), " Allivore");
+	    if (mtmp->egotype_nastycurser) sprintf(eos(buf), " Nastycurser");
+	    if (mtmp->egotype_sanitizer) sprintf(eos(buf), " Sanitizer");
 
 	}
 

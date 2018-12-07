@@ -15490,6 +15490,7 @@ u_init()
 	case PM_YUKI_PLAYA: racebounus = 0; break;
 	case PM_YEEK: racebounus = 0; break;
 	case PM_HUMANOID_DRYAD: racebounus = rnz(8); break;
+	case PM_PLAYER_ZRUTY: racebounus = rnz(15); break;
 	default:	racebounus = rnz(10); break;
 
 	}

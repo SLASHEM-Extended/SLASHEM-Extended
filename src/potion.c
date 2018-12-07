@@ -2359,7 +2359,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(205)) {
+	switch (rnd(207)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -2568,6 +2568,8 @@ register struct monst *mtmp;
 		case 203: mtmp->egotype_converter = 1; break;
 		case 204: mtmp->egotype_wouwouer = 1; break;
 		case 205: mtmp->egotype_allivore = 1; break;
+		case 206: if (!rn2(5)) mtmp->egotype_nastycurser = 1; else mtmp->egotype_curser = 1; break;
+		case 207: mtmp->egotype_sanitizer = 1; break;
 
 	}
 

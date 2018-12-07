@@ -1084,6 +1084,16 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
+	zru_tech[] = { {   1, T_BERSERK, 1},
+		       {   1, T_PUMMEL, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_PRIMAL_ROAR, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_RAGE, 1},
+		       {   0, 0, 0} },
 	lyc_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
@@ -6984,6 +6994,7 @@ race_tech()
 		case PM_HOBBIT:		return (hob_tech);
 		case PM_HUMAN_WEREWOLF:	return (lyc_tech);
 		case PM_HUMAN_MONKEY:	return (hmo_tech);
+		case PM_PLAYER_ZRUTY:	return (zru_tech);
 		case PM_VAMPIRE:	return (vam_tech);
 		case PM_SUCKING_FIEND:	return (vam_tech);
 		case PM_VAMGOYLE:	return (vam_tech);

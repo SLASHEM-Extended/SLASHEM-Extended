@@ -345,6 +345,9 @@ struct monst {
 
 	Bitfield(egotype_allivore,1); /* eats every item it comes across */
 
+	Bitfield(egotype_nastycurser,1); /* AD_NACU */
+	Bitfield(egotype_sanitizer,1); /* AD_SANI */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

@@ -1864,7 +1864,7 @@ const struct Role roles[] = {
 	"Jed", "the Jedi Temple", "the Outer Rim",
 	PM_JEDI, NON_PM, PM_UNDEAD_JEDI, NON_PM, PM_LITTLE_DOG,
 	PM_THE_JEDI_MASTER, PM_PADAWAN, PM_LORD_SIDIOUS, PM_LORD_INSIDIOUS,
-	PM_STORMTROOPER, PM_STORMTROOPER, S_HUMAN, S_HUMAN,
+	PM_STORMTROOPER, PM_LASER_STORMTROOPER, S_HUMAN, S_HUMAN,
 	ART_LIGHTSABER_PROTOTYPE,
 	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
 	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
@@ -6494,6 +6494,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
+},
+{	"zruty", "zruty", "save the zruties", "Zru",
+	{0, 0},
+	PM_PLAYER_ZRUTY, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(22), 12, 15, 17, 20, 14 },
+	/* Init   Lower  Higher */
+	{  4, 0,  0, 6,  5, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
 /* Array terminator */
 { 0, 0, 0, 0 }};

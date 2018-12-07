@@ -1204,6 +1204,20 @@ register struct monst *mtmp;
 			  mongets(mtmp, PLASTEEL_HELM);
 			  break;
 
+			case PM_LASER_STORMTROOPER:
+			  if (rn2(15)) {
+			  	w1 = HAND_BLASTER;
+			  	m_initthrow(mtmp, BLASTER_BOLT, 50);
+			  } else {
+			  	w1 = RAYGUN;
+			  	m_initthrow(mtmp, BLASTER_BOLT, 50);
+			  }
+			  mongets(mtmp, PLASTEEL_ARMOR);
+			  mongets(mtmp, PLASTEEL_GLOVES);
+			  mongets(mtmp, PLASTEEL_BOOTS);
+			  mongets(mtmp, PLASTEEL_HELM);
+			  break;
+
 			case PM_HEAVY_WEAPON_DUDE:
 			case PM_EVASIVE_HEAVY_WEAPON_DUDE:
 			  	w1 = HEAVY_MACHINE_GUN;
@@ -7333,6 +7347,14 @@ register struct	monst	*mtmp;
 	  		m_initthrow(mtmp, LASER_BEAM, 50);
 		}
 
+		if (ptr == &mons[PM_DOBIEL]) {
+		  	(void) mongets(mtmp, BALLISTA);
+		  	m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+		  	m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+		}
+
+		if (mtmp->data == &mons[PM_ARKTOUROS]) (void) mongets(mtmp, BARDICHE);
+
 		if (mtmp->data == &mons[PM_PURE_CHAOS_HORDE]) (void) mongets(mtmp, SCR_CHAOS_TERRAIN);
 		if (mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
@@ -8038,6 +8060,22 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, SLING);
 			(void)mongets(mtmp, ORCISH_HELM);
 		  	m_initthrow(mtmp, ROCK, 40);
+		}
+		if (ptr == &mons[PM_CHIHYU]) {
+			(void)mongets(mtmp, BOW);
+		  	m_initthrow(mtmp, ARROW, 40);
+		}
+		if (ptr == &mons[PM_MOLOCH]) {
+			(void)mongets(mtmp, BARDICHE);
+			(void)mongets(mtmp, SLING);
+		  	m_initthrow(mtmp, ROCK, 50);
+		  	m_initthrow(mtmp, ROCK, 50);
+		}
+		if (ptr == &mons[PM_ASTERIOS]) {
+			(void)mongets(mtmp, BARDICHE);
+			(void)mongets(mtmp, SLING);
+		  	m_initthrow(mtmp, ROCK, 50);
+		  	m_initthrow(mtmp, ROCK, 50);
 		}
 		if (ptr == &mons[PM_SLIANT]) {
 			(void)mongets(mtmp, SLING);
@@ -15426,6 +15464,14 @@ register int	mmflags;
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
 			mtmp->egotype_statdamager = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_sanitizer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_nastycurser = TRUE;
 		}
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
