@@ -738,8 +738,8 @@ register struct monst *mtmp;
 	/* Double and quad attacks gives extra attacks per round --Amy
 	 * This means you do all of your normal attacks two or four times. */
 	int attackamount = 0;
-	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) attackamount++;
-	if (Quad_attack) attackamount += 3; /* they won't stack to become +7 attacks, sorry */
+	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) attackamount += rn2(2);
+	if (Quad_attack) attackamount += rn2(4); /* don't always give the full amount (balance reasons) --Amy */
 
 	/* whirlstaff technique... this is very powerful when polymorphed into a form with several other attacks --Amy */
 	if (uwep && weapon_type(uwep) == P_QUARTERSTAFF && tech_inuse(T_WHIRLSTAFF)) {
@@ -6796,7 +6796,15 @@ register int tmp;
 	boolean Old_Upolyd = Upolyd;
 	static const int hit_touch[] = {0, HIT_BODY, HIT_BODY|HIT_FATAL};
 	static const int hit_notouch[] = {0, HIT_OTHER, HIT_OTHER|HIT_FATAL};
-	
+
+	/* don't give the extra weapon attacks every time if your natural form has more than two --Amy */
+	int weaponiteration = 0;
+	int weaponamount = 1;
+	if (rnd(5) > 3) {
+		weaponamount++;
+		if (rnd(5) > 3) weaponamount++;
+	}
+
 	/* Keeps track of which weapon hands have been used */
 	boolean used_uwep = FALSE;
 
@@ -6838,6 +6846,12 @@ use_weapon:
 	 */
 			mhit = used_uwep ? HIT_USWAPWEP : HIT_UWEP;
 			used_uwep = !used_uwep;
+
+			/* clockworks, haxors etc. - 60% chance of one attack, 24% two attacks, 16% three attacks --Amy */
+			weaponiteration++;
+			if (!Upolyd && weaponiteration > 2 && weaponamount < 2) continue;
+			if (!Upolyd && weaponiteration > 4 && weaponamount < 3) continue;
+
 			if (mhit == HIT_USWAPWEP && !u.twoweap)
 			    continue;	/* Skip this attack */
 

@@ -76,7 +76,7 @@ int thrown;
 {
 	struct obj *otmp;
 	struct obj *launcher;
-	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_MANSTER) ? 2 : Race_if(PM_HAXOR) ? rnd(2) : 1;
+	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? rnd(3) : Race_if(PM_MANSTER) ? rnd(2) : Race_if(PM_HAXOR) ? rno(2) : 1;
 	boolean fullmultishot; /* depends on missile weapons skill --Amy */
 	int angeramount; /* for blade anger technique */
 
@@ -84,8 +84,8 @@ int thrown;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
 	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
-	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) multishot *= 2;
-	if (Quad_attack) multishot *= 4;
+	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) multishot += rn2(multishot + 1);
+	if (Quad_attack) multishot += rn2(multishot * 3 + 1);
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
 
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
