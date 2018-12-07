@@ -76,7 +76,7 @@ char *nam;
 
 		if (fmlkind) { /* awwwwww there's way too few female players :( */
 
-			switch (rnd(12)) {
+			switch (rnd(13)) {
 
 				case 1: strcpy(nam, "GoldenIvy"); break;
 				case 2: strcpy(nam, "AmyBSOD"); break;
@@ -90,12 +90,13 @@ char *nam;
 				case 10: strcpy(nam, "Lymia"); break;
 				case 11: strcpy(nam, "Naganadel"); break;
 				case 12: strcpy(nam, "Icerose"); break;
+				case 13: strcpy(nam, "AntiGulp"); break;
 				default: strcpy(nam, "BugFemName"); break;
 			}
 
 		} else {
 
-			switch (rnd(68)) {
+			switch (rnd(70)) {
 
 				case 1: strcpy(nam, "Bhaak"); break;
 				case 2: strcpy(nam, "Jonadab"); break;
@@ -164,7 +165,9 @@ char *nam;
 				case 65: strcpy(nam, "PavelB"); break;
 				case 66: strcpy(nam, "FlamingGuacamole"); break;
 				case 67: strcpy(nam, "Dracopent"); break;
-				case 68: strcpy(nam, "AntiGulp"); break;
+				case 68: strcpy(nam, "Andrio"); break;
+				case 69: strcpy(nam, "Metanite"); break;
+				case 70: strcpy(nam, "Greyberyl"); break;
 				default: strcpy(nam, "BugMalName"); break;
 
 			}
