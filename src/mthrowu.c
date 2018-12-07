@@ -215,6 +215,8 @@ const char *name;	/* if null, then format `obj' */
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
 		if (Numbed) shieldblockrate -= 10;
 
+		if (tlev > 10) shieldblockrate -= (rn2(tlev - 9));
+
 		if (!PlayerCannotUseSkills) {
 			switch (P_SKILL(P_SHIEN)) {
 				case P_BASIC: shieldblockrate += 1; break;
@@ -261,7 +263,7 @@ const char *name;	/* if null, then format `obj' */
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
-	is_polearm = (obj && objects[obj->otyp].oc_skill == P_POLEARMS);
+	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || obj->otyp == AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
 
@@ -294,6 +296,8 @@ const char *name;	/* if null, then format `obj' */
 				saberblockrate += ((100 - saberblockrate) / 5);
 			}
 		}
+
+		if (tlev > 10) saberblockrate -= (rn3(tlev - 9));
 
 	}
 
@@ -329,7 +333,7 @@ const char *name;	/* if null, then format `obj' */
 
 			return(0);
 
-	} else if (uwep && is_lightsaber(uwep) && uwep->lamplit && (saberblockrate > rn2(100))) {
+	} else if (uwep && is_lightsaber(uwep) && (3 > rnd(extrachance)) && uwep->lamplit && (saberblockrate > rn2(100))) {
 
 		/* dodge missiles, even when blind; see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
@@ -342,7 +346,7 @@ const char *name;	/* if null, then format `obj' */
 
 		return(0);
 
-	} else if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
+	} else if (nohands(youmonst.data) && (!rn2(extrachance) || !rn2(extrachance) || !rn2(extrachance)) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
 			else You("skillfully evade %s.", onm);
@@ -398,7 +402,8 @@ const char *name;	/* if null, then format `obj' */
 		if (obj && obj->otyp == ODOR_SHOT) {
 			dam += rnd(10);
 			pline("You inhale the horrific odor!");
-			increasesanity(rnz(tlev * 5));
+			if (tlev < 1) increasesanity(rnz(5));
+			else increasesanity(rnz(tlev * 5));
 			exercise(A_CON, FALSE);
 		}
 		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
