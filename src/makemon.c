@@ -1078,6 +1078,10 @@ register struct monst *mtmp;
 			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
+			case PM_BEGINNER_MERC:
+			  w1 = SHORT_SWORD;
+			  w2 = NOOB_POLLAX;
+			  break;
 			case PM_WATCHMAN:
 			case PM_ANGRY_WATCHMAN:
 			  if (!rn2(3)) {
@@ -7006,6 +7010,8 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_WORM_TAIL:
+
+		if (mtmp->data == &mons[PM_HILTED_POLEARM]) (void) mongets(mtmp, RANSEUR);
 
 		if (mtmp->data == &mons[PM_BOW_ROW]) {
 			(void)mongets(mtmp, BOW);
