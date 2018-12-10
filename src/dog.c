@@ -244,7 +244,7 @@ makedog()
 {
 	register struct monst *mtmp;
 	register struct obj *otmp;
-	const char *petname;
+	register const char *petname;
 	int   pettype, petsym;
 	static int petname_used = 0;
 
