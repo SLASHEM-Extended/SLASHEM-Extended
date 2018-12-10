@@ -6159,6 +6159,7 @@ register struct	monst	*mtmp;
 		    register int mac;
 
 		    switch(monsndx(ptr)) {
+			case PM_BEGINNER_MERC: mac = 0; break;
 			case PM_GUARD: mac = -1; break;
 			case PM_PRISON_GUARD: mac = -2; break;
 			case PM_SOLDIER: mac = 3; break;
@@ -8037,7 +8038,7 @@ register struct	monst	*mtmp;
 			if (!rn2(3)) (void) mongets(mtmp, WAN_LIGHTNING);
 			else if (!rn2(2)) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
 			else (void) mongets(mtmp, AMULET_OF_REFLECTION);
-		} else if (is_giant(ptr)) {
+		} else if (is_giant(ptr) && mtmp->m_lev > 1) {
 		    for (cnt = rn2((int)(mtmp->m_lev / 2)); cnt; cnt--) {
 
 			if (!rn2(3)) { /* greatly lowered chance --Amy */
