@@ -3853,6 +3853,33 @@ static NEARDATA const char * const longinglines[] = {
 "%s is the dream of your sleepless nights.",
 "I know why you always have trouble falling asleep at night. It's because you're constantly thinking about the sexy %s!",
 "You want to have your body crushed underneath %s's soft butt cheeks.",
+"You want to do dirty things together with %s.",
+"The one thing that's on your mind right now is the fun you'll have once you go to bed together with %s.",
+"You look forward to being dominated by %s.",
+"Do you like it if %s puts you in shackles?",
+"Would you like it if %s pokes her stiletto heels into your butt cheeks?",
+"It feels great if %s tries to split your skull with her female high heels.",
+"Think about all the things %s's heel tips can do to your unprotected skin! They're really very effective against your legs!",
+"%s can perform very feminine combos by scratching down your leg with her heel, waiting for a moment, then scratching up and down again, waiting for another moment and finally scratching back up in a very painful, sharp-edged way!",
+"You looooove the sexy 'klock!' sound when %s slams her high-heeled pumps on your head.",
+"Just thinking about the clacking noises of %s's lady pumps makes you have a spontaneous orgasm.",
+"You want to stroke %s's butt cheeks while she scratches up and down your legs with her sexy heels.",
+"%s is very embrace-worthy!",
+"You want to embrace %s while she holds one of her high-heeled lady shoes in her hand and slams the heel on your head again and again.",
+"It would be so much fun to caress %s's breasts while she continuously kicks you in the nuts with her high heels.",
+"Having your nuts impaled by %s's stiletto heels would surely be very painful, but you want her to do it anyway!",
+"%s is very wing-tufted and sometimes even has a special bundle!",
+"It's great to get your legs scratched to the bone by %s's stinking boots, because it's such a wonderfully humiliating experience.",
+"Did you see %s's cuddly-soft girl sneakers? They can slide over your hands very beautifully and eventually cause bloody wounds!",
+"You absolutely want to be kicked in the unprotected nuts by %s's gentle sneakers.",
+"It's incredibly fascinating to catch the kicks of %s's soft sneakers with your pants, but the true fun begins once you pull them down and let her kick right into your nuts without the soft cotton protecting them.",
+"%s's female sneakers look very cute, but they can actually stomp rather powerfully! You absolutely want to test your pain threshold by allowing her to step on your toes repeatedly.",
+"You just can't resist if %s slams her platform boots into your legs. The pain is just indescribably beautiful!",
+"%s stepped into dog shit with her platform boots specially for you, because you love cleaning them by hand!",
+"You just love seeing %s splotch into dog shit with her thick profiled boots, because you're her slave who has to clean the shit off her soles by hand.",
+"%s loves it if you caress her butt cheeks while she's on the toilet.",
+"It feels very lovely to be bitten in the earlobe by %s.",
+"Did you see %s? She's a giiiiirl! And a very beautiful one too!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4073,6 +4100,11 @@ static NEARDATA const char * const hussylines[] = {
 "Player 1, you have two choices. Either you give up voluntarily, or I'll make you suffer a fate worse than death.",
 "I'll use my femininity as a weapon against you.",
 "You should surrender, for if you descend one more dungeon level you'll step in the huge perfume trap I've set up and be knocked out.",
+"Good thing Player 1 is wearing shitty shoes that get destroyed if they step into my dog shit.",
+"Anna is 100%% safe. There's no way in hell for that wimpy gang scholar to get past all of our scent traps.",
+"You're gonna become my next plaything, little gang scholar.",
+"I'll capture you, and then I'll humiliate you with my femininity every day.",
+"Yes, I'm an especially cute girl, but I'm also part of the Hussy Club. I'm looking forward to torturing you once you've been captured by us.",
 };
 
 static NEARDATA const char * const bangganglines[] = {
@@ -4127,6 +4159,11 @@ static NEARDATA const char * const bangganglines[] = {
 "Gimme 5 euros or I'll break your face.",
 "You don't get it, Player 1, huh? All right. I'm gonna torture your classmate whom I captured, and their cries will be broadcast by loudspeaker so you can hear it too.",
 "Just so you know, Player 1, I have one of your classmates at knife point right now. If you descend one more dungeon level, your friend dies. Surrender now to save their life!",
+"So far, no alarm has gone off yet. This means the gang scholar has not gotten very far yet.",
+"What? Oh, it's just Player 1, I don't care, I'm on the phone. That wimp's never gonna make it past our first line of defenses anyway.",
+"Hey! You! The last guy who tried to mess with the Bang Gang is pushing up the daisies now! Surrender now or you'll suffer the same fate!",
+"I'm surprised they're just sending one single gang scholar to try to defeat Anna. Deluded fools.",
+"Caesar's Legion will punish you, you mean bastard!",
 };
 
 static NEARDATA const char * const hussylines_specific[] = {
@@ -4176,6 +4213,13 @@ static NEARDATA const char * const hussylines_specific[] = {
 "Sorry girls, but I've run into distress on level %d! Apparently Walt's guards are setting up a base there! We'll have to postpone our hunt for Player 1 until we got that taken care of!",
 "And so, another scholar falls on level %d. The same will happen to YOU, Player 1.",
 "Player 1, I captured one of your fellow scholars and imprisoned them on level %d. Now I dare you to try and free them, ha ha ha...",
+"You won't be able to withstand the feminine scent on level %d.",
+"My soft butt really produced a lot of shit on level %d. No gang scholar can get past that with their shoes intact.",
+"The Bang Gangers reported some presence on level %d, so I'm gonna check it out, maybe I can capture one of Walt's idiots.",
+"Ah, right now the diamonds on level %d are unprotected. Walt, the stupid git, ordered all of his 'guards' to hang around on other levels, so I can steal everything. Hahaha!",
+"There's a special paralysis trap on level %d now! Any gang scholar who triggers that will be paralyzed until I come and steal all of their items!",
+"Hussies? Get over to level %d and take out the gang scholar, I have to go to the toilet so I can't handle them myself.",
+"What? Player 1 is on level %d? I'm there too! Quick, I need to get out my perfume spray to defeat them!",
 };
 
 static NEARDATA const char * const bangganglines_specific[] = {
@@ -4232,6 +4276,10 @@ static NEARDATA const char * const bangganglines_specific[] = {
 "You're not gonna get past level %d, but you're welcome to try anyway because then I can kill you. Hahahahahahaha!",
 "Player 1: You have 1000 turns to bring the key back to level %d from where you've stolen it. Otherwise you'll be reported to the principal.",
 "I've captured twelve of your classmates on level %d, Player 1, and you can surrender until noon or I'll start executing one of them every 20 minutes.",
+"Look how the gang scholar stupidly runs around on level %d like a retard. I'm watching their futile attempts on a widescreen TV and laughing my ass off.",
+"Player 1 might just give up anyway, since we've installed an automatic wall generation mechanism on level %d that can outspeed every digging method.",
+"Okay, the gang scholar can really forget getting past level %d now, because I found a scroll of ragnarok and read it there.",
+"Hey! I've managed to create an elder priest trap on level %d! It will be lots of fun to see that retarded Player 1 trigger it and get tentacled to death!",
 };
 
 static NEARDATA const char * const bangganglines_femaleonly[] = {
@@ -4288,6 +4336,14 @@ static NEARDATA const char * const bangganglines_femaleonly[] = {
 "What, you dared using the word 'slut' as an insult against me??? I'll tell the teachers that you said that!",
 "I'll denigrate you by telling the teachers that you sexually harassed me. They'll believe me because I'm a girl, and you will be expelled with no way of proving that my accusations are actually untrue.",
 "I will smash your kneecap with my female shoes!",
+"I don't care about your opinion! You're just a no-good woman-hating scumbag anyway!",
+"You won't be able to resist my cute hugging boots!",
+"It will be fun to crush you underneath my female hugging boots.",
+"All the girls will successively kick you in the shins! And I'm gonna be the first one!",
+"Woe to you, Player 1! You dared interrupting me while I was on the toilet, and now I'll attack mercilessly!",
+"My fingernails will eviscerate you!",
+"I can't wait to tear you up with my woman's fingernails and draw lots of blood.",
+"I'll totally rip you to shreds with my female fingernails and gleefully watch you bleed to death.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
