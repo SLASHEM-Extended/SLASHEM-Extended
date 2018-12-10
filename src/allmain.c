@@ -4091,10 +4091,10 @@ fukrosionchoice:
 		      cy = rn2(ROWNO);
 			while (aggroamount) {
 
+				aggroamount--;
 				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
 				makemon((struct permonst *)0, cx, cy, MM_ANGRY);
-				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
 			}
 			u.aggravation = 0;
@@ -4130,6 +4130,7 @@ fukrosionchoice:
 
 			int attempts = 0;
 			struct permonst *pm = 0;
+			aggroamount--;
 
 newbossF:
 			do {
