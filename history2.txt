@@ -1,8 +1,37 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
-2.4.1 - November 2018
+2.4.2 - December 2018
+- Nerfed the scaling of summon team ant and booze techniques.
+- Fixed a segfault that could happen when trying to start the game with certain character classes.
+- Fixed the bug where feminist player characters with negative alignment could cause the game to freeze.
+- Several monster-versus-player ranged attacks are now harder to avoid.
+- Playable races with multiple weapon attacks don't get the extra attacks every single time. Instead, they have a chance of getting the extra attacks per attack attempt.
+- Monsters no longer automatically know where the player is when they're far away, with the "detection range" depending on sight, stealth and aggravate monster.
+- Putting "bgf" in a wishing prompt makes the item blessed, greased and fixed. With "bgfi" the same happens but the item additionally becomes invisible.
+- Fixed a potential segfault when a hallucinating player was on a level with a quest portal.
+- Potions created by the booze technique are finalized now.
+- Special levels should no longer replace grave walls with random other terrain types.
+- Added some effects to fountains and magic traps.
+- The game will really select monsters with passive attacks when that trait is requested.
+- Healing attacks should always do something specific to the player now, not just when it's a melee attack.
+- Players that are capable of eating walls can now also eat the top part of a water tunnel while flying.
+- Murdering NPCs on town levels can anger the watch now.
+- Rodney now has the Zrutinator as a pet.
+- Fixed the bug where players could select techniques that were beyond recall.
+- If the player's items are destroyed by rust, the game now mentions which item got destroyed.
+- Djinni from magic lamps no longer give bottles.
+- Fixed the buffer overflow when giving an alias name to the character.
+- If the player contracts a STD, their sanity increases.
+- Overhauled the speed system so that players no longer get excessive speed bonuses.
+- Duri the Blacksmith actually offers services when chatted to.
+- Bumping into a monster that has passive attacks can trigger those attacks.
+- Players can use the aklys, spined ball and chain-and-sickle weapons like polearms.
+- The illusory castle has more illusion rooms.
+- Double swimming now reduces the odds of water currents affecting the player.
 - Fixed the bug where if the game tried to destroy indestructible items, it would still say that one of your items was destroyed when it really wasn't.
 - Added two new attacks that monsters can use.
+
+2.4.1 - November 2018
 - Increased the rate at which the Djem So skill is trained.
 - In evilvariant mode, shoe monsters can attack with their sweaty inlays.
 - Monsters that trigger magic portals or recursion traps will reveal those traps now.
