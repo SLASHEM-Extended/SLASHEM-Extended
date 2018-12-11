@@ -298,7 +298,7 @@ makedog()
 	else if (petsym == S_FELINE)
 		petname = catname;
 	else
-		petname = (char *)0;
+		goto maeney;
 
 	/* default pet names */
 	if (!*petname && pettype == PM_LITTLE_DOG) {
@@ -310,8 +310,9 @@ makedog()
 	}
 	if (!*petname && pettype == PM_SEWER_RAT) {
 	    if(Role_if(PM_CONVICT)) petname = "Nicodemus"; /* Rats of NIMH */
-    }
+	}
 	if (!*petname) {
+maeney:
 	if (pettype == PM_MONKEY) petname = "Ugga-Ugga";
 	if (pettype == PM_AIRBORNE_PARROT) petname = "Squawks";
 	if (pettype == PM_SPEEDHORSE) petname = "Harley Davidson";
