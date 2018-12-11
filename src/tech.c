@@ -3760,7 +3760,7 @@ secureidchoice:
 
 		{
 		int maxchance = techlevX(tech_no);
-		if (maxchance > 45) maxchance = 45;
+		if (maxchance > 50) maxchance = 50;
 		pline("Go Team Ant!");
 
 		int caughtY;
@@ -3773,7 +3773,7 @@ secureidchoice:
 		/*mtmp->mtame = 10;*/
 	      /*maybe_tameX(mtmp);*/
 		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
-		if (maxchance < rnd(50)) caughtY++;
+		if (maxchance < rnd(75)) caughtY++;
 		}
 
 		/* A high level Insectoid character can create quite the army of insects sometimes. --Amy */
@@ -4002,7 +4002,7 @@ secureidchoice:
 
 		{
 		int maxchance = techlevX(tech_no);
-		if (maxchance > 45) maxchance = 45;
+		if (maxchance > 50) maxchance = 50;
 
 		You("procure some refreshing drinks.");
 
@@ -4027,7 +4027,7 @@ secureidchoice:
 				dropy(udrink);
 				stackobj(udrink);
 			}
-			if (maxchance < rnd(50)) caughtW++;
+			if (maxchance < rnd(75)) caughtW++;
 			if (!rn2(10) && caughtW > 0) caughtW = 0;
 
 		}
