@@ -19360,7 +19360,7 @@ register struct attack *mattk;
 {
 	int i, tmp;
 
-	if (Slimed && Corrosivity) {
+	if (Slimed && Corrosivity && !resists_acid(mtmp)) {
 
 		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {
@@ -19441,7 +19441,7 @@ register struct attack *mattk;
 		}
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
+	if (uarmc && !resists_elec(mtmp) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
 			pline("%s is electrocuted and dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
@@ -19450,7 +19450,7 @@ register struct attack *mattk;
 		}
 	}
 
-	if (RngeVoltage) {
+	if (RngeVoltage && !resists_elec(mtmp)) {
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
 			pline("%s is electrocuted and dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
