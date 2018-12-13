@@ -2913,7 +2913,7 @@ register struct monst *mtmp;
 					case 2:
 						verbalize("So you want to erodeproof your items? All you need to do is give me %d zorkmids!", u.durienchantcost);
 						if (u.ugold < u.durienchantcost) {
-							verbalize("Well %d, it seems you can't afford it. Bummer.", flags.female ? "lady" : "dude");
+							verbalize("Well %s, it seems you can't afford it. Bummer.", flags.female ? "lady" : "dude");
 							break;
 						}
 						struct obj *proofobj;
@@ -2930,7 +2930,7 @@ register struct monst *mtmp;
 								if (!stack_too_big(repairobj)) {
 									proofobj->oerodeproof = 1;
 									verbalize("Your item is untouchable now!");
-								} else verbalize("Bad luck, %d - proofing such a large stack of items can fail, and it seems you didn't get lucky this time.", flags.female ? "gal" : "lad");
+								} else verbalize("Bad luck, %s - proofing such a large stack of items can fail, and it seems you didn't get lucky this time.", flags.female ? "gal" : "lad");
 							}
 						}
 						break;

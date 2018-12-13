@@ -9258,7 +9258,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		}
 		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
-		    pline("It hits!  (I hope you don't mind.)", Monnam(mtmp));
+		    pline("It hits!  (I hope you don't mind.)");
 		    if (Upolyd) {
 			u.mh += rnd(7);
 			if (!rn2(7)) {
@@ -14662,7 +14662,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s casts a healing spell!", Monnam(mtmp));
 		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
-		    pline("You are healed.", Monnam(mtmp));
+		    pline("You are healed.");
 		    if (Upolyd) {
 			u.mh += rnd(7);
 			if (!rn2(7)) {

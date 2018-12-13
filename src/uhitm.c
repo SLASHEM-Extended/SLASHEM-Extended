@@ -8814,7 +8814,7 @@ boolean ranged;
 		}
 		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
-		    pline("You are healed!", Monnam(mon));
+		    pline("You are healed!");
 		    if (Upolyd) {
 			u.mh += rnd(7);
 			if (!rn2(7)) {
