@@ -2243,6 +2243,14 @@ E void increasesanity(int);
 E void statdrain(void);
 E void nastytrapcurse(void);
 
+E boolean playerwearshighheels(void);
+E boolean playerwearssexyflats(void);
+E boolean maybestilettoheels(void);
+E boolean maybeconeheels(void);
+E boolean maybeblockheels(void);
+E boolean maybewedgeheels(void);
+E boolean playerextrinsicaggravatemon(void);
+
 /* ### pray.c ### */
 
 /*#ifdef USE_TRAMPOLI*/
