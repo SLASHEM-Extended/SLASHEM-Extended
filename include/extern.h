@@ -2881,6 +2881,7 @@ E void fartingweb(void);
 E void u_init(void);
 E void alter_reality(void);
 E void polyinitors(void);
+E void reinitgods(void);
 
 /* ### uhitm.c ### */
 

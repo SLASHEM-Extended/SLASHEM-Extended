@@ -8874,16 +8874,19 @@ u_init()
 		if (!rn2(3)) {
 			u.uhereticgodlawful = rn2(SIZE(hereticgods));
 			u.hereticlgod = hereticgods[u.uhereticgodlawful];
+			u.uhereticgodinit += 1;
 
 		}
 		if (!rn2(3)) {
 			u.uhereticgodneutral = rn2(SIZE(hereticgods));
 			u.hereticngod = hereticgods[u.uhereticgodneutral];
+			u.uhereticgodinit += 2;
 
 		}
 		if (!rn2(3)) {
 			u.uhereticgodchaotic = rn2(SIZE(hereticgods));
 			u.hereticcgod = hereticgods[u.uhereticgodchaotic];
+			u.uhereticgodinit += 4;
 
 		}
 	}
@@ -40814,6 +40817,63 @@ polyinitredoY:
 
 	destabilizer->mflags3 |= 0x40000000L;
 	destabilizer->mflags3 |= 0x80000000L;
+
+}
+
+/* Called from allmain.c; re-initializes god names if you save and load --Amy */
+void
+reinitgods()
+{
+	int tempvar = u.uhereticgodinit;
+
+	if (isheretic) {
+		u.hereticlgod = lawfulgods[u.uhereticgodlawful];
+		u.hereticngod = neutralgods[u.uhereticgodneutral];
+		u.hereticcgod = chaoticgods[u.uhereticgodchaotic];
+
+		if (tempvar >= 4) {
+			u.hereticcgod = hereticgods[u.uhereticgodchaotic];
+			tempvar -= 4;
+		} else {
+			u.hereticcgod = chaoticgods[u.uhereticgodchaotic];
+		}
+
+		if (tempvar >= 2) {
+			u.hereticngod = hereticgods[u.uhereticgodneutral];
+			tempvar -= 2;
+		} else {
+			u.hereticngod = neutralgods[u.uhereticgodneutral];
+		}
+
+		if (tempvar >= 1) {
+			u.hereticlgod = hereticgods[u.uhereticgodlawful];
+			tempvar -= 1;
+		} else {
+			u.hereticlgod = lawfulgods[u.uhereticgodlawful];
+		}
+
+	}
+
+	if (!isheretic && (Role_if(PM_GUNNER) || Role_if(PM_ANACHRONIST) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_ERDRICK) || Role_if(PM_WILD_TALENT) )) {
+
+		u.hereticlgod = lawfulgods[u.uhereticgodlawful];
+		u.hereticngod = neutralgods[u.uhereticgodneutral];
+		u.hereticcgod = chaoticgods[u.uhereticgodchaotic];
+
+	}
+
+	if (Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_TRANSSYLVANIAN) ) {
+		u.hereticlgod = hereticgods[u.uhereticgodlawful];
+		u.hereticngod = hereticgods[u.uhereticgodneutral];
+		u.hereticcgod = hereticgods[u.uhereticgodchaotic];
+	}
+
+	/* fail safe - this will be essential for the recursion trap that changes the player's role or race --Amy */
+	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_ANACHRONIST) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_SHAPESHIFTER) && !Role_if(PM_FAILED_EXISTENCE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_ERDRICK)) {
+		u.hereticlgod = hereticgods[u.uhereticgodlawful];
+		u.hereticngod = hereticgods[u.uhereticgodneutral];
+		u.hereticcgod = hereticgods[u.uhereticgodchaotic];
+	}
 
 }
 

@@ -11640,6 +11640,9 @@ boolean new_game;	/* false => restoring an old game */
 		strcpy(plalias, u.aliasname);
 	}
 
+	/* restore heretic gods */
+	reinitgods();
+
     }
 
     if (new_game || u.ualignbase[A_ORIGINAL] != u.ualignbase[A_CURRENT])
