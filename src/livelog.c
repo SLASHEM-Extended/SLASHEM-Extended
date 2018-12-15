@@ -136,7 +136,7 @@ void livelog_write_string(char* buffer) {
 #else
 	if (lock_file(LIVELOGFILE, SCOREPREFIX, 10)) {
 #endif
-		if(!(livelogfile = fopen_datafile(LIVELOGFILE, "a", SCOREPREFIX))) {
+		if(!(livelogfile = fopen_datafile_area(LOGAREA, LIVELOGFILE, "a", SCOREPREFIX))) {
 			pline("Cannot open live log file!");
 		} else {
 			fprintf(livelogfile, buffer);

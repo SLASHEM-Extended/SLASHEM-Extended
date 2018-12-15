@@ -707,7 +707,7 @@ touch_whereis()
 	  urace.filecode,
 	  genders[flags.female].filecode,
 	  aligns[1-u.ualign.type].filecode);
-  fp = fopen_datafile(whereis_file,"w",LEVELPREFIX);
+  fp = fopen_datafile_area(FILE_AREA_VAR, whereis_file, "w", LEVELPREFIX);
   if (fp) {
 #ifdef UNIX
     mode_t whereismode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
@@ -2764,7 +2764,7 @@ const char *reason;	/* explanation */
 
 	if (!program_state.in_paniclog) {
 		program_state.in_paniclog = 1;
-		lfile = fopen_datafile(PANICLOG, "a", TROUBLEPREFIX);
+		lfile = fopen_datafile_area(LOGAREA, PANICLOG, "a", TROUBLEPREFIX);
 		if (lfile) {
 		    (void) fprintf(lfile, "%s %08ld: %s %s\n",
 				   version_string(buf), yyyymmdd((time_t)0L),

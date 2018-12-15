@@ -2158,7 +2158,7 @@ mk_dgl_extrainfo()
 
     sprintf(new_fn, "%s", dump_format_str(EXTRAINFO_FN));
 
-    extrai = fopen_datafile(new_fn, "w", LEVELPREFIX);
+    extrai = fopen_datafile_area(FILE_AREA_VAR, new_fn, "w", LEVELPREFIX);
     if (!extrai) {
     } else {
         char tmpdng[16];
