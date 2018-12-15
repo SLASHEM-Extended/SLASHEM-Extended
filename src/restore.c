@@ -714,7 +714,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_UNKNOWN_PERMAMIMIC_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_UNKNOWN_PERMAMIMIC_X], sizeof(struct permonst));
-	mons[PM_UNKNOWN_MIMIC_X].mname = u.strandommimicb;
+	mons[PM_UNKNOWN_PERMAMIMIC_X].mname = u.strandommimicb;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_UNKNOWN_PERMAMIMIC_X].mname = tname;
 #endif
