@@ -3228,8 +3228,26 @@ doinvoke()
 
 						if (skillnumber > 0 && maxtrainingamount > 0) {
 							unrestrict_weapon_skill(skillnumber);
-							P_MAX_SKILL(skillnumber) = (maxtrainingamount >= 540 ? P_SUPREME_MASTER : maxtrainingamount >= 160 ? P_GRAND_MASTER : maxtrainingamount >= 20 ? P_MASTER : P_EXPERT);
-							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxtrainingamount >= 540 ? "supreme master" : maxtrainingamount >= 160 ? "grand master" : maxtrainingamount >= 20 ? "master" : "expert");
+
+							register int maxcap = P_BASIC;
+							if (!rn2(2)) {
+								maxcap = P_SKILLED;
+								if (!rn2(2)) {
+									maxcap = P_EXPERT;
+									if (maxtrainingamount >= 20 && !rn2(2)) {
+										maxcap = P_MASTER;
+										if (maxtrainingamount >= 160 && !rn2(2)) {
+											maxcap = P_GRAND_MASTER;
+											if (maxtrainingamount >= 540 && !rn2(2)) {
+												maxcap = P_SUPREME_MASTER;
+											}
+										}
+									}
+								}
+							}
+
+							P_MAX_SKILL(skillnumber) = maxcap;
+							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
 						} else {
 							pline("Nothing happens...");
 							if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
