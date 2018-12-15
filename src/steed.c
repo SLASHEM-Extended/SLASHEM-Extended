@@ -340,10 +340,8 @@ mount_steed(mtmp, force)
 	}
 
 	/* Can the player reach and see the monster? */
-	if (!mtmp || (!force && ((Blind && !Blind_telepat) ||
-		mtmp->mundetected ||
-		mtmp->m_ap_type == M_AP_FURNITURE ||
-		mtmp->m_ap_type == M_AP_OBJECT))) {
+	/* Amy edit: boah the vanilla code for that was really shitty... permamimics should be rideable :P */
+	if (!mtmp || (!force && !canspotmon(mtmp))) {
 	    pline("I see nobody there.");
 	    return (FALSE);
 	}
