@@ -1,6 +1,14 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.4.2 - December 2018
+- Trap disarming effects redraw the screen now to reflect the removal of traps.
+- Fixed the bug that caused alias name prompts to always say the character was neutral.
+- Fixed the bug that caused cloned saddled monsters to be impossible to saddle.
+- Fixed a bug that allowed octopodes to wear cloaks.
+- Permamimics and other problematic steeds can now be mounted.
+- If a pentagram unlocks a skill based on how much it has been used, the cap is now randomized.
+- Fixed some phantom crash bugs that were occurring on Ubuntu 18.04.
+- Some passive attacks that the player can have were affecting monsters that should be immune, this has been fixed.
 - Nerfed the scaling of summon team ant and booze techniques.
 - Fixed a segfault that could happen when trying to start the game with certain character classes.
 - Fixed the bug where feminist player characters with negative alignment could cause the game to freeze.
