@@ -22667,6 +22667,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You wish you had brought your towel to the sauna.",
 	"You wish you had brought your towel to the sauna, because you're a fucking prude who is mortally scared of other people seeing his penis. Wimp.",
 	"You hear sexy licking noises!",
+	"You feel sad.",
+	"You wonder why you had to do that.",
+	"You feel grief.",
+	"Bits of bone assemble into a skeleton!",
+
 
 };
 

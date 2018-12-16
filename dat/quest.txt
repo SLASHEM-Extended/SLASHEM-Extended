@@ -12017,185 +12017,149 @@ and be eliminated from the show, so please give it your best shot!"
 
 
 %Cc Top 00103
-As you enter the Bell Caves, the silver bell radiates brightly!
-You immediately know that you've successfully imbued it; after all, this
-is the place where the bell has originally been forged, and it regained
-its original power by being close to its source.
-
-In order to open the path to Moloch's Sanctum, you need two more artifacts.
-They're both said to be hidden in Gehennom, in the possession of powerful
-guardians. Only with them in your possession can you perform the ritual
-on the deepest level of Gehennom and gain access to the place where
-the Amulet of Yendor is kept.
+You truly feel ready for the semi-finals now. Sure, of course you've
+heard of Rungud's great feat where she single-handedly defeated
+Viktorija and thereby greatly increased her chances of winning,
+but you're definitely a contender for the title!
+"I will be one of the three finalists", you exclaim, confident of
+your victory, as you start making your way back.
 %E
 %Cc Top 00104
-The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
-
-In order to be fully imbued, the Amulet must also be taken to the
-Dead Grounds and Ordered Chaos subdungeons.
+You've reached another goal, thereby increasing your chances of
+winning the whole show.
 %E
 %Cc Top 00105
-The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
-
-In order to be fully imbued, the Amulet must also be taken to the
-Forging Chamber and Ordered Chaos subdungeons.
+You've reached another goal, thereby increasing your chances of
+winning the whole show.
 %E
 %Cc Top 00106
-The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
-
-In order to be fully imbued, the Amulet must also be taken to the
-Forging Chamber and Dead Grounds subdungeons.
+You've reached another goal, thereby increasing your chances of
+winning the whole show.
 %E
 %Cc Top 00107
-At last, you have fully imbued the Amulet of Yendor! You know that now
-you have to get to the surface, where your final test awaits.
+Now this is it! You must make your way to the jury who will challenge
+you to the final decision!
 
-A strange sensation seems to pull you downwards. This must surely be
-the power of the Amulet, and you get ready to traverse Moloch's Sanctum
-and Gehennom again.
+By now, it's clear who's left. After Eleanor lost, it's a match between
+just Natalyana and you now, and only one of you can win.
 
-You also notice the Wizard of Yendor taunting you in your mind.
-He must surely have noticed that the Amulet has gained full power now,
-and will try his best to stop you on your ascension run...
+Give it your best shot! Put on your prettiest heels, apply some mascara
+and fix your make-up, and then show them your best performance!
 %E
 %Cc Top 00108
-This seemingly mundane gray stone makes you feel lucky as you pick it up!
-It must hold a good charm, and you decide to hold onto it.
+You've completed one of the beginner's tasks, and outspeeded Mirri
+along the way who also wanted to collect this gray stone.
+
+Well done, you certainly won't be eliminated in an early decision.
 %E
 %Cc Top 00109
-After a long period of pushing boulders around, you've found a prize.
-'Well, at least there is some reward for the hell that is slexoban',
-you think, as you pick up this valuable item. It might come in handy
-on the path that lies ahead.
+You're the topmodel with the highest IQ! Not even Eleanor and Celina
+could have solved the boulder pushing puzzles as fast as you did.
+And for that, you well earned the reward you just collected!
 %E
 %Cc Top 00110
-As the dreadful Medusa finally stops living, you feel an immense burden
-lifted from your chest. You now know that you're a capable adventurer,
-one who can defeat creatures from legend and live to tell the tale.
-
-Hopefully, you are now ready to face the greater tasks that lie ahead.
+Medusa? Melissa? You don't care about their exact names. They're all
+just competitors, and you proved that you're better than all of them.
+This should be about the halfway point; things will get much more
+difficult from now on. But now that you got this far, you
+certainly won't give up all of a sudden.
 %E
 %Cc Top 00111
-This menora surely seems important. It must be one of the artifacts
-required for the ominous invocation ritual!
+Well, getting that menora was certainly easier than trying to fight
+Celina on the balance beam! You wonder why such a late challenge
+was so easy. Maybe it was a test, to check whether you fail out of
+boredom.
 
-You must get two more of these artifacts. One of them is said to be
-in the possession of the Wizard of Yendor himself, who is lurking
-somewhere in Gehennom; the other such artifact can be obtained if
-you engage your personal nemesis in a duel and win...
+Haha. As if that could happen to you. After all, you know that
+you're gonna get your shot at the finals.
 %E
 %Cc Top 00112
-Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
-was holding. It is obviously one of the key pieces in your mission
-to open the sanctum at the deepest level of Gehennom, but you also
-need the silver bell from your quest nemesis, and one more such
-artifact is hidden somewhere in Gehennom.
+Now this was a hard task. You wonder if Anastasia designed it,
+because she was talking about that papyrus book earlier. But she
+was eliminated much earlier already, causing her to not even be
+able to spectate, so you can't ask her anymore.
+
+Oh well! Time to open the way for your next challenge!
 %E
 %Cc Top 00113
-Finally, you got what you came for! It's the Amulet of Yendor!!!
+As you stand next to Natalyana, facing the jury, you can feel
+your heart racing with excitement.
 
-Instinctively, you get ready to make a mad dash back to the upstair,
-for you know that %d desires this amulet. But something is amiss.
+Any moment now, they'll tell you at last who wins the title...
 
-Apparently, the Amulet of Yendor has to be imbued first, or it won't
-let you leave the mortal plane. And in order to imbue the Amulet,
-you must search Moloch's sanctum for a hidden magic portal that
-will lead you to the Yendorian Tower.
+%d's voice thunders:
+"And the winner is... %p!!!!!!!
+Congratulations, %p, you are Apokalyptia's Next Topmodel 2277!!!"
 
-Within the Yendorian Tower, three special staircases are hidden.
-You must seek everywhere within the Tower, and enter all three such
-staircases in order to imbue the Amulet. This is no easy task.
-The Yendorian Tower is about as big as the entire Dungeons of Doom
-and Gehennom added together, and the staircases can be anywhere.
+You can feel tears of joy running down your cheeks as %d and
+the other jurors start to heart and kiss you, and Natalyana, who
+lost to you in the finals, proves to be a fair loser by heartily
+congratulating you for your incredible feat.
 
-Also, it is rumored that if the guardians of the three Alignment Keys
-are still alive when you enter the Forging Chamber, Dead Grounds
-and Ordered Chaos areas, they will grow even stronger to haunt you!
-%E
-%Cc Top 00114
-As you offer the Amulet of Yendor on the high altar to %d at last,
-you immediately feel an intense surge of power.
+For several minutes, you're too overwhelmed to speak a word,
+with the crowd of spectators cheering your name and %d
+personally handing you 5000000 zorkmids as your prize money.
 
-You have faced many hardships, survived encounters with deadly
-beasts, and even battled the Wizard of Yendor himself and won.
-Not to forget carving a path through the Elemental Planes, slaying
-their denizens left and right, culminating in the Astral Plane,
-where you mowed down all the heretical angels and priests trying
-to prevent you from delivering the Amulet to %d.
+Finally, %d offers you a very well-paid job as a model,
+or alternately you can also apply elsewhere with %d's help,
+and start your career as a model in earnest. The future is wide
+open to you now, and whichever path you choose, you can be sure
+that %d will always happily assist you...
 
-But now, the entire world around you seems to stop for a moment.
-You truly are a demigod now. %d is smiling on you, and leads you
-to a place known as the Demigod Bar: Here, the other successful
-adventurers are gathered, and they're happily drinking and telling
-their stories...
+And you happily lived ever after. :-)
 
-And you get to join them!!! You did it, you've officially become
-a true master at your trade, and saved the world from Moloch's
-evil schemes! Immediately, you rush to greet your new friends
-to tell them about your heroic deeds.
-
-Congraturation! A winner is you! You've beaten SLASH'EM Extended,
-one of the most difficult and unfair roguelikes in existence!
-Make sure to tell Amy (the creator of the game) about it, too! :-)
+The End!
 %E
 %Cc Top 00115
-As you offer the Amulet of Yendor on the high altar,
-you somehow don't feel any different at first.
+As you stand next to Natalyana, facing the jury, you can feel
+your heart racing with excitement.
 
-But it has to be true! You just offered the Amulet to %d,
-and should be made a demigod any minute now...
+Any moment now, they'll tell you at last who wins the title...
 
-Death, Pestilence and Famine still look as threatening as ever.
-Something must be very wrong here. Shouldn't you be safe now,
-considering you went through Hell and back to get the Amulet
-of Yendor for your deity?
+%d's voice thunders:
+"And the winner is... Natalyana!!!!!!!
+Congratulations, Natalyana, you are Apokalyptia's Next Topmodel 2277!!!"
 
-Death reaches out with its deadly touch.
-You feel your life draining away...
-Pestilence reaches out, and you feel fever and chills.
-You feel deathly sick.
-Famine reaches out, and your body shrivels.
-You faint from lack of food.
+...
 
-On the verge of death, you listen to a voice...
-'Foolish mortal, thou art an imbecile poltroon.
-But since thou bringest me the Amulet I desired,
-I shall let thee live. Thou mayst leave the Dungeon now.'
+You stare at the jury in disbelief, being unable to grasp what
+the heck you did wrong.
+THIS damn little girl was supposedly better than you? Impossible.
 
-SHIT! Due to a silly mistake, you failed so close to your goal!
-You forgot to make sure that the high altar is actually
-consecrated to %d, and offered the Amulet of Yendor to the wrong
-deity!
+Stunned, you watch as the jurors start to heart and kiss Natalyana,
+with the spectators cheering and congratulating her... and then
+it's your turn.
 
-Do you want your possessions identified? DYWYPI?
-Game over! Please insert a coin to start a new game.
+But you are so angry that you refuse to acknowledge her win.
+%d tries to make you congratulate that little Natalyana bitch,
+but you really can't be bothered, and in the end, you furiously
+throw one of your high heels at %d, hitting smack in the face.
+
+"I'll reconsider my plan to invite you to the show again next
+year!", %d shouts, but you're already walking away angrily.
+
+You plan to perform a vicious bomb attack next year. With
+absolute certainty you won't be participating in that stupid
+'topmodel' show again; instead, you will wait until the finals,
+and then plant a bomb to kill the damn jurors...
+
+The End!
 %E
 %Cc Top 00116
-As you step on this particular floor tile, the ground is suddenly
-vibrating right beneath you.
-
-This must be the special place where the entrance to
-Moloch's sanctum is hidden! In order to open it, you need all three
-of the invocation tools: Book, Bell and Candle. And then you have
-to use all three of them in rapid succession while standing on
-this exact floor tile.
-
-Additionally, the bell must be imbued before you can complete
-the invocation rituals. It needs to be done inside the Subquest,
-a branch from where the bell can be found; specifically, the
-Bell Caves is the location where imbuing takes place.
-
-You must also make sure to attach seven candles
-to the candelabrum, otherwise it won't do what it ought to do.
-And the invocation tools better don't be cursed...
+This is the place! Man, did Arabella hide it or what? She always
+tried to fool you and the other girls into looking for things.
+But you've found it, and now you need certain tools to open the
+path forward.
+If you're the first one to open the hidden staircase, you'll
+almost certainly make it to the finals!
 %E
 %Cc Top 00117
-This peculiar gray stone makes you feel both good and bad at once.
-It must surely have great magical power, but there seems to be
-some sort of curse on it too.
-Maybe if you somehow lift the curse, it will become a truly
-useful talisman that can protect you from harm?
+Yet again you overcame a challenge, but although you came in
+first this time, you were tied with Hanh who was also really fast.
+Still, all the other semi-finalists were slower, so you guess
+you still have an advantage...
 %E
+
 
 
 
@@ -31944,184 +31908,123 @@ stealing our silver bell!"
 
 
 %Cc Fai 00103
-As you enter the Bell Caves, the silver bell radiates brightly!
-You immediately know that you've successfully imbued it; after all, this
-is the place where the bell has originally been forged, and it regained
-its original power by being close to its source.
+You cling to the faintest glimmer of hope you have left as the silver bell
+radiates upon you entering this cave.
 
-In order to open the path to Moloch's Sanctum, you need two more artifacts.
-They're both said to be hidden in Gehennom, in the possession of powerful
-guardians. Only with them in your possession can you perform the ritual
-on the deepest level of Gehennom and gain access to the place where
-the Amulet of Yendor is kept.
+Hopefully you can smuggle it past the terrible person that is %l.
 %E
 %Cc Fai 00104
-The Amulet of Yendor radiates brightly as you enter the Forging Chamber.
-
-In order to be fully imbued, the Amulet must also be taken to the
-Dead Grounds and Ordered Chaos subdungeons.
+Incidentally, you see the amulet flash as you enter this place. You don't
+pay much attention though.
 %E
 %Cc Fai 00105
-The Amulet of Yendor radiates brightly as you enter the Dead Grounds.
-
-In order to be fully imbued, the Amulet must also be taken to the
-Forging Chamber and Ordered Chaos subdungeons.
+Incidentally, you see the amulet flash as you enter this place. You don't
+pay much attention though.
 %E
 %Cc Fai 00106
-The Amulet of Yendor radiates brightly as you enter the Ordered Chaos.
-
-In order to be fully imbued, the Amulet must also be taken to the
-Forging Chamber and Dead Grounds subdungeons.
+Incidentally, you see the amulet flash as you enter this place. You don't
+pay much attention though.
 %E
 %Cc Fai 00107
-At last, you have fully imbued the Amulet of Yendor! You know that now
-you have to get to the surface, where your final test awaits.
+Suddenly something pulls you down again, yet strangely enough your spirit
+seems to experience a rare moment of happiness.
 
-A strange sensation seems to pull you downwards. This must surely be
-the power of the Amulet, and you get ready to traverse Moloch's Sanctum
-and Gehennom again.
-
-You also notice the Wizard of Yendor taunting you in your mind.
-He must surely have noticed that the Amulet has gained full power now,
-and will try his best to stop you on your ascension run...
+There may be hope for you yet.
 %E
 %Cc Fai 00108
-This seemingly mundane gray stone makes you feel lucky as you pick it up!
-It must hold a good charm, and you decide to hold onto it.
+For the first time ever since you met with %l, you experience a vague
+sense of happiness as your hands touch this gray stone.
+
+Better hold on to it.
 %E
 %Cc Fai 00109
-After a long period of pushing boulders around, you've found a prize.
-'Well, at least there is some reward for the hell that is slexoban',
-you think, as you pick up this valuable item. It might come in handy
-on the path that lies ahead.
+You seem to have found a prize of some sort, but an annoying voice
+inside your head is trying to tell you that you don't deserve it.
+
+Oh well. You've already picked it up, no sense dropping it now.
 %E
 %Cc Fai 00110
-As the dreadful Medusa finally stops living, you feel an immense burden
-lifted from your chest. You now know that you're a capable adventurer,
-one who can defeat creatures from legend and live to tell the tale.
+You feel that you live again... in vain.
 
-Hopefully, you are now ready to face the greater tasks that lie ahead.
+Maybe it would have been better to just let Medusa petrify you.
 %E
 %Cc Fai 00111
-This menora surely seems important. It must be one of the artifacts
-required for the ominous invocation ritual!
-
-You must get two more of these artifacts. One of them is said to be
-in the possession of the Wizard of Yendor himself, who is lurking
-somewhere in Gehennom; the other such artifact can be obtained if
-you engage your personal nemesis in a duel and win...
+It's only some boring old candelabrum! You have no idea what you're
+supposed to do with it. Yet, somehow, you feel that you need it.
 %E
 %Cc Fai 00112
-Quickly, you snatch the papyrus spellbook that the Wizard of Yendor
-was holding. It is obviously one of the key pieces in your mission
-to open the sanctum at the deepest level of Gehennom, but you also
-need the silver bell from your quest nemesis, and one more such
-artifact is hidden somewhere in Gehennom.
+This book seems important somehow, but you're way too exhausted to
+actually bother reading it.
 %E
 %Cc Fai 00113
-Finally, you got what you came for! It's the Amulet of Yendor!!!
+"Oh my god", you exclaim spontaneously as you pick up the amulet.
 
-Instinctively, you get ready to make a mad dash back to the upstair,
-for you know that %d desires this amulet. But something is amiss.
+It's really true! The Amulet of Yendor actually exists! You know
+that it can help you on your path to a better existence, but how
+are you going to use it?
 
-Apparently, the Amulet of Yendor has to be imbued first, or it won't
-let you leave the mortal plane. And in order to imbue the Amulet,
-you must search Moloch's sanctum for a hidden magic portal that
-will lead you to the Yendorian Tower.
-
-Within the Yendorian Tower, three special staircases are hidden.
-You must seek everywhere within the Tower, and enter all three such
-staircases in order to imbue the Amulet. This is no easy task.
-The Yendorian Tower is about as big as the entire Dungeons of Doom
-and Gehennom added together, and the staircases can be anywhere.
-
-Also, it is rumored that if the guardians of the three Alignment Keys
-are still alive when you enter the Forging Chamber, Dead Grounds
-and Ordered Chaos areas, they will grow even stronger to haunt you!
+Then you remember something about altars. But something about
+the amulet seems to be wrong. If only you knew what that is...
 %E
 %Cc Fai 00114
-As you offer the Amulet of Yendor on the high altar to %d at last,
-you immediately feel an intense surge of power.
+You can hear the taunts of the feared %l as you offer
+the Amulet of Yendor to %d.
 
-You have faced many hardships, survived encounters with deadly
-beasts, and even battled the Wizard of Yendor himself and won.
-Not to forget carving a path through the Elemental Planes, slaying
-their denizens left and right, culminating in the Astral Plane,
-where you mowed down all the heretical angels and priests trying
-to prevent you from delivering the Amulet to %d.
+But this time, everything is different. All the insults that he's
+trying to throw at you seem to not affect you at all, and instead,
+you finally feel like an accomplished person.
 
-But now, the entire world around you seems to stop for a moment.
-You truly are a demigod now. %d is smiling on you, and leads you
-to a place known as the Demigod Bar: Here, the other successful
-adventurers are gathered, and they're happily drinking and telling
-their stories...
+Suddenly, the voice of %d announces:
+"Mortal, thou hast overcome thy fate!!! Let it be known that thou
+shalt no longer be referred to as a 'Failed Existence' now.
+Thy title will henceforth be 'Demigod'!!!"
 
-And you get to join them!!! You did it, you've officially become
-a true master at your trade, and saved the world from Moloch's
-evil schemes! Immediately, you rush to greet your new friends
-to tell them about your heroic deeds.
+You can hear %l scream in agony, and a moment later, you
+find yourself in front of his grave and spontaneously start to dance.
 
-Congraturation! A winner is you! You've beaten SLASH'EM Extended,
-one of the most difficult and unfair roguelikes in existence!
-Make sure to tell Amy (the creator of the game) about it, too! :-)
+And you lived happily ever after... :-)
+
+The End!
 %E
 %Cc Fai 00115
-As you offer the Amulet of Yendor on the high altar,
-you somehow don't feel any different at first.
+You can hear the taunts of the feared %l as you offer
+the Amulet of Yendor to %d.
 
-But it has to be true! You just offered the Amulet to %d,
-and should be made a demigod any minute now...
+While waiting for your deity to grant you immortality,
+you remember what he had said...
 
-Death, Pestilence and Famine still look as threatening as ever.
-Something must be very wrong here. Shouldn't you be safe now,
-considering you went through Hell and back to get the Amulet
-of Yendor for your deity?
+"Ah well, I hope you try to ascend on the wrong altar and die. Begone!",
+those have been the last words you heard from him.
 
-Death reaches out with its deadly touch.
-You feel your life draining away...
-Pestilence reaches out, and you feel fever and chills.
-You feel deathly sick.
-Famine reaches out, and your body shrivels.
-You faint from lack of food.
+Suddenly, you realize that the old bastard won! You immediately
+start hating yourself more than ever before and just wish you were dead.
+In your monumental stupidity, you actually offered the amulet on the
+wrong altar and now your remaining life will be an endless misery!
+A moment later, you see %l rummaging through your possessions,
+throwing your valuables into the trash can, or worse, incinerating them.
+You just want to put your head into a pillow and weep for all eternity...
 
-On the verge of death, you listen to a voice...
-'Foolish mortal, thou art an imbecile poltroon.
-But since thou bringest me the Amulet I desired,
-I shall let thee live. Thou mayst leave the Dungeon now.'
-
-SHIT! Due to a silly mistake, you failed so close to your goal!
-You forgot to make sure that the high altar is actually
-consecrated to %d, and offered the Amulet of Yendor to the wrong
-deity!
-
-Do you want your possessions identified? DYWYPI?
-Game over! Please insert a coin to start a new game.
+The End!
 %E
 %Cc Fai 00116
-As you step on this particular floor tile, the ground is suddenly
-vibrating right beneath you.
+You suddenly realize that you have to bring certain tools to this place.
 
-This must be the special place where the entrance to
-Moloch's sanctum is hidden! In order to open it, you need all three
-of the invocation tools: Book, Bell and Candle. And then you have
-to use all three of them in rapid succession while standing on
-this exact floor tile.
-
-Additionally, the bell must be imbued before you can complete
-the invocation rituals. It needs to be done inside the Subquest,
-a branch from where the bell can be found; specifically, the
-Bell Caves is the location where imbuing takes place.
-
-You must also make sure to attach seven candles
-to the candelabrum, otherwise it won't do what it ought to do.
-And the invocation tools better don't be cursed...
+But this is so much work! Is it really worth it? It'll take forever to
+get them all here, and for what? %l always told you that
+anything you attempt will result in failure anyway...
 %E
 %Cc Fai 00117
-This peculiar gray stone makes you feel both good and bad at once.
-It must surely have great magical power, but there seems to be
-some sort of curse on it too.
-Maybe if you somehow lift the curse, it will become a truly
-useful talisman that can protect you from harm?
+Picking up this stone causes you to relive the worst moment in your life,
+the one where %l threw you out, but not until he had taken and destroyed
+your most precious pair of shoes.
+But then the stone also subjects you to a vision of you knocking the
+everloving shit out of that bastard and tainting his grave after
+killing him.
+You're not sure if you want to carry around a stone that produces such
+visions...
+
+Oh damn it all! You can't seem to drop it because of course the stone
+is cursed! Why can't you ever have some good luck for a change? :(
 %E
 
 
