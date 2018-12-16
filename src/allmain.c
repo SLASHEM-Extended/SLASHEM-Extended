@@ -11477,8 +11477,9 @@ newgame()
 		int aliaslength;
 		int testx;
 
-		pline("Your character: %s %s %s %s", aligns[1 - u.ualign.type].adj, flags.initgend ? "female" : "male", urace.adj, (flags.initgend && urole.name.f) ? urole.name.f : urole.name.m);
+		pline("Your character: %s %s %s %s", (aligns[flags.initalign].value == A_CHAOTIC) ? "chaotic" : (aligns[flags.initalign].value == A_NEUTRAL) ? "neutral" : "lawful", flags.initgend ? "female" : "male", urace.adj, (flags.initgend && urole.name.f) ? urole.name.f : urole.name.m);
 aliasagain:
+
 		sprintf(aliasbuf,"What is your alias name?");
 		getlin(aliasbuf, eliasbuf);
 		aliaslength = strlen(eliasbuf);
