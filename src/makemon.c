@@ -14718,6 +14718,9 @@ xchar x, y;	/* clone's preferred location or 0 (near mon) */
 	}
 	set_malign(m2);
 
+	/* found by Antichthon: the new monster says it's saddled when it really isn't? --Amy */
+	m2->misc_worn_check &= ~W_SADDLE;
+
 	return m2;
 }
 
