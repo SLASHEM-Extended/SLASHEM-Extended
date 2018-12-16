@@ -4423,7 +4423,7 @@ boolean noisy;
 	    is_shirt(otmp) ? c_shirt :
 	    is_suit(otmp) ? c_suit : 0;
 
-	if (Race_if(PM_OCTOPODE) && (is_boots(otmp) || is_gloves(otmp) || is_shield(otmp) || is_shield(otmp) || is_helmet(otmp) || is_suit(otmp) || is_shirt(otmp))) {
+	if (Race_if(PM_OCTOPODE) && (is_boots(otmp) || is_gloves(otmp) || is_shield(otmp) || is_cloak(otmp) || is_helmet(otmp) || is_suit(otmp) || is_shirt(otmp))) {
 		if (noisy) pline("Octopodes are completely unable to wear any armor pieces.");
 		return 0;
 	}
