@@ -4323,6 +4323,7 @@ newboss:
 
 			}
 		}
+		(void) doredraw();
 		break;
 	case SCR_TAMING:
 		if (u.uswallow) {

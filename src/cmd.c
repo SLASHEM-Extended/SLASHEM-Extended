@@ -1494,6 +1494,7 @@ domonability()
 			}
 
 		}
+		(void) doredraw();
 		pline("%d traps were disarmed.", trpcount);
 		if (undtrpcnt) pline("%d traps could not be disarmed.", undtrpcnt);
 		return TRUE;

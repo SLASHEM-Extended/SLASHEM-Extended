@@ -4701,6 +4701,7 @@ secureidchoice:
 		pline("You are hit by the magical reaction from casting this very powerful spell.");
 		u.uenmax -= rnd(5);
 		badeffect();
+		(void) doredraw();
 
 		break;
 
