@@ -7,17 +7,17 @@ MAZE:"tower1",' '
 FLAGS: noteleport,hardfloor
 GEOMETRY:half-left,center
 MAP
-  --- --- ---  
-  |.| |.| |.|  
+  --- --- ---    
+  |.| |.| |.|    
 ---S---S---S-----
-|.......+.+...+.|
+|.......+.+...+G|
 ---+-+---.-------
-  |....\|.+.|  
+  |....\|.+.|    
 ---+-+---.-------
-|.......+.+...+.|
+|.......+.+...+G|
 ---S---S---S-----
-  |.| |.| |.|  
-  --- --- ---  
+  |.| |.| |.|    
+  --- --- ---    
 ENDMAP
 LADDER:(11,05),down
 # The lord and his court
@@ -43,8 +43,15 @@ DOOR:locked,(05,06),"The Key of Neutrality"
 DOOR:locked,(14,03),"The Master Key of Thievery"
 DOOR:locked,(14,07),"Nocturnal Key"
 
-OBJECT:'*',"stone of magic resistance",(15,03)
-OBJECT:'+',"passwall",(15,07)
+CONTAINER:'(',"treasure chest",(15,03)
+OBJECT:'*',"stone of magic resistance",contained
+
+OBJECT:'`',"boulder",(15,03)
+
+CONTAINER:'(',"treasure chest",(15,07)
+OBJECT:'+',"passwall",contained
+
+OBJECT:'`',"boulder",(15,07)
 
 # Amy addition: candles, because the game shouldn't become close to unwinnable
 # make one of each type, in case one or more are marked as "cannot generate"
@@ -68,9 +75,9 @@ OBJECT:'(',"chest",(03,01)
 OBJECT:'(',"chest",(07,01)
 OBJECT:'(',"chest",(11,01)
 # We have to protect the tower against outside attacks
-NON_DIGGABLE:(00,00,14,10)
+NON_DIGGABLE:(00,00,16,10)
 # and force the use of the aligned doors
-NON_PASSWALL:(00,00,14,10)
+NON_PASSWALL:(00,00,16,10)
 
 
 # Intermediate stage of Vlad's tower
@@ -119,19 +126,19 @@ MAZE:"tower3",' '
 FLAGS: noteleport,hardfloor
 GEOMETRY:half-left,center
 MAP
-    --- --- ---  
-    |.| |.| |.|    
-  ---S---S---S---
-  |.S.........S.|  
------.........-----
-|...|.........+...|
+    --- --- ---      
+    |.| |.| |.|      
+  ---S---S---S---    
+  |.S.........S.|    
+-----.........-----  
+|...|.........+...|  
 |.---.........---.|--
-|.|.S.........S.|.+.|
+|.|.S.........S.|.+G|
 |.---S---S---S---.|--
-|...|.|.|.|.|.|...+.|
+|...|.|.|.|.|.|...+G|
 ---.---.---.---.-----
-  |.............|  
-  ---------------  
+  |.............|    
+  ---------------    
 ENDMAP
 # Random places are the 10 niches
 RANDOM_PLACES:(05,01),(09,01),(13,01),(03,03),(15,03),
@@ -142,10 +149,16 @@ LADDER:(05,07),up
 DOOR:locked,(14,05)
 
 DOOR:locked,(18,07),"The Key Of Access"
-OBJECT:'+',"godmode",(19,07)
+CONTAINER:'(',"treasure chest",(19,07)
+OBJECT:'+',"godmode",contained
+
+OBJECT:'`',"boulder",(19,07)
 
 DOOR:locked,(18,09),"The Gauntlet Key"
-OBJECT:'?',"wishing",(19,07)
+CONTAINER:'(',"treasure chest",(19,09)
+OBJECT:'?',"wishing",contained
+
+OBJECT:'`',"boulder",(19,09)
 
 # Let's put a dragon behind the door, just for the fun...
 MONSTER:'D',random,(13,05)
@@ -166,5 +179,5 @@ TRAP:random,place[2]
 OBJECT:'(',"blindfold",place[3]
 TRAP:random,place[3]
 # Walls in the tower are non diggable
-NON_DIGGABLE:(00,00,18,12)
-NON_PASSWALL:(00,00,18,12)
+NON_DIGGABLE:(00,00,20,12)
+NON_PASSWALL:(00,00,20,12)
