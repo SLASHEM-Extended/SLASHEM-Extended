@@ -6465,6 +6465,11 @@ register int num;
 #endif
 	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone()) ) num /= 3;
 
+	if (Race_if(PM_GERTEUT)) {
+		num *= 4;
+		num /= 3;
+	}
+
 	u.uhunger += num;
 	if(u.uhunger >= 5000) {
 	    if (!iseating || victual.canchoke) {

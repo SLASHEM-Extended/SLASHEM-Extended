@@ -339,7 +339,7 @@ cursed_book(bp)
 	case 5:
 		pline_The("book was coated with contact poison!");
 		if (uarmg) {
-		    if (uarmg->oerodeproof || (uarmg->oartifact && rn2(4)) || !is_corrodeable(uarmg)) {
+		    if (uarmg->oerodeproof || (Race_if(PM_CHIQUAI) && rn2(4)) || (uarmg->oartifact && rn2(4)) || !is_corrodeable(uarmg)) {
 			Your("gloves seem unaffected.");
 		    } else if (uarmg->oeroded2 < MAX_ERODE) {
 			if (uarmg->greased) {
@@ -1693,6 +1693,7 @@ cast_protection()
 	 *     16-30 -10    0,  5,  8,  9, 10
 	 */
 	gain = loglev - (int)u.uspellprot / (4 - min(3,(10 - natac)/10));
+	if (Race_if(PM_MAYMES)) gain *= 2;
 
 	if (gain > 0) {
 	    if (!Blind) {
@@ -1710,8 +1711,14 @@ cast_protection()
 	    u.uspellprot += gain;
 	    u.uspmtime =
 		(!(PlayerCannotUseSkills) && P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT) ? 20 : 10;
+
+	    if (Race_if(PM_MAYMES)) {
+		u.uspmtime *= 2;
+	    }
+
 	    if (!u.usptime)
 		u.usptime = u.uspmtime;
+
 	    find_ac();
 	} else {
 	    Your("skin feels warm for a moment.");

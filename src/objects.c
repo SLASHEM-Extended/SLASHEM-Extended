@@ -5548,6 +5548,11 @@ SCROLL((char *)0,               "EXIT IN THE GAY DIRECTION OF TRAVEL",  P_NONE, 
 SCROLL((char *)0,               "ZA WARUDO",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "BUEYUE BRIGITTE",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "ENEEDMORECOFFEE",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "YOU DIDNT DEFEAT THE QUEEN",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "GOOD CORDIAL NIGHTINGALE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "FINAL SOLUTION OF THE PRIEST QUESTION",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "MUH SOGGY KNEE",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "MEYL TAKSISIDI",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

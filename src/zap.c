@@ -8076,6 +8076,9 @@ int type;
     if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {
 	return FALSE;
     }
+    if (Race_if(PM_PLAYER_ATLANTEAN) && rn2(2)) {
+	return FALSE;
+    }
 
     return (3 - chance) < ac+spell_bonus;
 }
@@ -8371,7 +8374,7 @@ sigilcontroldirection:
 		    mon = u.usteed;
 		    goto buzzmonst;
 	    } else
-	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) || (StrongConflict && (zap_hit_player((int) u.uac, 0)) ) ) {
+	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) || (Race_if(PM_SPARD) && (zap_hit_player((int) u.uac, 0)) ) || (StrongConflict && (zap_hit_player((int) u.uac, 0)) ) ) {
 
 		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")))) range -= 2;
 		pline("%s hits you!", The(fltxt));

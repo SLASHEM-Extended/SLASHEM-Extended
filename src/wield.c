@@ -1133,7 +1133,7 @@ boolean fade_scrolls;
 		target->otyp = SCR_BLANK_PAPER;
 		target->spe = 0;
 	    }
-	} else if (target->oerodeproof ||
+	} else if (target->oerodeproof || (Race_if(PM_CHIQUAI) && rn2(4)) ||
 		(acid_dmg ? !is_corrodeable(target) : !is_rustprone(target))) {
 	    if (flags.verbose || !(target->oerodeproof && target->rknown)) {
 		if (victim == &youmonst)
@@ -1287,6 +1287,7 @@ register int amount;
 		makeknown(otyp);
 	}
 	uwep->spe += amount;
+	if (Race_if(PM_SPARD) && amount > 0) uwep->spe++;
 	if(amount > 0) {
 
 		if ((uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && !rn2(100) ) {

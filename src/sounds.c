@@ -2038,6 +2038,10 @@ register struct monst *mtmp;
 
 			break;
 
+		} else if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN)) {
+
+			break;
+
 		} else {
 
 			static const char *conversion_msgs[] = {
@@ -2213,6 +2217,10 @@ register struct monst *mtmp;
 
 			break;
 
+		}
+
+		if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN)) {
+			break;
 		}
 
 		static const char *hcalien_msgs[] = {
@@ -2991,6 +2999,23 @@ dotalk()
 	pline("The chat command is currently unavailable!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
+	}
+
+	if (HardcoreAlienMode) {
+
+		static const char *hcalien_msgs[] = {
+			"Wouwou.",
+			"Wouuu.",
+			"Www-wouwou.",
+			"Wwouwwouww.",
+			"Wowou.",
+			"Wwwouu.",
+		};
+		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
+		wake_nearby();
+
+		return 1;
+
 	}
 
     int result;

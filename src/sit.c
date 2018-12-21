@@ -909,6 +909,47 @@ skillcaploss()
 
 }
 
+void
+skillcaploss_specific(skilltoreduce)
+int skilltoreduce;
+{
+
+	int tryct, tryct2;
+	int i = 0;
+
+	if (P_MAX_SKILL(skilltoreduce) >= P_BASIC) {
+		P_MAX_SKILL(skilltoreduce) = P_ISRESTRICTED;
+	}
+
+	tryct = 2000;
+	tryct2 = 10;
+
+	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
+		lose_weapon_skill(1);
+		i++;
+		tryct--;
+	}
+
+	while (i) {
+		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+		else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+		i--;
+	}
+
+	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+	while (tryct2 && P_SKILL(skilltoreduce) > P_UNSKILLED) {
+		P_SKILL(skilltoreduce) -= 1;
+		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+		else u.weapon_slots++;
+		tryct2--;
+	}
+
+	P_SKILL(skilltoreduce) = P_ISRESTRICTED;
+
+	return;
+
+}
+
 /* skill cap loss trap: slowly but steadily reduces training of all skills --Amy */
 void
 skillcaploss_severe()

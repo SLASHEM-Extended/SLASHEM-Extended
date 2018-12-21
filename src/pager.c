@@ -22671,7 +22671,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"You wonder why you had to do that.",
 	"You feel grief.",
 	"Bits of bone assemble into a skeleton!",
-
+	"You feel bad about breaking the atheist conduct.",
+	"Due to all of your conduct violations, the gods declare you dead. Goodbye.",
+	"The elemantian wisp have to burn up flame of bunish.",
+	"The gods don't allow you to be male.",
+	"Not now! They're looking!",
+	"Someone watched you change clothes...",
+	"Oh no - you had sex before your marriage. The gods are certainly angry now.",
+	"Becoming pregnant before you're married is a grave sin, and the gods are really angry.",
 
 };
 

@@ -5073,6 +5073,7 @@ struct monst *mon;
 	    armpro = objects[armor->otyp].a_can;
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
 	if (u.magicshield) armpro += 1;
+	if (Race_if(PM_GERTEUT)) armpro++;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
@@ -9028,6 +9029,7 @@ dopois:
 
 		if (uarmf && uarmf->oartifact == ART_INDIAN_SMOKE_SYMBOL) tempval *= 2;
 		if (Conflict) tempval /= 2; /* conflict is so powerful that it requires a bunch of nerfs --Amy */
+		if (Race_if(PM_SPARD)) tempval /= 2;
 		if (StrongConflict) tempval /= 2; /* conflict is so powerful that it requires a bunch of nerfs --Amy */
 
 		/* Amy edit: high AC is just far too strong, especially against already weak monsters! */
@@ -17972,11 +17974,11 @@ register int n;
 
 	/* sometimes you take less damage. The game is deadly enough already. High constitution helps. --Amy */
 	if (!issoviet && rn2(ABASE(A_CON))) {
-	if (!rn2(3) && n >= 1) {n = n / 2; if (n < 1) n = 1;}
-	if (!rn2(10) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 10) {n = n / 3; if (n < 1) n = 1;}
-	if (!rn2(15) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 14) {n = n / 4; if (n < 1) n = 1;}
-	if (!rn2(20) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 20) {n = n / 5; if (n < 1) n = 1;}
-	if (!rn2(50) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 30) {n = n / 10; if (n < 1) n = 1;}
+	if (!rn2(3) && n >= 1) {n++; n = n / 2; if (n < 1) n = 1;}
+	if (!rn2(10) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 10) {n++; n = n / 3; if (n < 1) n = 1;}
+	if (!rn2(15) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 14) {n++; n = n / 4; if (n < 1) n = 1;}
+	if (!rn2(20) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 20) {n++; n = n / 5; if (n < 1) n = 1;}
+	if (!rn2(50) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 30) {n++; n = n / 10; if (n < 1) n = 1;}
 	}
 
 	if (PlayerInConeHeels && n > 0) {
@@ -17989,18 +17991,57 @@ register int n;
 			case P_GRAND_MASTER: dmgreductor = 80; break;
 			case P_SUPREME_MASTER: dmgreductor = 77; break;
 		}
+		n++;
 		n *= dmgreductor;
 		n /= 100;
 		if (n < 1) n = 1;
 	}
 
 	if (n > 0 && StrongDetect_monsters) {
+		n++;
 		n *= 9;
 		n /= 10;
 		if (n < 1) n = 1;
 	}
 
+	if (Race_if(PM_ITAQUE) && n > 0) {
+		n++;
+		n *= (100 - u.ulevel);
+		n /= 100;
+		if (n < 1) n = 1;
+	}
+
+	if (Race_if(PM_VIKING) && n > 0) {
+		n *= 5;
+		n /= 4;
+	}
+
+	if (Race_if(PM_JAVA) && n > 0) {
+		n *= 5;
+		n /= 4;
+	}
+
+	if (Race_if(PM_SPARD) && n > 0) {
+		n *= 5;
+		n /= 4;
+	}
+
+	if (Race_if(PM_MAYMES) && uwep && weapon_type(uwep) == P_FIREARM && n > 0) {
+		n++;
+		n *= 4;
+		n /= 5;
+		if (n < 1) n = 1;
+	}
+
+	if (Race_if(PM_GERTEUT) && n > 0) {
+		n++;
+		n *= 4;
+		n /= 5;
+		if (n < 1) n = 1;
+	}
+
 	if (n > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+		n++;
 		n *= 9;
 		n /= 10;
 		if (n < 1) n = 1;
@@ -18592,6 +18633,13 @@ enjoyable:
 #endif
 	}
 
+	if (HardcoreAlienMode) {
+
+		u.ugangr++;
+		pline("Oh no - you had sex before your marriage. The gods are certainly angry now.");
+
+	}
+
 	/* "Disable Pregnancy via foocubus/seducing encounters - Let's not do this, shall we?" In Soviet Russia, people aren't being conceived by sexual intercourse. Rather, they just spawn because God decided to create them from thin air. They're also inexplicably prude, which probably is the reason why they don't want pregnancy in their video games either. I guess they won't touch Elona with a ten-foot pole... --Amy */
 
 	if (!rn2(birthing ? 3 : 50) && !issoviet) {
@@ -18619,6 +18667,16 @@ enjoyable:
 			attach_egg_hatch_timeout(uegg);
 			(void) start_timer(1, TIMER_OBJECT, HATCH_EGG, (void *)uegg);
 			pickup_object(uegg, 1, FALSE, TRUE);
+		}
+
+		if (HardcoreAlienMode) {
+
+			u.ugangr += 3;
+			pline("Becoming pregnant before you're married is a grave sin, and the gods are really angry.");
+			adjalign(-250);
+			change_luck(-5);
+			prayer_done();
+
 		}
 
 		if ((uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) || complications) {

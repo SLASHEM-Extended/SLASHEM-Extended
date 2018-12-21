@@ -4419,11 +4419,11 @@ int k_format; /* WAC k_format is an int */
 
 	/* let's allow the player to deflect some damage if he's lucky (higher chance with good constitution). --Amy */
 	if (rn2(ABASE(A_CON))) {
-	if (!rn2(3) && n >= 1) {n = n / 2; if (n < 1) n = 1;}
-	if (!rn2(10) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 10) {n = n / 3; if (n < 1) n = 1;}
-	if (!rn2(15) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 14) {n = n / 4; if (n < 1) n = 1;}
-	if (!rn2(20) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 20) {n = n / 5; if (n < 1) n = 1;}
-	if (!rn2(50) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 30) {n = n / 10; if (n < 1) n = 1;}
+	if (!rn2(3) && n >= 1) {n++; n = n / 2; if (n < 1) n = 1;}
+	if (!rn2(10) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 10) {n++; n = n / 3; if (n < 1) n = 1;}
+	if (!rn2(15) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 14) {n++; n = n / 4; if (n < 1) n = 1;}
+	if (!rn2(20) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 20) {n++; n = n / 5; if (n < 1) n = 1;}
+	if (!rn2(50) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && rn2(ABASE(A_CON)) && n >= 1 && GushLevel >= 30) {n++; n = n / 10; if (n < 1) n = 1;}
 	}
 
 	if (PlayerInConeHeels && n > 0) {
@@ -4436,18 +4436,45 @@ int k_format; /* WAC k_format is an int */
 			case P_GRAND_MASTER: dmgreductor = 80; break;
 			case P_SUPREME_MASTER: dmgreductor = 77; break;
 		}
+		n++;
 		n *= dmgreductor;
 		n /= 100;
 		if (n < 1) n = 1;
 	}
 
 	if (n > 0 && StrongDetect_monsters) {
+		n++;
 		n *= 9;
 		n /= 10;
 		if (n < 1) n = 1;
 	}
 
+	if (Race_if(PM_ITAQUE) && n > 0) {
+		n++;
+		n *= (100 - u.ulevel);
+		n /= 100;
+		if (n < 1) n = 1;
+	}
+
+	if (Race_if(PM_VIKING) && n > 0) {
+		n *= 5;
+		n /= 4;
+	}
+
+	if (Race_if(PM_SPARD) && n > 0) {
+		n *= 5;
+		n /= 4;
+	}
+
+	if (Race_if(PM_MAYMES) && uwep && weapon_type(uwep) == P_FIREARM && n > 0) {
+		n++;
+		n *= 4;
+		n /= 5;
+		if (n < 1) n = 1;
+	}
+
 	if (n > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+		n++;
 		n *= 9;
 		n /= 10;
 		if (n < 1) n = 1;

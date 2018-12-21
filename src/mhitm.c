@@ -1115,6 +1115,10 @@ mdamagem(magr, mdef, mattk)
 
 	}
 
+	if (magr->mtame && !mdef->mtame && (magr->data->mlet == S_QUADRUPED) && Race_if(PM_ENGCHIP)) {
+		petdamagebonus += 25;
+	}
+
 	if (magr->mtame && !mdef->mtame) {
 		/* and a little help if pet's experience level is very high, to make large cats etc. more useful --Amy */
 		int overlevelled = 0;

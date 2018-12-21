@@ -565,6 +565,23 @@ const struct innate {
 			{  10, &(HFire_resistance), "cool", "warmer" },
 			{   0, 0, 0, 0 } },
 
+	azt_abil[] = { { 1, &(HFast), "", "" },
+			{   0, 0, 0, 0 } },
+
+	jav_abil[] = { { 1, &(HFire_resistance), "", "" },
+		     {	 1, &(HPoison_resistance), "", "" },
+		     {	 1, &(HSick_resistance), "", "" },
+			{   0, 0, 0, 0 } },
+
+	chi_abil[] = { { 1, &(HFull_nutrient), "", "" },
+			{   0, 0, 0, 0 } },
+
+	gru_abil[] = { { 1, &(HFast), "", "" },
+			{   0, 0, 0, 0 } },
+
+	vik_abil[] = { { 1, &(HSwimming), "", "" },
+			{   0, 0, 0, 0 } },
+
 	slm_abil[] = { { 1, &(HCold_resistance), "", "" },
 		     {	 1, &(HStone_resistance), "", "" },
 		     {	 1, &(HShock_resistance), "", "" },
@@ -1199,6 +1216,8 @@ boolean	inc_or_dec;
 		 *	Note: *YES* ACURR is the right one to use.
 		 */
 
+		if (inc_or_dec && Race_if(PM_MAGYAR)) return;
+
 		if (inc_or_dec && Race_if(PM_TRAINER) && rn2(10)) return;
 
 		if (inc_or_dec && Race_if(PM_DUNADAN) && rn2(2)) return;
@@ -1673,6 +1692,11 @@ int oldlevel, newlevel;
 	}
 
 	switch (Race_switch) {
+	case PM_AZTPOK:	rabil = azt_abil;	break;
+	case PM_JAVA:	rabil = jav_abil;	break;
+	case PM_CHIQUAI:	rabil = chi_abil;	break;
+	case PM_GREURO:	rabil = gru_abil;	break;
+	case PM_VIKING:	rabil = vik_abil;	break;
 	case PM_DOPPELGANGER:	rabil = dop_abil;	break;
 	case PM_DWARF:		rabil = dwa_abil;	break;
 	case PM_PLAYER_SLIME:		rabil = slm_abil;	break;
@@ -2197,6 +2221,28 @@ register int n;
 	if (n < 0 && u.ualign.record < 0 && !rn2(500)) {
 		if (Race_if(PM_IMMUNIZER)) poisoned("The alignment", rn2(A_MAX), "immunized alignment failure", 30);
 		else punishx();
+	}
+
+	if (n < 0 && Race_if(PM_CHIQUAI)) {
+		badeffect();
+	}
+
+	if (n < 0 && Race_if(PM_JAPS)) {
+		losehp(rnd(-n), "violating the bushido", KILLED_BY);
+		if (!rn2(20)) {
+			if (u.uhpmax < 2) {
+				u.youaredead = 1;
+				pline("Due to all of your conduct violations, the gods declare you dead. Goodbye.");
+				killer_format = KILLED_BY;
+				killer = "constantly violating the holy conduct";
+				done(DIED);
+				u.youaredead = 0;
+
+			} else {
+				u.uhpmax--;
+			}
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
 	}
 
 }

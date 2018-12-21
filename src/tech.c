@@ -834,6 +834,13 @@ static const struct innate_tech
 		       {   1, T_WARD_ELEC, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
+	jav_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_DOUBLE_THROWNAGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
 	wis_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -1260,6 +1267,14 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_RECHARGE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	tme_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_CREATE_AMMO, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
@@ -2693,6 +2708,10 @@ int tech_no;
 			}
 
 			u.uconduct.gnostic++;	/* you just tried to access your god */
+			if (Race_if(PM_MAGYAR)) {
+				You_feel("bad about breaking the atheist conduct.");
+				badeffect();
+			}
                 t_timeout = rnz(3000);
 		break;
             case T_APPRAISAL:
@@ -2708,6 +2727,12 @@ int tech_no;
                         You("examine %s.", doname(uwep));
                                 uwep->known = TRUE;
                                 You("discover it is %s",doname(uwep));
+
+			if (Race_if(PM_GERTEUT) && is_poisonable(uwep) && !stack_too_big(uwep)) {
+				Your("%s is poisoned.", doname(uwep));
+				uwep->opoisoned = TRUE;
+			}
+
                 t_timeout = rnz(200);
 		}
 		break;
@@ -3921,6 +3946,11 @@ secureidchoice:
 
 		}
 
+		if (Race_if(PM_TURMENE)) {
+			pline("You can also make shotgun shells instead of regular ammo.");
+			if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
+		}
+
 	    You("make some ammo for your gun.");
 
 		struct obj *uammo;
@@ -4116,6 +4146,10 @@ chargingchoice:
 			if (u.ualign.record < 0) pline("Your alignment record is negative.");
 		}
 		u.uconduct.gnostic++;	/* you just communicated with your god */
+		if (Race_if(PM_MAGYAR)) {
+			You_feel("bad about breaking the atheist conduct.");
+			badeffect();
+		}
 
 	      t_timeout = rnz(2000);
 	      break;
@@ -4384,6 +4418,7 @@ resettechdone:
 
 			pline("Force field activated!");
 			num = 50 + (techlevX(tech_no) * 3);
+			if (Race_if(PM_PLAYER_ATLANTEAN)) num *= 2;
 		    	techt_inuse(tech_no) = num + 1;
 			t_timeout = rnz(4000);
 			break;
@@ -6964,6 +6999,7 @@ race_tech()
 		case PM_PLAYER_GREMLIN:		return (gre_tech);
 		case PM_STICKER:		return (sti_tech);
 		case PM_THUNDERLORD:		return (thu_tech);
+		case PM_JAVA:		return (jav_tech);
 		case PM_WISP:		return (wis_tech);
 		case PM_ROHIRRIM:		return (roh_tech);
 		case PM_PLAYER_SALAMANDER:		return (sal_tech);
@@ -6977,6 +7013,7 @@ race_tech()
 		case PM_BORG:		return (bor_tech);
 		case PM_RODNEYAN:		return (rod_tech);
 		case PM_TURTLE:		return (tur_tech);
+		case PM_TURMENE:		return (tme_tech);
 		case PM_JELLY:		return (jel_tech);
 		case PM_HUMANOID_DRYAD:		return (dry_tech);
 		case PM_UNGENOMOLD:		return (ung_tech);

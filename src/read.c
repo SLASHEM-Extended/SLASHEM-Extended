@@ -2733,6 +2733,7 @@ enchantarmorchoice:
 			otmp->blessed = sobj->blessed;
 		if (s) {
 			otmp->spe += s;
+			if (Race_if(PM_SPARD) && s > 0) otmp->spe++;
 			known = otmp->known;
 		}
 		/* sometimes, enchanting armor pieces may give them an actual magical enchantment --Amy */

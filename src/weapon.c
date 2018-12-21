@@ -1603,6 +1603,10 @@ struct monst *mon;
 
 	}
 
+	if (Race_if(PM_JAPS) && (is_angbandmonster(mon->data) || is_cowmonster(mon->data) || is_animemonster(mon->data) || is_steammonster(mon->data) || is_dlordsmonster(mon->data) || is_dnethackmonster(mon->data) || is_jokemonster(mon->data) || is_diablomonster(mon->data) || is_jonadabmonster(mon->data) || is_evilpatchmonster(mon->data) || is_elonamonster(mon->data) ) ) {
+		tmp *= 2;
+	}
+
 	/*if (tmp > 127) tmp = 127;*/ /* sanity check --Amy ... but I think it's not needed? */
 
 	return(tmp);
@@ -3748,6 +3752,18 @@ int degree;
 
 	if (Race_if(PM_ELONA_SNAIL)) degree *= (1 + rnd(2)); /* snail trains skills 2.5 times as fast --Amy */
 
+	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
+	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
+		if (P_ADVANCE(skill) >= 4320) degree *= 7;
+		else if (P_ADVANCE(skill) >= 2500) degree *= 6;
+		else if (P_ADVANCE(skill) >= 1280) degree *= 5;
+		else if (P_ADVANCE(skill) >= 540) degree *= 4;
+		else if (P_ADVANCE(skill) >= 160) degree *= 3;
+		else if (P_ADVANCE(skill) >= 20) degree *= 2;
+	}
+	if (Race_if(PM_EGYMID) && skill == P_SPIRITUALITY) degree *= 2;
+	if (Race_if(PM_ITAQUE) && !rn2(10)) degree *= 2;
+
 	if (skill == u.untrainableskill) return; /* cannot train this skill at all, no matter what */
 	if ((skill == u.halfspeedskill) && rn2(2)) return;
 	if ((skill == u.fifthspeedskill) && rn2(5)) return;
@@ -3781,6 +3797,7 @@ int degree;
 		}
 	}
 
+	if (Race_if(PM_MAGYAR) && !rn2(2)) return;
 	if (Race_if(PM_DUNADAN) && !rn2(2)) return;
 	if (Race_if(PM_PLAYER_SKELETON) && rn2(3)) return;
 
@@ -4711,6 +4728,11 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == DART_OF_DISINTEGRATION) {
 		bonus += rnd(20);
 	}
+
+	if (Race_if(PM_GERTEUT)) bonus++;
+
+	if (Race_if(PM_FRO) && (wep_type == P_FIREARM || wep_type == -P_FIREARM)) bonus += rnd(10);
+
 	if (!(PlayerCannotUseSkills)) {
 
 	if (weapon && weapon->otyp == GREAT_DAGGER && (P_SKILL(P_DAGGER) == P_EXPERT) ) bonus += rnd(2);
@@ -5391,6 +5413,147 @@ rerollthree:
 			P_ADVANCE(P_SPIRITUALITY) = 0;
 			P_MAX_SKILL(P_SPIRITUALITY) = P_BASIC;
 		}
+	}
+
+	if (Race_if(PM_ENGCHIP)) {
+		if (P_RESTRICTED(P_PETKEEPING)) {
+			P_SKILL(P_PETKEEPING) = P_BASIC;
+			P_ADVANCE(P_PETKEEPING) = 20;
+			P_MAX_SKILL(P_PETKEEPING) = P_SKILLED;
+		} else {
+			if (P_MAX_SKILL(P_PETKEEPING) == P_EXPERT) P_MAX_SKILL(P_PETKEEPING) = P_MASTER;
+			else if (P_MAX_SKILL(P_PETKEEPING) == P_MASTER) P_MAX_SKILL(P_PETKEEPING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_PETKEEPING) = P_SUPREME_MASTER;
+			P_SKILL(P_PETKEEPING) = P_BASIC;
+		}
+	}
+
+	if (Race_if(PM_MAGYAR)) {
+		if (P_RESTRICTED(P_BOW)) {
+			P_SKILL(P_BOW) = P_UNSKILLED;
+			P_ADVANCE(P_BOW) = 0;
+			P_MAX_SKILL(P_BOW) = P_EXPERT;
+		} else {
+			P_SKILL(P_BOW) = P_BASIC;
+			if (P_MAX_SKILL(P_BOW) == P_EXPERT) P_MAX_SKILL(P_BOW) = P_MASTER;
+			else if (P_MAX_SKILL(P_BOW) == P_MASTER) P_MAX_SKILL(P_BOW) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_BOW) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_TURMENE)) {
+		if (P_RESTRICTED(P_FIREARM)) {
+			P_SKILL(P_FIREARM) = P_BASIC;
+			P_ADVANCE(P_FIREARM) = 20;
+			P_MAX_SKILL(P_FIREARM) = P_EXPERT;
+		} else {
+			P_SKILL(P_FIREARM) = P_BASIC;
+			if (P_MAX_SKILL(P_FIREARM) == P_EXPERT) P_MAX_SKILL(P_FIREARM) = P_MASTER;
+			else if (P_MAX_SKILL(P_FIREARM) == P_MASTER) P_MAX_SKILL(P_FIREARM) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_FIREARM) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_JAPS)) {
+		if (P_RESTRICTED(P_LONG_SWORD)) {
+			P_SKILL(P_LONG_SWORD) = P_UNSKILLED;
+			P_ADVANCE(P_LONG_SWORD) = 0;
+			P_MAX_SKILL(P_LONG_SWORD) = P_BASIC;
+		} else {
+			P_SKILL(P_LONG_SWORD) = P_BASIC;
+			if (P_MAX_SKILL(P_LONG_SWORD) == P_EXPERT) P_MAX_SKILL(P_LONG_SWORD) = P_MASTER;
+			else if (P_MAX_SKILL(P_LONG_SWORD) == P_MASTER) P_MAX_SKILL(P_LONG_SWORD) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_LONG_SWORD) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_JAVA)) {
+		if (P_RESTRICTED(P_JAVELIN)) {
+			P_SKILL(P_JAVELIN) = P_UNSKILLED;
+			P_ADVANCE(P_JAVELIN) = 0;
+			P_MAX_SKILL(P_JAVELIN) = P_EXPERT;
+		} else {
+			P_SKILL(P_JAVELIN) = P_BASIC;
+			if (P_MAX_SKILL(P_JAVELIN) == P_EXPERT) P_MAX_SKILL(P_JAVELIN) = P_MASTER;
+			else if (P_MAX_SKILL(P_JAVELIN) == P_MASTER) P_MAX_SKILL(P_JAVELIN) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_JAVELIN) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_FRO)) {
+		if (P_RESTRICTED(P_AXE)) {
+			P_SKILL(P_AXE) = P_UNSKILLED;
+			P_ADVANCE(P_AXE) = 0;
+			P_MAX_SKILL(P_AXE) = P_EXPERT;
+		} else {
+			P_SKILL(P_AXE) = P_BASIC;
+			if (P_MAX_SKILL(P_AXE) == P_EXPERT) P_MAX_SKILL(P_AXE) = P_MASTER;
+			else if (P_MAX_SKILL(P_AXE) == P_MASTER) P_MAX_SKILL(P_AXE) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_AXE) = P_SUPREME_MASTER;
+		}
+
+		if (P_RESTRICTED(P_RIDING)) {
+			P_SKILL(P_RIDING) = P_UNSKILLED;
+			P_ADVANCE(P_RIDING) = 0;
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+		}
+
+	}
+
+	if (Race_if(PM_GREURO)) {
+		if (P_MAX_SKILL(P_BOW) > P_BASIC) {
+			P_MAX_SKILL(P_BOW) = P_BASIC;
+			if (P_SKILL(P_BOW) > P_UNSKILLED) P_SKILL(P_BOW) = P_UNSKILLED;
+			if (P_ADVANCE(P_BOW) > 0) P_ADVANCE(P_BOW) = 0;
+
+		}
+		if (P_ADVANCE(P_BOW)) P_ADVANCE(P_BOW) = 0;
+
+		if (P_MAX_SKILL(P_CROSSBOW) > P_BASIC) {
+			P_MAX_SKILL(P_CROSSBOW) = P_BASIC;
+			if (P_SKILL(P_CROSSBOW) > P_UNSKILLED) P_SKILL(P_CROSSBOW) = P_UNSKILLED;
+			if (P_ADVANCE(P_CROSSBOW) > 0) P_ADVANCE(P_CROSSBOW) = 0;
+
+		}
+		if (P_ADVANCE(P_CROSSBOW)) P_ADVANCE(P_CROSSBOW) = 0;
+
+		if (P_RESTRICTED(P_RIDING)) {
+			P_SKILL(P_RIDING) = P_BASIC;
+			P_ADVANCE(P_RIDING) = 20;
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+		} else {
+			P_SKILL(P_RIDING) = P_BASIC;
+			if (P_MAX_SKILL(P_RIDING) == P_EXPERT) P_MAX_SKILL(P_RIDING) = P_MASTER;
+			else if (P_MAX_SKILL(P_RIDING) == P_MASTER) P_MAX_SKILL(P_RIDING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_RIDING) = P_SUPREME_MASTER;
+		}
+
+		if (P_RESTRICTED(P_POLEARMS)) {
+			P_SKILL(P_POLEARMS) = P_BASIC;
+			P_ADVANCE(P_POLEARMS) = 20;
+			P_MAX_SKILL(P_POLEARMS) = P_EXPERT;
+		} else {
+			P_SKILL(P_POLEARMS) = P_BASIC;
+			if (P_MAX_SKILL(P_POLEARMS) == P_EXPERT) P_MAX_SKILL(P_POLEARMS) = P_MASTER;
+			else if (P_MAX_SKILL(P_POLEARMS) == P_MASTER) P_MAX_SKILL(P_POLEARMS) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_POLEARMS) = P_SUPREME_MASTER;
+		}
+
+		if (P_RESTRICTED(P_LANCE)) {
+			P_SKILL(P_LANCE) = P_BASIC;
+			P_ADVANCE(P_LANCE) = 20;
+			P_MAX_SKILL(P_LANCE) = P_EXPERT;
+		} else {
+			P_SKILL(P_LANCE) = P_BASIC;
+			if (P_MAX_SKILL(P_LANCE) == P_EXPERT) P_MAX_SKILL(P_LANCE) = P_MASTER;
+			else if (P_MAX_SKILL(P_LANCE) == P_MASTER) P_MAX_SKILL(P_LANCE) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_LANCE) = P_SUPREME_MASTER;
+		}
+
 	}
 
 	if (Race_if(PM_ELONA_SNAIL)) {

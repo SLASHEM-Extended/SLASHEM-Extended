@@ -673,6 +673,7 @@ playerextrinsicaggravatemon()
 	if (u.heavyaggravation || EAggravate_monster) return TRUE;
 	if (RngePunishment) return TRUE;
 	if (FemaleTrapSolvejg) return TRUE;
+	if (Race_if(PM_HC_ALIEN) && !flags.female) return TRUE;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) return TRUE;
 
@@ -6801,7 +6802,7 @@ boolean amnesia;
 		    pre_downgrade_obj(obj, &used);
 		    drain_item(obj);
 		}
-		if (!obj->oerodeproof && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && is_rustprone(obj) &&
+		if (!obj->oerodeproof && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && is_rustprone(obj) &&
 		    (obj->oeroded < MAX_ERODE) && !rn2(2)) {
 			pline("%s %s some%s.",
 			      Your_buf, aobjnam(obj, "rust"),

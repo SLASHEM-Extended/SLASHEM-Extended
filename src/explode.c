@@ -574,15 +574,16 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (adtyp == AD_FIRE) burn_away_slime();
 
 		/* player may get lucky and take less damage --Amy */
-		if (!rn2(3) && damu >= 1) {damu = damu / 2; if (damu < 1) damu = 1;}
-		if (!rn2(10) && damu >= 1 && GushLevel >= 10) {damu = damu / 3; if (damu < 1) damu = 1;}
-		if (!rn2(15) && damu >= 1 && GushLevel >= 14) {damu = damu / 4; if (damu < 1) damu = 1;}
-		if (!rn2(20) && damu >= 1 && GushLevel >= 20) {damu = damu / 5; if (damu < 1) damu = 1;}
-		if (!rn2(50) && damu >= 1 && GushLevel >= 30) {damu = damu / 10; if (damu < 1) damu= 1;}
+		if (!rn2(3) && damu >= 1) {damu++; damu = damu / 2; if (damu < 1) damu = 1;}
+		if (!rn2(10) && damu >= 1 && GushLevel >= 10) {damu++; damu = damu / 3; if (damu < 1) damu = 1;}
+		if (!rn2(15) && damu >= 1 && GushLevel >= 14) {damu++; damu = damu / 4; if (damu < 1) damu = 1;}
+		if (!rn2(20) && damu >= 1 && GushLevel >= 20) {damu++; damu = damu / 5; if (damu < 1) damu = 1;}
+		if (!rn2(50) && damu >= 1 && GushLevel >= 30) {damu++; damu = damu / 10; if (damu < 1) damu= 1;}
 
 		/* exploding wands were too strong, a cursed wand of solar beam at XL1 shouldn't be instant death all the time */
 		if (u.explodewandhack && damu >= 1 && u.ulevel < 20) {
 
+			damu++;
 			damu *= u.ulevel;
 			damu /= 20;
 			if (damu < 1) damu = 1;
@@ -598,18 +599,45 @@ boolean yours; /* is it your fault (for killing monsters) */
 				case P_GRAND_MASTER: dmgreductor = 80; break;
 				case P_SUPREME_MASTER: dmgreductor = 77; break;
 			}
+			damu++;
 			damu *= dmgreductor;
 			damu /= 100;
 			if (damu < 1) damu = 1;
 		}
 
+		if (Race_if(PM_ITAQUE) && damu > 0) {
+			damu++;
+			damu *= (100 - u.ulevel);
+			damu /= 100;
+			if (damu < 1) damu = 1;
+		}
+
 		if (StrongDetect_monsters && damu > 0) {
+			damu++;
 			damu *= 9;
 			damu /= 10;
 			if (damu < 1) damu = 1;
 		}
 
+		if (Race_if(PM_VIKING) && damu > 0) {
+			damu *= 5;
+			damu /= 4;
+		}
+
+		if (Race_if(PM_SPARD) && damu > 0) {
+			damu *= 5;
+			damu /= 4;
+		}
+
+		if (Race_if(PM_MAYMES) && uwep && weapon_type(uwep) == P_FIREARM && damu > 0) {
+			damu++;
+			damu *= 4;
+			damu /= 5;
+			if (damu < 1) damu = 1;
+		}
+
 		if (damu > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+			damu++;
 			damu *= 9;
 			damu /= 10;
 			if (damu < 1) damu = 1;

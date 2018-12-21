@@ -1782,6 +1782,10 @@ int artif;
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
 
+		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
+			otmp->quan += rnd(5);
+		}
+
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && (is_ammo(otmp) || is_missile(otmp) || is_grenade(otmp)) ) otmp->quan *= 2;
 
 		/* In Soviet Russia, it's completely unthinkable to find a stack of more than the standard rn1(12,12) arrows.

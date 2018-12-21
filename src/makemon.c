@@ -5953,6 +5953,41 @@ register struct	monst	*mtmp;
 			m_initthrow(mtmp, SHOTGUN_SHELL, 30);
 		}
 
+		if (ptr == &mons[PM_ENGCHIP]) {
+			(void)mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 30);
+		}
+		if (ptr == &mons[PM_SPARD]) {
+			(void)mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 30);
+			m_initthrow(mtmp, ARROW, 30);
+			m_initthrow(mtmp, ARROW, 30);
+			m_initthrow(mtmp, ARROW, 30);
+		}
+		if (ptr == &mons[PM_JAVA]) {
+			m_initthrow(mtmp, JAVELIN, 5);
+		}
+		if (ptr == &mons[PM_GREURO]) {
+			(void)mongets(mtmp, LANCE);
+		}
+		if (ptr == &mons[PM_JAPS]) {
+			(void)mongets(mtmp, KATANA);
+		}
+		if (ptr == &mons[PM_GERTEUT]) {
+			(void)mongets(mtmp, POT_RADIUM);
+		}
+		if (ptr == &mons[PM_FRO]) {
+			(void)mongets(mtmp, AXE);
+		}
+		if (ptr == &mons[PM_MAYMES]) {
+			(void)mongets(mtmp, COMPOST_BOW);
+			m_initthrow(mtmp, FORBIDDEN_ARROW, 40);
+		}
+		if (ptr == &mons[PM_TURMENE]) {
+			(void)mongets(mtmp, FLINTLOCK);
+			m_initthrow(mtmp, BULLET, 35);
+		}
+
 		if (ptr == &mons[PM_EVIL_WATCH_LEADER]) {
 			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
@@ -19368,6 +19403,7 @@ golemhp(type)
 int type;
 {
 	switch(type) {
+		case PM_BABY_SHOE: return 10;
 		case PM_KARAKASA: return 30;
 		case PM_RETARDED_GOLEM: return 30;
 		case PM_FLEECY_LEATHER_GOLEM: return 80;
@@ -19448,6 +19484,7 @@ int type;
 		case PM_TIN_SOLDIER: return 60;
 		case PM_CLAY_SOLDIER: return 60;
 		case PM_LEATHER_GOLEM: return 80;
+		case PM_LULTHER_GOLEM: return 80;
 		case PM_STUDDED_GOLEM: return 100;
 		case PM_RING_GOLEM: return 120;
 		case PM_SCALE_GOLEM: return 150;
@@ -19821,6 +19858,7 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_CENTAUR && Race_if(PM_HUMANOID_CENTAUR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
+	if (ptr->mlet == S_QUADRUPED && Race_if(PM_ENGCHIP) && !Role_if(PM_CONVICT) && !rn2(10)) return TRUE;
 
 	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && ptr->msound == MS_STENCH && rn2(100)) return TRUE;
 

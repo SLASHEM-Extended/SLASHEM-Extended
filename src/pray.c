@@ -1730,6 +1730,10 @@ dosacrifice()
 	You("offer this evil thing to %s...", a_gname());
 	value = MAXVALUE; /* holy crap! */
 	u.uconduct.gnostic++;	/* KMH, ethics */
+	if (Race_if(PM_MAGYAR)) {
+		You_feel("bad about breaking the atheist conduct.");
+		badeffect();
+	}
     }
 
     if (otmp->otyp == CORPSE) {
@@ -1745,6 +1749,10 @@ dosacrifice()
 
 	/* KMH, conduct */
 	u.uconduct.gnostic++;
+	if (Race_if(PM_MAGYAR)) {
+		You_feel("bad about breaking the atheist conduct.");
+		badeffect();
+	}
 
 	/* you're handling this corpse, even if it was killed upon the altar */
 	feel_cockatrice(otmp, TRUE);
@@ -2050,7 +2058,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 	    /* Is this a conversion ? */
 	    /* An unaligned altar in Gehennom will always elicit rejection. */
 	    if (ugod_is_angry() || (altaralign == A_NONE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) )) {
-		if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] &&
+		if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && !(Race_if(PM_CHIQUAI) && rn2(5)) &&
 		   altaralign != A_NONE) {
 		    You("have a strong feeling that %s is angry...", u_gname());
 		    consume_offering(otmp);
@@ -2087,7 +2095,8 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		consume_offering(otmp);
 		You("sense a conflict between %s and %s.",
 		    u_gname(), a_gname());
-		if (rn2(2) && rn2(8 + u.ulevel) > 5) { /* lower chance of conversion --Amy */
+		if (((rn2(2) && rn2(8 + u.ulevel) > 5) || (Race_if(PM_EGYMID) && rn2(2) && rn2(8 + u.ulevel) > 5)) && !(Race_if(PM_CHIQUAI) && rn2(3)) ) {
+		    /* lower chance of conversion --Amy */
 		    struct monst *pri;
 		    You_feel("the power of %s increase.", u_gname());
 		    if (!rn2(2) || rnl(u.ulevel) > 3) { /* higher chance of conversion creating minions --Amy */
@@ -2407,7 +2416,7 @@ boolean praying;	/* false means no messages should be given */
 	(p_trouble < 0) ? (u.ublesscnt > ((u.ualign.type == A_CHAOTIC) ? (200 + maedhrosbonus) : (u.ualign.type == A_NEUTRAL) ? (125 + maedhrosbonus) : (100 + maedhrosbonus) ) ) : /* minor difficulties */
 	(u.ublesscnt > 0))			/* not in trouble */
 	p_type = 0;		/* too soon... */
-    else if ((int)Luck < 0 || u.ugangr || alignment < 0)
+    else if ((int)Luck < (HardcoreAlienMode ? rn2(2) : Race_if(PM_SPARD) ? -1 : 0) || u.ugangr || alignment < (HardcoreAlienMode ? rn2(20) : Race_if(PM_SPARD) ? -10 : 0) )
 	p_type = 1;		/* too naughty... */
     else /* alignment >= 0 */ {
 	if(on_altar() && u.ualign.type != p_aligntyp)
@@ -2444,8 +2453,8 @@ dopray()
 	else {
 		if (u.ugangr) godvoice(u.ualign.type, "Thou hast angered me before. I expect thee to make a valuable sacrifice to me first before thou mayst pray again.");
 		if (u.ublesscnt > 0) godvoice(u.ualign.type, "Thou mayst not pray yet!");
-		if ((int)Luck < 0) godvoice(u.ualign.type, "Thou art unlucky! I cannot help thee now!");
-		if (u.ualign.record < 0) godvoice(u.ualign.type, "Thou must not pray to me, for thou hath sinned!");
+		if ((int)Luck < (HardcoreAlienMode ? 1 : Race_if(PM_SPARD) ? -1 : 0) ) godvoice(u.ualign.type, "Thou art unlucky! I cannot help thee now!");
+		if (u.ualign.record < (HardcoreAlienMode ? 20 : Race_if(PM_SPARD) ? -10 : 0) ) godvoice(u.ualign.type, "Thou must not pray to me, for thou hath sinned!");
 		if (Inhell || flags.gehenna) godvoice(u.ualign.type, "My scholar, I cannot help thee in the Under World!");
 	}
 
@@ -2458,7 +2467,17 @@ dopray()
 	if (yn("Are you sure you want to pray?") == 'n')
 	    return 0;
 
+    if (Race_if(PM_MAGYAR)) {
+	adjalign(-10);
+	change_luck(-1);
+	pline("Praying as a magyar is a risky action because you're supposed to be an atheist!");
+    }
+
     u.uconduct.gnostic++;
+	if (Race_if(PM_MAGYAR)) {
+		You_feel("bad about breaking the atheist conduct.");
+		badeffect();
+	}
     u.uconduct.praydone++;
     /* Praying implies that the hero is conscious and since we have
        no deafness attribute this implies that all verbalized messages
@@ -2640,6 +2659,10 @@ turn_undead()
 	int once, range, xlev;
 
 	u.uconduct.gnostic++;
+	if (Race_if(PM_MAGYAR)) {
+		You_feel("bad about breaking the atheist conduct.");
+		badeffect();
+	}
 
 	int alignmentlimit;
 

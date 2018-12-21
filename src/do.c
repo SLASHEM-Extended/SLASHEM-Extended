@@ -346,6 +346,10 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 
 	/* KMH, conduct */
 	u.uconduct.gnostic++;
+	if (Race_if(PM_MAGYAR)) {
+		You_feel("bad about breaking the atheist conduct.");
+		badeffect();
+	}
 
 	/* evil patch idea by aosdict: Moloch's altars can occasionally curse the item. */
 	

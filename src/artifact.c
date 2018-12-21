@@ -642,47 +642,21 @@ init_artifacts()
 void
 init_artifacts1()
 {
-#if 0
-    /* KMH -- Should be at least skilled in first artifact gifts */
-    if (urole.gift1arti &&
-	    (objects[artilist[urole.gift1arti].otyp].oc_class == WEAPON_CLASS ||
-	     objects[artilist[urole.gift1arti].otyp].oc_class == TOOL_CLASS)) {
-	int skill = objects[artilist[urole.gift1arti].otyp].oc_skill;
-
-	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
-	    P_SKILL(skill) = P_UNSKILLED;
-	if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) { /* expert instead of skilled --Amy */
-	    if (wizard) pline("Warning: %s should be at least expert.  Fixing...",
-		    artilist[urole.gift1arti].name);
-		P_MAX_SKILL(skill) = P_EXPERT;
-	}
-    }
-    if (urole.gift2arti &&
-	    (objects[artilist[urole.gift2arti].otyp].oc_class == WEAPON_CLASS ||
-	     objects[artilist[urole.gift2arti].otyp].oc_class == TOOL_CLASS)) {
-	int skill = objects[artilist[urole.gift2arti].otyp].oc_skill;
-
-	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
-	    P_SKILL(skill) = P_UNSKILLED;
-	if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) {
-	    if (wizard) pline("Warning: %s should be at least expert.  Fixing...",
-		    artilist[urole.gift1arti].name);
-	    P_MAX_SKILL(skill) = P_EXPERT;
-	}
-    }
-#endif 
     /* KMH -- Should be expert in quest artifact */
     if (urole.questarti && !isamerican && !Role_if(PM_ANACHRONOUNBINDER) &&
 	    (objects[artilist[urole.questarti].otyp].oc_class == WEAPON_CLASS ||
 	     objects[artilist[urole.questarti].otyp].oc_class == TOOL_CLASS)) {
 	int skill = objects[artilist[urole.questarti].otyp].oc_skill;
 
-	if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
-	    P_SKILL(skill) = P_UNSKILLED;
-	if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) {
-	    if (wizard) pline("Warning: %s should be at least expert.  Fixing...",
-		    artilist[urole.questarti].name);
-	    P_MAX_SKILL(skill) = P_EXPERT;
+	if (!isamerican && !Race_if(PM_BASTARD) && !(Race_if(PM_GREURO) && (skill == P_BOW || skill == P_CROSSBOW))) {
+
+		if (skill > P_NONE && P_SKILL(skill) < P_UNSKILLED)
+		    P_SKILL(skill) = P_UNSKILLED;
+		if (skill > P_NONE && P_MAX_SKILL(skill) < P_EXPERT) {
+		    if (wizard) pline("Warning: %s should be at least expert.  Fixing...",
+			    artilist[urole.questarti].name);
+		    P_MAX_SKILL(skill) = P_EXPERT;
+		}
 	}
     }
 }

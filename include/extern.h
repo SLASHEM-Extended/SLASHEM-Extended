@@ -2608,6 +2608,7 @@ E void rndcurse(void);
 E void attrcurse(void);
 E void skillcaploss(void);
 E void skillcaploss_severe(void);
+E void skillcaploss_specific(int);
 
 /* ### sounds.c ### */
 

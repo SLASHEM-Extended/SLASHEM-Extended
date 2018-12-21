@@ -1038,6 +1038,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (Race_if(PM_FRO) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1267,6 +1270,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
+				moveamt /= 2;
+
+			if (Race_if(PM_FRO) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(8) && moveamt > 1)
@@ -1500,11 +1506,11 @@ moveloop()
 
 			if (Very_fast && !YouHaveTheSpeedBug) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
-			    if (StrongFast || rn2(3)) {
+			    if ((StrongFast || rn2(3)) && (!Race_if(PM_FRO) || !rn2(2)) ) {
 				    moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 				    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			    }
-			} else if (Fast && !YouHaveTheSpeedBug) {
+			} else if (Fast && !YouHaveTheSpeedBug && (!Race_if(PM_FRO) || !rn2(2))) {
 			    /* average movement is 1.33 times normal */
 			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
@@ -1575,7 +1581,7 @@ moveloop()
 			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (speedbonus(moveamt * 5, NORMAL_SPEED * 5));
 
 			if (StrongPasses_walls && !rn2(3) && isok(u.ux, u.uy) && IS_STWALL(levl[u.ux][u.uy].typ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
-			if (StrongFast && !rn2(10) && !YouHaveTheSpeedBug) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (StrongFast && !rn2(10) && (!Race_if(PM_FRO) || !rn2(2)) && !YouHaveTheSpeedBug) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
@@ -4115,6 +4121,25 @@ fukrosionchoice:
 				if (aggroamount < 0) aggroamount = 0;
 			}
 			u.aggravation = 0;
+			pline("Several monsters come out of a portal.");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if (Race_if(PM_HC_ALIEN) && !flags.female && !rn2(StrongStealth ? 3000 : Stealth ? 2000 : 1000)) {
+
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
 			pline("Several monsters come out of a portal.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
@@ -11074,6 +11099,14 @@ newboss:
 	u.roommatehack = 0;
 	u.explodewandhack = 0;
 
+	if ((Race_if(PM_MAYMES) || Race_if(PM_AZTPOK) || Race_if(PM_PLAYER_ATLANTEAN)) && P_MAX_SKILL(P_RIDING) >= P_BASIC) {
+		skillcaploss_specific(P_RIDING);
+	}
+
+	if (HardcoreAlienMode && P_MAX_SKILL(P_HIGH_HEELS) >= P_BASIC) {
+		skillcaploss_specific(P_HIGH_HEELS);
+	}
+
 	if (uarmc && uarmc->oartifact == ART_ULTRAGGRAVATE) {
 		u.heavyaggravation = 1;
 	}
@@ -13689,10 +13722,13 @@ boolean new_game;	/* false => restoring an old game */
 		}
 	}
 
+	if (new_game && Race_if(PM_MAGYAR)) u.weapon_slots += 1000;
+
 	if (flags.wonderland && new_game) {
 		flags.lostsoul = flags.uberlostsoul = FALSE;
 		goto_level(&elderpriest_level, TRUE, FALSE, FALSE);
 		u.youaredead = 0;
+		save_currentstate();
 		pline("Welcome to Wonderland. You have to get to the bottom of the Yendorian Tower to escape.");
 		pline("If you manage to do that, you regain your ability to levelport. Good luck, and don't get near the elder priest or he will tentacle to tentacle you!");
 
@@ -13708,73 +13744,85 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	if (flags.lostsoul && !flags.uberlostsoul && new_game) { 
-	goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
-	u.youaredead = 0;
-	pline("These are the halls of Mandos... err, Medusa. Good luck making your way back up!");
+
+		goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
+		u.youaredead = 0;
+		save_currentstate();
+		pline("These are the halls of Mandos... err, Medusa. Good luck making your way back up!");
+
 	}
 
 	if (flags.uberlostsoul && new_game) { 
 
 		flags.lostsoul = FALSE;
 
-	goto_level((&sanctum_level - 1), TRUE, FALSE, FALSE);
-	u.youaredead = 0;
-	pline("These are the halls of Mandos... err, Gehennom. Looks nice, huh?");
+		goto_level((&sanctum_level - 1), TRUE, FALSE, FALSE);
+		pline("These are the halls of Mandos... err, Gehennom. Looks nice, huh?");
 
-			        register int newlev = 74;
-				d_level newlevel;
-				get_level(&newlevel, newlev);
-				goto_level(&newlevel, TRUE, FALSE, FALSE);
-				pline("Enjoy your stay, and try to get out if you can.");
+		register int newlev = 74;
+		d_level newlevel;
+		get_level(&newlevel, newlev);
+		goto_level(&newlevel, TRUE, FALSE, FALSE);
+		u.youaredead = 0;
+		save_currentstate();
+		pline("Enjoy your stay, and try to get out if you can.");
 
-
-	}
-
-	if (Role_if(PM_TRANSVESTITE) && new_game && flags.female) {
-		    makeknown(AMULET_OF_CHANGE);
-		    You("don't feel like being female!");
-			change_sex();
-		    flags.botl = 1;
 
 	}
 
-	if (Role_if(PM_LADIESMAN) && new_game && flags.female) {
-		    makeknown(AMULET_OF_CHANGE);
-		    You("don't feel like being female!");
-			change_sex();
-		    flags.botl = 1;
+	if (Race_if(PM_HC_ALIEN) && new_game && !flags.female) {
+		makeknown(AMULET_OF_CHANGE);
+		pline("The gods don't allow you to be male.");
+		change_sex();
+		flags.botl = 1;
+
+	}
+
+	if (Role_if(PM_TRANSVESTITE) && !Race_if(PM_HC_ALIEN) && new_game && flags.female) {
+		makeknown(AMULET_OF_CHANGE);
+		You("don't feel like being female!");
+		change_sex();
+		flags.botl = 1;
+
+	}
+
+	if (Role_if(PM_LADIESMAN) && !Race_if(PM_HC_ALIEN) && new_game && flags.female) {
+		makeknown(AMULET_OF_CHANGE);
+		You("don't feel like being female!");
+		change_sex();
+		flags.botl = 1;
 
 	}
 
 	if (Role_if(PM_TOPMODEL) && new_game && !flags.female) {
-		    makeknown(AMULET_OF_CHANGE);
-		    You("don't feel like being male!");
-			change_sex();
-		    flags.botl = 1;
+		makeknown(AMULET_OF_CHANGE);
+		You("don't feel like being male!");
+		change_sex();
+		flags.botl = 1;
 
 	}
 
 	if (Role_if(PM_DOLL_MISTRESS) && new_game && !flags.female) {
-		    makeknown(AMULET_OF_CHANGE);
-		    You("don't feel like being male!");
-			change_sex();
-		    flags.botl = 1;
+		makeknown(AMULET_OF_CHANGE);
+		You("don't feel like being male!");
+		change_sex();
+		flags.botl = 1;
 
 	}
 
 	if (Role_if(PM_HUSSY) && new_game && !flags.female) {
-		    makeknown(AMULET_OF_CHANGE);
-		    You("don't feel like being male!");
-			change_sex();
-		    flags.botl = 1;
+		makeknown(AMULET_OF_CHANGE);
+		You("don't feel like being male!");
+		change_sex();
+		flags.botl = 1;
 
 	}
 
 	if (Race_if(PM_UNGENOMOLD) && new_game) {
-		  makeknown(SCR_GENOCIDE);
-	    polyself(FALSE);
+		makeknown(SCR_GENOCIDE);
+		polyself(FALSE);
 		mvitals[PM_UNGENOMOLD].mvflags |= (G_GENOD|G_NOCORPSE);
-	    pline("Wiped out all ungenomolds.");
+		pline("Wiped out all ungenomolds.");
  		You_feel("dead inside.");
 
 	}

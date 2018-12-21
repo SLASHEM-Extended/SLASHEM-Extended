@@ -1527,6 +1527,11 @@ Helmet_on()
 	case HELM_OF_LAWFUL:
 	case HELM_OF_NEUTRAL:
 	case HELM_OF_CHAOTIC:
+
+		if (Race_if(PM_CHIQUAI) && rn2(5)) { /* do nothing, not even autocurse */
+			break;
+		}
+
 		if (uarmh->otyp == HELM_OF_OPPOSITE_ALIGNMENT) {
 			if (u.ualign.type == A_NEUTRAL)
 			    u.ualign.type = rn2(2) ? A_CHAOTIC : A_LAWFUL;
@@ -4184,6 +4189,31 @@ dotakeoff()
 	register struct obj *otmp = (struct obj *)0;
 	int armorpieces = 0;
 
+	if (HardcoreAlienMode) {
+		int i, j, bd = 1;
+		struct monst *mtmp;
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (canspotmon(mtmp)) {
+					pline("Not now! They're looking!");
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					return 0;
+				} else {
+					pline("Someone watched you change clothes...");
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					u.ugangr++;
+					adjalign(-50);
+					change_luck(-1);
+					prayer_done();
+					return 1;
+
+				}
+			}
+		}
+
+	}
+
 	boolean updowninversion = 0;
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-down cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch s verkhnim plashchem") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-pastga plash") )) updowninversion = 1;
 
@@ -4317,7 +4347,8 @@ armoroff(otmp)
 register struct obj *otmp;
 {
 	register int delay = -objects[otmp->otyp].oc_delay;
-
+	if (HardcoreAlienMode) delay--;
+	
 	if(cursed(otmp)) return(0);
 	if(delay) {
 		nomul(delay, "disrobing", TRUE);
@@ -4657,6 +4688,31 @@ dowear()
 	int delay;
 	long mask = 0;
 
+	if (HardcoreAlienMode) {
+		int i, j, bd = 1;
+		struct monst *mtmp;
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (canspotmon(mtmp)) {
+					pline("Not now! They're looking!");
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					return 0;
+				} else {
+					pline("Someone watched you change clothes...");
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					u.ugangr++;
+					adjalign(-50);
+					change_luck(-1);
+					prayer_done();
+					return 1;
+
+				}
+			}
+		}
+
+	}
+
 	/* cantweararm checks for suits of armor */
 	/* verysmall or nohands checks for shields, gloves, etc... */
 	if (!Race_if(PM_TRANSFORMER) && !Race_if(PM_HUMAN_WRAITH) && (verysmall(youmonst.data) || nohands(youmonst.data))) {
@@ -4724,6 +4780,7 @@ dowear()
 		setuqwep((struct obj *) 0);
 	setworn(otmp, mask);
 	delay = -objects[otmp->otyp].oc_delay;
+	if (HardcoreAlienMode) delay--;
 	if(delay){
 		nomul(delay, "dressing up", TRUE);
 		if(is_boots(otmp)) afternmv = Boots_on;
@@ -5011,6 +5068,12 @@ find_ac()
 
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarmf && uarmf->otyp == GNOMISH_BOOTS) uac -= 2;
 
+	if (Race_if(PM_MAYMES) && uarmc && uarmc->otyp == CLOAK_OF_PROTECTION) uac -= 2;
+	if (Race_if(PM_MAYMES) && uarm && uarm->otyp == ROBE_OF_PROTECTION) uac -= 2;
+	if (Race_if(PM_MAYMES) && uleft && uleft->otyp == RIN_PROTECTION) uac -= 2;
+	if (Race_if(PM_MAYMES) && uright && uright->otyp == RIN_PROTECTION) uac -= 2;
+	if (Race_if(PM_FRO)) uac -= 2;
+
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sekinlashuvi libos") )) uac -= 3;
 
 	if (u.artifactprotection) uac -= 2;
@@ -5207,6 +5270,7 @@ find_ac()
 	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
+	if (HardcoreAlienMode) uac -= 1;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) uac -= 10;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
@@ -5327,6 +5391,13 @@ find_ac()
 
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
+
+	if (Race_if(PM_ITAQUE)) {
+		int difference = (-(uac - 10));
+		difference = difference / 10;
+		if (difference > 0) uac -= difference;
+
+	}
 
 	if (u.berserktime) {
 		int difference = (-(uac - 10));
@@ -5821,6 +5892,31 @@ int
 doddoremarm()
 {
     int result = 0;
+
+	if (HardcoreAlienMode) {
+		int i, j, bd = 1;
+		struct monst *mtmp;
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (canspotmon(mtmp)) {
+					pline("Not now! They're looking!");
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					return 0;
+				} else {
+					pline("Someone watched you change clothes...");
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					u.ugangr++;
+					adjalign(-50);
+					change_luck(-1);
+					prayer_done();
+					return 1;
+
+				}
+			}
+		}
+
+	}
 
     if (taking_off || takeoff_mask) {
 	You("continue %s.", disrobing);

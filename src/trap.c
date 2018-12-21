@@ -900,6 +900,8 @@ burnagain:
 
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
 
+	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
+
 	if (uarmf && rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) vulnerable = FALSE;
 
 	if (!vulnerable) {
@@ -1019,6 +1021,8 @@ struct monst *victim;
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "xayoliy to'pi") ) ) vulnerable = FALSE;
 
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
+
+	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
 
 	if (uarmf && rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) vulnerable = FALSE;
 
@@ -4434,7 +4438,7 @@ rerollX:
 
 				pline("Poison washes over you!");
 				if (uarmg) {
-				    if (uarmg->oerodeproof || (uarmg->oartifact && rn2(4)) || !is_corrodeable(uarmg)) {
+				    if (uarmg->oerodeproof || (Race_if(PM_CHIQUAI) && rn2(4)) || (uarmg->oartifact && rn2(4)) || !is_corrodeable(uarmg)) {
 					Your("gloves seem unaffected.");
 				    } else if (uarmg->oeroded2 < MAX_ERODE) {
 					if (uarmg->greased) {
@@ -12108,6 +12112,8 @@ seetrap(trap)
 	register struct trap *trap;
 {
 
+	if (Race_if(PM_SPARD) && rn2(3)) return;
+
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar") )) return;
 
 	if(!trap->tseen && !trap->hiddentrap) {
@@ -14683,7 +14689,7 @@ xchar x, y;
 		      destroy_strings[dindx*3 + 1] : destroy_strings[dindx*3]);
 	    delobj(obj);
 	    retval++;
-	} else if (is_flammable(obj) && !(obj->oartifact && rn2(4)) && obj->oeroded < MAX_ERODE &&
+	} else if (is_flammable(obj) && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && obj->oeroded < MAX_ERODE &&
 		   !(obj->oerodeproof || (obj->blessed && !rnl(4)))) {
 	    if (in_sight) {
 		pline("%s %s%s.", Yname2(obj), otense(obj, "burn"),
@@ -14719,7 +14725,7 @@ register boolean force, here;
 	/* The invocation artifacts and the Amulet of Yendor must be immune.
 	 * Alignment keys, too, even though the game is still winnable without them. */
 
-			if ( (!rn2(50) || force ) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && (!obj->blessed || !rn2(4) ) && !stack_too_big(obj) && !is_unwitherable(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
+			if ( (!rn2(50) || force ) && !(Race_if(PM_CHIQUAI) && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && (!obj->blessed || !rn2(4) ) && !stack_too_big(obj) && !is_unwitherable(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
 
 				if (rn2(2)) {
 
@@ -14794,10 +14800,13 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && Race_if(PM_PLAYER_ATLANTEAN)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
+
+		if ((obj->where != OBJ_FLOOR) && Race_if(PM_VIKING) && (rn2(50) < u.ulevel) ) continue;
 
 		if (obj && obj->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The liquid destroys your footwear instantly.");
@@ -14960,11 +14969,11 @@ register boolean force, here;
 			/* Drop through for rusting effects... */
 			/* Weapons, armor, tools and other things may rust... */
 		    default:
-			if (is_rustprone(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded < MAX_ERODE &&
+			if (is_rustprone(obj) && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded < MAX_ERODE &&
 					!(obj->oerodeproof || 
 					 (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (is_rustprone(obj) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) &&
+			else if (is_rustprone(obj) && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) &&
 					!(obj->oerodeproof ))
 			{
 			    
@@ -15111,6 +15120,8 @@ register boolean force, here;
 
 		if (stack_too_big(obj)) continue;
 
+		if (Race_if(PM_CHIQUAI) && rn2(4)) continue;
+
 		if (is_unwitherable(obj)) continue;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
@@ -15169,6 +15180,8 @@ register boolean force, here;
 		if (stack_too_big(obj)) continue;
 
 		if (is_unwitherable(obj)) continue;
+
+		if (Race_if(PM_CHIQUAI) && rn2(4)) continue;
 
 		if (rn2(10)) continue;
 

@@ -358,6 +358,12 @@ const char *name;	/* if null, then format `obj' */
 			else pline("Your force field causes %s to miss you.", onm);
 			return(0);
 
+	} else if (Race_if(PM_PLAYER_ATLANTEAN) && rn2(2)) {
+
+			if(Blind || !flags.verbose) pline("Your force field causes a projectile to miss you.");
+			else pline("Your force field causes %s to miss you.", onm);
+			return(0);
+
 	} else if (!rn2(extrachance) && rnd(30) < (2 + (GushLevel / 2) ) ) {
 
 			/* depending on your character level, you may be able to dodge --Amy */
@@ -1228,6 +1234,9 @@ struct monst *mtmp;
 		multishot += objects[mwep->otyp].oc_rof;
 
 	    switch (monsndx(mtmp->data)) {
+	    case PM_SPARD:
+		    multishot += 3;
+		    break;
 	    case PM_RANGER:
 	    case PM_ROCKER:
 	    case PM_GATLING_ARCHER:
