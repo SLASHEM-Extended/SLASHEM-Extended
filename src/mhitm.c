@@ -1745,7 +1745,7 @@ physical:
 		if (!rn2(20)) {
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
-			(void) makemon((struct permonst *)0, magr->mx, magr->my, MM_ANGRY|MM_ADJACENTOK);
+			(void) makemon((struct permonst *)0, magr->mx, magr->my, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 			u.aggravation = 0;
 		}
 
@@ -2787,7 +2787,7 @@ int mdead;
 		if (!rn2(20)) {
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
-			(void) makemon((struct permonst *)0, mdef->mx, mdef->my, MM_ANGRY|MM_ADJACENTOK);
+			(void) makemon((struct permonst *)0, mdef->mx, mdef->my, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 			u.aggravation = 0;
 		}
 

@@ -4407,7 +4407,7 @@ coord *mm;
 		case 8:
 		case 9:
 		case 10:
-		(void) makemon(&mons[PM_ANGRY_WATCHMAN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_ANGRY_WATCHMAN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 11:
 		case 12:
@@ -4429,7 +4429,7 @@ coord *mm;
 		case 28:
 		case 29:
 		case 30:
-		(void) makemon(&mons[PM_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 31:
 		case 32:
@@ -4501,7 +4501,7 @@ coord *mm;
 		case 98:
 		case 99:
 		case 100:
-		(void) makemon(&mons[PM_KEYSTONE_KOP], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_KEYSTONE_KOP], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 101:
 		case 102:
@@ -4509,7 +4509,7 @@ coord *mm;
 		case 104:
 		case 105:
 		case 106:
-		(void) makemon(&mons[PM_ANGRY_WATCH_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_ANGRY_WATCH_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 107:
 		case 108:
@@ -4521,7 +4521,7 @@ coord *mm;
 		case 114:
 		case 115:
 		case 116:
-		(void) makemon(&mons[PM_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 117:
 		case 118:
@@ -4557,19 +4557,19 @@ coord *mm;
 		case 148:
 		case 149:
 		case 150:
-		(void) makemon(&mons[PM_KOP_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_KOP_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 151:
 		case 152:
 		case 153:
-		(void) makemon(&mons[PM_ANGRY_WATCH_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_ANGRY_WATCH_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 154:
 		case 155:
 		case 156:
 		case 157:
 		case 158:
-		(void) makemon(&mons[PM_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 159:
 		case 160:
@@ -4593,12 +4593,12 @@ coord *mm;
 		case 178:
 		case 179:
 		case 180:
-		(void) makemon(&mons[PM_KOP_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_KOP_LIEUTENANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 181:
 		case 182:
 		case 183:
-		(void) makemon(&mons[PM_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_CAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 184:
 		case 185:
@@ -4608,34 +4608,34 @@ coord *mm;
 		case 189:
 		case 190:
 		case 191:
-		(void) makemon(&mons[PM_KOP_KAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_KOP_KAPTAIN], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 192:
-		(void) makemon(&mons[PM_GENERAL], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_GENERAL], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 193:
 		case 194:
 		case 195:
 		case 196:
 		case 197:
-		(void) makemon(&mons[PM_KOP_KOMMISSIONER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_KOP_KOMMISSIONER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 198:
 		case 199:
 		case 200:
-		(void) makemon(&mons[PM_KOP_KCHIEF], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_KOP_KCHIEF], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 201:
-		(void) makemon(&mons[PM_ARCH_LICH], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_ARCH_LICH], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 202:
-		(void) makemon(&mons[PM_ANGRY_WATCH_LEADER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_ANGRY_WATCH_LEADER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 203:
-		(void) makemon(&mons[PM_KOP_KATCHER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(&mons[PM_KOP_KATCHER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		default: /* can spawn sephirahs and similar things --Amy */
-		(void) makemon(mkclass(S_KOP,0), mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
+		(void) makemon(mkclass(S_KOP,0), mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		} /* switch */
 

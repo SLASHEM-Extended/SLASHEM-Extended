@@ -3736,7 +3736,7 @@ use_pole (obj)
 			u.heavyaggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
-				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
 			}

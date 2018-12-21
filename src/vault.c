@@ -580,7 +580,7 @@ letknow:
 			}
 
 		      while(--copcnt >= 0) {
-				(void) makemon(mkclass(S_KOP,0), grd->mx, grd->my, MM_ANGRY|MM_ADJACENTOK);
+				(void) makemon(mkclass(S_KOP,0), grd->mx, grd->my, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 
 				if (!rn2(100)) {
 

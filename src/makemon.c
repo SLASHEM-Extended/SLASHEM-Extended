@@ -15086,6 +15086,7 @@ register int	mmflags;
 	place_monster(mtmp, x, y);
 	mtmp->mcansee = mtmp->mcanmove = TRUE;
 	mtmp->mpeaceful = (mmflags & MM_ANGRY) ? FALSE : peace_minded(ptr);
+	if (!mtmp->mpeaceful && (mmflags & MM_FRENZIED) && !rn2(3)) mtmp->mfrenzied = TRUE;
 	mtmp->mtraitor  = FALSE;
 	mtmp->masleep = 0;
 

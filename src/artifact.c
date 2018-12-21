@@ -2515,7 +2515,7 @@ doinvoke()
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(21)) {
+			} else switch (rnd(23)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -2595,7 +2595,7 @@ doinvoke()
 					u.aggravation = 1;
 					reset_rndmonst(NON_PM);
 					while (aggroamount) {
-						makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+						makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 						aggroamount--;
 						if (aggroamount < 0) aggroamount = 0;
 					}
@@ -3240,6 +3240,58 @@ doinvoke()
 						HAggravate_monster &= ~TIMEOUT;
 						You_feel("more acceptable!");
 					}
+					break;
+				case 22:
+					{
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+						int attempts = 0;
+						register struct permonst *ptrZ;
+newboss:
+					do {
+
+						ptrZ = rndmonst();
+						attempts++;
+						if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+					if (ptrZ && ptrZ->geno & G_UNIQ) {
+						if (wizard) pline("monster generation: %s", ptrZ->mname);
+						(void) makemon(ptrZ, u.ux, u.uy, MM_ANGRY);
+					}
+					else if (rn2(50)) {
+						attempts = 0;
+						goto newboss;
+					}
+					if (!rn2(10) ) {
+						attempts = 0;
+						goto newboss;
+					}
+					pline("Boss monsters appear from nowhere!");
+
+					}
+					u.aggravation = 0;
+
+					break;
+				case 23:
+					if (!rn2(6400)) {
+						ragnarok(TRUE);
+						if (evilfriday) evilragnarok(TRUE,level_difficulty());
+
+					}
+
+					u.aggravation = 1;
+					u.heavyaggravation = 1;
+					DifficultyIncreased += 1;
+					HighlevelStatus += 1;
+					EntireLevelMode += 1;
+
+					(void) makemon(mkclass(S_NEMESE,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+
+					u.aggravation = 0;
+					u.heavyaggravation = 0;
+
 					break;
 				default:
 					impossible("undefined pentagram effect");

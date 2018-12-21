@@ -3341,7 +3341,7 @@ newegomon:
 				reset_rndmonst(NON_PM);
 				while (aggroamount) {
 
-					makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+					makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					aggroamount--;
 					if (aggroamount < 0) aggroamount = 0;
 				}
@@ -3358,7 +3358,7 @@ newegomon:
 				{
 				int pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
 				if (pm && (pm != NON_PM)) {
-					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY);
+					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon climbs out of the fountain...");
 				}
 				}
@@ -5544,7 +5544,7 @@ rerollX:
 		{
 		register int nemesenum = urole.nemesnum;
 
-		(void) makemon(&mons[nemesenum], u.ux, u.uy, MM_ANGRY);
+		(void) makemon(&mons[nemesenum], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 		verbalize("Ha ha ha ha! Wa ha ha ha! You are so doomed!");
 
 		}
@@ -6878,7 +6878,7 @@ madnesseffect:
 		if (isfriday) aggroamount *= 2;
 
 		while (aggroamount) {
-			makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+			makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 			aggroamount--;
 			if (aggroamount < 0) aggroamount = 0;
 		}
@@ -9166,7 +9166,7 @@ madnesseffect:
 			pline("CLICK! You have triggered a trap!");
 			deltrap(trap);
 
-			if (elderpriest = makemon(&mons[PM_DNETHACK_ELDER_PRIEST_TM_], u.ux, u.uy, MM_ANGRY)) {
+			if (elderpriest = makemon(&mons[PM_DNETHACK_ELDER_PRIEST_TM_], u.ux, u.uy, MM_ANGRY|MM_FRENZIED)) {
 				pline("The most dangerous monster in existence was just generated next to you, which means you're in big trouble.");
 			} else {
 				pline("You feel an immense sense of relief as you realize that the trap must have failed to trigger.");
@@ -14438,7 +14438,7 @@ domagictrap()
 		      cy = rn2(ROWNO);
 			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
 
-			makemon(mkclass(S_GHOST,0), cx, cy, MM_ANGRY);
+			makemon(mkclass(S_GHOST,0), cx, cy, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
 			u.heavyaggravation = 0;
@@ -14471,7 +14471,7 @@ newwere:
 				goto newwere;
 			}
 
-			if (pm) (void) makemon(pm, cx, cy, MM_ANGRY);
+			if (pm) (void) makemon(pm, cx, cy, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
 
@@ -14493,7 +14493,7 @@ newwere:
 		      cy = rn2(ROWNO);
 			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) break;
 
-			makemon(mkclass(S_NEMESE,0), cx, cy, MM_ANGRY);
+			makemon(mkclass(S_NEMESE,0), cx, cy, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
 

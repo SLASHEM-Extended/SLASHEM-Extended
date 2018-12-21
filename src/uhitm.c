@@ -4730,7 +4730,7 @@ register struct attack *mattk;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
-				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
 			}
@@ -5629,7 +5629,7 @@ register struct attack *mattk;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
-				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
 			}
@@ -7643,7 +7643,7 @@ boolean ranged;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
-				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
 			}

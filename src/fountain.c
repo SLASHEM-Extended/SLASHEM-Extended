@@ -218,6 +218,28 @@ drinkfountain()
 		pline("The water is very nutritious!");
 	}
 
+	/* occasionally give nastytrap effects, because fountain quaffing is supposed to be VERY DANGEROUS(TM) --Amy */
+	if (!rn2(100)) {
+
+		if (rn2(50)) {
+
+			int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+			if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+			int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+			if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+			if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+			randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+		} else { /* oh my god the RNG hates you and gives the effect permanently... */
+
+			getnastytrapintrinsic();
+
+		}
+
+	}
+
 	if (mgkftn && u.uluck >= 0 && (!isfriday || !rn2(2)) && fate >= 10) {
 		int i, ii, littleluck = (u.uluck < 4);
 
@@ -272,7 +294,7 @@ drinkfountain()
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
-				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
 			}
@@ -288,7 +310,7 @@ drinkfountain()
 		case 16:
 			pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
 			if (pm && (pm != NON_PM)) {
-				(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY);
+				(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				pline("An angry demon climbs out of the fountain...");
 			}
 			break;
@@ -578,7 +600,7 @@ register struct obj *obj;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
-				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
 			}
@@ -592,7 +614,7 @@ register struct obj *obj;
 			if (!rn2(50)) {
 				pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
 				if (pm && (pm != NON_PM)) {
-					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY);
+					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon climbs out of the fountain...");
 				}
 			}
@@ -670,7 +692,7 @@ newhamburger:
 				goto newhamburger;
 			}
 
-			if (ppm) (void) makemon(ppm, u.ux, u.uy, MM_ANGRY);
+			if (ppm) (void) makemon(ppm, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 			aggroamount--;
 
 			} /* while (aggroamount) */

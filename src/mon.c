@@ -4040,7 +4040,7 @@ register struct monst *mtmp;
 		}
 
 	      while(--copcnt >= 0) {
-			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
+			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 
 			if (!rn2(100)) {
 
@@ -7453,7 +7453,7 @@ register boolean silent;
 		}
 
 	      while(--copcnt >= 0) {
-			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
+			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 
 			if (!rn2(100)) {
 

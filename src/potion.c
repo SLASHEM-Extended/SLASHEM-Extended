@@ -2118,16 +2118,16 @@ boolean guaranteed;
 				case 3:
 				case 4:
 				case 5:
-					(void) makemon(mkclass(S_DRAGON,0), x, y, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(mkclass(S_DRAGON,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
 					break;
 				case 6:
 				case 7:
 				case 8:
-					(void) makemon(mkclass(S_GIANT,0), x, y, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(mkclass(S_GIANT,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
 					break;
 				case 9:
 				case 10:
-					(void) makemon(mkclass(S_DEMON,0), x, y, MM_ADJACENTOK|MM_ANGRY);
+					(void) makemon(mkclass(S_DEMON,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
 					break;
 			}
 
