@@ -4006,7 +4006,7 @@ register struct monst *mtmp;
 		}
 	}
 	if(mtmp->iswiz) wizdead();
-	if(mtmp->data->msound == MS_NEMESIS && mtmp->data->mlet != S_NEMESE && tmp != PM_TRUE_MISSINGNO && tmp != PM_ETHEREAL_MISSINGNO && tmp != PM_STARLIT_SKY  && tmp != PM_MISNAMED_STARLIT_SKY && tmp != PM_WRONG_NAMED_STARLIT_SKY && tmp != PM_ERRONEOUS_STARLIT_SKY && tmp != PM_DARK_STARLIT_SKY && tmp != PM_BLACK_STARLIT_SKY && tmp != PM_RED_STARLIT_SKY && tmp != PM_BROWN_STARLIT_SKY && tmp != PM_GREEN_STARLIT_SKY && tmp != PM_PURPLE_STARLIT_SKY && tmp != PM_YELLOW_STARLIT_SKY && tmp != PM_ORANGE_STARLIT_SKY && tmp != PM_CYAN_STARLIT_SKY && tmp != PM_VIOLET_STARLIT_SKY && tmp != PM_POLYINITOR && tmp != PM_DESTABILIZER) nemdead();
+	if(mtmp->data->msound == MS_NEMESIS && mtmp->mnum >= PM_LORD_CARNARVON && mtmp->mnum <= PM_UPPER_BULL) nemdead();
 
 	if(tmp == PM_ANASTASIA_STEELE) { /* very bad! */
 

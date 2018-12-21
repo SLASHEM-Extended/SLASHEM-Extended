@@ -16564,7 +16564,7 @@ register int	mmflags;
 		mitem = CANDELABRUM_OF_INVOCATION;
 	} else if (mndx == PM_CROESUS) {
 		mitem = TWO_HANDED_SWORD;
-	} else if (ptr->msound == MS_NEMESIS && ptr->mlet != S_NEMESE && mndx != PM_TRUE_MISSINGNO && mndx != PM_ETHEREAL_MISSINGNO && mndx != PM_STARLIT_SKY && mndx != PM_MISNAMED_STARLIT_SKY && mndx != PM_WRONG_NAMED_STARLIT_SKY && mndx != PM_ERRONEOUS_STARLIT_SKY && mndx != PM_DARK_STARLIT_SKY && mndx != PM_BLACK_STARLIT_SKY && mndx != PM_RED_STARLIT_SKY && mndx != PM_BROWN_STARLIT_SKY && mndx != PM_GREEN_STARLIT_SKY && mndx != PM_PURPLE_STARLIT_SKY && mndx != PM_YELLOW_STARLIT_SKY && mndx != PM_ORANGE_STARLIT_SKY && mndx != PM_CYAN_STARLIT_SKY && mndx != PM_VIOLET_STARLIT_SKY && mndx != PM_POLYINITOR && mndx != PM_DESTABILIZER && mndx >= PM_LORD_CARNARVON && mndx <= PM_UPPER_BULL) {
+	} else if (ptr->msound == MS_NEMESIS && mndx >= PM_LORD_CARNARVON && mndx <= PM_UPPER_BULL) {
 		mitem = BELL_OF_OPENING; /* prevent new random nemesis monsters from dropping the bell --Amy */
 	} else if (mndx == PM_PESTILENCE) {
 		mitem = POT_SICKNESS;
