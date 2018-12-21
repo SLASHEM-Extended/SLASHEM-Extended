@@ -1734,7 +1734,7 @@ register int pm;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(10)) {
 				You_feel("more %s!", flags.female ? "pretty" : "attractive");
-				(void) adjattrib(A_CHA, 1, FALSE);
+				(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 				break;
 			}
 		}
@@ -1745,7 +1745,7 @@ register int pm;
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			You_feel("more %s!", flags.female ? "pretty" : "attractive");
-			(void) adjattrib(A_CHA, 1, FALSE);
+			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 			}
 		break;
 
@@ -1754,7 +1754,7 @@ register int pm;
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (ABASE(A_CON) < ATTRMAX(A_CON)) {
 			You_feel("tougher!");
-			(void) adjattrib(A_CON, 1, FALSE);
+			(void) adjattrib(A_CON, 1, FALSE, TRUE);
 			}
 
 		break;
@@ -2069,7 +2069,7 @@ register int pm;
 			/* If we're still oversaturated ... */
 			if (u.uhunger >= 4000) {
 				You_feel("like your chest is going to explode.");
-				losestr(rnd(4));
+				losestr(rnd(4), TRUE);
 				losehp(rnd(15), "gluttony", KILLED_BY);
 				pline("It did!");
 			}
@@ -2825,7 +2825,7 @@ register int pm;
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(2)) {
 				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
-				(void) adjattrib(A_INT, 1, FALSE);
+				(void) adjattrib(A_INT, 1, FALSE, TRUE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
@@ -2896,7 +2896,7 @@ register int pm;
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(5)) {
 				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
-				(void) adjattrib(A_INT, 1, FALSE);
+				(void) adjattrib(A_INT, 1, FALSE, TRUE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
@@ -2993,7 +2993,7 @@ register int pm;
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(2)) {
 				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
-				(void) adjattrib(A_INT, 1, FALSE);
+				(void) adjattrib(A_INT, 1, FALSE, TRUE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
@@ -3044,7 +3044,7 @@ register int pm;
 		 if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(10) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 				You_feel("more %s!", flags.female ? "pretty" : "attractive");
-				(void) adjattrib(A_CHA, 1, FALSE);
+				(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 			}
 		  }
 		}
@@ -3055,7 +3055,7 @@ register int pm;
 		 if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			if (!rn2(dmgtype(ptr, AD_SSEX) ? 3 : 10)  && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 				You_feel("more %s!", flags.female ? "pretty" : "attractive");
-				(void) adjattrib(A_CHA, 1, FALSE);
+				(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 			}
 		  }
 		}
@@ -3076,7 +3076,7 @@ register int pm;
 		if (dmgtype(ptr, AD_DRIN) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			You_feel("smarter!");
-			(void) adjattrib(A_INT, 1, 2);
+			(void) adjattrib(A_INT, 1, 2, TRUE);
 		  }
 		}
 
@@ -3084,7 +3084,7 @@ register int pm;
 		if (dmgtype(ptr, AD_SPC2) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 105 : 35) && rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 		 if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			You_feel("smarter!");
-			(void) adjattrib(A_INT, 1, 2);
+			(void) adjattrib(A_INT, 1, 2, TRUE);
 		  }
 		}
 
@@ -3193,7 +3193,7 @@ register int pm;
 				if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 					if (!rn2(10)) {
 						You_feel("more %s!", flags.female ? "pretty" : "attractive");
-						(void) adjattrib(A_CHA, 1, FALSE);
+						(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 						break;
 					}
 				}
@@ -3201,7 +3201,7 @@ register int pm;
 			case 2:
 				if (ABASE(A_CON) < ATTRMAX(A_CON)) {
 					You_feel("tougher!");
-					(void) adjattrib(A_CON, 1, FALSE);
+					(void) adjattrib(A_CON, 1, FALSE, TRUE);
 					}
 			break;
 			case 3:
@@ -3259,7 +3259,7 @@ register int pm;
 				if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 					if (!rn2(2)) {
 						pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
-						(void) adjattrib(A_INT, 1, FALSE);
+						(void) adjattrib(A_INT, 1, FALSE, TRUE);
 						break;
 					}
 				}
@@ -3840,20 +3840,20 @@ opentin()		/* called during each move whilst opening a tin */
 	    costly_tin((const char*)0);
 
 	    if (!tin.tin->cursed) {
-		if (!rn2(3)) (void) adjattrib(A_STR, 1, FALSE);
-		if (!rn2(3)) (void) adjattrib(A_DEX, 1, FALSE);
-		if (!rn2(3)) (void) adjattrib(A_CON, 1, FALSE);
-		if (!rn2(3)) (void) adjattrib(A_INT, 1, FALSE);
-		if (!rn2(3)) (void) adjattrib(A_WIS, 1, FALSE);
-		if (!rn2(3)) (void) adjattrib(A_CHA, 1, FALSE);
+		if (!rn2(3)) (void) adjattrib(A_STR, 1, FALSE, TRUE);
+		if (!rn2(3)) (void) adjattrib(A_DEX, 1, FALSE, TRUE);
+		if (!rn2(3)) (void) adjattrib(A_CON, 1, FALSE, TRUE);
+		if (!rn2(3)) (void) adjattrib(A_INT, 1, FALSE, TRUE);
+		if (!rn2(3)) (void) adjattrib(A_WIS, 1, FALSE, TRUE);
+		if (!rn2(3)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
 
 	    } else {
-		(void) adjattrib(A_STR, -1, FALSE);
-		(void) adjattrib(A_DEX, -1, FALSE);
-		(void) adjattrib(A_CON, -1, FALSE);
-		(void) adjattrib(A_INT, -1, FALSE);
-		(void) adjattrib(A_WIS, -1, FALSE);
-		(void) adjattrib(A_CHA, -1, FALSE);
+		(void) adjattrib(A_STR, -1, FALSE, TRUE);
+		(void) adjattrib(A_DEX, -1, FALSE, TRUE);
+		(void) adjattrib(A_CON, -1, FALSE, TRUE);
+		(void) adjattrib(A_INT, -1, FALSE, TRUE);
+		(void) adjattrib(A_WIS, -1, FALSE, TRUE);
+		(void) adjattrib(A_CHA, -1, FALSE, TRUE);
 
 	    }
 	    pline("You'll have incessant flatulence for a while now...");
@@ -3883,10 +3883,10 @@ opentin()		/* called during each move whilst opening a tin */
 	    costly_tin((const char*)0);
 
 	    if (!tin.tin->cursed) {
-		(void) adjattrib(A_CON, 1, FALSE);
+		(void) adjattrib(A_CON, 1, FALSE, TRUE);
 
 	    } else {
-		(void) adjattrib(A_CON, -1, FALSE);
+		(void) adjattrib(A_CON, -1, FALSE, TRUE);
 
 	    }
 
@@ -3913,10 +3913,10 @@ opentin()		/* called during each move whilst opening a tin */
 	    costly_tin((const char*)0);
 
 	    if (!tin.tin->cursed) {
-		(void) adjattrib(A_INT, 1, FALSE);
+		(void) adjattrib(A_INT, 1, FALSE, TRUE);
 
 	    } else {
-		(void) adjattrib(A_INT, -1, FALSE);
+		(void) adjattrib(A_INT, -1, FALSE, TRUE);
 
 	    }
 
@@ -4250,8 +4250,8 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		tp++;
 		pline(Hallucination ? "Feels like your face is turning green!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
-			if (!rn2(3)) losestr(rnd(2)); /* tone down strength loss, since you have to eat many more poisonous */
-			if (!rn2(60)) losestr(rnd(2)); /* corpses in order to get poison resistance --Amy */
+			if (!rn2(3)) losestr(rnd(2), TRUE); /* tone down strength loss, since you have to eat many more poisonous */
+			if (!rn2(60)) losestr(rnd(2), TRUE); /* corpses in order to get poison resistance --Amy */
 			losehp(rnd(15 + ptr->mlevel), "poisonous corpse", KILLED_BY_AN);
 		} else	You("seem unaffected by the poison.");
 	/* now any corpse left too long will make you mildly ill */
@@ -4438,7 +4438,7 @@ struct obj *otmp;
 		   case 1:
 			if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
 				You_feel("your stomach twinge.");
-				losestr(rnd(4));
+				losestr(rnd(4), TRUE);
 				losehp(rnd(15), "poisonous pill", KILLED_BY_AN);
 			} else  You("seem unaffected by the poison.");
 			break;
@@ -4481,7 +4481,7 @@ struct obj *otmp;
 		   case 1:
 			if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
 				You_feel("rather ill....");
-				losestr(rnd(4));
+				losestr(rnd(4), TRUE);
 				losehp(rnd(15), "poisonous mushroom", KILLED_BY_AN);
 			} else  You("burp loudly.");
 			break;
@@ -4710,32 +4710,32 @@ struct obj *otmp;
 		break;
 	    case RIN_ADORNMENT:
 		accessory_has_effect(otmp);
-		if (adjattrib(A_CHA, otmp->spe, -1))
+		if (adjattrib(A_CHA, otmp->spe, -1, TRUE))
 		    makeknown(typ);
 		break;
 	    case RIN_GAIN_STRENGTH:
 		accessory_has_effect(otmp);
-		if (adjattrib(A_STR, otmp->spe, -1))
+		if (adjattrib(A_STR, otmp->spe, -1, TRUE))
 		    makeknown(typ);
 		break;
 	    case RIN_GAIN_CONSTITUTION:
 		accessory_has_effect(otmp);
-		if (adjattrib(A_CON, otmp->spe, -1))
+		if (adjattrib(A_CON, otmp->spe, -1, TRUE))
 		    makeknown(typ);
 		break;
 	    case RIN_GAIN_INTELLIGENCE:
 		accessory_has_effect(otmp);
-		if (adjattrib(A_INT, otmp->spe, -1))
+		if (adjattrib(A_INT, otmp->spe, -1, TRUE))
 		    makeknown(typ);
 		break;
 	    case RIN_GAIN_WISDOM:
 		accessory_has_effect(otmp);
-		if (adjattrib(A_WIS, otmp->spe, -1))
+		if (adjattrib(A_WIS, otmp->spe, -1, TRUE))
 		    makeknown(typ);
 		break;
 	    case RIN_GAIN_DEXTERITY:
 		accessory_has_effect(otmp);
-		if (adjattrib(A_DEX, otmp->spe, -1))
+		if (adjattrib(A_DEX, otmp->spe, -1, TRUE))
 		    makeknown(typ);
 		break;
 	    case RIN_INCREASE_ACCURACY:
@@ -6110,7 +6110,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (otmp->oclass == WEAPON_CLASS && otmp->opoisoned) {
 		pline(Hallucination ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
-		    losestr(rnd(4));
+		    losestr(rnd(4), TRUE);
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
 		} else
 		    You("seem unaffected by the poison.");
@@ -6651,11 +6651,11 @@ boolean incr;
 
 	if(newhs != u.uhs) {
 		if(newhs >= WEAK && u.uhs < WEAK) {
-			losestr(1);	/* this may kill you -- see below */
+			losestr(1, FALSE);	/* this may kill you -- see below */
 			if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) u.weakcheat++; /* cheater! */
 			}
 		else if(newhs < WEAK && u.uhs >= WEAK) {
-			if (!u.weakcheat) losestr(-1); /* otherwise this could be exploited until you have 25 str --Amy */
+			if (!u.weakcheat) losestr(-1, TRUE); /* otherwise this could be exploited until you have 25 str --Amy */
 			else u.weakcheat--;
 			}
 		switch(newhs){

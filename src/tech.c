@@ -5687,7 +5687,7 @@ revid_end:
 	    case T_INTENSIVE_TRAINING:
 
 		pline("You train your attributes...");
-		adjattrib(rn2(A_MAX), 1, -1);
+		adjattrib(rn2(A_MAX), 1, -1, TRUE);
 		t_timeout = rnz(7500);
 		break;
 

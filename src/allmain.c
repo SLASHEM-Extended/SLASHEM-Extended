@@ -2539,7 +2539,7 @@ trapsdone:
 			pline("Suddenly, your gauntlets kiss you!");
 
 			if ((rnd(ABASE(A_CHA)) < 11) && ABASE(A_CHA) < 18) {
-				(void) adjattrib(A_CHA, 1, -1);
+				(void) adjattrib(A_CHA, 1, -1, TRUE);
 			}
 
 			nomul(-5, "being kissed by the bise gauntlets", FALSE);
@@ -2568,12 +2568,12 @@ trapsdone:
 							u.uen = (u.uenmax += rnd(5));
 							break;
 						case 1: You_feel("good enough to do it again.");
-							(void) adjattrib(A_CON, 1, TRUE);
+							(void) adjattrib(A_CON, 1, TRUE, TRUE);
 							exercise(A_CON, TRUE);
 							flags.botl = 1;
 							break;
 						case 2: You("will always remember the feeling of near suffocation...");
-							(void) adjattrib(A_WIS, 1, TRUE);
+							(void) adjattrib(A_WIS, 1, TRUE, TRUE);
 							exercise(A_WIS, TRUE);
 							flags.botl = 1;
 							break;
@@ -2671,7 +2671,7 @@ trapsdone:
 
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 				You("produce very erotic noises.");
-				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 			}
 
 			pline("But you were such a bitch and crapped on the lid!");
@@ -2690,7 +2690,7 @@ trapsdone:
 
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 				You("produce very erotic noises.");
-				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 			}
 
 			pline("But in your haste, you forgot to open the lid!");
@@ -2716,7 +2716,7 @@ trapsdone:
 
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 				You("produce very erotic noises.");
-				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 			}
 
 			nomovemsg = "You are done shitting.";
@@ -2789,7 +2789,7 @@ trapsdone:
 
 				stop_occupation();
 
-				if (ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE);
+				if (ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
 				else {
 				    if (Upolyd) {
 					u.mh -= 5;
@@ -6769,7 +6769,7 @@ newbossA:
 			    break;
 		    case 6: make_burned(HBurned + lcount, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
 			    break;
@@ -6803,7 +6803,7 @@ newbossA:
 			    break;
 		    case 6: make_burned(HBurned + lcount, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
 			    break;
@@ -6837,7 +6837,7 @@ newbossA:
 			    break;
 		    case 6: make_burned(HBurned + lcount, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
 			    break;
@@ -8377,7 +8377,7 @@ newbossB:
 				case 21:
 				case 22:
 				case 23: /* drain a random stat by 5 points */
-					(void) adjattrib(rn2(A_MAX), -5, FALSE);
+					(void) adjattrib(rn2(A_MAX), -5, FALSE, TRUE);
 					break;
 				case 24: /* amnesia, magnitude 3 */
 					forget(3);
@@ -8411,12 +8411,12 @@ newbossB:
 					break;
 				case 29:
 				case 30: /* drain all stats by one */
-					(void) adjattrib(A_STR, -1, FALSE);
-					(void) adjattrib(A_INT, -1, FALSE);
-					(void) adjattrib(A_DEX, -1, FALSE);
-					(void) adjattrib(A_CHA, -1, FALSE);
-					(void) adjattrib(A_CON, -1, FALSE);
-					(void) adjattrib(A_WIS, -1, FALSE);
+					(void) adjattrib(A_STR, -1, FALSE, TRUE);
+					(void) adjattrib(A_INT, -1, FALSE, TRUE);
+					(void) adjattrib(A_DEX, -1, FALSE, TRUE);
+					(void) adjattrib(A_CHA, -1, FALSE, TRUE);
+					(void) adjattrib(A_CON, -1, FALSE, TRUE);
+					(void) adjattrib(A_WIS, -1, FALSE, TRUE);
 					break;
 			}
 		}
@@ -8474,7 +8474,7 @@ newbossB:
 				case 21:
 				case 22:
 				case 23: /* drain a random stat by 3 points */
-					(void) adjattrib(rn2(A_MAX), -3, FALSE);
+					(void) adjattrib(rn2(A_MAX), -3, FALSE, TRUE);
 					break;
 				case 24: /* amnesia, magnitude 1-3 */
 					forget(rnd(3));
@@ -8512,12 +8512,12 @@ newboss:
 					break;
 				case 26:
 				case 27: /* drain random stats by one, 50% chance for each of being affected */
-					if (rn2(2)) (void) adjattrib(A_STR, -1, FALSE);
-					if (rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
-					if (rn2(2)) (void) adjattrib(A_DEX, -1, FALSE);
-					if (rn2(2)) (void) adjattrib(A_CHA, -1, FALSE);
-					if (rn2(2)) (void) adjattrib(A_CON, -1, FALSE);
-					if (rn2(2)) (void) adjattrib(A_WIS, -1, FALSE);
+					if (rn2(2)) (void) adjattrib(A_STR, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_DEX, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_CHA, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_CON, -1, FALSE, TRUE);
+					if (rn2(2)) (void) adjattrib(A_WIS, -1, FALSE, TRUE);
 					break;
 			}
 		}
@@ -8529,7 +8529,7 @@ newboss:
 				    losexp("black breath drainage", FALSE, TRUE);
 				break;
 			} else { /* drain a random stat */
-				(void) adjattrib(rn2(A_MAX), -1, FALSE);
+				(void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			}
 		}
 
@@ -8539,7 +8539,7 @@ newboss:
 				    losexp("black breath drainage", FALSE, TRUE);
 				break;
 			} else { /* drain a random stat */
-				(void) adjattrib(rn2(A_MAX), -1, FALSE);
+				(void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			}
 		}
 

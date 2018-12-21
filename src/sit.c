@@ -278,7 +278,7 @@ dosit()
 
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 				You("produce very erotic noises.");
-				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 			}
 			else if (Role_if(PM_BARBARIAN) || Role_if(PM_CAVEMAN)) You("miss...");
 			else You("grunt.");
@@ -424,11 +424,11 @@ dosit()
 
 		switch (rnd(20))  {
 		    case 1:
-			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE);
+			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE, TRUE);
 			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
 			break;
 		    case 2:
-			(void) adjattrib(rn2(A_MAX), 1, FALSE);
+			(void) adjattrib(rn2(A_MAX), 1, FALSE, TRUE);
 			break;
 		    case 3:
 			pline("A%s electric shock shoots through your body!",

@@ -891,7 +891,7 @@ int how;
 		}
 
 		uunstone();
-		(void) adjattrib(A_CON, -1, TRUE);
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 1;
 		savelife(how);
 		killer = 0;
@@ -1152,7 +1152,7 @@ oneupdone:
 			goto lsdone;
 		}
 
-		(void) adjattrib(A_CON, -1, TRUE);
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
 /* useup() had to be moved for savelife() to distingush between Lifesaved */
@@ -1186,7 +1186,7 @@ lsdone:
 			goto implantdone;
 		}
 
-		(void) adjattrib(A_CON, -1, TRUE);
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
 		if (how == GENOCIDED)

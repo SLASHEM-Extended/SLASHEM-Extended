@@ -1668,7 +1668,7 @@ domonability()
 
 		if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 			You("produce very erotic noises.");
-			if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+			if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 		} else You("grunt.");
 		morehungry(rn2(400)+200);
 

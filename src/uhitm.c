@@ -7574,7 +7574,7 @@ boolean ranged;
 			    break;
 		    case 6: make_burned(HBurned + tmp, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
@@ -8657,8 +8657,8 @@ boolean ranged;
 			}
 		    }
 
-			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
-			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
 			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 			exercise(A_WIS, FALSE);
@@ -8919,8 +8919,8 @@ boolean ranged;
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -9097,7 +9097,7 @@ boolean ranged;
 				    break;
 			    case 6: make_burned(HBurned + tmp, TRUE);
 				    break;
-			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 				    break;
 			    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 				    break;
@@ -9146,7 +9146,7 @@ boolean ranged;
 			    break;
 		    case 6: make_burned(HBurned + tmp, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
@@ -9295,12 +9295,12 @@ boolean ranged;
 
 	       if ((!Strangled && !Breathless) || rn2(StrongMagical_breathing ? 2 : 3)) {
 		if (!Poison_resistance) pline("You're badly poisoned!");
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 		 poisoned("gas", rn2(A_MAX), "superpoisonous gas", 30);
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
@@ -9645,7 +9645,7 @@ boolean ranged;
 			else You("pause momentarily.");
 			break;
 		    case 4: /* drain Dex */
-			adjattrib(A_DEX, -rn1(1,1), 0);
+			adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 			break;
 		    case 5: /* steal teleportitis */
 			if(HTeleportation & INTRINSIC) {
@@ -10000,7 +10000,7 @@ boolean ranged;
 		
 			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
 				wdmg--;
-				(void) adjattrib(A_WIS, -1, TRUE);
+				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
 				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);

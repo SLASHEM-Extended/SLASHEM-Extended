@@ -558,7 +558,7 @@ nh_timeout()
 		    if (!rn2(10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 			if (rn2(50)) {
-				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 			} else {
 				You_feel("dizzy!");
 				forget(1 + rn2(5));
@@ -633,7 +633,7 @@ nh_timeout()
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -659,7 +659,7 @@ nh_timeout()
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -685,7 +685,7 @@ nh_timeout()
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -711,7 +711,7 @@ nh_timeout()
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -737,7 +737,7 @@ nh_timeout()
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -1110,8 +1110,8 @@ nh_timeout()
 					    }
 					}
 					/* adjattrib gives dunce cap message when appropriate */
-					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
-					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
 					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
@@ -2414,7 +2414,7 @@ nh_timeout()
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));

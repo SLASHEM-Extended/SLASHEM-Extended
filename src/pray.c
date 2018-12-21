@@ -332,7 +332,7 @@ register int trouble;
 			u.utrap = 0;
 		    break;
 	    case TROUBLE_STARVING:
-			if (!u.weakcheat) losestr(-1); /* otherwise this could be exploited until you have 25 str --Amy */
+			if (!u.weakcheat) losestr(-1, TRUE); /* otherwise this could be exploited until you have 25 str --Amy */
 			else u.weakcheat--;
 		    /* fall into... */
 	    case TROUBLE_HUNGRY:
@@ -727,7 +727,7 @@ aligntyp resp_god;
 						"art arrogant",
 			      youmonst.data->mlet == S_HUMAN ? "mortal" : "creature");
 			verbalize("Thou must relearn thy lessons!");
-			(void) adjattrib(A_WIS, -3, FALSE);
+			(void) adjattrib(A_WIS, -3, FALSE, TRUE);
 			losexp((char *)0, TRUE, FALSE); /* divine wrath ignores mundane stuff like drain resistance --Amy */
 			break;
 	    case 6:	if (!Punished) {
@@ -1876,7 +1876,7 @@ dosacrifice()
 	    if (u.ualign.type != A_CHAOTIC) {
 		adjalign(-25);
 		u.ugangr += 3;
-		(void) adjattrib(A_WIS, -1, TRUE);
+		(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 		if (!Inhell) angrygods(u.ualign.type);
 		change_luck(-5);
 	    } else adjalign(5);
@@ -1903,7 +1903,7 @@ dosacrifice()
 		pline("Such an action is an insult to %s!",
 		      (unicalign == A_CHAOTIC)
 		      ? "chaos" : unicalign ? "law" : "balance");
-		(void) adjattrib(A_WIS, -1, TRUE);
+		(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 		value = -5;
 	    } else if (u.ualign.type == altaralign) {
 		/* If different from altar, and altar is same as yours, */
@@ -2086,7 +2086,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		    pline("%s rejects your sacrifice!", a_gname());
 		    godvoice(altaralign, "Suffer, infidel!");
 		    change_luck(-5);
-		    (void) adjattrib(A_WIS, -2, TRUE);
+		    (void) adjattrib(A_WIS, -2, TRUE, TRUE);
 		    if (!Inhell) angrygods(u.ualign.type);
 			else 	angrygods(altaralign);
 		}
@@ -2922,7 +2922,7 @@ register int x, y;
 
     if(!strcmp(align_gname(altaralign), u_gname())) {
 	godvoice(altaralign, "How darest thou desecrate my altar!");
-	(void) adjattrib(A_WIS, -1, FALSE);
+	(void) adjattrib(A_WIS, -1, FALSE, TRUE);
     } else {
 	pline("A voice (could it be %s?) whispers:",
 	      align_gname(altaralign));

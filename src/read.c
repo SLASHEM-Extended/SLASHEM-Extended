@@ -3386,7 +3386,7 @@ proofarmorchoice:
 					else You("pause momentarily.");
 					break;
 				    case 4: /* drain Dex */
-					adjattrib(A_DEX, -rn1(1,1), 0);
+					adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 					break;
 				    case 5: /* steal teleportitis */
 					if(HTeleportation & INTRINSIC) {

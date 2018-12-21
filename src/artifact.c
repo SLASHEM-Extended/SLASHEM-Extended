@@ -2918,11 +2918,11 @@ doinvoke()
 				case 17:
 					{
 					int i = rn2(A_MAX);
-					adjattrib(i, 1, 0);
-					adjattrib(i, 1, 0);
-					adjattrib(i, 1, 0);
-					adjattrib(i, 1, 0);
-					adjattrib(i, 1, 0);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
 					}
 					break;
 				case 18:

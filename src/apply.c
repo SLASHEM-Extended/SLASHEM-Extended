@@ -2250,7 +2250,7 @@ degradeagain:
 		    break;
 	    case 6: make_burned(HBurned + lcount, TRUE);
 		    break;
-	    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+	    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 		    break;
 	    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
 		    break;
@@ -5540,7 +5540,7 @@ materialchoice:
 
 		delobj(obj);
 		noartispeak = TRUE;
-		(void) adjattrib(A_INT, 1, FALSE);
+		(void) adjattrib(A_INT, 1, FALSE, TRUE);
 		if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < AMAX(A_WIS)) {
 			ABASE(A_WIS) += 1;
 			AMAX(A_WIS) += 1;
@@ -5549,10 +5549,10 @@ materialchoice:
 		}
 
 		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) {
-			(void) adjattrib(A_INT, 1, FALSE);
-			(void) adjattrib(A_INT, 1, FALSE);
-			(void) adjattrib(A_INT, 1, FALSE);
-			(void) adjattrib(A_INT, 1, FALSE);
+			(void) adjattrib(A_INT, 1, FALSE, TRUE);
+			(void) adjattrib(A_INT, 1, FALSE, TRUE);
+			(void) adjattrib(A_INT, 1, FALSE, TRUE);
+			(void) adjattrib(A_INT, 1, FALSE, TRUE);
 			if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < AMAX(A_WIS)) {
 				ABASE(A_WIS) += 1;
 				AMAX(A_WIS) += 1;

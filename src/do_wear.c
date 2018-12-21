@@ -995,12 +995,12 @@ Cloak_on()
 		}
 		break;
 	case CLOAK_OF_ATTRIBUTE_LOSS:
-		adjattrib(A_STR, -1, FALSE);
-		adjattrib(A_DEX, -1, FALSE);
-		adjattrib(A_CON, -1, FALSE);
-		adjattrib(A_INT, -1, FALSE);
-		adjattrib(A_WIS, -1, FALSE);
-		adjattrib(A_CHA, -1, FALSE);
+		adjattrib(A_STR, -1, FALSE, TRUE);
+		adjattrib(A_DEX, -1, FALSE, TRUE);
+		adjattrib(A_CON, -1, FALSE, TRUE);
+		adjattrib(A_INT, -1, FALSE, TRUE);
+		adjattrib(A_WIS, -1, FALSE, TRUE);
+		adjattrib(A_CHA, -1, FALSE, TRUE);
 		break;
 	case CLOAK_OF_TOTTER:
 		pline("You completely lose your sense of direction.");

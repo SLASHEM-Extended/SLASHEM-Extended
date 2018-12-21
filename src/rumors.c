@@ -372,8 +372,8 @@ register struct monst *oracl;
 
 			u.uevent.major_oracle = TRUE; /* so you can't hangup cheat */
 			You_feel("very enlightened!"); /* idea by hothraxxa: +1 INT; I (Amy) decided to give +1 WIS too */
-			(void) adjattrib(A_INT, 1, FALSE);
-			(void) adjattrib(A_WIS, 1, FALSE);
+			(void) adjattrib(A_INT, 1, FALSE, TRUE);
+			(void) adjattrib(A_WIS, 1, FALSE, TRUE);
 			/* what if your sustainer started with 3 wisdom? let's give you an extra point if you are one --Amy */
 			if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < 25) {
 				ABASE(A_WIS) += 1;

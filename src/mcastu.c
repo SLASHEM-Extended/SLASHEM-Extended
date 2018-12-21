@@ -614,8 +614,8 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 			losexp("psionic drain", FALSE, TRUE);
 		}
 		if (!rn2(200)) {
-			adjattrib(A_INT, -1, 1);
-			adjattrib(A_WIS, -1, 1);
+			adjattrib(A_INT, -1, 1, TRUE);
+			adjattrib(A_WIS, -1, 1, TRUE);
 		}
 		if (!rn2(200)) {
 			pline("You scream in pain!");
@@ -1065,7 +1065,7 @@ int spellnum;
 	    if (issoviet) dmg = mtmp->m_lev - rnd(5);
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    if (StrongHalf_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
-	    losestr(rnd(dmg));
+	    losestr(rnd(dmg), TRUE);
 	    if (u.uhp < 1)
 		done_in_by(mtmp);
 	}
@@ -1888,7 +1888,7 @@ int spellnum;
 	    if (issoviet) dmg = mtmp->m_lev - rnd(7);
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    if (StrongHalf_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
-	    adjattrib(rn2(A_MAX), -dmg, 0);
+	    adjattrib(rn2(A_MAX), -dmg, 0, TRUE);
 	}
 	dmg = 0;
 	break;

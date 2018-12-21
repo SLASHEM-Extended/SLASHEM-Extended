@@ -313,7 +313,7 @@ fortune (mtmp)
 	if (card_istrump(card))
 		switch (card_trump(card)) {
 		case 0:	/* the Fool */
-			adjattrib(A_WIS, -1, 0);
+			adjattrib(A_WIS, -1, 0, TRUE);
 			change_luck(-3);
 			break;
 		case 1:	/* the Magician */
@@ -350,7 +350,7 @@ fortune (mtmp)
 			}
 			break;
 		case 6: /* Strength */
-			adjattrib(A_STR, 1, 0);
+			adjattrib(A_STR, 1, 0, TRUE);
 			incr_itimeout(&HHalf_physical_damage, rn1(500, 500));
 			break;
 		case 7: /* the Hermit */
@@ -382,7 +382,7 @@ fortune (mtmp)
 			summon_minion(A_NONE, TRUE);
 			break;
 		case 12: /* Sorcery */
-			adjattrib(urole.spelstat, 1, 0);
+			adjattrib(urole.spelstat, 1, 0, TRUE);
 			incr_itimeout(&HHalf_spell_damage, rn1(500, 500));
 			break;
 		case 13: /* Death */

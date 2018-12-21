@@ -4084,7 +4084,7 @@ rerollchaloc:
 		    if (!rn2(10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
 
 			if (rn2(50)) {
-				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 			} else {
 				You_feel("dizzy!");
 				forget(1 + rn2(5));

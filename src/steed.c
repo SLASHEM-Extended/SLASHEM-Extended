@@ -217,7 +217,7 @@ use_saddle(otmp)
 	    You("put the saddle on %s.", mon_nam(mtmp));
 	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
 		You("reflect upon your life choices when applying the saddle.");
-		adjattrib(A_WIS, -1, FALSE);
+		adjattrib(A_WIS, -1, FALSE, TRUE);
 	    }
 	    if (otmp->owornmask) remove_worn_item(otmp, FALSE);
 	    freeinv(otmp);
@@ -452,7 +452,7 @@ mount_steed(mtmp, force)
 
 	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
 		You("reflect upon your life choices when climbing the saddle.");
-		adjattrib(A_WIS, -1, FALSE);
+		adjattrib(A_WIS, -1, FALSE, TRUE);
 	    }
 
 	}

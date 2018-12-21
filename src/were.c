@@ -761,8 +761,8 @@ boolean purify;
 		    You_feel("very bad!");
 		    if (in_wereform && !Race_if(PM_UNGENOMOLD) )
 			rehumanize();
-		    (void) adjattrib(A_STR, -rn1(3,3), 2);
-		    (void) adjattrib(A_CON, -rn1(3,3), 1);
+		    (void) adjattrib(A_STR, -rn1(3,3), 2, TRUE);
+		    (void) adjattrib(A_CON, -rn1(3,3), 1, TRUE);
 		    losehp(u.uhp - (u.uhp > 10 ? rnd(5) : 1), "purification",
 			    KILLED_BY);
 		}

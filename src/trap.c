@@ -3388,7 +3388,7 @@ newegomon:
 				   losehp(rnd(4),"unrefrigerated sip of juice", KILLED_BY_AN);
 				   break;
 				}
-				losestr(rn1(4,3));
+				losestr(rn1(4,3), TRUE);
 				losehp(rnd(10),"contaminated water", KILLED_BY);
 				exercise(A_CON, FALSE);
 				break;
@@ -3543,11 +3543,11 @@ newegomon:
 		} else switch (rnd(20)) {
 
 		    case 1:
-			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE);
+			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE, TRUE);
 			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
 			break;
 		    case 2:
-			(void) adjattrib(rn2(A_MAX), 1, FALSE);
+			(void) adjattrib(rn2(A_MAX), 1, FALSE, TRUE);
 			break;
 		    case 3:
 			pline("A%s electric shock shoots through your body!",
@@ -4454,7 +4454,7 @@ rerollX:
 					Your("gloves %s completely corroded.",
 					     Blind ? "feel" : "look");
 				}
-				losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3));
+				losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3), TRUE);
 				losehp(rnd(Poison_resistance ? 6 : 10), "wrenching poison", KILLED_BY_AN);
 
 				break;
@@ -4734,7 +4734,7 @@ rerollX:
 					else You("pause momentarily.");
 					break;
 				    case 4: /* drain Dex */
-					adjattrib(A_DEX, -rn1(1,1), 0);
+					adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 					break;
 				    case 5: /* steal teleportitis */
 					if(HTeleportation & INTRINSIC) {
@@ -5684,12 +5684,12 @@ rerollX:
 
 		if (!Poison_resistance) pline("You're badly poisoned!");
 		else pline("You're poisoned!");
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
@@ -5845,7 +5845,7 @@ rerollX:
 				pline("You're confused!");
 				break;
 			case 9:
-				(void) adjattrib(rn2(A_MAX), -1, FALSE);
+				(void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 				break;
 			case 10:
 				make_sick(rn1(25,25), "negative food poisoning", TRUE, SICK_VOMITABLE);
@@ -6566,7 +6566,7 @@ madnesseffect:
 				      make_vomiting(Vomiting+20, TRUE);
 					if (Sick && Sick < 100)	set_itimeout(&Sick, (Sick * 2) + 10);
 				}
-			      (void) adjattrib(A_CHA, !youghoul ? 1 : -1, FALSE);
+			      (void) adjattrib(A_CHA, !youghoul ? 1 : -1, FALSE, TRUE);
 
 				break;
 			case 3: /* holy incense */
@@ -10361,8 +10361,8 @@ madnesseffect:
 					    }
 					}
 					/* adjattrib gives dunce cap message when appropriate */
-					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
-					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
 					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
@@ -14189,7 +14189,7 @@ struct obj *box;        /* at the moment only for floor traps */
 
 		if (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT) {
 			pline("Now you smell even worse than before.");
-			(void) adjattrib(A_CHA, -1, TRUE);
+			(void) adjattrib(A_CHA, -1, TRUE, TRUE);
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
@@ -14567,7 +14567,7 @@ newhamburger:
 		   {   register int i,j;
 		       register struct monst *mtmp;
 
-		       (void) adjattrib(A_CHA,1,FALSE);
+		       (void) adjattrib(A_CHA,1,FALSE, TRUE);
 		       for(i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
 			   if(!isok(u.ux+i, u.uy+j)) continue;
 			   mtmp = m_at(u.ux+i, u.uy+j);

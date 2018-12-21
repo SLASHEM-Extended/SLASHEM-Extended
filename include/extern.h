@@ -108,12 +108,12 @@ E void intrinsicgainorloss(void);
 
 /* ### attrib.c ### */
 
-E boolean adjattrib(int,int,int);
+E boolean adjattrib(int,int,int,BOOLEAN_P);
 E void change_luck(SCHAR_P);
 E int stone_luck(BOOLEAN_P);
 E void set_moreluck(void);
 E void gainstr(struct obj *,int);
-E void losestr(int);
+E void losestr(int,BOOLEAN_P);
 E void restore_attrib(void);
 E void exercise(int,BOOLEAN_P);
 E void exerchk(void);

@@ -938,9 +938,10 @@ STATIC_DCL void postadjabil(long *);
 
 /* adjust an attribute; return TRUE if change is made, FALSE otherwise */
 boolean
-adjattrib(ndx, incr, msgflg)
+adjattrib(ndx, incr, msgflg, canresist)
 	int	ndx, incr;
 	int	msgflg;
+	boolean	canresist;
 
 /* 3 => no message at all and no development message, 2 => no message at all (but development can be given),
  * 1 => no message except encumber, zero => message, and negative => conditional (msg if change made) */
@@ -955,7 +956,7 @@ adjattrib(ndx, incr, msgflg)
 	}
 
 	/* Mithril items can sometimes prevent the player's stats from decreasing --Amy */
-	if (incr < 0) {
+	if (incr < 0 && canresist) {
 
 		int mithrilitemcount = 0;
 
@@ -1047,12 +1048,13 @@ gainstr(otmp, incr)
 	    if(ABASE(A_STR) < 18) num = (rn2(4) ? 1 : rnd(6) );
 	    else if (ABASE(A_STR) < STR18(85)) num = rnd(10);
 	}
-	(void) adjattrib(A_STR, (otmp && otmp->cursed) ? -num : num, TRUE);
+	(void) adjattrib(A_STR, (otmp && otmp->cursed) ? -num : num, TRUE, TRUE);
 }
 
 void
-losestr(num)	/* may kill you; cause may be poison or monster like 'a' */
+losestr(num, canresist)	/* may kill you; cause may be poison or monster like 'a' */
 	register int num;
+	boolean canresist;
 {
 	int ustr = ABASE(A_STR) - num;
 
@@ -1075,7 +1077,7 @@ losestr(num)	/* may kill you; cause may be poison or monster like 'a' */
 		u.uhpmax -= hpreduce;
 	    }
 	}
-	(void) adjattrib(A_STR, -num, TRUE);
+	(void) adjattrib(A_STR, -num, TRUE, canresist);
 }
 
 void
@@ -1438,7 +1440,7 @@ exerchk()
 #ifdef DEBUG
 		pline("exerchk: changing %d.", i);
 #endif
-		if(adjattrib(i, mod_val, -1)) {
+		if(adjattrib(i, mod_val, -1, TRUE)) {
 #ifdef DEBUG
 		    pline("exerchk: changed %d.", i);
 #endif

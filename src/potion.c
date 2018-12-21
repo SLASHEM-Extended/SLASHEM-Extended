@@ -1168,7 +1168,7 @@ badeffect()
 		case 141:
 			if (!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) {
 			    You("suddenly feel weaker!");
-			    losestr(rnz(4));
+			    losestr(rnz(4), TRUE);
 			    if (u.uhp < 1) {
 				u.youaredead = 1;
 				u.uhp = 0;
@@ -3272,15 +3272,15 @@ dodrink()
 		}
 		pline(Hallucination ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
-		    losestr(rnd(4));
+		    losestr(rnd(4), TRUE);
 		    losehp(rnd(15), "quaffing from a poisoned well", KILLED_BY);
 		} else You("resist the effects but still don't feel so good.");
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 		poisoned("The water", rn2(A_MAX), "poisoned well", 30);
 		if (!rn2(20)) {
 			levl[u.ux][u.uy].typ = CORR;
@@ -3468,7 +3468,7 @@ dodrink()
 		bad_equipment_heel();
 	    } else if (!strcmp(potion_descr, "gloss") && !rn2(10)) {
 		You("apply the lovely lip gloss that was contained inside.");
-		(void) adjattrib(A_CHA, 1, FALSE);
+		(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 	    } else if (!strcmp(potion_descr, "glam")) {
 		if (u.nailpolish < 10) {
 			u.nailpolish++;
@@ -3593,7 +3593,7 @@ peffects(otmp)
 		    pline("Ulch!  This makes you feel mediocre!");
 
 		    if (evilfriday) {
-			adjattrib(rn2(A_MAX), -1, 0);
+			adjattrib(rn2(A_MAX), -1, 0, TRUE);
 		    }
 
 		    break;
@@ -3760,7 +3760,7 @@ peffects(otmp)
 		}
 		else {
 			make_sick(Sick ? Sick/2L + 1L : 10, "urine potion", TRUE, SICK_VOMITABLE);
-			losestr(rnd(10));
+			losestr(rnd(10), TRUE);
 			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16), "drinking poisonous urine", KILLED_BY);
 
 		}
@@ -3885,14 +3885,14 @@ peffects(otmp)
 			unkn++;
 			You("have an uneasy feeling...");
 			if (evilfriday) {
-				adjattrib(A_WIS, -1, 0);
-				adjattrib(A_INT, -1, 0);
+				adjattrib(A_WIS, -1, 0, TRUE);
+				adjattrib(A_INT, -1, 0, TRUE);
 			}
 			exercise(A_WIS, FALSE);
 		} else {
 			if (otmp->blessed) {
-				if (!rn2(3)) (void) adjattrib(A_INT, 1, FALSE);
-				if (!rn2(3)) (void) adjattrib(A_WIS, 1, FALSE);
+				if (!rn2(3)) (void) adjattrib(A_INT, 1, FALSE, TRUE);
+				if (!rn2(3)) (void) adjattrib(A_WIS, 1, FALSE, TRUE);
 			}
 			You_feel("self-knowledgeable...");
 			display_nhwindow(WIN_MESSAGE, FALSE);
@@ -4162,7 +4162,7 @@ peffects(otmp)
 		int time;
 		if (otmp->cursed) {
 			pline("Ulch! What in the hell was that???");
-			adjattrib(A_CON,-1,-1);
+			adjattrib(A_CON,-1,-1, TRUE);
 			break;
 		}
 		You_feel("super-powerful!");
@@ -4178,7 +4178,7 @@ peffects(otmp)
 		pline("%s", fauxmessage());
 		if (!rn2(3)) pline("%s", fauxmessage());
 		if (otmp->cursed || !rn2(3)) {
-			adjattrib(A_CON,-1,-1);
+			adjattrib(A_CON,-1,-1, TRUE);
 		}
 		morehungry(rn1(50, 101));
 		make_confused(HConfusion + d(10,2),FALSE);
@@ -4427,14 +4427,14 @@ peffects(otmp)
 			case 1:
 				if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 					You_feel("more %s!", flags.female ? "pretty" : "attractive");
-					(void) adjattrib(A_CHA, 1, FALSE);
+					(void) adjattrib(A_CHA, 1, FALSE, TRUE);
 					break;
 				}
 			break;
 			case 2:
 				if (ABASE(A_CON) < ATTRMAX(A_CON)) {
 					You_feel("tougher!");
-					(void) adjattrib(A_CON, 1, FALSE);
+					(void) adjattrib(A_CON, 1, FALSE, TRUE);
 					}
 			break;
 			case 3:
@@ -4481,7 +4481,7 @@ peffects(otmp)
 			break;
 			case 10:
 				if (ABASE(A_INT) < ATTRMAX(A_INT)) {
-					(void) adjattrib(A_INT, 1, FALSE);
+					(void) adjattrib(A_INT, 1, FALSE, TRUE);
 				}
 				else {
 					pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
@@ -4607,7 +4607,7 @@ peffects(otmp)
 			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uarms && uarms->oartifact == ART_BONUS_HOLD) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) && !(uarmf && uarmf->oartifact == ART_ELENETTES) ) {
 			    poisontell(typ);
 			    if (!StrongPoison_resistance || !rn2(3)) {
-				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE);
+				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE, TRUE);
 			    }
 			}
 			if(!Poison_resistance) {
@@ -4705,7 +4705,7 @@ peffects(otmp)
 		if(otmp->cursed) {
 		    pline("Ulch!  That potion tasted foul!");
 		    if (evilfriday) {
-			adjattrib(rn2(A_MAX), -1, 0);
+			adjattrib(rn2(A_MAX), -1, 0, TRUE);
 		    }
 		    unkn++;
 		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) {
@@ -4718,7 +4718,7 @@ peffects(otmp)
 			/* only give "your X is already as high as it can get"
 			   message on last attempt (except blessed potions) */
 			itmp = (otmp->blessed || ii == 1) ? 0 : -1;
-			if (adjattrib(i, 1, itmp) && !otmp->blessed)
+			if (adjattrib(i, 1, itmp, TRUE) && !otmp->blessed)
 			    break;
 			if (rn2(5)) break; /* now, blessed ones no longer always increase every stat --Amy */
 		    } /* but a blessed one has a chance to increase more than one stat, or increase one stat twice */
@@ -5165,7 +5165,7 @@ peffects(otmp)
 
 	case POT_CYANIDE:
 		make_sick(Sick ? Sick/2L + 1L : 20, "cyanide potion", TRUE, SICK_VOMITABLE);
-		losestr(rnd(10));
+		losestr(rnd(10), TRUE);
 		pline(Hallucination ? "This tastes a little bitter; maybe it's some sort of medicine?" : "CN(-) + HCl <==> HCN + Cl(-) ");
 			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16),
 					"drinking cyanide", KILLED_BY);
@@ -5311,7 +5311,7 @@ peffects(otmp)
 		You_feel("like having your brain smashed out by a slice of lemon wrapped");
 		pline("around a large gold brick.");
 		if (otmp->cursed || !rn2(4)) {
-			adjattrib(A_INT,-1,-1);
+			adjattrib(A_INT,-1,-1, TRUE);
 		}
 		make_confused(itimeout_incr(HConfusion, d(6,7)), FALSE);	/* 6d7 is max. 42 */
 
@@ -5955,7 +5955,7 @@ register struct obj *obj;
 			     (numeyes == 1) ? "s" : "");
 		    }
 		    if (evilfriday) {
-			adjattrib(rn2(A_MAX), -1, 0);
+			adjattrib(rn2(A_MAX), -1, 0, TRUE);
 		    }
 		    break;
 		} else {

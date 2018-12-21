@@ -3590,7 +3590,7 @@ secureidchoice:
 					else You("pause momentarily.");
 					break;
 				    case 4: /* drain Dex */
-					adjattrib(A_DEX, -rn1(1,1), 0);
+					adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 					break;
 				    case 5: /* steal teleportitis */
 					if(HTeleportation & INTRINSIC) {
@@ -5007,8 +5007,8 @@ boolean ordinary;
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -5064,8 +5064,8 @@ boolean ordinary;
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -5128,8 +5128,8 @@ boolean ordinary;
 				losexp("nether drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -5181,12 +5181,12 @@ boolean ordinary;
 			  damage = d(14,7);
 			  poisoned("blast", A_DEX, "toxic blast", 15);
 			}
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 
 		   break;
 
@@ -7911,8 +7911,8 @@ xchar sx, sy;
 			losexp("psionic drain", FALSE, TRUE);
 		}
 		if (!rn2(200)) {
-			adjattrib(A_INT, -1, 1);
-			adjattrib(A_WIS, -1, 1);
+			adjattrib(A_INT, -1, 1, TRUE);
+			adjattrib(A_WIS, -1, 1, TRUE);
 		}
 		if (!rn2(200)) {
 			pline("You scream in pain!");

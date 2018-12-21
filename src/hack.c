@@ -1054,7 +1054,7 @@ int mode;
 				losehp(rnd(10), "walking into iron bars", KILLED_BY);
 				if (!rn2(10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1113,7 +1113,7 @@ int mode;
 				losehp(rnd(10), "walking into a farmland", KILLED_BY);
 				if (!rn2(10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1138,7 +1138,7 @@ int mode;
 				losehp(rnd(10), "walking into a tunnel", KILLED_BY);
 				if (!rn2(10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1189,7 +1189,7 @@ int mode;
 				losehp(rnd(10), "walking into a water tunnel", KILLED_BY);
 				if (!rn2(10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1229,7 +1229,7 @@ int mode;
 					losehp(rnd(10), "walking into a tree", KILLED_BY);
 					if (!rn2(10)) {
 						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
 							forget(1 + rn2(5));
@@ -1245,7 +1245,7 @@ int mode;
 					losehp(rnd(10), "walking into a wall", KILLED_BY);
 					if (!rn2(10)) {
 						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
 							forget(1 + rn2(5));
@@ -1299,7 +1299,7 @@ int mode;
 				losehp(rnd(10), "walking into a door", KILLED_BY);
 				if (!rn2(10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1331,7 +1331,7 @@ int mode;
 					losehp(rnd(10), "walking into a door", KILLED_BY);
 					if (!rn2(10)) {
 						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
 							forget(1 + rn2(5));

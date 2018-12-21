@@ -358,7 +358,7 @@ cursed_book(bp)
 		}
 		/* temp disable in_use; death should not destroy the book */
 		bp->in_use = FALSE;
-		losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3));
+		losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3), TRUE);
 		losehp(rnd(Poison_resistance ? 6 : 10),
 		       "contact-poisoned spellbook", KILLED_BY_AN);
 		bp->in_use = TRUE;
@@ -2132,7 +2132,7 @@ castanyway:
 			    break;
 		    case 6: make_burned(HBurned + lcount, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
 			    break;
@@ -2633,11 +2633,11 @@ magicalenergychoice:
 	    if (rnd(6) > 4)  {
 		switch (rnd(20))  {
 		    case 1:
-			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE);
+			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE, TRUE);
 			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
 			break;
 		    case 2:
-			(void) adjattrib(rn2(A_MAX), 1, FALSE);
+			(void) adjattrib(rn2(A_MAX), 1, FALSE, TRUE);
 			break;
 		    case 3:
 			pline("A%s electric shock shoots through your body!",
@@ -5956,7 +5956,7 @@ totemsummonchoice:
 			if (!rn2(StrongPoison_resistance ? 10 : Poison_resistance ? 5 : 3)) {
 				int typ = rn2(A_MAX);
 				poisontell(typ);
-				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE);
+				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE, TRUE);
 			}
 			if (!Poison_resistance) {
 				losehp(rnd(10), "poisoning a weapon", KILLED_BY);

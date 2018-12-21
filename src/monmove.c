@@ -1241,7 +1241,7 @@ register struct monst *mtmp;
 					adjalign(-25);
 					godvoice(mtmp->data->maligntyp, "Suffer, infidel!");
 					change_luck(-5);
-					(void) adjattrib(A_WIS, -2, TRUE);
+					(void) adjattrib(A_WIS, -2, TRUE, TRUE);
 					angrygods(mtmp->data->maligntyp);
 
 				}
@@ -1441,8 +1441,8 @@ convertdone:
 					pline("You're confused!");
 				}
 				if (!rn2(100)) {
-					adjattrib(A_INT, -1, 1);
-					adjattrib(A_WIS, -1, 1);
+					adjattrib(A_INT, -1, 1, TRUE);
+					adjattrib(A_WIS, -1, 1, TRUE);
 				}
 				if (!rn2(100)) {
 					(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);

@@ -2340,8 +2340,8 @@ elena30:
 					    }
 					}
 					/* adjattrib gives dunce cap message when appropriate */
-					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
-					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
 					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
@@ -4665,7 +4665,7 @@ elena37:
 				} //else
 				You_feel("the tentacles bore into your skull!");
 				i = d(1,6);
-				(void) adjattrib(A_INT, -i, 1);
+				(void) adjattrib(A_INT, -i, 1, TRUE);
 				while(i-- > 0){
 					if (!rn2(2)) losexp("brain damage",FALSE,TRUE);
 					forget(10);	/* lose 10% of memory per point lost*/
@@ -4733,10 +4733,10 @@ elena37:
 						exercise(A_WIS, FALSE);
 						exercise(A_WIS, FALSE);
 					}
-					(void) adjattrib(A_CON, -4, 1);
+					(void) adjattrib(A_CON, -4, 1, TRUE);
 					You_feel("violated and very fragile. Your soul seems a thin and tattered thing.");
 				} else {
-					(void) adjattrib(A_CON, -2, 1);
+					(void) adjattrib(A_CON, -2, 1, TRUE);
 					You_feel("a bit fragile, but strangly whole.");
 				}
 				losehp(StrongHalf_physical_damage ? dmg/8+1 : Half_physical_damage ? dmg/4+1 : dmg/2+1, "drilling tentacles", KILLED_BY);
@@ -4769,8 +4769,8 @@ elena37:
 				} //else
 				You_feel("the tentacles spear into your unarmored body!");
 				losehp(StrongHalf_physical_damage ? dmg/2+1 : Half_physical_damage ? dmg : 4*dmg, "impaled by tentacles", NO_KILLER_PREFIX);
-				(void) adjattrib(A_STR, -6, 1);
-				(void) adjattrib(A_CON, -3, 1);
+				(void) adjattrib(A_STR, -6, 1, TRUE);
+				(void) adjattrib(A_CON, -3, 1, TRUE);
 				You_feel("weak and helpless in their grip!");
 			break;
 			case 10:
@@ -5518,7 +5518,7 @@ hitmu(mtmp, mattk)
 		
 			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
 				wdmg--;
-				(void) adjattrib(A_WIS, -1, TRUE);
+				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
 				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
@@ -5899,12 +5899,12 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 
 		if (!Poison_resistance) pline("You're badly poisoned!");
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 		ptmp = rn2(A_MAX);
 
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
@@ -6025,8 +6025,8 @@ dopois:
 		    }
 		}
 		/* adjattrib gives dunce cap message when appropriate */
-		if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+		if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+		else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
 		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		exercise(A_WIS, FALSE);
@@ -8369,8 +8369,8 @@ dopois:
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -8474,7 +8474,7 @@ dopois:
 			    break;
 		    case 6: make_burned(HBurned + dmg, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + dmg, TRUE, 0L);
 			    break;
@@ -8634,7 +8634,7 @@ dopois:
 			else You("pause momentarily.");
 			break;
 		    case 4: /* drain Dex */
-			adjattrib(A_DEX, -rn1(1,1), 0);
+			adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 			break;
 		    case 5: /* steal teleportitis */
 			if(HTeleportation & INTRINSIC) {
@@ -8691,7 +8691,7 @@ dopois:
 				    break;
 			    case 6: make_burned(HBurned + dmg, TRUE);
 				    break;
-			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 				    break;
 			    case 8: (void) make_hallucinated(HHallucination + dmg, TRUE, 0L);
 				    break;
@@ -8739,7 +8739,7 @@ dopois:
 			    break;
 		    case 6: make_burned(HBurned + dmg, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + dmg, TRUE, 0L);
 			    break;
@@ -9363,8 +9363,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -9568,12 +9568,12 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				pline("You are covered with toxic venom!");
 
 			if (!Poison_resistance) pline("You're badly poisoned!");
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 
 			if (!rn2(2)) {
 			    poisoned("The attack", rn2(A_MAX), "extremely poisonous interior", 30);
@@ -10520,7 +10520,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			else You("pause momentarily.");
 			break;
 		    case 4: /* drain Dex */
-			adjattrib(A_DEX, -rn1(1,1), 0);
+			adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 			break;
 		    case 5: /* steal teleportitis */
 			if(HTeleportation & INTRINSIC) {
@@ -10831,7 +10831,7 @@ do_stone2:
 		
 			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
 				wdmg--;
-				(void) adjattrib(A_WIS, -1, TRUE);
+				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
 				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
@@ -11400,7 +11400,7 @@ do_stone2:
 				    break;
 			    case 6: make_burned(HBurned + tmp, TRUE);
 				    break;
-			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 				    break;
 			    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 				    break;
@@ -11484,7 +11484,7 @@ do_stone2:
 			    break;
 		    case 6: make_burned(HBurned + tmp, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
@@ -11580,7 +11580,7 @@ do_stone2:
 			    break;
 		    case 6: make_burned(HBurned + tmp, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
@@ -11756,8 +11756,8 @@ do_stone2:
 			}
 		    }
 
-			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
-			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
 			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 			exercise(A_WIS, FALSE);
@@ -13123,7 +13123,7 @@ common:
 			    break;
 		    case 6: make_burned(HBurned + tmp, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
@@ -13155,7 +13155,7 @@ common:
 				    break;
 			    case 6: make_burned(HBurned + tmp, TRUE);
 				    break;
-			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 				    break;
 			    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 				    break;
@@ -13936,7 +13936,7 @@ common:
 			else You("pause momentarily.");
 			break;
 		    case 4: /* drain Dex */
-			adjattrib(A_DEX, -rn1(1,1), 0);
+			adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 			break;
 		    case 5: /* steal teleportitis */
 			if(HTeleportation & INTRINSIC) {
@@ -14025,7 +14025,7 @@ common:
 			    break;
 		    case 6: make_burned(HBurned + tmp, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
 			    break;
@@ -14087,12 +14087,12 @@ common:
 		poisoned("blast", rn2(A_MAX), "venom explosion", 5);
 		}
 		if (!Poison_resistance) pline("You're badly poisoned!");
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
 		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
@@ -14180,8 +14180,8 @@ common:
 		    }
 		}
 		/* adjattrib gives dunce cap message when appropriate */
-		if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE);
-		else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE);
+		if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+		else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
 		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		exercise(A_WIS, FALSE);
@@ -14234,8 +14234,8 @@ common:
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -14330,7 +14330,7 @@ common:
 		
 			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
 				wdmg--;
-				(void) adjattrib(A_WIS, -1, TRUE);
+				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
 				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
@@ -14936,8 +14936,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				losexp("psionic drain", FALSE, TRUE);
 			}
 			if (!rn2(200)) {
-				adjattrib(A_INT, -1, 1);
-				adjattrib(A_WIS, -1, 1);
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
 			}
 			if (!rn2(200)) {
 				pline("You scream in pain!");
@@ -15428,7 +15428,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    break;
 		    case 6: make_burned(HBurned + dmgplus, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + dmgplus, TRUE, 0L);
 			    break;
@@ -15670,7 +15670,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			else You("pause momentarily.");
 			break;
 		    case 4: /* drain Dex */
-			adjattrib(A_DEX, -rn1(1,1), 0);
+			adjattrib(A_DEX, -rn1(1,1), 0, TRUE);
 			break;
 		    case 5: /* steal teleportitis */
 			if(HTeleportation & INTRINSIC) {
@@ -16625,7 +16625,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		
 			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
 				wdmg--;
-				(void) adjattrib(A_WIS, -1, TRUE);
+				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
 				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
@@ -16669,7 +16669,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
        }
          if (ABASE(A_INT) > ATTRMIN(A_INT) && !rn2(10)) {
            /* adjattrib gives dunce cap message when appropriate */
-           (void) adjattrib(A_INT, -1, FALSE);
+           (void) adjattrib(A_INT, -1, FALSE, TRUE);
            losespells();
            forget_map(0);
            docrt();
@@ -17759,12 +17759,12 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 
 			if (!Poison_resistance) pline("You're badly poisoned!");
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
-			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 	                poisoned("The gaze", rn2(A_MAX), mtmp->data->mname, 30);
 			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
 			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
@@ -17829,7 +17829,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    break;
 		    case 6: make_burned(HBurned + dmgplus, TRUE);
 			    break;
-		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 			    break;
 		    case 8: (void) make_hallucinated(HHallucination + dmgplus, TRUE, 0L);
 			    break;
@@ -17866,7 +17866,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				    break;
 			    case 6: make_burned(HBurned + dmgplus, TRUE);
 				    break;
-			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
 				    break;
 			    case 8: (void) make_hallucinated(HHallucination + dmgplus, TRUE, 0L);
 				    break;
@@ -18506,12 +18506,12 @@ skiptreason:
 				if (u.uenmax < 0) u.uenmax = 0;
 				break;
 			case 1: You("are down in the dumps.");
-				(void) adjattrib(A_CON, -1, TRUE);
+				(void) adjattrib(A_CON, -1, TRUE, TRUE);
 			        exercise(A_CON, FALSE);
 				flags.botl = 1;
 				break;
 			case 2: Your("senses are dulled.");
-				(void) adjattrib(A_WIS, -1, TRUE);
+				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 			        exercise(A_WIS, FALSE);
 				flags.botl = 1;
 				break;
@@ -18549,12 +18549,12 @@ enjoyable:
 			u.uen = (u.uenmax += rnd(5));
 			break;
 		case 1: You_feel("good enough to do it again.");
-			(void) adjattrib(A_CON, 1, TRUE);
+			(void) adjattrib(A_CON, 1, TRUE, TRUE);
 			exercise(A_CON, TRUE);
 			flags.botl = 1;
 			break;
 		case 2: You("will always remember %s...", noit_mon_nam(mon));
-			(void) adjattrib(A_WIS, 1, TRUE);
+			(void) adjattrib(A_WIS, 1, TRUE, TRUE);
 			exercise(A_WIS, TRUE);
 			flags.botl = 1;
 			break;

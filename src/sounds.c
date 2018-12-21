@@ -2197,7 +2197,7 @@ register struct monst *mtmp;
 				adjalign(-25);
 				godvoice(mtmp->data->maligntyp, "Suffer, infidel!");
 				change_luck(-5);
-				(void) adjattrib(A_WIS, -2, TRUE);
+				(void) adjattrib(A_WIS, -2, TRUE, TRUE);
 				angrygods(mtmp->data->maligntyp);
 
 			}
