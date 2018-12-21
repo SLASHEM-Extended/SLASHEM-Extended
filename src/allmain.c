@@ -1107,7 +1107,7 @@ moveloop()
 					moveamt /= 2;
 				}
 
-				if (is_snow(u.ux, u.uy) && !Flying && !Levitation) {
+				if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 						static boolean canwalkonsnow = 0;
 					    static int skates = 0;
 					    if (!skates) skates = find_skates();
@@ -1353,7 +1353,7 @@ moveloop()
 				moveamt *= 3;
 			}
 
-			if (is_snow(u.ux, u.uy) && !Flying && !Levitation) {
+			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 					static boolean canwalkonsnow = 0;
 				    static int skates = 0;
 				    if (!skates) skates = find_skates();
@@ -7788,7 +7788,13 @@ newbossB:
 		if (is_snow(u.ux, u.uy) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
-			    stop_occupation();
+			stop_occupation();
+		}
+
+		if (is_snow(u.ux, u.uy) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+			You("freeze!");
+			make_frozen(HFrozen + rnz(50),FALSE);
+			stop_occupation();
 		}
 
 		if (is_styxriver(u.ux, u.uy)) {
