@@ -1844,6 +1844,7 @@ boolean atme;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
 	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
+	if (spellid(spell) == SPE_WATER_FLAME) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_FIREBALL) energy *= 2;
 	if (spellid(spell) == SPE_FIRE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_CONE_OF_COLD) { energy *= 3; energy /= 2;}

@@ -227,11 +227,11 @@ struct obj *otmp;
 		if (distu(mtmp->mx, mtmp->my) > 3) break;
 		if (!which_armor(mtmp, W_ARMH)) {
 			pline("Your rock hits %s's %s!", mon_nam(mtmp), mbodypart(mtmp, HEAD));
-			dmg += (10 + rnz(u.ulevel) + skilldmg);
+			dmg += (10 + rnd(u.ulevel) + skilldmg);
 		}
 		if (!resists_elec(mtmp)) {
 			pline("%s is electrified!", Monnam(mtmp));
-			dmg += (10 + rnz(u.ulevel) + skilldmg);
+			dmg += (10 + rnd(u.ulevel) + skilldmg);
 		}
 		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 
@@ -243,11 +243,11 @@ struct obj *otmp;
 		dmg += skilldmg;
 		if (resists_cold(mtmp)) {
 			pline("%s is burned by the watery flame!", Monnam(mtmp));
-			dmg += (rnz(u.ulevel) + skilldmg);
+			dmg += (rnd(u.ulevel) + skilldmg);
 		}
 		if (resists_fire(mtmp)) {
 			pline("%s is cooled by the watery flame!", Monnam(mtmp));
-			dmg += (rnz(u.ulevel) + skilldmg);
+			dmg += (rnd(u.ulevel) + skilldmg);
 		}
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 
