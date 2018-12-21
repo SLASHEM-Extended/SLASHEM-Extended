@@ -6561,7 +6561,7 @@ newboss:
 
 		/* If you somehow get relocated on the Nightmare's Gauntlet level, the game can become nearly unwinnable.
 		 * Therefore we will unlock that door so you can get out. --Amy */
-		if (isok(u.ux, u.uy) && isok(u.ux + 1, u.uy) && artifact_door(u.ux + 1, u.uy) == ART_GAUNTLET_KEY) {
+		if (isok(u.ux, u.uy) && isok(u.ux + 1, u.uy) && artifact_door(u.ux + 1, u.uy) == ART_GAUNTLET_KEY && Is_lawful_quest(&u.uz)) {
 			register struct rm *door = &levl[u.ux + 1][u.uy];
 			if (door && door->doormask == D_LOCKED) {
 				pline("Suddenly the door to the east is unlocked!");
