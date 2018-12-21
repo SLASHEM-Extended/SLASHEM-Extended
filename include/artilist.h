@@ -61,7 +61,7 @@ A("Firewall",                  ATHAME,
  *	for M2_ORC monsters.
  */
 A("Sting",			ELVEN_DAGGER,
-	(SPFX_WARN|SPFX_DCLAS), 0, M2_ORC,
+	(SPFX_WARN|SPFX_DFLAG2), 0, M2_ORC,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, PM_ELF, 800L ),
 
 A("Giantkiller",                AXE,
@@ -1534,7 +1534,7 @@ A("Darkening Thing",			UNICORN_HORN, /* applying it aggravates monsters */
 	PHYS(3,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
 A("Roommate's Special Idea",			LASER_SWATTER,
-	(SPFX_RESTR|SPFX_BEHEAD), 0, S_XAN,
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS), 0, S_XAN,
 	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Lights, Camera, Action",			EXPENSIVE_CAMERA, /* if applied while it has charges, it scares all nearby monsters */
@@ -2220,7 +2220,7 @@ A("Beastmaster's Duster", LEATHER_JACKET, //needs quote
 	0, A_LAWFUL, NON_PM, NON_PM, 9000L), 
 
 A("The Shield of the All-Seeing", ORCISH_SHIELD, //needs quote
-	(SPFX_RESTR|SPFX_SEEK|SPFX_SEARCH|SPFX_WARN), 0, M2_ELF,
+	(SPFX_RESTR|SPFX_SEEK|SPFX_SEARCH|SPFX_WARN|SPFX_DFLAG2), 0, M2_ELF,
      NO_ATTK, DFNS(AD_FIRE), NO_CARY,
 	 0, A_NONE, NON_PM, NON_PM, 3000L),//needs message
 
@@ -2270,7 +2270,7 @@ A("The Rod of Seven Parts",	SILVER_SPEAR, /*From D&D*/
 	0,	A_LAWFUL, NON_PM, NON_PM, 7777L), 
 
 A("The Field Marshal's Baton",	MACE,
-	(SPFX_RESTR|SPFX_WARN), 0, M2_MERC,
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG2), 0, M2_MERC,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0,	A_LAWFUL, NON_PM, NON_PM, 5000L), 
 
@@ -2426,7 +2426,7 @@ A("Durin's Axe",			AXE, /*Moria dwarf noble crowning */
 	0, A_LAWFUL, NON_PM, NON_PM, 4000L), 
 
 A("Glamdring",			ELVEN_BROADSWORD, /*Lonely Mountain dwarf noble first gift */
-	(SPFX_WARN|SPFX_RESTR), 0, (M2_ORC|M2_DEMON), /* the old elves fought balrogs too. */
+	(SPFX_WARN|SPFX_RESTR|SPFX_DFLAG2), 0, (M2_ORC|M2_DEMON), /* the old elves fought balrogs too. */
 	PHYS(10,10),	NO_DFNS,	NO_CARY,
 	0, A_LAWFUL, NON_PM, NON_PM, 2000L), 
 
@@ -4791,7 +4791,7 @@ A("Hamburg One",			HELMET, /* hunger */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Arabella's Melee Power",			LONG_SWORD, /* nastiness, spawns a Gunnhild when wielded and also 1 in 1000 chance to spawn another one if you keep wielding it */
-	(SPFX_RESTR|SPFX_EVIL), 0, S_HUMAN,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DCLAS), 0, S_HUMAN,
 	PHYS(10,20), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 8000L ),
 
 A("Asbestos Material",			LONG_SWORD, /* always poisoned */
@@ -5675,7 +5675,7 @@ A("Puddingbane",			KNIFE, /* idea by jonadab */
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 500L ),
 
 A("Faded Uselessness",			KNIFE, /* evil patch idea by jonadab - autocurses, slippery fingers, hallucination */
-	(SPFX_RESTR|SPFX_EVIL), 0, S_IMP,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DCLAS), 0, S_IMP,
 	PHYS(0,4),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 500L ),
 
 

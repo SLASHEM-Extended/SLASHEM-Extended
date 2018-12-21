@@ -2085,8 +2085,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    if (Mb_hit(magr, mdef, otmp, dmgptr, dieroll, vis, hittee)) willreturntrue = 1;
 	}
 
-/*	if (!spec_dbon_applies && !spec_ability(otmp, SPFX_BEHEAD) ||
-		!special_applies) {*/
+	if (!special_applies) {
 	    /* since damage bonus didn't apply, nothing more to do;  
 	       no further attacks have side-effects on inventory */
 	    /* [ALI] The Tsurugi of Muramasa has no damage bonus but
@@ -2094,9 +2093,12 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	       and the defender is vulnerable */
 	    /* Amy edit: way too many special cases, in the case of
 		 doubt we have to go through the remaining possibilities
-		 anyway to ensure none are missed */
-/*	    return FALSE;
-	}*/
+		 anyway to ensure none are missed
+	     * edit again: but we need to make sure only susceptible
+		 monsters are affected! */
+
+	    return FALSE;
+	}
 
 	if(otmp->oartifact == ART_REAVER){
 	 if(youattack){
