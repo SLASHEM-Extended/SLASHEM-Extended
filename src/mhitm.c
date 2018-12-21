@@ -698,14 +698,14 @@ struct monst *magr, *mdef;
     skill = objects[obj->otyp].oc_skill;
     mwep = MON_WEP(magr);		/* wielded weapon */
 
-    if (ammo_and_launcher(obj, mwep) && objects[mwep->otyp].oc_range &&
+    if (mwep && ammo_and_launcher(obj, mwep) && objects[mwep->otyp].oc_range &&
 	    dist2(magr->mx, magr->my, mdef->mx, mdef->my) >
 	    objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range)
 	return MM_MISS; /* Out of range */
 
     /* Multishot calculations */
     multishot = 1;
-    if ((ammo_and_launcher(obj, mwep) || skill == P_DAGGER ||
+    if (( (mwep && ammo_and_launcher(obj, mwep)) || skill == P_DAGGER ||
 	    skill == -P_DART || skill == -P_SHURIKEN) && !magr->mconf) {
 	/* Assumes lords are skilled, princes are expert */
 	if (is_prince(magr->data)) multishot += 2;
@@ -771,7 +771,7 @@ struct monst *magr, *mdef;
 	    onm = singular(obj, xname);
 	    onm = obj_is_pname(obj) ? the(onm) : an(onm);
 	}
-	m_shot.s = ammo_and_launcher(obj,mwep) ? TRUE : FALSE;
+	m_shot.s = (mwep && ammo_and_launcher(obj,mwep)) ? TRUE : FALSE;
 	pline("%s %s %s!", Monnam(magr),
 	      m_shot.s ? is_bullet(obj) ? "fires" : "shoots" : "throws",
 	      onm);

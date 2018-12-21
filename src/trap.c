@@ -12618,7 +12618,7 @@ register struct monst *mtmp;
 			    if (target && bimanual(target))
 				erode_obj(target, FALSE, TRUE);
 glovecheck:		    target = which_armor(mtmp, W_ARMG);
-			    (void) rust_dmg(target, "gauntlets", 1, TRUE, mtmp);
+			    if (target) (void) rust_dmg(target, "gauntlets", 1, TRUE, mtmp);
 			    break;
 			case 2:
 			    if (in_sight)

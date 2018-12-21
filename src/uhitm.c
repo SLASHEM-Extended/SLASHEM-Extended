@@ -1686,7 +1686,7 @@ int dieroll;
 			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) ||
 			    (Role_if(PM_SAMURAI) && obj->otyp == KATANA && !uarms)) &&
 			  ((wtype = uwep_skill_type()) != P_NONE && !(PlayerCannotUseSkills) &&
-			    P_SKILL(wtype) >= P_SKILLED) && ((monwep = MON_WEP(mon)) != 0 &&
+			    P_SKILL(wtype) >= P_SKILLED) && ((monwep = MON_WEP(mon)) != 0 && monwep &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
 			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
 			/*
@@ -1722,7 +1722,7 @@ int dieroll;
 
 		    else if (obj == uwep && is_lightsaber(obj) &&
 			   ((wtype = uwep_skill_type()) != P_NONE) &&
-			   ((monwep = MON_WEP(mon)) != 0 && !is_lightsaber(monwep) && // no cutting other lightsabers :)
+			   ((monwep = MON_WEP(mon)) != 0 && monwep && !is_lightsaber(monwep) && // no cutting other lightsabers :)
 			   !monwep->oartifact && !stack_too_big(monwep) && // no cutting artifacts either
 			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
 

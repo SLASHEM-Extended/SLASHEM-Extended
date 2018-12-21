@@ -2575,7 +2575,7 @@ mfndpos(mon, poss, info, flag)
 	    /* need to be specific about what can currently be dug */
 	    if (!needspick(mdat)) {
 		rockok = treeok = TRUE;
-	    } else if ((mw_tmp = MON_WEP(mon)) && mw_tmp->cursed &&
+	    } else if ((mw_tmp = MON_WEP(mon)) && mw_tmp && mw_tmp->cursed &&
 		       mon->weapon_check == NO_WEAPON_WANTED) {
 		rockok = is_pick(mw_tmp);
 	    } else {

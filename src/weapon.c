@@ -2072,7 +2072,7 @@ boolean polyspot;
 	 * polymorphed into little monster.  But it's not quite clear how to
 	 * handle this anyway....
 	 */
-	if (!(mw_tmp->cursed && mon->weapon_check == NO_WEAPON_WANTED))
+	if (!(mw_tmp && mw_tmp->cursed && mon->weapon_check == NO_WEAPON_WANTED))
 	    mon->weapon_check = NEED_WEAPON;
 	return;
 }

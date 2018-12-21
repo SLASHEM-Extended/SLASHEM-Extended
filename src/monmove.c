@@ -2332,12 +2332,12 @@ not_special:
 		mmoved==1 && can_tunnel && needspick(ptr)) {
 		if (closed_door(nix, niy)) {
 		    if (!(mw_tmp = MON_WEP(mtmp)) ||
-			!is_pick(mw_tmp) || !is_axe(mw_tmp))
+			(mw_tmp && (!is_pick(mw_tmp) || !is_axe(mw_tmp))) )
 			mtmp->weapon_check = NEED_PICK_OR_AXE;
 		} else if (IS_TREE(levl[nix][niy].typ)) {
-		    if (!(mw_tmp = MON_WEP(mtmp)) || !is_axe(mw_tmp))
+		    if (!(mw_tmp = MON_WEP(mtmp)) || (mw_tmp && !is_axe(mw_tmp)) )
 			mtmp->weapon_check = NEED_AXE;
-		} else if (!(mw_tmp = MON_WEP(mtmp)) || !is_pick(mw_tmp)) {
+		} else if (!(mw_tmp = MON_WEP(mtmp)) || (mw_tmp && !is_pick(mw_tmp)) ) {
 		mtmp->weapon_check = NEED_PICK_AXE;
 		}
 		if (mtmp->weapon_check >= NEED_PICK_AXE && mon_wield_item(mtmp))

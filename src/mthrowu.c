@@ -1174,18 +1174,18 @@ struct monst *mtmp;
 	skill = objects[otmp->otyp].oc_skill;
 	mwep = MON_WEP(mtmp);		/* wielded weapon */
 
-	if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
+	if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
 		dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) >
 		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range) 
 		return; /* Out of range */
 
 	/* monsters were throwing darts way across the map, that is, distances of 70+ squares.
 	 * This was obviously not intended; they should just be able to fire sniper rifles at their actual range. --Amy */
-	else if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
+	else if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
 
 	/* Multishot calculations */
 	multishot = 1;
-	if ((ammo_and_launcher(otmp, mwep) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
+	if (((mwep && ammo_and_launcher(otmp, mwep)) || skill == P_DAGGER || skill == P_KNIFE || skill == P_BOOMERANG || skill == -P_BOOMERANG ||
 		skill == -P_DART || skill == -P_SHURIKEN || skill == P_SPEAR || skill == P_JAVELIN) && !mtmp->mconf) {
 	    /* Assumes lords are skilled, princes are expert */
 	    if (is_prince(mtmp->data)) multishot += 2;
@@ -1292,7 +1292,7 @@ struct monst *mtmp;
 		onm = singular(otmp, xname);
 		onm = obj_is_pname(otmp) ? the(onm) : an(onm);
 	    }
-	    m_shot.s = ammo_and_launcher(otmp,mwep) ? TRUE : FALSE;
+	    m_shot.s = (mwep && ammo_and_launcher(otmp,mwep)) ? TRUE : FALSE;
 	    pline("%s %s %s!", Monnam(mtmp),
 		  m_shot.s ? is_bullet(otmp) ? "fires" : "shoots" : "throws",
 		  onm);

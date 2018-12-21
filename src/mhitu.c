@@ -1360,15 +1360,17 @@ register struct attack *mattk;
 
 	    if (MON_WEP(mtmp)) {
 		struct obj *obj = MON_WEP(mtmp);
-		obj->owornmask &= ~W_WEP;
-		if ((rnd(100) < (obj->oeroded * 5 / 2)) && !stack_too_big(obj)) {
-		    if (obj->spe > -5) {    
-			obj->spe--;
-			pline("%s %s is damaged further!",
-				s_suffix(Monnam(mtmp)), xname(obj));
-		    } else
-			pline("%s %s is badly battered!", 
-				s_suffix(Monnam(mtmp)), xname(obj));
+		if (obj) {
+			obj->owornmask &= ~W_WEP;
+			if ((rnd(100) < (obj->oeroded * 5 / 2)) && !stack_too_big(obj)) {
+			    if (obj->spe > -5) {    
+				obj->spe--;
+				pline("%s %s is damaged further!",
+					s_suffix(Monnam(mtmp)), xname(obj));
+			    } else
+				pline("%s %s is badly battered!", 
+					s_suffix(Monnam(mtmp)), xname(obj));
+			}
 		}
 	    }
 	}

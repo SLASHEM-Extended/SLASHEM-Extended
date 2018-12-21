@@ -14682,6 +14682,7 @@ xchar x, y;	/* clone's preferred location or 0 (near mon) */
 	m2->my = mm.y;
 
 	m2->minvent = (struct obj *) 0; /* objects don't clone */
+	MON_NOWEP(m2); /* stupid monster weapon pointer was causing phantom crash bugs on hdf-us! --Amy */
 	m2->mleashed = FALSE;
 #ifndef GOLDOBJ
 	m2->mgold = 0L;
