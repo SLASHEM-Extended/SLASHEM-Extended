@@ -367,11 +367,11 @@ struct obj *obj;
 				if (Upolyd) u.mhmax += 10;
 				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
 			}
+			qt_pager(QT_VLAD);
 
 		}
 
                 achieve.get_candelabrum = 1;
-			qt_pager(QT_VLAD);
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 		livelog_report_trophy("obtained the Candelabrum of Invocation");
@@ -431,11 +431,11 @@ struct obj *obj;
 				if (Upolyd) u.mhmax += 10;
 				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
 			}
+			qt_pager(QT_RODNEY);
 
 		}
 
                 achieve.get_book = 1;
-			qt_pager(QT_RODNEY);
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 		livelog_report_trophy("obtained the Book of the Dead");
