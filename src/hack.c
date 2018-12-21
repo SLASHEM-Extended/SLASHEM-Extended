@@ -3032,9 +3032,14 @@ stillinwater:;
 				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
 			else {
 			    int dmg;
+			    int molev;
 			    You("are hit by %s!",
 				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
-			    dmg = d(4,6);
+			    /* Amy edit: make it depend on the monster's level */
+			    molev = mtmp->data->mlevel;
+			    if (molev > 5) molev -= ((molev - 4) * 2 / 3);
+			    if (molev < 1) molev = 1;
+			    dmg = d(molev,6);
 			    if(Half_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
 			    if(StrongHalf_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
 			    mdamageu(mtmp, dmg);
