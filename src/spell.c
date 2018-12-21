@@ -1937,7 +1937,7 @@ boolean atme;
 		energy /= 3;
 	}
 
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DOMPFINATION) {
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_DOMPFINATION) {
 		if (rn2(10)) energy += 1;
 		energy *= 9;
 		energy /= 10;

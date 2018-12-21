@@ -659,7 +659,7 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
@@ -2445,8 +2445,8 @@ int dieroll;
 		if (uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) tmp += 3;
 		if (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp += rnd(5);
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp += rnd(5);
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 		if (Race_if(PM_VIKING)) tmp += 1;
 		if (Race_if(PM_ITAQUE)) tmp -= 1;
 		if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
@@ -4314,7 +4314,7 @@ register struct attack *mattk;
 
 		}
 
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant) {
+		if (powerfulimplants() && uimplant) {
 			switch (P_SKILL(P_IMPLANTS)) { /* more bonus when using a good implant without hands --Amy */
 
 		      	case P_BASIC:	youdamagebonus += 16; break;
@@ -8345,7 +8345,7 @@ boolean ranged;
 
 	    case AD_TIME:
 
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		switch (rnd(10)) {
 
 			case 1:

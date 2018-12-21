@@ -10391,7 +10391,7 @@ struct obj *obj;
 
 		pline("%s - This is an implant. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect and armor class, but they're hard to identify and may autocurse when worn. Also, unless your skill is high enough, you might not be able to take them off even when they're uncursed. If you don't have hands, you get extra bonus AC and intrinsics from wearing one. Wearing them while having hands gives weaker AC bonuses, and if you're additionally restricted at implants they may actually make your AC worse if you're not in a handless form!",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 
-		if (nn && nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && (uimplant && obj == uimplant) ) pline("As long as you're in a form without hands, wearing this implant grants %s.", enchname(goodimplanteffect(uimplant)) );
+		if (nn && powerfulimplants() && (uimplant && obj == uimplant) ) pline("As long as you're in a form without hands (your current form qualifies), wearing this implant grants %s.", enchname(goodimplanteffect(uimplant)) );
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {

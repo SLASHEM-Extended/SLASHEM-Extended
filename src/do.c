@@ -1457,7 +1457,7 @@ dodown()
 
 	}
 
-	if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) && uimplant && uimplant->oartifact == ART_JANA_S_MAKE_UP_PUTTY && (stairs_down || ladder_down) && !rn2(100)) {
+	if (!(powerfulimplants()) && uimplant && uimplant->oartifact == ART_JANA_S_MAKE_UP_PUTTY && (stairs_down || ladder_down) && !rn2(100)) {
 		u.youaredead = 1;
 		pline("NETHACK caused a Kernel error at address 0001:A9EE.");
 		killer_format = KILLED_BY;
@@ -1628,7 +1628,7 @@ doup()
 
 	}
 
-	if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) && uimplant && uimplant->oartifact == ART_JANA_S_MAKE_UP_PUTTY && !rn2(100)) {
+	if (!(powerfulimplants()) && uimplant && uimplant->oartifact == ART_JANA_S_MAKE_UP_PUTTY && !rn2(100)) {
 		u.youaredead = 1;
 		pline("NETHACK caused a Kernel error at address 0001:A9EE.");
 		killer_format = KILLED_BY;

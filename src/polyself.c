@@ -2949,6 +2949,22 @@ polyskillchance()
 
 }
 
+/* are you eligible for the "handless" effects of implants? If you don't have hands and aren't a transformer, yes.
+ * But some other races are handicapped enough that I decide they deserve this bonus too. --Amy */
+boolean
+powerfulimplants()
+{
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) return TRUE;
+	if (Race_if(PM_WEAPON_BUG) && !Upolyd) return TRUE; /* the movement restriction is a big handicap */
+	if (Race_if(PM_JELLY) && !Upolyd) return TRUE; /* permablind and can't pick up items */
+	if (Race_if(PM_OCTOPODE)) return TRUE; /* can't wear armor, even while polymorphed! */
+	if (Race_if(PM_SATRE) && !Upolyd) return TRUE; /* equipment restrictions */
+	if (Race_if(PM_ELONA_SNAIL) && !Upolyd) return TRUE; /* equipment restrictions */
+	if (Race_if(PM_HUMAN_WRAITH)) return TRUE; /* loses maxHP permanently when equipping stuff */
+
+	return FALSE;
+}
+
 static void
 merge_with_armor()
 {

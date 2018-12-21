@@ -1417,7 +1417,7 @@ nh_timeout()
 
 	}
 
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && (goodimplanteffect(uimplant) == TRAP_REVEALING) ) {
+	if (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TRAP_REVEALING) ) {
 
 	    struct trap *t;
 

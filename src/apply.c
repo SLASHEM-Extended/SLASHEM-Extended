@@ -2315,7 +2315,7 @@ degradeagain:
 
 fixthings:
 	if (trouble_count == 0) {
-	    if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION)) {
+	    if (!(powerfulimplants() && uimplant && uimplant->oartifact == ART_HEALENERATION)) {
 			pline("%s", nothing_happens);
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
 				pline("Oh wait, actually something bad happens...");

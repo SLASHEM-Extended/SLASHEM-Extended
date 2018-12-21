@@ -2201,6 +2201,7 @@ E int poly_gender(void);
 E void ugolemeffects(int,int);
 E int polyatwill(void);
 E boolean polyskillchance(void);
+E boolean powerfulimplants(void);
 
 /* ### potion.c ### */
 

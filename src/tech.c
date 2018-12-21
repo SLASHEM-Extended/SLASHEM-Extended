@@ -6548,7 +6548,7 @@ revid_end:
 
 		if (uamul && uamul->oartifact == ART_TYRANITAR_S_QUEST && !rn2(2)) techtout(tech_no) = 0;
 
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_NO_ABNORMAL_FUTURE) techtout(tech_no) /= 4;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NO_ABNORMAL_FUTURE) techtout(tech_no) /= 4;
 
 		if (techid(tech_no) == T_ASIAN_KICK) {
 

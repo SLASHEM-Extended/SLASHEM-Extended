@@ -346,7 +346,7 @@ const char *name;	/* if null, then format `obj' */
 
 		return(0);
 
-	} else if (nohands(youmonst.data) && (!rn2(extrachance) || !rn2(extrachance) || !rn2(extrachance)) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
+	} else if (powerfulimplants() && (!rn2(extrachance) || !rn2(extrachance) || !rn2(extrachance)) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
 			else You("skillfully evade %s.", onm);

@@ -5077,7 +5077,7 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (ACURR(A_CHA) >= 18) armpro++;
 	if (armpro < 0) armpro = 0;
@@ -8021,7 +8021,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		switch (rnd(10)) {
 
 			case 1:
@@ -11004,7 +11004,7 @@ do_stone2:
 
 	    case AD_TIME:
 		if (mtmp->mcan) break;
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		switch (rnd(10)) {
 
 			case 1:
@@ -13425,7 +13425,7 @@ common:
 
 	    case AD_TIME: /* timebomb */
 
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		switch (rnd(10)) {
 
 			case 1:
@@ -16324,7 +16324,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_TIME:
 		if (!mtmp->mcan && canseemon(mtmp) &&
-			couldsee(mtmp->mx, mtmp->my) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) &&
+			couldsee(mtmp->mx, mtmp->my) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) &&
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(50))) {
 		    pline("%s gazes at you, and sucks the essence of life out of you...", Monnam(mtmp));
 		    stop_occupation();

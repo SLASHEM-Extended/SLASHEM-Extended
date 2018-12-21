@@ -4976,9 +4976,9 @@ find_ac()
 	if(uarmu) uac -= ARM_BONUS(uarmu);
 
 	/* implants are mainly meant for those who lack hands --Amy */
-	if(uimplant) uac -= (!Race_if(PM_TRANSFORMER) && nohands(youmonst.data) && ARM_BONUS(uimplant) > 1) ? ARM_BONUS(uimplant) : (ARM_BONUS(uimplant) / 2);
+	if(uimplant) uac -= ( (powerfulimplants() || ARM_BONUS(uimplant) < 1) ? ARM_BONUS(uimplant) : (ARM_BONUS(uimplant) / 2));
 	/* are you restricted? if yes, the implant may be actively bad for you */
-	if (P_RESTRICTED(P_IMPLANTS) && !nohands(youmonst.data)) uac += 2;
+	if (uimplant && P_RESTRICTED(P_IMPLANTS) && !powerfulimplants()) uac += 2;
 
 	if(uleft && uleft->otyp == RIN_PROTECTION) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_PROTECTION) uac -= uright->spe;
@@ -5161,7 +5161,7 @@ find_ac()
 
 		/* Implants are meant to be used by races without hands, or players who polymorph into forms without hands.
 		 * They get a bunch of additional benefits from a worn implant --Amy */
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
+		if (powerfulimplants()) {
 			uac -= 5;
 			switch (P_SKILL(P_IMPLANTS)) {
 				case P_BASIC: uac -= 1; break;
@@ -5271,9 +5271,9 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
 	if (HardcoreAlienMode) uac -= 1;
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) uac -= 10;
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) uac -= 10;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) uac -= 1;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {

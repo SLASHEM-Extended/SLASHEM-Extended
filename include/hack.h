@@ -304,7 +304,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define israndomizer (Race_if(PM_RANDOMIZER) || flags.hybridrandomizer)
 #define isnullrace (Race_if(PM_NULL) || flags.hybridnullrace)
 #define ismazewalker (Race_if(PM_MAZEWALKER) || flags.hybridmazewalker)
-#define issoviet (Race_if(PM_SOVIET) || flags.hybridsoviet || (uimplant && uimplant->oartifact == ART_GELMER_KELANA_TWIN && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) )
+#define issoviet (Race_if(PM_SOVIET) || flags.hybridsoviet || (uimplant && uimplant->oartifact == ART_GELMER_KELANA_TWIN && !powerfulimplants() ) )
 #define isxrace (Race_if(PM_RACE_X) || flags.hybridxrace)
 #define isheretic (Race_if(PM_HERETIC) || flags.hybridheretic)
 #define issokosolver (Race_if(PM_SOKOSOLVER) || flags.hybridsokosolver)

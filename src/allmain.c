@@ -1124,7 +1124,7 @@ moveloop()
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
-					if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
+					if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
 					if (!canwalkonsnow)
 					moveamt /= 4;
@@ -1379,7 +1379,7 @@ moveloop()
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
-				if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
+				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
 				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow)
 				moveamt /= 4;
@@ -1551,18 +1551,18 @@ moveloop()
 				moveamt /= 10;
 			}
 
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
 				moveamt *= 6;
 				moveamt /= 5;
 			}
 
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) {
 				moveamt *= 3;
 				moveamt /= 2;
 			}
 
 			if (uimplant && uimplant->oartifact == ART_BRRRRRRRRRRRRRMMMMMM) {
-				if (is_highway(u.ux, u.uy) || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER))) {
+				if (is_highway(u.ux, u.uy) || powerfulimplants()) {
 					moveamt *= 2;
 				}
 			}
@@ -2951,13 +2951,13 @@ fukrosionchoice:
 				pline("Oh well, if you don't wanna...");
 			} else if (!stack_too_big(steeling)) {
 				steeling->oeroded = steeling->oeroded2 = 0;
-				if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) steeling->oerodeproof = 1;
+				if (powerfulimplants()) steeling->oerodeproof = 1;
 				p_glow2(steeling, NH_PURPLE);
 			} else pline("The stack was too big and therefore nothing happens...");
 
 		}
 
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_YES_YOU_CAN && !rn2(500)) {
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YES_YOU_CAN && !rn2(500)) {
 			if (spellid(0) != NO_SPELL)  {
 				int numspells;
 
@@ -7130,7 +7130,7 @@ newbossX:
 		}
 
 		if (uimplant && uimplant->oartifact == ART_BRRRRRRRRRRRRRMMMMMM) {
-			if (!rn2(2) || !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER))) {
+			if (!rn2(2) || !(powerfulimplants())) {
 				if (u.uen > 0) u.uen--;
 				else if (u.uenmax > 0) u.uenmax--;
 				flags.botl = TRUE;
@@ -7567,7 +7567,7 @@ newbossB:
 			NastinessProblem |= FROMOUTSIDE; /* no message */
 		}
 
-		if (uwep && uwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
+		if (uwep && uwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
 
 		Your("morning star takes you back in time...");
 
@@ -7644,7 +7644,7 @@ newbossB:
 
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
 
 		Your("morning star takes you back in time...");
 
@@ -7805,13 +7805,13 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -8038,7 +8038,7 @@ newbossB:
 		if (uimplant && uimplant->oartifact == ART_ARRGH_OUCH && !rn2(10) ) {
 			losehp(10, "pain", KILLED_BY);
 			if (u.uhp < 20 || (u.uhp < 50 && !rn2(3)) || !rn2(10)) You("scream in pain.");
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) use_skill(P_HEALING_SPELL, 1);
+			if (powerfulimplants()) use_skill(P_HEALING_SPELL, 1);
 		}
 
 		if (!PlayerCannotUseSkills && PlayerInSexyFlats && HStun) {
@@ -8875,7 +8875,7 @@ newboss:
 
 		}
 
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_MIGHTY_MOLASS && !rn2(500)) {
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_MIGHTY_MOLASS && !rn2(500)) {
 			struct monst *mtmp3;
 			int k, l;
 
@@ -10770,7 +10770,7 @@ newboss:
 				use_unicorn_horn((struct obj *)0);
 			}
 
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HEALENERATION) {
 				use_unicorn_horn((struct obj *)0);
 			}
 

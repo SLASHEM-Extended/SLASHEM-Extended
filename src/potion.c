@@ -1725,7 +1725,7 @@ badeffect()
 
 		case 334:
 
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		{
 		int dmg;
 		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
@@ -7450,7 +7450,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above(tmp);
-		    } else if (u.usteed && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
@@ -7476,7 +7476,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above("lava");
-		    } else if (u.usteed && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {

@@ -2373,7 +2373,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				goto beheadingdone;
 			}
 
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DECAPITATION_UP) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_DECAPITATION_UP) {
 				pline("Somehow, %s misses you wildly.",
 				      magr ? mon_nam(magr) : wepdesc);
 				*dmgptr = 0;

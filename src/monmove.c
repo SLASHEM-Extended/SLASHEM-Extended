@@ -238,7 +238,7 @@ boolean digest_meal;
 	    	if (mon->m_en > mon->m_enmax) mon->m_en = mon->m_enmax;
 	}
 
-	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE && u.usteed && (mon == u.usteed)) {
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE && u.usteed && (mon == u.usteed)) {
 		if (mon->mhp + 1 >= mon->mhpmax)
 		      mon->mhp = mon->mhpmax;
 		else mon->mhp++;
@@ -259,7 +259,7 @@ boolean digest_meal;
 	if (!(PlayerCannotUseSkills)) {
 
 		if (P_SKILL(P_RIDING) == P_BASIC && u.usteed && (mon == u.usteed) && !rn2(10) ) {
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
 				if (mon->mhp + 1 >= mon->mhpmax)
 				      mon->mhp = mon->mhpmax;
 				else mon->mhp++;
@@ -270,7 +270,7 @@ boolean digest_meal;
 			if (mon->mhp + 1 >= mon->mhpmax)
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
 				if (mon->mhp + 2 >= mon->mhpmax)
 				      mon->mhp = mon->mhpmax;
 				else mon->mhp++;
@@ -281,7 +281,7 @@ boolean digest_meal;
 			if (mon->mhp + 1 >= mon->mhpmax)
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
 				if (mon->mhp + 3 >= mon->mhpmax)
 				      mon->mhp = mon->mhpmax;
 				else mon->mhp++;
@@ -291,7 +291,7 @@ boolean digest_meal;
 			if (mon->mhp + 1 >= mon->mhpmax)
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
 				if (mon->mhp + 4 >= mon->mhpmax)
 				      mon->mhp = mon->mhpmax;
 				else mon->mhp++;
@@ -301,7 +301,7 @@ boolean digest_meal;
 			if (mon->mhp + 1 >= mon->mhpmax)
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
 				if (mon->mhp + 5 >= mon->mhpmax)
 				      mon->mhp = mon->mhpmax;
 				else mon->mhp++;
@@ -311,7 +311,7 @@ boolean digest_meal;
 			if (mon->mhp + 1 >= mon->mhpmax)
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
-			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
 				if (mon->mhp + 6 >= mon->mhpmax)
 				      mon->mhp = mon->mhpmax;
 				else mon->mhp++;
