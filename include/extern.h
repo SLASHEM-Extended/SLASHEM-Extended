@@ -1599,7 +1599,7 @@ E int somex(struct mkroom *);
 E int somey(struct mkroom *);
 E boolean inside_room(struct mkroom *,XCHAR_P,XCHAR_P);
 E boolean somexy(struct mkroom *,coord *);
-E void mkundead(coord *,BOOLEAN_P,int);
+E void mkundead(coord *,BOOLEAN_P,int,BOOLEAN_P);
 /*E void mkundeadboo(coord *,BOOLEAN_P,int);*/
 E void mkundeadX(coord *,BOOLEAN_P,int);
 E struct permonst *courtmon(void);

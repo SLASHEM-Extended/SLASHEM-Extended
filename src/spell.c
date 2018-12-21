@@ -950,6 +950,7 @@ raise_dead:
 			(mtmp = makemon(&mons[PM_NALFESHNEE],
 					u.ux, u.uy, NO_MINVENT)) != 0)) {
 	    mtmp->mpeaceful = 0;
+	    mtmp->mfrenzied = 1;
 	    set_malign(mtmp);
 	}
 	/* next handle the affect on things you're carrying */
@@ -957,7 +958,7 @@ raise_dead:
 	/* last place some monsters around you */
 	mm.x = u.ux;
 	mm.y = u.uy;
-	mkundead(&mm, TRUE, NO_MINVENT);
+	mkundead(&mm, TRUE, NO_MINVENT|MM_ANGRY|MM_FRENZIED, TRUE);
 	badeffect();
 	aggravate();
     } else if(book2->blessed) {
@@ -1236,7 +1237,7 @@ register struct obj *spellbook;
 		    }
 		    delay = 0;
 		    if(gone || !rn2(3)) {
-			if (!gone) pline_The("spellbook crumbles to dust!");
+			if (!gone && !(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook crumbles to dust!");
 			if (!objects[spellbook->otyp].oc_name_known &&
 				!objects[spellbook->otyp].oc_uname)
 			    docall(spellbook);
@@ -2505,7 +2506,7 @@ magicalenergychoice:
 	case SPE_CREATE_MONSTER:
 	case SPE_IDENTIFY:
 	case SPE_DESTROY_ARMOR:
-	case SPE_COMMAND_UNDEAD:                
+	case SPE_COMMAND_UNDEAD:
 	case SPE_SUMMON_UNDEAD:
 		if (rn2(5)) pseudo->blessed = 0;
 		(void) seffects(pseudo);
@@ -4026,13 +4027,18 @@ secureidchoice:
 			    if (!rn2(2) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
 				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 			    }
-			    else if (!rn2(25) && !((rnd(30 - ACURR(A_CHA))) < 4)  && !mtmp->mfrenzied && !mtmp->mtame) {
+			    else if (!rn2(15) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
 				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
 				mtmp->mpeaceful = 0;
 				mtmp->mfrenzied = 1;
 			    }
 
 		    }
+		}
+
+		if (!rn2(10)) {
+			pline("The spell backfires!");
+			badeffect();
 		}
 
 		break;
@@ -5101,7 +5107,15 @@ possessionchoice:
 				break;
 			}
 
-			if (golemfuel) useup(golemfuel);
+			if (golemfuel->lamplit) { /* we don't want timer-related segfault panics --Amy */
+				pline("You need a torch that isn't lit! Turn off all lit torches first!");
+				break;
+			}
+
+			if (golemfuel) {
+				if (golemfuel->quan > 1) golemfuel->quan--;
+				else useup(golemfuel);
+			}
 
 			firegolem = make_helper(PM_SUMMONED_FIRE_GOLEM, u.ux, u.uy);
 			if (!firegolem) break;

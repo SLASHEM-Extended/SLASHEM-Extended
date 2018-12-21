@@ -11921,13 +11921,13 @@ struct obj *obj;
 			case SPE_FORCE_BOLT:
 				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features."); break;
 			case SPE_CREATE_MONSTER:
-				pline("Casting this spell summons random monsters. Beware, it might also create a trap on the current dungeon level."); break;
+				pline("Casting this spell summons random monsters. Beware, it might also create a trap on the current dungeon level. The summoned monster has a chance of being frenzied too."); break;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
-				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts."); break;
+				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire."); break;
 			case SPE_SUMMON_UNDEAD:
-				pline("Summons an undead monster. Rarely, it also makes a trap on the level."); break;
+				pline("Summons an undead monster. Rarely, it also makes a trap on the level. The summoned monster has a chance of being frenzied too."); break;
 			case SPE_STONE_TO_FLESH:
 				pline("This spell can be cast at items, dungeon features and monsters that are made of stone, turning them into meat."); break;
 			case SPE_HEALING:
@@ -12270,7 +12270,7 @@ struct obj *obj;
 			case SPE_NEXUS_FIELD:
 				pline("Tries to teleport all monsters adjacent to you away, although they have a chance to resist. It will occasionally backlash by reducing one of your attributes, permanently."); break;
 			case SPE_COMMAND_DEMON:
-				pline("Use this spell if you're surrounded by demons, and they have a chance of becoming peaceful or even tame!"); break;
+				pline("Use this spell if you're surrounded by demons, and they have a chance of becoming peaceful or even tame! Casting this spell may occaisonally backfire though, and occasionally the demons become frenzied instead."); break;
 			case SPE_FIRE_GOLEM:
 				pline("This spell requires you to have a torch to create the golem from, which will be used up. The fire golem will then fight alongside you, and you get experience and credit for its kills, but beware: usually it will turn hostile after a while!"); break;
 			case SPE_DISRUPTION_SHIELD:

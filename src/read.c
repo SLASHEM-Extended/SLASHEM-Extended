@@ -3213,12 +3213,15 @@ proofarmorchoice:
 		break;
 	    }
 	case SPE_CREATE_MONSTER:
+		{
 		if (confused) break;
 
-		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED);
 		if (!rn2(4)) makerandomtrap();
 
 		u.aggravation = 0;
+
+		}
 
 		break;
 	case SCR_CREATE_MONSTER:
@@ -3718,24 +3721,24 @@ proofarmorchoice:
 #endif
 		    switch (rn2(10)+1) {
 		    case 1:
-			mtmp = makemon(mkclass(S_VAMPIRE,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_VAMPIRE,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED : NO_MM_FLAGS);
 			break;
 		    case 2:
 		    case 3:
 		    case 4:
 		    case 5:
-			mtmp = makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_ZOMBIE,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED : NO_MM_FLAGS);
 			break;
 		    case 6:
 		    case 7:
 		    case 8:
-			mtmp = makemon(mkclass(S_MUMMY,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_MUMMY,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED : NO_MM_FLAGS);
 			break;
 		    case 9:
-			mtmp = makemon(mkclass(S_GHOST,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_GHOST,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED : NO_MM_FLAGS);
 			break;
 		    case 10:
-			mtmp = makemon(mkclass(S_WRAITH,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS : NO_MM_FLAGS);
+			mtmp = makemon(mkclass(S_WRAITH,0), u.ux, u.uy, (sobj->otyp == SPE_SUMMON_UNDEAD) ? MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED : NO_MM_FLAGS);
 			break;
 		    }
 		    /* WAC Give N a shot at controlling the beasties
@@ -4375,7 +4378,7 @@ newboss:
 		    }
 		}
 
-		if (!rn2(20)) {
+		if (!rn2(5)) {
 			pline("The spell backfires!");
 			badeffect();
 		}
@@ -4977,7 +4980,7 @@ newboss:
 				(is_undead(mtmp->data) || mtmp->egotype_undead) )
 			    if (!rn2(2)) maybe_tame(mtmp, sobj);
 
-			    else if (!rn2(25) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
+			    else if (!rn2(15) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
 				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
 				mtmp->mpeaceful = 0;
 				mtmp->mfrenzied = 1;
@@ -4985,6 +4988,12 @@ newboss:
 
 		    }
 		}
+
+		if (!rn2(10)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
+
 		break;
 	case SCR_ITEM_GENOCIDE:
 		You("have found a scroll of item genocide!");

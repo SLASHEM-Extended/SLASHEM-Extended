@@ -1116,7 +1116,7 @@ struct obj **optr;
 
 		mm.x = u.ux;
 		mm.y = u.uy;
-		mkundead(&mm, FALSE, NO_MINVENT);
+		mkundead(&mm, FALSE, NO_MINVENT, TRUE);
 		wakem = TRUE;
 		badeffect();
 		aggravate();

@@ -841,11 +841,11 @@ int spellnum;
 
 	case MGC_CALL_UNDEAD:
 	{
-		coord mm;   
-		mm.x = u.ux;   
-		mm.y = u.uy;   
+		coord mm;
+		mm.x = u.ux;
+		mm.y = u.uy;
 		pline("Undead creatures are called forth from the grave!");   
-		mkundead(&mm, FALSE, 0);   
+		mkundead(&mm, FALSE, 0, FALSE);
 	}
 	dmg = 0;   
 	break;   

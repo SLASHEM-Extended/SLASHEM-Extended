@@ -4010,11 +4010,11 @@ secureidchoice:
 			break;
 		case WAN_SUMMON_UNDEAD:
 			known = TRUE;
-			coord mm;   
-			mm.x = u.ux;   
-			mm.y = u.uy;   
+			coord mm;
+			mm.x = u.ux;
+			mm.y = u.uy;
 			pline("You summon some undead creatures!");   
-			mkundeadX(&mm, FALSE, NO_MINVENT);   
+			mkundeadX(&mm, FALSE, NO_MINVENT);
 			break;
 		case WAN_CREATE_HORDE:
 			known = create_critters(rn1(7,6), (struct permonst *)0);

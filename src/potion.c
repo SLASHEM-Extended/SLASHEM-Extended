@@ -1082,11 +1082,11 @@ badeffect()
 		case 114:
 		case 115:
 		case 116:
-		{coord mm;   
-		mm.x = u.ux;   
-		mm.y = u.uy;   
+		{coord mm;
+		mm.x = u.ux;
+		mm.y = u.uy;
 		pline("Undead creatures are called forth from the grave!");   
-		mkundead(&mm, FALSE, 0);   
+		mkundead(&mm, FALSE, 0, FALSE);
 		}
 		break;
 

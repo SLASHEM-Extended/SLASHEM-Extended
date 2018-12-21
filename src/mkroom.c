@@ -1492,10 +1492,11 @@ struct mkroom *sroom;
 
 /* make a swarm of undead around mm */
 void
-mkundead(mm, revive_corpses, mm_flags)
+mkundead(mm, revive_corpses, mm_flags, hostility)
 coord *mm;
 boolean revive_corpses;
 int mm_flags;
+boolean hostility;
 {
 	int cnt = 1;
 	if (!rn2(2)) cnt = (level_difficulty() + 1)/10;
@@ -1504,6 +1505,8 @@ int mm_flags;
 	struct permonst *mdat;
 	struct obj *otmp;
 	coord cc;
+
+	register struct monst *mtmp;
 
 	if (Aggravate_monster) {
 		u.aggravation = 1;
@@ -1516,7 +1519,11 @@ int mm_flags;
 		    (!revive_corpses ||
 		     !(otmp = sobj_at(CORPSE, cc.x, cc.y)) ||
 		     !revive(otmp)))
-		(void) makemon(mdat, cc.x, cc.y, mm_flags);
+		mtmp = makemon(mdat, cc.x, cc.y, mm_flags);
+		if (mtmp && hostility) {
+			mtmp->mpeaceful = 0;
+			mtmp->mfrenzied = 1;
+		}
 	}
 
 	u.aggravation = 0;
