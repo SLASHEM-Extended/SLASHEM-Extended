@@ -9435,11 +9435,15 @@ boolean magicalwish; /* for the evil variant, because of Unnethack's nonmagical 
 #endif
 	struct obj *otmp, nothing;
 	int tries = 0;
+	boolean magical_object;
 
 	nothing = zeroobj;  /* lint suppression; only its address matters */
 	if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
 
 	if (!magicalwish) pline("This is the evil variant though, you can only wish for nonmagical crap.");
+	/* In Unnethack you'd even be disallowed to wish for an object class that has potentially magical ones...
+	 * But I decided that it's fair game, after all wishing for a random scroll may well give you a scroll of amnesia
+	 * or other useless one. If you decide to gamble like that, oh well, I'm allowing it. --Amy */
 
 retry:
 	getlin("For what do you wish?", buf);
@@ -9478,8 +9482,19 @@ retry:
 	    return;
 	}
 
+	/* check if wishing for magical objects is allowed; code stolen from unnethack */
+	magical_object = (otmp && (otmp->oartifact || objects[otmp->otyp].oc_magic));
+	if (!magicalwish && magical_object) {
+		verbalize("Har har har, this object is magical and therefore you cannot wish for it, bitch.");
+		if (otmp->oartifact) artifact_exists(otmp, ONAME(otmp), FALSE);
+		obfree(otmp, (struct obj *) 0);
+		otmp = &zeroobj;
+		goto retry;
+	}
+
 	/* KMH, conduct */
-	u.uconduct.wishes++;
+	/* Amy edit: nonmagical pseudo"wishes" aren't really wishes and therefore don't break the conduct. */
+	if (magicalwish) u.uconduct.wishes++;
 
 	/* Livelog patch */
 #ifdef LIVELOGFILE
