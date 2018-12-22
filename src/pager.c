@@ -22679,6 +22679,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Someone watched you change clothes...",
 	"Oh no - you had sex before your marriage. The gods are certainly angry now.",
 	"Becoming pregnant before you're married is a grave sin, and the gods are really angry.",
+	"bhaak demands 400,000 zorkmids for safe passage. Pay? (y/n)", /* by Luxidream */
+	"You give bhaak four Mini-Croesus trophies. Bhaak vanishes, laughing 'See you in June.'", /* by aosdict */
+	"You start talking to the scale mail. You feel stupid. The scale mail asks about the weather outside. Wait, it's a mimic!",
 
 };
 

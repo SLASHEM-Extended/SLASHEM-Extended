@@ -4811,6 +4811,9 @@ static const char *epitaphs[] = {
 	"RIP suffragette, she got rolled over by a train.",
 	"RIP suffragette, she got eaten by an alligator.",
 	"RIP suffragette, she got dropped in a mine shaft and fed to the devil.",
+	"Ruat coelum, fiat iustitia. Ecce, lex rex!", /* by Porkman */
+	"Satan's Flaming Bollocks!", /* ditto */
+	"Here lies Antichthon. Crushed underneath an express train from HELL.", /* with 50-odd egotypes */
 
 };
 
