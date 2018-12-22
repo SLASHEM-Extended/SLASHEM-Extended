@@ -383,6 +383,12 @@ struct toptenentry *tt;
   (void)fprintf(rfile, XLOG_SEP "endtime=%ld", (long)deathtime);
 #endif
 
+	/* Amy addition: unlike any other variant, your role and race can change during gameplay. This is for junethack,
+	 * where a certain competition is about ascending as many as possible starting combinations. */
+  (void)fprintf(rfile, XLOG_SEP "role0=%s", ustartrole.filecode);
+
+  (void)fprintf(rfile, XLOG_SEP "race0=%s", ustartrace.filecode);
+
 #ifdef RECORD_GENDER0
   (void)fprintf(rfile, XLOG_SEP "gender0=%s", genders[flags.initgend].filecode);
 #endif
@@ -391,6 +397,7 @@ struct toptenentry *tt;
   (void)fprintf(rfile, XLOG_SEP "align0=%s", 
           aligns[1 - u.ualignbase[A_ORIGINAL]].filecode);
 #endif
+
   fprintf(rfile, XLOG_SEP "flags=0x%lx", encodexlogflags());
 
   (void)fprintf(rfile, "\n");
