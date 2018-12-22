@@ -217,7 +217,7 @@ boolean ghostly, frozen;
 		 * to new player's clock.  Assumption: new player arrived
 		 * immediately after old player died.
 		 */
-		if (ghostly && !frozen && !age_is_relative(otmp))
+		if (ghostly && !frozen && !age_is_relative(otmp) && !is_lightsaber(otmp))
 		    otmp->age = monstermoves - omoves + otmp->age;
 
 		/* get contents of a container or statue */

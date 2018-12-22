@@ -2155,7 +2155,7 @@ boolean invobj;
 		sellobj_state(SELL_NORMAL);
 	    }
 	}
-	if (Icebox && !age_is_relative(obj)) {
+	if (Icebox && !age_is_relative(obj) && !is_lightsaber(obj)) {
 		obj->age = monstermoves - obj->age; /* actual age */
 		/* stop any corpse timeouts when frozen */
 		if (obj->otyp == CORPSE && obj->timed) {
@@ -2304,7 +2304,7 @@ register struct obj *obj;
 	obj_extract_self(obj);
 	current_container->owt = weight(current_container);
 
-	if (Icebox && !age_is_relative(obj)) {
+	if (Icebox && !age_is_relative(obj) && !is_lightsaber(obj)) {
 		obj->age = monstermoves - obj->age; /* actual age */
 		if (obj->otyp == CORPSE)
 			start_corpse_timeout(obj);
@@ -2979,7 +2979,7 @@ BOOLEAN_P destroy_after;
 		container->owt = weight(container);
 
 		/* we do need to start the timer on these */
-		if ( (container->otyp == ICE_BOX || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == ICE_BOX_OF_WATERPROOFING || container->otyp == ICE_BOX_OF_DIGESTION) && !age_is_relative(otmp)) {
+		if ( (container->otyp == ICE_BOX || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == ICE_BOX_OF_WATERPROOFING || container->otyp == ICE_BOX_OF_DIGESTION) && !age_is_relative(otmp) && !is_lightsaber(otmp)) {
 			otmp->age = monstermoves - otmp->age;
 			if (otmp->otyp == CORPSE) {
 				start_corpse_timeout(otmp);
