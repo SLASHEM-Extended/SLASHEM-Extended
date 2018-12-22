@@ -2902,11 +2902,11 @@ secureidchoice:
 
 
                         pline("%s gets tamer.", Monnam(u.usteed));
-                        tamedog(u.usteed, (struct obj *) 0, FALSE);
+                        tamedog(u.usteed, (struct obj *) 0, FALSE); /* caveat: you might be riding a non-tame monster */
 
 				while (calmedX == 0) { /* remove the stupid bug that caused this tech to do nothing --Amy */
 
-				if (u.usteed->mtame < 20) u.usteed->mtame++;
+				if (u.usteed && u.usteed->mtame < 20) u.usteed->mtame++;
 
 				if (techlevX(tech_no) < rnd(50)) calmedX++; /* high level tech has high chance of extra tameness */
 
