@@ -3979,6 +3979,12 @@ intrinsicgainorloss()
 {
 	register boolean intloss = rn2(2);
 
+	boolean hasmadeachange = 0;
+	int tryct = 0;
+
+retrytrinsic:
+	if (!rn2(5)) intloss = rn2(2);
+
 	if (rn2(4)) { /* ones that can easily be gained by eating things */
 		switch (rnd(16)) {
 
@@ -3987,15 +3993,18 @@ intrinsicgainorloss()
 					if (HFire_resistance & INTRINSIC) {
 						HFire_resistance &= ~INTRINSIC;
 						You_feel("warmer.");
+						hasmadeachange = 1;
 					}
 					if (HFire_resistance & TIMEOUT) {
 						HFire_resistance &= ~TIMEOUT;
 						You_feel("warmer.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HFire_resistance & FROMOUTSIDE)) {
 						You(Hallucination ? "be chillin'." : "feel a momentary chill.");
 						HFire_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4004,15 +4013,18 @@ intrinsicgainorloss()
 					if (HTeleportation & INTRINSIC) {
 						HTeleportation &= ~INTRINSIC;
 						You_feel("less jumpy.");
+						hasmadeachange = 1;
 					}
 					if (HTeleportation & TIMEOUT) {
 						HTeleportation &= ~TIMEOUT;
 						You_feel("less jumpy.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HTeleportation & FROMOUTSIDE)) {
 						You_feel(Hallucination ? "diffuse." : "very jumpy.");
 						HTeleportation |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4021,15 +4033,18 @@ intrinsicgainorloss()
 					if (HPoison_resistance & INTRINSIC) {
 						HPoison_resistance &= ~INTRINSIC;
 						You_feel("a little sick!");
+						hasmadeachange = 1;
 					}
 					if (HPoison_resistance & TIMEOUT) {
 						HPoison_resistance &= ~TIMEOUT;
 						You_feel("a little sick!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HPoison_resistance & FROMOUTSIDE)) {
 						You_feel(Poison_resistance ? "especially healthy." : "healthy.");
 						HPoison_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4038,15 +4053,18 @@ intrinsicgainorloss()
 					if (HTelepat & INTRINSIC) {
 						HTelepat &= ~INTRINSIC;
 						Your("senses fail!");
+						hasmadeachange = 1;
 					}
 					if (HTelepat & TIMEOUT) {
 						HTelepat &= ~TIMEOUT;
 						Your("senses fail!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HTelepat & FROMOUTSIDE)) {
 						You_feel(Hallucination ? "in touch with the cosmos." : "a strange mental acuity.");
 						HTelepat |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4055,15 +4073,18 @@ intrinsicgainorloss()
 					if (HCold_resistance & INTRINSIC) {
 						HCold_resistance &= ~INTRINSIC;
 						You_feel("cooler.");
+						hasmadeachange = 1;
 					}
 					if (HCold_resistance & TIMEOUT) {
 						HCold_resistance &= ~TIMEOUT;
 						You_feel("cooler.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HCold_resistance & FROMOUTSIDE)) {
 						You_feel("full of hot air.");
 						HCold_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4072,15 +4093,18 @@ intrinsicgainorloss()
 					if (HInvis & INTRINSIC) {
 						HInvis &= ~INTRINSIC;
 						You_feel("paranoid.");
+						hasmadeachange = 1;
 					}
 					if (HInvis & TIMEOUT) {
 						HInvis &= ~TIMEOUT;
 						You_feel("paranoid.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HInvis & FROMOUTSIDE)) {
 						You_feel("less visible.");
 						HInvis |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4089,15 +4113,18 @@ intrinsicgainorloss()
 					if (HSee_invisible & INTRINSIC) {
 						HSee_invisible &= ~INTRINSIC;
 						You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+						hasmadeachange = 1;
 					}
 					if (HSee_invisible & TIMEOUT) {
 						HSee_invisible &= ~TIMEOUT;
 						You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HSee_invisible & FROMOUTSIDE)) {
 						You_feel("your vision sharpen.");
 						HSee_invisible |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4106,15 +4133,18 @@ intrinsicgainorloss()
 					if (HFast & INTRINSIC) {
 						HFast &= ~INTRINSIC;
 						You_feel("slower.");
+						hasmadeachange = 1;
 					}
 					if (HFast & TIMEOUT) {
 						HFast &= ~TIMEOUT;
 						You_feel("slower.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HFast & FROMOUTSIDE)) {
 						You_feel("faster.");
 						HFast |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4123,15 +4153,18 @@ intrinsicgainorloss()
 					if (HAggravate_monster & INTRINSIC) {
 						HAggravate_monster &= ~INTRINSIC;
 						You_feel("less attractive.");
+						hasmadeachange = 1;
 					}
 					if (HAggravate_monster & TIMEOUT) {
 						HAggravate_monster &= ~TIMEOUT;
 						You_feel("less attractive.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HAggravate_monster & FROMOUTSIDE)) {
 						You_feel("monsters setting up portals.");
 						HAggravate_monster |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4140,15 +4173,18 @@ intrinsicgainorloss()
 					if (HSleep_resistance & INTRINSIC) {
 						HSleep_resistance &= ~INTRINSIC;
 						You_feel("tired all of a sudden.");
+						hasmadeachange = 1;
 					}
 					if (HSleep_resistance & TIMEOUT) {
 						HSleep_resistance &= ~TIMEOUT;
 						You_feel("tired all of a sudden.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HSleep_resistance & FROMOUTSIDE)) {
 						You_feel("wide awake.");
 						HSleep_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4157,15 +4193,18 @@ intrinsicgainorloss()
 					if (HDisint_resistance & INTRINSIC) {
 						HDisint_resistance &= ~INTRINSIC;
 						You_feel("like you're going to break apart.");
+						hasmadeachange = 1;
 					}
 					if (HDisint_resistance & TIMEOUT) {
 						HDisint_resistance &= ~TIMEOUT;
 						You_feel("like you're going to break apart.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HDisint_resistance & FROMOUTSIDE)) {
 						You_feel(Hallucination ? "totally together, man." : "very firm.");
 						HDisint_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4174,10 +4213,12 @@ intrinsicgainorloss()
 					if (HShock_resistance & INTRINSIC) {
 						HShock_resistance &= ~INTRINSIC;
 						You_feel("like someone has zapped you.");
+						hasmadeachange = 1;
 					}
 					if (HShock_resistance & TIMEOUT) {
 						HShock_resistance &= ~TIMEOUT;
 						You_feel("like someone has zapped you.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HShock_resistance & FROMOUTSIDE)) {
@@ -4186,6 +4227,7 @@ intrinsicgainorloss()
 						else
 							Your("health currently feels amplified!");
 						HShock_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4194,15 +4236,18 @@ intrinsicgainorloss()
 					if (HTeleport_control & INTRINSIC) {
 						HTeleport_control &= ~INTRINSIC;
 						You_feel("unable to control where you're going.");
+						hasmadeachange = 1;
 					}
 					if (HTeleport_control & TIMEOUT) {
 						HTeleport_control &= ~TIMEOUT;
 						You_feel("unable to control where you're going.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HTeleport_control & FROMOUTSIDE)) {
 						You_feel(Hallucination ? "centered in your personal space." : "in control of yourself.");
 						HTeleport_control |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4211,15 +4256,18 @@ intrinsicgainorloss()
 					if (HAcid_resistance & INTRINSIC) {
 						HAcid_resistance &= ~INTRINSIC;
 						You_feel("worried about corrosion!");
+						hasmadeachange = 1;
 					}
 					if (HAcid_resistance & TIMEOUT) {
 						HAcid_resistance &= ~TIMEOUT;
 						You_feel("worried about corrosion!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HAcid_resistance & FROMOUTSIDE)) {
 						You(Hallucination ? "wanna do more acid!" : "feel less afraid of corrosives.");
 						HAcid_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4234,10 +4282,12 @@ intrinsicgainorloss()
 							if (HHallu_party & INTRINSIC) {
 								HHallu_party &= ~INTRINSIC;
 								You_feel("that the party is over!");
+								hasmadeachange = 1;
 							}
 							if (HHallu_party & TIMEOUT) {
 								HHallu_party &= ~TIMEOUT;
 								You_feel("that the party is over!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HHallu_party & FROMOUTSIDE)) {
@@ -4245,6 +4295,7 @@ intrinsicgainorloss()
 								    "like throwing wild parties with lots of sexy girls! Yeah!" :
 								    "a strange desire to celebrate.");
 								HHallu_party |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4254,15 +4305,18 @@ intrinsicgainorloss()
 							if (HDrunken_boxing & INTRINSIC) {
 								HDrunken_boxing &= ~INTRINSIC;
 								You_feel("a little drunk!");
+								hasmadeachange = 1;
 							}
 							if (HDrunken_boxing & TIMEOUT) {
 								HDrunken_boxing &= ~TIMEOUT;
 								You_feel("a little drunk!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HDrunken_boxing & FROMOUTSIDE)) {
 								You_feel(Hallucination ? "like Mike Tyson!" : "ready for a good brawl.");
 								HDrunken_boxing |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4272,15 +4326,18 @@ intrinsicgainorloss()
 							if (HStunnopathy & INTRINSIC) {
 								HStunnopathy &= ~INTRINSIC;
 								You_feel("an uncontrolled stunning!");
+								hasmadeachange = 1;
 							}
 							if (HStunnopathy & TIMEOUT) {
 								HStunnopathy &= ~TIMEOUT;
 								You_feel("an uncontrolled stunning!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HStunnopathy & FROMOUTSIDE)) {
 								You_feel(Hallucination ? "a controlled wobbling! Feels like being on a bouncy ship!" : "steadily observant.");
 								HStunnopathy |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4290,10 +4347,12 @@ intrinsicgainorloss()
 							if (HNumbopathy & INTRINSIC) {
 								HNumbopathy &= ~INTRINSIC;
 								You_feel("numbness spreading through your body!");
+								hasmadeachange = 1;
 							}
 							if (HNumbopathy & TIMEOUT) {
 								HNumbopathy &= ~TIMEOUT;
 								You_feel("numbness spreading through your body!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HNumbopathy & FROMOUTSIDE)) {
@@ -4301,6 +4360,7 @@ intrinsicgainorloss()
 						    "as if a sweet woman were clamping your toes with a block-heeled combat boot!" :
 					    "a numb feeling spreading through your body. Somehow, it doesn't feel bad at all...");
 								HNumbopathy |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4310,10 +4370,12 @@ intrinsicgainorloss()
 							if (HDimmopathy & INTRINSIC) {
 								HDimmopathy &= ~INTRINSIC;
 								You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+								hasmadeachange = 1;
 							}
 							if (HDimmopathy & TIMEOUT) {
 								HDimmopathy &= ~TIMEOUT;
 								You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HDimmopathy & FROMOUTSIDE)) {
@@ -4321,6 +4383,7 @@ intrinsicgainorloss()
 								You_feel(Hallucination ?
 								    "like your wife was contemplating a breakup, but then you realize that she's gonna stay with you to the end of all time." :
 								    "a little down. But then, good feelings overcome you.");
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4330,15 +4393,18 @@ intrinsicgainorloss()
 							if (HFreezopathy & INTRINSIC) {
 								HFreezopathy &= ~INTRINSIC;
 								You_feel("ice-cold!");
+								hasmadeachange = 1;
 							}
 							if (HFreezopathy & TIMEOUT) {
 								HFreezopathy &= ~TIMEOUT;
 								You_feel("ice-cold!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HFreezopathy & FROMOUTSIDE)) {
 								You_feel(Hallucination ? "like eating a big cone of ice-cream - mmmmmmmm!" : "icy.");
 								HFreezopathy |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4348,15 +4414,18 @@ intrinsicgainorloss()
 							if (HStoned_chiller & INTRINSIC) {
 								HStoned_chiller &= ~INTRINSIC;
 								You_feel("that you ain't gonna get time for relaxing anymore!");
+								hasmadeachange = 1;
 							}
 							if (HStoned_chiller & TIMEOUT) {
 								HStoned_chiller &= ~TIMEOUT;
 								You_feel("that you ain't gonna get time for relaxing anymore!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HStoned_chiller & FROMOUTSIDE)) {
 								You_feel(Hallucination ? "that you're simply the best - yeah, no shit, man!" :     "like relaxing on a couch.");
 								HStoned_chiller |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4366,15 +4435,18 @@ intrinsicgainorloss()
 							if (HCorrosivity & INTRINSIC) {
 								HCorrosivity &= ~INTRINSIC;
 								You_feel("the protective layer on your skin disappearing!");
+								hasmadeachange = 1;
 							}
 							if (HCorrosivity & TIMEOUT) {
 								HCorrosivity &= ~TIMEOUT;
 								You_feel("the protective layer on your skin disappearing!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HCorrosivity & FROMOUTSIDE)) {
 								You_feel(Hallucination ? "like you just got splashed with gunks of acid!" : "an acidic burning.");
 								HCorrosivity |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4384,15 +4456,18 @@ intrinsicgainorloss()
 							if (HFear_factor & INTRINSIC) {
 								HFear_factor &= ~INTRINSIC;
 								You_feel("fearful!");
+								hasmadeachange = 1;
 							}
 							if (HFear_factor & TIMEOUT) {
 								HFear_factor &= ~TIMEOUT;
 								You_feel("fearful!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HFear_factor & FROMOUTSIDE)) {
 								You_feel(Hallucination ? "like you're always running - from something! And the 'something' is a prostitute." : "ready to face your fears.");
 								HFear_factor |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4402,15 +4477,18 @@ intrinsicgainorloss()
 							if (HBurnopathy & INTRINSIC) {
 								HBurnopathy &= ~INTRINSIC;
 								You_feel("red-hot!");
+								hasmadeachange = 1;
 							}
 							if (HBurnopathy & TIMEOUT) {
 								HBurnopathy &= ~TIMEOUT;
 								You_feel("red-hot!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HBurnopathy & FROMOUTSIDE)) {
 								You_feel(Hallucination ? "super burninated by enemy with very tired!" : "a burning inside. Strangely, it feels quite soothing.");
 								HBurnopathy |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4420,10 +4498,12 @@ intrinsicgainorloss()
 							if (HSickopathy & INTRINSIC) {
 								HSickopathy &= ~INTRINSIC;
 								You_feel("a loss of medical knowledge!");
+								hasmadeachange = 1;
 							}
 							if (HSickopathy & TIMEOUT) {
 								HSickopathy &= ~TIMEOUT;
 								You_feel("a loss of medical knowledge!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HSickopathy & FROMOUTSIDE)) {
@@ -4431,6 +4511,7 @@ intrinsicgainorloss()
 							    "that you just smoked some really wacky stuff! What the heck was in there?" :
 						    "ill for a moment, but get the feeling that you know more about diseases now.");
 								HSickopathy |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4440,10 +4521,12 @@ intrinsicgainorloss()
 							if (HWonderlegs & INTRINSIC) {
 								HWonderlegs &= ~INTRINSIC;
 								You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+								hasmadeachange = 1;
 							}
 							if (HWonderlegs & TIMEOUT) {
 								HWonderlegs &= ~TIMEOUT;
 								You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HWonderlegs & FROMOUTSIDE)) {
@@ -4451,6 +4534,7 @@ intrinsicgainorloss()
 								    "a wonderful sensation in your shins, like they were just kicked by female hugging boots! How lovely!" :
 							    "like having your legs scratched up and down by sexy leather pumps.");
 								HWonderlegs |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4460,10 +4544,12 @@ intrinsicgainorloss()
 							if (HGlib_combat & INTRINSIC) {
 								HGlib_combat &= ~INTRINSIC;
 								You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+								hasmadeachange = 1;
 							}
 							if (HGlib_combat & TIMEOUT) {
 								HGlib_combat &= ~TIMEOUT;
 								You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HGlib_combat & FROMOUTSIDE)) {
@@ -4471,6 +4557,7 @@ intrinsicgainorloss()
 					    "like an absolute marital arts champion, so you can start fighting off your spouse!" :
 								    "the fliction in your hands disappearing.");
 								HGlib_combat |= FROMOUTSIDE;
+								hasmadeachange = 1;
 							}
 						}
 						break;
@@ -4482,15 +4569,18 @@ intrinsicgainorloss()
 					if (HStone_resistance & INTRINSIC) {
 						HStone_resistance &= ~INTRINSIC;
 						You_feel("less solid!");
+						hasmadeachange = 1;
 					}
 					if (HStone_resistance & TIMEOUT) {
 						HStone_resistance &= ~TIMEOUT;
 						You_feel("less solid!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HStone_resistance & FROMOUTSIDE)) {
 						You(Hallucination ? "feel stony and groovy, man." : "feel rock solid.");
 						HStone_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4505,15 +4595,18 @@ intrinsicgainorloss()
 					if (HStealth & INTRINSIC) {
 						HStealth &= ~INTRINSIC;
 						You_feel("clumsy.");
+						hasmadeachange = 1;
 					}
 					if (HStealth & TIMEOUT) {
 						HStealth &= ~TIMEOUT;
 						You_feel("clumsy.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HStealth & FROMOUTSIDE)) {
 						HStealth |= FROMOUTSIDE;
 						You_feel("stealthy.");
+						hasmadeachange = 1;
 					}
 				}
 
@@ -4523,15 +4616,18 @@ intrinsicgainorloss()
 					if (HProtection & INTRINSIC) {
 						HProtection &= ~INTRINSIC;
 						You_feel("vulnerable.");
+						hasmadeachange = 1;
 					}
 					if (HProtection & TIMEOUT) {
 						HProtection &= ~TIMEOUT;
 						You_feel("vulnerable.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HProtection & FROMOUTSIDE)) {
 						HProtection |= FROMOUTSIDE;
 						You_feel("protected.");
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4540,15 +4636,18 @@ intrinsicgainorloss()
 					if (HDrain_resistance & INTRINSIC) {
 						HDrain_resistance &= ~INTRINSIC;
 						You_feel("like someone is sucking out your life-force.");
+						hasmadeachange = 1;
 					}
 					if (HDrain_resistance & TIMEOUT) {
 						HDrain_resistance &= ~TIMEOUT;
 						You_feel("like someone is sucking out your life-force.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HDrain_resistance & FROMOUTSIDE)) {
 						You_feel("that your life force is safe now.");
 						HDrain_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4557,15 +4656,18 @@ intrinsicgainorloss()
 					if (HSick_resistance & INTRINSIC) {
 						HSick_resistance &= ~INTRINSIC;
 						You_feel("no longer immune to diseases!");
+						hasmadeachange = 1;
 					}
 					if (HSick_resistance & TIMEOUT) {
 						HSick_resistance &= ~TIMEOUT;
 						You_feel("no longer immune to diseases!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HSick_resistance & FROMOUTSIDE)) {
 						You_feel("immune to diseases.");
 						HSick_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4574,15 +4676,18 @@ intrinsicgainorloss()
 					if (HWarning & INTRINSIC) {
 						HWarning &= ~INTRINSIC;
 						You_feel("that your radar has just stopped working!");
+						hasmadeachange = 1;
 					}
 					if (HWarning & TIMEOUT) {
 						HWarning &= ~TIMEOUT;
 						You_feel("that your radar has just stopped working!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HWarning & FROMOUTSIDE)) {
 						You_feel("that your radar was turned on.");
 						HWarning |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4591,15 +4696,18 @@ intrinsicgainorloss()
 					if (HSearching & INTRINSIC) {
 						HSearching &= ~INTRINSIC;
 						You_feel("unable to find something you lost!");
+						hasmadeachange = 1;
 					}
 					if (HSearching & TIMEOUT) {
 						HSearching &= ~TIMEOUT;
 						You_feel("unable to find something you lost!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HSearching & FROMOUTSIDE)) {
 						You_feel("capable of finding hidden secrets.");
 						HSearching |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4608,15 +4716,18 @@ intrinsicgainorloss()
 					if (HClairvoyant & INTRINSIC) {
 						HClairvoyant &= ~INTRINSIC;
 						You_feel("a loss of mental capabilities!");
+						hasmadeachange = 1;
 					}
 					if (HClairvoyant & TIMEOUT) {
 						HClairvoyant &= ~TIMEOUT;
 						You_feel("a loss of mental capabilities!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HClairvoyant & FROMOUTSIDE)) {
 						You_feel("your consciousness expand!");
 						HClairvoyant |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4625,15 +4736,18 @@ intrinsicgainorloss()
 					if (HInfravision & INTRINSIC) {
 						HInfravision &= ~INTRINSIC;
 						You_feel("shrouded in darkness.");
+						hasmadeachange = 1;
 					}
 					if (HInfravision & TIMEOUT) {
 						HInfravision &= ~TIMEOUT;
 						You_feel("shrouded in darkness.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HInfravision & FROMOUTSIDE)) {
 						You_feel("capable of seeing in the dark.");
 						HInfravision |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4644,15 +4758,18 @@ intrinsicgainorloss()
 						if (HDetect_monsters & INTRINSIC) {
 							HDetect_monsters &= ~INTRINSIC;
 							You_feel("that you can no longer sense monsters.");
+							hasmadeachange = 1;
 						}
 						if (HDetect_monsters & TIMEOUT) {
 							HDetect_monsters &= ~TIMEOUT;
 							You_feel("that you can no longer sense monsters.");
+							hasmadeachange = 1;
 						}
 					} else {
 						if(!(HDetect_monsters & FROMOUTSIDE)) {
 							HDetect_monsters |= FROMOUTSIDE;
 							You("sense monsters.");
+							hasmadeachange = 1;
 						}
 					}
 
@@ -4662,15 +4779,18 @@ intrinsicgainorloss()
 						if (HJumping & INTRINSIC) {
 							HJumping &= ~INTRINSIC;
 							You_feel("your legs shrinking.");
+							hasmadeachange = 1;
 						}
 						if (HJumping & TIMEOUT) {
 							HJumping &= ~TIMEOUT;
 							You_feel("your legs shrinking.");
+							hasmadeachange = 1;
 						}
 					} else {
 						if(!(HJumping & FROMOUTSIDE)) {
 							HJumping |= FROMOUTSIDE;
 							You_feel("a sudden ability to jump.");
+							hasmadeachange = 1;
 						}
 					}
 				}
@@ -4680,15 +4800,18 @@ intrinsicgainorloss()
 					if (HMagical_breathing & INTRINSIC) {
 						HMagical_breathing &= ~INTRINSIC;
 						You_feel("you suddenly need to breathe!");
+						hasmadeachange = 1;
 					}
 					if (HMagical_breathing & TIMEOUT) {
 						HMagical_breathing &= ~TIMEOUT;
 						You_feel("you suddenly need to breathe!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HMagical_breathing & FROMOUTSIDE)) {
 						You_feel("that you don't need to breathe any longer.");
 						HMagical_breathing |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4697,15 +4820,18 @@ intrinsicgainorloss()
 					if (HRegeneration & INTRINSIC) {
 						HRegeneration &= ~INTRINSIC;
 						You_feel("your wounds are healing slower!");
+						hasmadeachange = 1;
 					}
 					if (HRegeneration & TIMEOUT) {
 						HRegeneration &= ~TIMEOUT;
 						You_feel("your wounds are healing slower!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HRegeneration & FROMOUTSIDE)) {
 						You_feel("your wounds healing more quickly.");
 						HRegeneration |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4714,15 +4840,18 @@ intrinsicgainorloss()
 					if (HEnergy_regeneration & INTRINSIC) {
 						HEnergy_regeneration &= ~INTRINSIC;
 						You_feel("a loss of mystic power!");
+						hasmadeachange = 1;
 					}
 					if (HEnergy_regeneration & TIMEOUT) {
 						HEnergy_regeneration &= ~TIMEOUT;
 						You_feel("a loss of mystic power!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HEnergy_regeneration & FROMOUTSIDE)) {
 						HEnergy_regeneration |= FROMOUTSIDE;
 						You_feel("a surge of mystic power.");
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4731,15 +4860,18 @@ intrinsicgainorloss()
 					if (HPolymorph & INTRINSIC) {
 						HPolymorph &= ~INTRINSIC;
 						You_feel("unable to change form!");
+						hasmadeachange = 1;
 					}
 					if (HPolymorph & TIMEOUT) {
 						HPolymorph &= ~TIMEOUT;
 						You_feel("unable to change form!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HPolymorph & FROMOUTSIDE)) {
 						HPolymorph |= FROMOUTSIDE;
 						You_feel("unstable.");
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4748,15 +4880,18 @@ intrinsicgainorloss()
 					if (HPolymorph_control & INTRINSIC) {
 						HPolymorph_control &= ~INTRINSIC;
 						You_feel("less control over your own body.");
+						hasmadeachange = 1;
 					}
 					if (HPolymorph_control & TIMEOUT) {
 						HPolymorph_control &= ~TIMEOUT;
 						You_feel("less control over your own body.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HPolymorph_control & FROMOUTSIDE)) {
 						HPolymorph_control |= FROMOUTSIDE;
 						You_feel("more control over your own body.");
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4765,15 +4900,18 @@ intrinsicgainorloss()
 					if (HHunger & INTRINSIC) {
 						HHunger &= ~INTRINSIC;
 						You_feel("like you just ate a chunk of meat.");
+						hasmadeachange = 1;
 					}
 					if (HHunger & TIMEOUT) {
 						HHunger &= ~TIMEOUT;
 						You_feel("like you just ate a chunk of meat.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HHunger & FROMOUTSIDE)) {
 						HHunger |= FROMOUTSIDE;
 						You_feel("very hungry.");
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4782,15 +4920,18 @@ intrinsicgainorloss()
 					if (HConflict & INTRINSIC) {
 						HConflict &= ~INTRINSIC;
 						You_feel("more acceptable.");
+						hasmadeachange = 1;
 					}
 					if (HConflict & TIMEOUT) {
 						HConflict &= ~TIMEOUT;
 						You_feel("more acceptable.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HConflict & FROMOUTSIDE)) {
 						HConflict |= FROMOUTSIDE;
 						You_feel("like a rabble-rouser.");
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4799,15 +4940,18 @@ intrinsicgainorloss()
 					if (HSlow_digestion & INTRINSIC) {
 						HSlow_digestion &= ~INTRINSIC;
 						You_feel("like you're burning calories faster.");
+						hasmadeachange = 1;
 					}
 					if (HSlow_digestion & TIMEOUT) {
 						HSlow_digestion &= ~TIMEOUT;
 						You_feel("like you're burning calories faster.");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HSlow_digestion & FROMOUTSIDE)) {
 						You_feel("constipated.");
 						HSlow_digestion |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4816,15 +4960,18 @@ intrinsicgainorloss()
 					if (HFlying & INTRINSIC) {
 						HFlying &= ~INTRINSIC;
 						You_feel("like you just lost your wings!");
+						hasmadeachange = 1;
 					}
 					if (HFlying & TIMEOUT) {
 						HFlying &= ~TIMEOUT;
 						You_feel("like you just lost your wings!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HFlying & FROMOUTSIDE)) {
 						You_feel("airborne.");
 						HFlying |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4836,15 +4983,18 @@ intrinsicgainorloss()
 						if (HPasses_walls & INTRINSIC) {
 							HPasses_walls &= ~INTRINSIC;
 							You_feel("less ethereal!");
+							hasmadeachange = 1;
 						}
 						if (HPasses_walls & TIMEOUT) {
 							HPasses_walls &= ~TIMEOUT;
 							You_feel("less ethereal!");
+							hasmadeachange = 1;
 						}
 					} else {
 						if(!(HPasses_walls & FROMOUTSIDE)) {
 							You_feel("ethereal.");
 							HPasses_walls |= FROMOUTSIDE;
+							hasmadeachange = 1;
 						}
 					}
 				} else {
@@ -4853,15 +5003,18 @@ intrinsicgainorloss()
 						if (HAntimagic & INTRINSIC) {
 							HAntimagic &= ~INTRINSIC;
 							You_feel("less protected from magic!");
+							hasmadeachange = 1;
 						}
 						if (HAntimagic & TIMEOUT) {
 							HAntimagic &= ~TIMEOUT;
 							You_feel("less protected from magic!");
+							hasmadeachange = 1;
 						}
 					} else {
 						if(!(HAntimagic & FROMOUTSIDE)) {
 							You_feel("magic-protected.");
 							HAntimagic |= FROMOUTSIDE;
+							hasmadeachange = 1;
 						}
 					}
 
@@ -4873,15 +5026,18 @@ intrinsicgainorloss()
 					if (HReflecting & INTRINSIC) {
 						HReflecting &= ~INTRINSIC;
 						You_feel("less reflexive!");
+						hasmadeachange = 1;
 					}
 					if (HReflecting & TIMEOUT) {
 						HReflecting &= ~TIMEOUT;
 						You_feel("less reflexive!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HReflecting & FROMOUTSIDE)) {
 						You_feel("reflexive.");
 						HReflecting |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4890,15 +5046,18 @@ intrinsicgainorloss()
 					if (HSwimming & INTRINSIC) {
 						HSwimming &= ~INTRINSIC;
 						You_feel("less aquatic!");
+						hasmadeachange = 1;
 					}
 					if (HSwimming & TIMEOUT) {
 						HSwimming &= ~TIMEOUT;
 						You_feel("less aquatic!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HSwimming & FROMOUTSIDE)) {
 						You_feel("aquatic.");
 						HSwimming |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4907,15 +5066,18 @@ intrinsicgainorloss()
 					if (HFree_action & INTRINSIC) {
 						HFree_action &= ~INTRINSIC;
 						You_feel("a loss of freedom!");
+						hasmadeachange = 1;
 					}
 					if (HFree_action & TIMEOUT) {
 						HFree_action &= ~TIMEOUT;
 						You_feel("a loss of freedom!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HFree_action & FROMOUTSIDE)) {
 						You_feel("free.");
 						HFree_action |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4924,15 +5086,18 @@ intrinsicgainorloss()
 					if (HFear_resistance & INTRINSIC) {
 						HFear_resistance &= ~INTRINSIC;
 						You_feel("a little anxious!");
+						hasmadeachange = 1;
 					}
 					if (HFear_resistance & TIMEOUT) {
 						HFear_resistance &= ~TIMEOUT;
 						You_feel("a little anxious!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HFear_resistance & FROMOUTSIDE)) {
 						You_feel("unafraid.");
 						HFear_resistance |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4941,15 +5106,18 @@ intrinsicgainorloss()
 					if (HKeen_memory & INTRINSIC) {
 						HKeen_memory &= ~INTRINSIC;
 						You_feel("a case of selective amnesia...");
+						hasmadeachange = 1;
 					}
 					if (HKeen_memory & TIMEOUT) {
 						HKeen_memory &= ~TIMEOUT;
 						You_feel("a case of selective amnesia...");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HKeen_memory & FROMOUTSIDE)) {
 						You_feel("capable of remembering everything.");
 						HKeen_memory |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4958,15 +5126,18 @@ intrinsicgainorloss()
 					if (HVersus_curses & INTRINSIC) {
 						HVersus_curses &= ~INTRINSIC;
 						You_feel("cursed!");
+						hasmadeachange = 1;
 					}
 					if (HVersus_curses & TIMEOUT) {
 						HVersus_curses &= ~TIMEOUT;
 						You_feel("cursed!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HVersus_curses & FROMOUTSIDE)) {
 						You_feel("protected from curse words.");
 						HVersus_curses |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4975,15 +5146,18 @@ intrinsicgainorloss()
 					if (HStun_resist & INTRINSIC) {
 						HStun_resist &= ~INTRINSIC;
 						You_feel("a little stunned!");
+						hasmadeachange = 1;
 					}
 					if (HStun_resist & TIMEOUT) {
 						HStun_resist &= ~TIMEOUT;
 						You_feel("a little stunned!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HStun_resist & FROMOUTSIDE)) {
 						You_feel("the ability to control stunning.");
 						HStun_resist |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -4992,15 +5166,18 @@ intrinsicgainorloss()
 					if (HConf_resist & INTRINSIC) {
 						HConf_resist &= ~INTRINSIC;
 						You_feel("a little confused!");
+						hasmadeachange = 1;
 					}
 					if (HConf_resist & TIMEOUT) {
 						HConf_resist &= ~TIMEOUT;
 						You_feel("a little confused!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HConf_resist & FROMOUTSIDE)) {
 						You_feel("capable of concentrating even while confused.");
 						HConf_resist |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5009,15 +5186,18 @@ intrinsicgainorloss()
 					if (HExtra_wpn_practice & INTRINSIC) {
 						HExtra_wpn_practice &= ~INTRINSIC;
 						You_feel("less able to learn new stuff!");
+						hasmadeachange = 1;
 					}
 					if (HExtra_wpn_practice & TIMEOUT) {
 						HExtra_wpn_practice &= ~TIMEOUT;
 						You_feel("less able to learn new stuff!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HExtra_wpn_practice & FROMOUTSIDE)) {
 						You_feel("like a quick learner.");
 						HExtra_wpn_practice |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5026,15 +5206,18 @@ intrinsicgainorloss()
 					if (HDisplaced & INTRINSIC) {
 						HDisplaced &= ~INTRINSIC;
 						You_feel("a little exposed!");
+						hasmadeachange = 1;
 					}
 					if (HDisplaced & TIMEOUT) {
 						HDisplaced &= ~TIMEOUT;
 						You_feel("a little exposed!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HDisplaced & FROMOUTSIDE)) {
 						You_feel("less exposed.");
 						HDisplaced |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5043,15 +5226,18 @@ intrinsicgainorloss()
 					if (HPsi_resist & INTRINSIC) {
 						HPsi_resist &= ~INTRINSIC;
 						You_feel("empty-minded!");
+						hasmadeachange = 1;
 					}
 					if (HPsi_resist & TIMEOUT) {
 						HPsi_resist &= ~TIMEOUT;
 						You_feel("empty-minded!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HPsi_resist & FROMOUTSIDE)) {
 						You_feel("mentally strong.");
 						HPsi_resist |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5060,15 +5246,18 @@ intrinsicgainorloss()
 					if (HSight_bonus & INTRINSIC) {
 						HSight_bonus &= ~INTRINSIC;
 						You_feel("less perceptive!");
+						hasmadeachange = 1;
 					}
 					if (HSight_bonus & TIMEOUT) {
 						HSight_bonus &= ~TIMEOUT;
 						You_feel("less perceptive!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HSight_bonus & FROMOUTSIDE)) {
 						You_feel("the presence of a globe of light.");
 						HSight_bonus |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5077,15 +5266,18 @@ intrinsicgainorloss()
 					if (HManaleech & INTRINSIC) {
 						HManaleech &= ~INTRINSIC;
 						You_feel("less magically attuned!");
+						hasmadeachange = 1;
 					}
 					if (HManaleech & TIMEOUT) {
 						HManaleech &= ~TIMEOUT;
 						You_feel("less magically attuned!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HManaleech & FROMOUTSIDE)) {
 						You_feel("magically attuned.");
 						HManaleech |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5094,15 +5286,18 @@ intrinsicgainorloss()
 					if (HMap_amnesia & INTRINSIC) {
 						HMap_amnesia &= ~INTRINSIC;
 						You_feel("less forgetful!");
+						hasmadeachange = 1;
 					}
 					if (HMap_amnesia & TIMEOUT) {
 						HMap_amnesia &= ~TIMEOUT;
 						You_feel("less forgetful!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HMap_amnesia & FROMOUTSIDE)) {
 						You_feel("very forgetful!");
 						HMap_amnesia |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5111,15 +5306,18 @@ intrinsicgainorloss()
 					if (HPeacevision & INTRINSIC) {
 						HPeacevision &= ~INTRINSIC;
 						You_feel("less peaceful!");
+						hasmadeachange = 1;
 					}
 					if (HPeacevision & TIMEOUT) {
 						HPeacevision &= ~TIMEOUT;
 						You_feel("less peaceful!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HPeacevision & FROMOUTSIDE)) {
 						You_feel("a sense of peace.");
 						HPeacevision |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5128,15 +5326,18 @@ intrinsicgainorloss()
 					if (HCont_resist & INTRINSIC) {
 						HCont_resist &= ~INTRINSIC;
 						You_feel("less resistant to contamination!");
+						hasmadeachange = 1;
 					}
 					if (HCont_resist & TIMEOUT) {
 						HCont_resist &= ~TIMEOUT;
 						You_feel("less resistant to contamination!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HCont_resist & FROMOUTSIDE)) {
 						You_feel("protected from contamination.");
 						HCont_resist |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5145,15 +5346,18 @@ intrinsicgainorloss()
 					if (HDiscount_action & INTRINSIC) {
 						HDiscount_action &= ~INTRINSIC;
 						You_feel("less resistant to paralysis!");
+						hasmadeachange = 1;
 					}
 					if (HDiscount_action & TIMEOUT) {
 						HDiscount_action &= ~TIMEOUT;
 						You_feel("less resistant to paralysis!");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HDiscount_action & FROMOUTSIDE)) {
 						You_feel("more resistant to paralysis!");
 						HDiscount_action |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5162,15 +5366,18 @@ intrinsicgainorloss()
 					if (HFull_nutrient & INTRINSIC) {
 						HFull_nutrient &= ~INTRINSIC;
 						You_feel("a hole in your %s!", body_part(STOMACH));
+						hasmadeachange = 1;
 					}
 					if (HFull_nutrient & TIMEOUT) {
 						HFull_nutrient &= ~TIMEOUT;
 						You_feel("a hole in your %s!", body_part(STOMACH));
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HFull_nutrient & FROMOUTSIDE)) {
 						You_feel("that your %s is now rather full.", body_part(STOMACH));
 						HFull_nutrient |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5179,15 +5386,18 @@ intrinsicgainorloss()
 					if (HTechnicality & INTRINSIC) {
 						HTechnicality &= ~INTRINSIC;
 						You_feel("less capable of using your techniques...");
+						hasmadeachange = 1;
 					}
 					if (HTechnicality & TIMEOUT) {
 						HTechnicality &= ~TIMEOUT;
 						You_feel("less capable of using your techniques...");
+						hasmadeachange = 1;
 					}
 				} else {
 					if(!(HTechnicality & FROMOUTSIDE)) {
 						You_feel("that your techniques are more powerful now!");
 						HTechnicality |= FROMOUTSIDE;
+						hasmadeachange = 1;
 					}
 				}
 				break;
@@ -5195,6 +5405,12 @@ intrinsicgainorloss()
 				break;
 
 	}
+
+	if (!hasmadeachange) {
+		tryct++;
+		if (tryct < 100 && rn2(intloss ? 10 : 2)) goto retrytrinsic;
+	}
+
 }
 
 #endif /* OVLB */
