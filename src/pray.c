@@ -1855,7 +1855,7 @@ dosacrifice()
 			       break;                
 			  case 4:
 			       pline("Amused, he grants you a boon!");
-				 if (!rn2(4)) makewish();
+				 if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 				 else othergreateffect();
 				 if (dmon && !rn2(200) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
 			  case 13:

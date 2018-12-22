@@ -465,7 +465,7 @@ fortune (mtmp)
 				mongone(mtmp);
 			} else if (gypsy_offer(mtmp, 10000L, "grant you a wish")) {
 				mtmp->mcan = TRUE;
-				makewish();
+				makewish(TRUE);
 			}
 			break;
 		default:

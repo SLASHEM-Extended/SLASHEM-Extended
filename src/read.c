@@ -5998,7 +5998,7 @@ newbossC:
 			makenonworkingwish();
 			break;
 		}
-		makewish();
+		makewish(TRUE);
 		break;
 
 	case SCR_RAGNAROK:

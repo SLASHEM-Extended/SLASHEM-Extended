@@ -4025,7 +4025,7 @@ secureidchoice:
 				makenonworkingwish();
 				break;
 			}
-			makewish();
+			makewish(TRUE);
 			break;
 		case WAN_ACQUIREMENT:
 			known = TRUE;
@@ -4366,7 +4366,7 @@ chargingchoice:
 			case 5 : 
 				pline("Multicolored sparks fly from the wand.");
 				if (!rn2(250)) {
-					if (!rn2(4)) makewish();
+					if (!rn2(4)) makewish(TRUE);
 					else othergreateffect();
 				}
 		/* since there is a 1% chance of the wand exploding, this _should_ be okay --Amy */
@@ -9426,7 +9426,8 @@ int damage, tell;
 }
 
 void
-makewish()
+makewish(magicalwish)
+boolean magicalwish; /* for the evil variant, because of Unnethack's nonmagical pseudo"wishes" --Amy */
 {
 	char buf[BUFSZ];
 #ifdef LIVELOGFILE
@@ -9437,6 +9438,9 @@ makewish()
 
 	nothing = zeroobj;  /* lint suppression; only its address matters */
 	if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
+
+	if (!magicalwish) pline("This is the evil variant though, you can only wish for nonmagical crap.");
+
 retry:
 	getlin("For what do you wish?", buf);
 #ifdef LIVELOGFILE

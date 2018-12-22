@@ -8124,7 +8124,7 @@ int kind;
 
 	switch (chance) {
 	case 0 : verbalize("I am in your debt.  I will grant a boon!");
-		if (!rn2(4)) makewish();
+		if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 		else othergreateffect();
 		mongone(mtmp);
 		break;

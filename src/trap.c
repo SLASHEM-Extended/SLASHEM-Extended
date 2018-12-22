@@ -3296,7 +3296,7 @@ newegomon:
 			makenonworkingwish();
 			break;
 		}
-		makewish();
+		makewish(TRUE);
 		break;
 
 	    case BOON_TRAP:
@@ -3304,7 +3304,7 @@ newegomon:
 		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
 		pline("You stepped on a boon trap!");
 
-		if (!rn2(4)) makewish();
+		if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 		else othergreateffect();
 
 		break;

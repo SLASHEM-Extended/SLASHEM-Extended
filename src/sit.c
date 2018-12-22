@@ -462,7 +462,7 @@ dosit()
 				    You_feel("your luck is changing.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Kha, vy ne poluchite zhelaniye, potomu chto eto Sovetskaya Rossiya, gde kazhdyy poluchayet odinakovoye kolichestvo zhelaniy! I vy uzhe boleye chem dostatochno, teper' ochered' drugikh personazhey'!" : "DSCHUEueUEueUEueUEueUEue...");
 				    change_luck(5);
-				} else	    makewish();
+				} else	    makewish(evilfriday ? FALSE : TRUE);
 			} else {
 				othergreateffect();
 			}

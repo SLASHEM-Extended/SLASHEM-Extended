@@ -4207,7 +4207,7 @@ chargingchoice:
 		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
 		AMAX(A_CHA) = ABASE(A_CHA);
 
-		if (!rn2(4)) makewish();
+		if (!rn2(4)) makewish(TRUE);
 		else othergreateffect();
 
 	      t_timeout = rnz(25000);

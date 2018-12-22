@@ -59,7 +59,7 @@ dowaterdemon() /* Water demon */
 	if (rnd(100) > wishchance) {
 		pline("Grateful for %s release, %s grants you a boon!",
 		      mhis(mtmp), mhe(mtmp));
-		if (!rn2(4)) makewish();
+		if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 		else othergreateffect();
 		mongone(mtmp);
 	    } else if (t_at(mtmp->mx, mtmp->my))
@@ -375,7 +375,7 @@ drinkfountain()
 		case 23: /* Water demon */
 			if (uarmc && uarmc->oartifact == ART_JANA_S_ROULETTE_OF_LIFE && !rn2(10)) {
 				pline("Booyah, luck is smiling on you!");
-				if (!rn2(4)) makewish();
+				if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 				else othergreateffect();
 			} else dowaterdemon();
 			break;

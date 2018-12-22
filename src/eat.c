@@ -4431,7 +4431,7 @@ struct obj *otmp;
 
 			/* [Tom] wishing pills are from the Land of Oz */
 			pline ("The pink sugar coating hid a silver special pill!"); /* wish no longer guaranteed --Amy */
-			if (!rn2(4)) makewish();
+			if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 			else othergreateffect();
 			break;
 			}

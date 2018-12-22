@@ -4301,7 +4301,7 @@ secureidchoice:
 		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
 		AMAX(A_CHA) = ABASE(A_CHA);
 
-		makewish();
+		makewish(TRUE);
 
 		break;
 
