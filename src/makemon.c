@@ -5573,6 +5573,19 @@ register struct monst *mtmp;
 			(void) mongets(mtmp, BOW);
 			m_initthrow(mtmp, ARROW, 35);
 		}
+		if (ptr == &mons[PM_KENTAURS]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 35);
+		}
+		if (ptr == &mons[PM_KENTAURS_KNIGHT]) {
+			(void) mongets(mtmp, SLING);
+			m_initthrow(mtmp, ROCK, 50);
+			m_initthrow(mtmp, ROCK, 50);
+		}
+		if (ptr == &mons[PM_GUNNTAURS]) {
+			(void) mongets(mtmp, PISTOL);
+			m_initthrow(mtmp, BULLET, 50);
+		}
 		if (ptr == &mons[PM_FLINGAUR]) {
 			(void) mongets(mtmp, BOW);
 			(void) mongets(mtmp, ORCISH_HELM);
@@ -6316,6 +6329,10 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_JIGEN_DAISUKE]) { (void) mongets(mtmp, ROCKET_LAUNCHER); (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); }
 		if (mtmp->data == &mons[PM_JUEN_S_LEATHER_PEEP_TOE]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if (mtmp->data == &mons[PM_WANDERING_PENGUIN]) {
+			 (void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 50);
+		}
 
 		break;
 
@@ -6331,6 +6348,13 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_DILDO_GOLEM]) {
 			 (void) mongets(mtmp, VIBROBLADE);
 		}
+		if (mtmp->data == &mons[PM_MUSCLE_GOLEM]) {
+			 (void) mongets(mtmp, CLUB);
+			 m_initthrow(mtmp, JAVELIN, 4);
+		}
+		if (mtmp->data == &mons[PM_HC_DENTER]) {
+			 (void) mongets(mtmp, TRIDENT);
+		}
 		if (mtmp->data == &mons[PM_UNICORN_GOLEM]) {
 			 (void) mongets(mtmp, UNICORN_HORN);
 		}
@@ -6341,6 +6365,13 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_RETARDED_GOLEM]) {
 			 (void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, ROCK, 30);
+		}
+		if (mtmp->data == &mons[PM_PUTIT_TANK]) {
+			 (void) mongets(mtmp, PISTOL);
+			 m_initthrow(mtmp, BULLET, 25);
+		}
+		if (mtmp->data == &mons[PM_YERLES_CONBAT_PLANE]) {
+			 m_initthrow(mtmp, FRAG_GRENADE, 20);
 		}
 		if (mtmp->data == &mons[PM_LANCE_GOLEM]) {
 			 (void) mongets(mtmp, LANCE);
@@ -6591,6 +6622,22 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_KERSTIN_S_LOVELY_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (mtmp->data == &mons[PM_KARIN_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
 		if (mtmp->data == &mons[PM_KERSTIN_S_WOODEN_SANDAL]) { (void) mongets(mtmp, WEDGE_SANDALS); (void) mongets(mtmp, WOODEN_GETA); }
+
+		if (mtmp->data == &mons[PM_COM_BAT]) {
+			(void) mongets(mtmp, HAND_BLASTER);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+
+		if (mtmp->data == &mons[PM_LAST_RAVEN]) {
+			(void) mongets(mtmp, RAYGUN);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+
+		if (mtmp->data == &mons[PM_KAPAPU_KAMUI]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 50);
+		}
 
 		break;
 
@@ -7117,6 +7164,7 @@ register struct	monst	*mtmp;
 		break;
 	    case S_GNOME:
 
+		if (mtmp->data == &mons[PM_ALIEN_PHALANX]) (void) mongets(mtmp, HALBERD);
 		if (mtmp->data == &mons[PM_GNOME_BADASS]) (void) mongets(mtmp, WAN_REMOVE_RESISTANCE);
 		if (mtmp->data == &mons[PM_GNOMISH_SLIME_MAGE]) (void) mongets(mtmp, POT_SLIME);
 		if (mtmp->data == &mons[PM_NASTY_GRIFFIN]) (void) mongets(mtmp, SCR_MEGALOAD);
@@ -7389,6 +7437,11 @@ register struct	monst	*mtmp;
 	  		m_initthrow(mtmp, LASER_BEAM, 50);
 		}
 
+		if (ptr == &mons[PM_ESCAPEGOAT]) {
+			(void) mongets(mtmp, SNIPER_RIFLE);
+	  		m_initthrow(mtmp, BULLET, 50);
+		}
+
 		if (ptr == &mons[PM_DOBIEL]) {
 		  	(void) mongets(mtmp, BALLISTA);
 		  	m_initthrow(mtmp, CROSSBOW_BOLT, 50);
@@ -7484,6 +7537,11 @@ register struct	monst	*mtmp;
 		  	m_initthrow(mtmp, ANCIENT_ARROW, 35);
 		}
 
+		if (mtmp->data == &mons[PM_DOG_COP]) {
+			(void)mongets(mtmp, RUBBER_HOSE);
+			m_initthrow(mtmp, CREAM_PIE, 2);
+		}
+
 		break;
 
 	    case S_GHOST:
@@ -7517,6 +7575,10 @@ register struct	monst	*mtmp;
 	    case S_PUDDING:
 
 		if (mtmp->data == &mons[PM_AQUA_PUDDING]) (void) mongets(mtmp, POT_SANITY);
+		if (ptr == &mons[PM_MILITARY_PUTIT]) {
+		  	(void) mongets(mtmp, FLINTLOCK);
+		  	m_initthrow(mtmp, BULLET, 15);
+		}
 
 		break;
 
@@ -8047,6 +8109,7 @@ register struct	monst	*mtmp;
 
           case S_SNAKE:
 		if (mtmp->data == &mons[PM_CLOUD_CATTLE]) (void) mongets(mtmp, SCR_CLOUDS);
+		if (mtmp->data == &mons[PM_HC_STENGLER]) (void) mongets(mtmp, BARDICHE);
 
 		if (mtmp->data == &mons[PM_ARMED_SNAKE]) { (void) mongets(mtmp, ORCISH_BOW); m_initthrow(mtmp, ARROW, 30);}
 
@@ -8359,6 +8422,15 @@ register struct	monst	*mtmp;
 	  		m_initthrow(mtmp, BULLET, 20);
 		}
 
+		if (ptr == &mons[PM_SNIPE_HERMIT]) {
+			(void) mongets(mtmp, SNIPER_RIFLE);
+	  		m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_HECK_HERMIT]) {
+			(void) mongets(mtmp, SNIPER_RIFLE);
+	  		m_initthrow(mtmp, BULLET, 50);
+		}
+
 		if (ptr == &mons[PM_CUTTERFISH]) {
 			(void) mongets(mtmp, CUTTING_LASER);
 	  		m_initthrow(mtmp, LASER_BEAM, 50);
@@ -8439,6 +8511,7 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_BLEACH_GHOST]) m_initthrow(mtmp, CALTROP, 50);
 		if (ptr == &mons[PM_SERBIAN_BOSS]) (void)mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_GLAMOUR_HC_BITCH]) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 		if (ptr == &mons[PM_SWARMING_GIRL]) (void)mongets(mtmp, HIGH_HEELED_SANDAL);
 		if (ptr == &mons[PM_GENTLE_GIRL]) (void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
@@ -9441,6 +9514,17 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_MARTIAN_MISSILE_WALKER) {
 			(void) mongets(mtmp,ROCKET_LAUNCHER);
 			 m_initthrow(mtmp, ROCKET, 10);
+		}
+
+		if (monsndx(ptr) == PM_CUPID_OF_LOVE) {
+			(void) mongets(mtmp,BOW);
+			 m_initthrow(mtmp, ARROW, 20);
+		}
+
+		if (monsndx(ptr) == PM_CUPID_OF_DEATH) {
+			(void) mongets(mtmp,BOW);
+			 m_initthrow(mtmp, ARROW, 50);
+			 m_initthrow(mtmp, ARROW, 50);
 		}
 
 		if (monsndx(ptr) == PM_MISS_GENTLE_BUNDLE) {
@@ -16151,6 +16235,7 @@ register int	mmflags;
 			break;
 		case S_QUADRUPED:
 			if (mtmp->data == &mons[PM_BLENDING_TITANOTHERE]) set_mimic_sym(mtmp);
+			if (mndx == PM_ASTRAY_SHEEP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 		case S_VORTEX:
 			if (mtmp->data == &mons[PM_MIMIC_VORTEX]) set_mimic_sym(mtmp);
@@ -16210,7 +16295,7 @@ register int	mmflags;
 			break;
 		case S_LIGHT:
 		case S_ELEMENTAL:
-			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_PAIN_MISTER || mndx == PM_BLACK_LIGHT || mndx == PM_WEREBLACKLIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_BLACK_BULB || mndx == PM_BLACK_BOOMER || mndx == PM_BLACK_STAR || mndx == PM_BLACK_BEAM || mndx == PM_BLACK_RAY || mndx == PM_POLTERGEIST || mndx == PM_WERESTALKER) {
+			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_SCHEDAU_STALKER || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_PAIN_MISTER || mndx == PM_BLACK_LIGHT || mndx == PM_WEREBLACKLIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_BLACK_BULB || mndx == PM_BLACK_BOOMER || mndx == PM_BLACK_STAR || mndx == PM_BLACK_BEAM || mndx == PM_BLACK_RAY || mndx == PM_POLTERGEIST || mndx == PM_WERESTALKER) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}
@@ -19410,8 +19495,21 @@ int type;
 		case PM_RETARDED_GOLEM: return 30;
 		case PM_FLEECY_LEATHER_GOLEM: return 80;
 		case PM_DENT_GOLEM: return 100;
+		case PM_ELOBLOOD_GOLEM: return 500;
+		case PM_MUSCLE_GOLEM: return 600;
+		case PM_ELOWOODEN_GOLEM: return 100;
+		case PM_SKY_GOLEM: return 250;
+		case PM_ULTIMATE_GOLEM: return 750;
+		case PM_MAD_MUD_GOLEM: return 850;
+		case PM_ELOLAVA_GOLEM: return 1000;
+		case PM_ELOMITHRIL_GOLEM: return 200;
+		case PM_ELOADAMANTIUM_GOLEM: return 300;
+		case PM_GOLDEN_GOLEM: return 180;
+		case PM_ELOSTONE_GOLEM: return 125;
+		case PM_ELOSTEEL_GOLEM: return 150;
 		case PM_PIX_GOLEM: return 80;
 		case PM_LANCE_GOLEM: return 100;
+		case PM_HC_DENTER: return 100;
 		case PM_ANIMATED_LIMB: return 30;
 		case PM_DARK_FEMALE_ANDROID: return 30;
 		case PM_LIVING_IRON_CHAIN: return 30;

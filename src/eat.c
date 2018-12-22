@@ -293,7 +293,7 @@ register struct obj *obj;
 		return (boolean)(obj->otyp == EUCALYPTUS_LEAF);
 
 	/* Ghouls, ghasts only eat corpses */
-	if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
+	if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
 	|| u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) )
 	   	return (boolean)(obj->otyp == CORPSE);
 	/* Vampires drink the blood of meaty corpses */
@@ -2594,6 +2594,7 @@ register int pm;
 	    case PM_CAMOUFLAGED_WATCHER:
 	    case PM_HIDDEN_TRACKER:
 	    case PM_UNSEEN_SERVANT:
+	    case PM_SCHEDAU_STALKER:
 	    case PM_SILENT_KILLER:
 	    case PM_STONE_STALKER:
 	    case PM_ILLUSION_WEAVER:
@@ -4201,7 +4202,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	/* Very rotten corpse will make you sick unless you are a ghoul or a ghast */
 	if (mnum != PM_ACID_BLOB && !stoneable && rotted > 5L) {
 	    boolean cannibal = maybe_cannibal(mnum, FALSE);
-	    if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
+	    if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
 		|| u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
 	    	pline("Yum - that %s was well aged%s!",
 		      mons[mnum].mlet == S_FUNGUS ? "fungoid vegetation" :
@@ -4239,7 +4240,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    }
 	} else if (youmonst.data == &mons[PM_GHOUL] || 
 	youmonst.data == &mons[PM_GASTLY] || youmonst.data == &mons[PM_HAUNTER] || youmonst.data == &mons[PM_GENGAR] || youmonst.data == &mons[PM_PHANTOM_GHOST] || 
-		   youmonst.data == &mons[PM_GHAST] || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
+		   youmonst.data == &mons[PM_GHAST] || youmonst.data == &mons[PM_STINKING_ALIEN] || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
 		pline (Hallucination ? "You can't seem to find any manky bits!" : "This corpse is too fresh!");
 		return 3;
 	} else if (acidic(&mons[mnum]) && (!Acid_resistance || (!StrongAcid_resistance && !rn2(10))) ) {
@@ -6323,7 +6324,7 @@ bite()
 {
 	int vampirenutrition = 0;
 	if ( (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(6);
-	if ( (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(3);
+	if ( (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(3);
 
 	if(victual.canchoke && u.uhunger >= 5000) { /* allowing players to eat more --Amy */
 		choke(victual.piece);

@@ -8608,6 +8608,11 @@ newboss:
 
 			}
 
+			/* the uberquasit REALLY doesn't want you to ride it --Amy */
+			if (u.usteed && u.usteed->mnum == PM_ULTRA_EVIL_QUASIT) {
+				dismount_steed(DISMOUNT_FELL);
+			}
+
 			if (u.usteed && !rn2(5000) ) {
 
 				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);

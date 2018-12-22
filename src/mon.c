@@ -729,6 +729,7 @@ register struct monst *mtmp;
 	    case PM_GHOUL:
 	    case PM_OH_GOD_GHOUL:
 	    case PM_GHAST:
+	    case PM_STINKING_ALIEN:
 	    case PM_GASTLY:
 	    case PM_HAUNTER:
 	    case PM_GENGAR:
@@ -4751,7 +4752,7 @@ boolean was_swallowed;			/* digestion */
 	int i, tmp;
 	boolean trolling = 0;
 
-	if (mdat == &mons[PM_VLAD_THE_IMPALER] || mdat->mlet == S_LICH) {
+	if (mdat == &mons[PM_VLAD_THE_IMPALER] || (mdat->mlet == S_LICH && !(mon->egotype_troll || (is_reviver(mdat))) ) ) {
 	    if (cansee(mon->mx, mon->my) && !was_swallowed)
 		pline("%s body crumbles into dust.", s_suffix(Monnam(mon)));
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poluchite trup. Ya udivlen, chto vy dazhe udalos' pobedit' takogo monstra, dolzhno byt', udacha, potomu chto ty na samom dele ochen' plokhoy igrok..." : "Dueouaaaaaaaaaah.");

@@ -257,6 +257,7 @@
 /* this returns the light's range, or 0 if none; if we add more light emitting
    monsters, we'll likely have to add a new light range field to mons[] */
 #define emits_light(ptr)	( ((ptr) == &mons[PM_BRIGHTLIGHT]) ? 4 : \
+				 ((ptr) == &mons[PM_VERY_BRIGHT_LIGHT]) ? 4 : \
 				 ((ptr) == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP]) ? 1 : \
 				 ((ptr) == &mons[PM_BANG_BRIGHT_LIGHT]) ? 5 : ( (ptr)->mlet == S_LIGHT || \
 				  (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
