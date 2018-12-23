@@ -347,7 +347,7 @@ boolean update;  /* do newsym() */
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
    else
      (void) grow_herbs(herb_info[herbnum].herb, -1,-1, showmsg, update);*/
-   if (!rn2(isfriday ? 100 : 30))
+   if (!rn2(isfriday ? 100 : 30) && update)
      (void) drop_ripe_treefruit(-1,-1, showmsg, update);
    /*(void) water_current(-1,-1, rn2(8), 
 			Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);*/
