@@ -8818,6 +8818,8 @@ u_init()
 
 	u.homosexual = 0;
 
+	u.dungeongrowthhack = 0;
+
 	u.nataljetrapturns = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;

@@ -1191,6 +1191,8 @@ struct you {
 	int durirequest;
 	int duriworking;
 
+	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */
+
 	boolean roommatehack;	/* to allow monsters to spawn inside walls */
 
 };	/* end of `struct you' */

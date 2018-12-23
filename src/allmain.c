@@ -8806,6 +8806,8 @@ newboss:
 	u.roommatehack = 0;
 	u.explodewandhack = 0;
 
+	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
+
 	if ((Race_if(PM_MAYMES) || Race_if(PM_AZTPOK) || Race_if(PM_PLAYER_ATLANTEAN)) && P_MAX_SKILL(P_RIDING) >= P_BASIC) {
 		skillcaploss_specific(P_RIDING);
 	}
