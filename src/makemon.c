@@ -7127,6 +7127,11 @@ register struct	monst	*mtmp;
 			m_initthrow(mtmp, ROCKET, 25);
 		}
 
+		if (mtmp->data == &mons[PM_SKOGSRA]) {
+			(void)mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 40);
+		}
+
 		if (mtmp->data == &mons[PM_GUARDIAN_O__THE_FOREST]) m_initthrow(mtmp, SPIRIT_THROWER, 5);
 		if (mtmp->data == &mons[PM_BASTARD_OF_THE_FOREST]) m_initthrow(mtmp, TORPEDO, 5);
 
@@ -7279,6 +7284,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SNIPER_BUNDLE_HEAD]) {
 			(void) mongets(mtmp, SNIPER_RIFLE);
 	  		m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_GIGANTIC_FAIRY]) {
+			(void) mongets(mtmp, BOW);
+	  		m_initthrow(mtmp, ARROW, 50);
 		}
 		if (ptr == &mons[PM_TEASING_NYMPH]) {
 	  		m_initthrow(mtmp, SPIKE, 50);
@@ -8165,6 +8174,12 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, SLING);
 			(void)mongets(mtmp, ORCISH_HELM);
 		  	m_initthrow(mtmp, ROCK, 40);
+		}
+		if (ptr == &mons[PM_SLEEPING_GIANT]) {
+			(void)mongets(mtmp, SLING);
+		  	m_initthrow(mtmp, ROCK, 50);
+		  	m_initthrow(mtmp, ROCK, 50);
+		  	m_initthrow(mtmp, ROCK, 50);
 		}
 		if (ptr == &mons[PM_CHIHYU]) {
 			(void)mongets(mtmp, BOW);
@@ -15238,6 +15253,8 @@ register int	mmflags;
 
 	if (!rn2(Aggravate_monster ? 500 : 100) && (!u.uhave.amulet || (!u.amuletcompletelyimbued && rn2(3)))) mtmp->msleeping = 1;
 
+	if (ptr == &mons[PM_SLEEPING_GIANT]) mtmp->msleeping = 1;
+
 	/* or an invisible one, based on an evil patch idea by jonadab */
 
 	if (!rn2(250)) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -16474,7 +16491,7 @@ register int	mmflags;
 
 			if (rn2(5) && (!u.uhave.amulet || (!u.amuletcompletelyimbued && rn2(3)) )) mtmp->msleeping = 1;
 
-			if (mndx == PM_PIXIE || mndx == PM_HIDING_PIXIE || mndx == PM_ARMPIXIE || mndx == PM_PIXIE_ARCHER) {        
+			if (mndx == PM_PIXIE || mndx == PM_ELOPIXIE || mndx == PM_HIDING_PIXIE || mndx == PM_ARMPIXIE || mndx == PM_PIXIE_ARCHER) {        
   			    mtmp->perminvis = TRUE;
   			    mtmp->minvis = TRUE;
 			}
