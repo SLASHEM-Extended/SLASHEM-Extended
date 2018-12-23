@@ -1112,6 +1112,7 @@ struct you {
 	boolean vibratingsquarefind;	/* player stepped on the VS for the first time */
 
 	boolean wonderlandescape;	/* wonderland mode player made it to the portal */
+	boolean zapemescape;	/* zapm mode player made it to the portal */
 
 	int felidlives;	/* set to 9 at game start even if you're not a felid, because recursion is a thing */
 

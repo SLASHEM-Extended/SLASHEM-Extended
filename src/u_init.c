@@ -8812,6 +8812,7 @@ u_init()
 	u.vibratingsquarefind = 0;
 
 	u.wonderlandescape = 0;
+	u.zapemescape = 0;
 
 	u.felidlives = 9;
 

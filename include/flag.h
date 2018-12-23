@@ -143,6 +143,7 @@ struct flag {
 	boolean supergmmode;
 	boolean wonderland;
 	boolean elmstreet;
+	boolean zapem;
 
 	boolean askforalias; /* set this in the options file if you want to be asked what your char's name is */
 

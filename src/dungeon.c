@@ -57,7 +57,6 @@ struct lchoice {
 };
 
 static void Fread(void *, int, int, dlb *);
-STATIC_DCL xchar dname_to_dnum(const char *);
 STATIC_DCL int find_branch(const char *, struct proto_dungeon *);
 STATIC_DCL int level_range(XCHAR_P,int,int,int,struct proto_dungeon *,int *);
 STATIC_DCL xchar parent_dlevel(int, struct proto_dungeon *);
@@ -251,7 +250,7 @@ Fread(ptr, size, nitems, stream)
 	}
 }
 
-STATIC_OVL xchar
+xchar
 dname_to_dnum(s)
 const char	*s;
 {
@@ -1944,14 +1943,30 @@ level_difficulty()
 {
 	int retvalue;
 
+	int depthuz;
+
+	if (flags.zapem && In_ZAPM(&u.uz) && !(u.zapemescape)) {
+
+		d_level zapemlevel;
+		int zapemdepth;
+		zapemlevel.dnum = dname_to_dnum("Space Base");
+		zapemlevel.dlevel = dungeons[zapemlevel.dnum].entry_lev;
+		zapemdepth = depth(&zapemlevel);
+
+		depthuz = (1 + depth(&u.uz) - zapemdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
+
+	} else depthuz = depth(&u.uz);
+
+
 	if (In_endgame(&u.uz))
 		retvalue = (110 + (u.ulevel/2) );
 	else if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)))
 		retvalue = 110;
 	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna)
-		retvalue = (depth(&u.uz) + rn2(u.ulevel) + 2 );
+		retvalue = (depthuz + rn2(u.ulevel) + 2 );
 	else
-		retvalue = depth(&u.uz);
+		retvalue = depthuz;
 
 	if (u.uhave.amulet && (retvalue < 50)) retvalue = 50;
 

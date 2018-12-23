@@ -582,6 +582,7 @@ E void assign_rogue_graphics(BOOLEAN_P);
 
 /* ### dungeon.c ### */
 
+E xchar dname_to_dnum(const char *);
 E void save_dungeon(int,BOOLEAN_P,BOOLEAN_P);
 E void restore_dungeon(int);
 E void insert_branch(branch *,BOOLEAN_P);
