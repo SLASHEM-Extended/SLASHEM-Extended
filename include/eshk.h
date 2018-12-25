@@ -19,6 +19,8 @@ struct bill_x {
 struct eshk {
 	long robbed;		/* amount stolen by most recent customer */
 	long credit;		/* amount credited to customer */
+	long creditlimit;		/* Amy "bullshit nerf" - amount after which shk stops giving you more credit */
+	long totalcredit;		/* goes up whenever you get credit */
 	long debit;		/* amount of debt for using unpaid items */
 	long loan;		/* shop-gold picked (part of debit) */
 	int shoptype;		/* the value of rooms[shoproom].rtype */

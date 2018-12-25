@@ -3051,7 +3051,18 @@ xchar x, y;
 		} else {
 		    long delta = gltmp - eshkp->debit;
 
-		    if (rn2(2)) eshkp->credit += delta; /* make the shopkeeper devious --Amy */
+		    /* credit limit as a nerf for cloning exploits: this exists mainly so you can't get 10000s of credit and enchant everything to +3 in an armor shop --Amy */
+		    if (eshkp->totalcredit >= eshkp->creditlimit) {
+				verbalize("Sorry. I'm not offering credit anymore because you've already had so much credit in my shop. From now on I can only pay you in cash. Why don't you buy something so I can pay you again?");
+		    } else if (rn2(2)) { /* make the shopkeeper devious --Amy */
+				if (eshkp->totalcredit + delta > eshkp->creditlimit) {
+					eshkp->totalcredit = eshkp->creditlimit;
+					verbalize("You've exceeded your credit limit in this shop. Sorry.");
+				} else {
+					eshkp->credit += delta;
+					eshkp->totalcredit += delta;
+				}
+		    } else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
 		    if(eshkp->debit) {
 			eshkp->debit = 0L;
 			eshkp->loan = 0L;
@@ -3118,10 +3129,20 @@ move_on:
 		    shk_names_obj(shkp, obj, (sell_how != SELL_NORMAL) ?
 			    "traded %s for %ld zorkmid%s in %scredit." :
 			"relinquish %s and acquire %ld zorkmid%s in %scredit.",
-			    tmpcr,
-			    (eshkp->credit > 0L) ? "additional " : "");
-		    if (rn2(2)) eshkp->credit += tmpcr; /* fail sometimes --Amy */
-			else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
+			    tmpcr, (eshkp->credit > 0L) ? "additional " : "");
+		    if (eshkp->totalcredit >= eshkp->creditlimit) {
+				verbalize("Sorry. I'm not offering credit anymore because you've already had so much credit in my shop. From now on I can only pay you in cash. Why don't you buy something so I can pay you again?");
+		    } else if (rn2(2)) { /* fail sometimes --Amy */
+
+				if (eshkp->totalcredit + tmpcr > eshkp->creditlimit) {
+					eshkp->totalcredit = eshkp->creditlimit;
+					verbalize("You've exceeded your credit limit in this shop. Sorry.");
+				} else {
+					eshkp->credit += tmpcr;
+					eshkp->totalcredit += tmpcr;
+				}
+
+		    } else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
 		    subfrombill(obj, shkp);
 		} else {
 		    if (c == 'q') sell_response = 'n';

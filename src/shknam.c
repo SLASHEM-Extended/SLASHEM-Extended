@@ -1085,6 +1085,8 @@ struct mkroom	*sroom;
 	sroom->resident = shk;
 	ESHK(shk)->shoptype = sroom->rtype;
 	assign_level(&(ESHK(shk)->shoplevel), &u.uz);
+	ESHK(shk)->creditlimit = (5000 + (depth(&u.uz) * 1000) );
+	ESHK(shk)->totalcredit = 0;
 	ESHK(shk)->shd.x = doors[sh].x;
 	ESHK(shk)->shd.y = doors[sh].y;
 	ESHK(shk)->shk.x = sx;
