@@ -1,5 +1,35 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.4.4 - December 2018
+- If the player is standing on sand terrain, all damage is reduced by 20%.
+- Shopkeepers now have a credit limit depending on the depth of their shop. Trying to get credit past that amount will always fail.
+- Fixed the savegame error that could be caused by the game checking for a cursed called cloak when doing the ripe tree fruit check upon saving, introduced when that cloak type was added.
+- Added a playable ZAPM mode, activated via the OPTIONS=zapem option. This causes the player to start in the Space Base.
+- The intrinsic change effect should have an effect more often. It may now be slightly skewed towards losing an intrinsic.
+
+2.4.3 - December 2018
+- Fixed a potential corner case bug with the calm steed technique.
+- In evilvariant mode, certain wish sources can only be used for nonmagical items and don't break the wishless conduct.
+- The xlogfile now tracks the player's starting role and race.
+- Fixed the SLASH'EM bug that caused lightsabers to recharge over time when the player puts them in an ice box.
+- Fixed the SLASH'EM bug that caused cloned monsters to not have their weapon pointer emptied. This probably never happened in SLASH'EM because no multiplying monsters with weapon attacks existed.
+- Fixed the regions in the edited Vlad's Tower levels, and tried to make it harder to get to the items behind the artifact doors if you lack the keys.
+- The Gauntlet Key artifact door in Vlad's Tower no longer automatically unlocks.
+- Picking up the candelabrum or book of the dead should give the full-screen message only once.
+- Fixed a previously introduced bug that caused certain artifact effects to apply unconditionally even when they should be targetting specific monster types only.
+- Certain monster-summoning mechanisms can now also create frenzied monsters.
+- The presence of a weird-looking room makes teleport control likely to fail.
+- Teleport control allows the player to teleport on traps, which are triggered in the process.
+- Certain playable races get the good bonuses from implants despite having hands.
+- Fixed a previously introduced bug that caused all characters without the implants skill to have worse AC.
+- Displacing a peaceful monster should no longer result in drowning without a prompt.
+- Fixed bugs with monsters that use nemesis taunts without actually being the real quest nemesis.
+- Clockwork automaton speed was changed to be less slow.
+- The damage done by the water flame and volt rock spells is lower, and water flame also costs more mana to cast.
+- It should no longer be possible to restore strength loss caused by being weak from hunger when the player's mithril equipment prevented the strength loss from happening.
+- The damage done to the player by falling piercers now scales with the monster's level.
+- Snow reduces the player's speed by a lower amount if the player isn't moving, and can cause the freeze status effect.
+
 2.4.2 - December 2018
 - Trap disarming effects redraw the screen now to reflect the removal of traps.
 - Fixed the bug that caused alias name prompts to always say the character was neutral.
