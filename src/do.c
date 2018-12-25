@@ -1181,12 +1181,17 @@ register struct obj *obj;
 		return(issoviet ? 1 : 0);
 	    }
 	    if (!can_reach_floor()) {
+		if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || (uleft && uleft->oartifact == ART_ARABELLA_S_RADAR) || (uright && uright->oartifact == ART_ARABELLA_S_RADAR) ) {
+			curse(obj);
+		}
+
 		if(flags.verbose) You("drop %s.", doname(obj));
 #ifndef GOLDOBJ
 		if (obj->oclass != COIN_CLASS || obj == invent) freeinv(obj);
 #else
 		/* Ensure update when we drop gold objects */
 		if (obj->oclass == COIN_CLASS) flags.botl = 1;
+
 		freeinv(obj);
 #endif
 		hitfloor(obj);
@@ -1196,6 +1201,11 @@ register struct obj *obj;
 	    if (!IS_ALTAR(levl[u.ux][u.uy].typ) && flags.verbose)
 		You("drop %s.", doname(obj));
 	}
+
+	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || (uleft && uleft->oartifact == ART_ARABELLA_S_RADAR) || (uright && uright->oartifact == ART_ARABELLA_S_RADAR) ) {
+		curse(obj);
+	}
+
 	dropx(obj);
 	if (issoviet && !rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
 	return(issoviet ? 1 : 0);

@@ -937,10 +937,6 @@ struct obj *obj;
 		set_artifact_intrinsic(obj, 0, W_ART);
 	}
 
-	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || (uleft && uleft->oartifact == ART_ARABELLA_S_RADAR) || (uright && uright->oartifact == ART_ARABELLA_S_RADAR) ) {
-		curse(obj);
-	}
-
 	if (obj->otyp == LOADSTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || is_nastygraystone(obj) ) {
 		curse(obj);
 	} else if (confers_luck(obj)) {

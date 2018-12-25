@@ -665,6 +665,54 @@ const struct innate {
 		     {  15, &(HSwimming), "ready to swim","afraid of the water" },
 		     {   0, 0, 0, 0 } },
 
+	fre_abil[] = { {   2, &(DifficultyIncreased), "", "" },
+		     {	 5, &(Dehydration), "", "" },
+		     {	 9, &(BlackNgWalls), "", "" },
+		     {	 14, &(FeelerGauges), "", "" },
+		     {	 18, &(AutocursingEquipment), "", "" },
+		     {	 22, &(DischargeBug), "", "" },
+		     {	 25, &(HardModeEffect), "", "" },
+		     {	 29, &(Superscroller), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	uri_abil[] = { {   3, &(BigscriptEffect), "", "" },
+		     {	 6, &(TurnLimitation), "", "" },
+		     {	 8, &(TimerunBug), "", "" },
+		     {	 12, &(PlayerCannotTrainSkills), "", "" },
+		     {	 13, &(MonnoiseEffect), "", "" },
+		     {	 17, &(SanityTrebleEffect), "", "" },
+		     {	 20, &(PermacurseEffect), "", "" },
+		     {	 24, &(CovetousnessBug), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	ind_abil[] = { {   4, &(Dropcurses), "", "" },
+		     {	 7, &(verisiertEffect), "", "" },
+		     {	 10, &(DangerousTerrains), "", "" },
+		     {	 15, &(GushlushEffect), "", "" },
+		     {	 19, &(SimeoutBug), "", "" },
+		     {	 23, &(WingYellowChange), "", "" },
+		     {	 27, &(LowEffects), "", "" },
+		     {	 30, &(EngravingDoesntWork), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	col_abil[] = { {   2, &(YellowSpells), "", "" },
+		     {	 4, &(VioletSpells), "", "" },
+		     {	 6, &(WhiteSpells), "", "" },
+		     {	 8, &(BrownSpells), "", "" },
+		     {	 10, &(CompleteGraySpells), "", "" },
+		     {	 11, &(BlueSpells), "", "" },
+		     {	 13, &(GreenSpells), "", "" },
+		     {	 15, &(MetalSpells), "", "" },
+		     {	 17, &(SilverSpells), "", "" },
+		     {	 19, &(PlatinumSpells), "", "" },
+		     {	 20, &(RedSpells), "", "" },
+		     {	 22, &(OrangeSpells), "", "" },
+		     {	 24, &(BlackSpells), "", "" },
+		     {	 26, &(CyanSpells), "", "" },
+		     {	 28, &(BrightCyanSpells), "", "" },
+		     {	 30, &(PinkSpells), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	nor_abil[] = { {   1, &(HCold_resistance), "", "" },
 		     {	 15, &(HShock_resistance), "shock resistant", "less shock resistant" },
 		     {   0, 0, 0, 0 } },
@@ -1771,6 +1819,10 @@ int oldlevel, newlevel;
 	case PM_HUMANOID_DEVIL:	rabil = dev_abil;	break;
 	case PM_ANCIPITAL:	rabil = anc_abil;	break;
 	case PM_TURTLE:	rabil = tur_abil;	break;
+	case PM_FRENDIAN:	rabil = fre_abil;	break;
+	case PM_COLORATOR:	rabil = col_abil;	break;
+	case PM_URIAN:	rabil = uri_abil;	break;
+	case PM_INDRAENIAN:	rabil = ind_abil;	break;
 	case PM_HUMAN:
 	case PM_VAMPIRE:
 	default:                rabil = 0;		break;
