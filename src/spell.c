@@ -3992,6 +3992,9 @@ secureidchoice:
 		TechoutBug = 0L;
 		StatDecay = 0L;
 		Movemork = 0L;
+		SanityTrebleEffect = 0L;
+		StatDecreaseBug = 0L;
+		SimeoutBug = 0L;
 
 		pline("But then the green light goes out again and the red one lights up...");
 

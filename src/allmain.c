@@ -1744,6 +1744,8 @@ moveloop()
 		    /* once-per-turn things go here */
 		    /********************************/
 
+		if (!occupation) u.katitrapocc = FALSE;
+
 		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
 
 		if (!Upolyd && u.polyformed) u.polyformed = 0; /* catch-all, because coding this in polyself.c is horrible --Amy */
@@ -2193,7 +2195,7 @@ trapsdone:
 		/* using other roles' quest artifacts (e.g. by wishing for them) gives downsides --Amy */
 		if (!rn2(100) && foreignartifactcount() > 0) {
 			contaminate(foreignartifactcount(), FALSE);
-			u.usanity += foreignartifactcount();
+			u.usanity += (YouGetLotsOfSanity ? (foreignartifactcount() * rnd(20)) : foreignartifactcount());
 			adjalign(-(foreignartifactcount()));
 		}
 		/* I don't want to ban wishing for quest artifacts like some variants do, because that's too arbitrary.
@@ -2760,6 +2762,51 @@ trapsdone:
 
 		}
 
+		if (FemaleTrapSarah && !rn2(250)) {
+
+			int x, y;
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (isok(x,y)) (void) create_gas_cloud(x, y, 4, 10);
+			You_hear("tender air current noises.");
+			/* These will anger monsters (not a bug). --Amy */
+
+		}
+
+		if (FemaleTrapClaudia && !rn2(100)) {
+
+			int x, y;
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (isok(x,y)) {
+				if ( (levl[x][y].typ == ROOM || levl[x][y].typ == CORR || (IS_STWALL(levl[x][y].typ) && !rn2(10) && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0)) ) && !(*in_rooms(x,y,SHOPBASE)) ) {
+					levl[x][y].typ = CLOUD;
+					unblock_point(x,y);
+					if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+					newsym(x, y);
+
+					if (!rn2(10)) {
+						if (!rn2(3)) (void) makemon(&mons[PM_EROTICLOUDY], x, y, MM_ANGRY|MM_ADJACENTOK);
+						else if (!rn2(2)) (void) makemon(&mons[PM_WOODICLOUDY], x, y, MM_ANGRY|MM_ADJACENTOK);
+						else (void) makemon(&mons[PM_SCENTICLOUDY], x, y, MM_ANGRY|MM_ADJACENTOK);
+					}
+
+				}
+			}
+
+		}
+
+		if (FemaleTrapClaudia && !rn2(250)) {
+			make_confused(HConfusion + rnd(20), FALSE);
+			set_itimeout(&HeavyConfusion, HConfusion);
+			pline("Whoops, you're getting really dizzy.");
+			if (Hallucination) pline("Are you a blonde by any chance?");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
 		if (FemaleTrapElif && !rn2(100)) {
 
 			switch (rnd(4)) {
@@ -3033,9 +3080,9 @@ fukrosionchoice:
 
 		if (iswindinhabitant && !rn2(1000)) {
 
-			u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = u.nastinator170 = u.nastinator171 = u.nastinator172 = u.nastinator173 = u.nastinator174 = u.nastinator175 = u.nastinator176 = u.nastinator177 = u.nastinator178 = u.nastinator179 = u.nastinator180 = u.nastinator181 = u.nastinator182 = u.nastinator183 = u.nastinator184 = u.nastinator185 = u.nastinator186 = u.nastinator187 = u.nastinator188 = u.nastinator189 = u.nastinator190 = u.nastinator191 = u.nastinator192 = u.nastinator193 = u.nastinator194 = u.nastinator195 = u.nastinator196 = u.nastinator197 = u.nastinator198 = u.nastinator199 = u.nastinator200 = u.nastinator201 = u.nastinator202 = u.nastinator203 = u.nastinator204 = u.nastinator205 = u.nastinator206 = u.nastinator207 = u.nastinator208 = u.nastinator209 = u.nastinator210 = u.nastinator211 = u.nastinator212 = u.nastinator213 = u.nastinator214 = u.nastinator215 = u.nastinator216 = u.nastinator217 = u.nastinator218 = u.nastinator219 = u.nastinator220 = u.nastinator221 = u.nastinator222 = u.nastinator223 = u.nastinator224 = u.nastinator225 = u.nastinator226 = u.nastinator227 = u.nastinator228 = u.nastinator229 = 0;
+			u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = u.nastinator170 = u.nastinator171 = u.nastinator172 = u.nastinator173 = u.nastinator174 = u.nastinator175 = u.nastinator176 = u.nastinator177 = u.nastinator178 = u.nastinator179 = u.nastinator180 = u.nastinator181 = u.nastinator182 = u.nastinator183 = u.nastinator184 = u.nastinator185 = u.nastinator186 = u.nastinator187 = u.nastinator188 = u.nastinator189 = u.nastinator190 = u.nastinator191 = u.nastinator192 = u.nastinator193 = u.nastinator194 = u.nastinator195 = u.nastinator196 = u.nastinator197 = u.nastinator198 = u.nastinator199 = u.nastinator200 = u.nastinator201 = u.nastinator202 = u.nastinator203 = u.nastinator204 = u.nastinator205 = u.nastinator206 = u.nastinator207 = u.nastinator208 = u.nastinator209 = u.nastinator210 = u.nastinator211 = u.nastinator212 = u.nastinator213 = u.nastinator214 = u.nastinator215 = u.nastinator216 = u.nastinator217 = u.nastinator218 = u.nastinator219 = u.nastinator220 = u.nastinator221 = u.nastinator222 = u.nastinator223 = u.nastinator224 = u.nastinator225 = u.nastinator226 = u.nastinator227 = u.nastinator228 = u.nastinator229 = u.nastinator230 = u.nastinator231 = u.nastinator232 = u.nastinator233 = u.nastinator234 = u.nastinator235 = 0;
 
-		switch (rnd(229)) {
+		switch (rnd(235)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -3266,12 +3313,18 @@ fukrosionchoice:
 			case 227: u.nastinator227 = 1; break;
 			case 228: u.nastinator228 = 1; break;
 			case 229: u.nastinator229 = 1; break;
+			case 230: u.nastinator230 = 1; break;
+			case 231: u.nastinator231 = 1; break;
+			case 232: u.nastinator232 = 1; break;
+			case 233: u.nastinator233 = 1; break;
+			case 234: u.nastinator234 = 1; break;
+			case 235: u.nastinator235 = 1; break;
 
 		}
 
 		while (!rn2(3)) {
 
-			switch (rnd(229)) {
+			switch (rnd(235)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -3502,6 +3555,12 @@ fukrosionchoice:
 			case 227: u.nastinator227 = 1; break;
 			case 228: u.nastinator228 = 1; break;
 			case 229: u.nastinator229 = 1; break;
+			case 230: u.nastinator230 = 1; break;
+			case 231: u.nastinator231 = 1; break;
+			case 232: u.nastinator232 = 1; break;
+			case 233: u.nastinator233 = 1; break;
+			case 234: u.nastinator234 = 1; break;
+			case 235: u.nastinator235 = 1; break;
 
 			}
 
@@ -3509,7 +3568,7 @@ fukrosionchoice:
 
 	if (isnastinator) {
 
-		switch (rnd(229)) {
+		switch (rnd(235)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -3740,12 +3799,18 @@ fukrosionchoice:
 			case 227: u.nastinator227 = 1; break;
 			case 228: u.nastinator228 = 1; break;
 			case 229: u.nastinator229 = 1; break;
+			case 230: u.nastinator230 = 1; break;
+			case 231: u.nastinator231 = 1; break;
+			case 232: u.nastinator232 = 1; break;
+			case 233: u.nastinator233 = 1; break;
+			case 234: u.nastinator234 = 1; break;
+			case 235: u.nastinator235 = 1; break;
 
 		}
 
 		while ((rnd(7)) < 3) {
 
-			switch (rnd(229)) {
+			switch (rnd(235)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -3976,6 +4041,12 @@ fukrosionchoice:
 			case 227: u.nastinator227 = 1; break;
 			case 228: u.nastinator228 = 1; break;
 			case 229: u.nastinator229 = 1; break;
+			case 230: u.nastinator230 = 1; break;
+			case 231: u.nastinator231 = 1; break;
+			case 232: u.nastinator232 = 1; break;
+			case 233: u.nastinator233 = 1; break;
+			case 234: u.nastinator234 = 1; break;
+			case 235: u.nastinator235 = 1; break;
 
 			}
 
@@ -5104,6 +5175,39 @@ newbossZ:
 			u.aggravation = 0;
 
 		}
+
+		if (FemaleTrapLudgera && !rn2(500) ) {
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossL:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossL;
+			}
+			if (pm && !(pm->msound == MS_FART_LOUD) && rn2(50) ) {
+				attempts = 0;
+				goto newbossL;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
+		}
+
 
 		/* the automatic relocation on certain dungeons can make the game almost unwinnable if you end up in a place
 		 * surrounded by undiggable walls... so those places give relocatitis now :P --Amy */
@@ -9147,9 +9251,30 @@ stop_occupation()
 	if (RngePermanentOccupation) return;
 
 	if(occupation) {
+
+		if (u.katitrapocc) {
+			pline("Something tries to interrupt your attempt to clean the Kati shoes! If you stop now, the sexy girl will hate you!");
+			if (yn("Really stop cleaning them?") == 'y') {
+
+			      register struct monst *mtmp2;
+
+				for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+					if (!mtmp2->mtame) {
+						mtmp2->mpeaceful = 0;
+						mtmp2->mfrenzied = 1;
+						mtmp2->mhp = mtmp2->mhpmax;
+					}
+				}
+				pline("The beautiful girl in the sexy Kati shoes is very sad that you didn't finish cleaning her lovely boots, and urges everyone in her vicinity to bludgeon you.");
+
+			} else return;
+		}
+
 		if (!maybe_finished_meal(TRUE))
 		    You("stop %s.", occtxt);
 		occupation = 0;
+		u.katitrapocc = FALSE;
 		flags.botl = 1; /* in case u.uhs changed */
 /* fainting stops your occupation, there's no reason to sync.
 		sync_hunger();

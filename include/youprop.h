@@ -94,6 +94,8 @@
 
 #define YouHaveBigscript	(BigscriptEffect || (uarmh && uarmh->oartifact == ART_YOU_SEE_HERE_AN_ARTIFACT) || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() )
 
+#define YouGetLotsOfSanity	(SanityTrebleEffect || u.uprops[SANITY_TREBLE_EFFECT].extrinsic || have_sanitytreblestone())
+
 #define RotThirteenCipher	(RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone() )
 
 #define TheGameLaaaaags	(LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone())
@@ -441,6 +443,10 @@
 #define SoundEffectBug		u.uprops[SOUND_EFFECT_BUG].intrinsic
 #define TimerunBug		u.uprops[TIMERUN_BUG].intrinsic
 
+#define SanityTrebleEffect		u.uprops[SANITY_TREBLE_EFFECT].intrinsic
+#define StatDecreaseBug		u.uprops[STAT_DECREASE_BUG].intrinsic
+#define SimeoutBug		u.uprops[SIMEOUT_BUG].intrinsic
+
 #define BadPartBug	u.uprops[BAD_PARTS].intrinsic
 #define CompletelyBadPartBug	u.uprops[COMPLETELY_BAD_PARTS].intrinsic
 #define EvilVariantActive	u.uprops[EVIL_VARIANT_ACTIVE].intrinsic
@@ -601,6 +607,10 @@
 #define FemaleTrapYvonne	u.uprops[FEMTRAP_YVONNE].intrinsic
 #define FemaleTrapMaurah	u.uprops[FEMTRAP_MAURAH].intrinsic
 #define FemaleTrapMeltem	u.uprops[FEMTRAP_MELTEM].intrinsic
+#define FemaleTrapSarah	u.uprops[FEMTRAP_SARAH].intrinsic
+#define FemaleTrapClaudia	u.uprops[FEMTRAP_CLAUDIA].intrinsic
+#define FemaleTrapLudgera	u.uprops[FEMTRAP_LUDGERA].intrinsic
+#define FemaleTrapKati	u.uprops[FEMTRAP_KATI].intrinsic
 
 #define RngeIrregularity		(u.uprops[RNGE_IRREGULARITY].intrinsic || u.uprops[RNGE_IRREGULARITY].extrinsic)
 #define RngeInternetAccess		(u.uprops[RNGE_INTERNET_ACCESS].intrinsic || u.uprops[RNGE_INTERNET_ACCESS].extrinsic)
@@ -1225,7 +1235,7 @@
 
 #define HConf_resist		u.uprops[CONF_RES].intrinsic
 #define EConf_resist		u.uprops[CONF_RES].extrinsic
-#define IntConf_resist	(HConf_resist || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST) )
+#define IntConf_resist	(HConf_resist || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST) || FemaleTrapClaudia )
 #define ExtConf_resist	(EConf_resist || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == CONF_RES) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE) || (uwep && uwep->oartifact == ART_OGRESMASHER____) || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_DIRECTION_FINDER) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) || (uarmu && uarmu->oartifact == ART_TOTAL_CONTROL) || (uarmc && uarmc->oartifact == ART_FREQUENT_BUT_WEAK_STATUS) )
 
 #define Conf_resist		(((IntConf_resist && u.nonintrinsicproperty != CONF_RES) || (ExtConf_resist && u.nonextrinsicproperty != CONF_RES)) && !NoConf_resist)

@@ -3163,6 +3163,8 @@ int snamount;
 
 	if (Race_if(PM_HUMANOID_ANGEL) || youmonst.data->mlet == S_ANGEL) snamount *= 2;
 
+	if (YouGetLotsOfSanity) snamount *= rnd(20);
+
 	u.usanity += snamount;
 	if (snamount < 10) pline("Your sanity increases.");
 	else if (snamount < 100) pline("Your sanity increases greatly.");

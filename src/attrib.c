@@ -2350,6 +2350,31 @@ boolean displaymessage;
 		else actuallimit++;
 	}
 
+	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone()) {
+		if (targetattr == A_STR && actuallimit >= STR19(25)) actuallimit = STR18(70);
+		else if (targetattr == A_STR && actuallimit >= STR19(24)) actuallimit = STR18(60);
+		else if (targetattr == A_STR && actuallimit >= STR19(23)) actuallimit = STR18(50);
+		else if (targetattr == A_STR && actuallimit >= STR19(22)) actuallimit = STR18(40);
+		else if (targetattr == A_STR && actuallimit >= STR19(21)) actuallimit = STR18(30);
+		else if (targetattr == A_STR && actuallimit >= STR19(20)) actuallimit = STR18(20);
+		else if (targetattr == A_STR && actuallimit >= STR19(19)) actuallimit = STR18(10);
+		else if (targetattr == A_STR && actuallimit >= STR18(100)) actuallimit = 18;
+		else if (targetattr == A_STR && actuallimit >= STR18(90)) actuallimit = 17;
+		else if (targetattr == A_STR && actuallimit >= STR18(80)) actuallimit = 16;
+		else if (targetattr == A_STR && actuallimit >= STR18(70)) actuallimit = 15;
+		else if (targetattr == A_STR && actuallimit >= STR18(60)) actuallimit = 14;
+		else if (targetattr == A_STR && actuallimit >= STR18(50)) actuallimit = 13;
+		else if (targetattr == A_STR && actuallimit >= STR18(40)) actuallimit = 12;
+		else if (targetattr == A_STR && actuallimit >= STR18(30)) actuallimit = 11;
+		else if (targetattr == A_STR && actuallimit >= STR18(20)) actuallimit = 10;
+		else if (targetattr == A_STR && actuallimit >= STR18(10)) actuallimit = 9;
+		else if (targetattr == A_STR && actuallimit >= 18) actuallimit = 8;
+		else {
+			actuallimit -= 10;
+			if (actuallimit < 3) actuallimit = 3;
+		}
+	}
+
 	/* set up the value to compare it to */
 	yourbasestat = ABASE(targetattr);
 	/* you're trying to increase the stat, so we add one */

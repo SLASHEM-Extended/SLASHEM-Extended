@@ -1822,6 +1822,39 @@ dospinweb()
 		case ELDER_TENTACLING_TRAP:
 		case FOOTERER_TRAP:
 
+		case GRAVE_WALL_TRAP:
+		case TUNNEL_TRAP:
+		case FARMLAND_TRAP:
+		case MOUNTAIN_TRAP:
+		case WATER_TUNNEL_TRAP:
+		case CRYSTAL_FLOOD_TRAP:
+		case MOORLAND_TRAP:
+		case URINE_TRAP:
+		case SHIFTING_SAND_TRAP:
+		case STYX_TRAP:
+		case PENTAGRAM_TRAP:
+		case SNOW_TRAP:
+		case ASH_TRAP:
+		case SAND_TRAP:
+		case PAVEMENT_TRAP:
+		case HIGHWAY_TRAP:
+		case GRASSLAND_TRAP:
+		case NETHER_MIST_TRAP:
+		case STALACTITE_TRAP:
+		case CRYPTFLOOR_TRAP:
+		case BUBBLE_TRAP:
+		case RAIN_CLOUD_TRAP:
+
+		case ITEM_NASTIFICATION_TRAP:
+		case SANITY_INCREASE_TRAP:
+		case PSI_TRAP:
+		case GAY_TRAP:
+
+		case SARAH_TRAP:
+		case CLAUDIA_TRAP:
+		case LUDGERA_TRAP:
+		case KATI_TRAP:
+
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);
@@ -2088,6 +2121,9 @@ dospinweb()
 		case SOUND_EFFECT_TRAP:
 		case KOP_CUBE:
 		case BOSS_SPAWNER:
+		case SANITY_TREBLE_TRAP:
+		case STAT_DECREASE_TRAP:
+		case SIMEOUT_TRAP:
 
 			dotrap(ttmp, 0);
 			return(1);

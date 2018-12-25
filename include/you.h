@@ -874,6 +874,9 @@ struct you {
 	boolean nastinator230;
 	boolean nastinator231;
 	boolean nastinator232;
+	boolean nastinator233;
+	boolean nastinator234;
+	boolean nastinator235;
 
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];
@@ -1192,6 +1195,8 @@ struct you {
 	int duriworking;
 
 	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */
+
+	boolean katitrapocc;	/* checking whether you have the occupation */
 
 	boolean roommatehack;	/* to allow monsters to spawn inside walls */
 

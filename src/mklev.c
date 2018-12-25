@@ -12656,6 +12656,15 @@ selecttrap:
 		    case TIMERUN_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
+		    case SANITY_TREBLE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 25 : 51 )) goto selecttrap;
+			break;
+		    case STAT_DECREASE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			break;
+		    case SIMEOUT_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 50 : 100 )) goto selecttrap;
+			break;
 		    case BAD_PART_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
@@ -13436,6 +13445,12 @@ selecttrap:
 		    case OUTTA_DEPTH_TRAP:
 			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case ITEM_NASTIFICATION_TRAP:
+			if (rn2(evilfriday ? 20 : 200) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case GAY_TRAP:
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			break;
 		    case BOON_TRAP:
 			if (rn2(200)) goto selecttrap;
 			break;
@@ -13453,6 +13468,18 @@ selecttrap:
 			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MARLENA_TRAP:
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case SARAH_TRAP:
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case CLAUDIA_TRAP:
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case LUDGERA_TRAP:
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case KATI_TRAP:
 			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ANASTASIA_TRAP:

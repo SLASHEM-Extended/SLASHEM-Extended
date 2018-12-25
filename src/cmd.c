@@ -3695,6 +3695,24 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (SanityTrebleEffect || u.uprops[SANITY_TREBLE_EFFECT].extrinsic || have_sanitytreblestone())) {
+		sprintf(buf, "the following problem: Sanity effects will increase your sanity by a much higher amount than usual.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", SanityTrebleEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone())) {
+		sprintf(buf, "the following problem: The soft cap for your attributes is much lower.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", StatDecreaseBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone())) {
+		sprintf(buf, "the following problem: Your sanity slowly increases over time.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", SimeoutBug);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (BadPartBug || u.uprops[BAD_PARTS].extrinsic || have_badpartstone())) {
 		sprintf(buf, "in the bad part.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", BadPartBug);
@@ -4963,6 +4981,30 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && FemaleTrapMarlena) {
 		sprintf(buf, "possessed by the ghost of Marlena.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapMarlena);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemaleTrapSarah) {
+		sprintf(buf, "possessed by the ghost of Sarah.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapSarah);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemaleTrapClaudia) {
+		sprintf(buf, "possessed by the ghost of Claudia.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapClaudia);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemaleTrapLudgera) {
+		sprintf(buf, "possessed by the ghost of Ludgera.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapLudgera);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemaleTrapKati) {
+		sprintf(buf, "possessed by the ghost of Kati.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapKati);
 		you_are(buf);
 	}
 
@@ -7233,6 +7275,24 @@ int final;
 		dump(youhad, buf);
 	}
 
+	if (SanityTrebleEffect || u.uprops[SANITY_TREBLE_EFFECT].extrinsic || have_sanitytreblestone()) {
+		sprintf(buf, "the following problem: Sanity effects will increase your sanity by a much higher amount than usual.");
+	      sprintf(eos(buf), " (%d)", SanityTrebleEffect);
+		dump(youhad, buf);
+	}
+
+	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone()) {
+		sprintf(buf, "the following problem: The soft cap for your attributes is much lower.");
+	      sprintf(eos(buf), " (%d)", StatDecreaseBug);
+		dump(youhad, buf);
+	}
+
+	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone()) {
+		sprintf(buf, "the following problem: Your sanity slowly increases over time.");
+	      sprintf(eos(buf), " (%d)", SimeoutBug);
+		dump(youhad, buf);
+	}
+
 	if (BadPartBug || u.uprops[BAD_PARTS].extrinsic || have_badpartstone()) {
 		sprintf(buf, "in the bad part.");
 	      sprintf(eos(buf), " (%d)", BadPartBug);
@@ -8498,6 +8558,30 @@ int final;
 	if (FemaleTrapMarlena) {
 		sprintf(buf, "possessed by the ghost of Marlena.");
 	      sprintf(eos(buf), " (%d)", FemaleTrapMarlena);
+		dump(youwere, buf);
+	}
+
+	if (FemaleTrapSarah) {
+		sprintf(buf, "possessed by the ghost of Sarah.");
+	      sprintf(eos(buf), " (%d)", FemaleTrapSarah);
+		dump(youwere, buf);
+	}
+
+	if (FemaleTrapClaudia) {
+		sprintf(buf, "possessed by the ghost of Claudia.");
+	      sprintf(eos(buf), " (%d)", FemaleTrapClaudia);
+		dump(youwere, buf);
+	}
+
+	if (FemaleTrapLudgera) {
+		sprintf(buf, "possessed by the ghost of Ludgera.");
+	      sprintf(eos(buf), " (%d)", FemaleTrapLudgera);
+		dump(youwere, buf);
+	}
+
+	if (FemaleTrapKati) {
+		sprintf(buf, "possessed by the ghost of Kati.");
+	      sprintf(eos(buf), " (%d)", FemaleTrapKati);
 		dump(youwere, buf);
 	}
 

@@ -2898,6 +2898,43 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != ELDER_TENTACLING_TRAP
 				&& ttmp->ttyp != FOOTERER_TRAP
 
+				&& ttmp->ttyp != GRAVE_WALL_TRAP
+				&& ttmp->ttyp != TUNNEL_TRAP
+				&& ttmp->ttyp != FARMLAND_TRAP
+				&& ttmp->ttyp != MOUNTAIN_TRAP
+				&& ttmp->ttyp != WATER_TUNNEL_TRAP
+				&& ttmp->ttyp != CRYSTAL_FLOOD_TRAP
+				&& ttmp->ttyp != MOORLAND_TRAP
+				&& ttmp->ttyp != URINE_TRAP
+				&& ttmp->ttyp != SHIFTING_SAND_TRAP
+				&& ttmp->ttyp != STYX_TRAP
+				&& ttmp->ttyp != PENTAGRAM_TRAP
+				&& ttmp->ttyp != SNOW_TRAP
+				&& ttmp->ttyp != ASH_TRAP
+				&& ttmp->ttyp != SAND_TRAP
+				&& ttmp->ttyp != PAVEMENT_TRAP
+				&& ttmp->ttyp != HIGHWAY_TRAP
+				&& ttmp->ttyp != GRASSLAND_TRAP
+				&& ttmp->ttyp != NETHER_MIST_TRAP
+				&& ttmp->ttyp != STALACTITE_TRAP
+				&& ttmp->ttyp != CRYPTFLOOR_TRAP
+				&& ttmp->ttyp != BUBBLE_TRAP
+				&& ttmp->ttyp != RAIN_CLOUD_TRAP
+
+				&& ttmp->ttyp != ITEM_NASTIFICATION_TRAP
+				&& ttmp->ttyp != SANITY_INCREASE_TRAP
+				&& ttmp->ttyp != PSI_TRAP
+				&& ttmp->ttyp != GAY_TRAP
+
+				&& ttmp->ttyp != SARAH_TRAP
+				&& ttmp->ttyp != CLAUDIA_TRAP
+				&& ttmp->ttyp != LUDGERA_TRAP
+				&& ttmp->ttyp != KATI_TRAP
+
+				&& ttmp->ttyp != SANITY_TREBLE_TRAP
+				&& ttmp->ttyp != STAT_DECREASE_TRAP
+				&& ttmp->ttyp != SIMEOUT_TRAP
+
 				&& ttmp->ttyp != LOOTCUT_TRAP
 				&& ttmp->ttyp != MONSTER_SPEED_TRAP
 				&& ttmp->ttyp != SCALING_TRAP

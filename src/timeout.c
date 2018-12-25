@@ -229,7 +229,13 @@ nh_timeout()
 	if (u.negativeprotection < 0) u.negativeprotection = 0; /* fail safe */
 	if (u.tremblingamount && !rn2(1000)) u.tremblingamount--;
 	if (u.tremblingamount < 0) u.tremblingamount = 0; /* fail safe */
-	if (u.usanity && !isevilvariant && !rn2(isfriday ? 2500 : 1000)) {
+
+	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone()) {
+		if (!rn2(2500)) {
+			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);
+			if (flags.showsanity) flags.botl = 1;
+		}
+	} else if (u.usanity && !isevilvariant && !rn2(isfriday ? 2500 : 1000)) {
 		u.usanity--;
 		if (flags.showsanity) flags.botl = 1;
 	}
@@ -2012,6 +2018,30 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_SARAH:
+
+			pline("Apparently the farting gas is depleted.");
+
+		 break;
+
+		 case FEMTRAP_CLAUDIA:
+
+			pline("Your sexy butt cheek wood confusion ends.");
+
+		 break;
+
+		 case FEMTRAP_LUDGERA:
+
+			pline("At last the disgusting toilet noises ceased.");
+
+		 break;
+
+		 case FEMTRAP_KATI:
+
+			pline("You vow to never clean a girl's shoes again.");
 
 		 break;
 

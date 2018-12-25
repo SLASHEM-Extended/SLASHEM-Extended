@@ -1103,6 +1103,10 @@ E boolean have_spellforgettingstone(void);
 E boolean have_soundeffectstone(void);
 E boolean have_timerunstone(void);
 
+E boolean have_sanitytreblestone(void);
+E boolean have_statdecreasestone(void);
+E boolean have_simeoutstone(void);
+
 E boolean have_orangespellstone(void);
 E boolean have_violetspellstone(void);
 E boolean have_longingstone(void);

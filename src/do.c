@@ -523,6 +523,12 @@ giveback:
 		case RIN_ILLITERACY:
 		    pline("The sink seems to be breaking apart at the seams.");
 		    break;
+		case RIN_STAT_DECREASE:
+		    pline("The water stream seems to die of hunger.");
+		    break;
+		case RIN_SANITY_TIMEOUT:
+		    pline("The water flow exposes quite a lot of muck in the sink.");
+		    break;
 
 		case RIN_WIMPINESS:
 		    pline("Somehow the sink seems powerless.");
@@ -1005,6 +1011,9 @@ register struct obj *obj;
 
 	case AMULET_OF_HOSTILITY:
 		pline_The("toilet suddenly threatens to attack you!");
+		break;
+	case AMULET_OF_SANITY_TREBLE:
+		pline_The("toilet seems to be full of dirt and shit!");
 		break;
 	case AMULET_OF_EVIL_CRAFTING:
 		You("suddenly seem to see %s taking a crap!", rndplrmonnamefemale());

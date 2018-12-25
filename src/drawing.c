@@ -798,6 +798,40 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "completely bad part trap", C(CLR_GRAY)},	/* trap */
 	{'^', "evil variant trap", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "grave wall trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "tunnel trap", C(CLR_RED)},	/* trap */
+	{'^', "farmland trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "mountain trap", C(CLR_BLACK)},	/* trap */
+	{'^', "water tunnel trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "crystal flood trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "moorland trap", C(CLR_GREEN)},	/* trap */
+	{'^', "urine trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "shifting sand trap", C(CLR_BROWN)},	/* trap */
+	{'^', "styx trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "pentagram trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "snow trap", C(CLR_WHITE)},	/* trap */
+	{'^', "ash trap", C(CLR_RED)},	/* trap */
+	{'^', "sand trap", C(CLR_BROWN)},	/* trap */
+	{'^', "pavement trap", C(CLR_GRAY)},	/* trap */
+	{'^', "highway trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "grassland trap", C(CLR_GREEN)},	/* trap */
+	{'^', "nether mist trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "stalactite trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "cryptfloor trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "bubble trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "rain cloud trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "item nastification trap", C(CLR_BLACK)},	/* trap */
+	{'^', "sanity increase trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "psi trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "gay trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "sarah trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "claudia trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "ludgera trap", C(CLR_GRAY)},	/* trap */
+	{'^', "kati trap", C(CLR_RED)},	/* trap */
+	{'^', "sanity treble trap", C(CLR_GRAY)},	/* trap */
+	{'^', "stat decrease trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "simeout trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1423,6 +1457,40 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_completely_bad_part_trap),
 	g_FILLER(S_evil_variant_trap),
 
+	g_FILLER(S_grave_wall_trap),
+	g_FILLER(S_tunnel_trap),
+	g_FILLER(S_farmland_trap),
+	g_FILLER(S_mountain_trap),
+	g_FILLER(S_water_tunnel_trap),
+	g_FILLER(S_crystal_flood_trap),
+	g_FILLER(S_moorland_trap),
+	g_FILLER(S_urine_trap),
+	g_FILLER(S_shifting_sand_trap),
+	g_FILLER(S_styx_trap),
+	g_FILLER(S_pentagram_trap),
+	g_FILLER(S_snow_trap),
+	g_FILLER(S_ash_trap),
+	g_FILLER(S_sand_trap),
+	g_FILLER(S_pavement_trap),
+	g_FILLER(S_highway_trap),
+	g_FILLER(S_grassland_trap),
+	g_FILLER(S_nether_mist_trap),
+	g_FILLER(S_stalactite_trap),
+	g_FILLER(S_cryptfloor_trap),
+	g_FILLER(S_bubble_trap),
+	g_FILLER(S_rain_cloud_trap),
+	g_FILLER(S_item_nastification_trap),
+	g_FILLER(S_sanity_increase_trap),
+	g_FILLER(S_psi_trap),
+	g_FILLER(S_gay_trap),
+	g_FILLER(S_sarah_trap),
+	g_FILLER(S_claudia_trap),
+	g_FILLER(S_ludgera_trap),
+	g_FILLER(S_kati_trap),
+	g_FILLER(S_sanity_treble_trap),
+	g_FILLER(S_stat_decrease_trap),
+	g_FILLER(S_simeout_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2036,6 +2104,40 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_completely_bad_part_trap),
 	g_FILLER(S_evil_variant_trap),
 
+	g_FILLER(S_grave_wall_trap),
+	g_FILLER(S_tunnel_trap),
+	g_FILLER(S_farmland_trap),
+	g_FILLER(S_mountain_trap),
+	g_FILLER(S_water_tunnel_trap),
+	g_FILLER(S_crystal_flood_trap),
+	g_FILLER(S_moorland_trap),
+	g_FILLER(S_urine_trap),
+	g_FILLER(S_shifting_sand_trap),
+	g_FILLER(S_styx_trap),
+	g_FILLER(S_pentagram_trap),
+	g_FILLER(S_snow_trap),
+	g_FILLER(S_ash_trap),
+	g_FILLER(S_sand_trap),
+	g_FILLER(S_pavement_trap),
+	g_FILLER(S_highway_trap),
+	g_FILLER(S_grassland_trap),
+	g_FILLER(S_nether_mist_trap),
+	g_FILLER(S_stalactite_trap),
+	g_FILLER(S_cryptfloor_trap),
+	g_FILLER(S_bubble_trap),
+	g_FILLER(S_rain_cloud_trap),
+	g_FILLER(S_item_nastification_trap),
+	g_FILLER(S_sanity_increase_trap),
+	g_FILLER(S_psi_trap),
+	g_FILLER(S_gay_trap),
+	g_FILLER(S_sarah_trap),
+	g_FILLER(S_claudia_trap),
+	g_FILLER(S_ludgera_trap),
+	g_FILLER(S_kati_trap),
+	g_FILLER(S_sanity_treble_trap),
+	g_FILLER(S_stat_decrease_trap),
+	g_FILLER(S_simeout_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -2645,6 +2747,40 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_bad_part_trap),
 	g_FILLER(S_completely_bad_part_trap),
 	g_FILLER(S_evil_variant_trap),
+
+	g_FILLER(S_grave_wall_trap),
+	g_FILLER(S_tunnel_trap),
+	g_FILLER(S_farmland_trap),
+	g_FILLER(S_mountain_trap),
+	g_FILLER(S_water_tunnel_trap),
+	g_FILLER(S_crystal_flood_trap),
+	g_FILLER(S_moorland_trap),
+	g_FILLER(S_urine_trap),
+	g_FILLER(S_shifting_sand_trap),
+	g_FILLER(S_styx_trap),
+	g_FILLER(S_pentagram_trap),
+	g_FILLER(S_snow_trap),
+	g_FILLER(S_ash_trap),
+	g_FILLER(S_sand_trap),
+	g_FILLER(S_pavement_trap),
+	g_FILLER(S_highway_trap),
+	g_FILLER(S_grassland_trap),
+	g_FILLER(S_nether_mist_trap),
+	g_FILLER(S_stalactite_trap),
+	g_FILLER(S_cryptfloor_trap),
+	g_FILLER(S_bubble_trap),
+	g_FILLER(S_rain_cloud_trap),
+	g_FILLER(S_item_nastification_trap),
+	g_FILLER(S_sanity_increase_trap),
+	g_FILLER(S_psi_trap),
+	g_FILLER(S_gay_trap),
+	g_FILLER(S_sarah_trap),
+	g_FILLER(S_claudia_trap),
+	g_FILLER(S_ludgera_trap),
+	g_FILLER(S_kati_trap),
+	g_FILLER(S_sanity_treble_trap),
+	g_FILLER(S_stat_decrease_trap),
+	g_FILLER(S_simeout_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3257,7 +3393,42 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_completely_bad_part_trap),
 	g_FILLER(S_evil_variant_trap),
 
+	g_FILLER(S_grave_wall_trap),
+	g_FILLER(S_tunnel_trap),
+	g_FILLER(S_farmland_trap),
+	g_FILLER(S_mountain_trap),
+	g_FILLER(S_water_tunnel_trap),
+	g_FILLER(S_crystal_flood_trap),
+	g_FILLER(S_moorland_trap),
+	g_FILLER(S_urine_trap),
+	g_FILLER(S_shifting_sand_trap),
+	g_FILLER(S_styx_trap),
+	g_FILLER(S_pentagram_trap),
+	g_FILLER(S_snow_trap),
+	g_FILLER(S_ash_trap),
+	g_FILLER(S_sand_trap),
+	g_FILLER(S_pavement_trap),
+	g_FILLER(S_highway_trap),
+	g_FILLER(S_grassland_trap),
+	g_FILLER(S_nether_mist_trap),
+	g_FILLER(S_stalactite_trap),
+	g_FILLER(S_cryptfloor_trap),
+	g_FILLER(S_bubble_trap),
+	g_FILLER(S_rain_cloud_trap),
+	g_FILLER(S_item_nastification_trap),
+	g_FILLER(S_sanity_increase_trap),
+	g_FILLER(S_psi_trap),
+	g_FILLER(S_gay_trap),
+	g_FILLER(S_sarah_trap),
+	g_FILLER(S_claudia_trap),
+	g_FILLER(S_ludgera_trap),
+	g_FILLER(S_kati_trap),
+	g_FILLER(S_sanity_treble_trap),
+	g_FILLER(S_stat_decrease_trap),
+	g_FILLER(S_simeout_trap),
+
 	g_FILLER(S_timerun_trap),
+
 	g_FILLER(S_vbeam),
 	g_FILLER(S_hbeam),
 	g_FILLER(S_lslant),
@@ -4066,6 +4237,40 @@ boolean is_rlevel;
 	    showsyms[S_bad_part_trap] = 0x04;
 	    showsyms[S_completely_bad_part_trap] = 0x04;
 	    showsyms[S_evil_variant_trap] = 0x04;
+
+	    showsyms[S_grave_wall_trap] = 0x04;
+	    showsyms[S_tunnel_trap] = 0x04;
+	    showsyms[S_farmland_trap] = 0x04;
+	    showsyms[S_mountain_trap] = 0x04;
+	    showsyms[S_water_tunnel_trap] = 0x04;
+	    showsyms[S_crystal_flood_trap] = 0x04;
+	    showsyms[S_moorland_trap] = 0x04;
+	    showsyms[S_urine_trap] = 0x04;
+	    showsyms[S_shifting_sand_trap] = 0x04;
+	    showsyms[S_styx_trap] = 0x04;
+	    showsyms[S_pentagram_trap] = 0x04;
+	    showsyms[S_snow_trap] = 0x04;
+	    showsyms[S_ash_trap] = 0x04;
+	    showsyms[S_sand_trap] = 0x04;
+	    showsyms[S_pavement_trap] = 0x04;
+	    showsyms[S_highway_trap] = 0x04;
+	    showsyms[S_grassland_trap] = 0x04;
+	    showsyms[S_nether_mist_trap] = 0x04;
+	    showsyms[S_stalactite_trap] = 0x04;
+	    showsyms[S_cryptfloor_trap] = 0x04;
+	    showsyms[S_bubble_trap] = 0x04;
+	    showsyms[S_rain_cloud_trap] = 0x04;
+	    showsyms[S_item_nastification_trap] = 0x04;
+	    showsyms[S_sanity_increase_trap] = 0x04;
+	    showsyms[S_psi_trap] = 0x04;
+	    showsyms[S_gay_trap] = 0x04;
+	    showsyms[S_sarah_trap] = 0x04;
+	    showsyms[S_claudia_trap] = 0x04;
+	    showsyms[S_ludgera_trap] = 0x04;
+	    showsyms[S_kati_trap] = 0x04;
+	    showsyms[S_sanity_treble_trap] = 0x04;
+	    showsyms[S_stat_decrease_trap] = 0x04;
+	    showsyms[S_simeout_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif

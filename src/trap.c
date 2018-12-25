@@ -372,6 +372,341 @@ void * poolcnt;
 }
 
 STATIC_PTR void
+do_gravefloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = GRAVEWALL;
+			block_point(randomx,randomy);
+			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = GRAVEWALL;
+		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_tunnelfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = TUNNELWALL;
+			block_point(randomx,randomy);
+			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = TUNNELWALL;
+		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_farmfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = FARMLAND;
+			block_point(randomx,randomy);
+			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = FARMLAND;
+		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_mountainfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = MOUNTAIN;
+			block_point(randomx,randomy);
+			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = MOUNTAIN;
+		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_watertunnelfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = WATERTUNNEL;
+			block_point(randomx,randomy);
+			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = WATERTUNNEL;
+		block_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
 do_megafloodingd(x, y, poolcnt)
 int x, y;
 void * poolcnt;
@@ -507,6 +842,986 @@ void * poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = ICE;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_crystalwaterfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = CRYSTALWATER;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = CRYSTALWATER;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_moorfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = MOORLAND;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = MOORLAND;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_urinefloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = URINELAKE;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = URINELAKE;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_shiftingsandfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = SHIFTINGSAND;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = SHIFTINGSAND;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_styxfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = STYXRIVER;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = STYXRIVER;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_snowfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = SNOW;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = SNOW;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_ashfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = ASH;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = ASH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_sandfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = SAND;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = SAND;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_pavementfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = PAVEDFLOOR;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = PAVEDFLOOR;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_highwayfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = HIGHWAY;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = HIGHWAY;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_grassfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = GRASSLAND;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = GRASSLAND;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_nethermistfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = NETHERMIST;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = NETHERMIST;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_stalactitefloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = STALACTITE;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = STALACTITE;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_cryptfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = CRYPTFLOOR;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = CRYPTFLOOR;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_bubblefloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = BUBBLES;
+			block_point(randomx,randomy);
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = BUBBLES;
+		block_point(x,y);
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
+do_raincloudfloode(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = RAINCLOUD;
+			block_point(randomx,randomy);
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
+		return;
+
+	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = RAINCLOUD;
+		block_point(x,y);
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -2094,7 +3409,7 @@ unsigned trflags;
 	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
-	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != BAD_PART_TRAP && ttype != COMPLETELY_BAD_PART_TRAP && ttype != EVIL_VARIANT_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != ORANGE_SPELL_TRAP && ttype != VIOLET_SPELL_TRAP && ttype != TRAP_OF_LONGING && ttype != CURSED_PART_TRAP && ttype != QUAVERSAL_TRAP && ttype != APPEARANCE_SHUFFLING_TRAP && ttype != BROWN_SPELL_TRAP && ttype != CHOICELESS_TRAP && ttype != GOLDSPELL_TRAP && ttype != DEPROVEMENT_TRAP && ttype != INITIALIZATION_TRAP && ttype != GUSHLUSH_TRAP && ttype != SOILTYPE_TRAP && ttype != DANGEROUS_TERRAIN_TRAP && ttype != FALLOUT_TRAP && ttype != MOJIBAKE_TRAP && ttype != GRAVATION_TRAP && ttype != UNCALLED_TRAP && ttype != EXPLODING_DICE_TRAP && ttype != PERMACURSE_TRAP && ttype != SHROUDED_IDENTITY_TRAP && ttype != FEELER_GAUGES_TRAP && ttype != LONG_SCREWUP_TRAP && ttype != WING_YELLOW_CHANGER && ttype != LIFE_SAVING_TRAP && ttype != CURSEUSE_TRAP && ttype != CUT_NUTRITION_TRAP && ttype != SKILL_LOSS_TRAP && ttype != AUTOPILOT_TRAP && ttype != FORCE_TRAP && ttype != MONSTER_GLYPH_TRAP && ttype != CHANGING_DIRECTIVE_TRAP && ttype != CONTAINER_KABOOM_TRAP && ttype != STEAL_DEGRADE_TRAP && ttype != LEFT_INVENTORY_TRAP && ttype != FLUCTUATING_SPEED_TRAP && ttype != TARMUSTROKINGNORA_TRAP && ttype != FAILURE_TRAP && ttype != BRIGHT_CYAN_SPELL_TRAP && ttype != FREQUENTATION_SPAWN_TRAP && ttype != PET_AI_TRAP && ttype != SATAN_TRAP && ttype != REMEMBERANCE_TRAP && ttype != POKELIE_TRAP && ttype != AUTOPICKUP_TRAP && ttype != DYWYPI_TRAP && ttype != SILVER_SPELL_TRAP && ttype != METAL_SPELL_TRAP && ttype != PLATINUM_SPELL_TRAP && ttype != MANLER_TRAP && ttype != DOORNING_TRAP && ttype != NOWNSIBLE_TRAP && ttype != ELM_STREET_TRAP && ttype != MONNOISE_TRAP && ttype != RANG_CALL_TRAP && ttype != RECURRING_SPELL_LOSS_TRAP && ttype != ANTITRAINING_TRAP && ttype != TECHOUT_TRAP && ttype != STAT_DECAY_TRAP && ttype != MOVEMORK_TRAP && 
+	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != BAD_PART_TRAP && ttype != COMPLETELY_BAD_PART_TRAP && ttype != EVIL_VARIANT_TRAP && ttype != TIMERUN_TRAP && ttype != SANITY_TREBLE_TRAP && ttype != STAT_DECREASE_TRAP && ttype != SIMEOUT_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != ORANGE_SPELL_TRAP && ttype != VIOLET_SPELL_TRAP && ttype != TRAP_OF_LONGING && ttype != CURSED_PART_TRAP && ttype != QUAVERSAL_TRAP && ttype != APPEARANCE_SHUFFLING_TRAP && ttype != BROWN_SPELL_TRAP && ttype != CHOICELESS_TRAP && ttype != GOLDSPELL_TRAP && ttype != DEPROVEMENT_TRAP && ttype != INITIALIZATION_TRAP && ttype != GUSHLUSH_TRAP && ttype != SOILTYPE_TRAP && ttype != DANGEROUS_TERRAIN_TRAP && ttype != FALLOUT_TRAP && ttype != MOJIBAKE_TRAP && ttype != GRAVATION_TRAP && ttype != UNCALLED_TRAP && ttype != EXPLODING_DICE_TRAP && ttype != PERMACURSE_TRAP && ttype != SHROUDED_IDENTITY_TRAP && ttype != FEELER_GAUGES_TRAP && ttype != LONG_SCREWUP_TRAP && ttype != WING_YELLOW_CHANGER && ttype != LIFE_SAVING_TRAP && ttype != CURSEUSE_TRAP && ttype != CUT_NUTRITION_TRAP && ttype != SKILL_LOSS_TRAP && ttype != AUTOPILOT_TRAP && ttype != FORCE_TRAP && ttype != MONSTER_GLYPH_TRAP && ttype != CHANGING_DIRECTIVE_TRAP && ttype != CONTAINER_KABOOM_TRAP && ttype != STEAL_DEGRADE_TRAP && ttype != LEFT_INVENTORY_TRAP && ttype != FLUCTUATING_SPEED_TRAP && ttype != TARMUSTROKINGNORA_TRAP && ttype != FAILURE_TRAP && ttype != BRIGHT_CYAN_SPELL_TRAP && ttype != FREQUENTATION_SPAWN_TRAP && ttype != PET_AI_TRAP && ttype != SATAN_TRAP && ttype != REMEMBERANCE_TRAP && ttype != POKELIE_TRAP && ttype != AUTOPICKUP_TRAP && ttype != DYWYPI_TRAP && ttype != SILVER_SPELL_TRAP && ttype != METAL_SPELL_TRAP && ttype != PLATINUM_SPELL_TRAP && ttype != MANLER_TRAP && ttype != DOORNING_TRAP && ttype != NOWNSIBLE_TRAP && ttype != ELM_STREET_TRAP && ttype != MONNOISE_TRAP && ttype != RANG_CALL_TRAP && ttype != RECURRING_SPELL_LOSS_TRAP && ttype != ANTITRAINING_TRAP && ttype != TECHOUT_TRAP && ttype != STAT_DECAY_TRAP && ttype != MOVEMORK_TRAP && 
 		ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
 		nomul(0, 0, FALSE);
 
@@ -2126,7 +3441,7 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != BAD_PART_TRAP && ttype != COMPLETELY_BAD_PART_TRAP && ttype != EVIL_VARIANT_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != ORANGE_SPELL_TRAP && ttype != VIOLET_SPELL_TRAP && ttype != TRAP_OF_LONGING && ttype != CURSED_PART_TRAP && ttype != QUAVERSAL_TRAP && ttype != APPEARANCE_SHUFFLING_TRAP && ttype != BROWN_SPELL_TRAP && ttype != CHOICELESS_TRAP && ttype != GOLDSPELL_TRAP && ttype != DEPROVEMENT_TRAP && ttype != INITIALIZATION_TRAP && ttype != GUSHLUSH_TRAP && ttype != SOILTYPE_TRAP && ttype != DANGEROUS_TERRAIN_TRAP && ttype != FALLOUT_TRAP && ttype != MOJIBAKE_TRAP && ttype != GRAVATION_TRAP && ttype != UNCALLED_TRAP && ttype != EXPLODING_DICE_TRAP && ttype != PERMACURSE_TRAP && ttype != SHROUDED_IDENTITY_TRAP && ttype != FEELER_GAUGES_TRAP && ttype != LONG_SCREWUP_TRAP && ttype != WING_YELLOW_CHANGER && ttype != LIFE_SAVING_TRAP && ttype != CURSEUSE_TRAP && ttype != CUT_NUTRITION_TRAP && ttype != SKILL_LOSS_TRAP && ttype != AUTOPILOT_TRAP && ttype != FORCE_TRAP && ttype != MONSTER_GLYPH_TRAP && ttype != CHANGING_DIRECTIVE_TRAP && ttype != CONTAINER_KABOOM_TRAP && ttype != STEAL_DEGRADE_TRAP && ttype != LEFT_INVENTORY_TRAP && ttype != FLUCTUATING_SPEED_TRAP && ttype != TARMUSTROKINGNORA_TRAP && ttype != FAILURE_TRAP && ttype != BRIGHT_CYAN_SPELL_TRAP && ttype != FREQUENTATION_SPAWN_TRAP && ttype != PET_AI_TRAP && ttype != SATAN_TRAP && ttype != REMEMBERANCE_TRAP && ttype != POKELIE_TRAP && ttype != AUTOPICKUP_TRAP && ttype != DYWYPI_TRAP && ttype != SILVER_SPELL_TRAP && ttype != METAL_SPELL_TRAP && ttype != PLATINUM_SPELL_TRAP && ttype != MANLER_TRAP && ttype != DOORNING_TRAP && ttype != NOWNSIBLE_TRAP && ttype != ELM_STREET_TRAP && ttype != MONNOISE_TRAP && ttype != RANG_CALL_TRAP && ttype != RECURRING_SPELL_LOSS_TRAP && ttype != ANTITRAINING_TRAP && ttype != TECHOUT_TRAP && ttype != STAT_DECAY_TRAP && ttype != MOVEMORK_TRAP && 
+	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != SANITY_TREBLE_TRAP && ttype != STAT_DECREASE_TRAP && ttype != SIMEOUT_TRAP && ttype != BAD_PART_TRAP && ttype != COMPLETELY_BAD_PART_TRAP && ttype != EVIL_VARIANT_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != ORANGE_SPELL_TRAP && ttype != VIOLET_SPELL_TRAP && ttype != TRAP_OF_LONGING && ttype != CURSED_PART_TRAP && ttype != QUAVERSAL_TRAP && ttype != APPEARANCE_SHUFFLING_TRAP && ttype != BROWN_SPELL_TRAP && ttype != CHOICELESS_TRAP && ttype != GOLDSPELL_TRAP && ttype != DEPROVEMENT_TRAP && ttype != INITIALIZATION_TRAP && ttype != GUSHLUSH_TRAP && ttype != SOILTYPE_TRAP && ttype != DANGEROUS_TERRAIN_TRAP && ttype != FALLOUT_TRAP && ttype != MOJIBAKE_TRAP && ttype != GRAVATION_TRAP && ttype != UNCALLED_TRAP && ttype != EXPLODING_DICE_TRAP && ttype != PERMACURSE_TRAP && ttype != SHROUDED_IDENTITY_TRAP && ttype != FEELER_GAUGES_TRAP && ttype != LONG_SCREWUP_TRAP && ttype != WING_YELLOW_CHANGER && ttype != LIFE_SAVING_TRAP && ttype != CURSEUSE_TRAP && ttype != CUT_NUTRITION_TRAP && ttype != SKILL_LOSS_TRAP && ttype != AUTOPILOT_TRAP && ttype != FORCE_TRAP && ttype != MONSTER_GLYPH_TRAP && ttype != CHANGING_DIRECTIVE_TRAP && ttype != CONTAINER_KABOOM_TRAP && ttype != STEAL_DEGRADE_TRAP && ttype != LEFT_INVENTORY_TRAP && ttype != FLUCTUATING_SPEED_TRAP && ttype != TARMUSTROKINGNORA_TRAP && ttype != FAILURE_TRAP && ttype != BRIGHT_CYAN_SPELL_TRAP && ttype != FREQUENTATION_SPAWN_TRAP && ttype != PET_AI_TRAP && ttype != SATAN_TRAP && ttype != REMEMBERANCE_TRAP && ttype != POKELIE_TRAP && ttype != AUTOPICKUP_TRAP && ttype != DYWYPI_TRAP && ttype != SILVER_SPELL_TRAP && ttype != METAL_SPELL_TRAP && ttype != PLATINUM_SPELL_TRAP && ttype != MANLER_TRAP && ttype != DOORNING_TRAP && ttype != NOWNSIBLE_TRAP && ttype != ELM_STREET_TRAP && ttype != MONNOISE_TRAP && ttype != RANG_CALL_TRAP && ttype != RECURRING_SPELL_LOSS_TRAP && ttype != ANTITRAINING_TRAP && ttype != TECHOUT_TRAP && ttype != STAT_DECAY_TRAP && ttype != MOVEMORK_TRAP && 
 		ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT || ttype == ACID_PIT) && is_clinger(youmonst.data)))) {
@@ -4253,6 +5568,1192 @@ rerollX:
 			levl[u.ux][u.uy].typ = POOL;
 			if (!Wwalking && !Flying && !Levitation && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") )) ) drown();
 		}
+		break;
+
+		case GRAVE_WALL_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Hans Walt erects grave walls!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX2 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_gravefloode, (void *)&madepoolX2);
+
+		break;
+		case TUNNEL_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("It seems that construction workers have carved tunnels through the rock.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX3 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_tunnelfloode, (void *)&madepoolX3);
+
+		break;
+		case FARMLAND_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("All the local farmers are claiming land on this dungeon level.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX4 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_farmfloode, (void *)&madepoolX4);
+
+		break;
+		case MOUNTAIN_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Strange... the underground dungeon seems to become mountainous.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX5 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_mountainfloode, (void *)&madepoolX5);
+
+		break;
+		case WATER_TUNNEL_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Watery tunnels are erected!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX6 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_watertunnelfloode, (void *)&madepoolX6);
+
+		break;
+		case CRYSTAL_FLOOD_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Crystallized water appears on the ceiling.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX7 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_crystalwaterfloode, (void *)&madepoolX7);
+
+		break;
+		case MOORLAND_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("The dungeon gets swampy.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX8 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_moorfloode, (void *)&madepoolX8);
+
+		break;
+		case URINE_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Mira pees all over the dungeon.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX9 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_urinefloode, (void *)&madepoolX9);
+
+		break;
+		case SHIFTING_SAND_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Deadly sandholes appear.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX10 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_shiftingsandfloode, (void *)&madepoolX10);
+
+		break;
+		case STYX_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Hellish green water flows into the dungeon!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX11 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_styxfloode, (void *)&madepoolX11);
+
+		break;
+		case PENTAGRAM_TRAP:
+
+			pline("You trip over a strange pentagram!");
+			seetrap(trap);
+
+			if (rn2(3)) {
+				pline("Your mana increases.");
+				u.uenmax++;
+			} else switch (rnd(23)) {
+
+				case 1:
+					HTeleport_control += 2;
+					tele();
+					break;
+				case 2:
+					{
+
+					register struct obj *acqo;
+
+					acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);
+					if (acqo) {
+						acqo->bknown = acqo->known = TRUE;
+						pline("A book appeared at your %s!", makeplural(body_part(FOOT)));
+					} else {
+						pline("Nothing happens...");
+						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+							pline("Oh wait, actually something bad happens...");
+							badeffect();
+						}
+					  }
+					}
+					break;
+				case 3:
+					(void) monster_detect((struct obj *)0, 0);
+					exercise(A_WIS, TRUE);
+					break;
+				case 4:
+					trap_detect((struct obj *)0);
+					break;
+				case 5:
+					object_detect((struct obj *)0, 0);
+					break;
+				case 6:
+					{
+					boolean havegifts = u.ugifts;
+
+					if (!havegifts) u.ugifts++;
+
+					register struct obj *acqo;
+
+					acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+					if (acqo) {
+					    dropy(acqo);
+						if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+						    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+						} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+							unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+						} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+						} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+						} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+						} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+						} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+						}
+
+					    discover_artifact(acqo->oartifact);
+
+						if (!havegifts) u.ugifts--;
+						pline("An artifact appeared beneath you!");
+
+					}	
+
+					else pline("Opportunity knocked, but nobody was home.  Bummer.");
+
+					}
+
+					break;
+				case 7:
+					pline("The RNG decides to curse-weld an item to you.");
+					bad_artifact_xtra();
+					break;
+				case 8:
+					{
+					int aggroamount = rnd(6);
+					if (isfriday) aggroamount *= 2;
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+					while (aggroamount) {
+						makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+						aggroamount--;
+						if (aggroamount < 0) aggroamount = 0;
+					}
+					u.aggravation = 0;
+					pline("Several monsters come out of a portal.");
+
+					}
+
+					break;
+				case 9:
+					pline("Your body suddenly becomes all stiff!");
+					nomul(-rnd(15), "paralyzed by a pentagram", TRUE);
+					break;
+				case 10:
+
+					pline("The dungeon is getting more chaotic!");
+					{
+					int madepoolPEP = 0;
+					do_clear_areaX(u.ux, u.uy, 12, do_terrainfloodd, (void *)&madepoolPEP);
+					}
+
+					break;
+				case 11:
+					You_feel("powered up!");
+					u.uenmax += rnd(5);
+					u.uen = u.uenmax;
+					break;
+				case 12:
+					pline("Suddenly, you gain a new companion!");
+					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+					break;
+				case 13:
+					{
+
+					if (Aggravate_monster) {
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+					}
+
+					    coord dd;
+					    coord cc;
+					    int cx,cy;
+						int i;
+						int randsp, randmnst, randmnsx;
+						struct permonst *randmonstforspawn;
+						int monstercolor;
+
+				      cx = rn2(COLNO);
+				      cy = rn2(ROWNO);
+
+					if (!rn2(4)) {
+
+					randsp = (rn2(14) + 2);
+					if (!rn2(10)) randsp *= 2;
+					if (!rn2(100)) randsp *= 3;
+					if (!rn2(1000)) randsp *= 5;
+					if (!rn2(10000)) randsp *= 10;
+					randmnst = (rn2(187) + 1);
+					randmnsx = (rn2(100) + 1);
+
+					pline("You suddenly feel a surge of tension!");
+
+					for (i = 0; i < randsp; i++) {
+					/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					if (randmnst < 6)
+				 	    (void) makemon(mkclass(S_ANT,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 9)
+				 	    (void) makemon(mkclass(S_BLOB,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 11)
+				 	    (void) makemon(mkclass(S_COCKATRICE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 15)
+				 	    (void) makemon(mkclass(S_DOG,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 18)
+				 	    (void) makemon(mkclass(S_EYE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 22)
+				 	    (void) makemon(mkclass(S_FELINE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 24)
+				 	    (void) makemon(mkclass(S_GREMLIN,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 29)
+				 	    (void) makemon(mkclass(S_HUMANOID,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 33)
+				 	    (void) makemon(mkclass(S_IMP,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 36)
+				 	    (void) makemon(mkclass(S_JELLY,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 41)
+				 	    (void) makemon(mkclass(S_KOBOLD,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 44)
+				 	    (void) makemon(mkclass(S_LEPRECHAUN,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 47)
+				 	    (void) makemon(mkclass(S_MIMIC,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 50)
+				 	    (void) makemon(mkclass(S_NYMPH,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 54)
+				 	    (void) makemon(mkclass(S_ORC,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 55)
+				 	    (void) makemon(mkclass(S_PIERCER,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 58)
+				 	    (void) makemon(mkclass(S_QUADRUPED,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 62)
+				 	    (void) makemon(mkclass(S_RODENT,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 65)
+				 	    (void) makemon(mkclass(S_SPIDER,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 66)
+				 	    (void) makemon(mkclass(S_TRAPPER,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 69)
+				 	    (void) makemon(mkclass(S_UNICORN,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 71)
+				 	    (void) makemon(mkclass(S_VORTEX,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 73)
+				 	    (void) makemon(mkclass(S_WORM,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 75)
+				 	    (void) makemon(mkclass(S_XAN,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 76)
+				 	    (void) makemon(mkclass(S_LIGHT,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 77)
+				 	    (void) makemon(mkclass(S_ZOUTHERN,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 78)
+				 	    (void) makemon(mkclass(S_ANGEL,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 81)
+				 	    (void) makemon(mkclass(S_BAT,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 83)
+				 	    (void) makemon(mkclass(S_CENTAUR,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 86)
+				 	    (void) makemon(mkclass(S_DRAGON,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 89)
+				 	    (void) makemon(mkclass(S_ELEMENTAL,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 94)
+				 	    (void) makemon(mkclass(S_FUNGUS,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 99)
+				 	    (void) makemon(mkclass(S_GNOME,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 102)
+				 	    (void) makemon(mkclass(S_GIANT,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 103)
+				 	    (void) makemon(mkclass(S_JABBERWOCK,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 104)
+				 	    (void) makemon(mkclass(S_KOP,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 105)
+				 	    (void) makemon(mkclass(S_LICH,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 108)
+				 	    (void) makemon(mkclass(S_MUMMY,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 110)
+				 	    (void) makemon(mkclass(S_NAGA,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 113)
+				 	    (void) makemon(mkclass(S_OGRE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 115)
+				 	    (void) makemon(mkclass(S_PUDDING,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 116)
+				 	    (void) makemon(mkclass(S_QUANTMECH,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 118)
+				 	    (void) makemon(mkclass(S_RUSTMONST,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 121)
+				 	    (void) makemon(mkclass(S_SNAKE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 123)
+				 	    (void) makemon(mkclass(S_TROLL,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 124)
+				 	    (void) makemon(mkclass(S_UMBER,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 125)
+				 	    (void) makemon(mkclass(S_VAMPIRE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 127)
+				 	    (void) makemon(mkclass(S_WRAITH,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 128)
+				 	    (void) makemon(mkclass(S_XORN,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 130)
+				 	    (void) makemon(mkclass(S_YETI,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 135)
+				 	    (void) makemon(mkclass(S_ZOMBIE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 145)
+				 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 147)
+				 	    (void) makemon(mkclass(S_GHOST,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 149)
+				 	    (void) makemon(mkclass(S_GOLEM,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 152)
+				 	    (void) makemon(mkclass(S_DEMON,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 155)
+				 	    (void) makemon(mkclass(S_EEL,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 160)
+				 	    (void) makemon(mkclass(S_LIZARD,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 162)
+				 	    (void) makemon(mkclass(S_BAD_FOOD,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 165)
+				 	    (void) makemon(mkclass(S_BAD_COINS,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 166) {
+						if (randmnsx < 96)
+				 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+						else
+				 	    (void) makemon(mkclass(S_NEMESE,0), cx, cy, MM_ADJACENTOK);
+						}
+					else if (randmnst < 171)
+				 	    (void) makemon(mkclass(S_GRUE,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 176)
+				 	    (void) makemon(mkclass(S_WALLMONST,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 180)
+				 	    (void) makemon(mkclass(S_RUBMONST,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 181) {
+						if (randmnsx < 99)
+				 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+						else
+				 	    (void) makemon(mkclass(S_ARCHFIEND,0), cx, cy, MM_ADJACENTOK);
+						}
+					else if (randmnst < 186)
+				 	    (void) makemon(mkclass(S_TURRET,0), cx, cy, MM_ADJACENTOK);
+					else if (randmnst < 187)
+				 	    (void) makemon(mkclass(S_FLYFISH,0), cx, cy, MM_ADJACENTOK);
+					else
+				 	    (void) makemon((struct permonst *)0, cx, cy, MM_ADJACENTOK);
+
+					}
+
+					}
+
+					else if (!rn2(3)) {
+
+					randsp = (rn2(14) + 2);
+					if (!rn2(10)) randsp *= 2;
+					if (!rn2(100)) randsp *= 3;
+					if (!rn2(1000)) randsp *= 5;
+					if (!rn2(10000)) randsp *= 10;
+					randmonstforspawn = rndmonst();
+
+					You_feel("the arrival of monsters!");
+
+					for (i = 0; i < randsp; i++) {
+
+						if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+						(void) makemon(randmonstforspawn, cx, cy, MM_ADJACENTOK);
+					}
+
+					}
+
+					else if (!rn2(2)) {
+
+					randsp = (rn2(14) + 2);
+					if (!rn2(10)) randsp *= 2;
+					if (!rn2(100)) randsp *= 3;
+					if (!rn2(1000)) randsp *= 5;
+					if (!rn2(10000)) randsp *= 10;
+					monstercolor = rnd(15);
+					do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+
+					You_feel("a colorful sensation!");
+
+					for (i = 0; i < randsp; i++) {
+
+						if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+						(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
+					}
+
+					}
+
+					else {
+
+					randsp = (rn2(14) + 2);
+					if (!rn2(10)) randsp *= 2;
+					if (!rn2(100)) randsp *= 3;
+					if (!rn2(1000)) randsp *= 5;
+					if (!rn2(10000)) randsp *= 10;
+					monstercolor = rnd(363);
+
+					You_feel("that a group has arrived!");
+
+					for (i = 0; i < randsp; i++) {
+
+						if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+						(void) makemon(specialtensmon(monstercolor), cx, cy, MM_ADJACENTOK);
+					}
+
+					}
+
+					u.aggravation = 0;
+
+					}
+					break;
+				case 14:
+
+					if (u.uhunger < 1500) {
+						pline("Your %s fills.", body_part(STOMACH));
+						u.uhunger = 1500;
+						u.uhs = 1; /* NOT_HUNGRY */
+						flags.botl = 1;
+					} else {
+						pline("Nothing happens...");
+						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+							pline("Oh wait, actually something bad happens...");
+							badeffect();
+						}
+					}
+					break;
+				case 15:
+					if (u.ualign.record < -1) {
+						adjalign(-(u.ualign.record / 2));
+						You_feel("partially absolved.");
+					} else {
+						u.alignlim++;
+						adjalign(10);
+						You_feel("appropriately %s.", align_str(u.ualign.type));
+					}
+					break;
+				case 16:
+					{
+
+					int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+					if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+					int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+					if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+					pline("Your mana increases.");
+					u.uenmax++;
+					/* nasty trap effect - no extra message because, well, nastiness! --Amy */
+					randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), (blackngdur - (monster_difficulty() * 3)));
+
+					}
+					break;
+				case 17:
+					{
+					int i = rn2(A_MAX);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
+					adjattrib(i, 1, 0, TRUE);
+					}
+					break;
+				case 18:
+					Your("intrinsics change.");
+					intrinsicgainorloss();
+					break;
+				case 19:
+					{
+					struct obj *pseudo;
+					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2);
+					if (!pseudo) {
+						pline("Nothing happens...");
+						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+							pline("Oh wait, actually something bad happens...");
+							badeffect();
+						}
+						break;
+					}
+					if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SCR_ITEM_GENOCIDE;
+					(void) seffects(pseudo);
+					obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+
+					}
+
+					break;
+				case 20:
+					You("may double your amount of training points in a skill of your choice!");
+
+					int acquiredskill;
+					acquiredskill = 0;
+
+					pline("Pick a skill to train. The prompt will loop until you actually make a choice.");
+
+					while (acquiredskill == 0) { /* ask the player what they want --Amy */
+
+					if (P_ADVANCE(P_DAGGER) && !(P_RESTRICTED(P_DAGGER)) && yn("Do you want to train the dagger skill?")=='y') {
+						P_ADVANCE(P_DAGGER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_KNIFE) && !(P_RESTRICTED(P_KNIFE)) && yn("Do you want to train the knife skill?")=='y') {
+						P_ADVANCE(P_KNIFE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_AXE) && !(P_RESTRICTED(P_AXE)) && yn("Do you want to train the axe skill?")=='y') {
+						P_ADVANCE(P_AXE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PICK_AXE) && !(P_RESTRICTED(P_PICK_AXE)) && yn("Do you want to train the pick-axe skill?")=='y') {
+						P_ADVANCE(P_PICK_AXE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHORT_SWORD) && !(P_RESTRICTED(P_SHORT_SWORD)) && yn("Do you want to train the short sword skill?")=='y') {
+						P_ADVANCE(P_SHORT_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BROAD_SWORD) && !(P_RESTRICTED(P_BROAD_SWORD)) && yn("Do you want to train the broad sword skill?")=='y') {
+						P_ADVANCE(P_BROAD_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_LONG_SWORD) && !(P_RESTRICTED(P_LONG_SWORD)) && yn("Do you want to train the long sword skill?")=='y') {
+						P_ADVANCE(P_LONG_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TWO_HANDED_SWORD) && !(P_RESTRICTED(P_TWO_HANDED_SWORD)) && yn("Do you want to train the two-handed sword skill?")=='y') {
+						P_ADVANCE(P_TWO_HANDED_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SCIMITAR) && !(P_RESTRICTED(P_SCIMITAR)) && yn("Do you want to train the scimitar skill?")=='y') {
+						P_ADVANCE(P_SCIMITAR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SABER) && !(P_RESTRICTED(P_SABER)) && yn("Do you want to train the saber skill?")=='y') {
+						P_ADVANCE(P_SABER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_CLUB) && !(P_RESTRICTED(P_CLUB)) && yn("Do you want to train the club skill?")=='y') {
+						P_ADVANCE(P_CLUB) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PADDLE) && !(P_RESTRICTED(P_PADDLE)) && yn("Do you want to train the paddle skill?")=='y') {
+						P_ADVANCE(P_PADDLE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MACE) && !(P_RESTRICTED(P_MACE)) && yn("Do you want to train the mace skill?")=='y') {
+						P_ADVANCE(P_MACE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MORNING_STAR) && !(P_RESTRICTED(P_MORNING_STAR)) && yn("Do you want to train the morning star skill?")=='y') {
+						P_ADVANCE(P_MORNING_STAR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_FLAIL) && !(P_RESTRICTED(P_FLAIL)) && yn("Do you want to train the flail skill?")=='y') {
+						P_ADVANCE(P_FLAIL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_HAMMER) && !(P_RESTRICTED(P_HAMMER)) && yn("Do you want to train the hammer skill?")=='y') {
+						P_ADVANCE(P_HAMMER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_QUARTERSTAFF) && !(P_RESTRICTED(P_QUARTERSTAFF)) && yn("Do you want to train the quarterstaff skill?")=='y') {
+						P_ADVANCE(P_QUARTERSTAFF) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_POLEARMS) && !(P_RESTRICTED(P_POLEARMS)) && yn("Do you want to train the polearms skill?")=='y') {
+						P_ADVANCE(P_POLEARMS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SPEAR) && !(P_RESTRICTED(P_SPEAR)) && yn("Do you want to train the spear skill?")=='y') {
+						P_ADVANCE(P_SPEAR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_JAVELIN) && !(P_RESTRICTED(P_JAVELIN)) && yn("Do you want to train the javelin skill?")=='y') {
+						P_ADVANCE(P_JAVELIN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TRIDENT) && !(P_RESTRICTED(P_TRIDENT)) && yn("Do you want to train the trident skill?")=='y') {
+						P_ADVANCE(P_TRIDENT) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_LANCE) && !(P_RESTRICTED(P_LANCE)) && yn("Do you want to train the lance skill?")=='y') {
+						P_ADVANCE(P_LANCE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BOW) && !(P_RESTRICTED(P_BOW)) && yn("Do you want to train the bow skill?")=='y') {
+						P_ADVANCE(P_BOW) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SLING) && !(P_RESTRICTED(P_SLING)) && yn("Do you want to train the sling skill?")=='y') {
+						P_ADVANCE(P_SLING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_FIREARM) && !(P_RESTRICTED(P_FIREARM)) && yn("Do you want to train the firearms skill?")=='y') {
+						P_ADVANCE(P_FIREARM) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_CROSSBOW) && !(P_RESTRICTED(P_CROSSBOW)) && yn("Do you want to train the crossbow skill?")=='y') {
+						P_ADVANCE(P_CROSSBOW) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_DART) && !(P_RESTRICTED(P_DART)) && yn("Do you want to train the dart skill?")=='y') {
+						P_ADVANCE(P_DART) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHURIKEN) && !(P_RESTRICTED(P_SHURIKEN)) && yn("Do you want to train the shuriken skill?")=='y') {
+						P_ADVANCE(P_SHURIKEN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BOOMERANG) && !(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
+						P_ADVANCE(P_BOOMERANG) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_WHIP) && !(P_RESTRICTED(P_WHIP)) && yn("Do you want to train the whip skill?")=='y') {
+						P_ADVANCE(P_WHIP) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_UNICORN_HORN) && !(P_RESTRICTED(P_UNICORN_HORN)) && yn("Do you want to train the unicorn horn skill?")=='y') {
+						P_ADVANCE(P_UNICORN_HORN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_LIGHTSABER) && !(P_RESTRICTED(P_LIGHTSABER)) && yn("Do you want to train the lightsaber skill?")=='y') {
+						P_ADVANCE(P_LIGHTSABER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_ATTACK_SPELL) && !(P_RESTRICTED(P_ATTACK_SPELL)) && yn("Do you want to train the attack spell skill?")=='y') {
+						P_ADVANCE(P_ATTACK_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_HEALING_SPELL) && !(P_RESTRICTED(P_HEALING_SPELL)) && yn("Do you want to train the healing spell skill?")=='y') {
+						P_ADVANCE(P_HEALING_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_DIVINATION_SPELL) && !(P_RESTRICTED(P_DIVINATION_SPELL)) && yn("Do you want to train the divination spell skill?")=='y') {
+						P_ADVANCE(P_DIVINATION_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_ENCHANTMENT_SPELL) && !(P_RESTRICTED(P_ENCHANTMENT_SPELL)) && yn("Do you want to train the enchantment spell skill?")=='y') {
+						P_ADVANCE(P_ENCHANTMENT_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PROTECTION_SPELL) && !(P_RESTRICTED(P_PROTECTION_SPELL)) && yn("Do you want to train the protection spell skill?")=='y') {
+						P_ADVANCE(P_PROTECTION_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BODY_SPELL) && !(P_RESTRICTED(P_BODY_SPELL)) && yn("Do you want to train the body spell skill?")=='y') {
+						P_ADVANCE(P_BODY_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_OCCULT_SPELL) && !(P_RESTRICTED(P_OCCULT_SPELL)) && yn("Do you want to train the occult spell skill?")=='y') {
+						P_ADVANCE(P_OCCULT_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_ELEMENTAL_SPELL) && !(P_RESTRICTED(P_ELEMENTAL_SPELL)) && yn("Do you want to train the elemental spell skill?")=='y') {
+						P_ADVANCE(P_ELEMENTAL_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_CHAOS_SPELL) && !(P_RESTRICTED(P_CHAOS_SPELL)) && yn("Do you want to train the chaos spell skill?")=='y') {
+						P_ADVANCE(P_CHAOS_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MATTER_SPELL) && !(P_RESTRICTED(P_MATTER_SPELL)) && yn("Do you want to train the matter spell skill?")=='y') {
+						P_ADVANCE(P_MATTER_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_RIDING) && !(P_RESTRICTED(P_RIDING)) && yn("Do you want to train the riding skill?")=='y') {
+						P_ADVANCE(P_RIDING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_HIGH_HEELS) && !(P_RESTRICTED(P_HIGH_HEELS)) && yn("Do you want to train the high heels skill?")=='y') {
+						P_ADVANCE(P_HIGH_HEELS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_GENERAL_COMBAT) && !(P_RESTRICTED(P_GENERAL_COMBAT)) && yn("Do you want to train the general combat skill?")=='y') {
+						P_ADVANCE(P_GENERAL_COMBAT) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHIELD) && !(P_RESTRICTED(P_SHIELD)) && yn("Do you want to train the shield skill?")=='y') {
+						P_ADVANCE(P_SHIELD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BODY_ARMOR) && !(P_RESTRICTED(P_BODY_ARMOR)) && yn("Do you want to train the body armor skill?")=='y') {
+						P_ADVANCE(P_BODY_ARMOR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TWO_HANDED_WEAPON) && !(P_RESTRICTED(P_TWO_HANDED_WEAPON)) && yn("Do you want to train the two-handed weapon skill?")=='y') {
+						P_ADVANCE(P_TWO_HANDED_WEAPON) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TWO_WEAPON_COMBAT) && !(P_RESTRICTED(P_TWO_WEAPON_COMBAT)) && yn("Do you want to train the two-weapon combat skill?")=='y') {
+						P_ADVANCE(P_TWO_WEAPON_COMBAT) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_POLYMORPHING) && !(P_RESTRICTED(P_POLYMORPHING)) && yn("Do you want to train the polymorphing skill?")=='y') {
+						P_ADVANCE(P_POLYMORPHING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_DEVICES) && !(P_RESTRICTED(P_DEVICES)) && yn("Do you want to train the devices skill?")=='y') {
+						P_ADVANCE(P_DEVICES) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SEARCHING) && !(P_RESTRICTED(P_SEARCHING)) && yn("Do you want to train the searching skill?")=='y') {
+						P_ADVANCE(P_SEARCHING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SPIRITUALITY) && !(P_RESTRICTED(P_SPIRITUALITY)) && yn("Do you want to train the spirituality skill?")=='y') {
+						P_ADVANCE(P_SPIRITUALITY) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PETKEEPING) && !(P_RESTRICTED(P_PETKEEPING)) && yn("Do you want to train the petkeeping skill?")=='y') {
+						P_ADVANCE(P_PETKEEPING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MISSILE_WEAPONS) && !(P_RESTRICTED(P_MISSILE_WEAPONS)) && yn("Do you want to train the missile weapons skill?")=='y') {
+						P_ADVANCE(P_MISSILE_WEAPONS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TECHNIQUES) && !(P_RESTRICTED(P_TECHNIQUES)) && yn("Do you want to train the techniques skill?")=='y') {
+						P_ADVANCE(P_TECHNIQUES) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_IMPLANTS) && !(P_RESTRICTED(P_IMPLANTS)) && yn("Do you want to train the implants skill?")=='y') {
+						P_ADVANCE(P_IMPLANTS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SEXY_FLATS) && !(P_RESTRICTED(P_SEXY_FLATS)) && yn("Do you want to train the sexy flats skill?")=='y') {
+						P_ADVANCE(P_SEXY_FLATS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
+						P_ADVANCE(P_SHII_CHO) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MAKASHI) && !(P_RESTRICTED(P_MAKASHI)) && yn("Do you want to train the form II (Makashi) skill?")=='y') {
+						P_ADVANCE(P_MAKASHI) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SORESU) && !(P_RESTRICTED(P_SORESU)) && yn("Do you want to train the form III (Soresu) skill?")=='y') {
+						P_ADVANCE(P_SORESU) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_ATARU) && !(P_RESTRICTED(P_ATARU)) && yn("Do you want to train the form IV (Ataru) skill?")=='y') {
+						P_ADVANCE(P_ATARU) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHIEN) && !(P_RESTRICTED(P_SHIEN)) && yn("Do you want to train the form V (Shien) skill?")=='y') {
+						P_ADVANCE(P_SHIEN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_DJEM_SO) && !(P_RESTRICTED(P_DJEM_SO)) && yn("Do you want to train the form V (Djem So) skill?")=='y') {
+						P_ADVANCE(P_DJEM_SO) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_NIMAN) && !(P_RESTRICTED(P_NIMAN)) && yn("Do you want to train the form VI (Niman) skill?")=='y') {
+						P_ADVANCE(P_NIMAN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_JUYO) && !(P_RESTRICTED(P_JUYO)) && yn("Do you want to train the form VII (Juyo) skill?")=='y') {
+						P_ADVANCE(P_JUYO) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_VAAPAD) && !(P_RESTRICTED(P_VAAPAD)) && yn("Do you want to train the form VII (Vaapad) skill?")=='y') {
+						P_ADVANCE(P_VAAPAD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_WEDI) && !(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
+						P_ADVANCE(P_WEDI) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BARE_HANDED_COMBAT) && !(P_RESTRICTED(P_BARE_HANDED_COMBAT)) && yn("Do you want to train the bare-handed combat skill?")=='y') {
+						P_ADVANCE(P_BARE_HANDED_COMBAT) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MARTIAL_ARTS) && !(P_RESTRICTED(P_MARTIAL_ARTS)) && yn("Do you want to train the martial arts skill?")=='y') {
+						P_ADVANCE(P_MARTIAL_ARTS) *= 2;
+						acquiredskill = 1; }
+					else if (yn("Do you want to train no skill at all?")=='y') {
+						acquiredskill = 1; }
+					}
+					pline("Training complete!");
+
+					break;
+				case 21:
+					if (!(HAggravate_monster & INTRINSIC) && !(HAggravate_monster & TIMEOUT)) {
+
+						int maxtrainingamount = 0;
+						int skillnumber = 0;
+						int actualskillselection = 0;
+						int amountofpossibleskills = 1;
+						int i;
+
+						for (i = 0; i < P_NUM_SKILLS; i++) {
+							if (P_SKILL(i) != P_ISRESTRICTED) continue;
+
+							if (P_ADVANCE(i) > 0 && P_ADVANCE(i) >= maxtrainingamount) {
+								if (P_ADVANCE(i) > maxtrainingamount) {
+									amountofpossibleskills = 1;
+									skillnumber = i;
+									maxtrainingamount = P_ADVANCE(i);
+								} else if (!rn2(amountofpossibleskills + 1)) {
+									amountofpossibleskills++;
+									skillnumber = i;
+								} else {
+									amountofpossibleskills++;
+								}
+							}
+						}
+
+						if (skillnumber > 0 && maxtrainingamount > 0) {
+							unrestrict_weapon_skill(skillnumber);
+
+							register int maxcap = P_BASIC;
+							if (!rn2(2)) {
+								maxcap = P_SKILLED;
+								if (!rn2(2)) {
+									maxcap = P_EXPERT;
+									if (maxtrainingamount >= 20 && !rn2(2)) {
+										maxcap = P_MASTER;
+										if (maxtrainingamount >= 160 && !rn2(2)) {
+											maxcap = P_GRAND_MASTER;
+											if (maxtrainingamount >= 540 && !rn2(2)) {
+												maxcap = P_SUPREME_MASTER;
+											}
+										}
+									}
+								}
+							}
+
+							P_MAX_SKILL(skillnumber) = maxcap;
+							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
+						} else {
+							pline("Nothing happens...");
+							if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+								pline("Oh wait, actually something bad happens...");
+								badeffect();
+							}
+						}
+
+					}
+
+					if (HAggravate_monster & INTRINSIC) {
+						HAggravate_monster &= ~INTRINSIC;
+						You_feel("more acceptable!");
+					}
+					if (HAggravate_monster & TIMEOUT) {
+						HAggravate_monster &= ~TIMEOUT;
+						You_feel("more acceptable!");
+					}
+					break;
+				case 22:
+					{
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+						int attempts = 0;
+						register struct permonst *ptrZ;
+newbossPENT:
+					do {
+
+						ptrZ = rndmonst();
+						attempts++;
+						if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+					if (ptrZ && ptrZ->geno & G_UNIQ) {
+						if (wizard) pline("monster generation: %s", ptrZ->mname);
+						(void) makemon(ptrZ, u.ux, u.uy, MM_ANGRY);
+					}
+					else if (rn2(50)) {
+						attempts = 0;
+						goto newbossPENT;
+					}
+					if (!rn2(10) ) {
+						attempts = 0;
+						goto newbossPENT;
+					}
+					pline("Boss monsters appear from nowhere!");
+
+					}
+					u.aggravation = 0;
+
+					break;
+				case 23:
+					if (!rn2(6400)) {
+						ragnarok(TRUE);
+						if (evilfriday) evilragnarok(TRUE,level_difficulty());
+
+					}
+
+					u.aggravation = 1;
+					u.heavyaggravation = 1;
+					DifficultyIncreased += 1;
+					HighlevelStatus += 1;
+					EntireLevelMode += 1;
+
+					(void) makemon(mkclass(S_NEMESE,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+
+					u.aggravation = 0;
+					u.heavyaggravation = 0;
+
+					break;
+				default:
+					impossible("undefined pentagram effect");
+					break;
+
+			}
+
+			if (trap && !rn2(6)) {
+				deltrap(trap);
+				pline_The("pentagram fades away completely.");
+			}
+
+
+		break;
+		case SNOW_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("It starts snowing!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX12 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_snowfloode, (void *)&madepoolX12);
+
+		break;
+		case ASH_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("The floor becomes red.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX13 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_ashfloode, (void *)&madepoolX13);
+
+		break;
+		case SAND_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Soft sand appears in the dungeon.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX14 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_sandfloode, (void *)&madepoolX14);
+
+		break;
+		case PAVEMENT_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Suddenly there are paved roads everywhere!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX15 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_pavementfloode, (void *)&madepoolX15);
+
+		break;
+		case HIGHWAY_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Highways are being built all over the dungeon!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX16 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_highwayfloode, (void *)&madepoolX16);
+
+		break;
+		case GRASSLAND_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("You feel the grass grow.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX17 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_grassfloode, (void *)&madepoolX17);
+
+		break;
+		case NETHER_MIST_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Purple mist appears.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX18 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_nethermistfloode, (void *)&madepoolX18);
+
+		break;
+		case STALACTITE_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Stalactites shoot out of the ceiling!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX19 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_stalactitefloode, (void *)&madepoolX19);
+
+		break;
+		case CRYPTFLOOR_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Seems you're in the crypt now.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX20 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_cryptfloode, (void *)&madepoolX20);
+
+		break;
+		case BUBBLE_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("Floating bubbles appear!");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX21 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_bubblefloode, (void *)&madepoolX21);
+
+		break;
+		case RAIN_CLOUD_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+		pline("It starts to rain.");
+
+		deltrap(trap); /* only triggers once */
+
+		int madepoolX22 = 0;
+
+		do_clear_areaX(u.ux, u.uy, 5, do_raincloudfloode, (void *)&madepoolX22);
+
+		break;
+
+		case ITEM_NASTIFICATION_TRAP:
+
+			deltrap(trap); /* only triggers once */
+			pline("CLICK! You have triggered a trap!");
+			nastytrapcurse();
+
+		break;
+		case SANITY_INCREASE_TRAP:
+			seetrap(trap);
+			pline("You stepped on a trigger!");
+			increasesanity(rnz((monster_difficulty() * 5) + 1));
+		break;
+		case PSI_TRAP:
+
+			seetrap(trap);
+			pline("You stepped on a trigger!");
+			pline("Your mind is blasted by psionic energy.");
+
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+					make_confused(HConfusion + rnd(10) + rnd(monster_difficulty()), FALSE);
+					break;
+				case 4:
+				case 5:
+				case 6:
+					make_stunned(HStun + rnd(10) + rnd(monster_difficulty()), FALSE);
+					break;
+				case 7:
+					make_confused(HConfusion + rnd(10) + rnd(monster_difficulty()), FALSE);
+					make_stunned(HStun + rnd(10) + rnd(monster_difficulty()), FALSE);
+					break;
+				case 8:
+					make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty()), FALSE, 0L);
+					break;
+				case 9:
+					make_feared(HFeared + rnd(10) + rnd(monster_difficulty()), FALSE);
+					break;
+				case 10:
+					make_numbed(HNumbed + rnd(10) + rnd(monster_difficulty()), FALSE);
+					break;
+	
+			}
+			if (!rn2(200)) {
+				forget(rnd(5));
+				pline("You forget some important things...");
+			}
+			if (!rn2(200)) {
+				losexp("psionic drain", FALSE, TRUE);
+			}
+			if (!rn2(200)) {
+				adjattrib(A_INT, -1, 1, TRUE);
+				adjattrib(A_WIS, -1, 1, TRUE);
+			}
+			if (!rn2(200)) {
+				pline("You scream in pain!");
+				wake_nearby();
+			}
+			if (!rn2(200)) {
+				badeffect();
+			}
+			if (!rn2(5)) increasesanity(rnz(5));
+
+		break;
+		case GAY_TRAP: /* by Demo */
+			deltrap(trap); /* only triggers once */
+			pline("CLICK! You have triggered a trap!");
+			u.homosexual = rn2(3);
+			if (u.homosexual == 0) pline("You forget your sexual orientation!");
+			else if (u.homosexual == 1) pline("Your sexual orientation is straight now!");
+			else pline("Your sexual orientation is homosexual now!");
+
+		break;
+
+		case SARAH_TRAP:
+
+			if (FemaleTrapSarah) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Sarah.");
+			pline("You can already imagine the farting noises you're gonna hear.");
+
+			FemaleTrapSarah = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapSarah += 100;
+			if (!rn2(3)) FemaleTrapSarah += rnz(500);
+
+		break;
+		case CLAUDIA_TRAP:
+
+			if (FemaleTrapClaudia) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Claudia.");
+			pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
+
+			FemaleTrapClaudia = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapClaudia += 100;
+			if (!rn2(3)) FemaleTrapClaudia += rnz(500);
+
+		break;
+		case LUDGERA_TRAP:
+
+			if (FemaleTrapLudgera) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Ludgera.");
+			pline("You'll certainly like to listen to the disgusting toilet noises.");
+
+			FemaleTrapLudgera = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapLudgera += 100;
+			if (!rn2(3)) FemaleTrapLudgera += rnz(500);
+
+		break;
+		case KATI_TRAP:
+
+			if (FemaleTrapKati) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Kati.");
+			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
+
+			FemaleTrapKati = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapKati += 100;
+			if (!rn2(3)) FemaleTrapKati += rnz(500);
+
 		break;
 
 	    case QUICKSAND_TRAP:
@@ -8431,6 +10932,28 @@ madnesseffect:
 
 		 break;
 
+		 case SANITY_TREBLE_TRAP:
+
+			if (SanityTrebleEffect) break;
+
+			SanityTrebleEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+		 case STAT_DECREASE_TRAP:
+
+			if (StatDecreaseBug) break;
+
+			StatDecreaseBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+		 case SIMEOUT_TRAP:
+
+			if (SimeoutBug) break;
+
+			SimeoutBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
 		 case BAD_PART_TRAP:
 
 			if (BadPartBug) break;
@@ -9842,7 +12365,7 @@ madnesseffect:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(232)) {
+			switch (rnd(235)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -10103,6 +12626,9 @@ madnesseffect:
 			case 230: BadPartBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 231: CompletelyBadPartBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 232: EvilVariantActive += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 233: SanityTrebleEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 234: StatDecreaseBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 235: SimeoutBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 			}
 
@@ -10377,7 +12903,7 @@ madnesseffect:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork ) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || BadPartBug || CompletelyBadPartBug || EvilVariantActive || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug || OrangeSpells || VioletSpells || LongingEffect || CursedParts || Quaversal || AppearanceShuffling || BrownSpells || Choicelessness || Goldspells || Deprovement || InitializationFail || GushlushEffect || SoiltypeEffect || DangerousTerrains || FalloutEffect || MojibakeEffect || GravationEffect || UncalledEffect || ExplodingDiceEffect || PermacurseEffect || ShroudedIdentity || FeelerGauges || LongScrewup || WingYellowChange || LifeSavingBug || CurseuseEffect || CutNutritionEffect || SkillLossEffect || AutopilotEffect || MysteriousForceActive || MonsterGlyphChange || ChangingDirectives || ContainerKaboom || StealDegrading || LeftInventoryBug || FluctuatingSpeed || TarmuStrokingNora || FailureEffects || BrightCyanSpells || FrequentationSpawns || PetAIScrewed || SatanEffect || RememberanceEffect || PokelieEffect || AlwaysAutopickup || DywypiProblem || SilverSpells || MetalSpells || PlatinumSpells || ManlerEffect || DoorningEffect || NownsibleEffect || ElmStreetEffect || MonnoiseEffect || RangCallEffect || RecurringSpellLoss || AntitrainingEffect || TechoutBug || StatDecay || Movemork || SanityTrebleEffect || StatDecreaseBug || SimeoutBug) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -10611,6 +13137,9 @@ madnesseffect:
 		TechoutBug = 0L;
 		StatDecay = 0L;
 		Movemork = 0L;
+		SanityTrebleEffect = 0L;
+		StatDecreaseBug = 0L;
+		SimeoutBug = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -13365,6 +15894,43 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case DATA_DELETE_TRAP:
 		case ELDER_TENTACLING_TRAP:
 		case FOOTERER_TRAP:
+
+		case GRAVE_WALL_TRAP:
+		case TUNNEL_TRAP:
+		case FARMLAND_TRAP:
+		case MOUNTAIN_TRAP:
+		case WATER_TUNNEL_TRAP:
+		case CRYSTAL_FLOOD_TRAP:
+		case MOORLAND_TRAP:
+		case URINE_TRAP:
+		case SHIFTING_SAND_TRAP:
+		case STYX_TRAP:
+		case PENTAGRAM_TRAP:
+		case SNOW_TRAP:
+		case ASH_TRAP:
+		case SAND_TRAP:
+		case PAVEMENT_TRAP:
+		case HIGHWAY_TRAP:
+		case GRASSLAND_TRAP:
+		case NETHER_MIST_TRAP:
+		case STALACTITE_TRAP:
+		case CRYPTFLOOR_TRAP:
+		case BUBBLE_TRAP:
+		case RAIN_CLOUD_TRAP:
+
+		case ITEM_NASTIFICATION_TRAP:
+		case SANITY_INCREASE_TRAP:
+		case PSI_TRAP:
+		case GAY_TRAP:
+
+		case SARAH_TRAP:
+		case CLAUDIA_TRAP:
+		case LUDGERA_TRAP:
+		case KATI_TRAP:
+
+		case SANITY_TREBLE_TRAP:
+		case STAT_DECREASE_TRAP:
+		case SIMEOUT_TRAP:
 
 		case EVIL_HEEL_TRAP:
 		case BAD_EQUIPMENT_TRAP:

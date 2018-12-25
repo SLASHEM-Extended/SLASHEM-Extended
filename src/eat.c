@@ -5442,6 +5442,12 @@ eatspecial() /* called after eating non-food */
 			    CompletelyBadPartBug |= FROMOUTSIDE; break;
 			case EVIL_VARIANT_STONE:
 			    EvilVariantActive |= FROMOUTSIDE; break;
+			case SANE_TREBLE_STONE:
+			    SanityTrebleEffect |= FROMOUTSIDE; break;
+			case STATCREASE_STONE:
+			    StatDecreaseBug |= FROMOUTSIDE; break;
+			case SIMEOUT_STONE:
+			    SimeoutBug |= FROMOUTSIDE; break;
 
 		}
 	}

@@ -2826,6 +2826,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ COMPLETELY_BAD_PART_STONE, "polnost'yu plokhaya chast' kamnya" },
 	{ EVIL_VARIANT_STONE, "zloy variant kamnya" },
 
+	{ SANE_TREBLE_STONE, "vmenyayemyy troynoy kamen'" },
+	{ STATCREASE_STONE, "kamen' dlya pokhudeniya" },
+	{ SIMEOUT_STONE, "vytashchit' kamen'" },
+	{ AMULET_OF_SANITY_TREBLE, "amulet of troystvennost' zdravomysliya" },
+	{ RIN_STAT_DECREASE, "umen'sheniye statov" },
+	{ RIN_SANITY_TIMEOUT, "vremya ozhidaniya" },
+
 	/* todo area */
 
 	{0, "" }
@@ -5121,6 +5128,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ EVIL_VARIANT_STONE, "yomon har xil tosh" },
 
 	/* todo area */
+
+	{ SANE_TREBLE_STONE, "yupqa tosh" },
+	{ STATCREASE_STONE, "toshni toshga aylantirish" },
+	{ SIMEOUT_STONE, "toshdan tashqariga chiqish" },
+	{ AMULET_OF_SANITY_TREBLE, "amulet of aktyorlik yuqori" },
+	{ RIN_STAT_DECREASE, "holat pasayishi" },
+	{ RIN_SANITY_TIMEOUT, "aql-idrok vaqt tugadi" },
 
 	{0, "" }
 };

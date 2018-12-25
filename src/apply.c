@@ -5298,6 +5298,9 @@ doapply()
 	case TECHOUT_STONE:
 	case STAT_DECAY_STONE:
 	case MOVEMORK_STONE:
+	case SANE_TREBLE_STONE:
+	case STATCREASE_STONE:
+	case SIMEOUT_STONE:
 
 	case METABOLIC_STONE:
 	case STONE_OF_NO_RETURN:
@@ -5907,6 +5910,9 @@ chargingchoice:
 		BadPartBug = 0L;
 		CompletelyBadPartBug = 0L;
 		EvilVariantActive = 0L;
+		SanityTrebleEffect = 0L;
+		StatDecreaseBug = 0L;
+		SimeoutBug = 0L;
 
 		break;
 	case GOD_O_METER:

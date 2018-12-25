@@ -4589,6 +4589,47 @@ have_evilvariantstone()
 	return(FALSE);
 }
 
+boolean
+have_sanitytreblestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SANE_TREBLE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator233) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_statdecreasestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STATCREASE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator234) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_simeoutstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SIMEOUT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator235) return TRUE;
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -10245,6 +10286,10 @@ struct obj *obj;
 				pline("This ring can cause blessed items to instantly become cursed."); break;
 			case RIN_ILLITERACY:
 				pline("This ring sometimes causes scrolls to disintegrate while you're trying to pick them up."); break;
+			case RIN_STAT_DECREASE:
+				pline("This ring greatly reduces the soft caps for your stats, making them harder to increase."); break;
+			case RIN_SANITY_TIMEOUT:
+				pline("This ring causes your sanity to increase over time."); break;
 			case RIN_WIMPINESS:
 				pline("This ring makes some calculations assume that you're always experience level 1."); break;
 			case RIN_USING_HAZARD:
@@ -10858,6 +10903,8 @@ struct obj *obj;
 				pline("This amulet makes you lose the ability to gain experience."); break;
 			case AMULET_OF_HOSTILITY:
 				pline("This amulet causes all newly generated monsters to be hostile."); break;
+			case AMULET_OF_SANITY_TREBLE:
+				pline("This amulet greatly increases the amount of incoming sanity."); break;
 			case AMULET_OF_EVIL_CRAFTING:
 				pline("This amulet can put evil artifacts into your inventory and force you to equip them."); break;
 			case AMULET_OF_EDIBILITY:
@@ -13248,6 +13295,12 @@ struct obj *obj;
 			    pline("A stone that curses itself and causes your stats to decay over time."); break;
 			case MOVEMORK_STONE:
 			    pline("A stone that curses itself and causes monsters to be generated with movement energy."); break;
+			case SANE_TREBLE_STONE:
+			    pline("A stone that curses itself and causes your sanity to increase much faster."); break;
+			case STATCREASE_STONE:
+			    pline("A stone that curses itself and causes you to have a hard time increasing your stats."); break;
+			case SIMEOUT_STONE:
+			    pline("A stone that curses itself and causes your sanity to increase over time."); break;
 
 			case GRAYOUT_STONE:
 				pline("A stone that curses itself and causes grayout."); break;

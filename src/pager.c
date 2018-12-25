@@ -22682,6 +22682,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"bhaak demands 400,000 zorkmids for safe passage. Pay? (y/n)", /* by Luxidream */
 	"You give bhaak four Mini-Croesus trophies. Bhaak vanishes, laughing 'See you in June.'", /* by aosdict */
 	"You start talking to the scale mail. You feel stupid. The scale mail asks about the weather outside. Wait, it's a mimic!",
+	"Apparently the farting gas is depleted.",
+	"Your sexy butt cheek wood confusion ends.",
+	"At last the disgusting toilet noises ceased.",
+	"You vow to never clean a girl's shoes again.",
+	"You can already imagine the farting noises you're gonna hear.",
+	"Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.",
+	"You'll certainly like to listen to the disgusting toilet noises.",
+	"You feel like being kicked by sexy girls and cleaing their shoes.",
+	"Whoops, you're getting really dizzy.",
+	"Are you a blonde by any chance?",
 
 };
 

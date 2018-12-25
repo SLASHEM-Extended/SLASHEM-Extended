@@ -4149,6 +4149,25 @@ nomul(nval, txt, discountpossible)
 
 	if (uarmf && nval == 0 && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) return;
 
+	if (u.katitrapocc && nval == 0) {
+		pline("Something tries to interrupt your attempt to clean the Kati shoes! If you stop now, the sexy girl will hate you!");
+		if (yn("Really stop cleaning them?") == 'y') {
+		      register struct monst *mtmp2;
+
+			for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+				if (!mtmp2->mtame) {
+					mtmp2->mpeaceful = 0;
+					mtmp2->mfrenzied = 1;
+					mtmp2->mhp = mtmp2->mhpmax;
+				}
+			}
+			pline("The beautiful girl in the sexy Kati shoes is very sad that you didn't finish cleaning her lovely boots, and urges everyone in her vicinity to bludgeon you.");
+
+		} else return;
+
+	}
+
 	if(multi < nval) return;	/* This is a bug fix by ab@unido */
 	u.uinvulnerable = FALSE;	/* Kludge to avoid ctrl-C bug -dlc */
 	u.usleep = 0;

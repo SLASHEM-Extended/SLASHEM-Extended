@@ -814,6 +814,10 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, you start seeing mojibake glyphs.");
 						else pline("Your auspices say: 6 8");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, all sanity effects will increase your sanity by much more than usual.");
+						else pline("Your auspices say: 6 9");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 7) {
@@ -849,6 +853,10 @@ boolean incr;	/* true iff via incremental experience growth */
 					case 8:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, monsters will make noises.");
 						else pline("Your auspices say: 8 8");
+						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, increasing stats beyond a certain limit will become much harder.");
+						else pline("Your auspices say: 8 9");
 						break;
 				}
 

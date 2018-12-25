@@ -616,6 +616,43 @@ static struct {
 	{ "completely bad part", COMPLETELY_BAD_PART_TRAP },
 	{ "evil variant", EVIL_VARIANT_TRAP },
 
+	{ "grave wall", GRAVE_WALL_TRAP },
+	{ "tunnel", TUNNEL_TRAP },
+	{ "farmland", FARMLAND_TRAP },
+	{ "mountain", MOUNTAIN_TRAP },
+	{ "water tunnel", WATER_TUNNEL_TRAP },
+	{ "crystal flood", CRYSTAL_FLOOD_TRAP },
+	{ "moorland", MOORLAND_TRAP },
+	{ "urine", URINE_TRAP },
+	{ "shifting sand", SHIFTING_SAND_TRAP },
+	{ "styx", STYX_TRAP },
+ 	{ "pentagram", PENTAGRAM_TRAP },
+	{ "snow", SNOW_TRAP },
+	{ "ash", ASH_TRAP },
+	{ "sand", SAND_TRAP },
+	{ "pavement", PAVEMENT_TRAP },
+	{ "highway", HIGHWAY_TRAP },
+	{ "grassland", GRASSLAND_TRAP },
+	{ "nether mist", NETHER_MIST_TRAP },
+	{ "stalactite", STALACTITE_TRAP },
+	{ "cryptfloor", CRYPTFLOOR_TRAP },
+	{ "bubble", BUBBLE_TRAP },
+	{ "rain cloud", RAIN_CLOUD_TRAP },
+
+	{ "item nastification", ITEM_NASTIFICATION_TRAP },
+	{ "sanity increase", SANITY_INCREASE_TRAP },
+	{ "psi", PSI_TRAP },
+	{ "gay", GAY_TRAP },
+
+	{ "sarah", SARAH_TRAP },
+	{ "claudia", CLAUDIA_TRAP },
+	{ "ludgera", LUDGERA_TRAP },
+	{ "kati", KATI_TRAP },
+
+	{ "sanity treble", SANITY_TREBLE_TRAP },
+	{ "stat decrease", STAT_DECREASE_TRAP },
+	{ "simeout", SIMEOUT_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

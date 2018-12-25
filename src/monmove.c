@@ -2110,6 +2110,8 @@ not_special:
 	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
 	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;
 
+	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
+
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION
 				    && (!Is_rogue_level(&u.uz))

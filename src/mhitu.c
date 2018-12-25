@@ -8,6 +8,8 @@
 #include "edog.h"
 
 STATIC_VAR NEARDATA struct obj *otmp;
+STATIC_PTR int katicleaning(void);
+static NEARDATA schar delay;            /* moves left for kati cleaning */
 
 STATIC_DCL void urustm(struct monst *, struct obj *);
 # ifdef OVL1
@@ -189,6 +191,24 @@ on the first floor, especially when you're playing as something with drain resis
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
 				u.legscratching++;
 				losehp(rno(u.legscratching + 1), "being scratched by Jeanetta's little boots", KILLED_BY);
+			}
+
+			if (FemaleTrapKati && humanoid(mtmp->data) && is_female(mtmp->data)) {
+				pline("%s painfully kicks you in the %s with her sexy Kati shoes!", Monnam(mtmp), makeplural(body_part(LEG)));
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				losehp((monsterlev), "being kicked by Kati shoes", KILLED_BY);
+
+				if (!rn2(20) && !mtmp->mfrenzied) {
+					pline("She asks you to clean the dog shit from her soles. This will take a long time, but if you can do it, she'll no longer hurt you.");
+					if (yn("Do you want to clean the sexy Kati shoes?") == 'y') {
+						delay = -200;
+						u.katitrapocc = TRUE;
+						set_occupation(katicleaning, "cleaning the sexy Kati shoes", 0);
+						mtmp->mpeaceful = TRUE;
+						pline("You start cleaning the shit from the profiled girl boots...");
+					}
+				}
 			}
 
 			if (uarmf && !rn2(3) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
@@ -7178,7 +7198,7 @@ dopois:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 232) midentity -= 232;
+			while (midentity > 235) midentity -= 235;
 
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastyduration *= 20;
@@ -7445,6 +7465,9 @@ dopois:
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -7725,6 +7748,9 @@ dopois:
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -9671,7 +9697,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 232) midentity -= 232;
+			while (midentity > 235) midentity -= 235;
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastyduration *= 20;
@@ -9938,6 +9964,9 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -10214,6 +10243,9 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -12184,7 +12216,7 @@ common:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 232) midentity -= 232;
+			while (midentity > 235) midentity -= 235;
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastyduration *= 20;
@@ -12451,6 +12483,9 @@ common:
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -12727,6 +12762,9 @@ common:
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -16900,7 +16938,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 232) midentity -= 232;
+			while (midentity > 235) midentity -= 235;
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastyduration *= 20;
@@ -17167,6 +17205,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -17446,6 +17487,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -19204,6 +19248,18 @@ enjoyable:
             }
 
             slextest(10000, 50000) {
+		stdmsg("apocalyptic madness");
+                u.uprops[SIMEOUT_BUG].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            slextest(10000, 50000) {
+		stdmsg("borderline disorder");
+                u.uprops[SANITY_TREBLE_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            slextest(10000, 50000) {
 		stdmsg("bomber disease");
                 u.uprops[AUTOPILOT_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
@@ -20048,6 +20104,18 @@ cloneu()
 	flags.botl = 1;
 	}
 	return(mon);
+}
+
+STATIC_PTR int
+katicleaning()
+{
+	if (delay) {
+		delay++;
+		return(1);
+	} else {
+		pline("Finally, you cleaned all the dog shit from the sexy Kati shoes!");
+		return(0);
+	}
 }
 
 #endif /* OVLB */

@@ -8523,6 +8523,7 @@ register struct	monst	*mtmp;
 				(void) mpickobj(mtmp, otmp, TRUE);
 			}
 		}
+		if (ptr == &mons[PM_WOODICLOUDY]) (void)mongets(mtmp, WOODEN_GETA);
 
 		if (ptr == &mons[PM_BLEACH_GHOST]) m_initthrow(mtmp, CALTROP, 50);
 		if (ptr == &mons[PM_SERBIAN_BOSS]) (void)mongets(mtmp, SWEET_MOCASSINS);
@@ -15031,9 +15032,10 @@ register int	mmflags;
 	   mtmp->m_lev = (1 + rn2(base_you) + rn2(base_lev) / 2)+1;
 	}
 
-	if (ptr == &mons[PM_BLACKY] || ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
+	if (ptr == &mons[PM_BLACKY] || ptr == &mons[PM_EROTICLOUDY] || ptr == &mons[PM_WOODICLOUDY] || ptr == &mons[PM_SCENTICLOUDY] || ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
 	   /* blacky too --Amy */
 	   /* and specific kop types */
+	   /* and the claudia trap monsters */
 	   int base_you, base_lev;
 	   base_you = (u.ulevel / 2)+1;
 	   base_lev = level_difficulty()+1;

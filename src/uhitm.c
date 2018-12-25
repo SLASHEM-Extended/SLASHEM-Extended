@@ -7670,7 +7670,7 @@ boolean ranged;
 		{
 			register int midentity = mon->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 232) midentity -= 232;
+			while (midentity > 235) midentity -= 235;
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastyduration *= 20;
@@ -7937,6 +7937,9 @@ boolean ranged;
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -8213,6 +8216,9 @@ boolean ranged;
 				case 230: BadPartBug += rnz(nastyduration); break;
 				case 231: CompletelyBadPartBug += rnz(nastyduration); break;
 				case 232: EvilVariantActive += rnz(nastyduration); break;
+				case 233: SanityTrebleEffect += rnz(nastyduration); break;
+				case 234: StatDecreaseBug += rnz(nastyduration); break;
+				case 235: SimeoutBug += rnz(nastyduration); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
