@@ -612,6 +612,13 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (damu < 1) damu = 1;
 		}
 
+		if (is_sand(u.ux,u.uy) && damu > 0) {
+			damu++;
+			damu *= 4;
+			damu /= 5;
+			if (damu < 1) damu = 1;
+		}
+
 		if (StrongDetect_monsters && damu > 0) {
 			damu++;
 			damu *= 9;

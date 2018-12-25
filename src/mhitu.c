@@ -18013,6 +18013,13 @@ register int n;
 		if (n < 1) n = 1;
 	}
 
+	if (is_sand(u.ux,u.uy) && n > 0) {
+		n++;
+		n *= 4;
+		n /= 5;
+		if (n < 1) n = 1;
+	}
+
 	if (Race_if(PM_VIKING) && n > 0) {
 		n *= 5;
 		n /= 4;
