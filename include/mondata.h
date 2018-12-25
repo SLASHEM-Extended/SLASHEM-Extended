@@ -312,6 +312,7 @@
 				 (ptr) == &mons[PM_CAMOUFLAGED_WATCHER] || \
 				 (ptr) == &mons[PM_HIDDEN_TRACKER] || \
 				 (ptr) == &mons[PM_SILENT_KILLER] || \
+				 (ptr) == &mons[PM_SCHEDAU_STALKER] || \
 				 (ptr) == &mons[PM_UNSEEN_SERVANT] || \
 				 (ptr) == &mons[PM_WERESTALKER] || \
 				 (ptr) == &mons[PM_HUMAN_WERESTALKER] || \
