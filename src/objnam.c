@@ -2833,6 +2833,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RIN_STAT_DECREASE, "umen'sheniye statov" },
 	{ RIN_SANITY_TIMEOUT, "vremya ozhidaniya" },
 
+	{ LIZARD_SCALE_MAIL, "yashcheritsa masshtabnaya pochta" },
+	{ LIZARD_SCALES, "vesy yashcheritsy" },
+	{ FLAME_MOUNTAIN, "gora plameni" },
+	{ BEAM_REFLECTOR_GUN, "luch otrazhatelya" },
+	{ TENNIS_RACKET, "tennisnaya raketka" },
+	{ ENERGY_SAP, "zhivitsa" },
+
 	/* todo area */
 
 	{0, "" }
@@ -5127,14 +5134,21 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ COMPLETELY_BAD_PART_STONE, "butunlay yomon qism tosh" },
 	{ EVIL_VARIANT_STONE, "yomon har xil tosh" },
 
-	/* todo area */
-
 	{ SANE_TREBLE_STONE, "yupqa tosh" },
 	{ STATCREASE_STONE, "toshni toshga aylantirish" },
 	{ SIMEOUT_STONE, "toshdan tashqariga chiqish" },
 	{ AMULET_OF_SANITY_TREBLE, "amulet of aktyorlik yuqori" },
 	{ RIN_STAT_DECREASE, "holat pasayishi" },
 	{ RIN_SANITY_TIMEOUT, "aql-idrok vaqt tugadi" },
+
+	{ LIZARD_SCALE_MAIL, "kertenkele o'lchamli pochta" },
+	{ LIZARD_SCALES, "kertenkele o'lchamlari" },
+	{ FLAME_MOUNTAIN, "olov tog'i" },
+	{ BEAM_REFLECTOR_GUN, "nurli reflektorli qurol" },
+	{ TENNIS_RACKET, "tennis raketasi" },
+	{ ENERGY_SAP, "po'st teskari o'girish oq osti" },
+
+	/* todo area */
 
 	{0, "" }
 };
@@ -5462,6 +5476,10 @@ register struct obj *obj;
 		/* If we use an() here we'd have to remember never to use */
 		/* it whenever calling doname() or xname(). */
 		if (typ == FIGURINE && !PlayerUninformation)
+		    sprintf(eos(buf), " of a%s %s",
+			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
+			mons[obj->corpsenm].mname);
+		if (typ == ENERGY_SAP && !PlayerUninformation)
 		    sprintf(eos(buf), " of a%s %s",
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
@@ -8485,6 +8503,7 @@ typfnd:
 			}
 			break;
 		case FIGURINE:
+		case ENERGY_SAP:
                         if
 # ifdef WIZARD
                                 ((wizard) ||

@@ -2173,6 +2173,14 @@ int artif;
 					blessorcurse_on_creation(otmp, 4);
 					break;
 				}
+		case ENERGY_SAP:
+			{
+				int tryct2 = 0;
+				do otmp->corpsenm = rndmonnum();
+				while(is_human(&mons[otmp->corpsenm]) && !rn2(5) && tryct2++ < 30);
+				blessorcurse_on_creation(otmp, 4);
+				break;
+			}
 		case BELL_OF_OPENING:
 			otmp->spe = (ishaxor ? 60 : 30);
 					break;

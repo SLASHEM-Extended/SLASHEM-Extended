@@ -269,6 +269,8 @@ struct monst *mon;
 		tmp += 12;
 	if (otmp->otyp == LASER_SWATTER && (ptr->mlet == S_ANT || ptr->mlet == S_SPIDER || ptr->mlet == S_XAN))
 		tmp += 15;
+	if (otmp->otyp == TENNIS_RACKET && ptr->mlet == S_BAT)
+		tmp += 20;
 
 	if (otmp->otyp == FLY_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 25;
 	if (otmp->otyp == VERMIN_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 25;
@@ -1858,6 +1860,7 @@ register struct monst *mtmp;
 			if (!propellor) propellor = (oselect(mtmp, SNIPER_RIFLE));
 			if (!propellor) propellor = (oselect(mtmp, HUNTING_RIFLE));
 			if (!propellor) propellor = (oselect(mtmp, RIFLE));
+			if (!propellor) propellor = (oselect(mtmp, BEAM_REFLECTOR_GUN));
 			if (!propellor) propellor = (oselect(mtmp, PISTOL));
 			if (!propellor) propellor = (oselect(mtmp, FLINTLOCK));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_SHELL) {
@@ -1940,7 +1943,7 @@ static const NEARDATA short hwep[] = {
 	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR,
 	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, CHEMISTRY_SPACE_AXE, PLATINUM_SABER,
 	  GOLDEN_SABER, TWO_HANDED_FLAIL, BOAT_OAR, BATTLE_STAFF, BACKHAND_MACE, OLDEST_STAFF,
-	  REINFORCED_MACE, OSBANE_KATANA, GRANITE_IMPALER,
+	  REINFORCED_MACE, OSBANE_KATANA, GRANITE_IMPALER, FLAME_MOUNTAIN,
 	  KATANA, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, FOURDENT, TRIDENT, CRYSTAL_SWORD, ICKY_BLADE, WILD_BLADE,
 	  LONG_SWORD, OBSID, COURSE_JAVELIN, SPIRIT_THROWER, IMPACT_STAFF, WALKING_STICK,
 	  DROVEN_SPEAR, MEATSWORD, BIDENHANDER, DIAMOND_SMASHER,
@@ -1963,7 +1966,7 @@ static const NEARDATA short hwep[] = {
 	  FIRE_STICK, TROUTSTAFF, QUARTERSTAFF, RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, 
 	  INSECT_SQUASHER, SPIKED_CLUB, BASEBALL_BAT, PAPER_SWORD,
 	  GREAT_DAGGER, JAVELIN, AKLYS, POURED_CLUB, NATURAL_STICK, BONE_CLUB, CLUB, 
-	  BRONZE_PICK, CONGLOMERATE_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, 
+	  BRONZE_PICK, CONGLOMERATE_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET,
 	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR,
 	  FUTON_SWATTER, MAGICAL_PAINTBRUSH, BROOM, MOP,
 
@@ -4407,6 +4410,10 @@ struct obj *weapon;
 			case P_SUPREME_MASTER:	bonus +=  rnd(15); break;
 			default: bonus += 0; break;
 		}
+	}
+
+	if (uwep && weapon && (uwep == weapon) && weapon->otyp == FLAME_MOUNTAIN && !uarms && !u.twoweap) {
+		bonus += rnd(10);
 	}
 
 	if (!(PlayerCannotUseSkills) && uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {

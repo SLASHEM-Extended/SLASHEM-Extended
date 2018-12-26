@@ -5462,6 +5462,15 @@ eatspecial() /* called after eating non-food */
 			}
 		} else polyself(FALSE);
 	}
+	if (Race_if(PM_WORM_THAT_WALKS) && otmp->otyp == ENERGY_SAP) {
+		if (rn2(5)) {
+
+			 if (polyok(&mons[otmp->corpsenm])) {
+			u.wormpolymorph = otmp->corpsenm;
+			polyself(FALSE);
+			}
+		} else polyself(FALSE);
+	}
 	if (Race_if(PM_WORM_THAT_WALKS) && otmp->otyp == STATUE) {
 		if (rn2(5)) {
 			 if (polyok(&mons[otmp->corpsenm])) {
@@ -6806,6 +6815,22 @@ register struct obj *obj;
 
 	base = (int)(full_amount ? (long)base * uneaten_amt / full_amount : 0L);
 	return (base < 1) ? 1 : base;
+}
+
+void
+energysap(obj)
+struct obj *obj;
+{
+
+	You("quaff the sap.");
+
+	if (mons[obj->corpsenm].cnutrit > 0) lesshungry((mons[obj->corpsenm].cnutrit) / 5);
+
+	cprefx(obj->corpsenm);
+	cpostfx(obj->corpsenm);
+
+	useup(obj);
+
 }
 
 /* reduce obj's oeaten field, making sure it never hits or passes 0 */

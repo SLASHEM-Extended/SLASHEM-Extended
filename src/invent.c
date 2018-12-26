@@ -7926,6 +7926,8 @@ struct obj *obj;
 				pline("An edible broadsword."); break;
 			case ICKY_BLADE:
 				pline("This long sword has increased chance to hit."); break;
+			case FLAME_MOUNTAIN:
+				pline("If you wield this long sword while your other hand is empty (i.e. neither wearing a shield nor wielding a second weapon), it deals extra damage."); break;
 			case GRANITE_IMPALER:
 				pline("It's a rather strong longsword, comparable damage-wise with the katana."); break;
 			case ORGANOBLADE:
@@ -8152,6 +8154,8 @@ struct obj *obj;
 				pline("This firearm is capable of shooting bullets to deal damage to enemies."); break;
 			case FLINTLOCK: 
 				pline("You can theoretically use this firearm to shoot single bullets at monsters, but I'd advise you to use an actual pistol instead."); break;
+			case BEAM_REFLECTOR_GUN: 
+				pline("It's a pistol with low range, but wielding it grants you reflection. You can shoot bullets with it."); break;
 			case BFG: 
 #ifdef PHANTOM_CRASH_BUG
 				pline("This bad boy will fire a heck of a lot of green beams (BFG ammo) per turn. If you can hit with it, you'll be capable of bringing even the strongest monsters down to their knees."); break;
@@ -8799,35 +8803,39 @@ struct obj *obj;
 				pline("This very lovely piece of cloth (which counts as a shirt) offers medium magic cancellation. It can be read."); break;
 			case BODYGLOVE: 
 				pline("Good thing this item is not unbalanced at all. Just a t-shirt that offers sickness resistance and maximum magic cancel-WAIT WHAT OMG I GOTTA WEAR THIS SO BAD!!! It can be read."); break;
-			case STRIPED_SHIRT: 
+			case STRIPED_SHIRT:
 				pline("A shirt that can be worn under a suit of armor. Shopkeepers who see you wearing this will not allow you to enter their shop. It can be read."); break;
-			case RUFFLED_SHIRT: 
+			case RUFFLED_SHIRT:
 				pline("A shirt that can be worn under a suit of armor. If you wear a cursed one, you have a small chance of reviving on death. It can be read."); break;
-			case VICTORIAN_UNDERWEAR: 
+			case VICTORIAN_UNDERWEAR:
 				pline("This wonderful piece of clothing can be worn under a suit of armor to grant 3 points of magic cancellation. If you wear a cursed one, you have a small chance of reviving on death. It can be read."); break;
-			case PLATE_MAIL: 
+			case PLATE_MAIL:
 				pline("A very heavy suit of armor that offers good protection."); break;
-			case FULL_PLATE_MAIL: 
+			case FULL_PLATE_MAIL:
 				pline("This suit of armor covers your whole body and offers great protection, but it's also really heavy."); break;
-			case DROVEN_PLATE_MAIL: 
+			case DROVEN_PLATE_MAIL:
 				pline("This plate mail is light, but it offers less protection than actual plate mail."); break;
-			case PLASTEEL_ARMOR: 
+			case PLASTEEL_ARMOR:
 				pline("A low-weight suit of armor with a good armor value."); break;
-			case CRYSTAL_PLATE_MAIL: 
+			case CRYSTAL_PLATE_MAIL:
 				pline("A very heavy suit of armor that offers good protection."); break;
-			case BRONZE_PLATE_MAIL: 
+			case BRONZE_PLATE_MAIL:
 				pline("This suit of armor is inferior to regular plate mail."); break;
-			case SPLINT_MAIL: 
+			case SPLINT_MAIL:
 				pline("A robust suit of armor that offers good protection."); break;
-			case OLIHARCON_SPLINT_MAIL: 
+			case OLIHARCON_SPLINT_MAIL:
 				pline("This robust suit of armor is made of a rare material whose name nobody can spell correctly (for reference: it's ORICHALCUM); it offers good protection."); break;
-			case BAMBOO_MAIL: 
+			case BAMBOO_MAIL:
 				pline("A relatively weak suit of armor."); break;
-			case SAILOR_BLOUSE: 
+			case LIZARD_SCALE_MAIL:
+				pline("This armor grants petrification resistance, but weak AC."); break;
+			case LIZARD_SCALES:
+				pline("This armor grants petrification resistance, but very weak AC."); break;
+			case SAILOR_BLOUSE:
 				pline("It's light and yet offers some protection."); break;
-			case SAFEGUARD_SUIT: 
+			case SAFEGUARD_SUIT:
 				pline("Almost no AC but it grants you the ability to swim."); break;
-			case FEATHER_ARMOR: 
+			case FEATHER_ARMOR:
 				pline("Believe it or not, this armor actually has magic cancellation in addition to its low amount of AC."); break;
 			case SCHOOL_UNIFORM: 
 				pline("A useless armor that you should wear only if you really can't find anything better."); break;
@@ -11213,6 +11221,8 @@ struct obj *obj;
 #endif
 			case FIGURINE: 
 				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!"); break;
+			case ENERGY_SAP: 
+				pline("If you apply this tool, you'll get effects similar to eating the corpse of the monster it's made of."); break;
 			case MAGIC_MARKER: 
 #ifdef PHANTOM_CRASH_BUG
 				pline("You can engrave with this tool, or attempt to write scrolls or spellbooks if you have blank ones. Writing items that you know is guaranteed to work."); break;

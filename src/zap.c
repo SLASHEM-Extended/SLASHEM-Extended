@@ -2484,7 +2484,7 @@ poly_obj(obj, id)
 	    /* literally replace obj with this new thing */
 	    otmp = mksobj(id, FALSE, FALSE);
 	/* Actually more things use corpsenm but they polymorph differently */
-#define USES_CORPSENM(typ) ((typ)==CORPSE || (typ)==STATUE || (typ)==FIGURINE)
+#define USES_CORPSENM(typ) ((typ)==CORPSE || (typ)==STATUE || (typ)==FIGURINE || (typ)==ENERGY_SAP)
 	    if (USES_CORPSENM(obj->otyp) && USES_CORPSENM(id))
 		otmp->corpsenm = obj->corpsenm;
 #undef USES_CORPSENM

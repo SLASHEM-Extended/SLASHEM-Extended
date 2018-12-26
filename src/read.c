@@ -2712,6 +2712,29 @@ enchantarmorchoice:
 			}
 			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 
+			if (sobj->blessed) {
+				otmp->spe++;
+				otmp->blessed = 1;
+			}
+			otmp->known = 1;
+			setworn(otmp, W_ARM);
+			break;
+		}
+		if (s >= 0 && otmp->otyp == LIZARD_SCALES) {
+			Your("%s merges and hardens!", xname(otmp));
+			setworn((struct obj *)0, W_ARM);
+			otmp->otyp = LIZARD_SCALE_MAIL;
+
+			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 
 			if (sobj->blessed) {
 				otmp->spe++;
@@ -2721,6 +2744,7 @@ enchantarmorchoice:
 			setworn(otmp, W_ARM);
 			break;
 		}
+
 		Your("%s %s%s%s%s for a %s.",
 			xname(otmp),
 		        s == 0 ? "violently " : nul,

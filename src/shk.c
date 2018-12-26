@@ -6118,6 +6118,26 @@ shk_armor_works(slang, shkp)
 			break;
 		}
 
+		if (obj->otyp == LIZARD_SCALES) {
+			Your("%s merges and hardens!", xname(obj));
+			setworn((struct obj *)0, W_ARM);
+			obj->otyp = LIZARD_SCALE_MAIL;
+			if ((obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(100) ) {
+				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = 0;
+			}
+			else if (obj->prmcurse && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(10) ) {
+				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = 0;
+			}
+			else if (!(obj->prmcurse) && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) && obj->hvycurse && !rn2(3) ) {
+				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = 0;
+			}
+			else if (!(obj->prmcurse) && !(obj->hvycurse) && !(obj->morgcurse || obj->evilcurse || obj->bbrcurse) ) obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = 0;
+
+			obj->known = 1;
+			setworn(obj, W_ARM);
+			break;
+		}
+
 		obj->spe++;
 		break;
 

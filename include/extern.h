@@ -699,6 +699,7 @@ E boolean bite_monster(struct monst *mon);
 E void fix_petrification(void);
 E void consume_oeaten(struct obj *,int);
 E boolean maybe_finished_meal(BOOLEAN_P);
+E void energysap(struct obj *);
 
 /* ### end.c ### */
 
