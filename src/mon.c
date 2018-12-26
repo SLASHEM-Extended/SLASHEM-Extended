@@ -350,6 +350,7 @@ int mndx;
 	switch (mndx) {
 	case PM_CHAMELEON:	mcham = CHAM_CHAMELEON; break;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
+	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
 	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
 	case PM_KARMA_CHAMELEON:	mcham = CHAM_KARMA_CHAMELEON; break;
 	case PM_DOPPELGANGER:	mcham = CHAM_DOPPELGANGER; break;
@@ -443,6 +444,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_METAL_DOPPELGANGER,
 		PM_GHELEON,
 		PM_THE_ZRUTINATOR,
+		PM_METAMORPHOSE,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -6941,6 +6943,19 @@ earlyleonchoice:
 			if (is_jonadabmonster(pm) && rn2(20)) goto earlyleonchoice;
 			if (rn2(10000) && (pm->mlevel > 5)) goto earlyleonchoice;
 		break;
+	    case CHAM_METAMORPHOSE:
+metamorphchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto metamorphchoice;
+			if (uncommon2(pm) && !rn2(4)) goto metamorphchoice;
+			if (uncommon3(pm) && !rn2(3)) goto metamorphchoice;
+			if (uncommon5(pm) && !rn2(2)) goto metamorphchoice;
+			if (uncommon7(pm) && rn2(3)) goto metamorphchoice;
+			if (uncommon10(pm) && rn2(5)) goto metamorphchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto metamorphchoice;
+		break;
+
 	    case CHAM_DOPPELGANGER:
 	    case CHAM_METAL_DOPPELGANGER:
 	    case CHAM_MISSINGNO:

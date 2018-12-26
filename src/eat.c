@@ -2723,6 +2723,7 @@ register int pm;
 
 	    case PM_CHAMELEON:
 	    case PM_CHAMECHAUN:
+	    case PM_METAMORPHOSE:
 	    case PM_GHELEON:
 	    case PM_POLYFESHNEE:
 	    case PM_FOREPREACHER_CONVERTER:

@@ -6541,6 +6541,9 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ROBOT_TERMINATOR_ZOMBIE]) {
 			 (void) mongets(mtmp, RED_LIGHTSABER);
 		}
+		if (mtmp->data == &mons[PM_SKELETON_HERO]) {
+			 (void) mongets(mtmp, TWO_HANDED_SWORD);
+		}
 		if (mtmp->data == &mons[PM_WALKING_STICK_BLUBBERER]) {
 			 (void) mongets(mtmp, WALKING_STICK);
 		}
@@ -7939,6 +7942,14 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, BULLET, 25);
 		}
 
+		if (ptr == &mons[PM_FORTRESSNAIL]) {
+			 (void) mongets(mtmp, HEAVY_MACHINE_GUN);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
+		}
+
 		if (ptr == &mons[PM_ONANOCTER__B]) {
 			 (void) mongets(mtmp, DAGGER);
 			 (void) mongets(mtmp, RIFLE);
@@ -8051,8 +8062,28 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_THE_RAT_KING]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ishaxor && mtmp->data == &mons[PM_THE_RAT_KING]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
+		if (mtmp->data == &mons[PM_HAM_TAIROU]) {
+			(void) mongets(mtmp, QUARTERSTAFF);
+			(void) mongets(mtmp, SHORT_SWORD);
+		}
+		if (mtmp->data == &mons[PM_DISASTER]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, SCYTHE);
+			m_initthrow(mtmp, ROCK, 50);
+		}
+		if (mtmp->data == &mons[PM_CARNAGE_RAT]) {
+			(void) mongets(mtmp, SLING);
+			m_initthrow(mtmp, ROCK, 50);
+			m_initthrow(mtmp, ROCK, 50);
+		}
+		if (mtmp->data == &mons[PM_SHOOTING_HAMSTER]) {
+			(void) mongets(mtmp, PISTOL);
+			m_initthrow(mtmp, BULLET, 30);
+		}
+
 		if (mtmp->data == &mons[PM_QUILL_RAT]) m_initthrow(mtmp, DART, 3);
 		if (mtmp->data == &mons[PM_PRICK_RAT]) m_initthrow(mtmp, DART, 3);
+		if (mtmp->data == &mons[PM_TERRORISM_SQUIRREL]) m_initthrow(mtmp, FRAG_GRENADE, 30);
 
 		if (mtmp->data == &mons[PM_HC_BITCH]) (void) mongets(mtmp, SOFT_SNEAKERS);
 
@@ -8641,6 +8672,14 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ANNE_S_SNEAKER]) {
 			(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
 			(void) mongets(mtmp, SOFT_SNEAKERS);
+		}
+
+		if (mtmp->data == &mons[PM_CAPTAIN_SHARK]) {
+			m_initthrow(mtmp, FRAG_GRENADE, 25);
+		}
+
+		if (mtmp->data == &mons[PM_SAILOR_SHARK]) {
+			m_initthrow(mtmp, FRAG_GRENADE, 25);
 		}
 
 		if (mtmp->data == &mons[PM_GUNFISH]) {
@@ -16373,6 +16412,7 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_FLYING_CAMO_FISH]) set_mimic_sym(mtmp);
 			if (ptr == &mons[PM_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_UBER_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_JELLYFISH_KRAKEN]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 		case S_PUDDING:
 			if (ptr == &mons[PM_PHANTOM]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
