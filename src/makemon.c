@@ -9868,8 +9868,14 @@ register struct	monst	*mtmp;
 
  		break;
 	    case S_SPIDER:
-		if (ptr == &mons[PM_CAMPER_ASSHOLE]) { (void)mongets(mtmp, SNIPER_RIFLE);
-			 m_initthrow(mtmp, BULLET, 10);
+		if (ptr == &mons[PM_CAMPER_ASSHOLE]) {
+			(void)mongets(mtmp, SNIPER_RIFLE);
+			m_initthrow(mtmp, BULLET, 10);
+
+		}
+		if (ptr == &mons[PM_EK_CHUAH]) {
+			(void)mongets(mtmp, CROSSBOW);
+			m_initthrow(mtmp, CROSSBOW_BOLT, 50);
 
 		}
 
