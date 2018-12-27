@@ -1486,7 +1486,7 @@ register struct monst *mtmp;
 	if (!obj) return (struct obj *)0; /* really fixing the damn bug with the "bug" and similar monster types! --Amy */
 
 	/* clockwork automatons rarely get the sap of a monster, which might give intrinsics */
-	if (obj && Race_if(PM_CLOCKWORK_AUTOMATON) && !rn2(100)) {
+	if (obj && Race_if(PM_CLOCKWORK_AUTOMATON) && !rn2(100) && !(mtmp->egotype_troll) && !is_reviver(mdat) ) {
 		register struct obj *energysap;
 
 		energysap = mksobj_at(ENERGY_SAP, x, y, FALSE, FALSE);
