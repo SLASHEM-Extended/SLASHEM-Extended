@@ -854,7 +854,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(179)) {
+	switch (rnd(181)) {
 
 		case 1:
 		case 2:
@@ -1124,6 +1124,10 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 			return POT_DIMNESS;
 		case 179:
 			return SCR_OFFLEVEL_ITEM;
+		case 180:
+			return SCR_NASTY_CURSE;
+		case 181:
+			return SCR_HYBRIDIZATION;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;
 	}
@@ -2264,7 +2268,26 @@ int artif;
 
 		break;
 	case IMPLANT_CLASS:
-		blessorcurse_on_creation(otmp, 5);
+
+		if(objects[otmp->otyp].oc_charged) {
+		    blessorcurse_on_creation(otmp, 5);
+		    if(rn2(10)) {
+			if(rn2(10) && bcsign(otmp))
+			    otmp->spe = bcsign(otmp) * rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = rn2(2) ? rne(Race_if(PM_LISTENER) ? 3 : 2) : -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		    }
+		    /* make useless +0 implants much less common */
+		    if (otmp->spe == 0) {
+/*                     otmp->spe = rn2(4) - rn2(3); */
+		       /* wow! +8! */
+		       if (rn2(3)) otmp->spe = rne(2)+1;
+		       else otmp->spe = -(rne(2)+1);
+		    }
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
+		    /* negative implants are usually cursed */
+		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);
+		} else blessorcurse_on_creation(otmp, 5);
 
 		if (!rn2(1200)) otmp->oerodeproof = 1;
 		if (!rn2(1200)) {

@@ -2840,6 +2840,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ TENNIS_RACKET, "tennisnaya raketka" },
 	{ ENERGY_SAP, "zhivitsa" },
 
+	{ SCR_NASTY_CURSE, "protivnoye proklyatiye" },
+	{ SCR_HYBRIDIZATION, "gibridizatsiya" },
+
 	/* todo area */
 
 	{0, "" }
@@ -5148,6 +5151,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ TENNIS_RACKET, "tennis raketasi" },
 	{ ENERGY_SAP, "po'st teskari o'girish oq osti" },
 
+	{ SCR_NASTY_CURSE, "yomon la'nat" },
+	{ SCR_HYBRIDIZATION, "hibridizatsiya" },
+
 	/* todo area */
 
 	{0, "" }
@@ -6014,6 +6020,15 @@ register struct obj *obj;
 		if (!PlayerUninformation) add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_IMPLANT)
 			strcat(bp, " (being worn)");
+
+		if (Hallucination)
+			break;
+
+		if(obj->known && objects[obj->otyp].oc_charged) {
+			strcat(prefix, sitoa(obj->spe));
+			strcat(prefix, " ");
+		}
+
 		break;
 	case WEAPON_CLASS:
 		if(ispoisoned && !PlayerUninformation)

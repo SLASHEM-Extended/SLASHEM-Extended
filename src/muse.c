@@ -3160,6 +3160,8 @@ struct monst *mtmp;
 #define MUSE_SCR_BAD_EQUIPMENT 123
 #define MUSE_WAN_INSANITY 124
 #define MUSE_WAN_BAD_EQUIPMENT 125
+#define MUSE_SCR_NASTY_CURSE 126
+#define MUSE_SCR_HYBRIDIZATION 127
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -3654,6 +3656,16 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_VILENESS) {
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_VILENESS;
+		}
+		nomore(MUSE_SCR_HYBRIDIZATION);
+		if(obj->otyp == SCR_HYBRIDIZATION) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_HYBRIDIZATION;
+		}
+		nomore(MUSE_SCR_NASTY_CURSE);
+		if(obj->otyp == SCR_NASTY_CURSE) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_NASTY_CURSE;
 		}
 		nomore(MUSE_SCR_BAD_EQUIPMENT);
 		if(obj->otyp == SCR_BAD_EQUIPMENT) {
@@ -5240,6 +5252,28 @@ struct monst *mtmp;
 		makeknown(otmp->otyp);
 
 		bad_artifact();
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_HYBRIDIZATION:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		changehybridization(0); /* random, either give or remove one */
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_NASTY_CURSE:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		nastytrapcurse();
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -7191,7 +7225,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(230)) {
+	switch (rn2(232)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -7423,6 +7457,8 @@ struct monst *mtmp;
 		case 227: return SCR_BAD_EQUIPMENT;
 		case 228: return WAN_INSANITY;
 		case 229: return WAN_BAD_EQUIPMENT;
+		case 230: return SCR_NASTY_CURSE;
+		case 231: return SCR_HYBRIDIZATION;
 
 	}
 	/*NOTREACHED*/
@@ -8773,7 +8809,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_EXTRA_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_BAD_EQUIPMENT || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_OFFLEVEL_ITEM || typ == SCR_RAGNAROK || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
+	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_EXTRA_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_HYBRIDIZATION || typ == SCR_NASTY_CURSE || typ == SCR_BAD_EQUIPMENT || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_OFFLEVEL_ITEM || typ == SCR_RAGNAROK || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
 		return TRUE;
 	    break;
 	case AMULET_CLASS:

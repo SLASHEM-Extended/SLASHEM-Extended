@@ -1052,6 +1052,9 @@ struct obj *obj;
 	if (obj->oclass == RING_CLASS)
 	    return (boolean)(objects[obj->otyp].oc_charged &&
 			(obj->known || objects[obj->otyp].oc_uname));
+	if (obj->oclass == IMPLANT_CLASS)
+	    return (boolean)(objects[obj->otyp].oc_charged &&
+			(obj->known || objects[obj->otyp].oc_uname));
 	if (is_lightsaber(obj))
 	    return TRUE;
 	if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN) return TRUE;
@@ -1223,6 +1226,24 @@ int curse_bless;
 		if (is_on) setworn(obj, mask), Ring_on(obj);
 		/* oartifact: if a touch-sensitive artifact ring is
 		   ever created the above will need to be revised  */
+	    }
+
+	} else if (obj->oclass == IMPLANT_CLASS && objects[obj->otyp].oc_charged) {
+
+	    int s = is_blessed ? rnd(3) : is_cursed ? -rnd(2) : rnd(2);
+
+	    if (((obj->spe > rn2(7) && obj->spe > rn2(7) && obj->spe > rn2(7)) || (obj->spe <= -5 && obj->spe <= -5)) && !rn2(4)) {
+		Your("%s %s momentarily, then %s.", xname(obj), otense(obj,"pulsate"), otense(obj,"fade"));
+		obj->spe = 0;
+
+	    } else {
+		if (((obj->spe + s) < 8) || !rn2(3)) { /* make it hard to reach ultra-high enchantment values --Amy */
+			Your("%s spins %sclockwise for a moment.", xname(obj), s < 0 ? "counter" : "");
+			obj->spe += s;	/* we don't need to take it off because it just affects AC and poly'd stuff */
+		} else {
+			Your("%s seems unchanged.", xname(obj));
+		}
+
 	    }
 
 	} else if (obj->oclass == TOOL_CLASS) {
@@ -3316,6 +3337,25 @@ proofarmorchoice:
 		known = TRUE;
 
 		bad_artifact();
+
+		break;
+
+	case SCR_HYBRIDIZATION:
+		known = TRUE;
+
+		/* cursed always adds one, blessed has 75% chance of removing one, uncursed 50% of either */
+		if (sobj->cursed) changehybridization(2);
+		else if (sobj->blessed) {
+			changehybridization(rn2(4) ? 1 : 2);
+		}
+		else changehybridization(0);
+
+		break;
+
+	case SCR_NASTY_CURSE:
+		known = TRUE;
+
+		nastytrapcurse();
 
 		break;
 
@@ -5945,7 +5985,7 @@ rerollX:
 				acqo->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
 				break;
 			case IMPLANT_CLASS:
-				acqo->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_FREEDOM);
+				acqo->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_ENFORCING);
 				break;
 		}
 

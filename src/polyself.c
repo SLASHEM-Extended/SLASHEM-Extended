@@ -2966,6 +2966,7 @@ boolean
 polyskillchance()
 {
 	register int percentualchance = 0;
+	register int enchantplant = 0;
 
 	if (PlayerCannotUseSkills) return FALSE;
 	else switch (P_SKILL(P_POLYMORPHING)) {
@@ -2981,6 +2982,16 @@ polyskillchance()
 	}
 
 	if (rn2(100) < percentualchance) return TRUE;
+
+	else if (powerfulimplants() && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0 ) {
+		enchantplant = uimplant->spe;
+		while (enchantplant > 0) {
+			if (!rn2(10)) return TRUE;
+			enchantplant--;
+			if (enchantplant < 0) enchantplant = 0; /* fail safe, should never happen */
+		}
+	}
+
 	else return FALSE;
 
 }

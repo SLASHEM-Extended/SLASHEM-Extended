@@ -1796,6 +1796,7 @@ shk_other_services()
 			((shk_class_match(WAND_CLASS, shkp) == SHK_MATCH) ||
 			(shk_class_match(TOOL_CLASS, shkp) == SHK_MATCH) ||
 			(shk_class_match(SPBOOK_CLASS, shkp) == SHK_MATCH) ||
+			(shk_class_match(IMPLANT_CLASS, shkp) == SHK_MATCH) ||
 			(shk_class_match(RING_CLASS, shkp) == SHK_MATCH))) {
 		any.a_int = 6;
 		add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE,
@@ -6155,7 +6156,7 @@ shk_armor_works(slang, shkp)
 */
 static NEARDATA const char wand_types[] = { WAND_CLASS, 0 };
 static NEARDATA const char tool_types[] = { TOOL_CLASS, 0 };
-static NEARDATA const char ring_types[] = { RING_CLASS, 0 };
+static NEARDATA const char ring_types[] = { RING_CLASS, IMPLANT_CLASS, 0 };
 static NEARDATA const char spbook_types[] = { SPBOOK_CLASS, 0 };
 
 static void

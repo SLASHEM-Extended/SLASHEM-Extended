@@ -10785,6 +10785,73 @@ struct obj *obj;
 				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_FREEDOM].a_ac, enchname(objects[IMPLANT_OF_FREEDOM].oc_oprop));
 				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_FREEDOM].a_ac); break;
 
+			case IMPLANT_OF_QUEEB_BUTT:
+				pline("An implant that gives %d points of AC. It can be charged.", objects[IMPLANT_OF_QUEEB_BUTT].a_ac); break;
+
+			case IMPLANT_OF_BEHOLDING:
+				pline("An implant that gives %d points of AC. It can be charged.", objects[IMPLANT_OF_BEHOLDING].a_ac); break;
+
+			case IMPLANT_OF_DA_GUSHA:
+				pline("An implant that gives %d points of AC. It can be charged.", objects[IMPLANT_OF_DA_GUSHA].a_ac); break;
+
+			case IMPLANT_OF_FINGER_POINTING:
+				pline("An implant that gives %d points of AC. It can be charged.", objects[IMPLANT_OF_FINGER_POINTING].a_ac); break;
+
+			case IMPLANT_OF_TOTAL_NONSENSE:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect. It can be charged.", objects[IMPLANT_OF_TOTAL_NONSENSE].a_ac); break;
+
+			case IMPLANT_OF_BIG_OL:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect. It can be charged.", objects[IMPLANT_OF_BIG_OL].a_ac); break;
+
+			case IMPLANT_OF_ANAL_RETENTION:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect. It can be charged.", objects[IMPLANT_OF_ANAL_RETENTION].a_ac); break;
+
+			case IMPLANT_OF_GALVANIZATION:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect. It can be charged.", objects[IMPLANT_OF_GALVANIZATION].a_ac); break;
+
+			case IMPLANT_OF_TEN_THOUSAND_THINGS:
+				pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_TEN_THOUSAND_THINGS].a_ac, enchname(objects[IMPLANT_OF_TEN_THOUSAND_THINGS].oc_oprop)); break;
+
+			case IMPLANT_OF_TOSSING:
+				pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_TOSSING].a_ac, enchname(objects[IMPLANT_OF_TOSSING].oc_oprop)); break;
+
+			case IMPLANT_OF_HEAVY_LUBRICATION:
+				pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_HEAVY_LUBRICATION].a_ac, enchname(objects[IMPLANT_OF_HEAVY_LUBRICATION].oc_oprop)); break;
+
+			case IMPLANT_OF_MISANTHROPHY:
+				pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_MISANTHROPHY].a_ac, enchname(objects[IMPLANT_OF_MISANTHROPHY].oc_oprop)); break;
+
+			case IMPLANT_OF_CRAP:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_CRAP].a_ac, enchname(objects[IMPLANT_OF_CRAP].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_CRAP].a_ac); break;
+
+			case IMPLANT_OF_KING_BEEFCAKE:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_KING_BEEFCAKE].a_ac, enchname(objects[IMPLANT_OF_KING_BEEFCAKE].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_KING_BEEFCAKE].a_ac); break;
+
+			case IMPLANT_OF_PUMPING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_PUMPING].a_ac, enchname(objects[IMPLANT_OF_PUMPING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_PUMPING].a_ac); break;
+
+			case IMPLANT_OF_WANNABE:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_WANNABE].a_ac, enchname(objects[IMPLANT_OF_WANNABE].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_WANNABE].a_ac); break;
+
+			case IMPLANT_OF_YOUR_MOMMA:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_YOUR_MOMMA].a_ac, enchname(objects[IMPLANT_OF_YOUR_MOMMA].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_YOUR_MOMMA].a_ac); break;
+
+			case IMPLANT_OF_SWALLOWING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_SWALLOWING].a_ac, enchname(objects[IMPLANT_OF_SWALLOWING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_SWALLOWING].a_ac); break;
+
+			case IMPLANT_OF_MENSTRATING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_MENSTRATING].a_ac, enchname(objects[IMPLANT_OF_MENSTRATING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_MENSTRATING].a_ac); break;
+
+			case IMPLANT_OF_ENFORCING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_ENFORCING].a_ac, enchname(objects[IMPLANT_OF_ENFORCING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_ENFORCING].a_ac); break;
 
 			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 			}
@@ -11830,8 +11897,12 @@ struct obj *obj;
 				pline("You will summon a player ghost by reading this, which can be extremely dangerous."); break;
 			case SCR_MEGALOAD:
 				pline("A nasty scroll that puts a loadstone in your inventory if anyone reads it."); break;
+			case SCR_HYBRIDIZATION:
+				pline("This rare scroll can add or remove hybrid races."); break;
 			case SCR_BAD_EQUIPMENT:
 				pline("If anyone reads this scroll, you're forced to wear a cursed piece of equipment."); break;
+			case SCR_NASTY_CURSE:
+				pline("Yet another scroll designed to screw you over, allowing this one to be read will put a nasty curse on one of your armor pieces."); break;
 			case SCR_VILENESS: 
 				pline("If this is scroll is read, regardless of who is doing the reading, an evil artifact will be put into your inventory. You will then automatically equip it, and if the artifact didn't autocurse anyway, it will get cursed."); break;
 			case SCR_ENRAGE: 

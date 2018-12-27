@@ -3106,6 +3106,8 @@ Implant_on()
 
     if (uimplant->otyp >= IMPLANT_OF_QUICKENING && uimplant->otyp <= IMPLANT_OF_BLITZEN) curse(uimplant);
     if (uimplant->otyp >= IMPLANT_OF_BUTCHERY && uimplant->otyp <= IMPLANT_OF_FREEDOM) curse(uimplant);
+    if (uimplant->otyp >= IMPLANT_OF_TOTAL_NONSENSE && uimplant->otyp <= IMPLANT_OF_GALVANIZATION) curse(uimplant);
+    if (uimplant->otyp >= IMPLANT_OF_YOUR_MOMMA && uimplant->otyp <= IMPLANT_OF_ENFORCING) curse(uimplant);
 
     if (!PlayerCannotUseSkills) {
 	bucidchance = 0;
@@ -3127,6 +3129,12 @@ Implant_on()
 	}
 
     }
+
+	/* all implants with an enchantment will autoidentify it upon wearing, even if you can't benefit from it --Amy */
+    if (uimplant && objects[uimplant->otyp].oc_charged) {
+	uimplant->known = TRUE;
+    }
+
 
 }
 
@@ -4512,7 +4520,7 @@ find_ac()
 	if(uarmu) uac -= ARM_BONUS(uarmu);
 
 	/* implants are mainly meant for those who lack hands --Amy */
-	if(uimplant) uac -= ( (powerfulimplants() || ARM_BONUS(uimplant) < 1) ? ARM_BONUS(uimplant) : (ARM_BONUS(uimplant) / 2));
+	if(uimplant) uac -= ( (powerfulimplants() || ARM_BONUS(uimplant) < 1) ? ARM_BONUS_IMPLANT(uimplant) : (ARM_BONUS_IMPLANT(uimplant) / 2));
 	/* are you restricted? if yes, the implant may be actively bad for you */
 	if (uimplant && P_RESTRICTED(P_IMPLANTS) && !powerfulimplants()) uac += 2;
 

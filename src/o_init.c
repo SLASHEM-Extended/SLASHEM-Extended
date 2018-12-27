@@ -665,6 +665,11 @@ register char oclass;
 	objects[IMPLANT_OF_ACCELERATION].a_ac = rnd(10);
 	objects[IMPLANT_OF_PROSPERITY].a_ac = rnd(10);
 
+	objects[IMPLANT_OF_QUEEB_BUTT].a_ac = rnd(10);
+	objects[IMPLANT_OF_BEHOLDING].a_ac = rnd(10);
+	objects[IMPLANT_OF_DA_GUSHA].a_ac = rnd(10);
+	objects[IMPLANT_OF_FINGER_POINTING].a_ac = rnd(10);
+
 	objects[IMPLANT_OF_QUICKENING].a_ac = rnd(8);
 	objects[IMPLANT_OF_KARMA].a_ac = rnd(8);
 	objects[IMPLANT_OF_FERVOR].a_ac = rnd(8);
@@ -685,6 +690,11 @@ register char oclass;
 	objects[IMPLANT_OF_VENGEANCE].a_ac = rnd(8);
 	objects[IMPLANT_OF_BLISS].a_ac = rnd(8);
 	objects[IMPLANT_OF_BLITZEN].a_ac = rnd(8);
+
+	objects[IMPLANT_OF_TOTAL_NONSENSE].a_ac = rnd(8);
+	objects[IMPLANT_OF_BIG_OL].a_ac = rnd(8);
+	objects[IMPLANT_OF_ANAL_RETENTION].a_ac = rnd(8);
+	objects[IMPLANT_OF_GALVANIZATION].a_ac = rnd(8);
 
 	objects[IMPLANT_OF_IRE].a_ac = rnd(5);
 	objects[IMPLANT_OF_MALICE].a_ac = rnd(5);
@@ -747,6 +757,19 @@ register char oclass;
 	objects[IMPLANT_OF_TSUNAMI].a_ac = rnd(5);
 	objects[IMPLANT_OF_FREEDOM].a_ac = rnd(5);
 
+	objects[IMPLANT_OF_TEN_THOUSAND_THINGS].a_ac = rnd(5);
+	objects[IMPLANT_OF_TOSSING].a_ac = rnd(5);
+	objects[IMPLANT_OF_HEAVY_LUBRICATION].a_ac = rnd(5);
+	objects[IMPLANT_OF_MISANTHROPHY].a_ac = rnd(5);
+	objects[IMPLANT_OF_CRAP].a_ac = rnd(5);
+	objects[IMPLANT_OF_KING_BEEFCAKE].a_ac = rnd(5);
+	objects[IMPLANT_OF_PUMPING].a_ac = rnd(5);
+	objects[IMPLANT_OF_WANNABE].a_ac = rnd(5);
+	objects[IMPLANT_OF_YOUR_MOMMA].a_ac = rnd(5);
+	objects[IMPLANT_OF_SWALLOWING].a_ac = rnd(5);
+	objects[IMPLANT_OF_MENSTRATING].a_ac = rnd(5);
+	objects[IMPLANT_OF_ENFORCING].a_ac = rnd(5);
+
 	objects[IMPLANT_OF_QUICKENING].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_KARMA].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_FERVOR].oc_oprop = randnastyenchantment();
@@ -767,6 +790,11 @@ register char oclass;
 	objects[IMPLANT_OF_VENGEANCE].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_BLISS].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_BLITZEN].oc_oprop = randnastyenchantment();
+
+	objects[IMPLANT_OF_TOTAL_NONSENSE].oc_oprop = randnastyenchantment();
+	objects[IMPLANT_OF_BIG_OL].oc_oprop = randnastyenchantment();
+	objects[IMPLANT_OF_ANAL_RETENTION].oc_oprop = randnastyenchantment();
+	objects[IMPLANT_OF_GALVANIZATION].oc_oprop = randnastyenchantment();
 
 	objects[IMPLANT_OF_IRE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[IMPLANT_OF_MALICE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
@@ -828,6 +856,19 @@ register char oclass;
 	objects[IMPLANT_OF_SUNLIGHT].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[IMPLANT_OF_TSUNAMI].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[IMPLANT_OF_FREEDOM].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+
+	objects[IMPLANT_OF_TEN_THOUSAND_THINGS].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_TOSSING].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_HEAVY_LUBRICATION].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_MISANTHROPHY].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_CRAP].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_KING_BEEFCAKE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_PUMPING].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_WANNABE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_YOUR_MOMMA].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_SWALLOWING].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_MENSTRATING].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[IMPLANT_OF_ENFORCING].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
 	objects[DUMMY_CLOAK_A].a_can = rn2(4);
 	objects[DUMMY_CLOAK_B].a_can = rn2(4);

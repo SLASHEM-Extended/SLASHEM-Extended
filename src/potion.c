@@ -66,6 +66,389 @@ int incr;
     set_itimeout(which, itimeout_incr(*which, incr));
 }
 
+boolean
+is_musable(otmp)
+struct obj *otmp;
+{
+	if (!otmp) {
+		impossible("is_musable called with no object");
+		return FALSE;
+	}
+
+	switch (otmp->otyp) {
+
+		case SCR_TELEPORTATION:
+		case POT_HEALING:
+		case POT_CURE_WOUNDS:
+		case POT_CURE_SERIOUS_WOUNDS:
+		case POT_CURE_CRITICAL_WOUNDS:
+		case POT_EXTRA_HEALING:
+		case WAN_DIGGING:
+		case WAN_CREATE_MONSTER:
+		case SCR_CREATE_MONSTER:
+		case SCR_CREATE_VICTIM:
+		case WAN_TELEPORTATION:
+		case POT_FULL_HEALING:
+		case WAN_HEALING:
+		case WAN_EXTRA_HEALING:
+		case WAN_CREATE_HORDE:
+		case POT_VAMPIRE_BLOOD:
+		case POT_BLOOD:
+		case WAN_FULL_HEALING:
+		case SCR_TELE_LEVEL:
+		case WAN_TELE_LEVEL:
+		case SCR_ROOT_PASSWORD_DETECTION:
+		case RIN_TIMELY_BACKUP:
+		case SCR_SUMMON_UNDEAD:
+		case WAN_SUMMON_UNDEAD:
+		case SCR_HEALING:
+		case SCR_EXTRA_HEALING:
+		case SCR_POWER_HEALING:
+		case SCR_WARPING:
+		case WAN_DEATH:
+		case WAN_SLEEP:
+		case WAN_FIREBALL:
+		case WAN_FIRE:
+		case WAN_COLD:
+		case WAN_LIGHTNING:
+		case WAN_MAGIC_MISSILE:
+		case WAN_STRIKING:
+		case SCR_FIRE:
+		case POT_PARALYSIS:
+		case POT_BLINDNESS:
+		case POT_CONFUSION:
+		case POT_SLEEPING:
+		case POT_ACID:
+		case FROST_HORN:
+		case FIRE_HORN:
+		case TEMPEST_HORN:
+		case WAN_DRAINING:
+		case WAN_INCREASE_MAX_HITPOINTS:
+		case WAN_REDUCE_MAX_HITPOINTS:
+		case SCR_EARTH:
+		case POT_AMNESIA:
+		case WAN_CANCELLATION:
+		case POT_CYANIDE:
+		case POT_RADIUM:
+		case WAN_ACID:
+		case SCR_TRAP_CREATION:
+		case SCR_CREATE_TRAP:
+		case WAN_TRAP_CREATION:
+		case SCR_FLOOD:
+		case SCR_LAVA:
+		case SCR_GROWTH:
+		case SCR_ICE:
+		case SCR_CLOUDS:
+		case SCR_BARRHING:
+		case WAN_SOLAR_BEAM:
+		case WAN_POISON:
+		case SCR_LOCKOUT:
+		case WAN_BANISHMENT:
+		case POT_HALLUCINATION:
+		case POT_ICE:
+		case POT_STUNNING:
+		case POT_NUMBNESS:
+		case POT_URINE:
+		case POT_CANCELLATION:
+		case POT_SLIME:
+		case SCR_BAD_EFFECT:
+		case WAN_BAD_EFFECT:
+		case POT_FIRE:
+		case POT_DIMNESS:
+		case POT_SANITY:
+		case WAN_SLOW_MONSTER:
+		case WAN_FEAR:
+		case POT_FEAR:
+		case POT_GAIN_LEVEL:
+		case WAN_GAIN_LEVEL:
+		case WAN_MAKE_INVISIBLE:
+		case POT_INVISIBILITY:
+		case WAN_POLYMORPH:
+		case WAN_MUTATION:
+		case POT_SPEED:
+		case WAN_SPEED_MONSTER:
+		case POT_POLYMORPH:
+		case POT_MUTATION:
+		case WAN_CLONE_MONSTER:
+		case SCR_DESTROY_ARMOR:
+		case SCR_DESTROY_WEAPON:
+		case SCR_STONING:
+		case SCR_AMNESIA:
+		case BAG_OF_TRICKS:
+		case WAN_STONING:
+		case WAN_DISINTEGRATION:
+		case WAN_PARALYSIS:
+		case WAN_CURSE_ITEMS:
+		case WAN_AMNESIA:
+		case WAN_LEVITATION:
+		case WAN_PSYBEAM:
+		case WAN_HYPER_BEAM:
+		case WAN_BAD_LUCK:
+		case WAN_REMOVE_RESISTANCE:
+		case WAN_CORROSION:
+		case WAN_STARVATION:
+		case WAN_CONFUSION:
+		case WAN_SLIMING:
+		case WAN_LYCANTHROPY:
+		case WAN_FUMBLING:
+		case WAN_PUNISHMENT:
+		case SCR_PUNISHMENT:
+		case WAN_MAKE_VISIBLE:
+		case SCR_SUMMON_BOSS:
+		case SCR_WOUNDS:
+		case SCR_BULLSHIT:
+		case SCR_CHAOS_TERRAIN:
+		case SCR_NASTINESS:
+		case SCR_NASTY_CURSE:
+		case SCR_DEMONOLOGY:
+		case SCR_ELEMENTALISM:
+		case SCR_GIRLINESS:
+		case WAN_SUMMON_SEXY_GIRL:
+		case WAN_DISINTEGRATION_BEAM:
+		case SCR_GROUP_SUMMONING:
+		case WAN_CHROMATIC_BEAM:
+		case WAN_STUN_MONSTER:
+		case SCR_SUMMON_GHOST:
+		case SCR_MEGALOAD:
+		case SCR_VILENESS:
+		case SCR_HYBRIDIZATION:
+		case SCR_BAD_EQUIPMENT:
+		case SCR_ENRAGE:
+		case WAN_TIDAL_WAVE:
+		case SCR_ANTIMATTER:
+		case SCR_SUMMON_ELM:
+		case WAN_SUMMON_ELM:
+		case SCR_RELOCATION:
+		case WAN_DRAIN_MANA:
+		case WAN_FINGER_BENDING:
+		case SCR_IMMOBILITY:
+		case WAN_IMMOBILITY:
+		case WAN_INSANITY:
+		case WAN_BAD_EQUIPMENT:
+		case SCR_FLOODING:
+		case SCR_EGOISM:
+		case WAN_EGOISM:
+		case SCR_RUMOR:
+		case SCR_MESSAGE:
+		case SCR_SIN:
+		case WAN_SIN:
+		case WAN_INERTIA:
+		case WAN_TIME:
+		case WAN_DESLEXIFICATION:
+		case WAN_INFERNO:
+		case WAN_ICE_BEAM:
+		case WAN_THUNDER:
+		case WAN_SLUDGE:
+		case WAN_TOXIC:
+		case WAN_NETHER_BEAM:
+		case WAN_AURORA_BEAM:
+		case WAN_GRAVITY_BEAM:
+		case WAN_CHLOROFORM:
+		case WAN_DREAM_EATER:
+		case WAN_BUBBLEBEAM:
+		case WAN_GOOD_NIGHT:
+		case SCR_RAGNAROK:
+		case SCR_OFFLEVEL_ITEM:
+		case WAN_HASTE_MONSTER:
+			return TRUE;
+		default:
+			return FALSE;
+
+	}
+
+	return FALSE;
+
+}
+
+boolean
+ismusablenumber(number)
+int number;
+{
+	switch (number) {
+
+		case SCR_TELEPORTATION:
+		case POT_HEALING:
+		case POT_CURE_WOUNDS:
+		case POT_CURE_SERIOUS_WOUNDS:
+		case POT_CURE_CRITICAL_WOUNDS:
+		case POT_EXTRA_HEALING:
+		case WAN_DIGGING:
+		case WAN_CREATE_MONSTER:
+		case SCR_CREATE_MONSTER:
+		case SCR_CREATE_VICTIM:
+		case WAN_TELEPORTATION:
+		case POT_FULL_HEALING:
+		case WAN_HEALING:
+		case WAN_EXTRA_HEALING:
+		case WAN_CREATE_HORDE:
+		case POT_VAMPIRE_BLOOD:
+		case POT_BLOOD:
+		case WAN_FULL_HEALING:
+		case SCR_TELE_LEVEL:
+		case WAN_TELE_LEVEL:
+		case SCR_ROOT_PASSWORD_DETECTION:
+		case RIN_TIMELY_BACKUP:
+		case SCR_SUMMON_UNDEAD:
+		case WAN_SUMMON_UNDEAD:
+		case SCR_HEALING:
+		case SCR_EXTRA_HEALING:
+		case SCR_POWER_HEALING:
+		case SCR_WARPING:
+		case WAN_DEATH:
+		case WAN_SLEEP:
+		case WAN_FIREBALL:
+		case WAN_FIRE:
+		case WAN_COLD:
+		case WAN_LIGHTNING:
+		case WAN_MAGIC_MISSILE:
+		case WAN_STRIKING:
+		case SCR_FIRE:
+		case POT_PARALYSIS:
+		case POT_BLINDNESS:
+		case POT_CONFUSION:
+		case POT_SLEEPING:
+		case POT_ACID:
+		case FROST_HORN:
+		case FIRE_HORN:
+		case TEMPEST_HORN:
+		case WAN_DRAINING:
+		case WAN_INCREASE_MAX_HITPOINTS:
+		case WAN_REDUCE_MAX_HITPOINTS:
+		case SCR_EARTH:
+		case POT_AMNESIA:
+		case WAN_CANCELLATION:
+		case POT_CYANIDE:
+		case POT_RADIUM:
+		case WAN_ACID:
+		case SCR_TRAP_CREATION:
+		case SCR_CREATE_TRAP:
+		case WAN_TRAP_CREATION:
+		case SCR_FLOOD:
+		case SCR_LAVA:
+		case SCR_GROWTH:
+		case SCR_ICE:
+		case SCR_CLOUDS:
+		case SCR_BARRHING:
+		case WAN_SOLAR_BEAM:
+		case WAN_POISON:
+		case SCR_LOCKOUT:
+		case WAN_BANISHMENT:
+		case POT_HALLUCINATION:
+		case POT_ICE:
+		case POT_STUNNING:
+		case POT_NUMBNESS:
+		case POT_URINE:
+		case POT_CANCELLATION:
+		case POT_SLIME:
+		case SCR_BAD_EFFECT:
+		case WAN_BAD_EFFECT:
+		case POT_FIRE:
+		case POT_DIMNESS:
+		case POT_SANITY:
+		case WAN_SLOW_MONSTER:
+		case WAN_FEAR:
+		case POT_FEAR:
+		case POT_GAIN_LEVEL:
+		case WAN_GAIN_LEVEL:
+		case WAN_MAKE_INVISIBLE:
+		case POT_INVISIBILITY:
+		case WAN_POLYMORPH:
+		case WAN_MUTATION:
+		case POT_SPEED:
+		case WAN_SPEED_MONSTER:
+		case POT_POLYMORPH:
+		case POT_MUTATION:
+		case WAN_CLONE_MONSTER:
+		case SCR_DESTROY_ARMOR:
+		case SCR_DESTROY_WEAPON:
+		case SCR_STONING:
+		case SCR_AMNESIA:
+		case BAG_OF_TRICKS:
+		case WAN_STONING:
+		case WAN_DISINTEGRATION:
+		case WAN_PARALYSIS:
+		case WAN_CURSE_ITEMS:
+		case WAN_AMNESIA:
+		case WAN_LEVITATION:
+		case WAN_PSYBEAM:
+		case WAN_HYPER_BEAM:
+		case WAN_BAD_LUCK:
+		case WAN_REMOVE_RESISTANCE:
+		case WAN_CORROSION:
+		case WAN_STARVATION:
+		case WAN_CONFUSION:
+		case WAN_SLIMING:
+		case WAN_LYCANTHROPY:
+		case WAN_FUMBLING:
+		case WAN_PUNISHMENT:
+		case SCR_PUNISHMENT:
+		case WAN_MAKE_VISIBLE:
+		case SCR_SUMMON_BOSS:
+		case SCR_WOUNDS:
+		case SCR_BULLSHIT:
+		case SCR_CHAOS_TERRAIN:
+		case SCR_NASTINESS:
+		case SCR_NASTY_CURSE:
+		case SCR_DEMONOLOGY:
+		case SCR_ELEMENTALISM:
+		case SCR_GIRLINESS:
+		case WAN_SUMMON_SEXY_GIRL:
+		case WAN_DISINTEGRATION_BEAM:
+		case SCR_GROUP_SUMMONING:
+		case WAN_CHROMATIC_BEAM:
+		case WAN_STUN_MONSTER:
+		case SCR_SUMMON_GHOST:
+		case SCR_MEGALOAD:
+		case SCR_VILENESS:
+		case SCR_HYBRIDIZATION:
+		case SCR_BAD_EQUIPMENT:
+		case SCR_ENRAGE:
+		case WAN_TIDAL_WAVE:
+		case SCR_ANTIMATTER:
+		case SCR_SUMMON_ELM:
+		case WAN_SUMMON_ELM:
+		case SCR_RELOCATION:
+		case WAN_DRAIN_MANA:
+		case WAN_FINGER_BENDING:
+		case SCR_IMMOBILITY:
+		case WAN_IMMOBILITY:
+		case WAN_INSANITY:
+		case WAN_BAD_EQUIPMENT:
+		case SCR_FLOODING:
+		case SCR_EGOISM:
+		case WAN_EGOISM:
+		case SCR_RUMOR:
+		case SCR_MESSAGE:
+		case SCR_SIN:
+		case WAN_SIN:
+		case WAN_INERTIA:
+		case WAN_TIME:
+		case WAN_DESLEXIFICATION:
+		case WAN_INFERNO:
+		case WAN_ICE_BEAM:
+		case WAN_THUNDER:
+		case WAN_SLUDGE:
+		case WAN_TOXIC:
+		case WAN_NETHER_BEAM:
+		case WAN_AURORA_BEAM:
+		case WAN_GRAVITY_BEAM:
+		case WAN_CHLOROFORM:
+		case WAN_DREAM_EATER:
+		case WAN_BUBBLEBEAM:
+		case WAN_GOOD_NIGHT:
+		case SCR_RAGNAROK:
+		case SCR_OFFLEVEL_ITEM:
+		case WAN_HASTE_MONSTER:
+			return TRUE;
+		default:
+			return FALSE;
+
+	}
+
+	return FALSE;
+
+}
+
 void
 make_confused(xtime,talk)
 long xtime;
@@ -525,6 +908,70 @@ playerwearshighheels()
 	}
 
 	return FALSE;
+
+}
+
+boolean
+ishighheeled(otmp)
+struct obj *otmp;
+{
+	if (!otmp) return FALSE;
+
+	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS) return TRUE;
+
+	if (OBJ_DESCR(objects[otmp->otyp])) {
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "tartibsizlik chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "xanjar chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qish sandal chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qisqa ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "bilagi zo'r chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "blok-o'tish chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "chiroyli ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "erotic boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "erotik chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "sputa boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "sputa chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "nazokat etigi")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "o'tkir xanjarday kavushlari")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "chang'i poshnalar")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "but poshnalar")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "duxoba nasoslar")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qo'tos botlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "bosh ketish etigi")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qurol engil etigi")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "radiant heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "yorqin ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "sexy heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "belgila sexy ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "etiklar silay")) return TRUE;
+	}
+
+}
+
+boolean
+ishighheeledb(number)
+int number;
+{
+	if (number == WEDGE_SANDALS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS) return TRUE;
+
+	if (OBJ_DESCR(objects[number])) {
+		if (!strcmp(OBJ_DESCR(objects[number]), "irregular boots") || !strcmp(OBJ_DESCR(objects[number]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "tartibsizlik chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "wedge boots") || !strcmp(OBJ_DESCR(objects[number]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[number]), "xanjar chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[number]), "zima stilety") || !strcmp(OBJ_DESCR(objects[number]), "qish sandal chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "clunky heels") || !strcmp(OBJ_DESCR(objects[number]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "qisqa ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "ankle boots") || !strcmp(OBJ_DESCR(objects[number]), "botil'ony") || !strcmp(OBJ_DESCR(objects[number]), "bilagi zo'r chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[number]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[number]), "blok-o'tish chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[number]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "chiroyli ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "erotic boots") || !strcmp(OBJ_DESCR(objects[number]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "erotik chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "sputa boots") || !strcmp(OBJ_DESCR(objects[number]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[number]), "sputa chizilmasin")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "femmy boots") || !strcmp(OBJ_DESCR(objects[number]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "nazokat etigi")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[number]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[number]), "o'tkir xanjarday kavushlari")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "ski heels") || !strcmp(OBJ_DESCR(objects[number]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "chang'i poshnalar")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "fetish heels") || !strcmp(OBJ_DESCR(objects[number]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[number]), "but poshnalar")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[number]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[number]), "duxoba nasoslar")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[number]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "qo'tos botlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "lolita boots") || !strcmp(OBJ_DESCR(objects[number]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[number]), "bosh ketish etigi")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[number]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[number]), "qurol engil etigi")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "radiant heels") || !strcmp(OBJ_DESCR(objects[number]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "yorqin ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "sexy heels") || !strcmp(OBJ_DESCR(objects[number]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "belgila sexy ko'chirish to'piqlarni")) return TRUE;
+		if (!strcmp(OBJ_DESCR(objects[number]), "stroking boots") || !strcmp(OBJ_DESCR(objects[number]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[number]), "etiklar silay")) return TRUE;
+	}
 
 }
 

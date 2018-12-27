@@ -122,6 +122,7 @@ register struct obj *otmp;
 	case SCR_CREATE_FACILITY:
 	case SCR_SUMMON_GHOST:
 	case SCR_GREATER_MANA_RESTORATION:
+	case SCR_NASTY_CURSE:
 		return(30);
 	case SCR_GAIN_MANA:
 	case SCR_LOCKOUT:
@@ -140,6 +141,7 @@ register struct obj *otmp;
 	case SCR_INVENTORY_ID:
 	case SCR_SKILL_UP:
 	case SCR_ALTER_REALITY:
+	case SCR_HYBRIDIZATION:
 		return(50);
 	case SCR_RAGNAROK:
 		return(64);

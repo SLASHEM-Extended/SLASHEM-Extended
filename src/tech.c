@@ -5508,13 +5508,24 @@ revid_end:
 			if (wearimplant->otyp >= IMPLANT_OF_ABSORPTION && wearimplant->otyp <= IMPLANT_OF_PROSPERITY) {
 				objects[wearimplant->otyp].a_ac = rnd(10);
 			}
+			if (wearimplant->otyp >= IMPLANT_OF_QUEEB_BUTT && wearimplant->otyp <= IMPLANT_OF_FINGER_POINTING) {
+				objects[wearimplant->otyp].a_ac = rnd(10);
+			}
 
 			if (wearimplant->otyp >= IMPLANT_OF_QUICKENING && wearimplant->otyp <= IMPLANT_OF_BLITZEN) {
 				objects[wearimplant->otyp].a_ac = rnd(8);
 				objects[wearimplant->otyp].oc_oprop = randnastyenchantment();
 			}
+			if (wearimplant->otyp >= IMPLANT_OF_TOTAL_NONSENSE && wearimplant->otyp <= IMPLANT_OF_GALVANIZATION) {
+				objects[wearimplant->otyp].a_ac = rnd(8);
+				objects[wearimplant->otyp].oc_oprop = randnastyenchantment();
+			}
 
 			if (wearimplant->otyp >= IMPLANT_OF_IRE && wearimplant->otyp <= IMPLANT_OF_FREEDOM) {
+				objects[wearimplant->otyp].a_ac = rnd(5);
+				objects[wearimplant->otyp].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+			}
+			if (wearimplant->otyp >= IMPLANT_OF_TEN_THOUSAND_THINGS && wearimplant->otyp <= IMPLANT_OF_ENFORCING) {
 				objects[wearimplant->otyp].a_ac = rnd(5);
 				objects[wearimplant->otyp].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 			}

@@ -2250,6 +2250,11 @@ E void increasesanity(int);
 E void statdrain(void);
 E void nastytrapcurse(void);
 
+E boolean is_musable(struct obj *);
+E boolean ismusablenumber(int);
+E boolean ishighheeled(struct obj *);
+E boolean ishighheeledb(int);
+
 E boolean playerwearshighheels(void);
 E boolean playerwearssexyflats(void);
 E boolean maybestilettoheels(void);

@@ -9182,6 +9182,10 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SCR_ELEMENTALISM);
 			(void) mongets(mtmp, SCR_ELEMENTALISM);
 		}
+		if (ptr == &mons[PM_WEDGE_BEAUTY]) {
+			(void) mongets(mtmp, WEDGE_SANDALS);
+			(void) mongets(mtmp, SCR_NASTY_CURSE);
+		}
 
 		/* evil patch idea by jonadab; he wants them to turn the tile a player is on into lava
                I'll just give them an appropriate scroll instead. --Amy */
@@ -9407,6 +9411,7 @@ register struct	monst	*mtmp;
 		if(ptr == &mons[PM_SUPER_DEMON]) (void) mongets(mtmp, SCR_DEMONOLOGY);
 		if(ptr == &mons[PM_SLOPPY_SLOTH]) (void) mongets(mtmp, WAN_INERTIA);
 
+		if(ptr == &mons[PM_HYBRID_BASTARD]) (void) mongets(mtmp, SCR_HYBRIDIZATION);
 		if(ptr == &mons[PM_DEADLY_SIN]) (void) mongets(mtmp, SCR_SIN);
 		if(ptr == &mons[PM_ICON_OF_SIN]) (void) mongets(mtmp, WAN_SIN);
 
