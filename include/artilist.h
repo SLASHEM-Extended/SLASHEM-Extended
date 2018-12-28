@@ -6183,6 +6183,50 @@ A("The Really Cool Shirt", T_SHIRT,
 	(SPFX_RESTR|SPFX_LUCK|SPFX_WARN), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L),
 
+A("Heliokopis's Keyboard Curse", AMULET_OF_SANITY_TREBLE, /* automore effect in memory of how Heliokopis plays */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L),
+
+A("Satan's Final Trick", AMULET_OF_EVIL_VARIANT, /* nastiness */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L),
+
+A("Arabella's Dicinator", AMULET_OF_BAD_PART, /* cursed parts, curseuse, disintegration resistance, speed, invisibility, see invisible, keen memory */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L),
+
+A("The King of Porn", VICTORIAN_UNDERWEAR, /* by Porkman; can't refuse seduction attacks, discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L),
+
+A("Unicorn Drill", UNICORN_HORN, /* polymorph control and drain resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L),
+
+A("Automatically Metal", AMULET_OF_SPELL_METAL, /* makes it so that all metallic items are immune to erosion while all non-metallic ones are susceptible to all erosion effects; if this amulet is a nonmetallic type, its material automatically changes to "metal" */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L),
+
+A("Yvonne's Model Ambition", LOW_BOOTS, /* initialized to always be velvet pumps, cold and shock resistance, +2 charisma */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L),
+
+A("Version Control", RIN_AGGRAVATE_MONSTER, /* randart, autocurses, putting it on allows you to activate or deactivate soviet and evilvariant hybrid races */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L),
+
+A("Aegis", DWARVISH_ROUNDSHIELD, /* petrification resistance, provides partial protection from gaze attacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L),
+
+A("Egrid Bug",			LONG_SWORD, /* black spells, de-light, cursed parts, displays all 'x' and they can't move diagonally */
+	(SPFX_ATTK|SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_EVIL), 0, 0,
+	PHYS(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("The Trident of Poseidon", TRIDENT, /* magical breathing, swimming and protects items from getting wet */
+	(SPFX_RESTR|SPFX_DFLAG1), 0, M1_SWIM,
+	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

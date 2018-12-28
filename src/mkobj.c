@@ -3438,6 +3438,10 @@ register struct obj *otmp;
 	int otyp = otmp->otyp;
 	int omat = objects[otyp].oc_material;
 
+	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
+		return (!(is_metallic(otmp)));
+	}
+
 	if (objects[otyp].oc_oprop == FIRE_RES || otyp == WAN_FIRE)
 		return FALSE;
 
@@ -3453,6 +3457,10 @@ is_rottable(otmp)
 register struct obj *otmp;
 {
 	int otyp = otmp->otyp;
+
+	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
+		return (!(is_metallic(otmp)));
+	}
 
 	if (objects[otyp].oc_material == INKA) return TRUE;
 	if (objects[otyp].oc_material == ARCANIUM) return TRUE;

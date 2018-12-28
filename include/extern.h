@@ -1925,6 +1925,7 @@ E int find_erotic_boots(void);
 E int find_secret_helmet(void);
 E int find_difficult_cloak(void);
 E int find_velvet_gloves(void);
+E int find_velvet_pumps(void);
 E int find_sputa_boots(void);
 E int find_formula_one_helmet(void);
 E int find_excrement_cloak(void);

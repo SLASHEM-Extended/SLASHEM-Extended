@@ -14571,6 +14571,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		return 0;
 	}
 
+	if (uarms && uarms->oartifact == ART_AEGIS && !rn2(2) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) {
+		if (!rn2(10)) pline("%s gazes at you, but Aegis you from the effects!", Monnam(mtmp));
+		return 0;
+	}
+
 	if (RngeMirroring && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) {
 		if (!rn2(10)) pline("%s gazes at you, but your mirroring protects you from the effects!", Monnam(mtmp));
 		return 0;
@@ -19446,7 +19451,7 @@ const char *str;
 
 	if (!obj || !obj->owornmask) return;
 
-	if ((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) { /*much lower chance for the player to resist --Amy*/
+	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
 
 		sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
 			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));

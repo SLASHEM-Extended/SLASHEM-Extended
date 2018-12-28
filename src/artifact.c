@@ -304,6 +304,7 @@ hack_artifacts()
 	artilist[ART_NATALIA_IS_LOVELY_BUT_DANG].otyp = randartshirt();
 	artilist[ART_TAPE_ARMAMENT].otyp = randartsuit();
 	artilist[ART_CATHAN_S_SIGIL].otyp = randartring();
+	artilist[ART_VERSION_CONTROL].otyp = randartring();
 	artilist[ART_FLEEING_MINE_MAIL].otyp = randartsuit();
 	artilist[ART_GREY_FUCKERY].otyp = randartsuit();
 	artilist[ART_LITTLE_PENIS_WANKER].otyp = randartsuit();
@@ -606,6 +607,7 @@ hack_artifacts()
 	artilist[ART_SHIT_KICKERS].otyp = find_steel_toed_boots();
 	artilist[ART_SARAH_S_GRANNY_WEAR].otyp = find_marji_shoes();
 	artilist[ART_CLICHE_WEAR].otyp = find_mary_janes();
+	artilist[ART_YVONNE_S_MODEL_AMBITION].otyp = find_velvet_pumps();
 
 #if 0
 	/* Fix up the gifts */

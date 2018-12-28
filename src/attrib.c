@@ -2027,6 +2027,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_GNOMISH_BOOBS) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_YVONNE_S_MODEL_AMBITION) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_KOKYO_NO_PAFOMANSUU_OKU) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;

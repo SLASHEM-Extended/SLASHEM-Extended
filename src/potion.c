@@ -3978,7 +3978,7 @@ dodrink()
 	    }
 	}
 
-	if ((CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone()) && otmp && otmp->otyp != CANDELABRUM_OF_INVOCATION && otmp->otyp != SPE_BOOK_OF_THE_DEAD && otmp->otyp != BELL_OF_OPENING) curse(otmp);
+	if (CurseAsYouUse && otmp && otmp->otyp != CANDELABRUM_OF_INVOCATION && otmp->otyp != SPE_BOOK_OF_THE_DEAD && otmp->otyp != BELL_OF_OPENING) curse(otmp);
 	return dopotion(otmp);
 }
 

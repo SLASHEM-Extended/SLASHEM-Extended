@@ -523,6 +523,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) )
 		    ways_seen++;
+		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) )
@@ -692,6 +694,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) ) {
 			strcat(monbuf, "bugnose");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN) {
+			strcat(monbuf, "egrid bug");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) ) {

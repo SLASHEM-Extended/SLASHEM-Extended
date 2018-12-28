@@ -1804,9 +1804,15 @@ moveloop()
 
 		if (CursedParts && !rn2(500)) bad_equipment();
 
+		if (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR && !rn2(500)) bad_equipment();
+
 		if (u.uprops[CURSED_PARTS].extrinsic && !rn2(500)) bad_equipment();
 
 		if (have_cursedpartstone() && !rn2(500)) bad_equipment();
+
+		if (uwep && uwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment();
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment();
 
 		if (AppearanceShuffling && !rn2(2000)) initobjectsamnesia();;
 
@@ -4616,7 +4622,7 @@ newbossA:
 			}
 		}
 
-		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone()) && isok(u.ux, u.uy)) {
+		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || (uwep && uwep->oartifact == ART_EGRID_BUG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG)) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
 

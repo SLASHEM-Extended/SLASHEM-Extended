@@ -2225,6 +2225,25 @@ find_velvet_gloves()
 }
 
 int
+find_velvet_pumps()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "velvet pumps"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barkhatnyye nasosy"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "duxoba nasoslar"))
+	    return i;
+    }
+
+    impossible("velvet pumps not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_sputa_boots()
 {
     register int i;

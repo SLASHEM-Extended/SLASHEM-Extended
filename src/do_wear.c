@@ -2785,6 +2785,11 @@ Amulet_on()
 		pline("Your form feels unstable!");
     }
 
+    if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL && !is_metallic(uamul)) {
+		pline_The("amulet automatically becomes metal.");
+		objects[uamul->otyp].oc_material = METAL;
+    }
+
     switch(uamul->otyp) {
 	case AMULET_OF_ESP:
 #if 0	/* OBSOLETE */
@@ -3366,6 +3371,46 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = obj->prmcurse = 1;
 		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
+    }
+
+    if (obj->oartifact == ART_VERSION_CONTROL) {
+		if (!obj->cursed) {
+			curse(obj);
+			pline("BEEEEP! The ring becomes cursed.");
+		}
+
+		if (flags.hybridevilvariant) {
+			pline("Currently you are playing in evilvariant mode.");
+			if (yn("Turn off evilvariant mode?") == 'y') {
+				flags.hybridevilvariant = FALSE;
+				flags.hybridization--;
+				pline("You no longer have the evilvariant hybrid race.");
+			}
+		} else {
+			pline("Currently you aren't playing in evilvariant mode.");
+			if (yn("Turn on evilvariant mode?") == 'y') {
+				flags.hybridevilvariant = TRUE;
+				flags.hybridization++;
+				pline("You now have the evilvariant hybrid race.");
+			}
+		}
+
+		if (flags.hybridsoviet) {
+			pline("Currently you are playing in soviet mode.");
+			if (yn("Turn off soviet mode?") == 'y') {
+				flags.hybridsoviet = FALSE;
+				flags.hybridization--;
+				pline("You no longer have the soviet hybrid race.");
+			}
+		} else {
+			pline("Currently you aren't playing in soviet mode.");
+			if (yn("Turn on soviet mode?") == 'y') {
+				flags.hybridsoviet = TRUE;
+				flags.hybridization++;
+				pline("You now have the soviet hybrid race.");
+			}
+		}
+
     }
 
     if (obj->oartifact == ART_FIRE_NIGHT) {

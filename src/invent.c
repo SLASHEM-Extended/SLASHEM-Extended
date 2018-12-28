@@ -17058,6 +17058,29 @@ struct obj *obj;
 				case ART_REALLY_COOL_SHIRT:
 					pline("Artifact specs: warning and acts as a luckstone when worn. Congratulations, you returned all three scrolls of missing code to the devteam... just kidding :D"); break;
 
+				case ART_HELIOKOPIS_S_KEYBOARD_CURS:
+					pline("Artifact specs: magic resistance and suppresses --More-- prompts when worn."); break;
+				case ART_SATAN_S_FINAL_TRICK:
+					pline("Artifact specs: nastiness when worn."); break;
+				case ART_ARABELLA_S_DICINATOR:
+					pline("Artifact specs: oh my god it grants teleport control, disintegration resistance, very fast speed, invisibility and see invisible when worn, plus keen memory to top it off! Who cares about other effects? Those are all the ones you ever need!"); break;
+				case ART_KING_OF_PORN:
+					pline("Artifact specs: discount action when worn, and prevents you from resisting seduction attacks."); break;
+				case ART_UNICORN_DRILL:
+					pline("Artifact specs: polymorph control and drain resistance when wielded, chaotic."); break;
+				case ART_AUTOMATICALLY_METAL:
+					pline("Artifact specs: while you wear it, all metallic items are immune to erosion and all non-metallic items are susceptible to every form of erosion. This amulet automatically becomes metallic if it isn't already when you put it on."); break;
+				case ART_YVONNE_S_MODEL_AMBITION:
+					pline("Artifact specs: stealth, cold and shock resistance as well as +2 charisma when worn."); break;
+				case ART_VERSION_CONTROL:
+					pline("Artifact specs: autocurses when worn, but every time you put it on you can freely add or remove the evilvariant and soviet hybrid races."); break;
+				case ART_AEGIS:
+					pline("Artifact specs: petrification resistance when worn, provides partial resistance from gaze attacks."); break;
+				case ART_EGRID_BUG:
+					pline("Artifact specs: +5 to-hit and +2 damage; drain resistance, black spells, de-light and cursed parts when wielded, displays all x-class monsters and prevents them from moving diagonally. Chaotic."); break;
+				case ART_TRIDENT_OF_POSEIDON:
+					pline("Artifact specs: +5 to-hit and +10 damage to swimming monsters, magical breathing and swimming when wielded and protects your items from getting wet. Chaotic."); break;
+
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
 			}
