@@ -40,6 +40,11 @@ tty_doprev_message()
 	return 0;
 	}
 
+	if (AutomaticMorePrompt) {
+	pline("No, sorry, you can't review earlier messages.");
+	return 0;
+	}
+
     if ((iflags.prevmsg_window != 's') && !ttyDisplay->inread) { /* not single */
         if(iflags.prevmsg_window == 'f') { /* full */
             prevmsg_win = create_nhwindow(NHW_MENU);
@@ -432,7 +437,7 @@ char def;
 
 	do {	/* loop until we get valid input */
 	    q = lowc(readchar());
-	    if (q == '\020' && !MenuIsBugged && !YouHaveBigscript && !LLMMessages && !SpellColorRed && !PlayerHearsMessages && !MessagesSuppressed && !RotThirteenCipher) { /* ctrl-P */
+	    if (q == '\020' && !MenuIsBugged && !AutomaticMorePrompt && !YouHaveBigscript && !LLMMessages && !SpellColorRed && !PlayerHearsMessages && !MessagesSuppressed && !RotThirteenCipher) { /* ctrl-P */
 		if (iflags.prevmsg_window != 's') {
 		    int sav = ttyDisplay->inread;
 		    ttyDisplay->inread = 0;

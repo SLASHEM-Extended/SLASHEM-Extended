@@ -77,7 +77,7 @@ getlin_hook_proc hook;
 		    ttyDisplay->intr--;
 		    *bufp = 0;
 		}
-		if(c == '\020' && !MenuIsBugged && !YouHaveBigscript && !LLMMessages && !SpellColorRed && !PlayerHearsMessages  && !MessagesSuppressed && !RotThirteenCipher) { /* ctrl-P */
+		if(c == '\020' && !MenuIsBugged && !AutomaticMorePrompt && !YouHaveBigscript && !LLMMessages && !SpellColorRed && !PlayerHearsMessages  && !MessagesSuppressed && !RotThirteenCipher) { /* ctrl-P */
 		    if (iflags.prevmsg_window != 's') {
 				int sav = ttyDisplay->inread;
 				ttyDisplay->inread = 0;

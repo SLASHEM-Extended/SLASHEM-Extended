@@ -368,6 +368,11 @@ doprev_message()
 	return 0;
 	}
 
+	if (AutomaticMorePrompt) {
+	pline("No, sorry, you can't review earlier messages.");
+	return 0;
+	}
+
     return nh_doprev_message();
 }
 
