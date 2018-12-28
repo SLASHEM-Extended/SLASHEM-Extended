@@ -136,6 +136,27 @@ struct obj *otmp;
 		case WAN_TRAP_CREATION:
 		case SCR_FLOOD:
 		case SCR_LAVA:
+		case SCR_GRAVE:
+		case SCR_TUNNELS:
+		case SCR_FARMING:
+		case SCR_MOUNTAINS:
+		case SCR_DIVING:
+		case SCR_CRYSTALLIZATION:
+		case SCR_MOORLAND:
+		case SCR_URINE:
+		case SCR_QUICKSAND:
+		case SCR_STYX:
+		case SCR_SNOW:
+		case SCR_ASH:
+		case SCR_SAND:
+		case SCR_PAVING:
+		case SCR_HIGHWAY:
+		case SCR_GRASSLAND:
+		case SCR_NETHER:
+		case SCR_STALACTITE:
+		case SCR_CRYPT:
+		case SCR_BUBBLE_BOBBLE:
+		case SCR_RAIN:
 		case SCR_GROWTH:
 		case SCR_ICE:
 		case SCR_CLOUDS:
@@ -186,6 +207,11 @@ struct obj *otmp;
 		case WAN_BAD_LUCK:
 		case WAN_REMOVE_RESISTANCE:
 		case WAN_CORROSION:
+		case WAN_CHAOS_TERRAIN:
+		case WAN_FLEECY_TERRAIN:
+		case WAN_DISENCHANTMENT:
+		case WAN_TREMBLING:
+		case WAN_CONTAMINATION:
 		case WAN_STARVATION:
 		case WAN_CONFUSION:
 		case WAN_SLIMING:
@@ -325,6 +351,27 @@ int number;
 		case WAN_TRAP_CREATION:
 		case SCR_FLOOD:
 		case SCR_LAVA:
+		case SCR_GRAVE:
+		case SCR_TUNNELS:
+		case SCR_FARMING:
+		case SCR_MOUNTAINS:
+		case SCR_DIVING:
+		case SCR_CRYSTALLIZATION:
+		case SCR_MOORLAND:
+		case SCR_URINE:
+		case SCR_QUICKSAND:
+		case SCR_STYX:
+		case SCR_SNOW:
+		case SCR_ASH:
+		case SCR_SAND:
+		case SCR_PAVING:
+		case SCR_HIGHWAY:
+		case SCR_GRASSLAND:
+		case SCR_NETHER:
+		case SCR_STALACTITE:
+		case SCR_CRYPT:
+		case SCR_BUBBLE_BOBBLE:
+		case SCR_RAIN:
 		case SCR_GROWTH:
 		case SCR_ICE:
 		case SCR_CLOUDS:
@@ -374,7 +421,12 @@ int number;
 		case WAN_HYPER_BEAM:
 		case WAN_BAD_LUCK:
 		case WAN_REMOVE_RESISTANCE:
+		case WAN_DISENCHANTMENT:
+		case WAN_TREMBLING:
+		case WAN_CONTAMINATION:
 		case WAN_CORROSION:
+		case WAN_CHAOS_TERRAIN:
+		case WAN_FLEECY_TERRAIN:
 		case WAN_STARVATION:
 		case WAN_CONFUSION:
 		case WAN_SLIMING:

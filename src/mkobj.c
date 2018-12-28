@@ -613,7 +613,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(150)) {
+	switch (rnd(151)) {
 
 		case 1:
 			return ATHAME;
@@ -844,6 +844,8 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return WAN_SOLAR_BEAM;
 		case 150:
 			return SPE_REPAIR_WEAPON;
+		case 151:
+			return SCR_MAKE_PENTAGRAM;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}
@@ -854,7 +856,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(181)) {
+	switch (rnd(207)) {
 
 		case 1:
 		case 2:
@@ -1128,6 +1130,58 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 			return SCR_NASTY_CURSE;
 		case 181:
 			return SCR_HYBRIDIZATION;
+		case 182:
+			return WAN_DISENCHANTMENT;
+		case 183:
+			return WAN_CONTAMINATION;
+		case 184:
+			return WAN_TREMBLING;
+		case 185:
+			return SCR_GRAVE;
+		case 186:
+			return SCR_TUNNELS;
+		case 187:
+			return SCR_FARMING;
+		case 188:
+			return SCR_MOUNTAINS;
+		case 189:
+			return SCR_DIVING;
+		case 190:
+			return SCR_CRYSTALLIZATION;
+		case 191:
+			return SCR_MOORLAND;
+		case 192:
+			return SCR_URINE;
+		case 193:
+			return SCR_QUICKSAND;
+		case 194:
+			return SCR_STYX;
+		case 195:
+			return SCR_SNOW;
+		case 196:
+			return SCR_ASH;
+		case 197:
+			return SCR_SAND;
+		case 198:
+			return SCR_PAVING;
+		case 199:
+			return SCR_HIGHWAY;
+		case 200:
+			return SCR_GRASSLAND;
+		case 201:
+			return SCR_NETHER;
+		case 202:
+			return SCR_STALACTITE;
+		case 203:
+			return SCR_CRYPT;
+		case 204:
+			return SCR_BUBBLE_BOBBLE;
+		case 205:
+			return SCR_RAIN;
+		case 206:
+			return WAN_CHAOS_TERRAIN;
+		case 207:
+			return WAN_FLEECY_TERRAIN;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;
 	}

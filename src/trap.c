@@ -280,9 +280,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -346,9 +343,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -415,9 +409,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -480,9 +471,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -549,9 +537,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -616,9 +601,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -681,9 +663,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -762,9 +741,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -834,9 +810,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -893,9 +866,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -956,9 +926,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1015,9 +982,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1078,9 +1042,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1137,9 +1098,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1200,9 +1158,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1259,9 +1214,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1322,9 +1274,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1381,9 +1330,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1444,9 +1390,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1503,9 +1446,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1566,9 +1506,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1625,9 +1562,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1688,9 +1622,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1748,9 +1679,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1813,9 +1741,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -1874,9 +1799,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -1942,9 +1864,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -2006,9 +1925,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -2103,9 +2019,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -2136,9 +2049,6 @@ void * poolcnt;
 
 	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;

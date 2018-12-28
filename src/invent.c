@@ -11804,12 +11804,14 @@ struct obj *obj;
 #else
 				pline("This is a very dangerous scroll that will reverse your movement key's directions PERMANENTLY. The only way to reverse its effect is to read another one, so you should be glad I'm not allowing monsters to read them!"); break;
 #endif
-			case SCR_CREATE_CREATE_SCROLL: 
+			case SCR_CREATE_CREATE_SCROLL:
 				pline("Fairly useless; reading this scroll will recreate it on the ground beneath you. Makes you wonder what the devs were smoking when they invented this item."); break;
-			case SCR_ANTIMAGIC: 
+			case SCR_ANTIMAGIC:
 				pline("This scroll makes you magic resistant for a while. For the entire duration no one can cast spells."); break;
-			case SCR_RESISTANCE: 
+			case SCR_RESISTANCE:
 				pline("Grants temporary resistances to fire, cold, shock, acid and sleep."); break;
+			case SCR_SECURE_CURSE_REMOVAL:
+				pline("Stronger than the regular scroll of remove curse, it allows you to remove all curses on an item of your choice."); break;
 
 			case SCR_GAIN_MANA: 
 				pline("Reading this scroll will increase your max mana."); break;
@@ -11903,127 +11905,181 @@ struct obj *obj;
 				pline("If anyone reads this scroll, you're forced to wear a cursed piece of equipment."); break;
 			case SCR_NASTY_CURSE:
 				pline("Yet another scroll designed to screw you over, allowing this one to be read will put a nasty curse on one of your armor pieces."); break;
-			case SCR_VILENESS: 
+			case SCR_VILENESS:
 				pline("If this is scroll is read, regardless of who is doing the reading, an evil artifact will be put into your inventory. You will then automatically equip it, and if the artifact didn't autocurse anyway, it will get cursed."); break;
-			case SCR_ENRAGE: 
+			case SCR_ENRAGE:
 				pline("Peaceful monsters become hostile, and sometimes your tame pets too, should anyone read this scroll."); break;
-			case SCR_ANTIMATTER: 
+			case SCR_ANTIMATTER:
 				pline("This scroll was put in the game by an evil developer and will damage your entire inventory."); break;
-			case SCR_SUMMON_ELM: 
+			case SCR_SUMMON_ELM:
 				pline("A scroll that can summon a divine minion. Unfortunately, the minion will attack you."); break;
-			case SCR_RELOCATION: 
+			case SCR_RELOCATION:
 				pline("Useful for no-teleport levels, this scroll teleports you to an empty location on the level regardless of things that would normally prevent teleportation."); break;
-			case SCR_IMMOBILITY: 
+			case SCR_IMMOBILITY:
 				pline("This scroll surrounds you with immobile monsters when read."); break;
-			case SCR_FLOODING: 
+			case SCR_FLOODING:
 				pline("Turns large parts of the current level into a lake of water and lava, with associated sea monsters and stuff."); break;
-			case SCR_EGOISM: 
+			case SCR_EGOISM:
 				pline("You will face a bunch of egotype monsters when reading this."); break;
-			case SCR_RUMOR: 
+			case SCR_RUMOR:
 				pline("A scroll that has a rumor written on it."); break;
 			case SCR_ARTIFACT_JACKPOT:
 				pline("This very rare scroll grants you an artifact and then randomizes the base item type of that artifact, so you might end up with something really awesome."); break;
 			case SCR_BOSS_COMPANION:
 				pline("Reading this scroll summons a boss monster. A tame one. Yes, you read that right. You'll get your personal boss monster that fights alongside you."); break;
-			case SCR_MESSAGE: 
+			case SCR_MESSAGE:
 				pline("A scroll that can trigger messages if you read it."); break;
-			case SCR_SIN: 
+			case SCR_SIN:
 				pline("Don't read it. That is, unless you want to be hit by a 'deadly sin' effect which is likely to screw your character in some way or another."); break;
-			case SCR_CHARGING: 
+			case SCR_CHARGING:
 #ifdef PHANTOM_CRASH_BUG
 				pline("You can recharge a chargeable item by reading this. Be careful, recharging an item too many times may cause it to explode."); break;
 #else
 				pline("This scroll can be read to charge an object, which must be in your main inventory and of an item type that can be charged, e.g. a wand. Be careful, recharging an item too many times may cause it to explode."); break;
 #endif
-			case SCR_RANDOM_ENCHANTMENT: 
+			case SCR_RANDOM_ENCHANTMENT:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Pick an item to randomly enchant. For best results, use it on a +0 one. Line length restrictions prevent me from elaborating so just trust me on that one."); break;
 #else
 				pline("Using this scroll will allow you to pick an item that you want to have randomly enchanted. The item in question might get a positive or negative enchantment. However, if the item had a positive enchantment before it will first be set to +0 and get enchanted afterwards, so it's probably better to use it on items that are already +0 or worse."); break;
 #endif
-			case SCR_GENOCIDE: 
+			case SCR_GENOCIDE:
 				pline("A powerful magic scroll that can be read to permanently get rid of a monster type and also prevent any more of them to spawn. Not all monster types can be genocided though."); break;
-			case SCR_PUNISHMENT: 
+			case SCR_PUNISHMENT:
 				pline("If you read this scroll, you receive a heavy iron ball that is heavy and will cause you to move slower if you don't pick it up, but the ball can be wielded as a weapon."); break;
-			case SCR_STINKING_CLOUD: 
+			case SCR_STINKING_CLOUD:
 				pline("This scroll prompts you for a location to release a cloud of gas. However, you can't place the cloud in an unlit area or too far away from you."); break;
-			case SCR_TRAP_DETECTION: 
+			case SCR_TRAP_DETECTION:
 				pline("A scroll that shows traps on your current dungeon level if read."); break;
-			case SCR_ACQUIREMENT: 
+			case SCR_ACQUIREMENT:
 				pline("You may wish for an object type if you read this."); break;
-			case SCR_PROOF_ARMOR: 
+			case SCR_PROOF_ARMOR:
 				pline("A random worn armor-class item is made erosionproof if you read this."); break;
-			case SCR_PROOF_WEAPON: 
+			case SCR_PROOF_WEAPON:
 				pline("If you wield a weapon and read this scroll, that weapon will become erosionproof."); break;
-			case SCR_MASS_MURDER: 
+			case SCR_MASS_MURDER:
 				pline("A weaker version of the genocide scroll that only eliminates living monsters of the specified type."); break;
-			case SCR_UNDO_GENOCIDE: 
+			case SCR_UNDO_GENOCIDE:
 				pline("If you already genocided a monster type, you can use this scroll to re-enable it to spawn."); break;
-			case SCR_REVERSE_IDENTIFY: 
+			case SCR_REVERSE_IDENTIFY:
 				pline("A quirky special version of the identify scroll, this thing prompts you to enter the name or description of an object which is then identified."); break;
-			case SCR_WISHING: 
+			case SCR_WISHING:
 				pline("Allows you to wish for an object."); break;
-			case SCR_ASTRALCENSION: 
+			case SCR_ASTRALCENSION:
 				pline("This scroll summons an astral player monster. They can be very well-armed indeed, but if you can take them out you'll be able to take all their equipment and use it for yourself!"); break;
-			case SCR_ARTIFACT_CREATION: 
+			case SCR_ARTIFACT_CREATION:
 				pline("This scroll generates an artifact at your feet. You do want an artifact, right? Read it!"); break;
-			case SCR_CONSECRATION: 
-				pline("You must be standing in a room for this scroll to work. If you do, it will create an altar underneath you."); break;
-			case SCR_ENTHRONIZATION: 
-				pline("This scroll works only if you're in a room, which causes it to create a throne at your current location."); break;
-			case SCR_FOUNTAIN_BUILDING: 
-				pline("If you read this scroll while in a room, a fountain appears below you. Otherwise, nothing happens."); break;
-			case SCR_SINKING: 
-				pline("Doesn't work outside of a room. What it does is building a sink on your current tile."); break;
-			case SCR_WC: 
-				pline("Builds a toilet on your square, but only if that square is in a room."); break;
-			case SCR_LAVA: 
+			case SCR_CONSECRATION:
+				pline("You must be standing in a room or corridor for this scroll to work. If you do, it will create an altar underneath you."); break;
+			case SCR_ENTHRONIZATION:
+				pline("This scroll works only if you're in a room or corridor, which causes it to create a throne at your current location."); break;
+			case SCR_MAKE_PENTAGRAM:
+				pline("Stand in a room or corridor when reading this. It will create a pentagram underneath you."); break;
+			case SCR_WELL_BUILDING:
+				pline("If you read this scroll while standing in a room or on a corridor tile, it will transform the tile into a well."); break;
+			case SCR_DRIVING:
+				pline("Creates a wagon on your tile, but only if that tile is a room or corridor."); break;
+			case SCR_TABLE_FURNITURE:
+				pline("This scroll creates a wooden table. You must be standing in a room or corridor for it to work."); break;
+			case SCR_EMBEDDING:
+				pline("Read this scroll while on a room or corridor tile, and it will create an ornately carved bed."); break;
+			case SCR_MATTRESS_SLEEPING:
+				pline("Need to create a mattress? Then read this scroll while standing in a room or corridor!"); break;
+			case SCR_FOUNTAIN_BUILDING:
+				pline("If you read this scroll while in a room or corridor, a fountain appears below you. Otherwise, nothing happens."); break;
+			case SCR_SINKING:
+				pline("Doesn't work outside of a room or corridor. What it does is building a sink on your current tile."); break;
+			case SCR_WC:
+				pline("Builds a toilet on your square, but only if that square is in a room or corridor."); break;
+			case SCR_LAVA:
 				pline("Reading this scroll turns some ordinary floor squares into lava."); break;
-			case SCR_STONING: 
+			case SCR_GRAVE:
+				pline("A scroll that erects grave walls."); break;
+			case SCR_TUNNELS:
+				pline("Normal floor tiles become tunnels if you read this."); break;
+			case SCR_FARMING:
+				pline("Read this scroll to create farmland."); break;
+			case SCR_MOUNTAINS:
+				pline("It doesn't make sense, but this scroll creates underground mountains."); break;
+			case SCR_DIVING:
+				pline("This scroll floods the dungeon with water tunnels."); break;
+			case SCR_CRYSTALLIZATION:
+				pline("Crystal water will flow through the dungeon if you read this."); break;
+			case SCR_MOORLAND:
+				pline("A scroll that creates moorland."); break;
+			case SCR_URINE:
+				pline("If you read this scroll, urine lakes will be created."); break;
+			case SCR_QUICKSAND:
+				pline("Reading this scroll creates quicksand tiles."); break;
+			case SCR_STYX:
+				pline("Read this scroll to create styx rivers."); break;
+			case SCR_SNOW:
+				pline("Normal floor tiles may become snow if you read this scroll."); break;
+			case SCR_ASH:
+				pline("This scroll turns regular floor tiles to ash."); break;
+			case SCR_SAND:
+				pline("A scroll that transforms floor to sand."); break;
+			case SCR_PAVING:
+				pline("Erects paved floor when read."); break;
+			case SCR_HIGHWAY:
+				pline("If you read this scroll, highways will be built on the current dungeon level."); break;
+			case SCR_GRASSLAND:
+				pline("Causes grass to grow."); break;
+			case SCR_NETHER:
+				pline("This scroll creates nether mist."); break;
+			case SCR_STALACTITE:
+				pline("Reading this scroll causes stalactites to shoot out of the ceiling."); break;
+			case SCR_CRYPT:
+				pline("Transforms regular floor to crypt floor."); break;
+			case SCR_BUBBLE_BOBBLE:
+				pline("Read this scroll to create bubble terrain."); break;
+			case SCR_RAIN:
+				pline("This scroll creates a bunch of rain clouds."); break;
+			case SCR_STONING:
 				pline("Read this scroll if you want to become a statue."); break;
-			case SCR_GROWTH: 
+			case SCR_GROWTH:
 				pline("You will create lots of trees if you read this scroll."); break;
-			case SCR_ICE: 
+			case SCR_ICE:
 				pline("Normal floor becomes icy in a radius around you if you read this."); break;
-			case SCR_CLOUDS: 
+			case SCR_CLOUDS:
 				pline("A scroll that can be read to create clouds around you."); break;
-			case SCR_BARRHING: 
+			case SCR_BARRHING:
 				pline("This scroll creates iron bars on empty floor squares in your vicinity."); break;
-			case SCR_LOCKOUT: 
+			case SCR_LOCKOUT:
 				pline("Corridors near you turn into solid rock walls and doors automatically repair and lock themselves if you read this scroll."); break;
-			case SCR_ROOT_PASSWORD_DETECTION: 
+			case SCR_ROOT_PASSWORD_DETECTION:
 				pline("This scroll has the computer's root password written on it, which you can read. It's likely to be useless anyway."); break;
-			case SCR_TRAP_CREATION: 
+			case SCR_TRAP_CREATION:
 				pline("A dangerous scroll that creates traps around you."); break;
-			case SCR_CREATE_TRAP: 
+			case SCR_CREATE_TRAP:
 				pline("Reading this scroll causes a trap to be created underneath you which then triggers."); break;
-			case SCR_NASTINESS: 
+			case SCR_NASTINESS:
 				pline("Don't allow this scroll to be read unless you absolutely want to be hit by nasty trap effects!"); break;
-			case SCR_DEMONOLOGY: 
+			case SCR_DEMONOLOGY:
 				pline("This scroll summons greater demons."); break;
-			case SCR_ELEMENTALISM: 
+			case SCR_ELEMENTALISM:
 				pline("Some creatures from the elemental planes will be summoned if you read this scroll."); break;
-			case SCR_GIRLINESS: 
+			case SCR_GIRLINESS:
 				pline("The dungeon will become more female if you read this scroll. :D"); break;
-			case SCR_SLEEP: 
+			case SCR_SLEEP:
 				pline("Reading this scroll puts you to sleep, leaving you open to monsters attacking you."); break;
-			case SCR_CHAOS_TERRAIN: 
+			case SCR_CHAOS_TERRAIN:
 				pline("Read this scroll to generate chaotic terrain around you."); break;
-			case SCR_WOUNDS: 
+			case SCR_WOUNDS:
 				pline("The opposite of the scroll of healing, reading this thing will damage you."); break;
-			case SCR_BULLSHIT: 
+			case SCR_BULLSHIT:
 				pline("Reading this scroll causes invisible dogs to shit all over the place."); break;
-			case SCR_REPAIR_ITEM: 
+			case SCR_REPAIR_ITEM:
 				pline("If you read this scroll, you may pick an item that will be repaired."); break;
-			case SCR_SUMMON_BOSS: 
+			case SCR_SUMMON_BOSS:
 				pline("Summons a boss monster when read."); break;
-			case SCR_ITEM_GENOCIDE: 
+			case SCR_ITEM_GENOCIDE:
 				pline("A very powerful scroll that prevents a type of item from being generated. If you use it again on another item, the previously genocided one will be able to generate again."); break;
-			case SCR_BLANK_PAPER: 
+			case SCR_BLANK_PAPER:
 				pline("A scroll that doesn't have a magic formula written on it. You may use a magic marker to turn it into another type of scroll."); break;
-			case SCR_ARMOR_SPECIALIZATION: 
+			case SCR_ARMOR_SPECIALIZATION:
 				pline("Read this scroll, then select a worn piece of armor to add an egotype to it! However, know that it won't work if the armor piece in question already has an egotype."); break;
-			case SCR_SECURE_IDENTIFY: 
+			case SCR_SECURE_IDENTIFY:
 				pline("Annoyed that regular identify scrolls fail so often? With this scroll, you can identify an object without any chance of it resisting the identification attempt!"); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
@@ -12795,6 +12851,16 @@ struct obj *obj;
 				pline("Every zap of this wand reduces your luck by one point, regardless of who zapped it."); break;
 			case WAN_REMOVE_RESISTANCE:
 				pline("Zapping this wand will remove random intrinsics."); break;
+			case WAN_DISENCHANTMENT:
+				pline("If anyone zaps this wand, your items get disenchanted."); break;
+			case WAN_CHAOS_TERRAIN:
+				pline("With every zap of this wand, the terrain on the current dungeon level becomes more chaotic."); break;
+			case WAN_FLEECY_TERRAIN:
+				pline("Every zap of this wand creates terrain of a specific (but randomized per zap) type!"); break;
+			case WAN_CONTAMINATION:
+				pline("Every zap of this wand increases your contamination."); break;
+			case WAN_TREMBLING:
+				pline("You'll tremble if someone zaps this wand."); break;
 			case WAN_CORROSION:
 				pline("A wand that corrodes some of your inventory if you zap it, and also if someone else zaps it."); break;
 			case WAN_FUMBLING:

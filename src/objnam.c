@@ -2842,6 +2842,43 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ SCR_NASTY_CURSE, "protivnoye proklyatiye" },
 	{ SCR_HYBRIDIZATION, "gibridizatsiya" },
+	{ SCR_SECURE_CURSE_REMOVAL, "bezopasnoye snyatiye proklyatiya" },
+
+	{ WAN_DISENCHANTMENT, "razocharovaniye" },
+	{ WAN_CONTAMINATION, "zagryazneniye" },
+	{ WAN_TREMBLING, "drozh'" },
+
+	{ SCR_MAKE_PENTAGRAM, "sdelat' pentagrammu" },
+	{ SCR_WELL_BUILDING, "stroitel'stvo skvazhin" },
+	{ SCR_DRIVING, "vozhdeniye" },
+	{ SCR_TABLE_FURNITURE, "nastol'naya mebel'" },
+	{ SCR_EMBEDDING, "vlozheniya" },
+	{ SCR_MATTRESS_SLEEPING, "spal'nyy matras" },
+
+	{ SCR_GRAVE, "mogila" },
+	{ SCR_TUNNELS, "tunneli" },
+	{ SCR_FARMING, "sel'skoye khozyaystvo" },
+	{ SCR_MOUNTAINS, "gory" },
+	{ SCR_DIVING, "dayving" },
+	{ SCR_CRYSTALLIZATION, "kristallizatsiya" },
+	{ SCR_MOORLAND, "vereshchatnik" },
+	{ SCR_URINE, "mocha" },
+	{ SCR_QUICKSAND, "plyvun" },
+	{ SCR_STYX, "stiks" },
+	{ SCR_SNOW, "sneg" },
+	{ SCR_ASH, "yasen'" },
+	{ SCR_SAND, "pesok" },
+	{ SCR_PAVING, "moshcheniye" },
+	{ SCR_HIGHWAY, "shosse" },
+	{ SCR_GRASSLAND, "lug" },
+	{ SCR_NETHER, "nizhniy" },
+	{ SCR_STALACTITE, "stalaktit" },
+	{ SCR_CRYPT, "kripta" },
+	{ SCR_BUBBLE_BOBBLE, "puzyr'" },
+	{ SCR_RAIN, "dozhd'" },
+
+	{ WAN_CHAOS_TERRAIN, "khaos mestnosti" },
+	{ WAN_FLEECY_TERRAIN, "vorsistyy rel'yef" },
 
 	/* todo area */
 
@@ -5153,6 +5190,43 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ SCR_NASTY_CURSE, "yomon la'nat" },
 	{ SCR_HYBRIDIZATION, "hibridizatsiya" },
+	{ SCR_SECURE_CURSE_REMOVAL, "xavfsiz lanetalarni yo'q qilish" },
+
+	{ WAN_DISENCHANTMENT, "noqulaylik" },
+	{ WAN_CONTAMINATION, "ifloslanish" },
+	{ WAN_TREMBLING, "titroq" },
+
+	{ SCR_MAKE_PENTAGRAM, "besh nuqta yulduz qilish" },
+	{ SCR_WELL_BUILDING, "yaxshi bino" },
+	{ SCR_DRIVING, "haydash" },
+	{ SCR_TABLE_FURNITURE, "stol mebellari" },
+	{ SCR_EMBEDDING, "joylashtirish" },
+	{ SCR_MATTRESS_SLEEPING, "to'shakda yotish" },
+
+	{ SCR_GRAVE, "qabr" },
+	{ SCR_TUNNELS, "tunnellar" },
+	{ SCR_FARMING, "qishloq xo'jaligi" },
+	{ SCR_MOUNTAINS, "tog'lar" },
+	{ SCR_DIVING, "sho'ng'in" },
+	{ SCR_CRYSTALLIZATION, "kristallanish" },
+	{ SCR_MOORLAND, "tog'li erlar" },
+	{ SCR_URINE, "siydik" },
+	{ SCR_QUICKSAND, "bilqillama qumloq" },
+	{ SCR_STYX, "stiks" },
+	{ SCR_SNOW, "qor" },
+	{ SCR_ASH, "kul" },
+	{ SCR_SAND, "qum" },
+	{ SCR_PAVING, "slaydni yopish" },
+	{ SCR_HIGHWAY, "avtomobil yo'li" },
+	{ SCR_GRASSLAND, "chorvachilik" },
+	{ SCR_NETHER, "o'shanda" },
+	{ SCR_STALACTITE, "sarkitit" },
+	{ SCR_CRYPT, "yer ostidagi sag'ana" },
+	{ SCR_BUBBLE_BOBBLE, "kabarcikli noto'g'ri ziplatma" },
+	{ SCR_RAIN, "yomg'ir" },
+
+	{ WAN_CHAOS_TERRAIN, "betartiblik joy" },
+	{ WAN_FLEECY_TERRAIN, "gavyum erlar" },
 
 	/* todo area */
 
@@ -8373,7 +8447,7 @@ typfnd:
 	    typ = OIL_LAMP;
 
 	/* obviously don't allow wishing for scrolls of wishing --Amy */
-	if ((typ == SCR_WISHING || typ == SCR_ASTRALCENSION || typ == SCR_ARTIFACT_CREATION || typ == SCR_ARTIFACT_JACKPOT || typ == SCR_RESURRECTION || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_FOUNTAIN_BUILDING)
+	if ((typ == SCR_WISHING || typ == SCR_ASTRALCENSION || typ == SCR_ARTIFACT_CREATION || typ == SCR_ARTIFACT_JACKPOT || typ == SCR_RESURRECTION || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_MAKE_PENTAGRAM || typ == SCR_FOUNTAIN_BUILDING)
 #ifdef WIZARD
 				&& !wizard
 #endif

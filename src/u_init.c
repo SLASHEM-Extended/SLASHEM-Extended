@@ -26674,6 +26674,7 @@ register struct trobj *trop;
 				|| otyp == SCR_RESURRECTION
 				|| otyp == SCR_ACQUIREMENT
 				|| otyp == SCR_ENTHRONIZATION
+				|| otyp == SCR_MAKE_PENTAGRAM
 				|| otyp == SCR_FOUNTAIN_BUILDING
 				|| otyp == SCR_SINKING
 				|| otyp == SCR_WC
@@ -26759,6 +26760,7 @@ register struct trobj *trop;
 				|| otyp == SCR_RESURRECTION
 				|| otyp == SCR_ACQUIREMENT
 				|| otyp == SCR_ENTHRONIZATION
+				|| otyp == SCR_MAKE_PENTAGRAM
 				|| otyp == SCR_FOUNTAIN_BUILDING
 				|| otyp == SCR_SINKING
 				|| otyp == SCR_WC

@@ -456,9 +456,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -523,9 +520,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -587,9 +581,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -648,9 +639,6 @@ void * poolcnt;
 	}
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -715,9 +703,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -780,9 +765,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y) )
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -814,9 +796,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
@@ -845,9 +824,6 @@ void * poolcnt;
 
 	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
-		return;
-
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
 		return;
 
 	(*(int *)poolcnt)++;
@@ -4432,7 +4408,7 @@ secureidchoice:
 		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 		acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
-	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
+	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_MAKE_PENTAGRAM || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 
 		pline("Something appeared on the ground just beneath you!");

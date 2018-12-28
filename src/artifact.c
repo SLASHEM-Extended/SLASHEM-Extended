@@ -240,9 +240,6 @@ void * poolcnt;
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR))
 		return;
 
-	if ((ttmp = t_at(x, y)) != 0 && !delfloortrap(ttmp))
-		return;
-
 	(*(int *)poolcnt)++;
 
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {

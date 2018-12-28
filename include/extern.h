@@ -2368,6 +2368,8 @@ E struct monst *create_particular(void);
 #endif
 E void gmmode_genesis(const char *);
 E void forget_single_object(int);
+E void wandofchaosterrain(void);
+E void wandoffleecyterrain(void);
 
 /* ### rect.c ### */
 

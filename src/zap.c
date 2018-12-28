@@ -2657,7 +2657,7 @@ poly_obj(obj, id)
 	    break;
 
 	case SCROLL_CLASS:
-	    while (otmp->otyp == SCR_WISHING || otmp->otyp == SCR_RESURRECTION || otmp->otyp == SCR_ACQUIREMENT || otmp->otyp == SCR_ENTHRONIZATION || otmp->otyp == SCR_FOUNTAIN_BUILDING || otmp->otyp == SCR_SINKING || otmp->otyp == SCR_WC)
+	    while (otmp->otyp == SCR_WISHING || otmp->otyp == SCR_RESURRECTION || otmp->otyp == SCR_ACQUIREMENT || otmp->otyp == SCR_ENTHRONIZATION || otmp->otyp == SCR_MAKE_PENTAGRAM || otmp->otyp == SCR_FOUNTAIN_BUILDING || otmp->otyp == SCR_SINKING || otmp->otyp == SCR_WC)
 		otmp->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 	    break;
 
@@ -3503,12 +3503,54 @@ secureidchoice:
 
 		break;
 
+		case WAN_DISENCHANTMENT:
+
+			known = TRUE;
+		{
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
+			}
+			Your("equipment seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
+
+		break;
+
+		case WAN_CONTAMINATION:
+
+			contaminate(rnd(10 + level_difficulty()), TRUE);
+
+		break;
+
+		case WAN_TREMBLING:
+
+			known = TRUE;
+			pline("Your %s are trembling!", makeplural(body_part(HAND)));
+			u.tremblingamount++;
+
+		break;
+
 		case WAN_REMOVE_RESISTANCE:
 
 			attrcurse();
 			while (rn2(3)) {
 				attrcurse();
 			}
+
+		break;
+
+		case WAN_CHAOS_TERRAIN:
+
+			wandofchaosterrain();
+			known = TRUE;
+
+		break;
+
+		case WAN_FLEECY_TERRAIN:
+
+			wandoffleecyterrain();
+			known = TRUE;
 
 		break;
 
@@ -4093,7 +4135,7 @@ secureidchoice:
 			if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 		    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 			acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
-		    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
+		    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_MAKE_PENTAGRAM || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 			acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 	
 			pline("Something appeared on the ground just beneath you!");
@@ -9676,7 +9718,7 @@ othergreateffect()
 		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 		acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
-	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
+	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_MAKE_PENTAGRAM || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 
 		pline("Something appeared on the ground just beneath you!");

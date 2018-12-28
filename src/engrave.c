@@ -1693,9 +1693,14 @@ doengrave()
 		    case WAN_CHARGING:
 		    case WAN_CURSE_ITEMS:
 		    case WAN_AMNESIA:
+		    case WAN_DISENCHANTMENT:
+		    case WAN_CONTAMINATION:
+		    case WAN_TREMBLING:
 		    case WAN_BAD_LUCK:
 		    case WAN_REMOVE_RESISTANCE:
 		    case WAN_CORROSION:
+		    case WAN_CHAOS_TERRAIN:
+		    case WAN_FLEECY_TERRAIN:
 		    case WAN_FUMBLING:
 		    case WAN_TIDAL_WAVE:
 		    case WAN_SUMMON_ELM:
