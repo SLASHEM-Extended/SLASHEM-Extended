@@ -11693,6 +11693,17 @@ register char *cmd;
 	do_walk = do_rush = prefix_seen = FALSE;
 	flags.travel = iflags.travel1 = 0;
 	if (*cmd == DORUSH) {
+
+		if (TronEffectIsActive || SpellColorPink) {
+
+			pline("Some sinister force is preventing you from using the rush command.");
+			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			flags.move = FALSE;
+			return;
+
+		}
+
 	    if (movecmd(cmd[1])) {
 		flags.run = 2;
 		do_rush = TRUE;
@@ -11700,6 +11711,17 @@ register char *cmd;
 		prefix_seen = TRUE;
 	} else if ( (*cmd == '5' && iflags.num_pad)
 		    || *cmd == DORUN) {
+
+		if (TronEffectIsActive || SpellColorPink) {
+
+			pline("Some sinister force is preventing you from using the run command.");
+			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			flags.move = FALSE;
+			return;
+
+		}
+
 	    if (movecmd(lowc(cmd[1]))) {
 		flags.run = 3;
 		do_rush = TRUE;
@@ -11726,6 +11748,17 @@ register char *cmd;
 	    } else
 		prefix_seen = TRUE;
 	} else if (*cmd == DORUN_NOPICKUP) {
+
+		if (TronEffectIsActive || SpellColorPink) {
+
+			pline("Some sinister force is preventing you from using the run-no-pickup command.");
+			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			flags.move = FALSE;
+			return;
+
+		}
+
 	    if (movecmd(lowc(cmd[1]))) {
 		flags.run = 1;
 		flags.nopick = 1;
@@ -11747,9 +11780,31 @@ register char *cmd;
 		do_walk = TRUE;
 	    } else if (movecmd(iflags.num_pad ?
 			       UNMETA(*cmd) : lowc(*cmd))) {
+
+		if (TronEffectIsActive || SpellColorPink) {
+
+			pline("Some sinister force is preventing you from using the meta-run command.");
+			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			flags.move = FALSE;
+			return;
+
+		}
+
 		flags.run = 1;
 		do_rush = TRUE;
 	    } else if (movecmd(UNCTRL(*cmd))) {
+
+		if (TronEffectIsActive || SpellColorPink) {
+
+			pline("Some sinister force is preventing you from using whatever weird run command this is.");
+			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			flags.move = FALSE;
+			return;
+
+		}
+
 		flags.run = 3;
 		do_rush = TRUE;
 	    }
