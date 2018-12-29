@@ -12074,7 +12074,325 @@ int amount, max;
 STATIC_OVL void
 pumpsminigame()
 {
-	pline("The pumps minigame has not yet been implemented. Sorry.");
+	int minigameturns = 0;
+	boolean yourturn = FALSE;
+	int pumpsstate = 0;
+	int pumpslikeyou = 0;
+	int pumpshealth = 100;
+
+	int yourdamagedeal;
+	int yourstrength;
+	if (ACURR(A_STR) <= 18) yourstrength = 18;
+	else if (ACURR(A_STR) <= STR19(19)) yourstrength = 19;
+	else if (ACURR(A_STR) <= STR19(20)) yourstrength = 20;
+	else if (ACURR(A_STR) <= STR19(21)) yourstrength = 21;
+	else if (ACURR(A_STR) <= STR19(22)) yourstrength = 22;
+	else if (ACURR(A_STR) <= STR19(23)) yourstrength = 23;
+	else if (ACURR(A_STR) <= STR19(24)) yourstrength = 24;
+	else yourstrength = 25;
+
+#define PUMPSCRATCHING	1
+#define PUMPBASHING	2
+#define PUMPKICKINNUTS	3
+#define PUMPTOESTOMP	4
+#define PUMPIDLE	5
+#define PUMPINLAP	6
+
+	pline("In this minigame, you and the pair of lady pumps will take turns alternately. There are various conditions that you can reach to end the game. Good luck!");
+
+newturn:
+	if (!yourturn) { /* it's the pumps' turn */
+
+		if (pumpsstate == 0 || !rn2(5)) pumpsstate = rnd(minigameturns >= 10 ? 6 : 5);
+		if (pumpsstate == PUMPKICKINNUTS && flags.female) pumpsstate = rnd(3); /* females don't have nuts (DUH) */
+
+		if (rn2(25) < pumpslikeyou) pumpsstate = PUMPINLAP;
+
+		switch (pumpsstate) {
+
+			case PUMPSCRATCHING:
+
+				pline("The sexy leather pumps scratch up and down your legs with their heels!");
+
+				if (u.legscratching <= 5)
+			    	    pline("It stings a little.");
+				else if (u.legscratching <= 10)
+			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+				else if (u.legscratching <= 20)
+				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
+				else if (u.legscratching <= 40)
+				    pline("You can feel the heel scratching on your shin bone! It hurts and bleeds a lot!");
+				else
+				    pline("You watch in shock as your blood is squirting everywhere, all the while feeling the razor-sharp high heel mercilessly opening your %ss!", body_part(LEG));
+				losehp(u.legscratching, "endorphic leg scratches", KILLED_BY);
+				u.legscratching++;
+				pumpslikeyou--;
+				if (u.legscratching >= 20) pumpslikeyou--;
+
+				break;
+			case PUMPBASHING:
+
+				pline("Klock! The heel slams on your %s, producing a beautiful sound.", body_part(HEAD));
+				losehp(rnd(20),"being bashed on the head by an orgasm pump",KILLED_BY);
+				if (!rn2(3)) pumpslikeyou++;
+
+				break;
+			case PUMPKICKINNUTS:
+
+				if (rnd(30) > ACURR(A_CHA)) {
+
+					pline("The sexy leather pumps painfully drive the lovely cone heel into your nuts, and you moan in agony!");
+
+					losehp(rnd(monster_difficulty() + 20),"being kicked in the nuts by a sexy leather pump",KILLED_BY);
+					pumpslikeyou -= 3;
+
+				} else {
+
+					pline("The sexy leather pumps kick you in the nuts with their lovely cone heel, and you moan in lust due to the intense pain!");
+
+					losehp(rnd(10),"being kicked in the nuts by a sexy leather pump",KILLED_BY);
+					pumpslikeyou += rnd(2);
+
+				}
+
+				break;
+			case PUMPTOESTOMP:
+
+				pline("The sexy leather pumps stomp your toes with their lovely heels!");
+				losehp(rnd(5),"having their toes stomped by sexy leather pumps",KILLED_BY);
+
+				if (!rn2(10) && (rnd(30) > ACURR(A_CON)) ) {
+					pline("Your defenseless %s was crushed underneath the very sexy heel!", body_part(TOE));
+					if (u.uhpmax < 2) {
+						u.youaredead = 1;
+						pline("You break down unconscious, and the pumps proceed to stomp you to death even though they look so lovely.");
+						killer = "being crushed underneath high-heeled leather pumps";
+						killer_format = KILLED_BY;
+						done(DIED);
+						u.youaredead = 0;
+						return;
+					} else {
+						u.uhpmax--;
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					}
+				}
+
+				break;
+			case PUMPIDLE:
+
+				pline("The sexy leather pumps just stand there and look pretty.");
+				break;
+			case PUMPINLAP:
+				pline("The sexy lady pumps are resting in your lap comfortably.");
+
+				if (Upolyd) u.mh += rnd(5); /* heal some hit points */
+				else u.uhp += rnd(5); /* heal some hit points */
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+
+				pumpslikeyou++;
+
+				if (pumpslikeyou >= 10) {
+
+					if (Upolyd) u.mh += 200; /* heal some hit points */
+					else u.uhp += 200; /* heal some hit points */
+					if (Upolyd) u.mhmax++;
+					u.uhpmax++;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+					pline("Both you and the sexy leather pumps reached their climax, and your maximum health increases!");
+					pline("The sexy leather pumps congratulate you, and are looking forward to playing with you again.");
+
+					return;
+				}
+
+				break;
+
+			default:
+				impossible("unknown action for sexy leather pumps minigame %d", pumpsstate);
+				pumpsstate = PUMPIDLE;
+				break;
+
+		}
+		yourturn = TRUE;
+
+	} else { /* it's your turn */
+		winid tmpwin;
+		anything any;
+		menu_item *selected;
+		int n;
+
+		any.a_void = 0;         /* zero out all bits */
+		tmpwin = create_nhwindow(NHW_MENU);
+		start_menu(tmpwin);
+		any.a_int = 1;
+		add_menu(tmpwin, NO_GLYPH, &any , 'g', 0, ATR_NONE, "Gently caress", MENU_UNSELECTED);
+		any.a_int = 2;
+		add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Punch", MENU_UNSELECTED);
+		any.a_int = 3;
+		add_menu(tmpwin, NO_GLYPH, &any , 't', 0, ATR_NONE, "Try to put them on again", MENU_UNSELECTED);
+		any.a_int = 4;
+		add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Run in circles", MENU_UNSELECTED);
+		if (pumpslikeyou >= 5) {
+			any.a_int = 5;
+			add_menu(tmpwin, NO_GLYPH, &any , 'k', 0, ATR_NONE, "Kiss", MENU_UNSELECTED);
+		}
+
+		end_menu(tmpwin, "What do you do?");
+		n = select_menu(tmpwin, PICK_ONE, &selected);
+		destroy_nhwindow(tmpwin);
+
+		if (n > 0) {
+			switch (selected[0].item.a_int) {
+				case 1:
+					pline("You gently caress the wonderful high heels using %s %s.", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+					if ((pumpslikeyou > rnd(5) && !rn2(2)) || (ACURR(A_CHA) > rnd(40)) ) {
+						pumpslikeyou++;
+						if (rn2(5)) pumpsstate = PUMPINLAP;
+						pline("The sexy leather pumps seem to love you!");
+					} else if (pumpslikeyou < 0) {
+						pline("Unfortunately the sexy leather pumps still hate you passionately...");
+					} else {
+						pline("The sexy leather pumps seem to like your caressing touch.");
+						if (!rn2(10)) pumpsstate = PUMPIDLE;
+					}
+					break;
+				case 2:
+					if (ACURR(A_DEX) < rnd(25) && ACURR(A_DEX) < rnd(25)) {
+						pline("Ouch - you punched the hard, unyielding cone heel!");
+						losehp(rnd(4),"punching a massive cone heel",KILLED_BY);
+					} else if (rnd(yourstrength) > 10) {
+						yourdamagedeal = rnd(yourstrength);
+						pumpshealth -= yourdamagedeal;
+						if (yourdamagedeal < 6) pline("It's not very effective...");
+						else if (yourdamagedeal < 16) pline("You landed a regular hit.");
+						else pline("It's super effective!");
+
+						if (pumpshealth < 0) pumpshealth = 0;
+						if (pumpshealth < 20) pline("The sexy leather pumps are weak! Go get 'em!");
+						pumpslikeyou--;
+						if (!rn2(3)) pumpsstate = rnd(4);
+
+					} else {
+						pline("The soft leather does not seem to budge at all...");
+						if (!rn2(3)) pumpslikeyou--;
+						pumpsstate = rnd(4);
+					}
+					break;
+				case 3:
+					if (rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10) && rnd(yourstrength) > rn1(10,10)) { /* you win */
+						pline("You completely surprised the sexy leather pumps and managed to slip your %s into them!", makeplural(body_part(FOOT)));
+						pline("As a reward, the sexy leather pumps magically boost your strength!");
+						gainstr((struct obj *)0, 0);
+						return;
+					} else if (rnd(yourstrength) > pumpshealth) { /* they're out of health, you win */
+						pline("Your %s quickly snatch the lovely lady pumps and you manage to slip into them before they can fight back.", makeplural(body_part(HAND)));
+						pline("Congratulations, you won! Your dexterity increases.");
+						(void) adjattrib(A_DEX, 1, -1, TRUE);
+						return;
+					} else {
+						if (!rn2(3)) pumpslikeyou--;
+						pline("The sexy leather pumps quickly evade your grasp and stomp on your %s with their lovely high heel.", body_part(FINGER));
+						if (!rn2(4)) losehp(rnd(4),"having their fingers crushed underneath cone-heeled lady pumps",KILLED_BY);
+						if (!rn2(5) && rnd(30) > ACURR(A_CON)) {
+							if (u.uhpmax < 2) {
+								u.youaredead = 1;
+								pline("The pain is unbearable... apparently the incredibly cute heel broke your bones. While you're groaning in pain, the high heel proceeds to successively crush all of your remaining body parts.");
+								killer = "having their fingers stomped by sexy leather pumps";
+								killer_format = KILLED_BY;
+								done(DIED);
+								u.youaredead = 0;
+								return;
+
+							} else {
+								u.uhpmax--;
+								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+							}
+						}
+					}
+					break;
+				case 4:
+					if (rnd(30) < ACURR(A_DEX) && rnd(30) < ACURR(A_DEX)) {
+						pline("It seems that your constant movement makes the sexy leather pumps slightly dizzy.");
+						if (pumpslikeyou < 0) pumpslikeyou++;
+						if (rn2(3)) pumpsstate = PUMPIDLE;
+					} else {
+						pline("Your fancy footwork didn't fool the lovely leather pumps.");
+						pumpsstate = rnd(4);
+					}
+					break;
+				case 5:
+					if (pumpsstate == PUMPINLAP) {
+						pline("Aww, the lovely leather pumps seem to really like being kissed by you!");
+						pumpslikeyou++;
+					} else if (rnd(30) < ACURR(A_CHA)) {
+						pline("The sexy leather pumps seem to become calmer as you kiss them!");
+						pumpsstate = PUMPINLAP;
+						pumpslikeyou++;
+					} else pline("The sexy leather pumps brush your mouth away.");
+					break;
+				default:
+					pline("You decide to do nothing.");
+					break;
+			}
+		}
+		yourturn = FALSE;
+		minigameturns++;
+
+	}
+	if (yourturn) goto newturn;
+
+	if ((pumpslikeyou > 0) && rnd(pumpslikeyou) > 9) {
+		pline("The sexy leather pumps are satisfied, and offer you to end the fight.");
+		if (yn("Do you accept the offer and end the fight?") == 'y') {
+			pline("You are gently stroked by the tender cone heels, and as you put them on again, you feel very pretty!");
+			(void) adjattrib(A_CHA, 1, -1, TRUE);
+			return;
+		}
+	}
+
+	if (pumpslikeyou < -9 && !rn2(5)) pumpsstate = PUMPSCRATCHING;
+
+	if (minigameturns >= 15 && !rn2(pumpsstate == PUMPSCRATCHING ? 100 : 5)) {
+		if (pumpslikeyou < 0) {
+			pline("The sexy leather pumps hate you bitterly... You can try to run away from the fight.");
+			if (yn("Do you try to run?") == 'y') {
+				if (rnd(20) > ACURR(A_DEX)) {
+					pline("Unfortunately the very lovely heels catch you, and slam on your head with full force.");
+					if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
+						u.youaredead = 1;
+						pline("The incredibly tender cone heels split your skull. You die.");
+						killer = "having their head crushed by a high-heeled leather pump";
+						killer_format = KILLED_BY;
+						done(DIED);
+						u.youaredead = 0;
+						return;
+
+					} else {
+						adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+						if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));
+						if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));
+						exercise(A_WIS, FALSE);
+					}
+
+				} else {
+					pline("Got away safely!");
+					return;
+				}
+			}
+
+		} else {
+			pline("You can try to escape the fight.");
+			if (yn("Do you want to escape?") == 'y') {
+				pline("The fight with the sexy leather pumps has ended.");
+				return;
+
+			}
+		}
+	}
+
+	goto newturn;
+
 }
 
 #endif /* OVLB */
