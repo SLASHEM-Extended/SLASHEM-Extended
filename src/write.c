@@ -211,6 +211,9 @@ register struct obj *pen;
 	boolean by_descr = FALSE;
 	const char *typeword;
 
+	int oldspe, oldrecharged; /* for spellbooks */
+	boolean oldknown;
+
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("need hands to be able to write!");
 	    return 0;
@@ -397,6 +400,11 @@ found:
 	}
 
 	/* useup old scroll / spellbook */
+
+	oldspe = paper->spe;
+	oldrecharged = (int)paper->recharged; /* for spellbooks */
+	oldknown = paper->known;
+
 	useup(paper);
 	use_skill(P_DEVICES,10);
 	if (Race_if(PM_FAWN)) {
@@ -412,9 +420,16 @@ found:
 		/* acknowledge the change in the object's description... */
 		pline_The("spellbook warps strangely, then turns %s.",
 		      OBJ_DESCR(objects[new_obj->otyp]));
+
+		/* for some reason the charges weren't being used at all!!! --Amy */
+		new_obj->spe = oldspe;
+		new_obj->recharged = oldrecharged;
+		if (oldknown == TRUE) new_obj->known = TRUE;
+
 	}
 	new_obj->blessed = (curseval > 0);
 	new_obj->cursed = (curseval < 0);
+
 	if (pen && pen->oartifact == ART_PEN_OF_RANDOMNESS) {
 		new_obj->blessed = 0;
 		new_obj->cursed = 0;
