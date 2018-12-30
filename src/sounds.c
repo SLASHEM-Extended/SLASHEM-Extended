@@ -2927,7 +2927,7 @@ register struct monst *mtmp;
 							if (yn("Pay for erosionproofing?") == 'y') {
 								u.ugold -= u.durienchantcost;
 								u.durienchantcost += 2000;
-								if (!stack_too_big(repairobj)) {
+								if (!stack_too_big(proofobj)) {
 									proofobj->oerodeproof = 1;
 									verbalize("Your item is untouchable now!");
 								} else verbalize("Bad luck, %s - proofing such a large stack of items can fail, and it seems you didn't get lucky this time.", flags.female ? "gal" : "lad");
