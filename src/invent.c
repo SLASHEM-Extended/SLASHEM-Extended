@@ -15647,7 +15647,7 @@ struct obj *obj;
 				case ART_HEAVEN_S_CALL_TO_ARMS:
 					pline("Artifact specs: Has no special effect beyond its base item."); break;
 				case ART_BIMMEL_BIMMEL:
-					pline("Artifact specs: applying it tries to tame all 'x' adjacent to you, but they get a resistance roll."); break;
+					pline("Artifact specs: applying it tries to tame all 'x' adjacent to you, but they get a resistance roll and may also be frenzied instead."); break;
 				case ART_SCRABBLE_BABBLE:
 					pline("Artifact specs: engraving with it will only consume charges 1 out of 10 turns."); break;
 				case ART_I_THE_SAGE:

@@ -1037,7 +1037,12 @@ struct obj **optr;
 	    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 		if (!isok(u.ux + i, u.uy + j)) continue;
 		if ((bimmel = m_at(u.ux + i, u.uy + j)) != 0 && bimmel->data->mlet == S_XAN)
-		    if (!resist(bimmel, RING_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) (void) tamedog(bimmel, (struct obj *) 0, FALSE);
+			if (!rn2(5) && bimmel && !(bimmel->mtame)) {
+				bimmel->mfrenzied = TRUE;
+
+			} else if (bimmel && !(bimmel->mtame) && !(bimmel->mfrenzied)) {
+				if (!resist(bimmel, RING_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) (void) tamedog(bimmel, (struct obj *) 0, FALSE);
+			}
 	    }
 
 	}
