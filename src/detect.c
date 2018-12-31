@@ -1583,10 +1583,10 @@ struct trap *trap;
 
     trap->tseen = 1;
     exercise(A_WIS, TRUE);
-    if (Blind)
+/*    if (Blind)*/
 	feel_location(trap->tx, trap->ty);
-    else
-	newsym(trap->tx, trap->ty);
+/*    else*/
+	if (!Blind) newsym(trap->tx, trap->ty);
 
 #ifdef DISPLAY_LAYERS
     if (levl[trap->tx][trap->ty].mem_obj ||
@@ -1678,7 +1678,7 @@ register int aflag;
 	      for(y = u.uy-1; y < u.uy+2; y++) {
 		if(!isok(x,y)) continue;
 		if(x != u.ux || y != u.uy) {
-		    if (Blind && (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) ) feel_location(x,y);
+		    if (/*Blind &&*/ (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) ) feel_location(x,y);
 		    if(levl[x][y].typ == SDOOR) {
 			if(rnl(7-fund) && rn2(fundxtrachange) && (rn2(fundxtrachange) || !rn2(2)) ) continue; /* better chance --Amy */
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
@@ -1687,10 +1687,10 @@ register int aflag;
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0, 0, FALSE);
-			if (Blind && (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) )
+			if (/*Blind && */(!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) )
 			    feel_location(x,y);	/* make sure it shows up */
-			else
-			    newsym(x,y);
+			/*else*/
+			if (!Blind) newsym(x,y);
 		    } else if(levl[x][y].typ == SCORR) {
 			if(rnl(7-fund) && rn2(fundxtrachange) && (rn2(fundxtrachange) || !rn2(2)) ) continue; /* better chance --Amy */
 			levl[x][y].typ = CORR;

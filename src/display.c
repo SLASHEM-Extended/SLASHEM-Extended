@@ -406,6 +406,24 @@ unmap_object(x, y)
     register struct obj   *obj;						\
     register struct trap  *trap;					\
 									\
+									\
+    if (level.flags.hero_memory) {					\
+	if ((obj = vobj_at(x, y)) && !covers_objects(x, y))		\
+	    map_object(obj, FALSE);					\
+	else								\
+	    levl[x][y].mem_corpse = levl[x][y].mem_obj = 0;		\
+	if ((trap = t_at(x, y)) && trap->tseen && !covers_traps(x, y))	\
+	    map_trap(trap, FALSE);					\
+	else								\
+	    levl[x][y].mem_trap = 0;					\
+	map_background(x, y, FALSE);					\
+	if (show) show_glyph(x, y, memory_glyph(x, y));			\
+    } else if ((obj = vobj_at(x,y)) && !covers_objects(x,y))		\
+	map_object(obj,show);						\
+    else if ((trap = t_at(x,y)) && trap->tseen && !covers_traps(x,y))	\
+	map_trap(trap,show);						\
+    else								\
+	map_background(x,y,show);					\
 	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {	\
 	show_glyph(x, y, (GLYPH_MON_OFF + rn2(NUMMONS)));	\
 	return;	\
@@ -458,24 +476,6 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));			\
 	return;								\
 	}								\
-									\
-    if (level.flags.hero_memory) {					\
-	if ((obj = vobj_at(x, y)) && !covers_objects(x, y))		\
-	    map_object(obj, FALSE);					\
-	else								\
-	    levl[x][y].mem_corpse = levl[x][y].mem_obj = 0;		\
-	if ((trap = t_at(x, y)) && trap->tseen && !covers_traps(x, y))	\
-	    map_trap(trap, FALSE);					\
-	else								\
-	    levl[x][y].mem_trap = 0;					\
-	map_background(x, y, FALSE);					\
-	if (show) show_glyph(x, y, memory_glyph(x, y));			\
-    } else if ((obj = vobj_at(x,y)) && !covers_objects(x,y))		\
-	map_object(obj,show);						\
-    else if ((trap = t_at(x,y)) && trap->tseen && !covers_traps(x,y))	\
-	map_trap(trap,show);						\
-    else								\
-	map_background(x,y,show);					\
 }
 #else	/* DISPLAY_LAYERS */
 #define _map_location(x,y,show)						\
