@@ -12372,7 +12372,7 @@ struct obj *obj;
 			case SPE_GAIN_LEVEL:
 				pline("An absurdly powerful spell that may increase your character level. However, it often fails."); break;
 			case SPE_MAP_LEVEL:
-				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level and show most objects as well as traps."); break;
+				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level (with a few gaps) and show quite some objects as well as traps."); break;
 			case SPE_INFERNO:
 				pline("Fire spell that severely burns enemies, afflicting them with blindness and damaging them in a way that cannot be easily healed."); break;
 			case SPE_ICE_BEAM:

@@ -451,7 +451,7 @@ int		class;		/* an object class, 0 for all */
     if (boulder && class != ROCK_CLASS) strcat(stuff, " and/or large stones");
 
     if (do_dknown) for(obj = invent; obj; obj = obj->nobj) {
-	if (guaranteed || (likely && rn2(5)) || !rn2(3)) do_dknown_of(obj);
+	if (guaranteed || (likely && rn2(2)) || !rn2(3)) do_dknown_of(obj);
 	}
 
     for (obj = fobj; obj; obj = obj->nobj) {
@@ -459,7 +459,7 @@ int		class;		/* an object class, 0 for all */
 	    if (obj->ox == u.ux && obj->oy == u.uy) ctu++;
 	    else ct++;
 	}
-	if (do_dknown && (guaranteed || (likely && rn2(5)) || !rn2(3)) ) do_dknown_of(obj);
+	if (do_dknown && (guaranteed || (likely && rn2(2)) || !rn2(3)) ) do_dknown_of(obj);
     }
 
     for (obj = level.buriedobjlist; obj; obj = obj->nobj) {
@@ -467,14 +467,14 @@ int		class;		/* an object class, 0 for all */
 	    if (obj->ox == u.ux && obj->oy == u.uy) ctu++;
 	    else ct++;
 	}
-	if (do_dknown && (guaranteed || (likely && rn2(5)) || !rn2(3)) ) do_dknown_of(obj);
+	if (do_dknown && (guaranteed || (likely && rn2(2)) || !rn2(3)) ) do_dknown_of(obj);
     }
 
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	if (DEADMONSTER(mtmp)) continue;
 	for (obj = mtmp->minvent; obj; obj = obj->nobj) {
 	    if ((!class && !boulder) || o_in(obj, class) || o_in(obj, boulder)) ct++;
-	    if (do_dknown && (guaranteed || (likely && rn2(5)) || !rn2(3)) ) do_dknown_of(obj);
+	    if (do_dknown && (guaranteed || (likely && rn2(2)) || !rn2(3)) ) do_dknown_of(obj);
 	}
 	if ((is_cursed && mtmp->m_ap_type == M_AP_OBJECT &&
 	    (!class || class == objects[mtmp->mappearance].oc_class)) ||
@@ -512,9 +512,9 @@ int		class;		/* an object class, 0 for all */
 		    otmp->ox = obj->ox;
 		    otmp->oy = obj->oy;
 		}
-		if (guaranteed || (likely && rn2(5)) || !rn2(3)) map_object(otmp, 1);
+		if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(otmp, 1);
 	    } else
-		if (guaranteed || (likely && rn2(5)) || !rn2(3)) map_object(obj, 1);
+		if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(obj, 1);
 	}
     /*
      * If we are mapping all objects, map only the top object of a pile or
@@ -534,9 +534,9 @@ int		class;		/* an object class, 0 for all */
 			    otmp->ox = obj->ox;
 			    otmp->oy = obj->oy;
 			}
-			if (guaranteed || (likely && rn2(5)) || !rn2(3)) map_object(otmp, 1);
+			if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(otmp, 1);
 		    } else
-			if (guaranteed || (likely && rn2(5)) || !rn2(3)) map_object(obj, 1);
+			if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(obj, 1);
 		    break;
 		}
 
@@ -549,7 +549,7 @@ int		class;		/* an object class, 0 for all */
 		if (!class && !boulder) otmp = obj;
 		otmp->ox = mtmp->mx;		/* at monster location */
 		otmp->oy = mtmp->my;
-		if (guaranteed || (likely && rn2(5)) || !rn2(3)) map_object(otmp, 1);
+		if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(otmp, 1);
 		break;
 	    }
 	/* Allow a mimic to override the detected objects it is carrying. */

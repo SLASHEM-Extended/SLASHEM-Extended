@@ -5879,11 +5879,11 @@ totemsummonchoice:
 
 		if (role_skill >= P_SUPREME_MASTER) n = 4;
 		else if (role_skill >= P_GRAND_MASTER) n = 5;
-		else if (role_skill >= P_MASTER) n = 6;
-		else if (role_skill >= P_EXPERT) n = 7;
-		else if (role_skill >= P_SKILLED) n = 8;
-		else if (role_skill >= P_BASIC) n = 9;
-		else n = 10;	/* Unskilled or restricted */
+		else if (role_skill >= P_MASTER) n = 7;
+		else if (role_skill >= P_EXPERT) n = 9;
+		else if (role_skill >= P_SKILLED) n = 11;
+		else if (role_skill >= P_BASIC) n = 13;
+		else n = 15;	/* Unskilled or restricted */
 		if (!rn2(n)) {
 		    struct trap *t;
 		    long save_Hconf = HConfusion,
@@ -5891,8 +5891,9 @@ totemsummonchoice:
 	
 		    HConfusion = HHallucination = 0L;
 		    for (t = ftrap; t != 0; t = t->ntrap) {
-			if (!rn2(15)) continue;
-			if (!t->hiddentrap) t->tseen = 1; /* ignores trap difficulty because map level is powerful --Amy */
+			if (!rn2(2)) continue;
+			/* easier trap difficulty check compared to other detection methods because map level is powerful --Amy */
+			if (!t->hiddentrap && (t->trapdiff < rnd(150)) ) t->tseen = 1;
 			map_trap(t, TRUE);
 		    }
 		    do_mappingY();
