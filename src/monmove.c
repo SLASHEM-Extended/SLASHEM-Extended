@@ -677,6 +677,8 @@ register struct monst *mtmp;
 	if (mdat->msound == MS_SHRIEK && !um_dist(mtmp->mx, mtmp->my, 1))
 	    m_respond(mtmp);
 
+ 	if (mtmp->fartbonus > 9) mtmp->fartbonus = 9; /* fail save, gaaaaaah */
+
 	if (FemaleTrapMeltem && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
