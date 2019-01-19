@@ -1540,6 +1540,101 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, LAB_COAT);
 		   break;
 
+		   case PM_GRENADONIN:
+		   case PM_UNDEAD_GRENADONIN:
+
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     (void)mongets(mtmp, KATANA);
+		     if (rn2(2)) (void)mongets(mtmp, SHORT_SWORD);
+		     if (rn2(3)) {
+			(void)mongets(mtmp, YUMI);
+			m_initthrow(mtmp, YA, 40);
+		     }
+			m_initthrow(mtmp, FRAG_GRENADE, 40);
+		     (void)mongets(mtmp, SPLINT_MAIL);
+
+			break;
+
+		   case PM_CELLAR_CHILD:
+		   case PM_UNDEAD_CELLAR_CHILD:
+
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, QUARTERSTAFF);
+		     (void)mongets(mtmp, PLATE_MAIL);
+
+			break;
+
+		   case PM_DEMAGOGUE:
+		   case PM_UNDEAD_DEMAGOGUE:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+
+		     (void)mongets(mtmp, MALLET);
+		     (void)mongets(mtmp, FULL_PLATE_MAIL);
+		     (void)mongets(mtmp, HELMET);
+
+			break;
+
+		   case PM_SOCIAL_JUSTICE_WARRIOR:
+		   case PM_UNDEAD_SOCIAL_JUSTICE_WARRIOR:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+		     (void)mongets(mtmp, FEDORA);
+		     (void)mongets(mtmp, FLY_SWATTER);
+
+			break;
+
+		   case PM_WALSCHOLAR:
+		   case PM_UNDEAD_WALSCHOLAR:
+
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+		     (void)mongets(mtmp, DAGGER);
+		     (void)mongets(mtmp, PICK_AXE);
+		     (void)mongets(mtmp, LEATHER_ARMOR);
+
+			break;
+
 		   case PM_MASON:
 		   case PM_UNDEAD_MASON:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -17889,6 +17984,27 @@ loopback:
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_STENCH) )) ct += 50;
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && is_jokemonster(ptr) )) ct += 100;
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && is_cowmonster(ptr) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && is_jokemonster(ptr) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_FART_NORMAL) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_FART_QUIET) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_FART_LOUD) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_STENCH) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_CONVERT) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_HCALIEN) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_CELLAR_CHILD) && is_angbandmonster(ptr) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_DEMAGOGUE) && (ptr->mlet == S_KOP))) ct += 5;
+		if (ct > 0 && (Role_if(PM_DEMAGOGUE) && (ptr->mresists & MR_PLUSFOUR))) ct += 1;
+		if (ct > 0 && (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (ptr->mflags2 & M2_DEMON) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_DEMAGOGUE) && (ptr->mflags3 & M3_NOTAME) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_DEMAGOGUE) && dmgtype(ptr, AD_WTHR) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_DEMAGOGUE) && dmgtype(ptr, AD_LETH) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_DEMAGOGUE) && dmgtype(ptr, AD_CNCL) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_DEMAGOGUE) && dmgtype(ptr, AD_SIN) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_DEMAGOGUE) && dmgtype(ptr, AD_DEST) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_DEMAGOGUE) && dmgtype(ptr, AD_AGGR) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_CELLAR_CHILD) && dmgtype(ptr, AD_SANI) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(ptr, AD_BANI) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(ptr, AD_DFOO) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_HUMANOID_ANGEL) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_PSION) && is_evilpatchmonster(ptr))) ct += 10;
 		if (ct > 0 && (Race_if(PM_DOPPELGANGER) && is_evilpatchmonster(ptr))) ct += 2;
@@ -18687,6 +18803,28 @@ int     spc;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_STENCH) )) num += 50;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_jokemonster(&mons[last]) )) num += 100;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_cowmonster(&mons[last]) )) num += 20;
+
+		if ((Role_if(PM_WALSCHOLAR) && is_jokemonster(&mons[last]) )) num += 20;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_FART_NORMAL) )) num += 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_FART_QUIET) )) num += 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_FART_LOUD) )) num += 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_STENCH) )) num += 20;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_CONVERT) )) num += 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_HCALIEN) )) num += 5;
+		if ((Role_if(PM_CELLAR_CHILD) && is_angbandmonster(&mons[last]) )) num += 20;
+		if ((Role_if(PM_DEMAGOGUE) && (mons[last].mresists & MR_PLUSFOUR))) num += 1;
+		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (mons[last].mflags2 & M2_DEMON) )) num += 5;
+		if ((Role_if(PM_DEMAGOGUE) && (mons[last].mflags3 & M3_NOTAME) )) num += 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[last], AD_WTHR) )) num += 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[last], AD_LETH) )) num += 1;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[last], AD_CNCL) )) num += 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[last], AD_SIN) )) num += 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[last], AD_DEST) )) num += 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[last], AD_AGGR) )) num += 5;
+		if ((Race_if(PM_CELLAR_CHILD) && dmgtype(&mons[last], AD_SANI) )) num += 5;
+		if ((Race_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[last], AD_BANI) )) num += 1;
+		if ((Race_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[last], AD_DFOO) )) num += 2;
+
 		if ((Race_if(PM_HUMANOID_ANGEL) && is_evilpatchmonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_PSION) && is_evilpatchmonster(&mons[last]))) num += 10;
 		if ((Race_if(PM_DOPPELGANGER) && is_evilpatchmonster(&mons[last]))) num += 2;
@@ -19201,6 +19339,28 @@ int     spc;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_STENCH) )) num -= 50;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_jokemonster(&mons[first]) )) num -= 100;
 		if ((Role_if(PM_GANG_SCHOLAR) && is_cowmonster(&mons[first]) )) num -= 20;
+
+		if ((Role_if(PM_WALSCHOLAR) && is_jokemonster(&mons[first]) )) num -= 20;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_FART_NORMAL) )) num -= 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_FART_QUIET) )) num -= 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_FART_LOUD) )) num -= 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_STENCH) )) num -= 20;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_CONVERT) )) num -= 5;
+		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_HCALIEN) )) num -= 5;
+		if ((Role_if(PM_CELLAR_CHILD) && is_angbandmonster(&mons[first]) )) num -= 20;
+		if ((Role_if(PM_DEMAGOGUE) && (mons[first].mresists & MR_PLUSFOUR))) num -= 1;
+		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (mons[first].mflags2 & M2_DEMON) )) num -= 5;
+		if ((Role_if(PM_DEMAGOGUE) && (mons[first].mflags3 & M3_NOTAME) )) num -= 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[first], AD_WTHR) )) num -= 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[first], AD_LETH) )) num -= 1;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[first], AD_CNCL) )) num -= 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[first], AD_SIN) )) num -= 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[first], AD_DEST) )) num -= 2;
+		if ((Race_if(PM_DEMAGOGUE) && dmgtype(&mons[first], AD_AGGR) )) num -= 5;
+		if ((Race_if(PM_CELLAR_CHILD) && dmgtype(&mons[first], AD_SANI) )) num -= 5;
+		if ((Race_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[first], AD_BANI) )) num -= 1;
+		if ((Race_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[first], AD_DFOO) )) num -= 2;
+
 		if ((Race_if(PM_HUMANOID_ANGEL) && is_evilpatchmonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_PSION) && is_evilpatchmonster(&mons[first]))) num -= 10;
 		if ((Race_if(PM_DOPPELGANGER) && is_evilpatchmonster(&mons[first]))) num -= 2;

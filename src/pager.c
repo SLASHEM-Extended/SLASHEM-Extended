@@ -22700,6 +22700,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Are you a blonde by any chance?",
 	"You feel vulnerable to spells!",
 	"You feel vulnerable to damage!",
+	"The message is broadcast all over the dungeon!",
 
 };
 

@@ -1275,7 +1275,7 @@ int curse_bless;
 		}
 
 		if (is_cursed) stripspe(obj);
-		else if (rechrg && obj->otyp == MAGIC_MARKER) {	/* previously recharged */
+		else if (rechrg && obj->otyp == MAGIC_MARKER && !(obj->oartifact == ART_MARKER_OF_SAFE_SPEECH) ) {	/* previously recharged */
 		    obj->recharged = 1;	/* override increment done above */
 		    if (obj->spe < 3)
 			Your("marker seems permanently dried out.");
@@ -8928,7 +8928,7 @@ newbossC:
 		} else {
 			al = u.ualign.type;
 		}
-		pline("Pronouncing arcane formulas, you consecrate the altar to %s.",(al == A_NONE) ? (Role_if(PM_GANG_SCHOLAR) ? "Anna" : "Moloch") : align_gname(al));
+		pline("Pronouncing arcane formulas, you consecrate the altar to %s.",(al == A_NONE) ? (Role_if(PM_GANG_SCHOLAR) ? "Anna" : Role_if(PM_WALSCHOLAR) ? "Anna" : "Moloch") : align_gname(al));
 		levl[u.ux][u.uy].typ = ALTAR;
 		levl[u.ux][u.uy].altarmask = Align2amask(al);
 		x = (al == ual) ? 1 : ((al == A_NONE) ? -3 : -1);
@@ -9927,7 +9927,7 @@ register struct obj	*sobj;
 	 *  Place ball & chain if not swallowed.  If swallowed, the ball &
 	 *  chain variables will be set at the next call to placebc().
 	 */
-	if (!u.uswallow) {
+	if (!u.uswallow && isok(u.ux, u.uy)) {
 	    placebc();
 	    if (Blind) set_bc(1);	/* set up ball and chain variables */
 	    newsym(u.ux,u.uy);		/* see ball&chain if can't see self */
@@ -9968,7 +9968,7 @@ punishx()
 	 *  Place ball & chain if not swallowed.  If swallowed, the ball &
 	 *  chain variables will be set at the next call to placebc().
 	 */
-	if (!u.uswallow) {
+	if (!u.uswallow && isok(u.ux, u.uy) ) {
 	    placebc();
 	    if (Blind) set_bc(1);	/* set up ball and chain variables */
 	    newsym(u.ux,u.uy);		/* see ball&chain if can't see self */

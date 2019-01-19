@@ -1,0 +1,336 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+### The quest "start" level ###
+#
+MAZE: "Dem-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                ----   ----   ----   
+         ----   |..|   |..|   |..|   
+  ----   |..|   |..|   |..|   |..|   
+  |..|   |..|----+------+------+--   
+  |..|-----+-.....|....|.+....|.|    
+  --+-......|.....|....+.|....|.|--- 
+   |.|......|.....------.------.|..| 
+---|.---+----...................+..| 
+|..|.............--------.......|--- 
+|..+.............|...+..|........|   
+---|--...........|...|--|........|---
+   |.|...........S...|  |........+..|
+   |.+...........--------........|..|
+------+---.......................|---
+|..+.....|-+--+--+--------------.|   
+|..|-----|..|...|..............|+--  
+----     |..|...|-------+------|..|  
+         ---|...|      |..|    |..|  
+            -----      |..|    ----  
+                       ----          
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+REGION:(00,00,36,19),lit,"ordinary"
+NON_DIGGABLE:(00,00,36,19)
+
+BRANCH:(10,16,10,16),(0,0,0,0)
+
+DOOR:locked,(06,13)
+DOOR:closed,(03,14)
+DOOR:locked,(05,12)
+DOOR:locked,(03,09)
+DOOR:locked,(04,05)
+DOOR:open,(08,07)
+DOOR:locked,(11,04)
+DOOR:closed,(17,03)
+DOOR:closed,(23,05)
+DOOR:closed,(25,04)
+DOOR:closed,(24,03)
+DOOR:open,(31,03)
+DOOR:locked,(32,07)
+DOOR:closed,(33,11)
+DOOR:closed,(32,15)
+DOOR:closed,(17,14)
+DOOR:closed,(24,16)
+DOOR:open,(14,14)
+DOOR:locked,(17,11)
+DOOR:closed,(21,09)
+STAIR:(23,09),down
+
+MONSTER:'@',"page",(29,10)
+MONSTER:'@',"page",(28,10)
+MONSTER:'@',"page",(27,10)
+MONSTER:'@',"page",(27,08)
+MONSTER:'@',"page",(28,08)
+MONSTER:'@',"page",(29,08)
+MONSTER:'@',"page",(29,09)
+MONSTER:'@',"page",(27,09)
+MONSTER:'@',"Sinister President",(28,09)
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MAZE: "Dem-fila", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.
+.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.
+.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.
+.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.
+.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:(00,08),up
+STAIR:(75,08),down
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE: "Dem-loca",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+  ...     m      ...  ...      Z     ...  ...       c    ...  ...      t    
+ .. ..          .. .... ..          .. .... ..          .. .... ..          
+..   ..        ..   ..   ..        ..   ..   ..        ..   ..   ..        .
+ ..   ..      ..   ....   ..      ..   ....   ..      ..   ....   ..      ..
+  ..   ..    ..   ..  ..   ..    ..   ..  ..   ..    ..   ..  ..   ..    .. 
+   ..   ..  ..   ..    ..   ..  ..   ..    ..   ..  ..   ..    ..   ..  ..  
+    ..   ....   ..      ..   ....   ..      ..   ....   ..      ..   ....   
+     ..   ..   ..        ..   ..   ..        ..   ..   ..        ..   ..   .
+      .. .... ..          .. .... ..          .. .... ..          .. .... ..
+{      ...  ...      p     ...  ...      w     ...  ...      a     ...  ... 
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+NON_DIGGABLE:(01,00,09,09)
+NON_DIGGABLE:(11,00,20,09)
+NON_DIGGABLE:(22,00,30,09)
+NON_DIGGABLE:(32,00,40,09)
+NON_DIGGABLE:(42,00,51,09)
+NON_DIGGABLE:(53,00,60,09)
+NON_DIGGABLE:(62,00,70,09)
+NON_DIGGABLE:(72,00,75,09)
+
+STAIR:(00,02),up
+STAIR:(75,07),down
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE: "Dem-filb", ' '
+GEOMETRY:center,center
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+...                              ................................           
+...                              ................................           
+...                              ................................           
+...                              ...                          ..............
+...                              ...                          ..............
+...             ...              ...                          ..............
+...             ...              ...                          ...           
+...             ...              ...                          ...           
+...             ...              ...                          ...           
+...             ...              ...                          ...           
+...             ...              ...        ...               ...           
+...             ...              ...        ...               ...           
+.......................          ...        ...               ...           
+.......................          ...        ...               ...           
+.......................          ...        ...               ...           
+...                 ...........................MqM..........................
+...                 ...........................MqM..........................
+...                 ...........................MqM..........................
+...                                   ...                                 S 
+...                                   ...                                 . 
+ENDMAP
+
+NON_DIGGABLE:(00,00,75,19)
+REGION:(00,00,75,19),lit,"ordinary"
+
+STAIR:(00,00),up
+STAIR:(74,19),down
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE: "Dem-goal", ' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+......................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}.....H...................
+...............}}}}}}}}}}}}}}--------------------}}.....                   .
+..............}}}-------------...............|  |}}}....                   .
+..............}}}|  |..........---.---.---...|  |}}}....   ..\..           .
+..............}}}|  |..---.---.| |-| |-| |--.---|}}}....   .....           .
+..............}}}|---..| |-| |--           |....|}}}....   .....           .
+.............}}}}|.....--                 |-....|}}}}...     H             .
+.............}}}}|....--|                 |--...|}}}}...     .............H.
+.....}}.}}}}}}}}}|....|                     |...||}}}...     .............H.
+....}}}}}}}}}}}}|---..--|                  |-....|}}}...     .............H.
+...}}------}}}}}|..S....|                  |--...|}}}...     .............H.
+...}}|....|---}}|..|..---  ----      -----|  |...|}}}...                   .
+...}}|....+..|}}|---..| |--|..|  |-| |....----...|}}}...                   .
+...}}-----|..+.}|..+..---..--S----.---...........|}}}...                   .
+...}}}}}}}----}}|..|...................-+-.---.----}}...                   .
+.....}}}}}}}}}}}-----------------------|.|.+.|.+..|}....                   .
+...........}}}}}}}}}}}}}}}}|.}.|}}}}}}}------------}}...                   .
+}}}}}}.....................--+--.....}}}}}}}}}}}}}}}....                   .
+}}}}}}}}}....................}..........................                   .
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+NON_DIGGABLE:(00,00,75,19)
+
+STAIR:(44,15),up
+
+OBJECT:'(',"bugle",(61,03),blessed,0,"Message Megaphone"
+MONSTER:'@',"Mister Naysayer",(61,03),hostile
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+DRAWBRIDGE:(07,09),south,open
+REGION:(06,11,09,12),lit,"zoo",filled
+DOOR:closed,(10,12)
+DOOR:locked,(13,13)
+DRAWBRIDGE:(15,13),east,open
+DOOR:locked,(19,13)
+DOOR:locked,(19,10)
+DRAWBRIDGE:(51,15),west,closed
+DOOR:locked,(47,15)
+DOOR:closed,(43,15)
+DOOR:closed,(40,14)
+DRAWBRIDGE:(29,16),north,closed
+DOOR:open,(29,17)

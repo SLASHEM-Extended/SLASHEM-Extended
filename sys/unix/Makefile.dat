@@ -345,7 +345,8 @@ spec_levs: ../util/lev_comp \
 	Occult.des Element.des Chaos.des Wildtal.des \
 	Medium.des Poison.des Transs.des Unbel.des Kurwa.des Prost.des \
 	Form.des Feminist.des Tracer.des Nuclear.des Scholar.des \
-	Acu.des Hussy.des Mason.des
+	Acu.des Hussy.des Mason.des Demago.des Cellar.des Grenad.des \
+	Social.des Walsch.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -363,6 +364,11 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Hobbit.des
 	../util/lev_comp Gnome.des
 	../util/lev_comp Barb.des
+	../util/lev_comp Demago.des
+	../util/lev_comp Cellar.des
+	../util/lev_comp Grenad.des
+	../util/lev_comp Social.des
+	../util/lev_comp Walsch.des
 	../util/lev_comp Bard.des
 	../util/lev_comp Binder.des
 	../util/lev_comp Acu.des

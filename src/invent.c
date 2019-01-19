@@ -17124,6 +17124,16 @@ struct obj *obj;
 					pline("Artifact specs: +5 to-hit and +2 damage; drain resistance, black spells, de-light and cursed parts when wielded, displays all x-class monsters and prevents them from moving diagonally. Chaotic."); break;
 				case ART_TRIDENT_OF_POSEIDON:
 					pline("Artifact specs: +5 to-hit and +10 damage to swimming monsters, magical breathing and swimming when wielded and protects your items from getting wet. Chaotic."); break;
+				case ART_PEDIATRIC_GAWKING_GANGS:
+					pline("Artifact specs: psi resistance, discount action and telepathy when worn, lawful, cellar child quest artifact."); break;
+				case ART_MESSAGE_MEGAPHONE:
+					pline("Artifact specs: magic resistance when carried, makes monsters flee when used at the cost of 5 alignment and 1 max alignment, chaotic, demagogue quest artifact."); break;
+				case ART_TEAM_FORTRESS_GL:
+					pline("Artifact specs: lots of multishot bonus, magic resistanec when wielded, stealth when carried, lawful, grenadonin quest artifact."); break;
+				case ART_MARKER_OF_SAFE_SPEECH:
+					pline("Artifact specs: half spell damage when carried, can potentially be recharged more than once, chaotic, social justice warrior quest artifact."); break;
+				case ART_STAHNGNIR_S_GIANT_CRUSHER:
+					pline("Artifact specs: +5 to-hit and double damage, petrification resistance when wielded, telepathy when carried, neutral, walscholar quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

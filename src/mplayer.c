@@ -302,6 +302,30 @@ register boolean special;
 			weapon = DWARVISH_MATTOCK;
 			armor = FULL_PLATE_MAIL;
 		    break;
+		case PM_DEMAGOGUE:
+		case PM_UNDEAD_DEMAGOGUE:
+			armor = FULL_PLATE_MAIL;
+			weapon = THUNDER_HAMMER;
+		    break;
+		case PM_CELLAR_CHILD:
+		case PM_UNDEAD_CELLAR_CHILD:
+			weapon = BATTLE_STAFF;
+			armor = MAGE_PLATE_MAIL;
+		    break;
+		case PM_GRENADONIN:
+		case PM_UNDEAD_GRENADONIN:
+			weapon = KATANA;
+		    break;
+		case PM_WALSCHOLAR:
+		case PM_UNDEAD_WALSCHOLAR:
+			weapon = CONGLOMERATE_PICK;
+			armor = EVIL_LEATHER_ARMOR;
+		    break;
+		case PM_SOCIAL_JUSTICE_WARRIOR:
+		case PM_UNDEAD_SOCIAL_JUSTICE_WARRIOR:
+			helm = FEDORA;
+			weapon = INSECT_SQUASHER;
+		    break;
 		case PM_BINDER:
 		case PM_UNDEAD_BINDER:
 			weapon = RANSEUR;

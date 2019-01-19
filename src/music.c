@@ -527,6 +527,14 @@ hornchoice:
 	    You("extract a loud noise from %s.", the(xname(instr)));
 	    awaken_soldiers();
 	    exercise(A_WIS, FALSE);
+
+	    if (instr && instr->oartifact == ART_MESSAGE_MEGAPHONE) {
+			pline_The("message is broadcast all over the dungeon!");
+			awaken_monsters(GushLevel * 30);
+			adjalign(-5);
+			u.alignlim--;
+	    }
+
 	    break;
 	case MAGIC_HARP:		/* Charm monsters */
 	    if (do_spec && instr->spe > 0) {

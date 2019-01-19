@@ -2974,7 +2974,7 @@ int skill;
 	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
 	    	You("learn how to perform starwars friends!");
 	}
-	if (skill == P_WEDI && P_SKILL(skill) == P_MASTER && (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR)) && !tech_known(T_STARWARS_FRIENDS)) {
+	if (skill == P_WEDI && P_SKILL(skill) == P_MASTER && (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR)) && !tech_known(T_STARWARS_FRIENDS)) {
 	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
 	    	You("learn how to perform starwars friends!");
 	}
@@ -6152,7 +6152,7 @@ rerollthree:
 	if (P_SKILL(P_WEDI) >= P_GRAND_MASTER && !tech_known(T_STARWARS_FRIENDS)) {
 	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
 	}
-	if (P_SKILL(P_WEDI) >= P_MASTER && (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR)) && !tech_known(T_STARWARS_FRIENDS)) {
+	if (P_SKILL(P_WEDI) >= P_MASTER && (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR)) && !tech_known(T_STARWARS_FRIENDS)) {
 	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
 	}
 

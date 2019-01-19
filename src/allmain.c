@@ -110,7 +110,7 @@ moveloop()
 	change_luck(1);
     } else if(flags.moonphase == NEW_MOON) {
 	pline("Be careful!  New moon tonight.");
-	adjalign(-3); 
+	u.ualign.record -= 3; 
     } else if(flags.moonphase >= 1 && flags.moonphase <= 3) {
 	pline("The moon is waxing tonight.");
     } else if(flags.moonphase >= 5 && flags.moonphase <= 7) {
@@ -120,7 +120,7 @@ moveloop()
     if (flags.friday13) {
 	pline("Watch out!  Bad things can happen on Friday the 13th.");
 	change_luck(-1);
-	adjalign(-10); 
+	u.ualign.record -= 10; 
     }
     /* KMH -- February 2 */
     flags.groundhogday = groundhog_day();
@@ -9436,6 +9436,8 @@ aliasagain:
 		    com_pager(199);
         } else if (Role_if(PM_GANG_SCHOLAR)) {
 		    com_pager(198);
+        } else if (Role_if(PM_WALSCHOLAR)) {
+		    com_pager(194);
         } else {
 		    com_pager(1);
         }

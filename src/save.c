@@ -123,10 +123,12 @@ dosave()
 		if(flags.moonphase == FULL_MOON)
 			change_luck(1);         
 		if(flags.moonphase == NEW_MOON)
-			adjalign(-3); 
+			u.ualign.record += 3;
+			if (u.ualign.record > u.alignlim) u.ualign.record = u.alignlim;
 		if(flags.friday13) {
 			change_luck(-1);
-			adjalign(-10); 
+			u.ualign.record += 10;
+			if (u.ualign.record > u.alignlim) u.ualign.record = u.alignlim;
 		}
 		if(iflags.window_inited)
 			clear_nhwindow(WIN_MESSAGE);
@@ -242,10 +244,12 @@ dosave0()
 	if(flags.moonphase == FULL_MOON)	/* ut-sally!fletcher */
 		change_luck(-1);		/* and unido!ab */
 	if(flags.moonphase == NEW_MOON)	/* ut-sally!fletcher */
-		adjalign(3); 
+		u.ualign.record += 3;
+		if (u.ualign.record > u.alignlim) u.ualign.record = u.alignlim;
 	if(flags.friday13) {
 		change_luck(1);
-		adjalign(10); 
+		u.ualign.record += 10;
+		if (u.ualign.record > u.alignlim) u.ualign.record = u.alignlim;
 	}
 	if(iflags.window_inited)
 	    HUP clear_nhwindow(WIN_MESSAGE);

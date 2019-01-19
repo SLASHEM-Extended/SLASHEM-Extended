@@ -207,6 +207,9 @@ int thrown;
 	    if (launcher && launcher->otyp == WILDHILD_BOW && obj->otyp == ODOR_SHOT) multishot++;
 	    if (launcher && launcher->otyp == COMPOST_BOW && obj->otyp == FORBIDDEN_ARROW) multishot++;
 
+	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == FRAG_GRENADE) multishot += 5;
+	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == GAS_GRENADE) multishot += 5;
+
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
 

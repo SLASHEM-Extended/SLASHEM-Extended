@@ -353,6 +353,8 @@ maeney:
 	if (pettype == PM_SOLDIER) petname = "Lieutenant Surge"; /* Pokemon Yellow */
 	if (pettype == PM_VALKYRIE) petname = "Rue";	/* hunger games */
 	if (pettype == PM_PLATYPUS) petname = "Donald Duck";
+	if (pettype == PM_OFFICER_JENNY) petname = "Jenny";
+	if (pettype == PM_FEMALE_SAMURAI) petname = "Miss Grenade";
 	if (pettype == PM_ORDINATOR) petname = "Andragil";
 	if (pettype == PM_ROTHE) petname = "Rambo";
 

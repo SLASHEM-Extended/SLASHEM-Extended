@@ -1,0 +1,335 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+### The quest "start" level ###
+#
+MAZE: "Wal-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+...................................                                         
+.....................t.............                                         
+......t....t....t..................                                         
+.....................t.............                                         
+......t....t....t..................                                         
+.....................t.............                                         
+......t....t....t..................                                         
+.....................t.............                                         
+...................................                                         
+...................................     ....GGGG.                           
++                ..................     ....GGGG.                           
+.                                       ....GGGG.                           
+............................................                                
+............................................                                
+............................................                                
+                                         +                                  
+                                         .                                  
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+REGION:(00,00,75,16),lit,"ordinary"
+NON_DIGGABLE:(00,00,75,16)
+DOOR:closed,(00,10)
+DOOR:locked,(41,15)
+
+BRANCH:(30,00,34,10),(0,0,0,0)
+
+STAIR:(41,16),down
+
+MONSTER:'&',"Gaunt Elke",(02,05)
+
+MONSTER:'@',"thug",(07,02)
+MONSTER:'@',"thug",(07,05)
+MONSTER:'@',"thug",(07,08)
+MONSTER:'@',"thug",(11,02)
+MONSTER:'@',"thug",(11,05)
+MONSTER:'@',"thug",(11,08)
+MONSTER:'@',"thug",(16,02)
+MONSTER:'@',"thug",(16,05)
+MONSTER:'@',"thug",(16,08)
+MONSTER:'@',"thug",(21,01)
+MONSTER:'@',"thug",(21,03)
+MONSTER:'@',"thug",(21,05)
+MONSTER:'@',"thug",(21,07)
+
+OBJECT:'*',"diamond",(48,09)
+OBJECT:'*',"diamond",(48,10)
+OBJECT:'*',"diamond",(48,11)
+
+MAZE: "Wal-fila", ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+            .....                                                        ...
+           ... ...                         .....                        ....
+          ...   ...                       ... ...                      ...  
+         ...     ...         .....       ...   ...                    ...   
+         ..       ...       ... ...       ...   ...                  ...    
+..       ...       ..      ...   ...       ...   ...        .....   ...     
+...       ...      ...    ...     ...       ...   ..       ... ... ...      
+ ...       ...    ...      ...     ...       ... ...      ...   .....       
+  ...       ...  ...        ...     ..        .....       ...    ...        
+   ...       ......          ...    ...        ....        ...   ....       
+    ...       ....            ...  ...        ......        ... ......      
+     ...      .....            ......        ...  ...        .....  ..      
+      ...    ... ...            ....        ...    ...        ...  ...      
+       ...  ...   ...           ....       ...      ...           ...       
+        ......     ...         ......     ...        ...         ...        
+         ....       ...       ...  ...   ...          ...       ...         
+                     ...     ...    ... ...            ...     ...          
+                      ...   ...      .....              ...   ...           
+                       ... ...                           ... ...            
+                        .....                             .....             
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:(00,05),up
+STAIR:(75,00),down
+
+NON_DIGGABLE:(00,00,75,19)
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE: "Wal-loca",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+ggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....|.....|  |.....|   
+gggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....+.....+..+.....|   
+ggggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMiiiMMMMMMMMMMMM| |.....|.....|  |.....|   
+gggggMMMMMMMMMMMMMMMMMMMMMMMMMMMMiiMiiMMMMMMMMMMM| ---------+---  ---S---   
+ggggggMMMMMMMMMMMMMMMMMMMMMMMMMMiiMMMiiMMMMMMMMMM|          .     |--.---|  
+gggggggMMMMMMMMMMMMMMMMMMMMMMMMiiMMMMMiiMMMMMMMMM|      ----+---- |......|  
+ggggggggMMMMMMMMMMMMMMMMMMMMMMiiMMMMMMMiiMMMMMMMM|      |nnnnnnn| |......|  
+gggggggggMMMMMMMMMMMMMMMMMMMMiiMMMMMMMMMiiMMMMMMM|      |nnnnnnn| |......|  
+ggggggggggMMMMMMMMMMMMMMMMMMiiMMMMMMMMMMMiiMMMMMM|      |nnnnnnn| |......|  
+.iiiiiiiiiiiiiMMMMMMMMMMMMMiiMMMMMMMMMMMMMiiiiiii+.......nnnnnnnS........|  
+gggggggggggMMiiMMMMMMMMMMMiiMMMMMMMMMMMMMMMMMMMMM|      |nnnnnnn| |......|  
+ggggggggggMMMMiiMMMMMMMMMiiMMMMMMMMMMMMMMMMMMMMMM|      |nnnnnnn| |......|  
+gggggggggMMMMMMiiMMMMMMMiiMMMMMMMMMMMMMMMMMMMMMMM|      |nnnnnnn| |......|  
+ggggggggMMMMMMMMiiMMMMMiiMMMMMMMMMMMMMMMMMMMMMMMM|      ----+---- |......|  
+gggggggMMMMMMMMMMiiMMMiiMMMMMMMMMMMMMMMMMMMMMMMMM|          .     |--.---|  
+ggggggMMMMMMMMMMMMiiMiiMMMMMMMMMMMMMMMMMMMMMMMMMM| ---------+---  ---S---   
+gggggMMMMMMMMMMMMMMiiiMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....|.....|  |.....|   
+ggggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....+.....+..+.....|   
+gggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| |.....|.....|  |.....|   
+ggMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM| -------------  -------   
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:(00,09),up
+STAIR:(72,09),down
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+NON_DIGGABLE:(00,00,75,19)
+
+DOOR:closed,(57,01)
+DOOR:closed,(63,01)
+DOOR:closed,(66,01)
+DOOR:closed,(60,03)
+DOOR:closed,(60,05)
+DOOR:closed,(60,13)
+DOOR:closed,(60,15)
+DOOR:closed,(57,17)
+DOOR:closed,(63,17)
+DOOR:closed,(66,17)
+DOOR:locked,(49,09)
+
+TRAP:"falling rock",(20,16)
+TRAP:"pit",(35,02)
+
+MONSTER:'o',"super ape",(54,01),hostile
+MONSTER:'o',"super ape",(69,01),hostile
+MONSTER:'@',"block-heeled girl",(60,17),hostile
+
+MAZE: "Wal-filb", ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+..........................                          ........................
+.......................... ........................ ........................
+.......................... ........................ ........................
+.......................... ........................B........................
+.......................... ........................ ........................
+.......................... ........................ ........................
+..........................                          ........................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+
+ENDMAP
+
+STAIR:(00,10),up
+STAIR:(27,10),down
+
+NON_DIGGABLE:(00,00,75,18)
+
+REGION:(20,10,20,10),lit,"riverroom",filled,true
+REGION:(30,10,30,10),lit,"insideroom",filled,true
+
+MAZE: "Wal-goal", ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+-------------------------........................|MMMMMMMMMMMMMMMMMMM|......
+.........|......|.|.|.|.|........................| MMMMMMMMMMMMMMMMMM|......
+...|.....|......|.|.|.|.|..---------------+----..|  MMMMMMMMMMMMMMMMM|......
+...|.....|............|.|..|........m|........|..|   MMMMMMMMMMMMMMMM|......
+...|.....-----..-----...|..|...uuu...|........|..|    MMMMMMMMMMMMMMM|......
+...|............F.....--|..+...uuu...|.|..|..||..|     MMMMMMMMMMMMMM---+---
+...|.....-----..-------Z|..|...uuu...|.|qq|qq||..|      MMMMMMMMMMMMMMMMMMMM
+...|.....|..............|..|........m|K|qq|qq||..|       MMMMMMMMMMMMMMMMMMM
+--------------++--------|..--------------------..|--------MMMMMMMMMMMMMMMMMM
+       |}}}}}|..|.......|...................................................
+       |}}}}}|..|..t.t..|...................................................
+       |}}}}}|..|.......|..---------------+----..|----+-----..--------------
+    ---|}}}}}y..+.......|..|.........|........|..|.........|..|.............
+    |..|}}}}}y..|.......|..|..t...t..|........|..|.........|..|...c...c...c.
+    |\.S}}}}}|..|..t.t..|..|.........|........|..|ggggggggg|..|.............
+    |..|}}}}}|..|.......|..|.........|........|..|ggggggggg|..+.............
+    ---|}}}}}|..---------..-----+---------+----..|ggggggggg|..|...c...c...c.
+       |}}}}}|...................................|ggggggggg|..|.............
+       -------...................................|         |               S
+              ...................................|         |               p
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+NON_DIGGABLE:(00,00,75,19)
+STAIR:(00,01),up
+
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(70,00,75,04),lit,"random shop"
+REGION:(38,12,45,15),lit,"random shop"
+
+DOOR:closed,(14,08)
+DOOR:closed,(15,08)
+DOOR:closed,(16,12)
+DOOR:closed,(27,05)
+DOOR:locked,(42,02)
+DOOR:closed,(42,11)
+DOOR:closed,(42,16)
+DOOR:closed,(32,16)
+DOOR:locked,(54,11)
+DOOR:closed,(72,05)
+DOOR:locked,(62,15)
+
+OBJECT:')',"huge club",(74,16),blessed,1,"Stahngnir's Giant Crusher"
+MONSTER:'@',"Hussy Katrin",(74,16),hostile
+MONSTER:'%',"rose guy",(52,14),hostile,asleep
+MONSTER:'%',"rose guy",(56,14),hostile,asleep
+MONSTER:'D',"thick farting girl",(66,13),hostile,asleep
+MONSTER:'8',"charey",(70,13),hostile,asleep
+MONSTER:'O',"mindless fat girl",(74,13),hostile,asleep
+MONSTER:'h',"vietnamese beauty",(66,16),hostile,asleep
+MONSTER:'B',"squeakati",(70,16),hostile,asleep
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random

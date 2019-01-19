@@ -2347,6 +2347,9 @@ register struct monst *mtmp;
 		case PM_GEEK:
 		    verbl_msg = "Enematzu memalezu!";
 		    break;
+		case PM_GOFF:
+		    verbl_msg = "britny is a prep!!!111";
+		    break;
 		case PM_UNBELIEVER:
 		    verbl_msg = "Gods are nonexistant. People should stop believing in them.";
 		    break;
@@ -2358,6 +2361,9 @@ register struct monst *mtmp;
 		    break;
 		case PM_GANG_SCHOLAR:
 		    verbl_msg = "I'm constantly being bullied by the Bang Gang and Anna's hussies...";
+		    break;
+		case PM_WALSCHOLAR:
+		    verbl_msg = "Hidden diamonds are like tree bark.";
 		    break;
 		case PM_TRANSVESTITE:
 		    verbl_msg = "Look at my heels! Do you think they're beautiful?";

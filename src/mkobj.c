@@ -856,7 +856,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(207)) {
+	switch (rnd(206)) {
 
 		case 1:
 		case 2:
@@ -1129,7 +1129,7 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 		case 180:
 			return SCR_NASTY_CURSE;
 		case 181:
-			return SCR_HYBRIDIZATION;
+			return WAN_FLEECY_TERRAIN;
 		case 182:
 			return WAN_DISENCHANTMENT;
 		case 183:
@@ -1180,8 +1180,6 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 			return SCR_RAIN;
 		case 206:
 			return WAN_CHAOS_TERRAIN;
-		case 207:
-			return WAN_FLEECY_TERRAIN;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;
 	}

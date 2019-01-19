@@ -2820,7 +2820,7 @@ aligntyp alignment;
 	     case 2:	gnam = roles[which].cgod; break;
 	     default:	gnam = 0; break;		/* lint suppression */
 	    }
-	    if (!gnam) gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch;
+	    if (!gnam) gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Role_if(PM_WALSCHOLAR) ? ScholarMoloch : Moloch;
 	    if (*gnam == '_') ++gnam;
 	    return gnam;
 	}
@@ -2828,7 +2828,7 @@ aligntyp alignment;
 	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_WILD_TALENT) || Role_if(PM_ERDRICK) || Role_if(PM_ANACHRONIST) ) {
 
     switch (alignment) {
-     case A_NONE:	gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch; break;
+     case A_NONE:	gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Role_if(PM_WALSCHOLAR) ? ScholarMoloch : Moloch; break;
      case A_LAWFUL:	gnam = u.hereticlgod; break;
      case A_NEUTRAL:	gnam = u.hereticngod; break;
      case A_CHAOTIC:	gnam = u.hereticcgod; break;
@@ -2839,7 +2839,7 @@ aligntyp alignment;
 	} else {
 
     switch (alignment) {
-     case A_NONE:	gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch; break;
+     case A_NONE:	gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Role_if(PM_WALSCHOLAR) ? ScholarMoloch : Moloch; break;
      case A_LAWFUL:	gnam = urole.lgod; break;
      case A_NEUTRAL:	gnam = urole.ngod; break;
      case A_CHAOTIC:	gnam = urole.cgod; break;
@@ -2871,7 +2871,7 @@ aligntyp alignment;
      case 2:	gnam = roles[which].cgod; break;
      default:	gnam = 0; break;		/* lint suppression */
     }
-    if (!gnam) gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch;
+    if (!gnam) gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Role_if(PM_WALSCHOLAR) ? ScholarMoloch : Moloch;
     if (*gnam == '_') ++gnam;
     return gnam;
 }

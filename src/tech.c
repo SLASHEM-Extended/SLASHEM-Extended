@@ -386,6 +386,8 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	sco_tech[] = { {   25, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
+	wal_tech[] = { {   1, T_DIAMOND_BARRIER, 1},
+		       {   0, 0, 0} },
 	loc_tech[] = { {   15, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
@@ -400,6 +402,8 @@ static const struct innate_tech
 	cav_tech[] = { {   1, T_PRIMAL_ROAR, 1},
 		       {   10, T_SHIELD_BASH, 1},
 		       {   20, T_POLYFORM, 1},
+		       {   0, 0, 0} },
+	dem_tech[] = { {   1, T_PRIMAL_ROAR, 1},
 		       {   0, 0, 0} },
 	sli_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   4, T_SPIRITUALITY_CHECK, 1},
@@ -657,6 +661,13 @@ static const struct innate_tech
 		       {  15, T_CUTTHROAT, 1},
 		       {   0, 0, 0} },
 	sam_tech[] = { {   1, T_KIII, 1},
+		       {   6, T_SHIELD_BASH, 1},
+		       {   18, T_IRON_SKIN, 1},
+		       {   18, T_CONCENTRATING, 1},
+		       {   30, T_BLOOD_RITUAL, 1},
+		       {   0, 0, 0} },
+	gro_tech[] = { {   1, T_KIII, 1},
+		       {   1, T_CREATE_AMMO, 1},
 		       {   6, T_SHIELD_BASH, 1},
 		       {   18, T_IRON_SKIN, 1},
 		       {   18, T_CONCENTRATING, 1},
@@ -2669,9 +2680,10 @@ int tech_no;
 			if (u.ualign.record < 0) {
 
 				if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
-					pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : "Moloch" );
+					pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : Role_if(PM_WALSCHOLAR) ? "Anna" : "Moloch" );
 					u.ublesscnt += rnz(-u.ualign.record);
 					if (Role_if(PM_GANG_SCHOLAR)) losehp(rnz(-u.ualign.record), "annoying Anna", KILLED_BY);
+					else if (Role_if(PM_WALSCHOLAR)) losehp(rnz(-u.ualign.record), "annoying Anna", KILLED_BY);
 					else losehp(rnz(-u.ualign.record), "annoying Moloch", KILLED_BY);
 				} else {
 					pline("%s smites you for your sins!",u_gname() );
@@ -2689,7 +2701,7 @@ int tech_no;
 			} 
 
 			else if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
-				pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : "Moloch" );
+				pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : Role_if(PM_WALSCHOLAR) ? "Anna" : "Moloch" );
 				u.ublesscnt += rnz(monster_difficulty() + 1 );
 				losehp(rnz(monster_difficulty() + 1 ), "trying to contact their deity in Gehennom", KILLED_BY);
 /* Trying to invoke a deity in Gehennom is never a good idea... */
@@ -6900,6 +6912,7 @@ role_tech()
 		case PM_BLOODSEEKER:	return (blo_tech);
 		case PM_BLEEDER:	return (ble_tech);
 		case PM_CAVEMAN:	return (cav_tech);
+		case PM_DEMAGOGUE:	return (dem_tech);
 		case PM_DQ_SLIME:	return (sli_tech);
 		case PM_ERDRICK:	return (erd_tech);
 		case PM_BARD:	return (brd_tech);
@@ -6967,8 +6980,10 @@ role_tech()
 		case PM_CAMPERSTRIKER:		return (cam_tech);
 		case PM_LOCKSMITH:		return (loc_tech);
 		case PM_GANG_SCHOLAR:		return (sco_tech);
+		case PM_WALSCHOLAR:		return (wal_tech);
 		case PM_ROGUE:		return (rog_tech);
 		case PM_SAMURAI:	return (sam_tech);
+		case PM_GRENADONIN:	return (gro_tech);
 		case PM_NINJA:	return (nin_tech);
 		case PM_TOURIST:	return (tou_tech);
 		case PM_UNDEAD_SLAYER:	return (und_tech);

@@ -3196,7 +3196,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(630)) {
+		switch (rnd(655)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -3828,6 +3828,31 @@ ghnhom2:
 			case 628: makemaz("Mas-3"); return;
 			case 629: makemaz("Mas-4"); return;
 			case 630: makemaz("Mas-5"); return;
+			case 631: makemaz("Gre-1"); return;
+			case 632: makemaz("Gre-2"); return;
+			case 633: makemaz("Gre-3"); return;
+			case 634: makemaz("Gre-4"); return;
+			case 635: makemaz("Gre-5"); return;
+			case 636: makemaz("Cel-1"); return;
+			case 637: makemaz("Cel-2"); return;
+			case 638: makemaz("Cel-3"); return;
+			case 639: makemaz("Cel-4"); return;
+			case 640: makemaz("Cel-5"); return;
+			case 641: makemaz("Wal-1"); return;
+			case 642: makemaz("Wal-2"); return;
+			case 643: makemaz("Wal-3"); return;
+			case 644: makemaz("Wal-4"); return;
+			case 645: makemaz("Wal-5"); return;
+			case 646: makemaz("Soc-1"); return;
+			case 647: makemaz("Soc-2"); return;
+			case 648: makemaz("Soc-3"); return;
+			case 649: makemaz("Soc-4"); return;
+			case 650: makemaz("Soc-5"); return;
+			case 651: makemaz("Dem-1"); return;
+			case 652: makemaz("Dem-2"); return;
+			case 653: makemaz("Dem-3"); return;
+			case 654: makemaz("Dem-4"); return;
+			case 655: makemaz("Dem-5"); return;
 
 		}
 		break;
@@ -4960,7 +4985,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(630)) {
+		switch (rnd(655)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -5592,6 +5617,31 @@ ghnhom2:
 			case 628: makemaz("Mas-8"); return;
 			case 629: makemaz("Mas-9"); return;
 			case 630: makemaz("Mas-0"); return;
+			case 631: makemaz("Gre-6"); return;
+			case 632: makemaz("Gre-7"); return;
+			case 633: makemaz("Gre-8"); return;
+			case 634: makemaz("Gre-9"); return;
+			case 635: makemaz("Gre-0"); return;
+			case 636: makemaz("Cel-6"); return;
+			case 637: makemaz("Cel-7"); return;
+			case 638: makemaz("Cel-8"); return;
+			case 639: makemaz("Cel-9"); return;
+			case 640: makemaz("Cel-0"); return;
+			case 641: makemaz("Wal-6"); return;
+			case 642: makemaz("Wal-7"); return;
+			case 643: makemaz("Wal-8"); return;
+			case 644: makemaz("Wal-9"); return;
+			case 645: makemaz("Wal-0"); return;
+			case 646: makemaz("Soc-6"); return;
+			case 647: makemaz("Soc-7"); return;
+			case 648: makemaz("Soc-8"); return;
+			case 649: makemaz("Soc-9"); return;
+			case 650: makemaz("Soc-0"); return;
+			case 651: makemaz("Dem-6"); return;
+			case 652: makemaz("Dem-7"); return;
+			case 653: makemaz("Dem-8"); return;
+			case 654: makemaz("Dem-9"); return;
+			case 655: makemaz("Dem-0"); return;
 		}
 		break;
 
@@ -7146,7 +7196,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(630)) {
+		switch (rnd(655)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -7778,6 +7828,31 @@ ghnhom4:
 			case 628: makemaz("Mas-3"); return;
 			case 629: makemaz("Mas-4"); return;
 			case 630: makemaz("Mas-5"); return;
+			case 631: makemaz("Gre-1"); return;
+			case 632: makemaz("Gre-2"); return;
+			case 633: makemaz("Gre-3"); return;
+			case 634: makemaz("Gre-4"); return;
+			case 635: makemaz("Gre-5"); return;
+			case 636: makemaz("Cel-1"); return;
+			case 637: makemaz("Cel-2"); return;
+			case 638: makemaz("Cel-3"); return;
+			case 639: makemaz("Cel-4"); return;
+			case 640: makemaz("Cel-5"); return;
+			case 641: makemaz("Wal-1"); return;
+			case 642: makemaz("Wal-2"); return;
+			case 643: makemaz("Wal-3"); return;
+			case 644: makemaz("Wal-4"); return;
+			case 645: makemaz("Wal-5"); return;
+			case 646: makemaz("Soc-1"); return;
+			case 647: makemaz("Soc-2"); return;
+			case 648: makemaz("Soc-3"); return;
+			case 649: makemaz("Soc-4"); return;
+			case 650: makemaz("Soc-5"); return;
+			case 651: makemaz("Dem-1"); return;
+			case 652: makemaz("Dem-2"); return;
+			case 653: makemaz("Dem-3"); return;
+			case 654: makemaz("Dem-4"); return;
+			case 655: makemaz("Dem-5"); return;
 		}
 		break;
 
@@ -8906,7 +8981,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(630)) {
+		switch (rnd(655)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -9538,6 +9613,31 @@ ghnhom4:
 			case 628: makemaz("Mas-8"); return;
 			case 629: makemaz("Mas-9"); return;
 			case 630: makemaz("Mas-0"); return;
+			case 631: makemaz("Gre-6"); return;
+			case 632: makemaz("Gre-7"); return;
+			case 633: makemaz("Gre-8"); return;
+			case 634: makemaz("Gre-9"); return;
+			case 635: makemaz("Gre-0"); return;
+			case 636: makemaz("Cel-6"); return;
+			case 637: makemaz("Cel-7"); return;
+			case 638: makemaz("Cel-8"); return;
+			case 639: makemaz("Cel-9"); return;
+			case 640: makemaz("Cel-0"); return;
+			case 641: makemaz("Wal-6"); return;
+			case 642: makemaz("Wal-7"); return;
+			case 643: makemaz("Wal-8"); return;
+			case 644: makemaz("Wal-9"); return;
+			case 645: makemaz("Wal-0"); return;
+			case 646: makemaz("Soc-6"); return;
+			case 647: makemaz("Soc-7"); return;
+			case 648: makemaz("Soc-8"); return;
+			case 649: makemaz("Soc-9"); return;
+			case 650: makemaz("Soc-0"); return;
+			case 651: makemaz("Dem-6"); return;
+			case 652: makemaz("Dem-7"); return;
+			case 653: makemaz("Dem-8"); return;
+			case 654: makemaz("Dem-9"); return;
+			case 655: makemaz("Dem-0"); return;
 		}
 		break;
 

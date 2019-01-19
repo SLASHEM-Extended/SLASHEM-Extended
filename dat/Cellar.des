@@ -1,0 +1,325 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+### The quest "start" level ###
+#
+MAZE: "Cel-strt",' '
+FLAGS: hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+        .......                    .......................                  
+    ..............       ..............    ...................     ....     
+  ....                      .  .                 ......    .....   ..    .. 
+   ...                      .  .              ......           ........  ...
+    ...                    ..  ......       .......                  .......
+   ...                     ..    ......    .......                         .
+    ......                ...       ....  ........                        ..
+     ......               ..     ......    .......                       ...
+..........                ..      ....      ......                      ... 
+  ......                  .         ...      .....        ....          ..  
+    ......                .           .       ....      ........       ...  
+       ..            .......          .        ...    ............     ..   
+     ....      ........    ...        .         ..  ................   ..   
+   ................        ...        .          ........................   
+       .........          ....      ...     ..      ................   ..   
+         .....           .....      ...   .......     ............     ...  
+          ...           ......      ...  ...  ...       ........      ....  
+           .           ......       ... ....              ....       ...... 
+                      ......        ......                          ....... 
+                     ......         ...                            ........ 
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+BRANCH:(01,00,75,19),(0,0,0,0)
+
+STAIR:random,down
+
+MONSTER:'@',"Kris-Tian",(60,13)
+MONSTER:'@',"attendant",(59,12)
+MONSTER:'@',"attendant",(59,13)
+MONSTER:'@',"attendant",(59,14)
+MONSTER:'@',"attendant",(60,12)
+MONSTER:'@',"attendant",(60,14)
+MONSTER:'@',"attendant",(61,12)
+MONSTER:'@',"attendant",(61,13)
+MONSTER:'@',"attendant",(61,14)
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MAZE: "Cel-fila", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+          ...................................................               
+         .....................................................              
+        .......................................................             
+       .........................................................            
+      ...........................................................           
+     ...............................   ...........................          
+    ...............................     ...........................         
+   ..............................         ..........................        
+  .............................             .........................       
+ ............................                 ........................      
+ ............................                 ........................      
+  .............................             .........................       
+   ..............................         ..........................        
+    ...............................     ...........................         
+     ...............................   ...........................          
+      ...........................................................           
+       .........................................................            
+        .......................................................             
+         .....................................................              
+          ...................................................               
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+NON_DIGGABLE:(00,00,75,19)
+
+STAIR:random,up
+STAIR:random,down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MAZE: "Cel-loca",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+........................                                                    
+........................                                                    
+........................                                                    
+........................    .........                                       
+........................    .........+..............                        
+........................    .........              .....................    
+........................    .........              .....................    
+........................       +                   .....................    
+........................ ........                  .....................    
+........................+........                  .....................+.. 
+........................+........                  .....................+.. 
+........................ ........                  .....................    
+........................       +                   .....................    
+........................    .........              .....................    
+........................    .........              .....................    
+........................    .........+..................................    
+........................    .........                                       
+........................                                                    
+........................                                                    
+........................                                                    
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+NON_DIGGABLE:(00,00,75,19)
+
+STAIR:(05,05),up
+STAIR:(74,10),down
+
+DOOR:locked,(24,09)
+DOOR:locked,(24,10)
+DOOR:locked,(72,09)
+DOOR:locked,(72,10)
+DOOR:locked,(31,07)
+DOOR:locked,(31,12)
+DOOR:locked,(37,04)
+DOOR:locked,(37,15)
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:random,random,(30,04),hostile
+MONSTER:random,random,(30,15),hostile
+MONSTER:random,random,(30,09),hostile
+MONSTER:random,random,(30,10),hostile
+
+MONSTER:random,random,(60,06),hostile
+MONSTER:random,random,(60,07),hostile
+MONSTER:random,random,(60,08),hostile
+MONSTER:random,random,(60,09),hostile
+MONSTER:random,random,(60,10),hostile
+MONSTER:random,random,(60,11),hostile
+MONSTER:random,random,(60,12),hostile
+MONSTER:random,random,(60,13),hostile
+MONSTER:random,random,(60,14),hostile
+
+MAZE: "Cel-filb", ' '
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+                               ...................                          
+                               ...................                          
+                               ...................                          
+                               ...................                          
+                               ...................                          
+...............................iiiiiiiiiiiiiiiiiii..........................
+...............................i.................i..........................
+...............................i.................i..........................
+...............................i.................i..........................
+...............................i.................i..........................
+...............................i.................i..........................
+...............................i.................i..........................
+...............................i.................i..........................
+...............................i.................i..........................
+...............................iiiiiiiiiiiiiiiiiii..........................
+                               ...................                          
+                               ...................                          
+                               ...................                          
+                               ...................                          
+                               ...................                          
+ENDMAP
+
+NON_DIGGABLE:(00,00,75,19)
+
+STAIR:random,up
+STAIR:random,down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+
+MAZE: "Cel-goal", ' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:random,up
+
+OBJECT:'[',"men's underwear",(45,10),uncursed,0,"Pediatric Gawking Gangs"
+MONSTER:'@',"Grandmaster Sven",(45,10),hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile

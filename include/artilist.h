@@ -7023,6 +7023,31 @@ A("The Ultimate Pick", DWARVISH_MATTOCK,
 	PHYS(0, 20),	NO_DFNS, NO_CARY,
 	0,	A_NEUTRAL, PM_MASON, NON_PM, 2500L ),
 
+A("Pediatric Gawking Gangs", MEN_S_UNDERWEAR, /* resist psi, discount action */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ESP), 0, 0,
+	NO_ATTK,	NO_DFNS, NO_CARY,
+	0,	A_LAWFUL, PM_CELLAR_CHILD, NON_PM, 4000L ),
+
+A("Message Megaphone", BUGLE, /* tries to make monsters flee, like a tooled horn, but reduces alignment by 5 and max alignment by 1 with every use */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK,	NO_DFNS, CARY(AD_MAGM),
+	0,	A_CHAOTIC, PM_DEMAGOGUE, NON_PM, 6000L ),
+
+A("Team Fortress GL", GRENADE_LAUNCHER, /* multishot bonus */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), SPFX_STLTH, 0,
+	NO_ATTK,	DFNS(AD_MAGM), NO_CARY,
+	0,	A_LAWFUL, PM_GRENADONIN, NON_PM, 10000L ),
+
+A("Marker of Safe Speech", MAGIC_MARKER, /* can potentially be recharged several times */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_HSPDAM|SPFX_SPEAK), 0,
+	NO_ATTK,	NO_DFNS, NO_CARY,
+	0,	A_CHAOTIC, PM_SOCIAL_JUSTICE_WARRIOR, NON_PM, 6000L ),
+
+A("Stahngnir's Giant Crusher", HUGE_CLUB, /* petrification resistance when wielded */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), SPFX_ESP, 0,
+	PHYS(5, 0),	NO_DFNS, NO_CARY,
+	0,	A_NEUTRAL, PM_WALSCHOLAR, NON_PM, 20000L ),
+
 /* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */
 
 /*

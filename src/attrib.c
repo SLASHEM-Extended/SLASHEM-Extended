@@ -147,6 +147,17 @@ const struct innate {
 			{	30, &(Antileveling), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	gro_abil[] = { {	 1, &(HFast), "", "" },
+			{   4, &(Unidentify), "", "" },
+			{	8, &(MojibakeEffect), "", "" },
+			{	12, &(Dropcurses), "", "" },
+		     {  15, &(HStealth), "stealthy", "noisy" },
+			{	16, &(RecurringDisenchant), "", "" },
+			{	20, &(TimerunBug), "", "" },
+			{	25, &(FastMetabolismEffect), "", "" },
+			{	30, &(Goldspells), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	mah_abil[] = { {   1, &(HAggravate_monster), "", "" },
 			{	1, &(HAntimagic), "", "" },
 			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
@@ -185,6 +196,16 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	erd_abil[] = { {   1, &(HFree_action), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	cel_abil[] = { {   1, &(BlueSpells), "", "" },
+			{	5, &(DamageMeterBug), "", "" },
+			{	9, &(RangCallEffect), "", "" },
+			{	14, &(CrapEffect), "", "" },
+			{	18, &(PokelieEffect), "", "" },
+			{	22, &(ExplodingDiceEffect), "", "" },
+			{	26, &(AutopilotEffect), "", "" },
+			{	30, &(InterfaceScrewed), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	blo_abil[] = { {   1, &(HWarning), "", "" },
@@ -1655,6 +1676,7 @@ int oldlevel, newlevel;
 	case PM_BLOODSEEKER:      abil = blo_abil;	break;
 	case PM_DQ_SLIME:      abil = sli_abil;	break;
 	case PM_ERDRICK:      abil = erd_abil;	break;
+	case PM_CELLAR_CHILD:      abil = cel_abil;	break;
 	case PM_SLAVE_MASTER:      abil = sla_abil;	break;
 	case PM_SUPERMARKET_CASHIER:      abil = sup_abil;	break;
 	case PM_BARD:           abil = brd_abil;	break;
@@ -1734,6 +1756,7 @@ int oldlevel, newlevel;
 	case PM_GOLDMINER:		abil = gol_abil;	break;
 	case PM_VALKYRIE:       abil = val_abil;	break;
 	case PM_OFFICER:       abil = off_abil;	break;
+	case PM_GRENADONIN:       abil = gro_abil;	break;
 	case PM_WIZARD:         abil = wiz_abil;	break;
 	case PM_ZOOKEEPER:         abil = zoo_abil;	break;
 	case PM_YEOMAN:		abil = yeo_abil;	break;
@@ -2278,7 +2301,7 @@ register int n;
 		else punishx();
 	}
 
-	if (n < 0 && Race_if(PM_CHIQUAI)) {
+	if (n < 0 && Race_if(PM_CHIQUAI) && program_state.something_worth_saving) {
 		badeffect();
 	}
 
