@@ -1139,7 +1139,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(213)) {
+	switch(rnd(215)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1980,6 +1980,24 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HTechnicality & TIMEOUT) {
 			HTechnicality &= ~TIMEOUT;
 			You_feel("less capable of using your techniques...");
+		}
+		break;
+	case 211: if (HHalf_spell_damage & INTRINSIC) {
+			HHalf_spell_damage &= ~INTRINSIC;
+			You_feel("vulnerable to spells!");
+		}
+		if (HHalf_spell_damage & TIMEOUT) {
+			HHalf_spell_damage &= ~TIMEOUT;
+			You_feel("vulnerable to spells!");
+		}
+		break;
+	case 212: if (HHalf_physical_damage & INTRINSIC) {
+			HHalf_physical_damage &= ~INTRINSIC;
+			You_feel("vulnerable to damage!");
+		}
+		if (HHalf_physical_damage & TIMEOUT) {
+			HHalf_physical_damage &= ~TIMEOUT;
+			You_feel("vulnerable to damage!");
 		}
 		break;
 	default: break;

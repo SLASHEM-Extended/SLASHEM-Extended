@@ -4587,7 +4587,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(38)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(40)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -5396,6 +5396,46 @@ retrytrinsic:
 					if(!(HTechnicality & FROMOUTSIDE)) {
 						You_feel("that your techniques are more powerful now!");
 						HTechnicality |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 39:
+				if (intloss) {
+					if (HHalf_spell_damage & INTRINSIC) {
+						HHalf_spell_damage &= ~INTRINSIC;
+						You_feel("vulnerable to spells!");
+						hasmadeachange = 1;
+					}
+					if (HHalf_spell_damage & TIMEOUT) {
+						HHalf_spell_damage &= ~TIMEOUT;
+						You_feel("vulnerable to spells!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HHalf_spell_damage & FROMOUTSIDE)) {
+						You_feel("protected from spells.");
+						HHalf_spell_damage |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 40:
+				if (intloss) {
+					if (HHalf_physical_damage & INTRINSIC) {
+						HHalf_physical_damage &= ~INTRINSIC;
+						You_feel("vulnerable to damage!");
+						hasmadeachange = 1;
+					}
+					if (HHalf_physical_damage & TIMEOUT) {
+						HHalf_physical_damage &= ~TIMEOUT;
+						You_feel("vulnerable to damage!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HHalf_physical_damage & FROMOUTSIDE)) {
+						You_feel("protected from damage.");
+						HHalf_physical_damage |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

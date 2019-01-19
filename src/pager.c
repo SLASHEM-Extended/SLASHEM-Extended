@@ -22698,6 +22698,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel like being kicked by sexy girls and cleaing their shoes.",
 	"Whoops, you're getting really dizzy.",
 	"Are you a blonde by any chance?",
+	"You feel vulnerable to spells!",
+	"You feel vulnerable to damage!",
 
 };
 
