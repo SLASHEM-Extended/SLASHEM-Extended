@@ -22701,6 +22701,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel vulnerable to spells!",
 	"You feel vulnerable to damage!",
 	"The message is broadcast all over the dungeon!",
+	"Since your weapon has taken too much damage, you can't smash the bars with it.",
 
 };
 

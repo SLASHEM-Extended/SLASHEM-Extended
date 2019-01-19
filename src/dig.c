@@ -417,6 +417,12 @@ dig()
 					use_skill(P_WEDI, 1);
 				}
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
+
+				/* too eroded weapon can't smash bars, kludge for eternium and similar stuff --Amy */
+				if (uwep && (uwep->oeroded >= MAX_ERODE || uwep->oeroded2 >= MAX_ERODE) ) {
+					pline("Since your weapon has taken too much damage, you can't smash the bars with it.");
+				} else {
+
 			    digtxt = "You smash the bars to the ground.";
 
 			    if (In_sokoban(&u.uz))
@@ -436,7 +442,10 @@ dig()
 		 * that 99.9% of players won't use anyway because they don't understand russian. --Amy */
 			    }
 				(void)wither_dmg(uwep, xname(uwep), rn2(4), TRUE, &youmonst); /* sorry --Amy */
-		if (!rn2(5)) mkobj_at(CHAIN_CLASS, dpx, dpy, FALSE); /* maybe make a chain from the bars --Amy */
+				if (!rn2(5)) mkobj_at(CHAIN_CLASS, dpx, dpy, FALSE); /* maybe make a chain from the bars --Amy */
+
+				} /* weapon isn't too damaged check */
+
 			} else {
 			    digtxt = "You succeed in cutting away some rock.";
 			    lev->typ = CORR;
