@@ -4721,6 +4721,7 @@ register struct monst *mtmp;
 			otmp = mksobj(TORCH, TRUE, FALSE);
 			if (otmp) {
 				otmp->quan = 1;
+				otmp->owt = weight(otmp);
 				(void) mpickobj(mtmp, otmp, TRUE);
 			}
 

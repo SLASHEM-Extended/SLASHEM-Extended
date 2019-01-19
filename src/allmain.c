@@ -2556,6 +2556,7 @@ trapsdone:
 				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
 				else {
 					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
 					dropy(dynamite);
 					attach_bomb_blow_timeout(dynamite, 0, 0);
 				}

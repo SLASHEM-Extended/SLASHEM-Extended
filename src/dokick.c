@@ -1535,6 +1535,7 @@ dokick()
 				if (nfruit < 1) nfruit = 1;
 				short frtype = treefruit->otyp;
 				treefruit->quan = nfruit;
+				treefruit->owt = weight(treefruit);
 				if (is_plural(treefruit))
 				    pline("Some %s fall from the tree!", xname(treefruit));
 				else
@@ -1546,6 +1547,7 @@ dokick()
 				    treefruit = mksobj(frtype, TRUE, FALSE);
 				    if (treefruit) {
 					    treefruit->quan = nfruit-nfall;
+					    treefruit->owt = weight(treefruit);
 					    pline("%ld %s got caught in the branches.",
 						nfruit-nfall, xname(treefruit));
 					    dealloc_obj(treefruit);

@@ -850,6 +850,11 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_FORM_CHANGER:
 	    case PM_UNDEAD_TRACER:
 	    case PM_UNDEAD_MASON:
+	    case PM_UNDEAD_DEMAGOGUE:
+	    case PM_UNDEAD_CELLAR_CHILD:
+	    case PM_UNDEAD_GRENADONIN:
+	    case PM_UNDEAD_SOCIAL_JUSTICE_WARRIOR:
+	    case PM_UNDEAD_WALSCHOLAR:
 	    case PM_UNDEAD_HUSSY:
 	    case PM_UNDEAD_ANACHRONOUNBINDER:
 	    case PM_UNDEAD_NUCLEAR_PHYSICIST:
@@ -967,6 +972,7 @@ register struct monst *mtmp;
 					artiname(ART_HAND_OF_VECNA));
 		initspecial:
 			obj->quan = 1;
+			obj->owt = weight(obj);
 			curse(obj);
 			place_object(obj, x, y);
 			stackobj(obj);

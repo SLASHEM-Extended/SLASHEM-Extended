@@ -1555,6 +1555,7 @@ badeffect()
 		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
 		You_feel("burdened");
 		otmp->quan = 1;
+		otmp->owt = weight(otmp);
 		if (pickup_object(otmp, 1, FALSE, TRUE) <= 0) {
 		obj_extract_self(otmp);
 		place_object(otmp, u.ux, u.uy);

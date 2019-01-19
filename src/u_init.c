@@ -27392,7 +27392,10 @@ register struct trobj *trop;
 			    objX->spe = trop->trspe;
 			if (trop->trbless != UNDEF_BLESS)
 			    objX->blessed = trop->trbless;
-		}
+
+		objX->owt = weight(objX);
+
+		} /* haxor, i.e. objX code */
 
 
 
