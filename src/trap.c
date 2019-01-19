@@ -8807,11 +8807,13 @@ madnesseffect:
 		}
 
 		if (at_dgn_entrance("The Subquest") && !u.silverbellget) {
+			pline("You trigger a magic portal.");
 			pline("The power of your nemesis is keeping this portal closed...");
 			break;
 		}
 
 		if (at_dgn_entrance("Yendorian Tower") && !achieve.get_amulet) {
+			pline("You trigger a magic portal.");
 			pline("As long as the Amulet of Yendor has never been in your possession, this portal will not function.");
 			break;
 		}
