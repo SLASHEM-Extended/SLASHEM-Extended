@@ -2880,6 +2880,30 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ WAN_CHAOS_TERRAIN, "khaos mestnosti" },
 	{ WAN_FLEECY_TERRAIN, "vorsistyy rel'yef" },
 
+	{ SPE_GRAVE, "mogila" },
+	{ SPE_TUNNELS, "tunneli" },
+	{ SPE_FARMING, "sel'skoye khozyaystvo" },
+	{ SPE_MOUNTAINS, "gory" },
+	{ SPE_DIVING, "dayving" },
+	{ SPE_CRYSTALLIZATION, "kristallizatsiya" },
+	{ SPE_MOORLAND, "vereshchatnik" },
+	{ SPE_URINE, "mocha" },
+	{ SPE_QUICKSAND, "plyvun" },
+	{ SPE_STYX, "stiks" },
+	{ SPE_ATTUNE_MAGIC, "magiya nastroyki" },
+	{ SPE_SNOW, "sneg" },
+	{ SPE_ASH, "yasen'" },
+	{ SPE_SAND, "pesok" },
+	{ SPE_PAVING, "moshcheniye" },
+	{ SPE_HIGHWAY, "shosse" },
+	{ SPE_GRASSLAND, "lug" },
+	{ SPE_NETHER_MIST, "nizhniy tuman" },
+	{ SPE_STALACTITE, "stalaktit" },
+	{ SPE_CRYPT, "kripta" },
+	{ SPE_BUBBLE_BOBBLE, "puzyr'" },
+	{ SPE_RAIN, "dozhd'" },
+
+
 	/* todo area */
 
 	{0, "" }
@@ -5227,6 +5251,29 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ WAN_CHAOS_TERRAIN, "betartiblik joy" },
 	{ WAN_FLEECY_TERRAIN, "gavyum erlar" },
+
+	{ SPE_GRAVE, "qabr" },
+	{ SPE_TUNNELS, "tunnellar" },
+	{ SPE_FARMING, "qishloq xo'jaligi" },
+	{ SPE_MOUNTAINS, "tog'lar" },
+	{ SPE_DIVING, "sho'ng'in" },
+	{ SPE_CRYSTALLIZATION, "kristallanish" },
+	{ SPE_MOORLAND, "tog'li erlar" },
+	{ SPE_URINE, "siydik" },
+	{ SPE_QUICKSAND, "bilqillama qumloq" },
+	{ SPE_STYX, "stiks" },
+	{ SPE_ATTUNE_MAGIC, "hamohang qilmoq sehrli" },
+	{ SPE_SNOW, "qor" },
+	{ SPE_ASH, "kul" },
+	{ SPE_SAND, "qum" },
+	{ SPE_PAVING, "slaydni yopish" },
+	{ SPE_HIGHWAY, "avtomobil yo'li" },
+	{ SPE_GRASSLAND, "chorvachilik" },
+	{ SPE_NETHER_MIST, "o'tkir tuman" },
+	{ SPE_STALACTITE, "sarkitit" },
+	{ SPE_CRYPT, "yer ostidagi sag'ana" },
+	{ SPE_BUBBLE_BOBBLE, "kabarcikli noto'g'ri ziplatma" },
+	{ SPE_RAIN, "yomg'ir" },
 
 	/* todo area */
 

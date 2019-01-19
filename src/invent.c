@@ -12479,6 +12479,48 @@ struct obj *obj;
 				pline("Generates some ice tiles in your proximity, and reduces your maximum mana by up to 2 points."); break;
 			case SPE_GROW_TREES:
 				pline("It's a powerful spell that lets trees grow near you, but it also reduces your maximum mana by up to 4 points."); break;
+			case SPE_GRAVE:
+				pline("This spell erects grave walls, but also reduces your maximum mana by up to 7 points."); break;
+			case SPE_TUNNELS:
+				pline("A spell that creates tunnels. It may reduce your maximum mana by up to 4 points."); break;
+			case SPE_FARMING:
+				pline("Casting this spell generates farmland, and sometimes reduces your maximum mana by up to 3 points."); break;
+			case SPE_MOUNTAINS:
+				pline("If you cast this spell, mountains will appear. But it might also reduce your maximum mana by up to 7 points."); break;
+			case SPE_DIVING:
+				pline("Creates some water tunnels around you, and reduces your maximum mana by up to 3 points."); break;
+			case SPE_CRYSTALLIZATION:
+				pline("Spawns crystal water tiles, and may reduce your maximum mana by up to 2 points."); break;
+			case SPE_MOORLAND:
+				pline("Transforms some tiles into moorland, and occasionally reduces your maximum mana by up to 2 points."); break;
+			case SPE_URINE:
+				pline("If you somehow want to transform floor tiles into urine, cast this. Rarely it can also reduce your maximum mana by up to 2 points."); break;
+			case SPE_QUICKSAND:
+				pline("Creates shifting sand tiles, and sometimes reduces your maximum mana by up to 3 points."); break;
+			case SPE_STYX:
+				pline("This spell can create styx rivers, and sometimes reduces your maximum mana by up to 2 points."); break;
+			case SPE_SNOW:
+				pline("Creates snow terrain, and has a low chance of reducing your maximum mana by up to 2 points."); break;
+			case SPE_ASH:
+				pline("Transforms regular floor into ash, and may reduce maximum mana by up to 3 points."); break;
+			case SPE_SAND:
+				pline("Creates sand terrain. It may reduce your maximum mana by up to 2 points."); break;
+			case SPE_PAVING:
+				pline("This spell will transform some floor tiles into paved floors, and very occasionally it can also reduce your maximum mana by up to 2 points."); break;
+			case SPE_HIGHWAY:
+				pline("Creates highway terrains, but also reduces your maximum mana by up to 6 points."); break;
+			case SPE_GRASSLAND:
+				pline("An elemental spell that turns regular floor to grassland, with the drawback that every once in a while it can reduce your maximum mana by up to 2 points."); break;
+			case SPE_NETHER_MIST:
+				pline("Creates nether mist terrain, and occasionally reduces your maximum mana by up to 2 points."); break;
+			case SPE_STALACTITE:
+				pline("You can cast this spell to create stalactite terrain, and sometimes it reduces your maximum mana by up to 2 points."); break;
+			case SPE_CRYPT:
+				pline("This spell can transform regular floor to crypt floor. On rare occasions it also reduces your maximum mana by up to 2 points."); break;
+			case SPE_BUBBLE_BOBBLE:
+				pline("A spell that creates floating bubbles as terrain, but it can also reduce your maximum mana by up to 2 points."); break;
+			case SPE_RAIN:
+				pline("Creates rain clouds, if for some odd reason you want to have them on the current dungeon level. Sometimes it also reduces your maximum mana by up to 2 points."); break;
 			case SPE_DRIPPING_TREAD:
 				pline("You can drip the elements for a while if you cast this, although it also costs up to 3 maximum HP. Walking around while the effect is active will generate water, lava, ice or cloud terrain underneath you; at higher skill levels you will be able to control the type of terrain created."); break;
 			case SPE_GEOLYSIS:
@@ -12574,6 +12616,8 @@ struct obj *obj;
 				pline("Cures all nasty trap effects, but then also causes various bad effects and gives you intrinsic nastiness, meaning the nasty trap effects will come back to haunt you some more after a while!"); break;
 			case SPE_THRONE_GAMBLE:
 				pline("Replicates the effects of sitting on a throne, although it cannot give a wish of course. This spell can occasionally backfire."); break;
+			case SPE_ATTUNE_MAGIC:
+				pline("Replicates the effects of invoking a pentagram. This spell can occasionally backfire."); break;
 			case SPE_BACKFIRE:
 				pline("Well, you probably should not cast this."); break;
 			case SPE_DEMEMORIZE:

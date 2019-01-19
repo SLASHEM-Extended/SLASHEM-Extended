@@ -9867,6 +9867,29 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_CUTTING].oc_name = "rezka";
 	obj_descr[SPE_CURE_DIM].oc_name = "lecheniye tusklost'";
 
+	obj_descr[SPE_GRAVE].oc_name = "mogila";
+	obj_descr[SPE_TUNNELS].oc_name = "tunneli";
+	obj_descr[SPE_FARMING].oc_name = "sel'skoye khozyaystvo";
+	obj_descr[SPE_MOUNTAINS].oc_name = "gory";
+	obj_descr[SPE_DIVING].oc_name = "dayving";
+	obj_descr[SPE_CRYSTALLIZATION].oc_name = "kristallizatsiya";
+	obj_descr[SPE_MOORLAND].oc_name = "vereshchatnik";
+	obj_descr[SPE_URINE].oc_name = "mocha";
+	obj_descr[SPE_QUICKSAND].oc_name = "plyvun";
+	obj_descr[SPE_STYX].oc_name = "stiks";
+	obj_descr[SPE_ATTUNE_MAGIC].oc_name = "magiya nastroyki";
+	obj_descr[SPE_SNOW].oc_name = "sneg";
+	obj_descr[SPE_ASH].oc_name = "yasen'";
+	obj_descr[SPE_SAND].oc_name = "pesok";
+	obj_descr[SPE_PAVING].oc_name = "moshcheniye";
+	obj_descr[SPE_HIGHWAY].oc_name = "shosse";
+	obj_descr[SPE_GRASSLAND].oc_name = "lug";
+	obj_descr[SPE_NETHER_MIST].oc_name = "nizhniy tuman";
+	obj_descr[SPE_STALACTITE].oc_name = "stalaktit";
+	obj_descr[SPE_CRYPT].oc_name = "kripta";
+	obj_descr[SPE_BUBBLE_BOBBLE].oc_name = "puzyr'";
+	obj_descr[SPE_RAIN].oc_name = "dozhd'";
+
 	{
 
 	register int i;
@@ -10799,6 +10822,29 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_FINAL_EXPLOSION].oc_name = "oxirgi portlash";
 	obj_descr[SPE_CUTTING].oc_name = "kesish";
 	obj_descr[SPE_CURE_DIM].oc_name = "qattiqlashishi xira";
+
+	obj_descr[SPE_GRAVE].oc_name = "qabr";
+	obj_descr[SPE_TUNNELS].oc_name = "tunnellar";
+	obj_descr[SPE_FARMING].oc_name = "qishloq xo'jaligi";
+	obj_descr[SPE_MOUNTAINS].oc_name = "tog'lar";
+	obj_descr[SPE_DIVING].oc_name = "sho'ng'in";
+	obj_descr[SPE_CRYSTALLIZATION].oc_name = "kristallanish";
+	obj_descr[SPE_MOORLAND].oc_name = "tog'li erlar";
+	obj_descr[SPE_URINE].oc_name = "siydik";
+	obj_descr[SPE_QUICKSAND].oc_name = "bilqillama qumloq";
+	obj_descr[SPE_STYX].oc_name = "stiks";
+	obj_descr[SPE_ATTUNE_MAGIC].oc_name = "hamohang qilmoq sehrli";
+	obj_descr[SPE_SNOW].oc_name = "qor";
+	obj_descr[SPE_ASH].oc_name = "kul";
+	obj_descr[SPE_SAND].oc_name = "qum";
+	obj_descr[SPE_PAVING].oc_name = "slaydni yopish";
+	obj_descr[SPE_HIGHWAY].oc_name = "avtomobil yo'li";
+	obj_descr[SPE_GRASSLAND].oc_name = "chorvachilik";
+	obj_descr[SPE_NETHER_MIST].oc_name = "o'tkir tuman";
+	obj_descr[SPE_STALACTITE].oc_name = "sarkitit";
+	obj_descr[SPE_CRYPT].oc_name = "yer ostidagi sag'ana";
+	obj_descr[SPE_BUBBLE_BOBBLE].oc_name = "kabarcikli noto'g'ri ziplatma";
+	obj_descr[SPE_RAIN].oc_name = "yomg'ir";
 
 	{
 
