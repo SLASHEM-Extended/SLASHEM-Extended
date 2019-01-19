@@ -7383,7 +7383,7 @@ register struct obj *obj;
 		return 0;
 
 	if (stack_too_big(obj))
-		return 0;
+		return 1;
 
 	switch (obj->otyp)
 	{
