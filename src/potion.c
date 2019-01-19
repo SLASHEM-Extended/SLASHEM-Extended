@@ -994,6 +994,8 @@ struct obj *otmp;
 		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "etiklar silay")) return TRUE;
 	}
 
+	return FALSE;
+
 }
 
 boolean
@@ -1024,6 +1026,8 @@ int number;
 		if (!strcmp(OBJ_DESCR(objects[number]), "sexy heels") || !strcmp(OBJ_DESCR(objects[number]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "belgila sexy ko'chirish to'piqlarni")) return TRUE;
 		if (!strcmp(OBJ_DESCR(objects[number]), "stroking boots") || !strcmp(OBJ_DESCR(objects[number]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[number]), "etiklar silay")) return TRUE;
 	}
+
+	return FALSE;
 
 }
 
