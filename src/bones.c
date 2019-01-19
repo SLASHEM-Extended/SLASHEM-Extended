@@ -144,14 +144,16 @@ boolean restore;
 			}
 			if (otmp) {
 
-				if(rn2(2)) curse(otmp);
+				if(!rn2(3)) curse(otmp);
 
 				/* still blessed? Roll for a chance to make it uncursed. --Amy */
-				if(rn2(2) && otmp->blessed) unbless(otmp);
+				if(!rn2(3) && otmp->blessed) unbless(otmp);
 
 				/* degrade everything to reduce the # of free stuff the finder will get */
-				if (otmp->spe > 2) otmp->spe /= 2;
-				else if (otmp->spe > -20) otmp->spe--;
+				if (rn2(2)) {
+					if (otmp->spe > 2) otmp->spe /= 2;
+					else if (otmp->spe > -20) otmp->spe--;
+				}
 
 			}
 		}

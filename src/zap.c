@@ -2696,12 +2696,16 @@ poly_obj(obj, id)
 	}
 
 	/* degrade the object because polypiling is too powerful --Amy */
-	if (otmp->spe > 2) otmp->spe /= 2;
-	else if (otmp->spe > -20) otmp->spe--;
-	if (otmp->cursed) curse(otmp);
-	else if (!otmp->blessed && rn2(3)) curse(otmp);
-	else if (!rn2(3)) curse(otmp);
-	else if (rn2(3)) unbless(otmp);
+	if (rn2(2) || evilfriday) {
+		if (otmp->spe > 2) otmp->spe /= 2;
+		else if (otmp->spe > -20) otmp->spe--;
+	}
+	if (rn2(2) || evilfriday) {
+		if (otmp->cursed) curse(otmp);
+		else if (!otmp->blessed && rn2(3)) curse(otmp);
+		else if (!rn2(3)) curse(otmp);
+		else if (rn2(3)) unbless(otmp);
+	}
 
 	/* update the weight */
 	otmp->owt = weight(otmp);
