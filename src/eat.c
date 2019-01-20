@@ -871,6 +871,7 @@ boolean allowmsg;
 		    You("cannibal!  You will regret this!");
 		}
 		HAggravate_monster |= FROMOUTSIDE;
+		increasesanity(rnd((level_difficulty() * 2) + 5));
 
 		/* "Cannibalism angers your god instead of removing telepathy." In the Evil Variant, new bad effects are added,
 		 * they don't replace old bad effects but happen in addition to them. --Amy */
