@@ -2076,6 +2076,7 @@ E const char *longingmessage(void);
 
 E void gangscholarmessage(void);
 E void longingtrapeffect(void);
+E void demagogueparole(void);
 
 /* ### pcmain.c ### */
 
@@ -2501,6 +2502,7 @@ E void recursioneffect(void);
 E void greenslimetransformation(void);
 E void bindertransformation(void);
 E void changehybridization(int);
+E void demagoguerecursioneffect(void);
 
 /* ### rumors.c ### */
 

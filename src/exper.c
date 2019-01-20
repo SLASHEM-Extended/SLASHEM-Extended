@@ -2187,6 +2187,32 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		}
 
+		} /* DQ slime check */
+
+		if (isdemagogue) { /* this is done here because you could use the recursion effect to circumvent it --Amy */
+
+			if (u.ulevel == 5) {
+				MysteriousForceActive |= FROMOUTSIDE;
+			}
+			if (u.ulevel == 9) {
+				UnfairAttackBug |= FROMOUTSIDE;
+			}
+			if (u.ulevel == 13) {
+				HighlevelStatus |= FROMOUTSIDE;
+			}
+			if (u.ulevel == 17) {
+				TrapCreationProblem |= FROMOUTSIDE;
+			}
+			if (u.ulevel == 21) {
+				UndressingEffect |= FROMOUTSIDE;
+			}
+			if (u.ulevel == 25) {
+				OrangeSpells |= FROMOUTSIDE;
+			}
+			if (u.ulevel == 30) {
+				SatanEffect |= FROMOUTSIDE;
+			}
+
 		}
 
 		if (Role_if(PM_BINDER) && u.ulevel > u.urmaxlvlC) {

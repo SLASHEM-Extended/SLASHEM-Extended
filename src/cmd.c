@@ -1701,7 +1701,12 @@ domonability()
 			pline("You switch to martial arts.");
 			return 1;
 		}
-
+		goto flowannoyance;
+	} else
+flowannoyance:
+		if (Role_if(PM_DEMAGOGUE) && !u.temprecursion && !u.demagoguerecursion && u.demagogueabilitytimer == 0 && !(In_endgame(&u.uz)) && yn("Do you want to use recursion to temporarily become someone else?") == 'y') {
+		u.demagogueabilitytimer = rnz(2500);
+		demagoguerecursioneffect();
 	} else if (Upolyd)
 		pline("Any (other) special ability you may have is purely reflexive.");
 	else You("don't have another special ability in your normal form!");
@@ -5276,6 +5281,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.demagogueabilitytimer && isdemagogue) {
+		sprintf(buf, "to wait until you can use your special recursion.");
+	      sprintf(eos(buf), " (%d)", u.demagogueabilitytimer);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.acutraining) {
 		sprintf(buf, "double skill training.");
 	      sprintf(eos(buf), " (%d)", u.acutraining);
@@ -5952,6 +5963,12 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && u.temprecursion) {
 		sprintf(buf, "under the effect of temporary recursion");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.temprecursiontime);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.demagoguerecursion) {
+		sprintf(buf, "temporarily playing as another role");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.demagoguerecursiontime);
 		you_are(buf);
 	}
 
@@ -8852,6 +8869,12 @@ int final;
 		dump(youhad, buf);
 	}
 
+	if (u.demagogueabilitytimer && isdemagogue) {
+		sprintf(buf, "to wait until you can use your special recursion.");
+	      sprintf(eos(buf), " (%d)", u.demagogueabilitytimer);
+		dump(youhad, buf);
+	}
+
 	if (u.acutraining) {
 		sprintf(buf, "double skill training.");
 	      sprintf(eos(buf), " (%d)", u.acutraining);
@@ -9496,6 +9519,11 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (u.demagoguerecursion) {
+		sprintf(buf, "temporarily playing as another role");
+		sprintf(eos(buf), " (%d)", u.demagoguerecursiontime);
+		dump(youwere, buf);
+	}
 	if (Detect_monsters) {
 		sprintf(buf, StrongDetect_monsters ? "sensing all monsters" : "sensing the presence of monsters");
 	      sprintf(eos(buf), " (%d)", HDetect_monsters);

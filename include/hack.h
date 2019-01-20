@@ -331,6 +331,8 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define isroommate (Race_if(PM_ROOMMATE) || flags.hybridroommate)
 #define isextravator (Race_if(PM_EXTRAVATOR) || flags.hybridextravator)
 
+#define isdemagogue (Role_if(PM_DEMAGOGUE) || u.demagoguerecursion)
+
 /* Friday the 13th is supposed to make many things harder for the player, including some evilvariant stuff --Amy
  * can also deliberately invoke the effect by playing in elm street mode */
 #define evilfriday (isevilvariant || (flags.elmstreet && !rn2(5)) || (flags.friday13 && !rn2(5)))

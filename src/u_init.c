@@ -7641,6 +7641,10 @@ u_init()
 	u.oldrecursionrole = -1;
 	u.oldrecursionrace = -1;
 
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
+	u.demagogueabilitytimer = 10000;
+
 	u.tarmustrokingturn = 0;
 
 	u.dehydrationtime = 0;

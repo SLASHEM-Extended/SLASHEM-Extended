@@ -8283,6 +8283,8 @@ recursioneffect()
 {
 	u.temprecursion = 0;
 	u.temprecursiontime = 0;
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
 	u.oldrecursionrole = -1;
 	u.oldrecursionrace = -1;
 
@@ -8325,6 +8327,8 @@ greenslimetransformation()
 {
 	u.temprecursion = 0;
 	u.temprecursiontime = 0;
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
 	u.oldrecursionrole = -1;
 	u.oldrecursionrace = -1;
 	
@@ -8340,6 +8344,8 @@ bindertransformation()
 {
 	u.temprecursion = 0;
 	u.temprecursiontime = 0;
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
 	u.oldrecursionrole = -1;
 	u.oldrecursionrace = -1;
 	
@@ -8355,6 +8361,8 @@ temprecursioneffect()
 {
 	u.temprecursiontime = rnz(2500 + rnd(5000));
 	u.temprecursion = 1;
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
 
 	if (!rn2(4)) {
 
@@ -8389,6 +8397,25 @@ temprecursioneffect()
 		pline("You're temporarily a %s now!", urace.noun);
 
 	}
+
+	init_uasmon();
+
+	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
+
+}
+
+void
+demagoguerecursioneffect()
+{
+	u.demagoguerecursiontime = rnz(250);
+	u.demagoguerecursion = 1;
+
+	u.oldrecursionrole = flags.initrole;
+	u.oldrecursionrace = -1;
+	flags.initrole = randrole();
+	urole = roles[flags.initrole];
+
+	pline("You turn into a %s!", (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 	init_uasmon();
 

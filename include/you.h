@@ -954,6 +954,10 @@ struct you {
 	int oldrecursionrace;
 	int temprecursiontime;
 
+	boolean demagoguerecursion; /* demagogue special ability */
+	int demagoguerecursiontime;
+	int demagogueabilitytimer;
+
 	boolean totter;	/* scroll of symmetry toggles this */
 
 	int nurseextracost;	/* for chat-to-nurses functionality */

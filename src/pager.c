@@ -3751,6 +3751,29 @@ static const char * const gangscholarverbs[] = {
 "laughs: ", "sneers: ", "bickers: ", "chortles: ", "giggles: ", "hisses: ", "shouts: ", "screams: ", "says: ", "grins: ", "bellows: ", "thunders: ", "booms: ", "snickers: ", "announces: ", "whispers: ", "barks: ", "snarls: ", "mutters: ", "threatens: ", "tells: ", "boasts: ", "messages: ", "grumbles: ", "states: ", "yells: ", "speaks: ", "gloats: ", "growls: ", "remarks: ",
 };
 
+static NEARDATA const char * const demagoguelines[] = {
+"This country is going down the tubes, I tell you!",
+"We gotta take a tally of those agitators!",
+"We gotta account for with those heretics!",
+"The people have no food! And it's all because of the government!",
+"This government shall be usurped!",
+"All that the politicians ever do is to prey on the citizens!",
+"There's too many aliens in this country!",
+"Do not vote for the current government! Vote for me instead!",
+"Unemployment can only be defeated if we get rid of the current chancellor!",
+"I certainly know what I want, and it's NO type of ice block and NO bang gang!",
+"I shall become president, and then, where other countries merely survive, we will THRIVE!",
+"We need to declare war to our neighboring countries!",
+"If things get too bad, we'll launch our nuke to eradicate our enemies!",
+"The tax-a-drivers are evil! Shoot them on sight!",
+"Man you can't trust the law!",
+"All the police in this country are corrupt!",
+"All the politicians are corrupt and working for some lobbies instead of working for the citizens!",
+"Well have you looked at that other country? They have a system that works! It's much better than ours!",
+"We should have abolished monarchy while we still had the chance!",
+"Everyone who is against us will be removed! For good!",
+};
+
 static NEARDATA const char * const longinglines[] = {
 "You just can't stop thinking about the sexy %s.",
 "%s has such sexy butt cheeks... mmmmmmmm!",
@@ -22733,6 +22756,12 @@ longingmessage()
 }
 
 const char *
+demagoguemessage()
+{
+	return (demagoguelines[rn2(SIZE(demagoguelines))]);
+}
+
+const char *
 gangscholartaunt()
 {
 	return (hussylines[rn2(SIZE(hussylines))]);
@@ -22767,6 +22796,14 @@ longingtrapeffect()
 {
 	char buf[BUFSZ];
 	pline(longingmessage(), longinggirls[rn2(SIZE(longinggirls))]);
+
+}
+
+void
+demagogueparole()
+{
+	char buf[BUFSZ];
+	verbalize(demagoguemessage());
 
 }
 

@@ -284,6 +284,12 @@ nh_timeout()
 		if (!u.powerfailure) pline("Your power comes back online.");
 	}
 
+	if (u.demagogueabilitytimer) {
+		u.demagogueabilitytimer--;
+		if (u.demagogueabilitytimer < 0) u.demagogueabilitytimer = 0; /* fail safe */
+		if (!u.demagogueabilitytimer && isdemagogue) pline("You're capable of using #monster to temporarily change your role.");
+	}
+
 	if (u.hussyperfume) {
 		u.hussyperfume--;
 		if (u.hussyperfume < 0) u.hussyperfume = 0; /* fail safe */
@@ -345,6 +351,25 @@ nh_timeout()
 			init_uasmon();
 
 		}
+	}
+
+	if (u.demagoguerecursiontime) {
+
+		if (u.demagoguerecursiontime < 0) u.demagoguerecursiontime = 1; /* fail safe */
+		if (In_endgame(&u.uz)) u.demagoguerecursiontime = 1; /* can't use it to ascend as something else --Amy */
+
+		u.demagoguerecursiontime--;
+		if (!u.demagoguerecursiontime) {
+			u.demagoguerecursion = 0;
+			if (u.oldrecursionrole != -1) {
+				urole = roles[u.oldrecursionrole];
+				flags.initrole = u.oldrecursionrole;
+			}
+			u.oldrecursionrole = -1;
+			pline("You appear to be a %s %s again.", urace.noun, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+			init_uasmon();
+		}
+
 	}
 
 	if (u.fumbleduration) u.fumbleduration--;

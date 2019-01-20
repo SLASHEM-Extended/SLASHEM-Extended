@@ -2571,11 +2571,14 @@ int skill;
     You("are now %s skilled in %s.",
 	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more",
 	P_NAME(skill));
-    if (!tech_known(T_DISARM) && (P_SKILL(skill) == P_SKILLED) && 
+
+	if (!isdemagogue) {
+
+	if (!tech_known(T_DISARM) && (P_SKILL(skill) == P_SKILLED) && 
     		skill <= P_LAST_WEAPON && skill != P_WHIP) {
     	learntech(T_DISARM, FROMOUTSIDE, 1);
     	You("learn how to perform disarm!");
-    }
+	}
 
 	if (skill == P_TRIDENT && P_SKILL(skill) == P_MASTER && !tech_known(T_SILENT_OCEAN)) {
 	    	learntech(T_SILENT_OCEAN, FROMOUTSIDE, 1);
@@ -2987,6 +2990,8 @@ int skill;
 	    	learntech(T_USE_THE_FORCE_LUKE, FROMOUTSIDE, 1);
 	    	You("learn how to perform use the force luke!");
 	}
+
+	} /* demagogue check */
 
 	if (Role_if(PM_BINDER) || Role_if(PM_ANACHRONOUNBINDER)) {
 
@@ -3747,6 +3752,460 @@ int degree;
 
 /*    if (skill != P_NONE && !P_RESTRICTED(skill)) {*/
     if (skill != P_NONE) {
+
+	if (isdemagogue) {
+
+		if (P_ADVANCE(skill) < degree) P_ADVANCE(skill) = 0;
+		else P_ADVANCE(skill) -= degree;
+
+		register int tryct, tryct2, i;
+
+		if (!P_RESTRICTED(skill)) {
+
+			tryct = 2000;
+			tryct2 = 10;
+			i = 0;
+
+			while (u.skills_advanced && tryct && (P_ADVANCE(skill) < practice_needed_to_advance_nonmax(P_SKILL(skill) - 1, skill) ) ) {
+				lose_weapon_skill(1);
+				i++;
+				tryct--;
+
+			}
+
+			while (i) {
+				if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+				else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+				i--;
+			}
+
+			/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+			while (tryct2 && P_ADVANCE(skill) < practice_needed_to_advance_nonmax(P_SKILL(skill) - 1, skill) ) {
+				P_SKILL(skill)--;
+				if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+				else u.weapon_slots++;
+				tryct2--;
+
+			}
+
+		}
+
+		/* learn techniques if you get a skill to zero */
+		if (P_ADVANCE(skill) == 0) {
+
+			if (skill == P_TRIDENT && !tech_known(T_SILENT_OCEAN)) {
+				learntech(T_SILENT_OCEAN, FROMOUTSIDE, 1);
+				You("learn how to perform silent ocean!");
+			}
+			if (skill == P_UNICORN_HORN && !tech_known(T_GLOWHORN)) {
+				learntech(T_GLOWHORN, FROMOUTSIDE, 1);
+				You("learn how to perform glowhorn!");
+			}
+			if (skill == P_UNICORN_HORN && !tech_known(T_STAT_RESIST)) {
+				learntech(T_STAT_RESIST, FROMOUTSIDE, 1);
+				You("learn how to perform stat resist!");
+			}
+			if (skill == P_CHAOS_SPELL && !tech_known(T_INTRINSIC_ROULETTE)) {
+				learntech(T_INTRINSIC_ROULETTE, FROMOUTSIDE, 1);
+				You("learn how to perform intrinsic roulette!");
+			}
+			if (skill == P_ELEMENTAL_SPELL && !tech_known(T_SPECTRAL_SWORD)) {
+				learntech(T_SPECTRAL_SWORD, FROMOUTSIDE, 1);
+				You("learn how to perform spectral sword!");
+			}
+			if (skill == P_OCCULT_SPELL && !tech_known(T_REVERSE_IDENTIFY)) {
+				learntech(T_REVERSE_IDENTIFY, FROMOUTSIDE, 1);
+				You("learn how to perform reverse identify!");
+			}
+			if (skill == P_SEARCHING && !tech_known(T_DETECT_TRAPS)) {
+				learntech(T_DETECT_TRAPS, FROMOUTSIDE, 1);
+				You("learn how to perform detect traps!");
+			}
+			if (skill == P_PETKEEPING && !tech_known(T_DIRECTIVE)) {
+				learntech(T_DIRECTIVE, FROMOUTSIDE, 1);
+				You("learn how to perform directive!");
+			}
+			if (skill == P_TWO_WEAPON_COMBAT && !tech_known(T_SWAP_WEAPON)) {
+				learntech(T_SWAP_WEAPON, FROMOUTSIDE, 1);
+				You("learn how to perform swap weapon!");
+			}
+			if (skill == P_IMPLANTS && !tech_known(T_REMOVE_IMPLANT)) {
+				learntech(T_REMOVE_IMPLANT, FROMOUTSIDE, 1);
+				You("learn how to perform remove implant!");
+			}
+			if (skill == P_IMPLANTS && !tech_known(T_REROLL_IMPLANT)) {
+				learntech(T_REROLL_IMPLANT, FROMOUTSIDE, 1);
+				You("learn how to perform reroll implant!");
+			}
+			if (skill == P_TECHNIQUES && !tech_known(T_TIME_STOP)) {
+				learntech(T_TIME_STOP, FROMOUTSIDE, 1);
+				You("learn how to perform time stop!");
+			}
+			if (skill == P_LANCE && !tech_known(T_MILDEN_CURSE)) {
+				learntech(T_MILDEN_CURSE, FROMOUTSIDE, 1);
+				You("learn how to perform milden curse!");
+			}
+			if (skill == P_POLEARMS && !tech_known(T_FORCE_FIELD)) {
+				learntech(T_FORCE_FIELD, FROMOUTSIDE, 1);
+				You("learn how to perform force field!");
+			}
+			if (skill == P_POLEARMS && !tech_known(T_POINTINESS)) {
+				learntech(T_POINTINESS, FROMOUTSIDE, 1);
+				You("learn how to perform pointiness!");
+			}
+			if (skill == P_PADDLE && !tech_known(T_BUG_SPRAY)) {
+				learntech(T_BUG_SPRAY, FROMOUTSIDE, 1);
+				You("learn how to perform bug spray!");
+			}
+			if (skill == P_QUARTERSTAFF && !tech_known(T_WHIRLSTAFF)) {
+				learntech(T_WHIRLSTAFF, FROMOUTSIDE, 1);
+				You("learn how to perform whirlstaff!");
+			}
+			if (skill == P_CROSSBOW && !tech_known(T_DELIBERATE_CURSE)) {
+				learntech(T_DELIBERATE_CURSE, FROMOUTSIDE, 1);
+				You("learn how to perform deliberate curse!");
+			}
+			if (skill == P_RIDING && !tech_known(T_ACQUIRE_STEED)) {
+				learntech(T_ACQUIRE_STEED, FROMOUTSIDE, 1);
+				You("learn how to perform acquire steed!");
+			}
+			if (skill == P_RIDING && !tech_known(T_SADDLING)) {
+				learntech(T_SADDLING, FROMOUTSIDE, 1);
+				You("learn how to perform saddling!");
+			}
+			if (skill == P_HIGH_HEELS && !tech_known(T_SHOPPING_QUEEN)) {
+				learntech(T_SHOPPING_QUEEN, FROMOUTSIDE, 1);
+				You("learn how to perform shopping queen!");
+			}
+			if (skill == P_HIGH_HEELS && !tech_known(T_BEAUTY_CHARM)) {
+				learntech(T_BEAUTY_CHARM, FROMOUTSIDE, 1);
+				You("learn how to perform beauty charm!");
+			}
+			if (skill == P_HIGH_HEELS && !tech_known(T_ASIAN_KICK)) {
+				learntech(T_ASIAN_KICK, FROMOUTSIDE, 1);
+				You("learn how to perform asian kick!");
+			}
+			if (skill == P_HIGH_HEELS && !tech_known(T_LEGSCRATCH_ATTACK)) {
+				learntech(T_LEGSCRATCH_ATTACK, FROMOUTSIDE, 1);
+				You("learn how to perform legscratch attack!");
+			}
+			if (skill == P_HIGH_HEELS && !tech_known(T_GROUND_STOMP)) {
+				learntech(T_GROUND_STOMP, FROMOUTSIDE, 1);
+				You("learn how to perform ground stomp!");
+			}
+			if (skill == P_HIGH_HEELS && !tech_known(T_ATHLETIC_COMBAT)) {
+				learntech(T_ATHLETIC_COMBAT, FROMOUTSIDE, 1);
+				You("learn how to perform athletic combat!");
+			}
+			if (skill == P_SPIRITUALITY && !tech_known(T_PRAYING_SUCCESS)) {
+				learntech(T_PRAYING_SUCCESS, FROMOUTSIDE, 1);
+				You("learn how to perform praying success!");
+			}
+			if (skill == P_DEVICES && !tech_known(T_OVER_RAY)) {
+				learntech(T_OVER_RAY, FROMOUTSIDE, 1);
+				You("learn how to perform over-ray!");
+			}
+			if (skill == P_BOOMERANG && !tech_known(T_ENCHANTERANG)) {
+				learntech(T_ENCHANTERANG, FROMOUTSIDE, 1);
+				You("learn how to perform enchanterang!");
+			}
+			if (skill == P_BOOMERANG && !tech_known(T_BATMAN_ARSENAL)) {
+				learntech(T_BATMAN_ARSENAL, FROMOUTSIDE, 1);
+				You("learn how to perform batman arsenal!");
+			}
+			if (skill == P_BOOMERANG && !tech_known(T_JOKERBANE)) {
+				learntech(T_JOKERBANE, FROMOUTSIDE, 1);
+				You("learn how to perform jokerbane!");
+			}
+			if (skill == P_WHIP && !tech_known(T_CALL_THE_POLICE)) {
+				learntech(T_CALL_THE_POLICE, FROMOUTSIDE, 1);
+				You("learn how to perform call the police!");
+			}
+			if (skill == P_WHIP && !tech_known(T_DOMINATE)) {
+				learntech(T_DOMINATE, FROMOUTSIDE, 1);
+				You("learn how to perform dominate!");
+			}
+			if (skill == P_WHIP && !tech_known(T_INCARNATION)) {
+				learntech(T_INCARNATION, FROMOUTSIDE, 1);
+				You("learn how to perform incarnation!");
+			}
+			if (skill == P_MARTIAL_ARTS && !tech_known(T_COMBO_STRIKE)) {
+				learntech(T_COMBO_STRIKE, FROMOUTSIDE, 1);
+				You("learn how to perform combo strike!");
+			}
+			if (skill == P_POLYMORPHING && !tech_known(T_FUNGOISM)) {
+				learntech(T_FUNGOISM, FROMOUTSIDE, 1);
+				You("learn how to perform fungoism!");
+			}
+			if (skill == P_POLYMORPHING && !tech_known(T_BECOME_UNDEAD)) {
+				learntech(T_BECOME_UNDEAD, FROMOUTSIDE, 1);
+				You("learn how to perform become undead!");
+			}
+			if (skill == P_BARE_HANDED_COMBAT && !tech_known(T_JIU_JITSU)) {
+				learntech(T_JIU_JITSU, FROMOUTSIDE, 1);
+				You("learn how to perform jiu-jitsu!");
+			}
+			if (skill == P_SHURIKEN && !tech_known(T_BLADE_ANGER)) {
+				learntech(T_BLADE_ANGER, FROMOUTSIDE, 1);
+				You("learn how to perform blade anger!");
+			}
+			if (skill == P_PETKEEPING && !tech_known(T_RE_TAMING)) {
+				learntech(T_RE_TAMING, FROMOUTSIDE, 1);
+				You("learn how to perform re-taming!");
+			}
+			if (skill == P_SHII_CHO && !tech_known(T_UNCURSE_SABER)) {
+				learntech(T_UNCURSE_SABER, FROMOUTSIDE, 1);
+				You("learn how to perform uncurse saber!");
+			}
+			if (skill == P_MAKASHI && !tech_known(T_ENERGY_CONSERVATION)) {
+				learntech(T_ENERGY_CONSERVATION, FROMOUTSIDE, 1);
+				You("learn how to perform energy conservation!");
+			}
+			if (skill == P_SORESU && !tech_known(T_ENCHANT_ROBE)) {
+				learntech(T_ENCHANT_ROBE, FROMOUTSIDE, 1);
+				You("learn how to perform enchant robe!");
+			}
+			if (skill == P_ATARU && !tech_known(T_WILD_SLASHING)) {
+				learntech(T_WILD_SLASHING, FROMOUTSIDE, 1);
+				You("learn how to perform wild slashing!");
+			}
+			if (skill == P_SHIEN && !tech_known(T_ABSORBER_SHIELD)) {
+				learntech(T_ABSORBER_SHIELD, FROMOUTSIDE, 1);
+				You("learn how to perform absorber shield!");
+			}
+			if (skill == P_DJEM_SO && !tech_known(T_PSYCHO_FORCE)) {
+				learntech(T_PSYCHO_FORCE, FROMOUTSIDE, 1);
+				You("learn how to perform psycho force!");
+			}
+			if (skill == P_NIMAN && !tech_known(T_INTENSIVE_TRAINING)) {
+				learntech(T_INTENSIVE_TRAINING, FROMOUTSIDE, 1);
+				You("learn how to perform intensive training!");
+			}
+			if (skill == P_JUYO && !tech_known(T_SURRENDER_OR_DIE)) {
+				learntech(T_SURRENDER_OR_DIE, FROMOUTSIDE, 1);
+				You("learn how to perform surrender or die!");
+			}
+			if (skill == P_VAAPAD && !tech_known(T_PERILOUS_WHIRL)) {
+				learntech(T_PERILOUS_WHIRL, FROMOUTSIDE, 1);
+				You("learn how to perform perilous whirl!");
+			}
+			if (skill == P_PETKEEPING && P_ADVANCE(P_HIGH_HEELS) == 0 && !tech_known(T_SUMMON_SHOE)) {
+				learntech(T_SUMMON_SHOE, FROMOUTSIDE, 1);
+				You("learn how to perform summon shoe!");
+			}
+			if (skill == P_HIGH_HEELS && P_ADVANCE(P_PETKEEPING) == 0 && !tech_known(T_SUMMON_SHOE)) {
+				learntech(T_SUMMON_SHOE, FROMOUTSIDE, 1);
+				You("learn how to perform summon shoe!");
+			}
+			if (skill == P_PETKEEPING && P_ADVANCE(P_HIGH_HEELS) == 0 && !tech_known(T_SUMMON_SHOE)) {
+				learntech(T_SUMMON_SHOE, FROMOUTSIDE, 1);
+				You("learn how to perform summon shoe!");
+			}
+			if (skill == P_HIGH_HEELS && P_ADVANCE(P_PETKEEPING) == 0 && !tech_known(T_SUMMON_SHOE)) {
+				learntech(T_SUMMON_SHOE, FROMOUTSIDE, 1);
+				You("learn how to perform summon shoe!");
+			}
+			if (skill == P_SEXY_FLATS && !tech_known(T_KICK_IN_THE_NUTS)) {
+				learntech(T_KICK_IN_THE_NUTS, FROMOUTSIDE, 1);
+				You("learn how to perform kick in the nuts!");
+			}
+			if (skill == P_SEXY_FLATS && !tech_known(T_DISARMING_KICK)) {
+				learntech(T_DISARMING_KICK, FROMOUTSIDE, 1);
+				You("learn how to perform disarming kick!");
+			}
+			if (skill == P_SEXY_FLATS && !tech_known(T_INLAY_WARFARE)) {
+				learntech(T_INLAY_WARFARE, FROMOUTSIDE, 1);
+				You("learn how to perform inlay warfare!");
+			}
+
+			if (skill == P_SHII_CHO && !tech_known(T_STEADY_HAND)) {
+				learntech(T_STEADY_HAND, FROMOUTSIDE, 1);
+				You("learn how to perform steady hand!");
+			}
+			if (skill == P_MAKASHI && !tech_known(T_FORCE_FILLING)) {
+				learntech(T_FORCE_FILLING, FROMOUTSIDE, 1);
+				You("learn how to perform force filling!");
+			}
+			if (skill == P_SORESU && !tech_known(T_JEDI_TAILORING)) {
+				learntech(T_JEDI_TAILORING, FROMOUTSIDE, 1);
+				You("learn how to perform jedi tailoring!");
+			}
+			if (skill == P_ATARU && !tech_known(T_INTRINSIC_SACRIFICE)) {
+				learntech(T_INTRINSIC_SACRIFICE, FROMOUTSIDE, 1);
+				You("learn how to perform intrinsic sacrifice!");
+			}
+			if (skill == P_DJEM_SO && !tech_known(T_BEAMSWORD)) {
+				learntech(T_BEAMSWORD, FROMOUTSIDE, 1);
+				You("learn how to perform beamsword!");
+			}
+			if (skill == P_NIMAN && !tech_known(T_ENERGY_TRANSFER)) {
+				learntech(T_ENERGY_TRANSFER, FROMOUTSIDE, 1);
+				You("learn how to perform energy transfer!");
+			}
+			if (skill == P_JUYO && !tech_known(T_SOFTEN_TARGET)) {
+				learntech(T_SOFTEN_TARGET, FROMOUTSIDE, 1);
+				You("learn how to perform soften target!");
+			}
+			if (skill == P_VAAPAD && !tech_known(T_PROTECT_WEAPON)) {
+				learntech(T_PROTECT_WEAPON, FROMOUTSIDE, 1);
+				You("learn how to perform protect weapon!");
+			}
+			if (skill == P_SHIEN && !tech_known(T_POWERFUL_AURA)) {
+				learntech(T_POWERFUL_AURA, FROMOUTSIDE, 1);
+				You("learn how to perform powerful aura!");
+			}
+
+			if (skill == P_NIMAN && P_ADVANCE(P_QUARTERSTAFF) == 0 && !tech_known(T_BOOSTAFF)) {
+				learntech(T_BOOSTAFF, FROMOUTSIDE, 1);
+				You("learn how to perform boostaff!");
+			}
+			if (skill == P_QUARTERSTAFF && P_ADVANCE(P_NIMAN) == 0 && !tech_known(T_BOOSTAFF)) {
+				learntech(T_BOOSTAFF, FROMOUTSIDE, 1);
+				You("learn how to perform boostaff!");
+			}
+
+			if (skill == P_MAKASHI && P_ADVANCE(P_JAVELIN) == 0 && !tech_known(T_CLONE_JAVELIN)) {
+				learntech(T_CLONE_JAVELIN, FROMOUTSIDE, 1);
+				You("learn how to perform clone javelin!");
+			}
+			if (skill == P_JAVELIN && P_ADVANCE(P_MAKASHI) == 0 && !tech_known(T_CLONE_JAVELIN)) {
+				learntech(T_CLONE_JAVELIN, FROMOUTSIDE, 1);
+				You("learn how to perform clone javelin!");
+			}
+
+			if (skill == P_MACE && P_ADVANCE(P_SHII_CHO) == 0 && !tech_known(T_REFUGE)) {
+				learntech(T_REFUGE, FROMOUTSIDE, 1);
+				You("learn how to perform refuge!");
+			}
+			if (skill == P_SHII_CHO && P_ADVANCE(P_MACE) == 0 && !tech_known(T_REFUGE)) {
+				learntech(T_REFUGE, FROMOUTSIDE, 1);
+				You("learn how to perform refuge!");
+			}
+
+			if (skill == P_SORESU && P_ADVANCE(P_MARTIAL_ARTS) == 0 && !tech_known(T_DRAINING_PUNCH)) {
+				learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+				You("learn how to perform draining punch!");
+			}
+			if (skill == P_MARTIAL_ARTS && P_ADVANCE(P_SORESU) == 0 && !tech_known(T_DRAINING_PUNCH)) {
+				learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+				You("learn how to perform draining punch!");
+			}
+			if (skill == P_SORESU && P_ADVANCE(P_MARTIAL_ARTS) == 0 && !tech_known(T_DRAINING_PUNCH)) {
+				learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+				You("learn how to perform draining punch!");
+			}
+			if (skill == P_MARTIAL_ARTS && P_ADVANCE(P_SORESU) == 0 && !tech_known(T_DRAINING_PUNCH)) {
+				learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+				You("learn how to perform draining punch!");
+			}
+
+			if (skill == P_SORESU && P_ADVANCE(P_BARE_HANDED_COMBAT) == 0 && !tech_known(T_ESCROBISM)) {
+				learntech(T_ESCROBISM, FROMOUTSIDE, 1);
+				You("learn how to perform escrobism!");
+			}
+			if (skill == P_BARE_HANDED_COMBAT && P_ADVANCE(P_SORESU) == 0 && !tech_known(T_ESCROBISM)) {
+				learntech(T_ESCROBISM, FROMOUTSIDE, 1);
+				You("learn how to perform escrobism!");
+			}
+
+			if (skill == P_ATARU && P_ADVANCE(P_SCIMITAR) == 0 && !tech_known(T_PIRATE_BROTHERING)) {
+				learntech(T_PIRATE_BROTHERING, FROMOUTSIDE, 1);
+				You("learn how to perform pirate brothering!");
+			}
+			if (skill == P_SCIMITAR && P_ADVANCE(P_ATARU) == 0 && !tech_known(T_PIRATE_BROTHERING)) {
+				learntech(T_PIRATE_BROTHERING, FROMOUTSIDE, 1);
+				You("learn how to perform pirate brothering!");
+			}
+
+			if (skill == P_DJEM_SO && P_ADVANCE(P_CROSSBOW) == 0 && !tech_known(T_NUTS_AND_BOLTS)) {
+				learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+				You("learn how to perform nuts and bolts!");
+			}
+			if (skill == P_CROSSBOW && P_ADVANCE(P_DJEM_SO) == 0 && !tech_known(T_NUTS_AND_BOLTS)) {
+				learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+				You("learn how to perform nuts and bolts!");
+			}
+			if (skill == P_DJEM_SO && P_ADVANCE(P_CROSSBOW) == 0 && !tech_known(T_NUTS_AND_BOLTS)) {
+				learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+				You("learn how to perform nuts and bolts!");
+			}
+			if (skill == P_CROSSBOW && P_ADVANCE(P_DJEM_SO) == 0 && !tech_known(T_NUTS_AND_BOLTS)) {
+				learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+				You("learn how to perform nuts and bolts!");
+			}
+
+			if (skill == P_JUYO && P_ADVANCE(P_POLEARMS) == 0 && !tech_known(T_DECAPABILITY)) {
+				learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+				You("learn how to perform decapability!");
+			}
+			if (skill == P_POLEARMS && P_ADVANCE(P_JUYO) == 0 && !tech_known(T_DECAPABILITY)) {
+				learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+				You("learn how to perform decapability!");
+			}
+			if (skill == P_JUYO && P_ADVANCE(P_POLEARMS) == 0 && !tech_known(T_DECAPABILITY)) {
+				learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+				You("learn how to perform decapability!");
+			}
+			if (skill == P_POLEARMS && P_ADVANCE(P_JUYO) == 0 && !tech_known(T_DECAPABILITY)) {
+				learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+				You("learn how to perform decapability!");
+			}
+
+			if (skill == P_VAAPAD && P_ADVANCE(P_TWO_HANDED_SWORD) == 0 && !tech_known(T_NO_HANDS_CURSE)) {
+				learntech(T_NO_HANDS_CURSE, FROMOUTSIDE, 1);
+				You("learn how to perform no-hands curse!");
+			}
+			if (skill == P_TWO_HANDED_SWORD && P_ADVANCE(P_VAAPAD) == 0 && !tech_known(T_NO_HANDS_CURSE)) {
+				learntech(T_NO_HANDS_CURSE, FROMOUTSIDE, 1);
+				You("learn how to perform no-hands curse!");
+			}
+
+			if (skill == P_SEXY_FLATS && P_ADVANCE(P_HIGH_HEELS) == 0 && !tech_known(T_HIGH_HEELED_SNEAKERS)) {
+				learntech(T_HIGH_HEELED_SNEAKERS, FROMOUTSIDE, 1);
+				You("learn how to perform high-heeled sneakers!");
+			}
+			if (skill == P_HIGH_HEELS && P_ADVANCE(P_SEXY_FLATS) == 0 && !tech_known(T_HIGH_HEELED_SNEAKERS)) {
+				learntech(T_HIGH_HEELED_SNEAKERS, FROMOUTSIDE, 1);
+				You("learn how to perform high-heeled sneakers!");
+			}
+
+			if (skill == P_MAKASHI && P_ADVANCE(P_ATARU) == 0 && P_ADVANCE(P_VAAPAD) == 0 && !tech_known(T_FORM_CHOICE)) {
+				learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+				You("learn how to perform form choice!");
+			}
+			if (skill == P_VAAPAD && P_ADVANCE(P_MAKASHI) == 0 && P_ADVANCE(P_ATARU) == 0 && !tech_known(T_FORM_CHOICE)) {
+				learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+				You("learn how to perform form choice!");
+			}
+			if (skill == P_ATARU && P_ADVANCE(P_VAAPAD) == 0 && P_ADVANCE(P_MAKASHI) == 0 && !tech_known(T_FORM_CHOICE)) {
+				learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+				You("learn how to perform form choice!");
+			}
+
+			if (skill == P_WEDI && !tech_known(T_STAR_DIGGING)) {
+				learntech(T_STAR_DIGGING, FROMOUTSIDE, 1);
+				You("learn how to perform star digging!");
+			}
+			if (skill == P_WEDI && !tech_known(T_STARWARS_FRIENDS)) {
+				learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
+				You("learn how to perform starwars friends!");
+			}
+
+			if (skill == P_WEDI && P_ADVANCE(P_PICK_AXE) == 0 && !tech_known(T_USE_THE_FORCE_LUKE)) {
+				learntech(T_USE_THE_FORCE_LUKE, FROMOUTSIDE, 1);
+				You("learn how to perform use the force luke!");
+			}
+			if (skill == P_PICK_AXE && P_ADVANCE(P_WEDI) == 0 && !tech_known(T_USE_THE_FORCE_LUKE)) {
+				learntech(T_USE_THE_FORCE_LUKE, FROMOUTSIDE, 1);
+				You("learn how to perform use the force luke!");
+			}
+
+		}
+
+		return;
+
+	}
+
 	advance_before = can_advance(skill, FALSE);
 	if (Extra_wpn_practice) degree *= 2;
 	if (StrongExtra_wpn_practice) degree *= 2;
@@ -4972,6 +5431,12 @@ const struct def_skill *class_skill;
 	    P_ADVANCE(skill) = 0;
 	}
 
+	if (Role_if(PM_DEMAGOGUE)) {
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			P_ADVANCE(skill) = 20 + rn2(1260); /* random value from 20 to 1279 --Amy */
+		}
+	}
+
 	if (isamerican) return; /* all skills start out restricted --Amy */
 	if (Role_if(PM_ANACHRONOUNBINDER)) return;
 
@@ -4986,9 +5451,9 @@ const struct def_skill *class_skill;
 	    /* Really high potential in the skill
 	     * Right now only used for H to H skills
 	     */
-	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) P_SKILL(skill) = P_BASIC;
+	    if ((P_MAX_SKILL(skill) > P_EXPERT) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) ) P_SKILL(skill) = P_BASIC;
 
-		if ((P_MAX_SKILL(skill) >= P_UNSKILLED) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) && Race_if(PM_TUMBLRER) ) P_SKILL(skill) = P_MAX_SKILL(skill);
+		if ((P_MAX_SKILL(skill) >= P_UNSKILLED) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && !isamerican && !Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Role_if(PM_POLITICIAN) && !Role_if(PM_MURDERER) && Race_if(PM_TUMBLRER) ) P_SKILL(skill) = P_MAX_SKILL(skill);
 
 	}
 
@@ -4996,14 +5461,14 @@ const struct def_skill *class_skill;
 	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
 	    if (skill != P_NONE) {
-		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
+		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
 			if (wizard) pline("Warning: %s should be at least expert.  Fixing...", P_NAME(skill));
 			P_MAX_SKILL(skill) = P_EXPERT;
 		}
-		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
+		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
 	    }
 	}
 
@@ -5866,7 +6331,7 @@ rerollthree:
 		    impossible("skill_init: curr > max: %s", P_NAME(skill));
 		    P_MAX_SKILL(skill) = P_SKILL(skill);
 		}
-		P_ADVANCE(skill) = practice_needed_to_advance(P_SKILL(skill)-1,skill);
+		if (!Role_if(PM_DEMAGOGUE)) P_ADVANCE(skill) = practice_needed_to_advance(P_SKILL(skill)-1,skill);
 	    }
 	}
 
@@ -5896,6 +6361,9 @@ rerollthree:
 
 	/* If you somehow start with a skill at high enough proficiency, learn the associated techniques
 	 * otherwise you might be unable to get the tech at all --Amy */
+
+	if (!Role_if(PM_DEMAGOGUE)) {
+
 	for (i = P_FIRST_WEAPON; i <= P_LAST_WEAPON; i++) {
 		if (!tech_known(T_DISARM) && (P_SKILL(i) >= P_SKILLED) && i <= P_LAST_WEAPON && i != P_WHIP) {
 			learntech(T_DISARM, FROMOUTSIDE, 1);
@@ -6160,6 +6628,8 @@ rerollthree:
 	    	learntech(T_USE_THE_FORCE_LUKE, FROMOUTSIDE, 1);
 	}
 
+	} /* demagogue check */
+
 }
 
 void
@@ -6173,13 +6643,13 @@ xtraskillinit()
 	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_ANACHRONOUNBINDER) && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
 	    if (skill != P_NONE) {
-		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
+		if(!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
 			P_MAX_SKILL(skill) = P_EXPERT;
 		}
-		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
+		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
 	    }
 	}
 
@@ -6246,6 +6716,293 @@ skilltrainingdecrease(lossamount)
 int lossamount;
 {
 	int pickskill, tryct, tryct2, i;
+
+	if (isdemagogue) { /* skill loss could be beneficial for them, so you get something else instead */
+
+		pline("You are frenzied!");
+		if (u.berserktime) {
+		    switch (rn2(11)) {
+		    case 0:
+				make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"demagogic sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lossamount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + lossamount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lossamount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lossamount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lossamount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lossamount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lossamount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lossamount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lossamount, TRUE);
+			    break;
+		    }
+
+		} else u.berserktime = lossamount;
+
+		demagogueparole();
+		aggravate();
+
+		if (!rn2(100)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+			register int randsp, randmnst, randmnsx, monstercolor;
+			struct permonst *randmonstforspawn;
+
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+
+			if (!rn2(4)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+
+				if (wizard || !rn2(10)) pline("You suddenly feel a surge of tension!");
+
+			for (i = 0; i < randsp; i++) {
+			/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+			if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), cx, cy, MM_ADJACENTOK);
+			else
+		 	    (void) makemon((struct permonst *)0, cx, cy, MM_ADJACENTOK);
+
+			}
+
+			}
+
+			else if (!rn2(3)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmonstforspawn = rndmonst();
+
+			if (wizard || !rn2(10)) You_feel("the arrival of monsters!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(randmonstforspawn, cx, cy, MM_ADJACENTOK);
+			}
+
+			}
+
+			else if (!rn2(2)) {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+
+			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+			}
+
+			else {
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(363);
+
+			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+			}
+
+			u.aggravation = 0;
+
+
+		}
+
+		return;
+	}
 
 	pickskill = rnd(P_RIDING);
 
