@@ -3,11 +3,6 @@
 # NetHack may be freely redistributed.  See license for details.
 
 
-# Based on some obscure old roguelike game that nobody knows.
-# It's called "Castle of the Winds".
-# Also partly based on the Yeoman quest. Everything else is my own quest design. --Amy
-
-
 ### The quest "start" level ###
 #
 MAZE: "Gre-strt",' '
