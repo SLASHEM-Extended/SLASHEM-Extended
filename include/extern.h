@@ -3249,7 +3249,7 @@ E boolean obj_resists(struct obj *,int,int);
 E boolean obj_shudders(struct obj *);
 E void do_osshock(struct obj *);
 E void puton_worn_item(struct obj *);
-E struct obj *poly_obj(struct obj *, int);
+E struct obj *poly_obj(struct obj *, int, BOOLEAN_P);
 E int bhito(struct obj *,struct obj *);
 E int bhitpile(struct obj *,int (*)(OBJ_P,OBJ_P),int,int);
 E int zappable(struct obj *);

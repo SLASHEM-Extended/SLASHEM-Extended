@@ -882,7 +882,7 @@ Cloak_on()
 	case CLOAK_OF_POLYMORPH:
 		{
 			register struct obj *polycloak;
-			if (uarmc) polycloak = poly_obj(uarmc, STRANGE_OBJECT);
+			if (uarmc) polycloak = poly_obj(uarmc, STRANGE_OBJECT, FALSE);
 			if (polycloak && is_hazy(polycloak)) {
 				stop_timer(UNPOLY_OBJ, (void *) polycloak);
 				polycloak->oldtyp = STRANGE_OBJECT;

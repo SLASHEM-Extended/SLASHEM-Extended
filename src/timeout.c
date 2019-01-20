@@ -2757,7 +2757,7 @@ unpoly_obj(arg, timeout)
 
 	(void) stop_timer(UNPOLY_OBJ, (void *) obj);
 
-	obj = poly_obj(obj, oldobj);
+	obj = poly_obj(obj, oldobj, FALSE);
 
 	if (obj->otyp == WAN_CANCELLATION || Is_mbag(obj)) {
 	    otmp = obj;

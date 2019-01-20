@@ -8181,7 +8181,7 @@ dodip()
 		else if (obj == uswapwep) was_swapwep = TRUE;
 		else if (obj == uquiver) was_quiver = TRUE;
 
-		obj = poly_obj(obj, STRANGE_OBJECT);
+		obj = poly_obj(obj, STRANGE_OBJECT, FALSE);
 
 		if (was_wep) setuwep(obj, TRUE);
 		else if (was_swapwep) setuswapwep(obj, TRUE);

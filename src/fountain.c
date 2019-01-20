@@ -1241,7 +1241,7 @@ register struct obj *obj;
 			break;
 		case 4:
 			pline("This water contains toxic wastes!");
-			obj = poly_obj(obj, STRANGE_OBJECT);
+			obj = poly_obj(obj, STRANGE_OBJECT, FALSE);
 			u.uconduct.polypiles++;
 			break;
 		case 5: You_hear("clanking from the pipes...");

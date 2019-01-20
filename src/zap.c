@@ -2418,15 +2418,18 @@ struct obj *obj;
  * This should be safe to call for an object anywhere.
  */
 struct obj *
-poly_obj(obj, id)
+poly_obj(obj, id, degradation)
 	struct obj *obj;
 	int id;
+	boolean degradation;
 {
 	struct obj *otmp;
 	xchar ox, oy;
 	boolean can_merge = (id == STRANGE_OBJECT);
 	int obj_location = obj->where;
 	int old_nutrit, new_nutrit;
+
+	if (evilfriday) degradation = TRUE;
 
 	boolean unpoly = (id == STRANGE_OBJECT);
 
@@ -2697,15 +2700,17 @@ poly_obj(obj, id)
 	}
 
 	/* degrade the object because polypiling is too powerful --Amy */
-	if (rn2(2) || evilfriday) {
-		if (otmp->spe > 2) otmp->spe /= 2;
-		else if (otmp->spe > -20) otmp->spe--;
-	}
-	if (rn2(2) || evilfriday) {
-		if (otmp->cursed) curse(otmp);
-		else if (!otmp->blessed && rn2(3)) curse(otmp);
-		else if (!rn2(3)) curse(otmp);
-		else if (rn2(3)) unbless(otmp);
+	if (degradation) {
+		if (rn2(2) || evilfriday) {
+			if (otmp->spe > 2) otmp->spe /= 2;
+			else if (otmp->spe > -20) otmp->spe--;
+		}
+		if (rn2(2) || evilfriday) {
+			if (otmp->cursed) curse(otmp);
+			else if (!otmp->blessed && rn2(3)) curse(otmp);
+			else if (!rn2(3)) curse(otmp);
+			else if (rn2(3)) unbless(otmp);
+		}
 	}
 
 	/* update the weight */
@@ -2939,7 +2944,7 @@ struct obj *obj, *otmp;
 		    do_osshock(obj);
 		    break;
 		}
-		obj = poly_obj(obj, STRANGE_OBJECT);
+		obj = poly_obj(obj, STRANGE_OBJECT, TRUE);
 		newsym(obj->ox,obj->oy);
 		break;
 	case WAN_PROBING:
@@ -3160,13 +3165,13 @@ struct obj *obj, *otmp;
 		switch (objects[obj->otyp].oc_class) {
 		    case ROCK_CLASS:	/* boulders and statues */
 			if (obj->otyp == BOULDER) {
-			    obj = poly_obj(obj, rnd(20) ? MEATBALL : HUGE_CHUNK_OF_MEAT);
+			    obj = poly_obj(obj, rnd(20) ? MEATBALL : HUGE_CHUNK_OF_MEAT, FALSE);
 			    goto smell;
 			} else if (obj->otyp == STATUE) {
 
 				/* endless stone to flesh farming shouldn't be possible --Amy */
 			    if (!rn2(10)) {
-			      obj = poly_obj(obj, MEATBALL);
+			      obj = poly_obj(obj, MEATBALL, FALSE);
 			      goto smell;
 			    }
 
@@ -3176,7 +3181,7 @@ struct obj *obj, *otmp;
 			    refresh_x = oox; refresh_y = ooy;
 			    if (vegetarian(&mons[obj->corpsenm])) {
 				/* Don't animate monsters that aren't flesh */
-				obj = poly_obj(obj, MEATBALL);
+				obj = poly_obj(obj, MEATBALL, FALSE);
 			    	goto smell;
 			    }
 			    if (!animate_statue(obj, oox, ooy,
@@ -3195,7 +3200,7 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 				    obj_extract_self(item);
 				    place_object(item, oox, ooy);
 				}
-				obj = poly_obj(obj, CORPSE);
+				obj = poly_obj(obj, CORPSE, FALSE);
 				break;
 			    }
 			} else { /* new rock class object... */
@@ -3214,7 +3219,7 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 			}
 			if (vegetarian(&mons[obj->corpsenm])) {
 			    /* Don't animate monsters that aren't flesh */
-			    obj = poly_obj(obj, MEATBALL);
+			    obj = poly_obj(obj, MEATBALL, FALSE);
 			    goto smell;
 			}
 			(void) get_obj_location(obj, &oox, &ooy, 0);
@@ -3231,13 +3236,13 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 		    }
 		    /* maybe add weird things to become? */
 		    case RING_CLASS:	/* some of the rings are stone */
-			obj = poly_obj(obj, MEAT_RING);
+			obj = poly_obj(obj, MEAT_RING, FALSE);
 			goto smell;
 		    case WAND_CLASS:	/* marble wand */
-			obj = poly_obj(obj, MEAT_STICK);
+			obj = poly_obj(obj, MEAT_STICK, FALSE);
 			goto smell;
 		    case GEM_CLASS:	/* rocks & gems */
-			obj = poly_obj(obj, MEATBALL);
+			obj = poly_obj(obj, MEATBALL, FALSE);
 smell:
 			if (herbivorous(youmonst.data) &&
 			    (!carnivorous(youmonst.data) ||
