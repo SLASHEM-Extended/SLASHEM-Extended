@@ -1539,9 +1539,12 @@ dodown()
 		else {return(0);} /* didn't move */
 	}
 	if (!stairs_down && !ladder_down) {
+
+		/* Amy edit: just because you can't see the trap doesn't mean it's not there; let the player use it! */
+
 		if (!(trap = t_at(u.ux,u.uy)) ||
 			(trap->ttyp != TRAPDOOR && trap->ttyp != SHAFT_TRAP && trap->ttyp != CURRENT_SHAFT && trap->ttyp != HOLE)
-			|| !Can_fall_thru(&u.uz) || (!trap->tseen && !Race_if(PM_LEVITATOR)) ) {
+			|| !Can_fall_thru(&u.uz) ) {
 
 			/* allow the > key to go down into a pit. But only if it really is one! --Amy */
 			if ((trap = t_at(u.ux,u.uy)) && (trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SPIKED_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT) && !u.utrap) {
