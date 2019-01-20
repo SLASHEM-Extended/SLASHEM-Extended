@@ -22702,6 +22702,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel vulnerable to damage!",
 	"The message is broadcast all over the dungeon!",
 	"Since your weapon has taken too much damage, you can't smash the bars with it.",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Aucune ecoliere inferieure ne peut me donner l'eau. Maintenant, vous avez une lecon que vous n'oublierez pas de sitot, petite fille!'",
+	"The iron bars hiss quietly but remain intact.",
 
 };
 

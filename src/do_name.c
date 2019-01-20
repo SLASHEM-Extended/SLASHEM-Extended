@@ -599,7 +599,7 @@ static const char * const ghostnames[] = {
 	"Aosdict", "Ziratha", "Volt", "Kritixilithos", "Rikersan", "K2",
 	"Leeroy", "Hypnotist", "Anerag", "Icerose", "Madotsuki",
 	"PeterQ", "PavelB", "FlamingGuacamole", "Dracopent", "AntiGulp",
-	"Metanite", "Andrio", "Greyberyl",
+	"Metanite", "Andrio", "Greyberyl", "Pellsson", "Recluse",
 
 };
 

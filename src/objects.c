@@ -2917,6 +2917,7 @@ AMULET((char *)0, "mover", 0, 0, BRICK,    CLR_RED, 1),
 AMULET((char *)0, "mixture", 0, 0, ARCANIUM,    CLR_GREEN, 1),
 AMULET((char *)0, "tether", 0, 0, ETHER,    CLR_BRIGHT_BLUE, 1),
 AMULET((char *)0, "splintering", 0, 0, GLASS,    CLR_CYAN, 1),
+AMULET((char *)0, "aucun", 0, 0, ETERNIUM,    CLR_YELLOW, 1),
 
 OBJECT(OBJ("cheap plastic imitation of the Amulet of Yendor",
 	"Amulet of Yendor"), BITS(0,0,1,0,0,0,0,0,0,0,0,0,PLASTIC), 0,
@@ -3191,6 +3192,11 @@ IMPLANT((char *)0, 	"processed", 0, 0, 0, 0, VEGGY,   CLR_BROWN, 1),
 IMPLANT((char *)0, 	"kebab", 0, 0, 0, 0, FLESH,   CLR_BROWN, 1),
 IMPLANT((char *)0, 	"soaring", 0, 0, 0, 0, PAPER,   CLR_BRIGHT_CYAN, 1),
 IMPLANT((char *)0, 	"unforgiving", 0, 0, 0, 0, CLOTH,   CLR_BROWN, 1),
+IMPLANT((char *)0, 	"pulverized", 0, 0, 0, 0, LEATHER,   CLR_ORANGE, 1),
+IMPLANT((char *)0, 	"highlighted", 0, 0, 0, 0, WOOD,   CLR_WHITE, 1),
+IMPLANT((char *)0, 	"katoru", 0, 0, 0, 0, BONE,   CLR_YELLOW, 1),
+IMPLANT((char *)0, 	"syphilitic", 0, 0, 0, 0, DRAGON_HIDE,   CLR_RED, 1),
+IMPLANT((char *)0, 	"slutty", 0, 0, 0, 0, IRON,   CLR_BRIGHT_MAGENTA, 1),
 
 #undef IMPLANT
 
@@ -5642,6 +5648,14 @@ SCROLL((char *)0,               "GOOD CORDIAL NIGHTINGALE",  P_NONE,     1,   0,
 SCROLL((char *)0,               "FINAL SOLUTION OF THE PRIEST QUESTION",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 SCROLL((char *)0,               "MUH SOGGY KNEE",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "MEYL TAKSISIDI",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "COMMITHACK IS A FUN VARIANT",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "NERVE HEAD MAP UPPER NOSE",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "HARDFOUGHT MODE AND SURGICALLY INSERTED STENNOWORK",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "WHATS THAT SHOULD ALWAYS MANDEVIL",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "SUDDNLY IT HOTHRAXXA HEA HUM",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "DAGGER STINGY K BETTER NOW",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
+SCROLL((char *)0,               "KNOWN ISSUE STENNO SHOULD VE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "CHECKED THE AMULET OF REFLECTION AOSDICT",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
@@ -6481,6 +6495,7 @@ WAND((char *)0,        "zelkova",  0, 500, 1, 0,        WOOD,     CLR_BROWN, 1),
 WAND((char *)0,        "naked",  0, 500, 1, 0,        0,     CLR_WHITE, 1),
 WAND((char *)0,        "fir",  0, 500, 1, 0,        BRICK,     CLR_ORANGE, 1),
 WAND((char *)0,        "californium",  0, 500, 1, 0,        ETHER,     CLR_BRIGHT_BLUE, 1), /* suggested by Istfemer */
+WAND((char *)0,        "derriere",  0, 500, 1, 0,        COMPOST,     CLR_BROWN, 1),
 
 #undef WAND
 
