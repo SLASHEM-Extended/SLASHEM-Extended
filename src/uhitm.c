@@ -7589,8 +7589,10 @@ boolean ranged;
 	    case AD_WEEP:
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
-			level_tele();
-			nomul(-2, "being levelwarped", FALSE);
+			if (!u.levelporting) {
+				u.levelporting = 1;
+				nomul(-2, "being levelwarped", FALSE); /* because it's not called until you get another turn... */
+			}
 			return(0);
 		}
 		else if (!rn2(3) && (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4) )  ) {
@@ -8583,14 +8585,10 @@ boolean ranged;
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
-			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
-			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
-
-			register int newlev = rnd(99);
-			d_level newlevel;
-			get_level(&newlevel, newlev);
-			goto_level(&newlevel, TRUE, FALSE, FALSE);
-			nomul(-2, "being banished", FALSE);
+			if (!u.banishmentbeam) {
+				u.banishmentbeam = 1;
+				nomul(-2, "being banished", FALSE); /* because it's not called until you get another turn... */
+			}
 			return(0);
 		}
 		break;
