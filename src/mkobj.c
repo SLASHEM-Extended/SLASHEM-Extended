@@ -2937,6 +2937,7 @@ register struct obj *otmp;
 	if (!rn2(isfriday ? 50 : 100)) otmp->stckcurse = 1;
 
 	if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) otmp->stckcurse = 1;
+	if (youmonst.data && Role_if(PM_CELLAR_CHILD) && !rn2(10)) otmp->stckcurse = 1;
 
 	if (otmp->cursed) {
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
@@ -2992,6 +2993,7 @@ register struct obj *otmp;
 	if (!rn2(isfriday ? 50 : 100)) otmp->stckcurse = 1;
 
 	if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) otmp->stckcurse = 1;
+	if (youmonst.data && Role_if(PM_CELLAR_CHILD) && !rn2(10)) otmp->stckcurse = 1;
 
 	if (otmp->cursed) { /* should not happen, but oh well */
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;

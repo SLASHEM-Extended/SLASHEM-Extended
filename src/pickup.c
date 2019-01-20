@@ -1623,7 +1623,7 @@ int x, y;
 		pline("Without limbs, you cannot loot anything.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
-	} else if (!freehandX()) {
+	} else if (!freehandX() && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
 		pline("Without a free %s, you cannot loot anything.",
 			body_part(HAND));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -2461,7 +2461,7 @@ int held;
 		}
 		else {return(0);}
 
-	} else if (!freehandX()) {
+	} else if (!freehandX() && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
 		You("have no free %s.", body_part(HAND));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;

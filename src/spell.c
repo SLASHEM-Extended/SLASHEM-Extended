@@ -3197,7 +3197,7 @@ boolean atme;
 		You("are too hungry to cast that spell.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
-	} else if (ACURR(A_STR) < 4)  {
+	} else if (ACURR(A_STR) < 4 && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) )  {
 		You("lack the strength to cast spells.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
@@ -3205,7 +3205,7 @@ boolean atme;
 		"Your concentration falters while carrying so much stuff.")) {
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return (1);
-	} else if (!freehandX()) {
+	} else if (!freehandX() && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
 		Your("arms are not free to cast!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
@@ -9831,6 +9831,7 @@ int spell;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
 	if (uarm && uarm->oartifact == ART_ROFLCOPTER_WEB) chance += 10;
 	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) chance += 20;
+	if (Role_if(PM_CELLAR_CHILD) && uarm && uarm->otyp == MAGE_PLATE_MAIL) chance += 20;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
 	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;

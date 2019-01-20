@@ -1802,6 +1802,8 @@ moveloop()
 
 		}
 
+		if (Role_if(PM_CELLAR_CHILD) && !rn2(5000)) bad_equipment();
+
 		if (CursedParts && !rn2(500)) bad_equipment();
 
 		if (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR && !rn2(500)) bad_equipment();
@@ -8582,18 +8584,48 @@ newboss:
 				if (!rn2(5)) set_itimeout(&HeavyBlind, Blinded);
 			}
 
+			if (Role_if(PM_CELLAR_CHILD) && !rn2(20000)) {
+
+				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+					goto cellarnope;
+				}
+
+				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+					goto cellarnope;
+				}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      level_tele();
+
+				int aggroamount = rnd(6);
+				if (isfriday) aggroamount *= 2;
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+				while (aggroamount) {
+
+					makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+					aggroamount--;
+					if (aggroamount < 0) aggroamount = 0;
+				}
+				u.aggravation = 0;
+				pline("Several monsters come out of a portal.");
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+			}
+cellarnope:
 			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xitoy plash") ) ) {
 
 				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
-					break;
+					goto past1;
 				}
 
 				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
-					break;
+					goto past1;
 				}
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -8608,19 +8640,19 @@ newboss:
 				You("were banished!");
 
 			}
-
+past1:
 			if (!rn2(10000) && RngeChina) {
 
 				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
-					break;
+					goto past2;
 				}
 
 				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
-					break;
+					goto past2;
 				}
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -8635,19 +8667,19 @@ newboss:
 				You("were banished!");
 
 			}
-
+past2:
 			if (!rn2(10000) && uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD) {
 
 				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
-					break;
+					goto past3;
 				}
 
 				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
-					break;
+					goto past3;
 				}
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -8662,7 +8694,7 @@ newboss:
 				You("were banished!");
 
 			}
-
+past3:
 			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "polyform cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sopolimer forma plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "belgigacha bo'lgan poli shakli plash") ) ) {
 				if (!HPolymorph_control) HPolymorph_control = 2;
 				You_feel("polyform.");

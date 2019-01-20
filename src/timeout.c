@@ -260,6 +260,11 @@ nh_timeout()
 		if (u.sokosolveboulder < 0) u.sokosolveboulder = 0; /* fail safe */
 	}
 
+	if (u.cellargravate) {
+		u.cellargravate--;
+		if (u.cellargravate < 0) u.cellargravate = 0; /* fail safe */
+	}
+
 	if (u.sokosolveuntrap) {
 		u.sokosolveuntrap--;
 		if (!u.sokosolveuntrap && issokosolver) pline("You're capable of using #monster to remove adjacent traps.");

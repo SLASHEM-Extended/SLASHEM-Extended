@@ -5701,6 +5701,12 @@ cleanup:
 		change_luck( u.ualign.type == A_LAWFUL ? -2 : -1); /* lower penalty for neutrals --Amy */
 		You(Hallucination ? "killed someone you weren't supposed to - whoops!" : "murderer!");
 
+		if (Role_if(PM_CELLAR_CHILD)) {
+			register int cellarvar = rnz(25000);
+			incr_itimeout(&HAggravate_monster, cellarvar);
+			u.cellargravate += cellarvar;
+		}
+
 		if (Role_if(PM_PALADIN)) { /* more severe murderer penalties */
 			u.ualign.sins += 5; 
 			u.alignlim -= 5;

@@ -566,7 +566,7 @@ struct monst *shkp;
 
 	/* it was annoying that the total was completely irrelevant unless you somehow wanted to compensate the shopkeeper,
 	 * and therefore I decided to have it influence the kop wanted level --Amy */
-	if (!rn2(5) && (total > 10)) u.copwantedlevel += rnz(total / 5);
+	if ((!rn2(5) || Role_if(PM_CELLAR_CHILD)) && (total > 10)) u.copwantedlevel += rnz(total / 5);
 
 	You("stole %ld %s worth of merchandise.",
 	    total, currency(total));

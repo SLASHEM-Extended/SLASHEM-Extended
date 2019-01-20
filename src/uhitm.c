@@ -328,6 +328,15 @@ struct monst *mtmp;
 
 	}
 
+	if (Role_if(PM_CELLAR_CHILD) &&
+	    (!mtmp->mcanmove || mtmp->msleeping ||
+	     (mtmp->mflee && !mtmp->mavenge)) &&
+	    u.ualign.record > -10) {
+	    You("caitiff!");
+	    adjalign(-5);
+
+	}
+
 	if (Race_if(PM_VEELA) &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
 	     (mtmp->mflee && !mtmp->mavenge)) &&

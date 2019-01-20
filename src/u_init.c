@@ -9050,6 +9050,8 @@ u_init()
 
 	u.katitrapocc = 0;
 
+	u.cellargravate = 0;
+
 	u.nataljetrapturns = 0;
 	u.automorefuckthisshit = 0;
 	u.nataljetrapx = 0;

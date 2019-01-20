@@ -1198,6 +1198,8 @@ struct you {
 	int durirequest;
 	int duriworking;
 
+	int cellargravate;
+
 	boolean automorefuckthisshit;	/* gah */
 
 	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */
