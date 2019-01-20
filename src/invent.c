@@ -7608,59 +7608,61 @@ struct obj *obj;
 
 			switch (obj->otyp) {
 
-			case ORCISH_DAGGER: 
+			case ORCISH_DAGGER:
 				pline("A crappy dagger that doesn't do much damage. It can be thrown."); break;
-			case DAGGER: 
+			case DAGGER:
 				pline("A basic dagger that doesn't do much damage. It can be thrown."); break;
-			case DROVEN_DAGGER: 
+			case DROVEN_DAGGER:
 				pline("This dagger does a lot of damage but breaks when thrown."); break;
-			case ATHAME: 
+			case ATHAME:
 				pline("A high-quality dagger that can create hard engravings. It can be thrown."); break;
-			case MERCURIAL_ATHAME: 
+			case MERCURIAL_ATHAME:
 				pline("This silver dagger can create hard engravings. It can be thrown."); break;
-			case SILVER_DAGGER: 
+			case SILVER_DAGGER:
 				pline("A dagger that does extra damage to undead. It can be thrown."); break;
-			case ELVEN_DAGGER: 
+			case ELVEN_DAGGER:
 				pline("Elven daggers do slightly more damage than standard daggers. It can be thrown."); break;
-			case DARK_ELVEN_DAGGER: 
+			case DARK_ELVEN_DAGGER:
 				pline("A good dagger that does respectable damage. It can be thrown."); break;
-			case WOODEN_STAKE: 
+			case WOODEN_STAKE:
 				pline("A quite powerful dagger. It can be thrown."); break;
-			case GREAT_DAGGER: 
+			case GREAT_DAGGER:
 				pline("Used to be the strongest dagger in the game, but now gets surpassed by droven daggers. Still stronger than the average dagger though. It can be thrown."); break;
-			case WORM_TOOTH: 
+			case WORM_TOOTH:
 				pline("A crappy knife that can be turned into a very powerful knife if enchanted. It can be thrown."); break;
-			case KNIFE: 
+			case KNIFE:
 				pline("A totally piece of crap weapon. It can be thrown."); break;
-			case SURVIVAL_KNIFE: 
+			case TENNIS_RACKET:
+				pline("This paddle doesn't do all that much damage, but it has a large to-hit bonus versus bats and birds."); break;
+			case SURVIVAL_KNIFE:
 				pline("A knife that deals extra damage to animals. It can be thrown."); break;
-			case STILETTO: 
+			case STILETTO:
 				pline("This knife is more likely to hit than a regular knife, but it's still awfully weak. It can be thrown."); break;
-			case SCALPEL: 
+			case SCALPEL:
 				pline("Don't bother with this knife-class weapon. The surgery technique works better if you have it in your inventory, though. It can be thrown."); break;
-			case CRYSKNIFE: 
+			case CRYSKNIFE:
 				pline("A magically enchanted knife that does superb damage. It can be thrown."); break;
-			case TOOTH_OF_AN_ALGOLIAN_SUNTIGER: 
+			case TOOTH_OF_AN_ALGOLIAN_SUNTIGER:
 				pline("This razor-sharp knife cuts meat like butter. It can be thrown."); break;
-			case AXE: 
+			case AXE:
 				pline("A standard axe that does moderate damage. It can be used to chop down trees."); break;
-			case OBSIDIAN_AXE: 
+			case OBSIDIAN_AXE:
 				pline("This glass axe does good damage to large monsters. It can be used to chop down trees."); break;
-			case MOON_AXE: 
+			case MOON_AXE:
 				pline("This silver axe does more damage than a standard axe and is super-effective versus undead. It can be used to chop down trees."); break;
-			case BATTLE_AXE: 
+			case BATTLE_AXE:
 				pline("A heavy two-handed axe that does moderate damage. It can be used to chop down trees."); break;
-			case DWARVISH_BATTLE_AXE: 
+			case DWARVISH_BATTLE_AXE:
 				pline("The heavy hitter among the axes that can chop down most monsters in a few hits. It can be used to chop down trees."); break;
-			case DWARVISH_MATTOCK: 
+			case DWARVISH_MATTOCK:
 				pline("A two-handed pick-axe that can do a lot of damage. It can be used for digging."); break;
-			case ORCISH_SHORT_SWORD: 
+			case ORCISH_SHORT_SWORD:
 				pline("The weakest short sword in the game. It is inferior to other short swords in every way."); break;
-			case SHORT_SWORD: 
+			case SHORT_SWORD:
 				pline("A basic short sword that doesn't deal a lot of damage."); break;
-			case VIBROBLADE: 
+			case VIBROBLADE:
 				pline("This object looks like a penis (LOL) and is made of plastic but otherwise it's exactly the same as a bog-standard short sword."); break;
-			case DROVEN_SHORT_SWORD: 
+			case DROVEN_SHORT_SWORD:
 				pline("Ever wanted a short sword that can actually hit armored enemies? Then this is for you. Don't throw it though."); break;
 			case SILVER_SHORT_SWORD: 
 				pline("A basic short sword that doesn't deal a lot of damage. It is effective against undead."); break;
