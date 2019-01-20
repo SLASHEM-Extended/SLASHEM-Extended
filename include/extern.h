@@ -2263,6 +2263,7 @@ E boolean maybeconeheels(void);
 E boolean maybeblockheels(void);
 E boolean maybewedgeheels(void);
 E boolean playerextrinsicaggravatemon(void);
+E boolean automore_active(void);
 
 /* ### pray.c ### */
 

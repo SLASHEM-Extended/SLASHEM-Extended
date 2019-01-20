@@ -1884,7 +1884,7 @@ dmore(cw, s)
 && !program_state.exiting
 #endif
 
-	&& AutomaticMorePrompt) {
+	&& automore_active() && (u.automorefuckthisshit == TRUE) ) {
 		return;
 	}
 
@@ -3293,7 +3293,9 @@ tty_wait_synch()
 && !program_state.exiting
 #endif
 
-	&& AutomaticMorePrompt) return;
+	&& automore_active() && (u.automorefuckthisshit == TRUE) ) {
+		return;
+	}
 
 	    addtopl("--More--");
 	    (void) fflush(stdout);

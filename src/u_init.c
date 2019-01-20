@@ -9047,6 +9047,7 @@ u_init()
 	u.katitrapocc = 0;
 
 	u.nataljetrapturns = 0;
+	u.automorefuckthisshit = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;
 	u.riennevaplus = 0;

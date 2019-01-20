@@ -242,7 +242,10 @@ more()
 && !program_state.exiting
 #endif
 
-	&& AutomaticMorePrompt) return;
+	&& automore_active() && (u.automorefuckthisshit == TRUE) ) {
+		ttyDisplay->inmore = 0;
+		return;
+	}
 
     if(ttyDisplay->toplin) {
 	tty_curs(BASE_WINDOW, cw->curx+1, cw->cury);

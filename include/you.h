@@ -1194,6 +1194,8 @@ struct you {
 	int durirequest;
 	int duriworking;
 
+	boolean automorefuckthisshit;	/* gah */
+
 	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */
 
 	boolean katitrapocc;	/* checking whether you have the occupation */

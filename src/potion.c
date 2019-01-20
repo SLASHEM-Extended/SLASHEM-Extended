@@ -964,6 +964,19 @@ playerwearshighheels()
 }
 
 boolean
+automore_active()
+{
+	if (AutomaticMorePrompt) {
+		u.automorefuckthisshit = TRUE;
+		return TRUE;
+	}
+	else {
+		u.automorefuckthisshit = FALSE;
+		return FALSE;
+	}
+}
+
+boolean
 ishighheeled(otmp)
 struct obj *otmp;
 {

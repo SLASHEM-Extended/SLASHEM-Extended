@@ -143,7 +143,7 @@ curses_block(boolean require_tab)
 #if defined(WIN32)
 && !program_state.exiting
 #endif
-	&& AutomaticMorePrompt ) return 0;
+	&& automore_active() && (u.automorefuckthisshit == TRUE) ) return 0;
 
     curses_get_window_size(MESSAGE_WIN, &height, &width);
     curses_toggle_color_attr(win, MORECOLOR, NONE, ON);
@@ -187,7 +187,7 @@ curses_more()
 #if defined(WIN32)
 && !program_state.exiting
 #endif
-	&& AutomaticMorePrompt ) return 0;
+	&& automore_active() && (u.automorefuckthisshit == TRUE) ) return 0;
 
     return curses_block(FALSE);
 }
