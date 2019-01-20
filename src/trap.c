@@ -2828,7 +2828,7 @@ register int x, y, typ, replacechance;
 	}
 	ttmp->hiddentrap = 0;
 	if (!rn2(!(u.monstertimefinish % 13336) ? 3 : !(u.monstertimefinish % 1336) ? 10 : !(u.monstertimefinish % 136) ? 30 : 100)) ttmp->hiddentrap = 1;
-	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() ) ttmp->hiddentrap = 1;
+	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == u.invisotrap) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == INVISIBLE_TRAP) ttmp->hiddentrap = 1;
@@ -3323,7 +3323,7 @@ unsigned trflags;
 		ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
 		nomul(0, 0, FALSE);
 
-	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) {
+	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() ) {
 		trap->tseen = 0;
 		trap->hiddentrap = 1;
 	}
