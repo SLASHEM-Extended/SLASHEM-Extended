@@ -1366,6 +1366,21 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		}
 
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && u.ulevel > u.urmaxlvlK) {
+
+			u.urmaxlvlK = u.ulevel;
+
+			if (!rn2(4)) {
+				int wondertech = rnd(MAXTECH-1);
+				if (!tech_known(wondertech)) {
+				    	learntech(wondertech, FROMOUTSIDE, 1);
+					You("learn how to perform a new technique!");
+				}
+
+			}
+
+		}
+
 		if (Role_if(PM_WILD_TALENT) && u.ulevel > u.urmaxlvlF) {
 
 		u.urmaxlvlF = u.ulevel;

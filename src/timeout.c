@@ -1511,6 +1511,19 @@ nh_timeout()
 
 	}
 
+	if (!rn2(5000) && Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
 	if (!rn2(1000) && u.uprops[NASTINESS_EFFECTS].extrinsic) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);

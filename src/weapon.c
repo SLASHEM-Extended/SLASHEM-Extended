@@ -5460,7 +5460,7 @@ const struct def_skill *class_skill;
 	}
 
 	/* Set skill for all objects in inventory to be basic */
-	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
+	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
 	    if (skill != P_NONE) {
 		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
@@ -5546,6 +5546,48 @@ const struct def_skill *class_skill;
 		skilltochange = randomgoodskill();
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_GRAND_MASTER;
+	}
+
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) {
+		register int sjwskillamount = 10 + rn2(21); /* 10-30 */
+		register int skilltochange;
+
+		while (sjwskillamount > 0) {
+			sjwskillamount--;
+			skilltochange = randomgoodskill();
+			unrestrict_weapon_skill(skilltochange);
+			switch (rnd(18)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+					P_MAX_SKILL(skilltochange) = P_BASIC;
+					break;
+				case 7:
+				case 8:
+				case 9:
+				case 10:
+				case 11:
+					P_MAX_SKILL(skilltochange) = P_SKILLED;
+					break;
+				case 12:
+				case 13:
+				case 14:
+				case 15:
+					P_MAX_SKILL(skilltochange) = P_EXPERT;
+					break;
+				case 16:
+				case 17:
+					P_MAX_SKILL(skilltochange) = P_MASTER;
+					break;
+				case 18:
+					P_MAX_SKILL(skilltochange) = P_GRAND_MASTER;
+					break;
+			}
+		}
+
 	}
 
 	if (Role_if(PM_TRACER)) {
@@ -6642,7 +6684,7 @@ xtraskillinit()
 	int skill;
 
 	/* Set skill for all objects in inventory to be basic */
-	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_ANACHRONOUNBINDER) && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
+	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isamerican && !Role_if(PM_ANACHRONOUNBINDER) && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
 	    if (skill != P_NONE) {
 		if(!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;

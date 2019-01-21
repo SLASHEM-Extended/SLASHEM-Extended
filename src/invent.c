@@ -1349,6 +1349,460 @@ usingquestarti()
 	return(FALSE);
 }
 
+/* for SJW role: do you have a specific nastytrap effect at your current XL? --Amy */
+
+boolean
+sjwcheck(nastynumber)
+int nastynumber;
+{
+	int sjwlevel;
+	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) return FALSE;
+
+	sjwlevel = u.ulevel + u.xtralevelmult - 1; /* because u.xtralevelmult starts at 1, not 0 */
+
+	while (sjwlevel > 59) sjwlevel -= 30; /* it goes from XL1 to 59 and then loops from 30 again */
+
+	switch (u.ulevel) {
+
+		case 1:
+			if (u.sjwL1E1 == nastynumber) return TRUE;
+			break;
+		case 2:
+			if (u.sjwL2E1 == nastynumber) return TRUE;
+			break;
+		case 3:
+			if (u.sjwL3E1 == nastynumber) return TRUE;
+			break;
+		case 4:
+			if (u.sjwL4E1 == nastynumber) return TRUE;
+			break;
+		case 5:
+			if (u.sjwL5E1 == nastynumber) return TRUE;
+			if (u.sjwL5E2 == nastynumber) return TRUE;
+			break;
+		case 6:
+			if (u.sjwL6E1 == nastynumber) return TRUE;
+			if (u.sjwL6E2 == nastynumber) return TRUE;
+			break;
+		case 7:
+			if (u.sjwL7E1 == nastynumber) return TRUE;
+			if (u.sjwL7E2 == nastynumber) return TRUE;
+			break;
+		case 8:
+			if (u.sjwL8E1 == nastynumber) return TRUE;
+			if (u.sjwL8E2 == nastynumber) return TRUE;
+			break;
+		case 9:
+			if (u.sjwL9E1 == nastynumber) return TRUE;
+			if (u.sjwL9E2 == nastynumber) return TRUE;
+			break;
+		case 10:
+			if (u.sjwL10E1 == nastynumber) return TRUE;
+			if (u.sjwL10E2 == nastynumber) return TRUE;
+			if (u.sjwL10E3 == nastynumber) return TRUE;
+			break;
+		case 11:
+			if (u.sjwL11E1 == nastynumber) return TRUE;
+			if (u.sjwL11E2 == nastynumber) return TRUE;
+			if (u.sjwL11E3 == nastynumber) return TRUE;
+			break;
+		case 12:
+			if (u.sjwL12E1 == nastynumber) return TRUE;
+			if (u.sjwL12E2 == nastynumber) return TRUE;
+			if (u.sjwL12E3 == nastynumber) return TRUE;
+			break;
+		case 13:
+			if (u.sjwL13E1 == nastynumber) return TRUE;
+			if (u.sjwL13E2 == nastynumber) return TRUE;
+			if (u.sjwL13E3 == nastynumber) return TRUE;
+			break;
+		case 14:
+			if (u.sjwL14E1 == nastynumber) return TRUE;
+			if (u.sjwL14E2 == nastynumber) return TRUE;
+			if (u.sjwL14E3 == nastynumber) return TRUE;
+			break;
+		case 15:
+			if (u.sjwL15E1 == nastynumber) return TRUE;
+			if (u.sjwL15E2 == nastynumber) return TRUE;
+			if (u.sjwL15E3 == nastynumber) return TRUE;
+			if (u.sjwL15E4 == nastynumber) return TRUE;
+			break;
+		case 16:
+			if (u.sjwL16E1 == nastynumber) return TRUE;
+			if (u.sjwL16E2 == nastynumber) return TRUE;
+			if (u.sjwL16E3 == nastynumber) return TRUE;
+			if (u.sjwL16E4 == nastynumber) return TRUE;
+			break;
+		case 17:
+			if (u.sjwL17E1 == nastynumber) return TRUE;
+			if (u.sjwL17E2 == nastynumber) return TRUE;
+			if (u.sjwL17E3 == nastynumber) return TRUE;
+			if (u.sjwL17E4 == nastynumber) return TRUE;
+			break;
+		case 18:
+			if (u.sjwL18E1 == nastynumber) return TRUE;
+			if (u.sjwL18E2 == nastynumber) return TRUE;
+			if (u.sjwL18E3 == nastynumber) return TRUE;
+			if (u.sjwL18E4 == nastynumber) return TRUE;
+			break;
+		case 19:
+			if (u.sjwL19E1 == nastynumber) return TRUE;
+			if (u.sjwL19E2 == nastynumber) return TRUE;
+			if (u.sjwL19E3 == nastynumber) return TRUE;
+			if (u.sjwL19E4 == nastynumber) return TRUE;
+			break;
+		case 20:
+			if (u.sjwL20E1 == nastynumber) return TRUE;
+			if (u.sjwL20E2 == nastynumber) return TRUE;
+			if (u.sjwL20E3 == nastynumber) return TRUE;
+			if (u.sjwL20E4 == nastynumber) return TRUE;
+			if (u.sjwL20E5 == nastynumber) return TRUE;
+			break;
+		case 21:
+			if (u.sjwL21E1 == nastynumber) return TRUE;
+			if (u.sjwL21E2 == nastynumber) return TRUE;
+			if (u.sjwL21E3 == nastynumber) return TRUE;
+			if (u.sjwL21E4 == nastynumber) return TRUE;
+			if (u.sjwL21E5 == nastynumber) return TRUE;
+			break;
+		case 22:
+			if (u.sjwL22E1 == nastynumber) return TRUE;
+			if (u.sjwL22E2 == nastynumber) return TRUE;
+			if (u.sjwL22E3 == nastynumber) return TRUE;
+			if (u.sjwL22E4 == nastynumber) return TRUE;
+			if (u.sjwL22E5 == nastynumber) return TRUE;
+			break;
+		case 23:
+			if (u.sjwL23E1 == nastynumber) return TRUE;
+			if (u.sjwL23E2 == nastynumber) return TRUE;
+			if (u.sjwL23E3 == nastynumber) return TRUE;
+			if (u.sjwL23E4 == nastynumber) return TRUE;
+			if (u.sjwL23E5 == nastynumber) return TRUE;
+			break;
+		case 24:
+			if (u.sjwL24E1 == nastynumber) return TRUE;
+			if (u.sjwL24E2 == nastynumber) return TRUE;
+			if (u.sjwL24E3 == nastynumber) return TRUE;
+			if (u.sjwL24E4 == nastynumber) return TRUE;
+			if (u.sjwL24E5 == nastynumber) return TRUE;
+			break;
+		case 25:
+			if (u.sjwL25E1 == nastynumber) return TRUE;
+			if (u.sjwL25E2 == nastynumber) return TRUE;
+			if (u.sjwL25E3 == nastynumber) return TRUE;
+			if (u.sjwL25E4 == nastynumber) return TRUE;
+			if (u.sjwL25E5 == nastynumber) return TRUE;
+			if (u.sjwL25E6 == nastynumber) return TRUE;
+			break;
+		case 26:
+			if (u.sjwL26E1 == nastynumber) return TRUE;
+			if (u.sjwL26E2 == nastynumber) return TRUE;
+			if (u.sjwL26E3 == nastynumber) return TRUE;
+			if (u.sjwL26E4 == nastynumber) return TRUE;
+			if (u.sjwL26E5 == nastynumber) return TRUE;
+			if (u.sjwL26E6 == nastynumber) return TRUE;
+			break;
+		case 27:
+			if (u.sjwL27E1 == nastynumber) return TRUE;
+			if (u.sjwL27E2 == nastynumber) return TRUE;
+			if (u.sjwL27E3 == nastynumber) return TRUE;
+			if (u.sjwL27E4 == nastynumber) return TRUE;
+			if (u.sjwL27E5 == nastynumber) return TRUE;
+			if (u.sjwL27E6 == nastynumber) return TRUE;
+			break;
+		case 28:
+			if (u.sjwL28E1 == nastynumber) return TRUE;
+			if (u.sjwL28E2 == nastynumber) return TRUE;
+			if (u.sjwL28E3 == nastynumber) return TRUE;
+			if (u.sjwL28E4 == nastynumber) return TRUE;
+			if (u.sjwL28E5 == nastynumber) return TRUE;
+			if (u.sjwL28E6 == nastynumber) return TRUE;
+			break;
+		case 29:
+			if (u.sjwL29E1 == nastynumber) return TRUE;
+			if (u.sjwL29E2 == nastynumber) return TRUE;
+			if (u.sjwL29E3 == nastynumber) return TRUE;
+			if (u.sjwL29E4 == nastynumber) return TRUE;
+			if (u.sjwL29E5 == nastynumber) return TRUE;
+			if (u.sjwL29E6 == nastynumber) return TRUE;
+			break;
+		case 30:
+			if (u.sjwL30E1 == nastynumber) return TRUE;
+			if (u.sjwL30E2 == nastynumber) return TRUE;
+			if (u.sjwL30E3 == nastynumber) return TRUE;
+			if (u.sjwL30E4 == nastynumber) return TRUE;
+			if (u.sjwL30E5 == nastynumber) return TRUE;
+			if (u.sjwL30E6 == nastynumber) return TRUE;
+			if (u.sjwL30E7 == nastynumber) return TRUE;
+			break;
+		case 31:
+			if (u.sjwL31E1 == nastynumber) return TRUE;
+			if (u.sjwL31E2 == nastynumber) return TRUE;
+			if (u.sjwL31E3 == nastynumber) return TRUE;
+			if (u.sjwL31E4 == nastynumber) return TRUE;
+			if (u.sjwL31E5 == nastynumber) return TRUE;
+			if (u.sjwL31E6 == nastynumber) return TRUE;
+			if (u.sjwL31E7 == nastynumber) return TRUE;
+			break;
+		case 32:
+			if (u.sjwL32E1 == nastynumber) return TRUE;
+			if (u.sjwL32E2 == nastynumber) return TRUE;
+			if (u.sjwL32E3 == nastynumber) return TRUE;
+			if (u.sjwL32E4 == nastynumber) return TRUE;
+			if (u.sjwL32E5 == nastynumber) return TRUE;
+			if (u.sjwL32E6 == nastynumber) return TRUE;
+			if (u.sjwL32E7 == nastynumber) return TRUE;
+			break;
+		case 33:
+			if (u.sjwL33E1 == nastynumber) return TRUE;
+			if (u.sjwL33E2 == nastynumber) return TRUE;
+			if (u.sjwL33E3 == nastynumber) return TRUE;
+			if (u.sjwL33E4 == nastynumber) return TRUE;
+			if (u.sjwL33E5 == nastynumber) return TRUE;
+			if (u.sjwL33E6 == nastynumber) return TRUE;
+			if (u.sjwL33E7 == nastynumber) return TRUE;
+			break;
+		case 34:
+			if (u.sjwL34E1 == nastynumber) return TRUE;
+			if (u.sjwL34E2 == nastynumber) return TRUE;
+			if (u.sjwL34E3 == nastynumber) return TRUE;
+			if (u.sjwL34E4 == nastynumber) return TRUE;
+			if (u.sjwL34E5 == nastynumber) return TRUE;
+			if (u.sjwL34E6 == nastynumber) return TRUE;
+			if (u.sjwL34E7 == nastynumber) return TRUE;
+			break;
+		case 35:
+			if (u.sjwL35E1 == nastynumber) return TRUE;
+			if (u.sjwL35E2 == nastynumber) return TRUE;
+			if (u.sjwL35E3 == nastynumber) return TRUE;
+			if (u.sjwL35E4 == nastynumber) return TRUE;
+			if (u.sjwL35E5 == nastynumber) return TRUE;
+			if (u.sjwL35E6 == nastynumber) return TRUE;
+			if (u.sjwL35E7 == nastynumber) return TRUE;
+			break;
+		case 36:
+			if (u.sjwL36E1 == nastynumber) return TRUE;
+			if (u.sjwL36E2 == nastynumber) return TRUE;
+			if (u.sjwL36E3 == nastynumber) return TRUE;
+			if (u.sjwL36E4 == nastynumber) return TRUE;
+			if (u.sjwL36E5 == nastynumber) return TRUE;
+			if (u.sjwL36E6 == nastynumber) return TRUE;
+			if (u.sjwL36E7 == nastynumber) return TRUE;
+			break;
+		case 37:
+			if (u.sjwL37E1 == nastynumber) return TRUE;
+			if (u.sjwL37E2 == nastynumber) return TRUE;
+			if (u.sjwL37E3 == nastynumber) return TRUE;
+			if (u.sjwL37E4 == nastynumber) return TRUE;
+			if (u.sjwL37E5 == nastynumber) return TRUE;
+			if (u.sjwL37E6 == nastynumber) return TRUE;
+			if (u.sjwL37E7 == nastynumber) return TRUE;
+			break;
+		case 38:
+			if (u.sjwL38E1 == nastynumber) return TRUE;
+			if (u.sjwL38E2 == nastynumber) return TRUE;
+			if (u.sjwL38E3 == nastynumber) return TRUE;
+			if (u.sjwL38E4 == nastynumber) return TRUE;
+			if (u.sjwL38E5 == nastynumber) return TRUE;
+			if (u.sjwL38E6 == nastynumber) return TRUE;
+			if (u.sjwL38E7 == nastynumber) return TRUE;
+			break;
+		case 39:
+			if (u.sjwL39E1 == nastynumber) return TRUE;
+			if (u.sjwL39E2 == nastynumber) return TRUE;
+			if (u.sjwL39E3 == nastynumber) return TRUE;
+			if (u.sjwL39E4 == nastynumber) return TRUE;
+			if (u.sjwL39E5 == nastynumber) return TRUE;
+			if (u.sjwL39E6 == nastynumber) return TRUE;
+			if (u.sjwL39E7 == nastynumber) return TRUE;
+			break;
+		case 40:
+			if (u.sjwL40E1 == nastynumber) return TRUE;
+			if (u.sjwL40E2 == nastynumber) return TRUE;
+			if (u.sjwL40E3 == nastynumber) return TRUE;
+			if (u.sjwL40E4 == nastynumber) return TRUE;
+			if (u.sjwL40E5 == nastynumber) return TRUE;
+			if (u.sjwL40E6 == nastynumber) return TRUE;
+			if (u.sjwL40E7 == nastynumber) return TRUE;
+			break;
+		case 41:
+			if (u.sjwL41E1 == nastynumber) return TRUE;
+			if (u.sjwL41E2 == nastynumber) return TRUE;
+			if (u.sjwL41E3 == nastynumber) return TRUE;
+			if (u.sjwL41E4 == nastynumber) return TRUE;
+			if (u.sjwL41E5 == nastynumber) return TRUE;
+			if (u.sjwL41E6 == nastynumber) return TRUE;
+			if (u.sjwL41E7 == nastynumber) return TRUE;
+			break;
+		case 42:
+			if (u.sjwL42E1 == nastynumber) return TRUE;
+			if (u.sjwL42E2 == nastynumber) return TRUE;
+			if (u.sjwL42E3 == nastynumber) return TRUE;
+			if (u.sjwL42E4 == nastynumber) return TRUE;
+			if (u.sjwL42E5 == nastynumber) return TRUE;
+			if (u.sjwL42E6 == nastynumber) return TRUE;
+			if (u.sjwL42E7 == nastynumber) return TRUE;
+			break;
+		case 43:
+			if (u.sjwL43E1 == nastynumber) return TRUE;
+			if (u.sjwL43E2 == nastynumber) return TRUE;
+			if (u.sjwL43E3 == nastynumber) return TRUE;
+			if (u.sjwL43E4 == nastynumber) return TRUE;
+			if (u.sjwL43E5 == nastynumber) return TRUE;
+			if (u.sjwL43E6 == nastynumber) return TRUE;
+			if (u.sjwL43E7 == nastynumber) return TRUE;
+			break;
+		case 44:
+			if (u.sjwL44E1 == nastynumber) return TRUE;
+			if (u.sjwL44E2 == nastynumber) return TRUE;
+			if (u.sjwL44E3 == nastynumber) return TRUE;
+			if (u.sjwL44E4 == nastynumber) return TRUE;
+			if (u.sjwL44E5 == nastynumber) return TRUE;
+			if (u.sjwL44E6 == nastynumber) return TRUE;
+			if (u.sjwL44E7 == nastynumber) return TRUE;
+			break;
+		case 45:
+			if (u.sjwL45E1 == nastynumber) return TRUE;
+			if (u.sjwL45E2 == nastynumber) return TRUE;
+			if (u.sjwL45E3 == nastynumber) return TRUE;
+			if (u.sjwL45E4 == nastynumber) return TRUE;
+			if (u.sjwL45E5 == nastynumber) return TRUE;
+			if (u.sjwL45E6 == nastynumber) return TRUE;
+			if (u.sjwL45E7 == nastynumber) return TRUE;
+			break;
+		case 46:
+			if (u.sjwL46E1 == nastynumber) return TRUE;
+			if (u.sjwL46E2 == nastynumber) return TRUE;
+			if (u.sjwL46E3 == nastynumber) return TRUE;
+			if (u.sjwL46E4 == nastynumber) return TRUE;
+			if (u.sjwL46E5 == nastynumber) return TRUE;
+			if (u.sjwL46E6 == nastynumber) return TRUE;
+			if (u.sjwL46E7 == nastynumber) return TRUE;
+			break;
+		case 47:
+			if (u.sjwL47E1 == nastynumber) return TRUE;
+			if (u.sjwL47E2 == nastynumber) return TRUE;
+			if (u.sjwL47E3 == nastynumber) return TRUE;
+			if (u.sjwL47E4 == nastynumber) return TRUE;
+			if (u.sjwL47E5 == nastynumber) return TRUE;
+			if (u.sjwL47E6 == nastynumber) return TRUE;
+			if (u.sjwL47E7 == nastynumber) return TRUE;
+			break;
+		case 48:
+			if (u.sjwL48E1 == nastynumber) return TRUE;
+			if (u.sjwL48E2 == nastynumber) return TRUE;
+			if (u.sjwL48E3 == nastynumber) return TRUE;
+			if (u.sjwL48E4 == nastynumber) return TRUE;
+			if (u.sjwL48E5 == nastynumber) return TRUE;
+			if (u.sjwL48E6 == nastynumber) return TRUE;
+			if (u.sjwL48E7 == nastynumber) return TRUE;
+			break;
+		case 49:
+			if (u.sjwL49E1 == nastynumber) return TRUE;
+			if (u.sjwL49E2 == nastynumber) return TRUE;
+			if (u.sjwL49E3 == nastynumber) return TRUE;
+			if (u.sjwL49E4 == nastynumber) return TRUE;
+			if (u.sjwL49E5 == nastynumber) return TRUE;
+			if (u.sjwL49E6 == nastynumber) return TRUE;
+			if (u.sjwL49E7 == nastynumber) return TRUE;
+			break;
+		case 50:
+			if (u.sjwL50E1 == nastynumber) return TRUE;
+			if (u.sjwL50E2 == nastynumber) return TRUE;
+			if (u.sjwL50E3 == nastynumber) return TRUE;
+			if (u.sjwL50E4 == nastynumber) return TRUE;
+			if (u.sjwL50E5 == nastynumber) return TRUE;
+			if (u.sjwL50E6 == nastynumber) return TRUE;
+			if (u.sjwL50E7 == nastynumber) return TRUE;
+			break;
+		case 51:
+			if (u.sjwL51E1 == nastynumber) return TRUE;
+			if (u.sjwL51E2 == nastynumber) return TRUE;
+			if (u.sjwL51E3 == nastynumber) return TRUE;
+			if (u.sjwL51E4 == nastynumber) return TRUE;
+			if (u.sjwL51E5 == nastynumber) return TRUE;
+			if (u.sjwL51E6 == nastynumber) return TRUE;
+			if (u.sjwL51E7 == nastynumber) return TRUE;
+			break;
+		case 52:
+			if (u.sjwL52E1 == nastynumber) return TRUE;
+			if (u.sjwL52E2 == nastynumber) return TRUE;
+			if (u.sjwL52E3 == nastynumber) return TRUE;
+			if (u.sjwL52E4 == nastynumber) return TRUE;
+			if (u.sjwL52E5 == nastynumber) return TRUE;
+			if (u.sjwL52E6 == nastynumber) return TRUE;
+			if (u.sjwL52E7 == nastynumber) return TRUE;
+			break;
+		case 53:
+			if (u.sjwL53E1 == nastynumber) return TRUE;
+			if (u.sjwL53E2 == nastynumber) return TRUE;
+			if (u.sjwL53E3 == nastynumber) return TRUE;
+			if (u.sjwL53E4 == nastynumber) return TRUE;
+			if (u.sjwL53E5 == nastynumber) return TRUE;
+			if (u.sjwL53E6 == nastynumber) return TRUE;
+			if (u.sjwL53E7 == nastynumber) return TRUE;
+			break;
+		case 54:
+			if (u.sjwL54E1 == nastynumber) return TRUE;
+			if (u.sjwL54E2 == nastynumber) return TRUE;
+			if (u.sjwL54E3 == nastynumber) return TRUE;
+			if (u.sjwL54E4 == nastynumber) return TRUE;
+			if (u.sjwL54E5 == nastynumber) return TRUE;
+			if (u.sjwL54E6 == nastynumber) return TRUE;
+			if (u.sjwL54E7 == nastynumber) return TRUE;
+			break;
+		case 55:
+			if (u.sjwL55E1 == nastynumber) return TRUE;
+			if (u.sjwL55E2 == nastynumber) return TRUE;
+			if (u.sjwL55E3 == nastynumber) return TRUE;
+			if (u.sjwL55E4 == nastynumber) return TRUE;
+			if (u.sjwL55E5 == nastynumber) return TRUE;
+			if (u.sjwL55E6 == nastynumber) return TRUE;
+			if (u.sjwL55E7 == nastynumber) return TRUE;
+			break;
+		case 56:
+			if (u.sjwL56E1 == nastynumber) return TRUE;
+			if (u.sjwL56E2 == nastynumber) return TRUE;
+			if (u.sjwL56E3 == nastynumber) return TRUE;
+			if (u.sjwL56E4 == nastynumber) return TRUE;
+			if (u.sjwL56E5 == nastynumber) return TRUE;
+			if (u.sjwL56E6 == nastynumber) return TRUE;
+			if (u.sjwL56E7 == nastynumber) return TRUE;
+			break;
+		case 57:
+			if (u.sjwL57E1 == nastynumber) return TRUE;
+			if (u.sjwL57E2 == nastynumber) return TRUE;
+			if (u.sjwL57E3 == nastynumber) return TRUE;
+			if (u.sjwL57E4 == nastynumber) return TRUE;
+			if (u.sjwL57E5 == nastynumber) return TRUE;
+			if (u.sjwL57E6 == nastynumber) return TRUE;
+			if (u.sjwL57E7 == nastynumber) return TRUE;
+			break;
+		case 58:
+			if (u.sjwL58E1 == nastynumber) return TRUE;
+			if (u.sjwL58E2 == nastynumber) return TRUE;
+			if (u.sjwL58E3 == nastynumber) return TRUE;
+			if (u.sjwL58E4 == nastynumber) return TRUE;
+			if (u.sjwL58E5 == nastynumber) return TRUE;
+			if (u.sjwL58E6 == nastynumber) return TRUE;
+			if (u.sjwL58E7 == nastynumber) return TRUE;
+			break;
+		case 59:
+			if (u.sjwL59E1 == nastynumber) return TRUE;
+			if (u.sjwL59E2 == nastynumber) return TRUE;
+			if (u.sjwL59E3 == nastynumber) return TRUE;
+			if (u.sjwL59E4 == nastynumber) return TRUE;
+			if (u.sjwL59E5 == nastynumber) return TRUE;
+			if (u.sjwL59E6 == nastynumber) return TRUE;
+			if (u.sjwL59E7 == nastynumber) return TRUE;
+			break;
+
+	}
+
+	return FALSE;
+
+}
+
 /* are you carrying or even using quest artifacts that aren't your own? if yes, you might get downsides --Amy */
 int
 foreignartifactcount()
@@ -1466,6 +1920,7 @@ have_rmbstone()
 		}
 
 	if (u.nastinator01) return TRUE;
+	if (sjwcheck(1)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 1) return TRUE;
 	return(FALSE);
 }
@@ -1480,6 +1935,7 @@ have_displaystone()
 			return(TRUE);
 		}
 	if (u.nastinator02) return TRUE;
+	if (sjwcheck(2)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 2) return TRUE;
 	return(FALSE);
 }
@@ -1494,6 +1950,7 @@ have_yellowspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator03) return TRUE;
+	if (sjwcheck(3)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 1) return TRUE;
 	return(FALSE);
 }
@@ -1508,6 +1965,7 @@ have_spelllossstone()
 			return(TRUE);
 		}
 	if (u.nastinator04) return TRUE;
+	if (sjwcheck(4)) return TRUE;
 	return(FALSE);
 }
 
@@ -1521,6 +1979,7 @@ have_autodestructstone()
 			return(TRUE);
 		}
 	if (u.nastinator05) return TRUE;
+	if (sjwcheck(5)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 2) return TRUE;
 	return(FALSE);
 }
@@ -1535,6 +1994,7 @@ have_memorylossstone()
 			return(TRUE);
 		}
 	if (u.nastinator06) return TRUE;
+	if (sjwcheck(6)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 3) return TRUE;
 	return(FALSE);
 }
@@ -1549,6 +2009,7 @@ have_inventorylossstone()
 			return(TRUE);
 		}
 	if (u.nastinator07) return TRUE;
+	if (sjwcheck(7)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 1) return TRUE;
 	return(FALSE);
 }
@@ -1563,6 +2024,7 @@ have_blackystone()
 			return(TRUE);
 		}
 	if (u.nastinator08) return TRUE;
+	if (sjwcheck(8)) return TRUE;
 	return(FALSE);
 }
 
@@ -1576,6 +2038,7 @@ have_menubugstone()
 			return(TRUE);
 		}
 	if (u.nastinator09) return TRUE;
+	if (sjwcheck(9)) return TRUE;
 	return(FALSE);
 }
 
@@ -1589,6 +2052,7 @@ have_speedbugstone()
 			return(TRUE);
 		}
 	if (u.nastinator10) return TRUE;
+	if (sjwcheck(10)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 1) return TRUE;
 	return(FALSE);
 }
@@ -1603,6 +2067,7 @@ have_superscrollerstone()
 			return(TRUE);
 		}
 	if (u.nastinator11) return TRUE;
+	if (sjwcheck(11)) return TRUE;
 	return(FALSE);
 }
 
@@ -1616,6 +2081,7 @@ have_freehandbugstone()
 			return(TRUE);
 		}
 	if (u.nastinator12) return TRUE;
+	if (sjwcheck(12)) return TRUE;
 	return(FALSE);
 }
 
@@ -1629,6 +2095,7 @@ have_unidentifystone()
 			return(TRUE);
 		}
 	if (u.nastinator13) return TRUE;
+	if (sjwcheck(13)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 1) return TRUE;
 	return(FALSE);
 }
@@ -1643,6 +2110,7 @@ have_thirststone()
 			return(TRUE);
 		}
 	if (u.nastinator14) return TRUE;
+	if (sjwcheck(14)) return TRUE;
 	return(FALSE);
 }
 
@@ -1656,6 +2124,7 @@ have_unluckystone()
 			return(TRUE);
 		}
 	if (u.nastinator15) return TRUE;
+	if (sjwcheck(15)) return TRUE;
 	return(FALSE);
 }
 
@@ -1669,6 +2138,7 @@ have_shadesofgreystone()
 			return(TRUE);
 		}
 	if (u.nastinator16) return TRUE;
+	if (sjwcheck(16)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 1) return TRUE;
 	return(FALSE);
 }
@@ -1683,6 +2153,7 @@ have_faintingstone()
 			return(TRUE);
 		}
 	if (u.nastinator17) return TRUE;
+	if (sjwcheck(17)) return TRUE;
 	return(FALSE);
 }
 
@@ -1696,6 +2167,7 @@ have_cursingstone()
 			return(TRUE);
 		}
 	if (u.nastinator18) return TRUE;
+	if (sjwcheck(18)) return TRUE;
 	return(FALSE);
 }
 
@@ -1709,6 +2181,7 @@ have_difficultystone()
 			return(TRUE);
 		}
 	if (u.nastinator19) return TRUE;
+	if (sjwcheck(19)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 1) return TRUE;
 	return(FALSE);
 }
@@ -1723,6 +2196,7 @@ have_deafnessstone()
 			return(TRUE);
 		}
 	if (u.nastinator20) return TRUE;
+	if (sjwcheck(20)) return TRUE;
 	return(FALSE);
 }
 
@@ -1736,6 +2210,7 @@ have_weaknessstone()
 			return(TRUE);
 		}
 	if (u.nastinator21) return TRUE;
+	if (sjwcheck(21)) return TRUE;
 	return(FALSE);
 }
 
@@ -1749,6 +2224,7 @@ have_antimagicstone()
 			return(TRUE);
 		}
 	if (u.nastinator22) return TRUE;
+	if (sjwcheck(22)) return TRUE;
 	return(FALSE);
 }
 
@@ -1762,6 +2238,7 @@ have_rotthirteenstone()
 			return(TRUE);
 		}
 	if (u.nastinator23) return TRUE;
+	if (sjwcheck(23)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 2) return TRUE;
 	return(FALSE);
 }
@@ -1776,6 +2253,7 @@ have_bishopstone()
 			return(TRUE);
 		}
 	if (u.nastinator24) return TRUE;
+	if (sjwcheck(24)) return TRUE;
 	return(FALSE);
 }
 
@@ -1789,6 +2267,7 @@ have_confusionstone()
 			return(TRUE);
 		}
 	if (u.nastinator25) return TRUE;
+	if (sjwcheck(25)) return TRUE;
 	return(FALSE);
 }
 
@@ -1802,6 +2281,7 @@ have_dropbugstone()
 			return(TRUE);
 		}
 	if (u.nastinator26) return TRUE;
+	if (sjwcheck(26)) return TRUE;
 	return(FALSE);
 }
 
@@ -1815,6 +2295,7 @@ have_dstwstone()
 			return(TRUE);
 		}
 	if (u.nastinator27) return TRUE;
+	if (sjwcheck(27)) return TRUE;
 
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 1) return TRUE;
 
@@ -1831,6 +2312,7 @@ have_amnesiastone()
 			return(TRUE);
 		}
 	if (u.nastinator28) return TRUE;
+	if (sjwcheck(28)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 2) return TRUE;
 	return(FALSE);
 }
@@ -1845,6 +2327,7 @@ have_bigscriptstone()
 			return(TRUE);
 		}
 	if (u.nastinator29) return TRUE;
+	if (sjwcheck(29)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 4) return TRUE;
 	return(FALSE);
 }
@@ -1859,6 +2342,7 @@ have_bankstone()
 			return(TRUE);
 		}
 	if (u.nastinator30) return TRUE;
+	if (sjwcheck(30)) return TRUE;
 	return(FALSE);
 }
 
@@ -1872,6 +2356,7 @@ have_mapstone()
 			return(TRUE);
 		}
 	if (u.nastinator31) return TRUE;
+	if (sjwcheck(31)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 3) return TRUE;
 	return(FALSE);
 }
@@ -1886,6 +2371,7 @@ have_techniquestone()
 			return(TRUE);
 		}
 	if (u.nastinator32) return TRUE;
+	if (sjwcheck(32)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 2) return TRUE;
 	return(FALSE);
 }
@@ -1900,6 +2386,7 @@ have_disenchantmentstone()
 			return(TRUE);
 		}
 	if (u.nastinator33) return TRUE;
+	if (sjwcheck(33)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 3) return TRUE;
 	return(FALSE);
 }
@@ -1914,6 +2401,7 @@ have_verisiertstone()
 			return(TRUE);
 		}
 	if (u.nastinator34) return TRUE;
+	if (sjwcheck(34)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 2) return TRUE;
 	return(FALSE);
 }
@@ -1928,6 +2416,7 @@ have_chaosterrainstone()
 			return(TRUE);
 		}
 	if (u.nastinator35) return TRUE;
+	if (sjwcheck(35)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 2) return TRUE;
 	return(FALSE);
 }
@@ -1942,6 +2431,7 @@ have_mutenessstone()
 			return(TRUE);
 		}
 	if (u.nastinator36) return TRUE;
+	if (sjwcheck(36)) return TRUE;
 	return(FALSE);
 }
 
@@ -1955,6 +2445,7 @@ have_engravingstone()
 			return(TRUE);
 		}
 	if (u.nastinator37) return TRUE;
+	if (sjwcheck(37)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 3) return TRUE;
 	return(FALSE);
 }
@@ -1969,6 +2460,7 @@ have_magicdevicestone()
 			return(TRUE);
 		}
 	if (u.nastinator38) return TRUE;
+	if (sjwcheck(38)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 4) return TRUE;
 	return(FALSE);
 }
@@ -1983,6 +2475,7 @@ have_bookstone()
 			return(TRUE);
 		}
 	if (u.nastinator39) return TRUE;
+	if (sjwcheck(39)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 5) return TRUE;
 	return(FALSE);
 }
@@ -1997,6 +2490,7 @@ have_levelstone()
 			return(TRUE);
 		}
 	if (u.nastinator40) return TRUE;
+	if (sjwcheck(40)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2011,6 +2505,7 @@ have_quizstone()
 			return(TRUE);
 		}
 	if (u.nastinator41) return TRUE;
+	if (sjwcheck(41)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2025,6 +2520,7 @@ have_statusstone()
 			return(TRUE);
 		}
 	if (u.nastinator42) return TRUE;
+	if (sjwcheck(42)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 1) return TRUE;
 	return(FALSE);
 }
@@ -2039,6 +2535,7 @@ have_alignmentstone()
 			return(TRUE);
 		}
 	if (u.nastinator43) return TRUE;
+	if (sjwcheck(43)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 1) return TRUE;
 	return(FALSE);
 }
@@ -2053,6 +2550,7 @@ have_stairstrapstone()
 			return(TRUE);
 		}
 	if (u.nastinator44) return TRUE;
+	if (sjwcheck(44)) return TRUE;
 	return(FALSE);
 }
 
@@ -2066,6 +2564,7 @@ have_uninformationstone()
 			return(TRUE);
 		}
 	if (u.nastinator45) return TRUE;
+	if (sjwcheck(45)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 2) return TRUE;
 	return(FALSE);
 }
@@ -2080,6 +2579,7 @@ have_captchastone()
 			return(TRUE);
 		}
 	if (u.nastinator46) return TRUE;
+	if (sjwcheck(46)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 3) return TRUE;
 	return(FALSE);
 }
@@ -2094,6 +2594,7 @@ have_farlookstone()
 			return(TRUE);
 		}
 	if (u.nastinator47) return TRUE;
+	if (sjwcheck(47)) return TRUE;
 	return(FALSE);
 }
 
@@ -2107,6 +2608,7 @@ have_respawnstone()
 			return(TRUE);
 		}
 	if (u.nastinator48) return TRUE;
+	if (sjwcheck(48)) return TRUE;
 	return(FALSE);
 }
 
@@ -2120,6 +2622,7 @@ have_intrinsiclossstone()
 			return(TRUE);
 		}
 	if (u.nastinator49) return TRUE;
+	if (sjwcheck(49)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 1) return TRUE;
 	return(FALSE);
 }
@@ -2134,6 +2637,7 @@ have_bloodlossstone()
 			return(TRUE);
 		}
 	if (u.nastinator50) return TRUE;
+	if (sjwcheck(50)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 3) return TRUE;
 	return(FALSE);
 }
@@ -2148,6 +2652,7 @@ have_badeffectstone()
 			return(TRUE);
 		}
 	if (u.nastinator51) return TRUE;
+	if (sjwcheck(51)) return TRUE;
 	return(FALSE);
 }
 
@@ -2161,6 +2666,7 @@ have_trapcreationstone()
 			return(TRUE);
 		}
 	if (u.nastinator52) return TRUE;
+	if (sjwcheck(52)) return TRUE;
 	return(FALSE);
 }
 
@@ -2174,6 +2680,7 @@ have_vulnerabilitystone()
 			return(TRUE);
 		}
 	if (u.nastinator53) return TRUE;
+	if (sjwcheck(53)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 2) return TRUE;
 	return(FALSE);
 }
@@ -2188,6 +2695,7 @@ have_itemportstone()
 			return(TRUE);
 		}
 	if (u.nastinator54) return TRUE;
+	if (sjwcheck(54)) return TRUE;
 	return(FALSE);
 }
 
@@ -2201,6 +2709,7 @@ have_nastystone()
 			return(TRUE);
 		}
 	if (u.nastinator55) return TRUE;
+	if (sjwcheck(55)) return TRUE;
 	return(FALSE);
 }
 
@@ -2214,6 +2723,7 @@ have_metabolicstone()
 			return(TRUE);
 		}
 	if (u.nastinator56) return TRUE;
+	if (sjwcheck(56)) return TRUE;
 	return(FALSE);
 }
 
@@ -2227,6 +2737,7 @@ have_noreturnstone()
 			return(TRUE);
 		}
 	if (u.nastinator57) return TRUE;
+	if (sjwcheck(57)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 3) return TRUE;
 	return(FALSE);
 }
@@ -2241,6 +2752,7 @@ have_egostone()
 			return(TRUE);
 		}
 	if (u.nastinator58) return TRUE;
+	if (sjwcheck(58)) return TRUE;
 	return(FALSE);
 }
 
@@ -2254,6 +2766,7 @@ have_fastforwardstone()
 			return(TRUE);
 		}
 	if (u.nastinator59) return TRUE;
+	if (sjwcheck(59)) return TRUE;
 	return(FALSE);
 }
 
@@ -2267,6 +2780,7 @@ have_rottenstone()
 			return(TRUE);
 		}
 	if (u.nastinator60) return TRUE;
+	if (sjwcheck(60)) return TRUE;
 	return(FALSE);
 }
 
@@ -2280,6 +2794,7 @@ have_unskilledstone()
 			return(TRUE);
 		}
 	if (u.nastinator61) return TRUE;
+	if (sjwcheck(61)) return TRUE;
 	return(FALSE);
 }
 
@@ -2293,6 +2808,7 @@ have_lowstatstone()
 			return(TRUE);
 		}
 	if (u.nastinator62) return TRUE;
+	if (sjwcheck(62)) return TRUE;
 	return(FALSE);
 }
 
@@ -2306,6 +2822,7 @@ have_trainingstone()
 			return(TRUE);
 		}
 	if (u.nastinator63) return TRUE;
+	if (sjwcheck(63)) return TRUE;
 	return(FALSE);
 }
 
@@ -2319,6 +2836,7 @@ have_exercisestone()
 			return(TRUE);
 		}
 	if (u.nastinator64) return TRUE;
+	if (sjwcheck(64)) return TRUE;
 	return(FALSE);
 }
 
@@ -2332,6 +2850,7 @@ have_limitationstone()
 			return(TRUE);
 		}
 	if (u.nastinator65) return TRUE;
+	if (sjwcheck(65)) return TRUE;
 	return(FALSE);
 }
 
@@ -2345,6 +2864,7 @@ have_weaksightstone()
 			return(TRUE);
 		}
 	if (u.nastinator66) return TRUE;
+	if (sjwcheck(66)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2359,6 +2879,7 @@ have_messagestone()
 			return(TRUE);
 		}
 	if (u.nastinator67) return TRUE;
+	if (sjwcheck(67)) return TRUE;
 	return(FALSE);
 }
 
@@ -2372,6 +2893,7 @@ have_nonsacredstone()
 			return(TRUE);
 		}
 	if (u.nastinator68) return TRUE;
+	if (sjwcheck(68)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 3) return TRUE;
 	return(FALSE);
 }
@@ -2386,6 +2908,7 @@ have_starvationstone()
 			return(TRUE);
 		}
 	if (u.nastinator69) return TRUE;
+	if (sjwcheck(69)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 2) return TRUE;
 	return(FALSE);
 }
@@ -2400,6 +2923,7 @@ have_droplessstone()
 			return(TRUE);
 		}
 	if (u.nastinator70) return TRUE;
+	if (sjwcheck(70)) return TRUE;
 	return(FALSE);
 }
 
@@ -2413,6 +2937,7 @@ have_loweffectstone()
 			return(TRUE);
 		}
 	if (u.nastinator71) return TRUE;
+	if (sjwcheck(71)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 6) return TRUE;
 	return(FALSE);
 }
@@ -2427,6 +2952,7 @@ have_invisostone()
 			return(TRUE);
 		}
 	if (u.nastinator72) return TRUE;
+	if (sjwcheck(72)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2441,6 +2967,7 @@ have_ghostlystone()
 			return(TRUE);
 		}
 	if (u.nastinator73) return TRUE;
+	if (sjwcheck(73)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2455,6 +2982,7 @@ have_dehydratingstone()
 			return(TRUE);
 		}
 	if (u.nastinator74) return TRUE;
+	if (sjwcheck(74)) return TRUE;
 	return(FALSE);
 }
 
@@ -2468,6 +2996,7 @@ have_hatestone()
 			return(TRUE);
 		}
 	if (u.nastinator75) return TRUE;
+	if (sjwcheck(75)) return TRUE;
 	return(FALSE);
 }
 
@@ -2481,6 +3010,7 @@ have_directionswapstone()
 			return(TRUE);
 		}
 	if (u.nastinator76) return TRUE;
+	if (sjwcheck(76)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 3) return TRUE;
 	return(FALSE);
 }
@@ -2495,6 +3025,7 @@ have_nonintrinsicstone()
 			return(TRUE);
 		}
 	if (u.nastinator77) return TRUE;
+	if (sjwcheck(77)) return TRUE;
 	return(FALSE);
 }
 
@@ -2508,6 +3039,7 @@ have_dropcursestone()
 			return(TRUE);
 		}
 	if (u.nastinator78) return TRUE;
+	if (sjwcheck(78)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2522,6 +3054,7 @@ have_nakedstone()
 			return(TRUE);
 		}
 	if (u.nastinator79) return TRUE;
+	if (sjwcheck(79)) return TRUE;
 	return(FALSE);
 }
 
@@ -2535,6 +3068,7 @@ have_antilevelstone()
 			return(TRUE);
 		}
 	if (u.nastinator80) return TRUE;
+	if (sjwcheck(80)) return TRUE;
 	return(FALSE);
 }
 
@@ -2548,6 +3082,7 @@ have_stealerstone()
 			return(TRUE);
 		}
 	if (u.nastinator81) return TRUE;
+	if (sjwcheck(81)) return TRUE;
 	return(FALSE);
 }
 
@@ -2561,6 +3096,7 @@ have_rebelstone()
 			return(TRUE);
 		}
 	if (u.nastinator82) return TRUE;
+	if (sjwcheck(82)) return TRUE;
 	return(FALSE);
 }
 
@@ -2574,6 +3110,7 @@ have_shitstone()
 			return(TRUE);
 		}
 	if (u.nastinator83) return TRUE;
+	if (sjwcheck(83)) return TRUE;
 	return(FALSE);
 }
 
@@ -2587,6 +3124,7 @@ have_misfirestone()
 			return(TRUE);
 		}
 	if (u.nastinator84) return TRUE;
+	if (sjwcheck(84)) return TRUE;
 	return(FALSE);
 }
 
@@ -2600,6 +3138,7 @@ have_wallstone()
 			return(TRUE);
 		}
 	if (u.nastinator85) return TRUE;
+	if (sjwcheck(85)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 6) return TRUE;
 	return(FALSE);
 }
@@ -2614,6 +3153,7 @@ have_disconnectstone()
 			return(TRUE);
 		}
 	if (u.nastinator86) return TRUE;
+	if (sjwcheck(86)) return TRUE;
 	return(FALSE);
 }
 
@@ -2627,6 +3167,7 @@ have_interfacescrewstone()
 			return(TRUE);
 		}
 	if (u.nastinator87) return TRUE;
+	if (sjwcheck(87)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2641,6 +3182,7 @@ have_bossfightstone()
 			return(TRUE);
 		}
 	if (u.nastinator88) return TRUE;
+	if (sjwcheck(88)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 3) return TRUE;
 	return(FALSE);
 }
@@ -2655,6 +3197,7 @@ have_entirelevelstone()
 			return(TRUE);
 		}
 	if (u.nastinator89) return TRUE;
+	if (sjwcheck(89)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2669,6 +3212,7 @@ have_bonestone()
 			return(TRUE);
 		}
 	if (u.nastinator90) return TRUE;
+	if (sjwcheck(90)) return TRUE;
 	return(FALSE);
 }
 
@@ -2682,6 +3226,7 @@ have_autocursestone()
 			return(TRUE);
 		}
 	if (u.nastinator91) return TRUE;
+	if (sjwcheck(91)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2696,6 +3241,7 @@ have_highlevelstone()
 			return(TRUE);
 		}
 	if (u.nastinator92) return TRUE;
+	if (sjwcheck(92)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2710,6 +3256,7 @@ have_spellforgettingstone()
 			return(TRUE);
 		}
 	if (u.nastinator93) return TRUE;
+	if (sjwcheck(93)) return TRUE;
 	return(FALSE);
 }
 
@@ -2723,6 +3270,7 @@ have_soundeffectstone()
 			return(TRUE);
 		}
 	if (u.nastinator94) return TRUE;
+	if (sjwcheck(94)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2737,6 +3285,7 @@ have_timerunstone()
 			return(TRUE);
 		}
 	if (u.nastinator95) return TRUE;
+	if (sjwcheck(95)) return TRUE;
 	return(FALSE);
 }
 
@@ -2750,6 +3299,7 @@ have_lootcutstone()
 			return(TRUE);
 		}
 	if (u.nastinator96) return TRUE;
+	if (sjwcheck(96)) return TRUE;
 	return(FALSE);
 }
 
@@ -2763,6 +3313,7 @@ have_monsterspeedstone()
 			return(TRUE);
 		}
 	if (u.nastinator97) return TRUE;
+	if (sjwcheck(97)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2777,6 +3328,7 @@ have_scalingstone()
 			return(TRUE);
 		}
 	if (u.nastinator98) return TRUE;
+	if (sjwcheck(98)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 6) return TRUE;
 	return(FALSE);
 }
@@ -2791,6 +3343,7 @@ have_inimicalstone()
 			return(TRUE);
 		}
 	if (u.nastinator99) return TRUE;
+	if (sjwcheck(99)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 4) return TRUE;
 	return(FALSE);
 }
@@ -2805,6 +3358,7 @@ have_whitespellstone()
 			return(TRUE);
 		}
 	if (u.nastinator100) return TRUE;
+	if (sjwcheck(100)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 2) return TRUE;
 	return(FALSE);
 }
@@ -2819,6 +3373,7 @@ have_greyoutstone()
 			return(TRUE);
 		}
 	if (u.nastinator101) return TRUE;
+	if (sjwcheck(101)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 3) return TRUE;
 	return(FALSE);
 }
@@ -2833,6 +3388,7 @@ have_quasarstone()
 			return(TRUE);
 		}
 	if (u.nastinator102) return TRUE;
+	if (sjwcheck(102)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2847,6 +3403,7 @@ have_mommystone()
 			return(TRUE);
 		}
 	if (u.nastinator103) return TRUE;
+	if (sjwcheck(103)) return TRUE;
 	return(FALSE);
 }
 
@@ -2860,6 +3417,7 @@ have_horrorstone()
 			return(TRUE);
 		}
 	if (u.nastinator104) return TRUE;
+	if (sjwcheck(104)) return TRUE;
 	return(FALSE);
 }
 
@@ -2873,6 +3431,7 @@ have_artificialstone()
 			return(TRUE);
 		}
 	if (u.nastinator105) return TRUE;
+	if (sjwcheck(105)) return TRUE;
 	return(FALSE);
 }
 
@@ -2886,6 +3445,7 @@ have_wereformstone()
 			return(TRUE);
 		}
 	if (u.nastinator106) return TRUE;
+	if (sjwcheck(106)) return TRUE;
 	return(FALSE);
 }
 
@@ -2899,6 +3459,7 @@ have_antiprayerstone()
 			return(TRUE);
 		}
 	if (u.nastinator107) return TRUE;
+	if (sjwcheck(107)) return TRUE;
 	return(FALSE);
 }
 
@@ -2912,6 +3473,7 @@ have_evilpatchstone()
 			return(TRUE);
 		}
 	if (u.nastinator108) return TRUE;
+	if (sjwcheck(108)) return TRUE;
 	return(FALSE);
 }
 
@@ -2925,6 +3487,7 @@ have_hardmodestone()
 			return(TRUE);
 		}
 	if (u.nastinator109) return TRUE;
+	if (sjwcheck(109)) return TRUE;
 	return(FALSE);
 }
 
@@ -2938,6 +3501,7 @@ have_secretattackstone()
 			return(TRUE);
 		}
 	if (u.nastinator110) return TRUE;
+	if (sjwcheck(110)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2952,6 +3516,7 @@ have_eaterstone()
 			return(TRUE);
 		}
 	if (u.nastinator111) return TRUE;
+	if (sjwcheck(111)) return TRUE;
 	return(FALSE);
 }
 
@@ -2965,6 +3530,7 @@ have_covetousstone()
 			return(TRUE);
 		}
 	if (u.nastinator112) return TRUE;
+	if (sjwcheck(112)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2979,6 +3545,7 @@ have_nonseeingstone()
 			return(TRUE);
 		}
 	if (u.nastinator113) return TRUE;
+	if (sjwcheck(113)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 5) return TRUE;
 	return(FALSE);
 }
@@ -2993,6 +3560,7 @@ have_darkmodestone()
 			return(TRUE);
 		}
 	if (u.nastinator114) return TRUE;
+	if (sjwcheck(114)) return TRUE;
 	return(FALSE);
 }
 
@@ -3006,6 +3574,7 @@ have_unfindablestone()
 			return(TRUE);
 		}
 	if (u.nastinator115) return TRUE;
+	if (sjwcheck(115)) return TRUE;
 	return(FALSE);
 }
 
@@ -3019,6 +3588,7 @@ have_homicidestone()
 			return(TRUE);
 		}
 	if (u.nastinator116) return TRUE;
+	if (sjwcheck(116)) return TRUE;
 	return(FALSE);
 }
 
@@ -3032,6 +3602,7 @@ have_multitrappingstone()
 			return(TRUE);
 		}
 	if (u.nastinator117) return TRUE;
+	if (sjwcheck(117)) return TRUE;
 	return(FALSE);
 }
 
@@ -3045,6 +3616,7 @@ have_wakeupcallstone()
 			return(TRUE);
 		}
 	if (u.nastinator118) return TRUE;
+	if (sjwcheck(118)) return TRUE;
 	return(FALSE);
 }
 
@@ -3058,6 +3630,7 @@ have_grayoutstone()
 			return(TRUE);
 		}
 	if (u.nastinator119) return TRUE;
+	if (sjwcheck(119)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 1) return TRUE;
 	return(FALSE);
 }
@@ -3072,6 +3645,7 @@ have_graycenterstone()
 			return(TRUE);
 		}
 	if (u.nastinator120) return TRUE;
+	if (sjwcheck(120)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 2) return TRUE;
 	return(FALSE);
 }
@@ -3086,6 +3660,7 @@ have_checkerboardstone()
 			return(TRUE);
 		}
 	if (u.nastinator121) return TRUE;
+	if (sjwcheck(121)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 3) return TRUE;
 	return(FALSE);
 }
@@ -3100,6 +3675,7 @@ have_clockwisestone()
 			return(TRUE);
 		}
 	if (u.nastinator122) return TRUE;
+	if (sjwcheck(122)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 6) return TRUE;
 	return(FALSE);
 }
@@ -3114,6 +3690,7 @@ have_counterclockwisestone()
 			return(TRUE);
 		}
 	if (u.nastinator123) return TRUE;
+	if (sjwcheck(123)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 7) return TRUE;
 	return(FALSE);
 }
@@ -3128,6 +3705,7 @@ have_lagstone()
 			return(TRUE);
 		}
 	if (u.nastinator124) return TRUE;
+	if (sjwcheck(124)) return TRUE;
 	return(FALSE);
 }
 
@@ -3142,6 +3720,7 @@ have_blesscursestone()
 		}
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 6) return TRUE;
 	if (u.nastinator125) return TRUE;
+	if (sjwcheck(125)) return TRUE;
 	return(FALSE);
 }
 
@@ -3155,6 +3734,7 @@ have_delightstone()
 			return(TRUE);
 		}
 	if (u.nastinator126) return TRUE;
+	if (sjwcheck(126)) return TRUE;
 	return(FALSE);
 }
 
@@ -3168,6 +3748,7 @@ have_dischargestone()
 			return(TRUE);
 		}
 	if (u.nastinator127) return TRUE;
+	if (sjwcheck(127)) return TRUE;
 	return(FALSE);
 }
 
@@ -3181,6 +3762,7 @@ have_trashstone()
 			return(TRUE);
 		}
 	if (u.nastinator128) return TRUE;
+	if (sjwcheck(128)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 6) return TRUE;
 	return(FALSE);
 }
@@ -3195,6 +3777,7 @@ have_filteringstone()
 			return(TRUE);
 		}
 	if (u.nastinator129) return TRUE;
+	if (sjwcheck(129)) return TRUE;
 	return(FALSE);
 }
 
@@ -3208,6 +3791,7 @@ have_deformattingstone()
 			return(TRUE);
 		}
 	if (u.nastinator130) return TRUE;
+	if (sjwcheck(130)) return TRUE;
 	return(FALSE);
 }
 
@@ -3221,6 +3805,7 @@ have_flickerstripstone()
 			return(TRUE);
 		}
 	if (u.nastinator131) return TRUE;
+	if (sjwcheck(131)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 6) return TRUE;
 	return(FALSE);
 }
@@ -3235,6 +3820,7 @@ have_undressingstone()
 			return(TRUE);
 		}
 	if (u.nastinator132) return TRUE;
+	if (sjwcheck(132)) return TRUE;
 	return(FALSE);
 }
 
@@ -3248,6 +3834,7 @@ have_hyperbluestone()
 			return(TRUE);
 		}
 	if (u.nastinator133) return TRUE;
+	if (sjwcheck(133)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 6) return TRUE;
 	return(FALSE);
 }
@@ -3262,6 +3849,7 @@ have_nolightstone()
 			return(TRUE);
 		}
 	if (u.nastinator134) return TRUE;
+	if (sjwcheck(134)) return TRUE;
 	return(FALSE);
 }
 
@@ -3275,6 +3863,7 @@ have_paranoiastone()
 			return(TRUE);
 		}
 	if (u.nastinator135) return TRUE;
+	if (sjwcheck(135)) return TRUE;
 	return(FALSE);
 }
 
@@ -3288,6 +3877,7 @@ have_fleecestone()
 			return(TRUE);
 		}
 	if (u.nastinator136) return TRUE;
+	if (sjwcheck(136)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 7) return TRUE;
 	return(FALSE);
 }
@@ -3302,6 +3892,7 @@ have_interruptionstone()
 			return(TRUE);
 		}
 	if (u.nastinator137) return TRUE;
+	if (sjwcheck(137)) return TRUE;
 	return(FALSE);
 }
 
@@ -3315,6 +3906,7 @@ have_dustbinstone()
 			return(TRUE);
 		}
 	if (u.nastinator138) return TRUE;
+	if (sjwcheck(138)) return TRUE;
 	return(FALSE);
 }
 
@@ -3328,6 +3920,7 @@ have_batterystone()
 			return(TRUE);
 		}
 	if (u.nastinator139) return TRUE;
+	if (sjwcheck(139)) return TRUE;
 	return(FALSE);
 }
 
@@ -3341,6 +3934,7 @@ have_butterfingerstone()
 			return(TRUE);
 		}
 	if (u.nastinator140) return TRUE;
+	if (sjwcheck(140)) return TRUE;
 	return(FALSE);
 }
 
@@ -3354,6 +3948,7 @@ have_miscastingstone()
 			return(TRUE);
 		}
 	if (u.nastinator141) return TRUE;
+	if (sjwcheck(141)) return TRUE;
 	return(FALSE);
 }
 
@@ -3367,6 +3962,7 @@ have_messagesuppressionstone()
 			return(TRUE);
 		}
 	if (u.nastinator142) return TRUE;
+	if (sjwcheck(142)) return TRUE;
 	return(FALSE);
 }
 
@@ -3380,6 +3976,7 @@ have_stuckannouncementstone()
 			return(TRUE);
 		}
 	if (u.nastinator143) return TRUE;
+	if (sjwcheck(143)) return TRUE;
 	return(FALSE);
 }
 
@@ -3393,6 +3990,7 @@ have_stormstone()
 			return(TRUE);
 		}
 	if (u.nastinator144) return TRUE;
+	if (sjwcheck(144)) return TRUE;
 	return(FALSE);
 }
 
@@ -3406,6 +4004,7 @@ have_maximumdamagestone()
 			return(TRUE);
 		}
 	if (u.nastinator145) return TRUE;
+	if (sjwcheck(145)) return TRUE;
 	return(FALSE);
 }
 
@@ -3419,6 +4018,7 @@ have_latencystone()
 			return(TRUE);
 		}
 	if (u.nastinator146) return TRUE;
+	if (sjwcheck(146)) return TRUE;
 	return(FALSE);
 }
 
@@ -3432,6 +4032,7 @@ have_starlitskystone()
 			return(TRUE);
 		}
 	if (u.nastinator147) return TRUE;
+	if (sjwcheck(147)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 5) return TRUE;
 	return(FALSE);
 }
@@ -3446,6 +4047,7 @@ have_trapknowledgestone()
 			return(TRUE);
 		}
 	if (u.nastinator148) return TRUE;
+	if (sjwcheck(148)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 4) return TRUE;
 	return(FALSE);
 }
@@ -3460,6 +4062,7 @@ have_highscorestone()
 			return(TRUE);
 		}
 	if (u.nastinator149) return TRUE;
+	if (sjwcheck(149)) return TRUE;
 	return(FALSE);
 }
 
@@ -3473,6 +4076,7 @@ have_pinkspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator150) return TRUE;
+	if (sjwcheck(150)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 9) return TRUE;
 	return(FALSE);
 }
@@ -3487,6 +4091,7 @@ have_greenspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator151) return TRUE;
+	if (sjwcheck(151)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 5) return TRUE;
 	return(FALSE);
 }
@@ -3501,6 +4106,7 @@ have_evcstone()
 			return(TRUE);
 		}
 	if (u.nastinator152) return TRUE;
+	if (sjwcheck(152)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 6) return TRUE;
 	return(FALSE);
 }
@@ -3515,6 +4121,7 @@ have_underlaidstone()
 			return(TRUE);
 		}
 	if (u.nastinator153) return TRUE;
+	if (sjwcheck(153)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 7) return TRUE;
 	return(FALSE);
 }
@@ -3529,6 +4136,7 @@ have_damagemeterstone()
 			return(TRUE);
 		}
 	if (u.nastinator154) return TRUE;
+	if (sjwcheck(154)) return TRUE;
 	return(FALSE);
 }
 
@@ -3542,6 +4150,7 @@ have_weightstone()
 			return(TRUE);
 		}
 	if (u.nastinator155) return TRUE;
+	if (sjwcheck(155)) return TRUE;
 	return(FALSE);
 }
 
@@ -3555,6 +4164,7 @@ have_infofuckstone()
 			return(TRUE);
 		}
 	if (u.nastinator156) return TRUE;
+	if (sjwcheck(156)) return TRUE;
 	return(FALSE);
 }
 
@@ -3568,6 +4178,7 @@ have_blackspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator157) return TRUE;
+	if (sjwcheck(157)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 7) return TRUE;
 	return(FALSE);
 }
@@ -3582,6 +4193,7 @@ have_cyanspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator158) return TRUE;
+	if (sjwcheck(158)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 8) return TRUE;
 	return(FALSE);
 }
@@ -3596,6 +4208,7 @@ have_heapstone()
 			return(TRUE);
 		}
 	if (u.nastinator159) return TRUE;
+	if (sjwcheck(159)) return TRUE;
 	return(FALSE);
 }
 
@@ -3609,6 +4222,7 @@ have_bluespellstone()
 			return(TRUE);
 		}
 	if (u.nastinator160) return TRUE;
+	if (sjwcheck(160)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 4) return TRUE;
 	return(FALSE);
 }
@@ -3623,6 +4237,7 @@ have_tronstone()
 			return(TRUE);
 		}
 	if (u.nastinator161) return TRUE;
+	if (sjwcheck(161)) return TRUE;
 	return(FALSE);
 }
 
@@ -3636,6 +4251,7 @@ have_redspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator162) return TRUE;
+	if (sjwcheck(162)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 6) return TRUE;
 	return(FALSE);
 }
@@ -3650,6 +4266,7 @@ have_tooheavystone()
 			return(TRUE);
 		}
 	if (u.nastinator163) return TRUE;
+	if (sjwcheck(163)) return TRUE;
 	return(FALSE);
 }
 
@@ -3663,6 +4280,7 @@ have_elongatedstone()
 			return(TRUE);
 		}
 	if (u.nastinator164) return TRUE;
+	if (sjwcheck(164)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 7) return TRUE;
 	return(FALSE);
 }
@@ -3677,6 +4295,7 @@ have_wrapoverstone()
 			return(TRUE);
 		}
 	if (u.nastinator165) return TRUE;
+	if (sjwcheck(165)) return TRUE;
 	return(FALSE);
 }
 
@@ -3690,6 +4309,7 @@ have_destructionstone()
 			return(TRUE);
 		}
 	if (u.nastinator166) return TRUE;
+	if (sjwcheck(166)) return TRUE;
 	return(FALSE);
 }
 
@@ -3703,6 +4323,7 @@ have_meleeprefixstone()
 			return(TRUE);
 		}
 	if (u.nastinator167) return TRUE;
+	if (sjwcheck(167)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 8) return TRUE;
 	return(FALSE);
 }
@@ -3717,6 +4338,7 @@ have_automorestone()
 			return(TRUE);
 		}
 	if (u.nastinator168) return TRUE;
+	if (sjwcheck(168)) return TRUE;
 	return(FALSE);
 }
 
@@ -3730,6 +4352,7 @@ have_unfairattackstone()
 			return(TRUE);
 		}
 	if (u.nastinator169) return TRUE;
+	if (sjwcheck(169)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 8) return TRUE;
 	return(FALSE);
 }
@@ -3744,6 +4367,7 @@ have_orangespellstone()
 			return(TRUE);
 		}
 	if (u.nastinator170) return TRUE;
+	if (sjwcheck(170)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 10) return TRUE;
 	return(FALSE);
 }
@@ -3758,6 +4382,7 @@ have_violetspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator171) return TRUE;
+	if (sjwcheck(171)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 11) return TRUE;
 	return(FALSE);
 }
@@ -3772,6 +4397,7 @@ have_longingstone()
 			return(TRUE);
 		}
 	if (u.nastinator172) return TRUE;
+	if (sjwcheck(172)) return TRUE;
 	return(FALSE);
 }
 
@@ -3785,6 +4411,7 @@ have_cursedpartstone()
 			return(TRUE);
 		}
 	if (u.nastinator173) return TRUE;
+	if (sjwcheck(173)) return TRUE;
 	return(FALSE);
 }
 
@@ -3798,6 +4425,7 @@ have_quaversalstone()
 			return(TRUE);
 		}
 	if (u.nastinator174) return TRUE;
+	if (sjwcheck(174)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 9) return TRUE;
 	return(FALSE);
 }
@@ -3812,6 +4440,7 @@ have_appearanceshufflingstone()
 			return(TRUE);
 		}
 	if (u.nastinator175) return TRUE;
+	if (sjwcheck(175)) return TRUE;
 	return(FALSE);
 }
 
@@ -3825,6 +4454,7 @@ have_brownspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator176) return TRUE;
+	if (sjwcheck(176)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 12) return TRUE;
 	return(FALSE);
 }
@@ -3839,6 +4469,7 @@ have_choicelessstone()
 			return(TRUE);
 		}
 	if (u.nastinator177) return TRUE;
+	if (sjwcheck(177)) return TRUE;
 	return(FALSE);
 }
 
@@ -3852,6 +4483,7 @@ have_goldspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator178) return TRUE;
+	if (sjwcheck(178)) return TRUE;
 	return(FALSE);
 }
 
@@ -3865,6 +4497,7 @@ have_deprovementstone()
 			return(TRUE);
 		}
 	if (u.nastinator179) return TRUE;
+	if (sjwcheck(179)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 6) return TRUE;
 	return(FALSE);
 }
@@ -3879,6 +4512,7 @@ have_initializationstone()
 			return(TRUE);
 		}
 	if (u.nastinator180) return TRUE;
+	if (sjwcheck(180)) return TRUE;
 	return(FALSE);
 }
 
@@ -3892,6 +4526,7 @@ have_gushlushstone()
 			return(TRUE);
 		}
 	if (u.nastinator181) return TRUE;
+	if (sjwcheck(181)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 7) return TRUE;
 	return(FALSE);
 }
@@ -3906,6 +4541,7 @@ have_soiltypestone()
 			return(TRUE);
 		}
 	if (u.nastinator182) return TRUE;
+	if (sjwcheck(182)) return TRUE;
 	return(FALSE);
 }
 
@@ -3919,6 +4555,7 @@ have_dangerousterrainstone()
 			return(TRUE);
 		}
 	if (u.nastinator183) return TRUE;
+	if (sjwcheck(183)) return TRUE;
 	return(FALSE);
 }
 
@@ -3932,6 +4569,7 @@ have_falloutstone()
 			return(TRUE);
 		}
 	if (u.nastinator184) return TRUE;
+	if (sjwcheck(184)) return TRUE;
 	return(FALSE);
 }
 
@@ -3945,6 +4583,7 @@ have_mojibakestone()
 			return(TRUE);
 		}
 	if (u.nastinator185) return TRUE;
+	if (sjwcheck(185)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 8) return TRUE;
 	return(FALSE);
 }
@@ -3959,6 +4598,7 @@ have_gravationstone()
 			return(TRUE);
 		}
 	if (u.nastinator186) return TRUE;
+	if (sjwcheck(186)) return TRUE;
 	return(FALSE);
 }
 
@@ -3972,6 +4612,7 @@ have_uncalledstone()
 			return(TRUE);
 		}
 	if (u.nastinator187) return TRUE;
+	if (sjwcheck(187)) return TRUE;
 	return(FALSE);
 }
 
@@ -3985,6 +4626,7 @@ have_explodingdicestone()
 			return(TRUE);
 		}
 	if (u.nastinator188) return TRUE;
+	if (sjwcheck(188)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 7) return TRUE;
 	return(FALSE);
 }
@@ -3999,6 +4641,7 @@ have_permacursestone()
 			return(TRUE);
 		}
 	if (u.nastinator189) return TRUE;
+	if (sjwcheck(189)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 7) return TRUE;
 	return(FALSE);
 }
@@ -4013,6 +4656,7 @@ have_shroudedidentitystone()
 			return(TRUE);
 		}
 	if (u.nastinator190) return TRUE;
+	if (sjwcheck(190)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 6) return TRUE;
 	return(FALSE);
 }
@@ -4027,6 +4671,7 @@ have_feelergaugesstone()
 			return(TRUE);
 		}
 	if (u.nastinator191) return TRUE;
+	if (sjwcheck(191)) return TRUE;
 	return(FALSE);
 }
 
@@ -4040,6 +4685,7 @@ have_longscrewupstone()
 			return(TRUE);
 		}
 	if (u.nastinator192) return TRUE;
+	if (sjwcheck(192)) return TRUE;
 	return(FALSE);
 }
 
@@ -4053,6 +4699,7 @@ have_wingyellowstone()
 			return(TRUE);
 		}
 	if (u.nastinator193) return TRUE;
+	if (sjwcheck(193)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 8) return TRUE;
 	return(FALSE);
 }
@@ -4067,6 +4714,7 @@ have_lifesavingstone()
 			return(TRUE);
 		}
 	if (u.nastinator194) return TRUE;
+	if (sjwcheck(194)) return TRUE;
 	return(FALSE);
 }
 
@@ -4080,6 +4728,7 @@ have_curseusestone()
 			return(TRUE);
 		}
 	if (u.nastinator195) return TRUE;
+	if (sjwcheck(195)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 7) return TRUE;
 	return(FALSE);
 }
@@ -4094,6 +4743,7 @@ have_cutnutritionstone()
 			return(TRUE);
 		}
 	if (u.nastinator196) return TRUE;
+	if (sjwcheck(196)) return TRUE;
 	return(FALSE);
 }
 
@@ -4107,6 +4757,7 @@ have_skilllossstone()
 			return(TRUE);
 		}
 	if (u.nastinator197) return TRUE;
+	if (sjwcheck(197)) return TRUE;
 	return(FALSE);
 }
 
@@ -4120,6 +4771,7 @@ have_autopilotstone()
 			return(TRUE);
 		}
 	if (u.nastinator198) return TRUE;
+	if (sjwcheck(198)) return TRUE;
 	return(FALSE);
 }
 
@@ -4133,6 +4785,7 @@ have_forcestone()
 			return(TRUE);
 		}
 	if (u.nastinator199) return TRUE;
+	if (sjwcheck(199)) return TRUE;
 	return(FALSE);
 }
 
@@ -4146,6 +4799,7 @@ have_monsterglyphstone()
 			return(TRUE);
 		}
 	if (u.nastinator200) return TRUE;
+	if (sjwcheck(200)) return TRUE;
 	return(FALSE);
 }
 
@@ -4159,6 +4813,7 @@ have_changingdirectivestone()
 			return(TRUE);
 		}
 	if (u.nastinator201) return TRUE;
+	if (sjwcheck(201)) return TRUE;
 	return(FALSE);
 }
 
@@ -4172,6 +4827,7 @@ have_containerkaboomstone()
 			return(TRUE);
 		}
 	if (u.nastinator202) return TRUE;
+	if (sjwcheck(202)) return TRUE;
 	return(FALSE);
 }
 
@@ -4185,6 +4841,7 @@ have_stealdegradestone()
 			return(TRUE);
 		}
 	if (u.nastinator203) return TRUE;
+	if (sjwcheck(203)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 8) return TRUE;
 	return(FALSE);
 }
@@ -4199,6 +4856,7 @@ have_leftinventorystone()
 			return(TRUE);
 		}
 	if (u.nastinator204) return TRUE;
+	if (sjwcheck(204)) return TRUE;
 	return(FALSE);
 }
 
@@ -4212,6 +4870,7 @@ have_fluctuatingspeedstone()
 			return(TRUE);
 		}
 	if (u.nastinator205) return TRUE;
+	if (sjwcheck(205)) return TRUE;
 	return(FALSE);
 }
 
@@ -4225,6 +4884,7 @@ have_tarmustrokingnorastone()
 			return(TRUE);
 		}
 	if (u.nastinator206) return TRUE;
+	if (sjwcheck(206)) return TRUE;
 	return(FALSE);
 }
 
@@ -4238,6 +4898,7 @@ have_failurestone()
 			return(TRUE);
 		}
 	if (u.nastinator207) return TRUE;
+	if (sjwcheck(207)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 8) return TRUE;
 	return(FALSE);
 }
@@ -4252,6 +4913,7 @@ have_brightcyanspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator208) return TRUE;
+	if (sjwcheck(208)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 13) return TRUE;
 	return(FALSE);
 }
@@ -4266,6 +4928,7 @@ have_frequentationspawnstone()
 			return(TRUE);
 		}
 	if (u.nastinator209) return TRUE;
+	if (sjwcheck(209)) return TRUE;
 	return(FALSE);
 }
 
@@ -4279,6 +4942,7 @@ have_petaistone()
 			return(TRUE);
 		}
 	if (u.nastinator210) return TRUE;
+	if (sjwcheck(210)) return TRUE;
 	return(FALSE);
 }
 
@@ -4292,6 +4956,7 @@ have_satanstone()
 			return(TRUE);
 		}
 	if (u.nastinator211) return TRUE;
+	if (sjwcheck(211)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 7) return TRUE;
 	return(FALSE);
 }
@@ -4306,6 +4971,7 @@ have_rememberancestone()
 			return(TRUE);
 		}
 	if (u.nastinator212) return TRUE;
+	if (sjwcheck(212)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 7) return TRUE;
 	return(FALSE);
 }
@@ -4320,6 +4986,7 @@ have_pokeliestone()
 			return(TRUE);
 		}
 	if (u.nastinator213) return TRUE;
+	if (sjwcheck(213)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 7) return TRUE;
 	return(FALSE);
 }
@@ -4334,6 +5001,7 @@ have_autopickupstone()
 			return(TRUE);
 		}
 	if (u.nastinator214) return TRUE;
+	if (sjwcheck(214)) return TRUE;
 	return(FALSE);
 }
 
@@ -4347,6 +5015,7 @@ have_dywypistone()
 			return(TRUE);
 		}
 	if (u.nastinator215) return TRUE;
+	if (sjwcheck(215)) return TRUE;
 	return(FALSE);
 }
 
@@ -4360,6 +5029,7 @@ have_silverspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator216) return TRUE;
+	if (sjwcheck(216)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 14) return TRUE;
 	return(FALSE);
 }
@@ -4374,6 +5044,7 @@ have_metalspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator217) return TRUE;
+	if (sjwcheck(217)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 15) return TRUE;
 	return(FALSE);
 }
@@ -4388,6 +5059,7 @@ have_platinumspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator218) return TRUE;
+	if (sjwcheck(218)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 16) return TRUE;
 	return(FALSE);
 }
@@ -4402,6 +5074,7 @@ have_manlerstone()
 			return(TRUE);
 		}
 	if (u.nastinator219) return TRUE;
+	if (sjwcheck(219)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 8) return TRUE;
 	return(FALSE);
 }
@@ -4416,6 +5089,7 @@ have_doorningstone()
 			return(TRUE);
 		}
 	if (u.nastinator220) return TRUE;
+	if (sjwcheck(220)) return TRUE;
 	return(FALSE);
 }
 
@@ -4429,6 +5103,7 @@ have_nownsiblestone()
 			return(TRUE);
 		}
 	if (u.nastinator221) return TRUE;
+	if (sjwcheck(221)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 8) return TRUE;
 	return(FALSE);
 }
@@ -4443,6 +5118,7 @@ have_elmstreetstone()
 			return(TRUE);
 		}
 	if (u.nastinator222) return TRUE;
+	if (sjwcheck(222)) return TRUE;
 	return(FALSE);
 }
 
@@ -4456,6 +5132,7 @@ have_monnoisestone()
 			return(TRUE);
 		}
 	if (u.nastinator223) return TRUE;
+	if (sjwcheck(223)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 8) return TRUE;
 	return(FALSE);
 }
@@ -4470,6 +5147,7 @@ have_rangcallstone()
 			return(TRUE);
 		}
 	if (u.nastinator224) return TRUE;
+	if (sjwcheck(224)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 9) return TRUE;
 	return(FALSE);
 }
@@ -4484,6 +5162,7 @@ have_recurringspelllossstone()
 			return(TRUE);
 		}
 	if (u.nastinator225) return TRUE;
+	if (sjwcheck(225)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 9) return TRUE;
 	return(FALSE);
 }
@@ -4498,6 +5177,7 @@ have_antitrainingstone()
 			return(TRUE);
 		}
 	if (u.nastinator226) return TRUE;
+	if (sjwcheck(226)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 10) return TRUE;
 	return(FALSE);
 }
@@ -4512,6 +5192,7 @@ have_techoutstone()
 			return(TRUE);
 		}
 	if (u.nastinator227) return TRUE;
+	if (sjwcheck(227)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 11) return TRUE;
 	return(FALSE);
 }
@@ -4526,6 +5207,7 @@ have_statdecaystone()
 			return(TRUE);
 		}
 	if (u.nastinator228) return TRUE;
+	if (sjwcheck(228)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 10) return TRUE;
 	return(FALSE);
 }
@@ -4540,6 +5222,7 @@ have_movemorkstone()
 			return(TRUE);
 		}
 	if (u.nastinator229) return TRUE;
+	if (sjwcheck(229)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 8) return TRUE;
 	return(FALSE);
 }
@@ -4554,6 +5237,7 @@ have_badpartstone()
 			return(TRUE);
 		}
 	if (u.nastinator230) return TRUE;
+	if (sjwcheck(230)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 9) return TRUE;
 	return(FALSE);
 }
@@ -4568,6 +5252,7 @@ have_completelybadpartstone()
 			return(TRUE);
 		}
 	if (u.nastinator231) return TRUE;
+	if (sjwcheck(231)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 10) return TRUE;
 	return(FALSE);
 }
@@ -4582,6 +5267,7 @@ have_evilvariantstone()
 			return(TRUE);
 		}
 	if (u.nastinator232) return TRUE;
+	if (sjwcheck(232)) return TRUE;
 	return(FALSE);
 }
 
@@ -4595,6 +5281,7 @@ have_sanitytreblestone()
 			return(TRUE);
 		}
 	if (u.nastinator233) return TRUE;
+	if (sjwcheck(233)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 9) return TRUE;
 	return(FALSE);
 }
@@ -4609,6 +5296,7 @@ have_statdecreasestone()
 			return(TRUE);
 		}
 	if (u.nastinator234) return TRUE;
+	if (sjwcheck(234)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 9) return TRUE;
 	return(FALSE);
 }
@@ -4623,6 +5311,7 @@ have_simeoutstone()
 			return(TRUE);
 		}
 	if (u.nastinator235) return TRUE;
+	if (sjwcheck(235)) return TRUE;
 	return(FALSE);
 }
 
