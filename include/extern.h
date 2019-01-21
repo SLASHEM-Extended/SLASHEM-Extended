@@ -995,6 +995,7 @@ E boolean have_magicresstone(void);
 E boolean have_cursedmagicresstone(void);
 E boolean have_loadboulder(void);
 E boolean have_starlightstone(void);
+E boolean sjwcheck(int);
 
 E int numberofetheritems(void);
 E int numberofwornetheritems(void);
