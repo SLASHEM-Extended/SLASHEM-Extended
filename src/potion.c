@@ -2532,7 +2532,7 @@ badeffect()
 		case 413:
 		case 414:
 
-			bad_equipment();
+			bad_equipment(0);
 
 		break;
 
@@ -3314,9 +3314,14 @@ register struct monst *mtmp;
 }
 
 /* Make a negatively enchanted or cursed item and automatically equip it for the player --Amy
- * Please ensure that this effect isn't too common, because it might also result in good stuff */
+ * Please ensure that this effect isn't too common, because it might also result in good stuff
+ * eqflags controls a couple things:
+ * 0 = item's enchantment is always negative
+ * 1 = item's enchantment is randomized
+ */
 void
-bad_equipment()
+bad_equipment(eqflags)
+int eqflags;
 {
 	register struct obj *otmp;
 	int objtyp = 0;
@@ -3341,7 +3346,7 @@ newbadtry:
 	otmp = mksobj(objtyp, TRUE, FALSE);
 	if (!otmp) return; /* fail safe */
 
-	if (objects[otmp->otyp].oc_charged) {
+	if (objects[otmp->otyp].oc_charged && eqflags == 0) {
 		if (otmp->spe > 0) otmp->spe *= -1;
 		if (otmp->spe == 0) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 	}
@@ -3978,7 +3983,7 @@ dodrink()
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 	    } else if (!strcmp(potion_descr, "deadweight") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
-		bad_equipment();
+		bad_equipment(0);
 	    } else if (!strcmp(potion_descr, "present") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an artifact!");
 		bad_artifact();

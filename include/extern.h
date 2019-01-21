@@ -2246,7 +2246,7 @@ E void djinni_from_bottle(struct obj *,int);
 E int upgrade_obj(struct obj *);
 E struct monst *split_mon(struct monst *,struct monst *);
 E const char *bottlename(void);
-E void bad_equipment(void);
+E void bad_equipment(int);
 E void bad_equipment_heel(void);
 E void increasesanity(int);
 E void statdrain(void);
@@ -2899,7 +2899,7 @@ E void fartingweb(void);
 /* ### u_init.c ### */
 
 E void u_init(void);
-E void alter_reality(void);
+E void alter_reality(int);
 E void polyinitors(void);
 E void reinitgods(void);
 

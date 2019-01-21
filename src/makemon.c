@@ -721,6 +721,139 @@ register struct monst *mtmp;
 
 	if (needspick(ptr) && !rn2(40) ) (void) mongets(mtmp, PICK_AXE);
 
+	if (Role_if(PM_GRENADONIN) && !rn2(50)) {
+
+		switch (rnd(42)) { /* grenades half of the time, guns otherwise */
+
+			case 1:
+				(void) mongets(mtmp, PISTOL);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 30);
+				break;
+			case 2:
+				(void) mongets(mtmp, FLINTLOCK);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 20);
+				break;
+			case 3:
+				(void) mongets(mtmp, BEAM_REFLECTOR_GUN);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 30);
+				break;
+			case 4:
+				(void) mongets(mtmp, mtmp->m_lev > 4 ? SUBMACHINE_GUN : PISTOL);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				break;
+			case 5:
+				(void) mongets(mtmp, mtmp->m_lev > 30 ? HEAVY_MACHINE_GUN : PISTOL);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				if (mtmp->m_lev > 30) {
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				}
+				break;
+			case 6:
+				(void) mongets(mtmp, RIFLE);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				break;
+			case 7:
+				(void) mongets(mtmp, HUNTING_RIFLE);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				break;
+			case 8:
+				(void) mongets(mtmp, mtmp->m_lev > 11 ? ASSAULT_RIFLE : PISTOL);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				if (mtmp->m_lev > 11) {
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				}
+				break;
+			case 9:
+				(void) mongets(mtmp, mtmp->m_lev > 6 ? SNIPER_RIFLE : RIFLE);
+				m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 50);
+				break;
+			case 10:
+				(void) mongets(mtmp, SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				break;
+			case 11:
+				(void) mongets(mtmp, PAPER_SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				break;
+			case 12:
+				(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				break;
+			case 13:
+				(void) mongets(mtmp, mtmp->m_lev > 8 ? AUTO_SHOTGUN : SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				if (mtmp->m_lev > 8) {
+					m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				}
+				break;
+			case 14:
+				(void) mongets(mtmp, HAND_BLASTER);
+				m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : rn2(10) ? HEAVY_BLASTER_BOLT : LASER_BEAM, 40);
+				break;
+			case 15:
+				(void) mongets(mtmp, mtmp->m_lev > 15 ? ARM_BLASTER : HAND_BLASTER);
+				m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : rn2(10) ? HEAVY_BLASTER_BOLT : LASER_BEAM, 50);
+				break;
+			case 16:
+				(void) mongets(mtmp, PROCESS_CARD);
+				m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : rn2(10) ? HEAVY_BLASTER_BOLT : LASER_BEAM, 40);
+				break;
+			case 17:
+				(void) mongets(mtmp, mtmp->m_lev > 6 ? CUTTING_LASER : HAND_BLASTER);
+				m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : rn2(10) ? HEAVY_BLASTER_BOLT : LASER_BEAM, 50);
+				if (mtmp->m_lev > 6) {
+					m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : rn2(10) ? HEAVY_BLASTER_BOLT : LASER_BEAM, 50);
+				}
+				break;
+			case 18:
+				(void) mongets(mtmp, mtmp->m_lev > 30 ? BFG : PISTOL);
+				if (mtmp->m_lev > 30) {
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				  	m_initthrow(mtmp, BFG_AMMO, 50);
+				} else {
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 30);
+				}
+				break;
+			case 19:
+				(void) mongets(mtmp, mtmp->m_lev > 9 ? ROCKET_LAUNCHER : PISTOL);
+				if (mtmp->m_lev > 9) {
+					m_initthrow(mtmp, ROCKET, 5);
+				} else {
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 30);
+				}
+				break;
+			case 20:
+				(void) mongets(mtmp, mtmp->m_lev > 4 ? GRENADE_LAUNCHER : PISTOL);
+				if (mtmp->m_lev > 4) {
+					m_initthrow(mtmp, FRAG_GRENADE, 15);
+				} else {
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 30);
+				}
+				break;
+			case 21:
+				(void) mongets(mtmp, mtmp->m_lev > 4 ? GRENADE_LAUNCHER : PISTOL);
+				if (mtmp->m_lev > 4) {
+					m_initthrow(mtmp, GAS_GRENADE, 15);
+				} else {
+					m_initthrow(mtmp, rn2(2000) ? BULLET : ANTIMATTER_BULLET, 30);
+				}
+				break;
+			default:
+				m_initthrow(mtmp, rn2(2) ? FRAG_GRENADE : GAS_GRENADE, 20);
+				break;
+
+		}
+
+	}
+
 	return;
 }
 
@@ -2044,7 +2177,14 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, IRON_SHOES);
 			if (!rn2(100)) {
 		     (void)mongets(mtmp, BFG);
-			 m_initthrow(mtmp, BFG_AMMO, 400);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
 			}
 
 		   break;

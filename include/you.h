@@ -1200,6 +1200,10 @@ struct you {
 
 	int cellargravate;
 
+	int walscholarpass;
+
+	boolean grenadoninlauncher;
+
 	boolean automorefuckthisshit;	/* gah */
 
 	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */

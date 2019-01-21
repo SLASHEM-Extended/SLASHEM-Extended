@@ -260,6 +260,12 @@ nh_timeout()
 		if (u.sokosolveboulder < 0) u.sokosolveboulder = 0; /* fail safe */
 	}
 
+	if (u.walscholarpass) {
+		u.walscholarpass--;
+		if (!u.walscholarpass) pline("You can no longer pass through grave walls.");
+		if (u.walscholarpass < 0) u.walscholarpass = 0; /* fail safe */
+	}
+
 	if (u.cellargravate) {
 		u.cellargravate--;
 		if (u.cellargravate < 0) u.cellargravate = 0; /* fail safe */

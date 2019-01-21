@@ -3958,6 +3958,8 @@ secureidchoice:
 
 		}
 
+		if (Role_if(PM_GRENADONIN)) ammotype = 6; /* grenades */
+
 		if (Race_if(PM_TURMENE)) {
 			pline("You can also make shotgun shells instead of regular ammo.");
 			if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
@@ -3967,7 +3969,8 @@ secureidchoice:
 
 		struct obj *uammo;
 
-		if (ammotype == 5) uammo = mksobj(BFG_AMMO, TRUE, FALSE);
+		if (ammotype == 6) uammo = mksobj(rn2(2) ? GAS_GRENADE : FRAG_GRENADE, TRUE, FALSE);
+		else if (ammotype == 5) uammo = mksobj(BFG_AMMO, TRUE, FALSE);
 		else if (ammotype == 4) uammo = mksobj(ROCKET, TRUE, FALSE);
 		else if (ammotype == 3) uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE);
 		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
@@ -3991,13 +3994,44 @@ secureidchoice:
 			stackobj(uammo);
 		}
 
+		if (Role_if(PM_GRENADONIN) && u.ulevel >= 10) {
+
+			if (!u.grenadoninlauncher && !rn2(5)) {
+				u.grenadoninlauncher = TRUE;
+				uammo = mksobj(GRENADE_LAUNCHER, TRUE, FALSE);
+				if (uammo) {
+					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+					dropy(uammo);
+					stackobj(uammo);
+					pline("There's your grenade launcher!");
+				}
+			}
+
+			if (!rn2(10)) {
+				uammo = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE);
+				if (uammo) {
+					uammo->quan = techlevX(tech_no) - 9;
+					if (uammo->quan < 1) uammo->quan = 1;
+					if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
+					uammo->quan /= 3;
+					if (uammo->quan < 1) uammo->quan = 1; /* fail safe */
+					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+					uammo->owt = weight(uammo);
+					dropy(uammo);
+					stackobj(uammo);
+				}
+
+			}
+
+		}
+
 		if (uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) {
 			uammo = mksobj(ROCKET, TRUE, FALSE);
 			if (uammo) {
 				uammo->quan = techlevX(tech_no);
 				if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
 				uammo->quan /= 10;
-				if (uammo->quan < 0) uammo->quan = 1; /* fail safe */
+				if (uammo->quan < 1) uammo->quan = 1; /* fail safe */
 				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
 				uammo->owt = weight(uammo);
 				dropy(uammo);
@@ -5911,9 +5945,32 @@ revid_end:
 
 		pline("You try to erect barriers!");
 
+		if (Role_if(PM_WALSCHOLAR)) {
+			register struct obj *waldiamond;
+
+			waldiamond = carrying(DIAMOND);
+
+			if (!waldiamond) {
+				pline("But you don't have a diamond to create them...");
+				break;
+			}
+
+			if (waldiamond) {
+				if (waldiamond->quan > 1) {
+					waldiamond->quan--;
+					waldiamond->owt = weight(waldiamond);
+				}
+				else useup(waldiamond);
+				You("use a diamond to create the barriers.");
+			}
+
+		}
+
 		{
 
 			int diamondradius = 1;
+
+			if (Role_if(PM_WALSCHOLAR)) diamondradius = 3; /* can't reduce, unlike mason */
 
 			if (Role_if(PM_MASON)) {
 
@@ -5952,6 +6009,11 @@ revid_end:
 
 		}
 		vision_recalc(0);
+
+		if (Role_if(PM_WALSCHOLAR)) {
+			u.walscholarpass += (rnd(50) + rnd(techlevX(tech_no) * 5) );
+			pline("For a while, you can freely pass through grave walls!");
+		}
 
 	      t_timeout = Role_if(PM_MASON) ? rnz(1000) : rnz(5000);
 

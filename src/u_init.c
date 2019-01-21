@@ -9052,6 +9052,9 @@ u_init()
 
 	u.cellargravate = 0;
 
+	u.walscholarpass = 0;
+
+	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
 	u.automorefuckthisshit = 0;
 	u.nataljetrapx = 0;
@@ -27679,8 +27682,13 @@ register struct trobj *trop;
 
 }
 
+/* Alter reality: the flag controls which messages you get.
+ * 0 = "The power of Eru flows through you"
+ * 1 = 90% chance of no message, 10% chance of "Suddenly, the reality is altered"
+ */
 void
-alter_reality()
+alter_reality(realityflag)
+int realityflag;
 {
 
 	register int i, temp, racebounus, rolebounus, alignbounus, genderbounus, maxbounus, randpantheon, starlitmonster, starlitattempts;
@@ -41201,8 +41209,15 @@ polyinitredoX:
 	randfwean->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	randfwean->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 
-	pline(Hallucination ? "You invoke the power of Eru Iluvator... err, Sauron. Whatever it's called." : "The power of Eru Iluvator flows through you!");
-	pline(Hallucination ? "Somehow, that did all of jack diddly." : "The world changes!");
+	if (realityflag == 0) {
+
+		pline(Hallucination ? "You invoke the power of Eru Iluvator... err, Sauron. Whatever it's called." : "The power of Eru Iluvator flows through you!");
+		pline(Hallucination ? "Somehow, that did all of jack diddly." : "The world changes!");
+	}
+
+	if (realityflag == 1 && !rn2(10)) {
+		pline("Suddenly, the reality is altered!");
+	}
 
 	return;
 

@@ -5281,6 +5281,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.walscholarpass) {
+		sprintf(buf, "able to pass through grave walls.");
+	      sprintf(eos(buf), " (%d)", u.walscholarpass);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.demagogueabilitytimer && isdemagogue) {
 		sprintf(buf, "to wait until you can use your special recursion.");
 	      sprintf(eos(buf), " (%d)", u.demagogueabilitytimer);
@@ -8867,6 +8873,12 @@ int final;
 		sprintf(buf, "to wait until you can spread the perfume again.");
 	      sprintf(eos(buf), " (%d)", u.hussyperfume);
 		dump(youhad, buf);
+	}
+
+	if (u.walscholarpass) {
+		sprintf(buf, "able to pass through grave walls.");
+	      sprintf(eos(buf), " (%d)", u.walscholarpass);
+		dump(youwere, buf);
 	}
 
 	if (u.demagogueabilitytimer && isdemagogue) {

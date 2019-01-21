@@ -18376,6 +18376,7 @@ register struct monst *mon;
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birthcloth") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "rozhdeniye tkan'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tug'ilgan mato") )) birthing = 1;
 	else if (RngeChildbirth) birthing = 1;
 	else if (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) birthing = 1;
+	else if (Role_if(PM_GRENADONIN) && mon->data->mcolor == CLR_BLACK) birthing = 1;
 	else birthing = 0;
 
 	if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) complications = 1;
@@ -18543,6 +18544,12 @@ skiptreason:
 		noit_mon_nam(mon));
 	/* Well,  IT happened ... */
 	u.uconduct.celibacy++;
+
+	if (Role_if(PM_GRENADONIN) && mon->data->mcolor == CLR_BLACK) {
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-50);
+	}
 
 	if (mon->data == &mons[PM_FEMME]) pline("The beautiful femme showers your body with kisses while your %s are busy stroking her very sexy butt cheeks.", makeplural(body_part(HAND)));
 

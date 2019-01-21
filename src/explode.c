@@ -1047,14 +1047,41 @@ boolean isyou;
     boolean shielded = FALSE, redraw;
     struct grenade_callback gc;
 
+    int xtrasiz = 0;
+    if (Role_if(PM_GRENADONIN)) {
+
+	if (isyou) {
+
+		xtrasiz += rnd(1 + (u.ulevel / 2));
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_FIREARM)) {
+
+		      	case P_BASIC:	xtrasiz += rnd(2); break;
+		      	case P_SKILLED:	xtrasiz += rnd(4); break;
+		      	case P_EXPERT:	xtrasiz += rnd(8); break;
+		      	case P_MASTER:	xtrasiz += rnd(12); break;
+		      	case P_GRAND_MASTER:	xtrasiz += rnd(18); break;
+		      	case P_SUPREME_MASTER:	xtrasiz += rnd(25); break;
+		      	default: break;
+			}		
+		}
+	} else xtrasiz += rno(20);
+
+    }
+
     if (source) {
-	if (source->otyp == GAS_GRENADE)
+	if (source->otyp == GAS_GRENADE) {
 	    no_gas += source->quan;
-	else if (source->otyp == FRAG_GRENADE)
+	    no_gas += xtrasiz;
+	} else if (source->otyp == FRAG_GRENADE) {
 	    no_fiery += source->quan;
-	else if (source->otyp == STICK_OF_DYNAMITE) {
+	    no_fiery += xtrasiz;
+	} else if (source->otyp == STICK_OF_DYNAMITE) {
 	    no_fiery += source->quan * 2;
+	    no_fiery += xtrasiz;
 	    no_dig += source->quan;
+	    no_dig += (xtrasiz / 2) + 1;
 	}
 	redraw = source->where == OBJ_FLOOR;
 	obj_extract_self(source);
@@ -1070,7 +1097,8 @@ boolean isyou;
 	} else {
 	    for(obj = mon->minvent; obj; obj = obj2) {
 		obj2 = obj->nobj;
-		GRENADE_TRIGGER(obj);
+		if (!Role_if(PM_GRENADONIN)) GRENADE_TRIGGER(obj);
+		if (Role_if(PM_GRENADONIN)) delquan = 0;
 		for(i = 0; i < delquan; i++)
 		    m_useup(mon, obj);
 	    }
@@ -1082,7 +1110,8 @@ boolean isyou;
 	else
 	    for(obj = invent; obj; obj = obj2) {
 		obj2 = obj->nobj;
-		GRENADE_TRIGGER(obj);
+		if (!Role_if(PM_GRENADONIN)) GRENADE_TRIGGER(obj);
+		if (Role_if(PM_GRENADONIN)) delquan = 0;
 		for(i = 0; i < delquan; i++)
 		    useup(obj);
 	    }
@@ -1090,7 +1119,8 @@ boolean isyou;
     if (!shielded)
 	for(obj = level.objects[x][y]; obj; obj = obj2) {
 	    obj2 = obj->nexthere;
-	    GRENADE_TRIGGER(obj);
+	    if (!Role_if(PM_GRENADONIN)) GRENADE_TRIGGER(obj);
+	    if (Role_if(PM_GRENADONIN)) delquan = 0;
 	    if (delquan) {
 		if (isyou)
 		    useupf(obj, delquan);
@@ -1149,6 +1179,33 @@ int dest;
     int ox, oy;
     ExplodeRegion *fiery_area, *gas_area, *dig_area;
     struct trap *trap;
+
+    int grenadedamage;
+
+    grenadedamage = d(3,6);
+
+    if (Role_if(PM_GRENADONIN)) {
+
+	if (isyou) {
+
+		grenadedamage += rnd(u.ulevel * 2);
+		if (!rn2(5)) grenadedamage += rnd(u.ulevel);
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_FIREARM)) {
+
+		      	case P_BASIC:	grenadedamage += rnd(6); break;
+		      	case P_SKILLED:	grenadedamage += rnd(13); break;
+		      	case P_EXPERT:	grenadedamage += rnd(24); break;
+		      	case P_MASTER:	grenadedamage += rnd(40); break;
+		      	case P_GRAND_MASTER:	grenadedamage += rnd(60); break;
+		      	case P_SUPREME_MASTER:	grenadedamage += rnd(80); break;
+		      	default: break;
+			}		
+		}
+	} else grenadedamage += d(3,6);
+
+    }
     
     fiery_area = create_explode_region();
     gas_area = create_explode_region();
@@ -1156,7 +1213,7 @@ int dest;
     grenade_effects(obj, x, y, fiery_area, gas_area, dig_area, isyou);
     if (fiery_area->nlocations) {
 	ztype = isyou ? ZT_SPELL(ZT_FIRE) : -ZT_SPELL(ZT_FIRE);
-	do_explode(x, y, fiery_area, ztype, d(3,6), WEAPON_CLASS,
+	do_explode(x, y, fiery_area, ztype, grenadedamage, WEAPON_CLASS,
 	  EXPL_FIERY, dest, isyou);
     }
     wake_nearto(x, y, 400);

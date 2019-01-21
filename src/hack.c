@@ -1155,7 +1155,13 @@ int mode;
 
 	} else if (tmpr->typ == GRAVEWALL) {
 		/* Once again, passwall intentionally does not help --Amy */
+
+		if (u.walscholarpass) goto walscholardone; /* can pass through */
+
 		if (mode != DO_MOVE) return FALSE;
+
+		if (Role_if(PM_WALSCHOLAR) && (yn("Do you really want to dig into the grave wall? Doing so would be sinful for a Walscholar.") != 'y') ) return FALSE;
+
 		if (rn2(5) && !(uwep && uwep->oartifact == ART_CERULEAN_SMASH) ) {
 			Norep("You dig into the grave wall.");
 			TimerunBug += 1; /* ugly hack --Amy */
@@ -1163,6 +1169,15 @@ int mode;
 		} else {
 			You("dig out the grave wall.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+			if (Role_if(PM_WALSCHOLAR)) {
+				You_feel("like a miserably hussy.");
+				if (Hallucination) pline("Maybe you should buy a bottle of drum stint reluctance perfume.");
+				u.ualign.sins++;
+				u.alignlim--;
+				adjalign(-10);
+			}
+
 			tmpr->typ = CORR;
 			if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				maketrap(ux+dx, uy+dy, randomtrap(), 100 );
@@ -1172,6 +1187,10 @@ int mode;
 				return FALSE;
 			}
 		}
+
+walscholardone:
+		;
+
 	} else if (tmpr->typ == WATERTUNNEL) {
 		if (mode != DO_MOVE) return FALSE;
 

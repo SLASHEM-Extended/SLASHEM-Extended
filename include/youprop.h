@@ -61,7 +61,7 @@
 
 #define EnglandMode	(RngeEngland || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "long-range cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dlinnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uzoq masofaga plash") )) || (uarmu && uarmu->oartifact == ART_BEAM_MULTIPLIER) || (uwep && uwep->oartifact == ART_MINOLONG_ELBOW) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "english gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "angliyskiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ingliz tili qo'lqop") )) )
 
-#define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone() || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
+#define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone() || Role_if(PM_WALSCHOLAR) || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
 #define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
 
 #define PlayerHearsMessages	(u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) )

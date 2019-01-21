@@ -2313,7 +2313,7 @@ struct obj *obj;
 	    }
 	    if (potion_descr && !strcmp(potion_descr, "deadweight") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
-		bad_equipment();
+		bad_equipment(0);
 	    }
 	    if (potion_descr && !strcmp(potion_descr, "present") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an artifact!");
@@ -6685,7 +6685,7 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
-		bad_equipment();
+		bad_equipment(0);
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -8526,7 +8526,7 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		bad_equipment();
+		bad_equipment(0);
 
 		if (oseen) makeknown(WAN_BAD_EQUIPMENT);
 

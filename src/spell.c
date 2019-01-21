@@ -7491,7 +7491,10 @@ possessionchoice:
 			}
 
 			if (golemfuel) {
-				if (golemfuel->quan > 1) golemfuel->quan--;
+				if (golemfuel->quan > 1) {
+					golemfuel->quan--;
+					golemfuel->owt = weight(golemfuel);
+				}
 				else useup(golemfuel);
 			}
 
@@ -8575,7 +8578,7 @@ totemsummonchoice:
 
 	case SPE_ALTER_REALITY:
 
-		alter_reality();
+		alter_reality(0);
 
 		break;
 

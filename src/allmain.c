@@ -1802,19 +1802,19 @@ moveloop()
 
 		}
 
-		if (Role_if(PM_CELLAR_CHILD) && !rn2(5000)) bad_equipment();
+		if (Role_if(PM_CELLAR_CHILD) && !rn2(5000)) bad_equipment(0);
 
-		if (CursedParts && !rn2(500)) bad_equipment();
+		if (CursedParts && !rn2(500)) bad_equipment(0);
 
-		if (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR && !rn2(500)) bad_equipment();
+		if (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR && !rn2(500)) bad_equipment(0);
 
-		if (u.uprops[CURSED_PARTS].extrinsic && !rn2(500)) bad_equipment();
+		if (u.uprops[CURSED_PARTS].extrinsic && !rn2(500)) bad_equipment(0);
 
-		if (have_cursedpartstone() && !rn2(500)) bad_equipment();
+		if (have_cursedpartstone() && !rn2(500)) bad_equipment(0);
 
-		if (uwep && uwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment();
+		if (uwep && uwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment(0);
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment();
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment(0);
 
 		if (AppearanceShuffling && !rn2(2000)) initobjectsamnesia();;
 
@@ -4428,6 +4428,20 @@ newbossA:
 			Your("health increases, at the cost of nasty side effects.");
 			NastinessProblem += rnd(1000);
 
+		}
+
+		if (Role_if(PM_WALSCHOLAR) && !rn2(2500)) {
+			bad_equipment(1);
+		}
+
+		if (Role_if(PM_GRENADONIN) && !rn2(10000)) {
+			alter_reality(1);
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if (Role_if(PM_GRENADONIN) && !rn2(10000)) {
+			changehybridization(0);
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
 		if (Role_if(PM_FEMINIST) && !rn2(5000)) {

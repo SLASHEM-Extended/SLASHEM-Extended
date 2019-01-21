@@ -3940,7 +3940,7 @@ secureidchoice:
 
 		case WAN_BAD_EQUIPMENT:
 
-			bad_equipment();
+			bad_equipment(0);
 			known = TRUE;
 			break;
 

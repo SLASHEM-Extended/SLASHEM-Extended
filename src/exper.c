@@ -682,7 +682,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	if (u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) {
 		u.urmaxlvlUP = (u.ulevel + 1);
 
-		if (Role_if(PM_FEMINIST) && !rn2(5)) {
+		if ( (Role_if(PM_FEMINIST) || Role_if(PM_GRENADONIN)) && !rn2(5)) {
 
 			boolean havegifts = u.ugifts;
 

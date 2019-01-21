@@ -4691,7 +4691,7 @@ proofarmorchoice:
 	      break;
 
 	case SCR_ALTER_REALITY:
-		alter_reality();
+		alter_reality(0);
 
 	      break;
 
@@ -4952,7 +4952,7 @@ proofarmorchoice:
 	case SCR_BAD_EQUIPMENT:
 		known = TRUE;
 
-		bad_equipment();
+		bad_equipment(0);
 
 		break;
 

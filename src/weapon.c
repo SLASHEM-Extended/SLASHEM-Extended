@@ -4259,6 +4259,8 @@ int degree;
 		}
 	}
 
+	if (Role_if(PM_GRENADONIN) && skill != P_FIREARM && rn2(3)) return;
+
 	if (Race_if(PM_MAGYAR) && !rn2(2)) return;
 	if (Race_if(PM_DUNADAN) && !rn2(2)) return;
 	if (Race_if(PM_PLAYER_SKELETON) && rn2(3)) return;

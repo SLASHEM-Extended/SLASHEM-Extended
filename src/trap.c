@@ -11974,7 +11974,7 @@ madnesseffect:
 
 			pline("Uh-oh, should have watched your step...");
 			deltrap(trap);
-			bad_equipment();
+			bad_equipment(0);
 
 		 break;
 
