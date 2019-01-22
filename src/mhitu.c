@@ -5194,7 +5194,7 @@ hitmu(mtmp, mattk)
 			dmg *= 2;
 	}
 
-	if (mtmp->mfrenzied) dmg *= 2;
+	if (mtmp->mfrenzied && !rn2(2)) dmg += rnd(dmg);
 /*	Next a cancellation factor	*/
 
 /*	Use uncancelled when the cancellation factor takes into account certain
