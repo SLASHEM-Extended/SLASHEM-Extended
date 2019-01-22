@@ -32,7 +32,7 @@
 #define CanHaveOrangeSpells (OrangeSpells || u.uprops[ORANGE_SPELLS].extrinsic || have_orangespellstone())
 #define CanHaveRedSpells (RedSpells || u.uprops[RED_SPELLS].extrinsic || have_redspellstone())
 #define CanHavePlatinumSpells (PlatinumSpells || u.uprops[PLATINUM_SPELLS].extrinsic || have_platinumspellstone())
-#define CanHaveSilverSpells (SilverSpells || u.uprops[SILVER_SPELLS].extrinsic || have_silverspellstone())
+#define CanHaveSilverSpells (SilverSpells || u.uprops[SILVER_SPELLS].extrinsic || have_silverspellstone() || (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIZZY_METAL_STORM) )
 #define CanHaveMetalSpells (MetalSpells || u.uprops[METAL_SPELLS].extrinsic || have_metalspellstone())
 #define CanHaveGreenSpells (GreenSpells || u.uprops[GREEN_SPELLS].extrinsic || have_greenspellstone())
 #define CanHaveBlueSpells (BlueSpells || u.uprops[BLUE_SPELLS].extrinsic || have_bluespellstone())
@@ -64,7 +64,11 @@
 #define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone() || Role_if(PM_WALSCHOLAR) || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
 #define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
 
+#define ManlerIsChasing	(ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone() || (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIZZY_METAL_STORM))
+
 #define PlayerHearsMessages	(u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) )
+
+#define ThereIsNoLite	(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone() || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) )
 
 #define LLMMessages	(MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() )
 
@@ -973,7 +977,7 @@
 #define HJumping		u.uprops[JUMPING].intrinsic
 #define EJumping		u.uprops[JUMPING].extrinsic
 #define IntJumping	(HJumping || flags.iwbtg)
-#define ExtJumping	(EJumping || (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) || (uarm && uarm->oartifact == ART_LUKE_S_JEDI_POWER) || (uarmf && uarmf->oartifact == ART_PRINCE_OF_PERSIA) || (uwep && uwep->oartifact == ART_SUPERGIRL_S_JUMP_AND_RUN_F) || (uamul && uamul->oartifact == ART_ONLY_ONE_ESCAPE) || u.uprops[MULTISHOES].extrinsic)
+#define ExtJumping	(EJumping || (uwep && uwep->oartifact == ART_DIZZY_METAL_STORM) || (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) || (uarm && uarm->oartifact == ART_LUKE_S_JEDI_POWER) || (uarmf && uarmf->oartifact == ART_PRINCE_OF_PERSIA) || (uwep && uwep->oartifact == ART_SUPERGIRL_S_JUMP_AND_RUN_F) || (uamul && uamul->oartifact == ART_ONLY_ONE_ESCAPE) || u.uprops[MULTISHOES].extrinsic)
 
 #define Jumping			(((IntJumping && u.nonintrinsicproperty != JUMPING) || (ExtJumping && u.nonextrinsicproperty != JUMPING)) && !NoJumping)
 #define StrongJumping	(IntJumping && ExtJumping && Jumping)

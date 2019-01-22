@@ -508,6 +508,8 @@ WEAPON("platinum fire hook", "beaked staff",
 /* Polearms */
 /* (also weptool fishing pole) */
 /* spear-type */
+
+/* partisan must be first, see makemon.c */
 WEAPON("partisan", "vulgar polearm",
 	0, 0, 1,  25, 32, 10, 10,  9, 0, P,   P_POLEARMS, IRON, HI_METAL, 5),
 						/* +1 large */
@@ -516,7 +518,7 @@ WEAPON("penis pole", (char *)0,
 WEAPON("stickshoe", (char *)0,
 	1, 0, 1,   5, 24, 100, 8, 10, 4, P,   P_POLEARMS, LEATHER, CLR_BROWN, 6),
 WEAPON("glaive", "single-edged polearm",
-	0, 0, 1,  29, 32,  6,  9, 15, 2, S,   P_POLEARMS, IRON, HI_METAL, 7),
+	0, 0, 1,  27, 32,  6,  9, 15, 2, S,   P_POLEARMS, IRON, HI_METAL, 7),
 WEAPON("spetum", "forked polearm",
 	0, 0, 1,  26, 20,  5,  9,  9, 1, P,   P_POLEARMS, IRON, HI_METAL, 10),
 						/* +1 small, +d6 large */
@@ -527,8 +529,24 @@ WEAPON("noob pollax", (char *)0, /* this and the other pollax have increased thr
 WEAPON("great pollax", (char *)0,
 	1, 0, 1,  1, 500,  20,  15,  15, 0, P,   P_POLEARMS, ETHER, CLR_BRIGHT_BLUE, 60),
 WEAPON("ranseur", "hilted polearm",
-	0, 0, 1,  29, 20,  6,  6,  6, 3, P,   P_POLEARMS, IRON, HI_METAL, 4),
+	0, 0, 1,  27, 20,  6,  6,  6, 3, P,   P_POLEARMS, IRON, HI_METAL, 4),
 	/* +d4 both */
+
+WEAPON("bohemian ear spoon", (char *)0,
+	1, 0, 1,  2, 20,  6,  9,  9, 3, P,   P_POLEARMS, IRON, CLR_BROWN, 4),
+
+WEAPON("pole lantern", (char *)0,
+	1, 0, 1,  2, 200, 40,  6,  6, 0, S,   P_POLEARMS, METAL, CLR_CYAN, 8),
+
+WEAPON("nastypole", (char *)0,
+	1, 0, 1,  3, 40, 10,  10,  10, 2, P,   P_POLEARMS, ETHER, CLR_BRIGHT_CYAN, 10),
+
+WEAPON("dark bar", (char *)0,
+	1, 0, 1,  2, 60,  20,  6,  6, 0, S,   P_POLEARMS, ARCANIUM, CLR_BLACK, 10),
+
+WEAPON("yith tentacle", (char *)0,
+	1, 0, 1,  5, 20,  50,  8,  10, 1, P,   P_POLEARMS, SECREE, CLR_MAGENTA, 20),
+
 /* axe-type */
 WEAPON("bardiche", "long poleaxe",
 	0, 0, 1,  20,48,  7,  6,  6, 0, S,   P_POLEARMS, IRON, HI_METAL, 3),
@@ -537,7 +555,7 @@ WEAPON("voulge", "pole cleaver",
 	0, 0, 1,  20,48,  5,  6,  6, 1, S,   P_POLEARMS, IRON, HI_METAL, 8),
 						/* +d4 both */
 WEAPON("halberd", "angled poleaxe",
-	0, 0, 1,  34,60, 10, 15,  9, 0, P|S, P_POLEARMS, IRON, HI_METAL, 15),
+	0, 0, 1,  27,60, 10, 15,  9, 0, P|S, P_POLEARMS, IRON, HI_METAL, 15),
 	/* +1d6 large */
 WEAPON("helmet beard", (char *)0,
 	1, 0, 1,  2,60, 10, 15,  9, 5, P|S, P_POLEARMS, TAR, CLR_BLACK, 45),
@@ -551,9 +569,9 @@ WEAPON("black halberd", "black polearm",
 
 /* curved/hooked */
 WEAPON("fauchard", "pole sickle",
-	0, 0, 1,  28, 24,  5,  9,  12, 1, P|S, P_POLEARMS, IRON, HI_METAL, 10),
+	0, 0, 1,  27, 24,  5,  9,  12, 1, P|S, P_POLEARMS, IRON, HI_METAL, 10),
 WEAPON("guisarme", "pruning hook",
-	0, 0, 1,  28, 32,  5,  6,  13, 1, S,   P_POLEARMS, IRON, HI_METAL, 10),
+	0, 0, 1,  27, 32,  5,  6,  13, 1, S,   P_POLEARMS, IRON, HI_METAL, 10),
 						/* +1d4 small */
 WEAPON("bill-guisarme", "hooked polearm",
 	0, 0, 1,  18,48,  7,  6, 15, 1, P|S, P_POLEARMS, IRON, HI_METAL, 20),
@@ -568,7 +586,7 @@ WEAPON("thresher", (char *)0,
 	1, 0, 1,   2,60,  50, 15, 15, 1, B|P, P_POLEARMS, COMPOST, CLR_BROWN, 40),
 /* other */
 WEAPON("lucern hammer", "pronged polearm",
-	0, 0, 1,  28,60,  7,  6,  16, 0, B|P, P_POLEARMS, IRON, HI_METAL, 12),
+	0, 0, 1,  27,60,  7,  6,  16, 0, B|P, P_POLEARMS, IRON, HI_METAL, 12),
 						/* +1d4 small */
 
 WEAPON("sickle", (char *)0, /* Vs plants: +6 to hit and double damage */
@@ -580,6 +598,7 @@ WEAPON("scythe", (char *)0, /* 2d4 damage. Vs plants: +6 to hit and double damag
 
 WEAPON("bec de corbin", "beaked polearm",
 	0, 0, 1,  20,40,  8,  15,  9, 2, B|P, P_POLEARMS, IRON, HI_METAL, 17),
+/* bec de corbin must be last polearm, see makemon.c */
 
 /* Spears */
 WEAPON("orcish spear", "crude spear",
@@ -3197,6 +3216,24 @@ IMPLANT((char *)0, 	"highlighted", 0, 0, 0, 0, WOOD,   CLR_WHITE, 1),
 IMPLANT((char *)0, 	"katoru", 0, 0, 0, 0, BONE,   CLR_YELLOW, 1),
 IMPLANT((char *)0, 	"syphilitic", 0, 0, 0, 0, DRAGON_HIDE,   CLR_RED, 1),
 IMPLANT((char *)0, 	"slutty", 0, 0, 0, 0, IRON,   CLR_BRIGHT_MAGENTA, 1),
+IMPLANT((char *)0, 	"confrontational", 0, 0, 0, 0, METAL,   CLR_GRAY, 1),
+IMPLANT((char *)0, 	"fateful", 0, 0, 0, 0, COPPER,   CLR_WHITE, 1),
+IMPLANT((char *)0, 	"renunciated", 0, 0, 0, 0, SILVER,   CLR_BRIGHT_MAGENTA, 1),
+IMPLANT((char *)0, 	"airest", 0, 0, 0, 0, GOLD,   CLR_BRIGHT_BLUE, 1),
+IMPLANT((char *)0, 	"hideout", 0, 0, 0, 0, PLATINUM,   CLR_MAGENTA, 1),
+IMPLANT((char *)0, 	"snowfield", 0, 0, 0, 0, GLASS,   CLR_RED, 1),
+IMPLANT((char *)0, 	"portrait", 0, 0, 0, 0, GEMSTONE,   CLR_BRIGHT_BLUE, 1),
+IMPLANT((char *)0, 	"haven country", 0, 0, 0, 0, MINERAL,   CLR_YELLOW, 1),
+IMPLANT((char *)0, 	"forbidden", 0, 0, 0, 0, VIVA,   CLR_WHITE, 1),
+IMPLANT((char *)0, 	"sadwedge", 0, 0, 0, 0, INKA,   CLR_CYAN, 1),
+IMPLANT((char *)0, 	"flyel", 0, 0, 0, 0, TAR,   CLR_ORANGE, 1),
+IMPLANT((char *)0, 	"sunset", 0, 0, 0, 0, SILK,   CLR_BRIGHT_BLUE, 1),
+IMPLANT((char *)0, 	"eager", 0, 0, 0, 0, ARCANIUM,   CLR_CYAN, 1),
+IMPLANT((char *)0, 	"walpurgis", 0, 0, 0, 0, SECREE,   CLR_YELLOW, 1),
+IMPLANT((char *)0, 	"reencounter", 0, 0, 0, 0, POURPOOR,   CLR_YELLOW, 1),
+IMPLANT((char *)0, 	"parallel", 0, 0, 0, 0, COMPOST,   CLR_CYAN, 1),
+IMPLANT((char *)0, 	"ontologic", 0, 0, 0, 0, ETERNIUM,   CLR_GREEN, 1),
+IMPLANT((char *)0, 	"duststorm", 0, 0, 0, 0, ETHER,   CLR_BLACK, 1),
 
 #undef IMPLANT
 
@@ -5656,6 +5693,7 @@ SCROLL((char *)0,               "SUDDNLY IT HOTHRAXXA HEA HUM",  P_NONE,     1, 
 SCROLL((char *)0,               "DAGGER STINGY K BETTER NOW",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
 SCROLL((char *)0,               "KNOWN ISSUE STENNO SHOULD VE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "CHECKED THE AMULET OF REFLECTION AOSDICT",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "BAMBITZEL AND LOEBIAM ARE INDRAENIAN WORDS",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

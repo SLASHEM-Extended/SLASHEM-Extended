@@ -2903,8 +2903,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_BUBBLE_BOBBLE, "puzyr'" },
 	{ SPE_RAIN, "dozhd'" },
 
-
 	/* todo area */
+
+	{ DARK_BAR, "dark bar" },
+	{ YITH_TENTACLE, "yith tentacle" },
+	{ BOHEMIAN_EAR_SPOON, "bohemian ear spoon" },
+	{ POLE_LANTERN, "pole lantern" },
+	{ NASTYPOLE, "nastypole" },
 
 	{0, "" }
 };
@@ -5276,6 +5281,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_RAIN, "yomg'ir" },
 
 	/* todo area */
+
+	{ DARK_BAR, "dark bar" },
+	{ YITH_TENTACLE, "yith tentacle" },
+	{ BOHEMIAN_EAR_SPOON, "bohemian ear spoon" },
+	{ POLE_LANTERN, "pole lantern" },
+	{ NASTYPOLE, "nastypole" },
 
 	{0, "" }
 };
@@ -8909,6 +8920,11 @@ rnd_class(first,last)
 int first,last;
 {
 	int i, x, sum=0;
+
+	if (first > last) {
+		impossible("rnd_class called with invalid values. first = %d, last = %d", first, last);
+		return 0;
+	}
 
 	if (first == last)
 	    return (first);

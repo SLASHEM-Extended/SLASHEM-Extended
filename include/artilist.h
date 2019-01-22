@@ -6227,6 +6227,18 @@ A("The Trident of Poseidon", TRIDENT, /* magical breathing, swimming and protect
 	(SPFX_RESTR|SPFX_DFLAG1), 0, M1_SWIM,
 	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L),
 
+A("Weakite Thrust",			DARK_BAR, /* can attack through walls, weak sight, de-light and nolite when wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Dizzy Metal Storm",			POLE_LANTERN, /* jumping, can displace monsters by walking into them, silver spells, manler effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Payback Time",			NASTYPOLE, /* player can use it at increased range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

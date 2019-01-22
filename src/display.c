@@ -424,7 +424,7 @@ unmap_object(x, y)
 	map_trap(trap,show);						\
     else								\
 	map_background(x,y,show);					\
-	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {	\
+	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {	\
 	show_glyph(x, y, (GLYPH_MON_OFF + rn2(NUMMONS)));	\
 	return;	\
 	}	\
@@ -504,7 +504,7 @@ int memory_glyph(x, y)
 {
 #ifdef DISPLAY_LAYERS
 
-	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {
+	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {
 	return (GLYPH_MON_OFF + rn2(NUMMONS));
 	}
 
@@ -1038,7 +1038,7 @@ newsym(x,y)
 
     if (in_mklev) return;
 
-	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {
+	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {
 	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
 	return;
 	}
@@ -1367,7 +1367,7 @@ newsymX(x,y)
 
     if (in_mklev) return;
 
-	if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && x == u.manlerx && y == u.manlery) {
+	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {
 	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
 	return;
 	}

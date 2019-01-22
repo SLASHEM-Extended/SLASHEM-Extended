@@ -5359,6 +5359,18 @@ hitmu(mtmp, mattk)
 
 			}
 
+			if (otmp && otmp->otyp == YITH_TENTACLE) {
+
+				increasesanity(rnz(monster_difficulty() + 1));
+
+			}
+
+			if (otmp && otmp->otyp == NASTYPOLE && !rn2(10)) {
+
+				badeffect();
+
+			}
+
 			if (objects[otmp->otyp].oc_material == SILVER &&
 				hates_silver(youmonst.data)) {
 			    pline("The silver sears your flesh!");

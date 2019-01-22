@@ -1218,7 +1218,7 @@ register struct monst *mtmp;
 			case PM_WATCHMAN:
 			case PM_ANGRY_WATCHMAN:
 			  if (!rn2(3)) {
-			      w1 = rn1(BEC_DE_CORBIN - PARTISAN + 1, PARTISAN);
+			      w1 = rnd_class(PARTISAN,BEC_DE_CORBIN);
 			      w2 = rn2(2) ? DAGGER : KNIFE;
 			  } else w1 = rn2(2) ? SPEAR : SHORT_SWORD;
 			  break;
@@ -3150,7 +3150,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
 		     (void)mongets(mtmp, MACE);
-		     (void)mongets(mtmp, rn1(ROBE_OF_WEAKNESS - ROBE + 1, ROBE));
+		     (void)mongets(mtmp, rnd_class(ROBE,ROBE_OF_WEAKNESS));
 		     (void)mongets(mtmp, SMALL_SHIELD);
 		     if (!rn2(4)) {
 			int v,vials;
@@ -5340,12 +5340,12 @@ register struct monst *mtmp;
 		}
 
 		if (ptr == &mons[PM_WATCH_KOP]) {
-			if (!rn2(2)) (void)mongets(mtmp, rn1(BEC_DE_CORBIN - PARTISAN + 1, PARTISAN));
+			if (!rn2(2)) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			if (!rn2(2)) (void)mongets(mtmp, (rn2(2)) ? SPEAR : SHORT_SWORD);
 		}
 		if (ptr == &mons[PM_KATCHMAN]) {
-			if (!rn2(2)) (void)mongets(mtmp, rn1(BEC_DE_CORBIN - PARTISAN + 1, PARTISAN));
+			if (!rn2(2)) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			if (!rn2(2)) (void)mongets(mtmp, (rn2(2)) ? SPEAR : SHORT_SWORD);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
@@ -6103,6 +6103,13 @@ register struct monst *mtmp;
 
 	}
 
+	if (attackdamagetype(mtmp->data, AT_GAZE, AD_SPC2) && !rn2(200)) {
+		(void) mongets(mtmp, YITH_TENTACLE);
+	}
+	if (dmgtype(mtmp->data, AD_NAST) && !rn2(500)) {
+		(void) mongets(mtmp, NASTYPOLE);
+	}
+
 }
 
 #endif /* OVL2 */
@@ -6187,7 +6194,7 @@ register struct	monst	*mtmp;
 		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
 		if (ptr == &mons[PM_RENEGADE_WATCHMAN]) {
-			if (!rn2(2)) (void)mongets(mtmp, rn1(BEC_DE_CORBIN - PARTISAN + 1, PARTISAN));
+			if (!rn2(2)) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			if (!rn2(2)) (void)mongets(mtmp, (rn2(2)) ? SPEAR : SHORT_SWORD);
 		}
@@ -6254,7 +6261,7 @@ register struct	monst	*mtmp;
 		}
 
 		if (ptr == &mons[PM_EVIL_WATCHMAN]) {
-			if (!rn2(2)) (void)mongets(mtmp, rn1(BEC_DE_CORBIN - PARTISAN + 1, PARTISAN));
+			if (!rn2(2)) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			if (!rn2(2)) (void)mongets(mtmp, (rn2(2)) ? SPEAR : SHORT_SWORD);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
@@ -6550,7 +6557,7 @@ register struct	monst	*mtmp;
 		    /* evil patch idea by jonadab: 5% chance for aligned priests to be generated invisible */
 
 		    (void) mongets(mtmp,
-			    !rn2(20) ? CLOAK_OF_INVISIBILITY : rn2(7) ? rn1(ROBE_OF_WEAKNESS - ROBE + 1, ROBE) :
+			    !rn2(20) ? CLOAK_OF_INVISIBILITY : rn2(7) ? rnd_class(ROBE,ROBE_OF_WEAKNESS) :
 					     rn2(3) ? CLOAK_OF_PROTECTION :
 						 CLOAK_OF_MAGIC_RESISTANCE);
 		    (void) mongets(mtmp, SMALL_SHIELD);
@@ -6571,6 +6578,7 @@ register struct	monst	*mtmp;
 	    case S_PIERCER:
 
 		if (mtmp->data == &mons[PM_DING_CLING_PIERCER]) (void) mongets(mtmp, SCR_STALACTITE);
+		if (ptr == &mons[PM_CUTE_NICKNAME]) (void) mongets(mtmp, YITH_TENTACLE);
 
 		if (mtmp->data == &mons[PM_JIGEN_DAISUKE]) { (void) mongets(mtmp, ROCKET_LAUNCHER); (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); m_initthrow(mtmp, ROCKET, 10); }
 		if (mtmp->data == &mons[PM_JUEN_S_LEATHER_PEEP_TOE]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
@@ -6584,6 +6592,8 @@ register struct	monst	*mtmp;
 	    case S_GOLEM:
 		if (mtmp->data == &mons[PM_ROBO_KY]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); }
 		if (mtmp->data == &mons[PM_TGWTG]) { (void) mongets(mtmp, SUBMACHINE_GUN); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); }
+
+		if (ptr == &mons[PM_ONIJI_TANKOBO]) (void) mongets(mtmp, YITH_TENTACLE);
 
 		if(mtmp->data == &mons[PM_GRAY_STONE_GOLEM]) {
 			(void) mongets(mtmp, SLING);
@@ -7104,6 +7114,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SIMONE_S_THICK_HUGGING_BOOT]) (void) mongets(mtmp, HUGGING_BOOT);
 
 		if (mtmp->data == &mons[PM_SONJA_S_TORN_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_KLINGELING_WENCH]) (void) mongets(mtmp, YITH_TENTACLE);
 
 		if (mtmp->data == &mons[PM_POTION_MIMIC]) (void) mongets(mtmp, POT_FULL_HEALING);
 		if (mtmp->data == &mons[PM_SCROLL_MIMIC]) (void) mongets(mtmp, SCR_TELEPORTATION);
@@ -7861,6 +7872,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_PLEASING_WARP_FUNGUS]) (void) mongets(mtmp, WAN_IMMOBILITY);
 		if (mtmp->data == &mons[PM_PLEASING_PATCH]) (void) mongets(mtmp, SCR_EGOISM);
 		if (mtmp->data == &mons[PM_PLEASING_WARP_PATCH]) (void) mongets(mtmp, WAN_EGOISM);
+		if (ptr == &mons[PM_GWEN_ACTOR]) (void) mongets(mtmp, YITH_TENTACLE);
 
 		if (ptr == &mons[PM_RHED_MUSHROOM]) {
 		  	(void) mongets(mtmp, SLING);
@@ -8415,6 +8427,7 @@ register struct	monst	*mtmp;
           case S_SNAKE:
 		if (mtmp->data == &mons[PM_CLOUD_CATTLE]) (void) mongets(mtmp, SCR_CLOUDS);
 		if (mtmp->data == &mons[PM_HC_STENGLER]) (void) mongets(mtmp, BARDICHE);
+		if (mtmp->data == &mons[PM_INDOCTRINATED_ALIEN]) (void) mongets(mtmp, NASTYPOLE);
 
 		if (mtmp->data == &mons[PM_ARMED_SNAKE]) { (void) mongets(mtmp, ORCISH_BOW); m_initthrow(mtmp, ARROW, 30);}
 
@@ -8979,6 +8992,7 @@ register struct	monst	*mtmp;
 		if (ishaxor && ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ptr == &mons[PM_ORE_LICH]) (void) mongets(mtmp, WAN_SUMMON_UNDEAD);
 
+		if (ptr == &mons[PM_YICH]) (void) mongets(mtmp, YITH_TENTACLE);
 		if (ptr == &mons[PM_SWORD_LICH]) (void) mongets(mtmp, SHORT_SWORD);
 		if (ptr == &mons[PM_STARLICH]) (void) mongets(mtmp, MORNING_STAR);
 		if (ptr == &mons[PM_HELMLICH]) {
@@ -9430,6 +9444,7 @@ register struct	monst	*mtmp;
 	      if (ptr == &mons[PM_EVELINE_S_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 	      if (ptr == &mons[PM_EVELINE_S_DANCING_SHOE]) (void) mongets(mtmp, DANCING_SHOES);
 	      if (ptr == &mons[PM_TRAM_VORTEX]) (void) mongets(mtmp, WAN_TREMBLING);
+	      if (ptr == &mons[PM_UNEXPECTED_WHIRLWIND]) (void) mongets(mtmp, NASTYPOLE);
 
 	    break;
 
@@ -9450,6 +9465,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_LAURA_S_SOFT_MOCASSIN]) (void) mongets(mtmp, SWEET_MOCASSINS);
 
 		if (ptr == &mons[PM_IMBA_WATER_ELEMENTAL]) (void) mongets(mtmp, WAN_TIDAL_WAVE);
+		if (ptr == &mons[PM_NORTHERN_HUSSY_GIRL]) (void) mongets(mtmp, NASTYPOLE);
 
 		if (ptr == &mons[PM_ULTRA_ELEMENTAL]) {
 			(void) mongets(mtmp, SCR_ELEMENTALISM);
@@ -10055,6 +10071,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_DWARVEN_MESSENGER]) (void) mongets(mtmp, SCR_SUMMON_BOSS);
 		if (ptr == &mons[PM_LEGENDARY_HOBBIT_ROGUE]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (ptr == &mons[PM_CZECH_GIRL]) (void) mongets(mtmp, HIPPIE_HEELS);
+		if (ptr == &mons[PM_YITHIAN_MIND_FLAYER]) (void) mongets(mtmp, YITH_TENTACLE);
 		if (ptr == &mons[PM_VIETNAMESE_BEAUTY]) (void) mongets(mtmp, HIGH_STILETTOS);
 		if (ptr == &mons[PM_SWEET_SISTER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (ptr == &mons[PM_PSEUDO_MERMAID]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
@@ -10129,6 +10146,7 @@ register struct	monst	*mtmp;
 	    case S_EYE:
 		if (ptr == &mons[PM_OAK_SAGE]) (void) mongets(mtmp, POT_FULL_HEALING);
 		if (ptr == &mons[PM_VISOR]) (void) mongets(mtmp, WAN_MAKE_VISIBLE);
+		if (ptr == &mons[PM_NASTY_HC_GIRL]) (void) mongets(mtmp, NASTYPOLE);
 
 		if (ptr == &mons[PM_BANG_BAG]) m_initthrow(mtmp, FRAG_GRENADE, 7);
 
@@ -20071,6 +20089,7 @@ int type;
 		case PM_UNHOLY_WATER_GOLEM: return 200;
 		case PM_DOOMED_WATER_GOLEM: return 200;
 		case PM_MIRROR_GOLEM: return 210;
+		case PM_ONIJI_TANKOBO: return 420;
 		case PM_TITANIUM_GOLEM: return 230;
 		case PM_DANCING_BLADE: return 230;
 		case PM_BRONZE_COLOSSUS: return 270;

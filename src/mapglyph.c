@@ -83,8 +83,8 @@ unsigned *ospecial;
      *		  offsets.  The order is set in display.h.
      */
     if ((offset = (glyph - GLYPH_WARNING_OFF)) >= 0) {	/* a warning flash */
-	if (On_stairs(x,y) && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	if (On_stairs(x,y) && levl[x][y].seenv && !ThereIsNoLite) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;
     	ch = warnsyms[offset];
 # ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -114,8 +114,8 @@ unsigned *ospecial;
 	ch = showsyms[(offset % MAXEXPCHARS) + S_explode1];
 	explode_color(offset / MAXEXPCHARS);
     } else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {	/* cmap */
-	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && offset != S_grayglyph && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && offset != S_grayglyph && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && offset != S_grayglyph && !ThereIsNoLite && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && offset != S_grayglyph && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;
 	ch = showsyms[offset];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
@@ -1324,8 +1324,8 @@ unsigned *ospecial;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) color = rnd(15);
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) color = rnd(15);
     } else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
-	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;
 	if (offset == BOULDER && iflags.bouldersym) ch = iflags.bouldersym;
 	else ch = oc_syms[(int)objects[offset].oc_class];
 #ifdef ROGUE_COLOR
@@ -1350,7 +1350,7 @@ unsigned *ospecial;
 	        if (hilitecnt >= 2) break;
 	    }
 
-	    if (offset != BOULDER && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && hilitecnt >= 2) 
+	    if (offset != BOULDER && !ThereIsNoLite && hilitecnt >= 2) 
 		  special |= MG_OBJPILE;
 
     } else if ((offset = (glyph - GLYPH_RIDDEN_OFF)) >= 0) {	/* mon ridden */
@@ -1366,8 +1366,8 @@ unsigned *ospecial;
 	    mon_color(offset);
 	    special |= MG_RIDDEN;
     } else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {	/* a corpse */
-	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;
 	ch = oc_syms[(int)objects[CORPSE].oc_class];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color)
@@ -1388,12 +1388,12 @@ unsigned *ospecial;
 	        if (hilitecnt >= 2) break;
 	    }
 
-	    if (offset != BOULDER && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && hilitecnt >= 2) 
+	    if (offset != BOULDER && !ThereIsNoLite && hilitecnt >= 2) 
 		  special |= MG_OBJPILE;
 
     } else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) {	/* mon detect */
-	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;*/
+	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
+	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;*/
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1405,8 +1405,8 @@ unsigned *ospecial;
 	/* is_reverse = TRUE; */
 	    special |= MG_DETECT;
     } else if ((offset = (glyph - GLYPH_INVIS_OFF)) >= 0) {	/* invisible */
-	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;
 	ch = DEF_INVISIBLE;
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1416,8 +1416,8 @@ unsigned *ospecial;
 	    invis_color(offset);
 	    special |= MG_INVIS;
     } else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
-	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;*/
+	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
+	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;*/
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1425,19 +1425,19 @@ unsigned *ospecial;
 	else
 #endif
 	    pet_color(offset);
-	    if (!(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone())) special |= MG_PET;
+	    if (!ThereIsNoLite) special |= MG_PET;
     } else {							/* a monster */
-	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;*/
+	if (On_stairs(x,y) && !ThereIsNoLite && levl[x][y].seenv) special |= MG_STAIRS;
+	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !ThereIsNoLite) special |= MG_ENGRAVING;*/
 
 	struct monst *mtmp;
 
 	ch = monsyms[(int)mons[glyph].mlet];
 
 		mtmp = m_at(x, y);
-		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && !PlayerUninformation) special |= MG_EGOTYPE;
+		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !ThereIsNoLite && !PlayerUninformation) special |= MG_EGOTYPE;
 
-		if (mtmp && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
+		if (mtmp && !ThereIsNoLite && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
 
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {

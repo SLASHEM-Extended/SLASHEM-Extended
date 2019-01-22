@@ -3542,6 +3542,12 @@ use_pole (obj)
 	}
 
 	if (obj->otyp == NOOB_POLLAX || obj->otyp == GREAT_POLLAX) max_range += 5;
+	if (obj->otyp == YITH_TENTACLE) max_range += 2;
+	if (obj->otyp == POLE_LANTERN) {
+		max_range += 10;
+		min_range += 5;
+	}
+	if (obj->oartifact == ART_PAYBACK_TIME) max_range += 8;
 	if (obj->oartifact == ART_ETHER_PENETRATOR) max_range += 5;
 	if (obj->oartifact == ART_FUURKER) max_range += 6;
 	if (obj->otyp == WOODEN_BAR) max_range += 7;
@@ -3558,12 +3564,11 @@ use_pole (obj)
 	} else if (distu(cc.x, cc.y) < min_range) {
 	    pline(Hallucination ? "Your stick's too long, it seems!" : "Too close!");
 	    return (res);
-	} else if (!cansee(cc.x, cc.y) &&
-		   ((mtmp = m_at(cc.x, cc.y)) == (struct monst *)0 ||
-		    !canseemon(mtmp))) {
+	} else if (!cansee(cc.x, cc.y) && obj->otyp != DARK_BAR &&
+		   ((mtmp = m_at(cc.x, cc.y)) == (struct monst *)0 || !canseemon(mtmp))) {
 	    You(cant_see_spot);
 	    return (res);
-	} else if (!couldsee(cc.x, cc.y)) { /* Eyes of the Overworld */
+	} else if (!couldsee(cc.x, cc.y) && !(obj->oartifact == ART_WEAKITE_THRUST) ) { /* Eyes of the Overworld */
 	    You(cant_reach);
 	    return res;
 	}

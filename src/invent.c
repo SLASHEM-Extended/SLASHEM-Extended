@@ -8531,31 +8531,37 @@ struct obj *obj;
 				pline("A powerful two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case SPETUM: 
 				pline("A finicky two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case RANSEUR: 
+			case RANSEUR:
 				pline("An unreliable two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case BARDICHE: 
+			case POLE_LANTERN:
+				pline("An unwieldy two-handed polearm that can be applied to hit monsters standing three squares away (monsters at a distance of one or two squares are too close to be hit). Using it at point blank range is only useful if you're riding."); break;
+			case NASTYPOLE:
+				pline("A nasty two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case BOHEMIAN_EAR_SPOON:
+				pline("A reliable two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case BARDICHE:
 				pline("A heavy two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case VOULGE: 
+			case VOULGE:
 				pline("A dicey two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case PITCHFORK: 
+			case PITCHFORK:
 				pline("A gardening two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case HALBERD: 
+			case HALBERD:
 				pline("A massive two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case BLACK_HALBERD: 
+			case BLACK_HALBERD:
 				pline("An inverted two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case FAUCHARD: 
+			case FAUCHARD:
 				pline("A mediocre two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case GUISARME: 
+			case GUISARME:
 				pline("A challenging two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case BILL_GUISARME: 
+			case BILL_GUISARME:
 				pline("A reinforced two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case LUCERN_HAMMER: 
+			case LUCERN_HAMMER:
 				pline("A ferocious two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case BEC_DE_CORBIN: 
+			case BEC_DE_CORBIN:
 				pline("A strong two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case SICKLE: 
+			case SICKLE:
 				pline("A weak one-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
-			case ELVEN_SICKLE: 
+			case ELVEN_SICKLE:
 				pline("A useful one-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case SCYTHE: 
 				pline("An extra-damaging two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
@@ -8705,6 +8711,10 @@ struct obj *obj;
 				pline("A forking two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case PIKE:
 				pline("A long two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case DARK_BAR:
+				pline("A darkness-loving two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding. It can also hit squares that you can't actually see."); break;
+			case YITH_TENTACLE:
+				pline("A lovecraftian two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding. Its range is slightly bigger than that of a regular polearm, but wielding it for a prolonged time will increase your sanity."); break;
 			case PHYSICIAN_BAR:
 				pline("A regenerative two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding. Yes, wielding it speeds up your hit point regeneration rate."); break;
 			case HELMET_BEARD:
@@ -17825,6 +17835,12 @@ struct obj *obj;
 					pline("Artifact specs: half spell damage when carried, can potentially be recharged more than once, chaotic, social justice warrior quest artifact."); break;
 				case ART_STAHNGNIR_S_GIANT_CRUSHER:
 					pline("Artifact specs: +5 to-hit and double damage, petrification resistance when wielded, telepathy when carried, neutral, walscholar quest artifact."); break;
+				case ART_WEAKITE_THRUST:
+					pline("Artifact specs: can be applied through walls, weak sight, de-light and nolite effects when wielded."); break;
+				case ART_DIZZY_METAL_STORM:
+					pline("Artifact specs: jumping, silver spells and manler effect when wielded, allows the player to displace monsters by walking into them (use the F command if you want to attack them in melee)."); break;
+				case ART_PAYBACK_TIME:
+					pline("Artifact specs: can be applied to hit monsters standing 3 squares away, or even 4 if the distance isn't too big."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

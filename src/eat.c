@@ -2923,6 +2923,7 @@ register int pm;
 	    case PM_ABERRATION_FLAYER:
 	    case PM_MASTER_ABERRATION_FLAYER:
 	    case PM_MASTER_MIND_FLAYER:
+	    case PM_YITHIAN_MIND_FLAYER:
 	    case PM_VORPAL_MIND_FLAYER:
 	    case PM_MEAN_FLAYER:
 	    case PM_BRIGHT_MIND_FLAYER:

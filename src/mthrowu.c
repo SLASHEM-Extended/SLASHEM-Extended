@@ -375,6 +375,13 @@ const char *name;	/* if null, then format `obj' */
 		if(Blind || !flags.verbose) You("are hit!");
 		else You("are hit by %s%s", onm, exclam(dam));
 
+		if (obj && obj->otyp == YITH_TENTACLE) {
+			increasesanity(rnz(monster_difficulty() + 1));
+		}
+		if (obj && obj->otyp == NASTYPOLE && !rn2(10)) {
+			badeffect();
+		}
+
 		if (obj && objects[obj->otyp].oc_material == SILVER && hates_silver(youmonst.data)) {
 			dam += rnd(20);
 			pline_The("silver sears your flesh!");
@@ -1021,6 +1028,12 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				pline("Collusion!");
 				litroomlite(FALSE);
 		    }
+		    if (hitu && singleobj->otyp == YITH_TENTACLE) {
+				increasesanity(rnz(monster_difficulty() + 1));
+		    }
+		    if (hitu && singleobj->otyp == NASTYPOLE && !rn2(10)) {
+				badeffect();
+		    }
 
 		    if (hitu && singleobj->otyp == EGG) {
 			if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
@@ -1130,6 +1143,9 @@ struct monst *mtmp;
 	    int dam, hitv;
 
 		if (otmp->otyp == NOOB_POLLAX || otmp->otyp == GREAT_POLLAX) polelimit += 5;
+		if (otmp->otyp == YITH_TENTACLE) polelimit += 2;
+		if (otmp->otyp == POLE_LANTERN) polelimit += 10;
+		if (otmp->otyp == NASTYPOLE) polelimit += 8;
 		if (otmp->oartifact == ART_ETHER_PENETRATOR) polelimit += 5;
 		if (otmp->oartifact == ART_FUURKER) polelimit += 6;
 		if (otmp->otyp == WOODEN_BAR) polelimit += 7;

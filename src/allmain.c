@@ -2200,6 +2200,9 @@ trapsdone:
 			}
 		}
 
+		if (uwep && uwep->otyp == YITH_TENTACLE && !rn2(200)) increasesanity(1);
+		if (u.twoweap && uswapwep && uswapwep->otyp == YITH_TENTACLE && !rn2(200)) increasesanity(1);
+
 		/* using other roles' quest artifacts (e.g. by wishing for them) gives downsides --Amy */
 		if (!rn2(100) && foreignartifactcount() > 0) {
 			contaminate(foreignartifactcount(), FALSE);
@@ -2312,7 +2315,7 @@ trapsdone:
 		if (uarmh && uarmh->oartifact == ART_BAD_LUCK_IN_DROVES && Luck > 0) change_luck(-1);
 
 		/* the manler chases after the player; he often moves randomly but not always */
-		if ((ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) && (u.manlerx >= 0 && u.manlery >= 0) ) {
+		if (ManlerIsChasing && (u.manlerx >= 0 && u.manlery >= 0) ) {
 			if (u.manlerx == u.ux && u.manlery == u.uy) {
 				pline("Daedeldidaet! The manler caught you...");
 				badeffect();
@@ -4639,7 +4642,7 @@ newbossA:
 			}
 		}
 
-		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || (uwep && uwep->oartifact == ART_EGRID_BUG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG)) && isok(u.ux, u.uy)) {
+		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || (uwep && uwep->oartifact == ART_EGRID_BUG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG) || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
 
@@ -8989,7 +8992,7 @@ past3:
 		}
 	}
 
-	if (ManlerEffect || u.uprops[MANLER_EFFECT].extrinsic || have_manlerstone()) {
+	if (ManlerIsChasing) {
 		if (u.manlerx < 0) {
 			if (u.ux < 39) u.manlerx = 69;
 			else u.manlerx = 9;
