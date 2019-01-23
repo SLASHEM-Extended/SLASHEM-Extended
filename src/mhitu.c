@@ -18126,9 +18126,12 @@ register int n;
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
+	if (Race_if(PM_METAL)) n *= rnd(10);
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone()) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
+
+	if (Race_if(PM_SHELL) && !Upolyd && n > 1) n /= 2;
 
 	if (isfriday && !rn2(50)) n += rnd(n);
 

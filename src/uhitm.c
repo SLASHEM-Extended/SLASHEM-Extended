@@ -4430,6 +4430,11 @@ register struct attack *mattk;
 		    if (breathless(mdef->data) || mdef->egotype_undead ) tmp = (tmp + 1) / 2;
 		}
 
+		if (Race_if(PM_PLAYER_JABBERWOCK) && !Upolyd && mattk->aatyp != AT_WEAP) {
+			if (u.ulevel > 20) tmp = rnd(20);
+			else tmp = rnd(u.ulevel);
+		}
+
 		break;
 	    case AD_FIRE:
 		if (negated) {
@@ -7318,6 +7323,8 @@ boolean ranged;
 		    tmp = 0;
 
 	}
+
+	if (Race_if(PM_PLAYER_JABBERWOCK) && tmp > 0) tmp *= 2;
 
 	/* Monsters with AD_RBRE are supposed to have a random passive attack every time they are hit. --Amy */
 

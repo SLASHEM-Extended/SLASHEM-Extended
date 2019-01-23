@@ -4608,6 +4608,19 @@ doapply()
 	if (obj->oclass == WAND_CLASS)
 	    return do_break_wand(obj);
 
+	/* Mushroom can use every weapon as a polearm, including bows, arrows etc., can be turned on via #monster --Amy */
+	if (Race_if(PM_PLAYER_MUSHROOM) && obj->oclass == WEAPON_CLASS && u.mushroompoles) {
+
+		if (uwep && uwep == obj) res = use_pole(obj);
+		else {
+			pline("You must wield this item first if you want to apply it!"); 
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			wield_tool(obj, "swing");
+		}
+
+		goto mushroompolecheck;
+	}
+
 	switch(obj->otyp){
 	case BLINDFOLD:
 	case EYECLOSER:
@@ -5985,6 +5998,9 @@ chargingchoice:
 		nomul(0, 0, FALSE);
 		return 0;
 	}
+
+mushroompolecheck:
+
 	nomul(0, 0, FALSE);
 	if (!obj) return res;
 	if (noartispeak) return res;

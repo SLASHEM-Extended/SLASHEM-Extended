@@ -4377,6 +4377,21 @@ const struct Race races[] = {
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"asura", "asura", "hindu mythology", "Asu",
+	{0, 0},
+	PM_PLAYER_ASURA, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 16, 16, 19, 18, 18 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"atlantean", "atlantean", "atlantis", "Atl",
 	{0, 0},
 	PM_PLAYER_ATLANTEAN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5128,6 +5143,21 @@ const struct Race races[] = {
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
 },
+{	"golem", "golem", "golemity", "Gol",
+	{0, 0},
+	PM_PLAYER_GOLEM, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 14, 18, 20, 16 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"green slime", "slimy", "slimehood", "Sli",
 	{0, 0},
 	PM_PLAYER_SLIME, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5483,6 +5513,21 @@ const struct Race races[] = {
 	{  5, 0,  0, 5,  5, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"jabberwock", "jabberwock", "jabberwock poem", "Jab",
+	{0, 0},
+	PM_PLAYER_JABBERWOCK, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(24), 16, 18, 19, 24, 16 },
+	/* Init   Lower  Higher */
+	{  8, 0,  0, 8,  7, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  3, 0 }		/* Energy */
+},
 {	"japs", "japs", "japsen", "Jap",
 	{0, 0},
 	PM_JAPS, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5751,6 +5796,21 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
 },
+{	"metal", "metal", "heavy metal", "Met",
+	{0, 0},
+	PM_METAL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 16, 18, 16, 16, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"mimic", "mimic", "mimicry", "Mim",
 	{0, 0},
 	PM_PLAYER_MIMIC, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5867,6 +5927,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"mushroom", "mushroom", "mushroom kingdom", "Mus",
+	{0, 0},
+	PM_PLAYER_MUSHROOM, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 6, 18 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  2, 0,  3, 0,  5, 0 }		/* Energy */
 },
 {	"naga", "naga", "nagahood", "Nag",
 	{0, 0},
@@ -6031,6 +6106,21 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"piercer", "piercer", "piercing studio", "Pie",
+	{0, 0},
+	PM_PIERCER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 22, 19, 20, 14 },
+	/* Init   Lower  Higher */
+	{  5, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  2, 0,  3, 0,  2, 0 }		/* Energy */
+},
 {	"poisoner", "poisoner", "poisoning", "Poi",
 	{0, 0},
 	PM_POISONER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -6074,6 +6164,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"quantum mechanic", "quantum mechanic", "quants", "Qua",
+	{0, 0},
+	PM_PLAYER_MECHANIC, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(70), 19, 17, 17, 17, 15 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 3,  0, 0 },	/* Hit points */
+	{  1, 0,  3, 0,  1, 0 }		/* Energy */
 },
 {	"race X", "x-race", "x-race", "Xra",
 	{0, 0},
@@ -6281,6 +6386,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"shell", "shell", "shelldom", "She",
+	{0, 0},
+	PM_SHELL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 19, 18, 24, 16 },
+	/* Init   Lower  Higher */
+	{  5, 0,  0, 5,  5, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"shoe", "shoe", "wonderful lady shoes", "Sho",
 	{0, 0},
@@ -6655,6 +6775,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
+},
+{	"umber hulk", "umber", "uber empire", "Umb",
+	{0, 0},
+	PM_PLAYER_HULK, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 16 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"unalignment thing", "unaligned", "unalignmenthood", "Una",
 	{0, 0},

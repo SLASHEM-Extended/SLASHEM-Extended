@@ -4101,7 +4101,7 @@ boolean noisy;
 		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
-    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  &&
+    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
 	    (racial_exception(&youmonst, otmp) < 1)) {
@@ -5002,6 +5002,28 @@ find_ac()
 		if (difference > 0) uac = 10 - difference;
 		else uac = 10;
 		
+	}
+
+	if (Race_if(PM_PLAYER_ASURA)) {
+
+		int worncount = 0;
+		if (uarm) worncount++;
+		if (uarmc) worncount++;
+		if (uarmu) worncount++;
+		if (uarms) worncount++;
+		if (uarmh) worncount++;
+		if (uarmf) worncount++;
+		if (uarmg) worncount++;
+
+		if (worncount > 0) {
+			int difference = (-(uac - 10));
+			difference = difference * (20 - worncount);
+			difference /= 20;
+			if (difference > 0) uac = 10 - difference;
+			else uac = 10;
+
+		}
+
 	}
 
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) {

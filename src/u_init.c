@@ -9369,6 +9369,7 @@ u_init()
 
 	u.walscholarpass = 0;
 
+	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
 	u.automorefuckthisshit = 0;
@@ -16184,6 +16185,9 @@ u_init()
 	case PM_YEEK: racebounus = 0; break;
 	case PM_HUMANOID_DRYAD: racebounus = rnz(8); break;
 	case PM_PLAYER_ZRUTY: racebounus = rnz(15); break;
+	case PM_METAL: racebounus = rnz(6); break;
+	case PM_PLAYER_GOLEM: racebounus = rnz(11); break;
+	case PM_PLAYER_MECHANIC: racebounus = rnz(12); break;
 	default:	racebounus = rnz(10); break;
 
 	}

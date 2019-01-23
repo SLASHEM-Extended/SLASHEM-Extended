@@ -108,7 +108,7 @@
 
 #define TheGameLaaaaags	(LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone())
 
-#define YouHaveTheSpeedBug	(SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone())
+#define YouHaveTheSpeedBug	(Race_if(PM_PLAYER_MECHANIC) || SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone())
 
 #define YouAreThirsty	(Thirst || u.uprops[THIRST].extrinsic || have_thirststone() || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY))
 
@@ -953,7 +953,7 @@
 
 #define HDeath_resistance	u.uprops[DTBEEM_RES].intrinsic
 #define EDeath_resistance	u.uprops[DTBEEM_RES].extrinsic
-#define Death_resistance	(HDeath_resistance || EDeath_resistance || resists_death(&youmonst) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == DTBEEM_RES) ) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || (uarmf && uarmf->oartifact == ART_MADELEINE_S_GIRL_FOOTSTEPS) || (uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) )
+#define Death_resistance	(HDeath_resistance || EDeath_resistance || Race_if(PM_PLAYER_GOLEM) || resists_death(&youmonst) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == DTBEEM_RES) ) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || (uarmf && uarmf->oartifact == ART_MADELEINE_S_GIRL_FOOTSTEPS) || (uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) )
 
 /* according to Yasdorian, I love aggravate monster. Indeed, many of my artifacts have it. --Amy */
 #define HAggravate_monster	u.uprops[AGGRAVATE_MONSTER].intrinsic
@@ -1264,7 +1264,7 @@
 #define HDouble_attack		u.uprops[DOUBLE_ATTACK].intrinsic
 #define EDouble_attack		u.uprops[DOUBLE_ATTACK].extrinsic
 #define IntDouble_attack	(HDouble_attack)
-#define ExtDouble_attack	(EDouble_attack || (uarm && uarm->oartifact == ART_OFFENSE_OWNS_DEFENSE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uwep && uwep->oartifact == ART_MELEE_DUALITY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MELEE_DUALITY))
+#define ExtDouble_attack	(EDouble_attack || (Race_if(PM_PLAYER_ASURA) && u.twoweap) || (uarm && uarm->oartifact == ART_OFFENSE_OWNS_DEFENSE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uwep && uwep->oartifact == ART_MELEE_DUALITY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MELEE_DUALITY))
 
 #define Double_attack		(((IntDouble_attack && u.nonintrinsicproperty != DOUBLE_ATTACK) || (ExtDouble_attack && u.nonextrinsicproperty != DOUBLE_ATTACK)) && !NoDouble_attack)
 #define StrongDouble_attack	(IntDouble_attack && ExtDouble_attack && Double_attack)

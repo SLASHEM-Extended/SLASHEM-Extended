@@ -1521,6 +1521,8 @@ struct you {
 
 	boolean grenadoninlauncher;
 
+	boolean mushroompoles;
+
 	boolean automorefuckthisshit;	/* gah */
 
 	boolean dungeongrowthhack;	/* to circumvent goddamn savegame errors */

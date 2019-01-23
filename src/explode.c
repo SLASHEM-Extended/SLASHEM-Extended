@@ -659,9 +659,12 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (damu && Race_if(PM_YUKI_PLAYA)) damu += rnd(5);
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
 		if (have_cursedmagicresstone()) damu = damu * 2;
+		if (Race_if(PM_METAL)) damu *= rnd(10);
 		if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone()) damu = damu * 2;
 		if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) damu *= rnd(4);
 		if (RngeFrailness) damu = damu * 2;
+
+		if (Race_if(PM_SHELL) && !Upolyd && damu > 1) damu /= 2;
 
 		if (isfriday && !rn2(50)) damu += rnd(damu);
 

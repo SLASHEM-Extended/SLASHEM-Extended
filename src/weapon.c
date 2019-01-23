@@ -5690,6 +5690,8 @@ rerollthree:
 		case PM_HUMAN_WRAITH: implantbonus = 3; break;
 		case PM_WEAPON_XORN: implantbonus = 2; break;
 		case PM_PLAYER_ZRUTY: implantbonus = 4; break;
+		case PM_PLAYER_HULK: implantbonus = 5; break;
+		case PM_METAL: implantbonus = 5; break;
 	}
 
 	if (implantbonus == 1) {
@@ -6018,6 +6020,20 @@ rerollthree:
 			P_SKILL(P_RIDING) = P_UNSKILLED;
 			P_ADVANCE(P_RIDING) = 0;
 			P_MAX_SKILL(P_RIDING) = P_BASIC;
+		}
+
+	}
+
+	if (Race_if(PM_PLAYER_ASURA)) {
+		if (P_RESTRICTED(P_TWO_WEAPON_COMBAT)) {
+			P_SKILL(P_TWO_WEAPON_COMBAT) = P_UNSKILLED;
+			P_ADVANCE(P_TWO_WEAPON_COMBAT) = 0;
+			P_MAX_SKILL(P_TWO_WEAPON_COMBAT) = P_EXPERT;
+		} else {
+			P_SKILL(P_TWO_WEAPON_COMBAT) = P_BASIC;
+			if (P_MAX_SKILL(P_TWO_WEAPON_COMBAT) == P_EXPERT) P_MAX_SKILL(P_TWO_WEAPON_COMBAT) = P_MASTER;
+			else if (P_MAX_SKILL(P_TWO_WEAPON_COMBAT) == P_MASTER) P_MAX_SKILL(P_TWO_WEAPON_COMBAT) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_TWO_WEAPON_COMBAT) = P_SUPREME_MASTER;
 		}
 
 	}

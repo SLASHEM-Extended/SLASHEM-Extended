@@ -1689,7 +1689,23 @@ domonability()
 		}
 		return 1;
 
-	} else if (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED && P_SKILL(P_BARE_HANDED_COMBAT) >= P_UNSKILLED) {
+	} else if (Race_if(PM_PLAYER_MUSHROOM)) {
+
+		/* This does not consume a turn, which is intentional. --Amy */
+		if (!u.mushroompoles && yn("Currently your ability to use any weapon as a polearm is deactivated. Do you want to activate it?") == 'y') {
+			u.mushroompoles = TRUE;
+			pline("You switch to polearm mode.");
+			return 0;
+		} else if (u.mushroompoles && yn("Currently your ability to use any weapon as a polearm is activated. Do you want to deactivate it?") == 'y') {
+			u.mushroompoles = FALSE;
+			pline("You switch to regular weapon application mode.");
+			return 0;
+		}
+
+		goto mushroomannoyance;
+	} else
+mushroomannoyance:
+	if (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED && P_SKILL(P_BARE_HANDED_COMBAT) >= P_UNSKILLED) {
 
 		if (!u.disablemartial && yn("You have both the martial arts and bare-handed combat skills, which are mutually exclusive. Currently martial arts is activated. Deactivate it?") == 'y') {
 			u.disablemartial = TRUE;
@@ -1704,7 +1720,7 @@ domonability()
 		goto flowannoyance;
 	} else
 flowannoyance:
-		if (Role_if(PM_DEMAGOGUE) && !u.temprecursion && !u.demagoguerecursion && u.demagogueabilitytimer == 0 && !(In_endgame(&u.uz)) && yn("Do you want to use recursion to temporarily become someone else?") == 'y') {
+	if (Role_if(PM_DEMAGOGUE) && !u.temprecursion && !u.demagoguerecursion && u.demagogueabilitytimer == 0 && !(In_endgame(&u.uz)) && yn("Do you want to use recursion to temporarily become someone else?") == 'y') {
 		u.demagogueabilitytimer = rnz(2500);
 		demagoguerecursioneffect();
 	} else if (Upolyd)

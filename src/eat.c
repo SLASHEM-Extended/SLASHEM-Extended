@@ -202,8 +202,8 @@ char msgbuf[BUFSZ];
 /* also used to see if you're allowed to eat cats and dogs */
 #define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Role_if(PM_LUNATIC) || Race_if(PM_ORC) || Race_if(PM_YEEK) || \
 Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_SHOE) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_PHANTOM_GHOST) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || Race_if(PM_WEAPON_TRAPPER) || \
- Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
- Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_PLAYER_ZRUTY) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON) || Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_ELEMENTAL) || Race_if(PM_WEAPON_BUG) || Race_if(PM_HUMANOID_LEPRECHAUN) || Race_if(PM_NYMPH) || Race_if(PM_TURTLE) || Race_if(PM_LOWER_ENT) || Race_if(PM_SPRIGGAN) || Race_if(PM_JELLY) || Race_if(PM_WEAPON_CUBE) || Race_if(PM_WEAPON_IMP) || Race_if(PM_DRYAD) || Race_if(PM_PLAYER_SLIME) || Race_if(PM_AUREAL) || Race_if(PM_MAZKE) || Race_if(PM_PLAYER_GREMLIN) || Race_if(PM_BORG) || Race_if(PM_ELONA_SNAIL) || Race_if(PM_PLAYER_UNICORN) || Race_if(PM_WEAPONIZED_DINOSAUR) || Race_if(PM_ANCIPITAL) || Race_if(PM_FAWN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_YUKI_PLAYA) || Race_if(PM_OCTOPODE) || Race_if(PM_INKA) || Race_if(PM_SATRE) || Race_if(PM_WISP) || Race_if(PM_PLAYER_SKELETON) || Race_if(PM_WEAPON_XORN) || Race_if(PM_PLAYER_DOLGSMAN) )
+ Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_PLAYER_JABBERWOCK) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
+ Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_PLAYER_ZRUTY) || Race_if(PM_PLAYER_MUSHROOM) || Race_if(PM_PLAYER_ASURA) || Race_if(PM_METAL) || Race_if(PM_SHELL) || Race_if(PM_PLAYER_GOLEM) || Race_if(PM_PIERCER) || Race_if(PM_PLAYER_HULK) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON) || Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_ELEMENTAL) || Race_if(PM_WEAPON_BUG) || Race_if(PM_HUMANOID_LEPRECHAUN) || Race_if(PM_NYMPH) || Race_if(PM_TURTLE) || Race_if(PM_LOWER_ENT) || Race_if(PM_SPRIGGAN) || Race_if(PM_JELLY) || Race_if(PM_WEAPON_CUBE) || Race_if(PM_WEAPON_IMP) || Race_if(PM_DRYAD) || Race_if(PM_PLAYER_SLIME) || Race_if(PM_AUREAL) || Race_if(PM_MAZKE) || Race_if(PM_PLAYER_GREMLIN) || Race_if(PM_BORG) || Race_if(PM_ELONA_SNAIL) || Race_if(PM_PLAYER_UNICORN) || Race_if(PM_WEAPONIZED_DINOSAUR) || Race_if(PM_ANCIPITAL) || Race_if(PM_FAWN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_YUKI_PLAYA) || Race_if(PM_OCTOPODE) || Race_if(PM_INKA) || Race_if(PM_SATRE) || Race_if(PM_WISP) || Race_if(PM_PLAYER_SKELETON) || Race_if(PM_WEAPON_XORN) || Race_if(PM_PLAYER_DOLGSMAN) )
 
 #ifndef OVLB
 
@@ -256,6 +256,9 @@ register struct obj *obj;
 
 	/* Clockwork automatons can't eat anything at all, they need to use booze or oil --Amy */
 	if (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) return 0;
+
+	/* same for golems, except they also don't get hungry over time */
+	if (Race_if(PM_PLAYER_GOLEM) && !Upolyd) return 0;
 
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
@@ -2629,6 +2632,7 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_PLAYER_MECHANIC:
 	    case PM_QUANTUM_ABERRATION:
 	    case PM_QUANTUMMOID:
 	    case PM_ATOMIC_QUANTUM_MECHANIC:

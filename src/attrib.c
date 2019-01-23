@@ -795,6 +795,27 @@ const struct innate {
 	nym_abil[] = { {  1, &(HTeleportation), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	met_abil[] = { {  1, &(HFire_resistance), "", "" },
+		     {   1, &(HCold_resistance), "", "" },
+		     {  1, &(HShock_resistance), "", "" },
+		     {  1, &(HSleep_resistance), "", "" },
+		     {  1, &(HDisint_resistance), "", "" },
+		     {  1, &(HPoison_resistance), "", "" },
+		     {  1, &(HDrain_resistance), "", "" },
+		     {  1, &(HSick_resistance), "", "" },
+		     {  1, &(HAntimagic), "", "" },
+		     {  1, &(HAcid_resistance), "", "" },
+		     {  1, &(HStone_resistance), "", "" },
+		     {  1, &(HDeath_resistance), "", "" },
+		     {  1, &(HPsi_resist), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	umb_abil[] = { {  1, &(HConf_resist), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	qua_abil[] = { {  1, &(HTeleportation), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	dvp_abil[] = { {  1, &(HTechnicality), "", "" },
 		     {   0, 0, 0, 0 } },
 
@@ -1810,6 +1831,9 @@ int oldlevel, newlevel;
 	case PM_EXPERT:            rabil = exp_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
+	case PM_METAL:            rabil = met_abil;	break;
+	case PM_PLAYER_HULK:            rabil = umb_abil;	break;
+	case PM_PLAYER_MECHANIC:            rabil = qua_abil;	break;
 	case PM_PLAYER_DOLGSMAN:            rabil = dlg_abil;	break;
 	case PM_ROHIRRIM:            rabil = roh_abil;	break;
 	case PM_THUNDERLORD:            rabil = thu_abil;	break;
