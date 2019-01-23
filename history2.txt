@@ -1,6 +1,30 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.4.5 - January 2019
+- Shapeshifters are now less likely to polymorph into monsters whose levels are much higher than the base shapeshifter form's level.
+- Frenzied monsters deal less damage on average (but still more than non-frenzied ones).
+- Fixed the error that caused automore trap effects to persist even after the trap's effect has timed out.
+- Polymorphing an object will now only degrade it if it's being done via wand/spell.
+- If the player commits unallowed cannibalism, sanity will now increase.
+- Fix the oversight where invisible/nownsible trap effects were swapped.
+- Using traps via > is now possible even if the trap is invisible.
+- Increased the to-hit reduction of the wild slashing technique.
+- Fixed segfaults and bus errors when passive banishment attacks trigger.
+- Fixed a bug that could cause items to have the wrong weight, especially loadstones (possible game-ending bug).
+- Leaving bones or polypiling no longer unconditionally degrades items.
+- Dipping a too large stack of items into a potion of gain level will now correctly use up the potion.
+- A weapon that is thoroughly eroded can't be used to bash down iron bars anymore.
+
 2.4.4 - December 2018
+- Nerfed the power of the map level spell.
+- Using the search command should reveal the adjacent squares even if the player is not blind, useful when certain nasty traps are in effect.
+- Fixed the jousting chances with lances, which were broken in an earlier version by mistake.
+- The artifact bell's effect was nerfed.
+- Fixed a crash associated with Duri's services.
+- Nasty traps that can hinder movement in specific directions can no longer be circumvented by certain commands.
+- Writing a spellbook now keeps the original spellbook's charge count.
+- The automore trap now blocks the use of Ctrl-P.
+- Really fixed the error message spam caused by farting monsters, the earlier bugfix wasn't working.
 - If the player is standing on sand terrain, all damage is reduced by 20%.
 - Shopkeepers now have a credit limit depending on the depth of their shop. Trying to get credit past that amount will always fail.
 - Fixed the savegame error that could be caused by the game checking for a cursed called cloak when doing the ripe tree fruit check upon saving, introduced when that cloak type was added.
