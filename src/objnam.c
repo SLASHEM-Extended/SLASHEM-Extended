@@ -2902,14 +2902,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_CRYPT, "kripta" },
 	{ SPE_BUBBLE_BOBBLE, "puzyr'" },
 	{ SPE_RAIN, "dozhd'" },
+	{ DARK_BAR, "temnaya polosa" },
+	{ YITH_TENTACLE, "shchupal'tse" },
+	{ BOHEMIAN_EAR_SPOON, "bogemnaya ushnaya lozhka" },
+	{ POLE_LANTERN, "fonarnyy stolb" },
+	{ NASTYPOLE, "protivnyy stolb" },
 
 	/* todo area */
-
-	{ DARK_BAR, "dark bar" },
-	{ YITH_TENTACLE, "yith tentacle" },
-	{ BOHEMIAN_EAR_SPOON, "bohemian ear spoon" },
-	{ POLE_LANTERN, "pole lantern" },
-	{ NASTYPOLE, "nastypole" },
 
 	{0, "" }
 };
@@ -5279,14 +5278,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_CRYPT, "yer ostidagi sag'ana" },
 	{ SPE_BUBBLE_BOBBLE, "kabarcikli noto'g'ri ziplatma" },
 	{ SPE_RAIN, "yomg'ir" },
+	{ DARK_BAR, "qora satr" },
+	{ YITH_TENTACLE, "paypaslagich bilan" },
+	{ BOHEMIAN_EAR_SPOON, "bohem quloq qoshiq" },
+	{ POLE_LANTERN, "qutbli chiroq" },
+	{ NASTYPOLE, "yomon qutb" },
 
 	/* todo area */
-
-	{ DARK_BAR, "dark bar" },
-	{ YITH_TENTACLE, "yith tentacle" },
-	{ BOHEMIAN_EAR_SPOON, "bohemian ear spoon" },
-	{ POLE_LANTERN, "pole lantern" },
-	{ NASTYPOLE, "nastypole" },
 
 	{0, "" }
 };

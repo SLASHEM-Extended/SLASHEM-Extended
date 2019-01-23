@@ -1262,6 +1262,7 @@ struct monst *mtmp;
 	    case PM_ECM_ARCHER:
 	    case PM_SHOTGUN_HORROR:
 	    case PM_SHOTGUN_TERROR:
+	    case PM_KOBOLD_PEPPERMASTER:
 		    multishot++;
 		    multishot++;
 		    break;

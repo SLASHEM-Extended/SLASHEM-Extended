@@ -22728,9 +22728,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Aucune ecoliere inferieure ne peut me donner l'eau. Maintenant, vous avez une lecon que vous n'oublierez pas de sitot, petite fille!'",
 	"The iron bars hiss quietly but remain intact.",
 	"Maybe you should buy a bottle of drum stint reluctance perfume.",
-	"You feel like a miserably hussy."
-	"You feel like a miserably hussy. Are you going to crap right on the walkway in the hopes that someone else steps into your shit?"
-	"You feel like a miserably hussy. Oh my god, I guess you plan to wear the same pair of socks for two weeks straight now."
+	"You feel like a miserably hussy.",
+	"You feel like a miserably hussy. Are you going to crap right on the walkway in the hopes that someone else steps into your shit?",
+	"You feel like a miserably hussy. Oh my god, I guess you plan to wear the same pair of socks for two weeks straight now.",
+	"You're not skilled enough to tell if there is a useful ward here.",
 
 };
 

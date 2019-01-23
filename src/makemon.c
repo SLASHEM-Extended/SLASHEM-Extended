@@ -5751,6 +5751,20 @@ register struct monst *mtmp;
 				(void) mongets(mtmp, CROSSBOW);
 		  		m_initthrow(mtmp, CROSSBOW_BOLT, 45);
 			}
+			if (ptr == &mons[PM_KOBOLD_ARROWHAILER]) {
+				(void) mongets(mtmp, COMPOST_BOW);
+		  		m_initthrow(mtmp, FORBIDDEN_ARROW, 40);
+			}
+			if (ptr == &mons[PM_KOBOLD_PEPPERMASTER]) {
+				(void) mongets(mtmp, ORCISH_BOW);
+		  		m_initthrow(mtmp, ORCISH_ARROW, 50);
+		  		m_initthrow(mtmp, ORCISH_ARROW, 50);
+		  		m_initthrow(mtmp, ORCISH_ARROW, 50);
+			}
+			if (ptr == &mons[PM_KOBOLD_PHAZER]) {
+				(void) mongets(mtmp, PROCESS_CARD);
+		  		m_initthrow(mtmp, LASER_BEAM, 50);
+			}
 
 			if (ptr == &mons[PM_SHIBOLD]) {
 				(void) mongets(mtmp, SMALL_SHIELD);

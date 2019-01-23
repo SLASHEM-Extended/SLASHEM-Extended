@@ -5694,6 +5694,7 @@ SCROLL((char *)0,               "DAGGER STINGY K BETTER NOW",  P_NONE,     1,   
 SCROLL((char *)0,               "KNOWN ISSUE STENNO SHOULD VE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "CHECKED THE AMULET OF REFLECTION AOSDICT",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "BAMBITZEL AND LOEBIAM ARE INDRAENIAN WORDS",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "HI RECLUSE I REALLY LOVE YOUR LETS PLAY",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
