@@ -6578,6 +6578,62 @@ struct monst *mon;
 	int mndx = NON_PM;
 	struct permonst *pm;
 
+	int chambaselvl; /* base level of the unpolymorphed shapechanger --Amy */
+	/* basically, what we want here is that the shapechanger is exceedingly unlikely to turn into something of a much
+	 * higher level than its base form; it shouldn't be completely impossible, but rare enough to not turn all
+	 * shapeshifters into a crapshoot a la "did it change into a level 50 ubermonster or not?" */
+
+	switch (mon->cham) {
+
+	case CHAM_CHAMELEON: chambaselvl = 6; break;
+	case CHAM_DOPPELGANGER: chambaselvl = 9; break;
+	case CHAM_DOPPLEZON: chambaselvl = 10; break;
+	case CHAM_SANDESTIN: chambaselvl = 13; break;
+	case CHAM_MISSINGNO: chambaselvl = 10; break;
+	case CHAM_TRANSFORMER: chambaselvl = 10; break;
+	case CHAM_WARPER: chambaselvl = 20; break;
+	case CHAM_CHAOS_SHAPECHANGER: chambaselvl = 11; break;
+	case CHAM_SANDWICH: chambaselvl = 6; break;
+	case CHAM_KARMA_CHAMELEON: chambaselvl = 6; break;
+	case CHAM_JUNOW_TRICE: chambaselvl = 10; break;
+	case CHAM_POLY_FLAYER: chambaselvl = 15; break;
+	case CHAM_WILD_CHANGE_NYMPH: chambaselvl = 5; break;
+	case CHAM_VERY_POLY_NYMPH: chambaselvl = 20; break;
+	case CHAM_CORTEGEX: chambaselvl = 15; break;
+	case CHAM_CHANGE_EXPLODER: chambaselvl = 10; break;
+	case CHAM_BAM_CHAM: chambaselvl = 16; break;
+	case CHAM_LAURA_S_PARLOR_TRICK: chambaselvl = 10; break;
+	case CHAM_LAURA_S_MASTERPIECE: chambaselvl = 32; break;
+	case CHAM_TSCHANG_SEPHIRAH: chambaselvl = 10; break;
+	case CHAM_GLONK_SEPHIRAH: chambaselvl = 25; break;
+	case CHAM_KUSCHOING_SEPHIRAH: chambaselvl = 40; break;
+	case CHAM_ULTRA_DESTRUCTIVE_MONSTER: chambaselvl = 20; break;
+	case CHAM_DARN_DEMENTOR: chambaselvl = 15; break;
+	case CHAM_SHOEMELEON: chambaselvl = 10; break;
+	case CHAM_POLYFESHNEE: chambaselvl = 11; break;
+	case CHAM_COVETOUSLEON: chambaselvl = 17; break;
+	case CHAM_WHORED_HORE: chambaselvl = 22; break;
+	case CHAM_LULU_ASS: chambaselvl = 8; break;
+	case CHAM_TENDER_JESSE: chambaselvl = 5; break;
+	case CHAM_ELEROTIC_DREAM_WOMAN: chambaselvl = 20; break;
+	case CHAM_MARTIIN: chambaselvl = 10; break;
+	case CHAM_FOREPREACHER_CONVERTER: chambaselvl = 14; break;
+	case CHAM_RICTIM_TERRORIZER: chambaselvl = 10; break;
+	case CHAM_POLYMORPHITIC_WOLF: chambaselvl = 9; break;
+	case CHAM_OFFDIVER: chambaselvl = 8; break;
+	case CHAM_SLUMBER_HULK: chambaselvl = 10; break;
+	case CHAM_IVEL_WUXTINA: chambaselvl = 20; break;
+	case CHAM_EARLY_LEON: chambaselvl = 0; break;
+	case CHAM_CHAMECHAUN: chambaselvl = 6; break;
+	case CHAM_METAL_DOPPELGANGER: chambaselvl = 9; break;
+	case CHAM_GHELEON: chambaselvl = 6; break;
+	case CHAM_ZRUTINATOR: chambaselvl = 25; break;
+	case CHAM_METAMORPHOSE: chambaselvl = 51; break;
+	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
+	default: chambaselvl = 10; break; /* shouldn't happen */
+
+	}
+
 	switch (mon->cham) {
 	    case CHAM_SANDESTIN:
 	    case CHAM_CHAOS_SHAPECHANGER:
@@ -6587,6 +6643,7 @@ sandestinchoice:
 			mndx = pick_nasty();
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto sandestinchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto sandestinchoice;
 			if (uncommon2(pm) && !rn2(4)) goto sandestinchoice;
 			if (uncommon3(pm) && !rn2(3)) goto sandestinchoice;
 			if (uncommon5(pm) && !rn2(2)) goto sandestinchoice;
@@ -6601,6 +6658,7 @@ warperchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto warperchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto warperchoice;
 			if (uncommon2(pm) && !rn2(4)) goto warperchoice;
 			if (uncommon3(pm) && !rn2(3)) goto warperchoice;
 			if (uncommon5(pm) && !rn2(2)) goto warperchoice;
@@ -6614,6 +6672,7 @@ sandwichchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto sandwichchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto sandwichchoice;
 			if (uncommon2(pm) && !rn2(4)) goto sandwichchoice;
 			if (uncommon3(pm) && !rn2(3)) goto sandwichchoice;
 			if (uncommon5(pm) && !rn2(2)) goto sandwichchoice;
@@ -6627,6 +6686,7 @@ junowchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto junowchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto junowchoice;
 			if (uncommon2(pm) && !rn2(4)) goto junowchoice;
 			if (uncommon3(pm) && !rn2(3)) goto junowchoice;
 			if (uncommon5(pm) && !rn2(2)) goto junowchoice;
@@ -6640,6 +6700,7 @@ flayerchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto flayerchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto flayerchoice;
 			if (uncommon2(pm) && !rn2(4)) goto flayerchoice;
 			if (uncommon3(pm) && !rn2(3)) goto flayerchoice;
 			if (uncommon5(pm) && !rn2(2)) goto flayerchoice;
@@ -6654,6 +6715,7 @@ nymphchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto nymphchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto nymphchoice;
 			if (uncommon2(pm) && !rn2(4)) goto nymphchoice;
 			if (uncommon3(pm) && !rn2(3)) goto nymphchoice;
 			if (uncommon5(pm) && !rn2(2)) goto nymphchoice;
@@ -6667,6 +6729,7 @@ vortexchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto vortexchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto vortexchoice;
 			if (uncommon2(pm) && !rn2(4)) goto vortexchoice;
 			if (uncommon3(pm) && !rn2(3)) goto vortexchoice;
 			if (uncommon5(pm) && !rn2(2)) goto vortexchoice;
@@ -6680,6 +6743,7 @@ lightchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto lightchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto lightchoice;
 			if (uncommon2(pm) && !rn2(4)) goto lightchoice;
 			if (uncommon3(pm) && !rn2(3)) goto lightchoice;
 			if (uncommon5(pm) && !rn2(2)) goto lightchoice;
@@ -6693,6 +6757,7 @@ dragonchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto dragonchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto dragonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto dragonchoice;
 			if (uncommon3(pm) && !rn2(3)) goto dragonchoice;
 			if (uncommon5(pm) && !rn2(2)) goto dragonchoice;
@@ -6707,6 +6772,7 @@ elementalchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto elementalchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto elementalchoice;
 			if (uncommon2(pm) && !rn2(4)) goto elementalchoice;
 			if (uncommon3(pm) && !rn2(3)) goto elementalchoice;
 			if (uncommon5(pm) && !rn2(2)) goto elementalchoice;
@@ -6722,6 +6788,7 @@ kopchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto kopchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto kopchoice;
 			if (uncommon2(pm) && !rn2(4)) goto kopchoice;
 			if (uncommon3(pm) && !rn2(3)) goto kopchoice;
 			if (uncommon5(pm) && !rn2(2)) goto kopchoice;
@@ -6735,6 +6802,7 @@ rustmonsterchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto rustmonsterchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto rustmonsterchoice;
 			if (uncommon2(pm) && !rn2(4)) goto rustmonsterchoice;
 			if (uncommon3(pm) && !rn2(3)) goto rustmonsterchoice;
 			if (uncommon5(pm) && !rn2(2)) goto rustmonsterchoice;
@@ -6748,6 +6816,7 @@ ghostchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto ghostchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto ghostchoice;
 			if (uncommon2(pm) && !rn2(4)) goto ghostchoice;
 			if (uncommon3(pm) && !rn2(3)) goto ghostchoice;
 			if (uncommon5(pm) && !rn2(2)) goto ghostchoice;
@@ -6761,6 +6830,7 @@ shoechoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto shoechoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto shoechoice;
 			if (uncommon2(pm) && !rn2(4)) goto shoechoice;
 			if (uncommon3(pm) && !rn2(3)) goto shoechoice;
 			if (uncommon5(pm) && !rn2(2)) goto shoechoice;
@@ -6774,6 +6844,7 @@ demonchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto demonchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto demonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto demonchoice;
 			if (uncommon3(pm) && !rn2(3)) goto demonchoice;
 			if (uncommon5(pm) && !rn2(2)) goto demonchoice;
@@ -6787,6 +6858,7 @@ covetouschoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto covetouschoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto covetouschoice;
 			if (uncommon2(pm) && !rn2(4)) goto covetouschoice;
 			if (uncommon3(pm) && !rn2(3)) goto covetouschoice;
 			if (uncommon5(pm) && !rn2(2)) goto covetouschoice;
@@ -6800,6 +6872,7 @@ whorechoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto whorechoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto whorechoice;
 			if (uncommon2(pm) && !rn2(4)) goto whorechoice;
 			if (uncommon3(pm) && !rn2(3)) goto whorechoice;
 			if (uncommon5(pm) && !rn2(2)) goto whorechoice;
@@ -6813,6 +6886,7 @@ fartloudchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartloudchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto fartloudchoice;
 			if (uncommon2(pm) && !rn2(4)) goto fartloudchoice;
 			if (uncommon3(pm) && !rn2(3)) goto fartloudchoice;
 			if (uncommon5(pm) && !rn2(2)) goto fartloudchoice;
@@ -6826,6 +6900,7 @@ fartquietchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartquietchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto fartquietchoice;
 			if (uncommon2(pm) && !rn2(4)) goto fartquietchoice;
 			if (uncommon3(pm) && !rn2(3)) goto fartquietchoice;
 			if (uncommon5(pm) && !rn2(2)) goto fartquietchoice;
@@ -6839,6 +6914,7 @@ fartnormalchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartnormalchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto fartnormalchoice;
 			if (uncommon2(pm) && !rn2(4)) goto fartnormalchoice;
 			if (uncommon3(pm) && !rn2(3)) goto fartnormalchoice;
 			if (uncommon5(pm) && !rn2(2)) goto fartnormalchoice;
@@ -6852,6 +6928,7 @@ scentchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto scentchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto scentchoice;
 			if (uncommon2(pm) && !rn2(4)) goto scentchoice;
 			if (uncommon3(pm) && !rn2(3)) goto scentchoice;
 			if (uncommon5(pm) && !rn2(2)) goto scentchoice;
@@ -6865,6 +6942,7 @@ convertchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto convertchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto convertchoice;
 			if (uncommon2(pm) && !rn2(4)) goto convertchoice;
 			if (uncommon3(pm) && !rn2(3)) goto convertchoice;
 			if (uncommon5(pm) && !rn2(2)) goto convertchoice;
@@ -6878,6 +6956,7 @@ hcalienchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto hcalienchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto hcalienchoice;
 			if (uncommon2(pm) && !rn2(4)) goto hcalienchoice;
 			if (uncommon3(pm) && !rn2(3)) goto hcalienchoice;
 			if (uncommon5(pm) && !rn2(2)) goto hcalienchoice;
@@ -6891,6 +6970,7 @@ spacewarschoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto spacewarschoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto spacewarschoice;
 			if (uncommon2(pm) && !rn2(4)) goto spacewarschoice;
 			if (uncommon3(pm) && !rn2(3)) goto spacewarschoice;
 			if (uncommon5(pm) && !rn2(2)) goto spacewarschoice;
@@ -6904,6 +6984,7 @@ jokechoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto jokechoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto jokechoice;
 			if (uncommon2(pm) && !rn2(4)) goto jokechoice;
 			if (uncommon3(pm) && !rn2(3)) goto jokechoice;
 			if (uncommon5(pm) && !rn2(2)) goto jokechoice;
@@ -6917,6 +6998,7 @@ randomizedchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto randomizedchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto randomizedchoice;
 			if (uncommon2(pm) && !rn2(4)) goto randomizedchoice;
 			if (uncommon3(pm) && !rn2(3)) goto randomizedchoice;
 			if (uncommon5(pm) && !rn2(2)) goto randomizedchoice;
@@ -6930,6 +7012,7 @@ evilchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto evilchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto evilchoice;
 			if (uncommon2(pm) && !rn2(4)) goto evilchoice;
 			if (uncommon3(pm) && !rn2(3)) goto evilchoice;
 			if (uncommon5(pm) && !rn2(2)) goto evilchoice;
@@ -6944,6 +7027,7 @@ zevilchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto zevilchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto zevilchoice;
 			if (uncommon2(pm) && !rn2(4)) goto zevilchoice;
 			if (uncommon3(pm) && !rn2(3)) goto zevilchoice;
 			if (uncommon5(pm) && !rn2(2)) goto zevilchoice;
@@ -6957,6 +7041,7 @@ earlyleonchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto earlyleonchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto earlyleonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto earlyleonchoice;
 			if (uncommon3(pm) && !rn2(3)) goto earlyleonchoice;
 			if (uncommon5(pm) && !rn2(2)) goto earlyleonchoice;
@@ -6970,6 +7055,7 @@ metamorphchoice:
 			mndx = rn2(NUMMONS);
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto metamorphchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto metamorphchoice;
 			if (uncommon2(pm) && !rn2(4)) goto metamorphchoice;
 			if (uncommon3(pm) && !rn2(3)) goto metamorphchoice;
 			if (uncommon5(pm) && !rn2(2)) goto metamorphchoice;
@@ -6996,6 +7082,7 @@ chameleonchoice:
 			mndx = pick_animal();
 			pm = &mons[mndx];
 			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto chameleonchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto chameleonchoice;
 			if (uncommon2(pm) && !rn2(4)) goto chameleonchoice;
 			if (uncommon3(pm) && !rn2(3)) goto chameleonchoice;
 			if (uncommon5(pm) && !rn2(2)) goto chameleonchoice;
@@ -7039,11 +7126,13 @@ findrandomform:
 		mndx = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
 		pm = &mons[mndx];
 		if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto findrandomform;
+		if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto findrandomform;
 		if (uncommon2(pm) && !rn2(4)) goto findrandomform;
 		if (uncommon3(pm) && !rn2(3)) goto findrandomform;
 		if (uncommon5(pm) && !rn2(2)) goto findrandomform;
 		if (uncommon7(pm) && rn2(3)) goto findrandomform;
 		if (uncommon10(pm) && rn2(5)) goto findrandomform;
+		if (is_jonadabmonster(pm) && rn2(20)) goto findrandomform;
 	}
 	return mndx;
 }
