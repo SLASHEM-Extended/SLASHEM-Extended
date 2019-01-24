@@ -12303,6 +12303,8 @@ click_to_cmd(x, y, mod)
     static char cmd[4];
     cmd[1]=0;
 
+	if (!youmonst.data) goto quaakskip;
+
 	if (MenuIsBugged) {
 	pline("The travel command is currently unavailable!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -12334,6 +12336,8 @@ click_to_cmd(x, y, mod)
 	return cmd;
 
 	}
+
+quaakskip:
 
     x -= u.ux;
     y -= u.uy;
