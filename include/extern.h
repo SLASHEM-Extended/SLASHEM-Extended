@@ -3151,7 +3151,7 @@ E void you_unwere(BOOLEAN_P);
 
 /* ### wield.c ### */
 
-E void setuwep(struct obj *,BOOLEAN_P);
+E void setuwep(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void swaptech(void);
 E void setuqwep(struct obj *);
 E void setuswapwep(struct obj *,BOOLEAN_P);

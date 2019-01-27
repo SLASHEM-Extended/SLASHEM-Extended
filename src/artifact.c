@@ -840,7 +840,7 @@ bad_artifact()
 				if (uswapwep) uswapwepgone();
 				if (uarms) remove_worn_item(uarms, TRUE);
 			}
-			if (!uwep) setuwep(otmp, FALSE);
+			if (!uwep) setuwep(otmp, FALSE, TRUE);
 			if (otmp) curse(otmp);
 		}
 
@@ -1001,7 +1001,7 @@ bad_artifact_xtra()
 				if (uswapwep) uswapwepgone();
 				if (uarms) remove_worn_item(uarms, TRUE);
 			}
-			if (!uwep) setuwep(otmp, FALSE);
+			if (!uwep) setuwep(otmp, FALSE, TRUE);
 			if (otmp) curse(otmp);
 		}
 

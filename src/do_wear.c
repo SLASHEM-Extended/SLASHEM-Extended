@@ -3164,7 +3164,7 @@ register struct obj *obj;
     long oldprop = u.uprops[objects[obj->otyp].oc_oprop].extrinsic;
     int old_attrib, which;
 
-    if (obj == uwep) setuwep((struct obj *) 0, TRUE);
+    if (obj == uwep) setuwep((struct obj *) 0, TRUE, TRUE);
     if (obj == uswapwep) setuswapwep((struct obj *) 0, TRUE);
     if (obj == uquiver) setuqwep((struct obj *) 0);
 
@@ -3627,7 +3627,7 @@ register struct obj *otmp;
 	long already_blind = Blind, changed = FALSE;
 
 	if (otmp == uwep)
-	    setuwep((struct obj *) 0, TRUE);
+	    setuwep((struct obj *) 0, TRUE, TRUE);
 	if (otmp == uswapwep)
 	    setuswapwep((struct obj *) 0, TRUE);
 	if (otmp == uquiver)
@@ -4362,7 +4362,7 @@ dowear()
 
 	otmp->known = TRUE;
 	if(otmp == uwep)
-		setuwep((struct obj *)0, TRUE);
+		setuwep((struct obj *)0, TRUE, TRUE);
 	if (otmp == uswapwep)
 		setuswapwep((struct obj *) 0, TRUE);
 	if (otmp == uquiver)
@@ -4412,7 +4412,7 @@ doputon()
 		return(0);
 	}
 	if(otmp == uwep)
-		setuwep((struct obj *)0, TRUE);
+		setuwep((struct obj *)0, TRUE, TRUE);
 	if(otmp == uswapwep)
 		setuswapwep((struct obj *) 0, TRUE);
 	if(otmp == uquiver)
@@ -5103,7 +5103,7 @@ glibr()
 			otherwep ? "other " : "", thiswep,
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));
-		setuwep((struct obj *)0, FALSE);
+		setuwep((struct obj *)0, FALSE, TRUE);
 		if ( (otmp->otyp != LOADSTONE && otmp->otyp != HEALTHSTONE && otmp->otyp != LUCKSTONE && otmp->otyp != MANASTONE && otmp->otyp != SLEEPSTONE && otmp->otyp != LOADBOULDER && otmp->otyp != STARLIGHTSTONE && otmp->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp) ) || !otmp->cursed)
 			dropx(otmp);
 	}
@@ -5352,7 +5352,7 @@ do_takeoff()
 
 	if (taking_off == W_WEP) {
 	  if(!cursed(uwep)) {
-	    setuwep((struct obj *) 0, TRUE);
+	    setuwep((struct obj *) 0, TRUE, TRUE);
 	    You("are empty %s.", body_part(HANDED));
 	    u.twoweap = FALSE;
 	  }

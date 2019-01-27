@@ -25,7 +25,7 @@ ballfall()
 	if (carried(uball)) {
 		pline("Startled, you drop the iron ball.");
 		if (uwep == uball)
-			setuwep((struct obj *)0, FALSE);
+			setuwep((struct obj *)0, FALSE, TRUE);
 		if (uswapwep == uball)
 			setuswapwep((struct obj *)0, FALSE);
 		if (uquiver == uball)

@@ -3365,7 +3365,7 @@ newbadtry:
 				if (uswapwep) uswapwepgone();
 				if (uarms) remove_worn_item(uarms, TRUE);
 			}
-			if (!uwep) setuwep(otmp, FALSE);
+			if (!uwep) setuwep(otmp, FALSE, TRUE);
 			if (otmp) curse(otmp);
 		}
 
@@ -8201,7 +8201,7 @@ dodip()
 
 		obj = poly_obj(obj, STRANGE_OBJECT, FALSE);
 
-		if (was_wep) setuwep(obj, TRUE);
+		if (was_wep) setuwep(obj, TRUE, TRUE);
 		else if (was_swapwep) setuswapwep(obj, TRUE);
 		else if (was_quiver) setuqwep(obj);
 

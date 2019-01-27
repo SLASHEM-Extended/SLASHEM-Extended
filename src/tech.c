@@ -7285,7 +7285,7 @@ tinker()
 		/* object downgrade  - But for now,  nothing :) */
 	}
 
-	setuwep(otmp, FALSE);
+	setuwep(otmp, FALSE, TRUE);
 	You("now hold %s!", doname(otmp));
 	return(0);
 }

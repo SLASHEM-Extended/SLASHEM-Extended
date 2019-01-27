@@ -1965,7 +1965,7 @@ int dieroll;
 		if (obj->quan > 1L)
 		    obj = splitobj(obj, 1L);
 		else
-		    setuwep((struct obj *)0, FALSE);
+		    setuwep((struct obj *)0, FALSE, TRUE);
 		} else if (u.twoweap && obj == uswapwep) {
 		    if (obj->quan > 1L)
 			setworn(splitobj(obj, 1L), W_SWAPWEP);

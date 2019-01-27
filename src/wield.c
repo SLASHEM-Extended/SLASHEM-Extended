@@ -86,9 +86,10 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
  *       (rather than dropped, destroyed, etc)
  */
 void
-setuwep(obj, put_away)
+setuwep(obj, put_away, cancurseshit)
 register struct obj *obj;
 boolean put_away;
+boolean cancurseshit; /* otherwise, saving and loading would trigger it every time! --Amy */
 {
 	struct obj *olduwep = uwep;
 
@@ -113,6 +114,8 @@ boolean put_away;
 				) : !is_weptool(obj);
 	} else
 		unweapon = TRUE;	/* for "bare hands" message */
+
+	if (!cancurseshit) goto cursingdone;
 
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
@@ -222,6 +225,8 @@ boolean put_away;
 	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uwep);
 	
 	if (uwep && uwep->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uwep->spe--;
+
+cursingdone:
 
 	/* MRKR: Handle any special effects of unwielding a weapon */
 	if (olduwep && olduwep != uwep)
@@ -383,7 +388,7 @@ boolean put_away;
 	    /* No weapon */
 	    if (uwep) {
 		You("are empty %s.", body_part(HANDED));
-		setuwep((struct obj *) 0, put_away);
+		setuwep((struct obj *) 0, put_away, TRUE);
 		/* You can just drop your weapon and pick it back up in zero turns, so unwielding something should not
 		 * take time either.
 		 * Except in Soviet Russia of course, where dropping and picking up items isn't free, because nothing done
@@ -459,7 +464,7 @@ boolean put_away;
 		prinv((char *)0, wep, 0L);
 		wep->owornmask = dummy;
 	    }
-	    setuwep(wep, put_away);
+	    setuwep(wep, put_away, TRUE);
 
 	    /* KMH -- Talking artifacts are finally implemented */
 	    arti_speak(wep);
@@ -859,7 +864,7 @@ const char *verb;	/* "rub",&c */
 	if (uswapwep == obj) return FALSE;
     } else {
 	You("now wield %s.", doname(obj));
-	setuwep(obj, TRUE);
+	setuwep(obj, TRUE, TRUE);
     }
     if (uwep != obj) return FALSE;	/* rewielded old object after dying */
     /* applying weapon or tool that gets wielded ends two-weapon combat */

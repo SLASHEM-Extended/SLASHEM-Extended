@@ -18426,7 +18426,7 @@ register struct monst *mon;
 			Blind ? "She" : Monnam(mon), xname(ring));
 		makeknown(RIN_ADORNMENT);
 		if (ring==uleft || ring==uright) Ring_gone(ring);
-		if (ring==uwep) setuwep((struct obj *)0, FALSE);
+		if (ring==uwep) setuwep((struct obj *)0, FALSE, TRUE);
 		if (ring==uswapwep) setuswapwep((struct obj *)0, FALSE);
 		if (ring==uquiver) setuqwep((struct obj *)0);
 		freeinv(ring);

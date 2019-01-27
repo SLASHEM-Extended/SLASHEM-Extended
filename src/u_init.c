@@ -27978,7 +27978,7 @@ register struct trobj *trop;
 			otyp == TIN_OPENER || otyp == FLINT || otyp == ROCK) {
 		    if (is_ammo(obj) || is_missile(obj)) {
 			if (!uquiver) setuqwep(obj);
-		    } else if (!uwep) setuwep(obj, FALSE);
+		    } else if (!uwep) setuwep(obj, FALSE, TRUE);
 		    else if (!uswapwep) setuswapwep(obj, FALSE);
 		}
 		if (obj->oclass == SPBOOK_CLASS &&

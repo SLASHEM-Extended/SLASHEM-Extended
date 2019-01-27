@@ -2016,7 +2016,7 @@ boolean shop_floor_obj;
 		otmp->no_charge = 0;
 	}
 
-	if (otmp == uwep) setuwep((struct obj *)0, FALSE);
+	if (otmp == uwep) setuwep((struct obj *)0, FALSE, TRUE);
 	if (otmp == uswapwep) setuswapwep((struct obj *)0, FALSE);
 	if (otmp == uquiver) setuqwep((struct obj *)0);
 

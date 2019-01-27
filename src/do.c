@@ -1148,7 +1148,7 @@ register struct obj *obj;
 			weldmsg(obj);
 			return(0);
 		}
-		setuwep((struct obj *)0, FALSE);
+		setuwep((struct obj *)0, FALSE, TRUE);
 	}
 	if (obj == uswapwep) {
 		setuswapwep((struct obj *)0, FALSE);
@@ -1239,7 +1239,7 @@ void
 dropy(obj)
 register struct obj *obj;
 {
-	if (obj == uwep) setuwep((struct obj *)0, FALSE);
+	if (obj == uwep) setuwep((struct obj *)0, FALSE, TRUE);
 	if (obj == uquiver) setuqwep((struct obj *)0);
 	if (obj == uswapwep) setuswapwep((struct obj *)0, FALSE);
 
@@ -4132,7 +4132,7 @@ rerollchaloc:
 			    if (uquiver == uball)
 				setuqwep((struct obj *)0);
 			    if (uwep == uball)
-				setuwep((struct obj *)0, FALSE);
+				setuwep((struct obj *)0, FALSE, TRUE);
 			    freeinv(uball);
 			}
 		    }

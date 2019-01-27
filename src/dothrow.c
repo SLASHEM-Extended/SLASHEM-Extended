@@ -58,7 +58,7 @@ struct obj **pobj;
 	    setworn(otmp = splitobj(obj, 1L), W_WEP);
 	    /* not setuwep; do not change unweapon */
 	else {
-	    setuwep((struct obj *)0, FALSE);
+	    setuwep((struct obj *)0, FALSE, TRUE);
 	    if (uwep) return (struct obj *)0; /* unwielded, died, rewielded */
 	}
     } else if (obj->quan > 1L)
@@ -1350,10 +1350,8 @@ int thrown;
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
 		obj = addinv(obj);
 		(void) encumber_msg();
-		setuwep(obj, TRUE);
+		setuwep(obj, TRUE, TRUE);
 		u.twoweap = twoweap;
-/*            if (!fire_weapon) setuwep(obj);                
-            else setuqwep(obj);*/
 		return;
 	    }
 	    if (u.dz < 0 && (Role_if(PM_JEDI) || !rn2(2)) &&
@@ -1364,7 +1362,7 @@ int thrown;
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
 		obj = addinv(obj);
 		(void) encumber_msg();
-		setuwep(obj, TRUE);
+		setuwep(obj, TRUE, TRUE);
 		u.twoweap = twoweap;
 		return;
 	    }
@@ -1584,7 +1582,7 @@ int thrown;
 			pline("%s to your hand!", Tobjnam(obj, "return"));
 			obj = addinv(obj);
 			(void) encumber_msg();
-			setuwep(obj, TRUE);
+			setuwep(obj, TRUE, TRUE);
 			u.twoweap = twoweap;
 			if(cansee(bhitpos.x, bhitpos.y))
 			    newsym(bhitpos.x,bhitpos.y);
