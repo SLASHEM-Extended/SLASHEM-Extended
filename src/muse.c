@@ -5409,7 +5409,6 @@ register struct obj *otmp;
 	case SPE_CANCELLATION:
 		if (zap_oseen) makeknown(WAN_CANCELLATION);
 		(void) cancel_monst(mtmp, otmp, FALSE, TRUE, FALSE);
-		stop_occupation(); /* thanks FIQ - no idea why this wasn't interrupting you */
 		break;
 	case WAN_PARALYSIS:
 		if (zap_oseen) makeknown(WAN_PARALYSIS);
@@ -6399,6 +6398,7 @@ struct monst *mtmp;
 		mbhit(mtmp, EnglandMode ? rn1(10,10) : rn1(8,6),mbhitm,bhito,otmp);
 		m_using = FALSE;
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		stop_occupation(); /* thanks FIQ - no idea why this wasn't interrupting you */
 		return 2;
 	case MUSE_WAN_BANISHMENT:
 		zap_oseen = oseen;
