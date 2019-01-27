@@ -4820,6 +4820,7 @@ static const char *epitaphs[] = {
 	"Satan's Flaming Bollocks!", /* ditto */
 	"Here lies Antichthon. Crushed underneath an express train from HELL.", /* with 50-odd egotypes */
 	"if you play slex, you *are* a dickhead", /* by porkman */
+	"Oh no! The brain drain!",
 
 };
 

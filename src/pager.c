@@ -22732,6 +22732,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel like a miserably hussy. Are you going to crap right on the walkway in the hopes that someone else steps into your shit?",
 	"You feel like a miserably hussy. Oh my god, I guess you plan to wear the same pair of socks for two weeks straight now.",
 	"You're not skilled enough to tell if there is a useful ward here.",
+	"You hear a distant file being deleted.",
+	"Your drive has been encrypted! If you can ascend this game of nethack, it will unlock your computer.",
+	"Uninstall which program? You can't. It is cursed.",
+	"The pop-up hits. You feel your computer slowing down.",
+	"You get tyrannosaurus rekt by percents.",
+	"You kill your grandfather! You look strangely transparent. You turn into a quantom mechanic. Time lies still as you and your mother stop existing. I *told* you not to mess with that time machine, kid...", /* Yes the "quantom" is not an error, it's a literal quote :P --Amy */
+	"the wizard of yendor rubs his hands furiously on his sweater! he touches you; you are jolted with electricity! You die...", /* by K2 */
 
 };
 
