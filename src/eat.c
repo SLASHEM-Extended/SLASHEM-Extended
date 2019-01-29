@@ -263,6 +263,9 @@ register struct obj *obj;
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
 
+	/* chewable potion randomized appearance is edible --Amy */
+	if (OBJ_DESCR(objects[obj->otyp]) && obj->otyp == POTION_CLASS && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chewable"))) return 1;
+
 	if (Race_if(PM_OCTOPODE) && obj->oclass == RING_CLASS) return 1;
 
 	/* Incantifier only eats stone and metal --Amy */
@@ -2791,6 +2794,7 @@ register int pm;
 		break;
 	    case PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT:
 	    case PM_VERY_STEAL_MIND_FLAYER:
+	    case PM_CONTACT_BEASTLING:
 
 		if(!(HPolymorph & FROMOUTSIDE)) {
 			You_feel(Hallucination ?
@@ -2867,6 +2871,7 @@ register int pm;
 		break;
 
 	    case PM_STEALATRICE:
+	    case PM_CONTACT_BEAST:
 		if (u.contamination && u.contamination < 1000) {
 			decontaminate(100);
 		}

@@ -4821,6 +4821,7 @@ static const char *epitaphs[] = {
 	"Here lies Antichthon. Crushed underneath an express train from HELL.", /* with 50-odd egotypes */
 	"if you play slex, you *are* a dickhead", /* by porkman */
 	"Oh no! The brain drain!",
+	"Spork Astral hits! You feel your game fading away...", /* by aosdict, after K2 suffered an astral splat :( */
 
 };
 

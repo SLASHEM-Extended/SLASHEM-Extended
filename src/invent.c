@@ -12247,6 +12247,8 @@ struct obj *obj;
 			pline("An angel may live in this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "endbringer")))
 			pline("DANGER: This potion brings an end. Quaff at your own peril.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chewable")))
+			pline("You can eat this potion if you want. This will give the effects of inhaling the potion's vapors, which may be different than the quaff effect.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deadweight")))
 			pline("Occasionally, the act of quaffing this potion forces you to wear some cursed crap.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "present")))

@@ -93,12 +93,14 @@ dosounds()
 		"a slow drip.",
 		"a gurgling noise.",
 		"a metallic plinking sound.",
+		"a toilet flush!",
+		"a dripping tap.",
 		"dripping water.",
 		"dishes being washed!",
 		"a neverending dripping sound that is driving you crazy!",
 		"someone getting in on the action with a hot foocubus!",
 	};
-	You_hear("%s", sink_msg[rn2(4+hallu*3)]);
+	You_hear("%s", sink_msg[rn2(6+hallu*3)]);
     }
 #endif
     if (level.flags.has_court && !rn2(200)) {
@@ -535,8 +537,9 @@ dosounds()
 			"can smell the mildew on the walls.",
 			"listen to the type of ice block laughing all the time. Harharharharharharhar!",
 			"know that if you're walking on ice all the time, you'll unlearn the ability to walk on a non-slippery floor.",
+			"hear an ice cream van!",
 		};
-		You("%s", coolingchamber_msg[rn2(5+hallu*5)]);
+		You("%s", coolingchamber_msg[rn2(5+hallu*6)]);
 		return;
 	    }
 
@@ -1018,7 +1021,9 @@ dosounds()
 	    if (level.flags.has_showerroom && !rn2(200)) {
 		static const char *showerroom_msg[] = {
 			"hear water currents.",
+			"feel like dancing in the rain.",
 			"listen to a mix of splashes.",
+			"hear the shower running.",
 			"inhale the smell of brine.",
 			"hear a thunderous rumble.",
 			"listen to the emergency service trying to repair a broken water pipe.",
@@ -1026,7 +1031,7 @@ dosounds()
 			"realize that the sorcery adept doesn't know how to stop the water...", /* some poem that I forgot the name off, maybe "the mage adept"? the poor sap wants to fill the bathtub with water by using a spell but forgot how to stop the helpers he summoned */
 			"detect a flooding on this sub level.",
 		};
-		You("%s", showerroom_msg[rn2(4+hallu*4)]);
+		You("%s", showerroom_msg[rn2(6+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_greencrossroom && !rn2(200)) {
@@ -1053,6 +1058,7 @@ dosounds()
 		static const char *ruinedchurch_msg[] = {
 			"feel a haunting presence.",
 			"hear a chiming bell.",
+			"a C major chord.",
 			"feel that all sanctity of this place has been lost.",
 			"are sure that the dead are floating around here.",
 			"hear an orchestral melody that goes 'Daaaaa... daaaaaa... DAAAAAAAAAAAAAAA!!!'",
@@ -1060,7 +1066,7 @@ dosounds()
 			"remember the bible saying that you should do unto others what you want others to do unto you.",
 			"know that practice makes perfect. Yeah, yeah.",
 		};
-		You("%s", ruinedchurch_msg[rn2(4+hallu*4)]);
+		You("%s", ruinedchurch_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_gamecorner && !rn2(200)) {
@@ -1176,6 +1182,7 @@ dosounds()
 		static const char *riverroom_msg[] = {
 			"hear seagulls.",
 			"hear waves on sand.",
+			"hear something fishy happening.",
 			"hear the trickle of water.",
 			"sense a watery smell mixed with grass.",
 			"listen to an unusual ambient sound.",
@@ -1188,8 +1195,17 @@ dosounds()
 			"get the dreaded 'Can't write to save file' error. Bullshit.",
 			"hear burly voices singing shanties.",
 			"here someone ask about warez.",
+			"hear a speedboat.",
+			"hear a squeaking rubber duck!",
+			"hear a loud advert for Tide.",
+			"hear a commercial for protein bars.",
+			"hear a shark jumping!",
+			"hear a gull asking for a bite of your sandwich.",
+			"hear a foghorn!",
+			"hear a sea shell exploding!",
+			"hear a C-shell script running.",
 		};
-		You("%s", riverroom_msg[rn2(7+hallu*7)]);
+		You("%s", riverroom_msg[rn2(8+hallu*16)]);
 		return;
 	    }
 
