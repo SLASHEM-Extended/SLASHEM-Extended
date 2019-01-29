@@ -1522,6 +1522,7 @@ struct you {
 	boolean grenadoninlauncher;
 
 	boolean mushroompoles;
+	boolean mushroompoleused;
 
 	boolean automorefuckthisshit;	/* gah */
 

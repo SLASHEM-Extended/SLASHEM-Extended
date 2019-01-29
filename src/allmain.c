@@ -9121,6 +9121,7 @@ past3:
 
 	u.captchahack = 0;
 	u.roommatehack = 0;
+	u.mushroompoleused = 0;
 	u.explodewandhack = 0;
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */

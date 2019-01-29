@@ -9372,6 +9372,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.mushroompoleused = 0;
 	u.automorefuckthisshit = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;

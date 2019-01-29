@@ -1001,6 +1001,12 @@ register struct obj *obj, *merge;
 #endif
 		}
 	}
+
+	if (Race_if(PM_PLAYER_MUSHROOM) && u.mushroompoleused) {
+		setnotworn(obj);
+		obj_extract_self(obj);
+	}
+
 	dealloc_obj(obj);
 }
 #endif /* OVLB */

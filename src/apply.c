@@ -3576,6 +3576,8 @@ use_pole (obj)
 	/* So you did successfully apply your pole. If you try to camp on an Elbereth, it should be scuffed now --Amy */
 	u_wipe_engr(rnd(5));
 
+	if (u.mushroompoles) u.mushroompoleused = TRUE;
+
 	/* What is there? */
 	mtmp = m_at(cc.x, cc.y);
 
@@ -3824,6 +3826,7 @@ use_pole (obj)
 			badeffect();
 		}
 	}
+	u.mushroompoleused = 0;
 	return (1);
 }
 
