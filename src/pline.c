@@ -288,7 +288,7 @@ pline VA_DECL(const char *, line)
 		/* count identical messages */
 		if (!strncmp(msgs[lastmsg], line, BUFSZ)) {
 			msgs_count[lastmsg] += 1;
-		} else {
+		} else if (strncmp(line, "Unknown command", 15) ) {
 			lastmsg = (lastmsg + 1) % DUMPMSGS;
 			strncpy(msgs[lastmsg], line, BUFSZ);
 			msgs_count[lastmsg] = 1;
