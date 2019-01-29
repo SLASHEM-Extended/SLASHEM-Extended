@@ -1246,7 +1246,7 @@ moveloop()
 
 			}
 
-		    } else
+		    } else /* not riding */
 		    {
 			moveamt = youmonst.data->mmove;
 
@@ -1414,6 +1414,15 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
+
+			/* mushroom moves more slowly, but only when not riding and not polymorphed --Amy */
+			if (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd && u.umoved && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2)) {
+					moveamt *= 2;
+					moveamt /= 3;
+				}
+			}
+
 			if (Race_if(PM_DUFFLEPUD) && uarmf && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* dufflepud wearing boots moves at half speed --Amy */
@@ -12355,7 +12364,7 @@ newturn:
 		if (pumpsstate == 0 || !rn2(5)) pumpsstate = rnd(minigameturns >= 10 ? 6 : 5);
 		if (pumpsstate == PUMPKICKINNUTS && flags.female) pumpsstate = rnd(3); /* females don't have nuts (DUH) */
 
-		if (rn2(25) < pumpslikeyou) pumpsstate = PUMPINLAP;
+		if (rn2(25) < ((pumpslikeyou > 10) ? 10 : pumpslikeyou) ) pumpsstate = PUMPINLAP;
 
 		switch (pumpsstate) {
 
@@ -12441,7 +12450,7 @@ newturn:
 
 				pumpslikeyou++;
 
-				if (pumpslikeyou >= 10) {
+				if ((pumpslikeyou >= rn1(10, 10)) && !rn2(5)) {
 
 					if (Upolyd) u.mh += 200; /* heal some hit points */
 					else u.uhp += 200; /* heal some hit points */
