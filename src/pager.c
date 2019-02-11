@@ -22870,6 +22870,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"You don't know how to write a proper conclusion.",
 	"You're being hunted by the grammar police.",
 	"Did you know that Porkman scored the first notdnethack ascension ever?",
+	"You sense some questing power!",
+	"You detect the presence of the subquest portal!",
+	"A lot of force seems to be in the air.",
+	"You listen to the taunts of your nemesis who wants a rematch!",
+	"You suddenly fear that you'll face your nemesis again and lose!",
+	"You have a vision of your home being burned to the ground by the person you despise the most!",
+	"Something tells you that the only thing you can depend on is your family, and even that not always!",
+	"You hear a voice announce: \"Morn', player. I'm Sean Gonorrhea. I like my coffee black, my women slutty, and my mucosa membranes inflamed.\"",
 
 };
 

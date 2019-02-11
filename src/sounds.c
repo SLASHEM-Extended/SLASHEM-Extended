@@ -1380,6 +1380,22 @@ dosounds()
       pline("%s", alignquest_msg[rn2(4+hallu*4)]);
     }
 
+	/* finding the subquest is even more annoying because you have to do it */
+    if ( at_dgn_entrance("The Subquest") && u.silverbellget && !rn2(500) ) {
+      static const char *subquest_msg[] = {
+	  "You sense some questing power!",
+	  "You detect the presence of the subquest portal!",
+	  "A lot of force seems to be in the air.",
+	  "You listen to the taunts of your nemesis who wants a rematch!",
+	  "You suddenly fear that you'll face your nemesis again and lose!",
+	  "You have a vision of your home being burned to the ground by the person you despise the most!",
+	  "Something tells you that the only thing you can depend on is your family, and even that not always!",
+	  "You hear a voice announce: \"Morn', player. I'm Sean Gonorrhea. I like my coffee black, my women slutty, and my mucosa membranes inflamed.\"",
+      };
+      pline("%s", subquest_msg[rn2(4+hallu*4)]);
+
+    }
+
 }
 
 #endif /* OVL0 */
