@@ -837,6 +837,8 @@ doread()
 	"You're asking if the apocalypse will happen soon? Well, here's a newsflash: it has already happened and right now we're dealing with the aftermath!",
 	"The forced draft for men is sexism at its finest.",
 	"418 I'm a Teapot. The resulting entity body MAY be short and stout. Tip me over and pour me out.", /* by attie; she wants actual teapot items with labels, but I'm taking the easy way out :P */
+	"Transsylvanian Teacher Darts Club",
+	"I got the first official notdnethack ascension! *oink oink*", /* Porkman :D */
 
 	    };
 	    char buf[BUFSZ];

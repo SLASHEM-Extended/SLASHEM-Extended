@@ -2074,8 +2074,11 @@ E const char *gangscholartaunt3(void);
 E const char *gangscholartaunt_specific(void);
 E const char *gangscholartaunt_specific2(void);
 E const char *longingmessage(void);
+E const char *walscholartaunt(void);
+E const char *walscholartaunt2(void);
 
 E void gangscholarmessage(void);
+E void walscholarmessage(void);
 E void longingtrapeffect(void);
 E void demagogueparole(void);
 

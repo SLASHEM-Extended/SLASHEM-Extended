@@ -3823,6 +3823,8 @@ POTION((char *)0, "gloss", 0, 0,           0,   0, CLR_RED, 1),
 POTION((char *)0, "glam", 0, 0,           0,   0, CLR_WHITE, 1),
 POTION((char *)0, "chewable", 0, 0,           0,   0, CLR_WHITE, 1),
 POTION((char *)0, "glossy white", 0, 0,           0,   0, CLR_WHITE, 1),
+POTION((char *)0, "caustic", 0, 0,           0,   0, CLR_GREEN, 1),
+POTION((char *)0, "acai berry", 0, 0,           0,   0, CLR_RED, 1), /* by jonadab */
 
 POTION("water", "clear",                0, 0,          550, 300, CLR_CYAN, 1),
 POTION("blood", "blood-red",            0, 0,          50, 300, CLR_RED, 1),
@@ -5737,6 +5739,11 @@ SCROLL((char *)0,               "WEAR A SHEMAGH IN THE DESERT",  P_NONE,     1, 
 SCROLL((char *)0,               "WONDERLOVELY BATHING HOUSE",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "DNETHACK PESTILENCE CAN INSTAKILL YOU WITH QUADRUPLE SICKNESS",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "DO NOT GOOGLE FOR DISTORTION FRACTURE",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
+SCROLL((char *)0,               "IT STANDS POINTED ON BUTTON",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "CONSECUTIVE NORMAL PUNCHES",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "FLOCKEY SAPHALT",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
+SCROLL((char *)0,               "THERE IS FAR AND BROAD NO COURSE TO BE SEEN",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "THE CALLING DOES NOT DECREASE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
@@ -6625,6 +6632,7 @@ WAND((char *)0,        "tangle beam",  0, 500, 1, 0,        DRAGON_HIDE,     CLR
 WAND((char *)0,        "medical",  0, 500, 1, 0,        TAR,     CLR_RED, 1),
 WAND((char *)0,        "sonicboom",  0, 500, 1, 0,        ETHER,     CLR_GRAY, 1),
 WAND((char *)0,        "wispy",  0, 500, 1, 0,        WAX,     CLR_WHITE, 1),
+WAND((char *)0,        "xygos",  0, 500, 1, 0,        VIVA,     CLR_BRIGHT_MAGENTA, 1),
 
 #undef WAND
 

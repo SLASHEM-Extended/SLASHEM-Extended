@@ -3909,6 +3909,7 @@ static NEARDATA const char * const longinglines[] = {
 "%s loves it if you caress her butt cheeks while she's on the toilet.",
 "It feels very lovely to be bitten in the earlobe by %s.",
 "Did you see %s? She's a giiiiirl! And a very beautiful one too!",
+"You absolutely love the fact that %s can perform the 'asian kick', where she drives her stiletto heels up her opponent's nuts and gives him a distortion fracture. (Don't google that though, you don't want to know what it is.)",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4373,6 +4374,75 @@ static NEARDATA const char * const bangganglines_femaleonly[] = {
 "My fingernails will eviscerate you!",
 "I can't wait to tear you up with my woman's fingernails and draw lots of blood.",
 "I'll totally rip you to shreds with my female fingernails and gleefully watch you bleed to death.",
+};
+
+static NEARDATA const char * const hussylines_wal[] = {
+"You will fall prey to our trap! There's no escape!",
+"My body odor will cause you to fall over unconscious!",
+"You can't resist my feminine charms. No one can.",
+"Like you were capable of defeating our Hussy Club.",
+"Go and get your useless teachers, they won't be able to stop the Hussies either!",
+"You can do whatever you want to try to protect the diamonds. We'll steal them anyway.",
+"Well I found one of the walls you set up to 'protect' your diamonds. Since you're not there to defend it, I'll just kick the wall repeatedly until it breaks down.",
+"You and your 'superschool speaker' can suck it! We're a lot of hussies while you are just a handful of weakling men! And we'll steal all of your diamonds!",
+"Now look, I found another of your 'diamond protection' walls. I'll produce very beautiful farting noises and direct the gas at the wall, which will probably destroy it. And then the diamonds are mine.",
+"Prepare to get your butt kicked by me, wimpy 'walscholar'.",
+"Your 'mission' to protect the diamonds will end in a catastrophic failure.",
+"Walt and his loser teachers can suck it! Us Hussies are not bound to their commands in any way!",
+"Yes, continue thinking that Walt can protect you. The diamonds exist to be stolen by me, and he knows that too!",
+"No teacher tells ME what to do! I'll make it my mission to break any and all rules they try to set up because they can just kiss my beautiful female ass!",
+"You will live in poverty, because all of your diamonds will become my diamonds soon.",
+"Hahaha, that will be expensive for you to buy so many diamonds to replace the ones I just stole.",
+"The school will fall! Walt's protection is inadequate!",
+"I'll use my sexy butt cheeks to destroy Walt's source of power!",
+"This school has way too much teacher scum and it's about time that girls like me overthrow them and seize the power.",
+"If you aren't bludgeoned by me, the hola-hola brigade will take care of you.",
+"Good thing our converters will take care of stray walscholars.",
+"And if you think I'm the only danger for you, wait until you hear the 'Wouwou' taunts!",
+"Resistance is futile! Both the Hussies and our mercenaries will hunt you down!",
+"I just pulled down the trousers of your protector! You're up next, hahaha!",
+"It's boring, walscholars like you are so easy to defeat. Send me your speaker so I have a challenge.",
+"The day will come when there's no male person attending this school anymore.",
+"Us Hussies don't like male persons! And we especially don't like male teachers. They shall all be removed from this school.",
+"We're gonna introduce diversity here. You and that bastard Walt want to turn this school into an all-male club, but the Hussies and the hola-hola brigade have rights too, and we'll fight to get those rights!",
+"No one has ever been able to stop the hussies and you certainly won't be the first!",
+"Hussy power is supreme! A mere walscholar ain't got no chance!",
+"Of course a walscholar can't deal with my scentful perfume.",
+"Can a walscholar really stand against the lovely scent of femininity? I think not.",
+};
+
+static NEARDATA const char * const hussylines_wal_specific[] = {
+"%s, you will lose to a girl today.",
+"What, you say your name is %s? That's a stupid name!",
+"Poor %s, your parents must have hated you because they gave you such a retarded name? Hahaha!",
+"Listen up, %s: your failure is imminent!",
+"Apparently Walt is sending %s to do the dirty tasks for him. I guess if he doesn't have anyone better, this will be easy for me.",
+"Walt is a fool for making that %s weakling into a 'guard' for the diamonds.",
+"Alright, I found a diamond wall set up by %s! I'll squeak a lot of farting gas out of my butt to break it!",
+"%s, yet again you didn't secure the diamonds! Know that I just stole them, ha ha ha!",
+"%s, you made the mistake to trust me, and now I decided to show my true face. Yes, I'm a hussy, and I'll knock you out now.",
+"Who in their right mind would call their child '%s'?",
+"%s, your name is on the official Hussy wanted list! We will hunt you down!",
+"All the hussies will sit on you, %s!",
+"Us Hussies can never be defeated by %s!",
+"%s, better go back to your Walt 'protector' and polish his shoes, for you certainly ain't no match for the Hussies.",
+"What'cha gonna do, %s, run to your parents and cry? Hahaha!",
+"It won't be long until the hola-hola brigade will convert %s.",
+"I've sent a couple converters up your ass, %s! Can you escape them? Ha ha ha!",
+"You can't escape from our mercenaries, %s. Their 'Wouwou' taunts will strike fear into the very heart of you!",
+"Just so you know, %s: we've hired help. There's no way for you to escape because we're many more than you.",
+"Did you know that I just knocked out and stole the possessions of one of your walscholar colleagues, %s?",
+"%s, all of the other walscholars are already being tortured in our prison chamber. Now it's time for you to join them.",
+"Why would you want to be a walscholar anyway? %s, if you join us Hussies we might let you get away, but if not, we'll turn your life into hell!",
+"%s, you bootlicker! You obey the commands of male teachers? I'd never stoop that low myself.",
+"%s apparently didn't get the memo that the future is female.",
+"We must remove %s for being friends with men! All those teachers are no good and walscholars who support them need to either be converted or knocked out!",
+"Did you know that your teachers are pigs? Yes, that's right, %s, there are no exceptions.",
+"%s, you and your exclusive boys club! We're the Hussies and our rightful female anger will crush you!",
+"%s, why do you think you could stop the hussies when there have been so many others who failed to defeat us?",
+"Accept the fact that you're only a walscholar, %s! Your mission is doomed to fail because the Hussies are unstoppable!",
+"%s, I'll spray my perfume right into your face now!",
+"Tomorrow people will be reading in the newspaper that I defeated %s with my lovely odor.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -22792,6 +22862,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear a sea shell exploding!",
 	"You hear a C-shell script running.",
 	"You are dancing in the rain."
+	"You're still dreaming.",
+	"You can't really believe it.",
+	"You pinched yourself very painfully.",
+	"Ina continuously tries to kick you in the shins because she's such a nice girl.",
+	"Don't be so anorexic and eat a boerek without salad - order a doenerteller versace instead!",
+	"You don't know how to write a proper conclusion.",
+	"You're being hunted by the grammar police.",
+	"Did you know that Porkman scored the first notdnethack ascension ever?",
 
 };
 
@@ -22856,6 +22934,18 @@ gangscholartaunt_specific2()
 	return (bangganglines_specific[rn2(SIZE(bangganglines_specific))]);
 }
 
+const char *
+walscholartaunt()
+{
+	return (hussylines_wal[rn2(SIZE(hussylines_wal))]);
+}
+
+const char *
+walscholartaunt2()
+{
+	return (hussylines_wal_specific[rn2(SIZE(hussylines_wal_specific))]);
+}
+
 void
 longingtrapeffect()
 {
@@ -22918,6 +23008,33 @@ gangscholarmessage()
 			break;
 
 	}
+}
+
+void
+walscholarmessage()
+{
+
+	char buf[BUFSZ];
+
+	switch (rnd(2)) {
+
+		case 1:
+			sprintf(buf, "%s %s", hussynames[rn2(SIZE(hussynames))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			sprintf(eos(buf), "'");
+			sprintf(eos(buf), "%s", walscholartaunt());
+			sprintf(eos(buf), "'");
+			pline("%s", buf);
+			break;
+		case 2:
+			sprintf(buf, "%s %s", hussynames[rn2(SIZE(hussynames))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			sprintf(eos(buf), "'");
+			sprintf(eos(buf), walscholartaunt2(), playeraliasname);
+			sprintf(eos(buf), "'");
+			pline("%s", buf);
+			break;
+
+	}
+
 }
 
 /*pager.c*/

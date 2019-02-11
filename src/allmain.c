@@ -1985,6 +1985,9 @@ moveloop()
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(1000)) {
 			gangscholarmessage();
 		}
+		if (Role_if(PM_WALSCHOLAR) && !rn2(1000)) {
+			walscholarmessage();
+		}
 
 		if ((LongingEffect || u.uprops[LONGING_EFFECT].extrinsic || have_longingstone()) && !rn2(50)) {
 			longingtrapeffect();
