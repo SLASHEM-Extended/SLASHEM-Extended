@@ -1059,14 +1059,16 @@ makecorridors()
 	boolean any = TRUE;
 
 	int style = 0;
-	if (!rn2(5)) style = rnd(4);
+	if (!rn2(5)) style = rnd(6);
 #ifdef BIGSLEX
-	style = rnd(4);
+	/* bigslex levels have many more rooms, and the default mechanism is annoying because it constantly makes
+	 * large vertical pathways... make it more random --Amy */
+	style = rnd(6);
 #endif
 
 	/* sporkhack code to have different join mechanisms */
 	switch (style) {
-	default: /* vanilla style */
+	default: /* case 4, vanilla style */
 
 	for(a = 0; a < nroom-1; a++) {
 		join(a, a+1, FALSE);
@@ -1116,14 +1118,50 @@ makecorridors()
 		}
 	    }
 	    break;
-	case 3: /* all roads lead to rome. or to the first room. */
-	    if (nroom > 1) {
-		b = 0;
-		for (a = 1; a < nroom; a++) {
-		    join(a, b, FALSE);
-		}
-	    }
+	case 3: /* all roads lead to rome. or to the first room. Amy edit: one random room, not always the leftmost */
+        if (nroom > 1) {
+            b = rn2(nroom);
+            for (a = 0; a < nroom; a++) {
+                if (b != a) join(a, b, FALSE);
+            }
+	  }
 	    break;
+    case 5: /* by Amy - join random rooms, then make sure that every room has at least one door */
+        if (nroom > 1) {
+            int rmcnt = nroom;
+            rmcnt += rnd(rmcnt);
+            while (rmcnt > 1) {
+                rmcnt--;
+                a = rn2(nroom);
+                b = rn2(nroom);
+                while (b == a) b = rn2(nroom);
+                join(a, b, FALSE);
+            }
+        }
+        for (a = 0; a < nroom; a++) {
+            if (!rooms[a].doorct) {
+                b = rn2(nroom);
+                while (b == a) b = rn2(nroom);
+                join(a, b, FALSE);
+            }
+        }
+    
+        break;
+    case 6:
+        if (nroom > 1) {
+            for (a = 0; a < nroom; a++) {
+                b = rn2(nroom);
+                while (b == a) b = rn2(nroom);
+                join(a, b, FALSE);
+            }
+            for (a = 0; a < nroom; a++) {
+                b = rn2(nroom);
+                while (b == a) b = rn2(nroom);
+                join(a, b, FALSE);
+            }
+        }
+        break;
+
 	}
 
 }
