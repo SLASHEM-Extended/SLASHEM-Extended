@@ -271,6 +271,7 @@ lookat(x, y, buf, monbuf)
 				    Blind ? "a monster" : a_monnam(u.ustuck));
 	pm = u.ustuck->data;
     } else if (glyph_is_monster(glyph)) {
+
 	bhitpos.x = x;
 	bhitpos.y = y;
 	mtmp = m_at(x,y);
@@ -1218,6 +1219,9 @@ do_look(quick)
     boolean hit_trap;		/* true if found trap explanation */
     int skipped_venom;		/* non-zero if we ignored "splash of venom" */
     static const char *mon_interior = "the interior of a monster";
+    boolean mojibakeflag;
+
+    mojibakeflag = 0;
 
     if (quick) {
 	from_screen = TRUE;	/* yes, we want to use the cursor */
@@ -1570,7 +1574,7 @@ do_look(quick)
 		found += append_str(out_str, "boulder");
 	    }
 	}
-	
+
 	/*
 	 * If we are looking at the screen, follow multiple possibilities or
 	 * an ambiguous explanation by something more detailed.
@@ -1592,6 +1596,16 @@ do_look(quick)
 
 		if (pm) {
 		    struct monst *mtmpX = m_at(cc.x, cc.y);
+
+		    /* mojibake was leaking info... argh --Amy */
+		    if (!mtmpX && !(u.ux == cc.x && u.uy == cc.y)) goto blaone;
+		    if (mtmpX && !sensemon(mtmpX) && !canseemon(mtmpX) && !(u.ux == cc.x && u.uy == cc.y) && !((mtmpX->m_ap_type != M_AP_NOTHING) && Protection_from_shape_changers && !permamimic(mtmpX->data) && !(mtmpX->egotype_permamimic)) ) {
+
+				int glyphX = glyph_at(cc.x,cc.y);
+				if (glyph_is_monster(glyphX) && !(u.ux == cc.x && u.uy == cc.y) ) mojibakeflag = 1;
+				goto blaone;
+		    }
+
 		    if (mtmpX) {
 			sprintf(temp_buf, " (base level %d)", mtmpX->data->mlevel);
 			(void)strncat(out_str, temp_buf, BUFSZ-strlen(out_str)-1);
@@ -1603,6 +1617,8 @@ do_look(quick)
 
 		    }
 		}
+
+blaone:
 
 		if (monbuf[0]) {
 		    sprintf(temp_buf, " [seen: %s]", monbuf);
@@ -1621,6 +1637,12 @@ do_look(quick)
 
 #ifdef EXTENDED_INFO
 		if(flags.pokedex && (pm != (struct permonst *) 0) ) {
+
+		    struct monst *mtmpX = m_at(cc.x, cc.y);
+
+		    if (!mtmpX && !(u.ux == cc.x && u.uy == cc.y)) goto blatwo;
+		    if (mtmpX && !sensemon(mtmpX) && !canseemon(mtmpX) && !(u.ux == cc.x && u.uy == cc.y) && !((mtmpX->m_ap_type != M_AP_NOTHING) && !(Protection_from_shape_changers && !permamimic(mtmpX->data) && !(mtmpX->egotype_permamimic) ) ) ) goto blatwo;
+
 			append_newline_to_pline_string(out_str);
 			temp_buf[0]='\0';
 			get_description_of_monster_type(pm, temp_buf);
@@ -1630,6 +1652,8 @@ do_look(quick)
 
 	    }
 	}
+
+blatwo:
 
 	/* Finally, print out our explanation. */
 	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !(uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) && !(uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) && !have_rmbstone()) {
@@ -1648,7 +1672,7 @@ do_look(quick)
 		strcpy(temp_buf, level.flags.lethe 
 					&& !strcmp(firstmatch, "water")?
 				"lethe" : firstmatch);
-		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
+		if (!mojibakeflag) checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
 	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !(uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) && !(uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) && !have_rmbstone()) pline("I've never heard of such things.");
