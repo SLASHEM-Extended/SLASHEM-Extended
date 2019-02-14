@@ -7877,6 +7877,61 @@ register struct	monst	*mtmp;
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, BULLET, 15);
 		}
+		if (ptr == &mons[PM_PISTOL_PUDDING]) {
+		  	(void) mongets(mtmp, PISTOL);
+		  	m_initthrow(mtmp, BULLET, 40);
+		}
+		if (ptr == &mons[PM_RIFLE_PUDDING]) {
+		  	(void) mongets(mtmp, RIFLE);
+		  	m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_SMG_PUDDING]) {
+		  	(void) mongets(mtmp, SUBMACHINE_GUN);
+		  	m_initthrow(mtmp, BULLET, 30);
+		  	m_initthrow(mtmp, BULLET, 30);
+		}
+		if (ptr == &mons[PM_ASSAULT_PUDDING]) {
+		  	(void) mongets(mtmp, ASSAULT_RIFLE);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_HEAVY_WEAPON_PUDDING]) {
+		  	(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_BIG_FUCKING_PUDDING]) {
+		  	(void) mongets(mtmp, BFG);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		}
+		if (ptr == &mons[PM_DOOMGUY_PUDDING]) {
+		  	(void) mongets(mtmp, BFG);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	m_initthrow(mtmp, BFG_AMMO, 50);
+		  	(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		  	m_initthrow(mtmp, BULLET, 50);
+		}
 
 		break;
 
@@ -8185,6 +8240,9 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_GLUTTONOUS_HULK]) (void) mongets(mtmp, WAN_STARVATION);
 		if (mtmp->data == &mons[PM_DENRYU]) (void) mongets(mtmp, KATANA);
 		if (mtmp->data == &mons[PM_CHAOS_HORROR]) (void) mongets(mtmp, WAN_CHAOS_TERRAIN);
+		if (mtmp->data == &mons[PM_ATHACH]) (void) mongets(mtmp, MORNING_STAR);
+		if (mtmp->data == &mons[PM_HAMMER_ATHACH]) (void) mongets(mtmp, WAR_HAMMER);
+		if (mtmp->data == &mons[PM_MACE_ATHACH]) (void) mongets(mtmp, MACE);
 
 		if (mtmp->data == &mons[PM_PSEUDO_EROTIC_SMOKER_BITCH]) {
 			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
@@ -16071,6 +16129,7 @@ register int	mmflags;
 		case S_IMP:
 			if (mndx == PM_COCOON_IMP) set_mimic_sym(mtmp);
 			if (mndx == PM_HIDDEN_RUTTERKIN) set_mimic_sym(mtmp);
+			if (mndx == PM_BERBALANG_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 		case S_LIZARD:
