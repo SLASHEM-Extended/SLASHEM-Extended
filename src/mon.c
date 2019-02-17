@@ -352,6 +352,7 @@ int mndx;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
 	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
 	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
+	case PM_GREEN_SLAAD:	mcham = CHAM_GREEN_SLAAD; break;
 	case PM_KARMA_CHAMELEON:	mcham = CHAM_KARMA_CHAMELEON; break;
 	case PM_DOPPELGANGER:	mcham = CHAM_DOPPELGANGER; break;
 	case PM_METAL_DOPPELGANGER:	mcham = CHAM_METAL_DOPPELGANGER; break;
@@ -445,6 +446,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_GHELEON,
 		PM_THE_ZRUTINATOR,
 		PM_METAMORPHOSE,
+		PM_GREEN_SLAAD,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -6629,6 +6631,7 @@ struct monst *mon;
 	case CHAM_GHELEON: chambaselvl = 6; break;
 	case CHAM_ZRUTINATOR: chambaselvl = 25; break;
 	case CHAM_METAMORPHOSE: chambaselvl = 51; break;
+	case CHAM_GREEN_SLAAD: chambaselvl = 24; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	default: chambaselvl = 10; break; /* shouldn't happen */
 
@@ -7035,6 +7038,20 @@ zevilchoice:
 			if (uncommon10(pm) && rn2(5)) goto zevilchoice;
 			if (is_jonadabmonster(pm) && rn2(20)) goto zevilchoice;
 			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto zevilchoice;
+		break;
+	    case CHAM_GREEN_SLAAD:
+slaadchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto slaadchoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto slaadchoice;
+			if (uncommon2(pm) && !rn2(4)) goto slaadchoice;
+			if (uncommon3(pm) && !rn2(3)) goto slaadchoice;
+			if (uncommon5(pm) && !rn2(2)) goto slaadchoice;
+			if (uncommon7(pm) && rn2(3)) goto slaadchoice;
+			if (uncommon10(pm) && rn2(5)) goto slaadchoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto slaadchoice;
+			if (rn2(10000) && !(humanoid(pm)) ) goto slaadchoice;
 		break;
 	    case CHAM_EARLY_LEON:
 earlyleonchoice:

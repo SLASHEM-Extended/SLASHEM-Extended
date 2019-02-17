@@ -119,7 +119,8 @@ struct monst {
 #define CHAM_GHELEON		42	/* animal */
 #define CHAM_ZRUTINATOR		43	/* evil variant */
 #define CHAM_METAMORPHOSE		44	/* random */
-#define CHAM_GIANT_CHAMELEON		45	/* animal */
+#define CHAM_GREEN_SLAAD		45	/* humanoid */
+#define CHAM_GIANT_CHAMELEON		46	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,

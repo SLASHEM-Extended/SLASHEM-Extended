@@ -6610,6 +6610,19 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_ONIJI_TANKOBO]) (void) mongets(mtmp, YITH_TENTACLE);
 
+		if(mtmp->data == &mons[PM_MELUGAST_TYPEM]) {
+			(void) mongets(mtmp, LONG_SWORD);
+			(void) mongets(mtmp, ELVEN_CLOAK);
+			(void) mongets(mtmp, ARM_BLASTER);
+			 m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
+			 m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
+
+		}
+		if(mtmp->data == &mons[PM_KONIGS_KATZE]) {
+			(void) mongets(mtmp, ROCKET_LAUNCHER);
+			 m_initthrow(mtmp, ROCKET, 30);
+		}
+
 		if(mtmp->data == &mons[PM_GRAY_STONE_GOLEM]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
@@ -6804,6 +6817,7 @@ register struct	monst	*mtmp;
 			 (void) mongets(mtmp, CUTTING_LASER);
 			 m_initthrow(mtmp, LASER_BEAM, 50);
 		}
+		if (mtmp->data == &mons[PM_ELOJAGUAR_WARRIOR]) (void) mongets(mtmp, LONG_SWORD);
 
 		break;
 
@@ -6922,6 +6936,8 @@ register struct	monst	*mtmp;
 	    case S_LIZARD:
 
 		if (mtmp->data == &mons[PM_GIANT_SWAMP_FROG]) (void) mongets(mtmp, SCR_MOORLAND);
+		if (mtmp->data == &mons[PM_GRAY_SLAAD]) (void) mongets(mtmp, TWO_HANDED_SWORD);
+		if (mtmp->data == &mons[PM_DEATH_SLAAD]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 
 		if (mtmp->data == &mons[PM_POISON_ARROW_FROG]) {
 			(void) mongets(mtmp, CROSSBOW);
@@ -8296,6 +8312,15 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_BLOB:
+
+		if (ptr == &mons[PM_DEEPSPAWN]) {
+			 (void) mongets(mtmp, WAN_CREATE_MONSTER);
+		}
+		if (ptr == &mons[PM_OUT_OF_DEEPSPAWN]) {
+			 (void) mongets(mtmp, WAN_CREATE_MONSTER);
+			 (void) mongets(mtmp, SCR_CREATE_MONSTER);
+			 (void) mongets(mtmp, WAN_CREATE_MONSTER);
+		}
 
 		if (ptr == &mons[PM_EXPLODING_GREASEBALL]) {
 			m_initthrow(mtmp, CREAM_PIE, 2);
