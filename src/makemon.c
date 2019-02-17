@@ -7803,6 +7803,14 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_MARIKE_S_WORN_OUT_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_JEANETTA_S_LITTLE_GIRL_BOOT]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_CATERPILLAR_SNIPER]) {
+		  	(void) mongets(mtmp, SNIPER_RIFLE);
+		  	m_initthrow(mtmp, BULLET, 20);
+		}
+		if (ptr == &mons[PM_OMEGA_HERAKLES]) {
+		  	(void) mongets(mtmp, !rn2(3) ? ASSAULT_RIFLE : !rn2(2) ? SUBMACHINE_GUN : RIFLE);
+		  	m_initthrow(mtmp, BULLET, 50);
+		}
 
 		break;
 
@@ -7884,6 +7892,14 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RIFLE_PUDDING]) {
 		  	(void) mongets(mtmp, RIFLE);
 		  	m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_SHOTTY_PUDDING]) {
+		  	(void) mongets(mtmp, SHOTGUN);
+		  	m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
+		if (ptr == &mons[PM_AUTOSHOT_PUDDING]) {
+		  	(void) mongets(mtmp, AUTO_SHOTGUN);
+		  	m_initthrow(mtmp, SHOTGUN_SHELL, 50);
 		}
 		if (ptr == &mons[PM_SMG_PUDDING]) {
 		  	(void) mongets(mtmp, SUBMACHINE_GUN);

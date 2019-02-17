@@ -3796,6 +3796,17 @@ static NEARDATA const char * const demagoguelines[] = {
 "Well have you looked at that other country? They have a system that works! It's much better than ours!",
 "We should have abolished monarchy while we still had the chance!",
 "Everyone who is against us will be removed! For good!",
+"All the illegal potatoes shall be removed!",
+"Someone should shut down the government!",
+"Someone needs to stop that group of people! Regardless of who does it!",
+"None of the current politicians were lawfully elected! They all bribed their way to the top!",
+"Man you can't get anywhere without bribing in this country!",
+"Why do we keep exporting guns and tanks to other countries?",
+"Why can't we just nuke all the rogue states?",
+"Diplomacy is worthless, we finally have to declare WAR on other countries again like in the good old times!",
+"What? Our former war enemies are requesting reparations? If I were in charge, I'd tell them where they can stick their fucking reparations...",
+"Climate protection? Bah! We shouldn't waste our time with that!",
+"Vote for my party or I'll send some assassins to snipe you on the way to the voting office!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -3934,6 +3945,8 @@ static NEARDATA const char * const longinglines[] = {
 "It feels very lovely to be bitten in the earlobe by %s.",
 "Did you see %s? She's a giiiiirl! And a very beautiful one too!",
 "You absolutely love the fact that %s can perform the 'asian kick', where she drives her stiletto heels up her opponent's nuts and gives him a distortion fracture. (Don't google that though, you don't want to know what it is.)",
+"You hope that no one manages to take your beloved %s away from you.",
+"If you're really nice, %s may even allow you to lick her face!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4433,6 +4446,10 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Hussy power is supreme! A mere walscholar ain't got no chance!",
 "Of course a walscholar can't deal with my scentful perfume.",
 "Can a walscholar really stand against the lovely scent of femininity? I think not.",
+"I cannot suffer you! And that means I will fight you to the death!",
+"You're fully the loser!",
+"The hussies are a million times better than you!",
+"This school is not for scum like you! We, the Hussies, are the only ones allowed here!",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4467,6 +4484,13 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Accept the fact that you're only a walscholar, %s! Your mission is doomed to fail because the Hussies are unstoppable!",
 "%s, I'll spray my perfume right into your face now!",
 "Tomorrow people will be reading in the newspaper that I defeated %s with my lovely odor.",
+"%s! You got some nerve to show up here!",
+"You're never gonna make it, %s!",
+"The weakling of a %s is trying it again! We're gonna defeat them very easily.",
+"This is the end, %s - your quest ends here. With your defeat.",
+"%s, you forgot to take the short bus to school! We'll eliminate you now!",
+"Why do we even have to waste our time with %s? We want to get the teachers, those are priority targets!",
+"%s is just another name on my hit list.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {

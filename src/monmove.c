@@ -232,6 +232,12 @@ boolean digest_meal;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
 
+	/* super regene */
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
+		mon->mhp += 20;
+		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+	}
+
 	if (mon->m_en < mon->m_enmax && 
 	    (!rn2(regenrate) || (rn2(mon->m_lev + 5) > 15))) {
 	    	mon->m_en += rn1((mon->m_lev % 10 + 1),1);
