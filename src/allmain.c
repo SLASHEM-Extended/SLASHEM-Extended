@@ -9143,6 +9143,9 @@ past3:
 
 	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
 		iflags.winggraphics = TRUE;
+#ifdef CURSES_GRAPHICS
+		iflags.cursesgraphics = FALSE;
+#endif
 		assignwinggraphics();
 		u.wingyellowhack = TRUE;
 	} else {
@@ -9702,6 +9705,9 @@ boolean new_game;	/* false => restoring an old game */
 
 	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
 		iflags.winggraphics = TRUE;
+#ifdef CURSES_GRAPHICS
+		iflags.cursesgraphics = FALSE;
+#endif
 		assignwinggraphics();
 	} else {
 		iflags.winggraphics = FALSE;
