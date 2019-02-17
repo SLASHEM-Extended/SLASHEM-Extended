@@ -2865,6 +2865,7 @@ register int pm;
 		break;
 
 	    case PM_KATOISEFUL:
+	    case PM_MURDATRICE:
 		pline("You'll have incessant flatulence for a while now...");
 		FemaleTrapMaurah += rnz(2000);
 		CrapEffect += rnz(50 * (monster_difficulty() + 1));

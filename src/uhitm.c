@@ -2925,7 +2925,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(392)) {
+			switch (rnd(397)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3319,6 +3319,11 @@ int dieroll;
 			case 390: pline("Your hit lays bare the muscles of %s's %s!", mon_nam(mon), mbodypart(mon, ARM)); break;
 			case 391: pline("You kick %s's %s with your cuddly-gentle sneakers, trying to draw %s.", mon_nam(mon), makeplural(mbodypart(mon, HAND)), mbodypart(mon, BLOOD)); break;
 			case 392: pline("%s tries to mock you that your stinking boots cannot hurt %s, but you prove %s wrong by scratching both of %s legs spilling %s everywhere.", Monnam(mon), mhim(mon), mhim(mon), mhis(mon), mbodypart(mon, BLOOD)); break;
+			case 393: pline("You pivot and roundhouse kick %s!", mon_nam(mon)); break;
+			case 394: pline("You leap up and butterfly kick %s!", mon_nam(mon)); break;
+			case 395: pline("You spin around and back kick %s!", mon_nam(mon)); break;
+			case 396: pline("You lightly caress %s.", mon_nam(mon)); break;
+			case 397: pline("You gently stroke %s.", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -3432,7 +3437,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(558)) {
+				switch (rnd(559)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -3992,6 +3997,7 @@ int dieroll;
 				case 556: pline("You cut %s's femoral artery wide open, causing instant death, but you're also showered with %s in the process.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 557: pline("You cut %s across the abdomen, whose guts rejoice as they flee the body.", mon_nam(mon)); break;
 				case 558: pline("You cover %s's %s in a white leaden dust, and then it shatters, falling to the ground.", mon_nam(mon), mbodypart(mon, ARM)); break;
+				case 559: pline("You lie on the ground and as %s approaches, you bludgeon %s with a devastating bicycle kick.", Monnam(mon), mhim(mon)); break;
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
