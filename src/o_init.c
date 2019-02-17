@@ -643,6 +643,10 @@ register char oclass;
 	objects[DUMMY_CLOAK_T].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_CLOAK_U].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_CLOAK_V].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_CLOAK_W].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_CLOAK_X].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_CLOAK_Y].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_CLOAK_Z].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
 	objects[IMPLANT_OF_ABSORPTION].a_ac = rnd(10);
 	objects[IMPLANT_OF_PUNCTURING].a_ac = rnd(10);
@@ -892,6 +896,10 @@ register char oclass;
 	objects[DUMMY_CLOAK_T].a_can = rn2(4);
 	objects[DUMMY_CLOAK_U].a_can = rn2(4);
 	objects[DUMMY_CLOAK_V].a_can = rn2(4);
+	objects[DUMMY_CLOAK_W].a_can = rn2(4);
+	objects[DUMMY_CLOAK_X].a_can = rn2(4);
+	objects[DUMMY_CLOAK_Y].a_can = rn2(4);
+	objects[DUMMY_CLOAK_Z].a_can = rn2(4);
 
 	objects[DUMMY_CLOAK_A].a_ac = 0;
 	if (rn2(10)) objects[DUMMY_CLOAK_A].a_ac = 1;
@@ -1002,6 +1010,26 @@ register char oclass;
 	if (rn2(10)) objects[DUMMY_CLOAK_V].a_ac = 1;
 	while (!rn2(3)) {
 		if (objects[DUMMY_CLOAK_V].a_ac < 20) objects[DUMMY_CLOAK_V].a_ac++;
+	}
+	objects[DUMMY_CLOAK_W].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_CLOAK_W].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_CLOAK_W].a_ac < 20) objects[DUMMY_CLOAK_W].a_ac++;
+	}
+	objects[DUMMY_CLOAK_X].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_CLOAK_X].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_CLOAK_X].a_ac < 20) objects[DUMMY_CLOAK_X].a_ac++;
+	}
+	objects[DUMMY_CLOAK_Y].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_CLOAK_Y].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_CLOAK_Y].a_ac < 20) objects[DUMMY_CLOAK_Y].a_ac++;
+	}
+	objects[DUMMY_CLOAK_Z].a_ac = 0;
+	if (rn2(10)) objects[DUMMY_CLOAK_Z].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_CLOAK_Z].a_ac < 20) objects[DUMMY_CLOAK_Z].a_ac++;
 	}
 
 	objects[DUMMY_HELMET_A].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();

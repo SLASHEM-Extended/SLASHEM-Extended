@@ -115,6 +115,7 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
+		case HIDE_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:

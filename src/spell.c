@@ -2778,7 +2778,7 @@ docast()
 
 	int whatreturn;
 
-	if (u.antimagicshell || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) ) {
+	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3866,6 +3866,68 @@ magicalenergychoice:
 			if (obj->oclass == ARMOR_CLASS && (obj->shirtmessage % 3 == 0) ) obj->known = TRUE;
 
 		    }
+		}
+
+		break;
+
+	case SPE_METAL_GUARD:
+
+		if (u.metalguard) pline("%s", nothing_happens);
+		else {
+			u.metalguard = TRUE;
+			You("activate your metal guard!");
+		}
+
+		break;
+
+	case SPE_MAGIC_WHISTLING:
+
+	{
+		register struct monst *whismtmp, *whisnextmon;
+
+		You("try to whistle your pets here...");
+
+		for(whismtmp = fmon; whismtmp; whismtmp = whisnextmon) {
+		    whisnextmon = whismtmp->nmon; /* trap might kill mon */
+		    if (DEADMONSTER(whismtmp)) continue;
+		    if (whismtmp->mtame) {
+			if (whismtmp->mtrapped) {
+			    /* no longer in previous trap (affects mintrap) */
+			    whismtmp->mtrapped = 0;
+			    fill_pit(whismtmp->mx, whismtmp->my);
+			}
+			mnexto(whismtmp);
+			if (mintrap(whismtmp) == 2) change_luck(-1);
+		    }
+		}
+	}
+		break;
+
+	case SPE_GAIN_SPACT:
+
+		if (u.uhpmax < 101) {
+			pline("You don't have enough health to control the powers of this spell!");
+			break;
+		}
+		if (Upolyd && u.mhmax < 101) {
+			pline("You don't have enough health to control the powers of this spell!");
+			break;
+		}
+
+		u.uhpmax -= rnd(100);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (Upolyd) {
+			u.mhmax -= rnd(100);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		}
+
+		{
+			int wondertech = rnd(MAXTECH-1);
+			if (!tech_known(wondertech)) {
+			    	learntech(wondertech, FROMOUTSIDE, 1);
+				You("learn how to perform a new technique!");
+			} else pline("Tough luck! The technique that you would have learned happens to be one you already know.");
+
 		}
 
 		break;

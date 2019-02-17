@@ -2071,6 +2071,7 @@ int thrown;
 				break;
 			case CRYSTAL_SHIELD:
 			case RAPIRAPI:
+			case HIDE_SHIELD:
 				shieldblockrate = 45;
 				break;
 			case SHIELD_OF_REFLECTION:

@@ -264,7 +264,7 @@ register struct monst *mtmp;
 	}
 
 	if (!rn2(8)) { /* shield */
-		switch (rnd(25)) {
+		switch (rnd(26)) {
 			case 1:
 			case 2:
 			case 3:
@@ -290,6 +290,7 @@ register struct monst *mtmp;
 			case 23: (void) mongets(mtmp, SHIELD); break;
 			case 24: (void) mongets(mtmp, SILVER_SHIELD); break;
 			case 25: (void) mongets(mtmp, RAPIRAPI); break;
+			case 26: (void) mongets(mtmp, HIDE_SHIELD); break;
 		}
 	}
 

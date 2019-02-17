@@ -5459,6 +5459,7 @@ doapply()
 		use_stone(obj);
 		break;
 	case ASSAULT_RIFLE:
+	case KALASHNIKOV:
 		/* Switch between WP_MODE_SINGLE, WP_MODE_BURST and WP_MODE_AUTO */
 
 		if (obj->altmode == WP_MODE_AUTO) {

@@ -22909,7 +22909,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear a foghorn!",
 	"You hear a sea shell exploding!",
 	"You hear a C-shell script running.",
-	"You are dancing in the rain."
+	"You are dancing in the rain.",
 	"You're still dreaming.",
 	"You can't really believe it.",
 	"You pinched yourself very painfully.",
@@ -22926,6 +22926,15 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have a vision of your home being burned to the ground by the person you despise the most!",
 	"Something tells you that the only thing you can depend on is your family, and even that not always!",
 	"You hear a voice announce: \"Morn', player. I'm Sean Gonorrhea. I like my coffee black, my women slutty, and my mucosa membranes inflamed.\"",
+	"Tough luck! The technique that you would have learned happens to be one you already know.",
+	"The code malfunctioned.",
+	"The code malfunctioned. It must have been written by an apprentice programmer.",
+	"The build has errored.",
+	"The build has errored. Let a coding master look at it, maybe he can fix the bugs!",
+	"You hear thunder in the distance...",
+	"You hear thunder in the distance... but then decide that the gods can fuck you, they certainly have better things to do than being angry at you for some petty reason.",
+	"You try to whistle your pets here...",
+	"You try to whistle your pets here... which doesn't work, because their AI is so ultra stupid.",
 
 };
 

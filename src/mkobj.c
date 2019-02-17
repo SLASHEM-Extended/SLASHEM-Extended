@@ -1821,6 +1821,7 @@ int artif;
 		if (otmp->otyp == INKA_STINGER || otmp->otyp == SPIKE) otmp->quan += rnd(30);
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == TAR_STAR) otmp->quan += rnd(100);
+		if (otmp->otyp == WINDMILL_BLADE) otmp->quan += rnd(100);
 		if (otmp->otyp == NEEDLE) otmp->quan += rnd(100);
 		if (otmp->otyp == SOFT_STAR) otmp->quan += rnd(200);
 		if (otmp->otyp == CALTROP) otmp->quan += rnd(400);

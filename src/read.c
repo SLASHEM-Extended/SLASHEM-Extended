@@ -281,7 +281,7 @@ doread()
 	    else useupf(scroll, 1L);
 	    return(1);
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
-	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT
+	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT || scroll->otyp == YOGA_PANTS || scroll->otyp == GREEN_GOWN
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == RADIOACTIVE_UNDERGARMENT
 	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
@@ -8655,6 +8655,31 @@ newbossC:
 			make_blinded((long)u.ucreamed,TRUE);
 		}
 		create_mplayers(1, TRUE);
+		break;
+
+	case SCR_MISSING_CODE:
+
+		if (uarmu) {
+			if (uarmu->spe < 20) {
+				uarmu->spe++;
+				Your("shirt glows for a moment.");
+			} else pline("The code malfunctioned.");
+		} else {
+			struct obj *uroub;
+
+			uroub = mksobj(T_SHIRT, TRUE, FALSE);
+
+			if (uroub) {
+				dropy(uroub);
+				stackobj(uroub);
+				pline("A shirt appeared at your %s!", makeplural(body_part(FOOT)));
+			} else pline("The build has errored.");
+
+		}
+
+		u.ugangr++;
+		You_hear("thunder in the distance...");
+
 		break;
 
 	case SCR_ARTIFACT_CREATION:

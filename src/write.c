@@ -175,6 +175,7 @@ register struct obj *otmp;
 	case SCR_COPYING:
 	case SCR_WISHING:
 	case SCR_ARTIFACT_CREATION:
+	case SCR_MISSING_CODE:
 	case SCR_ARTIFACT_JACKPOT:
 	case SCR_RESURRECTION:
 	case SCR_ACQUIREMENT:
@@ -286,7 +287,7 @@ found:
 		if(Hallucination) 
 			pline("(I know it, but not tell to you.)");
 		return 1;
-	} else if (i == SCR_WISHING || i == SCR_ARTIFACT_CREATION || i == SCR_ARTIFACT_JACKPOT || i == SCR_RESURRECTION || i == SCR_ACQUIREMENT || i == SCR_ENTHRONIZATION || i == SCR_MAKE_PENTAGRAM || i == SCR_WELL_BUILDING || i == SCR_DRIVING || i == SCR_TABLE_FURNITURE || i == SCR_EMBEDDING || i == SCR_MATTRESS_SLEEPING || i == SCR_FOUNTAIN_BUILDING || i == SCR_SINKING || i == SCR_CREATE_SINK || i == SCR_WC) {
+	} else if (i == SCR_WISHING || i == SCR_ARTIFACT_CREATION || i == SCR_MISSING_CODE || i == SCR_ARTIFACT_JACKPOT || i == SCR_RESURRECTION || i == SCR_ACQUIREMENT || i == SCR_ENTHRONIZATION || i == SCR_MAKE_PENTAGRAM || i == SCR_WELL_BUILDING || i == SCR_DRIVING || i == SCR_TABLE_FURNITURE || i == SCR_EMBEDDING || i == SCR_MATTRESS_SLEEPING || i == SCR_FOUNTAIN_BUILDING || i == SCR_SINKING || i == SCR_CREATE_SINK || i == SCR_WC) {
 		pline("This scroll refuses to be written.");
 		return 1;
 	} else if (by_descr && paper->oclass == SPBOOK_CLASS &&

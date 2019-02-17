@@ -1532,6 +1532,8 @@ struct you {
 
 	boolean roommatehack;	/* to allow monsters to spawn inside walls */
 
+	boolean metalguard;	/* for metal guard spell */
+
 	int mojibakecount;	/* hack for pager.c */
 
 };	/* end of `struct you' */

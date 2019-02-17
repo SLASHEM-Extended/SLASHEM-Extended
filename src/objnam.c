@@ -2910,6 +2910,27 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ SPE_GAIN_SPACT, "gain spact" },
+	{ SPE_METAL_GUARD, "metal guard" },
+	{ SCR_MISSING_CODE, "missing code" },
+	{ YOGA_PANTS, "yoga pants" },
+	{ WINDMILL_BLADE, "windmill blade" },
+	{ GRAIN_SCYTHE, "grain scythe" },
+	{ ORNATE_MACE, "ornate mace" },
+	{ RAZOR_WHIP, "razor whip" },
+	{ HELM_OF_OPAQUE_THOUGHTS, "helm of opaque thoughts" },
+	{ SECOND_SKIN, "second skin" },
+	{ CLOAK_OF_FLIGHT, "cloak of flight" },
+	{ HIDE_SHIELD, "hide shield" },
+	{ ROGUES_GLOVES, "rogues gloves" },
+	{ GREEN_GOWN, "green gown" },
+	{ HELM_OF_ANTI_MAGIC, "helm of anti-magic" },
+	{ OILSKIN_COIF, "oilskin coif" },
+	{ KALASHNIKOV, "kalashnikov" },
+	{ SPE_MAGIC_WHISTLING, "magic whistling" },
+	{ RIN_JUMPING, "jumping" },
+	{ RIN_ILLNESS, "illness" },
+
 	{0, "" }
 };
 
@@ -5285,6 +5306,27 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ NASTYPOLE, "yomon qutb" },
 
 	/* todo area */
+
+	{ SPE_GAIN_SPACT, "gain spact" },
+	{ SPE_METAL_GUARD, "metal guard" },
+	{ SCR_MISSING_CODE, "missing code" },
+	{ YOGA_PANTS, "yoga pants" },
+	{ WINDMILL_BLADE, "windmill blade" },
+	{ GRAIN_SCYTHE, "grain scythe" },
+	{ ORNATE_MACE, "ornate mace" },
+	{ RAZOR_WHIP, "razor whip" },
+	{ HELM_OF_OPAQUE_THOUGHTS, "helm of opaque thoughts" },
+	{ SECOND_SKIN, "second skin" },
+	{ CLOAK_OF_FLIGHT, "cloak of flight" },
+	{ HIDE_SHIELD, "hide shield" },
+	{ ROGUES_GLOVES, "rogues gloves" },
+	{ GREEN_GOWN, "green gown" },
+	{ HELM_OF_ANTI_MAGIC, "helm of anti-magic" },
+	{ OILSKIN_COIF, "oilskin coif" },
+	{ KALASHNIKOV, "kalashnikov" },
+	{ SPE_MAGIC_WHISTLING, "magic whistling" },
+	{ RIN_JUMPING, "jumping" },
+	{ RIN_ILLNESS, "illness" },
 
 	{0, "" }
 };

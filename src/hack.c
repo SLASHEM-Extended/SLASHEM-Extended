@@ -4565,8 +4565,11 @@ int k_format; /* WAC k_format is an int */
 		 * via u.uhp < 1
 		 */
 	}        
-
-
+	else if (u.metalguard) {
+		    u.metalguard = 0;
+		    n = 0;
+		    Your("metal guard prevents the damage!");
+	}
 
 	if (u.disruptionshield && u.uen >= n) {
 		u.uen -= n;

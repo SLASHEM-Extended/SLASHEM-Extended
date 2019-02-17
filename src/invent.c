@@ -5499,6 +5499,7 @@ struct obj *otmp;
 		      otyp != DEMON_CROSSBOW &&
 		      otyp != AUTO_SHOTGUN &&
 		      otyp != ASSAULT_RIFLE &&
+		      otyp != KALASHNIKOV &&
 		      otyp != FRAG_GRENADE &&
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&
@@ -5698,6 +5699,8 @@ register const char *let,*word;
 			|| otmp->otyp == RADIOACTIVE_UNDERGARMENT
 			|| otmp->otyp == KYRT_SHIRT
 			|| otmp->otyp == WOOLEN_SHIRT
+			|| otmp->otyp == YOGA_PANTS
+			|| otmp->otyp == GREEN_GOWN
 			|| otmp->otyp == RUFFLED_SHIRT
 			|| otmp->otyp == VICTORIAN_UNDERWEAR
 		    )))
@@ -8657,6 +8660,8 @@ struct obj *obj;
 				pline("Made of a different material and otherwise similar to the bog-standard mace."); break;
 			case BRONZE_MACE:
 				pline("It's a mace made of copper, and it doesn't do a lot of damage."); break;
+			case ORNATE_MACE:
+				pline("It's a mace made of gold, and it does only little damage."); break;
 			case MILL_PAIL:
 				pline("A nature-friendly mace that does respectable damage."); break;
 			case BACKHAND_MACE:
@@ -8727,6 +8732,8 @@ struct obj *obj;
 				pline("A super-long-range two-handed polearm that can be applied to hit monsters standing two or sometimes even more squares away (need to experiment to find out what range is allowed). Using it at point blank range is only useful if you're riding."); break;
 			case GIANT_SCYTHE:
 				pline("A gigantic two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case GRAIN_SCYTHE:
+				pline("A spliced two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case THRESHER:
 				pline("A humongous two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case INKA_SPEAR:
@@ -8791,6 +8798,8 @@ struct obj *obj;
 				pline("Uses the shuriken skill. It is made of soft material and therefore does less damage than a real shuriken. Meant to be used for throwing."); break;
 			case TAR_STAR:
 				pline("These shuriken can be thrown at enemies."); break;
+			case WINDMILL_BLADE:
+				pline("It's a particularly damaging shuriken that's also made of noneroding material."); break;
 			case INKA_SHACKLE:
 				pline("A very lovely whip that can cause incredibly soothing pain :) Joking aside, it does relatively good damage and has increased to-hit, but whips are generally a weak type of weapon."); break;
 			case BULLETPROOF_CHAINWHIP:
@@ -8877,8 +8886,10 @@ struct obj *obj;
 				pline("The heavy machine gun requires two hands to use, but it can rip monsters a new one by firing 8 bullets per turn."); break;
 			case RIFLE: 
 				pline("A two-handed gun with a low rate of fire that shoots single bullets at enemies."); break;
-			case ASSAULT_RIFLE: 
+			case ASSAULT_RIFLE:
 				pline("Your standard-issue heavy firearm that fires 5 bullets in one turn."); break;
+			case KALASHNIKOV:
+				pline("This two-handed russian assault rifle can fire up to 7 bullets per turn."); break;
 			case SNIPER_RIFLE: 
 				pline("Very slow, two-handed, but highly accurate. It fires single bullets."); break;
 			case SHOTGUN: 
@@ -8974,6 +8985,8 @@ struct obj *obj;
 				pline("A whip that doesn't erode, but it doesn't deal any significant damage either."); break;
 			case FLAME_WHIP: 
 				pline("Utterly useless weapon. I guess if you just don't have anything else..."); break;
+			case RAZOR_WHIP: 
+				pline("Yet another random whip-type weapon that does almost no damage."); break;
 			case ROSE_WHIP: 
 				pline("The only use for this wooden weapon is if you want to train your whip skill for some reason. It deals next to no damage."); break;
 
@@ -9444,6 +9457,10 @@ struct obj *obj;
 				pline("It's an extra piece of armor that goes in the shirt slot. It can be read."); break;
 			case WOOLEN_SHIRT: 
 				pline("A shirt that provides cold resistance when worn. It can be read."); break;
+			case YOGA_PANTS: 
+				pline("It's actually a shirt. It can be read."); break;
+			case GREEN_GOWN: 
+				pline("A rather regular shirt, the only interesting thing about it is its green color which doesn't actually change anything. It can be read."); break;
 			case SWIMSUIT: 
 				pline("A plastic shirt that allows you to swim in water. It can be read."); break;
 			case BEAUTIFUL_SHIRT: 
@@ -10043,6 +10060,10 @@ struct obj *obj;
 				pline("A cloak that makes you resistant to the base elements while also giving you 3 points of magic cancellation."); break;
 			case PSIONIC_CLOAK:
 				pline("Psi resistance and 3 points of magic cancellation are what you get by wearing this."); break;
+			case SECOND_SKIN:
+				pline("A cloak that gives regeneration, but only low magic cancellation."); break;
+			case CLOAK_OF_FLIGHT:
+				pline("Well there's certainly better cloaks, but at least this one gives flying. It has only low magic cancellation though."); break;
 
 			case AYANAMI_WRAPPING:
 				pline("No defense but low magic cancellation."); break;
@@ -10289,6 +10310,12 @@ struct obj *obj;
 				pline("This helm causes amnesia. It provides very good AC and 3 points of magic cancellation."); break;
 			case HELM_OF_TELEPORTATION:
 				pline("Put it on to get teleportitis. Usually generated cursed."); break;
+			case OILSKIN_COIF:
+				pline("While wearing this helm, you're almost immune to mind flayer tentacles."); break;
+			case HELM_OF_OPAQUE_THOUGHTS:
+				pline("It's a helmet that conveys psi resistance."); break;
+			case HELM_OF_ANTI_MAGIC:
+				pline("Wearing this helmet conveys magic resistance and produces an anti-magic shell."); break;
 			case HELM_OF_TELEPORT_CONTROL:
 				pline("Control your teleports by wearing this helm."); break;
 			case BIGSCRIPT_HELM:
@@ -10334,6 +10361,8 @@ struct obj *obj;
 				pline("A pair of gauntlets that allows you to swim in water."); break;
 			case GAUNTLETS_OF_PLUGSUIT:
 				pline("Wearing this pair of gloves does nothing special."); break;
+			case ROGUES_GLOVES:
+				pline("These gloves improve your searching ability by automatically searching for traps and secret doors every turn."); break;
 			case COMMANDER_GLOVES:
 				pline("They sure look good but unfortunately these gloves are actually rather plain."); break;
 			case FIELD_GLOVES:
@@ -10460,6 +10489,8 @@ struct obj *obj;
 				pline("A glass shield that reflects beams at who- or whatever shot them."); break;
 			case RAPIRAPI:
 				pline("This is a good shield made of mineral."); break;
+			case HIDE_SHIELD:
+				pline("While this leather shield has relatively bad defense, it's quite good for blocking projectiles."); break;
 			case PAPER_SHIELD:
 				pline("Someone in the chat suggested this shield (if it's you, feel free to remember me so I can give credits). It gives no armor class at all but a high chance to block projectiles."); break;
 			case ICE_SHIELD:
@@ -10822,8 +10853,16 @@ struct obj *obj;
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_T].oc_oprop), objects[DUMMY_CLOAK_T].a_ac, objects[DUMMY_CLOAK_T].a_can ); break;
 			case DUMMY_CLOAK_U: 
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_U].oc_oprop), objects[DUMMY_CLOAK_U].a_ac, objects[DUMMY_CLOAK_U].a_can ); break;
-			case DUMMY_CLOAK_V: 
+			case DUMMY_CLOAK_V:
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_V].oc_oprop), objects[DUMMY_CLOAK_V].a_ac, objects[DUMMY_CLOAK_V].a_can ); break;
+			case DUMMY_CLOAK_W:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_W].oc_oprop), objects[DUMMY_CLOAK_W].a_ac, objects[DUMMY_CLOAK_W].a_can ); break;
+			case DUMMY_CLOAK_X:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_X].oc_oprop), objects[DUMMY_CLOAK_X].a_ac, objects[DUMMY_CLOAK_X].a_can ); break;
+			case DUMMY_CLOAK_Y:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_Y].oc_oprop), objects[DUMMY_CLOAK_Y].a_ac, objects[DUMMY_CLOAK_Y].a_can ); break;
+			case DUMMY_CLOAK_Z:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_Z].oc_oprop), objects[DUMMY_CLOAK_Z].a_ac, objects[DUMMY_CLOAK_Z].a_can ); break;
 
 			case DUMMY_HELMET_A: 
 				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_A].oc_oprop), objects[DUMMY_HELMET_A].a_ac, objects[DUMMY_HELMET_A].a_can ); break;
@@ -11088,6 +11127,10 @@ struct obj *obj;
 				pline("A very powerful ring that allows you to eat tainted corpses and be hit by sickness attacks without actually getting sick."); break;
 			case RIN_FIRE_RESISTANCE: 
 				pline("You can resist fire if you wear this ring."); break;
+			case RIN_JUMPING:
+				pline("A magical ring that allows you to jump if you wear it."); break;
+			case RIN_ILLNESS:
+				pline("Putting this ring on gives you fatal illness, but taking it off cures fatal illness, reliably. Autocurses when worn, of course."); break;
 			case RIN_FREE_ACTION: 
 				pline("This ring protects you from paralysis and similar effects."); break;
 			case RIN_DISCOUNT_ACTION:
@@ -12672,6 +12715,8 @@ struct obj *obj;
 				pline("This scroll summons an astral player monster. They can be very well-armed indeed, but if you can take them out you'll be able to take all their equipment and use it for yourself!"); break;
 			case SCR_ARTIFACT_CREATION:
 				pline("This scroll generates an artifact at your feet. You do want an artifact, right? Read it!"); break;
+			case SCR_MISSING_CODE:
+				pline("Reading this scroll enchants your shirt up to a maximum of +20 without risk of evaporation, or creates a new shirt at your feet if you don't have one. But since this scroll is actually supposed to be given to the devteam, which cannot be done in-game because harharhar, reading it will also anger the gods."); break;
 			case SCR_CONSECRATION:
 				pline("You must be standing in a room or corridor for this scroll to work. If you do, it will create an altar underneath you."); break;
 			case SCR_ENTHRONIZATION:
@@ -13321,6 +13366,12 @@ struct obj *obj;
 				pline("Replicates the effects of sitting on a throne, although it cannot give a wish of course. This spell can occasionally backfire."); break;
 			case SPE_ATTUNE_MAGIC:
 				pline("Replicates the effects of invoking a pentagram. This spell can occasionally backfire."); break;
+			case SPE_GAIN_SPACT:
+				pline("Casting this spell reduces your maximum health by a random amount up to 100, and teaches you a new technique. If it rolls a technique you already know, well, tough luck!"); break;
+			case SPE_METAL_GUARD:
+				pline("Prevents the next instance of HP loss."); break;
+			case SPE_MAGIC_WHISTLING:
+				pline("Can't seem to find a magic whistle? This spell replicates its effect, by teleporting your pets next to you!"); break;
 			case SPE_BACKFIRE:
 				pline("Well, you probably should not cast this."); break;
 			case SPE_DEMEMORIZE:

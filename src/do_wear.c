@@ -710,6 +710,8 @@ Cloak_on()
 	case CLOAK_OF_PRACTICE:
 	case CLOAK_OF_ELEMENTALISM:
 	case PSIONIC_CLOAK:
+	case SECOND_SKIN:
+	case CLOAK_OF_FLIGHT:
 	case CLOAK_OF_MAP_AMNESIA:
 	case CLOAK_OF_TRANSFORMATION:
 	case CLOAK_OF_DISCOUNT_ACTION:
@@ -859,6 +861,10 @@ Cloak_on()
 	case DUMMY_CLOAK_T:
 	case DUMMY_CLOAK_U:
 	case DUMMY_CLOAK_V:
+	case DUMMY_CLOAK_W:
+	case DUMMY_CLOAK_X:
+	case DUMMY_CLOAK_Y:
+	case DUMMY_CLOAK_Z:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -1265,6 +1271,10 @@ Cloak_off()
 	case DUMMY_CLOAK_T:
 	case DUMMY_CLOAK_U:
 	case DUMMY_CLOAK_V:
+	case DUMMY_CLOAK_W:
+	case DUMMY_CLOAK_X:
+	case DUMMY_CLOAK_Y:
+	case DUMMY_CLOAK_Z:
 	case ANTI_DISQUIET_CLOAK:
 	case HUGGING_GOWN:
 	case COCLOAK:
@@ -1298,6 +1308,8 @@ Cloak_off()
 	case CLOAK_OF_PRACTICE:
 	case CLOAK_OF_ELEMENTALISM:
 	case PSIONIC_CLOAK:
+	case SECOND_SKIN:
+	case CLOAK_OF_FLIGHT:
 	case CLOAK_OF_DISCOUNT_ACTION:
 	case CLOAK_OF_TECHNICALITY:
 	case CLOAK_OF_FULL_NUTRITION:
@@ -1474,6 +1486,9 @@ Helmet_on()
 	case HELM_OF_SPEED:
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
+	case HELM_OF_OPAQUE_THOUGHTS:
+	case OILSKIN_COIF:
+	case HELM_OF_ANTI_MAGIC:
 	case HELMET_OF_UNDEAD_WARNING:
 	case HELM_OF_TELEPATHY:
 	case HELM_OF_DISCOVERY:
@@ -1864,6 +1879,9 @@ Helmet_off()
 	case HELM_OF_SPEED:
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
+	case HELM_OF_OPAQUE_THOUGHTS:
+	case OILSKIN_COIF:
+	case HELM_OF_ANTI_MAGIC:
 	case HELMET_OF_UNDEAD_WARNING:
 	case HELM_OF_DISCOVERY:
 	case UNWANTED_HELMET:
@@ -1944,6 +1962,7 @@ Gloves_on()
 	case GAUNTLETS_OF_SAFEGUARD:
 	case GAUNTLETS_OF_PLUGSUIT:
 	case COMMANDER_GLOVES:
+	case ROGUES_GLOVES:
 	case FIELD_GLOVES:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
@@ -2245,6 +2264,7 @@ Gloves_off()
 	case GAUNTLETS_OF_THE_FORCE:
 	case GAUNTLETS_OF_SAFEGUARD:
 	case GAUNTLETS_OF_PLUGSUIT:
+	case ROGUES_GLOVES:
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
 	case DUMMY_GLOVES_A:
@@ -2345,6 +2365,7 @@ Shield_on()
 	case SILVER_SHIELD:
 	case MIRROR_SHIELD:
 	case RAPIRAPI:
+	case HIDE_SHIELD:
 	case PAPER_SHIELD:
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
@@ -2520,6 +2541,7 @@ Shield_off()
 	case SILVER_SHIELD:
 	case MIRROR_SHIELD:
 	case RAPIRAPI:
+	case HIDE_SHIELD:
 	case PAPER_SHIELD:
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
@@ -3253,6 +3275,14 @@ register struct obj *obj;
 
 		break;
 
+	case RIN_ILLNESS:
+
+		make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20), "a ring of illness", TRUE, SICK_NONVOMITABLE);
+
+		if (!obj->cursed) curse(obj);
+
+		break;
+
 	case RIN_SLEEPING:        
 		if Race_if(PM_KOBOLT) break;
 		HSleeping = rnd(1000);
@@ -3504,6 +3534,15 @@ boolean gone;
 		break;
 	case RIN_LIGHT:
 		vision_full_recalc = 1;
+		break;
+	case RIN_ILLNESS:
+		if (Sick) You("are no longer ill.");
+		if (Slimed) {
+		    pline_The("slime disappears!");
+		    Slimed = 0;
+		 /* flags.botl = 1; -- healup() handles this */
+		}
+		healup(0, 0, TRUE, FALSE);
 		break;
 	case RIN_SLEEPING:
 		if (!ESleeping && !(HSleeping & INTRINSIC) && !Race_if(PM_KOBOLT))

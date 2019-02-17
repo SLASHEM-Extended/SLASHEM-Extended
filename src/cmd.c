@@ -5734,6 +5734,7 @@ boolean guaranteed;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
+		case HIDE_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:
@@ -6148,6 +6149,8 @@ boolean guaranteed;
 		enl_msg("Your life ", "will be", "would have been", " saved");
 	if ((guaranteed || !rn2(10)) && Second_chance)
   	  enl_msg("You ","will be", "would have been"," given a second chance");
+	if ((guaranteed || !rn2(10)) && u.metalguard)	
+  	  enl_msg("The next damage you ","take will be", "took would have been"," nullified");
 	if ((guaranteed || !rn2(10)) && u.twoweap) {
 	    if (uwep && uswapwep)
 		sprintf(buf, "wielding two weapons at once");
@@ -9323,6 +9326,7 @@ int final;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
+		case HIDE_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:
@@ -9700,6 +9704,8 @@ int final;
 		dump("  ", "Your life would have been saved");
 	if (Second_chance)
 		dump("  ", "You would have been given a second chance");
+	if (u.metalguard)	
+  	  	dump("  ", "The next damage you took would have been nullified");
 	if (u.twoweap) dump(youwere, "wielding two weapons at once");
 
 	/*** Miscellany ***/

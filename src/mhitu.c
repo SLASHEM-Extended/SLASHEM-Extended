@@ -6005,6 +6005,10 @@ dopois:
 		    break;
 		}
 		if (u_slip_free(mtmp,mattk)) break;
+		if (uarmh && uarmh->otyp == OILSKIN_COIF && rn2(10)) {
+			Your("helmet blocks the attack to your head.");
+			break;
+		}
 
 		if (uarmh && !(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bir ip yengil bosh kiyim") )) && rn2(evilfriday ? 3 : 8)) {
 		    /* not body_part(HEAD) */
@@ -18136,6 +18140,13 @@ register int n;
 	if (isfriday && !rn2(50)) n += rnd(n);
 
 	if (Invulnerable || (Stoned_chiller && Stoned)) n=0;
+
+	if (u.metalguard) {
+		u.metalguard = 0;
+		n = 0;
+		Your("metal guard prevents the damage!");
+	}
+
 	if (n == 0) {
 		pline("You are unharmed.");
 		return;

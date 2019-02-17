@@ -570,6 +570,12 @@ giveback:
 	      case RIN_SICKNESS_RESISTANCE:
 		    pline("The sink looks clean and neat for a moment.");
 		    break;
+	      case RIN_JUMPING:
+		    pline("The sink jumps up and down!");
+		    break;
+	      case RIN_ILLNESS:
+		    pline("The sink is overgrown with fungus.");
+		    break;
 	      case RIN_DISARMING:
 		    pline("The water flow pauses for a moment.");
 		    break;
