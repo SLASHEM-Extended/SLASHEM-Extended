@@ -2793,6 +2793,14 @@ register int pm;
 		    polyself(FALSE);
 		}
 		break;
+
+	    case PM_UMBER_MIND_FLAYER:
+
+		You_feel("ethereal.");
+		incr_itimeout(&HPasses_walls, rn1(10, 50));
+
+		break;
+
 	    case PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT:
 	    case PM_VERY_STEAL_MIND_FLAYER:
 	    case PM_CONTACT_BEASTLING:
@@ -3199,9 +3207,9 @@ register int pm;
 		if (dmgtype(ptr, AD_EDGE) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 			int edgeeffect;
 			if (touch_petrifies(ptr)) {
-				edgeeffect = rnd(12); /* petrifying corpses are dangerous - only give positive effects --Amy */
+				edgeeffect = rnd(13); /* petrifying corpses are dangerous - only give positive effects --Amy */
 			} else {
-				edgeeffect = rnd(20); /* others are safe - give either positive or negative effects --Amy */
+				edgeeffect = rnd(21); /* others are safe - give either positive or negative effects --Amy */
 			}
 			switch (rnd(edgeeffect)) {
 
@@ -3296,15 +3304,10 @@ register int pm;
 				}
 				incr_itimeout(&HFast, rn1(1000, 1000));
 			break;
+
 			case 13:
-				Your("velocity suddenly seems very uncertain!");
-				if (HFast & INTRINSIC) {
-					HFast &= ~INTRINSIC;
-					You("seem slower.");
-				} else {
-					HFast |= FROMOUTSIDE;
-					You("seem faster.");
-				}
+				You_feel("ethereal.");
+				incr_itimeout(&HPasses_walls, rn1(10, 50));
 			break;
 			case 14:
 				make_stunned(HStun + 30,FALSE);
@@ -3335,6 +3338,16 @@ register int pm;
 			case 20:
 				You_feel("that was a bad idea.");
 				losexp("eating an edgy corpse", FALSE, TRUE);
+			break;
+			case 21:
+				Your("velocity suddenly seems very uncertain!");
+				if (HFast & INTRINSIC) {
+					HFast &= ~INTRINSIC;
+					You("seem slower.");
+				} else {
+					HFast |= FROMOUTSIDE;
+					You("seem faster.");
+				}
 			break;
 
 			}

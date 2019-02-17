@@ -2035,7 +2035,7 @@ not_special:
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
-	if (mtmp->mconf || (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "inkcoat helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem pal'to chernil") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "siyoh palto dubulg'a") ) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (u.uswallow && mtmp == u.ustuck))
+	if (mtmp->mconf || (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "inkcoat helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem pal'to chernil") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "siyoh palto dubulg'a") ) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else {
 #ifdef GOLDOBJ

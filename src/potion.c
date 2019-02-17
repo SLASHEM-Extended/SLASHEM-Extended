@@ -4946,7 +4946,7 @@ peffects(otmp)
 
 	case POT_BENEFICIAL_EFFECT:
 
-		switch (rnd(12)) {
+		switch (rnd(13)) {
 
 			case 1:
 				if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
@@ -5023,6 +5023,10 @@ peffects(otmp)
 					Your("%s get new energy.", makeplural(body_part(LEG)));
 				}
 				incr_itimeout(&HFast, rn1(1000, 1000));
+			break;
+			case 13:
+				You_feel("ethereal.");
+				incr_itimeout(&HPasses_walls, rn1(10, 50));
 			break;
 
 		}

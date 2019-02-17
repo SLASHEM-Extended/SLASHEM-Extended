@@ -7465,6 +7465,7 @@ register struct	monst	*mtmp;
 
 	    case S_LIGHT:
 		if (mtmp->data == &mons[PM_FIERY_EFFULGENCE]) m_initthrow(mtmp, FRAG_GRENADE, 5);
+		if (mtmp->data == &mons[PM_SCISSOR_SHARPENER]) (void) mongets(mtmp, SCALPEL);
 
 		if (mtmp->data == &mons[PM_DENISE_S_GIRL_SHOE]) (void) mongets(mtmp, SOFT_SNEAKERS);
 
@@ -7827,6 +7828,14 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_OMEGA_HERAKLES]) {
 		  	(void) mongets(mtmp, !rn2(3) ? ASSAULT_RIFLE : !rn2(2) ? SUBMACHINE_GUN : RIFLE);
 		  	m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_CRAZY_IVAN]) {
+			if (!rn2(2)) m_initthrow(mtmp, FRAG_GRENADE, 30);
+			else {
+			  	(void) mongets(mtmp, KALASHNIKOV);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			}
 		}
 
 		break;
@@ -10333,6 +10342,7 @@ register struct	monst	*mtmp;
 		}
 
 		if (mtmp->data == &mons[PM_HC_MODEL]) (void) mongets(mtmp, DANCING_SHOES);
+		if (mtmp->data == &mons[PM_FEMMY_IN_PLATFORM_BOOTS]) (void) mongets(mtmp, HIPPIE_HEELS);
 
 		if (ptr == &mons[PM_RICHEST_MAN_OF_THE_WORLD]) {
 		    mtmp->mgold += (long)rn1(20, 200);
