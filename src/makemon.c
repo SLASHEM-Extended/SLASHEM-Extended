@@ -10312,6 +10312,13 @@ register struct	monst	*mtmp;
 
 		}
 
+		if (ptr == &mons[PM_KALACHNOTRON]) {
+			(void)mongets(mtmp, KALASHNIKOV);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+
+		}
+
 		if (ptr == &mons[PM_ARACHNOTRON]) {
 
 			if (rn2(2)) (void) mongets(mtmp, RAYGUN);
@@ -20075,6 +20082,7 @@ int type;
 		case PM_ELOLAVA_GOLEM: return 1000;
 		case PM_ELOMITHRIL_GOLEM: return 200;
 		case PM_ELOADAMANTIUM_GOLEM: return 300;
+		case PM_PETTY_ELOADAMANTIUM_GOLEM: return 300;
 		case PM_GOLDEN_GOLEM: return 180;
 		case PM_ELOSTONE_GOLEM: return 125;
 		case PM_ELOSTEEL_GOLEM: return 150;

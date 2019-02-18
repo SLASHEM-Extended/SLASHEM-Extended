@@ -10108,12 +10108,11 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_CRYPT].oc_name = "kripta";
 	obj_descr[SPE_BUBBLE_BOBBLE].oc_name = "puzyr'";
 	obj_descr[SPE_RAIN].oc_name = "dozhd'";
+	obj_descr[SPE_GAIN_SPACT].oc_name = "poluchit' tolchok";
+	obj_descr[SPE_METAL_GUARD].oc_name = "metallicheskaya zashchita";
+	obj_descr[SPE_MAGIC_WHISTLING].oc_name = "volshebnyy svist";
 
 	/* todo area */
-
-	obj_descr[SPE_GAIN_SPACT].oc_name = "gain spact";
-	obj_descr[SPE_METAL_GUARD].oc_name = "metal guard";
-	obj_descr[SPE_MAGIC_WHISTLING].oc_name = "magic whistling";
 
 	{
 
@@ -10774,20 +10773,19 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel toed boots")) OBJ_DESCR(objects[i]) = "stal'nyye kosolapyy sapogi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "marji shoes")) OBJ_DESCR(objects[i]) = "obuv' marzhi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mary janes")) OBJ_DESCR(objects[i]) = "meri dzheyn";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frayed cloak")) OBJ_DESCR(objects[i]) = "iznoshen plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "moist towelette")) OBJ_DESCR(objects[i]) = "vlazhnaya salfetka";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ratty fleece")) OBJ_DESCR(objects[i]) = "rutina";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "horrible christmas sweater")) OBJ_DESCR(objects[i]) = "uzhasnyy rozhdestvenskiy sviter";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "giant throwing star")) OBJ_DESCR(objects[i]) = "gigantskaya zvezda";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fearsome helmet")) OBJ_DESCR(objects[i]) = "groznyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleshy wrap")) OBJ_DESCR(objects[i]) = "myasistaya plenka";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feathery cloak")) OBJ_DESCR(objects[i]) = "pernatyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boiled gloves")) OBJ_DESCR(objects[i]) = "varenyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hairnet helmet")) OBJ_DESCR(objects[i]) = "setka dlya volos";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glibskin helmet")) OBJ_DESCR(objects[i]) = "shlem iz tolstoy kozhi";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frayed cloak")) OBJ_DESCR(objects[i]) = "frayed cloak";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "moist towelette")) OBJ_DESCR(objects[i]) = "moist towelette";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ratty fleece")) OBJ_DESCR(objects[i]) = "ratty fleece";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "horrible christmas sweater")) OBJ_DESCR(objects[i]) = "horrible christmas sweater";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "giant throwing star")) OBJ_DESCR(objects[i]) = "giant throwing star";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fearsome helmet")) OBJ_DESCR(objects[i]) = "fearsome helmet";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleshy wrap")) OBJ_DESCR(objects[i]) = "fleshy wrap";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feathery cloak")) OBJ_DESCR(objects[i]) = "feathery cloak";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boiled gloves")) OBJ_DESCR(objects[i]) = "boiled gloves";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hairnet helmet")) OBJ_DESCR(objects[i]) = "hairnet helmet";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glibskin helmet")) OBJ_DESCR(objects[i]) = "glibskin helmet";
 
 	}
 	}
@@ -11082,12 +11080,11 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_CRYPT].oc_name = "yer ostidagi sag'ana";
 	obj_descr[SPE_BUBBLE_BOBBLE].oc_name = "kabarcikli noto'g'ri ziplatma";
 	obj_descr[SPE_RAIN].oc_name = "yomg'ir";
+	obj_descr[SPE_GAIN_SPACT].oc_name = "kuch-qudratga ega bo'lish";
+	obj_descr[SPE_METAL_GUARD].oc_name = "metall muhofazachi";
+	obj_descr[SPE_MAGIC_WHISTLING].oc_name = "sehrli hushtak";
 
 	/* todo area */
-
-	obj_descr[SPE_GAIN_SPACT].oc_name = "gain spact";
-	obj_descr[SPE_METAL_GUARD].oc_name = "metal guard";
-	obj_descr[SPE_MAGIC_WHISTLING].oc_name = "magic whistling";
 
 	{
 
@@ -11748,20 +11745,19 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel toed boots")) OBJ_DESCR(objects[i]) = "po'latdan yasalgan poyafzal";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "marji shoes")) OBJ_DESCR(objects[i]) = "oz maryam poyafzallari";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mary janes")) OBJ_DESCR(objects[i]) = "meri janes";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frayed cloak")) OBJ_DESCR(objects[i]) = "eskirgan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "moist towelette")) OBJ_DESCR(objects[i]) = "nam suvog'i";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ratty fleece")) OBJ_DESCR(objects[i]) = "kalamush uchun belgilangan jundan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "horrible christmas sweater")) OBJ_DESCR(objects[i]) = "qo'rqinchli cherepitsa";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "giant throwing star")) OBJ_DESCR(objects[i]) = "ulkan otish yulduzi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fearsome helmet")) OBJ_DESCR(objects[i]) = "qo'rqinchli dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleshy wrap")) OBJ_DESCR(objects[i]) = "go'shtli sariq";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feathery cloak")) OBJ_DESCR(objects[i]) = "tuklar plashi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boiled gloves")) OBJ_DESCR(objects[i]) = "qaynatilgan qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hairnet helmet")) OBJ_DESCR(objects[i]) = "sochni dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glibskin helmet")) OBJ_DESCR(objects[i]) = "jo'shqin terisi zarbasi";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "frayed cloak")) OBJ_DESCR(objects[i]) = "frayed cloak";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "moist towelette")) OBJ_DESCR(objects[i]) = "moist towelette";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ratty fleece")) OBJ_DESCR(objects[i]) = "ratty fleece";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "horrible christmas sweater")) OBJ_DESCR(objects[i]) = "horrible christmas sweater";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "giant throwing star")) OBJ_DESCR(objects[i]) = "giant throwing star";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fearsome helmet")) OBJ_DESCR(objects[i]) = "fearsome helmet";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleshy wrap")) OBJ_DESCR(objects[i]) = "fleshy wrap";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feathery cloak")) OBJ_DESCR(objects[i]) = "feathery cloak";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boiled gloves")) OBJ_DESCR(objects[i]) = "boiled gloves";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hairnet helmet")) OBJ_DESCR(objects[i]) = "hairnet helmet";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glibskin helmet")) OBJ_DESCR(objects[i]) = "glibskin helmet";
 
 	}
 	}

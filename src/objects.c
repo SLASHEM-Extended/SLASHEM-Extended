@@ -5783,6 +5783,7 @@ SCROLL((char *)0,               "CONSECUTIVE NORMAL PUNCHES",  P_NONE,     1,   
 SCROLL((char *)0,               "FLOCKEY SAPHALT",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 SCROLL((char *)0,               "THERE IS FAR AND BROAD NO COURSE TO BE SEEN",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "THE CALLING DOES NOT DECREASE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "I CONSIDERATION IT RATHER AS AN INVITATION",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
