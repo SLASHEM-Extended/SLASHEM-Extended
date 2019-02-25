@@ -1018,11 +1018,23 @@ int spellnum;
 	while (1) {
 	    switch(rn2(5)) {
 	    case 0:
+
+		if (evilfriday && uarmh && uarmh->oerodeproof) {
+			uarmh->oerodeproof = 0;
+			pline("Harharhar, your helmet is no longer erosionproof!");
+		}
+
 		if (!uarmh || !rust_dmg(uarmh, xname(uarmh), rn2(4), FALSE, &youmonst))
 			continue;
 		break;
 	    case 1:
 		if (uarmc) {
+
+			if (evilfriday && uarmc && uarmc->oerodeproof) {
+				uarmc->oerodeproof = 0;
+				pline("Harharhar, your cloak is no longer erosionproof!");
+			}
+
 		    (void)rust_dmg(uarmc, xname(uarmc), rn2(4), TRUE, &youmonst);
 		    break;
 		}
@@ -1031,20 +1043,51 @@ int spellnum;
 		 * means it wasn't a target and though it didn't rust
 		 * something else did.
 		 */
-		if (uarm)
+		if (uarm) {
+
+			if (evilfriday && uarm && uarm->oerodeproof) {
+				uarm->oerodeproof = 0;
+				pline("Harharhar, your armor is no longer erosionproof!");
+			}
+
 		    (void)rust_dmg(uarm, xname(uarm), rn2(4), TRUE, &youmonst);
-		else if (uarmu)
+		} else if (uarmu) {
+
+			if (evilfriday && uarmu && uarmu->oerodeproof) {
+				uarmu->oerodeproof = 0;
+				pline("Harharhar, your shirt is no longer erosionproof!");
+			}
+
 		    (void)rust_dmg(uarmu, xname(uarmu), rn2(4), TRUE, &youmonst);
+		}
 		break;
 	    case 2:
+
+		if (evilfriday && uarms && uarms->oerodeproof) {
+			uarms->oerodeproof = 0;
+			pline("Harharhar, your shield is no longer erosionproof!");
+		}
+
 		if (!uarms || !rust_dmg(uarms, xname(uarms), rn2(4), FALSE, &youmonst))
 		    continue;
 		break;
 	    case 3:
+
+		if (evilfriday && uarmg && uarmg->oerodeproof) {
+			uarmg->oerodeproof = 0;
+			pline("Harharhar, your gloves are no longer erosionproof!");
+		}
+
 		if (!uarmg || !rust_dmg(uarmg, xname(uarmg), rn2(4), FALSE, &youmonst))
 		    continue;
 		break;
 	    case 4:
+
+		if (evilfriday && uarmf && uarmf->oerodeproof) {
+			uarmf->oerodeproof = 0;
+			pline("Harharhar, your boots are no longer erosionproof!");
+		}
+
 		if (!uarmf || !rust_dmg(uarmf, xname(uarmf), rn2(4), FALSE, &youmonst))
 		    continue;
 		break;
