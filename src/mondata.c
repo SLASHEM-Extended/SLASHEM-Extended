@@ -1149,6 +1149,9 @@ static const short grownups[][2] = {
 
 	{PM_MINI_SHADE, PM_SHADE},
 
+	{PM_SCHINDA, PM_EVOLET},
+	{PM_EVOLET, PM_EVOLTE},
+
 	/*{PM_EEVEE, THEEEVEELUTION},*/
 
 	{PM_KEYSTONE_KOP, PM_KOP_SERGEANT},

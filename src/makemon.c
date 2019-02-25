@@ -954,6 +954,8 @@ register struct monst *mtmp;
 			}
 		}
 
+		if (ptr == &mons[PM_HABIBA]) (void)mongets(mtmp, WAN_CREATE_HORDE);
+		if (ptr == &mons[PM_HANIFE]) (void)mongets(mtmp, DIAMOND_SMASHER);
 		if (ptr == &mons[PM_OPERATION]) (void)mongets(mtmp, FEMININE_PUMPS);
 		if (ptr == &mons[PM_SUNBEAM]) (void)mongets(mtmp, WAN_SOLAR_BEAM);
 		if (ptr == &mons[PM_CLUB_RACQUET]) (void)mongets(mtmp, MACE);
@@ -1049,6 +1051,15 @@ register struct monst *mtmp;
 		break;
 
 	    case S_HUMAN:
+
+		if (ptr == &mons[PM_RASHIDA]) {
+		  	(void) mongets(mtmp, BRONZE_PLATE_MAIL);
+		  	(void) mongets(mtmp, HIGH_BOOTS);
+		  	(void) mongets(mtmp, GAUNTLETS_OF_STEEL);
+		  	(void) mongets(mtmp, BRIDGE_MUZZLE);
+		  	(void) mongets(mtmp, SHIELD);
+
+		}
 
 		if (ptr == &mons[PM_TRIBUTE]) {
 
@@ -4945,6 +4956,11 @@ register struct monst *mtmp;
 			else if (mm == PM_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 			else if (mm == PM_SLAP_HEELED_SANDAL_BOOT) (void)mongets(mtmp, HIGH_HEELED_SANDAL);
 
+			if (mm == PM_SHERINE) {
+				(void)mongets(mtmp, KATANA);
+				(void)mongets(mtmp, SHORT_SWORD);
+			}
+
 			if (mm == PM_ATHENA_GUARDIAN) (void)mongets(mtmp, HEAVY_HAMMER);
 			if (mm == PM_ATHENA_GIANT) (void)mongets(mtmp, MALLET);
 
@@ -5078,6 +5094,10 @@ register struct monst *mtmp;
 
 			if(ptr == &mons[PM_LAIR_TOUGHGUY]) (void) mongets(mtmp, BASEBALL_BAT);
 			if(ptr == &mons[PM_HARD_HITTING_DUDE]) (void) mongets(mtmp, HEAVY_HAMMER);
+
+		break;
+
+	    case S_SPIDER:
 
 		break;
 
@@ -7166,6 +7186,13 @@ register struct	monst	*mtmp;
 
 	    case S_WORM:
 
+		if (mtmp->data == &mons[PM_TANISHA]) {
+			(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+			(void) mongets(mtmp, SOFT_SNEAKERS);
+			(void) mongets(mtmp, PISTOL);
+			m_initthrow(mtmp, BULLET, 50);
+		}
+
 		if (mtmp->data == &mons[PM_SAND_MAGGOT]) {
 			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
 			if (otmpX) {
@@ -7418,6 +7445,14 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_HARROWBARK_WALKER]) m_initthrow(mtmp, JAVELIN, 5);
 		if (mtmp->data == &mons[PM_HARROWBARK_WANDLE]) m_initthrow(mtmp, SPEAR, 5);
+
+		if (mtmp->data == &mons[PM_VALENSINA]) {
+			(void)mongets(mtmp, COMBAT_STILETTOS);
+			(void)mongets(mtmp, BAD_SHIRT);
+			(void)mongets(mtmp, GENTLEWOMAN_S_DRESS);
+			(void)mongets(mtmp, BAG_OF_TRICKS);
+
+		}
 
 		if (mtmp->data == &mons[PM_NIN_NINZIN]) {
 			m_initthrow(mtmp, SHURIKEN, 50);
@@ -8433,6 +8468,8 @@ register struct	monst	*mtmp;
 			m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : HEAVY_BLASTER_BOLT, 50);
 		}
 
+		if (mtmp->data == &mons[PM_CHRISTINE]) (void) mongets(mtmp, LAB_COAT);
+
 		if (mtmp->data == &mons[PM_METAL_EATER]) {
 			 (void) mongets(mtmp, CATAPULT);
 			m_initthrow(mtmp, ROCK, 50);
@@ -8559,6 +8596,13 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SNAKE_SNIPER]) { (void) mongets(mtmp, SNIPER_RIFLE); m_initthrow(mtmp, BULLET, 25);}
 		if (mtmp->data == &mons[PM_CLOCK_FOREST_ARCHER]) { (void) mongets(mtmp, DARK_ELVEN_BOW); m_initthrow(mtmp, ORCISH_ARROW, 35);}
 		if (mtmp->data == &mons[PM_WIND_BOWMAN]) { (void) mongets(mtmp, DARK_ELVEN_BOW); m_initthrow(mtmp, DARK_ELVEN_ARROW, 35);}
+
+		if (mtmp->data == &mons[PM_SIBEL]) {
+			(void) mongets(mtmp, BOW);
+			(void) mongets(mtmp, SILVER_SABER);
+			m_initthrow(mtmp, SILVER_ARROW, 50);
+
+		}
 
 		if (mtmp->data == &mons[PM_SNAKE_ELITE_SNIPER]) {
 			 (void) mongets(mtmp, HELO_CROSSBOW);
@@ -9642,6 +9686,7 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, POT_BLOOD);
 		}
 
+		if(ptr == &mons[PM_SAJIDA]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 		if(ptr == &mons[PM_SING_S_PLATEAU_BOOT]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 		if(ptr == &mons[PM_GRASS_VAMPIRE]) (void) mongets(mtmp, SCR_GRASSLAND);
 
@@ -10309,6 +10354,12 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_EK_CHUAH]) {
 			(void)mongets(mtmp, CROSSBOW);
 			m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+
+		}
+
+		if (ptr == &mons[PM_PRINCESS_CATHLETTE]) {
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+			(void)mongets(mtmp, FEMININE_PUMPS);
 
 		}
 
@@ -12147,6 +12198,12 @@ register struct	monst	*mtmp;
 	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
 
 		mtmp->crapbonus += 50;
+
+	}
+
+	if (ptr == &mons[PM_PRINCESS_CATHLETTE]) {
+
+		mtmp->fartbonus += 9;
 
 	}
 
@@ -16789,8 +16846,17 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_MIMIC_CHICKEN]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_GRATING_CHICKEN]) set_mimic_sym(mtmp);
 			break;
+		case S_WRAITH:
+			if (mtmp->data == &mons[PM_GELMER] && mvitals[PM_KELANA].born == 0) {
+				(void) makemon(&mons[PM_KELANA], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			break;
 		case S_SPIDER:
 		case S_SNAKE:
+
+			if (mtmp->data == &mons[PM_KELANA] && mvitals[PM_GELMER].born == 0) {
+				(void) makemon(&mons[PM_GELMER], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
 
 			if (mtmp->data == &mons[PM_UPGRADED_SECRET_CAR]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_EXPENSIVE_SECRET_CAR]) set_mimic_sym(mtmp);
@@ -20083,6 +20149,7 @@ int type;
 		case PM_ELOMITHRIL_GOLEM: return 200;
 		case PM_ELOADAMANTIUM_GOLEM: return 300;
 		case PM_PETTY_ELOADAMANTIUM_GOLEM: return 300;
+		case PM_SHERINE: return 800;
 		case PM_GOLDEN_GOLEM: return 180;
 		case PM_ELOSTONE_GOLEM: return 125;
 		case PM_ELOSTEEL_GOLEM: return 150;
