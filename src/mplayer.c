@@ -76,7 +76,7 @@ char *nam;
 
 		if (fmlkind) { /* awwwwww there's way too few female players :( */
 
-			switch (rnd(13)) {
+			switch (rnd(14)) {
 
 				case 1: strcpy(nam, "GoldenIvy"); break;
 				case 2: strcpy(nam, "AmyBSOD"); break;
@@ -91,6 +91,7 @@ char *nam;
 				case 11: strcpy(nam, "Naganadel"); break;
 				case 12: strcpy(nam, "Icerose"); break;
 				case 13: strcpy(nam, "AntiGulp"); break;
+				case 14: strcpy(nam, "Malena"); break;
 				default: strcpy(nam, "BugFemName"); break;
 			}
 
