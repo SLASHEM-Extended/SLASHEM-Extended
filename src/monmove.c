@@ -1637,7 +1637,7 @@ toofar:
 
 /*	Now, attack the player if possible - one attack set per monst	*/
 
-	if (!mtmp->mpeaceful || ((Conflict && !resist(mtmp, RING_CLASS, 0, 0)) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) && !Is_blackmarket(&u.uz)) ) {
+	if (!mtmp->mpeaceful || (mtmp->mnum == PM_FRENZY_KANGAROO) || ((Conflict && !resist(mtmp, RING_CLASS, 0, 0)) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) && !Is_blackmarket(&u.uz)) ) {
 
 		/* FIQ found out that self-genocide while polymorphed can make monsters stop attacking entirely. Fixed. */
 

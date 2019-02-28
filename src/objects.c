@@ -5785,6 +5785,8 @@ SCROLL((char *)0,               "THERE IS FAR AND BROAD NO COURSE TO BE SEEN",  
 SCROLL((char *)0,               "THE CALLING DOES NOT DECREASE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "I CONSIDERATION IT RATHER AS AN INVITATION",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 SCROLL((char *)0,               "IM SAILING DOWN HERE BOUT A HANG KESSIMI",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "1FP30S",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "THE LAKITUS ARE THROWING LAKITUS",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

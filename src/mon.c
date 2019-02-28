@@ -537,6 +537,18 @@ register struct monst *mtmp;
 	    case PM_SMOKY_QUARTZ_UNICORN:
 	    case PM_JET_UNICORN:
 	    case PM_PEARL_UNICORN:
+	    case PM_GREAT_WHITE_UNICORN:
+	    case PM_GREAT_GRAY_UNICORN:
+	    case PM_GREAT_BLACK_UNICORN:
+	    case PM_SUPERPOWERED_WHITE_UNICORN:
+	    case PM_SUPERPOWERED_GRAY_UNICORN:
+	    case PM_SUPERPOWERED_BLACK_UNICORN:
+	    case PM_REAR_WHITE_UNICORN:
+	    case PM_REAR_GRAY_UNICORN:
+	    case PM_REAR_BLACK_UNICORN:
+	    case PM_BEHIDE_WHITE_UNICORN:
+	    case PM_BEHIDE_GRAY_UNICORN:
+	    case PM_BEHIDE_BLACK_UNICORN:
 	    case PM_PURE_WHITE_UNICORN:
 	    case PM_WHITE_UNICORN_FOAL:
 	    case PM_GRAY_UNICORN_FOAL:
@@ -1898,7 +1910,7 @@ movemon()
 	}
 
 	/* continue if the monster died fighting */
-	if (Conflict && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
+	if ((Conflict || (mtmp->mnum == PM_FRENZY_KANGAROO) ) && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
 	    /* Note:
 	     *  Conflict does not take effect in the first round.
 	     *  Therefore, A monster when stepping into the area will
@@ -1913,7 +1925,7 @@ movemon()
 							fightm(mtmp))
 		continue;	/* mon might have died */
 	}
-	if (StrongConflict && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
+	if ((StrongConflict || (mtmp->mnum == PM_FRENZY_KANGAROO)) && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
 	    /* Note:
 	     *  Conflict does not take effect in the first round.
 	     *  Therefore, A monster when stepping into the area will

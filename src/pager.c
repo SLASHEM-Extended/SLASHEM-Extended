@@ -22935,6 +22935,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear thunder in the distance... but then decide that the gods can fuck you, they certainly have better things to do than being angry at you for some petty reason.",
 	"You try to whistle your pets here...",
 	"You try to whistle your pets here... which doesn't work, because their AI is so ultra stupid.",
+	"You spawn in the water.",
+	"You spawn in the water and drown. Stupid mapmaker, why did he make a respawn location IN THE WATER???",
+	"A splash tetra you are not.",
+	"You yearn for the Sargasso Sea.",
 
 };
 
