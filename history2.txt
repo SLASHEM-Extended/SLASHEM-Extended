@@ -1587,6 +1587,61 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Monsters will now only delete musable items if they were part of their starting inventory.
 - Certain beneficial effects happen less often the longer a game goes on.
 
+1.3.2 - August 2015
+- Pets are less likely to attack enemies when their own HP are really low or the enemy has a powerful passive attack.
+- Pets no longer attack shopkeepers, vault guards or priests.
+- Monsters are less likely to leave corpses, and molds grow on corpses less often.
+- Vampire and ghast race player characters gain more nutrition from corpses.
+- Reduced the frequency of the unidentify trap effect.
+- Some monster generation mechanisms specifically avoid spawning troves.
+- Monsters no longer always levelport after stealing an alignment key.
+- Uncursed food is less likely to be rotten.
+- Added faux artifact items, which are given names from a list that make them look like artifacts.
+- Fake amulets of Yendor weigh 500 and can't be dropped.
+- Energy regeneration now causes hunger. Also, regular regeneration can no longer be hungerless when granted by an artifact.
+- Armor pieces can have egotypes, i.e. an additional enchantment that the player benefits from when wearing the item in question.
+- Halved the # of levels and items forgotten by amnesia.
+- Fumbling can rarely drain INT/WIS or cause amnesia.
+- Player characters who lack a head don't get the bad effects from falling down stairs.
+- The player should no longer waste a turn when moving into a hidden monster seen only by monster detection. Instead, the proper response from the game is that you attack the monster.
+- Players dying in corridors can now leave tombstones in a bones level.
+- Boss monsters have extra HP compared to regular monsters.
+
+1.3.1 - August 2015
+- Tried to seal the segfaults that happen with monsters that have the %s string in their name. This involves players no longer being able to wish for items of a specific monster (corpse, statue, figurine etc.); you can now only wish for "figurine", "statue" etc., and it will give a random level-appropriate one.
+- Casting a spell that can give a blessed equivalent of a potion/scroll effect will give that effect less often if the player's spell skill is low.
+- Lowered the duration of player-cast paralysis spells.
+- Certain items have MC values greater than 3 now.
+- Shields give different amounts of AC than before.
+- Banishment and warping can once again deposit the player in Gehennom.
+- Floor tiles can randomly turn into rock over time.
+- Items embedded in rock can now also be generated on special levels.
+- Made terrain-altering scrolls more powerful, by allowing them to work in some places where they used to do nothing.
+- If the player has the Amulet of Yendor and tries to cast a spell while having enough mana to cast it without the amulet, they will always attempt to cast it now, and if the amulet-caused cost increase would make it too expensive, the player's Pw is drained to zero.
+- When trying to overcast a spell, the game will not tell the player in advance what the cost would be; that information was moved to after you say no to the prompt.
+- Nerfed the godmode, finger of death, petrify and disintegration spells. Also, spells/wands of disintegration can now destroy items on the ground.
+- Trap detection only has a 50% chance per trap to actually reveal it.
+- Falling down stairs can drain INT/WIS or cause amnesia.
+- If the player is damaged by a mind flayer's blast, there's a small chance of getting amnesia.
+- Very rarely, all boulders on a sokoban level are invisible.
+- HP damage from eating poisonous, acidic or too old corpses now scales with the monster's level.
+- Fixed the bug where levels on Vlad's tower could be replaced by random other levels, rendering the game potentially unwinnable when Vlad's level was replaced that way.
+- Fixed a bug that allowed monsters to smash artifact doors.
+- Unidentified items can now merge onto identified stacks, as long as the stack it will be merged into doesn't lack any known flags present on the to-be-merged stack. Example: "a dagger" will merge into "a +0 dagger" if they're otherwise identical, but "a blessed dagger" will not merge into "a +0 dagger".
+- Jubilex can correctly split now.
+- Entering special rooms is more likely to wake up nearby monsters.
+- Occasionally, amnesia can remove several of the player's known spells at once.
+- Removed the ability of vampire mages to grow up into vampire dazzlers.
+- Added new stuff that can spawn in weird-looking rooms.
+- Thrown boulder damage now scales with the thrower's level.
+- Manipulating a stack of items can fail if the # of items in the stack is large enough. This applies both for beneficial manipulations (dipping 5 scrolls of enchant weapon into holy water works 1 in 5 times and otherwise wastes the potion) and detrimental ones (a stack of 200 shuriken has 1 in 8 chance of being affected by the wand of corrosion and will otherwise be unaffected).
+- Fixed a bug with the wounded legs timeout.
+- Mimics are less likely to mimic statues and more likely to mimic boulders.
+- Improved the AC granted by regular armors, e.g. plate mail.
+- The repair armor spell now allows the player to choose the item that can be repaired.
+- Fixed a bug associated with the frequency of the uninitialized -1 monster.
+- The rogue level is compiled into the game by default now, and some of its rules have been softened.
+
 (older stuff still needs to be added here)
 
 :-) <3 *bundlebundlebundle* <3 :D
