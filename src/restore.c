@@ -1440,6 +1440,9 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_RANDOMIZER_DRACONIAN].mname;
 	mread(fd, (void *) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
 	mons[PM_RANDOMIZER_DRACONIAN].mname = tname;
+	tname = mons[PM_CENTAUR_RENGER].mname;
+	mread(fd, (void *) &mons[PM_CENTAUR_RENGER], sizeof(struct permonst));
+	mons[PM_CENTAUR_RENGER].mname = tname;
 
 	tname = mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER].mname;
 	mread(fd, (void *) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));

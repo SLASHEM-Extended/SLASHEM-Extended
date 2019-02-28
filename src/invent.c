@@ -12892,6 +12892,84 @@ struct obj *obj;
 				pline("Allows you to see some of the monsters on the current dungeon level."); break;
 			case SPE_DETECT_FOOD:
 				pline("This spell shows you the food items on the current level."); break;
+			case SPE_ORE_MINING:
+				pline("If you cast this spell, stalactites next to you will be removed and may turn into precious gems or worthless glass."); break;
+			case SPE_BOILER_KABOOM:
+				pline("A spell that targets rain clouds in a 3x3 area centered on you. Every such rain cloud boils away in a fiery explosion that may damage you or your items."); break;
+			case SPE_DEFOG:
+				pline("Removes nether mist around you. Every nether mist tile that is removed that way reduces your alignment by 10 and your max alignment by 1."); break;
+			case SPE_SWAP_POSITION:
+				pline("If you cast this spell, the next monster you move into will be displaced instead of attacked. You only have 3 turns after casting it or the effect dissipates."); break;
+			case SPE_SHUFFLE_MONSTER:
+				pline("Targets monsters next to you, which will be pushed around a bit, but not into tiles that would be dangerous to them."); break;
+			case SPE_PET_SYRINGE:
+				pline("Cast this spell to greatly heal all adjacent pets. However, this counts as abusing them."); break;
+			case SPE_BUC_KNOWLEDGE:
+				pline("Cast this spell to find out the BUC (blessed, uncursed or cursed) status of an item in your open inventory without breaking atheist conduct!"); break;
+			case SPE_PREACHING:
+				pline("A spell that improves your alignment record by 5 points, but not beyond the maximum. Casting it breaks atheist conduct."); break;
+			case SPE_RESIST_PARALYSIS:
+				pline("Casting this spell gives temporary discount action, which reduces the average time for which you are paralyzed."); break;
+			case SPE_KEEP_SATIATION:
+				pline("Costs no nutrition to cast, and gives temporary full nutrients, meaning that your belly stays full for a longer time."); break;
+			case SPE_TECH_BOOST:
+				pline("If you use this spell, the effective levels of all your techniques will be temporarily improved!"); break;
+			case SPE_CONTINGENCY:
+				pline("A spell that may let you avert death, but it only lasts for a certain amount of time and the chance to be revived on death is not 100%%."); break;
+			case SPE_AULE_SMITHING:
+				pline("This very powerful spell lets you erosionproof an item of your choice when cast."); break;
+			case SPE_HORSE_HOP:
+				pline("Cast this spell and you'll temporarily be able to jump, but only while riding."); break;
+			case SPE_LINE_LOSS:
+				pline("Every monster that you can see will lose one hit point if you cast this."); break;
+			case SPE_TACTICAL_NUKE:
+				pline("A perilous spell. All monsters in your line of sight and also all those that you see via other means (e.g. telepathy) will lose 10%% of their current health, but you take damage equal to 10%% of your maximum HP, with no warning if that would kill you."); break;
+			case SPE_RAGNAROK:
+				pline("This spell brings an end. Cast it at your own peril. If you do cast it successfully, casting it again will then do nothing for the next 1000 turns."); break;
+			case SPE_ARMOR_SMASH:
+				pline("A rather powerful spell that allows you to destroy the worn armor of an adjacent monster. But artifact armor pieces are immune."); break;
+			case SPE_STRANGLING:
+				pline("Allows you to strangle an adjacent monster, which works especially well against humanoids."); break;
+			case SPE_PARTICLE_CANNON:
+				pline("A very powerful damage-dealing beam spell with great range. If you cast it, you're paralyzed for 5 turns because you have to reload the cannon."); break;
+			case SPE_ONE_POINT_SHOOT:
+				pline("This spell works only if you have a bullet in your inventory, which will be used up. You then get a target cursor that you can place on a monster, which then takes a lot of damage. If the bullet was positively enchanted, the damage will be even higher."); break;
+			case SPE_BLOOD_STREAM:
+				pline("A spell that lets you use your menstruation as a weapon, shooting a stream of blood in a direction that can hit several enemies. However, you lose 20%% of your current HP. The damage it deals is higher the less health you have remaining after that loss, and if you're female it deals even more damage."); break;
+			case SPE_SHINING_WAVE:
+				pline("This is a rather expensive spell that requires five times as much mana as you'd expect. It shoots a beam in a direction of your choice that deals great damage. Monsters that resist magic or are sound-based are immune if you're female, resistant if you're male."); break;
+			case SPE_GROUND_STOMP:
+				pline("Stomps the ground if cast, greatly damaging adjacent monsters. However, you'll also be heavily confused for a while and be unable to have confusion resistance. If you somehow manage to successfully cast this spell while confused, it will have no effect."); break;
+			case SPE_DIRECTIVE:
+				pline("Lets you give commands to your pets, although there's a chance that they won't obey you."); break;
+			case SPE_NERVE_POISON:
+				pline("Targets an adjacent monster, which will be poisoned and paralyzed if it fails a resistance check."); break;
+			case SPE_POWDER_SPRAY:
+				pline("A spell that targets all adjacent monsters, which must make a saving throw or be poisoned."); break;
+			case SPE_FIREWORKS:
+				pline("Creates random fire explosions near you when cast."); break;
+			case SPE_AIMBOT_LIGHTNING:
+				pline("If you cast this, you get a target cursor that you can position at any square in your line of sight. A lightning bolt will then shoot out of the tile you picked, but the direction of that lightning is random."); break;
+			case SPE_ENHANCE_BREATH:
+				pline("Casting this buff spell enhances your breath for a while, which requires you to actually be able to breathe via #monster. Regular breaths do extra damage while disintegration breath costs less mana."); break;
+			case SPE_GOUGE_DICK:
+				pline("This spell is only useful if you're currently engulfed by a monster. If that is the case, you will use your penis to gouge a hole in the engulfing monster, paralyzing and heavily damaging it. For some reason this also works if you're female."); break;
+			case SPE_BODYFLUID_STRENGTHENING:
+				pline("A buff spell that temporarily causes all monsters attacking you in melee to take acid damage."); break;
+			case SPE_GEYSER:
+				pline("You can cast this spell in a direction of your choice, dealing good damage to monsters in a line, but swimming or otherwise water-based ones are immune."); break;
+			case SPE_BUBBLING_HOLE:
+				pline("The bubbling hole spell targets an adjacent monster that you can choose. If possible, the monster will rise through the ceiling to the level above, or if for some reason that doesn't work, the monster will hit its head on the ceiling and take great damage."); break;
+			case SPE_PURIFICATION:
+				pline("Cast this to turn adjacent styx rivers into water."); break;
+			case SPE_ADD_SPELL_MEMORY:
+				pline("Adds 5%% to the memory of a spell that you can choose, but this spell's memory will be drained in the process. This spell only has a low chance of working on a forgotten spell."); break;
+			case SPE_NEXUSPORT:
+				pline("Simulates the effect of being hit by a nexus attack, meaning that you may phase door, teleport, level teleport or have your stats shuffled at random. It can also backfire occasionally."); break;
+			case SPE_GIANT_FOOT:
+				pline("Causes an enormous foot to fall from above, crushing a target adjacent to you. This spell was suggested by jonadab."); break;
+			case SPE_ANTI_TELEPORTATION:
+				pline("If you cast this spell, you activate a temporary 'space retention' status which results in both you and monsters being unable to teleport on the current level. But level teleportation may still be available."); break;
 			case SPE_CLAIRVOYANCE:
 				pline("You can see part of your surroundings by casting this."); break;
 			case SPE_DETECT_UNSEEN:

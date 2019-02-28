@@ -22939,6 +22939,19 @@ static NEARDATA const char * const fake_plines[] = {
 	"You spawn in the water and drown. Stupid mapmaker, why did he make a respawn location IN THE WATER???",
 	"A splash tetra you are not.",
 	"You yearn for the Sargasso Sea.",
+	"LarienTelrunya slaps you with a heart pillow! You feel awkward!", /* by K2 <3<3<3 */
+	"The bugbear slaps you!",
+	"The bugbear slaps you! She must obviously be female.",
+	"The dark spearwoman impales you! Now you are dead, and she merrily explores your intestines.",
+	"Demogorgon rends you! Your armor tears asunder!",
+	"Ludgera's hiking boot gashes you! Even though she's actually blunt, blood is shooting out of your leg for some reason.",
+	"The hermit crab lacerates you!",
+	"The suggestion hammer pounds you!",
+	"The tubing pliers clocks you!",
+	"The air elemental pummels you! Be careful, for the rate of damage is very high.",
+	"The flying scimitar slices you! You start to bleed and take damage every turn until you heal yourself.",
+	"You throw a lovely cuddly huggable heart pillow at Sandra. She just shrugs it off and gets ready to throw it back at you.",
+	"Incoming message for Player 1. The message is from 'Sandra'. It reads: 'What, you're suggesting that we do a pillow fight? Well, I have a better idea. How about we play a round of scratch-the-male-girl's-legs?'",
 
 };
 

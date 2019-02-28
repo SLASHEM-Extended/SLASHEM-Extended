@@ -712,6 +712,7 @@ register int fd, mode;
 	bwrite(fd, (void *) &mons[PM_RANDO], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_RNGHOST], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_CENTAUR_RENGER], sizeof(struct permonst));
 
 	bwrite(fd, (void *) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT], sizeof(struct permonst));

@@ -10114,6 +10114,46 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* todo area */
 
+	obj_descr[SPE_ORE_MINING].oc_name = "placeholder";
+	obj_descr[SPE_BOILER_KABOOM].oc_name = "placeholder";
+	obj_descr[SPE_DEFOG].oc_name = "placeholder";
+	obj_descr[SPE_SWAP_POSITION].oc_name = "placeholder";
+	obj_descr[SPE_SHUFFLE_MONSTER].oc_name = "placeholder";
+	obj_descr[SPE_PET_SYRINGE].oc_name = "placeholder";
+	obj_descr[SPE_BUC_KNOWLEDGE].oc_name = "placeholder";
+	obj_descr[SPE_PREACHING].oc_name = "placeholder";
+	obj_descr[SPE_RESIST_PARALYSIS].oc_name = "placeholder";
+	obj_descr[SPE_KEEP_SATIATION].oc_name = "placeholder";
+	obj_descr[SPE_TECH_BOOST].oc_name = "placeholder";
+	obj_descr[SPE_CONTINGENCY].oc_name = "placeholder";
+	obj_descr[SPE_AULE_SMITHING].oc_name = "placeholder";
+	obj_descr[SPE_HORSE_HOP].oc_name = "placeholder";
+	obj_descr[SPE_LINE_LOSS].oc_name = "placeholder";
+	obj_descr[SPE_TACTICAL_NUKE].oc_name = "placeholder";
+	obj_descr[SPE_RAGNAROK].oc_name = "placeholder";
+	obj_descr[SPE_ARMOR_SMASH].oc_name = "placeholder";
+	obj_descr[SPE_STRANGLING].oc_name = "placeholder";
+	obj_descr[SPE_PARTICLE_CANNON].oc_name = "placeholder";
+	obj_descr[SPE_ONE_POINT_SHOOT].oc_name = "placeholder";
+	obj_descr[SPE_BLOOD_STREAM].oc_name = "placeholder";
+	obj_descr[SPE_SHINING_WAVE].oc_name = "placeholder";
+	obj_descr[SPE_GROUND_STOMP].oc_name = "placeholder";
+	obj_descr[SPE_DIRECTIVE].oc_name = "placeholder";
+	obj_descr[SPE_NERVE_POISON].oc_name = "placeholder";
+	obj_descr[SPE_POWDER_SPRAY].oc_name = "placeholder";
+	obj_descr[SPE_FIREWORKS].oc_name = "placeholder";
+	obj_descr[SPE_AIMBOT_LIGHTNING].oc_name = "placeholder";
+	obj_descr[SPE_ENHANCE_BREATH].oc_name = "placeholder";
+	obj_descr[SPE_GOUGE_DICK].oc_name = "placeholder";
+	obj_descr[SPE_BODYFLUID_STRENGTHENING].oc_name = "placeholder";
+	obj_descr[SPE_GEYSER].oc_name = "placeholder";
+	obj_descr[SPE_BUBBLING_HOLE].oc_name = "placeholder";
+	obj_descr[SPE_PURIFICATION].oc_name = "placeholder";
+	obj_descr[SPE_ADD_SPELL_MEMORY].oc_name = "placeholder";
+	obj_descr[SPE_NEXUSPORT].oc_name = "placeholder";
+	obj_descr[SPE_GIANT_FOOT].oc_name = "placeholder";
+	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "placeholder";
+
 	{
 
 	register int i;
@@ -11085,6 +11125,46 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MAGIC_WHISTLING].oc_name = "sehrli hushtak";
 
 	/* todo area */
+
+	obj_descr[SPE_ORE_MINING].oc_name = "placeholder";
+	obj_descr[SPE_BOILER_KABOOM].oc_name = "placeholder";
+	obj_descr[SPE_DEFOG].oc_name = "placeholder";
+	obj_descr[SPE_SWAP_POSITION].oc_name = "placeholder";
+	obj_descr[SPE_SHUFFLE_MONSTER].oc_name = "placeholder";
+	obj_descr[SPE_PET_SYRINGE].oc_name = "placeholder";
+	obj_descr[SPE_BUC_KNOWLEDGE].oc_name = "placeholder";
+	obj_descr[SPE_PREACHING].oc_name = "placeholder";
+	obj_descr[SPE_RESIST_PARALYSIS].oc_name = "placeholder";
+	obj_descr[SPE_KEEP_SATIATION].oc_name = "placeholder";
+	obj_descr[SPE_TECH_BOOST].oc_name = "placeholder";
+	obj_descr[SPE_CONTINGENCY].oc_name = "placeholder";
+	obj_descr[SPE_AULE_SMITHING].oc_name = "placeholder";
+	obj_descr[SPE_HORSE_HOP].oc_name = "placeholder";
+	obj_descr[SPE_LINE_LOSS].oc_name = "placeholder";
+	obj_descr[SPE_TACTICAL_NUKE].oc_name = "placeholder";
+	obj_descr[SPE_RAGNAROK].oc_name = "placeholder";
+	obj_descr[SPE_ARMOR_SMASH].oc_name = "placeholder";
+	obj_descr[SPE_STRANGLING].oc_name = "placeholder";
+	obj_descr[SPE_PARTICLE_CANNON].oc_name = "placeholder";
+	obj_descr[SPE_ONE_POINT_SHOOT].oc_name = "placeholder";
+	obj_descr[SPE_BLOOD_STREAM].oc_name = "placeholder";
+	obj_descr[SPE_SHINING_WAVE].oc_name = "placeholder";
+	obj_descr[SPE_GROUND_STOMP].oc_name = "placeholder";
+	obj_descr[SPE_DIRECTIVE].oc_name = "placeholder";
+	obj_descr[SPE_NERVE_POISON].oc_name = "placeholder";
+	obj_descr[SPE_POWDER_SPRAY].oc_name = "placeholder";
+	obj_descr[SPE_FIREWORKS].oc_name = "placeholder";
+	obj_descr[SPE_AIMBOT_LIGHTNING].oc_name = "placeholder";
+	obj_descr[SPE_ENHANCE_BREATH].oc_name = "placeholder";
+	obj_descr[SPE_GOUGE_DICK].oc_name = "placeholder";
+	obj_descr[SPE_BODYFLUID_STRENGTHENING].oc_name = "placeholder";
+	obj_descr[SPE_GEYSER].oc_name = "placeholder";
+	obj_descr[SPE_BUBBLING_HOLE].oc_name = "placeholder";
+	obj_descr[SPE_PURIFICATION].oc_name = "placeholder";
+	obj_descr[SPE_ADD_SPELL_MEMORY].oc_name = "placeholder";
+	obj_descr[SPE_NEXUSPORT].oc_name = "placeholder";
+	obj_descr[SPE_GIANT_FOOT].oc_name = "placeholder";
+	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "placeholder";
 
 	{
 

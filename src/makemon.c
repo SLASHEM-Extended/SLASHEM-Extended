@@ -6670,6 +6670,11 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, ROCKET_LAUNCHER);
 			 m_initthrow(mtmp, ROCKET, 30);
 		}
+		if(mtmp->data == &mons[PM_ZOIBO]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 50);
+			 m_initthrow(mtmp, ROCK, 50);
+		}
 
 		if(mtmp->data == &mons[PM_GRAY_STONE_GOLEM]) {
 			(void) mongets(mtmp, SLING);
@@ -6950,6 +6955,7 @@ register struct	monst	*mtmp;
 		}
 
 		if (mtmp->data == &mons[PM_SUPER_MARIO_CONDOR]) (void) mongets(mtmp, SCR_SAND);
+		if (mtmp->data == &mons[PM_CONFSHIFT_BAT]) (void) mongets(mtmp, WAN_POLYMORPH);
 
 		if (mtmp->data == &mons[PM_ARCEUS]) (void) mongets(mtmp, WAN_CHROMATIC_BEAM);
 		if (mtmp->data == &mons[PM_EXTRA_DONALD]) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
@@ -7836,6 +7842,7 @@ register struct	monst	*mtmp;
 		  	m_initthrow(mtmp, CROSSBOW_BOLT, 50);
 		}
 
+		if (mtmp->data == &mons[PM_KIRIN_BEAST]) (void) mongets(mtmp, KATANA);
 		if (mtmp->data == &mons[PM_ARKTOUROS]) (void) mongets(mtmp, BARDICHE);
 		if (mtmp->data == &mons[PM_FARMING_COW]) (void) mongets(mtmp, SCR_FARMING);
 
@@ -7926,6 +7933,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_HC_LADY]) (void) mongets(mtmp, FEMININE_PUMPS);
 		if(ptr == &mons[PM_HC_LANCE_CARRIER]) (void) mongets(mtmp, LANCE);
 		if(ptr == &mons[PM_CENTAUR_HIGHWAYMAN]) (void) mongets(mtmp, SCR_HIGHWAY);
+		if(ptr == &mons[PM_CENTAUR_SPEAROR]) m_initthrow(mtmp, SPEAR, 7);
 
 		break;
 
@@ -10119,6 +10127,15 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp,BOW);
 			 m_initthrow(mtmp, ARROW, 20);
 		}
+		if (monsndx(ptr) == PM_ARKHAI) {
+			(void) mongets(mtmp,BOW);
+			 m_initthrow(mtmp, ARROW, 50);
+		}
+		if (monsndx(ptr) == PM_DOMINION) {
+			(void) mongets(mtmp,BOW);
+			 m_initthrow(mtmp, ARROW, 50);
+			 m_initthrow(mtmp, ARROW, 50);
+		}
 
 		if (monsndx(ptr) == PM_CUPID_OF_DEATH) {
 			(void) mongets(mtmp,BOW);
@@ -10131,6 +10148,7 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SWEET_MOCASSINS);
 		}
 
+		if (mtmp->data == &mons[PM_ELOSERAPH]) (void) mongets(mtmp, WAN_PUNISHMENT);
 		if (mtmp->data == &mons[PM_HC_SEX_PRINCESS]) (void) mongets(mtmp, HIPPIE_HEELS);
 
 		if (mtmp->data == &mons[PM_BATTIE]) (void) mongets(mtmp, IRON_SABER);
