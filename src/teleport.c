@@ -753,7 +753,7 @@ tele()
 	coord cc;
 
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
+	if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 #ifdef WIZARD
 		if (!wizard) {
 #endif
@@ -817,7 +817,7 @@ void
 teleX()
 {
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
+	if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 		    pline("A mysterious force prevents you from teleporting!");
 		    return;
 	}
@@ -841,7 +841,7 @@ phase_door(confused)
 boolean confused;
 {
 	/* Disable teleportation in stronghold && Vlad's Tower */
-	if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
+	if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 		    pline("A mysterious force prevents you from phasing!");
 		    return;
 	}
@@ -1573,7 +1573,7 @@ boolean
 tele_restrict(mon)
 struct monst *mon;
 {
-	if (level.flags.noteleport) {
+	if (level.flags.noteleport || u.antitelespelltimeout) {
 		if (canseemon(mon))
 		    pline("A mysterious force prevents %s from teleporting!",
 			mon_nam(mon));
@@ -1847,7 +1847,7 @@ boolean give_feedback;
 {
 	coord cc;
 
-	if (evilfriday && level.flags.noteleport) {
+	if (evilfriday && (level.flags.noteleport || u.antitelespelltimeout)) {
 	    if (give_feedback)
 		pline("Ha ha ha, the wand destruction patch made it so that your wand of teleportation does jack diddly on a no-teleport level. You just wasted a charge, sucker!");
 		return FALSE;
@@ -1855,7 +1855,7 @@ boolean give_feedback;
 	    if (give_feedback)
 		pline("%s resists your magic!", Monnam(mtmp));
 	    return FALSE;
-	} else if (level.flags.noteleport && u.uswallow && mtmp == u.ustuck) {
+	} else if ((level.flags.noteleport || u.antitelespelltimeout) && u.uswallow && mtmp == u.ustuck) {
 	    if (give_feedback)
 		You("are no longer inside %s!", mon_nam(mtmp));
 	    unstuck(mtmp);
@@ -2013,6 +2013,63 @@ newtry:
 
 		u_on_newpos(ccc.x, ccc.y);
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+		return;
+}
+
+boolean
+pushmonster(mtmp)
+struct monst *mtmp;
+{
+		coord ccc;
+		int direction, pushwidth, trycnt;
+		register struct obj *otmp;
+		trycnt = 0;
+
+		if (!mtmp) {
+			impossible("pushmonster() called with no monster.");
+			return 0;
+		}
+
+		if (!isok(mtmp->mx, mtmp->my)) {
+			impossible("monster coordinates for pushmonster() out of range: %d, %d", mtmp->mx, mtmp->my);
+			return 0;
+		}
+
+newtry:
+		direction = rnd(8);
+		pushwidth = rnd(2);
+		if (!rn2(2)) pushwidth += rnd(2);
+		ccc.x = mtmp->mx;
+		ccc.y = mtmp->my;
+
+		while (pushwidth--) {
+		if (direction == 1 || direction == 5) ccc.x += 1; 
+		else if (direction == 2 || direction == 6) ccc.x -= 1; 
+		else if (direction == 3 || direction == 7) ccc.y += 1; 
+		else if (direction == 4 || direction == 8) ccc.y -= 1; 
+
+		if (direction == 5) ccc.y += 1;
+		else if (direction == 6) ccc.y -= 1;
+		else if (direction == 7) ccc.x -= 1;
+		else if (direction == 8) ccc.x += 1;
+
+		if (!isok(ccc.x, ccc.y)) break; /* otherwise the game could segfault! */
+
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0 ) break;
+		}
+
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+		if (trycnt < 50) {trycnt++; goto newtry;}
+		return; /* more than 50 tries */
+		}
+
+		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
+
+		remove_monster(mtmp->mx, mtmp->my);
+		place_monster(mtmp, ccc.x, ccc.y);
+
 		return;
 }
 

@@ -6906,7 +6906,7 @@ newbossPENT:
 			register struct monst *nexusmon;
 			boolean teleportdone = FALSE;
 
-			if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
+			if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 				pline("A mysterious force prevents you from teleporting!");
 				break;
 			}
@@ -17866,7 +17866,7 @@ drown()
 	if ((Teleportation || can_teleport(youmonst.data)) &&
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");	/* utcsri!carroll */
-		if (!level.flags.noteleport) {
+		if (!level.flags.noteleport && !u.antitelespelltimeout) {
 			(void) dotele();
 			if(!is_drowningpool(u.ux,u.uy))
 				return(TRUE);
@@ -17997,7 +17997,7 @@ crystaldrown()
 	if ((Teleportation || can_teleport(youmonst.data)) &&
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
 		You("attempt a teleport spell.");	/* utcsri!carroll */
-		if (!level.flags.noteleport) {
+		if (!level.flags.noteleport && !u.antitelespelltimeout) {
 			(void) dotele();
 		} else pline_The("attempted teleport spell fails.");
 	}

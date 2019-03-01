@@ -1536,6 +1536,14 @@ struct you {
 
 	int mojibakecount;	/* hack for pager.c */
 
+	int swappositioncount;	/* for the swap position spell */
+	int contingencyturns;	/* how long you have until contingency spell runs out */
+	int horsehopturns;	/* how long you can use the horse hop spell effect */
+	int ragnarokspelltimeout;	/* timer that counts down until you can use the spell again */
+	int breathenhancetimer;	/* how long you have until enhance breath spell runs out */
+	int bodyfluideffect;	/* how long you have until bodyfluid strengthening spell runs out */
+	int antitelespelltimeout;	/* how long you have until anti-teleportation spell runs out */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

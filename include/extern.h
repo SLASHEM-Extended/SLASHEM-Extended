@@ -2781,6 +2781,7 @@ E boolean u_teleport_mon(struct monst *,BOOLEAN_P);
 E boolean u_teleport_monB(struct monst *,BOOLEAN_P);
 E void pushplayer(void);
 E void pushplayersilently(void);
+E boolean pushmonster(struct monst *);
 E boolean teleok(int,int,BOOLEAN_P);
 
 /* ### tile.c ### */
@@ -3254,6 +3255,7 @@ E boolean drain_item_severely(struct obj *);	/* KMH */
 E boolean drain_item_negative(struct obj *);	/* KMH */
 E boolean obj_resists(struct obj *,int,int);
 E boolean obj_shudders(struct obj *);
+E void throwstorm(struct obj *, int, int, int);
 E void do_osshock(struct obj *);
 E void puton_worn_item(struct obj *);
 E struct obj *poly_obj(struct obj *, int, BOOLEAN_P);

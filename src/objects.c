@@ -6739,7 +6739,8 @@ WAND((char *)0,        "xygos",  0, 500, 1, 0,        VIVA,     CLR_BRIGHT_MAGEN
 	    BITS(kn,1,1,0,mgc,0,0,0,0,HARDGEM(mohs),0,-P_SLING,glass), 0, \
 	    GEM_CLASS, prob, 0, wt, gval, sdam, ldam, 0, 0, nutr, color, minlvl )
 
-/* when adding new gems, adjust gemprobs in o_init.c --Amy */
+/* when adding new gems, adjust gemprobs in o_init.c --Amy
+ * dilithium crystal must be first */
 GEM("dilithium crystal", "white",      1,  0, 4500, 57, 57, 15,  5, GEMSTONE, CLR_WHITE, 54),
 GEM("magicite crystal","blue",	   1,  0, 5000, 62, 62, 15, 11, GEMSTONE, CLR_BRIGHT_BLUE, 53),
 GEM("wonder stone", "violet",          1,/*3*/  0, 5000, 62, 62, 15, 13, GEMSTONE, CLR_MAGENTA, 52),
@@ -6812,6 +6813,7 @@ GEM("worthless piece of violet glass", "violet", 328, 0, 0, 6, 6, 6, 5, GLASS, C
 /* Placement note: there is a wishable subrange for   
  * "gray stones" in the o_ranges[] array in objnam.c  
  * that is currently everything between luckstones and flint (inclusive).
+ * luckstone must be first
  */
 ROCK("luckstone", "gray",			0, 60,  0,   60, 15, 15, 1, 10, 7, MINERAL, CLR_GRAY, 1),
 ROCK("healthstone", "gray",			0, 80,  0,   60, 15, 15, 1, 10, 7, MINERAL, CLR_GRAY, 1),

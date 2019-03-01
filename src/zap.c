@@ -29,7 +29,6 @@ STATIC_DCL boolean zap_updown(struct obj *);
 STATIC_DCL int zhitm(struct monst *,int,int, struct obj **);
 STATIC_DCL void zhitu(int,int,const char *,XCHAR_P,XCHAR_P);
 STATIC_DCL void revive_egg(struct obj *);
-STATIC_DCL void throwstorm(struct obj *, int, int, int);
 STATIC_DCL boolean zap_steed(struct obj *);
 
 #ifdef OVLB
@@ -197,7 +196,10 @@ struct obj *otmp;
 
 		dmg = d(10, 10) + rnz(u.ulevel * 4);
 
-		if (distu(mtmp->mx, mtmp->my) > 3) break;
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
 		pline("%s is battered!", Monnam(mtmp));
 		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 
@@ -220,11 +222,155 @@ struct obj *otmp;
 
 		break;
 
+	case SPE_BLOOD_STREAM:
+		{
+			int streambonus = 0;
+			if (u.uhp < (u.uhpmax * 4 / 5)) streambonus = 20;
+			if (u.uhp < (u.uhpmax * 3 / 5)) streambonus = 40;
+			if (u.uhp < (u.uhpmax * 2 / 5)) streambonus = 50;
+			if (u.uhp < (u.uhpmax * 3 / 10)) streambonus = 60;
+			if (u.uhp < (u.uhpmax * 1 / 5)) streambonus = 75;
+			if (u.uhp < (u.uhpmax * 1 / 10)) streambonus = 100;
+
+			dmg = d(4,10) + rnd(u.ulevel) + (spell_damage_bonus(SPE_BLOOD_STREAM) * 3);
+			dmg *= (100 + streambonus);
+			dmg /= 100;
+			if (flags.female) {
+				dmg *= 6;
+				dmg /= 5;
+			}
+			if (dmg > 0) {
+				pline("%s is drenched with your menstruation!", Monnam(mtmp));
+				(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+			}
+
+		}
+
+		break;
+
+	case SPE_GEYSER:
+
+		if (is_swimmer(mtmp->data) || amphibious(mtmp->data) || dmgtype(mtmp->data, AD_WET)) {
+			pline("%s is unaffected!", Monnam(mtmp));
+			break;
+		}
+
+		dmg = d(4,12) + rnd(u.ulevel);
+		if(dbldam) dmg *= 2;
+		dmg += skilldmg;
+
+		if (dmg > 0) pline("%s is buffeted by the water.", Monnam(mtmp));
+		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+
+		break;
+
+	case SPE_SHINING_WAVE:
+
+		{
+			int wavebonus = 0;
+			if (ACURR(A_STR) <= 18) wavebonus = ACURR(A_STR);
+			else if (ACURR(A_STR) <= STR18(10)) wavebonus = 19;
+			else if (ACURR(A_STR) <= STR18(20)) wavebonus = 20;
+			else if (ACURR(A_STR) <= STR18(30)) wavebonus = 21;
+			else if (ACURR(A_STR) <= STR18(40)) wavebonus = 22;
+			else if (ACURR(A_STR) <= STR18(50)) wavebonus = 23;
+			else if (ACURR(A_STR) <= STR18(60)) wavebonus = 24;
+			else if (ACURR(A_STR) <= STR18(70)) wavebonus = 25;
+			else if (ACURR(A_STR) <= STR18(80)) wavebonus = 26;
+			else if (ACURR(A_STR) <= STR18(90)) wavebonus = 27;
+			else if (ACURR(A_STR) <= STR19(19)) wavebonus = 28;
+			else if (ACURR(A_STR) <= STR19(20)) wavebonus = 29;
+			else if (ACURR(A_STR) <= STR19(21)) wavebonus = 30;
+			else if (ACURR(A_STR) <= STR19(22)) wavebonus = 31;
+			else if (ACURR(A_STR) <= STR19(23)) wavebonus = 32;
+			else if (ACURR(A_STR) <= STR19(24)) wavebonus = 33;
+			else wavebonus = 34;
+
+			dmg = d(5 + spell_damage_bonus(SPE_SHINING_WAVE), wavebonus);
+
+			if (resists_magm(mtmp)) {
+				if (flags.female) {
+					pline("%s is unaffected!", Monnam(mtmp));
+					break;
+				} else dmg /= 2;
+			}
+			if (dmgtype(mtmp->data, AD_SOUN)) {
+				if (flags.female) {
+					pline("%s is unaffected!", Monnam(mtmp));
+					break;
+				} else dmg /= 2;
+			}
+
+			if (dmg > 0) {
+				pline("%s is hit by the wave!", Monnam(mtmp));
+				(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+			}
+
+		}
+
+		break;
+
+	case SPE_NERVE_POISON:
+
+		dmg = 0;
+
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
+
+		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+
+			pline("%s's nerves are poisoned!", Monnam(mtmp));
+			if (!dmgtype(mtmp->data, AD_PLYS)) {
+				mtmp->mcanmove = 0;
+				mtmp->mfrozen = rnd(4);
+				mtmp->mstrategy &= ~STRAT_WAITFORU;
+			}
+
+			if (!resists_poison(mtmp)) {
+				if (!rn2(500)) {
+					Your("poison was deadly...");
+					dmg = (mtmp->mhp * 10);
+				} else dmg = rn1(10, 6);
+
+			} else pline("%s is unaffected by the poison.", Monnam(mtmp));
+
+			if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+
+		}
+
+		break;
+
+	case SPE_GIANT_FOOT:
+
+		dmg = 0;
+
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
+
+		dmg = d(6,18) + rnd(u.ulevel * 2);
+		dmg += (skilldmg * 5);
+		if (amorphous(mtmp->data)) dmg /= rn1(3, 3);
+		if (noncorporeal(mtmp->data)) dmg = 0;
+		if (is_whirly(mtmp->data)) dmg /= rnd(3);
+
+		pline("A giant foot falls on %s!", mon_nam(mtmp));
+		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+		else pline("%s is unaffected.", Monnam(mtmp));
+
+		break;
+
 	case SPE_VOLT_ROCK:
 
 		dmg = 0;
 
-		if (distu(mtmp->mx, mtmp->my) > 3) break;
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
 		if (!which_armor(mtmp, W_ARMH)) {
 			pline("Your rock hits %s's %s!", mon_nam(mtmp), mbodypart(mtmp, HEAD));
 			dmg += (10 + rnd(u.ulevel) + skilldmg);
@@ -234,6 +380,153 @@ struct obj *otmp;
 			dmg += (10 + rnd(u.ulevel) + skilldmg);
 		}
 		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+
+		break;
+
+	case SPE_BUBBLING_HOLE:
+
+		dmg = 0;
+
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
+
+		    if (Can_rise_up(mtmp->mx, mtmp->my, &u.uz)) {
+			register int tolev = depth(&u.uz)-1;
+			d_level tolevel;
+
+			get_level(&tolevel, tolev);
+			/* insurance against future changes... */
+			if(on_level(&tolevel, &u.uz)) goto skipmsg;
+			pline("%s rises up, through the %s!", Monnam(mtmp), ceiling(mtmp->mx, mtmp->my));
+			migrate_to_level(mtmp, ledger_no(&tolevel), MIGR_RANDOM, (coord *)0);
+			break;
+		    } else {
+skipmsg:
+			pline("%s hits %s %s on the ceiling.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, HEAD));
+
+			dmg = d(10, 20) + rnz(u.ulevel * 5);
+
+			if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+
+		    }
+
+		break;
+
+	case SPE_STRANGLING:
+
+		dmg = 0;
+
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
+
+		if (breathless(mtmp->data)) {
+			pline("%s doesn't need to breathe and therefore cannot be strangled!", Monnam(mtmp));
+			break;
+		}
+
+		dmg = rnd(10) + rnd(u.ulevel * rnd(2)) + skilldmg;
+		if (humanoid(mtmp->data)) {
+			dmg += rnd(u.ulevel);
+			pline("%s is gasping for air!", Monnam(mtmp));
+		} else pline("%s is being strangled.", Monnam(mtmp));
+
+		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+
+		break;
+
+	case SPE_ARMOR_SMASH:
+
+		dmg = 0;
+
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
+
+		{
+
+			/* destroy random armor piece worn by the victim; if it destroys one, stop, but if it tries to destroy
+			 * an artifact (which is immune to this effect), keep rolling for other slots --Amy */
+
+			struct obj *otmpS;
+
+			int astries = 200;
+			int diceroll;
+armorsmashrepeat:
+			diceroll = rnd(5);
+
+			switch (diceroll) {
+				case 1:
+					if (mtmp->misc_worn_check & W_ARMS) {
+					    otmpS = which_armor(mtmp, W_ARMS);
+					    if (otmpS->oartifact) break;
+					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+					    m_useup(mtmp, otmpS);
+					    goto armorsmashdone;
+					}
+					break;
+				case 2:
+					if (mtmp->misc_worn_check & W_ARMG) {
+					    otmpS = which_armor(mtmp, W_ARMG);
+					    if (otmpS->oartifact) break;
+					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+					    m_useup(mtmp, otmpS);
+					    goto armorsmashdone;
+					}
+					break;
+				case 3:
+					if (mtmp->misc_worn_check & W_ARMF) {
+					    otmpS = which_armor(mtmp, W_ARMF);
+					    if (otmpS->oartifact) break;
+					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+					    m_useup(mtmp, otmpS);
+					    goto armorsmashdone;
+					}
+					break;
+				case 4:
+					if (mtmp->misc_worn_check & W_ARMH) {
+					    otmpS = which_armor(mtmp, W_ARMH);
+					    if (otmpS->oartifact) break;
+					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+					    m_useup(mtmp, otmpS);
+					    goto armorsmashdone;
+					}
+					break;
+				case 5:
+					if (mtmp->misc_worn_check & W_ARMC) {
+					    otmpS = which_armor(mtmp, W_ARMC);
+					    if (otmpS->oartifact) break;
+					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+					    m_useup(mtmp, otmpS);
+					    goto armorsmashdone;
+					} else if (mtmp->misc_worn_check & W_ARM) {
+					    otmpS = which_armor(mtmp, W_ARM);
+					    if (otmpS->oartifact) break;
+					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+					    m_useup(mtmp, otmpS);
+					    goto armorsmashdone;
+					} else if (mtmp->misc_worn_check & W_ARMU) {
+					    otmpS = which_armor(mtmp, W_ARMU);
+					    if (otmpS->oartifact) break;
+					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
+					    m_useup(mtmp, otmpS);
+					    goto armorsmashdone;
+					}
+					break;
+			}
+
+			if (astries > 0) {
+				astries--;
+				goto armorsmashrepeat;
+			} else pline("%s doesn't seem to be wearing any armor that can be destroyed...", Monnam(mtmp));
+
+		}
+
+armorsmashdone:
 
 		break;
 
@@ -280,6 +573,15 @@ struct obj *otmp;
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
+		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+		break;
+
+	case SPE_PARTICLE_CANNON:
+		dmg = d(5, 10);
+		dmg += rnd(u.ulevel * rno(3));
+		if(dbldam) dmg *= 2;
+		dmg += (skilldmg * rnd(10));
+		if (canseemon(mtmp)) pline("%s is caught in the particle beam!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		break;
 
@@ -3115,6 +3417,15 @@ struct obj *obj, *otmp;
 	case SPE_ENERGY_BOLT:
 	case SPE_DREAM_EATER:
 	case SPE_VOLT_ROCK:
+	case SPE_GIANT_FOOT:
+	case SPE_ARMOR_SMASH:
+	case SPE_BLOOD_STREAM:
+	case SPE_SHINING_WAVE:
+	case SPE_STRANGLING:
+	case SPE_PARTICLE_CANNON:
+	case SPE_NERVE_POISON:
+	case SPE_GEYSER:
+	case SPE_BUBBLING_HOLE:
 	case SPE_BATTERING_RAM:
 	case SPE_WATER_FLAME:
 	case WAN_GOOD_NIGHT:
@@ -4746,7 +5057,7 @@ int type;
 }
 
 
-STATIC_OVL void
+void
 throwstorm(obj, skilldmg, min, range)
 register struct obj	*obj;
 int min, range, skilldmg;
@@ -4754,12 +5065,12 @@ int min, range, skilldmg;
 	boolean didblast = FALSE;
 	int failcheck;
 	int sx, sy;
-	int type = ZT_SPELL(obj->otyp - SPE_MAGIC_MISSILE);
+	int type = (obj->otyp == SPE_FIREWORKS) ? ZT_SPELL(SPE_FIREBALL - SPE_MAGIC_MISSILE) : ZT_SPELL(obj->otyp - SPE_MAGIC_MISSILE);
 	int expl_type;
 	int num = 2 + rn2(3);
+	if (obj->otyp == SPE_FIREWORKS) num = 2 + rn2(8);
 
-
-	if (tech_inuse(T_SIGIL_CONTROL)) {
+	if (obj->otyp != SPE_FIREWORKS && tech_inuse(T_SIGIL_CONTROL)) {
 	    throwspell();
 	    sx = u.dx; sy = u.dy;
 	} else {
@@ -4895,6 +5206,18 @@ boolean ordinary;
 
 		case SPE_BATTERING_RAM:
 
+			break;
+
+		case SPE_GIANT_FOOT:
+		case SPE_ARMOR_SMASH:
+		case SPE_BLOOD_STREAM:
+		case SPE_SHINING_WAVE:
+		case SPE_STRANGLING:
+		case SPE_PARTICLE_CANNON:
+		case SPE_NERVE_POISON:
+		case SPE_GEYSER:
+		case SPE_BUBBLING_HOLE:
+			/* todo */
 			break;
 
 		case SPE_VOLT_ROCK:
@@ -6375,6 +6698,15 @@ struct obj *obj;	/* wand or spell */
 		case WAN_DREAM_EATER:
 		case SPE_DREAM_EATER:
 		case SPE_VOLT_ROCK:
+		case SPE_GIANT_FOOT:
+		case SPE_ARMOR_SMASH:
+		case SPE_BLOOD_STREAM:
+		case SPE_SHINING_WAVE:
+		case SPE_STRANGLING:
+		case SPE_PARTICLE_CANNON:
+		case SPE_NERVE_POISON:
+		case SPE_GEYSER:
+		case SPE_BUBBLING_HOLE:
 		case SPE_WATER_FLAME:
 		case SPE_MANA_BOLT:
 		case SPE_SNIPER_BEAM:
@@ -6755,7 +7087,7 @@ struct obj *obj;
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 
-		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj);
+		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj);
 	    }
 
 	}
@@ -6789,7 +7121,7 @@ struct obj *obj;
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 
-		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
+		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
 			    bhitm, bhito, &obj);
 	    }
 	    /* give a clue if obj_zapped */

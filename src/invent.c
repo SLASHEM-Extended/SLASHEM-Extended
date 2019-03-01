@@ -12935,7 +12935,7 @@ struct obj *obj;
 			case SPE_ONE_POINT_SHOOT:
 				pline("This spell works only if you have a bullet in your inventory, which will be used up. You then get a target cursor that you can place on a monster, which then takes a lot of damage. If the bullet was positively enchanted, the damage will be even higher."); break;
 			case SPE_BLOOD_STREAM:
-				pline("A spell that lets you use your menstruation as a weapon, shooting a stream of blood in a direction that can hit several enemies. However, you lose 20%% of your current HP. The damage it deals is higher the less health you have remaining after that loss, and if you're female it deals even more damage."); break;
+				pline("A spell that lets you use your menstruation as a weapon, shooting a stream of blood in a direction that can hit several enemies. However, you take damage equal to up to 20%% of your maximum HP. The damage it deals is higher the less health you have remaining after that loss, and if you're female it deals even more damage."); break;
 			case SPE_SHINING_WAVE:
 				pline("This is a rather expensive spell that requires five times as much mana as you'd expect. It shoots a beam in a direction of your choice that deals great damage. Monsters that resist magic or are sound-based are immune if you're female, resistant if you're male."); break;
 			case SPE_GROUND_STOMP:

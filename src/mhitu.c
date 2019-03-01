@@ -7950,7 +7950,7 @@ dopois:
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -8030,7 +8030,7 @@ dopois:
 
 	    case AD_GRAV:
 
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
 
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -10952,7 +10952,7 @@ do_stone2:
 		if (mtmp->mcan) break;
 		You_feel("an energy irradiation!");
 
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -11029,7 +11029,7 @@ do_stone2:
 	    case AD_GRAV:
 		if (mtmp->mcan) break;
 
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 
 		pline("You're turned upside down...");
 		phase_door(0);
@@ -13752,7 +13752,7 @@ common:
 		break;
 
 	    case AD_NEXU:
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -13830,7 +13830,7 @@ common:
 
 	    case AD_GRAV:
 
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 
 		pline("Gravity warps around you...");
 		phase_door(0);
@@ -16263,7 +16263,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		int dmg = dmgplus;
 
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
 
 		switch (rnd(7)) {
 
@@ -16349,7 +16349,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    pline("%s wiggles a %s, and suddenly you stand upside down...", Monnam(mtmp), mbodypart(mtmp, FINGER) );
 		    stop_occupation();
 
-		if (level.flags.noteleport || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
+		if (level.flags.noteleport || u.antitelespelltimeout || u.uhave.amulet || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
 
 		phase_door(0);
 		pushplayer();
@@ -19525,6 +19525,18 @@ register struct attack *mattk;
 
 		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+
+	}
+
+	if (u.bodyfluideffect && !resists_acid(mtmp)) {
+
+		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(4) ) <= 0) {
 			pline("%s dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

@@ -1717,7 +1717,7 @@ int magic; /* 0=Physical, otherwise skill level */
 		You_cant("jump; you have no legs!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
-	} else if (!magic && !Jumping) {
+	} else if (!magic && !Jumping && !(u.horsehopturns && u.usteed) ) {
 		You_cant("jump very far.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -4193,7 +4193,7 @@ wand_explode(obj, hero_broke)
     case WAN_TELEPORTATION:
 		/* WAC make tele trap if you broke a wand of teleport */
 		/* But make sure the spot is valid! */
-	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport &&
+	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport && !u.antitelespelltimeout &&
 		    !u.uswallow && !On_stairs(u.ux, u.uy) && (!IS_FURNITURE(levl[u.ux][u.uy].typ) &&
 		    !IS_ROCK(levl[u.ux][u.uy].typ) &&
 		    !closed_door(u.ux, u.uy) && !t_at(u.ux, u.uy))) {
@@ -4214,7 +4214,7 @@ wand_explode(obj, hero_broke)
 	break;
     case WAN_BANISHMENT:
 
-	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport &&
+	    if ((obj->spe > 2) && rn2(obj->spe - 2) && !level.flags.noteleport && !u.antitelespelltimeout &&
 		    !u.uswallow && !On_stairs(u.ux, u.uy) && (!IS_FURNITURE(levl[u.ux][u.uy].typ) &&
 		    !IS_ROCK(levl[u.ux][u.uy].typ) &&
 		    !Is_knox(&u.uz) && !Is_blackmarket(&u.uz) && !Is_aligned_quest(&u.uz) &&

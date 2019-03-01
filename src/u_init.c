@@ -9373,12 +9373,19 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.bodyfluideffect = 0;
+	u.antitelespelltimeout = 0;
+	u.breathenhancetimer = 0;
 	u.mushroompoleused = 0;
 	u.automorefuckthisshit = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;
 	u.riennevaplus = 0;
 	u.stairscumslowing = 0;
+	u.swappositioncount = 0;
+	u.contingencyturns = 0;
+	u.horsehopturns = 0;
+	u.ragnarokspelltimeout = 0;
 
 	u.copwantedlevel = 0;
 
@@ -11808,11 +11815,11 @@ u_init()
 	case PM_OCCULT_MASTER:
 
 		switch (rnd(5)) {                
-		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_FORGOTTEN_SPELL; break;
-		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_BACKFIRE; break;
+		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_PREACHING; break;
+		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_STRANGLING; break;
 		    case 3: OccultMaster[O_BOOK1].trotyp = SPE_MIMICRY; break;
 		    case 4: OccultMaster[O_BOOK1].trotyp = SPE_MANA_BATTERY; break;
-		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_FORBIDDEN_KNOWLEDGE; break;
+		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_RESIST_PARALYSIS; break;
 		    default: break;
 		}
 		switch (rnd(5)) {                
@@ -11908,8 +11915,8 @@ u_init()
 	case PM_CHAOS_SORCEROR:
 
 		switch (rnd(5)) {
-		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_MESSAGE; break;
-		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_RUMOR; break;
+		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_LINE_LOSS; break;
+		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_PET_SYRINGE; break;
 		    case 3: ChaosSorceror[C_BOOK1].trotyp = SPE_CURE_RANDOM_STATUS; break;
 		    case 4: ChaosSorceror[C_BOOK1].trotyp = SPE_BERSERK; break;
 		    case 5: ChaosSorceror[C_BOOK1].trotyp = SPE_RESIST_RANDOM_ELEMENT; break;
@@ -13554,8 +13561,8 @@ u_init()
 
 	case 114:
 		switch (rnd(5)) {
-		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_MESSAGE; break;
-		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_RUMOR; break;
+		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_LINE_LOSS; break;
+		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_PET_SYRINGE; break;
 		    case 3: ChaosSorceror[C_BOOK1].trotyp = SPE_CURE_RANDOM_STATUS; break;
 		    case 4: ChaosSorceror[C_BOOK1].trotyp = SPE_BERSERK; break;
 		    case 5: ChaosSorceror[C_BOOK1].trotyp = SPE_RESIST_RANDOM_ELEMENT; break;
@@ -13595,11 +13602,11 @@ u_init()
 
 	case 116:
 		switch (rnd(5)) {                
-		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_FORGOTTEN_SPELL; break;
-		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_BACKFIRE; break;
+		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_PREACHING; break;
+		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_STRANGLING; break;
 		    case 3: OccultMaster[O_BOOK1].trotyp = SPE_MIMICRY; break;
 		    case 4: OccultMaster[O_BOOK1].trotyp = SPE_MANA_BATTERY; break;
-		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_FORBIDDEN_KNOWLEDGE; break;
+		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_RESIST_PARALYSIS; break;
 		    default: break;
 		}
 		switch (rnd(5)) {                
@@ -15054,8 +15061,8 @@ u_init()
 
 	case 114:
 		switch (rnd(5)) {
-		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_MESSAGE; break;
-		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_RUMOR; break;
+		    case 1: ChaosSorceror[C_BOOK1].trotyp = SPE_LINE_LOSS; break;
+		    case 2: ChaosSorceror[C_BOOK1].trotyp = SPE_PET_SYRINGE; break;
 		    case 3: ChaosSorceror[C_BOOK1].trotyp = SPE_CURE_RANDOM_STATUS; break;
 		    case 4: ChaosSorceror[C_BOOK1].trotyp = SPE_BERSERK; break;
 		    case 5: ChaosSorceror[C_BOOK1].trotyp = SPE_RESIST_RANDOM_ELEMENT; break;
@@ -15095,11 +15102,11 @@ u_init()
 
 	case 116:
 		switch (rnd(5)) {                
-		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_FORGOTTEN_SPELL; break;
-		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_BACKFIRE; break;
+		    case 1: OccultMaster[O_BOOK1].trotyp = SPE_PREACHING; break;
+		    case 2: OccultMaster[O_BOOK1].trotyp = SPE_STRANGLING; break;
 		    case 3: OccultMaster[O_BOOK1].trotyp = SPE_MIMICRY; break;
 		    case 4: OccultMaster[O_BOOK1].trotyp = SPE_MANA_BATTERY; break;
-		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_FORBIDDEN_KNOWLEDGE; break;
+		    case 5: OccultMaster[O_BOOK1].trotyp = SPE_RESIST_PARALYSIS; break;
 		    default: break;
 		}
 		switch (rnd(5)) {                

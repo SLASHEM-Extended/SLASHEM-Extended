@@ -1434,8 +1434,8 @@ dobreathe()
 
 	if ((mattk->adtyp != AD_MAGM) && (mattk->adtyp != AD_RBRE) && (mattk->adtyp != AD_FIRE) && (mattk->adtyp != AD_COLD) && (mattk->adtyp != AD_SLEE) && (mattk->adtyp != AD_DISN) && (mattk->adtyp != AD_ELEC) && (mattk->adtyp != AD_DRST) && (mattk->adtyp != AD_ACID) && (mattk->adtyp != AD_LITE) && (mattk->adtyp != AD_SPC2)  ) energy = 30;
 
-	if (mattk->adtyp == AD_DISN) energy = 100;
-	else if (mattk->adtyp == AD_RBRE) energy = 30; /* can randomly be a disintegration beam */
+	if (mattk->adtyp == AD_DISN) energy = u.breathenhancetimer ? 66 : 100;
+	else if (mattk->adtyp == AD_RBRE) energy = u.breathenhancetimer ? 20 : 30; /* can randomly be a disintegration beam */
 
 	if (u.uen < energy) {
 	    You("don't have enough energy to breathe! You need at least %d mana!",energy);
@@ -1459,8 +1459,14 @@ dobreathe()
 
 	if ((mattk->adtyp != AD_MAGM) && (mattk->adtyp != AD_RBRE) && (mattk->adtyp != AD_FIRE) && (mattk->adtyp != AD_COLD) && (mattk->adtyp != AD_SLEE) && (mattk->adtyp != AD_DISN) && (mattk->adtyp != AD_ELEC) && (mattk->adtyp != AD_DRST) && (mattk->adtyp != AD_ACID) && (mattk->adtyp != AD_LITE) && (mattk->adtyp != AD_SPC2)  ) adtyp = rnd(AD_SPC2);
 
-	    buzz((int) (20 + adtyp - 1), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
-		u.ux, u.uy, u.dx, u.dy);
+		if (u.breathenhancetimer) {
+			buzz((int) (20 + adtyp - 1), (rn2(2) ? ((int)mattk->damn * 3 / 2) : ((int)mattk->damd * 3 / 2) ), u.ux, u.uy, u.dx, u.dy);
+
+		} else {
+			buzz((int) (20 + adtyp - 1), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ), u.ux, u.uy, u.dx, u.dy);
+
+		}
+
 	}
 	return(1);
 }

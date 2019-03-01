@@ -254,6 +254,41 @@ nh_timeout()
 		}
 	}
 
+	if (u.contingencyturns) {
+		u.contingencyturns--;
+		if (!u.contingencyturns) pline("The effect of contingency ends.");
+		if (u.contingencyturns < 0) u.contingencyturns = 0; /* fail safe */
+	}
+
+	if (u.breathenhancetimer) {
+		u.breathenhancetimer--;
+		if (!u.breathenhancetimer) pline("Your breath is normal again.");
+		if (u.breathenhancetimer < 0) u.breathenhancetimer = 0; /* fail safe */
+	}
+
+	if (u.bodyfluideffect) {
+		u.bodyfluideffect--;
+		if (!u.bodyfluideffect) pline("Your acidic skin disappears.");
+		if (u.bodyfluideffect < 0) u.bodyfluideffect = 0; /* fail safe */
+	}
+
+	if (u.antitelespelltimeout) {
+		u.antitelespelltimeout--;
+		if (!u.antitelespelltimeout) pline("The anti-teleportation field dissipates.");
+		if (u.antitelespelltimeout < 0) u.antitelespelltimeout = 0; /* fail safe */
+	}
+
+	if (u.horsehopturns) {
+		u.horsehopturns--;
+		if (!u.horsehopturns) pline("You can no longer horse hop.");
+		if (u.horsehopturns < 0) u.horsehopturns = 0; /* fail safe */
+	}
+
+	if (u.ragnarokspelltimeout) {
+		u.ragnarokspelltimeout--;
+		if (u.ragnarokspelltimeout < 0) u.ragnarokspelltimeout = 0; /* fail safe */
+	}
+
 	if (u.sokosolveboulder) {
 		u.sokosolveboulder--;
 		if (!u.sokosolveboulder && issokosolver) pline("You're capable of using #monster to create a boulder.");

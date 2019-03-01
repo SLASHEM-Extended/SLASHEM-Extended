@@ -2883,6 +2883,14 @@ trapsdone:
 
 		}
 
+		if (u.swappositioncount) {
+
+			u.swappositioncount--;
+			if (u.swappositioncount < 0) u.swappositioncount = 0;
+			if (u.swappositioncount == 0) pline("Too late, you can no longer displace monsters.");
+
+		}
+
 		if (FemaleTrapNatalje) {
 			if ((u.ux != u.nataljetrapx) || (u.uy != u.nataljetrapy)) {
 				u.nataljetrapturns = moves;
@@ -10112,47 +10120,47 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_METAL_GUARD].oc_name = "metallicheskaya zashchita";
 	obj_descr[SPE_MAGIC_WHISTLING].oc_name = "volshebnyy svist";
 
-	/* todo area */
+	obj_descr[SPE_ORE_MINING].oc_name = "dobycha rudy";
+	obj_descr[SPE_BOILER_KABOOM].oc_name = "zvuk vzryva kotla";
+	obj_descr[SPE_DEFOG].oc_name = "predotvrashcheniye zapotevaniya";
+	obj_descr[SPE_SWAP_POSITION].oc_name = "pozitsiya svop";
+	obj_descr[SPE_SHUFFLE_MONSTER].oc_name = "sluchaynyy monstr";
+	obj_descr[SPE_PET_SYRINGE].oc_name = "domashneye zhivotnoye shprits";
+	obj_descr[SPE_BUC_KNOWLEDGE].oc_name = "blagoslovennoye proklyatoye znaniye";
+	obj_descr[SPE_PREACHING].oc_name = "propovedovaniye";
+	obj_descr[SPE_RESIST_PARALYSIS].oc_name = "soprotivlyat'sya paralichu";
+	obj_descr[SPE_KEEP_SATIATION].oc_name = "prodolzhay nasyshchat'sya";
+	obj_descr[SPE_TECH_BOOST].oc_name = "tekhnicheskaya podderzhka";
+	obj_descr[SPE_CONTINGENCY].oc_name = "nepredvidennyye obstoyatel'stva";
+	obj_descr[SPE_AULE_SMITHING].oc_name = "kuznets";
+	obj_descr[SPE_HORSE_HOP].oc_name = "konnyy pryzhok";
+	obj_descr[SPE_LINE_LOSS].oc_name = "poterya linii";
+	obj_descr[SPE_TACTICAL_NUKE].oc_name = "takticheskoye yadernoye oruzhiye";
+	obj_descr[SPE_RAGNAROK].oc_name = "bozhiy rassvet";
+	obj_descr[SPE_ARMOR_SMASH].oc_name = "razrusheniye dospekhov";
+	obj_descr[SPE_STRANGLING].oc_name = "zadykhayushchiysya";
+	obj_descr[SPE_PARTICLE_CANNON].oc_name = "pushka chastits";
+	obj_descr[SPE_ONE_POINT_SHOOT].oc_name = "odna tochka strelyat'";
+	obj_descr[SPE_BLOOD_STREAM].oc_name = "krovotok";
+	obj_descr[SPE_SHINING_WAVE].oc_name = "siyayushchaya volna";
+	obj_descr[SPE_GROUND_STOMP].oc_name = "topat' zemlyu";
+	obj_descr[SPE_DIRECTIVE].oc_name = "direktiva";
+	obj_descr[SPE_NERVE_POISON].oc_name = "nervnyy yad";
+	obj_descr[SPE_POWDER_SPRAY].oc_name = "poroshkovyy sprey";
+	obj_descr[SPE_FIREWORKS].oc_name = "feyyerverk";
+	obj_descr[SPE_AIMBOT_LIGHTNING].oc_name = "pritsel molnii";
+	obj_descr[SPE_ENHANCE_BREATH].oc_name = "uluchshit' dykhaniye";
+	obj_descr[SPE_GOUGE_DICK].oc_name = "vybit' chlen";
+	obj_descr[SPE_BODYFLUID_STRENGTHENING].oc_name = "ukrepleniye telesnoy zhidkosti";
+	obj_descr[SPE_GEYSER].oc_name = "geyzer";
+	obj_descr[SPE_BUBBLING_HOLE].oc_name = "puzyrchataya dyra";
+	obj_descr[SPE_PURIFICATION].oc_name = "ochistka";
+	obj_descr[SPE_ADD_SPELL_MEMORY].oc_name = "dobavit' pamyat' zaklinaniy";
+	obj_descr[SPE_NEXUSPORT].oc_name = "port svyazi";
+	obj_descr[SPE_GIANT_FOOT].oc_name = "gigantskaya noga";
+	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "anti-teleportatsiya";
 
-	obj_descr[SPE_ORE_MINING].oc_name = "placeholder";
-	obj_descr[SPE_BOILER_KABOOM].oc_name = "placeholder";
-	obj_descr[SPE_DEFOG].oc_name = "placeholder";
-	obj_descr[SPE_SWAP_POSITION].oc_name = "placeholder";
-	obj_descr[SPE_SHUFFLE_MONSTER].oc_name = "placeholder";
-	obj_descr[SPE_PET_SYRINGE].oc_name = "placeholder";
-	obj_descr[SPE_BUC_KNOWLEDGE].oc_name = "placeholder";
-	obj_descr[SPE_PREACHING].oc_name = "placeholder";
-	obj_descr[SPE_RESIST_PARALYSIS].oc_name = "placeholder";
-	obj_descr[SPE_KEEP_SATIATION].oc_name = "placeholder";
-	obj_descr[SPE_TECH_BOOST].oc_name = "placeholder";
-	obj_descr[SPE_CONTINGENCY].oc_name = "placeholder";
-	obj_descr[SPE_AULE_SMITHING].oc_name = "placeholder";
-	obj_descr[SPE_HORSE_HOP].oc_name = "placeholder";
-	obj_descr[SPE_LINE_LOSS].oc_name = "placeholder";
-	obj_descr[SPE_TACTICAL_NUKE].oc_name = "placeholder";
-	obj_descr[SPE_RAGNAROK].oc_name = "placeholder";
-	obj_descr[SPE_ARMOR_SMASH].oc_name = "placeholder";
-	obj_descr[SPE_STRANGLING].oc_name = "placeholder";
-	obj_descr[SPE_PARTICLE_CANNON].oc_name = "placeholder";
-	obj_descr[SPE_ONE_POINT_SHOOT].oc_name = "placeholder";
-	obj_descr[SPE_BLOOD_STREAM].oc_name = "placeholder";
-	obj_descr[SPE_SHINING_WAVE].oc_name = "placeholder";
-	obj_descr[SPE_GROUND_STOMP].oc_name = "placeholder";
-	obj_descr[SPE_DIRECTIVE].oc_name = "placeholder";
-	obj_descr[SPE_NERVE_POISON].oc_name = "placeholder";
-	obj_descr[SPE_POWDER_SPRAY].oc_name = "placeholder";
-	obj_descr[SPE_FIREWORKS].oc_name = "placeholder";
-	obj_descr[SPE_AIMBOT_LIGHTNING].oc_name = "placeholder";
-	obj_descr[SPE_ENHANCE_BREATH].oc_name = "placeholder";
-	obj_descr[SPE_GOUGE_DICK].oc_name = "placeholder";
-	obj_descr[SPE_BODYFLUID_STRENGTHENING].oc_name = "placeholder";
-	obj_descr[SPE_GEYSER].oc_name = "placeholder";
-	obj_descr[SPE_BUBBLING_HOLE].oc_name = "placeholder";
-	obj_descr[SPE_PURIFICATION].oc_name = "placeholder";
-	obj_descr[SPE_ADD_SPELL_MEMORY].oc_name = "placeholder";
-	obj_descr[SPE_NEXUSPORT].oc_name = "placeholder";
-	obj_descr[SPE_GIANT_FOOT].oc_name = "placeholder";
-	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "placeholder";
+	/* todo area */
 
 	{
 
@@ -11124,47 +11132,47 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_METAL_GUARD].oc_name = "metall muhofazachi";
 	obj_descr[SPE_MAGIC_WHISTLING].oc_name = "sehrli hushtak";
 
-	/* todo area */
+	obj_descr[SPE_ORE_MINING].oc_name = "ruda qazib olish";
+	obj_descr[SPE_BOILER_KABOOM].oc_name = "qozon kabeli";
+	obj_descr[SPE_DEFOG].oc_name = "ham tuman";
+	obj_descr[SPE_SWAP_POSITION].oc_name = "almashtirish holati";
+	obj_descr[SPE_SHUFFLE_MONSTER].oc_name = "aralashuvchi hayvon";
+	obj_descr[SPE_PET_SYRINGE].oc_name = "uyda ishlatiladigan shprits";
+	obj_descr[SPE_BUC_KNOWLEDGE].oc_name = "muborak la'nati la'natlangan bilim";
+	obj_descr[SPE_PREACHING].oc_name = "voizlik qilish";
+	obj_descr[SPE_RESIST_PARALYSIS].oc_name = "falajga qarshi turish";
+	obj_descr[SPE_KEEP_SATIATION].oc_name = "to'yinishni saqlang";
+	obj_descr[SPE_TECH_BOOST].oc_name = "texnologiyani kuchaytirish";
+	obj_descr[SPE_CONTINGENCY].oc_name = "ehtimollik";
+	obj_descr[SPE_AULE_SMITHING].oc_name = "juda kuchli soqchi ishi";
+	obj_descr[SPE_HORSE_HOP].oc_name = "ot otdi";
+	obj_descr[SPE_LINE_LOSS].oc_name = "yo'nalish yo'qolishi";
+	obj_descr[SPE_TACTICAL_NUKE].oc_name = "taktik yadro raketasi";
+	obj_descr[SPE_RAGNAROK].oc_name = "xudo tongi";
+	obj_descr[SPE_ARMOR_SMASH].oc_name = "qurol-yarog'";
+	obj_descr[SPE_STRANGLING].oc_name = "bo'g'ilib qolgan";
+	obj_descr[SPE_PARTICLE_CANNON].oc_name = "zarracha to'pi";
+	obj_descr[SPE_ONE_POINT_SHOOT].oc_name = "bitta nuqta olov";
+	obj_descr[SPE_BLOOD_STREAM].oc_name = "qon oqimi";
+	obj_descr[SPE_SHINING_WAVE].oc_name = "to'lqin to'lqinlari";
+	obj_descr[SPE_GROUND_STOMP].oc_name = "er osti suvlari";
+	obj_descr[SPE_DIRECTIVE].oc_name = "direktiv";
+	obj_descr[SPE_NERVE_POISON].oc_name = "asab zahari";
+	obj_descr[SPE_POWDER_SPRAY].oc_name = "chang spreyi";
+	obj_descr[SPE_FIREWORKS].oc_name = "havo fisekleri";
+	obj_descr[SPE_AIMBOT_LIGHTNING].oc_name = "bot botishini maqsad";
+	obj_descr[SPE_ENHANCE_BREATH].oc_name = "nafasni kuchaytirish";
+	obj_descr[SPE_GOUGE_DICK].oc_name = "o'ymok dik";
+	obj_descr[SPE_BODYFLUID_STRENGTHENING].oc_name = "jasadni mustahkamlash";
+	obj_descr[SPE_GEYSER].oc_name = "geyzer";
+	obj_descr[SPE_BUBBLING_HOLE].oc_name = "qabariq teshik";
+	obj_descr[SPE_PURIFICATION].oc_name = "tozalash";
+	obj_descr[SPE_ADD_SPELL_MEMORY].oc_name = "josus xotira qo'shing";
+	obj_descr[SPE_NEXUSPORT].oc_name = "teleportatsiya elementining porti";
+	obj_descr[SPE_GIANT_FOOT].oc_name = "ulkan oyoq";
+	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "qarshi teleportatsiya";
 
-	obj_descr[SPE_ORE_MINING].oc_name = "placeholder";
-	obj_descr[SPE_BOILER_KABOOM].oc_name = "placeholder";
-	obj_descr[SPE_DEFOG].oc_name = "placeholder";
-	obj_descr[SPE_SWAP_POSITION].oc_name = "placeholder";
-	obj_descr[SPE_SHUFFLE_MONSTER].oc_name = "placeholder";
-	obj_descr[SPE_PET_SYRINGE].oc_name = "placeholder";
-	obj_descr[SPE_BUC_KNOWLEDGE].oc_name = "placeholder";
-	obj_descr[SPE_PREACHING].oc_name = "placeholder";
-	obj_descr[SPE_RESIST_PARALYSIS].oc_name = "placeholder";
-	obj_descr[SPE_KEEP_SATIATION].oc_name = "placeholder";
-	obj_descr[SPE_TECH_BOOST].oc_name = "placeholder";
-	obj_descr[SPE_CONTINGENCY].oc_name = "placeholder";
-	obj_descr[SPE_AULE_SMITHING].oc_name = "placeholder";
-	obj_descr[SPE_HORSE_HOP].oc_name = "placeholder";
-	obj_descr[SPE_LINE_LOSS].oc_name = "placeholder";
-	obj_descr[SPE_TACTICAL_NUKE].oc_name = "placeholder";
-	obj_descr[SPE_RAGNAROK].oc_name = "placeholder";
-	obj_descr[SPE_ARMOR_SMASH].oc_name = "placeholder";
-	obj_descr[SPE_STRANGLING].oc_name = "placeholder";
-	obj_descr[SPE_PARTICLE_CANNON].oc_name = "placeholder";
-	obj_descr[SPE_ONE_POINT_SHOOT].oc_name = "placeholder";
-	obj_descr[SPE_BLOOD_STREAM].oc_name = "placeholder";
-	obj_descr[SPE_SHINING_WAVE].oc_name = "placeholder";
-	obj_descr[SPE_GROUND_STOMP].oc_name = "placeholder";
-	obj_descr[SPE_DIRECTIVE].oc_name = "placeholder";
-	obj_descr[SPE_NERVE_POISON].oc_name = "placeholder";
-	obj_descr[SPE_POWDER_SPRAY].oc_name = "placeholder";
-	obj_descr[SPE_FIREWORKS].oc_name = "placeholder";
-	obj_descr[SPE_AIMBOT_LIGHTNING].oc_name = "placeholder";
-	obj_descr[SPE_ENHANCE_BREATH].oc_name = "placeholder";
-	obj_descr[SPE_GOUGE_DICK].oc_name = "placeholder";
-	obj_descr[SPE_BODYFLUID_STRENGTHENING].oc_name = "placeholder";
-	obj_descr[SPE_GEYSER].oc_name = "placeholder";
-	obj_descr[SPE_BUBBLING_HOLE].oc_name = "placeholder";
-	obj_descr[SPE_PURIFICATION].oc_name = "placeholder";
-	obj_descr[SPE_ADD_SPELL_MEMORY].oc_name = "placeholder";
-	obj_descr[SPE_NEXUSPORT].oc_name = "placeholder";
-	obj_descr[SPE_GIANT_FOOT].oc_name = "placeholder";
-	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "placeholder";
+	/* todo area */
 
 	{
 

@@ -5285,6 +5285,42 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.swappositioncount) {
+		sprintf(buf, "going to swap positions with the next monster you move into.");
+	      sprintf(eos(buf), " (%d)", u.swappositioncount);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.contingencyturns) {
+		sprintf(buf, "signed up a contract with the reaper.");
+	      sprintf(eos(buf), " (%d)", u.contingencyturns);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.horsehopturns) {
+		sprintf(buf, "the ability to jump as long as you're riding.");
+	      sprintf(eos(buf), " (%d)", u.horsehopturns);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.bodyfluideffect) {
+		sprintf(buf, "very acidic skin.");
+	      sprintf(eos(buf), " (%d)", u.bodyfluideffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.antitelespelltimeout) {
+		sprintf(buf, "erected an anti-teleportation field.");
+	      sprintf(eos(buf), " (%d)", u.antitelespelltimeout);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.breathenhancetimer) {
+		sprintf(buf, "magically enhanced breath.");
+	      sprintf(eos(buf), " (%d)", u.breathenhancetimer);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.snaildigging) {
 		sprintf(buf, "to wait until you can fire another digging ray.");
 	      sprintf(eos(buf), " (%d)", u.snaildigging);
@@ -8879,6 +8915,42 @@ int final;
 	if (u.egglayingtimeout) {
 		sprintf(buf, "to wait until you can lay eggs again.");
 	      sprintf(eos(buf), " (%d)", u.egglayingtimeout);
+		dump(youhad, buf);
+	}
+
+	if (u.swappositioncount) {
+		sprintf(buf, "going to swap positions with the next monster you move into.");
+	      sprintf(eos(buf), " (%d)", u.swappositioncount);
+		dump(youwere, buf);
+	}
+
+	if (u.contingencyturns) {
+		sprintf(buf, "signed up a contract with the reaper.");
+	      sprintf(eos(buf), " (%d)", u.contingencyturns);
+		dump(youhad, buf);
+	}
+
+	if (u.horsehopturns) {
+		sprintf(buf, "the ability to jump as long as you're riding.");
+	      sprintf(eos(buf), " (%d)", u.horsehopturns);
+		dump(youhad, buf);
+	}
+
+	if (u.bodyfluideffect) {
+		sprintf(buf, "very acidic skin.");
+	      sprintf(eos(buf), " (%d)", u.bodyfluideffect);
+		dump(youhad, buf);
+	}
+
+	if (u.antitelespelltimeout) {
+		sprintf(buf, "erected an anti-teleportation field.");
+	      sprintf(eos(buf), " (%d)", u.antitelespelltimeout);
+		dump(youhad, buf);
+	}
+
+	if (u.breathenhancetimer) {
+		sprintf(buf, "magically enhanced breath.");
+	      sprintf(eos(buf), " (%d)", u.breathenhancetimer);
 		dump(youhad, buf);
 	}
 

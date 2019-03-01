@@ -3087,6 +3087,7 @@ boolean atme;
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_WATER_FLAME) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_FIREBALL) energy *= 2;
+	if (spellid(spell) == SPE_SHINING_WAVE) energy *= 5;
 	if (spellid(spell) == SPE_FIRE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_CONE_OF_COLD) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_MULTIBEAM) { energy *= 6; energy /= 5;}
@@ -3193,7 +3194,7 @@ boolean atme;
 	/* Fail safe. Spellcasting should never become too inexpensive. --Amy */
 	if (energy < 2) energy = rn2(10) ? 2 : 1;
 
-	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD && spellid(spell) != SPE_SATISFY_HUNGER) {
+	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD && spellid(spell) != SPE_SATISFY_HUNGER && spellid(spell) != SPE_KEEP_SATIATION) {
 		You("are too hungry to cast that spell.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
@@ -3230,7 +3231,7 @@ boolean atme;
 	/* Amy edit: but if you're satiated, you always use the standard amount of nutrition. That way, hungerless casting
 	 * does not rob you of the ability to get out of satiated status by repeatedly casting spells. */
 
-		if ((!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) && (spellid(spell) != SPE_SATISFY_HUNGER) ) || u.uhunger > 2500 ) {
+		if ((!Role_if(PM_MAHOU_SHOUJO) && !Race_if(PM_HUMANLIKE_NAGA) && (spellid(spell) != SPE_DETECT_FOOD) && (spellid(spell) != SPE_SATISFY_HUNGER) && (spellid(spell) != SPE_KEEP_SATIATION) ) || u.uhunger > 2500 ) {
 		hungr = energy * 2;
 
 			/* If hero is a wizard, their current intelligence
@@ -3345,6 +3346,12 @@ castanyway:
 
 		You("chant the magical formula...");
 		nomul(-2, "casting a completely gray spell", TRUE);
+
+	}
+
+	if (spellid(spell) == SPE_PARTICLE_CANNON) {
+
+		nomul(-6, "shooting the particle cannon", FALSE);
 
 	}
 
@@ -3614,6 +3621,15 @@ castanyway:
 	case SPE_WIZARD_LOCK:
 	case SPE_DIG:
 	case SPE_VOLT_ROCK:
+	case SPE_GIANT_FOOT:
+	case SPE_BUBBLING_HOLE:
+	case SPE_GEYSER:
+	case SPE_NERVE_POISON:
+	case SPE_BLOOD_STREAM:
+	case SPE_SHINING_WAVE:
+	case SPE_ARMOR_SMASH:
+	case SPE_STRANGLING:
+	case SPE_PARTICLE_CANNON:
 	case SPE_BATTERING_RAM:
 	case SPE_WATER_FLAME:
 	case SPE_TURN_UNDEAD:
@@ -3648,6 +3664,28 @@ castanyway:
 	case SPE_FIRE_BOLT:
 	case SPE_HYPER_BEAM:
 	case SPE_PARALYSIS:
+
+		if (pseudo->otyp == SPE_BLOOD_STREAM) {
+
+			if (Upolyd && u.mh < 5) {
+				losehp(10000, "forcibly bleeding out", KILLED_BY);
+			} else if (!Upolyd && u.uhp < 5) {
+				losehp(10000, "forcibly bleeding out", KILLED_BY);
+			}
+			if (rn2(2)) {
+				if (Upolyd) u.mh -= ((u.mh / 5) + 1);
+				else u.uhp -= ((u.uhp / 5) + 1);
+			} else {
+				if (Upolyd) {
+					u.mh -= ((u.mhmax / 5) + 1);
+					if (u.mh < 0) losehp(10000, "forcibly bleeding out", KILLED_BY);
+				} else {
+					u.uhp -= ((u.uhpmax / 5) + 1);
+					if (u.uhp < 0) losehp(10000, "forcibly bleeding out", KILLED_BY);
+				}
+			}
+		}
+
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {
 			if (atme) u.dx = u.dy = u.dz = 0;
 			else
@@ -3818,6 +3856,827 @@ magicalenergychoice:
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
 		break;
+
+	case SPE_ORE_MINING:
+
+		{
+			int i, j;
+			boolean alreadydone = 0;
+			for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (alreadydone) continue;
+				if (levl[u.ux + i][u.uy + j].typ == STALACTITE) {
+					levl[u.ux + i][u.uy + j].typ = CORR;
+
+					if (!rn2(3)) { /* 80% chance of glass, 20% of precious gems */
+						if (rn2(5)) mksobj_at(rnd_class(JADE+1, LUCKSTONE-1), u.ux + i, u.uy + j, TRUE, FALSE);
+						else mksobj_at(rnd_class(DILITHIUM_CRYSTAL, JADE), u.ux + i, u.uy + j, TRUE, FALSE);
+						pline("A stalactite turns into gems!");
+						alreadydone = TRUE;
+						break;
+					} else {
+						pline("A stalactite shatters!");
+						alreadydone = TRUE;
+						break;
+					}
+
+					alreadydone = TRUE; /* why the HELL does the break statement not go out of the loop */
+					break; /* only raze one stalactite if there are several --Amy */
+				}
+
+			}
+
+		}
+manloop:
+
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
+
+		break;
+
+	case SPE_BOILER_KABOOM:
+
+		{
+			int i, j;
+			for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ == RAINCLOUD) {
+
+					levl[u.ux + i][u.uy + j].typ = CORR;
+					explode(u.ux + i, u.uy + j, ZT_FIRE, rnd(u.ulevel * 3), WAND_CLASS, EXPL_FIERY);
+
+				}
+
+			}
+
+		}
+
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
+
+		break;
+
+	case SPE_DEFOG:
+
+		{
+			boolean defogged = 0;
+			int i, j;
+			for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ == NETHERMIST) {
+
+					levl[u.ux + i][u.uy + j].typ = CORR;
+					adjalign(-10);
+					u.alignlim--;
+					defogged = 1;
+
+				}
+
+			}
+
+			if (defogged) pline("It is not foggy any longer.");
+			else {
+				pline("Nothing happens.");
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+			}
+
+		}
+
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
+
+		break;
+
+	case SPE_SWAP_POSITION:
+
+		u.swappositioncount = 4;
+		pline("The next monster you move into will be displaced.");
+
+		break;
+
+	case SPE_SHUFFLE_MONSTER:
+
+		{
+			int hasshuffled = 0;
+
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+			    if (u.usteed && nexusmon == u.usteed) continue;
+	
+			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
+				if (nexusmon->mtrapped) {
+				    /* no longer in previous trap (affects mintrap) */
+				    nexusmon->mtrapped = 0;
+				    fill_pit(nexusmon->mx, nexusmon->my);
+				}
+
+				if (pushmonster(nexusmon)) hasshuffled++;
+				if (pushmonster(nexusmon)) hasshuffled++;
+
+			}
+
+			if (hasshuffled && !(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+
+			if (!hasshuffled) pline("No monsters were shuffled!");
+			else if (hasshuffled <= 2) pline("A monster was shuffled!");
+			else pline("Several monsters were shuffled!");
+
+		}
+
+		break;
+
+	case SPE_PET_SYRINGE:
+
+		{
+
+			register struct monst *nexusmon, *nextmon;
+			const char *verb;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+
+			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
+			    if (!nexusmon->mtame) continue;
+
+				nexusmon->mhp += d(15, 10 + spell_damage_bonus(SPE_PET_SYRINGE) );
+
+				if (nexusmon->mhp > nexusmon->mhpmax) nexusmon->mhp = nexusmon->mhpmax;
+
+				abuse_dog(nexusmon);
+
+				pline("%s received the syringe and is healthy again.", Monnam(nexusmon));
+				verb = growl_sound(nexusmon);
+				pline("%s %s.", Monnam(nexusmon), vtense((char *)0, verb));
+
+			}
+
+		}
+
+		break;
+
+	case SPE_BUC_KNOWLEDGE:
+
+		pline("Choose an item for BUC identification.");
+bucchoice:
+		otmp = getobj(all_count, "know the BUC of");
+		if (!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to determine an item's BUC.");
+			else goto bucchoice;
+			pline("You decide not to determine an item's BUC after all.");
+			break;
+		}
+		if (otmp) {
+			otmp->bknown = TRUE;
+			if (otmp->blessed || otmp->cursed) pline("Your %s flashes %s.", doname(otmp), hcolor(otmp->blessed ? NH_AMBER : NH_BLACK));
+		}
+
+		break;
+
+	case SPE_PREACHING:
+
+		You("preach some religious sermon.");
+		adjalign(5);
+
+		break;
+
+	case SPE_RESIST_PARALYSIS:
+
+		if(!(HDiscount_action & INTRINSIC)) {
+			You("gain paralysis resistance!");
+			incr_itimeout(&HDiscount_action, Discount_action ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_KEEP_SATIATION:
+
+		if(!(HFull_nutrient & INTRINSIC)) {
+			Your("nutrition consumption slows down!");
+			incr_itimeout(&HFull_nutrient, Full_nutrient ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_TECH_BOOST:
+
+		if(!(HTechnicality & INTRINSIC)) {
+			Your("techniques become stronger!");
+			incr_itimeout(&HTechnicality, Technicality ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
+	case SPE_CONTINGENCY:
+
+		u.contingencyturns = 50 + (spell_damage_bonus(spellid(spell)) * 3);
+		You("sign up a contract with the reaper.");
+
+		break;
+
+	case SPE_AULE_SMITHING:
+
+		pline("Choose an item for erosionproofing.");
+aulechoice:
+		otmp = getobj(all_count, "fooproof");
+		if (!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to fooproof an item.");
+			else goto aulechoice;
+			pline("You decide not to erosionproof any item after all.");
+			break;
+		}
+		if (otmp) {
+			otmp->oerodeproof = TRUE;
+			pline("Success! Your item is erosionproof now.");
+		}
+
+		break;
+
+	case SPE_HORSE_HOP:
+		u.horsehopturns = 50 + rnd(50 + (spell_damage_bonus(spellid(spell)) * 5) );
+		pline("You can jump while riding!");
+
+		break;
+
+	case SPE_LINE_LOSS:
+
+		{
+
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+
+			    if (!sensemon(nexusmon) && !canseemon(nexusmon)) continue;
+
+				nexusmon->mhp--;
+				if (nexusmon->mhp <= 0) {
+					xkilled(nexusmon, 0);
+					pline("%s lost the last line and dies!", Monnam(nexusmon));
+				}
+				else pline("%s loses a line!", Monnam(nexusmon));
+
+			}
+
+		}
+
+		break;
+
+	case SPE_TACTICAL_NUKE:
+
+		if (Upolyd) losehp((u.mhmax / 10) + 1, "tactical nuke", KILLED_BY_AN);
+		else losehp((u.uhpmax / 10) + 1, "tactical nuke", KILLED_BY_AN);
+		pline("Rrrrroommmmmm - the nuke hits you and all monsters in view.");
+
+		{
+
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+
+			    if (!sensemon(nexusmon) && !canseemon(nexusmon)) continue;
+
+				nexusmon->mhp -= ((nexusmon->mhp / 10) + 1);
+				if (nexusmon->mhp <= 0) {
+					xkilled(nexusmon, 0);
+					pline("%s dies to the nuke!", Monnam(nexusmon));
+				}
+				else pline("%s is hurt by the nuke!", Monnam(nexusmon));
+
+			}
+
+		}
+
+		break;
+
+	case SPE_RAGNAROK:
+
+		if (u.ragnarokspelltimeout) {
+			pline("Nothing happens.");
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+			break;
+		}
+		ragnarok(TRUE);
+		if (evilfriday) evilragnarok(TRUE,level_difficulty());
+		u.ragnarokspelltimeout += 1000; /* can't use it again for a while */
+
+		break;
+
+	case SPE_ONE_POINT_SHOOT:
+
+		{
+			register struct obj *opbullet;
+			int opbonus = 0;
+			int opdamage = 0;
+
+			coord cc;
+			struct monst *psychmonst;
+
+			opbullet = carrying(BULLET);
+			if (!opbullet) opbullet = carrying(SILVER_BULLET);
+			if (!opbullet) {
+				pline("There are no bullets, and therefore you can't shoot!");
+				break;
+			}
+
+			opdamage = d(12, 12) + (spell_damage_bonus(spellid(spell)) * 10);
+
+			pline("Select the target monster");
+			cc.x = u.ux;
+			cc.y = u.uy;
+			getpos(&cc, TRUE, "the spot to shoot");
+			if (cc.x == -10) break; /* user pressed esc */
+			psychmonst = m_at(cc.x, cc.y);
+
+			if (!psychmonst || (!canseemon(psychmonst) && !canspotmon(psychmonst))) {
+				You("don't see a monster there!");
+				break;
+			}
+
+			/* there should be a valid target now, so use up a bullet */
+			if (opbullet) {
+				if (opbullet->spe > 0) opbonus = opbullet->spe;
+
+				if (opbullet->quan > 1) {
+					opbullet->quan--;
+					opbullet->owt = weight(opbullet);
+				}
+				else useup(opbullet);
+
+			}
+
+			opdamage += (opbonus * rnd(10));
+
+			if (psychmonst) {
+				pline("PEW PEW PEW! %s is shot by your gun!", Monnam(psychmonst));
+				psychmonst->mhp -= opdamage;
+				if (psychmonst->mhp < 1) {
+					pline("%s resonates and breaks up.", Monnam(psychmonst));
+					xkilled(psychmonst,0);
+				}
+
+			}
+
+		}
+
+		break;
+
+	case SPE_GROUND_STOMP:
+
+		if (Confusion) {
+			You("are unable to use ground stomp while confused.");
+			break;
+		}
+
+		You("smash something the ground."); /* This is NOT a misspelling!!! --Amy */
+
+		{
+
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
+
+			    if (!sensemon(nexusmon) && !canseemon(nexusmon)) continue;
+
+				nexusmon->mhp -= (d(10, 10 + (spell_damage_bonus(spellid(spell)) * 5) ) + rnd(u.ulevel * 5));
+				if (nexusmon->mhp <= 0) {
+					xkilled(nexusmon, 0);
+					pline("%s is crushed flat!", Monnam(nexusmon));
+				}
+				else pline("%s is hit by debris!", Monnam(nexusmon));
+
+			}
+
+		}
+
+		make_confused(HConfusion + rn1(50,75), FALSE);
+		set_itimeout(&HeavyConfusion, HConfusion);
+		u.uprops[DEAC_CONF_RES].intrinsic += rn1(50,75);
+
+		break;
+
+	case SPE_DIRECTIVE:
+
+		{
+
+			int successrate = 0;
+
+			if (!(PlayerCannotUseSkills) && P_SKILL(P_OCCULT_SPELL) >= P_UNSKILLED) {
+
+				switch (P_SKILL(P_OCCULT_SPELL)) {
+					case P_BASIC: successrate = 25; break;
+					case P_SKILLED: successrate = 40; break;
+					case P_EXPERT: successrate = 50; break;
+					case P_MASTER: successrate = 60; break;
+					case P_GRAND_MASTER: successrate = 80; break;
+					case P_SUPREME_MASTER: successrate = 100; break;
+					default: successrate = 10; break;
+				}
+
+			}
+
+			if (!successrate) {
+				pline("Unfortunately, no one seems to follow any directives you're giving.");
+				break;
+			}
+
+			if (!PlayerCannotUseSkills && P_SKILL(P_RIDING) >= P_SKILLED && rnd(75) <= successrate) {
+
+			pline("Currently your steed has %d%% chance of being targetted by monsters.", u.steedhitchance);
+			if (yn("Change it?") == 'y') {
+
+				int lowerbound, higherbound;
+				lowerbound = 25;
+				higherbound = 25;
+
+				switch (P_SKILL(P_RIDING)) {
+					case P_SKILLED:
+						lowerbound = 20;
+						higherbound = 33;
+						break;
+					case P_EXPERT:
+						lowerbound = 10;
+						higherbound = 50;
+						break;
+					case P_MASTER:
+						lowerbound = 5;
+						higherbound = 75;
+						break;
+					case P_GRAND_MASTER:
+						lowerbound = 3;
+						higherbound = 90;
+						break;
+					case P_SUPREME_MASTER:
+						lowerbound = 1;
+						higherbound = 100;
+						break;
+					default:
+						lowerbound = 25;
+						higherbound = 25;
+						break;
+				}
+
+				pline("You can set the chance to values between %d%% and %d%% (inclusive).", lowerbound, higherbound);
+				if (lowerbound <= 1 && yn("Set the chance to 1%%?") == 'y') {
+					u.steedhitchance = 1;
+					pline("The chance that attacks target your steed is 1%% now.");
+				} else if (lowerbound <= 3 && yn("Set the chance to 3%%?") == 'y') {
+					u.steedhitchance = 3;
+					pline("The chance that attacks target your steed is 3%% now.");
+				} else if (lowerbound <= 5 && yn("Set the chance to 5%%?") == 'y') {
+					u.steedhitchance = 5;
+					pline("The chance that attacks target your steed is 5%% now.");
+				} else if (lowerbound <= 10 && yn("Set the chance to 10%%?") == 'y') {
+					u.steedhitchance = 10;
+					pline("The chance that attacks target your steed is 10%% now.");
+				} else if (lowerbound <= 20 && yn("Set the chance to 20%%?") == 'y') {
+					u.steedhitchance = 20;
+					pline("The chance that attacks target your steed is 20%% now.");
+				} else if (yn("Set the chance to 25%%?") == 'y') {
+					u.steedhitchance = 25;
+					pline("The chance that attacks target your steed is 25%% now.");
+				} else if (higherbound >= 33 && yn("Set the chance to 33%%?") == 'y') {
+					u.steedhitchance = 33;
+					pline("The chance that attacks target your steed is 33%% now.");
+				} else if (higherbound >= 50 && yn("Set the chance to 50%%?") == 'y') {
+					u.steedhitchance = 50;
+					pline("The chance that attacks target your steed is 50%% now.");
+				} else if (higherbound >= 75 && yn("Set the chance to 75%%?") == 'y') {
+					u.steedhitchance = 75;
+					pline("The chance that attacks target your steed is 75%% now.");
+				} else if (higherbound >= 90 && yn("Set the chance to 90%%?") == 'y') {
+					u.steedhitchance = 90;
+					pline("The chance that attacks target your steed is 90%% now.");
+				} else if (higherbound >= 100 && yn("Set the chance to 100%%?") == 'y') {
+					u.steedhitchance = 100;
+					pline("The chance that attacks target your steed is 100%% now.");
+				} else pline("The chance that attacks target your steed remains %d%%.", u.steedhitchance);
+
+			}
+
+			}
+
+			if (rnd(20) <= successrate) {
+
+			pline("Currently your pets can%s pick up items.", u.petcollectitems ? "" : "'t");
+			if (yn("Change it?") == 'y') {
+				if (u.petcollectitems) u.petcollectitems = 0;
+				else u.petcollectitems = 1;
+				pline("Your pets can%s pick up items now.", u.petcollectitems ? "" : "'t");
+			}
+
+			}
+
+			if (rnd(45) <= successrate) {
+
+			pline("Currently your pets can%s attack%s monsters.", u.petattackenemies ? "" : "'t", u.petattackenemies == 2 ? " both hostile and peaceful" : u.petattackenemies == 1 ? " only hostile" : "");
+			if (yn("Change it?") == 'y') {
+				pline("You got the following options: make the pet attack everything, make it attack only hostile monsters, or prevent it from attacking anything.");
+				if (yn("Do you want your pets to attack everything?") == 'y') {
+					u.petattackenemies = 2;
+					pline("Your pets can attack all monsters now.");
+				} else if (yn("Do you want your pets to only attack hostile creatures?") == 'y') {
+					u.petattackenemies = 1;
+					pline("Your pets can attack hostile monsters now, but will leave peaceful ones alone.");
+				} else if (yn("Do you want your pets to not attack any monsters?") == 'y') {
+					u.petattackenemies = 0;
+					pline("Your pets can't attack monsters now.");
+				}
+			}
+
+			}
+
+			if (rnd(75) <= successrate) {
+
+			pline("Currently your pets can%s eat food off the floor.", u.petcaneat ? "" : "'t");
+			if (yn("Change it?") == 'y') {
+				if (u.petcaneat) u.petcaneat = 0;
+				else u.petcaneat = 1;
+				pline("Your pets can%s eat food off the floor now.", u.petcaneat ? "" : "'t");
+			}
+
+			}
+
+			if (rnd(120) <= successrate) {
+
+			pline("Currently your pets can%s try to follow you.", u.petcanfollow ? "" : "'t");
+			if (yn("Change it?") == 'y') {
+				if (u.petcanfollow) u.petcanfollow = 0;
+				else u.petcanfollow = 1;
+				pline("Your pets can%s try to follow you now.", u.petcanfollow ? "" : "'t");
+			}
+
+			}
+
+		}
+
+		break;
+
+	case SPE_POWDER_SPRAY:
+
+		You("spray the powder.");
+
+		{
+
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+
+			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
+			    if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
+			    if (resists_poison(nexusmon)) continue;
+
+				nexusmon->mhp -= rn1(10, 6);
+				if (!rn2(500)) {
+					pline("The poison was deadly...");
+					nexusmon->mhp = -1;
+					xkilled(nexusmon, 0);
+				} else if (nexusmon->mhp <= 0) {
+					xkilled(nexusmon, 0);
+					pline("%s is poisoned to death!", Monnam(nexusmon));
+				}
+				else pline("%s is poisoned!", Monnam(nexusmon));
+			}
+
+		}
+
+		break;
+
+	case SPE_FIREWORKS:
+
+		throwstorm(pseudo, 2 + spell_damage_bonus(SPE_FIREWORKS), 2, 2);
+
+		break;
+
+	case SPE_AIMBOT_LIGHTNING:
+
+		{
+			coord cc;
+			int dirx, diry;
+
+			pline("Select the target square");
+			cc.x = u.ux;
+			cc.y = u.uy;
+			getpos(&cc, TRUE, "the spot to aim lightning from");
+			if (cc.x == -10) break; /* user pressed esc */
+
+			if (!couldsee(cc.x, cc.y)) {
+				You("can't see the location, and therefore nothing happens!");
+				break;
+			}
+
+			dirx = rn2(3) - 1;
+			diry = rn2(3) - 1;
+			if (dirx == 0 && diry == 0) { /* fail safe; yeah I know this biases it towards diagonal :P --Amy */
+				dirx = rn2(2) ? 1 : -1;
+				diry = rn2(2) ? 1 : -1;
+			}
+			if (dirx != 0 || diry != 0) {
+				buzz(15, 8 + (spell_damage_bonus(SPE_AIMBOT_LIGHTNING) * rnd(2)), cc.x, cc.y, dirx, diry);
+			}
+
+		}
+
+		break;
+
+	case SPE_ENHANCE_BREATH:
+
+		u.breathenhancetimer = 100 + (spell_damage_bonus(SPE_ENHANCE_BREATH) * 10);
+		Your("breath is magically enhanced!");
+
+		break;
+
+	case SPE_GOUGE_DICK:
+
+		if (!u.uswallow) {
+			pline("This spell has no effect if you're not engulfed.");
+			break;
+		}
+		pline("You ram into %s with your %spenis.", mon_nam(u.ustuck), flags.female ? "nonexistant " : "");
+		u.ustuck->mhp -= d(5, 5 + spell_damage_bonus(SPE_GOUGE_DICK) + rno(u.ulevel));
+		u.ustuck->mcanmove = 0;
+		u.ustuck->mfrozen = rn1(5,5);
+		u.ustuck->mstrategy &= ~STRAT_WAITFORU;
+
+		if (u.ustuck->mhp <= 0) {
+			xkilled(u.ustuck, 0);
+			pline("The monster that engulfed you is stabbed to death!");
+		}
+		else pline("%s is severely hurt!", Monnam(u.ustuck));
+
+		break;
+
+	case SPE_BODYFLUID_STRENGTHENING:
+
+		u.bodyfluideffect = 10 + spell_damage_bonus(SPE_BODYFLUID_STRENGTHENING);
+		Your("body is covered with protective acid!");
+
+		break;
+
+	case SPE_PURIFICATION:
+
+		{
+			int i, j;
+			for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (i == 0 && j == 0) continue; /* don't target the square you're on --Amy */
+				if (levl[u.ux + i][u.uy + j].typ == STYXRIVER) {
+					levl[u.ux + i][u.uy + j].typ = MOAT;
+					Norep("A styx river turns into a moat!");
+				}
+			}
+		}
+
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
+
+		break;
+
+	case SPE_ADD_SPELL_MEMORY:
+
+		if (spellid(0) == NO_SPELL)  { /* should never happen, but I put it here just in case --Amy */
+			You("don't know any spells, and therefore you cannot add spell memory to them either.");
+			break;
+		}
+
+		{
+			int numspells;
+
+			for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
+				if (spellid(numspells) == SPE_ADD_SPELL_MEMORY) continue;
+
+				pline("You know the %s spell.", spellname(numspells));
+				if (yn("Add some memory to this spell?") == 'y') {
+
+					if (rn2(10) && spellknow(numspells) <= 0) {
+						pline("Your attempt to regain knowledge of that forgotten spell fails.");
+						break;
+					}
+
+					boostknow(numspells, 500);
+
+					break;
+				}
+			}
+		}
+
+		break;
+
+	case SPE_NEXUSPORT:
+
+		switch (rnd(7)) {
+
+			case 1:
+			case 2:
+			case 3:
+				pline("You are teleported by nexus forces!");
+				teleX();
+				break;
+			case 4:
+			case 5:
+				pline("You are pushed around by nexus forces!");
+				phase_door(0);
+				break;
+			case 6:
+
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+					if (!u.levelporting) {
+						u.levelporting = 1;
+						nomul(-2, "being levelported", FALSE); /* because it's not called until you get another turn... */
+					}
+				}
+				break;
+			case 7:
+				{
+					int firststat = rn2(A_MAX);
+					int secondstat = rn2(A_MAX);
+					int firstswapstat = ABASE(firststat);
+					int secondswapstat = ABASE(secondstat);
+					int difference = (firstswapstat - secondswapstat);
+					ABASE(secondstat) += difference;
+					ABASE(firststat) -= difference;
+					AMAX(secondstat) = ABASE(secondstat);
+					AMAX(firststat) = ABASE(firststat);
+					pline("Your stats got scrambled!");
+
+					if (!rn2(3)) {
+
+						int reducedstat = rn2(A_MAX);
+						if(ABASE(reducedstat) <= ATTRMIN(reducedstat)) {
+							pline("Your health was damaged!");
+							u.uhpmax -= rnd(5);
+							if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+							if (u.uhp < 1) {
+								u.youaredead = 1;
+								killer = "nexus scrambling";
+								killer_format = KILLED_BY;
+								done(DIED);
+								u.youaredead = 0;
+							}
+
+						} else {
+							ABASE(reducedstat) -= 1;
+							AMAX(reducedstat) -= 1;
+							flags.botl = 1;
+							pline("Your attributes were damaged!");
+						}
+					}
+				}
+				break;
+
+		}
+
+		if (!rn2(5)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
+
+		break;
+
+	case SPE_ANTI_TELEPORTATION:
+
+		u.antitelespelltimeout = rnd(100 + (spell_damage_bonus(SPE_ANTI_TELEPORTATION) * 10));
+		You("erect an anti-teleportation barrier!");
+
+		break;
+
 	case SPE_FUMBLING:
 		if (!Fumbling) pline("You start fumbling.");
 		HFumbling = FROMOUTSIDE | rnd(5);
@@ -7819,7 +8678,7 @@ totemsummonchoice:
 			register struct monst *nexusmon;
 			boolean teleportdone = FALSE;
 
-			if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
+			if ((level.flags.noteleport || u.antitelespelltimeout) && !Race_if(PM_RODNEYAN) ) {
 				pline("A mysterious force prevents you from teleporting!");
 				break;
 			}
@@ -8945,7 +9804,7 @@ rerollX:
 
 	/* WAC successful casting increases solidity of knowledge */
 
-	if (!SpellColorCyan) {
+	if (!SpellColorCyan && !(pseudo && pseudo->otyp == SPE_ADD_SPELL_MEMORY) ) {
 
 		boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
 		if ((rnd(spellev(spell) + 5)) > 5) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST)); /* higher-level spells boost more --Amy */
@@ -8992,6 +9851,20 @@ rerollX:
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_SUPREME_MASTER ? 16 : role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
+
+		boostknow(spell, -(rnd(100000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && pseudo->otyp == SPE_ADD_SPELL_MEMORY) {
+
+		boostknow(spell, -500);
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && (pseudo->otyp == SPE_AULE_SMITHING) && !rn2(role_skill == P_SUPREME_MASTER ? 16 : role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
 
 		boostknow(spell, -(rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;

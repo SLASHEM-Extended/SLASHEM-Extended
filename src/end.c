@@ -931,6 +931,48 @@ stoningdone:
 	}
 cbldone:
 
+	if (u.contingencyturns) {
+
+		int contingencychance = 25;
+
+		if (!(PlayerCannotUseSkills) && P_SKILL(P_OCCULT_SPELL) >= P_BASIC) {
+
+			switch (P_SKILL(P_OCCULT_SPELL)) {
+				case P_BASIC: contingencychance = 35; break;
+				case P_SKILLED: contingencychance = 50; break;
+				case P_EXPERT: contingencychance = 65; break;
+				case P_MASTER: contingencychance = 75; break;
+				case P_GRAND_MASTER: contingencychance = 85; break;
+				case P_SUPREME_MASTER: contingencychance = 90; break;
+				default: break;
+			}
+		}
+
+		if (rnd(100) > contingencychance) goto contingencydone;
+
+		pline("But wait...");
+		pline("You lost the effect of contingency.");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto contingencydone;
+		}
+
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		u.youaredead = 0;
+
+		return;
+
+	}
+contingencydone:
+
 	if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION && !rn2(10)) {
 		pline("But wait...");
 		pline("You come back to life!");
