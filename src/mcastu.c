@@ -1177,7 +1177,7 @@ int spellnum;
 	    if (canseemon(mtmp))
 		pline("%s looks better.", Monnam(mtmp));
 	    /* note: player healing does 6d4; this used to do 1d8 */
-		/* Amy note: boosted it so that it's no longer completely useless
+		/* Amy note: boosted it so that it's no longer completely useless */
 	    if ((mtmp->mhp += (d(3,6) + rnz(1 + (mtmp->m_lev * 3)) )) > mtmp->mhpmax)
 		mtmp->mhp = mtmp->mhpmax;
 	    dmg = 0;
