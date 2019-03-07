@@ -287,6 +287,7 @@ struct obj *otmp;
 			else wavebonus = 34;
 
 			dmg = d(5 + spell_damage_bonus(SPE_SHINING_WAVE), wavebonus);
+			dmg *= (flags.female ? rno(2) : rnd(3)); /* gotta do enough damage to make it worth the cost */
 
 			if (resists_magm(mtmp)) {
 				if (flags.female) {
@@ -5209,15 +5210,88 @@ boolean ordinary;
 			break;
 
 		case SPE_GIANT_FOOT:
+
+			pline("A giant foot falls on top of you!");
+			damage = d(10, 10);
+
+			if (amorphous(youmonst.data)) damage /= rn1(3, 3);
+			if (noncorporeal(youmonst.data)) damage = 0;
+			if (is_whirly(youmonst.data)) damage /= rnd(3);
+
+			if (!damage) pline("But you're unaffected.");
+
+			break;
+
 		case SPE_ARMOR_SMASH:
+
+			{
+
+				register struct obj *asitem;
+				asitem = some_armor(&youmonst);
+
+				if (!asitem) {
+					pline("Your skin itches.");
+				} else if (!destroy_arm(asitem)) {
+					pline("Your skin itches.");
+				}
+			}
+
+			break;
+
 		case SPE_BLOOD_STREAM:
+
+			You("drown yourself in your own menstruation!");
+			damage = d(10, 10);
+
+			break;
+
 		case SPE_SHINING_WAVE:
+
+			You("have to attack with destruct wave.");
+			damage = d(10, 10);
+
+			break;
+
 		case SPE_STRANGLING:
+
+			You("attempt to strangle yourself.");
+			damage = d(5, 5);
+
+			break;
+
 		case SPE_PARTICLE_CANNON:
+
+			You("irradiate yourself with laser beams!");
+			damage = d(10, 10);
+
+			break;
+
 		case SPE_NERVE_POISON:
+
+			You("inject the poison into your veins.");
+			nomul(-5, "paralyzed by their own nerve poison", TRUE);
+			poisoned("The spell", rn2(A_MAX), "nerve poison", 30);
+
+			break;
+
 		case SPE_GEYSER:
+
+			pline("A sudden geyser slams into you from nowhere!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
+			damage = d(8, 6);
+			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+				water_damage(invent, FALSE, FALSE);
+				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+			}
+			if (Burned) make_burned(0L, TRUE);
+
+			break;
+
 		case SPE_BUBBLING_HOLE:
-			/* todo */
+
+			pline("Oh no, you are engulfed in a bubbling hole!");
+			damage = d(10, 20);
+
 			break;
 
 		case SPE_VOLT_ROCK:
