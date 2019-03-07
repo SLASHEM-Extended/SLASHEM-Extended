@@ -5787,6 +5787,7 @@ SCROLL((char *)0,               "I CONSIDERATION IT RATHER AS AN INVITATION",  P
 SCROLL((char *)0,               "IM SAILING DOWN HERE BOUT A HANG KESSIMI",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "1FP30S",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "THE LAKITUS ARE THROWING LAKITUS",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
+SCROLL((char *)0,               "MAVIS BACON",  P_NONE,     1,   0, 300, CLR_RED, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
@@ -6719,6 +6720,9 @@ WAND((char *)0,        "medical",  0, 500, 1, 0,        TAR,     CLR_RED, 1),
 WAND((char *)0,        "sonicboom",  0, 500, 1, 0,        ETHER,     CLR_GRAY, 1),
 WAND((char *)0,        "wispy",  0, 500, 1, 0,        WAX,     CLR_WHITE, 1),
 WAND((char *)0,        "xygos",  0, 500, 1, 0,        VIVA,     CLR_BRIGHT_MAGENTA, 1),
+WAND((char *)0,        "bone-carved",  0, 500, 1, 0,        BONE,     CLR_WHITE, 1),
+WAND((char *)0,        "darkwood",  0, 500, 1, 0,        WOOD,     CLR_BLACK, 1),
+WAND((char *)0,        "ironshod",  0, 500, 1, 0,        IRON,     CLR_CYAN, 1),
 
 #undef WAND
 

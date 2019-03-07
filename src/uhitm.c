@@ -3437,7 +3437,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(562)) {
+				switch (rnd(565)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4001,6 +4001,9 @@ int dieroll;
 				case 560: pline("Now %s gets however skin-fully.", mon_nam(mon)); break;
 				case 561: pline("%s fallow together.", Monnam(mon)); break;
 				case 562: pline("You firstoh %s with your knife.", mon_nam(mon)); break;
+				case 563: pline("You stab %s in the crotch, severing a major artery! Blood spurts all over!", mon_nam(mon)); break;
+				case 564: pline("You kick %s, crunching his left testicle!", mon_nam(mon)); break; /* no mhis */
+				case 565: pline("You slash %s's sword %s! Three %s fall to the floor!", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	

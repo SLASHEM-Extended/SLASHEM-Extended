@@ -22952,6 +22952,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The flying scimitar slices you! You start to bleed and take damage every turn until you heal yourself.",
 	"You throw a lovely cuddly huggable heart pillow at Sandra. She just shrugs it off and gets ready to throw it back at you.",
 	"Incoming message for Player 1. The message is from 'Sandra'. It reads: 'What, you're suggesting that we do a pillow fight? Well, I have a better idea. How about we play a round of scratch-the-male-girl's-legs?'",
+	"Demogorgon appears in a cloud of brimstone!",
+	"You notice a noxious sulfuric stench in the air!",
 
 };
 
