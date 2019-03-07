@@ -571,7 +571,12 @@
 #define STAT_DECREASE_BUG 522
 #define SIMEOUT_BUG 523
 
-#define SECOND_CHANCE		524
+#define RNGE_MULTISHOT 524
+#define RNGE_SKILL_REVEAL 525
+#define RNGE_TECH_INSIGHT 526
+#define RNGE_LISTENING 527
+
+#define SECOND_CHANCE		528
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

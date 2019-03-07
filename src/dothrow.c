@@ -80,6 +80,7 @@ int thrown;
 	boolean fullmultishot; /* depends on missile weapons skill --Amy */
 	int angeramount; /* for blade anger technique */
 
+	if (RngeMultishot) multishot++;
 	if (Race_if(PM_SPARD)) multishot += rnd(4);
 	if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) multishot += 1;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;

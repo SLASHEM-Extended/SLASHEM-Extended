@@ -1410,7 +1410,7 @@ randenchantment()
 		case 151:
 		case 152:
 		case 153:
-			switch (rnd(91)) {
+			switch (rnd(95)) {
 			case 1: return HALLU_PARTY;
 			case 2: return DRUNKEN_BOXING;
 			case 3: return STUNNOPATHY;
@@ -1502,6 +1502,10 @@ randenchantment()
 			case 89: return RNGE_EXTINCTION;
 			case 90: return RNGE_DEFUSING;
 			case 91: return RNGE_DENASTIFICATION;
+			case 92: return RNGE_MULTISHOT;
+			case 93: return RNGE_SKILL_REVEAL;
+			case 94: return RNGE_TECH_INSIGHT;
+			case 95: return RNGE_LISTENING;
 			}
 		case 154:
 			return STUNNED;

@@ -360,6 +360,14 @@ int prop;
 			return "full nutrients";
 		case TECHNICALITY:
 			return "technicality";
+		case RNGE_MULTISHOT:
+			return "multishot";
+		case RNGE_SKILL_REVEAL:
+			return "skill revealing";
+		case RNGE_TECH_INSIGHT:
+			return "tech insight";
+		case RNGE_LISTENING:
+			return "listening";
 
 		default:
 			return "Team Nastytrap";

@@ -3665,7 +3665,7 @@ int enhance_skill(boolean want_dump)
 		(void) skill_level_name(i, sklnambuf);
 		(void) skill_level_name_max(i, sklnambuftwo); /* show maximum to be more user friendly --Amy */
 #ifdef WIZARD
-		if (wizard) {
+		if (wizard || RngeSkillReveal) {
 		    if (!iflags.menu_tab_sep)
 			sprintf(buf, " %s%-*s %-12s %-12s %4d(%4d)",
 			    prefix, longest, P_NAME(i), sklnambuf, sklnambuftwo,

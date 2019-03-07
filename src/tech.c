@@ -1708,7 +1708,7 @@ dotechmenu(how, tech_no)
 		any.a_int = 0;
 	    }
 #ifdef WIZARD
-	    if (wizard) 
+	    if (wizard || RngeTechInsight) 
 		if (!iflags.menu_tab_sep)			
 		    sprintf(buf, "%s%-*s %2d%c%c%c   %s(%i)",
 			    prefix, longest, techname(i), tlevel,
