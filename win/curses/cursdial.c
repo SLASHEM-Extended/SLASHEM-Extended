@@ -558,6 +558,11 @@ curses_add_nhmenu_item(winid wid, int glyph, const ANY_P * identifier,
     nhmenu_item *new_item, *current_items, *menu_item_ptr;
     nhmenu *current_menu = get_menu(wid);
 
+    if (current_menu == NULL) {
+        impossible("curses_add_nhmenu_item: attempt to add item to nonexistent menu");
+        return;
+    }
+
     if (str == NULL) {
         return;
     }
@@ -579,11 +584,6 @@ curses_add_nhmenu_item(winid wid, int glyph, const ANY_P * identifier,
     new_item->num_lines = 0;
     new_item->count = -1;
     new_item->next_item = NULL;
-
-    if (current_menu == NULL) {
-        panic
-            ("curses_add_nhmenu_item: attempt to add item to nonexistant menu");
-    }
 
     current_items = current_menu->entries;
     menu_item_ptr = current_items;
@@ -609,12 +609,13 @@ curses_finalize_nhmenu(winid wid, const char *prompt)
 {
     int count = 0;
     nhmenu *current_menu = get_menu(wid);
-    nhmenu_item *menu_item_ptr = current_menu->entries;
 
     if (current_menu == NULL) {
-        panic("curses_finalize_nhmenu: attempt to finalize nonexistant menu");
+        impossible("curses_finalize_nhmenu: attempt to finalize nonexistant menu");
+	  return;
     }
 
+    nhmenu_item *menu_item_ptr = current_menu->entries;
     while (menu_item_ptr != NULL) {
         menu_item_ptr = menu_item_ptr->next_item;
         count++;
@@ -640,13 +641,15 @@ curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected, boolean avoi
     *_selected = NULL;
 
     if (current_menu == NULL) {
-        panic("curses_display_nhmenu: attempt to display nonexistant menu");
+        impossible("curses_display_nhmenu: attempt to display nonexistant menu");
+	  return '\033';
     }
 
     menu_item_ptr = current_menu->entries;
 
     if (menu_item_ptr == NULL) {
-        panic("curses_display_nhmenu: attempt to display empty menu");
+        impossible("curses_display_nhmenu: attempt to display empty menu");
+	  return '\033';
     }
 
     /* Reset items to unselected to clear out selections from previous
@@ -684,8 +687,9 @@ curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected, boolean avoi
         while (menu_item_ptr != NULL) {
             if (menu_item_ptr->selected) {
                 if (count == num_chosen) {
-                    panic("curses_display_nhmenu: Selected items "
+                    impossible("curses_display_nhmenu: Selected items "
                           "exceeds expected number");
+			  break;
                 }
                 selected[count].item = menu_item_ptr->identifier;
                 selected[count].count = menu_item_ptr->count;
@@ -695,7 +699,7 @@ curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected, boolean avoi
         }
 
         if (count != num_chosen) {
-            panic("curses_display_nhmenu: Selected items less than "
+            impossible("curses_display_nhmenu: Selected items less than "
                   "expected number");
         }
     }
@@ -1001,7 +1005,8 @@ menu_display_page(nhmenu *menu, WINDOW * win, int page_num)
     }
 
     if (menu_item_ptr == NULL) {        /* Page not found */
-        panic("menu_display_page: attempt to display nonexistant page");
+        impossible("menu_display_page: attempt to display nonexistant page");
+	  return;
     }
 
     werase(win);
@@ -1400,7 +1405,8 @@ menu_operation(WINDOW * win, nhmenu *menu, menu_op
     }
 
     if (menu_item_ptr == NULL) {        /* Page not found */
-        panic("menu_display_page: attempt to display nonexistant page");
+        impossible("menu_operation: attempt to display nonexistant page");
+	  return 0;
     }
 
     while (menu_item_ptr != NULL) {
