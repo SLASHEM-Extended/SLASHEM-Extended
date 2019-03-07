@@ -1148,6 +1148,8 @@ struct levelflags {
 	Bitfield(has_ruinedchurch, 1);
 	Bitfield(has_gamecorner, 1);
 	Bitfield(has_illusionroom, 1);
+	Bitfield(has_robbercave, 1);
+	Bitfield(has_sanitationcentral, 1);
 
 	Bitfield(has_swamp, 1);
 	Bitfield(noteleport,1);

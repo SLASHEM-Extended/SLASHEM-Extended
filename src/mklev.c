@@ -152,7 +152,7 @@ STATIC_OVL int
 findrandtype()
 {
 retryrandtype:
-	switch (rnd(80)) {
+	switch (rnd(82)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -236,6 +236,8 @@ retryrandtype:
 		case 78: return RAMPAGEROOM;
 		case 79: return GAMECORNER;
 		case 80: return ILLUSIONROOM;
+		case 81: return ROBBERCAVE;
+		case 82: return SANITATIONCENTRAL;
 	}
 
 	return EMPTYNEST;
@@ -538,6 +540,8 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	if (/*!special && */rtype == TROUBLEZONE) croom->colouur = CLR_MAGENTA;
 	if (/*!special && */rtype == WEAPONCHAMBER) croom->colouur = CLR_BROWN;
 	if (/*!special && */rtype == HELLPIT) croom->colouur = CLR_ORANGE;
+	if (/*!special && */rtype == ROBBERCAVE) croom->colouur = CLR_GRAY;
+	if (/*!special && */rtype == SANITATIONCENTRAL) croom->colouur = CLR_CYAN;
 	if (/*!special && */rtype == GRUEROOM) croom->colouur = (!rn2(20) ? 20 : rnd(15) );
 	if (/*!special && */rtype == FEMINISMROOM) croom->colouur = CLR_BRIGHT_MAGENTA;
 	if (/*!special && */rtype == MEADOWROOM) croom->colouur = CLR_BRIGHT_GREEN;
@@ -2040,6 +2044,8 @@ clear_level_structures()
 	level.flags.has_troublezone = 0;
 	level.flags.has_weaponchamber = 0;
 	level.flags.has_hellpit = 0;
+	level.flags.has_robbercave = 0;
+	level.flags.has_sanitationcentral = 0;
 	level.flags.has_feminismroom = 0;
 	level.flags.has_meadowroom = 0;
 	level.flags.has_coolingchamber = 0;
@@ -10099,7 +10105,8 @@ gehennomxtra:
 	    else if(depth(&u.uz) > (issoviet ? 25 : 12) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(ANGELHALL);
 	    else if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(KOPSTATION);
 	    else if(depth(&u.uz) > (issoviet ? 9 : 2) && (ishaxor ? !rn2(13) : !rn2(26))) mkroom(MIMICHALL);
-	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(19) : !rn2(38))) mkroom(NUCLEARCHAMBER);
+	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(38) : !rn2(76))) mkroom(SANITATIONCENTRAL);
+	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(38) : !rn2(76))) mkroom(NUCLEARCHAMBER);
 	else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(12) : !rn2(24))) mkroom(SPIDERHALL);
 	else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(17) : !rn2(33))) mkroom(EXHIBITROOM);
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(50) : !rn2(100))) mkroom(BOSSROOM);
@@ -10115,7 +10122,8 @@ gehennomxtra:
 	if (rn2(4)) {
 
 	    if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(5) : !rn2(10))) mkroom(TEMPLE);
-	    else if(depth(&u.uz) > (issoviet ? 10 : 5) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(RELIGIONCENTER);
+	    else if(depth(&u.uz) > (issoviet ? 10 : 5) && (ishaxor ? !rn2(25) : !rn2(50))) mkroom(RELIGIONCENTER);
+	    else if(depth(&u.uz) > (issoviet ? 8 : 5) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(ROBBERCAVE);
 	    else if(depth(&u.uz) > (issoviet ? 11 : 4) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(MORGUE);
 	    else if(depth(&u.uz) > (issoviet ? 17 : 6) && (ishaxor ? !rn2(28) : !rn2(56))) mkroom(CRYPTROOM);
 	    else if(depth(&u.uz) > (issoviet ? 24 : 7) && (ishaxor ? !rn2(28) : !rn2(56))) mkroom(CURSEDMUMMYROOM);

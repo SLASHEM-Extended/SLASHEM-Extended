@@ -3807,7 +3807,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(100)) {
+		switch (rnd(102)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -3913,6 +3913,8 @@ retryrandtype:
 			case 98: croom->rtype = RAMPAGEROOM; break;
 			case 99: croom->rtype = GAMECORNER; break;
 			case 100: croom->rtype = ILLUSIONROOM; break;
+			case 101: croom->rtype = ROBBERCAVE; break;
+			case 102: croom->rtype = SANITATIONCENTRAL; break;
 
 		}
 
@@ -4052,7 +4054,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(80)) {
+		switch (rnd(82)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -4134,6 +4136,8 @@ retryrandtype:
 			case 78: croom->rtype = RAMPAGEROOM; break;
 			case 79: croom->rtype = GAMECORNER; break;
 			case 80: croom->rtype = ILLUSIONROOM; break;
+			case 81: croom->rtype = ROBBERCAVE; break;
+			case 82: croom->rtype = SANITATIONCENTRAL; break;
 
 		}
 
@@ -4234,6 +4238,8 @@ retryrandtype:
 	    case TROUBLEZONE:
 	    case WEAPONCHAMBER:
 	    case HELLPIT:
+	    case ROBBERCAVE:
+	    case SANITATIONCENTRAL:
 	    case FEMINISMROOM:
 	    case MEADOWROOM:
 	    case COOLINGCHAMBER:
@@ -4677,6 +4683,12 @@ retryrandtype:
 		break;
 	    case HELLPIT:
 		level.flags.has_hellpit = TRUE;
+		break;
+	    case ROBBERCAVE:
+		level.flags.has_robbercave = TRUE;
+		break;
+	    case SANITATIONCENTRAL:
+		level.flags.has_sanitationcentral = TRUE;
 		break;
 	    case FEMINISMROOM:
 		level.flags.has_feminismroom = TRUE;

@@ -173,6 +173,8 @@ int	roomtype;
 	case TROUBLEZONE: mkzoo(TROUBLEZONE); break;
 	case WEAPONCHAMBER: mkzoo(WEAPONCHAMBER); break;
 	case HELLPIT: mkzoo(HELLPIT); break;
+	case ROBBERCAVE: mkzoo(ROBBERCAVE); break;
+	case SANITATIONCENTRAL: mkzoo(SANITATIONCENTRAL); break;
 	case FEMINISMROOM: mkzoo(FEMINISMROOM); break;
 	case MEADOWROOM: mkzoo(MEADOWROOM); break;
 	case COOLINGCHAMBER: mkzoo(COOLINGCHAMBER); break;
@@ -217,7 +219,7 @@ int	roomtype;
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(80)) {
+		switch (rnd(82)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -303,6 +305,8 @@ retryrandtype:
 			case 78: mkrampageroom(); break;
 			case 79: mkzoo(GAMECORNER); break;
 			case 80: mkzoo(ILLUSIONROOM); break;
+			case 81: mkzoo(ROBBERCAVE); break;
+			case 82: mkzoo(SANITATIONCENTRAL); break;
 
 		}
 		break;
@@ -638,7 +642,9 @@ struct mkroom *sroom;
 		else moreorless /= 3;
 	}
 	if (type == ARMORY) moreorless /= 2;
+	if (type == ROBBERCAVE) moreorless /= 2;
 	if (type == DIVERPARADISE) moreorless /= 5;
+	if (type == SANITATIONCENTRAL) moreorless /= 3;
 	if (type == LEVELFFROOM) moreorless /= 3;
 	if (type == MACHINEROOM) moreorless /= 3;
 	if (type == ARDUOUSMOUNTAIN) moreorless /= 5;
@@ -720,6 +726,8 @@ struct mkroom *sroom;
 		    (type == RELIGIONCENTER) ? (rn2(5) ? specialtensmon(347) /* MS_CONVERT */ : specialtensmon(348) /* MS_ALIEN */ ) :
 			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
+			(type == ROBBERCAVE) ? (!rn2(4) ? specialtensmon(357) /* AD_THIE */ : !rn2(3) ? specialtensmon(212) /* AD_SITM */ : !rn2(2) ? specialtensmon(213) /* AD_SEDU */ : specialtensmon(211) /* AD_SGLD */ ) :
+			(type == SANITATIONCENTRAL) ? specialtensmon(363) /* AD_SANI */ :
 			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
 			(type == ILLUSIONROOM) ? illusionmon() :
 			(type == GAMECORNER) ? specialtensmon(u.specialtensionmonster) :
@@ -822,6 +830,28 @@ struct mkroom *sroom;
 				if (rn2(2)) levl[sx][sy].typ = MOUNTAIN;
 				else if (!rn2(5)) levl[sx][sy].typ = TUNNELWALL;
 			}
+			break;
+
+		    case ROBBERCAVE:
+
+			if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+
+				if (!rn2(5)) levl[sx][sy].typ = ROCKWALL;
+			}
+
+			if(!rn2(25) && !t_at(sx, sy)) {
+				(void) maketrap(sx, sy, MONSTER_CUBE, 100);
+			}
+
+			break;
+
+		    case SANITATIONCENTRAL:
+
+			if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+
+				if (!rn2(5)) levl[sx][sy].typ = ROCKWALL;
+			}
+
 			break;
 
 		    case LEVELFFROOM:
@@ -1467,6 +1497,12 @@ struct mkroom *sroom;
 		break;
 	    case PRISONCHAMBER:
 		level.flags.has_prisonchamber = 1;
+		break;
+	    case ROBBERCAVE:
+		level.flags.has_robbercave = 1;
+		break;
+	    case SANITATIONCENTRAL:
+		level.flags.has_sanitationcentral = 1;
 		break;
 	    case NUCLEARCHAMBER:
 		level.flags.has_nuclearchamber = 1;

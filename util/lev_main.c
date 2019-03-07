@@ -728,6 +728,8 @@ static struct {
 	{ "prisonchamber",  PRISONCHAMBER },
 	{ "nuclearchamber",  NUCLEARCHAMBER },
 	{ "levelseventyroom",  LEVELSEVENTYROOM },
+	{ "robbercave",  ROBBERCAVE },
+	{ "sanitationcentral",  SANITATIONCENTRAL },
 
 	{ "evilroom", EVILROOM },
 	{ "religioncenter", RELIGIONCENTER },

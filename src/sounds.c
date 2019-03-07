@@ -484,6 +484,40 @@ dosounds()
 		return;
 	    }
 
+	    if (level.flags.has_robbercave && !rn2(200)) {
+		static const char *robbercave_msg[] = {
+			"feel that this floor is home to the robbers.", /* these are all based on Amy's FO3 fanfic */
+			"know that you must watch your purse.",
+			"get the feeling that somebody is after your valuables.",
+			"hear someone screaming that their money got stolen!",
+			"listen to people drinking beer.",
+			"hear a male voice announce: 'Hundred one hundred!'", /* robbers playing cards */
+			"want to watch when the robbers assault the motherfuckers' ship, because it will be like a second Pearl Harbor!",
+			"know that the bitches are not the rulers of the world, even if they want to view themselves as such just because they have money.",
+			"fully endorse racketeering, as long as the super-smart women are the target.", /* and also the quick learners */
+			"feel like being sucked into one of Amy's terrible fanfics!",
+		};
+		You("%s", robbercave_msg[rn2(5+hallu*5)]);
+		return;
+	    }
+
+	    if (level.flags.has_sanitationcentral && !rn2(200)) {
+		static const char *sanitationcentral_msg[] = {
+			"hear heavy breathing.",
+			"feel that there's something that wants to drain you of your sanity.",
+			"seem more focused on your mental health than usual.",
+			"have to wonder whether you're seeing things.",
+			"sense an eldritch abomination lurking somewhere on this floor.",
+			"start perceiving the world as the terrible place it really is, and go mad from the revelation!",
+			"suddenly have over 9000 sanity! Oh no! Now every sanity increase will paralyze you!",
+			"have to ask Amy what in-game sanity does, because you have no idea!",
+			"feel more sane than before, which is a BAD thing!",
+			"hear a horrible call that rings in your head, which periodically increases your sanity!",
+		};
+		You("%s", sanitationcentral_msg[rn2(5+hallu*5)]);
+		return;
+	    }
+
 	    if (level.flags.has_feminismroom && !rn2(200)) {
 		static const char *feminismroom_msg[] = {
 			"hear a female voice shouting angrily.",

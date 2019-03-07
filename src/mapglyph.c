@@ -510,6 +510,22 @@ unsigned *ospecial;
 				color = CLR_ORANGE;
 			}
 			else cmap_color(offset);
+		} else if(*in_rooms(x,y,ROBBERCAVE)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_GRAY;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_GRAY;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,SANITATIONCENTRAL)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_CYAN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_CYAN;
+			}
+			else cmap_color(offset);
 		} else if(*in_rooms(x,y,FEMINISMROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_MAGENTA;

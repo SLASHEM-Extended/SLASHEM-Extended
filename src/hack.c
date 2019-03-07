@@ -3592,6 +3592,14 @@ register boolean newlev;
                 pline(Hallucination ? "The game suddenly turned into dnethack. The elder priest tentacles to tentacle you! Your cloak of magic resistance disintegrates!" : "You encounter a room from another variant!");
 		    if (!issoviet) wake_nearby();
                 break;
+	      case ROBBERCAVE:
+                pline(Hallucination ? "Oh my god, Amy's fanfics have come true!" : "You enter the robbers' hideout!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case SANITATIONCENTRAL:
+                pline(Hallucination ? "Muahahahahaha, you feel like focusing your gaze on a great race of yith because who needs sanity anyway?" : "Something seems to focus on your mind as you enter this room.");
+		    if (!issoviet) wake_nearby();
+                break;
 
 		case BARRACKS:
 		    if(monstinroom(&mons[PM_SOLDIER], roomno) ||
@@ -3745,6 +3753,12 @@ register boolean newlev;
                         break;
                       case HELLPIT:
                         level.flags.has_hellpit = 0;
+                        break;
+                      case ROBBERCAVE:
+                        level.flags.has_robbercave = 0;
+                        break;
+                      case SANITATIONCENTRAL:
+                        level.flags.has_sanitationcentral = 0;
                         break;
                       case FEMINISMROOM:
                         level.flags.has_feminismroom = 0;
