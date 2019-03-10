@@ -455,6 +455,11 @@ skipmsg:
 
 			struct obj *otmpS;
 
+			if (resists_magm(mtmp) && rn2(20)) {
+				pline("A field of force surrounds %s!", mon_nam(mtmp));
+				break;
+			}
+
 			int astries = 200;
 			int diceroll;
 armorsmashrepeat:
@@ -464,7 +469,13 @@ armorsmashrepeat:
 				case 1:
 					if (mtmp->misc_worn_check & W_ARMS) {
 					    otmpS = which_armor(mtmp, W_ARMS);
-					    if (otmpS->oartifact) break;
+					    if (otmpS->oartifact) goto armorsmashdone;
+					    if (otmpS->blessed && rn2(5)) goto armorsmashdone;
+					    if (otmpS->greased) {
+							if (rn2(2)) otmpS->greased--;
+							goto armorsmashdone;
+					    }
+					    if (otmpS->spe > 1 && rn2(otmpS->spe)) goto armorsmashdone;
 					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 					    m_useup(mtmp, otmpS);
 					    goto armorsmashdone;
@@ -473,7 +484,13 @@ armorsmashrepeat:
 				case 2:
 					if (mtmp->misc_worn_check & W_ARMG) {
 					    otmpS = which_armor(mtmp, W_ARMG);
-					    if (otmpS->oartifact) break;
+					    if (otmpS->oartifact) goto armorsmashdone;
+					    if (otmpS->blessed && rn2(5)) goto armorsmashdone;
+					    if (otmpS->greased) {
+							if (rn2(2)) otmpS->greased--;
+							goto armorsmashdone;
+					    }
+					    if (otmpS->spe > 1 && rn2(otmpS->spe)) goto armorsmashdone;
 					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 					    m_useup(mtmp, otmpS);
 					    goto armorsmashdone;
@@ -482,7 +499,13 @@ armorsmashrepeat:
 				case 3:
 					if (mtmp->misc_worn_check & W_ARMF) {
 					    otmpS = which_armor(mtmp, W_ARMF);
-					    if (otmpS->oartifact) break;
+					    if (otmpS->oartifact) goto armorsmashdone;
+					    if (otmpS->blessed && rn2(5)) goto armorsmashdone;
+					    if (otmpS->greased) {
+							if (rn2(2)) otmpS->greased--;
+							goto armorsmashdone;
+					    }
+					    if (otmpS->spe > 1 && rn2(otmpS->spe)) goto armorsmashdone;
 					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 					    m_useup(mtmp, otmpS);
 					    goto armorsmashdone;
@@ -491,7 +514,13 @@ armorsmashrepeat:
 				case 4:
 					if (mtmp->misc_worn_check & W_ARMH) {
 					    otmpS = which_armor(mtmp, W_ARMH);
-					    if (otmpS->oartifact) break;
+					    if (otmpS->oartifact) goto armorsmashdone;
+					    if (otmpS->blessed && rn2(5)) goto armorsmashdone;
+					    if (otmpS->greased) {
+							if (rn2(2)) otmpS->greased--;
+							goto armorsmashdone;
+					    }
+					    if (otmpS->spe > 1 && rn2(otmpS->spe)) goto armorsmashdone;
 					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 					    m_useup(mtmp, otmpS);
 					    goto armorsmashdone;
@@ -500,19 +529,37 @@ armorsmashrepeat:
 				case 5:
 					if (mtmp->misc_worn_check & W_ARMC) {
 					    otmpS = which_armor(mtmp, W_ARMC);
-					    if (otmpS->oartifact) break;
+					    if (otmpS->oartifact) goto armorsmashdone;
+					    if (otmpS->blessed && rn2(5)) goto armorsmashdone;
+					    if (otmpS->greased) {
+							if (rn2(2)) otmpS->greased--;
+							goto armorsmashdone;
+					    }
+					    if (otmpS->spe > 1 && rn2(otmpS->spe)) goto armorsmashdone;
 					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 					    m_useup(mtmp, otmpS);
 					    goto armorsmashdone;
 					} else if (mtmp->misc_worn_check & W_ARM) {
 					    otmpS = which_armor(mtmp, W_ARM);
-					    if (otmpS->oartifact) break;
+					    if (otmpS->oartifact) goto armorsmashdone;
+					    if (otmpS->blessed && rn2(5)) goto armorsmashdone;
+					    if (otmpS->greased) {
+							if (rn2(2)) otmpS->greased--;
+							goto armorsmashdone;
+					    }
+					    if (otmpS->spe > 1 && rn2(otmpS->spe)) goto armorsmashdone;
 					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 					    m_useup(mtmp, otmpS);
 					    goto armorsmashdone;
 					} else if (mtmp->misc_worn_check & W_ARMU) {
 					    otmpS = which_armor(mtmp, W_ARMU);
-					    if (otmpS->oartifact) break;
+					    if (otmpS->oartifact) goto armorsmashdone;
+					    if (otmpS->blessed && rn2(5)) goto armorsmashdone;
+					    if (otmpS->greased) {
+							if (rn2(2)) otmpS->greased--;
+							goto armorsmashdone;
+					    }
+					    if (otmpS->spe > 1 && rn2(otmpS->spe)) goto armorsmashdone;
 					    pline("%s %s is disintegrated!", s_suffix(Monnam(mtmp)), distant_name(otmpS, xname));
 					    m_useup(mtmp, otmpS);
 					    goto armorsmashdone;
@@ -5231,6 +5278,16 @@ boolean ordinary;
 
 				if (!asitem) {
 					pline("Your skin itches.");
+				} else if (asitem && asitem->blessed && rn2(5)) pline("Your body shakes violently!");
+				else if (asitem && (asitem->spe > 1) && (rn2(asitem->spe)) ) pline("Your body shakes violently!");
+				else if (asitem && asitem->oartifact && rn2(20)) pline("Your body shakes violently!");
+				else if (asitem && asitem->greased) {
+					pline("Your body shakes violently!");
+					 if (!rn2(2) || (isfriday && !rn2(2))) {
+						pline_The("grease wears off.");
+						asitem->greased -= 1;
+						update_inventory();
+					 }
 				} else if (!destroy_arm(asitem)) {
 					pline("Your skin itches.");
 				}
