@@ -2073,7 +2073,9 @@ domove()
 	bhitpos.y = y;
 	tmpr = &levl[x][y];
 	/* attack monster */
+
 	if(mtmp) {
+
 	    forcenomul(0, 0);
 	    /* only attack if we know it's there */
 	    /* or if we used the 'F' command to fight blindly */
@@ -2088,7 +2090,7 @@ domove()
 	     * if the monster is unseen and the player doesn't remember an
 	     * invisible monster--then, we fall through to attack() and
 	     * attack_check(), which still wastes a turn, but prints a
-	     * different message and makes the player remember the monster.		     */
+	     * different message and makes the player remember the monster. */
 	    if(flags.nopick &&
 		  (canspotmon(mtmp) || memory_is_invisible(x, y))){
 		if(mtmp->m_ap_type && !Protection_from_shape_changers
@@ -2100,7 +2102,10 @@ domove()
 		    You("move right into %s.", mon_nam(mtmp));
 		return;
 	    }
-	    if(flags.forcefight || !mtmp->mundetected || sensemon(mtmp) ||
+
+	    /* If there is ANYthing that might be a remembered monster,
+	     * the player should goddamn ATTACK IT and NOT waste a turn. GRRRR. --Amy */
+	    if(flags.forcefight || memory_is_invisible(x, y) || mon_warning(mtmp) || !mtmp->mundetected || sensemon(mtmp) ||
 		    ((hides_under(mtmp->data) || mtmp->data->mlet == S_EEL) &&
 			!is_safepet(mtmp))){
 		gethungry();
@@ -2129,6 +2134,7 @@ domove()
 		else
 		/* try to attack; note that it might evade */
 		/* also, we don't attack tame when _safepet_ */
+
 		if(attack(mtmp)) return;
 
 		if (tech_inuse(T_EDDY_WIND) && flags.forcefight) {
