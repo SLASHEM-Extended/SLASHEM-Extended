@@ -421,7 +421,7 @@ lookat(x, y, buf, monbuf)
 			else if (levl[x][y].typ == LADDER)
 			    sprintf(eos(buf), ", on a ladder");
 
-			if (!Hallucination) {
+			if (!Hallucination && !KnowledgeBug && !u.uprops[KNOWLEDGE_BUG].extrinsic && !have_trapknowledgestone() ) {
 				register struct trap *seethetrap;
 				register int tt;
 				if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
@@ -845,7 +845,7 @@ lookat(x, y, buf, monbuf)
 		else if (levl[x][y].typ == LADDER)
 		    sprintf(eos(buf), ", on a ladder");
 
-		if (!Hallucination) {
+		if (!Hallucination && !KnowledgeBug && !u.uprops[KNOWLEDGE_BUG].extrinsic && !have_trapknowledgestone()) {
 			register struct trap *seethetrap;
 			register int tt;
 			if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
