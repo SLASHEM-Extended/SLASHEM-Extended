@@ -68,7 +68,7 @@ get_mplname(mtmp, nam)
 register struct monst *mtmp;
 char *nam;
 {
-	boolean fmlkind = is_female(mtmp->data);
+	boolean fmlkind = mtmp->female; /* wtf why did that use "is_female"??? that's retarded! --Amy */
 	const char *devnam;
 
 	/* Amy edit: more names, mainly ones of active players and variant developers */
@@ -188,10 +188,11 @@ char *nam;
 	else strcpy(nam, devnam);
 
 namedecided:
-	if (fmlkind || !strcmp(nam, "Janet"))
+	/* why don't we just let the RNG decide whether the player monster is female... --Amy */
+/*	if (fmlkind || !strcmp(nam, "Janet"))
 	    mtmp->female = 1;
 	else
-	    mtmp->female = 0;
+	    mtmp->female = 0;*/
 	if (is_mplayer(mtmp->data)) {
 		strcat(nam, " the ");
 		strcat(nam, rank_of((int)mtmp->m_lev, monsndx(mtmp->data), (boolean)mtmp->female));

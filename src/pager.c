@@ -22974,6 +22974,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have to ask Amy what in-game sanity does, because you have no idea!",
 	"You feel more sane than before, which is a BAD thing!",
 	"You hear a horrible call that rings in your head, which periodically increases your sanity!",
+	"You hear loud crunching sounds from inside your bag of holding.",
+	"You hear loud crunching sounds from inside your bag of holding. Hahahahaha. Now all the stuff has vanished. Hahaha.",
 
 };
 
