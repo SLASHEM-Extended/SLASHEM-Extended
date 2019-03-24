@@ -3807,6 +3807,16 @@ static NEARDATA const char * const demagoguelines[] = {
 "What? Our former war enemies are requesting reparations? If I were in charge, I'd tell them where they can stick their fucking reparations...",
 "Climate protection? Bah! We shouldn't waste our time with that!",
 "Vote for my party or I'll send some assassins to snipe you on the way to the voting office!",
+"They call me a demagogue just because I don't blindly repeat the government's opinion! That's bullshit, and everyone who uses their brain should know that!",
+"The politicians are making changes just for the sake of making them, not because those changes would actually be good for the people!",
+"I know for a fact that lawmakers are paid for the amount of changes they make, not for quality. That's why they keep making stupid laws.",
+"I think that taxes are really just legalized theft, and I want to abolish the thieving government that keeps taking my well-earned money!",
+"The current political system is a dictatorship! We need to get rid of the dictator and have anarchy instead, then everything will get better!",
+"We need to build a giant wall around our country!",
+"How does the government even manage to stay in charge? People, why are you still voting for them?",
+"We need to bring back slavery, but we'll call our slaves 'workers' so they won't be demoralized!",
+"We all need to fight the good fight and demonstrate against the current government's plans!",
+"What? They're planning a new censorship law? That's an attack on free speech, and we need to storm the government center!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4450,6 +4460,23 @@ static NEARDATA const char * const hussylines_wal[] = {
 "You're fully the loser!",
 "The hussies are a million times better than you!",
 "This school is not for scum like you! We, the Hussies, are the only ones allowed here!",
+"I know why walscholars exist - they're there so us Hussies can have fun defeating them!",
+"Who would ever call a guy 'Walt'??? I kind of feel sorry for his dad, but not really.",
+"Hahaha, you little retard are complaining that I called you 'retarded'? That's gay!",
+"Do you really think that your constant 'waaaah the hussies are so evil waaaah waaaaah' complaints are heard by anyone?",
+"I'm gonna throw you into the cesspool where the stench will make you suffocate.",
+"I'll be dancing on the grave of this school's founder once I have the diamonds in my possession.",
+"Are you getting tired of listening to me yet? I'll spam you with taunts forever until you give up voluntarily.",
+"Gelmer and Kelana are going to take care of you!",
+"I'll set the new boss of the hola-hola brigade on you, and then you're going down!",
+"Didn't you read today's horoscope? It said that you will experience a catastrophic failure! Better go home now before the prophecy comes true!",
+"You're losing it! The Hussies are so going to mop the floor with you wimpy walscholar!",
+"Why did your walscholar group decide to act up now? Are you seriously thinking you could escape your victimhood? Hahaha. I'll ensure that you will be even more of a victim.",
+"The Hussies are coming to retake what is theirs: this school. Walscholars be gone!",
+"You may be able to fend off someone who uses conventional weapons, but we, the Hussies, will use our perfume on you and there is no way for you to resist that.",
+"Why do you think you can single-handedly defeat the Hussies? You should have been smarter than that. If you don't like our presence, just go to another school instead!",
+"Good thing we hired the hola-hola brigade. I mean, walscholars can't stop us anyway, but we just wanted to make extra sure...",
+"Why are you even listening to what Walt and his teacher-shaped incapabilities are saying? I wouldn't ever let them instruct ME what I'm allowed to do!",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4491,6 +4518,23 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "%s, you forgot to take the short bus to school! We'll eliminate you now!",
 "Why do we even have to waste our time with %s? We want to get the teachers, those are priority targets!",
 "%s is just another name on my hit list.",
+"%s, you should put a new entry on your resume with today's date, which reads: 'Defeated by a Hussy.'",
+"Wow. I always thought Walt was a stupid name, but %s sounds even more retarded! Did your parents break out of the asylum or what?",
+"%s, no one will ever listen to your complaints. You little crybaby.",
+"Everyone in the entire city heard the news that the person who calls themselves %s is officially insane. And as a result, no one will believe them.",
+"Come on, %s, step into some traps! It'll be fun because it means your inevitable failure will happen sooner!",
+"%s, you know that your school is complete trash and full of faggots. Us Hussies will remove you and your teachers, and then we'll install Hussy teachers who are much better!",
+"%s, you will have to listen to my taunts all day and all night! I shall drive you insane with my message spam and you will wish you never challenged the Hussy Club!",
+"Know this, %s - the hola-hola bosses are much stronger than you and will convert you whether you want or not.",
+"Know this, %s - the hola-hola bosses are determined to shatter your will with their taunts, and you will have no hopes of ever defeating them.",
+"%s, I can see that you're freezing... is it fear? Hahaha!",
+"Any minute now, %s will shit their pants because they realize they tried to bite off more than they can chew and will be bludgeoned by me and the other Hussies.",
+"%s, you made the mistake of challenging me. When I'm done with you, you'll be on the floor crying like a little baby and wishing you didn't start your stupid action.",
+"Now the walscholar called %s will learn what it means to declare war to the Hussies.",
+"%s is just about to fall prey to my trap!",
+"%s will never be as cunning and smart as me.",
+"%s, you called the members of the hola-hola brigade 'aliens'! That is not permitted, because they are honorable members of society! You will pay for that insult!",
+"Here's a little hint for you, %s: you should really stop doing what your retarded teachers want you to do. They instructed you to fight us Hussies, but it will only result in your defeat! Better give up now and join us instead!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -22976,6 +23020,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear a horrible call that rings in your head, which periodically increases your sanity!",
 	"You hear loud crunching sounds from inside your bag of holding.",
 	"You hear loud crunching sounds from inside your bag of holding. Hahahahaha. Now all the stuff has vanished. Hahaha.",
+	"Outside, you hear the cockatrice's hissing! The steam vortex gets turned to stone! And the same fate befalls you. Do you want your possessions identified?",
 
 };
 

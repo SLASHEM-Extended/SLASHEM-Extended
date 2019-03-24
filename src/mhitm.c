@@ -2951,7 +2951,7 @@ int mdead;
 				case 3:
 					pline("%s feels sick at entrails caught in %s's tentacles.", Monnam(magr), mon_nam(mdef)); break;
 				case 4:
-					pline("%s sees maggots breed in the rent %s of %s.", Monnam(magr), mbodypart(mdef, STOMACH), mon_nam(magr)); break;
+					pline("%s sees maggots breed in the rent %s of %s.", Monnam(magr), mbodypart(mdef, STOMACH), mon_nam(mdef)); break;
 
 			}
 
