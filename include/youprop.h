@@ -882,7 +882,7 @@
 #define EClairvoyant		u.uprops[CLAIRVOYANT].extrinsic
 #define BClairvoyant		u.uprops[CLAIRVOYANT].blocked
 #define IntClairvoyant	(HClairvoyant)
-#define ExtClairvoyant	(EClairvoyant || (uwep && uwep->oartifact == ART_TOOTH_OF_SHAI_HULUD) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == CLAIRVOYANT) ) || (uamul && uamul->oartifact == ART_WOUUU) || (uarmh && uarmh->otyp == ART_WSCHIIIIIE_))
+#define ExtClairvoyant	(EClairvoyant || (uwep && uwep->oartifact == ART_TOOTH_OF_SHAI_HULUD) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == CLAIRVOYANT) ) || (uamul && uamul->oartifact == ART_WOUUU) || (uarmh && uarmh->oartifact == ART_WSCHIIIIIE_))
 
 #define Clairvoyant		(((IntClairvoyant && u.nonintrinsicproperty != CLAIRVOYANT) || (ExtClairvoyant && u.nonextrinsicproperty != CLAIRVOYANT)) && !BClairvoyant && !NoClairvoyant)
 #define StrongClairvoyant	(IntClairvoyant && ExtClairvoyant && Clairvoyant)
