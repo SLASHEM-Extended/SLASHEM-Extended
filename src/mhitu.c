@@ -104,7 +104,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5)) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) ) { 
+			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) ) { 
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s gently strokes and squeezes your breasts, and you are sexually aroused by the soft touch.", Monnam(mtmp));
@@ -175,7 +175,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			if (rn2(25) && moves < 1000) break; /* players are getting killed unfairly... --Amy */
 
-			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || ((rnd(100) > armprolimitX) && ((armproX < 4) || (rnd(armproX) < 4) ) ) ) ) {
+			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 500 : (u.ualign.type == A_NEUTRAL) ? 750 : 1000) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || ((rnd(100) > armprolimitX) && ((armproX < 4) || (rnd(armproX) < 4) ) ) ) ) {
 			if (!Drain_resistance || !rn2(StrongDrain_resistance ? 16 : 4)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha kha kha, eto ne byl otklyuchen, i teper' vy osushilos'. Sovetskaya Pyat' Lo ne khochet, chtoby eta igra byla vyigrana v lyubom sluchaye." : "SCHHUEUEOEUEOEUEOEUEOE");
@@ -226,7 +226,7 @@ on the first floor, especially when you're playing as something with drain resis
 				if (!rn2(20)) badeffect();
 			}
 
-			if (!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) {
+			if (!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s powerfully kicks you in the nuts, and you moan in lust because you love the pain.", Monnam(mtmp));
@@ -1068,7 +1068,7 @@ elena23:
 			break;
 		case AT_STNG:
 			pline("%s stings you!", Monnam(mtmp));
-			if ((!rn2(player_shades_of_grey() ? 200 : (u.ualign.type == A_LAWFUL) ? 300 : (u.ualign.type == A_NEUTRAL) ? 250 : 300)) && (!issoviet || !rn2(5)) ) {
+			if ((!rn2(player_shades_of_grey() ? 200 : (u.ualign.type == A_LAWFUL) ? 1000 : (u.ualign.type == A_NEUTRAL) ? 500 : 1000)) && (!issoviet || !rn2(5)) ) {
 			pline("You are bleeding out from your stinging injury!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ne prosto poteryayet odnu maksimal'nuyu khitpoint. Poteryat' ikh vsekh, i nadeyus', chto yeshche odnu glupuyu smert' vse ravno nichego ne poluchite vy." : "Ffffffffschhhhhhhhhh!");
 			monsterlev = ((mtmp->m_lev) + 1);
@@ -1106,7 +1106,7 @@ elena23:
 		case AT_BUTT:
 			pline("%s butts you!", Monnam(mtmp));
 
-			if (multi >= 0 && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 25 : (u.ualign.type == A_LAWFUL) ? 40 : (u.ualign.type == A_NEUTRAL) ? 33 : 50)) {
+			if (multi >= 0 && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 25 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 50 : 200)) {
 			    if (Free_action) {
 				You_feel("a slight shaking.");            
 			    } else {
@@ -1126,7 +1126,7 @@ elena23:
 			break;
 		case AT_SCRA:
 			pline("%s scratches you!", Monnam(mtmp));
-			if ((!rn2(player_shades_of_grey() ? 75 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 125)) && (!issoviet || !rn2(5)) ) {
+			if ((!rn2(player_shades_of_grey() ? 75 : (u.ualign.type == A_LAWFUL) ? 300 : (u.ualign.type == A_NEUTRAL) ? 500 : 400)) && (!issoviet || !rn2(5)) ) {
 			pline("One of your arteries bursts open! You suffer from %s loss!", body_part(BLOOD));
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -1174,7 +1174,7 @@ elena23:
 				losehp(monsterlev, "a slap on the butt cheeks", KILLED_BY);
 			}
 
-			if ((!rn2(player_shades_of_grey() ? 5 : (u.ualign.type == A_LAWFUL) ? 15 : (u.ualign.type == A_NEUTRAL) ? 20 : 10)) && (!issoviet || !rn2(5)) ) {
+			if ((!rn2(player_shades_of_grey() ? 5 : (u.ualign.type == A_LAWFUL) ? 40 : (u.ualign.type == A_NEUTRAL) ? 50 : 30)) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("Your %s spins in confusion.", body_part(HEAD));
@@ -1204,7 +1204,7 @@ elena23:
 		case AT_TRAM:
 			pline("%s tramples over you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Monstry budut toptat' vas, potomu chto vy ochen' plokhoy igrok." : "Klatsch klatsch!");
-			if (!rn2(player_shades_of_grey() ? 3 : 5) && (!issoviet || !rn2(5)) ) {
+			if (!rn2(player_shades_of_grey() ? 3 : 15) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("You can't think straight as your every muscle is aching!");
@@ -1214,7 +1214,7 @@ elena23:
 			break;
 		case AT_TUCH:
 			pline("%s touches you!", Monnam(mtmp));
-			if (!issoviet || !rn2(5)) losehp(player_shades_of_grey() ? 2 : 1, "icy touch", KILLED_BY_AN);
+			if ((!issoviet || !rn2(5)) && !rn2(3)) losehp(player_shades_of_grey() ? 2 : 1, "icy touch", KILLED_BY_AN);
 
 			if (FemaleTrapJessica && !rn2(3)) {
 				pline("Your tender butt cheeks are stimulated by %s's caressing touch... and you start producing tender farting noises.", mon_nam(mtmp));
@@ -1233,11 +1233,11 @@ elena23:
 			pline("%s tentacles suck you!",
 				        s_suffix(Monnam(mtmp)));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' my budem yest' vash mozg, i vy budete umirat' ot gluposti." : "TschuecktschueckTschuecktschueckTschuecktschueck!");
-			if (!issoviet || !rn2(5)) {
-			monsterlev = ((mtmp->m_lev) + 1);
-			monsterlev /= player_shades_of_grey() ? 2 : 5;
-			if (monsterlev <= 0) monsterlev = 1;
-			losehp((monsterlev), "sucking tentacle attack", KILLED_BY_AN);
+			if ((!issoviet || !rn2(5)) && rn2(2)) {
+				monsterlev = ((mtmp->m_lev) + 1);
+				monsterlev /= player_shades_of_grey() ? 2 : 5;
+				if (monsterlev <= 0) monsterlev = 1;
+				losehp((monsterlev), "sucking tentacle attack", KILLED_BY_AN);
 			}
 			break;
 		case AT_EXPL:
