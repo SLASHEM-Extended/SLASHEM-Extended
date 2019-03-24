@@ -4885,6 +4885,7 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
+	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;

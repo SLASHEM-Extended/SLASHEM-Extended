@@ -1945,7 +1945,7 @@ level_difficulty()
 
 	int depthuz;
 
-	if (flags.zapem && In_ZAPM(&u.uz) && !(u.zapemescape)) {
+	if (iszapem && In_ZAPM(&u.uz) && !(u.zapemescape)) {
 
 		d_level zapemlevel;
 		int zapemdepth;

@@ -17972,6 +17972,36 @@ struct obj *obj;
 					pline("Artifact specs: jumping, silver spells and manler effect when wielded, allows the player to displace monsters by walking into them (use the F command if you want to attack them in melee)."); break;
 				case ART_PAYBACK_TIME:
 					pline("Artifact specs: can be applied to hit monsters standing 3 squares away, or even 4 if the distance isn't too big."); break;
+				case ART_FLAILMOUSE:
+					pline("Artifact specs: +24 to-hit and +2 damage, can be invoked for untrapping, lawful, software engineer quest artifact."); break;
+				case ART_ROTATING_THROUGH:
+					pline("Artifact specs: +5 to-hit and +8 damage, ESP when wielded, can be invoked for conflict, chaotic, cracker quest artifact."); break;
+				case ART_SUPERCLEAN_AWAYWIPER:
+					pline("Artifact specs: +30 to-hit and +10 damage, fire resistance when wielded, shock resistance when carried, can be invoked for object detection, neutral, janitor quest artifact."); break;
+				case ART_PIN_RACKET:
+					pline("Artifact specs: +4 to-hit and +12 damage, warning, half physical damage and AC bonus when wielded, lawful, space marine quest artifact."); break;
+				case ART_THUNDERSTRIKE:
+					pline("Artifact specs: +5 to-hit and +18 damage to shock-susceptible targets, teleport control and shock resistance when wielded, can be invoked for light area, chaotic, stormboy quest artifact."); break;
+				case ART_EYEHANDER:
+					pline("Artifact specs: +5 increase damage and accuracy when worn, ESP when carried, can be invoked for death gaze, chaotic, yautja quest artifact."); break;
+				case ART_WORLD_LEAGUE_HITTER:
+					pline("Artifact specs: +50 to-hit and +2 damage, reflection and acts as a luckstone when wielded, neutral, quarterback quest artifact."); break;
+				case ART_PSIGUN:
+					pline("Artifact specs: psi resistance, half spell damage and energy regeneration when wielded, regeneration when carried, can be invoked to create ammo, lawful, psyker quest artifact."); break;
+				case ART_CONTROLLER_HAT:
+					pline("Artifact specs: searching, warning and undead warning when worn, can be invoked for taming, lawful, empath quest artifact."); break;
+				case ART_RED_PIN:
+					pline("Artifact specs: +10 to-hit and +26 damage to fire-susceptible targets, stealth and fire resistance when wielded, hallucination resistance when carried, can be invoked to summon fire elementals, neutral, mastermind quest artifact."); break;
+				case ART_BUS_ERROR:
+					pline("Artifact specs: +10 to-hit and +10 drain life damage, can drain levels from targets, acid resistance when wielded, stealth and AC bonus when carried, can be invoked for phasing, lawful, weirdboy quest artifact."); break;
+				case ART_ROCKET_IMPULSE:
+					pline("Artifact specs: speed, magical breathing, 10 extra points of AC, half physical damage and x-ray vision when worn, teleport control when carried, can be invoked for energy boost, lawful, astronaut quest artifact."); break;
+				case ART_GAYSECT:
+					pline("Artifact specs: acts as a luckstone when wielded, can bisect enemies, chaotic, cyberninja quest artifact."); break;
+				case ART_VOICESHUTTER:
+					pline("Artifact specs: +10 to-hit and +20 damage to shock-susceptible targets, deafness, shock resistance and stealth when wielded, can be invoked for level teleport, lawful, dissident quest artifact."); break;
+				case ART_SNAKELASH:
+					pline("Artifact specs: +2 to-hit and +14 damage, poison and sickness resistance when wielded, deals extra poison damage to enemies, can be invoked for healing, chaotic, xelnaga quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

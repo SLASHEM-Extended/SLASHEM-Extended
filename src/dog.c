@@ -357,6 +357,21 @@ maeney:
 	if (pettype == PM_FEMALE_SAMURAI) petname = "Miss Grenade";
 	if (pettype == PM_ORDINATOR) petname = "Andragil";
 	if (pettype == PM_ROTHE) petname = "Rambo";
+	if (pettype == PM_GEEK) petname = "Tacitus";
+	if (pettype == PM_SOFTWARE_BUG) petname = "Signal 11";
+	if (pettype == PM_ROOMBA) petname = "Asshole Vacuum Cleaner";
+	if (pettype == PM_CUNTGUN_TROOPER) petname = "Sergeant McShithead";
+	if (pettype == PM_DRATINI) petname = "DRAGO";
+	if (pettype == PM_ROBOT) petname = "Meliha";
+	if (pettype == PM_MISTER_HEAD) petname = "Mister Head";
+	if (pettype == PM_QUADRENNIAL_SODDEN_RATCHET) petname = "Randomized Script Monster";
+	if (pettype == PM_NURSE) petname = "Klara";
+	if (pettype == PM_ELVEN_MAGE) petname = "Keytu Framer";
+	if (pettype == PM_SCHINDA) petname = "Tragic Past On Crack";
+	if (pettype == PM_UFO) petname = "Flying Saucer";
+	if (pettype == PM_DENRYU) petname = "Ryu Hayabusa";
+	if (pettype == PM_CHRISTINE) petname = "Christine";
+	if (pettype == PM_BIRSEN) petname = "Birsen";
 
 	if (pettype == PM_FLOATING_EYE) petname = "Gazing Beholder Orb";
 

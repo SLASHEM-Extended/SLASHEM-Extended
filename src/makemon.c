@@ -6256,6 +6256,11 @@ register struct	monst	*mtmp;
 		else if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (monsndx(ptr) == PM_EVRA_THE_MOP_LADY) {
+			(void)mongets(mtmp, MOP);
+			(void)mongets(mtmp, BROOM);
+		}
+
 		if (ptr == &mons[PM_RENEGADE_WATCHMAN]) {
 			if (!rn2(2)) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
@@ -6268,6 +6273,9 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_CHIEFBANE]) {
 			(void)mongets(mtmp, TWO_HANDED_SWORD);
+		}
+		if (ptr == &mons[PM_LUKE_SKYWALKER]) {
+			(void)mongets(mtmp, GREEN_LIGHTSABER);
 		}
 
 		if (ptr == &mons[PM_RENEGADE_WATCH_LIEUTENANT]) {
@@ -6283,6 +6291,13 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, BOW);
 			m_initthrow(mtmp, ARROW, 30);
 		}
+		if (ptr == &mons[PM_BRANTER_GUN]) {
+			(void)mongets(mtmp, SUBMACHINE_GUN);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+		}
 		if (ptr == &mons[PM_SPARD]) {
 			(void)mongets(mtmp, BOW);
 			m_initthrow(mtmp, ARROW, 30);
@@ -6295,6 +6310,17 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_GREURO]) {
 			(void)mongets(mtmp, LANCE);
+		}
+		if (ptr == &mons[PM_EDWARD_NYGMA]) {
+			(void)mongets(mtmp, WAN_CREATE_MONSTER);
+		}
+		if (ptr == &mons[PM_THE_MAN_IN_THE_MOON]) {
+			(void)mongets(mtmp, WAN_TRAP_CREATION);
+			int bossscrolls = rnd(5);
+			while (bossscrolls > 0) {
+				bossscrolls--;
+				(void)mongets(mtmp, SCR_SUMMON_BOSS);
+			}
 		}
 		if (ptr == &mons[PM_JAPS]) {
 			(void)mongets(mtmp, KATANA);
@@ -10266,6 +10292,37 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_BESH_XAN]) (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 
+		if (ptr == &mons[PM_INSECT_HIVEMIND]) {
+
+			int eggcount = 200;
+			while (eggcount > 0) {
+				struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+				if (otmpX) {
+
+					struct permonst *antpm = 0;
+					int anttempts = 0;
+
+					do {
+						antpm = rndmonst();
+						anttempts++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+					} while ( (!antpm || (antpm && !(antpm->mlet == S_ANT) )) && anttempts < 50000);
+
+					otmpX->spe = 0;
+					otmpX->quan = 1;
+					otmpX->owt = weight(otmpX);
+					if (antpm) otmpX->corpsenm = egg_type_from_parent(monsndx(antpm), FALSE);
+					else otmpX->corpsenm = egg_type_from_parent(PM_ANT, FALSE); /* fail safe */
+					attach_egg_hatch_timeout(otmpX);
+					kill_egg(otmpX); /* make sure they're stale --Amy */
+					(void) mpickobj(mtmp,otmpX, TRUE);
+				}
+				eggcount--;
+			}
+
+		}
+
 		if (monsndx(ptr) == PM_DEEP_THOUGHT) {
 			otmp = mksobj(IC,FALSE,FALSE);
 			if (otmp) {
@@ -10456,6 +10513,20 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_EK_CHUAH]) {
 			(void)mongets(mtmp, CROSSBOW);
 			m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+
+		}
+		if (ptr == &mons[PM_THE_SPIDER_MASTERMIND]) {
+			(void)mongets(mtmp, HEAVY_MACHINE_GUN);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
+			m_initthrow(mtmp, BULLET, 50);
 
 		}
 

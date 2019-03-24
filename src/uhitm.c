@@ -673,6 +673,7 @@ register struct monst *mtmp;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
+	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 
@@ -2448,6 +2449,7 @@ int dieroll;
 		if (uright && uright->oartifact == ART_BLIND_PILOT) tmp += 10;
 		if (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) tmp += 10;
 		if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
+		if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) tmp += 3;
 		tmp += (Drunken_boxing && Confusion);
 		if (RngeBloodlust) tmp += 1;
@@ -7618,7 +7620,7 @@ boolean ranged;
 		break;
 
 	    case AD_WEEP:
-		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			if (!u.levelporting) {
 				u.levelporting = 1;
@@ -8304,7 +8306,7 @@ boolean ranged;
 				break;
 			case 6:
 
-				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 					level_tele();
 					nomul(-2, "being levelwarped", FALSE);
@@ -8611,7 +8613,7 @@ boolean ranged;
 	    case AD_BANI:
 		if (!rn2(3)) {
 			if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (flags.zapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 			 pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */

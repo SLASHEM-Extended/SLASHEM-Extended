@@ -306,6 +306,37 @@ const struct Role roles[] = {
 	10, 8, 0, 1,  9, A_INT, SPE_INVISIBILITY, -4, 40
 },
 
+{	{"Astronaut", 0}, {
+	{"Rocket Tester",   0},
+	{"Vostok Martyr",    0},
+	{"Deimos Stevedore",      "Moon Walker"},
+	{"Leonov Engineer",     0},
+	{"Marauder Pilot",      0},
+	{"Von Braun Staff",      0},
+	{"LongShot Navigator",      0},
+	{"Tie Fighter Ace",      0},
+	{"Nostromo Survivor",   0} },
+	"Neil Armstrong", "_Sally Ride", "Yuri Gagarin", /* famous astronauts */
+	"Ast", "NAFA Headquarter", "Terrorist Underground",
+	PM_ASTRONAUT, NON_PM, PM_UNDEAD_ASTRONAUT, NON_PM, PM_UFO,
+	PM_NAFA_BOSS, PM_STARNOID, PM_THE_MAN_IN_THE_MOON, PM_DECIMATED_SPINNER,
+	PM_NASTY_LIGHT, PM_PSI_RAY, S_LIGHT, S_WORM_TAIL,
+
+	ART_ROCKET_IMPULSE, /* torso armor */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 14, 14, 12,  20, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 19, 19, 20, 20, 19 },
+	/* Init   Lower  Higher */
+	{ 19, 0,  0, 5,  4, 0 },	/* Hit points */
+	{ 12, 0,  0, 3,  0, 2 }, 14,	/* Energy */
+	10, 6, 0, 2, 10, A_INT, SPE_TIME_STOP,      -4, 100
+},
+
 {	{"Augurer", 0}, {
 	{"College Student",         0},
 	{"Deviant Seer",            0},
@@ -799,6 +830,37 @@ const struct Role roles[] = {
 	-10, 5, 0, 2, 10, A_INT, SPE_ENDURE_HEAT,   -4, 20
 },
 
+{	{"Cracker", 0}, {
+	{"Savescummer",   0},
+	{"File Sharer",    0},
+	{"W@r3z d00d",      0},
+	{"Script Kiddie",     0},
+	{"H@x0r",      0},
+	{"1337 H@x0r",      0},
+	{"Decker",      0},
+	{"Virusneaker",      0},
+	{"Phreaker",   0} },
+	"Wikileaks", "Guccifer 2.0", "Anonymous", /* h@cking */
+	"Cra", "Darknet Gateway", "NSA Office",
+	PM_CRACKER, NON_PM, PM_UNDEAD_CRACKER, NON_PM, PM_SOFTWARE_BUG,
+	PM_YHELOTHAR, PM_HACKER, PM_E_TYPE, PM_W_TYPE,
+	PM_DEPHMAH_SEPHIRAH, PM_RNGED_KOP, S_KOP, S_HUMAN,
+
+	ART_ROTATING_THROUGH, /* better iron chain */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 25, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(20), 20, 18, 18, 18, 16 },
+	/* Init   Lower  Higher */
+	{  15, 0,  0, 4,  3, 0 },	/* Hit points */
+	{  12, 0,  0, 5,  0, 2 }, 12,	/* Energy */
+	-10, 6, 1, 4, 12, A_INT, SPE_GAIN_SPACT,      -4, 100
+},
+
 {	{"Cruel Abuser", 0}, { /* too many role names starting with A, so I added that adjective --Amy */
 	{"Whipper",     0},
 	{"Lasher",   0},
@@ -829,6 +891,36 @@ const struct Role roles[] = {
 	-10, 5, 0, 2, 10, A_INT, SPE_FORCE_BOLT,   -4, 40
 },
 
+{	{"Cyberninja", 0}, { /* ZAPM ninja */
+	{"Eavesdropper",   0},
+	{"Looming Shadow",    0},
+	{"Infiltrator",      0},
+	{"Sabotager",     0},
+	{"Terrorist",      0},
+	{"Corporate Spy",      0},
+	{"Black Hand",      0},
+	{"Cyber Assassin",      0},
+	{"Unseen Master",   0} },
+	"Diddy the Fail Master", "Bantor the Gay Voice", "Conker the Bad Fur Squirrel", /* Diddy Kong Failing :P */
+	"Cyb", "Teki-Owned Castle", "Rice Plant Fields",
+	PM_CYBERNINJA, NON_PM, PM_UNDEAD_CYBERNINJA, NON_PM, PM_DENRYU,
+	PM_PRINCE_SARTOR, PM_NINJA_GAIDEN, PM_FENG_SHAO, PM_ONA_KENUGI,
+	PM_VARUNA, PM_KILL_WING, S_GREMLIN, S_GREMLIN,
+
+	ART_GAYSECT, /* 2h axe with bisection attack */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30, 10,  8, 30, 14,  8 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 17, 19, 20, 18, 19 },
+	/* Init   Lower  Higher */
+	{ 19, 0,  0, 8,  1, 0 },	/* Hit points */
+	{  7, 0,  0, 1,  0, 1 },11,	/* Energy */
+	10, 10, 0, 0,  8, A_INT, SPE_DEFOG,      -4, 25
+},
 
 {	{"Death Eater", 0}, {
 	{"Filthy Worm",  0},
@@ -889,6 +981,37 @@ const struct Role roles[] = {
 	{  20, 0,  0, 8,  4, 0 },	/* Hit points */
 	{  1,  0,  0, 1,  0, 1 }, 18,	/* Energy */
 	-50, 6, 4, 7, 15, A_INT, SPE_MESSAGE,      -4, 30
+},
+
+{	{"Dissident", 0}, {
+	{"Mars Castaway",   "Moon Base Staff"},
+	{"Orbital Watch",    0},
+	{"Land Agent",      0},
+	{"Covert Eye",     0},
+	{"Arms Dealer",      0},
+	{"Belt Capo",      0},
+	{"Planet Conqueror",      0},
+	{"System Kingpin",      0},
+	{"Sector Crimelord",   0} },
+	"_Aung San Suu Kyi", "Ai Weiwei", "Vladimir Bukovsky", /* famous dissidents */
+	"Dis", "Secret Underground", "Gavenmengte Location",
+	PM_DISSIDENT, NON_PM, PM_UNDEAD_DISSIDENT, NON_PM, PM_CHRISTINE,
+	PM_DARKNET_GATER, PM_EXTERMINATOR, PM_SCHWING_JI, PM_DICTATORIAL_PRESIDENT,
+	PM_KOPKEEPER, PM_MIRROR_PLANETAR, S_KOP, S_ANGEL,
+
+	ART_VOICESHUTTER, /* hammer */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 15, 15, 15, 20, 15 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 19, 19 },
+	/* Init   Lower  Higher */
+	{  20, 0,  0, 4,  4, 0 },	/* Hit points */
+	{   8, 0,  0, 2,  0, 3 }, 16,	/* Energy */
+	10, 9, -1, 3, 12, A_INT, SPE_NEXUSPORT,      -4, 50
 },
 
 {	{"Diver", 0}, {
@@ -1199,6 +1322,37 @@ const struct Role roles[] = {
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
 	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4, 60
+},
+
+{	{"Empath", 0}, {
+	{"Enlightened One",   0},
+	{"Mind Mirror",    0},
+	{"Thought Catcher",      0},
+	{"Subconscious Link",     0},
+	{"Psionic Vein",      0},
+	{"Brainwave Warper",      0},
+	{"Neuroconductor",      0},
+	{"Mind Overlord",      0},
+	{"Fate Weaver",   0} },
+	"_Grolla Seyfarth", "_Pamela & Carl Arwig", "_Iris Sepperin", /* erka_es, and the "Carl Arwig" is an inside joke */
+	"Emp", "Magnetic Shield Cave", "Antenna Grounds",
+	PM_EMPATH, NON_PM, PM_UNDEAD_EMPATH, NON_PM, PM_NURSE,
+	PM_HYACINTOR, PM_INTERN, PM_BRANTER_GUN, PM_RELIGIOUS_HOUSE_NOTICER,
+	PM_MIND_FLAYER, PM_SWAPPED_MASTER_MIND_FLAYER, S_HUMANOID, S_HUMANOID,
+
+	ART_CONTROLLER_HAT, /* helm of telepathy, invoke for taming */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 30, 20, 20,  5, 15 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 25, 20, 18, 16, 18 },
+	/* Init   Lower  Higher */
+	{  10, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  24, 0,  0, 5,  0, 3 }, 18,	/* Energy */
+	10, 6, -5, 3, 13, A_INT, SPE_FULL_HEALING,      -4, 150
 },
 
 {	{"Erdrick", 0}, {
@@ -1943,6 +2097,37 @@ const struct Role roles[] = {
 	2, 10, A_INT, SPE_CHARGING,        -4, 100 /* From old role.c */
 },
 
+{	{"Janitor", 0}, {
+	{"Toilet Scrubber",   0},
+	{"Mop Boy",    0},
+	{"Housekeeper",      0},
+	{"Custodian",     0},
+	{"Maintenance Man",      0},
+	{"Sanitation Freak",      0},
+	{"Superintendent",      0},
+	{"Property Manager",      0},
+	{"Landlord",   0} },
+	"Grime", "Dog Shit", "Fag Butt", /* various forms of garbage - the latter is an actual term for "cigarette", you can stop whining about political correctness */
+	"Jan", "Waste Disposal Car Pool", "Smoky Mountain",
+	PM_JANITOR, NON_PM, PM_UNDEAD_JANITOR, NON_PM, PM_ROOMBA,
+	PM_EVRA_THE_MOP_LADY, PM_SERVANT, PM_VOMITANT_BUM, PM_CIGARETTE_FAGGOT,
+	PM_OLOG_HAI, PM_HUDDLY_PUDDING, S_TROLL, S_PUDDING,
+
+	ART_SUPERCLEAN_AWAYWIPER, /* broom */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 15, 15, 20, 20, 15 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 17, 17, 19, 18, 18 },
+	/* Init   Lower  Higher */
+	{  16, 0,  0, 8,  2, 0 },	/* Hit points */
+	{   8, 0,  0, 2,  0, 3 }, 14,	/* Energy */
+	10, 8, -1, 3, 10, A_INT, SPE_POLYMORPH,      -4, 75
+},
+
 {	{"Jedi", 0}, {
 	{"Youngling",     0},
 	//{"Padawan",       0},
@@ -2306,6 +2491,37 @@ const struct Role roles[] = {
 	{ 14, 0, 0, 6,  3, 0 },	/* Hit points */
 	{  1, 0, 0, 2,  0, 2 }, 15,	/* Energy */
 	10, 12, 0, 10, 20, A_INT, SPE_LOCKOUT,   -4, 25
+},
+
+{	{"Mastermind", 0}, {
+	{"Far Herald",   0},
+	{"Space Brother",    0},
+	{"Cult Idol",      0},
+	{"First Contact",     0},
+	{"Federation Envoy",      0},
+	{"Galactic Senator",      0},
+	{"Coadunator",      0},
+	{"Uplifter",      0},
+	{"Terraformer",   0} },
+	"_Marie Curie", "Georg Simon Ohm", "Albert Einstein", /* famous scientists */
+	"Mam", "Guessing Corner", "Retardation Center",
+	PM_MASTERMIND, NON_PM, PM_UNDEAD_MASTERMIND, NON_PM, PM_ELVEN_MAGE,
+	PM_DEEP_BLUE__, PM_GLOBULE, PM_EDWARD_NYGMA, PM_THE_RIDDLER,
+	PM_ISLAND_WARP_FUNGUS, PM_WEIRD_FUME, S_FUNGUS, S_BAD_FOOD,
+
+	ART_RED_PIN, /* probably paddle-class weapon */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 40, 30,  5, 10,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 25, 24, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  12, 0,  0, 4,  6, 0 },	/* Hit points */
+	{  20, 0,  0, 6,  0, 6 }, 20,	/* Energy */
+	10, 2, 0, 1, 3, A_INT, SPE_ESP,      -4, 250
 },
 
 {	{"Medium", 0}, {
@@ -3022,6 +3238,67 @@ const struct Role roles[] = {
 	10, 8,-2, 2, 20, A_WIS, SPE_WIZARD_LOCK, -4, 200
 },
 
+{	{"Psyker", 0}, { /* ZAPM psion */
+	{"Odd Ball",   0},
+	{"Weirdo",    0},
+	{"Mind Reader",      0},
+	{"Spoon Bender",     0},
+	{"Freakazoid",      0},
+	{"Telepath",      0},
+	{"Spyion",      0},
+	{"Master Psyker",      0},
+	{"Farseer",   0} },
+	"Bill Rizer", "Lance Bean", "Haggle Man", /* classic NES games */
+	"Psy", "Psionic Domain", "Unbalanced Waste",
+	PM_PSYKER, NON_PM, PM_UNDEAD_PSYKER, NON_PM, PM_QUADRENNIAL_SODDEN_RATCHET,
+	PM_THE_DUNGEON_MASTER, PM_VERY_MINDLESS_THRALL, PM_ROCKFALL_GRIEFER, PM_NONBEHAVING_PLAYER,
+	PM_SYNDICATE_GODSEND_READILY, PM_STEEL_MISSINGNO, S_BAD_FOOD, S_WORM_TAIL,
+
+	ART_PSIGUN, /* kalashnikov with psi res */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{   5, 25, 40, 20,  5,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  15, 25, 25, 21, 12, 15 },
+	/* Init   Lower  Higher */
+	{   8, 0,  0,  2,  2, 0 },	/* Hit points */
+	{  30, 0,  0, 10,  0, 9 }, 12,	/* Energy */
+	10, 4, -2, 1, 6, A_INT, SPE_PSYBEAM,      -4, 200
+},
+
+{	{"Quarterback", 0}, {
+	{"Towel Boy",   0},
+	{"Bench Warmer",    0},
+	{"Starter",      0},
+	{"Jock",     0},
+	{"Star Player",      0},
+	{"Team Captain",      0},
+	{"MVP",      0},
+	{"Pro Bowler",      0},
+	{"Hall Of Famer",   0} },
+	"Roger Staubach", "Peyton Manning", "Tom Brady", /* famous quarterbacks */
+	"Qua", "National Training Camp", "No-Rules Playing Field",
+	PM_QUARTERBACK, NON_PM, PM_UNDEAD_QUARTERBACK, NON_PM, PM_MISTER_HEAD,
+	PM_BASEBALL_LEGEND, PM_HUNTER, PM_RUGBY_FOULER, PM_BONEBREAKER,
+	PM_COUNTER_ACE, PM_M__TO_M___, S_TROLL, S_ZOMBIE,
+
+	ART_WORLD_LEAGUE_HITTER, /* baseball bat */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 10,  5, 15, 50,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 14, 20, 25, 18 },
+	/* Init   Lower  Higher */
+	{  25, 0,  0, 10,  5, 0 },	/* Hit points */
+	{   1, 0,  0,  1,  0, 1 }, 16,	/* Energy */
+	10, 8, 0, 2, 12, A_INT, SPE_SHUFFLE_MONSTER,      -4, 40
+},
 
   /* Note:  Rogue precedes Ranger so that use of `-R' on the command line
      retains its traditional meaning. */
@@ -3385,6 +3662,68 @@ const struct Role roles[] = {
 	0, 4, -2, 6, 12, A_WIS, SPE_PROTECTION,      -4, 70
 },
 
+{	{"Software Engineer", 0}, {
+	{"Summer Intern",   0},
+	{"Q/A Tester",    0},
+	{"Web Designer",      0},
+	{"Help Desk Jockey",     0},
+	{"Junior Programmer",      0},
+	{"Sysadmin",      0},
+	{"Lead Programmer",      0},
+	{"VP Engineering",      0},
+	{"High Programmer",   0} },
+	"Linus Torvalds", "Bjarne Stroustrup", "Mark Zuckerberg", /* famous software engineers */
+	"Sof", "Devteam Codebase", "H@cker Central",
+	PM_SOFTWARE_ENGINEER, NON_PM, PM_UNDEAD_SOFTWARE_ENGINEER, NON_PM, PM_GEEK,
+	PM_THE_DEV_TEAM, PM_HACKER, PM_ANONYMOUS_LEADER, PM__CHAN_POSTER,
+	PM_WINDOWS_____, PM_WINDOWS____SMARTPHONE_EDITION_, S_XAN, S_XAN,
+
+	ART_FLAILMOUSE,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 30, 20, 20, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 24, 20, 18, 15, 16 },
+	/* Init   Lower  Higher */
+	{  10, 0,  0, 6,  2, 0 },	/* Hit points */
+	{  12, 0,  0, 6,  0, 4 }, 14,	/* Energy */
+	10, 5, 0, 1, 5, A_INT, SPE_CODE_EDITING,      -4, 200
+},
+
+{	{"Space Marine", 0}, {
+	{"Private",   0},
+	{"Corporal",    0},
+	{"Space Sergeant",      0},
+	{"Space Cadet",     0},
+	{"Space Lieutenant",      0},
+	{"Space Captain",      0},
+	{"Space Major",      0},
+	{"Space Colonel",      0},
+	{"Space General",   0} },
+	"Krog", "Winston", "Cyrus", /* Clan EIT; Cyrus is also the ZAPM lead dev */
+	"Sma", "Ye Olde Space Base", "Delta Caves",
+	PM_SPACE_MARINE, NON_PM, PM_UNDEAD_SPACE_MARINE, NON_PM, PM_CUNTGUN_TROOPER,
+	PM_EITBO, PM_TROOPER, PM_THE_SPIDER_MASTERMIND, PM_SPIDERDEMON_CLONE,
+	PM_KLINGON_CAPTAIN, PM_SPACE_ORC_BOSS, S_ORC, S_HUMAN,
+
+	ART_PIN_RACKET, /* some sort of melee weapon */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30,  5,  5, 20, 30, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 15, 15, 18, 22, 18 },
+	/* Init   Lower  Higher */
+	{  24, 0,  0, 10,  5, 0 },	/* Hit points */
+	{   1, 0,  0,  1,  0, 1 }, 15,	/* Energy */
+	10, 16, 4, 6, 20, A_WIS, SPE_SHINING_WAVE,      -4, 30
+},
+
 {	{"Spacewars Fighter", 0}, {
 	{"Roguelike Beginner",     0},
 	{"Dungeon Explorer",     0},
@@ -3411,6 +3750,37 @@ const struct Role roles[] = {
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
 	10, 8,-2, 0,  9, A_INT, SPE_DETECT_MONSTERS,     -4, 100
+},
+
+{	{"Stormboy", 0}, {
+	{"Yoof",   0},
+	{"Cannon Fodder",    0},
+	{"Meatshield",      0},
+	{"Warbuddy",     0},
+	{"Skarboy",      0},
+	{"Mob Kaptain",      0},
+	{"Nob",      0},
+	{"Meganob",      0},
+	{"Warboss",   0} },
+	"Cortege", "Tache", "Pillory", /* from Pokemon Vietnamese Crystal */
+	"Sto", "Stormy Mountain", "Deepsea Plane",
+	PM_STORMBOY, NON_PM, PM_UNDEAD_STORMBOY, NON_PM, PM_DRATINI,
+	PM_STINKBUG_UNBLEMISHED, PM_FELLOW_DEATH_EATER, PM_PRESAGE_OCTUPLE_GULPING, PM_POSTERN_BREW,
+	PM_GREATER_WATER_ELEMENTAL, PM_RUST_VORTEX, S_ELEMENTAL, S_VORTEX,
+
+	ART_THUNDERSTRIKE, /* melee weapon with shock damage */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  25, 10,  5, 20, 30, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 15, 19, 21, 16 },
+	/* Init   Lower  Higher */
+	{  18, 0,  0, 7,  4, 0 },	/* Hit points */
+	{   2, 0,  0, 2,  0, 3 }, 12,	/* Energy */
+	0, 12, 0, 4, 15, A_INT, SPE_THUNDER,      -4, 20
 },
 
 {	{"Supermarket Cashier", 0}, {
@@ -3912,6 +4282,37 @@ const struct Role roles[] = {
 	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4, 20
 },
 
+{	{"Weirdboy", 0}, {
+	{"Crazy One",   0},
+	{"Very Mad Orc",    0},
+	{"Frazzler",      0},
+	{"Humming Head",     0},
+	{"Brain Warper",      0},
+	{"Walking Psi Bomb",      0},
+	{"One Orc Storm",      0},
+	{"Warptide",      0},
+	{"Warp Unleasher",   0} },
+	"Tax Evasion", "Murder and Arson", "Prison Outbreak", /* crimes, listed in order of severity from minor to major :P */
+	"Wei", "Lunatic Asylum", "Sanity Clinic",
+	PM_WEIRDBOY, NON_PM, PM_UNDEAD_WEIRDBOY, NON_PM, PM_SCHINDA,
+	PM_EXPLODING_BRAIN, PM_VERY_MINDLESS_THRALL, PM_WELL_PAID_DOCTOR, PM_DEGREE_SIMPLETON,
+	PM_EXTREMELY_CONTAMINATED_BUG, PM_IT, S_XAN, S_GRUE,
+
+	ART_BUS_ERROR, /* segfault venom */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 10, 20, 40, 10,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 18, 12, 22, 14, 17 },
+	/* Init   Lower  Higher */
+	{   6, 0,  0, 10, 0, 0 },	/* Hit points */
+	{  17, 0,  0, 0,  0, 3 }, 11,	/* Energy */
+	0, 17, -6, 1, 1, A_INT, SPE_GIANT_FOOT,      -4, 80
+},
+
 {	{"Wild Talent", 		 0}, {
 	{"Poschengband Noob",        0},
 	{"Camelot Explorer",        0},
@@ -3973,6 +4374,68 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 25, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 3, 10, A_INT, SPE_MAGIC_MISSILE,   -4, 200
+},
+
+{	{"XelNaga", 0}, {
+	{"Outworlder",   "Void Explorer"},
+	{"Genesis Witness",    0},
+	{"Chaos Shaper",      0},
+	{"Nebulae Catcher",     0},
+	{"Star Assembler",      0},
+	{"Planet Shifter",      0},
+	{"Galaxy Designer",      0},
+	{"DNA Programmer",      0},
+	{"Species Creator",   0} },
+	"Jim Raynor", "Hierarch Artanis", "_Sarah Kerrigan", /* starcraft */
+	"Xel", "Terra Base", "Brooding Chaos",
+	PM_XELNAGA, NON_PM, PM_UNDEAD_XELNAGA, NON_PM, PM_BIRSEN,
+	PM_SHADURIEL, PM_STARNOID, PM_INSECT_HIVEMIND, PM_VERY_LARGE_BUG,
+	PM_LAG_DEFENSE_TOWER, PM_PUTJANA, S_WALLMONST, S_TURRET,
+
+	ART_SNAKELASH, /* whip */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{   25, 15, 10, 15, 30, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 16, 14, 18, 19, 10 },
+	/* Init   Lower  Higher */
+	{   18, 0,  0, 8,  3, 0 },	/* Hit points */
+	{    2, 0,  0, 2,  0, 2 },14,	/* Energy */
+	-20, 8, -1, 4, 14, A_INT, SPE_ACIDSHIELD,      -4, 40
+},
+
+{	{"Yautja", 0}, {
+	{"Unblooded",   0},
+	{"Blooded",    0},
+	{"Honored One",      0},
+	{"Master Hunter",     0},
+	{"Vanguard",      0},
+	{"Elite",      0},
+	{"Clan Leader",      0},
+	{"Elder",      0},
+	{"Adjudicator",   0} },
+	"Macbeth", "Zoness", "_Titania", /* Star Fox 64 */
+	"Yau", "Asteroid Field", "Barren Toxic Waste",
+	PM_YAUTJA, NON_PM, PM_UNDEAD_YAUTJA, NON_PM, PM_ROBOT,
+	PM_THE_OUTERSPACE_OCTOPUS, PM_STARNOID, PM_LUKE_SKYWALKER, PM_HAN_SOLO,
+	PM_TOXIC_FUNGUS, PM_COLOSSAL_SLIME, S_FUNGUS, S_PUDDING,
+
+	ART_EYEHANDER, /* blindfold */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  16,  7,  7, 15, 16,  6 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  25, 10, 10, 25, 25,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 16, 16, 20, 20, 8 },
+	/* Init   Lower  Higher */
+	{  20, 0,  0, 7,  7, 0 },	/* Hit points */
+	{   6, 0,  0, 3,  0, 2 }, 15,	/* Energy */
+	-10, 10, 0, 2, 7, A_INT, SPE_SLUDGE,      -4, 25
 },
 
 {	{"Yeoman", 0}, {

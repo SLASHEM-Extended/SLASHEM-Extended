@@ -1670,7 +1670,7 @@ doup()
 		return(0);
 	}
 
-	if ((flags.zapem && !(u.zapemescape)) && u.ux == sstairs.sx && u.uy == sstairs.sy && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1) && !u.sewerplantcomplete) {
+	if ((iszapem && !(u.zapemescape)) && u.ux == sstairs.sx && u.uy == sstairs.sy && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1) && !u.sewerplantcomplete) {
 		pline("Since you've not finished the Sewer Plant yet, you cannot leave the Space Base.");
 		return(0);
 	}
