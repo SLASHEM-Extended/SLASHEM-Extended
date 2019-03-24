@@ -7744,6 +7744,14 @@ retry:
 		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 			pline("You're unable to warp!"); break;}
 
+		/* restore the "no cyanide rule"... this is a simple y/n prompt because if you're read-identifying unknown
+		 * scrolls already, it's your own damn fault if you then somehow think it's a good idea to skip past the
+		 * prompt. If you're not gonna read the scroll effects anyway, why bother reading random ones in the first
+		 * place? You're supposed to read what's on the screen when use-testing consumables :P --Amy */
+		if (!confused) {
+			if (yn_function("You have found a scroll of warping! Do you want to warp to a random dungeon level?", "yn", 'y') == 'n') break;
+		}
+
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }

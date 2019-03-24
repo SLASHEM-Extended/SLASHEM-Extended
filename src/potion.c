@@ -4196,7 +4196,7 @@ peffects(otmp)
 		break;
 	case POT_CURE_INSANITY:
 		if (otmp->cursed) {
-			increasesanity(rnz(1000));
+			increasesanity(rnz(100));
 			unkn++;
 			break;
 		}
@@ -4226,7 +4226,7 @@ peffects(otmp)
 	case POT_SANITY:
             makeknown(POT_SANITY);
 		pline("UGH! This tastes incredibly repulsive...");
-		increasesanity(rnz(1000));
+		increasesanity(rnz(100));
 		break;
 	case POT_STUNNING:
 		if(!Stunned) {
@@ -4284,9 +4284,10 @@ peffects(otmp)
 		}
 		else {
 			make_sick(Sick ? Sick/2L + 1L : 10, "urine potion", TRUE, SICK_VOMITABLE);
-			losestr(rnd(10), TRUE);
-			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16), "drinking poisonous urine", KILLED_BY);
-
+			if ((!StrongPoison_resistance || !rn2(3)) && (!Poison_resistance || !rn2(3))) {
+				losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rnd(3) : rnd(8), TRUE);
+				losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16), "drinking poisonous urine", KILLED_BY);
+			}
 		}
 
 		unkn++;
@@ -5556,6 +5557,7 @@ peffects(otmp)
 			if(otmp->cursed) {
 				make_feared(HFeared + rnd(100 + (monster_difficulty() * 5) ),TRUE);
 			} else {
+				You("banish your fears.");
 				if (HFeared) make_feared(0L, TRUE);
 				if (otmp->blessed) {
 					incr_itimeout(&HFear_resistance, rnd(250) );
@@ -5693,14 +5695,14 @@ peffects(otmp)
 
 	case POT_CYANIDE:
 		make_sick(Sick ? Sick/2L + 1L : 20, "cyanide potion", TRUE, SICK_VOMITABLE);
-		losestr(rnd(10), TRUE);
+		losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rnd(3) : rnd(10), TRUE);
 		pline(Hallucination ? "This tastes a little bitter; maybe it's some sort of medicine?" : "CN(-) + HCl <==> HCN + Cl(-) ");
 			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16),
 					"drinking cyanide", KILLED_BY);
 		break;
 	case POT_RADIUM:
 		pline(Hallucination ? "For some reason, that potion tastes... orange. Yes, the color orange, not the fruit." : "This was radioactive radium!");
-		make_sick(Sick ? Sick/2L + 1L : 50,"radium potion", TRUE, SICK_VOMITABLE);
+		if (!rn2(3)) make_sick(Sick ? Sick/2L + 1L : 50,"radium potion", TRUE, SICK_VOMITABLE);
 		break;
 	case POT_JOLT_COLA:
 		You("are jolted back to your senses.");
