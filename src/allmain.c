@@ -4426,11 +4426,11 @@ newbossA:
 
 			while (etherslow > 0) {
 				etherslow--;
-				if (!rn2(1000)) contaminate(rnd(2), FALSE);
+				if (!rn2(10000)) contaminate(rnd(2), FALSE);
 			}
 			while (etherquick > 0) {
 				etherquick--;
-				if (!rn2(1000)) {
+				if (!rn2(5000)) {
 					if (!rn2(5)) {
 						pline("Your ether equipment causes your contamination to deteriorate.");
 						contaminate(rnd(10), TRUE);

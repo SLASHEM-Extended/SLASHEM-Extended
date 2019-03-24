@@ -1433,7 +1433,12 @@ exerchk()
 		contaminated = TRUE;
 		verycontaminated = TRUE;
 	}
-	if (u.contamination && u.contamination < 100) contaminated = (rn2(100) < u.contamination);
+	if (u.contamination && u.contamination < 100) { /* low chance when only slightly contaminated --Amy */
+		contaminated = (rn2(100) < u.contamination);
+		if (contaminated) contaminated = (rn2(100) < u.contamination);
+		/* if you get lucky, very low contamination fixes itself --Amy */
+		if (!contaminated && !rn2(2)) decontaminate(rnd(u.contamination));
+	}
 
 	/*	Check out the periodic accumulations */
 	exerper();
