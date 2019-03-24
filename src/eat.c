@@ -940,6 +940,11 @@ register int pm;
 	    HAggravate_monster |= FROMOUTSIDE;
 	}
 
+	if (HardcoreAlienMode && mons[pm].mlet == S_QUADRUPED) {
+		u.ugangr++;
+		pline("Eeeek - you ate forbidden meat! The gods will most probably not like that...");
+	}
+
 	if (dmgtype(&mons[pm], AD_RAGN) ) {
 		ragnarok(FALSE);
 		if (evilfriday) evilragnarok(FALSE,level_difficulty());
