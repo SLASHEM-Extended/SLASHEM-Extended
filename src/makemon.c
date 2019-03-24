@@ -15642,6 +15642,11 @@ register int	mmflags;
 	int i;
 	coord cc;
 
+	/* ATTENTION: ptr might not be defined at this point!!! */
+
+	/* weak monsters have less HP on average: all those that have neither M2_STRONG nor M2_NASTY and aren't bosses --Amy */
+	boolean weakmon = (ptr && !strongmonst(ptr) && !extra_nasty(ptr) && !(ptr->geno & G_UNIQ));
+
 	if (!rn2(5)) reset_rndmonst(NON_PM);
 
 	/* if caller wants random location, do it here */
@@ -15823,7 +15828,7 @@ register int	mmflags;
 	} else if (!mtmp->m_lev) {
 	    mtmp->mhpmax = mtmp->mhp = rnd(4);
 	} else {
-	    mtmp->mhpmax = mtmp->mhp = d((int)mtmp->m_lev, 8);
+	    mtmp->mhpmax = mtmp->mhp = d((int)mtmp->m_lev, weakmon ? (6 + rn2(3)) : 8);
 	    
 	    if (is_home_elemental(ptr))
 		mtmp->mhpmax = (mtmp->mhp *= 3);
@@ -15879,6 +15884,12 @@ register int	mmflags;
 	if ((ptr == &mons[PM_DARK_GOKU] || ptr == &mons[PM_FRIEZA]) ) { /* credits go to Bug Sniper for this idea --Amy */
 		mtmp->mhpmax += 9000;
 		mtmp->mhp += 9000;
+	}
+
+	/* monsters just have too much HP later on, so I'm installing a nerf here. --Amy */
+	if (weakmon && mtmp->mhpmax > 1 && !rn2(2)) {
+		mtmp->mhpmax -= rnd(mtmp->mhpmax / 2);
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 	}
 
 	/* Assign power */
