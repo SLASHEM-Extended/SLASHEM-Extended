@@ -1470,61 +1470,185 @@ static struct trobj Transsylvanian[] = {
 };
 
 static struct trobj SoftwareEngineer[] = {
+	{ FLINTLOCK, 0, WEAPON_CLASS, 1, 0 },
+	{ HEALER_UNIFORM, 0, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ POT_COFFEE, 0, POTION_CLASS, 1, 0 },
+	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ HAIRCLIP, 0, TOOL_CLASS, 1, 0 },
+	{ CHARGER, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Cracker[] = {
+	{ FLINTLOCK, 0, WEAPON_CLASS, 1, 0 },
+	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ HEALER_UNIFORM, 0, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ POT_COFFEE, 0, POTION_CLASS, 1, 0 },
+	{ HAIRCLIP, 0, TOOL_CLASS, 1, 0 },
+	{ CHARGER, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Janitor[] = {
+	{ MOP, 1, WEAPON_CLASS, 1, 0 },
+	{ BUNNY_UNIFORM, 0, ARMOR_CLASS, 1, 0 },
+	{ IRON_SHOES, 0, ARMOR_CLASS, 1, 0 },
+	{ POT_OIL, 0, POTION_CLASS, 1, 0 },
+	{ PICK_AXE, 0, TOOL_CLASS, 1, 0 },
+	{ SKELETON_KEY, 0, TOOL_CLASS, 1, 0 },
+	{ HAIRCLIP, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj SpaceMarine[] = {
+	{ PISTOL, 0, WEAPON_CLASS, 1, 0 },
+	{ HAND_BLASTER, 0, WEAPON_CLASS, 1, 0 },
+	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ TORCH, 0, TOOL_CLASS, 5, 0 },
+	{ POT_MONSTER_DETECTION, 0, POTION_CLASS, 1, 1 },
+	{ JUMPSUIT, 1, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Stormboy[] = {
+	{ SNIPER_RIFLE, 0, WEAPON_CLASS, 1, 0 },
+	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ FRAG_GRENADE, 0, WEAPON_CLASS, 20, 0 },
+	{ JUMPSUIT, 0, ARMOR_CLASS, 1, 0 },
+	{ HELM_OF_WARNING, 0, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Yautja[] = {
+	{ ARM_BLASTER, 0, WEAPON_CLASS, 1, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ SPEAR, 0, WEAPON_CLASS, 5, 0 },
+	{ BOOMERANG, 0, WEAPON_CLASS, 1, 0 },
+	{ SCIMITAR, 1, WEAPON_CLASS, 1, 0 },
+	{ RAZOR_WHIP, 0, WEAPON_CLASS, 1, 0 },
+	{ NATURAL_STICK, 0, WEAPON_CLASS, 1, 0 },
+	{ SCR_TELEPORTATION, 0, SCROLL_CLASS, 1, 0 },
+	{ PLATE_MAIL, 0, ARMOR_CLASS, 1, 0 },
+	{ LEATHER_CLOAK, 0, ARMOR_CLASS, 1, 0 },
+	{ ANTENNA, 0, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Quarterback[] = {
+	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, 0 },
+	{ HELMET, 0, ARMOR_CLASS, 1, 0 },
+	{ BASEBALL_BAT, 2, WEAPON_CLASS, 1, 1 },
+	{ BULLET, 0, WEAPON_CLASS, 50, 0 },
+	{ POT_BOOZE, 0, POTION_CLASS, 6, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Psyker[] = {
+	{ SPE_PSYBEAM, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_CURE_BLINDNESS, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_EXTRA_HEALING, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_JUMPING, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ HAND_BLASTER, 1, WEAPON_CLASS, 1, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ HEALER_UNIFORM, 1, ARMOR_CLASS, 1, 0 },
+	{ POT_HEALING, 0, POTION_CLASS, 1, 0 },
+	{ POT_CURE_INSANITY, 0, POTION_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Empath[] = {
+	{ SPE_RADAR, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_HASTE_SELF, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_DIRECTIVE, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ ELVEN_DAGGER, 2, WEAPON_CLASS, 1, 0 },
+	{ ELVEN_TOGA, 0, ARMOR_CLASS, 1, 0 },
+	{ POT_JOLT_COLA, 0, POTION_CLASS, 2, 0 },
+	{ POT_HEALING, 0, POTION_CLASS, 2, 0 },
+	{ POT_CURE_INSANITY, 0, POTION_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Mastermind[] = {
+	{ SPE_HORRIFY, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_AULE_SMITHING, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_ESP, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ STETHOSCOPE, 0, TOOL_CLASS, 1, 0 },
+	{ SILK_MAIL, 0, ARMOR_CLASS, 1, 0 },
+	{ WAN_MANA, UNDEF_SPE, WAND_CLASS, 1, 0 },
+	{ RAYGUN, 1, WEAPON_CLASS, 1, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ POT_FULL_HEALING, 0, POTION_CLASS, 1, 0 },
+	{ POT_CURE_INSANITY, 0, POTION_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Weirdboy[] = {
+	{ SPE_INDUCE_VOMITING, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_ENCHANT_WEAPON, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_ENCHANT_ARMOR, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_INERTIA_CONTROL, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ SPE_SPELLBINDER, UNDEF_SPE, SPBOOK_CLASS, 1, 0 },
+	{ HELM_OF_WARNING, 0, ARMOR_CLASS, 1, 0 },
+	{ BRONZE_MORNING_STAR, 1, WEAPON_CLASS, 1, 0 },
+	{ HEALER_UNIFORM, 0, ARMOR_CLASS, 1, 0 },
+	{ POT_JOLT_COLA, 0, POTION_CLASS, 2, 0 },
+	{ POT_HEALING, 0, POTION_CLASS, 1, 0 },
+	{ POT_CURE_INSANITY, 0, POTION_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Astronaut[] = {
+	{ JUMPSUIT, 0, ARMOR_CLASS, 1, 0 },
+	{ HELM_OF_DECONTAMINATION, 0, ARMOR_CLASS, 1, 0 },
+	{ FLYING_BOOTS, 0, ARMOR_CLASS, 1, 0 },
+	{ EVENCORE_CLOAK, -3, ARMOR_CLASS, 1, 0 },
+	{ SCR_ANTIMATTER, 0, SCROLL_CLASS, 1, 0 },
+	{ POT_HEALING, 0, POTION_CLASS, 1, 0 },
+	{ POT_WATER, 0, POTION_CLASS, 1, 0 },
+	{ MAGIC_CANDLE, 0, TOOL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Cyberninja[] = {
+	{ KATANA, 1, WEAPON_CLASS, 0, 0 },
+	{ FRAG_GRENADE, 0, WEAPON_CLASS, 4, 0 },
+	{ SPECIAL_CAMOUFLAGED_CLOTHES, 1, ARMOR_CLASS, 1, 0 },
+	{ LOCK_PICK, 0, TOOL_CLASS, 1, 0 },
+	{ BOSS_VISOR, 0, TOOL_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, IMPLANT_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Dissident[] = {
+	{ GREEN_DRAGON_SCALES, 0, ARMOR_CLASS, 1, 0 },
+	{ CLOAK_OF_STABILITY, 0, ARMOR_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ SPIKED_CLUB, 1, WEAPON_CLASS, 1, 0 },
+	{ GAS_GRENADE, 0, WEAPON_CLASS, 3, 0 },
+	{ HAND_BLASTER, 0, WEAPON_CLASS, 1, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
+	{ BLASTER_BOLT, 0, WEAPON_CLASS, 50, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
+/* according to PRIME, XelNaga has: No starting mutations. No knowledge at all. No equipment either. */
 static struct trobj XelNaga[] = {
 	{ 0, 0, 0, 0, 0 }
 };
@@ -3840,58 +3964,313 @@ static const struct def_skill Skill_Sli[] = {
 };
 
 static const struct def_skill Skill_Sof[] = {
+    { P_DAGGER, P_EXPERT },		{ P_SHORT_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_EXPERT },		{ P_CLUB, P_EXPERT },
+    { P_FLAIL, P_EXPERT },		{ P_HAMMER, P_EXPERT },
+    { P_SPEAR, P_EXPERT },		{ P_SLING, P_EXPERT },
+    { P_FIREARM, P_EXPERT },		{ P_DART, P_EXPERT },
+    { P_WHIP, P_EXPERT },		{ P_LIGHTSABER, P_EXPERT },
+    { P_ATTACK_SPELL, P_EXPERT },		{ P_DIVINATION_SPELL, P_EXPERT },
+    { P_MARTIAL_ARTS, P_EXPERT },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_GENERAL_COMBAT, P_EXPERT },		{ P_BODY_ARMOR, P_EXPERT },
+    { P_POLYMORPHING, P_EXPERT },		{ P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_GRAND_MASTER },		{ P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },		{ P_SEXY_FLATS, P_EXPERT },
+    { P_SHII_CHO, P_EXPERT },		{ P_MAKASHI, P_EXPERT },
+    { P_SHIEN, P_EXPERT },		{ P_NIMAN, P_EXPERT },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Cra[] = {
+    { P_DAGGER, P_MASTER },		{ P_KNIFE, P_EXPERT },
+    { P_AXE, P_EXPERT },		{ P_PICK_AXE, P_EXPERT },
+    { P_SABER, P_MASTER },		{ P_CLUB, P_EXPERT },
+    { P_PADDLE, P_EXPERT },		{ P_MACE, P_EXPERT },
+    { P_FLAIL, P_MASTER },		{ P_HAMMER, P_EXPERT },
+    { P_POLEARMS, P_EXPERT },		{ P_SLING, P_EXPERT },
+    { P_FIREARM, P_EXPERT },		{ P_ATTACK_SPELL, P_EXPERT },
+    { P_ENCHANTMENT_SPELL, P_EXPERT },		{ P_OCCULT_SPELL, P_EXPERT },
+    { P_CHAOS_SPELL, P_EXPERT },		{ P_BARE_HANDED_COMBAT, P_EXPERT },
+    { P_GENERAL_COMBAT, P_EXPERT },		{ P_BODY_ARMOR, P_EXPERT },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },		{ P_POLYMORPHING, P_MASTER },
+    { P_DEVICES, P_GRAND_MASTER },		{ P_SEARCHING, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },		{ P_ATARU, P_EXPERT },
+    { P_DJEM_SO, P_EXPERT },		{ P_NIMAN, P_EXPERT },
+    { P_JUYO, P_MASTER },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Jan[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },		{ P_CLUB, P_EXPERT },
+    { P_PADDLE, P_MASTER },		{ P_MACE, P_EXPERT },
+    { P_MORNING_STAR, P_EXPERT },		{ P_FLAIL, P_EXPERT },
+    { P_HAMMER, P_EXPERT },		{ P_JAVELIN, P_EXPERT },
+    { P_BOW, P_EXPERT },		{ P_SLING, P_MASTER },
+    { P_FIREARM, P_EXPERT },		{ P_CROSSBOW, P_EXPERT },
+    { P_WHIP, P_MASTER },		{ P_PROTECTION_SPELL, P_EXPERT },
+    { P_BODY_SPELL, P_EXPERT },		{ P_MATTER_SPELL, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_MASTER },		{ P_GENERAL_COMBAT, P_EXPERT },
+    { P_SHIELD, P_EXPERT },		{ P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_EXPERT },		{ P_SPIRITUALITY, P_EXPERT },
+    { P_PETKEEPING, P_EXPERT },		{ P_TECHNIQUES, P_EXPERT },
+    { P_SHII_CHO, P_EXPERT },		{ P_SHIEN, P_EXPERT },
+    { P_RIDING, P_EXPERT },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Sma[] = {
+    { P_AXE, P_EXPERT },		{ P_BROAD_SWORD, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT },		{ P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SABER, P_EXPERT },		{ P_HAMMER, P_EXPERT },
+    { P_POLEARMS, P_EXPERT },		{ P_SPEAR, P_EXPERT },
+    { P_LANCE, P_EXPERT },		{ P_BOW, P_EXPERT },
+    { P_FIREARM, P_GRAND_MASTER },		{ P_CROSSBOW, P_EXPERT },
+    { P_LIGHTSABER, P_MASTER },		{ P_BODY_SPELL, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_MASTER },		{ P_GENERAL_COMBAT, P_MASTER },
+    { P_SHIELD, P_EXPERT },		{ P_BODY_ARMOR, P_GRAND_MASTER },
+    { P_TWO_HANDED_WEAPON, P_MASTER },		{ P_MISSILE_WEAPONS, P_MASTER },
+    { P_SHII_CHO, P_EXPERT },		{ P_MAKASHI, P_MASTER },
+    { P_ATARU, P_MASTER },		{ P_SHIEN, P_EXPERT },
+    { P_DJEM_SO, P_MASTER },		{ P_JUYO, P_MASTER },
+    { P_VAAPAD, P_MASTER },		{ P_TWO_WEAPON_COMBAT, P_MASTER },
+    { P_RIDING, P_EXPERT },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Sto[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT },		{ P_SABER, P_MASTER },
+    { P_MORNING_STAR, P_EXPERT },		{ P_SPEAR, P_EXPERT },
+    { P_TRIDENT, P_MASTER },		{ P_FIREARM, P_MASTER },
+    { P_CROSSBOW, P_EXPERT },		{ P_DART, P_EXPERT },
+    { P_LIGHTSABER, P_EXPERT },		{ P_ATTACK_SPELL, P_MASTER },
+    { P_CHAOS_SPELL, P_EXPERT },		{ P_MATTER_SPELL, P_MASTER },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_GENERAL_COMBAT, P_MASTER },		{ P_POLYMORPHING, P_EXPERT },
+    { P_DEVICES, P_EXPERT },		{ P_SPIRITUALITY, P_EXPERT },
+    { P_MISSILE_WEAPONS, P_EXPERT },		{ P_ATARU, P_EXPERT },
+    { P_DJEM_SO, P_EXPERT },		{ P_JUYO, P_EXPERT },
+    { P_WEDI, P_EXPERT },		{ P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_RIDING, P_MASTER },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Yau[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_AXE, P_EXPERT },		{ P_BROAD_SWORD, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT },		{ P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_EXPERT },		{ P_CLUB, P_EXPERT },
+    { P_MACE, P_EXPERT },		{ P_MORNING_STAR, P_EXPERT },
+    { P_FLAIL, P_EXPERT },		{ P_HAMMER, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },		{ P_POLEARMS, P_EXPERT },
+    { P_SPEAR, P_EXPERT },		{ P_JAVELIN, P_EXPERT },
+    { P_LANCE, P_EXPERT },		{ P_SLING, P_EXPERT },
+    { P_SHURIKEN, P_EXPERT },		{ P_LIGHTSABER, P_EXPERT },
+    { P_DIVINATION_SPELL, P_EXPERT },		{ P_PROTECTION_SPELL, P_EXPERT },
+    { P_OCCULT_SPELL, P_EXPERT },		{ P_BARE_HANDED_COMBAT, P_MASTER },
+    { P_HIGH_HEELS, P_EXPERT },		{ P_GENERAL_COMBAT, P_MASTER },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },		{ P_POLYMORPHING, P_EXPERT },
+    { P_SPIRITUALITY, P_EXPERT },		{ P_PETKEEPING, P_EXPERT },
+    { P_SEXY_FLATS, P_EXPERT },		{ P_SHII_CHO, P_EXPERT },
+    { P_MAKASHI, P_EXPERT },		{ P_SORESU, P_EXPERT },
+    { P_NIMAN, P_EXPERT },		{ P_VAAPAD, P_EXPERT },
+    { P_RIDING, P_EXPERT },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Qua[] = {
+    { P_KNIFE, P_EXPERT },		{ P_AXE, P_EXPERT },
+    { P_CLUB, P_GRAND_MASTER },		{ P_PADDLE, P_MASTER },
+    { P_MACE, P_MASTER },		{ P_MORNING_STAR, P_MASTER },
+    { P_FLAIL, P_MASTER },		{ P_HAMMER, P_MASTER },
+    { P_QUARTERSTAFF, P_MASTER },		{ P_POLEARMS, P_MASTER },
+    { P_SPEAR, P_EXPERT },		{ P_JAVELIN, P_MASTER },
+    { P_TRIDENT, P_EXPERT },		{ P_LANCE, P_EXPERT },
+    { P_BOW, P_EXPERT },		{ P_SLING, P_GRAND_MASTER },
+    { P_FIREARM, P_EXPERT },		{ P_CROSSBOW, P_EXPERT },
+    { P_DART, P_MASTER },		{ P_SHURIKEN, P_EXPERT },
+    { P_BOOMERANG, P_GRAND_MASTER },		{ P_WHIP, P_MASTER },
+    { P_UNICORN_HORN, P_EXPERT },		{ P_ATTACK_SPELL, P_EXPERT },
+    { P_ENCHANTMENT_SPELL, P_EXPERT },		{ P_PROTECTION_SPELL, P_EXPERT },
+    { P_CHAOS_SPELL, P_EXPERT },		{ P_BARE_HANDED_COMBAT, P_MASTER },
+    { P_GENERAL_COMBAT, P_MASTER },		{ P_BODY_ARMOR, P_EXPERT },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },		{ P_DEVICES, P_EXPERT },
+    { P_MISSILE_WEAPONS, P_MASTER },		{ P_TECHNIQUES, P_MASTER },
+    { P_MAKASHI, P_MASTER },		{ P_DJEM_SO, P_MASTER },
+    { P_JUYO, P_GRAND_MASTER },		{ P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_RIDING, P_EXPERT },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Psy[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_CLUB, P_EXPERT },		{ P_PADDLE, P_EXPERT },
+    { P_QUARTERSTAFF, P_MASTER },		{ P_UNICORN_HORN, P_EXPERT },
+    { P_LIGHTSABER, P_EXPERT },		{ P_ATTACK_SPELL, P_MASTER },
+    { P_HEALING_SPELL, P_EXPERT },		{ P_DIVINATION_SPELL, P_MASTER },
+    { P_ENCHANTMENT_SPELL, P_EXPERT },		{ P_PROTECTION_SPELL, P_EXPERT },
+    { P_BODY_SPELL, P_MASTER },		{ P_OCCULT_SPELL, P_MASTER },
+    { P_MATTER_SPELL, P_EXPERT },		{ P_BARE_HANDED_COMBAT, P_MASTER },
+    { P_HIGH_HEELS, P_EXPERT },		{ P_POLYMORPHING, P_MASTER },
+    { P_DEVICES, P_MASTER },		{ P_SEARCHING, P_EXPERT },
+    { P_SPIRITUALITY, P_MASTER },		{ P_PETKEEPING, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },		{ P_SEXY_FLATS, P_EXPERT },
+    { P_SHII_CHO, P_EXPERT },		{ P_SORESU, P_MASTER },
+    { P_SHIEN, P_EXPERT },		{ P_NIMAN, P_EXPERT },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Emp[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },		{ P_SCIMITAR, P_EXPERT },
+    { P_SABER, P_EXPERT },		{ P_CLUB, P_EXPERT },
+    { P_MACE, P_MASTER },		{ P_FLAIL, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },		{ P_POLEARMS, P_EXPERT },
+    { P_SPEAR, P_EXPERT },		{ P_FIREARM, P_EXPERT },
+    { P_UNICORN_HORN, P_MASTER },		{ P_HEALING_SPELL, P_GRAND_MASTER },
+    { P_DIVINATION_SPELL, P_MASTER },		{ P_PROTECTION_SPELL, P_MASTER },
+    { P_BODY_SPELL, P_EXPERT },		{ P_ELEMENTAL_SPELL, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },		{ P_HIGH_HEELS, P_MASTER },
+    { P_GENERAL_COMBAT, P_EXPERT },		{ P_SHIELD, P_EXPERT },
+    { P_BODY_ARMOR, P_EXPERT },		{ P_POLYMORPHING, P_EXPERT },
+    { P_SPIRITUALITY, P_GRAND_MASTER },		{ P_PETKEEPING, P_GRAND_MASTER },
+    { P_SEXY_FLATS, P_EXPERT },		{ P_SHII_CHO, P_EXPERT },
+    { P_SORESU, P_GRAND_MASTER },		{ P_SHIEN, P_EXPERT },
+    { P_NIMAN, P_MASTER },		{ P_WEDI, P_EXPERT },
+    { P_RIDING, P_MASTER },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Mam[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_PICK_AXE, P_EXPERT },		{ P_CLUB, P_EXPERT },
+    { P_PADDLE, P_EXPERT },		{ P_HAMMER, P_EXPERT },
+    { P_POLEARMS, P_EXPERT },		{ P_SLING, P_MASTER },
+    { P_FIREARM, P_EXPERT },		{ P_DART, P_EXPERT },
+    { P_UNICORN_HORN, P_EXPERT },		{ P_LIGHTSABER, P_EXPERT },
+    { P_ATTACK_SPELL, P_EXPERT },		{ P_HEALING_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_GRAND_MASTER },		{ P_ENCHANTMENT_SPELL, P_MASTER },
+    { P_PROTECTION_SPELL, P_EXPERT },		{ P_BODY_SPELL, P_MASTER },
+    { P_OCCULT_SPELL, P_MASTER },		{ P_ELEMENTAL_SPELL, P_MASTER },
+    { P_CHAOS_SPELL, P_MASTER },		{ P_MATTER_SPELL, P_GRAND_MASTER },
+    { P_BARE_HANDED_COMBAT, P_MASTER },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_GENERAL_COMBAT, P_EXPERT },		{ P_SHIELD, P_EXPERT },
+    { P_POLYMORPHING, P_MASTER },		{ P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_GRAND_MASTER },		{ P_SPIRITUALITY, P_MASTER },
+    { P_TECHNIQUES, P_MASTER },		{ P_IMPLANTS, P_EXPERT },
+    { P_SHII_CHO, P_EXPERT },		{ P_MAKASHI, P_EXPERT },
+    { P_ATARU, P_EXPERT },		{ P_SHIEN, P_EXPERT },
+    { P_NIMAN, P_MASTER },		{ P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_MASTER },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Wei[] = {
+    { P_KNIFE, P_MASTER },		{ P_AXE, P_EXPERT },
+    { P_BROAD_SWORD, P_MASTER },		{ P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_MASTER },		{ P_PADDLE, P_MASTER },
+    { P_MORNING_STAR, P_EXPERT },		{ P_POLEARMS, P_GRAND_MASTER },
+    { P_JAVELIN, P_EXPERT },		{ P_BOW, P_MASTER },
+    { P_SLING, P_EXPERT },		{ P_FIREARM, P_EXPERT },
+    { P_CROSSBOW, P_MASTER },		{ P_BOOMERANG, P_MASTER },
+    { P_WHIP, P_EXPERT },		{ P_HEALING_SPELL, P_EXPERT },
+    { P_OCCULT_SPELL, P_GRAND_MASTER },		{ P_CHAOS_SPELL, P_MASTER },
+    { P_HIGH_HEELS, P_GRAND_MASTER },		{ P_TWO_HANDED_WEAPON, P_MASTER },
+    { P_POLYMORPHING, P_MASTER },		{ P_MISSILE_WEAPONS, P_EXPERT },
+    { P_SORESU, P_EXPERT },		{ P_DJEM_SO, P_EXPERT },
+    { P_JUYO, P_MASTER },		{ P_MARTIAL_ARTS, P_EXPERT },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Ast[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
+    { P_AXE, P_EXPERT },		{ P_PICK_AXE, P_MASTER },
+    { P_SHORT_SWORD, P_MASTER },		{ P_BROAD_SWORD, P_MASTER },
+    { P_LONG_SWORD, P_MASTER },		{ P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_MASTER },		{ P_SABER, P_MASTER },
+    { P_CLUB, P_EXPERT },		{ P_PADDLE, P_MASTER },
+    { P_MACE, P_EXPERT },		{ P_MORNING_STAR, P_EXPERT },
+    { P_FLAIL, P_MASTER },		{ P_HAMMER, P_GRAND_MASTER },
+    { P_QUARTERSTAFF, P_EXPERT },		{ P_POLEARMS, P_MASTER },
+    { P_SPEAR, P_EXPERT },		{ P_JAVELIN, P_EXPERT },
+    { P_TRIDENT, P_EXPERT },		{ P_LANCE, P_EXPERT },
+    { P_BOW, P_EXPERT },		{ P_SLING, P_MASTER },
+    { P_FIREARM, P_GRAND_MASTER },		{ P_CROSSBOW, P_EXPERT },
+    { P_DART, P_MASTER },		{ P_SHURIKEN, P_EXPERT },
+    { P_BOOMERANG, P_MASTER },		{ P_WHIP, P_EXPERT },
+    { P_UNICORN_HORN, P_EXPERT },		{ P_LIGHTSABER, P_GRAND_MASTER },
+    { P_BODY_SPELL, P_MASTER },		{ P_BARE_HANDED_COMBAT, P_GRAND_MASTER },
+    { P_HIGH_HEELS, P_MASTER },		{ P_GENERAL_COMBAT, P_GRAND_MASTER },
+    { P_SHIELD, P_MASTER },		{ P_BODY_ARMOR, P_GRAND_MASTER },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },		{ P_POLYMORPHING, P_EXPERT },
+    { P_DEVICES, P_MASTER },		{ P_SEARCHING, P_EXPERT },
+    { P_SPIRITUALITY, P_EXPERT },		{ P_PETKEEPING, P_EXPERT },
+    { P_MISSILE_WEAPONS, P_GRAND_MASTER },		{ P_TECHNIQUES, P_MASTER },
+    { P_SEXY_FLATS, P_EXPERT },		{ P_SHII_CHO, P_MASTER },
+    { P_MAKASHI, P_EXPERT },		{ P_ATARU, P_MASTER },
+    { P_SHIEN, P_MASTER },		{ P_DJEM_SO, P_EXPERT },
+    { P_NIMAN, P_EXPERT },		{ P_JUYO, P_MASTER },
+    { P_VAAPAD, P_EXPERT },		{ P_WEDI, P_MASTER },
+    { P_MARTIAL_ARTS, P_MASTER },		{ P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_RIDING, P_GRAND_MASTER },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Cyb[] = {
+    { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },
+    { P_SHORT_SWORD, P_GRAND_MASTER },	{ P_BROAD_SWORD, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT },		{ P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_EXPERT },		{ P_SABER, P_EXPERT },
+    { P_PADDLE, P_EXPERT },
+    { P_FLAIL, P_EXPERT },		{ P_QUARTERSTAFF, P_EXPERT },
+    { P_POLEARMS, P_EXPERT },		{ P_SPEAR, P_EXPERT },
+    { P_JAVELIN, P_EXPERT },		{ P_LANCE, P_EXPERT },
+    { P_BOW, P_EXPERT },		{ P_SHURIKEN, P_EXPERT },
+    { P_PROTECTION_SPELL, P_EXPERT },      { P_BODY_SPELL, P_EXPERT },
+    { P_HIGH_HEELS, P_EXPERT },	{ P_FIREARM, P_GRAND_MASTER },
+
+    { P_ATTACK_SPELL, P_EXPERT },
+    { P_RIDING, P_EXPERT },
+    { P_GENERAL_COMBAT, P_MASTER },
+    { P_SHIELD, P_EXPERT },
+    { P_BODY_ARMOR, P_EXPERT },
+    { P_TWO_HANDED_WEAPON, P_GRAND_MASTER },
+    { P_POLYMORPHING, P_EXPERT },
+    { P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_EXPERT },
+    { P_SPIRITUALITY, P_EXPERT },
+    { P_PETKEEPING, P_EXPERT },
+    { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_SEXY_FLATS, P_MASTER },
+
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_MARTIAL_ARTS, P_MASTER },
     { P_NONE, 0 }
 };
 
 static const struct def_skill Skill_Dis[] = {
+    { P_DAGGER, P_MASTER },		{ P_KNIFE, P_MASTER },
+    { P_PICK_AXE, P_EXPERT },		{ P_SHORT_SWORD, P_EXPERT },
+    { P_CLUB, P_EXPERT },		{ P_PADDLE, P_MASTER },
+    { P_POLEARMS, P_EXPERT },		{ P_LANCE, P_EXPERT },
+    { P_SLING, P_EXPERT },		{ P_FIREARM, P_EXPERT },
+    { P_DART, P_MASTER },		{ P_BOOMERANG, P_MASTER },
+    { P_WHIP, P_MASTER },		{ P_UNICORN_HORN, P_GRAND_MASTER },
+    { P_ATTACK_SPELL, P_EXPERT },		{ P_DIVINATION_SPELL, P_EXPERT },
+    { P_PROTECTION_SPELL, P_MASTER },		{ P_BODY_SPELL, P_EXPERT },
+    { P_CHAOS_SPELL, P_EXPERT },		{ P_BARE_HANDED_COMBAT, P_GRAND_MASTER },
+    { P_HIGH_HEELS, P_EXPERT },		{ P_GENERAL_COMBAT, P_MASTER },
+    { P_SHIELD, P_EXPERT },		{ P_BODY_ARMOR, P_EXPERT },
+    { P_POLYMORPHING, P_MASTER },		{ P_DEVICES, P_EXPERT },
+    { P_SEARCHING, P_EXPERT },		{ P_SPIRITUALITY, P_MASTER },
+    { P_PETKEEPING, P_MASTER },		{ P_MISSILE_WEAPONS, P_EXPERT },
+    { P_SEXY_FLATS, P_EXPERT },		{ P_SHII_CHO, P_EXPERT },
+    { P_MAKASHI, P_EXPERT },		{ P_SORESU, P_EXPERT },
+    { P_DJEM_SO, P_EXPERT },		{ P_JUYO, P_EXPERT },
+    { P_WEDI, P_EXPERT },		{ P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_RIDING, P_EXPERT },
     { P_NONE, 0 }
 };
 
@@ -11680,16 +12059,34 @@ u_init()
 	case PM_SOFTWARE_ENGINEER:
 		ini_inv(SoftwareEngineer);
 		skill_init(Skill_Sof);
+
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(200);
+#else
+		u.umoney0 = rnd(200);
+#endif
+
 		break;
 
 	case PM_CRACKER:
 		ini_inv(Cracker);
 		skill_init(Skill_Cra);
+
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case PM_JANITOR:
 		ini_inv(Janitor);
 		skill_init(Skill_Jan);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case PM_SPACE_MARINE:
@@ -11710,6 +12107,11 @@ u_init()
 	case PM_QUARTERBACK:
 		ini_inv(Quarterback);
 		skill_init(Skill_Qua);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(300);
+#else
+		u.umoney0 = rnd(300);
+#endif
 		break;
 
 	case PM_PSYKER:
@@ -12616,6 +13018,11 @@ u_init()
 
 	case PM_QUARTERBACK:
 		skill_init(Skill_Qua);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(300);
+#else
+		u.umoney0 = rnd(300);
+#endif
 		break;
 
 	case PM_PSYKER:
@@ -14118,14 +14525,30 @@ u_init()
 
 	case 132:
 		ini_inv(SoftwareEngineer);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(200);
+#else
+		u.umoney0 = rnd(200);
+#endif
+
 		break;
 
 	case 133:
 		ini_inv(Cracker);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case 134:
 		ini_inv(Janitor);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case 135:
@@ -14142,6 +14565,11 @@ u_init()
 
 	case 138:
 		ini_inv(Quarterback);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(300);
+#else
+		u.umoney0 = rnd(300);
+#endif
 		break;
 
 	case 139:
@@ -15677,14 +16105,30 @@ u_init()
 
 	case 132:
 		ini_inv(SoftwareEngineer);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(200);
+#else
+		u.umoney0 = rnd(200);
+#endif
+
 		break;
 
 	case 133:
 		ini_inv(Cracker);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case 134:
 		ini_inv(Janitor);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case 135:
