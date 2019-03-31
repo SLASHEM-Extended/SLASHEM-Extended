@@ -2102,7 +2102,7 @@ badeffect()
 
 		case 320:
 			pline("Suddenly your %s hurts!", body_part(rn2(19) ) );
-			losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins + 1),"escalating damage effect",KILLED_BY_AN);
+			losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins > 0 ? (sqrt(u.ualign.sins) + 1) : (1)),"escalating damage effect",KILLED_BY_AN);
 			u.chokhmahdamage++;
 
 		break;

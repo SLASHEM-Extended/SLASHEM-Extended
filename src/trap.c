@@ -4248,7 +4248,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		seetrap(trap);
 		pline("You stepped on a trigger!");
 		pline("Something hits your %s.", body_part(rn2(19) ) );
-		losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins + 1),"escalating trap",KILLED_BY_AN);
+		losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins > 0 ? (sqrt(u.ualign.sins) + 1) : (1)),"escalating trap",KILLED_BY_AN);
 		u.chokhmahdamage++;
 		break;
 
