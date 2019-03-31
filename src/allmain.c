@@ -2542,7 +2542,7 @@ trapsdone:
 		}
 
 		if (DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
-			if (IS_DOOR(levl[u.ux][u.uy].typ) && !rn2(2) && !(t_at(u.ux, u.uy)) ) {
+			if (IS_DOOR(levl[u.ux][u.uy].typ) && !rn2(10) && u.umoved && !(t_at(u.ux, u.uy)) ) {
 
 				int i, j;
 
