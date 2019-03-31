@@ -6775,6 +6775,10 @@ register struct obj *o1, *o2;
 			    case POT_BLINDNESS:
 			    case POT_NUMBNESS:
 			    case POT_STUNNING:
+			    case POT_ICE:
+			    case POT_FIRE:
+			    case POT_FEAR:
+			    case POT_DIMNESS:
 			    case POT_CONFUSION:
 			    case POT_BLOOD:
 			    case POT_VAMPIRE_BLOOD:
