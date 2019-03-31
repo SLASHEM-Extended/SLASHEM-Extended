@@ -1479,6 +1479,18 @@ exerchk()
 				AMAX(A_WIS) -= 1;
 				flags.botl = 1;
 				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+
+				/* it's a total crapshoot if any little contamination can instakill you. I decided that
+				 * if it's less than 100, you can't be instakilled but the contamination may go down. --Amy */
+					if (u.contamination < 100) {
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+							ABASE(A_WIS) += 1;
+							AMAX(A_WIS) += 1;
+						}
+						decontaminate(rnd(u.contamination));
+						continue;
+					}
+
 					u.youaredead = 1;
 					pline("The contamination consumes you completely...");
 					killer = "being consumed by the contamination";
@@ -1487,6 +1499,10 @@ exerchk()
 					/* lifesaved */
 					u.youaredead = 0;
 					pline("WARNING: Your wisdom is still critically low and you may die from contamination again! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+					if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+						ABASE(A_WIS) += 1;
+						AMAX(A_WIS) += 1;
+					}
 				} else if (ABASE(A_WIS) < 4) {
 					pline("DANGER!!! Your wisdom is critically low and you're very likely to die from the contamination! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
 				} else if (ABASE(A_WIS) < 6) {
