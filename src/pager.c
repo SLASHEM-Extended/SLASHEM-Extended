@@ -23021,6 +23021,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear loud crunching sounds from inside your bag of holding.",
 	"You hear loud crunching sounds from inside your bag of holding. Hahahahaha. Now all the stuff has vanished. Hahaha.",
 	"Outside, you hear the cockatrice's hissing! The steam vortex gets turned to stone! And the same fate befalls you. Do you want your possessions identified?",
+	"The lag is so dull you can't keep your eyes open.", /* by Andrio */
+	"You start reading the spellbook of finger of death. Halfway, the service provider deletes your book. You are confused.", /* by Muad */
 
 };
 
