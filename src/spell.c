@@ -2263,8 +2263,14 @@ learn()
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
 	    if ((delay - end_delay) < 0) {
-			if (!issoviet) nomul((-(rno(-(delay - end_delay)))), "reading a confusing book", TRUE); /* remaining delay is uninterrupted */
-			else {
+			if (!issoviet) {
+
+				register int actualdelay;
+				actualdelay = rno(-(delay - end_delay));
+				if (actualdelay > 0) actualdelay = sqrt(actualdelay); /* a lot of reduction --Amy */
+
+				nomul(-(actualdelay), "reading a confusing book", TRUE); /* remaining delay is uninterrupted */
+			} else { /* soviet mode */
 				nomul((delay - end_delay), "reading a confusing book", TRUE);
 				pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
 
@@ -2468,8 +2474,14 @@ register struct obj *spellbook;
 		    boolean gone = cursed_book(spellbook);
 
 		    if (delay < 0) {
-				if (!issoviet) nomul(-(rno(-(delay))), "reading a cursed book", TRUE); /* study time */
-				else {
+				if (!issoviet) {
+
+					register int actualdelay;
+					actualdelay = rno(-(delay));
+					if (actualdelay > 1) actualdelay = sqrt(actualdelay); /* a lot of reduction */
+
+					nomul(-(actualdelay), "reading a cursed book", TRUE); /* study time */
+				} else { /* soviet mode */
 					nomul((delay), "reading a cursed book", TRUE);
 					pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
 				}
@@ -2491,8 +2503,14 @@ register struct obj *spellbook;
 			spellbook->in_use = FALSE;
 		    }
 		    if (delay < 0) {
-				if (!issoviet) nomul(-(rno(-(delay))), "reading a book while confused", TRUE);
-				else {
+				if (!issoviet) {
+					register int actualdelay;
+					actualdelay = rno(-(delay));
+					if (actualdelay > 1) actualdelay = sqrt(actualdelay); /* a lot of reduction */
+
+					nomul(-(actualdelay), "reading a book while confused", TRUE);
+
+				} else { /* soviet mode */
 					nomul((delay), "reading a book while confused", TRUE);
 					pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
 				}
