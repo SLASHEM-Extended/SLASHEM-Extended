@@ -12495,7 +12495,10 @@ newturn:
 	if (!yourturn) { /* it's the pumps' turn */
 
 		if (pumpsstate == 0 || !rn2(5)) pumpsstate = rnd(minigameturns >= 10 ? 6 : 5);
-		if (pumpsstate == PUMPKICKINNUTS && flags.female) pumpsstate = rnd(3); /* females don't have nuts (DUH) */
+		if (pumpsstate == PUMPKICKINNUTS && flags.female) {
+			pumpsstate = rnd(3); /* females don't have nuts (DUH) */
+			if (pumpsstate == 3) pumpsstate = 4;
+		}
 
 		if (rn2(25) < ((pumpslikeyou > 10) ? 10 : pumpslikeyou) ) pumpsstate = PUMPINLAP;
 
