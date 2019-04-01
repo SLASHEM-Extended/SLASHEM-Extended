@@ -1944,6 +1944,7 @@ level_difficulty()
 	int retvalue;
 
 	int depthuz;
+	int deepestuz;
 
 	if (iszapem && In_ZAPM(&u.uz) && !(u.zapemescape)) {
 
@@ -1956,7 +1957,13 @@ level_difficulty()
 		depthuz = (1 + depth(&u.uz) - zapemdepth);
 		if (depthuz < 1) depthuz = 1; /* fail safe */
 
-	} else depthuz = depth(&u.uz);
+		deepestuz = (1 + deepest_lev_reached(TRUE) - zapemdepth);
+		if (deepestuz < 1) deepestuz = 1; /* fail safe */
+
+	} else {
+		depthuz = depth(&u.uz);
+		deepestuz = deepest_lev_reached(TRUE);
+	}
 
 
 	if (In_endgame(&u.uz))
@@ -1972,7 +1979,7 @@ level_difficulty()
 
 	if (Race_if(PM_EXPERT)) retvalue += u.ulevel;
 
-	if ( (!rn2(10) || Race_if(PM_GASTLY) || Race_if(PM_PHANTOM_GHOST) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
+	if ( (!rn2(10) || Race_if(PM_GASTLY) || Race_if(PM_PHANTOM_GHOST) ) && (deepestuz > retvalue) ) retvalue = deepestuz;
 
 	/* generally increase monster difficulty gradually as the game goes on --Amy */
 	if (!rn2(2) && moves > 10000) retvalue++;
