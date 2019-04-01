@@ -5788,7 +5788,7 @@ SCROLL((char *)0,               "IM SAILING DOWN HERE BOUT A HANG KESSIMI",  P_N
 SCROLL((char *)0,               "1FP30S",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "THE LAKITUS ARE THROWING LAKITUS",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
 SCROLL((char *)0,               "MAVIS BACON",  P_NONE,     1,   0, 300, CLR_RED, 1),
-SCROLL((char *)0,               "AMY MUST WALK BAREFOOT ACROSS A GRAVEL PARKING LOT AT -30 DEGREES C",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "AMY MUST WALK BAREFOOT ACROSS A GRAVEL PARKING LOT AT MINUS30 DEGREES C",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

@@ -60,7 +60,6 @@ STATIC_DCL void cast_protection(void);
 STATIC_DCL void cast_reflection(void);
 STATIC_DCL void spell_backfire(int);
 STATIC_DCL const char *spelltypemnemonic(int);
-STATIC_DCL int isqrt(int);
 static int spell_dash(void);
 
 /* categories whose names don't come from OBJ_NAME(objects[type]) */
@@ -2267,7 +2266,7 @@ learn()
 
 				register int actualdelay;
 				actualdelay = rno(-(delay - end_delay));
-				if (actualdelay > 0) actualdelay = sqrt(actualdelay); /* a lot of reduction --Amy */
+				if (actualdelay > 0) actualdelay = isqrt(actualdelay); /* a lot of reduction --Amy */
 
 				nomul(-(actualdelay), "reading a confusing book", TRUE); /* remaining delay is uninterrupted */
 			} else { /* soviet mode */
@@ -2478,7 +2477,7 @@ register struct obj *spellbook;
 
 					register int actualdelay;
 					actualdelay = rno(-(delay));
-					if (actualdelay > 1) actualdelay = sqrt(actualdelay); /* a lot of reduction */
+					if (actualdelay > 1) actualdelay = isqrt(actualdelay); /* a lot of reduction */
 
 					nomul(-(actualdelay), "reading a cursed book", TRUE); /* study time */
 				} else { /* soviet mode */
@@ -2506,7 +2505,7 @@ register struct obj *spellbook;
 				if (!issoviet) {
 					register int actualdelay;
 					actualdelay = rno(-(delay));
-					if (actualdelay > 1) actualdelay = sqrt(actualdelay); /* a lot of reduction */
+					if (actualdelay > 1) actualdelay = isqrt(actualdelay); /* a lot of reduction */
 
 					nomul(-(actualdelay), "reading a book while confused", TRUE);
 
@@ -10247,7 +10246,7 @@ dump_spells()
 #endif
 
 /* Integer square root function without using floating point. */
-STATIC_OVL int
+int
 isqrt(val)
 int val;
 {

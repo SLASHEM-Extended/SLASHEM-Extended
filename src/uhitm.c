@@ -7539,7 +7539,7 @@ boolean ranged;
 		if (mhit) {
 			pline("WHACK! You feel like you just got whipped!");
 			tmp += u.chokhmahdamage;
-			tmp += rnd(u.ualign.sins > 0 ? (sqrt(u.ualign.sins) + 1) : (1));
+			tmp += rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1));
 			u.chokhmahdamage++;
 			mdamageu(mon, tmp);
 		}

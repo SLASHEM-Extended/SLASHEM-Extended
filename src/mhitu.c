@@ -7120,7 +7120,7 @@ dopois:
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		dmg += u.chokhmahdamage;
-		dmg += rnd(u.ualign.sins > 0 ? (sqrt(u.ualign.sins) + 1) : (1));
+		dmg += rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1));
 		u.chokhmahdamage++;
 		break;
 
@@ -11578,7 +11578,7 @@ do_stone2:
 			You("are pummeled with heavy debris!");
 			if (mtmp->mcan) break;
 			tmp += u.chokhmahdamage;
-			tmp += rnd(u.ualign.sins > 0 ? (sqrt(u.ualign.sins) + 1) : (1));
+			tmp += rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1));
 			u.chokhmahdamage++;
 		  break;
 
@@ -13252,7 +13252,7 @@ common:
 	    case AD_CHKH:
 
 		tmp += u.chokhmahdamage;
-		tmp += rnd(u.ualign.sins > 0 ? (sqrt(u.ualign.sins) + 1) : (1));
+		tmp += rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1));
 		u.chokhmahdamage++;
 		mdamageu(mtmp, tmp);
 		break;
@@ -17556,7 +17556,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Sdelay eto seychas! Sprygnut' s mosta!" : "SCHRANG!");
 		    stop_occupation();
 			dmgplus += u.chokhmahdamage;
-			dmgplus += rnd(u.ualign.sins > 0 ? (sqrt(u.ualign.sins) + 1) : (1));
+			dmgplus += rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1));
 			u.chokhmahdamage++;
                   mdamageu(mtmp, d(3,8) + dmgplus);
 		  }

@@ -2690,6 +2690,7 @@ E boolean studyspell(void);
 E void initialspell(struct obj *);
 E void castinertiaspell(void);
 E void wonderspell(void);
+E int isqrt(int);
 
 /* ### steal.c ### */
 
