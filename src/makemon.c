@@ -934,7 +934,9 @@ register struct monst *mtmp;
 
 	switch (ptr->mlet) {
 	    case S_GIANT:
-		if (rn2(2)) (void)mongets(mtmp, (mm != PM_ETTIN) ?
+
+		/* very low-level monsters with M2_ROCKTHROW would totally 0wn you if they were to start with boulders --Amy */
+		if (rn2(2) && ptr->mlevel >= 4) (void)mongets(mtmp, (mm != PM_ETTIN) ?
 				    BOULDER : CLUB);
 
 		if (ptr == &mons[PM_HILL_GIANT_WITH_NO_DOTS_ON_THE_U]) {
@@ -4914,6 +4916,8 @@ register struct monst *mtmp;
 
 			/* preventing low level angels from generating with powerful stuff that players can claim --Amy */
 			if (mtmp->m_lev < rnd(100)) break;
+			/* or powerful stuff with which they can 0wn the player */
+			if (ptr->mlevel < 4) break;
 
 		    int spe2;
 
@@ -5158,7 +5162,9 @@ register struct monst *mtmp;
 			if(ptr == &mons[PM_RADIOACTIVE_GNOLL]) (void) mongets(mtmp, POT_RADIUM);
 			if(ptr == &mons[PM_NET_GNOME]) (void) mongets(mtmp, TRIDENT);
 
-			if (!rn2(10)) {
+			/* don't hand out crossbows to the low-level wimps because that would make them capable of sniping a
+			 * beginning character at long range and possibly instakill them! --Amy */
+			if (!rn2(10) && ptr->mlevel > 1 && (rnd(4) > ptr->mlevel) ) {
 				(void) mongets(mtmp, CROSSBOW);
 				m_initthrow(mtmp, CROSSBOW_BOLT, 35);
 
@@ -5284,7 +5290,7 @@ register struct monst *mtmp;
 		if (is_dwarf(ptr)) {
 		    if (rn2(7)) (void)mongets(mtmp, DWARVISH_CLOAK);
 		    if (rn2(7)) (void)mongets(mtmp, IRON_SHOES);
-		    if (!rn2(4)) {
+		    if (!rn2(4) && ptr->mlevel >= 2) { /* very low-level fools with mattocks would be too strong --Amy */
 			(void)mongets(mtmp, DWARVISH_SHORT_SWORD);
 			/* note: you can't use a mattock with a shield */
 			if (rn2(2)) (void)mongets(mtmp, DWARVISH_MATTOCK);
@@ -5295,7 +5301,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, DWARVISH_IRON_HELM);
 			if (!rn2(4))
 			    (void)mongets(mtmp, DWARVISH_MITHRIL_COAT);
-		    } else if (rn2(2)) {
+		    } else if (rn2(2)) { /* if the monster level is too low it will end up here; pick-axes are ok --Amy */
 			(void)mongets(mtmp, !rn2(3) ? PICK_AXE : DAGGER);
 		    }
 		} else if(mm == PM_GITHYANKI_PIRATE){
@@ -5757,9 +5763,7 @@ register struct monst *mtmp;
 			break;
 		    default:
 			if (mm != PM_ORC_SHAMAN && rn2(2)) 
-/*                          (void)mongets(mtmp, (mm == PM_GOBLIN || rn2(2) == 0)*/
-                          (void)mongets(mtmp, (rn2(2) == 0)
-						   ? ORCISH_DAGGER : SCIMITAR);
+                          (void)mongets(mtmp, (rn2(2) == 0) ? ORCISH_DAGGER : SCIMITAR);
 		}
 		break;
 	    case S_OGRE:
@@ -5770,7 +5774,8 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_HUGE_OGRE_THIEF]) { (void) mongets(mtmp, MIRROR); (void) mongets(mtmp, MIRROR); }
 
 		if (!rn2(mm == PM_OGRE_KING ? 3 : mm == PM_OGRE_LORD ? 6 : 12))
-		    (void) mongets(mtmp, BATTLE_AXE);
+			/* level 0 ogres with battle-axes are insanely OP :P --Amy */
+		    (void) mongets(mtmp, ptr->mlevel >= 4 ? BATTLE_AXE : CLUB);
 		else
 		    (void) mongets(mtmp, CLUB);
 		break;
@@ -5855,7 +5860,8 @@ register struct monst *mtmp;
 
 	    case S_CENTAUR:
 
-		if (rn2(2)) {
+		/* low-level ones would brutally murder you if they had a crossbow... gotta fix that --Amy */
+		if (rn2(2) && ptr->mlevel >= 4) {
 		    if(ptr == &mons[PM_FOREST_CENTAUR]) {
 			(void)mongets(mtmp, BOW);
 			m_initthrow(mtmp, ARROW, 35);
@@ -5949,14 +5955,16 @@ register struct monst *mtmp;
 		break;
 	    case S_WRAITH:
 		(void)mongets(mtmp, KNIFE);
-		(void)mongets(mtmp, LONG_SWORD);
+		/* make long sword less common and prevent it at very low levels to protect low-HP starting chars --Amy */
+		if (ptr->mlevel >= 3 && !rn2(2)) (void)mongets(mtmp, LONG_SWORD);
 
 		if(mm == PM_BARROW_WARRIOR) {
 			(void)mongets(mtmp, PICK_AXE);
 			(void)mongets(mtmp, SCR_GRAVE);
 			(void)mongets(mtmp, WAN_DIGGING);
 		}
-		if(mm == PM_GRAVE_WARRIOR) { (void)mongets(mtmp, PICK_AXE);
+		if(mm == PM_GRAVE_WARRIOR) {
+			(void)mongets(mtmp, PICK_AXE);
 			(void)mongets(mtmp, WAN_DIGGING);
 		}
 		break;
@@ -6037,7 +6045,8 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_OVERSLEPT_TROLL]) (void) mongets(mtmp, HUGGING_BOOT);
 		if(ptr == &mons[PM_MEAN_TROLL]) (void) mongets(mtmp, PARTISAN);
 
-		if (!rn2(2)) switch (rn2(4)) {
+		/* very low-level trolls shouldn't have weapons that could two-shot fragile level 1 chars --Amy */
+		if (!rn2(2) && ptr->mlevel >= 3) switch (rn2(4)) {
 		    case 0: (void)mongets(mtmp, RANSEUR); break;
 		    case 1: (void)mongets(mtmp, PARTISAN); break;
 		    case 2: (void)mongets(mtmp, GLAIVE); break;
