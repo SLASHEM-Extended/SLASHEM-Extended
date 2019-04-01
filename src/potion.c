@@ -5136,7 +5136,7 @@ peffects(otmp)
 			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uarms && uarms->oartifact == ART_BONUS_HOLD) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) && !(uarmf && uarmf->oartifact == ART_ELENETTES) ) {
 			    poisontell(typ);
 			    if (!StrongPoison_resistance || !rn2(3)) {
-				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE, TRUE);
+				(void) adjattrib(typ, Poison_resistance ? -1 : -rno(5), TRUE, TRUE);
 			    }
 			}
 			if(!Poison_resistance) {

@@ -5612,7 +5612,7 @@ newbossPENT:
 	    if (rnd(6) > 4)  {
 		switch (rnd(20))  {
 		    case 1:
-			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE, TRUE);
+			(void) adjattrib(rn2(A_MAX), -rno(5), FALSE, TRUE);
 			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
 			break;
 		    case 2:
@@ -8824,7 +8824,7 @@ totemsummonchoice:
 			if (!rn2(StrongPoison_resistance ? 10 : Poison_resistance ? 5 : 3)) {
 				int typ = rn2(A_MAX);
 				poisontell(typ);
-				(void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4,3), TRUE, TRUE);
+				(void) adjattrib(typ, Poison_resistance ? -1 : -rno(5), TRUE, TRUE);
 			}
 			if (!Poison_resistance) {
 				losehp(rnd(10), "poisoning a weapon", KILLED_BY);

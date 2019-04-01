@@ -6021,7 +6021,7 @@ int  typ, fatal;
 		}
 	} else if(i <= 5) {
 		/* Check that a stat change was made */
-		if (adjattrib(typ, thrown_weapon ? -1 : StrongPoison_resistance ? -1 : Poison_resistance ? -rn1(2,2) : -rn1(3,3), 1, TRUE)) {
+		if (adjattrib(typ, thrown_weapon ? -1 : StrongPoison_resistance ? -1 : Poison_resistance ? -rno(3) : -rnd(5), 1, TRUE)) {
 		    pline("You%s!", poiseff[typ]);
 			pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");
 		}

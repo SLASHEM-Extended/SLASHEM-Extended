@@ -4114,10 +4114,11 @@ rerollchaloc:
 		     || Fumbling || (Confusion && !Conf_resist && !rn2(20) && !Race_if(PM_ADDICT)) || (Stunned && !Stun_resist && !rn2(5) && !Race_if(PM_TUMBLRER) && !Race_if(PM_REDDITOR)) )) {
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
 
-		    if (!rn2(10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
+		    if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
 
 			if (rn2(50)) {
-				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+				if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 			} else {
 				You_feel("dizzy!");
 				forget(1 + rn2(5));

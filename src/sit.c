@@ -424,7 +424,7 @@ dosit()
 
 		switch (rnd(20))  {
 		    case 1:
-			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE, TRUE);
+			(void) adjattrib(rn2(A_MAX), -rno(5), FALSE, TRUE);
 			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
 			break;
 		    case 2:

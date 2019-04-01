@@ -1052,9 +1052,10 @@ int mode;
 				You("crash into a set of iron bars! Ouch!");
 
 				losehp(rnd(10), "walking into iron bars", KILLED_BY);
-				if (!rn2(10)) {
+				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1111,9 +1112,10 @@ int mode;
 				You("crash into a farmland! Ouch!");
 
 				losehp(rnd(10), "walking into a farmland", KILLED_BY);
-				if (!rn2(10)) {
+				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1136,9 +1138,10 @@ int mode;
 				You("crash into a tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a tunnel", KILLED_BY);
-				if (!rn2(10)) {
+				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1206,9 +1209,10 @@ walscholardone:
 				You("crash into a water tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a water tunnel", KILLED_BY);
-				if (!rn2(10)) {
+				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1246,9 +1250,10 @@ walscholardone:
 					You("crash into a tree! Ouch!");
 
 					losehp(rnd(10), "walking into a tree", KILLED_BY);
-					if (!rn2(10)) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
 							forget(1 + rn2(5));
@@ -1262,9 +1267,10 @@ walscholardone:
 					You("crash into a wall! Ouch!");
 
 					losehp(rnd(10), "walking into a wall", KILLED_BY);
-					if (!rn2(10)) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
 							forget(1 + rn2(5));
@@ -1316,9 +1322,10 @@ walscholardone:
 				You("crash into a door! Ouch!");
 
 				losehp(rnd(10), "walking into a door", KILLED_BY);
-				if (!rn2(10)) {
+				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
 						forget(1 + rn2(5));
@@ -1348,9 +1355,10 @@ walscholardone:
 					You("crash into a door! Ouch!");
 
 					losehp(rnd(10), "walking into a door", KILLED_BY);
-					if (!rn2(10)) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
 						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
 							forget(1 + rn2(5));

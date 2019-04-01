@@ -632,10 +632,11 @@ nh_timeout()
 			nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
 			nomovemsg = "You get back up and curse at your stiletto heels for making you wipe out.";
 
-		    if (!rn2(10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+		    if (!rn2(uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 			if (rn2(50)) {
-				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+				if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 			} else {
 				You_feel("dizzy!");
 				forget(1 + rn2(5));
@@ -707,10 +708,11 @@ nh_timeout()
 	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -733,10 +735,11 @@ nh_timeout()
 	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -759,10 +762,11 @@ nh_timeout()
 	if (u.umoved && (uarmh && uarmh->oartifact == ART_ELESSAR_ELENDIL) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -785,10 +789,11 @@ nh_timeout()
 	if (u.umoved && evilfriday && !rn2(20) && (rnd(10) > ACURR(A_DEX)) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -811,10 +816,11 @@ nh_timeout()
 	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
@@ -2538,10 +2544,11 @@ nh_timeout()
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */
 
-			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
-					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE, TRUE);
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 				} else {
 					You_feel("dizzy!");
 					forget(1 + rn2(5));
