@@ -4231,6 +4231,9 @@ int degree;
 	if (Race_if(PM_EGYMID) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_ITAQUE) && !rn2(10)) degree *= 2;
 
+	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
+	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
+
 	if (skill == u.untrainableskill) return; /* cannot train this skill at all, no matter what */
 	if ((skill == u.halfspeedskill) && rn2(2)) return;
 	if ((skill == u.fifthspeedskill) && rn2(5)) return;
@@ -4263,6 +4266,8 @@ int degree;
 			return;
 		}
 	}
+
+screwupsdone:
 
 	if (Role_if(PM_GRENADONIN) && skill != P_FIREARM && rn2(3)) return;
 

@@ -8168,23 +8168,25 @@ u_init()
 	u.alwayshidden = 0;
 	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
 
-	u.frequentmonster = rnd(S_WORM_TAIL - 1);
-	u.freqmonsterbonus = rne(4);
-	if (!rn2(5)) u.freqmonsterbonus += rne(3);
-	if (!rn2(3)) u.freqmonsterbonus *= 2;
-	if (!rn2(5)) u.freqmonsterbonus *= 2;
-	if (!rn2(8)) u.freqmonsterbonus += rne(4);
-	if (!rn2(12)) u.freqmonsterbonus *= (1 + rne(15));
-	if (!rn2(20)) u.freqmonsterbonus *= 3;
-	if (!rn2(60)) u.freqmonsterbonus *= (1 + rne(12));
-	if (!rn2(200)) u.freqmonsterbonus *= 4;
-	if (!rn2(360)) u.freqmonsterbonus *= (1 + rne(10));
-	if (!rn2(1360)) u.freqmonsterbonus *= (1 + rne(8));
-	if (!rn2(5000)) u.freqmonsterbonus *= 5;
-	if (!rn2(6360)) u.freqmonsterbonus *= (1 + rne(7));
-	if (!rn2(25000)) u.freqmonsterbonus *= 6;
-	if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
-	if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
+	if (!rn2(2)) {
+		u.frequentmonster = rnd(S_WORM_TAIL - 1);
+		u.freqmonsterbonus = rne(4);
+		if (!rn2(5)) u.freqmonsterbonus += rne(3);
+		if (!rn2(3)) u.freqmonsterbonus *= 2;
+		if (!rn2(5)) u.freqmonsterbonus *= 2;
+		if (!rn2(8)) u.freqmonsterbonus += rne(4);
+		if (!rn2(12)) u.freqmonsterbonus *= (1 + rne(15));
+		if (!rn2(20)) u.freqmonsterbonus *= 3;
+		if (!rn2(60)) u.freqmonsterbonus *= (1 + rne(12));
+		if (!rn2(200)) u.freqmonsterbonus *= 4;
+		if (!rn2(360)) u.freqmonsterbonus *= (1 + rne(10));
+		if (!rn2(1360)) u.freqmonsterbonus *= (1 + rne(8));
+		if (!rn2(5000)) u.freqmonsterbonus *= 5;
+		if (!rn2(6360)) u.freqmonsterbonus *= (1 + rne(7));
+		if (!rn2(25000)) u.freqmonsterbonus *= 6;
+		if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
+		if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
+	}
 
 	if (!rn2(10)) {
 	u.frequentcolor = rnd(15);
@@ -9566,9 +9568,13 @@ u_init()
 
 	u.usanity = 0;
 
-	u.impossibleproperty = randomdisableproperty();
-	u.nonextrinsicproperty = randomdisableproperty();
-	u.nonintrinsicproperty = randomdisableproperty();
+	u.impossibleproperty = -1;
+	u.nonextrinsicproperty = -1;
+	u.nonintrinsicproperty = -1;
+
+	if (!rn2(2)) u.impossibleproperty = randomdisableproperty();
+	if (!rn2(2)) u.nonextrinsicproperty = randomdisableproperty();
+	if (!rn2(2)) u.nonintrinsicproperty = randomdisableproperty();
 
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
 	if (!rn2(7)) u.idscrollpenalty += rnz(100);
@@ -9753,30 +9759,53 @@ u_init()
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
-	u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.fifthspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.basiclimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.skilledlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.expertlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.earlytrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.earlytrainingtimer = rnz(50);
-	u.earlytrainingtimer = rnd(u.earlytrainingtimer);
-	u.earlytrainingtimer = rnz(u.earlytrainingtimer); /* calculations by jonadab */
+	u.untrainableskill = 0;
+	u.halfspeedskill = 0;
+	u.fifthspeedskill = 0;
+	u.basiclimitskill = 0;
+	u.skilledlimitskill = 0;
+	u.expertlimitskill = 0;
+	u.earlytrainingskill = 0;
+	u.earlytrainingtimer = 9999999;
+	u.frtrainingskill = 0;
+	u.frtrainingtimer = 9999999;
+	u.latetrainingskill = 0;
+	u.latetrainingtimer = 9999999;
+	u.lavtrainingskill = 0;
+	u.lavtrainingtimer = 0;
+
+	if (!rn2(2)) u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.fifthspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.basiclimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.skilledlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.expertlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) {
+		u.earlytrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.earlytrainingtimer = rnz(50);
+		u.earlytrainingtimer = rnd(u.earlytrainingtimer);
+		u.earlytrainingtimer = rnz(u.earlytrainingtimer); /* calculations by jonadab */
+	}
 	u.earlytrainingblown = FALSE;
 
-	u.frtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.frtrainingtimer = rnz(50);
-	u.frtrainingtimer = rnd(u.frtrainingtimer);
-	u.frtrainingtimer = rnz(u.frtrainingtimer);
-	u.frtrainingtimer *= rnz(20);
+	if (!rn2(3)) {
+		u.frtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.frtrainingtimer = rnz(50);
+		u.frtrainingtimer = rnd(u.frtrainingtimer);
+		u.frtrainingtimer = rnz(u.frtrainingtimer);
+		u.frtrainingtimer *= rnz(20);
+	}
 	u.frtrainingblown = FALSE;
 
-	u.latetrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.latetrainingtimer = rnz(10000) + rnd(50000);
+	if (!rn2(2)) {
+		u.latetrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.latetrainingtimer = rnz(10000) + rnd(50000);
+	}
 
-	u.lavtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.lavtrainingtimer = rnz(10000) + rnd(50000);
+	if (!rn2(2)) {
+		u.lavtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.lavtrainingtimer = rnz(10000) + rnd(50000);
+	}
 
 	u.stickycursechance = 0;
 	if (!rn2(10)) {
@@ -29250,23 +29279,28 @@ int realityflag;
 	u.alwayshidden = 0;
 	if (!rn2(500)) u.alwayshidden = rnd(S_WORM_TAIL);
 
-	u.frequentmonster = rnd(S_WORM_TAIL - 1);
-	u.freqmonsterbonus = rne(4);
-	if (!rn2(5)) u.freqmonsterbonus += rne(3);
-	if (!rn2(3)) u.freqmonsterbonus *= 2;
-	if (!rn2(5)) u.freqmonsterbonus *= 2;
-	if (!rn2(8)) u.freqmonsterbonus += rne(4);
-	if (!rn2(12)) u.freqmonsterbonus *= (1 + rne(15));
-	if (!rn2(20)) u.freqmonsterbonus *= 3;
-	if (!rn2(60)) u.freqmonsterbonus *= (1 + rne(12));
-	if (!rn2(200)) u.freqmonsterbonus *= 4;
-	if (!rn2(360)) u.freqmonsterbonus *= (1 + rne(10));
-	if (!rn2(1360)) u.freqmonsterbonus *= (1 + rne(8));
-	if (!rn2(5000)) u.freqmonsterbonus *= 5;
-	if (!rn2(6360)) u.freqmonsterbonus *= (1 + rne(7));
-	if (!rn2(25000)) u.freqmonsterbonus *= 6;
-	if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
-	if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
+	u.frequentmonster = 0;
+	u.freqmonsterbonus = 0;
+
+	if (!rn2(2)) {
+		u.frequentmonster = rnd(S_WORM_TAIL - 1);
+		u.freqmonsterbonus = rne(4);
+		if (!rn2(5)) u.freqmonsterbonus += rne(3);
+		if (!rn2(3)) u.freqmonsterbonus *= 2;
+		if (!rn2(5)) u.freqmonsterbonus *= 2;
+		if (!rn2(8)) u.freqmonsterbonus += rne(4);
+		if (!rn2(12)) u.freqmonsterbonus *= (1 + rne(15));
+		if (!rn2(20)) u.freqmonsterbonus *= 3;
+		if (!rn2(60)) u.freqmonsterbonus *= (1 + rne(12));
+		if (!rn2(200)) u.freqmonsterbonus *= 4;
+		if (!rn2(360)) u.freqmonsterbonus *= (1 + rne(10));
+		if (!rn2(1360)) u.freqmonsterbonus *= (1 + rne(8));
+		if (!rn2(5000)) u.freqmonsterbonus *= 5;
+		if (!rn2(6360)) u.freqmonsterbonus *= (1 + rne(7));
+		if (!rn2(25000)) u.freqmonsterbonus *= 6;
+		if (!rn2(36360)) u.freqmonsterbonus *= (1 + rne(5));
+		if (u.freqmonsterbonus > 100) u.freqmonsterbonus = 100; /* fail safe */
+	}
 
 	u.frequentcolor = 0;
 	u.freqcolorbonus = 0;
@@ -30622,9 +30656,13 @@ int realityflag;
 	u.trapxtradiff = 0;
 	if (!rn2(10)) u.trapxtradiff = rno(100);
 
-	u.impossibleproperty = randomdisableproperty();
-	u.nonextrinsicproperty = randomdisableproperty();
-	u.nonintrinsicproperty = randomdisableproperty();
+	u.impossibleproperty = -1;
+	u.nonextrinsicproperty = -1;
+	u.nonintrinsicproperty = -1;
+
+	if (!rn2(2)) u.impossibleproperty = randomdisableproperty();
+	if (!rn2(2)) u.nonextrinsicproperty = randomdisableproperty();
+	if (!rn2(2)) u.nonintrinsicproperty = randomdisableproperty();
 
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
 	if (!rn2(7)) u.idscrollpenalty += rnz(100);
@@ -30807,29 +30845,53 @@ int realityflag;
 	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
-	u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.fifthspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.basiclimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.skilledlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.expertlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.earlytrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.earlytrainingtimer = rnz(50);
-	u.earlytrainingtimer = rnd(u.earlytrainingtimer);
-	u.earlytrainingtimer = rnz(u.earlytrainingtimer); /* calculations by jonadab */
+	u.untrainableskill = 0;
+	u.halfspeedskill = 0;
+	u.fifthspeedskill = 0;
+	u.basiclimitskill = 0;
+	u.skilledlimitskill = 0;
+	u.expertlimitskill = 0;
+	u.earlytrainingskill = 0;
+	u.earlytrainingtimer = 9999999;
+	u.frtrainingskill = 0;
+	u.frtrainingtimer = 9999999;
+	u.latetrainingskill = 0;
+	u.latetrainingtimer = 9999999;
+	u.lavtrainingskill = 0;
+	u.lavtrainingtimer = 0;
+
+	if (!rn2(2)) u.untrainableskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.halfspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.fifthspeedskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.basiclimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.skilledlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+	if (!rn2(2)) u.expertlimitskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+
+	if (!rn2(2)) {
+		u.earlytrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.earlytrainingtimer = rnz(50);
+		u.earlytrainingtimer = rnd(u.earlytrainingtimer);
+		u.earlytrainingtimer = rnz(u.earlytrainingtimer); /* calculations by jonadab */
+	}
 	/* don't reset the "blown" variable - if you screw up, it's your fault! --Amy */
 
-	u.frtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.frtrainingtimer = rnz(50);
-	u.frtrainingtimer = rnd(u.frtrainingtimer);
-	u.frtrainingtimer = rnz(u.frtrainingtimer);
-	u.frtrainingtimer *= rnz(20);
+	if (!rn2(3)) {
+		u.frtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.frtrainingtimer = rnz(50);
+		u.frtrainingtimer = rnd(u.frtrainingtimer);
+		u.frtrainingtimer = rnz(u.frtrainingtimer);
+		u.frtrainingtimer *= rnz(20);
+	}
 
-	u.latetrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.latetrainingtimer = rnz(10000) + rnd(50000);
+	if (!rn2(2)) {
+		u.latetrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.latetrainingtimer = rnz(10000) + rnd(50000);
+	}
 
-	u.lavtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
-	u.lavtrainingtimer = rnz(10000) + rnd(50000);
+	if (!rn2(2)) {
+		u.lavtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
+		u.lavtrainingtimer = rnz(10000) + rnd(50000);
+	}
 
 	u.stickycursechance = 0;
 	if (!rn2(10)) {

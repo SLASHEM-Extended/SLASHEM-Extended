@@ -2582,17 +2582,17 @@ boolean guaranteed;
 		enl_msg("You ", "carry", "carried", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
+	if ((guaranteed || !rn2(10)) && (u.impossibleproperty >= 0) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
 		sprintf(buf, " %s", enchname(u.impossibleproperty) );
 		enl_msg("You ", "cannot have this property at all:", "could not have this property at all:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
+	if ((guaranteed || !rn2(10)) && (u.nonextrinsicproperty >= 0 ) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
 		sprintf(buf, " %s", enchname(u.nonextrinsicproperty) );
 		enl_msg("You ", "cannot have this property extrinsically:", "could not have this property extrinsically:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
+	if ((guaranteed || !rn2(10)) && (u.nonintrinsicproperty >= 0 ) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
 		sprintf(buf, " %s", enchname(u.nonintrinsicproperty) );
 		enl_msg("You ", "cannot have this property intrinsically:", "could not have this property intrinsically:", buf);
 	}
@@ -2727,37 +2727,37 @@ boolean guaranteed;
 		enl_msg("Monster death drops ", "spawn with only", "spawned with only", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.untrainableskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", P_NAME(u.untrainableskill));
 		enl_msg("The following skill ", "cannot be trained at all:", "could not be trained at all:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.halfspeedskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", P_NAME(u.halfspeedskill));
 		enl_msg("The following skill ", "is trained at half the usual rate:", "was trained at half the usual rate:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.fifthspeedskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
 		enl_msg("The following skill ", "is trained at one fifth the usual rate:", "was trained at one fifth the usual rate:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.basiclimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", P_NAME(u.basiclimitskill));
 		enl_msg("The following skill ", "is limited to basic proficiency:", "was limited to basic proficiency:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.skilledlimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
 		enl_msg("The following skill ", "is limited to skilled proficiency:", "was limited to skilled proficiency:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.expertlimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s", P_NAME(u.expertlimitskill));
 		enl_msg("The following skill ", "is limited to expert proficiency:", "was limited to expert proficiency:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.earlytrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
 		if (u.earlytrainingblown) {
@@ -2766,7 +2766,7 @@ boolean guaranteed;
 		}
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.frtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
 		if (u.frtrainingblown) {
@@ -2775,12 +2775,12 @@ boolean guaranteed;
 		}
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.latetrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable after a while:", "became untrainable after a while:", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+	if ((guaranteed || !rn2(10)) && u.lavtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
 		enl_msg("The following skill ", "can't be trained before a certain turn number is reached:", "couldn't be trained before a certain turn number is reached:", buf);
 	}
@@ -2855,7 +2855,7 @@ boolean guaranteed;
 		enl_msg("Today, the monster class that always gets generated hidden ", "is ", "was ", monexplain[u.alwayshidden] );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.freqmonsterbonus && (wizard || (!rn2(10)) || final >= 1 ))) {
 		sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
 		enl_msg("The monster class that ", "is ", "was ", buf );
 	}
@@ -6417,14 +6417,20 @@ int final;
 	sprintf(buf, " %d sins", u.ualign.sins);
 	dump("  You carried ", buf);
 
-	sprintf(buf, " %s", enchname(u.impossibleproperty) );
-	dump("  You could not have this property at all:", buf);
+	if (u.impossibleproperty >= 0) {
+		sprintf(buf, " %s", enchname(u.impossibleproperty) );
+		dump("  You could not have this property at all:", buf);
+	}
 
-	sprintf(buf, " %s", enchname(u.nonextrinsicproperty) );
-	dump("  You could not have this property extrinsically:", buf);
+	if (u.nonextrinsicproperty >= 0) {
+		sprintf(buf, " %s", enchname(u.nonextrinsicproperty) );
+		dump("  You could not have this property extrinsically:", buf);
+	}
 
-	sprintf(buf, " %s", enchname(u.nonintrinsicproperty) );
-	dump("  You could not have this property intrinsically:", buf);
+	if (u.nonintrinsicproperty >= 0) {
+		sprintf(buf, " %s", enchname(u.nonintrinsicproperty) );
+		dump("  You could not have this property intrinsically:", buf);
+	}
 
 	if (u.idscrollpenalty > 100) {
 		sprintf(buf, " %d", u.idscrollpenalty);
@@ -6555,45 +6561,65 @@ int final;
 		dump("  Monster death drops spawned with only", buf);
 	}
 
+	if (u.untrainableskill) {
 		sprintf(buf, " %s", P_NAME(u.untrainableskill));
 		dump("  The following skill could not be trained at all:", buf);
+	}
 
+	if (u.halfspeedskill) {
 		sprintf(buf, " %s", P_NAME(u.halfspeedskill));
 		dump("  The following skill was trained at half the usual rate:", buf);
+	}
 
+	if (u.fifthspeedskill) {
 		sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
 		dump("  The following skill was trained at one fifth the usual rate:", buf);
+	}
 
+	if (u.basiclimitskill) {
 		sprintf(buf, " %s", P_NAME(u.basiclimitskill));
 		dump("  The following skill was limited to basic proficiency:", buf);
+	}
 
+	if (u.skilledlimitskill) {
 		sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
 		dump("  The following skill was limited to skilled proficiency:", buf);
+	}
 
+	if (u.expertlimitskill) {
 		sprintf(buf, " %s", P_NAME(u.expertlimitskill));
 		dump("  The following skill was limited to expert proficiency:", buf);
+	}
 
+	if (u.earlytrainingskill) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
 		dump("  The following skill became untrainable if you tried to train it too early:", buf);
+	}
 
 	if (u.earlytrainingblown) {
 		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
 		dump(youhad, buf);
 	}
 
+	if (u.frtrainingskill) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
 		dump("  The following skill became untrainable if you tried to train it too early:", buf);
+	}
 
 	if (u.frtrainingblown) {
 		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.frtrainingskill));
 		dump(youhad, buf);
 	}
 
+	if (u.latetrainingskill) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
 		dump("  The following skill became untrainable after a while:", buf);
+	}
 
+	if (u.lavtrainingskill) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
 		dump("  The following skill couldn't be trained before a certain turn number is reached:", buf);
+	}
 
 	if (u.stickycursechance) {
 		sprintf(buf, " %d%%", u.stickycursechance);
@@ -6661,8 +6687,10 @@ int final;
 		dump("  Today, this monster class was always generated hidden: ", monexplain[u.alwayshidden] );
 	}
 
-	sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
-	dump("  The monster class that was ", buf );
+	if (u.freqmonsterbonus) {
+		sprintf(buf, "spawned more often: %s (freq bonus %d)", monexplain[u.frequentmonster], u.freqmonsterbonus);
+		dump("  The monster class that was ", buf );
+	}
 
 	if (u.freqcolorbonus) {
 		sprintf(buf, "spawned more often: %s (freq bonus %d)", c_obj_colors[u.frequentcolor], u.freqcolorbonus);
