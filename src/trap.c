@@ -4613,7 +4613,8 @@ newegomon:
 				   losehp(rnd(4),"unrefrigerated sip of juice", KILLED_BY_AN);
 				   break;
 				}
-				losestr(rn1(4,3), TRUE);
+				losestr(rnd(4), TRUE);
+				if (!rn2(20)) losestr(rnd(3), TRUE);
 				losehp(rnd(10),"contaminated water", KILLED_BY);
 				exercise(A_CON, FALSE);
 				break;
@@ -6865,7 +6866,7 @@ newbossPENT:
 					Your("gloves %s completely corroded.",
 					     Blind ? "feel" : "look");
 				}
-				losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3), TRUE);
+				losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rno(3) : rnd(5), TRUE);
 				losehp(rnd(Poison_resistance ? 6 : 10), "wrenching poison", KILLED_BY_AN);
 
 				break;

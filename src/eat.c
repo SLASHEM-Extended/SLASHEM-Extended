@@ -6159,7 +6159,8 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (otmp->oclass == WEAPON_CLASS && otmp->opoisoned) {
 		pline(Hallucination ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
-		    losestr(rnd(4), TRUE);
+		    if (!rn2(2)) losestr(rnd(2), TRUE);
+		    if (!rn2(15)) losestr(rnd(2), TRUE);
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
 		} else
 		    You("seem unaffected by the poison.");

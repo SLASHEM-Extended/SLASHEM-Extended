@@ -357,7 +357,7 @@ cursed_book(bp)
 		}
 		/* temp disable in_use; death should not destroy the book */
 		bp->in_use = FALSE;
-		losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rn1(2,1) : rn1(4,3), TRUE);
+		losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rno(3) : rnd(5), TRUE);
 		losehp(rnd(Poison_resistance ? 6 : 10),
 		       "contact-poisoned spellbook", KILLED_BY_AN);
 		bp->in_use = TRUE;

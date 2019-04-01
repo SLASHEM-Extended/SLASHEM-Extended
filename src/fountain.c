@@ -362,7 +362,8 @@ drinkfountain()
 				KILLED_BY_AN);
 			   break;
 			}
-			losestr(rn1(4,3), TRUE);
+			losestr(rnd(4), TRUE);
+			if (!rn2(20)) losestr(rnd(3), TRUE);
 			losehp(rnd(10),"contaminated water", KILLED_BY);
 			exercise(A_CON, FALSE);
 			break;
