@@ -16778,8 +16778,15 @@ struct obj *box;	/* null for floor trap */
 		u.mhmax -= rn2(min(u.mhmax,num + 1)), flags.botl = 1;
 	} else {
 	    num = d(2,4);
-	    if (u.uhpmax > u.ulevel)
+	    if ((u.uhpmax > u.ulevel) && (issoviet || !rn2(2))) {
+
+		/* In Soviet Russia, everything that fucks up the player MUST also still fuck up the player in a variant.
+		 * Woe to the heretical variant developer that DARES changing anything, for she is unjust and evil and
+		 * her changes need to be reverted ASAP! --Amy */
+
 		u.uhpmax -= rn2(min(u.uhpmax,5)), flags.botl = 1;
+		if (issoviet) pline("Plamya plameni! Kha kha kha! Nadeyus', vy poteryayete vse svoi maksimal'nyye ochki zhizni, spasticheskaya zaderzhka.");
+	    }
 	}
 	if (!num)
 	    You("are uninjured.");

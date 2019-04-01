@@ -4126,6 +4126,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Bylo tak yasno, chto glupyy tip bloka l'da vernet zaklinaniye zaklinaniya 'prizraki' k neuravnoveshennomu povedeniyu, kotoroye u nego bylo do togo, kak ya vnes izmeneniya, a eto oznachayet, chto on vyzyvayet proizvol'nykh monstrov, kotoryye popadayut v opredelennyy spisok, nezavisimo ot vyzyvayushchego monstra yego urovnya, Kakoy ukol.",
 "Seriynyy glupyy ledyanoy blok udalil chek, kotoryy sprashivayet, deystvitel'no li vy khotite szhat' na valun, potomu chto yego igroki slegka zaputalis'. Otlichnaya ideya, chelovek, teper' vse avtomaticheski poluchat shtrafnyye sanktsii v Sokobane, kogda monstr stoit za valunom. VY DOLZHNY DEYSTVITEL'NO PROVERIT' VASHI IZMENENIYA PERVOGO",
 "Giga noob, kotoryy nazyvayet sebya ledyanym blokom, zastavil yego ne vytesnit' igroka, potomu chto 'eto delalo ikh slishkom razdrazhayushchimi dlya bor'by'. Prochitayte eto kak 'potomu chto on takoy plokhoy igrok, chto ne mozhet spravit'sya s kakim-nibud' monstrom, kotoryy na samom dele trebuyet, chtoby TAKTIKA pobezhdal'.",
+"Nadeyus', vy vyzovete ochen' mnogo ognennykh lovushek, potomu chto bylo by ochen' veselo uvidet', kak vy teryayete maksimum svoyego zdorov'ya, khar-khar.",
 };
 
 static NEARDATA const char * const hussylines[] = {
