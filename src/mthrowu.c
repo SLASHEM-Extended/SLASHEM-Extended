@@ -1292,6 +1292,9 @@ struct monst *mtmp;
 		    mwep && mwep->otyp == ORCISH_BOW))
 		multishot++;
 
+		/* weaker monsters shouldn't spam you with thousands of arrows --Amy */
+		if (!rn2(2) && !strongmonst(mtmp->data) && !extra_nasty(mtmp->data) && !(mtmp->data->geno & G_UNIQ) && multishot > 1) multishot -= rnd(multishot / 2);
+
 	    if ((long)multishot > otmp->quan) multishot = (int)otmp->quan;
 	    if (multishot < 1) multishot = 1;
 	    /* else multishot = rnd(multishot); */

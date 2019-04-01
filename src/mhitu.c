@@ -1877,6 +1877,9 @@ mattacku(mtmp)
 
 	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
 
+	/* weaker monsters should hit you less often --Amy */
+	if (!rn2(2) && mdat && !strongmonst(mdat) && !extra_nasty(mdat) && !(mdat->geno & G_UNIQ) && tmp > 1) tmp -= rnd(tmp / 2);
+
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 
 	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
