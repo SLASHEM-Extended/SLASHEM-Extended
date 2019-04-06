@@ -4275,6 +4275,14 @@ static const struct def_skill Skill_Dis[] = {
 };
 
 static const struct def_skill Skill_Xel[] = {
+    { P_ATTACK_SPELL, P_MASTER },		    { P_ENCHANTMENT_SPELL, P_EXPERT },
+    { P_BODY_SPELL, P_EXPERT },		    { P_OCCULT_SPELL, P_EXPERT },
+    { P_CHAOS_SPELL, P_EXPERT },		    { P_BARE_HANDED_COMBAT, P_GRAND_MASTER },
+    { P_HIGH_HEELS, P_EXPERT },		    { P_GENERAL_COMBAT, P_MASTER },
+    { P_BODY_ARMOR, P_EXPERT },		    { P_POLYMORPHING, P_EXPERT },
+    { P_PETKEEPING, P_EXPERT },		    { P_TECHNIQUES, P_EXPERT },
+    { P_SHII_CHO, P_EXPERT },		    { P_MAKASHI, P_EXPERT },
+    { P_NIMAN, P_EXPERT },		    { P_MARTIAL_ARTS, P_EXPERT },
     { P_NONE, 0 }
 };
 

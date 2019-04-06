@@ -320,6 +320,62 @@ register boolean special;
 		case PM_UNDEAD_GRENADONIN:
 			weapon = KATANA;
 		    break;
+		case PM_SOFTWARE_ENGINEER:
+		case PM_UNDEAD_SOFTWARE_ENGINEER:
+			weapon = AXE;
+		    break;
+		case PM_CRACKER:
+		case PM_UNDEAD_CRACKER:
+			weapon = BATTLE_AXE;
+		    break;
+		case PM_JANITOR:
+		case PM_UNDEAD_JANITOR:
+			weapon = SPECIAL_MOP;
+		    break;
+		case PM_SPACE_MARINE:
+		case PM_UNDEAD_SPACE_MARINE:
+			weapon = WAR_HAMMER;
+		    break;
+		case PM_STORMBOY:
+		case PM_UNDEAD_STORMBOY:
+			weapon = TSURUGI;
+		    break;
+		case PM_YAUTJA:
+		case PM_UNDEAD_YAUTJA:
+			weapon = !rn2(3) ? DRAGON_SPEAR : rn2(2) ? BULLETPROOF_CHAINWHIP : HUGE_CLUB;
+		    break;
+		case PM_QUARTERBACK:
+		case PM_UNDEAD_QUARTERBACK:
+			weapon = METAL_CLUB;
+		    break;
+		case PM_PSYKER:
+		case PM_UNDEAD_PSYKER:
+		    break;
+		case PM_EMPATH:
+		case PM_UNDEAD_EMPATH:
+			weapon = CRYSKNIFE;
+		    break;
+		case PM_MASTERMIND:
+		case PM_UNDEAD_MASTERMIND:
+		    break;
+		case PM_WEIRDBOY:
+		case PM_UNDEAD_WEIRDBOY:
+			weapon = BRONZE_MORNING_STAR;
+		    break;
+		case PM_ASTRONAUT:
+		case PM_UNDEAD_ASTRONAUT:
+		    break;
+		case PM_CYBERNINJA:
+		case PM_UNDEAD_CYBERNINJA:
+			weapon = KATANA;
+		    break;
+		case PM_DISSIDENT:
+		case PM_UNDEAD_DISSIDENT:
+			weapon = SPIKED_CLUB;
+		    break;
+		case PM_XELNAGA:
+		case PM_UNDEAD_XELNAGA:
+		    break;
 		case PM_WALSCHOLAR:
 		case PM_UNDEAD_WALSCHOLAR:
 			weapon = CONGLOMERATE_PICK;
