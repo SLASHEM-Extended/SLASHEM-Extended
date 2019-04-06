@@ -1139,7 +1139,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(215)) {
+	switch(rnd(216)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1998,6 +1998,15 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HHalf_physical_damage & TIMEOUT) {
 			HHalf_physical_damage &= ~TIMEOUT;
 			You_feel("vulnerable to damage!");
+		}
+		break;
+	case 213: if (HUseTheForce & INTRINSIC) {
+			HUseTheForce &= ~INTRINSIC;
+			You_feel("that you lost your jedi powers!");
+		}
+		if (HUseTheForce & TIMEOUT) {
+			HUseTheForce &= ~TIMEOUT;
+			You_feel("that you lost your jedi powers!");
 		}
 		break;
 	default: break;

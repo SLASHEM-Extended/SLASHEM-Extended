@@ -4587,7 +4587,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(40)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(41)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -5436,6 +5436,26 @@ retrytrinsic:
 					if(!(HHalf_physical_damage & FROMOUTSIDE)) {
 						You_feel("protected from damage.");
 						HHalf_physical_damage |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 41:
+				if (intloss) {
+					if (HUseTheForce & INTRINSIC) {
+						HUseTheForce &= ~INTRINSIC;
+						You_feel("that you lost your jedi powers!");
+						hasmadeachange = 1;
+					}
+					if (HUseTheForce & TIMEOUT) {
+						HUseTheForce &= ~TIMEOUT;
+						You_feel("that you lost your jedi powers!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HUseTheForce & FROMOUTSIDE)) {
+						You_feel("able to use the force like a true jedi!");
+						HUseTheForce |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}
