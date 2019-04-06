@@ -5494,7 +5494,7 @@ struct obj *otmp;
 		|| ((!strcmp(word, "use or apply") ||
 			!strcmp(word, "untrap with")) &&
 		     /* Picks, axes, pole-weapons, bullwhips */
-		    ((otmp->oclass == WEAPON_CLASS && !is_pick(otmp) &&
+		    ((otmp->oclass == WEAPON_CLASS && !(u.mushroompoles && Race_if(PM_PLAYER_MUSHROOM)) && !is_pick(otmp) &&
 		      otyp != SUBMACHINE_GUN &&
 		      otyp != DEMON_CROSSBOW &&
 		      otyp != AUTO_SHOTGUN &&
