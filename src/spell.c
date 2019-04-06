@@ -18,8 +18,8 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 #define DUNADAN_KEEN 	5000	/* memory increase reading the book */
 #define CAST_BOOST 	  500	/* memory increase for successful casting */
 #define DUNADAN_CAST_BOOST 	  250	/* memory increase for successful casting */
-#define MAX_KNOW 	70000	/* Absolute Max timeout */
-#define MAX_CAN_STUDY 	60000	/* Can study while timeout is less than */
+#define MAX_KNOW 	200000	/* Absolute Max timeout */
+#define MAX_CAN_STUDY 	190000	/* Can study while timeout is less than */
 
 #define MAX_STUDY_TIME 	  300	/* Max time for one study session */
 #define MAX_SPELL_STUDY    30	/* Uses before spellbook crumbles */
@@ -10607,7 +10607,8 @@ int spell;
 	if ( skill == P_GRAND_MASTER) splcaster -= 15;
 	if ( skill == P_SUPREME_MASTER) splcaster -= 18;
 
-	/* casting it often (and thereby keeping it in memory) should also improve chances... */
+	/* casting it often (and thereby keeping it in memory) should also improve chances...
+	 * Amy note: 700% is the cap where it stops getting better, this is intentional */
 	if ( spellknow(spell) >= 20000) splcaster -= 1;
 	if (( spellknow(spell) >= 23333) && (spellev(spell) < 5) ) splcaster -= 1;
 	if (( spellknow(spell) >= 26666) && (spellev(spell) < 6) ) splcaster -= 1;
