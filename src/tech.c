@@ -336,7 +336,34 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	drd_tech[] = { {   7, T_ENT_S_POTION, 1},
 		       {   0, 0, 0} },
+	sof_tech[] = { {   10, T_TINKER, 1},
+		       {   0, 0, 0} },
+	jan_tech[] = { {   1, T_IRON_SKIN, 1},
+		       {   1, T_CONCENTRATING, 1},
+		       {   0, 0, 0} },
+	sma_tech[] = { {   1, T_CREATE_AMMO, 1},
+		       {   10, T_PRACTICE, 1},
+		       {   15, T_CHARGE_SABER, 1},
+		       {   0, 0, 0} },
+	sto_tech[] = { {   1, T_BERSERK, 1},
+		       {   10, T_KIII, 1},
+		       {   12, T_DOUBLE_THROWNAGE, 1},
+		       {   15, T_VANISH, 1},
+		       {   20, T_SIGIL_TEMPEST, 1},
+		       {   24, T_EDDY_WIND, 1},
+		       {   0, 0, 0} },
+	cra_tech[] = { {   15, T_RESEARCH, 1},
+		       {   20, T_RECHARGE, 1},
+		       {   30, T_DOUBLE_TROUBLE, 1},
+		       {   0, 0, 0} },
 	fir_tech[] = { {   12, T_RECHARGE, 1},
+		       {   0, 0, 0} },
+	yau_tech[] = { {   2, T_BLOOD_RITUAL, 1},
+			 {   8, T_CRIT_STRIKE, 1},
+		       {   10, T_SIGIL_DISCHARGE, 1},
+		       {   12, T_CHI_HEALING, 1},
+		       {   18, T_DRAW_ENERGY, 1},
+		       {   25, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
 	gam_tech[] = { {   1, T_CONCENTRATING, 1},
 		       {   13, T_LUCKY_GAMBLE, 1},
@@ -367,6 +394,16 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	mid_tech[] = { {   1, T_RAGE, 1},
 		       {   0, 0, 0} },
+	psy_tech[] = { {   2, T_TURN_UNDEAD, 1},
+			 {   7, T_REINFORCE, 1},
+			 {   12, T_E_FIST, 1},
+			 {   12, T_SIGIL_CONTROL, 1},
+			 {   15, T_SPIRITUALITY_CHECK, 1},
+			 {   18, T_DRAW_ENERGY, 1},
+			 {   20, T_SPIRIT_BOMB, 1},
+			 {   24, T_BLESSING, 1},
+			 {   28, T_SUMMON_PET, 1},
+		       {   0, 0, 0} },
 	spa_tech[] = { {   1, T_REINFORCE, 1},
 			 {   5, T_RESEARCH, 1},
 			 {   6, T_RECHARGE, 1},
@@ -382,16 +419,68 @@ static const struct innate_tech
 	gan_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   0, 0, 0} },
+	emp_tech[] = { {   1, T_SURGERY, 1},
+		       {   1, T_REINFORCE, 1},
+		       {   1, T_HEAL_HANDS, 1},
+		       {   1, T_CALM_STEED, 1},
+		       {   3, T_CHI_HEALING, 1},
+		       {   5, T_TURN_UNDEAD, 1},
+		       {   7, T_DRAW_BLOOD, 1},
+		       {   10, T_DRAW_ENERGY, 1},
+		       {   15, T_SPIRITUALITY_CHECK, 1},
+		       {   20, T_ATTIRE_CHARM, 1},
+		       {   20, T_ENT_S_POTION, 1},
+		       {   25, T_REVIVE, 1},
+		       {   30, T_WONDERSPELL, 1},
+		       {   0, 0, 0} },
 	nuc_tech[] = { {   1, T_DECONTAMINATE, 1},
+		       {   0, 0, 0} },
+	mam_tech[] = { {   1, T_REINFORCE, 1},
+		       {   1, T_RESEARCH, 1},
+		       {   10, T_CONCENTRATING, 1},
+		       {   10, T_POWER_SURGE, 1},
+		       {   15, T_WONDERSPELL, 1},
+		       {   18, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
 	sco_tech[] = { {   25, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
 	wal_tech[] = { {   1, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
+	wei_tech[] = { {   2, T_POLYFORM, 1},
+			 {   3, T_SIGIL_DISCHARGE, 1},
+			 {   4, T_G_SLAM, 1},
+			 {   7, T_FLURRY, 1},
+			 {   8, T_LUCKY_GAMBLE, 1},
+			 {   9, T_SUMMON_TEAM_ANT, 1},
+		       {   11, T_CALM_STEED, 1},
+		       {   17, T_RAISE_ZOMBIES, 1},
+		       {   18, T_DIAMOND_BARRIER, 1},
+		       {   19, T_CHI_STRIKE, 1},
+		       {   23, T_BLITZ, 1},
+		       {   24, T_EVISCERATE, 1},
+		       {   29, T_WORLD_FALL, 1},
+		       {   30, T_TURN_UNDEAD, 1},
+		       {   0, 0, 0} },
 	loc_tech[] = { {   15, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_FLURRY, 1},
+		       {   0, 0, 0} },
+	ast_tech[] = { {   5, T_FLURRY, 1},
+			 {   6, T_SIGIL_CONTROL, 1},
+			 {   8, T_SHIELD_BASH, 1},
+			 {   10, T_REINFORCE, 1},
+			 {   12, T_RESEARCH, 1},
+			 {   18, T_SIGIL_TEMPEST, 1},
+			 {   18, T_CHARGE_SABER, 1},
+			 {   20, T_TINKER, 1},
+			 {   20, T_WORLD_FALL, 1},
+			 {   24, T_DECONTAMINATE, 1},
+		       {   24, T_SURGERY, 1},
+		       {   24, T_DRAW_ENERGY, 1},
+			 {   25, T_SIGIL_DISCHARGE, 1},
+			 {   29, T_BLINK, 1},
+		       {   30, T_LIQUID_LEAP, 1},
 		       {   0, 0, 0} },
 	dea_tech[] = { {   1, T_WORLD_FALL, 1},
 		       {   1, T_RECHARGE, 1},
@@ -666,6 +755,15 @@ static const struct innate_tech
 		       {   18, T_CONCENTRATING, 1},
 		       {   30, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
+	cyb_tech[] = { {   1, T_KIII, 1},
+		       {   6, T_SHIELD_BASH, 1},
+		       {   8, T_CUTTHROAT, 1},
+		       {   10, T_CHARGE_SABER, 1},
+		       {   12, T_CRIT_STRIKE, 1},
+		       {   18, T_IRON_SKIN, 1},
+		       {   18, T_CONCENTRATING, 1},
+		       {   30, T_BLOOD_RITUAL, 1},
+		       {   0, 0, 0} },
 	gro_tech[] = { {   1, T_KIII, 1},
 		       {   1, T_CREATE_AMMO, 1},
 		       {   6, T_SHIELD_BASH, 1},
@@ -681,9 +779,23 @@ static const struct innate_tech
 	tra_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   17, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
-	kur_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+	kur_tech[] = { {   1, T_ATTIRE_CHARM, 1}, /* also used for prostitute */
 		       {   0, 0, 0} },
-	mas_tech[] = { {   1, T_DIAMOND_BARRIER, 1},
+	dis_tech[] = { {   5, T_BERSERK, 1},
+		       {  8, T_DAZZLE, 1},
+		       {  10, T_RAGE, 1},
+		       {   0, 0, 0} },
+	mas_tech[] = { {   1, T_DIAMOND_BARRIER, 1}, /* mason */
+		       {   0, 0, 0} },
+	xel_tech[] = { {   6, T_EVISCERATE, 1},
+			 {   8, T_CRIT_STRIKE, 1},
+			 {   9, T_DASH, 1},
+			 {   10, T_BLOOD_RITUAL, 1},
+			 {   12, T_RESEARCH, 1},
+			 {   18, T_TELEKINESIS, 1},
+		       {  20, T_REINFORCE, 1},
+		       {  24, T_POLYFORM, 1},
+		       {  25, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
 	trs_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   17, T_SUMMON_PET, 1},
@@ -3958,6 +4070,12 @@ secureidchoice:
 
 		}
 
+		if (Role_if(PM_SPACE_MARINE)) {
+			pline("You can choose from these kinds of ammo: blaster bolts or bullets.");
+			if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
+			else ammotype = 1;
+		}
+
 		if (Role_if(PM_GRENADONIN)) ammotype = 6; /* grenades */
 
 		if (Race_if(PM_TURMENE)) {
@@ -6957,7 +7075,13 @@ role_tech()
 		case PM_ARCHEOLOGIST:	return (arc_tech);
 		case PM_GOFF:	return (gof_tech);
 		case PM_DRUID:	return (drd_tech);
+		case PM_SOFTWARE_ENGINEER:	return (sof_tech);
+		case PM_CRACKER:	return (cra_tech);
+		case PM_STORMBOY:	return (sto_tech);
+		case PM_SPACE_MARINE:	return (sma_tech);
+		case PM_JANITOR:	return (jan_tech);
 		case PM_FIREFIGHTER:	return (fir_tech);
+		case PM_YAUTJA:	return (yau_tech);
 		case PM_GAMER:	return (gam_tech);
 		case PM_GLADIATOR:	return (gla_tech);
 		case PM_AMAZON:	return (ama_tech);
@@ -6983,7 +7107,10 @@ role_tech()
 		case PM_TRANSVESTITE:	return (tra_tech);
 		case PM_PROSTITUTE:	return (kur_tech);
 		case PM_KURWA:	return (kur_tech);
+		case PM_DISSIDENT:	return (dis_tech);
 		case PM_MASON:	return (mas_tech);
+		case PM_XELNAGA:	return (xel_tech);
+		case PM_MASTERMIND:	return (mam_tech);
 		case PM_TRANSSYLVANIAN:	return (trs_tech);
 		case PM_TOPMODEL:	return (top_tech);
 		case PM_FAILED_EXISTENCE:	return (fai_tech);
@@ -7015,6 +7142,7 @@ role_tech()
 		case PM_FEAT_MASTER: 		return (stu_tech);
 		case PM_DOLL_MISTRESS: 		return (dol_tech);
 		case PM_MIDGET:		return (mid_tech);
+		case PM_PSYKER:		return (psy_tech);
 		case PM_GUNNER: 		return (gun_tech);
 		case PM_DOOM_MARINE: 		return (mar_tech);
 		case PM_ANACHRONIST: 		return (ana_tech);
@@ -7023,10 +7151,12 @@ role_tech()
 		case PM_SAIYAN: 		return (sai_tech);
 		case PM_PSION: 		return (psi_tech);
 		case PM_SCIENTIST: 		return (sci_tech);
+		case PM_ASTRONAUT: 		return (ast_tech);
 		case PM_DEATH_EATER: 		return (dea_tech);
 		case PM_DIVER: 		return (div_tech);
 		case PM_POKEMON: 		return (pok_tech);
 		case PM_NUCLEAR_PHYSICIST: 		return (nuc_tech);
+		case PM_EMPATH: 		return (emp_tech);
 		case PM_GANGSTER: 		return (gan_tech);
 		case PM_ROCKER: 		return (roc_tech);
 		case PM_NECROMANCER:	return (nec_tech);
@@ -7041,10 +7171,12 @@ role_tech()
 		case PM_SPACEWARS_FIGHTER:		return (spa_tech);
 		case PM_CAMPERSTRIKER:		return (cam_tech);
 		case PM_LOCKSMITH:		return (loc_tech);
+		case PM_WEIRDBOY:		return (wei_tech);
 		case PM_GANG_SCHOLAR:		return (sco_tech);
 		case PM_WALSCHOLAR:		return (wal_tech);
 		case PM_ROGUE:		return (rog_tech);
 		case PM_SAMURAI:	return (sam_tech);
+		case PM_CYBERNINJA:	return (cyb_tech);
 		case PM_GRENADONIN:	return (gro_tech);
 		case PM_NINJA:	return (nin_tech);
 		case PM_TOURIST:	return (tou_tech);

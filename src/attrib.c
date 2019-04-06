@@ -37,9 +37,71 @@ const struct innate {
 		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
 		     {	 0, 0, 0, 0 } },  
 
+	xel_abil[] = { {	 1, &(HSwimming), "", "" },
+		     {  1, &(HAcid_resistance), "", "" },
+		     {  6, &(HStealth), "stealthy", "noisy" },
+		     {	10, &(HFear_resistance), "unafraid", "afraid" },
+			{	12, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
+		     {  14, &(HCold_resistance), "warm", "cooler" },
+		    { 15,  &(HInfravision), "perceptive", "half blind"},
+			{   16, &(HManaleech), "magically attuned", "no longer magically attuned" },
+		     {   16, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
+		     {   18, &(HRegeneration), "regenerative", "your healing rate slowing down" },
+		     {	18, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
+		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
+			{     22, &(HPsi_resist), "psionic", "less psionic"},
+		     {	24, &(HDisplaced), "displaced", "easy to spot" },
+			{	25, &(HStone_resistance), "rock solid", "breakable" },
+			{25, &(HMagical_breathing), "aquatic", "hydrophobic"  },
+		     {  26, &(HShock_resistance), "insulated", "conductive" },
+		     {	 28, &(HHalf_physical_damage), "resistant to normal damage", "less resistant to damage" },
+		     {	 0, 0, 0, 0 } },  
+
+	ast_abil[] = { {	 1, &(HSwimming), "", "" },
+		     {   4, &(HFast), "quick", "slow" },  
+		     {   8, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
+		     {  10, &(HFire_resistance), "cool", "warmer" },
+		     {   14, &(HSleep_resistance), "awake", "tired" },
+		     {  15, &(HTeleport_control), "controlled", "helpless" },
+		     {  18, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
+		     {   19, &(HUseTheForce), "like a jedi", "a loss of your jedi powers" },
+		     {  20, &(HShock_resistance), "insulated", "conductive" },
+		     {	20, &(HFear_resistance), "unafraid", "afraid" },
+			{	24, &(HDisint_resistance), "stable", "brittle" },
+			{	25, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
+			{28, &(HMagical_breathing), "aquatic", "hydrophobic"  },
+		     {  28, &(HFlying), "weightless", "grounded" },
+		     {  30, &(HCold_resistance), "warm", "cooler" },
+		     {	 0, 0, 0, 0 } },  
+
 	pic_abil[] = { {	 1, &(HStealth), "", "" },
 		     {   6, &(HFast), "quick", "slow" },
 		     {  8, &(HSearching), "perceptive", "unaware" },
+		     {	 0, 0, 0, 0 } },
+
+	sto_abil[] = { {	 1, &(HShock_resistance), "", "" },
+		     {   4, &(HFast), "quick", "slow" },
+		     {   10, &(HSleep_resistance), "awake", "tired" },
+		     {   15, &(HFast), "quick", "slow" },
+		     {   19, &(HRegeneration), "regenerative", "your healing rate slowing down" },
+			{	25, &(HDisint_resistance), "stable", "brittle" },
+		     {   28, &(HFast), "quick", "slow" },
+		     {	 0, 0, 0, 0 } },
+
+	sof_abil[] = { {	 7, &(HSleep_resistance), "awake", "tired" },
+			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		     {	28, &(HWarning), "precognitive", "noncognitive" },  
+		     {	 0, 0, 0, 0 } },
+
+	cra_abil[] = { {	 7, &(HFast), "quick", "slow" },
+		     {  12, &(HStealth), "stealthy", "noisy" },
+		     {  14, &(HTeleport_control), "controlled", "helpless" },
+		     {  20, &(HSearching), "perceptive", "unaware" },
+		     {	 0, 0, 0, 0 } },
+
+	sma_abil[] = { {	 12, &(HFast), "quick", "slow" },
+		     {  15, &(HExtra_wpn_practice), "skillful", "unskilled" },
+		     {  20, &(HJumping), "able to jump around", "unable to jump around" },
 		     {	 0, 0, 0, 0 } },
 
 	bar_abil[] = { {	 1, &(HPoison_resistance), "", "" },
@@ -57,6 +119,14 @@ const struct innate {
 		     {  10, &(HSwimming), "ready to swim","afraid of the water" },
 		     {	 0, 0, 0, 0 } },
 
+	mas_abil[] = { {	 1, &(HSee_invisible), "", "" },
+			{	 1, &(HKeen_memory), "", "" },
+			{     10, &(HPsi_resist), "psionic", "less psionic"},
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
+		     {  16, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
+		     {   24, &(HInvis), "hidden", "more visible" },
+		     {	 0, 0, 0, 0 } },
+
 	sup_abil[] = { {	 1, &(HTeleportation), "", "" },
 			{	3, &(HSleep_resistance), "awake", "tired" },
 		     {	8, &(HWarning), "sensitive", "careless" },
@@ -66,6 +136,20 @@ const struct innate {
 	cou_abil[] = { {	 1, &(HHunger), "", "" },
 		     {   1, &(HAggravate_monster), "", "" },
 		     {  1, &(HConflict), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	wei_abil[] = { {   1, &(HPsi_resist), "", "" },
+			 {   6, &(HTeleportation), "very jumpy", "less jumpy" },
+			{	8, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
+			 {	 10, &(HDeath_resistance), "un-dead", "dead" },
+			 {	 12, &(HHunger), "very hungry", "less hungry" },
+		     {   14, &(HAcid_resistance), "warded", "endangered" },
+		     {   16, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life" },
+		    { 22,  &(HInfravision), "perceptive", "half blind"},
+		       {   25, &(HPolymorph), "polymorphic", "form-stable" },
+		     {  26, &(HCold_resistance), "warm", "cooler" },
+		     {	 28, &(HSlow_digestion), "a certain satiation", "the need to eat more" },
+		     {   30, &(HFast), "quick", "slow" },  
 		     {	 0, 0, 0, 0 } },
 
 	brd_abil[] = { {	5, &(HSleep_resistance), "awake", "tired" },
@@ -79,6 +163,11 @@ const struct innate {
 
 	cav_abil[] = { {	 7, &(HFast), "quick", "slow" },
 		     {	15, &(HWarning), "sensitive", "careless" },
+		     {	 0, 0, 0, 0 } },
+
+	jan_abil[] = { {  10, &(HSearching), "perceptive", "unaware" },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
+		     {	25, &(HFear_resistance), "unafraid", "afraid" },
 		     {	 0, 0, 0, 0 } },
 
 	con_abil[] = { {   1, &(HSick_resistance), "", "" },
@@ -214,6 +303,17 @@ const struct innate {
 		     {  15, &(HFire_resistance), "cool", "warmer" },
 		     {   0, 0, 0, 0 } },
 
+	yau_abil[] = { {   1, &(HInfravision), "", "" },
+			{	10, &(HFast), "quick", "slow" },
+			{  15, &(HFire_resistance), "cool", "warmer" },
+		     {   16, &(HClairvoyant), "clairvoyant", "mentally poor" },
+		     {	18, &(HPoison_resistance), "healthy", "less healthy" },
+		       {   20, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
+		     {  20, &(HKeen_memory), "able to memorize everything", "unable to memorize anything" },
+		     {  22, &(HCold_resistance), "warm", "cooler" },
+		     {  26, &(HShock_resistance), "insulated", "conductive" },
+		     {   0, 0, 0, 0 } },
+
 	scr_abil[] = { {   1, &(HFire_resistance), "", "" },
 			{	5, &(HSleep_resistance), "awake", "tired" },
 		     {   14, &(HTeleport_control), "controlled", "helpless" },
@@ -224,7 +324,38 @@ const struct innate {
 		     {  1, &(HFull_nutrient), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	psy_abil[] = { {   1, &(HSee_invisible), "", "" },
+			{	5, &(HSleep_resistance), "awake", "tired" },
+			{     7, &(HPsi_resist), "psionic", "less psionic"},
+			{     10, &(HPeacevision), "able to recognize peaceful creatures", "unable to tell friend from enemy"},
+		     {	12, &(HWarning), "precognitive", "noncognitive" },  
+		     {	 15, &(HEnergy_regeneration), "charged with mana", "a loss of mana" },
+		     {  16, &(HTeleport_control), "controlled", "helpless" },
+			{	 17, &(HStealth), "stealthy", "noisy" },
+			{	 18, &(HConf_resist), "more resistant to confusion", "less resistant to confusion" },
+			{	 24, &(HVersus_curses), "curse resistant", "vulnerable to curses" },
+			{	 27, &(HStun_resist), "steady", "less steady" },
+		     {	 30, &(HHalf_spell_damage), "resistant to spells", "less resistant to spells" },
+		     {   0, 0, 0, 0 } },
+
+	qub_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {   10, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
+		     {	20, &(HFear_resistance), "unafraid", "afraid" },
+		     {   0, 0, 0, 0 } },
+
 	fnc_abil[] = { {	 7, &(HFast), "quick", "slow" },
+		     {   0, 0, 0, 0 } },
+
+	emp_abil[] = { {	 1, &(HTelepat), "", "" },
+		       {	1, &(HStealth), "", "" },
+		       {	1, &(HPeacevision), "", "" },
+		     {	4, &(HWarning), "sensitive", "careless" },
+		     {  6, &(HSearching), "perceptive", "unaware" },
+			{	7, &(HSleep_resistance), "awake", "tired" },
+			{	12, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
+		       {   18, &(HPolymorph_control), "your choices improve", "choiceless" },
+		     {   24, &(HClairvoyant), "clairvoyant", "mentally poor" },
 		     {   0, 0, 0, 0 } },
 
 	fig_abil[] = { {	 7, &(HFast), "quick", "slow" },
@@ -495,6 +626,11 @@ const struct innate {
 		     {	 0, 0, 0, 0 } },
 
 	sam_abil[] = { {	 1, &(HFast), "", "" },
+		     {  15, &(HStealth), "stealthy", "noisy" },
+		     {	 0, 0, 0, 0 } },
+
+	cyb_abil[] = { {	 1, &(HFast), "", "" },
+		     {   1, &(HUseTheForce), "", "" },
 		     {  15, &(HStealth), "stealthy", "noisy" },
 		     {	 0, 0, 0, 0 } },
 
@@ -1704,15 +1840,26 @@ int oldlevel, newlevel;
 
 	switch (Role_switch) {
 	case PM_ARCHEOLOGIST:   abil = arc_abil;	break;
+	case PM_SOFTWARE_ENGINEER:   abil = sof_abil;	break;
+	case PM_CRACKER:   abil = cra_abil;	break;
+	case PM_YAUTJA:   abil = yau_abil;	break;
+	case PM_STORMBOY:   abil = sto_abil;	break;
+	case PM_SPACE_MARINE:   abil = sma_abil;	break;
+	case PM_JANITOR:   abil = jan_abil;	break;
 	case PM_ANACHRONIST:    abil = ana_abil;	break;  
+	case PM_XELNAGA:    abil = xel_abil;	break;  
 	case PM_BARBARIAN:      abil = bar_abil;	break;
 	case PM_COURIER:      abil = cou_abil;	break;
+	case PM_WEIRDBOY:      abil = wei_abil;	break;
 	case PM_MAHOU_SHOUJO:      abil = mah_abil;	break;
 	case PM_PICKPOCKET:      abil = pic_abil;	break;
+	case PM_ASTRONAUT:      abil = ast_abil;	break;
 	case PM_STAND_USER:      abil = sta_abil;	break;
 	case PM_JESTER:      abil = jes_abil;	break;
 	case PM_LADIESMAN:      abil = lad_abil;	break;
 	case PM_FENCER:      abil = fnc_abil;	break;
+	case PM_EMPATH:      abil = emp_abil;	break;
+	case PM_QUARTERBACK:      abil = qub_abil;	break;
 	case PM_FIGHTER:      abil = fig_abil;	break;
 	case PM_MEDIUM:      abil = med_abil;	break;
 	case PM_BLOODSEEKER:      abil = blo_abil;	break;
@@ -1740,6 +1887,7 @@ int oldlevel, newlevel;
 	case PM_KURWA:        abil = kur_abil;	break;
 	case PM_FLAME_MAGE:	abil = fla_abil;	break;
 	case PM_COOK:	abil = coo_abil;	break;
+	case PM_PSYKER:	abil = psy_abil;	break;
 	case PM_FIREFIGHTER:	abil = fir_abil;	break;
 	case PM_ACID_MAGE:	abil = aci_abil;	break;
 	case PM_GEEK:	abil = gee_abil;	break;
@@ -1775,6 +1923,7 @@ int oldlevel, newlevel;
 	case PM_GLADIATOR:         abil = gla_abil;	break;
 	case PM_GOFF:         abil = gof_abil;	break;
 	case PM_AMAZON:         abil = ama_abil;	break;
+	case PM_MASTERMIND:         abil = mas_abil;	break;
 	case PM_ALTMER:         abil = alt_abil;	break;
 	case PM_BOSMER:         abil = bos_abil;	break;
 	case PM_DUNMER:         abil = dun_abil;	break;
@@ -1791,6 +1940,7 @@ int oldlevel, newlevel;
 	case PM_ROGUE:          abil = rog_abil;	break;
 	case PM_RINGSEEKER:		abil = rin_abil;	break;
 	case PM_SAMURAI:        abil = sam_abil;	break;
+	case PM_CYBERNINJA:        abil = cyb_abil;	break;
 	case PM_TOURIST:        abil = tou_abil;	break;
 	case PM_UNDEAD_SLAYER:	abil = und_abil;	break;
 	case PM_MIDGET:		abil = mid_abil;	break;
