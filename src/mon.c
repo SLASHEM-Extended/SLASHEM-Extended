@@ -6660,8 +6660,11 @@ struct monst *mon;
 	case CHAM_METAMORPHOSE: chambaselvl = 51; break;
 	case CHAM_GREEN_SLAAD: chambaselvl = 24; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
-	default: chambaselvl = 10; break; /* shouldn't happen */
-
+	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
+	default:
+		if (mon->oldmonnm) chambaselvl = mons[mon->oldmonnm].mlevel;
+		else chambaselvl = mon->data->mlevel;
+		break;
 	}
 
 	switch (mon->cham) {
@@ -7169,6 +7172,7 @@ chameleonchoice:
 findrandomform:
 		mndx = rn1(SPECIAL_PM - LOW_PM, LOW_PM);
 		pm = &mons[mndx];
+
 		if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto findrandomform;
 		if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto findrandomform;
 		if (uncommon2(pm) && !rn2(4)) goto findrandomform;
