@@ -967,7 +967,7 @@ register const char *s;
 		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	}
 
-	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {
