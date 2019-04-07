@@ -10220,7 +10220,7 @@ gehennomxtra:
 	if (!rn2(2)) goto gehennomxtra;
 #endif
 
-		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || u_depth > 1) ) {
+		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || (u_depth > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1)) ) ) ) {
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
@@ -11173,7 +11173,7 @@ skip0:
 
 	}
 
-	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {
@@ -12275,7 +12275,7 @@ mklev()
 	in_mklev = TRUE;
 	makelevel();
 
-	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && ( (depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {
@@ -12439,7 +12439,7 @@ xchar x, y;	/* location */
 
 	if (!br) { /* not making a branch means that roommate rooms can't collide with them */
 
-		if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+		if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
 
 			mkroommateroom(0);
 			if (!rn2(5)) {
@@ -12511,7 +12511,7 @@ xchar x, y;	/* location */
 
 	/* now that the branch exists, it can no longer happen that the stair/portal appears in an impossible place... */
 
-	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {
