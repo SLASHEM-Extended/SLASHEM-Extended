@@ -1,6 +1,52 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.4.8 - March 2019
+- If the player is using both ZAPM and ironman/roommate modes, the first space base level now gets a grace period.
+- The player may now randomly gain the "The Force" intrinsic from pentagrams and lose it to gremlins.
+- Increased the maximum amount of spell memory a player can have for a spell to 2000% (was 700%).
+- Fixed the oversight that would assume a polymorphing monster's base level was 10 even when it wasn't.
+- Fixed the bug that could cause mushroom race players to be unable to use polearms.
+- Some RNG stuff that is determined at game start is not always present now, making the game easier on average.
+- Fixed a bug in the pumps minigame that could cause a female character to be kicked in the nuts.
+- Some sources of attribute loss take off less attribute points on average.
+- Fire traps are less likely to take off max HP.
+- Fixed an oversight that could cause unintended out of depth monster spawns in ZAPM mode.
+- Some types of low-level monsters no longer spawn with strong weapons, to reduce the odds of beginning players getting killed by them.
+- Greatly reduced the amount of time for which cursed spellbooks paralyze the reader.
+- If contamination would cause the player to lose wisdom, and the contamination counter is below 100, it can't kill the player anymore now.
+- Added some potions to the list of types that can be cleared by a unicorn horn.
+- The sin counter has a lesser effect on chokhmah attacks now.
+- Made the doorning trap effect less harsh.
+- Changed the effect of some scrolls and potions to make use-testing them less dangerous.
+- "Weak" monsters have less HP on average. They're also less likely to hit the player in combat and have less multishot with ranged attacks.
+- Ether items contaminate the player more slowly, and very low contamination can also sometimes go away on its own.
+- Fixed a bug that caused some random helmet to convey clairvoyance.
+- Several special monster attack effects are less common.
+
+2.4.7 - February 2019
+- Player monsters on the Astral Plane are no longer almost exclusively male.
+- Players of the HC alien race anger their gods when eating quadrupeds.
+- Fixed a bug that caused dryads to get cannibalism penalties.
+- Fixed the annoyance where moving into an I marker or warning symbol could waste a turn even if the player clearly intended to attack the monster.
+- Fixed an information leak associated with the knowledge trap.
+- Fixed a bug that caused the chances of random items in rooms to be all weird.
+- Fixed a bunch of panics in curses mode.
+
+2.4.6 - January 2019
+- Monsters using damage armor spells against the player will now remove erosionproofing in evilvariant mode.
+- Fixed the loophole where players could circumvent the wing yellow changer trap effect in curses mode.
+- Fixed an information leak associated with the mojibake trap.
+- If the player is on the level that has the portal to the Subquest, there can now be periodic messages hinting at its presence.
+- Rooms-and-corridors levels can use a few more room joining mechanisms now.
+- The line telling the player that an unknown command was used will no longer be displayed in the dumplog.
+- Fixed a panic that could occur if a mushroom used certain weapons at range.
+- Mushroom race player characters move slowly when not riding.
+- Monsters with healing spells will now heal more depending on their level.
+
 2.4.5 - January 2019
+- Fixed the error where saving and loading the game could trigger some on-equip item effects.
+- Really fixed the error where being zapped by a wand of cancellation would not interrupt the player's occupation.
+- Fixed segfaults if the player clicks with the mouse during character generation on Windows.
 - Shapeshifters are now less likely to polymorph into monsters whose levels are much higher than the base shapeshifter form's level.
 - Frenzied monsters deal less damage on average (but still more than non-frenzied ones).
 - Fixed the error that caused automore trap effects to persist even after the trap's effect has timed out.
