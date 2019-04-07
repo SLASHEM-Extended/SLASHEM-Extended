@@ -1,0 +1,337 @@
+#	SCCS Id: @(#)Barb.des	3.4	1991/12/22
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Pelias,
+#	and receive your quest assignment.
+#
+MAZE: "Yau-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+# Stairs
+STAIR:(09,09),down
+# Portal arrival point
+BRANCH:(62,02,62,02),(0,0,0,0)
+# Elder
+MONSTER:';',"The Outerspace Octopus",(10,07)
+# The treasure of Pelias
+OBJECT:'(',"chest",(09,05)
+# chieftain guards for the audience chamber
+MONSTER:'@',"starnoid",(10,05)
+MONSTER:'@',"starnoid",(10,09)
+MONSTER:'@',"starnoid",(11,05)
+MONSTER:'@',"starnoid",(11,09)
+MONSTER:'@',"starnoid",(14,05)
+MONSTER:'@',"starnoid",(14,09)
+MONSTER:'@',"starnoid",(16,05)
+MONSTER:'@',"starnoid",(16,09)
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Duali Oasis to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Yau-loca",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+..PP......PP......PP......PP......PP......PP......PP......PP......PP......PP
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+......PP......PP......PP......PP......PP......PP......PP......PP......PP....
+ENDMAP
+
+# Stairs
+STAIR:(05,02),up
+STAIR:(75,14),down
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:';',random,random,hostile
+MONSTER:';',random,random,hostile
+MONSTER:';',random,random,hostile
+MONSTER:';',random,random,hostile
+MONSTER:';',random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Thoth Amon, your nemesis monster.  You have to
+#	defeat Thoth Amon in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Yau-goal", ' '
+GEOMETRY:center,center
+MAP
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+ENDMAP
+# Stairs
+STAIR:(06,05),up
+# Objects
+OBJECT:'(',"blindfold",(63,04),blessed,0,"Eyehander"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Luke Skywalker",(63,04),hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Yau-fila" , ' '
+INIT_MAP: '.' , 'I' , true , true , unlit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+MAZE: "Yau-filb" , ' '
+INIT_MAP: '.' , 'O' , true , true , unlit , true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile

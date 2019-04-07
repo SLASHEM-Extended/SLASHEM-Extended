@@ -1,0 +1,399 @@
+MAZE:"Qua-strt",' '
+GEOMETRY:center,center
+MAP
+    |-----|                  |----|                       |----|----|---|      
+    |.....-------------------|....-----------------|---|--|....|....|...|-----|
+   #+..............................................-...-.......-....-...-.....|
+   #-|........................................................................|
+   # |.........-....-.........................................................|
+   # |........................................................................|
+   # |.............-.....--.....-.....------..............||||...........|+---|
+   # |.................................................|--||||......|---+|#    
+   # |.................................................-.....|......|   # #    
+  |+-|.....-------...........-.....--------..................|--|---|---+-+----
+  |.....................................................|----|  |..............
+  |.....................................................|       |..............
+  |----.....|||.....|--+--|----...|...|-------|...|-----|       |..........||||
+  |.......--|||.....|.....|.......|---|       |...|             ----|......-|||
+  |.........|.....|-|.....|....|--|           |...|                 |..........
+  |.........|.....| |.....||||||              |...|                 -----|.....
+ ||---|.....-.....--|-----||||||--------------|...|                      |.....
+ |....|...........................................|                      -+----
+ |....|...........................................+########################    
+ |....+..........................................||                            
+ -----|------------------------------------------|                             
+ENDMAP
+BRANCH:levregion(01,00,79,20),(0,0,0,0)
+STAIR:random,down
+
+MONSTER:'@',"Baseball Legend",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:'@',"hunter",random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MAZE:"Qua-loca",' '
+GEOMETRY:center,center
+MAP
+                       #           #              #                            
+          -------------+-----------+------    ----+--      ------------------  
+          |.......|........||....||......|    |.....|      |....+...........|  
+          |.......+..............||......|    -.--..|      |....||..........|  
+ ---------|.......| #       |....+.......|-----.|--.-------|....||..........|  
+ |.......|........| #       |....||.......+......|........+.....||..........|  
+#+.......|........| #       |....||......||......|........||....||..........|  
+ |.......|-...----- #       -....|---------------|........|-....|-+----------  
+ |.......|-...------+-------------------------   |........|-+-----..|          
+ |........+........|.......||.........+......|   |........||........|          
+ ------------------|.......||........|--------   ----------|........|          
+ ------------------|........+........|    -------          |........|          
+ |................||.......||.........####+.....|          |........|          
+ |.......|--------------------------.-    -------          -------..|          
+ |.......|---------         --------.-                           --.---------  
+ |.......||.......+#########.........|                           |..........+##
+ |.......+........|      ###+........|                           |..........|  
+ |.......||.......|      #  |........|                           |..........|  
+ ------------------      #  ----------                           ------------  
+                         #                                                     
+                         #                                                     
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+DOOR:random,(01,06)
+DOOR:random,(10,09)
+DOOR:random,(09,16)
+DOOR:random,(18,15)
+DOOR:random,(18,03)
+DOOR:random,(23,01)
+DOOR:random,(35,01)
+DOOR:random,(50,01)
+DOOR:random,(64,02)
+DOOR:random,(33,04)
+DOOR:random,(42,05)
+DOOR:random,(58,05)
+DOOR:random,(20,08)
+DOOR:random,(28,16)
+DOOR:random,(28,11)
+DOOR:random,(38,09)
+DOOR:random,(42,12)
+DOOR:random,(60,08)
+DOOR:random,(66,07)
+DOOR:random,(76,15)
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MAZE:"Qua-goal",' '
+GEOMETRY:center,center
+MAP
+                     #                #                                        
+ --------------------+----------------.-----------------------------    -----  
+ |...............||..........||....||..|........+..................|    |...|  
+ |...............||..........||....||..|.......||..................|    |...+##
+ |...............||..........||....||..|.......||..................|    |...| #
+ |....||.........||..........||....||..|.......||.||........+......|    |...| #
+ |....||.........+...........||....||..|.......||.||........||.....|    |...| #
+ |....||.........||................||..|.......||.||........||.....|    |...| #
+ --+---------....|-------------.+----..---+---.-----------------+---    ----- #
+   #        ---+---....|-------+.----.+-....|-+-----------------#       ----- #
+   #        |..........|....................||....||...+.......|#       |...| #
+####        |..........|.....||....|........||....||...||.......#       |...| #
+            |..........|---+--|....|--------------------|......|        |...| #
+            |..........|   #  |....|                    |......|--------|...| #
+            |..........|   #  |....|                    |......+.......||...| #
+            |..........|   #  |....|                    |......||......+....| #
+            |..........|   #  |....|                    |......||......||...+##
+            |..........|   #  |....|                    |......||......||...| #
+            ------------   #  ------                    --------------------- #
+                           #                                                  #
+                           #                                                  #
+ENDMAP
+
+STAIR:random,up
+MONSTER:'@',"Rugby Fouler",random,hostile
+OBJECT:')',"baseball bat",random,blessed,0,"World League Hitter"
+DOOR:random,(03,08)
+DOOR:random,(15,09)
+DOOR:random,(17,06)
+DOOR:random,(21,01)
+DOOR:random,(27,12)
+DOOR:random,(31,09)
+DOOR:random,(32,08)
+DOOR:random,(38,09)
+DOOR:random,(42,08)
+DOOR:random,(46,09)
+DOOR:random,(48,02)
+DOOR:random,(55,10)
+DOOR:random,(60,05)
+DOOR:random,(64,08)
+DOOR:random,(63,14)
+DOOR:random,(71,15)
+DOOR:random,(76,16)
+DOOR:random,(76,03)
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MAZE:"Qua-fila",' '
+GEOMETRY:center,center
+MAP
+            |--|          |----|--|      |--|                   |--|--|    |--|
+            |}}--|        |}}}}-..--|  ###}}| |-####  |--|      |..-..|   ||..|
+ #####-|    |}}..|--|   |-|}}}}.....-###-|}}-||..|-#| |..-|     |.....#|--|...|
+ #  |}.---| |}}..#..|####}}}|}}}.|....-|}}}}}||..-..|##...---#####|..|#|}}}}.||
+ #  |.....##|....|..## #|.}-|}}}.|#|...#}}}}}##.....##-|......|--||-#|#|}}}|-| 
+ ## --|...|......|-#|  #-|}}}}}.||#|...|-}}}}-|...|-#--||.....#..||.}}}}}-##   
+  ##  #...|....|####  ## |.}}}..#|.....#.}}||.....|##..-##|...|..||.}}}}---#|  
+|--#  #-#-||}..| # ####  ##-|..|#...|-||..}##.....##|....||..-|#-||..}}}}}}}|  
+|..## #|#-|-|}}|##    ####  |#-||....-|..|-|#-|..-|#||-..#-|..#}.|---|}}}}}.|  
+|..|####}}|||#||# |--|#   ###...-#||..-..#..###...-..|..|###..|}}#   ##-#|..|  
+-#-| # |}}##}.| #||..|#   # |.}...||....||..|#-|.....#..| #--||--#   # |#|#-|  
+ #|--#-|-|||}}-###}..##-| # |}}}..|-#|..|-|-|#|-|....--|| #  |}}}#######....|  
+ ##.}}}}}|}}}}}}||}.||..### -|}..||-#|..--|}..-##..|...-| ####.}}| |#-||....-| 
+  |..}}}}-}}}}}}||..##..|#   -|..-...|-..}#}...#|..-....|---#|-#-| |..-|#|...| 
+ ##...}}}}}}}}|-|---#-#-|###--|......-||..|....-|.......|}}..#######}}..#-|..| 
+ #|-....}}}}}..-### # #  # #..-.......-..-||#|.......|-##}}}}|#-|# |}}}.-|-#-| 
+ #..........||..# ###|#-|# |...............##|...|--##}}|-|}}-}}####}}}..###   
+ |.....|..|-||..| # ##..## -|....||....|...|##...| ##|}}| |}}...|  -|}}..|     
+ ------|}.|  --####  |..|   |..|-||....|...| -|..### ---| -|}}}}|   |}.|-|     
+       ---|          ---|   ---|  -----|---|  ---|         -----|   ---|       
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MAZE:"Qua-filb",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+.....................................................                TTTTTTTTT
+.............................................................................T
+..                          .                       . . . . . ...............T
+................................................... .........................T
+...                    ...             . -....    . . . . . . ...............T
+.............----      .   ------------. |.... .... .........................T
+... ------  ....|  ----.---|............--.    .  . . . . . . ...............T
+... |....|  ---.---|...........--------.--.--  .  . .........................T
+...--....|--|...............................|--.- . . . . . . ...............T
+......--.......----------------|.............................................T
+...--....|--|..................|............|--.- . . . . . . ...............T
+... |....|  ---.---|...........-----.-----.--  .  . .........................T
+... ------  ....|  ----.---|..........|---.    .  . . . . . . ...............T
+.............----     |... ------------  |.... .... .........................T
+...                   -...               -....    . . . . . . ...............T
+................................................... .........................T
+..                          .                       . . . . . ...............T
+.............................................................................T
+.....................................................                TTTTTTTTT
+ENDMAP
+
+NON_DIGGABLE:(00,00,77,18)
+
+STAIR:random,up
+STAIR:random,down
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+

@@ -1,0 +1,367 @@
+#	SCCS Id: @(#)Monk.des	3.4	2002/04/08
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, the Grand Master
+#	and receive your quest assignment.
+#
+MAZE: "Psy-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+............................................................................
+.....................C....CC.C........................C.....................
+..........CCC.....................CCC.......................................
+........CC..........------------------------------------....................
+.......C............|................|..C..|..C..|.....|....................
+......C..C..........|..------------..|--+-----+-----+--|....................
+........C...........|..|..........|..|.................|....................
+.......C............|..|..........|..|+---+---+-----+--|....................
+.......C..........---..|..........|......|...|...|.....|....................
+......C...........+....|..........+......|...|...|.....|....................
+..................+....|..........+......|...|C..|...C.|....................
+........C.........---..|..........|...CC.|C..|..C|.....|...C................
+.......C............|..|..........|..|+-----+---+---+--|C...................
+.....C..............|..|..........|..|..C..........C...|.......}}}..........
+......C.C...........|..------------..|--+-----+-----+--|.C....}}}}}}........
+.........C..........|................|C..C.|...C.|CC.C.|....}}}}}}}}}}}.....
+.........CC.........------------------------------------......}}}}}}}}......
+.........C.............................C.C.......CCC.........}}}}}}}}}......
+..........C.C.........................C............C...........}}}}}........
+......................CCC.C.................................................
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(24,06,33,13),lit,"temple"
+# Portal arrival point
+BRANCH:(05,04,05,04),(0,0,0,0)
+# Stairs
+STAIR:(52,09),down
+# Doors
+DOOR:locked,(18,09)
+DOOR:locked,(18,10)
+DOOR:closed,(34,09)
+DOOR:closed,(34,10)
+DOOR:closed,(40,05)
+DOOR:closed,(46,05)
+DOOR:closed,(52,05)
+DOOR:locked,(38,07)
+DOOR:closed,(42,07)
+DOOR:closed,(46,07)
+DOOR:closed,(52,07)
+DOOR:locked,(38,12)
+DOOR:closed,(44,12)
+DOOR:closed,(48,12)
+DOOR:closed,(52,12)
+DOOR:closed,(40,14)
+DOOR:closed,(46,14)
+DOOR:closed,(52,14)
+# Unattended Altar - unaligned due to conflict - player must align it.
+ALTAR:(28,09),noalign,altar
+# The Grand Master
+MONSTER:'@',"The Dungeon Master",(28,10)
+# No treasure chest!
+# guards for the audience chamber
+MONSTER:'@',"very mindless thrall",(32,07)
+MONSTER:'@',"very mindless thrall",(32,08)
+MONSTER:'@',"very mindless thrall",(32,11)
+MONSTER:'@',"very mindless thrall",(32,12)
+MONSTER:'@',"very mindless thrall",(33,07)
+MONSTER:'@',"very mindless thrall",(33,08)
+MONSTER:'@',"very mindless thrall",(33,11)
+MONSTER:'@',"very mindless thrall",(33,12)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:"dart",(20,09)
+TRAP:"dart",(20,10)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Monsters on siege duty.
+MONSTER: random,random,(37,01),hostile
+MONSTER: random,random,(37,18),hostile
+MONSTER: random,random,(03,03),hostile
+MONSTER: random,random,(65,04),hostile
+MONSTER: random,random,(12,11),hostile
+MONSTER: random,random,(60,12),hostile
+MONSTER: random,random,(14,08),hostile
+MONSTER: random,random,(55,00),hostile
+MONSTER: random,random,(18,18),hostile
+MONSTER: random,random,(59,10),hostile
+MONSTER: random,random,(13,09),hostile
+MONSTER: random,random,(01,17),hostile
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to locate the Monastery of the Earth-Lord to
+#	go further towards your assigned quest.
+#
+
+MAZE: "Psy-loca",' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7 
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+             ---------------------}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}-------
+           ---.................................................-    }-.....|
+         ---...--------........---}--........................---    }---...|
+       ---.....-      --.....C.-  } ----..................----      }  --.--
+     ---.....----      ------C--  }    --..................--       } --..|
+   ---...-----              CCC   }  ----.----.....----.....---     }--..||
+---e..e---             C    CCC  -}--e..---  |...---  |.......---   }-...|
+|...---                C    CCC---....---    |.---    |.........-- -}...||
+|...-                  C   -CCC.....---     ----      |..........---....|
+|...----               C----CCC...}--       |         |...|.......-....||
+|.....C-----          -C-...CCC...}         |     -----...|............|
+|..........-----   ----C....CCC...}--       -------......||...........||
+|.......C......-----...C....CCC.....---     |............|||..........|
+|-S----....C................CCC.......---   |...........|| |.........||
+|.....|..C...........------..C..........-----..........||  ||........|
+|.....|.............--    ---C........................||    |.......}|
+|.....|.............-       ---.....................--|     ||......}
+|---S--------.......----      --.................----        |.....|}
+|...........|..........--------..............-----           ||....|}
+|...........|............................-----                |....|}
+----------------------------------}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+# Random Monsters
+RANDOM_MONSTERS: 'E', 'X'
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Stairs
+STAIR:random,up
+STAIR:random,down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Master Kaen, your nemesis monster.  You have to
+#	defeat Master Kaen in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Psy-goal", ' '
+INIT_MAP: 'L' , '.' , false , false , unlit , false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7 
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+.L......L.LLL.......LL....       -------------                 -------------
+.LLL.......L......LL......       |...........|                 |...........|
+LL.LL.............L.LL....-------|...........-------------------...........|
+..........................|......S...........|..|..|..|..|..|..|...........|
+......................LL..|......|...........|..|..|..|..|..|..|...........|
+......................LLL.|......|...........-F+-F+-F+-F+-F+-F+-...........|
+LL........................--S----|...........S.................+...........|
+.LL.......................|......|...........-F+-F+-F+-F+-F+-F+-...........|
+.LL................LL.L...S......|...........|..|..|..|..|..|..|...........|
+..LL.....L.LL.......LLL...|......|...........|..|..|..|..|..|..|...........|
+.........LLL.........L....-------|...........-------------------...........|
+                                 |...........|                 |...........|
+                                 -------------                 -------------
+ENDMAP
+# Dungeon Description
+RANDOM_PLACES:(14,04),(13,07)
+
+NON_DIGGABLE:(00,00,75,12)
+
+# Stairs
+STAIR:(70,05),up
+# Objects
+OBJECT:')',"kalashnikov",place[0],blessed,0,"Psigun"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'\'',"Rockfall Griefer",place[0],hostile
+ALTAR:place[0],noalign,altar
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "fila" is the upper filler, between the
+#	start and locate levels, and "filb" the lower between the locate
+#	and goal levels.
+#
+
+LEVEL: "Psy-fila"
+# Random Monsters
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random,random,hostile
+
+RANDOM_CORRIDORS
+
+LEVEL: "Psy-filb"
+# Random Monsters
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+
+RANDOM_CORRIDORS
+

@@ -1,0 +1,87 @@
+MAZE: "Mam-strt" , random
+GEOMETRY:center,center
+MAP
+...
+...
+...
+ENDMAP
+#
+BRANCH:levregion(01,00,79,20),(0,0,2,2)
+STAIR:levregion(01,00,79,20),(0,0,2,2),down
+#
+
+MONSTER:'E',"Deep Blue 2",(01,01)
+MONSTER:'b',"globule",(01,01)
+MONSTER:'b',"globule",(01,01)
+MONSTER:'b',"globule",(01,01)
+MONSTER:'b',"globule",(01,01)
+MONSTER:'b',"globule",(01,01)
+MONSTER:'b',"globule",(01,01)
+MONSTER:'b',"globule",(01,01)
+MONSTER:'b',"globule",(01,01)
+
+MAZEWALK:(00,01),west
+MAZEWALK:(02,01),east
+
+MAZE: "Mam-fila" , random
+GEOMETRY:center,center
+MAP
+...
+...
+...
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,2,2),up
+STAIR:levregion(01,00,79,20),(0,0,2,2),down
+#
+
+MAZEWALK:(00,01),west
+MAZEWALK:(02,01),east
+
+MAZE: "Mam-loca" , random
+GEOMETRY:center,center
+MAP
+...
+...
+...
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,2,2),up
+STAIR:levregion(01,00,79,20),(0,0,2,2),down
+#
+
+MAZEWALK:(00,01),west
+MAZEWALK:(02,01),east
+
+MAZE: "Mam-filb" , random
+GEOMETRY:center,center
+MAP
+...
+...
+...
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,2,2),up
+STAIR:levregion(01,00,79,20),(0,0,2,2),down
+#
+
+MAZEWALK:(00,01),west
+MAZEWALK:(02,01),east
+
+MAZE: "Mam-goal" , random
+GEOMETRY:center,center
+MAP
+...
+...
+...
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,2,2),up
+#
+
+OBJECT:')',"otama",(01,01),blessed,0,"Red Pin"
+MONSTER:'@',"Edward Nygma",(01,01),hostile
+
+MAZEWALK:(00,01),west
+MAZEWALK:(02,01),east
+

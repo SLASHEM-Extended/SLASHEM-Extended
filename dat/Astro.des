@@ -1,0 +1,303 @@
+MAZE: "Ast-strt",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+ ........                 . . .                        
+ ........          .....  + + +  ...... .....          
+ ........          ..... ....... ...... .....          
+   +               ..... ....... ...... +              
+   .                 +      +       +   .+...          
+   .               ....................+. ...          
+   .    ......     .................... .              
+   ....+......     ........       ..... . .....        
+   .    ......     ........ ..... ..... . .....    ....
+   .    ......+...+........ ..... ..... .   +      ....
+   .    ......     ........ ..... .....................
+   .               ........   +   .....    +       ....
+   .               .................... .....      ....
+   +               ....................+.....      ....
+........                     ...        .....          
+........           ......... ... ......                
+........           .........+...+......                
+ENDMAP
+
+BRANCH:(06,01,06,01),(0,0,0,0)
+STAIR:(53,10),down
+
+REGION:(00,00,54,16),lit,"ordinary"
+
+FOUNTAIN:(42,07)
+FOUNTAIN:(44,07)
+FOUNTAIN:(46,07)
+
+MONSTER:'@',"NAFA Boss",(30,09)
+MONSTER:'@',"starnoid",(28,08)
+MONSTER:'@',"starnoid",(28,09)
+MONSTER:'@',"starnoid",(28,10)
+MONSTER:'@',"starnoid",(32,08)
+MONSTER:'@',"starnoid",(32,09)
+MONSTER:'@',"starnoid",(32,10)
+
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+
+REGION:(19,01,23,03),lit,"scroll shop"
+REGION:(33,01,38,03),lit,"shop"
+REGION:(33,15,38,16),lit,"tool shop"
+REGION:(19,15,23,16),lit,"clinic"
+
+DOOR: closed, (03,03)
+DOOR: closed, (03,13)
+DOOR: closed, (07,07)
+DOOR: closed, (14,09)
+DOOR: closed, (18,09)
+DOOR: closed, (21,04)
+DOOR: closed, (28,04)
+DOOR: closed, (36,04)
+DOOR: locked, (26,01)
+DOOR: locked, (28,01)
+DOOR: locked, (30,01)
+DOOR: closed, (40,03)
+DOOR: closed, (41,04)
+DOOR: closed, (39,05)
+DOOR: closed, (44,09)
+DOOR: closed, (43,11)
+DOOR: closed, (39,13)
+DOOR: closed, (30,11)
+DOOR: locked, (28,16)
+DOOR: closed, (32,16)
+
+MAZE: "Ast-loca" , ' '
+FLAGS:hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+  ....   ....        OOOO   OOOO         YYYYYY ............... 
+  ....   ....   ....+OOOO   OOOO+....    OOOOOO .OOOOOOOOOOOOOOO
+  ....   ....   ..   OOOO   OOOO   ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..                 .....+OOOOOO+.OOOOOOOOOOOOOOO
+   ..     ..    ..                 ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..                 ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..   ....   OOOO   ..    YYYYYY ............OOO 
+   .........    ....+....   OOOO+....           ............OOO 
+          ..    ..   ....   OOOO   ..           ............OOO 
+          ..    ..                 ..           ........... OOO 
+          ..    ..                 ............+........... OOO 
+   OOOO   ..    ..                 ..             +     +   OOO 
+   OOOO   ...........................           ..... ..... OOO 
+   OOOO                                         ..... ..... OOO 
+    OO                                          ..... ..... OOO 
+    OO                                                      OOO 
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 
+ENDMAP
+
+STAIR:(03,01),up
+STAIR:(05,12),down
+
+# Non diggable walls - everywhere!
+NON_DIGGABLE:(00,00,63,17)
+
+OBJECT:'[',random,(50,13)
+OBJECT:'[',random,(56,13)
+
+DOOR:locked,(20,01)
+DOOR:locked,(32,01)
+DOOR:locked,(20,07)
+DOOR:locked,(32,07)
+DOOR:locked,(40,03)
+DOOR:locked,(47,03)
+DOOR:locked,(47,10)
+DOOR:locked,(50,11)
+DOOR:locked,(56,11)
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE: "Ast-goal", ' '
+FLAGS:noteleport,hardfloor
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------------------------|
+|....|.....................................................................|
+|-+--|.....................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|.....................................................................|--+-|
+|.....................................................................|....|
+|--------------------------------------------------------------------------|
+ENDMAP
+RANDOM_PLACES: (01,01), (74,18)
+
+DOOR:locked,(02,02)
+STAIR:place[0],up
+DOOR:locked,(73,17)
+
+OBJECT:'[',"commander suit",place[1],blessed,0,"Rocket Impulse"
+MONSTER:'@',"The Man In The Moon",place[1],hostile
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+LEVEL: "Ast-fila"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Ast-filb"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+RANDOM_CORRIDORS
+

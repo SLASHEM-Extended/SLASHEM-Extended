@@ -1,0 +1,295 @@
+#	Medium patch for 3.4 : Copyright (c) 2007-2008 by yzh
+#	JNetHack may be freely redistributed.  See license for details. 
+#	[2007/09/19]
+#
+
+#	Medium patch for 3.4 : Copyright (c) yzh, 2007-2008
+#	For FHS patch, Copyright (c) Shiganai Sakusha, 2008-2013 
+#	JNetHack may be freely redistributed.  See license for details.
+
+#	FHS patch : Copyright (c) Shiganai Sakusha, 2003-2015
+#	changing point is marked `[FHS]' or `add: Shiganai Sakusha(*** patch)'.
+# JNetHack may be freely redistributed.  See license for details.
+#	[ver 0.8.23	2009/10/15]
+
+# start
+MAZE: "Emp-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+.........TTTTTTTTTTT.....TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+.......TTT...TTTT...TT..TTTTTTTTTTT...PP...TTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT
+......TT.....TTTTTTTTTTTTTTTTTTTTT..PPPPP.TT....TTTTTTTTTTTTTTTTTTTTTTTTTTTT
+...TTT......T.......TT.TTTTTTTTTT.PPPPPPP.........T.TTTTTTTTTTTTTTTTTTTTTTTT
+....TTT..TTT...TTTT..TT...T.TTT...PPPPPP...........TTTTTTTTTTTTTTTTTTTTTTTTT
+...TT.TTT.....TT.TTTT..TTTTTTTT.....PP...-------..T.TTTTTTTTTTTTTTTTTTTTTTTT
+...........TTT......TT..TTT..TTTT......--|.....+...TTTTTTTTTTTTTTTTTTT..TTTT
+...TT..T......T..TT.......TTTT.........|.----+----..TTTTTTTTTTTTTTT.....TTTT
+...........T......TTTTTTTTT......------|.........|...TTTTTTTTTTTTTT.TT..TTTT
+.......T..TTT...........T........+.....+.........|...TTTT.TTT.......TTTTTTTT
+.................................+.....+.........|.T...T......TTTTTTTTTTTTTT
+.....TT.......TTTT..TTT.....T....------|.........|.TTT...TTTTTTTTTTTTTTTTTTT
+....TT....TTTT...TTT.TTTTTT...T........|.----+----..TTTTTTTTTTTTTTTTTTTTTTTT
+.....TTT..........TTTT....TTT...TTT....--|.....+.....TTTTTTTTTTTTTTTTTTTTTTT
+.......TTT.....TTTT.TTT......TTT.........-------....TTTTTTTTTTTTTTTTTTTTTTTT
+........TTT...T....TTTTTTT.....T.TTT.............TTTTTTTTTTTTTTTTTTTTTTTTTTT
+....TTT........TT..TT......T...TTTTTTTTT.TT....TTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+........TTTTTT....TTTTTTTT..TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+......TTT.....TT.TTTTTTTT......TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+.......TT.....T...TTTTTTT......TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH: (03,14,03,14),(0,0,0,0)
+# Stairs
+STAIR: (71,07), down
+# Doors
+DOOR: locked,(47,06)
+DOOR: locked,(45,07)
+DOOR: locked,(33,09)
+DOOR: locked,(39,09)
+DOOR: locked,(33,10)
+DOOR: locked,(39,10)
+DOOR: locked,(45,12)
+DOOR: locked,(47,13)
+MONSTER:'@',"Hyacintor",(46,9)
+OBJECT:'(',"chest",(46,10)
+MONSTER:'@',"intern",(42,9)
+MONSTER:'@',"intern",(42,10)
+MONSTER:'@',"intern",(43,9)
+MONSTER:'@',"intern",(43,10)
+MONSTER:'@',"intern",random
+MONSTER:'@',"intern",random
+MONSTER:'@',"intern",random
+MONSTER:'@',"intern",random
+NON_DIGGABLE:(00,00,75,19)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+#
+#	The "locate" level for the quest.
+#
+MAZE: "Emp-loca",random
+FLAGS: hardfloor
+INIT_MAP: ' ' , ' ' , false , false , unlit , false
+GEOMETRY: center,center
+MAP
+                               ..T...................
+                               .T.T..TTT.....T.......TT
+            ....              ..T..TTTT.....T....T.TTTTTT
+          ........           ..T........TTT..TT..........
+          ..........       ..TTT....TTT........T....T......
+   ...   .....   ...      ..T......T...T..TT.....T...T......
+   ...   ....    .....  ...TT..T..TTT...........T.....T......
+ ...........    ...........T....T.......T..T..T...T.....T....
+ .........     .... . ...T......TTT...T............T.........
+ .   .....    ...        ..........T........TTT..T...TT......
+       .........        TT..TT......T...T......T....TTT..T.TT
+        ......            ...T.T.T...TTT...T.....T...........
+          ..              ......T..T.........TTT.....T.T.T..
+           .              T...TT.....T.....T......T.....T.T
+                         .....TT..TT...T.........TT.T....
+                         ....TTTT......T.T..T..TT....T.
+                           ....TT...T......T.T.....TT
+ENDMAP
+STAIR: (58,05),up
+STAIR: (04,07),down
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+
+#
+#	The "goal" level for the quest.
+#
+MAZE: "Emp-goal", ' '
+GEOMETRY:center,center
+MAP
+                                                                  
+                                                                  
+    ......                    .......                             
+    ...........               ...PP...         ......             
+    ...........                P.P.......    .........   .        
+     ...............           .P...    ..  ..............        
+     .      .........         .PP.       .  ...........           
+     .          .......     .....P       ..........  .            
+     .          ........    ......             .     .            
+    -S--         .......   ........   .              .            
+   --..|         ....      .....   ......            .            
+   |...|        ....      ......    .....................  .      
+   |..--           .      ..         ......         .......e      
+   ----            .........                         ....         
+                                                                  
+                                                                  
+ENDMAP
+# Dungeon Description
+NON_DIGGABLE: (00,00,65,15)
+# Stairs
+STAIR: (05,11),up
+# Objects
+#[FHS]
+OBJECT:'[',"helm of telepathy",(53,05),blessed,0,"Controller Hat"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:'@',"Branter Gun",(53,05)
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Emp-fila" , 'T'
+INIT_MAP: '.' , 'T' , true , true , random, false
+NOMAP
+#
+STAIR: random, down
+STAIR: random, up
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+#
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+
+MAZE: "Emp-filb" , ' '
+#
+INIT_MAP: '.' , ' ' , true , true , unlit, true
+NOMAP
+#
+STAIR: random, down
+STAIR: random, up
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+#
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+

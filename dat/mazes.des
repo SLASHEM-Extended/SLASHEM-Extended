@@ -1639,6 +1639,9 @@ DOOR:closed,(62,09)
 DOOR:closed,(62,11)
 DOOR:closed,(62,19)
 
+MAZEWALK:(00,04),west
+MAZEWALK:(74,04),east
+
 MAZE: "mazes-41",random
 FLAGS: noteleport,hardfloor,nommap,shortsighted
 

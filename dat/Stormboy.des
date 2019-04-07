@@ -1,0 +1,249 @@
+MAZE: "Sto-strt",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... 
+.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..  
+ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+.... .... .... .... .... .... ......... .... .... .... .... .... .... .... .
+. ... . ... . ... . ... . ... . ... H ... . ... . ... . ... . ... . ... . ..
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+... ... ... ... ... ... ... ... ...H.H. ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. ... . . ... . ... . . ... . ... . H ... . ... . . ... . ... . . ... . ... 
+.. .. .. .. .. .. .. .. .. .. .. ........ .. .. .. .. .. .. .. .. .. .. ..  
+ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+.... .... .... .... .... .... .... .... .... .... .... .... .... .... .... .
+. ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ..
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+ENDMAP
+
+BRANCH:(01,01,75,19),(0,0,0,0)
+STAIR:random,down
+NON_DIGGABLE:(00,00,75,20)
+MONSTER:'p',"stinkbug unblemished",(20,04)
+MONSTER:'@',"fellow death eater",(20,04)
+MONSTER:'@',"fellow death eater",(20,04)
+MONSTER:'@',"fellow death eater",(20,04)
+MONSTER:'@',"fellow death eater",(20,04)
+MONSTER:'@',"fellow death eater",(20,04)
+
+MAZE: "Sto-fila",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+     ----------                  ----------                  ----------     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     +........+                  +........+                  +........+     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     ----------                  ----------                  ----------     
+                                  ........                                  
+                                  .  p.  .                                  
+                                  ........                                  
+     ----------                  ----------                  ----------     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     +........+                  +........+                  +........+     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     ----------                  ----------                  ----------     
+ENDMAP
+
+STAIR:levregion(01,00,75,20),(33,00,42,20),up
+STAIR:(38,10),down
+
+NON_DIGGABLE:(00,00,75,20)
+
+DOOR:closed,(05,04)
+DOOR:closed,(14,04)
+DOOR:closed,(33,04)
+DOOR:closed,(42,04)
+DOOR:closed,(61,04)
+DOOR:closed,(70,04)
+DOOR:closed,(05,16)
+DOOR:closed,(14,16)
+DOOR:closed,(33,16)
+DOOR:closed,(42,16)
+DOOR:closed,(61,16)
+DOOR:closed,(70,16)
+
+MAZEWALK:(05,04),west
+MAZEWALK:(14,04),east
+MAZEWALK:(33,04),west
+MAZEWALK:(42,04),east
+MAZEWALK:(61,04),west
+MAZEWALK:(70,04),east
+MAZEWALK:(05,16),west
+MAZEWALK:(14,16),east
+MAZEWALK:(33,16),west
+MAZEWALK:(42,16),east
+MAZEWALK:(61,16),west
+MAZEWALK:(70,16),east
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE:"Sto-loca",' '
+FLAGS:noteleport,shortsighted
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+}}}}}..}.}}.}}.}}}}}.}}O}}O}}O}}}}.}}}|..|}}}}}OO}}}}}}}}}}}}}}}}}}O}}.}}.}}.
+}..}.}}} }} }}}}}}}}OO.}}}}}}}}}.}}}}}|..|..}}.}O}}}}}}O.}}.}}}O}}}}}}}}O}}}.
+}..}}}}}}}}O}}.}}}}.}}}}.}}}}}.}}}}.O}|..|..}}}}}}}O}}}}}}}}}}}}}}}}.}}}}}}}.
+}}}}}}}}....}}..}}}}}}O}}}}}O}}}}}}}}}|..|}}}O}}.}}}}}}.}OO}.}}}}}}}}}}}}}}}.
+}}}}}}O}}}}}}}}}}}}}}} }}.}}}}O.}}}}.O|..|}.}}}}}}} O}}}}}}}.}}}}}}}}}}}}O}}}
+}}}}}}}.}}}O}}}}}}}}}}}}}}}}}}}}}}}}}.|..|}.}O}}}}.}}}}}}}}O}}}}}}}}.}}}}}}}}
+}}}}O}}}}}}}}}O}}}}.O}}}}O.}}}}}.}}}O}+..|}}}}O}}}}}}}}.}}}}.}}}}}O}}}}}O}}}.
+}}}}}}.}}}}}}}}}}}}}}}}}}}}}}}}}.O}}}}|..|}}O}}}}}.}}}}}}}}}}}}}}}}O}}}}}}O}}
+}}}}}}}}}}}}.}}..}}}}}}}}}}}}}}}...}}}|..|}..}}}}}}}}O.}}}O}}}}}O}}}.}}}}}.}}
+}}O}}}.}}}}}}}}..}}.}}O}}}.}}}}}}}}}}}|..|}O}}}}}}O.}.}}}}}}.}}}}}}}.}}}}}}}}
+}}}}}O.}}}.}}}}O}}}}}}}}}}O}}}O}}}}.}}|..|}}}}.}}}}}}}}}}}}}}}}}}}}.}}}}.}O}}
+}}}}}}.}}}O}}}}}}}}}}} }}}}}..}}}}}}O}|..|}}}O}O}}}O}}}}}}}O}.}}}O}}}}}}}}}}}
+}}}}}}.}}}}.}}}}}}}}O}}}}}}}}}}O}}}}.}|..|}}}}.}}}}}}} }}}}}}}}}}.}}}}}}.}}}}
+}}}}}}}}}}}}}.O}}.}}}.}..}}}}..}}}}}}}|..|}}}}}}}}}}}}}}}}}}.}}}}}}}}}}O}}}}}
+}.}O}.}}}}}}}}}}}}}}}O}}.}}}O}}}}}}}..|..|}}}}}}.}}}}}}}}O}}}}}O}}}.}}}}}}.}}
+}}}.}}}}}}}}}}}}}}}}}}}}}}}}}}}.}}}}O}|..|}}O}}}O}}}}}}}}}}.}}}}}}}}}O }}}.}}
+.O}}}}}}O}}}}}}}}}}}}}}}}}}}O}}}}}}}}.|..+.}}}}}}.}}}}}}}}}}}}}O}.}}}} }}}}}}
+}}}}}}}}}}.}}}.O}..O}}}}.O}}}}}.}O}}}}|..|}.}}}}O}}}}}}}O}}}}}OO}}}}}}}}}}..}
+}}}}}}}}}O}}.}}}}}}}OO}}}}}}}}}}}.}.}}|..|}}}}}.O}}}}}}}}}}..}}.}}O}}} }}}..}
+..}..}}.}.}}}}}}}}}..}.}}}}}}}}}}}}}}}|..|}}}.}}O}}}}O}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+MAZE: "Sto-filb",' '
+FLAGS: noteleport,hardfloor
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                           L     hhhhhhhhhhhhh                              
+   hhhhhhhh hhhhLL        LL    hhhhh       hh                              
+hhhhhhhhhhhhhhhhhhhhhh   LLL   hhhhhhLL     hh  hhhhhhhhhhhhhhhhhhhhhh     .
+hhhhhhhhhhhhhhhhhhhhhh  LLLL  hhhhhhhLLL    hh  hhhhhhhhhhhhhhhhhhhhhh     h
+hhhhhhhhhhhhhhhhLL  hhhhhhhhhhhhhhhhhLLLL   hhhhhhLL            hhhhhhhhhhhh
+hhhhhhhhhhhhhhhhLL  hhhhhhhhhhhhhhhhhLLLLL  hhhhhhLL            hhhhhhhhhhhh
+hhhhhhLLLLLLLLhhLLhhhh      hhLLLLLLLLLLLLL hh  LLLL            ----------- 
+.hhLLLLLLLLLLLhhLLhhhh      hhLLLLLLLLLLLLL hh  LLLL            LLLLLLLLLLL 
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+ENDMAP
+
+STAIR:(00,07),up
+STAIR:(75,02),down
+
+DRAWBRIDGE:(64,07),north,closed
+DRAWBRIDGE:(65,07),north,closed
+DRAWBRIDGE:(66,07),north,closed
+DRAWBRIDGE:(67,07),north,closed
+DRAWBRIDGE:(68,07),north,closed
+DRAWBRIDGE:(69,07),north,closed
+DRAWBRIDGE:(70,07),north,closed
+DRAWBRIDGE:(71,07),north,closed
+DRAWBRIDGE:(72,07),north,closed
+DRAWBRIDGE:(73,07),north,closed
+DRAWBRIDGE:(74,07),north,closed
+
+MAZE:"Sto-goal",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+|........|........||........|........||........|........||........|........|
+|.--.---.|.---.--.||.--.---.|.---.--.||.--.---.|.---.--.||.--.---.|.---.--.|
+|.................||.................||.................||.................|
+|.--.-.-----.-.--.||.--.-.-----.-.--.||.--.-.-----.-.--.||.--.-.-----.-.--.|
+|....|...|...|....||....|...|...|....||....|...|...|....||....|...|...|....|
+|---.|--.|.--|.---||---.|--.|.--|.---||---.|--.|.--|.---||---.|--.|.--|.---|
+   |.|.......|.|      |.|.......|.|      |.|.......|.|      |.|.......|.|   
+----.|.|-.-|.|.--------.|.|-.-|.|.--------.|.|-.-|.|.--------.|.|-.-|.|.----
+.......|...|..............|...|..............|...|..............|...|.......
+----.|.|---|.|.--------.|.|---|.|.--------.|.|---|.|.--------.|.|---|.|.----
+   |.|.......|.|      |.|.......|.|      |.|.......|.|      |.|.......|.|   
+|---.|.-----.|.---||---.|.-----.|.---||---.|.-----.|.---||---.|.-----.|.---|
+|........|........||........|........||........|........||........|........|
+|.--.---.|.---.--.||.--.---.|.---.--.||.--.---.|.---.--.||.--.---.|.---.--.|
+|..|...........|..||..|...........|..||..|...........|..||..|...........|..|
+|-.|.|.-----.|.|.-||-.|.|.-----.|.|.-||-.|.|.-----.|.|.-||-.|.|.-----.|.|.-|
+|....|...|...|....||....|...|...|....||....|...|...|....||....|...|...|....|
+|.------.|.------.||.------.|.------.||.------.|.------.||.------.|.------.|
+|........|........||........|........||........|........||........|........|
+ENDMAP
+
+STAIR:random,up
+NON_DIGGABLE:(00,00,75,18)
+
+OBJECT:')',"impact staff",(47,08),blessed,0,"Thunderstrike"
+MONSTER:'O',"presage octuple gulping",(47,08),hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile

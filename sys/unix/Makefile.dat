@@ -346,7 +346,11 @@ spec_levs: ../util/lev_comp \
 	Medium.des Poison.des Transs.des Unbel.des Kurwa.des Prost.des \
 	Form.des Feminist.des Tracer.des Nuclear.des Scholar.des \
 	Acu.des Hussy.des Mason.des Demago.des Cellar.des Grenad.des \
-	Social.des Walsch.des
+	Social.des Walsch.des Cyber.des Dissi.des Astro.des Crack.des \
+	Janit.des Smarin.des Yautja.des Xelnaga.des Weirdboy.des \
+	Stormboy.des Empath.des Psyker.des Software.des Quarter.des \
+	Mastermi.des
+
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -464,6 +468,21 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Slime.des
 	../util/lev_comp Spacew.des
 	../util/lev_comp Stunt.des
+	../util/lev_comp Cyber.des
+	../util/lev_comp Dissi.des
+	../util/lev_comp Astro.des
+	../util/lev_comp Crack.des
+	../util/lev_comp Janit.des
+	../util/lev_comp Smarin.des
+	../util/lev_comp Yautja.des
+	../util/lev_comp Xelnaga.des
+	../util/lev_comp Weirdboy.des
+	../util/lev_comp Stormboy.des
+	../util/lev_comp Empath.des
+	../util/lev_comp Psyker.des
+	../util/lev_comp Software.des
+	../util/lev_comp Quarter.des
+	../util/lev_comp Mastermi.des
 	../util/lev_comp Supermar.des
 	../util/lev_comp Thalmor.des
 	../util/lev_comp Top.des

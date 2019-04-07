@@ -1,0 +1,161 @@
+LEVEL: "Wei-strt"
+#
+ROOM: "chaosroom" , random, random, random, (6, 6)
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER:'U',"exploding brain",random
+MONSTER:'@',"very mindless thrall",random
+MONSTER:'@',"very mindless thrall",random
+MONSTER:'@',"very mindless thrall",random
+MONSTER:'@',"very mindless thrall",random
+MONSTER:'@',"very mindless thrall",random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Wei-fila"
+#
+ROOM: "chaosroom" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Wei-loca"
+#
+ROOM: "chaosroom" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Wei-filb"
+#
+ROOM: "chaosroom" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+
+LEVEL: "Wei-goal"
+#
+ROOM: "chaosroom" , random, random, random, (6, 6)
+STAIR: random, up
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER:'@',"well-paid doctor",random,hostile
+OBJECT:'.',"segfault venom",random,blessed,0,"Bus Error"
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+ROOM: "chaosroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+
+RANDOM_CORRIDORS
+

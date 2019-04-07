@@ -904,7 +904,7 @@ const struct Role roles[] = {
 	"Diddy the Fail Master", "Bantor the Gay Voice", "Conker the Bad Fur Squirrel", /* Diddy Kong Failing :P */
 	"Cyb", "Teki-Owned Castle", "Rice Plant Fields",
 	PM_CYBERNINJA, NON_PM, PM_UNDEAD_CYBERNINJA, NON_PM, PM_DENRYU,
-	PM_PRINCE_SARTOR, PM_NINJA_GAIDEN, PM_FENG_SHAO, PM_ONA_KENUGI,
+	PM_PRINCE_SARTOR, PM_ROSHI, PM_FENG_SHAO, PM_ONA_KENUGI,
 	PM_VARUNA, PM_KILL_WING, S_GREMLIN, S_GREMLIN,
 
 	ART_GAYSECT, /* 2h axe with bisection attack */
