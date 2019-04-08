@@ -4623,6 +4623,9 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
+	/* quarterback is very good with baseball bats --Amy */
+	if (Role_if(PM_QUARTERBACK) && weapon && weapon_type(weapon) == P_CLUB) bonus += 2;
+
 	/* Navi are highly proficient with spears --Amy */
 	if (Race_if(PM_NAVI) && weapon && weapon_type(weapon) == P_SPEAR){
 

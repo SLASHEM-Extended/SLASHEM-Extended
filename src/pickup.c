@@ -1451,6 +1451,8 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 
 	}
 
+	if (Role_if(PM_YAUTJA) && obj && obj->otyp == CHEMISTRY_SET) obj->known = TRUE;
+
 	if (obj && obj->oclass == WAND_CLASS && (ManaBatteryBug || u.uprops[MANA_BATTERY_BUG].extrinsic || have_batterystone()) && obj->spe >= 0) {
 
 		if (obj->spe == 0) obj->spe = -1;
@@ -2472,6 +2474,11 @@ int held;
 	    return 0;
 	} else if (obj->otrapped) {
 	    if (held) You("open %s...", the(xname(obj)));
+	    if (Role_if(PM_CYBERNINJA) && rn2(5)) {
+		You("discover a trap on %s and disarm it.", the(xname(obj)));
+		obj->otrapped = FALSE;
+		return 1;
+	    }
 	    (void) chest_trap(obj, HAND, FALSE);
 	    /* even if the trap fails, you've used up this turn */
 	    if (multi >= 0) {	/* in case we didn't become paralyzed */

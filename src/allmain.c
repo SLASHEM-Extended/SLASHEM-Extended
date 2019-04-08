@@ -8194,6 +8194,13 @@ newboss:
 				flags.botl = 1;
 			}
 
+			if (!Burned && !contaminationcheck() && !rn2(3) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Role_if(PM_PSYKER)) { /* psyker has special built-in energy regeneration --Amy */
+				u.uen++;
+				if (Race_if(PM_PIERCER)) u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+			}
+
 			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / GushLevel) ) {
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;

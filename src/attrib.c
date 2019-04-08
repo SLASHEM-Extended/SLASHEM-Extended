@@ -40,8 +40,10 @@ const struct innate {
 	xel_abil[] = { {	 1, &(HSwimming), "", "" },
 		     {  1, &(HAcid_resistance), "", "" },
 		     {  6, &(HStealth), "stealthy", "noisy" },
+		     {  6, &(HJumping), "able to jump around", "unable to jump around" },
 		     {	10, &(HFear_resistance), "unafraid", "afraid" },
 			{	12, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
+		       {   12, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
 		     {  14, &(HCold_resistance), "warm", "cooler" },
 		    { 15,  &(HInfravision), "perceptive", "half blind"},
 			{   16, &(HManaleech), "magically attuned", "no longer magically attuned" },
@@ -339,6 +341,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	qub_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {   9, &(HSwimming), "ready to swim","afraid of the water" },
 		     {   10, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
 		     {	20, &(HFear_resistance), "unafraid", "afraid" },
 		     {   0, 0, 0, 0 } },
@@ -1181,8 +1184,14 @@ adjattrib(ndx, incr, msgflg, canresist)
 		return FALSE;
 	}
 
-	/* Mithril items can sometimes prevent the player's stats from decreasing --Amy */
+	/* Mithril items can sometimes prevent the player's stats from decreasing --Amy
+	 * also, astronauts have such extreme body training for going into space that they're able to resist */
 	if (incr < 0 && canresist) {
+
+		if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+			pline("Your steeled body prevents the stat loss!");
+			return FALSE;
+		}
 
 		int mithrilitemcount = 0;
 
@@ -1561,21 +1570,6 @@ exerchk()
 	boolean contaminated;
 	boolean verycontaminated;
 
-	/* contamination is guaranteed to damage wisdom if at least 100 points accumulated on the contamination counter;
-	 * otherwise, have a chance of damaging it --Amy */
-	contaminated = FALSE;
-	verycontaminated = FALSE;
-	if (u.contamination >= 100) {
-		contaminated = TRUE;
-		verycontaminated = TRUE;
-	}
-	if (u.contamination && u.contamination < 100) { /* low chance when only slightly contaminated --Amy */
-		contaminated = (rn2(100) < u.contamination);
-		if (contaminated) contaminated = (rn2(100) < u.contamination);
-		/* if you get lucky, very low contamination fixes itself --Amy */
-		if (!contaminated && !rn2(2)) decontaminate(rnd(u.contamination));
-	}
-
 	/*	Check out the periodic accumulations */
 	exerper();
 
@@ -1601,6 +1595,24 @@ exerchk()
 	     *  own body will just wear off with no checking
 	     *  until you return to your natural form.
 	     */
+
+	/* contamination is guaranteed to damage wisdom if at least 100 points accumulated on the contamination counter;
+	 * otherwise, have a chance of damaging it but also a chance of it going down on its own --Amy */
+		contaminated = FALSE;
+		verycontaminated = FALSE;
+
+		if (u.contamination >= 100) {
+			contaminated = TRUE;
+			verycontaminated = TRUE;
+		}
+
+		if (u.contamination && u.contamination < 100) { /* low chance when only slightly contaminated --Amy */
+			contaminated = (rn2(100) < u.contamination);
+			if (contaminated) contaminated = (rn2(100) < u.contamination);
+			/* if you get lucky, very low contamination fixes itself --Amy */
+			if (!contaminated && !rn2(2)) decontaminate(rnd(u.contamination));
+		}
+
 	    for(i = 0; i < A_MAX; AEXE(i++) /= 2) {
 
 		if (contaminated && i == A_WIS) {

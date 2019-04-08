@@ -1853,6 +1853,10 @@ int thrown;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == P_CROSSBOW) tmp -= 5;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == -P_BOW) tmp -= 5;
 
+	/* quarterback is highly skilled at shooting small round objects --Amy */
+	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == -P_SLING) tmp += rn1(5, 5);
+	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == P_SLING) tmp += rn1(5, 5);
+
 	/* let's just add that bonus anyway. --Amy */
 	if(mon->mstun) tmp += 2;
 	if(mon->mflee) tmp += 2;

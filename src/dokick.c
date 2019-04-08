@@ -203,6 +203,9 @@ register boolean clumsy;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") )) dmg *= 2;
 
+	/* quarterback is expert at kicking --Amy */
+	if (Role_if(PM_QUARTERBACK) && dmg > 0) dmg += rnd(dmg);
+
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
@@ -1665,6 +1668,12 @@ dokick()
 		    if(!IS_STWALL(maploc->typ) && maploc->ladder == LA_DOWN)
 			goto dumb;
 ouch:
+
+			if (Role_if(PM_QUARTERBACK)) { /* expert at kicking and thus doesn't take damage, from PRIME --Amy */
+				pline("Thump - you kicked an obstacle.");
+				return(1);
+			}
+
 		    pline(Hallucination ? "You stumped your little toe - ouch!" : "Ouch!  That hurts!");
 		    exercise(A_DEX, FALSE);
 		    exercise(A_STR, FALSE);

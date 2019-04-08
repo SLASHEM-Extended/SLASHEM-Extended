@@ -1204,7 +1204,7 @@ elena23:
 		case AT_TRAM:
 			pline("%s tramples over you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Monstry budut toptat' vas, potomu chto vy ochen' plokhoy igrok." : "Klatsch klatsch!");
-			if (!rn2(player_shades_of_grey() ? 3 : 15) && (!issoviet || !rn2(5)) ) {
+			if (!rn2(player_shades_of_grey() ? 3 : 15) && !(Role_if(PM_ASTRONAUT) && rn2(5)) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("You can't think straight as your every muscle is aching!");
@@ -5288,6 +5288,9 @@ hitmu(mtmp, mattk)
 		    if(!u.ustuck && rn2(2)) {
 			if (u_slip_free(mtmp, mattk)) {
 			    dmg = 0;
+			} else if (Role_if(PM_ASTRONAUT) && rn2(5)) {
+			/* astronauts are capable of wriggling free; the attack still damages them though --Amy */
+			    pline("%s crushes you!", Monnam(mtmp));
 			} else {
 			    setustuck(mtmp);
 			    pline("%s grabs you!", Monnam(mtmp));
@@ -6600,6 +6603,9 @@ dopois:
 		    if (!u.ustuck && !rn2(10)) {
 			if (u_slip_free(mtmp, mattk) || statsavingthrow) {
 			    dmg = 0;
+			} else if (Role_if(PM_ASTRONAUT) && rn2(5)) {
+			/* astronauts are good at wriggling free, but will still get hurt by the attack itself --Amy */
+				pline("%s constricts you!"); /* but doesn't wrap around you */
 			} else {
 			    pline("%s swings itself around you!",
 				  Monnam(mtmp));
@@ -19537,6 +19543,19 @@ register struct attack *mattk;
 	}
 
 	if (u.bodyfluideffect && !resists_acid(mtmp)) {
+
+		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(4) ) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+
+	}
+
+	/* from PRIME: "Very experienced Xel'Naga have stronger acid blood." --Amy */
+	if (Role_if(PM_XELNAGA) && u.ulevel >= 15 && !resists_acid(mtmp)) {
 
 		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(4) ) <= 0) {

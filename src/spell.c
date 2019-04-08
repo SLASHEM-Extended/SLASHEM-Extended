@@ -2257,7 +2257,7 @@ learn()
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
 
-	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !Conf_resist && !rn2(Role_if(PM_LIBRARIAN) ? 100 : 10) ) {		/* became confused while learning */
+	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !Conf_resist && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 100 : 10) ) {		/* became confused while learning */
 
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
@@ -2345,7 +2345,7 @@ learn()
 	}
 	if (i == MAXSPELL) impossible("Too many spells memorized!");
 
-	if ( (book->cursed || book->spe < 1) && !(uimplant && uimplant->oartifact == ART_DOMPFINATION) && !Role_if(PM_LIBRARIAN) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) {	/* maybe a demon cursed it */
+	if ( (book->cursed || book->spe < 1) && !(uimplant && uimplant->oartifact == ART_DOMPFINATION) && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) {	/* maybe a demon cursed it */
 	    if (cursed_book(book)) {
 		if (carried(book)) useup(book);
 		else useupf(book, 1L);
@@ -2379,7 +2379,7 @@ register struct obj *spellbook;
 			makeknown(booktype);
 			return(1);
 		}
-		if (spellbook->spe && confused && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {
+		if (spellbook->spe && confused && rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 2 : 10) ) {
 		    check_unpaid_usage(spellbook, TRUE);
 
 			int nochargechange = 10;
@@ -2442,7 +2442,7 @@ register struct obj *spellbook;
 		spellbook->in_use = TRUE;
 		if (!spellbook->blessed &&
 		    spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
-		    if ( ((spellbook->cursed && rn2(4)) || (spellbook->spe < 1 && rn2(3)) ) && !Role_if(PM_LIBRARIAN) && booktype != SPE_BOOK_OF_THE_DEAD ) {
+		    if ( ((spellbook->cursed && rn2(4)) || (spellbook->spe < 1 && rn2(3)) ) && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) && booktype != SPE_BOOK_OF_THE_DEAD ) {
 			too_hard = TRUE;
 		    } else {
 			/* uncursed - chance to fail */
@@ -2469,7 +2469,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if ( (too_hard || rn2(2)) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) ) || (!(spellbook->spe) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) )) {
+		if ( (too_hard || rn2(2)) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) ) || (!(spellbook->spe) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) )) {
 		    boolean gone = cursed_book(spellbook);
 
 		    if (delay < 0) {
@@ -2497,7 +2497,7 @@ register struct obj *spellbook;
 		    } else
 			spellbook->in_use = FALSE;
 		    return(1);
-		} else if (confused && !Conf_resist && !rn2(Role_if(PM_LIBRARIAN) ? 50 : 5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+		} else if (confused && !Conf_resist && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 50 : 5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 		    if (!confused_book(spellbook)) {
 			spellbook->in_use = FALSE;
 		    }
@@ -9831,6 +9831,7 @@ rerollX:
 		}
 
 		if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
+		if (Role_if(PM_PSYKER)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
 
 	}
 

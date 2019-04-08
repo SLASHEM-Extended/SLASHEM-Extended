@@ -127,8 +127,10 @@ picklock()	/* try to open/close a lock */
 	    else xlock.door->doormask = D_LOCKED;
 	} else {
 	    xlock.box->olocked = !xlock.box->olocked;
-	    if(xlock.box->otrapped)	
-		(void) chest_trap(xlock.box, FINGER, FALSE);
+	    if(xlock.box->otrapped) {
+		if (Role_if(PM_CYBERNINJA) && rn2(5)) You("also disarm the trap you found on it.");
+		else (void) chest_trap(xlock.box, FINGER, FALSE);
+	    }
 	}
 	exercise(A_DEX, TRUE);
 	return((xlock.usedtime = 0));
@@ -440,7 +442,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
+			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
 			    break;
 			case DATA_CHIP:
 			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
@@ -449,18 +451,18 @@ pick_lock(pickp) /* pick a lock with a given object */
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
+			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: Role_if(PM_ROGUE) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
 			    		(!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE) + 50*Role_if(PM_LOCKSMITH);
+			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE) + 50*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
 			    break;
 			case SKELETON_KEY:
 			case SECRET_KEY:
@@ -545,45 +547,45 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 		    switch(picktyp) {
 			case CREDIT_CARD:
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your card off in the door!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
+			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
 			    break;
 			case DATA_CHIP:
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your chip off in the door!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
+			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : Role_if(PM_ROGUE) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE) + 60*Role_if(PM_LOCKSMITH);
+			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE) + 60*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
 			    break;
 			case SKELETON_KEY:
 			case SECRET_KEY:
-			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    ch = 70 + ACURR(A_DEX) + 10*Role_if(PM_LOCKSMITH);
+			    ch = 70 + ACURR(A_DEX) + 10*Role_if(PM_LOCKSMITH) + 5*Role_if(PM_CYBERNINJA);
 			    break;
 			default:    ch = 0;
 		    }

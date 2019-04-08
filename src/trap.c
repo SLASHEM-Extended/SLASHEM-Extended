@@ -3326,6 +3326,12 @@ unsigned trflags;
 	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() ) {
 		trap->tseen = 0;
 		trap->hiddentrap = 1;
+	/* dissidents want to uncover the evil plans of the government, and that includes the nasty traps they set up :P
+	 * therefore they'll have a small chance of uncovering such traps --Amy */
+	} else if (Role_if(PM_DISSIDENT) && !rn2(20) && (trap->hiddentrap || !trap->tseen)) {
+		trap->hiddentrap = 0;
+		pline("Suddenly a trap is revealed underneath you!");
+		trap->tseen = 1;
 	}
 
 	/* KMH -- You can't escape the Sokoban level traps */
@@ -19039,6 +19045,7 @@ boolean force;
 			    exercise(A_DEX, TRUE);
 			    ch = ACURR(A_DEX) + u.ulevel;
 			    if (Role_if(PM_ROGUE)) ch *= 2;
+			    if (Role_if(PM_CYBERNINJA)) ch *= rnd(6);
 			    if(!force && (confused || Fumbling ||
 				rnd(75+level_difficulty()/2) > ch)) {
 				(void) chest_trap(otmp, FINGER, TRUE);
@@ -19420,6 +19427,11 @@ register int bodypart;
 	register int lvl = level_difficulty();
 	register struct trap *ttmp;
 	int dmg = rnd(5 + (lvl < 5 ? lvl : 2+lvl/2));
+
+	if (Role_if(PM_CYBERNINJA) && rn2(5) && !(DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) ) {
+		You("safely discharge the trap found on %s.", the(item));
+		return;
+	}
 
 	pline("KABOOM!!  %s was booby-trapped!", The(item));
 	wake_nearby();

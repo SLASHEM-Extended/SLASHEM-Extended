@@ -9904,13 +9904,13 @@ int damage, tell;
 
 	/* attack level */
 	switch (oclass) {
-	    case WAND_CLASS:	alev = 12 + (Role_if(PM_WANDKEEPER) ? GushLevel : (GushLevel / 2));	 break;
-	    case TOOL_CLASS:	alev = 10 + (Role_if(PM_GRADUATE) ? (GushLevel * 2) : (Role_if(PM_GEEK) || Role_if(PM_ARCHEOLOGIST)) ? GushLevel : (GushLevel / 2));	 break;	/* instrument */
-	    case WEAPON_CLASS:	alev = 10 + (Role_if(PM_GOFF) ? GushLevel : Role_if(PM_ARTIST) ? (GushLevel / 2) : (GushLevel / 3));	 break;	/* artifact */
+	    case WAND_CLASS:	alev = 12 + (Role_if(PM_WANDKEEPER) ? GushLevel : Role_if(PM_EMPATH) ? (GushLevel * 3 / 2) : (GushLevel / 2));	 break;
+	    case TOOL_CLASS:	alev = 10 + ((Role_if(PM_GRADUATE) || Role_if(PM_CRACKER)) ? (GushLevel * 2) : (Role_if(PM_GEEK) || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_ASTRONAUT) || Role_if(PM_ARCHEOLOGIST)) ? GushLevel : (GushLevel / 2));	 break;	/* instrument */
+	    case WEAPON_CLASS:	alev = 10 + (Role_if(PM_GOFF) ? GushLevel : (Role_if(PM_ARTIST) || Role_if(PM_QUARTERBACK) || Role_if(PM_SPACE_MARINE)) ? (GushLevel / 2) : (GushLevel / 3));	 break;	/* artifact */
 	    case SCROLL_CLASS:	alev =  9 + (Role_if(PM_INTEL_SCRIBE) ? GushLevel : Role_if(PM_LIBRARIAN) ? (GushLevel / 2) : (GushLevel / 3));	 break;
 	    case POTION_CLASS:	alev =  6 + (Role_if(PM_DRUNK) ? GushLevel : (Role_if(PM_SCIENTIST) || Race_if(PM_ALCHEMIST)) ? (GushLevel / 2) : (GushLevel / 4));	 break;
-	    case RING_CLASS:	alev =  5 + (Role_if(PM_LADIESMAN) ? (GushLevel / 2) : Role_if(PM_DOLL_MISTRESS) ? (GushLevel / 3) : (GushLevel / 5));	 break;
-	    default:		alev = rnd(GushLevel); break;	/* spell */
+	    case RING_CLASS:	alev =  5 + (Role_if(PM_LADIESMAN) ? (GushLevel / 2) : (Role_if(PM_DOLL_MISTRESS) || Role_if(PM_DISSIDENT)) ? (GushLevel / 3) : (GushLevel / 5));	 break;
+	    default:		alev = rnd(Role_if(PM_MASTERMIND) ? (GushLevel * 3 / 2) : GushLevel); break;	/* spell */
 	}
 
 	if (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || (uamul && uamul->oartifact == ART_MYSTERIOUS_MAGIC) || have_loweffectstone() ) alev = 1;

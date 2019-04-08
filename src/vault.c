@@ -250,6 +250,14 @@ fnd:
 	    mongone(guard);
 	    return;
 	}
+
+	/* janitors on duty get a free pass; since there is no janitor uniform, they always count as on duty :D --Amy */
+	if (Role_if(PM_JANITOR)) {
+		verbalize("Oh, you're the janitor, I see. Now go and make that vault floor sparkle!");
+		mongone(guard);
+		return;
+	}
+
     if((Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_ALBAE)) && !Upolyd) {
         setmangry(guard);
         verbalize("I saw your pic on the wanted poster!");

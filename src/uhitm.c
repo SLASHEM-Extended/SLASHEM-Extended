@@ -1008,7 +1008,7 @@ int dieroll;
 	    /* Lycanthropes sometimes go a little berserk! 
 	     * If special is on,  they will multihit and stun!
 	     */
-	    if (( (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) ) && (mon->mhp > 0)) ||
+	    if (( (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_YAUTJA) || Role_if(PM_LUNATIC) ) && (mon->mhp > 0)) ||
 				tech_inuse(T_EVISCERATE)) {
 		if (tech_inuse(T_EVISCERATE)) {
 		    /*make slashing message elsewhere*/
@@ -1321,6 +1321,7 @@ int dieroll;
 					case P_SUPREME_MASTER:	tmp += rnd(20); break;
 				}
 			}
+
 			if (tech_inuse(T_JIU_JITSU)) {
 				int jiuextradmg = 0;
 				if (find_mac(mon) <= -5) jiuextradmg += 2;
@@ -1367,6 +1368,7 @@ int dieroll;
 
 	    } /* end bare-handed combat skill */
 
+		if (Role_if(PM_XELNAGA)) tmp += rnd(4);
 		if (Race_if(PM_KHAJIIT)) tmp += rnd(4);
 		if (Race_if(PM_FENEK)) tmp += rnd(2);
 
@@ -1688,7 +1690,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -1817,7 +1819,7 @@ int dieroll;
 			}
 
 			if (obj == uwep && is_lightsaber(obj) && obj->lamplit && tech_inuse(T_PERILOUS_WHIRL) && !rn2(10) && !resists_drli(mon) && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
-				pline("%s suddenly seems weaker!", Monnam(mon));
+				pline("%s suddenly seems weaker!", mon_nam(mon));
 				mon->mhpmax -= rnd(8);
 				if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 				if (mon->mhp <= 0 || !mon->m_lev) {
@@ -1828,6 +1830,19 @@ int dieroll;
 					mon->m_lev--;
 				}
 
+			}
+
+			/* empath can feel the monster's psyche sometimes --Amy */
+			if (Role_if(PM_EMPATH) && !rn2(20)) {
+				You("probe %s!", Monnam(mon));
+				probe_monster(mon);
+			}
+
+			/* dissidents want to leak information about their enemy, and they can't do that very well when the
+			 * enemy is hiding in the shadows... so they go ahead and remove the enemy's camouflage! --Amy */
+			if (Role_if(PM_DISSIDENT) && mon->minvisreal) {
+				mon->minvisreal = FALSE;
+				You("remove %s's disguise!", mon_nam(mon));
 			}
 
 			if (obj->oartifact &&
@@ -2927,7 +2942,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(397)) {
+			switch (rnd(399)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3326,6 +3341,8 @@ int dieroll;
 			case 395: pline("You spin around and back kick %s!", mon_nam(mon)); break;
 			case 396: pline("You lightly caress %s.", mon_nam(mon)); break;
 			case 397: pline("You gently stroke %s.", mon_nam(mon)); break;
+			case 398: pline("Your honchos at %s are cheering in front of the TV as they see you batter %s!", urole.homebase, mon_nam(mon)); break;
+			case 399: pline("You might in fact be capable of surviving at %s, seeing how you're mixing up %s right now.", urole.intermed, mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -3439,7 +3456,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(565)) {
+				switch (rnd(567)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4006,6 +4023,9 @@ int dieroll;
 				case 563: pline("You stab %s in the crotch, severing a major artery! Blood spurts all over!", mon_nam(mon)); break;
 				case 564: pline("You kick %s, crunching his left testicle!", mon_nam(mon)); break; /* no mhis */
 				case 565: pline("You slash %s's sword %s! Three %s fall to the floor!", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
+				case 566: pline("You made sure that %s can never take over %s!", mon_nam(mon), urole.homebase); break;
+				case 567: pline("Even your worst enemy at %s would be trembling in fear if he could see how brutally you just killed %s.", urole.intermed, mon_nam(mon)); break;
+
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
@@ -6224,7 +6244,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(545)) {
+		switch (rnd(549)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -6771,6 +6791,10 @@ register int roll;
 		case 543: pline("%s grabs your nuts and squeezes them tight!", Monnam(mdef)); break;
 		case 544: pline("Now you look old, because %s fully pwns you.", mon_nam(mdef)); break;
 		case 545: pline("You try to sell %s, but fail.", mon_nam(mdef)); break;
+		case 546: pline("You'll never be able to rescue %s that way.", urole.homebase); break;
+		case 547: pline("If you can't even hit the wimpy %s, you can completely forgot about your mission to purge %s.", l_monnam(mdef), urole.intermed); break;
+		case 548: pline("All your friends at %s are booing at the TV screen that shows you missing constantly with that little sword.", urole.homebase); break;
+		case 549: pline("You feel the voice of your worst enemy penetrate your mind from %s. It says: 'Ha ha ha, you tin can are no match for me.'", urole.intermed); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 

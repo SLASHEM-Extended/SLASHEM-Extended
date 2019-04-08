@@ -2938,7 +2938,7 @@ struct monst *mon;
  
 	/* Able to detect wounds? */ 
 	if (!(canseemon(mon) || (u.ustuck == mon && u.uswallow && !Blind)) 
-		 || (!Race_if(PM_HERBALIST) && !Role_if(PM_HEALER) && !Role_if(PM_SCIENTIST) && !Race_if(PM_ALCHEMIST) && !Role_if(PM_NECROMANCER) && !Role_if(PM_UNDERTAKER) ) ) 
+		 || (!Race_if(PM_HERBALIST) && !Role_if(PM_HEALER) && !Role_if(PM_SCIENTIST) && !Role_if(PM_EMPATH) && !Race_if(PM_ALCHEMIST) && !Role_if(PM_NECROMANCER) && !Role_if(PM_UNDERTAKER) ) ) 
 		/* 5lo: Expanded for more roles */ 
 	    return (char *)0; 
 	if (mon->mhp == mon->mhpmax || mon->mhp < 1) 
