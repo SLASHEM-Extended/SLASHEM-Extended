@@ -3817,6 +3817,11 @@ static NEARDATA const char * const demagoguelines[] = {
 "We need to bring back slavery, but we'll call our slaves 'workers' so they won't be demoralized!",
 "We all need to fight the good fight and demonstrate against the current government's plans!",
 "What? They're planning a new censorship law? That's an attack on free speech, and we need to storm the government center!",
+"It's bullshit that you can't simply say what you think!",
+"The people are starving while the government bosses are eating steak! That has to be changed!",
+"We will end the police brutality by abolishing the police!",
+"All that the current government has ever accomplished is to make the wage gap even bigger! That government needs to be voted off!",
+"Currently, a couple dozen millionaires own about half of this country's total amount of money! We need to steal from the rich and give to the poor!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4478,6 +4483,22 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Why do you think you can single-handedly defeat the Hussies? You should have been smarter than that. If you don't like our presence, just go to another school instead!",
 "Good thing we hired the hola-hola brigade. I mean, walscholars can't stop us anyway, but we just wanted to make extra sure...",
 "Why are you even listening to what Walt and his teacher-shaped incapabilities are saying? I wouldn't ever let them instruct ME what I'm allowed to do!",
+"Currently our positions are absolutely safe.",
+"Yes, there's that walscholar creeping around, but they're a complete non-threat.",
+"Right now the walscholars seem to be behaving. None of them are getting anywhere close to a place where they could threaten us Hussies.",
+"I guess I can use this time to renew my make-up and perfume.",
+"I'm bored. When do the walscholars finally attack so I can single-handedly defeat them?",
+"Oh, the walscholar is attacking! I didn't expect that to happen today. Well, they will be knocked out by me now.",
+"Wow, that fool is more powerful than I thought. Maybe I'll intercept them together with my fellow Hussies so that we can use concentrated fragrance clouds.",
+"I'm wondering why we even had to hire the hola-hola brigade. They don't get to do anything because that walscholar is just stumbling around aimlessly anyway.",
+"Uh-oh, there's distress near Anna's sanctum! Girls, this is it, we'll really have to fight hard to stop Walt's guys this time!",
+"Eventually, I will get the diamonds. But first we need to neutralize the walscholar threat.",
+"When will Walt stop sending fools to lose to me? I honestly expected him to run out at some point.",
+"I guess Walt is getting really desperate now, since I keep farting his diamond walls apart and defeating all of his stupid scholars.",
+"The hola-hola brigade just reported that they successfully converted some walscholar, which means one less threat for us. There's still more of them around, though.",
+"Walt's fools are all doomed to fail.",
+"It's a fact that the Hussies own this school. When will that Walt freak finally learn?",
+"I'm surprised that Walt hasn't run out of diamonds yet, considering I just stole another bunch.",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4536,6 +4557,20 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "%s will never be as cunning and smart as me.",
 "%s, you called the members of the hola-hola brigade 'aliens'! That is not permitted, because they are honorable members of society! You will pay for that insult!",
 "Here's a little hint for you, %s: you should really stop doing what your retarded teachers want you to do. They instructed you to fight us Hussies, but it will only result in your defeat! Better give up now and join us instead!",
+"%s, just go home. The Hussies are too strong for you.",
+"Oh, I'm supposed to be worried about that walscholar called %s? Hahaha. I don't worry about weaklings.",
+"%s is a fool! They can't ever become dangerous to Anna's power! I won't waste my time watching their movements, I got better things to do today.",
+"My fellow Hussies will warn me if %s makes any dangerous moves. But so far it seems that it won't happen any time soon anyway.",
+"Currently I sit back and relax, because %s is so far away from Anna's sanctum. With that pace it'll take weeks until they will start an actual attack.",
+"%s, your progress is starting to become bothersome! I think I'll operate one of my remote-controlled perfume dispensers to take you out.",
+"It seems that %s is serious about that mission to defeat us Hussies! Girls, come with me, we're gonna teach them a lesson in pain now!",
+"%s, stop camping the upper dungeon levels! Go down deeper so you can fight the hola-hola brigade and lose to them!",
+"What? How did %s penetrate such a deep level? Hussies! Get moving, we need to stop that walscholar idiot at all costs!",
+"%s, you're lucky this time, because I'm busy fighting one of Walt's other fools! But as soon as I finished him off I'll take care of you!",
+"%s, it seems that your boss is running out of steam, considering he's sending novices like you? I guess all of his expert walscholars failed and now he uses his trash troops for heating?",
+"Oh come on %s. Go back to Walt and tell him to send someone capable of putting up a fight, you really can't be the best he has to muster.",
+"What? %s managed to defeat some of the hola-hola brigade members? Why did we hire them in the first place if they can't get a job done? Oh well, I guess I'll have to take care of that problem myself then...",
+"Now I'll steal the diamonds, %s! You have two choices: face me so I can steal the ones you're carrying, or be a chicken and run from me so I can steal the ones hidden one floor down from your position.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -23024,6 +23059,22 @@ static NEARDATA const char * const fake_plines[] = {
 	"Outside, you hear the cockatrice's hissing! The steam vortex gets turned to stone! And the same fate befalls you. Do you want your possessions identified?",
 	"The lag is so dull you can't keep your eyes open.", /* by Andrio */
 	"You start reading the spellbook of finger of death. Halfway, the service provider deletes your book. You are confused.", /* by Muad */
+	"You are not really content.",
+	"You feel that you're being groped by someone.",
+	"Something suddenly touches your knee.",
+	"A group of seven people suddenly surrounds you!",
+	"You feel that your face has turned red!",
+	"What is hotter, the sexy bride or her pair of combat boots?",
+	"You see a cool robber train.",
+	"You are reading a fanfic that has not been written yet.",
+	"You have to choose your opponent for the wrestling arena, but you'll lose anyway.",
+	"You don't have coconuts, and that means you can't defeat your opponent!",
+	"The Super Kaizo Mario programmer made the jump impossible, and therefore you fail and jump out of the picture!",
+	"You encounter a level design error that causes you to respawn directly over a bottomless pit.",
+	"The ratchet scrolling mechanism prevents you from going back, and therefore the level is now impossible to complete.",
+	"You ran out of time. Game over!",
+	"Time up!",
+	"Continuation follows, or at least that's to be feared.",
 
 };
 

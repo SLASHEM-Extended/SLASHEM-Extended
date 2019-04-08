@@ -8408,6 +8408,43 @@ register struct	monst	*mtmp;
 		  	m_initthrow(mtmp, ANCIENT_ARROW, 35);
 		}
 
+		if (mtmp->data == &mons[PM_SHINING_SILVER_WOLF]) {
+		  	(void) mongets(mtmp, RAYGUN);
+		  	(void) mongets(mtmp, WHITE_LIGHTSABER);
+		  	m_initthrow(mtmp, BLASTER_BOLT, 50);
+		  	m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+
+		if (mtmp->data == &mons[PM_COMMAND_WOLF]) {
+			switch (rnd(5)) {
+				case 1:
+				  	(void) mongets(mtmp, BOW);
+				  	m_initthrow(mtmp, ANCIENT_ARROW, 35);
+				  	m_initthrow(mtmp, ANCIENT_ARROW, 35);
+					break;
+				case 2:
+				  	(void) mongets(mtmp, POWER_CROSSBOW);
+				  	m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+				  	m_initthrow(mtmp, CROSSBOW_BOLT, 50);
+					break;
+				case 3:
+				  	(void) mongets(mtmp, CATAPULT);
+				  	m_initthrow(mtmp, FLINT, 50);
+				  	m_initthrow(mtmp, FLINT, 50);
+					break;
+				case 4:
+				  	(void) mongets(mtmp, ASSAULT_RIFLE);
+				  	m_initthrow(mtmp, BULLET, 50);
+				  	m_initthrow(mtmp, BULLET, 50);
+					break;
+				case 5:
+				  	(void) mongets(mtmp, AUTO_SHOTGUN);
+				  	m_initthrow(mtmp, SHOTGUN_SHELL, 40);
+				  	m_initthrow(mtmp, SHOTGUN_SHELL, 40);
+					break;
+			}
+		}
+
 		if (mtmp->data == &mons[PM_DOG_COP]) {
 			(void)mongets(mtmp, RUBBER_HOSE);
 			m_initthrow(mtmp, CREAM_PIE, 2);
