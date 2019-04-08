@@ -9234,6 +9234,17 @@ past3:
 		pline("%s", generate_garbage_string());
 	}
 
+#if 0
+		/* for making it impossible to start new games in old slex versions */
+		if (moves < 50) {
+			pline("You are playing an old version of SLEX, which is no longer supported and therefore your game ends. The version is only kept on the server so that people can finish old savegames. If you had a far-progressed savegame that is somehow gone, complain to the server administrators and they might be able to restore it. --Amy");
+			u.youaredead = 1;
+			done(ESCAPED);
+			/* still game over if you somehow get here */
+			done(DIED);
+		}
+#endif
+
 	if (uarmh && uarmh->oartifact == ART_UBB_RUPTURE && !rn2(10)) {
 		pline("%s", generate_garbage_string());
 	}
