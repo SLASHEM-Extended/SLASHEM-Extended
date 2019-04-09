@@ -18165,6 +18165,7 @@ struct trap *ttmp;
 	    if (rn2(2 * MAXULEV) < u.ulevel) chance--;
 	    if (u.uhave.questart && chance > 1) chance--;
 	} else if (Role_if(PM_RANGER) && chance > 1) chance--;
+	if (Role_if(PM_CYBERNINJA) && chance > 1) chance /= 2; /* cyberninja is really good at disarming --Amy */
 	if (chance < 1) chance = 1; /* fail safe */
 	return rn2(chance);
 }
