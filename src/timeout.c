@@ -254,6 +254,16 @@ nh_timeout()
 		}
 	}
 
+	if (u.garbagetrucktime) {
+		u.garbagetrucktime--;
+		if (u.garbagetrucktime < 0) u.garbagetrucktime = 0; /* fail safe */
+		if (!u.garbagetrucktime) {
+			u.garbagecleaned = 0;
+			adjalign(50);
+			pline_The("garbage truck arrived, and allowed you to empty your trash bin. Well done!");
+		}
+	}
+
 	if (u.contingencyturns) {
 		u.contingencyturns--;
 		if (!u.contingencyturns) pline("The effect of contingency ends.");

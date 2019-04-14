@@ -1689,6 +1689,61 @@ domonability()
 		}
 		return 1;
 
+	} else if (Role_if(PM_JANITOR) && yn("Do you want to clean up the trash at your location?") == 'y') {
+		register struct obj *objchain, *allchain, *blahchain;
+		register int trashvalue = 0;
+
+		if (Levitation && !Race_if(PM_LEVITATOR)) {
+			pline("Since you're levitating, you can't reach the trash!");
+			return 0;
+		} else if (u.uswallow) {
+			pline("Well, it seems you have some other problem to take care of first.");
+			return 0;
+		} else if (u.garbagecleaned >= 1000) {
+			You("already filled your trash bin! You'll have to wait until the garbage truck arrives so you can empty it.");
+			/* if for some reason the garbage truck time is zero, call a truck now (shouldn't happen) --Amy */
+			if (!u.garbagetrucktime) u.garbagetrucktime = rn1(500,500);
+
+			return 0;
+		}
+
+		objchain = level.objects[u.ux][u.uy];
+
+		for (allchain = objchain; allchain; allchain = blahchain) {
+
+			if (u.garbagecleaned >= 1000) {
+				You("filled your trash bin, and call a garbage truck that will arrive shortly.");
+				u.garbagetrucktime = rn1(500,500);
+				break;
+			}
+
+			blahchain = allchain->nexthere;
+
+			/* have to special-case some stuff... --Amy
+			 * iron chains and balls could be chained to you, caught by wornmask check
+			 * invocation artifacts are of course immune
+			 * gold is immune
+			 * items of variable weight: statues, corpses and containers are also immune */
+			if (allchain->owornmask) continue;
+			if (evades_destruction(allchain)) continue;
+			if (allchain->oclass == COIN_CLASS) continue;
+			if (allchain->otyp == STATUE || allchain->otyp == CORPSE || Is_container(allchain)) continue;
+
+			if (objects[allchain->otyp].oc_weight > 0) trashvalue = (objects[allchain->otyp].oc_weight) * allchain->quan;
+			else trashvalue = allchain->quan;
+
+			u.garbagecleaned += trashvalue;
+			You("clean up %s and add %d weight units to your trash bin.", doname(allchain), trashvalue);
+			delobj(allchain);
+
+			if (u.garbagecleaned >= 1000) {
+				You("filled your trash bin, and call a garbage truck that will arrive shortly.");
+				u.garbagetrucktime = rn1(500,500);
+				break;
+			}
+
+		}
+
 	} else if (Race_if(PM_PLAYER_MUSHROOM)) {
 
 		/* This does not consume a turn, which is intentional. --Amy */
@@ -5330,6 +5385,18 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && u.hussyperfume) {
 		sprintf(buf, "to wait until you can spread the perfume again.");
 	      sprintf(eos(buf), " (%d)", u.hussyperfume);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && Role_if(PM_JANITOR)) {
+		sprintf(buf, "the following amount of trash in your trash can:");
+	      sprintf(eos(buf), " %d", u.garbagecleaned);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && Role_if(PM_JANITOR) && u.garbagetrucktime) {
+		sprintf(buf, "called the garbage truck, and it will arrive in");
+	      sprintf(eos(buf), " %d turns", u.garbagetrucktime);
 		you_have(buf);
 	}
 
@@ -8991,6 +9058,18 @@ int final;
 	if (u.hussyperfume) {
 		sprintf(buf, "to wait until you can spread the perfume again.");
 	      sprintf(eos(buf), " (%d)", u.hussyperfume);
+		dump(youhad, buf);
+	}
+
+	if (Role_if(PM_JANITOR)) {
+		sprintf(buf, "the following amount of trash in your trash can:");
+	      sprintf(eos(buf), " %d", u.garbagecleaned);
+		dump(youhad, buf);
+	}
+
+	if (Role_if(PM_JANITOR) && u.garbagetrucktime) {
+		sprintf(buf, "called the garbage truck, and it will arrive in");
+	      sprintf(eos(buf), " %d turns", u.garbagetrucktime);
 		dump(youhad, buf);
 	}
 

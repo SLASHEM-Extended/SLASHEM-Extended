@@ -1534,6 +1534,9 @@ struct you {
 
 	boolean metalguard;	/* for metal guard spell */
 
+	int garbagecleaned;	/* for janitor role */
+	int garbagetrucktime;	/* ditto */
+
 	int mojibakecount;	/* hack for pager.c */
 
 	int swappositioncount;	/* for the swap position spell */

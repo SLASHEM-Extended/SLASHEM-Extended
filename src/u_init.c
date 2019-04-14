@@ -9910,6 +9910,8 @@ u_init()
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
 	u.bodyfluideffect = 0;
+	u.garbagecleaned = 0;
+	u.garbagetrucktime = 0;
 	u.antitelespelltimeout = 0;
 	u.breathenhancetimer = 0;
 	u.mushroompoleused = 0;
