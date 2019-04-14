@@ -19692,7 +19692,7 @@ lava_effects()
 #endif
 	for(obj = invent; obj; obj = obj2) {
 	    obj2 = obj->nobj;
-	    if(is_organic(obj) && !obj->oerodeproof && !stack_too_big(obj)) {
+	    if(is_organic(obj) && !obj->oerodeproof && !rn2(obj->blessed ? 15 : 3) && !stack_too_big(obj)) {
 		if(obj->owornmask) {
 		    if (usurvive)
 			Your("%s into flame!", aobjnam(obj, "burst"));
@@ -19713,18 +19713,48 @@ lava_effects()
 		    else if (obj == uquiver) uqwepgone();
 		    else if (obj == uswapwep) uswapwepgone();
 		}
+		/* losing your main container will screw you over completely, so they get another saving throw --Amy */
+		if (Is_container(obj)) {
+
+			switch (obj->otyp) {
+				case ICE_BOX:
+				case ICE_BOX_OF_HOLDING:
+				case ICE_BOX_OF_WATERPROOFING:
+				case ICE_BOX_OF_DIGESTION:
+				continue;		/* Immune */
+				/*NOTREACHED*/
+				break;
+			case CHEST:
+			case CHEST_OF_HOLDING:
+				if (rnd(10) < 7) continue; /* 60% chance of survival */
+				break;
+			case LARGE_BOX:
+			case LARGE_BOX_OF_DIGESTION:
+				if (rnd(20) < 12) continue; /* 55% chance of survival */
+				break;
+			case TREASURE_CHEST:
+				continue;		/* Immune, if you somehow get one into your inventory :P */
+				/*NOTREACHED*/
+				break;
+			default:
+				if (!rn2(2)) continue; /* 50% chance of survival */
+				break;
+			}
+		}
 		useupall(obj);
 	    }
 	}
 
 	/* Amy edit: let's be nice for once, and change the behavior of lava so that it's not always an instakill.
-	 * Now, if you have more than 10 max HP, it reduces the maximum by half and puts you in the lava, so it's still
-	 * very dangerous, but at least your game doesn't necessarily end from a single misstep */
+	 * Now, if you have more than 10 max HP, it reduces the maximum by half (but doesn't take off more than 50 at once)
+	 * and puts you in the lava, so it's still very dangerous, but at least your game doesn't necessarily end
+	 * from a single misstep, and also we made the item destruction less harsh */
 	if (u.uhpmax > 10) {
 
 		pline_The("lava here burns you, and your health is severely damaged!");
 		losehp(rnd(36), lava_killer, KILLED_BY);
-		u.uhpmax /= 2;
+		if (u.uhpmax > 100) u.uhpmax -= 50;
+		else u.uhpmax /= 2;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 
 	} else {
@@ -19760,10 +19790,9 @@ lava_effects()
 	if (u.uhp > 1)
 	    losehp(1, lava_killer, KILLED_BY);
     }
-    /* just want to burn boots, not all armor; destroy_item doesn't work on
-       armor anyway */
+    /* just want to burn boots, not all armor; destroy_item doesn't work on armor anyway */
 burn_stuff:
-    if(uarmf && !uarmf->oerodeproof && is_organic(uarmf)) {
+    if(uarmf && !uarmf->oerodeproof && is_organic(uarmf) && !rn2(uarmf->blessed ? 15 : 3)) {
 	/* save uarmf value because Boots_off() sets uarmf to null */
 	obj = uarmf;
 	Your("%s bursts into flame!", xname(obj));
