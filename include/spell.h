@@ -9,6 +9,7 @@ struct spell {
     short	sp_id;			/* spell id (== object.otyp) */
     xchar	sp_lev;			/* power level */
     int		sp_know;		/* knowlege of spell */
+    boolean		sp_memorize;	/* whether memorization skill is used for this spell */
 };
 
 /* levels of memory destruction with a scroll of amnesia */

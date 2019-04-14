@@ -34,7 +34,6 @@ STATIC_DCL void menu_identify(int);
 STATIC_DCL boolean tool_in_use(struct obj *);
 #endif /* OVLB */
 STATIC_DCL char obj_to_let(struct obj *);
-STATIC_DCL int itemactions(struct obj *);
 
 /* define for getobj() */
 #define FOLLOW(curr, flags) \
@@ -6659,7 +6658,7 @@ ddoinv()
 	if (!c) return 0;
 	for (otmp = invent; otmp; otmp = otmp->nobj)
 		if (otmp->invlet == c) break;
-	if (otmp) return itemactions(otmp);
+	if (otmp) return itemactions(otmp, FALSE);
 	return 0;
 
 }
@@ -8263,18 +8262,19 @@ boolean as_if_seen;
 
 /* Itemactions function stolen from Unnethack. I'll just print info about the item though. --Amy */
 int
-itemactions(obj)
+itemactions(obj, knoweverything)
 struct obj *obj;
+boolean knoweverything;
 {
 
-	if (Hallucination) {
+	if (Hallucination && !knoweverything) {
 
 	pline("%s - This item radiates in an array of beautiful colors. It's very mesmerizing.",xname(obj) );
 
 	return 0;
 	}
 
-	if (PlayerUninformation) {
+	if (PlayerUninformation && !knoweverything) {
 
 	pline("%s - This is the best item in the game if you know how to use it. Good luck making it work!",xname(obj) );
 
@@ -8285,6 +8285,7 @@ struct obj *obj;
 	register int typ = obj->otyp;
 	register struct objclass *ocl = &objects[typ];
 	register int nn = (ocl->oc_name_known && obj->dknown);
+	if (knoweverything) nn = TRUE;
 	register const char *dn = OBJ_DESCR(*ocl);
 
 	switch (obj->oclass) {
@@ -12843,7 +12844,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Spell level: %d. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", nn ? objects[obj->otyp].oc_level : 0);
 #endif
-		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
+		if ((!nn) && (!knoweverything)) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case SPE_FORCE_BOLT:

@@ -996,6 +996,7 @@ E boolean have_cursedmagicresstone(void);
 E boolean have_loadboulder(void);
 E boolean have_starlightstone(void);
 E boolean sjwcheck(int);
+E int itemactions(struct obj *,BOOLEAN_P);
 
 E int numberofetheritems(void);
 E int numberofwornetheritems(void);
@@ -1513,6 +1514,7 @@ E void topologize(struct mkroom *);
 #endif
 E void place_branch(branch *,XCHAR_P,XCHAR_P);
 E boolean occupied(XCHAR_P,XCHAR_P);
+E boolean reallyoccupied(XCHAR_P,XCHAR_P);
 E int okdoor(XCHAR_P,XCHAR_P);
 E void dodoor(int,int,struct mkroom *);
 E void mktrap(int,int,struct mkroom *,coord*);

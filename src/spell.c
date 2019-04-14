@@ -25,6 +25,7 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 #define MAX_SPELL_STUDY    30	/* Uses before spellbook crumbles */
 
 #define spellknow(spell)	spl_book[spell].sp_know 
+#define spellmemorize(spell)	spl_book[spell].sp_memorize
 
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
@@ -54,7 +55,7 @@ STATIC_DCL void deadbook(struct obj *);
 STATIC_PTR int learn(void);
 STATIC_DCL void do_reset_learn(void);
 STATIC_DCL boolean getspell(int *, BOOLEAN_P);
-STATIC_DCL boolean dospellmenu(const char *,int,int *);
+STATIC_DCL boolean dospellmenu(const char *,int,int *, int);
 STATIC_DCL int percent_success(int);
 STATIC_DCL void cast_protection(void);
 STATIC_DCL void cast_reflection(void);
@@ -2322,6 +2323,7 @@ learn()
 		} else if (spellid(i) == NO_SPELL)  {
 			spl_book[i].sp_id = booktype;
 			spl_book[i].sp_lev = objects[booktype].oc_level;
+			spl_book[i].sp_memorize = TRUE;
 			incrnknow(i);
 			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
@@ -2767,23 +2769,23 @@ getspell(spell_no, goldspellpossible)
 		    You("don't know that spell.");
 	    }
 	}
-	if (SpellColorPink) return dospellmenu("Your spells are pink.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorBrightCyan) return dospellmenu("Your spells are bright cyan.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorCyan) return dospellmenu("Your spells are cyan.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorBlack) return dospellmenu("Your spells are black.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorOrange) return dospellmenu("Your spells are orange.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorRed) return dospellmenu("Your spells are red.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorPlatinum) return dospellmenu("Your spells are platinum.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorSilver) return dospellmenu("Your spells are silver.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorMetal) return dospellmenu("Your spells are metal.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorGreen) return dospellmenu("Your spells are green.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorBlue) return dospellmenu("Your spells are blue.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorGray) return dospellmenu("Your spells are completely gray.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorBrown) return dospellmenu("Your spells are brown.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorWhite) return dospellmenu("Your spells are white.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorViolet) return dospellmenu("Your spells are violet.", SPELLMENU_CAST, spell_no);
-	else if (SpellColorYellow) return dospellmenu("Your spells are yellow.", SPELLMENU_CAST, spell_no);
-	else return dospellmenu("Choose which spell to cast", SPELLMENU_CAST, spell_no);
+	if (SpellColorPink) return dospellmenu("Your spells are pink.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorBrightCyan) return dospellmenu("Your spells are bright cyan.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorCyan) return dospellmenu("Your spells are cyan.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorBlack) return dospellmenu("Your spells are black.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorOrange) return dospellmenu("Your spells are orange.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorRed) return dospellmenu("Your spells are red.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorPlatinum) return dospellmenu("Your spells are platinum.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorSilver) return dospellmenu("Your spells are silver.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorMetal) return dospellmenu("Your spells are metal.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorGreen) return dospellmenu("Your spells are green.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorBlue) return dospellmenu("Your spells are blue.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorGray) return dospellmenu("Your spells are completely gray.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorBrown) return dospellmenu("Your spells are brown.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorWhite) return dospellmenu("Your spells are white.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorViolet) return dospellmenu("Your spells are violet.", SPELLMENU_CAST, spell_no, 0);
+	else if (SpellColorYellow) return dospellmenu("Your spells are yellow.", SPELLMENU_CAST, spell_no, 0);
+	else return dospellmenu("Choose which spell to cast", SPELLMENU_CAST, spell_no, 0);
 
 }
 
@@ -10111,10 +10113,10 @@ dovspell()
 	if (spellid(0) == NO_SPELL)
 	    You("don't know any spells right now.");
 	else {
-	    while (dospellmenu( spellcolorbuf, SPELLMENU_VIEW, &splnum)) {
+	    while (dospellmenu( spellcolorbuf, SPELLMENU_VIEW, &splnum, 0)) {
 		sprintf(qbuf, "Reordering spells; swap '%s' with",
 			(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) ? "spell" : spellname(splnum));
-		if (!dospellmenu(qbuf, splnum, &othnum)) break;
+		if (!dospellmenu(qbuf, splnum, &othnum, 0)) break;
 
 		spl_tmp = spl_book[splnum];
 		spl_book[splnum] = spl_book[othnum];
@@ -10125,16 +10127,19 @@ dovspell()
 }
 
 STATIC_OVL boolean
-dospellmenu(prompt, splaction, spell_no)
+dospellmenu(prompt, splaction, spell_no, specialmenutype)
 const char *prompt;
 int splaction;	/* SPELLMENU_CAST, SPELLMENU_VIEW, or spl_book[] index */
 int *spell_no;
+/* specialmenutype: 0 = show spells, 1 = describe spells, 2 = memorize spells */
+int specialmenutype;
 {
 	winid tmpwin;
 	int i, n, how;
 	char buf[BUFSZ];
 	menu_item *selected;
 	anything any;
+	boolean describe;
 
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
@@ -10158,10 +10163,11 @@ int *spell_no;
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, buf, MENU_UNSELECTED);
 	if (!SpellLoss && !u.uprops[SPELLS_LOST].extrinsic && !have_spelllossstone()) {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 		sprintf(buf, iflags.menu_tab_sep ?
-			"%s\t%-d%s\t%s\t%-d%%" : "%-20s  %2d%s   %-10s %3d%%"
+			"%s\t%-d%s\t%s%s\t%-d%%" : "%-20s  %2d%s%s  %-8s %4d%%"
 			"   %3d%%",
 			spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
+			spellmemorize(i) ? " " : "-",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 
@@ -10188,6 +10194,28 @@ int *spell_no;
 	      }
 
 	}
+
+	if (splaction == SPELLMENU_VIEW) {
+		if (specialmenutype == 0) {
+			any.a_int = -1;	/* must be non-zero */
+			add_menu(tmpwin, NO_GLYPH, &any,
+				'?', 0, ATR_NONE, "Describe a spell instead",
+				MENU_UNSELECTED);
+		}
+		else if (specialmenutype == 1) {
+			any.a_int = -1;	/* must be non-zero */
+			add_menu(tmpwin, NO_GLYPH, &any,
+				'?', 0, ATR_NONE, "Memorize a spell instead",
+				MENU_UNSELECTED);
+		}
+		else if (specialmenutype == 2) {
+			any.a_int = -1;	/* must be non-zero */
+			add_menu(tmpwin, NO_GLYPH, &any,
+				'?', 0, ATR_NONE, "View spells instead",
+				MENU_UNSELECTED);
+		}
+	}
+
 	end_menu(tmpwin, prompt);
 
 	how = PICK_ONE;
@@ -10195,6 +10223,56 @@ int *spell_no;
 	    how = PICK_NONE;	/* only one spell => nothing to swap with */
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
+	if (n > 0 && selected[0].item.a_int == -1) {
+
+		char spellcolorbuf[BUFSZ];
+
+		if (SpellColorPink) sprintf(spellcolorbuf, "Your spells are pink.");
+		else if (SpellColorBrightCyan) sprintf(spellcolorbuf, "Your spells are bright cyan.");
+		else if (SpellColorCyan) sprintf(spellcolorbuf, "Your spells are cyan.");
+		else if (SpellColorBlack) sprintf(spellcolorbuf, "Your spells are black.");
+		else if (SpellColorOrange) sprintf(spellcolorbuf, "Your spells are orange.");
+		else if (SpellColorRed) sprintf(spellcolorbuf, "Your spells are red.");
+		else if (SpellColorPlatinum) sprintf(spellcolorbuf, "Your spells are platinum.");
+		else if (SpellColorSilver) sprintf(spellcolorbuf, "Your spells are silver.");
+		else if (SpellColorMetal) sprintf(spellcolorbuf, "Your spells are metal.");
+		else if (SpellColorGreen) sprintf(spellcolorbuf, "Your spells are green.");
+		else if (SpellColorBlue) sprintf(spellcolorbuf, "Your spells are blue.");
+		else if (SpellColorGray) sprintf(spellcolorbuf, "Your spells are completely gray.");
+		else if (SpellColorBrown) sprintf(spellcolorbuf, "Your spells are brown.");
+		else if (SpellColorWhite) sprintf(spellcolorbuf, "Your spells are white.");
+		else if (SpellColorViolet) sprintf(spellcolorbuf, "Your spells are violet.");
+		else if (SpellColorYellow) sprintf(spellcolorbuf, "Your spells are yellow.");
+		else if (specialmenutype == 0) sprintf(spellcolorbuf, "Choose a spell to describe");
+		else if (specialmenutype == 1) sprintf(spellcolorbuf, "Choose a spell to (de-)memorize");
+		else if (specialmenutype == 2) sprintf(spellcolorbuf, "Currently known spells");
+		else sprintf(spellcolorbuf, "Bug: unknown spell menu title");
+
+		return dospellmenu(spellcolorbuf, splaction, spell_no, (specialmenutype == 2) ? 0 : (specialmenutype + 1));
+	}
+	if (n > 0 && splaction == SPELLMENU_VIEW && specialmenutype == 1) { /* describe */
+
+		register struct obj *pseudo;
+
+		pseudo = mksobj(spellid(selected[0].item.a_int - 1), FALSE, 2);
+		if (!pseudo) {
+			impossible("bugged pseudo object for spell description.");
+			return dospellmenu(prompt, splaction, spell_no, specialmenutype);
+		}
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = spellid(selected[0].item.a_int - 1); /* minimalist fix */
+		pseudo->blessed = pseudo->cursed = 0;
+		pseudo->quan = 20L;			/* do not let useup get it */
+
+		(void) itemactions(pseudo, TRUE);
+		obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+		return dospellmenu(prompt, splaction, spell_no, specialmenutype);
+	}
+	if (n > 0 && splaction == SPELLMENU_VIEW && specialmenutype == 2) { /* memorize */
+
+		spl_book[selected[0].item.a_int - 1].sp_memorize = !spl_book[selected[0].item.a_int - 1].sp_memorize;
+
+		return dospellmenu(prompt, splaction, spell_no, specialmenutype);
+	}
 	if (n > 0) {
 		*spell_no = selected[0].item.a_int - 1;
 		/* menu selection for `PICK_ONE' does not
@@ -10232,9 +10310,10 @@ dump_spells()
 	sprintf(buf, "%-20s   Level    %-10s Fail  Memory", "    Name", " Category");
 	dump("  ",buf);
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
-		sprintf(buf, "%c - %-20s  %2d%s   %-10s %3d%%  %3d%%",
+		sprintf(buf, "%c - %-20s  %2d%s%s  %-8s %4d%%  %3d%%",
 			spellet(i), spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
+			spellmemorize(i) ? " " : "-",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 			SpellColorCyan ? 100 : issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
@@ -10925,6 +11004,7 @@ struct obj *obj;
 	    if (spellid(i) == NO_SPELL)  {
 	        spl_book[i].sp_id = obj->otyp;
 	        spl_book[i].sp_lev = objects[obj->otyp].oc_level;
+		  spl_book[i].sp_memorize = TRUE;
 	        incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 
@@ -11023,6 +11103,7 @@ wonderspell()
 		} else if (spellid(i) == NO_SPELL)  {
 			spl_book[i].sp_id = randomspell;
 			spl_book[i].sp_lev = objects[randomspell].oc_level;
+			spl_book[i].sp_memorize = TRUE;
 			incrnknow(i);
 			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
