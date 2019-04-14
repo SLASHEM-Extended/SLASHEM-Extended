@@ -10277,10 +10277,12 @@ ghnhom4:
 
 	if (u.uz.dlevel != 1) {
 	    xchar sx, sy;
+	    register int stairattempts = 0; /* see reallyoccupied function --Amy */
 	    do {
 		sx = somex(croom);
 		sy = somey(croom);
-	    } while(occupied(sx, sy));
+		stairattempts++;
+	    } while((stairattempts > 50000) ? reallyoccupied(sx, sy) : occupied(sx, sy));
 	    mkstairs(sx, sy, 1, croom);	/* up */
 	}
 
@@ -12693,11 +12695,14 @@ find_branch_room(mp)
 	} else
 	    croom = &rooms[rn2(nroom)];
 
+	register int roomattempts = 0;
+
 	do {
+	    roomattempts++;
 	    if (!somexy(croom, mp))
 		impossible("Can't place branch!");
 		return croom;
-	} while(occupied(mp->x, mp->y) ||
+	} while( ((roomattempts > 50000) ? reallyoccupied(mp->x, mp->y) : occupied(mp->x, mp->y)) ||
 	    (levl[mp->x][mp->y].typ != CORR && levl[mp->x][mp->y].typ != ROOM));
     }
     return croom;
@@ -12886,6 +12891,17 @@ register xchar x, y;
 		|| is_urinelake(x,y)
 		|| invocation_pos(x,y)
 		));
+}
+
+/* K2 found out that the game can enter an infinite loop occasionally; I've seen that happen in slex before, especially
+ * when a pool room was on one of my special mazes. Apparently, if the game tries to put a branch stair or something in
+ * one of those rooms and there's only water everywhere, it searches and searches for a position where it could put the
+ * staircase and never finds one, so I had to make sure it can exit that loop eventually. --Amy */
+boolean
+reallyoccupied(x, y)
+register xchar x, y;
+{
+	return((boolean) (levl[x][y].typ == STAIRS) || (levl[x][y].typ == LADDER) || invocation_pos(x,y));
 }
 
 /* make a trap somewhere (in croom if mazeflag = 0 && !tm) */
