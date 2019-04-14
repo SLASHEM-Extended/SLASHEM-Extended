@@ -8267,8 +8267,8 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_OBNOXIOUS_NAIAD]) (void) mongets(mtmp, SCR_FLOOD);
 		if (mtmp->data == &mons[PM_HC_THIEF]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 		if (ishaxor && mtmp->data == &mons[PM_APHRODITE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
-		if(!rn2(2)) (void) mongets(mtmp, MIRROR);
-		if(!rn2(/*2*/10)) (void) mongets(mtmp, POT_OBJECT_DETECTION);
+		if(!rn2(5)) (void) mongets(mtmp, MIRROR);
+		if(!rn2(10)) (void) mongets(mtmp, POT_OBJECT_DETECTION);
 
 		/* evil patch idea by jonadab: levelwarping nymphs. To avoid annoying segfaults I'll have them do it via item. --Amy */
 		if(!rn2(200)) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
