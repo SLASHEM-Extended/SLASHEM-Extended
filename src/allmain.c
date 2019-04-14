@@ -9842,7 +9842,7 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: You can now play ZAPM mode! Add OPTIONS=zapem to your options file for that :-)");
+	if (new_game) pline("Message of the day: Remember to try out the #monster extended command - there are some roles and races that can use it to activate special abilities even while in their normal form!");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
