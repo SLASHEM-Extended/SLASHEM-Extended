@@ -47,20 +47,21 @@ STATIC_DCL struct artifact artilist[];
 #define PN_TECHNIQUES		(-29)
 #define PN_IMPLANTS		(-30)
 #define PN_SEXY_FLATS		(-31)
-#define PN_SHII_CHO		(-32)
-#define PN_MAKASHI		(-33)
-#define PN_SORESU		(-34)
-#define PN_ATARU		(-35)
-#define PN_SHIEN		(-36)
-#define PN_DJEM_SO		(-37)
-#define PN_NIMAN		(-38)
-#define PN_JUYO		(-39)
-#define PN_VAAPAD		(-40)
-#define PN_WEDI		(-41)
-#define PN_MARTIAL_ARTS		(-42)
-#define PN_RIDING		(-43)
-#define PN_TWO_WEAPONS		(-44)
-#define PN_LIGHTSABER		(-45)
+#define PN_MEMORIZATION		(-32)
+#define PN_SHII_CHO		(-33)
+#define PN_MAKASHI		(-34)
+#define PN_SORESU		(-35)
+#define PN_ATARU		(-36)
+#define PN_SHIEN		(-37)
+#define PN_DJEM_SO		(-38)
+#define PN_NIMAN		(-39)
+#define PN_JUYO		(-40)
+#define PN_VAAPAD		(-41)
+#define PN_WEDI		(-42)
+#define PN_MARTIAL_ARTS		(-43)
+#define PN_RIDING		(-44)
+#define PN_TWO_WEAPONS		(-45)
+#define PN_LIGHTSABER		(-46)
 
 #ifndef OVLB
 
@@ -92,6 +93,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
+	PN_MEMORIZATION,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
@@ -134,6 +136,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "techniques",
     "implants",
     "sexy flats",
+    "memorization",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
@@ -3132,6 +3135,9 @@ doinvoke()
 						acquiredskill = 1; }
 					else if (P_ADVANCE(P_SEXY_FLATS) && !(P_RESTRICTED(P_SEXY_FLATS)) && yn("Do you want to train the sexy flats skill?")=='y') {
 						P_ADVANCE(P_SEXY_FLATS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MEMORIZATION) && !(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
+						P_ADVANCE(P_MEMORIZATION) *= 2;
 						acquiredskill = 1; }
 					else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
 						P_ADVANCE(P_SHII_CHO) *= 2;

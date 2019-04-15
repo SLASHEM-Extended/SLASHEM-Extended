@@ -45,20 +45,21 @@ STATIC_DCL int enhance_skill(boolean);
 #define PN_TECHNIQUES		(-29)
 #define PN_IMPLANTS		(-30)
 #define PN_SEXY_FLATS		(-31)
-#define PN_SHII_CHO		(-32)
-#define PN_MAKASHI		(-33)
-#define PN_SORESU		(-34)
-#define PN_ATARU		(-35)
-#define PN_SHIEN		(-36)
-#define PN_DJEM_SO		(-37)
-#define PN_NIMAN		(-38)
-#define PN_JUYO		(-39)
-#define PN_VAAPAD		(-40)
-#define PN_WEDI		(-41)
-#define PN_MARTIAL_ARTS		(-42)
-#define PN_RIDING		(-43)
-#define PN_TWO_WEAPONS		(-44)
-#define PN_LIGHTSABER		(-45)
+#define PN_MEMORIZATION		(-32)
+#define PN_SHII_CHO		(-33)
+#define PN_MAKASHI		(-34)
+#define PN_SORESU		(-35)
+#define PN_ATARU		(-36)
+#define PN_SHIEN		(-37)
+#define PN_DJEM_SO		(-38)
+#define PN_NIMAN		(-39)
+#define PN_JUYO		(-40)
+#define PN_VAAPAD		(-41)
+#define PN_WEDI		(-42)
+#define PN_MARTIAL_ARTS		(-43)
+#define PN_RIDING		(-44)
+#define PN_TWO_WEAPONS		(-45)
+#define PN_LIGHTSABER		(-46)
 
 static void give_may_advance_msg(int);
 STATIC_PTR int practice(void);
@@ -102,6 +103,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
+	PN_MEMORIZATION,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
@@ -144,6 +146,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "techniques",
     "implants",
     "sexy flats",
+    "memorization",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
@@ -2617,6 +2620,10 @@ int skill;
 	    	learntech(T_DIRECTIVE, FROMOUTSIDE, 1);
 	    	You("learn how to perform directive!");
 	}
+	if (skill == P_MEMORIZATION && P_SKILL(skill) == P_MASTER && !tech_known(T_WONDER_YONDER)) {
+	    	learntech(T_WONDER_YONDER, FROMOUTSIDE, 1);
+	    	You("learn how to perform wonder yonder!");
+	}
 	if (skill == P_TWO_WEAPON_COMBAT && P_SKILL(skill) == P_EXPERT && !tech_known(T_SWAP_WEAPON)) {
 	    	learntech(T_SWAP_WEAPON, FROMOUTSIDE, 1);
 	    	You("learn how to perform swap weapon!");
@@ -3179,6 +3186,9 @@ int skill;
 		case P_SEXY_FLATS:
 			    HRegeneration |= FROMOUTSIDE; pline("Got regeneration!"); break;
 		break;
+		case P_MEMORIZATION:
+			    HStealth |= FROMOUTSIDE; pline("Got stealth!"); break;
+		break;
 
 		default: break;
 
@@ -3459,6 +3469,11 @@ int skill;
 		case P_PETKEEPING:
 				if (!tech_known(T_SUMMON_PET)) {    	learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
 			    	You("learn how to perform summon pet!");
+				}
+		break;
+		case P_MEMORIZATION:
+				if (!tech_known(T_ZAP_EM)) {    	learntech(T_ZAP_EM, FROMOUTSIDE, 1);
+			    	You("learn how to perform zap em!");
 				}
 		break;
 		case P_MISSILE_WEAPONS:
@@ -3829,6 +3844,10 @@ int degree;
 			if (skill == P_PETKEEPING && !tech_known(T_DIRECTIVE)) {
 				learntech(T_DIRECTIVE, FROMOUTSIDE, 1);
 				You("learn how to perform directive!");
+			}
+			if (skill == P_MEMORIZATION && !tech_known(T_WONDER_YONDER)) {
+				learntech(T_WONDER_YONDER, FROMOUTSIDE, 1);
+				You("learn how to perform wonder yonder!");
 			}
 			if (skill == P_TWO_WEAPON_COMBAT && !tech_known(T_SWAP_WEAPON)) {
 				learntech(T_SWAP_WEAPON, FROMOUTSIDE, 1);
@@ -5365,6 +5384,15 @@ boolean extraskills;
 	if (obj->otyp == MAGIC_FLUTE) skill = P_PETKEEPING;
 	if (obj->otyp == WOODEN_HARP) skill = P_PETKEEPING;
 	if (obj->otyp == MAGIC_HARP) skill = P_PETKEEPING;
+	if (obj->otyp == MANACLOAK) skill = P_MEMORIZATION;
+	if (obj->otyp == CLOAK_OF_MEMORY) skill = P_MEMORIZATION;
+	if (obj->otyp == CORNUTHAUM) skill = P_MEMORIZATION;
+	if (obj->otyp == GAUNTLETS_OF_FAST_CASTING) skill = P_MEMORIZATION;
+	if (obj->otyp == HELM_OF_BRILLIANCE) skill = P_MEMORIZATION;
+	if (obj->otyp == RIN_MEMORY) skill = P_MEMORIZATION;
+	if (obj->otyp == AMULET_OF_POWER) skill = P_MEMORIZATION;
+	if (obj->otyp == POT_KEEN_MEMORY) skill = P_MEMORIZATION;
+	if (obj->otyp == SCR_WONDER) skill = P_MEMORIZATION;
 	if (obj->otyp == RIN_POLYMORPH) skill = P_POLYMORPHING;
 	if (obj->otyp == RIN_POLYMORPH_CONTROL) skill = P_POLYMORPHING;
 	if (obj->otyp == RIN_PROTECTION_FROM_SHAPE_CHAN) skill = P_POLYMORPHING;
@@ -6175,6 +6203,15 @@ rerollthree:
 			if (P_MAX_SKILL(P_PETKEEPING) == P_EXPERT) P_MAX_SKILL(P_PETKEEPING) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_PETKEEPING) = P_SUPREME_MASTER;
 		}
+		if (P_RESTRICTED(P_MEMORIZATION)) {
+			P_SKILL(P_MEMORIZATION) = P_BASIC;
+			P_ADVANCE(P_MEMORIZATION) = 20;
+			P_MAX_SKILL(P_MEMORIZATION) = P_SKILLED;
+		} else {
+			P_SKILL(P_MEMORIZATION) = P_BASIC;
+			if (P_MAX_SKILL(P_MEMORIZATION) == P_EXPERT) P_MAX_SKILL(P_MEMORIZATION) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_MEMORIZATION) = P_SUPREME_MASTER;
+		}
 		if (P_RESTRICTED(P_MISSILE_WEAPONS)) {
 			P_SKILL(P_MISSILE_WEAPONS) = P_BASIC;
 			P_ADVANCE(P_MISSILE_WEAPONS) = 20;
@@ -6466,6 +6503,9 @@ rerollthree:
 	}
 	if (P_SKILL(P_PETKEEPING) >= P_SKILLED && !tech_known(T_DIRECTIVE)) {
 	    	learntech(T_DIRECTIVE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_MEMORIZATION) >= P_MASTER && !tech_known(T_WONDER_YONDER)) {
+	    	learntech(T_WONDER_YONDER, FROMOUTSIDE, 1);
 	}
 	if (P_SKILL(P_TWO_WEAPON_COMBAT) >= P_EXPERT && !tech_known(T_SWAP_WEAPON)) {
 	    	learntech(T_SWAP_WEAPON, FROMOUTSIDE, 1);

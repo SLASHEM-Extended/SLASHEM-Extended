@@ -95,20 +95,21 @@ static int spell_dash(void);
 #define PN_TECHNIQUES		(-29)
 #define PN_IMPLANTS		(-30)
 #define PN_SEXY_FLATS		(-31)
-#define PN_SHII_CHO		(-32)
-#define PN_MAKASHI		(-33)
-#define PN_SORESU		(-34)
-#define PN_ATARU		(-35)
-#define PN_SHIEN		(-36)
-#define PN_DJEM_SO		(-37)
-#define PN_NIMAN		(-38)
-#define PN_JUYO		(-39)
-#define PN_VAAPAD		(-40)
-#define PN_WEDI		(-41)
-#define PN_MARTIAL_ARTS		(-42)
-#define PN_RIDING		(-43)
-#define PN_TWO_WEAPONS		(-44)
-#define PN_LIGHTSABER		(-45)
+#define PN_MEMORIZATION		(-32)
+#define PN_SHII_CHO		(-33)
+#define PN_MAKASHI		(-34)
+#define PN_SORESU		(-35)
+#define PN_ATARU		(-36)
+#define PN_SHIEN		(-37)
+#define PN_DJEM_SO		(-38)
+#define PN_NIMAN		(-39)
+#define PN_JUYO		(-40)
+#define PN_VAAPAD		(-41)
+#define PN_WEDI		(-42)
+#define PN_MARTIAL_ARTS		(-43)
+#define PN_RIDING		(-44)
+#define PN_TWO_WEAPONS		(-45)
+#define PN_LIGHTSABER		(-46)
 
 #ifndef OVLB
 
@@ -140,6 +141,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
+	PN_MEMORIZATION,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
@@ -182,6 +184,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "techniques",
     "implants",
     "sexy flats",
+    "memorization",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
@@ -2301,15 +2304,40 @@ learn()
 			    book->otyp = booktype = SPE_BLANK_PAPER;
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
+			    use_skill(P_MEMORIZATION, spellev(i));
 			    incrnknow(i);
 				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			    book->spestudied++;
+
+				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+					char nervbuf[QBUFSZ];
+					char thisisannoying = 0;
+
+					sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+					thisisannoying = yn_function(nervbuf, ynqchars, 'y');
+					if (thisisannoying != 'n') {
+
+						int memoboost = 0;
+						switch (P_SKILL(P_MEMORIZATION)) {
+							case P_BASIC: memoboost = 2; break;
+							case P_SKILLED: memoboost = 4; break;
+							case P_EXPERT: memoboost = 6; break;
+							case P_MASTER: memoboost = 8; break;
+							case P_GRAND_MASTER: memoboost = 10; break;
+							case P_SUPREME_MASTER: memoboost = 12; break;
+						}
+					    	boostknow(i, memoboost * 1000);
+						spl_book[i].sp_memorize = TRUE;
+					} else spl_book[i].sp_memorize = FALSE;
+
+				}
+
 			    if (end_delay) {
-			    	boostknow(i,
-				  end_delay * (book->spe > 0 ? 20 : 10));
-				use_skill(spell_skilltype(book->otyp),
-				  end_delay / (book->spe > 0 ? 10 : 20));
+			    	boostknow(i, end_delay * (book->spe > 0 ? 20 : 10));
+
+				use_skill(spell_skilltype(book->otyp), end_delay / (book->spe > 0 ? 10 : 20));
 			    }
 			    exercise(A_WIS, TRUE);      /* extra study */
 			} else { /* MAX_CAN_STUDY < spellknow(i) <= MAX_SPELL_STUDY */
@@ -2324,6 +2352,7 @@ learn()
 			spl_book[i].sp_id = booktype;
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			spl_book[i].sp_memorize = TRUE;
+			use_skill(P_MEMORIZATION, spellev(i));
 			incrnknow(i);
 			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
@@ -2342,6 +2371,31 @@ learn()
 				You_feel("dizzy!");
 				forget(ALL_MAP);
 			}
+
+			if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+				char nervbuf[QBUFSZ];
+				char thisisannoying = 0;
+
+				sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+				thisisannoying = yn_function(nervbuf, ynqchars, 'y');
+				if (thisisannoying != 'n') {
+
+					int memoboost = 0;
+					switch (P_SKILL(P_MEMORIZATION)) {
+						case P_BASIC: memoboost = 2; break;
+						case P_SKILLED: memoboost = 4; break;
+						case P_EXPERT: memoboost = 6; break;
+						case P_MASTER: memoboost = 8; break;
+						case P_GRAND_MASTER: memoboost = 10; break;
+						case P_SUPREME_MASTER: memoboost = 12; break;
+					}
+				    	boostknow(i, memoboost * 1000);
+					spl_book[i].sp_memorize = TRUE;
+				} else spl_book[i].sp_memorize = FALSE;
+
+			}
+
 			break;
 		}
 	}
@@ -2438,6 +2492,26 @@ register struct obj *spellbook;
 			impossible("Unknown spellbook level %d, book %d;",
 				objects[booktype].oc_level, booktype);
 			return 0;
+		}
+
+		/* Memorization skill by Amy: reduces the time required to read a spellbook, but not below 1 (obviously) */
+		if (!PlayerCannotUseSkills && (delay < -1) && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+			int memreduction = 100;
+
+			switch (P_SKILL(P_MEMORIZATION)) {
+				case P_BASIC: memreduction = 80; break;
+				case P_SKILLED: memreduction = 60; break;
+				case P_EXPERT: memreduction = 40; break;
+				case P_MASTER: memreduction = 20; break;
+				case P_GRAND_MASTER: memreduction = 10; break;
+				case P_SUPREME_MASTER: memreduction = 5; break;
+			}
+
+			delay *= memreduction;
+			delay /= 100;
+			if (delay > -1) delay = -1; /* fail safe */
+
 		}
 
 		/* Books are often wiser than their readers (Rus.) */
@@ -2633,6 +2707,27 @@ age_spells()
 	    if (spellknow(i) ) {
 
 		if (!(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "guild cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gil'dii plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birlik plash") ) ) ) {
+
+			/* Memorization skill by Amy: if the spell is set to memorization mode, have a skill-based chance here
+			 * that on any given turn the spell memory will not decrease. */
+
+			if (!PlayerCannotUseSkills && spellmemorize(i) && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+				int savememochance = 0;
+
+				switch (P_SKILL(P_MEMORIZATION)) {
+					case P_BASIC: savememochance = 1; break;
+					case P_SKILLED: savememochance = 2; break;
+					case P_EXPERT: savememochance = 3; break;
+					case P_MASTER: savememochance = 4; break;
+					case P_GRAND_MASTER: savememochance = 5; break;
+					case P_SUPREME_MASTER: savememochance = 6; break;
+				}
+
+				if (savememochance > rn2(10)) continue;
+
+			}
+
 			decrnknow(i);
 		}
 
@@ -3528,6 +3623,12 @@ castanyway:
 		u.uen = 0;
 		if (SpellColorSilver) u.seesilverspell = 0;
 		return(1);
+	}
+
+	u.umemorizationturns += spellev(spell);
+	if (u.umemorizationturns >= 100) {
+		u.umemorizationturns -= 100;
+		use_skill(P_MEMORIZATION, 1);
 	}
 
 	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
@@ -5437,6 +5538,9 @@ aulechoice:
 					else if (P_ADVANCE(P_SEXY_FLATS) && !(P_RESTRICTED(P_SEXY_FLATS)) && yn("Do you want to train the sexy flats skill?")=='y') {
 						P_ADVANCE(P_SEXY_FLATS) *= 2;
 						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MEMORIZATION) && !(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
+						P_ADVANCE(P_MEMORIZATION) *= 2;
+						acquiredskill = 1; }
 					else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
 						P_ADVANCE(P_SHII_CHO) *= 2;
 						acquiredskill = 1; }
@@ -5847,6 +5951,8 @@ newbossPENT:
 				    unrestrict_weapon_skill(P_IMPLANTS);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_SEXY_FLATS) && yn("Do you want to learn the sexy flats skill?")=='y') {
 				    unrestrict_weapon_skill(P_SEXY_FLATS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MEMORIZATION) && yn("Do you want to learn the memorization skill?")=='y') {
+				    unrestrict_weapon_skill(P_MEMORIZATION);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_SHII_CHO) && yn("Do you want to learn the form I (Shii-Cho) skill?")=='y') {
 				    unrestrict_weapon_skill(P_SHII_CHO);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_MAKASHI) && yn("Do you want to learn the form II (Makashi) skill?")=='y') {

@@ -190,6 +190,8 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"star digging",
 	"starwars friends",
 	"use the force luke",
+	"wonder yonder",
+	"zap em",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -205,6 +207,8 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	lad_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
+	gee_tech[] = { {   15, T_ZAP_EM, 1},
+		       {   0, 0, 0} },
 	fnc_tech[] = { {   1, T_CRIT_STRIKE, 1},
 		       {   1, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
@@ -212,6 +216,7 @@ static const struct innate_tech
 		       {   4, T_CONCENTRATING, 1},
 		       {   8, T_IRON_SKIN, 1},
 		       {   10, T_SHIELD_BASH, 1},
+		       {   18, T_ZAP_EM, 1},
 		       {   0, 0, 0} },
 	sex_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   1, T_POKE_BALL, 1},
@@ -275,6 +280,7 @@ static const struct innate_tech
 
 	sta_tech[] = { {   12, T_DECONTAMINATE, 1},
 		       {   16, T_DIAMOND_BARRIER, 1},
+		       {   20, T_ZAP_EM, 1},
 		       {   0, 0, 0} },
 
 	ord_tech[] = { {   1, T_PRACTICE, 1},
@@ -336,23 +342,28 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	drd_tech[] = { {   7, T_ENT_S_POTION, 1},
 		       {   0, 0, 0} },
-	sof_tech[] = { {   10, T_TINKER, 1},
+	sof_tech[] = { {   5, T_ZAP_EM, 1},
+			 {   10, T_TINKER, 1},
 		       {   0, 0, 0} },
 	jan_tech[] = { {   1, T_IRON_SKIN, 1},
 		       {   1, T_CONCENTRATING, 1},
+		       {   20, T_ZAP_EM, 1},
 		       {   0, 0, 0} },
 	sma_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   10, T_PRACTICE, 1},
+		       {   12, T_ZAP_EM, 1},
 		       {   15, T_CHARGE_SABER, 1},
 		       {   0, 0, 0} },
 	sto_tech[] = { {   1, T_BERSERK, 1},
+		       {   1, T_ZAP_EM, 1},
 		       {   10, T_KIII, 1},
 		       {   12, T_DOUBLE_THROWNAGE, 1},
 		       {   15, T_VANISH, 1},
 		       {   20, T_SIGIL_TEMPEST, 1},
 		       {   24, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
-	cra_tech[] = { {   15, T_RESEARCH, 1},
+	cra_tech[] = { {   1, T_ZAP_EM, 1},
+			 {   15, T_RESEARCH, 1},
 		       {   20, T_RECHARGE, 1},
 		       {   30, T_DOUBLE_TROUBLE, 1},
 		       {   0, 0, 0} },
@@ -362,6 +373,7 @@ static const struct innate_tech
 			 {   8, T_CRIT_STRIKE, 1},
 		       {   10, T_SIGIL_DISCHARGE, 1},
 		       {   12, T_CHI_HEALING, 1},
+		       {   15, T_ZAP_EM, 1},
 		       {   18, T_DRAW_ENERGY, 1},
 		       {   25, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
@@ -394,7 +406,8 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	mid_tech[] = { {   1, T_RAGE, 1},
 		       {   0, 0, 0} },
-	psy_tech[] = { {   2, T_TURN_UNDEAD, 1},
+	psy_tech[] = { {   1, T_ZAP_EM, 1},
+			 {   2, T_TURN_UNDEAD, 1},
 			 {   7, T_REINFORCE, 1},
 			 {   12, T_E_FIST, 1},
 			 {   12, T_SIGIL_CONTROL, 1},
@@ -416,6 +429,8 @@ static const struct innate_tech
 	cam_tech[] = { {   12, T_CREATE_AMMO, 1},
 			 {   26, T_RECHARGE, 1},
 		       {   0, 0, 0} },
+	qua_tech[] = { {   12, T_ZAP_EM, 1},
+		       {   0, 0, 0} },
 	gan_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   0, 0, 0} },
@@ -426,6 +441,7 @@ static const struct innate_tech
 		       {   3, T_CHI_HEALING, 1},
 		       {   5, T_TURN_UNDEAD, 1},
 		       {   7, T_DRAW_BLOOD, 1},
+		       {   8, T_ZAP_EM, 1},
 		       {   10, T_DRAW_ENERGY, 1},
 		       {   15, T_SPIRITUALITY_CHECK, 1},
 		       {   20, T_ATTIRE_CHARM, 1},
@@ -437,6 +453,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	mam_tech[] = { {   1, T_REINFORCE, 1},
 		       {   1, T_RESEARCH, 1},
+		       {   1, T_ZAP_EM, 1},
 		       {   10, T_CONCENTRATING, 1},
 		       {   10, T_POWER_SURGE, 1},
 		       {   15, T_WONDERSPELL, 1},
@@ -456,6 +473,7 @@ static const struct innate_tech
 		       {   17, T_RAISE_ZOMBIES, 1},
 		       {   18, T_DIAMOND_BARRIER, 1},
 		       {   19, T_CHI_STRIKE, 1},
+		       {   22, T_ZAP_EM, 1},
 		       {   23, T_BLITZ, 1},
 		       {   24, T_EVISCERATE, 1},
 		       {   29, T_WORLD_FALL, 1},
@@ -470,6 +488,7 @@ static const struct innate_tech
 			 {   6, T_SIGIL_CONTROL, 1},
 			 {   8, T_SHIELD_BASH, 1},
 			 {   10, T_REINFORCE, 1},
+			 {   10, T_ZAP_EM, 1},
 			 {   12, T_RESEARCH, 1},
 			 {   18, T_SIGIL_TEMPEST, 1},
 			 {   18, T_CHARGE_SABER, 1},
@@ -595,7 +614,8 @@ static const struct innate_tech
 		       {   24, T_SPIRIT_BOMB, 1},
 		       {   0, 0, 0} },
 
-	jus_tech[] = { {   12, T_CONCENTRATING, 1},
+	jus_tech[] = { {   8, T_ZAP_EM, 1},
+			 {   12, T_CONCENTRATING, 1},
 		       {   16, T_SHIELD_BASH, 1},
 		       {   0, 0, 0} },
 
@@ -701,6 +721,7 @@ static const struct innate_tech
 		       {  9, T_WARD_COLD, 1},
 		       {  10, T_RAISE_ZOMBIES, 1},
 		       {  11, T_LUCKY_GAMBLE, 1},
+		       {  12, T_ZAP_EM, 1},
 		       {  13, T_WARD_ELEC, 1},
 	  	       {   15, T_CREATE_AMMO, 1},
 	  	       {   16, T_E_FIST, 1},
@@ -756,6 +777,7 @@ static const struct innate_tech
 		       {   30, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	cyb_tech[] = { {   1, T_KIII, 1},
+		       {   5, T_ZAP_EM, 1},
 		       {   6, T_SHIELD_BASH, 1},
 		       {   8, T_CUTTHROAT, 1},
 		       {   10, T_CHARGE_SABER, 1},
@@ -784,12 +806,14 @@ static const struct innate_tech
 	dis_tech[] = { {   5, T_BERSERK, 1},
 		       {  8, T_DAZZLE, 1},
 		       {  10, T_RAGE, 1},
+		       {  15, T_ZAP_EM, 1},
 		       {   0, 0, 0} },
 	mas_tech[] = { {   1, T_DIAMOND_BARRIER, 1}, /* mason */
 		       {   0, 0, 0} },
 	xel_tech[] = { {   6, T_EVISCERATE, 1},
 			 {   8, T_CRIT_STRIKE, 1},
 			 {   9, T_DASH, 1},
+			 {   10, T_ZAP_EM, 1},
 			 {   10, T_BLOOD_RITUAL, 1},
 			 {   12, T_RESEARCH, 1},
 			 {   18, T_TELEKINESIS, 1},
@@ -1520,6 +1544,14 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_POLYFORM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	egy_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_ZAP_EM, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
@@ -2606,6 +2638,14 @@ dotech()
 
 		case T_STAR_DIGGING:
 			pline("Fires digging rays in all eight directions.");
+			break;
+
+		case T_WONDER_YONDER:
+			pline("Teaches you a random spell when used, but also causes long-lasting inertia and some random bad effects.");
+			break;
+
+		case T_ZAP_EM:
+			pline("Tries to tame adjacent evilvariant monsters (use the pokedex to look for the 'Origin: Evil variant' bit). They can try to resist via monster magic resistance though.");
 			break;
 
 		case T_STARWARS_FRIENDS:
@@ -4699,7 +4739,12 @@ resettechdone:
 				{
 
 					if (mtmp3->data->mlet == S_QUADRUPED || mtmp3->data->mlet == S_UNICORN || mtmp3->data->mlet == S_ANGEL || mtmp3->data->mlet == S_CENTAUR || mtmp3->data->mlet == S_DRAGON || mtmp3->data->mlet == S_JABBERWOCK || mtmp3->data->mlet == S_ZOUTHERN) {
-						if (!(resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && !(((rnd(30 - ACURR(A_CHA))) < 4) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL)) )) {
+						if (!(resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL))) {
+							pline("%s is successfully tamed!", mon_nam(mtmp3));
+							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+							if (techlevX(tech_no) < rnd(100)) caughtX++;
+							t_timeout = rnz(3000);
+						} else if ( ((rnd(30 - ACURR(A_CHA))) < 4) && (!resist(mtmp3, RING_CLASS, 0, NOTELL) || !resist(mtmp3, RING_CLASS, 0, NOTELL) || !resist(mtmp3, RING_CLASS, 0, NOTELL)) ) {
 							pline("%s is successfully tamed!", mon_nam(mtmp3));
 							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 							if (techlevX(tech_no) < rnd(100)) caughtX++;
@@ -6389,6 +6434,71 @@ revid_end:
 			t_timeout = rnz(4000);
 			break;
 
+		case T_WONDER_YONDER:
+
+			{
+				int inerduration = rnz(1000);
+				int nastyfects = rnd(5);
+				u.uprops[DEAC_FAST].intrinsic += inerduration;
+				u.inertia += inerduration;
+				You_feel("lethargic...");
+				while (nastyfects > 0) {
+					nastyfects--;
+					badeffect();
+				}
+
+			}
+			wonderspell();
+			t_timeout = rnz(10000);
+			break;
+
+		case T_ZAP_EM:
+
+			{
+
+			if (u.uswallow) {
+				pline("You can't tame an engulfer with this technique.");
+				return 0;
+			}
+
+			int k, l, caughtX;
+			struct monst *mtmp3;
+			caughtX = 0;
+			pline("You try to tame evil monsters!");
+
+			    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
+
+				{
+
+					if (is_evilpatchmonster(mtmp3->data)) {
+						if (!(resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL))) {
+							pline("%s is successfully tamed!", mon_nam(mtmp3));
+							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+							if (techlevX(tech_no) < rnd(100)) caughtX++;
+							t_timeout = rnz(4000);
+
+						} else if ( ((rnd(30 - ACURR(A_CHA))) < 4) && (!resist(mtmp3, RING_CLASS, 0, NOTELL) || !resist(mtmp3, RING_CLASS, 0, NOTELL)) ) {
+							pline("%s is successfully tamed!", mon_nam(mtmp3));
+							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+							if (techlevX(tech_no) < rnd(100)) caughtX++;
+							t_timeout = rnz(4000);
+						} else {
+							pline("%s resists the taming attempt!", mon_nam(mtmp3));
+						}
+					} else pline("%s cannot be tamed by this method!", mon_nam(mtmp3));
+
+				} /* monster is catchable loop */
+			    } /* for loop */
+
+			}
+
+			t_timeout = rnz(4000);
+			break;
+
 		case T_DECAPABILITY:
 			num = 50 + (techlevX(tech_no) * 3);
 		    	techt_inuse(tech_no) = num + 1;
@@ -7130,6 +7240,8 @@ role_tech()
 		case PM_CHAOS_SORCEROR: 		return (cha_tech);
 		case PM_JESTER: 		return (jes_tech);
 		case PM_LADIESMAN: 		return (lad_tech);
+		case PM_GEEK: 		return (gee_tech);
+		case PM_GRADUATE: 		return (gee_tech);
 		case PM_SEXYMATE: 		return (sex_tech);
 		case PM_ZOOKEEPER: 		return (zoo_tech);
 		case PM_MEDIUM: 		return (med_tech);
@@ -7143,6 +7255,7 @@ role_tech()
 		case PM_DOLL_MISTRESS: 		return (dol_tech);
 		case PM_MIDGET:		return (mid_tech);
 		case PM_PSYKER:		return (psy_tech);
+		case PM_QUARTERBACK:		return (qua_tech);
 		case PM_GUNNER: 		return (gun_tech);
 		case PM_DOOM_MARINE: 		return (mar_tech);
 		case PM_ANACHRONIST: 		return (ana_tech);
@@ -7271,6 +7384,7 @@ race_tech()
 		case PM_SPRIGGAN:	return (spr_tech);
 		case PM_VEELA:	return (vee_tech);
 		case PM_WARPER:	return (wrp_tech);
+		case PM_EGYMID:	return (egy_tech);
 		case PM_UNALIGNMENT_THING:	return (una_tech);
 		default: 		/*return ((struct innate_tech *) 0)*/return (def_tech);
 	}

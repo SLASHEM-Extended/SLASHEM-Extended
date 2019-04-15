@@ -205,10 +205,14 @@ struct blitz_tab {
 #define T_STARWARS_FRIENDS	145
 #define T_USE_THE_FORCE_LUKE	146
 
-#define T_JEDI_JUMP	147
-#define T_CHARGE_SABER	148
-#define T_TELEKINESIS	149
+#define T_WONDER_YONDER	147
+
+#define T_ZAP_EM	148
+
+#define T_JEDI_JUMP	149
+#define T_CHARGE_SABER	150
+#define T_TELEKINESIS	151
  
-#define MAXTECH 150
+#define MAXTECH 152
 
 #endif /* TECH_H */

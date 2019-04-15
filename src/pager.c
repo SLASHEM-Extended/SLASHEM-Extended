@@ -23076,6 +23076,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Time up!",
 	"Continuation follows, or at least that's to be feared.",
 	"LarienTelrunya complains about 3.6.x! LarienTelrunya hits!",
+	"You feel lethargic...",
 
 };
 
