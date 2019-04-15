@@ -10081,6 +10081,7 @@ losespells()
 	int  n, nzap, i;
 
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
+	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
 
 	book = 0;
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
@@ -11185,6 +11186,31 @@ dashrangefinish:
 	return 1;
 }
 
+/* percentage chance for mastermind role to resist amnesia and spell forgetting effects --Amy */
+boolean
+mastermindsave()
+{
+	int mmchance = 0;
+
+	if (!Role_if(PM_MASTERMIND)) return FALSE; /* shouldn't happen */
+
+	if (PlayerCannotUseSkills) return FALSE;
+
+	switch (P_SKILL(P_MEMORIZATION)) {
+		case P_BASIC: mmchance = 20; break;
+		case P_SKILLED: mmchance = 40; break;
+		case P_EXPERT: mmchance = 60; break;
+		case P_MASTER: mmchance = 80; break;
+		case P_GRAND_MASTER: mmchance = 90; break;
+		case P_SUPREME_MASTER: mmchance = 95; break;
+	}
+
+	if (mmchance > rn2(100)) return TRUE;
+
+	return FALSE;
+
+}
+
 void
 wonderspell()
 {
@@ -11201,6 +11227,30 @@ wonderspell()
 				incrnknow(i);
 				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+
+				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+					char nervbuf[QBUFSZ];
+					char thisisannoying = 0;
+
+					sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+					thisisannoying = yn_function(nervbuf, ynqchars, 'y');
+					if (thisisannoying != 'n') {
+
+						int memoboost = 0;
+						switch (P_SKILL(P_MEMORIZATION)) {
+							case P_BASIC: memoboost = 2; break;
+							case P_SKILLED: memoboost = 4; break;
+							case P_EXPERT: memoboost = 6; break;
+							case P_MASTER: memoboost = 8; break;
+							case P_GRAND_MASTER: memoboost = 10; break;
+							case P_SUPREME_MASTER: memoboost = 12; break;
+						}
+					    	boostknow(i, memoboost * 1000);
+						spl_book[i].sp_memorize = TRUE;
+					} else spl_book[i].sp_memorize = FALSE;
+
+				}
 
 			} else {
 			    You("know %s quite well already.", splname);
@@ -11224,6 +11274,31 @@ wonderspell()
 				You_feel("dizzy!");
 				forget(ALL_MAP);
 			}
+
+			if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+				char nervbuf[QBUFSZ];
+				char thisisannoying = 0;
+
+				sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+				thisisannoying = yn_function(nervbuf, ynqchars, 'y');
+				if (thisisannoying != 'n') {
+
+					int memoboost = 0;
+					switch (P_SKILL(P_MEMORIZATION)) {
+						case P_BASIC: memoboost = 2; break;
+						case P_SKILLED: memoboost = 4; break;
+						case P_EXPERT: memoboost = 6; break;
+						case P_MASTER: memoboost = 8; break;
+						case P_GRAND_MASTER: memoboost = 10; break;
+						case P_SUPREME_MASTER: memoboost = 12; break;
+					}
+				    	boostknow(i, memoboost * 1000);
+					spl_book[i].sp_memorize = TRUE;
+				} else spl_book[i].sp_memorize = FALSE;
+
+			}
+
 			break;
 		}
 	}

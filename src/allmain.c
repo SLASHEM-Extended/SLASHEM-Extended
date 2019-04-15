@@ -2680,6 +2680,7 @@ trapsdone:
 
 				You("have too many spells memorized!");
 				if (Keen_memory) Your("mind struggles to keep all the spells in memory.");
+				else if (Role_if(PM_MASTERMIND) && mastermindsave()) You("focus on your memorized spells and manage to prevent them from being erased.");
 				else Your("mind can't keep so many spells in memory, and as a result, some of them are erased.");
 				losespells();
 

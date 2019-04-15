@@ -1589,6 +1589,7 @@ forget_objects(percent)
 
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
+	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
 
 	if (isfriday) {
 		percent *= 2;
@@ -1637,6 +1638,7 @@ forget_map(howmuch)
 
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
+	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
 
 	known = TRUE;
 	for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++)
@@ -1658,6 +1660,11 @@ maprot()
 	if (isfriday) {
 		percentage *= 2;
 		if (percentage > 100) percentage = 100;
+	}
+
+	if (Role_if(PM_MASTERMIND) && mastermindsave()) {
+		percentage /= 10;
+		if (percentage < 1) return;
 	}
 
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) {
@@ -1683,6 +1690,7 @@ forget_traps()
 
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
+	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
 
 	/* forget all traps (except the one the hero is in :-) */
 	for (trap = ftrap; trap; trap = trap->ntrap)
@@ -1711,6 +1719,7 @@ forget_levels(percent)
 
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
+	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
 
 	if (percent <= 0 || percent > 100) {
 	    impossible("forget_levels: bad percent %d", percent);

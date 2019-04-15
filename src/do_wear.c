@@ -22,6 +22,8 @@ static boolean cancelled_don = FALSE;
 #define incrnknow(spell)        spl_book[spell].sp_know = ((spl_book[spell].sp_know < 1) ? KEEN \
 				 : ((spl_book[spell].sp_know + KEEN) > MAX_KNOW) ? MAX_KNOW \
 				 : spl_book[spell].sp_know + KEEN)
+#define boostknow(spell,boost)  spl_book[spell].sp_know = ((spl_book[spell].sp_know + boost > MAX_KNOW) ? MAX_KNOW \
+				 : spl_book[spell].sp_know + boost)
 
 static NEARDATA const char see_yourself[] = "see yourself";
 static NEARDATA const char unknown_type[] = "Unknown type of %s (%d)";
@@ -1047,8 +1049,34 @@ Cloak_on()
 			else if (spellid(i) == NO_SPELL) {
 				spl_book[i].sp_id = SPE_ALTER_REALITY;
 				spl_book[i].sp_lev = objects[SPE_ALTER_REALITY].oc_level;
+				spl_book[i].sp_memorize = TRUE;
 				incrnknow(i);
 				pline("You gain the power of Eru Illuvator!");
+
+				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
+
+					char nervbuf[QBUFSZ];
+					char thisisannoying = 0;
+
+					sprintf(nervbuf, "Do you want to use the memorization skill to get even more power?");
+					thisisannoying = yn_function(nervbuf, ynqchars, 'y');
+					if (thisisannoying != 'n') {
+
+						int memoboost = 0;
+						switch (P_SKILL(P_MEMORIZATION)) {
+							case P_BASIC: memoboost = 2; break;
+							case P_SKILLED: memoboost = 4; break;
+							case P_EXPERT: memoboost = 6; break;
+							case P_MASTER: memoboost = 8; break;
+							case P_GRAND_MASTER: memoboost = 10; break;
+							case P_SUPREME_MASTER: memoboost = 12; break;
+						}
+					    	boostknow(i, memoboost * 1000);
+						spl_book[i].sp_memorize = TRUE;
+					} else spl_book[i].sp_memorize = FALSE;
+
+				}
+
 				break;
 			}
 		}
