@@ -1452,6 +1452,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 	}
 
 	if (Role_if(PM_YAUTJA) && obj && obj->otyp == CHEMISTRY_SET) obj->known = TRUE;
+	if (Role_if(PM_CRACKER) && obj && obj->oclass == SCROLL_CLASS) obj->bknown = TRUE;
 
 	if (obj && obj->oclass == WAND_CLASS && (ManaBatteryBug || u.uprops[MANA_BATTERY_BUG].extrinsic || have_batterystone()) && obj->spe >= 0) {
 

@@ -4372,7 +4372,7 @@ void use_floppies(struct obj *obj)
 	};
 	int x;
 
-	if (!Role_if(PM_GEEK) && !Role_if(PM_GRADUATE) ) {
+	if (!Role_if(PM_GEEK) && !Role_if(PM_GRADUATE) && !Role_if(PM_CRACKER) && !Role_if(PM_SOFTWARE_ENGINEER) ) {
 		pline(Hallucination ? "Is this some old Atari or Commodore machine? It's not starting, it seems..." : "If only you knew what the heck this is ... ");
 		return;
 	}
@@ -5510,7 +5510,7 @@ doapply()
 		if (obj->oartifact == ART_BURNED_MOTH_RELAY) {	
 			pline("There's a little badly burned moth in that relay!");
 			makeknown(RELAY);
-			if (Role_if(PM_GEEK) || Role_if(PM_GRADUATE)) {
+			if (Role_if(PM_GEEK) || Role_if(PM_GRADUATE) || Role_if(PM_CRACKER) || Role_if(PM_SOFTWARE_ENGINEER)) {
 				You_feel("remembered of %s.",Hallucination ? "when the net was flat" : "the old times");
 				break;
 			}

@@ -1042,7 +1042,7 @@ Cloak_on()
 		You_feel("ignorant.");
 	}
 
-	if ( (Role_if(PM_GEEK) || Role_if(PM_GRADUATE)) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qani plash") ) ) {
+	if ( (Role_if(PM_GEEK) || Role_if(PM_GRADUATE) || Role_if(PM_CRACKER) || Role_if(PM_SOFTWARE_ENGINEER)) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qani plash") ) ) {
 		int i;
 		for (i = 0; i < MAXSPELL; i++)  {
 			if (spellid(i) == SPE_ALTER_REALITY) break;

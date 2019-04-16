@@ -1834,8 +1834,21 @@ int dieroll;
 
 			/* empath can feel the monster's psyche sometimes --Amy */
 			if (Role_if(PM_EMPATH) && !rn2(20)) {
-				You("probe %s!", Monnam(mon));
+				You("probe %s!", mon_nam(mon));
 				probe_monster(mon);
+			}
+			/* and calm down angry ones */
+			if (Role_if(PM_EMPATH) && mon->mfrenzied && !rn2(10)) {
+				mon->mfrenzied = FALSE;
+				pline("%s is shaken out of %s frenzy by your attack!", Monnam(mon), mhis(mon));
+			}
+
+			/* software engineer can occasionally instakill bugs */
+			if (Role_if(PM_SOFTWARE_ENGINEER) && !mon->mtame && !mon->mpeaceful && mon->data->mlet == S_XAN && !rn2(100)) {
+				/* can't have all the ZAPM stuff in the game without using the word "derezzed" at least once! */
+				pline("%s is derezzed!", Monnam(mon));
+				xkilled(mon,0);
+				return FALSE;
 			}
 
 			/* dissidents want to leak information about their enemy, and they can't do that very well when the

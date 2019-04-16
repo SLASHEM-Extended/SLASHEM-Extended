@@ -9218,7 +9218,7 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "quicktravel cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bystryy plashch puteshestviya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tez safar plash"))))
 			pline("A highly dangerous cloak that will prevent multi-turn actions from being interrupted.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qani plash"))))
-			pline("If you're a geek or graduate, you will gain the power of Eru Illuvator (sic) by putting it on!");
+			pline("If you're a software engineer, cracker, geek or graduate, you will gain the power of Eru Illuvator (sic) by putting it on!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hamshira plash"))))
 			pline("Effects that heal you will be improved while you wear it.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slexual cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polovoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jinsiy plash"))))

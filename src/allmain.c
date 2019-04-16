@@ -2678,10 +2678,14 @@ trapsdone:
 				continue;
 			if (spellammount > (urole.spelrete * 2)) {
 
+				/* note by Amy: it is not an error that losespells() is called regardless; keen memory and
+				 * the mastermind ability are handled directly in losespells() and not here */
+
 				You("have too many spells memorized!");
 				if (Keen_memory) Your("mind struggles to keep all the spells in memory.");
-				else if (Role_if(PM_MASTERMIND) && mastermindsave()) You("focus on your memorized spells and manage to prevent them from being erased.");
+				else if (Role_if(PM_MASTERMIND) && mastermindsave()) You("focus on your memorized spells and try to prevent them from being erased.");
 				else Your("mind can't keep so many spells in memory, and as a result, some of them are erased.");
+
 				losespells();
 
 			}
