@@ -7431,6 +7431,18 @@ register struct	monst	*mtmp;
 			m_initthrow(mtmp, BLASTER_BOLT, 50);
 		}
 
+		if (mtmp->data == &mons[PM_BIRD_ARCHER]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 50);
+			m_initthrow(mtmp, ARROW, 40);
+		}
+
+		if (mtmp->data == &mons[PM_GARUDA]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 50);
+			m_initthrow(mtmp, ARROW, 50);
+		}
+
 		if (mtmp->data == &mons[PM_LAST_RAVEN]) {
 			(void) mongets(mtmp, RAYGUN);
 			m_initthrow(mtmp, BLASTER_BOLT, 50);
@@ -10051,6 +10063,11 @@ register struct	monst	*mtmp;
 			m_initthrow(mtmp, INKA_STINGER, 40);
 			if (!rn2(2)) (void) mongets(mtmp, BEAUTIFUL_SHIRT);
 		}
+		if (monsndx(ptr) == PM_LOTHRIAN_AGENT) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 50);
+			m_initthrow(mtmp, ARROW, 50);
+		}
 
 		if (monsndx(ptr) == PM_INCINERATOR) m_initthrow(mtmp, FRAG_GRENADE, 12);
 		if (monsndx(ptr) == PM_STEAM_POWERED_PISTOL_SENTRY) { (void) mongets(mtmp, PISTOL); m_initthrow(mtmp, BULLET, 50); }
@@ -10201,6 +10218,12 @@ register struct	monst	*mtmp;
 				mpickobj(mtmp, otmp, TRUE);
 			}
 		}*/
+
+	      if (ptr == &mons[PM_MAGIC_ARCHER]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 40);
+			m_initthrow(mtmp, ARROW, 40);
+		}
 
 		if (ptr == &mons[PM_HEAVY_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
 		if (monsndx(ptr) == PM_ICELANDIC_GUN_CHICK) { (void) mongets(mtmp, PISTOL); m_initthrow(mtmp, BULLET, 30); }
@@ -11100,6 +11123,12 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_BARROWGRIM_SOLDIER]) { (void)mongets(mtmp, BOW); (void)mongets(mtmp, DAGGER);
 			 m_initthrow(mtmp, ARROW, 30);
+
+		}
+
+		if (ptr == &mons[PM_FLASH_WYVERN]) {
+			(void)mongets(mtmp, SNIPER_RIFLE);
+			m_initthrow(mtmp, BULLET, 50);
 
 		}
 
@@ -16399,6 +16428,7 @@ register int	mmflags;
 	mtmp->stunnovisible = rn2(4);
 	mtmp->selfhybridvisible = !rn2(2);
 	mtmp->warningvisible = 0;
+	mtmp->hominglazer = 0;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
 	mtmp->telepatvisible = 0;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);
@@ -17503,6 +17533,7 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_GELMER] && mvitals[PM_KELANA].born == 0) {
 				(void) makemon(&mons[PM_KELANA], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
+			if (mndx == PM_ARCH_WRAITH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 		case S_SPIDER:
 		case S_SNAKE:

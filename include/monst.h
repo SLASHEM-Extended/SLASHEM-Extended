@@ -367,6 +367,7 @@ struct monst {
 	/* these bigger bitfields mean: 1 = single source is enough, 2 = only see monster if two sources */
 	Bitfield(seeinvisble,1);	/* 2 in 3 chance that single see invisible is enough */
 	Bitfield(infravisble,1);	/* 2 in 3 chance that single infravision is enough */
+	int hominglazer;	/* normally zero; very specific monsters can use this to charge up a cannon */
 
 	struct obj *mw;
 	long misc_worn_check;

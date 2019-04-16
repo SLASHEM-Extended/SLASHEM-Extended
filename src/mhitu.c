@@ -4377,6 +4377,35 @@ elena37:
 		}
 	}
 
+	/* ultra-mega laser cannon for some specific ubermonsters, including the elder priest */
+	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
+		if (range2 && lined_up(mtmp) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) ) {
+			if (!mtmp->hominglazer && !rn2(20)) {
+				pline("ATTENTION: %s has started to load an ultra-mega-hyper-dyper laser cannon!", Monnam(mtmp));
+				mtmp->hominglazer = 1;
+			} else if (mtmp->hominglazer >= 20) {
+				pline("ZIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEtschhhhhhhhhhhhhhhhhhhhhhhh...");
+				losehp(rnz(mtmp->m_lev * 20), "an ultra-mega-hyper-dyper laser cannon", KILLED_BY);
+
+			/* fire some beams; the hominglazer flag also makes the monster reflecting so it won't kill itself */
+				u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+				mdat2 = &mons[PM_CAST_DUMMY];
+				a = &mdat2->mattk[3];
+				a->aatyp = AT_BREA;
+				a->adtyp = AD_DISN;
+				a->damn = (1 + mtmp->m_lev);
+				a->damd = (1 + mtmp->m_lev);
+				sum[i] = breamu(mtmp, a);
+
+				a->adtyp = AD_LITE;
+				sum[i] = breamu(mtmp, a);
+
+				mtmp->hominglazer = 0;
+			}
+		}
+
+	}
+
 	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
 	 * thanks Chris_ANG for creating it, you evil person :P */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {

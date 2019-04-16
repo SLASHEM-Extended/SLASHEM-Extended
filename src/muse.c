@@ -11357,7 +11357,7 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "body");
 	    return TRUE;
-	} else if (is_reflector(mon->data) || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
+	} else if (is_reflector(mon->data) || (mon->egotype_reflecting) || (mon->hominglazer) || (mon->egotype_breather) ) {
 		/* in ADOM the silver wolf would absorb bolts instead, apparently? */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");

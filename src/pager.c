@@ -23077,6 +23077,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Continuation follows, or at least that's to be feared.",
 	"LarienTelrunya complains about 3.6.x! LarienTelrunya hits!",
 	"You feel lethargic...",
+	"ATTENTION: Sven has started to load an ultra-mega-hyper-dyper laser cannon!",
+	"ATTENTION: Sven has started to load an ultra-mega-hyper-dyper laser cannon! If you are lined up to him when he's finished charging, he will one-shot you no matter what resistances, intrinsics etc. you have!",
+	"ZIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEtschhhhhhhhhhhhhhhhhhhhhhhh...",
+	"ZIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEtschhhhhhhhhhhhhhhhhhhhhhhh... (This means that Sven fired the ultra-mega-hyper-dyper laser cannon and instakilled you.)",
 
 };
 

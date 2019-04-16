@@ -671,6 +671,13 @@ register struct monst *mtmp;
 	/* stunned monsters get un-stunned with larger probability */
 	if (mtmp->mstun && !rn2(10)) mtmp->mstun = 0;
 
+	/* is the monster charging a special laser cannon? */
+	if (mtmp->hominglazer) {
+		mtmp->hominglazer++;
+		/* it can only be charged for so long, and then the monster needs to charge it again */
+		if (mtmp->hominglazer > 200) mtmp->hominglazer = 0;
+	}
+
 	/* monsters whose butts were bashed by you will slowly recover --Amy */
 	if (mtmp->butthurt && !rn2(mdat->msound == MS_FART_QUIET ? 5 : mdat->msound == MS_FART_NORMAL ? 20 : 50) ) mtmp->butthurt -= 1;
 
