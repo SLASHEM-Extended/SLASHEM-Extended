@@ -3276,7 +3276,7 @@ register struct monst *mtmp;
 		case 176:
 			if (rn2(100)) mtmp->egotype_destructor = 1;
 			else mtmp->egotype_worldender = 1;
-		break;
+			break;
 		case 177: mtmp->egotype_damager = 1; break;
 		case 178: mtmp->egotype_antitype = 1; break;
 		case 179:
@@ -3298,7 +3298,10 @@ register struct monst *mtmp;
 		case 195:
 		case 196:
 		case 197: mtmp->egotype_boss = 1; break;
-		case 198: mtmp->egotype_atomizer = 1; break;
+		case 198:
+			if (rn2(100)) mtmp->egotype_atomizer = 1;
+			else mtmp->egotype_laserpwnzor = 1;
+			break;
 		case 199:
 		case 200:
 		case 201: mtmp->egotype_perfumespreader = 1; break;
@@ -3306,7 +3309,10 @@ register struct monst *mtmp;
 		case 203: mtmp->egotype_converter = 1; break;
 		case 204: mtmp->egotype_wouwouer = 1; break;
 		case 205: mtmp->egotype_allivore = 1; break;
-		case 206: if (!rn2(5)) mtmp->egotype_nastycurser = 1; else mtmp->egotype_curser = 1; break;
+		case 206:
+			if (!rn2(5)) mtmp->egotype_nastycurser = 1;
+			else mtmp->egotype_curser = 1;
+			break;
 		case 207: mtmp->egotype_sanitizer = 1; break;
 
 	}
@@ -5805,6 +5811,10 @@ peffects(otmp)
 		else
 			pline("Your memory keens.");
 		incr_itimeout(&HKeen_memory, rnd(500 + 250 * bcsign(otmp) ));
+		if (otmp->oartifact == ART_PERPETUAL_MEMORY) {
+			pline("In fact, your memory was fortified for a very long time!");
+			incr_itimeout(&HKeen_memory, rnd(7500));
+		}
 
 		if (evilfriday && otmp->cursed) {
 			if (HKeen_memory & INTRINSIC) {

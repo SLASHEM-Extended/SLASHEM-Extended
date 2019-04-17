@@ -1927,6 +1927,11 @@ playersteal()
 			chanch *= 2;
 		}
 
+		if (uarmg && uarmg->oartifact == ART_REALSTEAL) {
+			if (chanch < 5) chanch = 5;
+			chanch *= 2;
+		}
+
 		if (chanch < 5) chanch = 5;
 		if (chanch > 95) chanch = 95;
 		if (rnd(100) < chanch || mdat->mtame) {

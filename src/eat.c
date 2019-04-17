@@ -188,6 +188,7 @@ STATIC_DCL void eataccessory(struct obj *);
 STATIC_DCL const char *foodword(struct obj *);
 STATIC_DCL boolean maybe_cannibal(int,BOOLEAN_P);
 STATIC_DCL struct obj *floorfood(const char *);
+STATIC_DCL boolean cannibal_allowed(void);
 
 char msgbuf[BUFSZ];
 
@@ -201,12 +202,6 @@ char msgbuf[BUFSZ];
 #define FAINTING	4
 #define FAINTED		5
 #define STARVED		6
-
-/* also used to see if you're allowed to eat cats and dogs */
-#define CANNIBAL_ALLOWED() (Role_if(PM_CAVEMAN) || Role_if(PM_LUNATIC) || Race_if(PM_ORC) || Race_if(PM_YEEK) || \
-Race_if(PM_CURSER) || Race_if(PM_ALIEN) || Race_if(PM_TROLLOR) || Race_if(PM_SHOE) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX) || Race_if(PM_HUMANOID_DEVIL) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR) || Race_if(PM_KOBOLT) || Race_if(PM_PHANTOM_GHOST) || Race_if(PM_GIGANT) || Race_if(PM_RODNEYAN) || Race_if(PM_OGRO) || Race_if(PM_WEAPON_TRAPPER) || \
- Race_if(PM_INSECTOID) || Race_if(PM_MOULD) || Race_if(PM_MISSINGNO) || Race_if(PM_HUMANLIKE_DRAGON) || Race_if(PM_HUMANLIKE_NAGA) || Race_if(PM_DEATHMOLD) || Race_if(PM_PLAYER_JABBERWOCK) || Race_if(PM_AQUATIC_MONSTER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_UNGENOMOLD) || Race_if(PM_UNALIGNMENT_THING) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || \
- Race_if(PM_SNAKEMAN) || Race_if(PM_SPIDERMAN) || Race_if(PM_PLAYER_ZRUTY) || Race_if(PM_PLAYER_MUSHROOM) || Race_if(PM_PLAYER_ASURA) || Race_if(PM_METAL) || Race_if(PM_SHELL) || Race_if(PM_PLAYER_GOLEM) || Race_if(PM_PIERCER) || Race_if(PM_PLAYER_HULK) || Race_if(PM_RACE_X) || Race_if(PM_VAMPIRE) || Race_if(PM_VAMGOYLE) || Race_if(PM_SUCKING_FIEND) || Race_if(PM_LEVITATOR) || Race_if(PM_CLOCKWORK_AUTOMATON) || Race_if(PM_ARMED_COCKATRICE) || Race_if(PM_ELEMENTAL) || Race_if(PM_WEAPON_BUG) || Race_if(PM_HUMANOID_LEPRECHAUN) || Race_if(PM_NYMPH) || Race_if(PM_TURTLE) || Race_if(PM_LOWER_ENT) || Race_if(PM_SPRIGGAN) || Race_if(PM_JELLY) || Race_if(PM_WEAPON_CUBE) || Race_if(PM_WEAPON_IMP) || Race_if(PM_HUMANOID_DRYAD) || Race_if(PM_PLAYER_SLIME) || Race_if(PM_AUREAL) || Race_if(PM_MAZKE) || Race_if(PM_PLAYER_GREMLIN) || Race_if(PM_BORG) || Race_if(PM_ELONA_SNAIL) || Race_if(PM_PLAYER_UNICORN) || Race_if(PM_WEAPONIZED_DINOSAUR) || Race_if(PM_ANCIPITAL) || Race_if(PM_FAWN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_YUKI_PLAYA) || Race_if(PM_OCTOPODE) || Race_if(PM_INKA) || Race_if(PM_SATRE) || Race_if(PM_WISP) || Race_if(PM_PLAYER_SKELETON) || Race_if(PM_WEAPON_XORN) || Race_if(PM_PLAYER_DOLGSMAN) )
 
 #ifndef OVLB
 
@@ -238,6 +233,105 @@ const char *hu_stat[] = {
 
 #endif /* OVLB */
 #ifdef OVL1
+
+/* also used to see if you're allowed to eat cats and dogs */
+
+STATIC_OVL boolean
+cannibal_allowed()
+{
+	if (RngeCannibalism) return TRUE;
+
+	switch (Role_switch) {
+		case PM_CAVEMAN:
+		case PM_LUNATIC:
+			return TRUE;
+	}
+
+	switch (Race_switch) {
+		case PM_ORC:
+		case PM_YEEK:
+		case PM_CURSER:
+		case PM_ALIEN:
+		case PM_TROLLOR:
+		case PM_SHOE:
+		case PM_PLAYER_SALAMANDER:
+		case PM_VORTEX:
+		case PM_CORTEX:
+		case PM_HUMANOID_DEVIL:
+		case PM_MUMMY:
+		case PM_LICH_WARRIOR:
+		case PM_KOBOLT:
+		case PM_PHANTOM_GHOST:
+		case PM_GIGANT:
+		case PM_RODNEYAN:
+		case PM_OGRO:
+		case PM_WEAPON_TRAPPER:
+		case PM_INSECTOID:
+		case PM_MOULD:
+		case PM_MISSINGNO:
+		case PM_HUMANLIKE_DRAGON:
+		case PM_HUMANLIKE_NAGA:
+		case PM_DEATHMOLD:
+		case PM_PLAYER_JABBERWOCK:
+		case PM_AQUATIC_MONSTER:
+		case PM_WORM_THAT_WALKS:
+		case PM_UNGENOMOLD:
+		case PM_UNALIGNMENT_THING:
+		case PM_HUMAN_WEREWOLF:
+		case PM_AK_THIEF_IS_DEAD_:
+		case PM_SNAKEMAN:
+		case PM_SPIDERMAN:
+		case PM_PLAYER_ZRUTY:
+		case PM_PLAYER_MUSHROOM:
+		case PM_PLAYER_ASURA:
+		case PM_METAL:
+		case PM_SHELL:
+		case PM_PLAYER_GOLEM:
+		case PM_PIERCER:
+		case PM_PLAYER_HULK:
+		case PM_RACE_X:
+		case PM_VAMPIRE:
+		case PM_VAMGOYLE:
+		case PM_SUCKING_FIEND:
+		case PM_LEVITATOR:
+		case PM_CLOCKWORK_AUTOMATON:
+		case PM_ARMED_COCKATRICE:
+		case PM_ELEMENTAL:
+		case PM_WEAPON_BUG:
+		case PM_HUMANOID_LEPRECHAUN:
+		case PM_NYMPH:
+		case PM_TURTLE:
+		case PM_LOWER_ENT:
+		case PM_SPRIGGAN:
+		case PM_JELLY:
+		case PM_WEAPON_CUBE:
+		case PM_WEAPON_IMP:
+		case PM_HUMANOID_DRYAD:
+		case PM_PLAYER_SLIME:
+		case PM_AUREAL:
+		case PM_MAZKE:
+		case PM_PLAYER_GREMLIN:
+		case PM_BORG:
+		case PM_ELONA_SNAIL:
+		case PM_PLAYER_UNICORN:
+		case PM_WEAPONIZED_DINOSAUR:
+		case PM_ANCIPITAL:
+		case PM_FAWN:
+		case PM_CHIROPTERAN:
+		case PM_YUKI_PLAYA:
+		case PM_OCTOPODE:
+		case PM_INKA:
+		case PM_SATRE:
+		case PM_WISP:
+		case PM_PLAYER_SKELETON:
+		case PM_WEAPON_XORN:
+		case PM_PLAYER_DOLGSMAN:
+			return TRUE;
+	}
+
+	return FALSE;
+
+}
 
 /*
  * Decide whether a particular object can be eaten by the possibly
@@ -873,7 +967,7 @@ int pm;
 boolean allowmsg;
 {
 	if (your_race(&mons[pm])) {
-	    if (!CANNIBAL_ALLOWED()) {
+	    if (!cannibal_allowed()) {
 		if (allowmsg) {
 		    if (Upolyd)
 			You("have a bad feeling deep inside.");
@@ -966,7 +1060,7 @@ register int pm;
 	    case PM_LARGE_CAT:
 	    case PM_DOMESTIC_COCKATRICE:
 	    case PM_CHAIN_SMOKER_ASSHOLE:
-		if (!CANNIBAL_ALLOWED()) {
+		if (!cannibal_allowed()) {
 		    You_feel("that %s the %s%s was a bad idea.",
 		      victual.eating ? "eating" : "biting",
 		      occupation == opentin ? "tinned " : "", mons[pm].mname);
@@ -4453,7 +4547,7 @@ struct obj *otmp;
 		    newexplevel();
 		    /* not cannibalism, but we use similar criteria
 		       for deciding whether to be sickened by this meal */
-		    if (rn2(2) && !CANNIBAL_ALLOWED())
+		    if (rn2(2) && !cannibal_allowed())
 		    if (!Role_if(PM_CONVICT))
 			{ make_vomiting((long)rn1(victual.reqtime, 14), FALSE);
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
@@ -6877,6 +6971,7 @@ struct obj *obj;
 	cprefx(obj->corpsenm);
 	cpostfx(obj->corpsenm);
 
+	if (obj && obj->oartifact == ART_MULTIJUICE && rn2(5)) return;
 	useup(obj);
 
 }

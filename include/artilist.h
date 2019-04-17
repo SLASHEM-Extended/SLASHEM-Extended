@@ -6239,6 +6239,106 @@ A("Payback Time",			NASTYPOLE, /* player can use it at increased range */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("Annoying Dog Whistle",			OTAMA, /* by Demo: acts as a magic whistle whenever you hit */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 12),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Zombiebane",			ORNATE_MACE, /* by Demo: while you wield it, killing a potentially resurrecting monster prevents it from resurrecting */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_ZOMBIE,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Petrogeneration",			LIZARD_SCALE_MAIL,
+	(SPFX_RESTR|SPFX_REGEN|SPFX_EREGEN), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Konrad's Attack",			FLAME_MOUNTAIN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 12),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Sylvie's Invention",			BEAM_REFLECTOR_GUN, /* when wielded, allows you to evade missile attacks sometimes */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Protection Racket",			TENNIS_RACKET,
+	(SPFX_RESTR|SPFX_PROTEC), 0, 0,
+	PHYS(0, 6),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Multijuice",			ENERGY_SAP, /* can potentially be used several times */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Keith's Underoos",			YOGA_PANTS, /* greatly increases spellcasting success chance, but not above regular limits; poison resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Flowerbane",			GRAIN_SCYTHE, /* while you wield it, %-class monsters may randomly lose turns */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_BAD_FOOD,
+	PHYS(5, 0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Rhorn",			RAZOR_WHIP, /* while wielded, you deal level-dependant passive damage to attacking monsters */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 14),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Transmemorizer",			HELM_OF_OPAQUE_THOUGHTS, /* keen memory when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("HEV Suit",			SECOND_SKIN, /* resist poison, sickness and contamination */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Too Many Affixes",			CLOAK_OF_FLIGHT, /* +3 constitution, allows you to gain XP twice as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Realsteal",			ROGUES_GLOVES, /* improves borrow command */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Lepre-Luck",			GREEN_GOWN, /* teleportitis */
+	(SPFX_RESTR|SPFX_LUCK|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Teh Physique",			HELM_OF_ANTI_MAGIC, /* +10 STR/CON/CHA/DEX, -10 INT/WIS */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Very Memory",			OILSKIN_COIF, /* keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Russia's Salvo",			KALASHNIKOV,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 8),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Belkar's Warpoportation",			RIN_JUMPING, /* teleportitis, polymorphitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Reliable Trinsics",			RIN_ILLNESS, /* poison and stun resistance, full nutrients */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Dragonhide Armer",			CLOAK_OF_MEMORY, /* cold and fire res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("WhooshZhoosh",			GAUNTLETS_OF_FAST_CASTING, /* every time you cast a spell, you temporarily get intrinsic speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bile Patch",			RIN_MEMORY, /* acid resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Do Not Forget Grace",			AMULET_OF_POWER, /* +5 STR, +10 DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 3000L ),
+
+A("Perpetual Memory",			POT_KEEN_MEMORY, /* lasts for a much longer time than usual */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

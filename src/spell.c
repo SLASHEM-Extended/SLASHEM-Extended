@@ -3625,6 +3625,10 @@ castanyway:
 		return(1);
 	}
 
+	if (uarmg && uarmg->oartifact == ART_WHOOSHZHOOSH) {
+		incr_itimeout(&HFast, rn1(15, 5));
+	}
+
 	u.umemorizationturns += spellev(spell);
 	if (u.umemorizationturns >= 100) {
 		u.umemorizationturns -= 100;
@@ -10985,6 +10989,7 @@ int spell;
 	if (uwep && uwep->otyp == OLDEST_STAFF) chance += 10;
 	if (uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID) chance += 50;
 	if (uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID) chance += 50;
+	if (uarmu && uarmu->oartifact == ART_KEITH_S_UNDEROOS) chance += 50;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) chance += 10;
 	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "knowledgeable helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "znayushchikh shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bilimdon dubulg'a") ) ) chance += 10;
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "science cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nauka plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ilm-fan plash") ) ) chance += 10;

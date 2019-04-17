@@ -7225,7 +7225,9 @@ boolean msg;
 	char oldname[BUFSZ];
 	boolean alt_mesg = FALSE;	/* Avoid "<rank> turns into a <rank>" */
 
-	if (msg) {
+	if (RngePolyvision) {
+	    strcpy(oldname, noit_Monnam(mtmp));
+	} else if (msg) {
 	    /* like Monnam() but never mention saddle */
 	    strcpy(oldname, x_monnam(mtmp, ARTICLE_THE, (char *)0,
 				     SUPPRESS_SADDLE, FALSE));
@@ -7384,7 +7386,13 @@ boolean msg;
 
 	newsym(mtmp->mx,mtmp->my);
 
-	if (msg && (u.uswallow && mtmp == u.ustuck || canspotmon(mtmp))) {
+	if (RngePolyvision) {
+	    uchar save_mnamelth = mtmp->mnamelth;
+	    mtmp->mnamelth = 0;
+	    pline("%s polymorphs into %s!", oldname, a_noit_monnam(mtmp));
+	    mtmp->mnamelth = save_mnamelth;
+
+	} else if (msg && (u.uswallow && mtmp == u.ustuck || canspotmon(mtmp))) {
 	    if (alt_mesg && is_mplayer(mdat))
 		pline("%s is suddenly very %s!", oldname,
 			mtmp->female ? "feminine" : "masculine");

@@ -368,6 +368,10 @@ int prop;
 			return "tech insight";
 		case RNGE_LISTENING:
 			return "listening";
+		case RNGE_CANNIBALISM:
+			return "cannibalism";
+		case RNGE_POLYVISION:
+			return "polyvision";
 
 		default:
 			return "Team Nastytrap";

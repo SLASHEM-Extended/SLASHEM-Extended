@@ -2804,20 +2804,20 @@ start_corpse_timeout(body)
 	} else if ((mons[body->corpsenm].mlet == S_TROLL && !body->norevive) || is_deadlysin(&mons[body->corpsenm]) )  {
 		long age;
 		for (age = TAINT_AGE + 1; age <= ROT_AGE; age++)
-		    if (!rn2(TROLL_REVIVE_LATE_CHANCE)) {	/* troll revives */
+		    if (!rn2(TROLL_REVIVE_LATE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE) ) {	/* troll revives */
 			action = REVIVE_MON;
 			when = age;
 			break;
 		    }
 		for (age = 2; age <= TAINT_AGE; age++)
-		    if (!rn2(TROLL_REVIVE_CHANCE)) {	/* troll revives */
+		    if (!rn2(TROLL_REVIVE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {	/* troll revives */
 			action = REVIVE_MON;
 			when = age;
 			break;
 		    }
 
 		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) {
-			if (rn2(10)) {
+			if (rn2(10) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {
 				action = REVIVE_MON;
 				when = 1;
 			} else {
@@ -2836,22 +2836,22 @@ start_corpse_timeout(body)
 		long age;
 
 		for (age = 2; age <= TAINT_AGE; age++)
-		    if (!rn2(MOLD_REVIVE_CHANCE)) {    /* mold revives */
+		    if (!rn2(MOLD_REVIVE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {    /* mold revives */
 			action = REVIVE_MON;
 			when = age;
 			break;
-		    } else if (is_reviver(&mons[body->corpsenm]) && !rn2(MOLD_REVIVE_CHANCE)) {
+		    } else if (is_reviver(&mons[body->corpsenm]) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE) && !rn2(MOLD_REVIVE_CHANCE)) {
 			action = REVIVE_MON;
 			when = age;
 			break;
-		    } else if (((((mtmp = get_mtraits(body, FALSE)) != (struct monst *)0) ) && mtmp->egotype_troll) && !rn2(MOLD_REVIVE_CHANCE)) {
+		    } else if (((((mtmp = get_mtraits(body, FALSE)) != (struct monst *)0) ) && mtmp->egotype_troll && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) && !rn2(MOLD_REVIVE_CHANCE)) {
 			action = REVIVE_MON;
 			when = age;
 			break;
 		    }
 
 		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) {
-			if (rn2(10)) {
+			if (rn2(10) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {
 				action = REVIVE_MON;
 				when = 1;
 			} else {
@@ -2868,7 +2868,7 @@ start_corpse_timeout(body)
 		long age;
 		for (age = TAINT_AGE + 1; age <= ROT_AGE; age++)
 		    if (!rn2(MOLDY_CHANCE)) {    /* "revives" as a random s_fungus */
-			action = (!rn2(100) ? REVIVE_MON : MOLDY_CORPSE); /* or rarely the monster revives itself --Amy */
+			action = ((!rn2(100) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) ? REVIVE_MON : MOLDY_CORPSE); /* or rarely the monster revives itself --Amy */
 			when = age;
 			break;
 		    }

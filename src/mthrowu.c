@@ -353,6 +353,12 @@ const char *name;	/* if null, then format `obj' */
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (uwep && uwep->oartifact == ART_SYLVIE_S_INVENTION && rn2(3)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
 	} else if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {
 
 			if(Blind || !flags.verbose) pline("Your force field causes a projectile to miss you.");

@@ -7027,6 +7027,55 @@ use_weapon:
 					}
 				}
 
+				if (uwep && uwep->oartifact == ART_ANNOYING_DOG_WHISTLE) {
+					if (uwep->cursed && !rn2(2)) {
+						You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
+						wake_nearby();
+					} else {
+						register struct monst *wisselmon, *nextmon;
+						You("produce a %s whistling sound.", Hallucination ? "normal" : "strange");
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
+						for(wisselmon = fmon; wisselmon; wisselmon = nextmon) {
+						    nextmon = wisselmon->nmon; /* trap might kill mon */
+						    if (DEADMONSTER(wisselmon)) continue;
+						    if (wisselmon->mtame) {
+							if (wisselmon->mtrapped) {
+							    /* no longer in previous trap (affects mintrap) */
+							    wisselmon->mtrapped = 0;
+							    fill_pit(wisselmon->mx, wisselmon->my);
+							}
+							mnexto(wisselmon);
+							if (mintrap(wisselmon) == 2) change_luck(-1);
+						    }
+						}
+					}
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ANNOYING_DOG_WHISTLE) {
+					if (uwep->cursed && !rn2(2)) {
+						You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
+						wake_nearby();
+					} else {
+						register struct monst *wisselmon, *nextmon;
+						You("produce a %s whistling sound.", Hallucination ? "normal" : "strange");
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
+						for(wisselmon = fmon; wisselmon; wisselmon = nextmon) {
+						    nextmon = wisselmon->nmon; /* trap might kill mon */
+						    if (DEADMONSTER(wisselmon)) continue;
+						    if (wisselmon->mtame) {
+							if (wisselmon->mtrapped) {
+							    /* no longer in previous trap (affects mintrap) */
+							    wisselmon->mtrapped = 0;
+							    fill_pit(wisselmon->mx, wisselmon->my);
+							}
+							mnexto(wisselmon);
+							if (mintrap(wisselmon) == 2) change_luck(-1);
+						    }
+						}
+					}
+				}
+
 				if (uwep && uwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uwep->spe > -20) {
 					uwep->spe--;
 					pline("Your ball sustains damage.");

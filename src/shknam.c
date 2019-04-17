@@ -713,6 +713,8 @@ const char * const *nlp;
 			shk->isegotype = 1;
 			shk->egotype_wouwouer = TRUE;
 		}
+		shk->isegotype = 1;
+		shk->egotype_laserpwnzor = TRUE;
 
 	} else if (nlp == shkblack) {
 	    /* special-case black marketeer */
@@ -961,6 +963,10 @@ const char * const *nlp;
 		if (!rn2(10)) {
 			shk->isegotype = 1;
 			shk->egotype_wouwouer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_laserpwnzor = TRUE;
 		}
 
 	} else {

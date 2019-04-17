@@ -576,7 +576,10 @@
 #define RNGE_TECH_INSIGHT 526
 #define RNGE_LISTENING 527
 
-#define SECOND_CHANCE		528
+#define RNGE_CANNIBALISM 528
+#define RNGE_POLYVISION 529
+
+#define SECOND_CHANCE		530
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

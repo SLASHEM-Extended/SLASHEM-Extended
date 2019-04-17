@@ -18012,6 +18012,57 @@ boolean knoweverything;
 				case ART_SNAKELASH:
 					pline("Artifact specs: +2 to-hit and +14 damage, poison and sickness resistance when wielded, deals extra poison damage to enemies, can be invoked for healing, chaotic, xelnaga quest artifact."); break;
 
+				case ART_ANNOYING_DOG_WHISTLE:
+					pline("Artifact specs: +4 to-hit and +12 damage, gives a magic whistle effect whenever you hit something with it. Demo originally suggested making it possible to turn that effect off but this version of the artifact always whistles, whether you want it or not."); break;
+				case ART_ZOMBIEBANE:
+					pline("Artifact specs: +5 to-hit and double damage to zombie-class monsters. Any monster that dies while you are wielding it, even if it's killed by something else, will not be able to resurrect on its own."); break;
+				case ART_PETROGENERATION:
+					pline("Artifact specs: regeneration and energy regeneration when worn."); break;
+				case ART_KONRAD_S_ATTACK:
+					pline("Artifact specs: +5 to-hit and +12 damage."); break;
+				case ART_SYLVIE_S_INVENTION:
+					pline("Artifact specs: +2 to-hit and +2 damage, allows you to occasionally avoid missile attacks while wielded."); break;
+				case ART_PROTECTION_RACKET:
+					pline("Artifact specs: +6 damage and protection bonus when wielded."); break;
+				case ART_MULTIJUICE:
+					pline("Artifact specs: It can potentially be used several times."); break;
+				case ART_KEITH_S_UNDEROOS:
+					pline("Artifact specs: poison resistance when worn and gives a large boost to your spellcasting success chances, but they won't go over the natural limit."); break;
+				case ART_FLOWERBANE:
+					pline("Artifact specs: +5 to-hit and double damage to %%-class monsters and they will randomly lose turns."); break;
+				case ART_RHORN:
+					pline("Artifact specs: +6 to-hit and +14 damage, and gives you a passive level-dependant thorns effect that damages monsters."); break;
+				case ART_TRANSMEMORIZER:
+					pline("Artifact specs: keen memory when worn."); break;
+				case ART_HEV_SUIT:
+					pline("Artifact specs: poison, sickness and contamination resistance when worn."); break;
+				case ART_TOO_MANY_AFFIXES:
+					pline("Artifact specs: +3 constitution when worn and allows you to gain experience twice as fast."); break;
+				case ART_REALSTEAL:
+					pline("Artifact specs: Improves the effectivity of the #borrow command, which no one ever uses."); break;
+				case ART_LEPRE_LUCK:
+					pline("Artifact specs: teleportitis and acts as a luckstone when worn."); break;
+				case ART_TEH_PHYSIQUE:
+					pline("Artifact specs: increases strength, constitution, dexterity and charisma by 10 when worn but reduces intelligence and wisdom by 10."); break;
+				case ART_VERY_MEMORY:
+					pline("Artifact specs: keen memory when worn."); break;
+				case ART_RUSSIA_S_SALVO:
+					pline("Artifact specs: +10 to-hit and +8 damage."); break;
+				case ART_BELKAR_S_WARPOPORTATION:
+					pline("Artifact specs: teleportitis and polymorphitis when worn. Jonadab invented this artifact but didn't specify who the hell Belkar is supposed to be."); break;
+				case ART_RELIABLE_TRINSICS:
+					pline("Artifact specs: full nutrients, poison and stun resistance when worn."); break;
+				case ART_DRAGONHIDE_ARMER:
+					pline("Artifact specs: cold and fire resistance when worn."); break;
+				case ART_WHOOSHZHOOSH:
+					pline("Artifact specs: if you cast a spell while wielding them, you'll temporarily get intrinsic speed."); break;
+				case ART_BILE_PATCH:
+					pline("Artifact specs: acid resistance when worn."); break;
+				case ART_DO_NOT_FORGET_GRACE:
+					pline("Artifact specs: +5 strength and +10 dexterity when worn, lawful."); break;
+				case ART_PERPETUAL_MEMORY:
+					pline("Artifact specs: if you quaff it, its effect lasts for a much longer time than usual."); break;
+
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
 			}

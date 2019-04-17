@@ -991,6 +991,7 @@ boolean called;
 	    if (mtmp->egotype_allivore) sprintf(eos(buf), " Allivore");
 	    if (mtmp->egotype_nastycurser) sprintf(eos(buf), " Nastycurser");
 	    if (mtmp->egotype_sanitizer) sprintf(eos(buf), " Sanitizer");
+	    if (mtmp->egotype_laserpwnzor) sprintf(eos(buf), " LaserPwnz0r");
 
 	}
 

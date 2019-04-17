@@ -27,6 +27,7 @@ static void lawful_god_gives_angel(void);
 static void god_gives_pet(ALIGNTYP_P);
 static int offer_oracle(struct monst *, struct obj *);
 static void god_gives_benefit(ALIGNTYP_P);
+STATIC_DCL boolean canofferownrace(void);
 
 /* simplify a few tests */
 #define Cursed_obj(obj,typ) ((obj) && (obj)->otyp == (typ) && (obj)->cursed)
@@ -227,6 +228,88 @@ in_trouble()
         if((u.uen <= 5 || u.uen*7 <= u.uenmax) && (u.uen < u.uenmax)) 
         	return(TROUBLE_LOW_ENERGY);
 	return(0);
+}
+
+STATIC_OVL boolean
+canofferownrace()
+{
+	if (RngeCannibalism) return TRUE;
+
+	switch (Race_switch) {
+
+		case PM_ALIEN:
+		case PM_CURSER:
+		case PM_GASTLY:
+		case PM_GIGANT:
+		case PM_RODNEYAN:
+		case PM_INSECTOID:
+		case PM_WEAPON_TRAPPER:
+		case PM_KOBOLT:
+		case PM_MOULD:
+		case PM_HUMANLIKE_DRAGON:
+		case PM_HUMANLIKE_NAGA:
+		case PM_MISSINGNO:
+		case PM_WORM_THAT_WALKS:
+		case PM_OGRO:
+		case PM_DEATHMOLD:
+		case PM_AQUATIC_MONSTER:
+		case PM_TROLLOR:
+		case PM_SHOE:
+		case PM_PLAYER_SALAMANDER:
+		case PM_VORTEX:
+		case PM_METAL:
+		case PM_SHELL:
+		case PM_CORTEX:
+		case PM_HUMANOID_DEVIL:
+		case PM_MUMMY:
+		case PM_LICH_WARRIOR:
+		case PM_UNGENOMOLD:
+		case PM_PLAYER_ZRUTY:
+		case PM_PLAYER_GOLEM:
+		case PM_PLAYER_MUSHROOM:
+		case PM_PLAYER_ASURA:
+		case PM_PIERCER:
+		case PM_PLAYER_HULK:
+		case PM_PLAYER_JABBERWOCK:
+		case PM_WARPER:
+		case PM_LEVITATOR:
+		case PM_PHANTOM_GHOST:
+		case PM_UNALIGNMENT_THING:
+		case PM_ARMED_COCKATRICE:
+		case PM_ELEMENTAL:
+		case PM_WEAPON_BUG:
+		case PM_HUMANOID_LEPRECHAUN:
+		case PM_NYMPH:
+		case PM_TURTLE:
+		case PM_LOWER_ENT:
+		case PM_SPRIGGAN:
+		case PM_JELLY:
+		case PM_WEAPON_CUBE:
+		case PM_WEAPON_IMP:
+		case PM_HUMANOID_DRYAD:
+		case PM_PLAYER_SLIME:
+		case PM_BORG:
+		case PM_AUREAL:
+		case PM_MAZKE:
+		case PM_ELONA_SNAIL:
+		case PM_ANCIPITAL:
+		case PM_PLAYER_DOLGSMAN:
+		case PM_YEEK:
+		case PM_PLAYER_GREMLIN:
+		case PM_FAWN:
+		case PM_CHIROPTERAN:
+		case PM_YUKI_PLAYA:
+		case PM_INKA:
+		case PM_OCTOPODE:
+		case PM_WEAPON_XORN:
+		case PM_WISP:
+		case PM_WEAPONIZED_DINOSAUR:
+		case PM_SATRE:
+			return TRUE;
+	}
+
+	return FALSE;
+
 }
 
 /* select an item for TROUBLE_CURSED_ITEMS */
@@ -1766,7 +1849,7 @@ dosacrifice()
 
 	/* fix for new races since they're MH_HUMAN but not actually supposed to count as same race --Amy */
 
-	if (your_race(ptr) && !Race_if(PM_ALIEN) && !Race_if(PM_CURSER) && !Race_if(PM_GASTLY) && !Race_if(PM_GIGANT) && !Race_if(PM_RODNEYAN) && !Race_if(PM_INSECTOID) && !Race_if(PM_WEAPON_TRAPPER) && !Race_if(PM_KOBOLT) && !Race_if(PM_MOULD) && !Race_if(PM_HUMANLIKE_DRAGON) && !Race_if(PM_HUMANLIKE_NAGA) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_OGRO) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_AQUATIC_MONSTER) && !Race_if(PM_TROLLOR) && !Race_if(PM_SHOE) && !Race_if(PM_PLAYER_SALAMANDER) && !Race_if(PM_VORTEX) && !Race_if(PM_METAL) && !Race_if(PM_SHELL) && !Race_if(PM_CORTEX) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_PLAYER_ZRUTY) && !Race_if(PM_PLAYER_GOLEM) && !Race_if(PM_PLAYER_MUSHROOM) && !Race_if(PM_PLAYER_ASURA) && !Race_if(PM_PIERCER) && !Race_if(PM_PLAYER_HULK) && !Race_if(PM_PLAYER_JABBERWOCK) && !Race_if(PM_WARPER) && !Race_if(PM_LEVITATOR) && !Race_if(PM_PHANTOM_GHOST) && !Race_if(PM_UNALIGNMENT_THING) && !Race_if(PM_ARMED_COCKATRICE) && !Race_if(PM_ELEMENTAL) && !Race_if(PM_WEAPON_BUG) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !Race_if(PM_NYMPH) && !Race_if(PM_TURTLE) && !Race_if(PM_LOWER_ENT) && !Race_if(PM_SPRIGGAN) && !Race_if(PM_JELLY) && !Race_if(PM_WEAPON_CUBE) && !Race_if(PM_WEAPON_IMP) && !Race_if(PM_HUMANOID_DRYAD) && !Race_if(PM_PLAYER_SLIME) && !Race_if(PM_BORG)  && !Race_if(PM_AUREAL) && !Race_if(PM_MAZKE) && !Race_if(PM_ELONA_SNAIL) && !Race_if(PM_ANCIPITAL) && !Race_if(PM_PLAYER_DOLGSMAN) && !Race_if(PM_YEEK) && !Race_if(PM_PLAYER_GREMLIN) && !Race_if(PM_FAWN) && !Race_if(PM_CHIROPTERAN) && !Race_if(PM_YUKI_PLAYA) && !Race_if(PM_INKA) && !Race_if(PM_OCTOPODE) && !Race_if(PM_WEAPON_XORN) && !Race_if(PM_WISP) && !Race_if(PM_WEAPONIZED_DINOSAUR) && !Race_if(PM_SATRE)  ) {
+	if (your_race(ptr) && !canofferownrace()) {
 	    if (is_demon(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC)) {
 		You("find the idea very satisfying.");
 		exercise(A_WIS, TRUE);

@@ -2231,6 +2231,8 @@ int x;
 		if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
+		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 5;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -2303,6 +2305,7 @@ int x;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WONDERLOVELINESS) tmp += 5;
 		if (uimplant && uimplant->oartifact == ART_WONDERLOVELINESS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_CERULEAN_SMASH) tmp += 10;
+		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemaleTrapSolvejg) tmp += 5;
@@ -2376,6 +2379,7 @@ int x;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
+		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
@@ -2402,6 +2406,8 @@ int x;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
 		if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 10;
+		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
+		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 10;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
@@ -2423,6 +2429,8 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp += 5;
 		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) tmp -= 5;
+		if (uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) tmp += 3;
+		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

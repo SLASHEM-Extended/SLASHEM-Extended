@@ -17089,6 +17089,10 @@ register int	mmflags;
 			mtmp->isegotype = 1;
 			mtmp->egotype_wouwouer = TRUE;
 		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_laserpwnzor = TRUE;
+		}
 
 	}
 
