@@ -7341,6 +7341,7 @@ boolean ranged;
 	int hallutime;
 	struct permonst *mdat2;
       struct attack *attspc;
+	boolean rathback = FALSE;
 
 	/*int randattackC = 0;*/
 	int atttypC;
@@ -7362,6 +7363,9 @@ boolean ranged;
 	    if(i >= NATTK) return(malive | mhit);	/* no passive attacks */
 	    if((!ranged && (ptr->mattk[i].aatyp == AT_NONE || (!malive && ptr->mattk[i].aatyp == AT_BOOM)) ) ||
 		  (ranged && ptr->mattk[i].aatyp == AT_RATH) ) { /* try this one */
+
+		if (ptr->mattk[i].aatyp == AT_RATH) rathback = TRUE;
+		else rathback = FALSE;
 
 	/*}*/ /* the above allows multiple passive attacks on a single monster; code from FHS --Amy */
 
@@ -7422,7 +7426,7 @@ boolean ranged;
 	switch(atttypC) {
 
 	  case AD_ACID:
-	    if(mhit && rn2(2)) {
+	    if((mhit || rathback) && rn2(2)) {
 		if (Blind || !flags.verbose) You("are splashed!");
 		else	You("are splashed by %s acid!",
 			                s_suffix(mon_nam(mon)));
@@ -7444,7 +7448,8 @@ boolean ranged;
 	    exercise(A_STR, FALSE);
 	    break;
 	  case AD_TCKL:
-		if(mhit) {You("get hurt by %s spikes!", s_suffix(mon_nam(mon)));	
+		if (mhit || rathback) {
+			You("get hurt by %s spikes!", s_suffix(mon_nam(mon)));	
 			mdamageu(mon, tmp);
 		}
 		break;
@@ -7579,7 +7584,7 @@ boolean ranged;
 		break;
 
 	  case AD_CHKH:
-		if (mhit) {
+		if (mhit || rathback) {
 			pline("WHACK! You feel like you just got whipped!");
 			tmp += u.chokhmahdamage;
 			tmp += rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1));
@@ -7677,7 +7682,7 @@ boolean ranged;
 		break;
 
 	  case AD_THIR:
-		if(malive && mhit && rn2(3)) {
+		if(malive && (mhit || rathback) && rn2(3)) {
 			pline("Your %s is sucked!", body_part(BLOOD) );
 			mon->mhp += tmp;
 			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
@@ -7686,7 +7691,7 @@ boolean ranged;
 		break;
 
 	  case AD_NTHR:
-		if(malive && mhit && rn2(3)) {
+		if(malive && (mhit || rathback) && rn2(3)) {
 			pline("Your %s is sucked!", body_part(BLOOD) );
 			mon->mhp += tmp;
 			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
@@ -8746,7 +8751,7 @@ boolean ranged;
 
 		break;
 	  case AD_STON:
-	    if (mhit) {		/* successful attack */
+	    if (mhit || rathback) {		/* successful attack */
 		long protector = attk_protection((int)aatyp);
 		boolean barehanded = mhit & HIT_BODY ||
 			mhit & HIT_UWEP && !uwep ||
@@ -8754,7 +8759,7 @@ boolean ranged;
 
 		/* hero using monsters' AT_MAGC attack is hitting hand to
 		   hand rather than casting a spell */
-		if (aatyp == AT_MAGC) protector = W_ARMG;
+		if (!rathback && (aatyp == AT_MAGC)) protector = W_ARMG;
 
 		if (protector == 0L ||		/* no protection */
 			(protector == W_ARMG && (!uarmg || FingerlessGloves) && barehanded) ||
@@ -8785,7 +8790,7 @@ boolean ranged;
 	    break;
 
 	  case AD_EDGE:
-	    if (mhit) {		/* successful attack */
+	    if (mhit || rathback) {		/* successful attack */
 
 		if (!Stone_resistance || !rn2(StrongStone_resistance ? 100 : 20)) {
 			pline("The sharp-edged stone slits your entire body!");
@@ -8800,7 +8805,7 @@ boolean ranged;
 
 		/* hero using monsters' AT_MAGC attack is hitting hand to
 		   hand rather than casting a spell */
-		if (aatyp == AT_MAGC) protector = W_ARMG;
+		if (!rathback && (aatyp == AT_MAGC)) protector = W_ARMG;
 
 		if (protector == 0L ||		/* no protection */
 			(protector == W_ARMG && (!uarmg || FingerlessGloves) && barehanded) ||
@@ -9555,6 +9560,9 @@ boolean ranged;
 			break;
 		    case 10:
 
+			if (ptr->mattk[i].aatyp == AT_RATH) {
+				hurtarmor(AD_RUST);
+			}
 		    if(mhit) {
 			if (aatyp == AT_KICK) {
 			    if (uarmf)
@@ -9570,6 +9578,9 @@ boolean ranged;
 
 		    case 11:
 
+			if (ptr->mattk[i].aatyp == AT_RATH) {
+				hurtarmor(AD_DCAY);
+			}
 		    if(mhit) {
 			if (aatyp == AT_KICK) {
 			    if (uarmf)
@@ -9585,6 +9596,9 @@ boolean ranged;
 
 		    case 12:
 
+			if (ptr->mattk[i].aatyp == AT_RATH) {
+				hurtarmor(AD_CORR);
+			}
 		    if(mhit) {
 			if (aatyp == AT_KICK) {
 			    if (uarmf)
@@ -9685,6 +9699,9 @@ boolean ranged;
 		switch(rn2(7)) {
 		    case 0: /* destroy certain things */
 
+			if (ptr->mattk[i].aatyp == AT_RATH) {
+				witherarmor();
+			}
 		    if(mhit) {
 			if (aatyp == AT_KICK) {
 			    if (uarmf)
@@ -9991,6 +10008,10 @@ boolean ranged;
 	      case AD_LAVA:
 		if(monnear(mon, u.ux, u.uy)) {
 
+			if (ptr->mattk[i].aatyp == AT_RATH) {
+				hurtarmor(AD_LAVA);
+			}
+
 		    if(mhit && !mon->mcan) {
 			if (aatyp == AT_KICK) {
 			    if (uarmf)
@@ -10117,6 +10138,15 @@ boolean ranged;
 
 	      case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
 		case AD_NGEN:
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
+			}
+			Your("equipment seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+
+		}
 		if (mhit) {
 		    struct obj *obj = target;
 
@@ -10133,6 +10163,11 @@ boolean ranged;
 	    	break;
 
 	      case AD_SHRD:	/* KMH -- remove enchantment (disenchanter) */
+
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			witherarmor();
+		}
+
 		if (mhit) {
 		    struct obj *obj = target;
 
