@@ -1858,6 +1858,12 @@ int dieroll;
 				You("remove %s's disguise!", mon_nam(mon));
 			}
 
+			if (Role_if(PM_DISSIDENT) && !mon->minvisreal && mon->minvis && !rn2(20)) {
+				mon->perminvis = 0;
+				mon->minvis = 0;
+				pline("%s's real %s is revealed!", Monnam(mon), mbodypart(mon, FACE));
+			}
+
 			if (obj->oartifact &&
 			artifact_hit(&youmonst, mon, obj, &tmp, dieroll)) {
 				if(mon->mhp <= 0) /* artifact killed monster */
