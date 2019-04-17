@@ -241,9 +241,9 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
+	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
 
-	return ((mtmp->mtame || mtmp->egotype_steed || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
+	return ((mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
 			(!Underwater || is_swimmer(mtmp->data)) );
 
@@ -382,7 +382,7 @@ mount_steed(mtmp, force)
 	    sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
 	    instapetrify(kbuf);
 	}
-	if (!(mtmp->mtame || mtmp->egotype_steed || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
+	if (!(mtmp->mtame || mtmp->egotype_steed || canalwaysride(mtmp->data) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
 	    pline("I think %s would mind.", mon_nam(mtmp));
 	    return (FALSE);
 	}

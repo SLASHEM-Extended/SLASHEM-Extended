@@ -975,6 +975,10 @@ register int pm;
 		break;
 	    case PM_LIZARD:
 	    case PM_ROCK_LIZARD:
+	    case PM_WILL_STONE_LIZARD:
+	    case PM_WILL_RATCH_LIZARD:
+	    case PM_LICHZARD:
+	    case PM_SKELLIZARD:
 	    case PM_BLACK_LIZARD:
 	    case PM_BABY_CAVE_LIZARD:
 	    case PM_NIGHT_LIZARD:
@@ -1128,6 +1132,10 @@ struct monst *mon;
     switch(monsndx(mon->data)) {
 	case PM_LIZARD:
 	case PM_ROCK_LIZARD:
+      case PM_WILL_STONE_LIZARD:
+      case PM_WILL_RATCH_LIZARD:
+      case PM_LICHZARD:
+      case PM_SKELLIZARD:
 	case PM_BABY_CAVE_LIZARD:
 	case PM_NIGHT_LIZARD:
 	case PM_LIZARD_MAN:
@@ -2679,14 +2687,18 @@ register int pm;
 
 	    case PM_PREHISTORIC_CAVE_LIZARD:
 	    case PM_LIZARD_OF_YENDOR:
+	    case PM_LICHZARD:
 			lesshungry(500); /* fall thru */
 	    case PM_GIANT_LIZARD:
 			lesshungry(300); /* fall thru */
 	    case PM_CHAOS_LIZARD:
 	    case PM_CHAOTIC_LIZARD:
 	    case PM_LIZARD_MAN:
+	    case PM_SKELLIZARD:
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
+	    case PM_WILL_STONE_LIZARD:
+	    case PM_WILL_RATCH_LIZARD:
 	    case PM_ROCK_LIZARD:
 	    case PM_BABY_CAVE_LIZARD:
 	    case PM_NIGHT_LIZARD:

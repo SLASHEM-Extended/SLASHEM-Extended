@@ -2727,6 +2727,22 @@ register struct monst *mtmp;
 
 	case MS_WHORE:
 
+		if (mtmp->data == &mons[PM_ROXY] && !mtmp->mtame && mtmp->wastame && u.ugold >= 1000) {
+			verbalize("For 1000 zorkmids I'll join your team again.");
+			if (yn("Accept the offer?") == 'y') {
+
+				struct monst *roxylein;
+				u.ugold -= 1000;
+
+				roxylein = tamedog(mtmp, (struct obj *) 0, TRUE);
+				if (roxylein) mtmp = roxylein;
+				if (mtmp) verbalize("Thank you!");
+				else impossible("roxy was tamed but doesn't exist now??");
+				break;
+			}
+
+		}
+
 		if (!flags.female) verbalize("Hey, baby, want to have some fun?");
 		else verbalize("I don't have many female customers, but do you want to have fun with me?");
 		if (yn("Accept the offer?") == 'y') {
