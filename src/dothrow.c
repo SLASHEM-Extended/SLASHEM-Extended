@@ -287,7 +287,7 @@ int thrown;
 				launcher->otyp == ELVEN_BOW) multishot++;
 		break;
 	    case PM_INKA:
-		if (launcher->otyp == INKA_SLING) multishot += 2;
+		if (launcher && launcher->otyp == INKA_SLING && ammo_and_launcher(obj, launcher) ) multishot += 2;
 		break;
 	    case PM_ORC:
 		if (obj->otyp == ORCISH_ARROW && uwep &&
