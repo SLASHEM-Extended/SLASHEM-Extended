@@ -1570,18 +1570,30 @@ unsigned int stuckid, steedid;	/* STEED */
 {
 	register struct monst *mtmp;
 
+	/* Amy edit: why the hell is this a panic?! that makes the save impossible to load in some cases! these errors
+	 * are usually caused by the game segfaulting upon a level change, which simply eats the steed; the real fix for
+	 * that is to fix errors that cause segfaults on level change, but panics eating the savegame just isn't a good idea */
+
 	if (stuckid) {
 		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			if (mtmp->m_id == stuckid) break;
-		if (!mtmp) panic("Cannot find the monster ustuck.");
-		setustuck(mtmp);
+		if (!mtmp) {
+			impossible("Cannot find the monster ustuck.");
+			setustuck(0);
+		} else {
+			setustuck(mtmp);
+		}
 	}
 	if (steedid) {
 		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			if (mtmp->m_id == steedid) break;
-		if (!mtmp) panic("Cannot find the monster usteed.");
-		u.usteed = mtmp;
-		remove_monster(mtmp->mx, mtmp->my);
+		if (!mtmp) {
+			impossible("Cannot find the monster usteed.");
+			u.usteed = 0;
+		} else {
+			u.usteed = mtmp;
+			remove_monster(mtmp->mx, mtmp->my);
+		}
 	}
 }
 
