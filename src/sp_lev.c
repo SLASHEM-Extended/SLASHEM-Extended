@@ -5409,8 +5409,9 @@ int humidity;
 	    x = rn1(x_maze_max - 3, 3);
 	    y = rn1(y_maze_max - 3, 3);
 	    if (--tryct < 0) break;	/* give up */
-	} while (!(x % 2) || !(y % 2) || Map[x][y] ||
-		 !is_ok_location((schar)x, (schar)y, humidity));
+	} while (Map[x][y] || !is_ok_location((schar)x, (schar)y, humidity));
+	/* Amy edit: used to also check for "!(x % 2) || !(y % 2) ||"... we want all tiles to have a chance of
+	 * getting stuff though, so that players can't simply avoid certain squares to never step on a trap */
 
 	m->x = (xchar)x,  m->y = (xchar)y;
 }
@@ -6020,7 +6021,11 @@ dlb *fd;
 
     if (nwalk_sav && (mapcount > (int) (mapcountmax / 10))) {
 	    mapfact = (int) ((mapcount * 100L) / mapcountmax);
+#ifdef BIGSLEX
+	    for(x = rnd((int) (30 * mapfact) / 100); x; x--) {
+#else
 	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
+#endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
 		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE);
@@ -6030,19 +6035,27 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	    }
+#ifdef BIGSLEX
+	    for (x = rn2(40); x; x--) 	{ 
+#else
 	    for (x = rn2(20); x; x--) 	{ 
+#endif
 		    maze1xy(&mm, DRY);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
 			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
 			}
-	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
+	    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 		maze1xy(&mm, DRY);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
+#ifdef BIGSLEX
+	    for(x = rnd((int) (24 * mapfact) / 100); x; x--) {
+#else
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
+#endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		    else makerandomtrap_at(mm.x, mm.y);
@@ -6051,7 +6064,11 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    (void) mkgold(0L,mm.x,mm.y);
 	    }
+#ifdef BIGSLEX
+	    for(x = rn2((int) (30 * mapfact) / 100); x; x--) {
+#else
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
+#endif
 		    int trytrap;
 
 		    maze1xy(&mm, DRY);
@@ -6064,7 +6081,11 @@ dlb *fd;
 	    }
 
 		if (ishaxor) {
+#ifdef BIGSLEX
+	    for(x = rnd((int) (30 * mapfact) / 100); x; x--) {
+#else
 	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
+#endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
 		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE);
@@ -6074,19 +6095,27 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
 	    }
+#ifdef BIGSLEX
+	    for (x = rn2(40); x; x--) 	{ 
+#else
 	    for (x = rn2(20); x; x--) 	{ 
+#endif
 		    maze1xy(&mm, DRY);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
 			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
 			}
-	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
+	    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 		maze1xy(&mm, DRY);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
 		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
+#ifdef BIGSLEX
+	    for(x = rnd((int) (24 * mapfact) / 100); x; x--) {
+#else
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
+#endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
 		    else makerandomtrap_at(mm.x, mm.y);
@@ -6095,7 +6124,11 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    (void) mkgold(0L,mm.x,mm.y);
 	    }
+#ifdef BIGSLEX
+	    for(x = rn2((int) (30 * mapfact) / 100); x; x--) {
+#else
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
+#endif
 		    int trytrap;
 
 		    maze1xy(&mm, DRY);
