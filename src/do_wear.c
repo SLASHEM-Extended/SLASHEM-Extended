@@ -3148,6 +3148,52 @@ Implant_on()
 		if (!uimplant->cursed) curse(uimplant);
     }
 
+    if (uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) {
+	if (!u.coronationculmination) {
+
+		You("are crowned!");
+		u.coronationculmination = TRUE;
+		u.weapon_slots++;
+
+		struct obj *durifact;
+
+		boolean havegifts = u.ugifts;
+		if (!havegifts) u.ugifts++;
+
+		durifact = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (durifact) {
+
+			if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
+			}
+
+			dropy(durifact);
+			discover_artifact(durifact->oartifact);
+			pline("An object appeared at your %s!", makeplural(body_part(FOOT)));
+		}
+		if (!havegifts) u.ugifts--;
+
+	}
+    }
+
+    if (uimplant && uimplant->oartifact == ART_RNG_S_EXTRAVAGANZA && uimplant->spe == 0) {
+		if (!rn2(2)) uimplant->spe = rnd(9);
+		else uimplant->spe = -(rnd(9));
+    }
+
     if (uimplant && uimplant->oartifact == ART_SLEX_WANTS_YOU_TO_DIE_A_PA) {
 		u.uhpmax++;
 		flags.botl = TRUE;
@@ -4633,6 +4679,9 @@ find_ac()
 
 	/* implants are mainly meant for those who lack hands --Amy */
 	if(uimplant) uac -= ( (powerfulimplants() || ARM_BONUS(uimplant) < 1) ? ARM_BONUS_IMPLANT(uimplant) : (ARM_BONUS_IMPLANT(uimplant) / 2));
+
+	if (uimplant && powerfulimplants() && uimplant->oartifact == ART_DEINE_MUDDA && uimplant->spe > 0) uac -= (uimplant->spe * 4);
+
 	/* are you restricted? if yes, the implant may be actively bad for you */
 	if (uimplant && P_RESTRICTED(P_IMPLANTS) && !powerfulimplants()) uac += 2;
 

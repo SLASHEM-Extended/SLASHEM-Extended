@@ -23081,6 +23081,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"ATTENTION: Sven has started to load an ultra-mega-hyper-dyper laser cannon! If you are lined up to him when he's finished charging, he will one-shot you no matter what resistances, intrinsics etc. you have!",
 	"ZIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEtschhhhhhhhhhhhhhhhhhhhhhhh...",
 	"ZIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEtschhhhhhhhhhhhhhhhhhhhhhhh... (This means that Sven fired the ultra-mega-hyper-dyper laser cannon and instakilled you.)",
+	"Some of your items were greased!",
+	"Some of your items were greased! Including your stack of throwing weapons, because harharhar!",
 
 };
 

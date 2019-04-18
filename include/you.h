@@ -1535,6 +1535,8 @@ struct you {
 
 	boolean metalguard;	/* for metal guard spell */
 
+	boolean coronationculmination;	/* for a certain artifact */
+
 	int garbagecleaned;	/* for janitor role */
 	int garbagetrucktime;	/* ditto */
 

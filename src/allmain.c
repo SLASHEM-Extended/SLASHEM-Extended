@@ -1674,6 +1674,20 @@ moveloop()
 		    if (u.uhunger >= 9000) moveamt -= (moveamt / 5);
 		    if (u.uhunger >= 10000) moveamt -= (moveamt / 5);
 
+		    if (uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) {
+				int drenchfactor = 100;
+				if (u.uhp < (u.uhpmax * 4 / 5)) drenchfactor = (flags.female ? 120 : 110);
+				if (u.uhp < (u.uhpmax * 3 / 5)) drenchfactor = (flags.female ? 140 : 120);
+				if (u.uhp < (u.uhpmax * 2 / 5)) drenchfactor = (flags.female ? 150 : 125);
+				if (u.uhp < (u.uhpmax * 3 / 10)) drenchfactor = (flags.female ? 160 : 130);
+				if (u.uhp < (u.uhpmax * 1 / 5)) drenchfactor = (flags.female ? 175 : 138);
+				if (u.uhp < (u.uhpmax * 1 / 10)) drenchfactor = (flags.female ? 200 : 150);
+
+				moveamt *= drenchfactor;
+				moveamt /= 100;
+
+		    }
+
 			/* fluctuating speed - sadly jonadab never fully disclosed how that bug worked in fourk... */
 		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone()) && moveamt > 0) {
 			if (uarmf && uarmf->oartifact == ART_JONADAB_S_BUG_MASTERY) {
@@ -1799,6 +1813,8 @@ moveloop()
 			}
 
 		}
+
+		if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && u.inertia < 5) u.inertia = 15;
 
 		if (uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) {
 			if (HStun > 10) HStun -= 5;
@@ -2287,6 +2303,17 @@ trapsdone:
 
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(10000)) {
 			bad_artifact();
+		}
+
+		if (uimplant && uimplant->oartifact == ART_FULLGREASE && !rn2(5000)) {
+
+			pline("Some of your items were greased!");
+
+			register struct obj *grsobj, *grsXXX;
+			for(grsobj = invent; grsobj ; grsobj = grsobj->nobj) {
+				if (!rn2(10) && grsobj && !stack_too_big(grsobj) && grsobj->greased < 3) grsobj->greased++;
+			}
+
 		}
 
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(10000)) {
@@ -4829,7 +4856,7 @@ newbossA:
 			randomcuss();
 		}
 
-		if ((MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || have_mommystone()) && !rn2(100)) {
+		if ((MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !rn2(100)) {
 			randomcuss();
 		}
 
@@ -7794,7 +7821,7 @@ newboss:
 
 		}
 
-		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
+		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || have_shitstone() || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
 			You("suddenly have to take a shit!");
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {

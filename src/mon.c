@@ -5224,6 +5224,11 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 
+	if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && !rn2(50)) {
+		u.uhpmax++;
+		if (Upolyd) u.mhmax++;
+	}
+
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) healup(mtmp->m_lev, 0, FALSE, FALSE);
 
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) {

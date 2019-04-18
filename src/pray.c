@@ -1492,6 +1492,7 @@ pleased(g_align)
 	kick_on_butt = (u.uevent.udemigod && u.amuletcompletelyimbued) ? 1 : 0;
 	if (u.uevent.uhand_of_elbereth) kick_on_butt++;
 	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
+	if (uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) u.ublesscnt += rnz(ishaxor ? 500 : 1000);
 
 	/* evil patch idea by jonadab: permaconverting yourself grants increased prayer timeout */
 	if (u.ualignbase[A_CURRENT] != u.ualignbase[A_ORIGINAL]) u.ublesscnt += rnz(ishaxor ? 500 : 1000);

@@ -18062,6 +18062,22 @@ boolean knoweverything;
 					pline("Artifact specs: +5 strength and +10 dexterity when worn, lawful."); break;
 				case ART_PERPETUAL_MEMORY:
 					pline("Artifact specs: if you quaff it, its effect lasts for a much longer time than usual."); break;
+				case ART_RNG_S_EXTRAVAGANZA:
+					pline("Artifact specs: putting it on while it's at +0 will set it to a random value from -9 to +9 (inclusive)."); break;
+				case ART_IME_SPEW:
+					pline("Artifact specs: fleecescript, flicker strips, quad attacks and you take double damage when worn."); break;
+				case ART_ETERNAL_SORENESS:
+					pline("Artifact specs: permanent inertia when worn, and whenever you kill a monster there's a small chance that your maximum health increases."); break;
+				case ART_FULLGREASE:
+					pline("Artifact specs: while wearing it, items in your open inventory will occasionally become greased."); break;
+				case ART_BUCKET_HOUSE:
+					pline("Artifact specs: diarrhea, slow digestion and hunger when worn."); break;
+				case ART_CORONATION_CULMINATION:
+					pline("Artifact specs: replicates the effects of being crowned when worn, and the culmination is that if you put it on for the first time, you also get an additional skill slot. The latter part is inspired by the variant that calls itself 3.6.0. Oh, and it also creates a random artifact gift that can possibly unlock skills."); break;
+				case ART_RESTROOM_DRENCHING:
+					pline("Artifact specs: disables regeneration when worn but increases your speed the more wounded you are. If you're female, the bonus is bigger."); break;
+				case ART_DEINE_MUDDA:
+					pline("Artifact specs: displays random 'your momma' jokes when worn. If you're in a form without hands or otherwise capable of getting bonuses from its enchantment, every point of enchantment will improve your AC by 5 points instead of the standard 1."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
