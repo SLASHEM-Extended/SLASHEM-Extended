@@ -525,6 +525,49 @@ register struct monst *mtmp;
 		}
 		goto default_1;
 
+	    case PM_GRAY_DRAGOM:
+	    case PM_MERCURIAL_DRAGOM:
+	    case PM_SILVER_DRAGOM:
+	    case PM_SHIMMERING_DRAGOM:
+	    case PM_DEEP_DRAGOM:
+	    case PM_RED_DRAGOM:
+	    case PM_ORANGE_DRAGOM:
+	    case PM_WHITE_DRAGOM:
+	    case PM_BLACK_DRAGOM:
+	    case PM_BLUE_DRAGOM:
+	    case PM_COPPER_DRAGOM:
+	    case PM_PLATINUM_DRAGOM:
+	    case PM_BRASS_DRAGOM:
+	    case PM_AMETHYST_DRAGOM:
+	    case PM_PURPLE_DRAGOM:
+	    case PM_DIAMOND_DRAGOM:
+	    case PM_EMERALD_DRAGOM:
+	    case PM_SAPPHIRE_DRAGOM:
+	    case PM_RUBY_DRAGOM:
+	    case PM_GREEN_DRAGOM:
+	    case PM_GOLDEN_DRAGOM:
+	    case PM_STONE_DRAGOM:
+	    case PM_CYAN_DRAGOM:
+	    case PM_PSYCHIC_DRAGOM:
+	    case PM_RAINBOW_DRAGOM:
+	    case PM_BLOOD_DRAGOM:
+	    case PM_PLAIN_DRAGOM:
+	    case PM_SKY_DRAGOM:
+	    case PM_WATER_DRAGOM:
+	    case PM_EVIL_DRAGOM:
+	    case PM_MAGIC_DRAGOM:
+	    case PM_YELLOW_DRAGOM:
+		/* Make dragon scales.  This assumes that the order of the */
+		/* dragons is the same as the order of the scales.	   */
+		if (!rn2(mtmp->mrevived ? 20 : 3)) {
+		    num = GRAY_DRAGON_SCALES + monsndx(mdat) - PM_GRAY_DRAGOM;
+		    if (!rn2(8)) num = GRAY_DRAGON_SCALE_SHIELD + monsndx(mdat) - PM_GRAY_DRAGOM;
+		    obj = mksobj_at(num, x, y, TRUE, FALSE); /* allow random enchantment and BUC --Amy */
+		    /*obj->spe = 0;
+		    obj->cursed = obj->blessed = FALSE;*/
+		}
+		goto default_1;
+
 	    case PM_YOUNG_UNICORN:
 		if (rn2(2)) goto default_1;
 		/* fall through */

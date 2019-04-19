@@ -8053,6 +8053,18 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_DENISE_S_GIRL_SHOE]) (void) mongets(mtmp, SOFT_SNEAKERS);
 
+		if (mtmp->data == &mons[PM_COLORLESS_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_WHITE_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_YELLOW_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_BLACK_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_SPHERICAL_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_ALARM_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_DARK_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_PSI_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_FAMISHED_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_PESTILENT_WASER]) m_initweap_normal(mtmp);
+		if (mtmp->data == &mons[PM_DEATHLY_WASER]) m_initweap_normal(mtmp);
+
 		break;
 	    case S_GNOME:
 
