@@ -7674,6 +7674,46 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_TRACY]) (void) mongets(mtmp, FEMININE_PUMPS);
 		if (mtmp->data == &mons[PM_PILE_OF_BRAT_COINS]) (void) mongets(mtmp, UNICORN_HORN);
 
+		if (mtmp->data == &mons[PM_YERLES_MACHINE_INFANTRY]) {
+			(void) mongets(mtmp, FLINTLOCK);
+			m_initthrow(mtmp, BULLET, 30);
+		}
+		if (mtmp->data == &mons[PM_TANJA_MACHINE_INFANTRY]) {
+			(void) mongets(mtmp, FLINTLOCK);
+			m_initthrow(mtmp, BULLET, 30);
+		}
+		if (mtmp->data == &mons[PM_YERLES_SELF_PROPELLED_GUN]) {
+			(void) mongets(mtmp, RIFLE);
+			m_initthrow(mtmp, BULLET, 40);
+		}
+		if (mtmp->data == &mons[PM_TANJA_SELF_PROPELLED_GUN]) {
+			(void) mongets(mtmp, RIFLE);
+			m_initthrow(mtmp, BULLET, 40);
+		}
+
+		if (mtmp->data == &mons[PM_YERLES_ELITE_MACHINE_INFANTRY]) {
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+			m_initthrow(mtmp, BULLET, 50);
+		}
+		if (mtmp->data == &mons[PM_TANJA_ELITE_MACHINE_INFANTRY]) {
+			(void) mongets(mtmp, ASSAULT_RIFLE);
+			m_initthrow(mtmp, BULLET, 50);
+		}
+
+		if (mtmp->data == &mons[PM_YERLES_CYBORG_SOLDIER]) (void) mongets(mtmp, BLUE_LIGHTSABER);
+		if (mtmp->data == &mons[PM_TANJA_CYBORG_SOLDIER]) (void) mongets(mtmp, BLUE_LIGHTSABER);
+
+		if (mtmp->data == &mons[PM_YERLES_LATEST_OUTFIT_SOLDIER]) {
+			(void) mongets(mtmp, RAYGUN);
+			(void) mongets(mtmp, ORCISH_CLOAK);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+		if (mtmp->data == &mons[PM_TANJA_LATEST_OUTFIT_SOLDIER]) {
+			(void) mongets(mtmp, RAYGUN);
+			(void) mongets(mtmp, SOFT_SNEAKERS);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+
 		if (mtmp->data == &mons[PM_PILE_OF_SLINGER_COINS]) {
 			(void) mongets(mtmp, SLING);
 			m_initthrow(mtmp, ROCK, 40);
@@ -17291,6 +17331,8 @@ register int	mmflags;
 			break;
 		case S_BAD_COINS:
 			if (mtmp->data == &mons[PM_FATA_MORGANA]) set_mimic_sym(mtmp);
+			if (mndx == PM_YERLES_CYBORG_SOLDIER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_TANJA_CYBORG_SOLDIER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 		case S_ZOMBIE:
 			if (mtmp->data == &mons[PM_ALIENATED_UFO_PART]) set_mimic_sym(mtmp);
