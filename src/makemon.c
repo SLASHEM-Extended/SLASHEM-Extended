@@ -7564,6 +7564,15 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, HELMET);
 			m_initthrow(mtmp, SHURIKEN, 50);
 		}
+		if (mtmp->data == &mons[PM_OLOG_HAI_LASERPOINTER]) {
+			(void) mongets(mtmp, ARM_BLASTER);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+		if (mtmp->data == &mons[PM_ELBOW_TROLL]) {
+			(void) mongets(mtmp, YUMI);
+			m_initthrow(mtmp, YA, 50);
+		}
 		if (mtmp->data == &mons[PM_FLINTROLL]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, ORCISH_HELM);
@@ -11211,6 +11220,14 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_BLAKE_STONE_JELLY]) {
 			 (void) mongets(mtmp, ARM_BLASTER);
 			m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : HEAVY_BLASTER_BOLT, 50);
+		}
+
+		if (mtmp->data == &mons[PM_POTION_JEL]) {
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
 		}
 
  		break;
@@ -16746,6 +16763,7 @@ register int	mmflags;
 
 	if (ptr == &mons[PM_SLEEPING_GIANT]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_DEEP_SLEEPER]) mtmp->msleeping = 1;
+	if (ptr == &mons[PM_SLEEPING_HULK]) mtmp->msleeping = 1;
 
 	/* or an invisible one, based on an evil patch idea by jonadab */
 

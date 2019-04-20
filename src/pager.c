@@ -23083,6 +23083,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"ZIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEtschhhhhhhhhhhhhhhhhhhhhhhh... (This means that Sven fired the ultra-mega-hyper-dyper laser cannon and instakilled you.)",
 	"Some of your items were greased!",
 	"Some of your items were greased! Including your stack of throwing weapons, because harharhar!",
+	"You feel light on your jesus, come on!", /* evilhack :P */
 
 };
 
