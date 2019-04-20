@@ -2189,15 +2189,37 @@ tenshallmonB()
 struct permonst *
 douglas_adams_mon()
 {
+	int depthuz;
+	int maxdougdiff = 2000; /* arbitrary */
+
+	if (iszapem && In_ZAPM(&u.uz) && !(u.zapemescape)) {
+
+		d_level zapemlevel;
+		int zapemdepth;
+		zapemlevel.dnum = dname_to_dnum("Space Base");
+		zapemlevel.dlevel = dungeons[zapemlevel.dnum].entry_lev;
+		zapemdepth = depth(&zapemlevel);
+
+		depthuz = (1 + depth(&u.uz) - zapemdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
+
+	} else {
+		depthuz = depth(&u.uz);
+	}
+
+	if ((depthuz < 10) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (8 + rn2(3)))) {
+		maxdougdiff = depthuz;
+	}
+
 	int     i = rn2(60);
-	if (i > 55) return(&mons[PM_RAVENOUS_BUGBLATTER_BEAST_OF_TRAAL]);
-	else if (i > 54 && !rn2(10))        return(&mons[PM_MARVIN]);
+	if (i > 55) return((maxdougdiff < 12) ? &mons[PM_TRAIL_BEAST] : &mons[PM_RAVENOUS_BUGBLATTER_BEAST_OF_TRAAL]);
+	else if (i > 54 && !rn2(10))        return((maxdougdiff < 9) ? &mons[PM_MRIVAN] : &mons[PM_MARVIN]);
 	else if (i > 46)        return(&mons[PM_CREEPING___]);
 	else if (i > 26)        return(&mons[PM_MICROSCOPIC_SPACE_FLEET]);
-	else if (i > 20)        return(&mons[PM_VOGON]);
-	else if (i > 19)        return(&mons[PM_VOGON_LORD]);
+	else if (i > 20)        return((maxdougdiff < 4) ? &mons[PM_BIRDON] : &mons[PM_VOGON]);
+	else if (i > 19)        return((maxdougdiff < 14) ? &mons[PM_BIRDON] : &mons[PM_VOGON_LORD]);
 	else if (i > 2)        return(&mons[PM_BABELFISH]);
-	else                    return(&mons[PM_ALGOLIAN_SUNTIGER]);
+	else                    return((maxdougdiff < 8) ? &mons[PM_MOONTIGER] : &mons[PM_ALGOLIAN_SUNTIGER]);
 }
 
 struct permonst *
@@ -2296,6 +2318,31 @@ migohivemon()
 struct permonst *
 realzoomon()
 {
+	int depthuz;
+
+	if (iszapem && In_ZAPM(&u.uz) && !(u.zapemescape)) {
+
+		d_level zapemlevel;
+		int zapemdepth;
+		zapemlevel.dnum = dname_to_dnum("Space Base");
+		zapemlevel.dlevel = dungeons[zapemlevel.dnum].entry_lev;
+		zapemdepth = depth(&zapemlevel);
+
+		depthuz = (1 + depth(&u.uz) - zapemdepth);
+		if (depthuz < 1) depthuz = 1; /* fail safe */
+
+	} else {
+		depthuz = depth(&u.uz);
+	}
+
+	if ((depthuz < 6) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (5 + rn2(2)))) {
+		switch (rnd(3)) {
+			case 1: return(&mons[PM_MONKEY]);
+			case 2: return(&mons[PM_ROTHE]);
+			case 3: return(&mons[PM_SMALL_LYNX]);
+		}
+	}
+
 	int     i = rn2(60) + rn2(3*level_difficulty());
 	if (i > 175 && !rn2(50))    return(&mons[PM_JUMBO_THE_ELEPHANT]);
 	else if (i > 115)       return(&mons[PM_MASTODON]);
