@@ -1572,14 +1572,18 @@ unsigned int stuckid, steedid;	/* STEED */
 
 	/* Amy edit: why the hell is this a panic?! that makes the save impossible to load in some cases! these errors
 	 * are usually caused by the game segfaulting upon a level change, which simply eats the steed; the real fix for
-	 * that is to fix errors that cause segfaults on level change, but panics eating the savegame just isn't a good idea */
+	 * that is to fix errors that cause segfaults on level change, but panics eating the savegame just isn't a good idea
+	 * because they will happen during initialization and then the emergency save will just panic again on load
+	 *
+	 * we have to clear setustuck and u.usteed BEFORE calling impossible, because otherwise bot() is called and
+	 * may run functions that depend on those variables... */
 
 	if (stuckid) {
 		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			if (mtmp->m_id == stuckid) break;
 		if (!mtmp) {
+			setustuck((struct monst *)0);
 			impossible("Cannot find the monster ustuck.");
-			setustuck(0);
 		} else {
 			setustuck(mtmp);
 		}
@@ -1588,8 +1592,8 @@ unsigned int stuckid, steedid;	/* STEED */
 		for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			if (mtmp->m_id == steedid) break;
 		if (!mtmp) {
+			u.usteed = (struct monst *)0;
 			impossible("Cannot find the monster usteed.");
-			u.usteed = 0;
 		} else {
 			u.usteed = mtmp;
 			remove_monster(mtmp->mx, mtmp->my);

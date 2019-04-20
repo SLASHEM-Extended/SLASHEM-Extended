@@ -717,6 +717,12 @@ long nmv;		/* number of moves */
 	if (imv > mtmp->mspec_used) mtmp->mspec_used = 0;
 	else mtmp->mspec_used -= imv;
 
+	/* might have been charging a homing lazer */
+	if (mtmp->hominglazer) {
+		mtmp->hominglazer += imv;
+		if (mtmp->hominglazer > 200) mtmp->hominglazer = 0;
+	}
+
 
 		   /*                    
 			*      M1_MINDLESS __
@@ -728,7 +734,7 @@ long nmv;		/* number of moves */
  
 			if ((is_animal(mtmp->data) || mindless(mtmp->data) ||
 			    is_demon(mtmp->data)  || is_undead(mtmp->data) || mtmp->egotype_undead ||
-			    is_were(mtmp->data)) && (issoviet || ((monstermoves + 5000) > edog->hungrytime)) ) { 
+			    is_were(mtmp->data)) && mtmp->mtame && (issoviet || ((monstermoves + 5000) > edog->hungrytime)) ) { 
 				/* reduce tameness for every 
 				 * 150 moves you are away 
 				 Amy -- edit so that well-satiated pets can be on another level for much longer */
