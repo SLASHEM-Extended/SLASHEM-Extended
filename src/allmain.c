@@ -12380,66 +12380,70 @@ timebasedlowerchance()
 	/* make sure we don't fall off the bottom */
 	if (chance < 15) chance = 15;
 
-	if (moves > 10000) {
+	if (moves > 20000 && !rn2(2)) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 20000) {
+	if (moves > 40000 && !rn2(2)) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 30000) {
+	if (moves > 60000 && !rn2(2)) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 40000) {
+	if (moves > 80000 && !rn2(2)) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 50000) {
+	if (moves > 100000 && !rn2(2)) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 60000) {
+	if (moves > 120000) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 70000) {
+	if (moves > 140000) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 80000) {
+	if (moves > 160000) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 90000) {
+	if (moves > 180000) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (moves > 100000) {
+	if (moves > 200000) {
 		chance *= 9;
 		chance /= 10;
 	}
 
-	if (In_quest(&u.uz) || In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) {
+	if (In_quest(&u.uz)) {
 		chance /= 2;
 	}
 
+	if (In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) {
+		chance /= rnd(2);
+	}
+
 	if (In_yendorian(&u.uz) && !(flags.wonderland && !(u.wonderlandescape)) ) {
-		chance /= 3;
+		chance /= rnd(3);
 	}
 
 	if (In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) ) {
-		chance /= 3;
+		chance /= rnd(3);
 	}
 
 	if (In_subquest(&u.uz) || In_bellcaves(&u.uz)) {
