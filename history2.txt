@@ -1,6 +1,19 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.4.9 - April 2019
+- Toned down some monster spawn routines to make the game less of a slog.
+- Loosened the ascension turn clock a bit.
+- Improved maze level generation routines to make them more interesting.
+- Certain special rooms are less deadly if they spawn early.
+- Changed "cannot find the monster usteed" panic into an impossible, and fixed a segfault associated with it.
+- Fixed a segfault that could occasionally happen when changing dungeon levels.
+- Fixed a segfault that happened if an inka race player character shot projectiles without a launcher.
+- Added the memorization spell, and some functionality for the spellcasting menu.
+- Fixed some code that could occasionally freeze the game upon entering a new level.
+
 2.4.8 - March 2019
+- Toned down the bad effects that players are subjected to when falling into lava.
+- Reduced the chance of nymphs spawning with mirrors.
 - If the player is using both ZAPM and ironman/roommate modes, the first space base level now gets a grace period.
 - The player may now randomly gain the "The Force" intrinsic from pentagrams and lose it to gremlins.
 - Increased the maximum amount of spell memory a player can have for a spell to 2000% (was 700%).
