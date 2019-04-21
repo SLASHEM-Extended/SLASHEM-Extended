@@ -1174,7 +1174,7 @@ int dieroll;
 
 /* hitting this monster thrice means potential instadeath, unless those hits are enough to kill it by damage. --Amy */
 
-		if (result && (obj2 = m_carrying(mon, MIRROR)) != 0) m_useup(mon, obj2);	/* obj2 might be free'ed */
+		if (result && mon->ogrethief < 3) mon->ogrethief++;
 		else if (result) {
 			monkilled(mon, "", AD_PHYS);
 			pline("You kill the smirking sneak thief!");

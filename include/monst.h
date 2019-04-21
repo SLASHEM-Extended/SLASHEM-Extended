@@ -370,6 +370,7 @@ struct monst {
 	Bitfield(seeinvisble,1);	/* 2 in 3 chance that single see invisible is enough */
 	Bitfield(infravisble,1);	/* 2 in 3 chance that single infravision is enough */
 	int hominglazer;	/* normally zero; very specific monsters can use this to charge up a cannon */
+	int ogrethief;	/* normally zero; used for the huge ogre thief */
 
 	struct obj *mw;
 	long misc_worn_check;

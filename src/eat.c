@@ -1068,6 +1068,8 @@ register int pm;
 		}
 		break;
 	    case PM_LIZARD:
+	    case PM_LIZZY:
+	    case PM_LIZARD_PRINCE:
 	    case PM_ROCK_LIZARD:
 	    case PM_WILL_STONE_LIZARD:
 	    case PM_WILL_RATCH_LIZARD:
@@ -1088,6 +1090,7 @@ register int pm;
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
+	    case PM_ADULT_LIZARD:
 	    case PM_KARMIC_LIZARD:
 	    case PM_GREEN_LIZARD:
 	    case PM_MONSTER_LIZARD:
@@ -1124,7 +1127,9 @@ register int pm;
 	    break;
 
 	    case PM_SQUIRREL:
+	    case PM_KWIRREL:
 	    case PM_IGUANA:
+	    case PM_LEGWA:
 	    case PM_BIG_IGUANA:
 	    case PM_HELPFUL_SQUIRREL:
 		make_hallucinated(0L,TRUE,0L);
@@ -1149,6 +1154,7 @@ register int pm;
 	    case PM_PARALYSIS_WHIP_SALAMANDER:
 	    case PM_FROST_SALAMANDER:
 	    case PM_KOMODO_DRAGON:
+	    case PM_KOMODO_BEAST:
 	    case PM_PETTY_KOMODO_DRAGON:
 		make_numbed(0L,TRUE);
 		make_frozen(0L,TRUE);
@@ -1156,6 +1162,7 @@ register int pm;
 		make_feared(0L,TRUE);
 		break;
 	    case PM_GECKO:
+	    case PM_GEGGO:
 	    case PM_FLYING_GECKO:
 	    case PM_GIANT_GECKO:
 		if (Sick)
@@ -1225,6 +1232,8 @@ struct monst *mon;
 {
     switch(monsndx(mon->data)) {
 	case PM_LIZARD:
+	case PM_LIZZY:
+	case PM_LIZARD_PRINCE:
 	case PM_ROCK_LIZARD:
       case PM_WILL_STONE_LIZARD:
       case PM_WILL_RATCH_LIZARD:
@@ -1254,6 +1263,7 @@ struct monst *mon;
 	case PM_SAND_TIDE:
 	case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
+	    case PM_ADULT_LIZARD:
 	    case PM_GRANDPA:
 	case PM_KARMIC_LIZARD:
 	case PM_GREEN_LIZARD:
@@ -1817,13 +1827,16 @@ register int pm;
 
 	switch(pm) {
 	    case PM_IGUANA:
+	    case PM_LEGWA:
 	    case PM_GECKO:
+	    case PM_GEGGO:
 	    case PM_FLYING_GECKO:
 			lesshungry(20);
 		break;
 	    case PM_RHAUMBUSUN:
 			lesshungry(40);
 	    case PM_SQUIRREL:
+	    case PM_KWIRREL:
 	    case PM_HELPFUL_SQUIRREL:
 			lesshungry(50);
 		break;
@@ -1842,6 +1855,7 @@ register int pm;
 	    case PM_PARALYSIS_WHIP_SALAMANDER:
 	    case PM_FROST_SALAMANDER:
 	    case PM_KOMODO_DRAGON:
+	    case PM_KOMODO_BEAST:
 	    case PM_PETTY_KOMODO_DRAGON:
 			lesshungry(400);
 		break;
@@ -1918,6 +1932,7 @@ register int pm;
 
 	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
+	    case PM_NUUT:
 	    case PM_ENERGY_TROVE:
 	    case PM_GRAY_NEWT:
 	    case PM_ARCH_NEWT:
@@ -1999,6 +2014,7 @@ register int pm;
 		}
 		break;
 	    case PM_TWEN:
+	    case PM_DWEN:
 	    case PM_HEALTH_TROVE:
 	    case PM_GRAY_TWEN:
 	    case PM_DEMITWEN:
@@ -2794,6 +2810,8 @@ register int pm;
 	    case PM_SKELLIZARD:
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
+	    case PM_LIZZY:
+	    case PM_LIZARD_PRINCE:
 	    case PM_WILL_STONE_LIZARD:
 	    case PM_WILL_RATCH_LIZARD:
 	    case PM_ROCK_LIZARD:
@@ -2808,6 +2826,7 @@ register int pm;
 	    case PM_SPITTING_LIZARD:
 	    case PM_LIZARD_EEL:
 	    case PM_LIZARD_KING:
+	    case PM_ADULT_LIZARD:
 	    case PM_EEL_LIZARD:
 	    case PM_ANTI_STONE_LIZARD:
 	    case PM_HIDDEN_LIZARD:

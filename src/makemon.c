@@ -16716,6 +16716,7 @@ register int	mmflags;
 	mtmp->selfhybridvisible = !rn2(2);
 	mtmp->warningvisible = 0;
 	mtmp->hominglazer = 0;
+	mtmp->ogrethief = 0;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
 	mtmp->telepatvisible = 0;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);

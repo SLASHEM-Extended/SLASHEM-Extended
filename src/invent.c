@@ -1158,6 +1158,12 @@ have_lizard()
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_GRANDPA)
 			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_ADULT_LIZARD)
+			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZZY)
+			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZARD_PRINCE)
+			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_KARMIC_LIZARD)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_GREEN_LIZARD)
