@@ -264,6 +264,7 @@
 				 ((ptr) == &mons[PM_BANG_BRIGHT_LIGHT]) ? 5 : ( (ptr)->mlet == S_LIGHT || \
 				  (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_ELEMENTAL]) ? 2 : \
+				 ((ptr) == &mons[PM_LAMP_GOLEM]) ? 2 : \
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
 				 ((ptr) == &mons[PM_SATANIC_GNOME]) ? 3 : \

@@ -21454,6 +21454,52 @@ golemhp(type)
 int type;
 {
 	switch(type) {
+
+		case PM_CARDBOARD_GOLEM: return 5;
+		case PM_SPIT_GOLEM: return 8;
+		case PM_HUS_GOLEM: return 9;
+		case PM_FISH_GOLEM: return 12;
+		case PM_GRAVEL_GOLEM: return 12;
+		case PM_WARM_BLOODED_GOLEM: return 15;
+		case PM_PART_GOLEM: return 10;
+		case PM_SCISSOR_GOLEM: return 15;
+		case PM_LAMP_GOLEM: return 20;
+		case PM_WREH_GOLEM: return 16;
+		case PM_SCRAP_GOLEM: return 20;
+		case PM_CREDIT_GOLEM: return 20;
+		case PM_CLIMB_GOLEM: return 16;
+		case PM_ALUMINIUM_GOLEM: return 20;
+		case PM_PEARL_GOLEM: return 12;
+		case PM_OXYGEN_GOLEM: return 16;
+		case PM_SULFUR_GOLEM: return 24;
+		case PM_JELLY_GOLEM: return 24;
+		case PM_JEANS_GOLEM: return 25;
+		case PM_HIDE_GOLEM: return 30;
+		case PM_BRASS_SOLDIER: return 30;
+		case PM_TEAK_GOLEM: return 40;
+		case PM_ANIMATED_HEAVY_STATUE: return 36;
+		case PM_ROCK_SOLDIER: return 40;
+		case PM_SOFT_GOLEM: return 45;
+		case PM_DEFF_GOLEM: return 50;
+		case PM_MUD_GOLEM: return 50;
+		case PM_FLUFF_GOLEM: return 60;
+		case PM_ROOT_GOLEM: return 65;
+		case PM_WALL_GOLEM: return 75;
+		case PM_IMPISH_GOLEM: return 80;
+		case PM_REAGENT_GOLEM: return 80;
+		case PM_OTTED_GOLEM: return 90;
+		case PM_DEAD_GOLEM: return 100;
+		case PM_WATER_GOLEM: return 110;
+		case PM_BLADE_GOLEM: return 105;
+		case PM_ROLLER_GOLEM: return 110;
+		case PM_DSCH_GOLEM: return 120;
+		case PM_NUT_GOLEM: return 125;
+		case PM_MOLTEN_GOLEM: return 130;
+		case PM_SHINING_GOLEM: return 135;
+		case PM_KUNG_FU_GOLEM: return 150;
+		case PM_EVERYTHING_PROOF_GOLEM: return 175;
+		case PM_TIMELESS_GOLEM: return 200;
+
 		case PM_BABY_SHOE: return 10;
 		case PM_KARAKASA: return 30;
 		case PM_RETARDED_GOLEM: return 30;
