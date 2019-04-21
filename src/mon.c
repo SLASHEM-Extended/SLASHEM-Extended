@@ -173,17 +173,6 @@ STATIC_DCL void kill_eggs(struct obj *);
 
 /* make wraith luring unnecessary --Amy */
 
-#ifdef REINCARNATION
-#define LEVEL_SPECIFIC_NOCORPSE(mdat) \
-	 ( (Is_rogue_level(&u.uz) && rn2(2)) || \
-	   ( (level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_BIG_WRAITH] || mdat == &mons[PM_HUGE_WRAITH] || mdat == &mons[PM_GIGANTIC_WRAITH] || mdat == &mons[PM_WAFER_THIN_MINT] || mdat == &mons[PM_WRAITH_SHAMAN] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && \
-	    mdat != &mons[PM_VECNA] && rn2(3)))
-#else
-#define LEVEL_SPECIFIC_NOCORPSE(mdat) \
-	   ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_BIG_WRAITH] || mdat == &mons[PM_HUGE_WRAITH] || mdat == &mons[PM_GIGANTIC_WRAITH] || mdat == &mons[PM_WAFER_THIN_MINT] || mdat == &mons[PM_WRAITH_SHAMAN] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && \
-	    mdat != &mons[PM_VECNA] && rn2(3))
-#endif
-
 #define STARVATION_SPECIFIC_NOCORPSE(mdat) \
 	 (!is_reviver(mdat) && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]))
 
@@ -208,6 +197,19 @@ STATIC_DCL struct obj *make_corpse(struct monst *);
 STATIC_DCL void m_detach(struct monst *, struct permonst *);
 STATIC_DCL void lifesaved_monster(struct monst *);
 static void unpoly_monster(struct monst *);
+STATIC_DCL boolean level_specific_nocorpse(struct permonst *);
+
+STATIC_OVL boolean
+level_specific_nocorpse(mdat)
+struct permonst *mdat;
+{
+#ifdef REINCARNATION
+	if (Is_rogue_level(&u.uz) && rn2(2)) return TRUE;
+#endif
+	if ((level.flags.graveyard || mdat == &mons[PM_WRAITH] || mdat == &mons[PM_HUDDLED_WRAITH] || mdat == &mons[PM_HITTABLE_WRAITH] || mdat == &mons[PM_BIG_WRAITH] || mdat == &mons[PM_CREVICE_WRAITH] || mdat == &mons[PM_HUGE_WRAITH] || mdat == &mons[PM_GIGANTIC_WRAITH] || mdat == &mons[PM_WAFER_THIN_MINT] || mdat == &mons[PM_WRAITH_SHAMAN] || mdat == &mons[PM_NASTY_WRAITH] || mdat == &mons[PM_CREEPING___] ) && is_undead(mdat) && !is_reviver(mdat) && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_EGO_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_VECNA] && rn2(3)) return TRUE;
+
+	return FALSE;
+}
 
 /* convert the monster index of an undead to its living counterpart */
 int
@@ -4997,7 +4999,7 @@ boolean was_swallowed;			/* digestion */
 	/* must duplicate this below check in xkilled() since it results in
 	 * creating no objects as well as no corpse
 	 */
-	if (LEVEL_SPECIFIC_NOCORPSE(mdat))
+	if (level_specific_nocorpse(mdat))
 		return FALSE;
 
 	if ( (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) && STARVATION_SPECIFIC_NOCORPSE(mdat))
@@ -5351,7 +5353,7 @@ xkilled(mtmp, dest)
 		goto cleanup;
 	}
 
-	if((dest & 2) || LEVEL_SPECIFIC_NOCORPSE(mdat))
+	if((dest & 2) || level_specific_nocorpse(mdat))
 		goto cleanup;
 
 #ifdef MAIL

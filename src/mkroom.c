@@ -2216,7 +2216,7 @@ douglas_adams_mon()
 	else if (i > 54 && !rn2(10))        return((maxdougdiff < 9) ? &mons[PM_MRIVAN] : &mons[PM_MARVIN]);
 	else if (i > 46)        return(&mons[PM_CREEPING___]);
 	else if (i > 26)        return(&mons[PM_MICROSCOPIC_SPACE_FLEET]);
-	else if (i > 20)        return((maxdougdiff < 4) ? &mons[PM_BIRDON] : &mons[PM_VOGON]);
+	else if (i > 20)        return((maxdougdiff < 4) ? &mons[PM_BIRDON] : !rn2(5) ? &mons[PM_STUNOGON] : &mons[PM_VOGON]);
 	else if (i > 19)        return((maxdougdiff < 14) ? &mons[PM_BIRDON] : &mons[PM_VOGON_LORD]);
 	else if (i > 2)        return(&mons[PM_BABELFISH]);
 	else                    return((maxdougdiff < 8) ? &mons[PM_MOONTIGER] : &mons[PM_ALGOLIAN_SUNTIGER]);

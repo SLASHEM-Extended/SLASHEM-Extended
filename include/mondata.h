@@ -389,6 +389,6 @@
 		( (ptr)->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON)) || \
 		( (ptr)->msound == MS_SHOE && Race_if(PM_SHOE)) || \
 		(obj)->otyp == KELP_FROND && ((ptr)->mflags3 & M3_PETTY) || \
-		(obj)->otyp == BANANA && (ptr)->mlet == S_YETI))
+		(obj)->otyp == BANANA && herbivorous(ptr) && (ptr)->mlet == S_YETI))
 
 #endif /* MONDATA_H */

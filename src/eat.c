@@ -2200,6 +2200,9 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_CREVICE_WRAITH:
+	    case PM_HUDDLED_WRAITH:
+	    case PM_HITTABLE_WRAITH:
 	    case PM_ACID_WRAITH:
 	    case PM_HUMAN_WRAITH:
 	    case PM_BIG_WRAITH:

@@ -7357,11 +7357,17 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SKELETON_HERO]) {
 			 (void) mongets(mtmp, TWO_HANDED_SWORD);
 		}
+		if (mtmp->data == &mons[PM_ACTUAL_MINER_ZOMBIE]) {
+			 (void) mongets(mtmp, PICK_AXE);
+		}
 		if (mtmp->data == &mons[PM_WALKING_STICK_BLUBBERER]) {
 			 (void) mongets(mtmp, WALKING_STICK);
 		}
 		if (mtmp->data == &mons[PM_SPADE_TYPE]) {
 			 (void) mongets(mtmp, PICK_AXE);
+		}
+		if (mtmp->data == &mons[PM_AXE_ZOMBIE]) {
+			 (void) mongets(mtmp, AXE);
 		}
 		if (mtmp->data == &mons[PM_ACIDRAUGR]) {
 			 (void) mongets(mtmp, WAN_ACID);
