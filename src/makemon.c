@@ -10597,6 +10597,7 @@ register struct	monst	*mtmp;
 		if(ptr == &mons[PM_FRIEDERIKE_S_LADY_PUMP]) { (void) mongets(mtmp, SEXY_LEATHER_PUMP); (void) mongets(mtmp, FEMININE_PUMPS); }
 		if(ptr == &mons[PM_VILE_DEMON]) (void) mongets(mtmp, SCR_VILENESS);
 		if(ptr == &mons[PM_PLANE_DEMON]) (void) mongets(mtmp, SCR_ASH);
+		if(ptr == &mons[PM_SCIM_CIM_DEVIL]) (void) mongets(mtmp, SCIMITAR);
 
 		if(ptr == &mons[PM_SPINED_REVIL]) (void) mongets(mtmp, IRON_SABER);
 		if(ptr == &mons[PM_PIRATE_DEVIL]) (void) mongets(mtmp, IRON_SABER);
