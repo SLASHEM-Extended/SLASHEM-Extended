@@ -1734,20 +1734,15 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if((sx+sy)%2) {
 			levl[sx][sy].typ = POOL;
-			if(!eelct || !rn2(4)) {
+			if(!eelct || !rn2(10)) {
 			    /* mkclass() won't do, as we might get kraken */
 /* comment by Amy - low-level players shouldn't move close to water anyway, so I will totally spawn everything here! */
-			    (void) makemon(rn2(5) ? mkclass(S_EEL,0)
-						  : rn2(5) ? &mons[PM_GIANT_EEL]
-						  : rn2(2) ? &mons[PM_PIRANHA]
-						  : &mons[PM_ELECTRIC_EEL],
-						sx, sy, NO_MM_FLAGS);
+			    (void) makemon(mkclass(S_EEL,0), sx, sy, NO_MM_FLAGS);
 			    eelct++;
 			}
 		    } else
-			if(!rn2(4))	/* swamps tend to be moldy */
-			    (void) makemon(mkclass(S_FUNGUS,0),
-						sx, sy, NO_MM_FLAGS);
+			if(!rn2(10))	/* swamps tend to be moldy */
+			    (void) makemon(mkclass(S_FUNGUS,0), sx, sy, NO_MM_FLAGS);
 		}
 		level.flags.has_swamp = 1;
 	}
