@@ -3522,7 +3522,7 @@ newbadheeltry:
 void
 nastytrapcurse()
 {
-	register struct obj *ntobj;
+	register struct obj *ntobj = (struct obj *)0;
 	int tryct = 0;
 	long savewornmask;
 
@@ -3530,43 +3530,43 @@ nastytrapcurse()
 		switch (rnd(7)) {
 			case 1:
 				if (uarmc) {
-					tryct = 1000;
+					tryct = 5000;
 					ntobj = uarmc;
 				}
 				break;
 			case 2:
 				if (uarm) {
-					tryct = 1000;
+					tryct = 5000;
 					ntobj = uarm;
 				}
 				break;
 			case 3:
 				if (uarmu) {
-					tryct = 1000;
+					tryct = 5000;
 					ntobj = uarmu;
 				}
 				break;
 			case 4:
 				if (uarmh) {
-					tryct = 1000;
+					tryct = 5000;
 					ntobj = uarmh;
 				}
 				break;
 			case 5:
 				if (uarms) {
-					tryct = 1000;
+					tryct = 5000;
 					ntobj = uarms;
 				}
 				break;
 			case 6:
 				if (uarmf) {
-					tryct = 1000;
+					tryct = 5000;
 					ntobj = uarmf;
 				}
 				break;
 			case 7:
 				if (uarmg) {
-					tryct = 1000;
+					tryct = 5000;
 					ntobj = uarmg;
 				}
 				break;
@@ -3574,6 +3574,7 @@ nastytrapcurse()
 	}
 
 	if (!ntobj) return; /* Nothing happens... */
+	if (tryct >= 1000 && tryct < 5000) return; /* no object found */
 
 	savewornmask = ntobj->owornmask;
 	setworn((struct obj *)0, ntobj->owornmask);
