@@ -17939,7 +17939,7 @@ boolean knoweverything;
 				case ART_CLICHE_WEAR:
 					pline("Artifact specs: resist fire, cold, sleep, shock and poison when worn, but monsters whose attacks can damage items will spawn more often."); break;
 				case ART_DIRGE:
-					pline("Artifact specs: Diiiiiiiiiiiiiirge (DIRGE) :D +5 to-hit and +2 damage, drain resistance when wielded, does extra poison damage to targets, chaotic. A chaotic knight may receive it by dipping a long sword in a fountain."); break;
+					pline("Artifact specs: Diiiiiiiiiiiiiirge (DIRGE) :D +5 to-hit and +2 damage, drain resistance when wielded, does extra poison damage to targets, chaotic. A chaotic knight may receive it by dipping a long sword in a fountain or doing a same-race sacrifice while wielding a regular long sword."); break;
 				case ART_KEOLEWA:
 					pline("Artifact specs: +5 to-hit and +6 damage, neutral. Originally from Sporkhack and meant for the caveman, but here everyone can use it."); break;
 				case ART_SWORD_OF_BHELEU:

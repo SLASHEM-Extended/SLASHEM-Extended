@@ -1966,6 +1966,23 @@ dosacrifice()
 	    } else adjalign(5);
 	    if (carried(otmp)) useup(otmp);
 	    else useupf(otmp, 1L);
+
+		/* create Dirge from player's longsword here if possible */
+		if (u.ualign.type == A_CHAOTIC && Role_if(PM_KNIGHT) && !u.ugangr && u.ualign.record > 0 && uwep && uwep->otyp == LONG_SWORD && !uwep->oartifact && !exist_artifact(LONG_SWORD, artiname(ART_DIRGE))) {
+
+			uwep = oname(uwep, artiname(ART_DIRGE));
+			if (uwep) { /* you can never be safe... --Amy */
+				curse(uwep);
+				if (uwep->spe < 10) uwep->spe++;
+				uwep->oeroded = uwep->oeroded2 = 0;
+				uwep->oerodeproof = TRUE;
+				discover_artifact(ART_DIRGE);
+				exercise(A_WIS,TRUE);
+				pline("Your sword slithers in your hand and seems to change!");
+				livelog_report_trophy("had Dirge gifted to them by the grace of a chaotic deity");
+			}
+		}
+
 	    return(1);
 	} else if (otmp->oxlth && otmp->oattached == OATTACHED_MONST
 		    && ((mtmp = get_mtraits(otmp, FALSE)) != (struct monst *)0)
