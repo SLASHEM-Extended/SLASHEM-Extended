@@ -2520,7 +2520,7 @@ register int n;
 		badeffect();
 	}
 
-	if (n < 0 && Race_if(PM_JAPS)) {
+	if (n < 0 && Race_if(PM_JAPURA)) {
 		losehp(rnd(-n), "violating the bushido", KILLED_BY);
 		if (!rn2(20)) {
 			if (u.uhpmax < 2) {

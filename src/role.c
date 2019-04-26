@@ -5991,9 +5991,9 @@ const struct Race races[] = {
 	{  8, 0,  0, 8,  7, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  3, 0 }		/* Energy */
 },
-{	"japs", "japs", "japsen", "Jap",
+{	"japura", "japura", "japuray", "Jap",
 	{0, 0},
-	PM_JAPS, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	PM_JAPURA, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,

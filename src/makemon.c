@@ -6760,7 +6760,7 @@ register struct	monst	*mtmp;
 				(void)mongets(mtmp, SCR_SUMMON_BOSS);
 			}
 		}
-		if (ptr == &mons[PM_JAPS]) {
+		if (ptr == &mons[PM_JAPURA]) {
 			(void)mongets(mtmp, KATANA);
 		}
 		if (ptr == &mons[PM_HALLU_PARTIER]) {
