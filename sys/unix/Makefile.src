@@ -749,7 +749,6 @@ $(HACK_H): ../include/hack.h $(CONFIG_H) ../include/align.h \
 		../include/rm.h ../include/vision.h ../include/display.h \
 		../include/engrave.h ../include/rect.h ../include/region.h \
 		../include/winprocs.h ../include/wintty.h ../include/trampoli.h \
-		../include/date.h
 	touch $(HACK_H)
 #
 tos.o: ../sys/atari/tos.c $(HACK_H) ../include/tcap.h
@@ -1066,7 +1065,7 @@ attrib.o: attrib.c $(HACK_H)
 ball.o: ball.c $(HACK_H)
 bones.o: bones.c $(HACK_H) ../include/lev.h
 botl.o: botl.c $(HACK_H)
-cmd.o: cmd.c $(HACK_H) ../include/func_tab.h ../include/date.h
+cmd.o: cmd.c $(HACK_H) ../include/func_tab.h
 dbridge.o: dbridge.c $(HACK_H)
 decl.o: decl.c $(HACK_H)
 detect.o: detect.c $(HACK_H) ../include/artifact.h
