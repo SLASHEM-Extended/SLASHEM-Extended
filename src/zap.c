@@ -8107,16 +8107,18 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		    /* can still blind the monster */
 		} else
 		    tmp = d(nd,6);
-		if (spellcaster)
+		if (spellcaster && !resists_elec(mon))
 		    skilldmg = spell_damage_bonus(SPE_LIGHTNING);
-		if (!resists_blnd(mon) &&
-				!(type > 0 && u.uswallow && mon == u.ustuck)) {
-			register unsigned rnd_tmp = rnd(50);
+		if (!resists_blnd(mon) && !rn2(5) && !(type > 0 && u.uswallow && mon == u.ustuck)) {
+			register unsigned rnd_tmp = rnd(10);
 			mon->mcansee = 0;
 			if((mon->mblinded + rnd_tmp) > 127)
 				mon->mblinded = 127;
 			else mon->mblinded += rnd_tmp;
 		}
+
+		if (resists_elec(mon)) break;
+
 		if (!rn2(100)) (void)destroy_mitem(mon, WAND_CLASS, AD_ELEC);
 		/* not actually possible yet */
 		if (!rn2(100)) (void)destroy_mitem(mon, RING_CLASS, AD_ELEC);
