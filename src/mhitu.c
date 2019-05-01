@@ -20085,7 +20085,7 @@ register struct attack *mattk;
 				case 3:
 					pline("%s feels sick at entrails caught in your tentacles.", Monnam(mtmp)); break;
 				case 4:
-					pline("%s sees maggots breed in your rent stomach.", Monnam(mtmp), body_part(STOMACH)); break;
+					pline("%s sees maggots breed in your rent %s.", Monnam(mtmp), body_part(STOMACH)); break;
 
 			}
 

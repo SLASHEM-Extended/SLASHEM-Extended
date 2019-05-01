@@ -842,6 +842,7 @@ doread()
 	"418 I'm a Teapot. The resulting entity body MAY be short and stout. Tip me over and pour me out.", /* by attie; she wants actual teapot items with labels, but I'm taking the easy way out :P */
 	"Transsylvanian Teacher Darts Club",
 	"I got the first official notdnethack ascension! *oink oink*", /* Porkman :D */
+	"v qe qe qe qe qd qd qd qd qf qf qf qf qg qg qg qg #quit", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];
