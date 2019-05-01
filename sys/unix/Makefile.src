@@ -748,7 +748,7 @@ $(HACK_H): ../include/hack.h $(CONFIG_H) ../include/align.h \
 		../include/timeout.h ../include/trap.h ../include/flag.h \
 		../include/rm.h ../include/vision.h ../include/display.h \
 		../include/engrave.h ../include/rect.h ../include/region.h \
-		../include/winprocs.h ../include/wintty.h ../include/trampoli.h \
+		../include/winprocs.h ../include/wintty.h ../include/trampoli.h
 	touch $(HACK_H)
 #
 tos.o: ../sys/atari/tos.c $(HACK_H) ../include/tcap.h

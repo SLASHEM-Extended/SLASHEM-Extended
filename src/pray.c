@@ -1979,7 +1979,9 @@ dosacrifice()
 				discover_artifact(ART_DIRGE);
 				exercise(A_WIS,TRUE);
 				pline("Your sword slithers in your hand and seems to change!");
+#ifdef LIVELOGFILE
 				livelog_report_trophy("had Dirge gifted to them by the grace of a chaotic deity");
+#endif
 			}
 		}
 
