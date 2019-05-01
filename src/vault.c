@@ -286,11 +286,11 @@ fnd:
 
 	if (u.ualign.type == A_LAWFUL &&
 	    /* ignore trailing text, in case player includes character's rank */
-	    strncmpi(buf, plname, (int) strlen(plname)) != 0 && strncmpi(buf, plalias, (int) strlen(plalias)) != 0) {
+	    strncmpi(buf, plname, (int) strlen(plname)) != 0 && (!plalias[0] || strncmpi(buf, plalias, (int) strlen(plalias)) != 0) ) {
 		adjalign(-1);		/* Liar! */
 	}
 
-	if (!rn2(10) || (strncmpi(buf, plname, (int) strlen(plname)) != 0 && strncmpi(buf, plalias, (int) strlen(plalias)) != 0) ) {
+	if (!rn2(10) || (strncmpi(buf, plname, (int) strlen(plname)) != 0 && (!plalias[0] || strncmpi(buf, plalias, (int) strlen(plalias)) != 0)) ) {
 		boolean rumoristrue = rn2(2);
 		verbalize("I don't believe you. We will have to do a quiz to verify your identity.");
 		verbalize("You will now tell me whether the following rumor is true or not!");
