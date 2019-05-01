@@ -1230,11 +1230,13 @@ walscholardone:
 	} else if ( ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) ) && flags.eatingwalls ) {
 	    /* Eat the rock. */
 	    if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
-	} else if (flags.autodig && !flags.run && !flags.nopick &&
+	} else if (flags.autodig && !(Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) && !flags.run && !flags.nopick &&
 		   uwep && is_pick(uwep)) {
 	/* MRKR: Automatic digging when wielding the appropriate tool */
-	    if (mode == DO_MOVE)
+	    if (mode == DO_MOVE) {
+		if (!touch_artifact(uwep, &youmonst)) return FALSE;
 		(void) use_pick_axe2(uwep);
+	    }
 	    return FALSE;
 	} else {
 	    if (mode == DO_MOVE) {

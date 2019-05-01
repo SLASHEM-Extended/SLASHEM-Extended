@@ -1567,6 +1567,7 @@ dodown()
 				}
 				return 1;
 			} else if (flags.autodig && !flags.nopick && uwep && is_pick(uwep)) {
+				if (!touch_artifact(uwep, &youmonst)) return(0);
 				return use_pick_axe2(uwep);
 			} else {
 				You_cant("go down here.");
