@@ -283,6 +283,9 @@ struct obj *corpse;
  make_bones:
 #endif
 	unleash_all();
+
+	u.dungeongrowthhack = TRUE;
+
 	/* in case these characters are not in their home bases */
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (DEADMONSTER(mtmp)) continue;
@@ -417,6 +420,8 @@ struct obj *corpse;
 	}
 	resetobjs(fobj,FALSE);
 	resetobjs(level.buriedobjlist, FALSE);
+
+	u.dungeongrowthhack = FALSE;
 
 	/* Hero is no longer on the map. */
 	u.ux = u.uy = 0;
