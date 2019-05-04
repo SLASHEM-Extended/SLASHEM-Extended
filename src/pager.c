@@ -494,7 +494,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible)
 		    ways_seen++;
-		if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mtmp->internetvisible)
+		if ( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mtmp->internetvisible)
 		    ways_seen++;
 		if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mtmp->internetvisible)
 		    ways_seen++;
@@ -516,7 +516,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES && (mtmp->mhp < (mtmp->mhpmax * 9 / 10)) )
 		    ways_seen++;
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mtmp->minvis && mtmp->sagesvisible )
+		if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mtmp->minvis && mtmp->sagesvisible )
 		    ways_seen++;
 		if (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mtmp->data, AT_BREA))
 		    ways_seen++;
@@ -637,7 +637,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "stunnopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mtmp->internetvisible) {
+		    if ( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mtmp->internetvisible) {
 			strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -681,7 +681,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "Elenette's knowledge");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mtmp->minvis && mtmp->sagesvisible ) {
+		    if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mtmp->minvis && mtmp->sagesvisible ) {
 			strcat(monbuf, "sages helmet");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }

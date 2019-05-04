@@ -3011,7 +3011,7 @@ register struct obj *otmp;
 
 		if (!u.dungeongrowthhack) {
 
-			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) otmp->hvycurse = 1;
+			if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_CURSED_CALLED_CLOAK)) otmp->hvycurse = 1;
 
 		}
 
@@ -3107,7 +3107,7 @@ register int chance;
 	    if(!rn2(isfriday ? 2 : 3)) {
 		curse_on_creation(otmp);
 	    } else if (!u.dungeongrowthhack) {
-			if (!rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) {
+			if (!rn2(5) && uarmc && itemhasappearance(uarmc, APP_CURSED_CALLED_CLOAK)) {
 				curse_on_creation(otmp);
 			} else {
 				bless(otmp);

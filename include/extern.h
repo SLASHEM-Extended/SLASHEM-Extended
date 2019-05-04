@@ -394,6 +394,7 @@ E int back_to_glyph(XCHAR_P,XCHAR_P);
 E int zapdir_to_glyph(int,int,int);
 E int glyph_at(XCHAR_P,XCHAR_P);
 E void set_wall_state(void);
+E boolean sensemon(struct monst *);
 
 /* ### do.c ### */
 
@@ -1878,7 +1879,7 @@ E void synch_cursor(void);
 /* ### o_init.c ### */
 
 E void initobjectsamnesia(void);
-E void init_objects(void);
+E void init_objects(BOOLEAN_P);
 E void randommaterials(void);
 E int find_skates(void);
 E int find_skates2(void);
@@ -2271,6 +2272,9 @@ E boolean maybeblockheels(void);
 E boolean maybewedgeheels(void);
 E boolean playerextrinsicaggravatemon(void);
 E boolean automore_active(void);
+
+E boolean itemhasappearance(struct obj *, int);
+E boolean itemnumwithappearance(int, int);
 
 /* ### pray.c ### */
 

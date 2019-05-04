@@ -361,7 +361,7 @@ register struct obj *obj;
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
 
 	/* chewable potion randomized appearance is edible --Amy */
-	if (OBJ_DESCR(objects[obj->otyp]) && obj->otyp == POTION_CLASS && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chewable"))) return 1;
+	if (itemhasappearance(obj, APP_POTION_CHEWABLE)) return 1;
 
 	if (Race_if(PM_OCTOPODE) && obj->oclass == RING_CLASS) return 1;
 
@@ -579,14 +579,14 @@ register struct obj *food;
 	if (u.uhs != SATIATED) {
 		if (!food || food->otyp != AMULET_OF_STRANGULATION)
 			return;
-	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))  || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF)) {
+	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF)) {
 			adjalign(-3);		/* gluttony is unchivalrous */
 		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
 	if (Race_if(PM_VEELA) || Role_if(PM_FAILED_EXISTENCE) ) badeffect();
 
-	if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_GOFF) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) { /* They aren't used to eat much. --Amy */
+	if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) { /* They aren't used to eat much. --Amy */
 
 	if(!rn2(4)) {
 		if (Hallucination) You_feel("rather trippy.");
@@ -677,7 +677,7 @@ register struct obj *food;
 			return;
 		}
 		You(Hallucination ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
-		if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) {adjalign(-20);	/* overeating doesn't befit a topmodel */
+		if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) {adjalign(-20);	/* overeating doesn't befit a topmodel */
 		pline(Hallucination ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
 		morehungry(2000);	/* you just got *very* sick! */
 		u_wipe_engr(100);
@@ -3587,7 +3587,7 @@ void
 gluttonous()
 {
 	/* only happens if you were satiated, extra check by Amy to make that conduct mean more */
-	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) ) {
+	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) ) {
 			adjalign(-3);		/* gluttony is unchivalrous */
 		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
@@ -3595,7 +3595,7 @@ gluttonous()
 	if ((u.uhs == SATIATED) && (Race_if(PM_VEELA) || Role_if(PM_FAILED_EXISTENCE)) ) {	badeffect();
 	}
 
-	if (u.uhs == SATIATED && (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_GOFF) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) ) { /* They aren't used to eat much. --Amy */
+	if (u.uhs == SATIATED && (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) ) { /* They aren't used to eat much. --Amy */
 
 	if(!rn2(4)) {
 		if (Hallucination) You_feel("rather trippy.");
@@ -3677,13 +3677,13 @@ void
 violated_vegetarian()
 {
     u.uconduct.unvegetarian++;
-    if (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))  ) {
+    if (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) {
 	You_feel("guilty.");
 	adjalign(-5);
     }
 	if (Role_if(PM_FAILED_EXISTENCE)) badeffect();
 
-	if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) { /* Their metabolism isn't used to meat. --Amy */
+	if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) { /* Their metabolism isn't used to meat. --Amy */
 
 	if(!rn2(4)) {
 		if (Hallucination) You_feel("rather trippy.");
@@ -6058,7 +6058,7 @@ struct obj *otmp;
 		else return 2;
 	}
 	if (cadaver && !vegetarian(&mons[mnum]) &&
-	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))  || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) ) ) {
+	    !u.uconduct.unvegetarian && (Role_if(PM_MONK) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || Race_if(PM_SYLPH) ) ) {
 		sprintf(buf, "%s unhealthy. %s",
 			foodsmell, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
@@ -6536,7 +6536,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 {
 	if (u.uinvulnerable) return;	/* you don't feel hungrier */
 
-	if ( (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) || Role_if(PM_GOFF)) && ( (rn2(2) && u.uhs == HUNGRY) || (rn2(4) && u.uhs == WEAK) || (rn2(8) && u.uhs == FAINTING) || (rn2(16) && u.uhs == FAINTED) ) ) return; /* They are used to eating very little. --Amy */
+	if ( (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) || Role_if(PM_GOFF)) && ( (rn2(2) && u.uhs == HUNGRY) || (rn2(4) && u.uhs == WEAK) || (rn2(8) && u.uhs == FAINTING) || (rn2(16) && u.uhs == FAINTED) ) ) return; /* They are used to eating very little. --Amy */
 
 	if ((!u.usleep || !rn2(10))	/* slow metabolic rate while asleep */
 		&& (carnivorous(youmonst.data) || herbivorous(youmonst.data) || metallivorous(youmonst.data) || lithivorous(youmonst.data))
@@ -6563,7 +6563,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 		extrahungerpoints /= 5000;
 		if (extrahungerpoints > 0 && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= extrahungerpoints;
 	}
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") ) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 2;
+	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 2;
 
 	/* ancipital's slow digestion is not supposed to be no digestion --Amy */
 	if (Race_if(PM_ANCIPITAL) && !rn2(20) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
@@ -6801,18 +6801,18 @@ boolean incr;
 			if(!is_fainted() && multi >= 0 /* %% */) {
 				/* stop what you're doing, then faint */
 				stop_occupation();
-				You(Hallucination ? "pass out due to those damn munchies." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ? "enter a state of trance." : "faint from lack of food.");
+				You(Hallucination ? "pass out due to those damn munchies." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "enter a state of trance." : "faint from lack of food.");
 
 	/* warn player if starvation will happen soon, that is, less than 200 nutrition remaining --Amy */
-			if(u.uhunger < -(int)(800 + 50*ACURR(A_CON))) { You(Hallucination ? "sense the Grim Reaper approaching." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ? "sense that you're getting closer to your deity." : "are close to starvation.");
-		if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) adjalign(5);
+			if(u.uhunger < -(int)(800 + 50*ACURR(A_CON))) { You(Hallucination ? "sense the Grim Reaper approaching." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "sense that you're getting closer to your deity." : "are close to starvation.");
+		if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) adjalign(5);
 		}
 				flags.soundok = 0;
 				nomul(-3+(u.uhunger/200), "fainted from lack of food", TRUE);
 				nomovemsg = "You regain consciousness.";
 				afternmv = unfaint;
 				newhs = FAINTED;
-				if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) adjalign(1);
+				if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) adjalign(1);
 			}
 		} else
 		if(u.uhunger < -(int)(1000 + 50*ACURR(A_CON))) {
@@ -6820,7 +6820,7 @@ boolean incr;
 			u.uhs = STARVED;
 			flags.botl = 1;
 			bot();
-			You(Hallucination ? "are taken away by the grim reaper..." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ? "meet your deity at last." : "die from starvation.");
+			You(Hallucination ? "are taken away by the grim reaper..." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "meet your deity at last." : "die from starvation.");
 			killer_format = KILLED_BY;
 			killer = "starvation";
 			done(STARVING);
@@ -6878,7 +6878,7 @@ boolean incr;
 		bot();
 		if ((Upolyd ? u.mh : u.uhp) < 1) {
 			u.youaredead = 1;
-			You(Hallucination ? "pass away like a filthy bum." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))) ? "are embraced by the shadowy figure of your deity..." : "die from hunger and exhaustion.");
+			You(Hallucination ? "pass away like a filthy bum." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK))) ? "are embraced by the shadowy figure of your deity..." : "die from hunger and exhaustion.");
 			killer_format = KILLED_BY;
 			killer = "exhaustion";
 			done(STARVING);

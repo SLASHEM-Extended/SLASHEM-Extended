@@ -2386,7 +2386,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 
 			}
 
-			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "complete helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polnaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "to'liq dubulg'a") ) ) {
+			if (uarmh && itemhasappearance(uarmh, APP_COMPLETE_HELMET) ) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
 				willreturntrue = 1;

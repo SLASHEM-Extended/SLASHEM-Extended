@@ -134,12 +134,15 @@ shuffle(o_low, o_high, domaterial)
 		color = objects[j].oc_color;
 		objects[j].oc_color = objects[i].oc_color;
 		objects[i].oc_color = color;
+		color = objects[j].oc_appearindex;
+		objects[j].oc_appearindex = objects[i].oc_appearindex;
+		objects[i].oc_appearindex = color;
 
 		/* shuffle material */
 		if (domaterial) {
-			sw = objects[j].oc_material;
+			color = objects[j].oc_material;
 			objects[j].oc_material = objects[i].oc_material;
-			objects[i].oc_material = sw;
+			objects[i].oc_material = color;
 		}
 	}
 }
@@ -263,7 +266,7 @@ initobjectsamnesia()
 		setworn((struct obj *)0, W_IMPLANT);
 	} else hasimplant = FALSE;
 
-	init_objects();
+	init_objects(FALSE);
 
 	if (hasamulet) {
 		setworn(otmp, W_AMUL);
@@ -302,7 +305,8 @@ initobjectsamnesia()
 }
 
 void
-init_objects()
+init_objects(descrinit)
+boolean descrinit;
 {
 register int i, first, last, sum;
 register char oclass;
@@ -320,8 +324,10 @@ register char oclass;
 	for (i = 0; i < MAXOCLASSES; i++)
 		bases[i] = 0;
 	/* initialize object descriptions */
-	for (i = 0; i < NUM_OBJECTS; i++)
-		objects[i].oc_name_idx = objects[i].oc_descr_idx = i;
+	if (descrinit) {
+		for (i = 0; i < NUM_OBJECTS; i++)
+			objects[i].oc_name_idx = objects[i].oc_descr_idx = i;
+	}
 	/* init base; if probs given check that they add up to 10000,
 	   otherwise compute probs */
 	first = 0;

@@ -2122,11 +2122,11 @@ burnagain:
 	if (!print && (!vulnerable || otmp->oerodeproof /* || erosion == MAX_ERODE*/ ))
 		return FALSE;
 
-	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "yangi qo'lqop") ) && rn2(4) ) vulnerable = FALSE;
+	if (itemhasappearance(otmp, APP_BRAND_NEW_GLOVES) && rn2(4) ) vulnerable = FALSE;
 
-	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "xayoliy to'pi") ) ) vulnerable = FALSE;
+	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
-	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
+	if (itemhasappearance(otmp, APP_WITHERED_CLOAK) ) vulnerable = FALSE;
 
 	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
 
@@ -2244,11 +2244,11 @@ struct monst *victim;
 	}
 	erosion = is_primary ? otmp->oeroded : otmp->oeroded2;
 
-	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "yangi qo'lqop") ) && rn2(4) ) vulnerable = FALSE;
+	if (itemhasappearance(otmp, APP_BRAND_NEW_GLOVES) && rn2(4) ) vulnerable = FALSE;
 
-	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "xayoliy to'pi") ) ) vulnerable = FALSE;
+	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
-	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
+	if (itemhasappearance(otmp, APP_WITHERED_CLOAK) ) vulnerable = FALSE;
 
 	if (Race_if(PM_CHIQUAI) && rn2(4)) vulnerable = FALSE;
 
@@ -3200,7 +3200,7 @@ int *fail_reason;
 	}
 	/* avoid hiding under nothing */
 	if (x == u.ux && y == u.uy &&
-		Upolyd && (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
+		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
 	    u.uundetected = 0;
 
 	if (fail_reason) *fail_reason = AS_OK;
@@ -3587,7 +3587,7 @@ unsigned trflags;
 
 		badeffect();
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
@@ -3959,7 +3959,7 @@ unsigned trflags;
 			losehp(rnd(u.ulevel * 3), "suffocating in a gas trap", KILLED_BY);
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
 		}
@@ -3999,7 +3999,7 @@ unsigned trflags;
 			losehp(rnd(u.ulevel * 3), "suffocating in a gas trap", KILLED_BY);
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
 		    pline("A cloud of gas surrounds you!");
 		    break;
 		}
@@ -4028,7 +4028,7 @@ unsigned trflags;
 			losehp(rnd(u.ulevel * 3), "suffocating in a gas trap", KILLED_BY);
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
 		    pline("A cloud of foggy gas shoots out at you!");
 		    break;
 		}
@@ -4526,7 +4526,7 @@ newegomon:
 
 		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
 		pline("You stepped on a trap of wishing!");
-		if ((Luck+rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+		if ((Luck+rn2(5) < 0) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 			makenonworkingwish();
 			break;
 		}
@@ -5488,7 +5488,7 @@ rerollX:
 
 		if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR || levl[u.ux][u.uy].typ == ICE) {
 			levl[u.ux][u.uy].typ = POOL;
-			if (!Wwalking && !Flying && !Levitation && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") )) ) drown();
+			if (!Wwalking && !Flying && !Levitation && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) drown();
 		}
 		break;
 
@@ -7769,7 +7769,7 @@ newbossPENT:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !SpellColorBrown && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar") )) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni") ) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !SpellColorBrown && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -7793,7 +7793,7 @@ newbossPENT:
 		/* KMH -- You can't escape the Sokoban level traps */
 		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && (Levitation || Flying)) break;
 
-		if (ttype == SHIT_PIT && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ))) break;
+		if (ttype == SHIT_PIT && (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS))) break;
 
 		seetrap(trap);
 		if (!In_sokoban(&u.uz) && is_clinger(youmonst.data)) {
@@ -8510,7 +8510,7 @@ madnesseffect:
 			    a_your[trap->madeby_u]);
 		    break;
 		}
-		if (webmaker(youmonst.data) || Race_if(PM_SPIDERMAN) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "spider boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pauk sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rgimchak chizilmasin") ) ) ) {
+		if (webmaker(youmonst.data) || Race_if(PM_SPIDERMAN) || (uarmf && itemhasappearance(uarmf, APP_SPIDER_BOOTS) ) ) {
 		    if (webmsgok)
 		    	pline(trap->madeby_u ? "You take a walk on your web."
 					 : "There is a spider web here.");
@@ -11540,7 +11540,7 @@ madnesseffect:
 			    a_your[trap->madeby_u]);
 		    break;
 		}
-		if (webmaker(youmonst.data) || Race_if(PM_SPIDERMAN) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "spider boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pauk sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rgimchak chizilmasin") ) ) ) {
+		if (webmaker(youmonst.data) || Race_if(PM_SPIDERMAN) || (uarmf && itemhasappearance(uarmf, APP_SPIDER_BOOTS) ) ) {
 		    if (webmsgok)
 		    	pline(trap->madeby_u ? "You take a walk on your web."
 					 : "There is a farting web here.");
@@ -14570,7 +14570,7 @@ seetrap(trap)
 
 	if (Race_if(PM_SPARD) && rn2(3)) return;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar") )) return;
+	if (uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) return;
 
 	if(!trap->tseen && !trap->hiddentrap) {
 	    trap->tseen = 1;
@@ -16481,7 +16481,7 @@ long hmask, emask;     /* might cancel timeout */
 			vision_full_recalc = 1;	/* in case the hero moved. */
 	}
 	/* check for falling into pool - added by GAN 10/20/86 */
-	if(!Flying && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") ) ) ) {
+	if(!Flying && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK) ) ) {
 		if (!u.uswallow && u.ustuck) {
 			if (sticks(youmonst.data))
 				You("aren't able to maintain your hold on %s.",
@@ -16697,7 +16697,7 @@ struct obj *box;        /* at the moment only for floor traps */
 
 		if (Stoned) fix_petrification();
 
-		if (!rn2(10) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) ) {
+		if (!rn2(10) || !(uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) ) {
 
 	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
 	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
@@ -16723,7 +16723,7 @@ struct obj *box;        /* at the moment only for floor traps */
 
 		}
 
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) || Role_if(PM_HUSSY) ) {
+		if ((uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) || Role_if(PM_HUSSY) ) {
 		    if (!(HFast & INTRINSIC)) {
 			if (!Fast)
 			    You("speed up.");
@@ -16742,7 +16742,7 @@ struct obj *box;        /* at the moment only for floor traps */
 			exercise(A_DEX, FALSE);
 		}
 
-	  if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) num /= 4;
+	  if (uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) num /= 4;
         if (num) losehp(num, "heap of shit", KILLED_BY_AN);
 
 }
@@ -17272,7 +17272,7 @@ register boolean force, here;
 	for (; obj; obj = otmp) {
 		otmp = here ? obj->nexthere : obj->nobj;
 
-		if (uarmf && obj == uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) {
+		if (uarmf && obj == uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) {
 			pline("Urgh, your yellow sneakers hate getting wet!");
 			nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
 			losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
@@ -17291,13 +17291,13 @@ register boolean force, here;
 
 		if (stack_too_big(obj) && !issoviet) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(4) ) continue;
+		if (itemhasappearance(obj, APP_BRAND_NEW_GLOVES) && rn2(4) ) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xayoliy to'pi") ) ) continue;
+		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash") ) ) continue;
+		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
-		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmh && itemhasappearance(uarmh, APP_SCUBA_HELMET) ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_TRIDENT_OF_POSEIDON) continue;		
@@ -17625,11 +17625,11 @@ register boolean force, here;
 
 		if (is_unwitherable(obj)) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
+		if (itemhasappearance(obj, APP_BRAND_NEW_GLOVES) && rn2(2) ) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xayoliy to'pi") ) ) continue;
+		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash") ) ) continue;
+		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		/* important quest items are immune */
 		if (obj->otyp == SPE_BOOK_OF_THE_DEAD || obj->otyp == AMULET_OF_YENDOR || obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->oartifact == ART_KEY_OF_LAW || obj->oartifact == ART_KEY_OF_NEUTRALITY || obj->oartifact == ART_KEY_OF_CHAOS || obj->oartifact == ART_GAUNTLET_KEY) continue;
@@ -17686,11 +17686,11 @@ register boolean force, here;
 
 		if (rn2(10)) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
+		if (itemhasappearance(obj, APP_BRAND_NEW_GLOVES) && rn2(2) ) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xayoliy to'pi") ) ) continue;
+		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
-		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash") ) ) continue;
+		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		/* important quest items are immune */
 		if (obj->otyp == SPE_BOOK_OF_THE_DEAD || obj->otyp == AMULET_OF_YENDOR || obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->oartifact == ART_KEY_OF_LAW || obj->oartifact == ART_KEY_OF_NEUTRALITY || obj->oartifact == ART_KEY_OF_CHAOS || obj->oartifact == ART_GAUNTLET_KEY) continue;
@@ -17945,7 +17945,7 @@ drown()
 	}
 	u.uinwater = 1;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS) ) {
 	pline("Your fin boots prevent you from drowning.");
 	return(FALSE);
 	}
@@ -18066,7 +18066,7 @@ crystaldrown()
 		pline("But in vain.");
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS) ) {
 	pline("Your fin boots prevent you from drowning.");
 	return(FALSE);
 	}
@@ -19633,7 +19633,7 @@ fartingweb()
 
 	badeffect();
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+	if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 		pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 		badeffect();
 		badeffect();
@@ -19680,7 +19680,7 @@ lava_effects()
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
     if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
     if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
-    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) return FALSE;
+    if (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) return FALSE;
 
     if (!Fire_resistance) {
 

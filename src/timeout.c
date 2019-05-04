@@ -516,7 +516,7 @@ nh_timeout()
 
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "explosive boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "vzryvnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "portlovchi chizilmasin") ) && !rn2(10000) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_EXPLOSIVE_BOOTS) && !rn2(10000) ) {
 	      useup(uarmf);
 		pline("KAABLAMM!!! Your explosive boots suddenly detonate!");
 		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), rnz(u.ulevel * 5), 0, EXPL_FIERY);
@@ -531,7 +531,7 @@ nh_timeout()
 		losehp(rnd(u.ulevel), "dynamite amulet explosion", KILLED_BY_AN);
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "castlevania boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zamok vaney sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qal'a vania chizilmasin") ) && !rn2(1000) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_CASTLEVANIA_BOOTS) && !rn2(1000) ) {
 		pline("You hear a dark orchestral melody, and all the lights go out...");
 		litroomlite(FALSE);
 	}
@@ -569,7 +569,7 @@ nh_timeout()
 
 	}
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "radio helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "translyatsii shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzatuvchi zarbdan") ) ) {
+	if (uarmh && itemhasappearance(uarmh, APP_RADIO_HELMET) ) {
 
 	    struct trap *t;
 
@@ -654,7 +654,7 @@ nh_timeout()
 		    }
 
 		}
-		if (PlayerInConeHeels && !rn2(500) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "feelgood heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chuvstvennyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "his-tuyg'ulari baland")) ) ) {
+		if (PlayerInConeHeels && !rn2(500) && !(uarmf && itemhasappearance(uarmf, APP_FEELGOOD_HEELS) ) ) {
 			/* This is the one that will make players 'female dog' at me. Because it's evil. --Amy */
 
 			register struct obj *otmpi, *otmpii;
@@ -715,7 +715,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -742,7 +742,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -769,7 +769,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmh && uarmh->oartifact == ART_ELESSAR_ELENDIL) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) ) {
+	if (u.umoved && (uarmh && uarmh->oartifact == ART_ELESSAR_ELENDIL) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -796,7 +796,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && evilfriday && !rn2(20) && (rnd(10) > ACURR(A_DEX)) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) ) {
+	if (u.umoved && evilfriday && !rn2(20) && (rnd(10) > ACURR(A_DEX)) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -823,7 +823,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -850,7 +850,7 @@ nh_timeout()
 
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persian boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persidskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fors chizilmasin") ) && !rn2(1000) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_PERSIAN_BOOTS) && !rn2(1000) ) {
 
 		pline("Your persian boots demand a sacrifice for allowing you to wear them.");
 		pline("You allow them to scratch over the full length of your shins with their zippers.");
@@ -865,7 +865,7 @@ nh_timeout()
 
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin") ) && !rn2(1000) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) && !rn2(1000) ) {
 	    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(50) );
 	    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(50) );
 		pline("Your velcro boots decide to scratch up and down your shins with their lash, opening terrible wounds.");
@@ -1718,7 +1718,7 @@ nh_timeout()
 
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'ylagi mantiya") ) && !rn2(5000) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_MANTLE_OF_COAT) && !rn2(5000) ) {
 
 		randomnastytrapeffect(200, 1000);
 
@@ -1783,15 +1783,7 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "deadly cloak") && !rn2(1000) ) {
-		pline("Your deadly cloak saps your life!");
-		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
-	}
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "smertel'noy plashch") && !rn2(1000) ) {
-		pline("Your deadly cloak saps your life!");
-		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
-	}
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'ldiradigan plash") && !rn2(1000) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_DEADLY_CLOAK) && !rn2(1000) ) {
 		pline("Your deadly cloak saps your life!");
 		losehp(rnd(u.ulevel), "a deadly cloak", KILLED_BY);
 	}
@@ -1800,7 +1792,7 @@ nh_timeout()
 		losehp(rnd(u.ulevel), "occasional damage", KILLED_BY);
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jarring cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sotryaseniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "g'azablantiradigan plash") ) && !rn2(1000) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_JARRING_CLOAK) && !rn2(1000) ) {
 		wake_nearby();
 		aggravate();
 		pline("Your cloak emits a grating, annoying sound.");
@@ -2549,7 +2541,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
+			if (u.umoved && !Levitation && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */

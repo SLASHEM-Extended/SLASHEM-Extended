@@ -216,7 +216,7 @@ int thrown;
 
 	    if (launcher && launcher->otyp == CATAPULT) multishot += rnd(5);
 
-	    if (launcher && (launcher->otyp == RIFLE || launcher->otyp == SNIPER_RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "rifling power cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "naplechnyy shchit sily") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "miltig'idan tortib, kuch-quvvat plashi")) ) multishot += rnd(2);
+	    if (launcher && (launcher->otyp == RIFLE || launcher->otyp == SNIPER_RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD) && uarmc && itemhasappearance(uarmc, APP_RIFLING_POWER_CLOAK) ) multishot += rnd(2);
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
 	    if (launcher && launcher->otyp == WILDHILD_BOW) multishot += 2;
@@ -1183,8 +1183,8 @@ boolean hitsroof;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) dmg += 5;
 	if (dmg > 0 && u.tiksrvzllatdown) dmg += 1;
 
-	if (dmg > 0 && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") ))) dmg += 1;
-	if (dmg > 0 && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") ))) dmg += 1;
+	if (dmg > 0 && (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES))) dmg += 1;
+	if (dmg > 0 && (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES))) dmg += 1;
 
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) dmg += 3;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) dmg += 2;
@@ -1210,7 +1210,7 @@ boolean hitsroof;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 
-	if (dmg > 0 && Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) dmg += 1;
+	if (dmg > 0 && Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) dmg += 1;
 
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
@@ -1304,7 +1304,7 @@ int thrown;
 		obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || is_grassland(u.ux, u.uy) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || is_grassland(u.ux, u.uy) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -1457,7 +1457,7 @@ int thrown;
 
 		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 5;
 		if (uwep && uwep->oartifact == ART_SNIPER_CROSSHAIR && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 30;
-		if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cyanism cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch s tsianom") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'k zaharlanish plash") )) && launcher && objects[launcher->otyp].oc_skill == P_SLING) range += 3;
+		if ((uarmc && itemhasappearance(uarmc, APP_CYANISM_CLOAK)) && launcher && objects[launcher->otyp].oc_skill == P_SLING) range += 3;
 		if (obj && obj->oartifact == ART_RACER_PROJECTILE) range *= 2;
 
 		if (Race_if(PM_GERTEUT) && range > 5) range = 5;
@@ -1812,8 +1812,8 @@ int thrown;
 
 	if (Race_if(PM_GERTEUT)) tmp += 5;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
@@ -1833,7 +1833,7 @@ int thrown;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 
-	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
 	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
 
@@ -2249,7 +2249,7 @@ int thrown;
 	if (near_capacity()) tmp -= rnd(near_capacity() * 5);
 	if (u.utrap) tmp -= 5;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) tmp -= 3;
+	if (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES)) tmp -= 3;
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= rnd(u.ulevel); /* lesser nerf than melee, since you also misfire */
 

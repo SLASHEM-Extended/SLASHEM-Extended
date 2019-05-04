@@ -4433,7 +4433,7 @@ coord *mm;
 	kop_cnt[4] = (cnt / 12) + 1;       /* and maybe a kaptain */
  	kop_cnt[5] = (cnt / 16) + 1;       /* and maybe a kaptain */
   
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+	if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 		kop_cnt[0] = ( kop_cnt[0] / 2) + 1;
 		kop_cnt[1] = ( kop_cnt[1] / 2) + 1;
 		kop_cnt[2] = ( kop_cnt[2] / 2) + 1;

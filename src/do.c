@@ -1598,7 +1598,7 @@ dodown()
 
 		if (!achieve.enter_gehennom) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -2022,7 +2022,7 @@ boolean at_stairs, falling, portal;
 			if (!achieveX.swimmingpool_cleared) {
 
 				achieveX.swimmingpool_cleared = TRUE;
-				if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 				if (RngeTeamSplat) pline("TROPHY GET!");
 
 				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -2199,7 +2199,7 @@ rerollchaloc:
 
 		}
 
-		if (isangbander || RngeAngband || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) ) { /* level feelings --Amy */
+		if (isangbander || RngeAngband || (uarmc && itemhasappearance(uarmc, APP_ANGBAND_CLOAK)) ) { /* level feelings --Amy */
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;

@@ -312,7 +312,7 @@ dosit()
 	    /* must be WWalking */
 	    You(sit_message, "lava");
 	    burn_away_slime();
-	    if (likes_lava(youmonst.data) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) || Race_if(PM_PLAYER_SALAMANDER) || (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) || (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
+	    if (likes_lava(youmonst.data) || (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) || Race_if(PM_PLAYER_SALAMANDER) || (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) || (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
 		pline_The("lava feels warm.");
 		return 1;
 	    }
@@ -1032,7 +1032,7 @@ rndcurse()			/* curse a few inventory items at random! */
 	    return;
 	}
 
-	if (!rn2(5) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) ) {
+	if (!rn2(5) && uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) ) {
 		pline("A malignant aura surrounds you but is absorbed by the sages helmet!");
 		return;
 	}

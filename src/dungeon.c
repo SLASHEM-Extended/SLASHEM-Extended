@@ -2078,7 +2078,7 @@ level_difficulty()
 	/* ultra aggravate monster if you pick both hybrid races --Amy */
 	if (isextravator && isaggravator) retvalue *= 2;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "difficult cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "trudnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qiyin plash") ) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_DIFFICULT_CLOAK) ) {
 		retvalue *= 2;
 	}
 

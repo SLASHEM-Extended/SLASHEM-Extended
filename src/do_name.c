@@ -695,12 +695,6 @@ boolean called;
 	do_hallu = Hallucination && !(suppress & SUPPRESS_HALLUCINATION);
 	do_invis = mtmp->minvis && !(suppress & SUPPRESS_INVISIBLE);
 
-	/* blah. Apparently there's some stupid savegame error again that strikes upon bones file generation. --Amy */
-	if (u.dungeongrowthhack) {
-		do_it = TRUE;
-		goto stupidsegfault;
-	}
-
 	do_it = (!canspotmon(mtmp) || (!sensemon(mtmp) && ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT)) )) &&
 	    article != ARTICLE_YOUR &&
 	    !program_state.gameover &&

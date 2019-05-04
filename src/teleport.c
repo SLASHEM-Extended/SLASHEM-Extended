@@ -592,7 +592,7 @@ boolean allow_drag;
 	u.ux0 = u.ux;
 	u.uy0 = u.uy;
 
-	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
+	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
 		u.uundetected = OBJ_AT(nux, nuy);
 	else if (is_wagon(nux, nuy))
 	    u.uundetected = TRUE;
@@ -984,7 +984,7 @@ level_tele()
 							) {
 	    You_feel("very disoriented for a moment.");
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WEEPING_HELMET) ) {
 			pline("Your helmet does not like the idea of blocked level teleportation!");
 			losexp("weeping helmet", TRUE, FALSE);
 		    /* This ignores level-drain resistance (not a bug). --Amy */

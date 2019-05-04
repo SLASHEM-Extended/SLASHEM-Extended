@@ -42,7 +42,7 @@ struct objclass {
 #define EXPLOSION	4	/* (rockets,  grenades) */
 #define WHACK		0
 
-	Bitfield(oc_material,8); /* wow. Managed to run out of a bitfield again! --Amy */
+	int oc_material; /* wow. Managed to run out of a bitfield again! --Amy */
 #define LIQUID		1	/* currently only for venom */
 #define WAX		2
 #define VEGGY		3	/* foodstuffs */
@@ -115,6 +115,7 @@ struct objclass {
 	uchar	oc_color;		/* color of the object */
 
 	int oc_minlvl;
+	int oc_appearindex;
 
 	/*short*/int	oc_prob;		/* probability, used in mkobj() */
 	unsigned short	oc_weight;	/* encumbrance (1 cn = 0.1 lb.) */

@@ -644,12 +644,12 @@ register struct monst *mtmp;
 	if (uarmh && uarmh->oartifact == ART_RUTH_S_DARK_FORCE) tmp += 5;
 	if (uarmh && uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) tmp += 5;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") ) ) tmp -= 5;
+	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK) ) tmp -= 5;
 	if (RngeDnethack) tmp -= 5;
 	if (RngeUnnethack) tmp -= 10;
 	if (u.twoweap && RngeNethackFourk) tmp -= rn1(10, 10);
 
-	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) tmp += 4;
+	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && itemhasappearance(uarmc, APP_BOXING_GOWN)) tmp += 4;
 	/* the P_UNSKILLED is not an error; it means that you have the skill, and are therefore eligible for a bonus --Amy */
 
 	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && RngeMaritalArts) tmp += 5;
@@ -660,8 +660,8 @@ register struct monst *mtmp;
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 	if (u.tiksrvzllatdown) tmp += 5;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
@@ -681,7 +681,7 @@ register struct monst *mtmp;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 
-	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
@@ -1118,7 +1118,7 @@ martial_dmg()
                 damage *= 2;
         else damage += 2;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boxing gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks para perchatok") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks qo'lqoplari") ) ) damage += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
@@ -1140,7 +1140,7 @@ martial_dmg()
 		u.comboactive = TRUE;
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) damage += 2;
+	if (uarmc && itemhasappearance(uarmc, APP_BOXING_GOWN)) damage += 2;
 
 	/* In Soviet Russia, people LOVE bugs. They love them so much, they even go out of their way to put them back into
 	 * the game, because the Amy was the one to remove them and by definition the Amy is the antichrist. --Amy */
@@ -2472,8 +2472,8 @@ int dieroll;
 		if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 		if (u.tiksrvzllatdown) tmp += 1;
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;
+		if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
+		if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
 		if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) tmp += 3;
 		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
@@ -2499,7 +2499,7 @@ int dieroll;
 		if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (!thrown && Race_if(PM_TURMENE) && tmp > 0) tmp -= 2;
 
-		if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
+		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (GushLevel / 3) );
 		/* If you throw using a propellor, you don't get a strength
@@ -9334,7 +9334,7 @@ boolean ranged;
 
 	      case AD_DRST:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9348,7 +9348,7 @@ boolean ranged;
 	      break;
 	      case AD_DRDX:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9362,7 +9362,7 @@ boolean ranged;
 	      break;
 	      case AD_DRCO:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9376,7 +9376,7 @@ boolean ranged;
 	      break;
 	      case AD_WISD:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9390,7 +9390,7 @@ boolean ranged;
 	      break;
 	      case AD_DRCH:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9404,7 +9404,7 @@ boolean ranged;
 	      break;
 	      case AD_POIS:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9417,7 +9417,7 @@ boolean ranged;
 	       }
 	      break;
 	    case AD_VENO:
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(3) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(3) ) break;
 
 		if (RngeGasFiltering && !rn2(3)) break;
 

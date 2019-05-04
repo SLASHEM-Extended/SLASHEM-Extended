@@ -515,7 +515,7 @@ boolean talk;
 	}
 	if ((xtime && !old) || (!xtime && old)) flags.botl = TRUE;
 
-	if (xtime && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "twisted visor helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem vitoy shlema") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "buekuemlue soyabon dubulg'a") ))) xtime *= 5;
+	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) xtime *= 5;
 
 	set_itimeout(&HConfusion, xtime);
 	if (xtime && !rn2(1000)) {
@@ -768,7 +768,7 @@ int type;
 			return;
 		}
 
-		if (rn2(4) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "inalish cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "glupyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ichki plash")) ) {
+		if (rn2(4) && uarmc && itemhasappearance(uarmc, APP_INALISH_CLOAK) ) {
 			pline("Your inalish cloak prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
@@ -1191,7 +1191,7 @@ playerextrinsicaggravatemon()
 	if (FemaleTrapSolvejg) return TRUE;
 	if (Race_if(PM_HC_ALIEN) && !flags.female) return TRUE;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) return TRUE;
+	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK)) return TRUE;
 
 	if ((uwep && uwep->oartifact == ART_ASIAN_WINTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ASIAN_WINTER)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_FN_M____PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FN_M____PARA)) return TRUE;
@@ -1199,14 +1199,14 @@ playerextrinsicaggravatemon()
 	if ((uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PICK_OF_THE_GRAVE)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CRUEL_PUNISHER)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL)) return TRUE;
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heap of shit boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kucha der'movykh sapog") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boktan etik to'p") ))) return TRUE;
+	if ((uarmf && itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS))) return TRUE;
 	if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_QUEEN_ARTICUNO_S_HULL) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR)) return TRUE;
 	if ((uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || (uwep && uwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) return TRUE;
 	if ((uarm && uarm->oartifact == ART_NON_BLADETURNER) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS)) return TRUE;
-	if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "excrement cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ekskrementy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chiqindi plash") ) )) return TRUE;
+	if ((uarmc && itemhasappearance(uarmc, APP_EXCREMENT_CLOAK) )) return TRUE;
 	if ((uarms && uarms->oartifact == ART_NO_FUTURE_BUT_AGONY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uwep && uwep->oartifact == ART_RATTATTATTATTATT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RATTATTATTATTATT) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT)) return TRUE;
@@ -1218,6 +1218,32 @@ playerextrinsicaggravatemon()
 
 	return FALSE;
 
+}
+
+/* does the item "otmp" have a specific randomized appearance? tested with oc_appearindex variable, because that's much
+ * better than having to always check for regular, soviet and ancient randomized appearance string --Amy */
+boolean
+itemhasappearance(otmp, apptest)
+struct obj *otmp;
+int apptest;
+{
+	if (!otmp) return FALSE; /* error! shouldn't happen */
+	if (otmp->otyp >= NUM_OBJECTS) return FALSE; /* out of bounds - better don't continue, to avoid segfaults */
+	if (objects[otmp->otyp].oc_appearindex == apptest) return TRUE;
+
+	return FALSE; /* catchall */
+}
+
+/* the same function, but testing for base item "itemnum" */
+boolean
+itemnumwithappearance(itemnum, apptest)
+int itemnum, apptest;
+{
+	if (itemnum <= STRANGE_OBJECT) return FALSE; /* error! shouldn't happen */
+	if (itemnum >= NUM_OBJECTS) return FALSE; /* error! shouldn't happen */
+	if (objects[itemnum].oc_appearindex == apptest) return TRUE;
+
+	return FALSE; /* catchall */
 }
 
 boolean
@@ -1234,7 +1260,7 @@ long mask;	/* nonzero if resistance status should change by mask */
 			     "Oh wow!  Everything %s so cosmic!";
 	verb = (!Blind) ? "looks" : "feels";
 
-	if (xtime && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "twisted visor helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem vitoy shlema") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "buekuemlue soyabon dubulg'a") ))) xtime *= 5;
+	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) xtime *= 5;
 
 	if (mask) {
 	    if (HHallucination) changed = TRUE;
@@ -1872,7 +1898,7 @@ badeffect()
 		if (!rn2(10)) copcnt /= 3;
 		if (copcnt < 1) copcnt = 1;
 	
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 			copcnt = (copcnt / 2) + 1;
 		}
 
@@ -3755,7 +3781,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -3826,7 +3852,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -3842,7 +3868,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -3866,7 +3892,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -4025,7 +4051,7 @@ register struct obj *otmp;
 		u.dehydrationtime = moves + 1001;
 	}
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+	if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 		morehungry(-10);
 	}
 
@@ -4053,7 +4079,7 @@ register struct obj *otmp;
 	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
 	else dealloc_obj(otmp);		/* Dummy potion */
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "levuntation cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "levitatsii plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "havo rido kiygan suzadi") )) badeffect();
+	if (uarmc && itemhasappearance(uarmc, APP_LEVUNTATION_CLOAK)) badeffect();
 
 	return(1);
 }
@@ -5917,7 +5943,7 @@ healup(nhp, nxtra, curesick, cureblind)
 	register boolean curesick, cureblind;
 {
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") )) nhp *= 2;
+	if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) nhp *= 2;
 	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
@@ -5957,7 +5983,7 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	register boolean curesick, cureblind;
 {
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") ) ) nhp *= 2;
+	if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) nhp *= 2;
 	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
@@ -7111,7 +7137,7 @@ boolean amnesia;
 	struct obj* otmp;
 	boolean used = FALSE;
 
-	if (uarmf && obj == uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) {
+	if (uarmf && obj == uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) {
 		pline("Urgh, your yellow sneakers hate getting wet!");
 		nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
 		losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);

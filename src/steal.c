@@ -294,7 +294,7 @@ nothing_to_steal:
 	    return(1);  /* let thief flee */
 	}
 
-	if (!rn2(10) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "noble sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blagorodnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oqlangan sandallar")) ) {
+	if (!rn2(10) && uarmf && itemhasappearance(uarmf, APP_NOBLE_SANDALS) ) {
 		pline("%s tries to steal something from you, but you notice it and scratch %s %s with your noble sandals!", Monnam(mtmp), mhis(mtmp), makeplural(mbodypart(mtmp, LEG)) );
 		return(1);  /* let thief flee */
 

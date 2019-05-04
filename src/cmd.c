@@ -1553,7 +1553,7 @@ domonability()
 			}
 			badeffect();
 
-			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
@@ -1591,7 +1591,7 @@ domonability()
 			}
 			badeffect();
 
-			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
@@ -1629,7 +1629,7 @@ domonability()
 			}
 			badeffect();
 
-			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
@@ -1911,7 +1911,7 @@ playersteal()
 		else if (uarm && uarm->owt < 375) chanch -= 20;
 		else if (uarm)                    chanch -= 25;
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "polnish gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "pol'skiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "polsha qo'lqop") ) ) {
+		if (uarmg && itemhasappearance(uarmg, APP_POLNISH_GLOVES) ) {
 			if (chanch < 5) chanch = 5;
 			chanch *= 2;
 		}
@@ -12502,7 +12502,7 @@ click_to_cmd(x, y, mod)
 	return cmd;
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) {
+	if (uarmg && itemhasappearance(uarmg, APP_RACER_GLOVES) ) {
 	pline("Your gloves prevent quicktravel!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	cmd[0] = ' ';
@@ -12811,7 +12811,7 @@ dotravel()
 
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) {
+	if (uarmg && itemhasappearance(uarmg, APP_RACER_GLOVES) ) {
 	pline("Your gloves prevent quicktravel!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;

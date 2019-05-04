@@ -709,7 +709,7 @@ register struct monst *mtmp;
 		}
 		badeffect();
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
@@ -745,7 +745,7 @@ register struct monst *mtmp;
 			}
 			badeffect();
 
-			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
@@ -1375,7 +1375,7 @@ convertdone:
 
 		}
 
-		if (rn2(10) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gaz niqobi")) ) {
+		if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 			pline("But the gas mask protects you from the effects.");
 		} else {
 
@@ -1417,7 +1417,7 @@ convertdone:
 
 	/* [DS] Cthulhu also uses psychic blasts */
 	else if ((is_mind_flayer(mdat) || mdat == &mons[PM_CTHULHU] || mdat == &mons[PM_FLYING_ASSHOLE] ) 
-			&& !rn2( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "narrow helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzkiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tor dubulg'a") ) ) ? 4 : 20)) {
+			&& !rn2( (uarmh && itemhasappearance(uarmh, APP_NARROW_HELMET) ) ? 4 : 20)) {
 		struct monst *m2, *nmon = (struct monst *)0;
 
 		if (canseemon(mtmp))
@@ -1515,7 +1515,7 @@ convertdone:
 	}
 
 	/* occasionally hint at the presence of psychic beings, if you are telepathic --Amy */
-	if (dmgtype(mdat, AD_SPC2) && !rn2((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "narrow helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzkiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tor dubulg'a") ) ) ? 40 : 200) && Blind_telepat) {
+	if (dmgtype(mdat, AD_SPC2) && !rn2((uarmh && itemhasappearance(uarmh, APP_NARROW_HELMET) ) ? 40 : 200) && Blind_telepat) {
 		You(Hallucination ? "sense a fantastic psionic wave." : "sense a faint psionic wave.");
 	}
 
@@ -2044,7 +2044,7 @@ not_special:
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
-	if (mtmp->mconf || (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "inkcoat helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem pal'to chernil") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "siyoh palto dubulg'a") ) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
+	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else if ((monsndx(ptr) == PM_WIMPDAG_BANGER) || (monsndx(ptr) == PM_SLING_BANGER) || (monsndx(ptr) == PM_FLINT_BANGER) || (monsndx(ptr) == PM_DAT_BANGER) || (monsndx(ptr) == PM_BOW_BANGER) || (monsndx(ptr) == PM_PISTOL_BANGER) || (monsndx(ptr) == PM_SPEA_BANGER) || (monsndx(ptr) == PM_XBOW_BANGER) || (monsndx(ptr) == PM_SHOTTY_BANGER) || (monsndx(ptr) == PM_SHURI_BANGER) || (monsndx(ptr) == PM_SMG_BANGER) || (monsndx(ptr) == PM_LASER_BANGER) || (monsndx(ptr) == PM_ASSAULT_BANGER) || (monsndx(ptr) == PM_JAV_BANGER) || (monsndx(ptr) == PM_AUTOSHOT_BANGER) || (monsndx(ptr) == PM_ARMSTREAM_BANGER) || (monsndx(ptr) == PM_BIG_FUCKING_BANGER) )
 		appr = 0;
@@ -2117,11 +2117,11 @@ not_special:
 		}
 	}
 
-	if (appr == 1 && !rn2(5) && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflaj to'n") )) ) appr = 0;
+	if (appr == 1 && !rn2(5) && (uarm && itemhasappearance(uarm, APP_CAMO_ROBE)) ) appr = 0;
 
 	if (appr == 1 && uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(10)) appr = 0;
 
-	if (appr == 1 && !rn2(5) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
+	if (appr == 1 && !rn2(5) && (uarmc && itemhasappearance(uarmc, APP_PINK_CLOAK) )) appr = 0;
 
 	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
 	if (ptr == &mons[PM_BLOWSTREAM_BABY]) appr = -1;
@@ -2294,15 +2294,15 @@ not_special:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "absorbing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pogloshchayushchiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yutucu plash") ) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
 		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bug-tracking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "oshibka otslezhivaniya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "hasharotlar-kuzatish dubulg'a") ) && !rn2(3) ) appr = 1; 
+	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kamalak chizilmasin") ) && !rn2(3) ) appr = 1; 
+	if (uarmf && itemhasappearance(uarmf, APP_RAINBOW_BOOTS) && !rn2(3) ) appr = 1; 
 
 		if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) appr = 1;
 

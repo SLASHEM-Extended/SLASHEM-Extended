@@ -1702,7 +1702,7 @@ ask_about_trap(int x, int y)
 			if (traphere->ttyp == SQKY_BOARD) {
 				return FALSE;
 			}
-			if (traphere->ttyp == SHIT_TRAP && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) {
+			if (traphere->ttyp == SHIT_TRAP && !(uarmf && itemhasappearance(uarmf, APP_HUGGING_BOOTS) ) ) {
 				return FALSE;
 			}
 		}
@@ -1974,7 +1974,7 @@ domove()
 	/* In Soviet Russia, stunning is a crippling status effect that will fuck you up. You're not supposed to stand
 	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
 
-		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) && !rn2(8) ) )
+		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) )
 			/* toned down so it's less crippling --Amy
 			 * nerf for extremely fast steeds: they cause you to sometimes walk randomly */
 			|| (u.usteed && (u.usteed->mconf || (u.usteed->data->mmove > 36 && rnd(u.usteed->data->mmove) > 36) ) )
@@ -2251,7 +2251,7 @@ domove()
 			      }
 				if (Stoned) fix_petrification();
 
-				if (!rn2(10) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) ) {
+				if (!rn2(10) || !(uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) ) {
 
 				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
 				if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
@@ -2277,7 +2277,7 @@ domove()
 
 				}
 
-				if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) {
+				if (uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) {
 				    if (!(HFast & INTRINSIC)) {
 					if (!Fast)
 					    You("speed up.");
@@ -2296,7 +2296,7 @@ domove()
 					exercise(A_DEX, FALSE);
 				}
 
-			      if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) num /= 4;
+			      if (uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) num /= 4;
 			      if (num) losehp(num, "heap of shit", KILLED_BY_AN);
 
 			}
@@ -2809,7 +2809,7 @@ peacedisplace:
 		    forcenomul(0, 0);
 	}
 
-	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
+	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 	    u.uundetected = is_waterypool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
@@ -3021,7 +3021,7 @@ boolean pick;
 		/* KMH, balance patch -- new intrinsic */
 		else if (Flying)
 			You("fly out of the water.");
-		else if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") ))
+		else if (uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK))
 			You("fly out of the water.");
 		else if (Wwalking)
 			You("slowly rise above the surface.");
@@ -3037,7 +3037,7 @@ boolean pick;
 		}
 	}
 stillinwater:;
-	if (!Levitation && !u.ustuck && !Flying && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") )) ) {
+	if (!Levitation && !u.ustuck && !Flying && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) {
 	    /* limit recursive calls through teleds() */
 	    if ((is_drowningpool(u.ux, u.uy) && !(is_crystalwater(u.ux,u.uy))) || is_lava(u.ux, u.uy)) {
 		if (u.usteed && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) &&
@@ -3974,7 +3974,7 @@ dopickup()
 			|| (Flying && !StrongFlying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
-	    } else if (!likes_lava(youmonst.data) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
+	    } else if (!likes_lava(youmonst.data) && !(uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
 		You("would burn to a crisp trying to pick things up.");
 		return(0);
 	    }
@@ -4207,7 +4207,7 @@ nomul(nval, txt, discountpossible)
 {
 	if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL && nval == 0) return;
 
-	if (uarmf && nval == 0 && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) return;
+	if (uarmf && nval == 0 && itemhasappearance(uarmf, APP_TURBO_BOOTS) ) return;
 
 	if (u.katitrapocc && nval == 0) {
 		pline("Something tries to interrupt your attempt to clean the Kati shoes! If you stop now, the sexy girl will hate you!");
@@ -4246,7 +4246,7 @@ nomul(nval, txt, discountpossible)
 		nval /= 100;
 	}
 
-	if (discountpossible && (nval < -2) && !rn2(10) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+	if (discountpossible && (nval < -2) && !rn2(10) && uarmf && itemhasappearance(uarmf, APP_PLOF_HEELS) ) {
 		nval /= 5;
 		if (nval > -2) nval = -2;
 	}
@@ -4569,7 +4569,7 @@ int k_format; /* WAC k_format is an int */
 		if (n < 1) n = 1;
 	}
 
-	if (n > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+	if (n > 0 && uarmf && itemhasappearance(uarmf, APP_MARJI_SHOES) ) {
 		n++;
 		n *= 9;
 		n /= 10;

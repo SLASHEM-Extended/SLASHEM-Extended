@@ -4432,7 +4432,7 @@ secureidchoice:
 			break;
 		case WAN_WISHING:
 			known = TRUE;
-			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 				makenonworkingwish();
 				break;
 			}
@@ -4442,7 +4442,7 @@ secureidchoice:
 			known = TRUE;
 			int acquireditem;
 			acquireditem = 0;
-			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 				pline("Unfortunately, nothing happens.");
 				break;
 			}
@@ -7755,7 +7755,7 @@ struct obj **obj_p;			/* object tossed/used */
 			}
 			if (weapon != INVIS_BEAM) {
 			    (*fhitm)(mtmp, obj);
-				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) ) range -= 0;
+				if (uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) range -= 0;
 			    else if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
 			    else if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
 			    else range -= 3;
@@ -7786,7 +7786,7 @@ struct obj **obj_p;			/* object tossed/used */
 	    }
 	    if(fhito) {
 		if(bhitpile(obj,fhito,bhitpos.x,bhitpos.y))
-		    if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) )) range--;
+		    if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) )) range--;
 	    } else {
 		if(weapon == KICKED_WEAPON &&
 		      ((obj->oclass == COIN_CLASS &&
@@ -8881,7 +8881,7 @@ sigilcontroldirection:
 			    slept_monst(mon);
 		    }
 		}
-		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) ) ) range -= 2;
+		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) ) range -= 2;
 	    } else {
 		miss(fltxt,mon);
 	    }
@@ -8893,7 +8893,7 @@ sigilcontroldirection:
 	    } else
 	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) || (Race_if(PM_SPARD) && (zap_hit_player((int) u.uac, 0)) ) || (StrongConflict && (zap_hit_player((int) u.uac, 0)) ) ) {
 
-		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")))) range -= 2;
+		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES))) range -= 2;
 		pline("%s hits you!", The(fltxt));
 		if (Reflecting && ((abstype == ZT_DEATH && rn2(StrongReflecting ? 100 : 20)) || (abstype != ZT_DEATH && rn2(StrongReflecting ? 20 : 5)) ) && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {
@@ -9634,7 +9634,7 @@ register int osym, dmgtyp;
 	    switch(dmgtyp) {
 		case AD_COLD:
 
-		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) {skip++; break;
+		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {skip++; break;
 			}
 
 		    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) {skip++; break;

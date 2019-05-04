@@ -257,8 +257,7 @@ mattackm(magr, mdef)
     pa = magr->data;  pd = mdef->data;
 
     /* Grid bugs cannot attack at an angle. */
-    if ((isgridbug(pa) || (uwep && uwep->oartifact == ART_EGRID_BUG && magr->data->mlet == S_XAN) || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) && magr->mx != mdef->mx
-						&& magr->my != mdef->my)
+    if ((isgridbug(pa) || (uwep && uwep->oartifact == ART_EGRID_BUG && magr->data->mlet == S_XAN) || (uarmf && !rn2(10) && itemhasappearance(uarmf, APP_CHESS_BOOTS) ) ) && magr->mx != mdef->mx && magr->my != mdef->my)
 	return(MM_MISS);
 
     range = !magr->mtame && !monnear(magr, mdef->mx, mdef->my);

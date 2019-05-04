@@ -167,30 +167,30 @@ register boolean clumsy;
 
 	}
 
-	if (uarmf && !rn2(3) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+	if (uarmf && !rn2(3) && itemhasappearance(uarmf, APP_PLOF_HEELS) ) {
 		pline("*plof*");
 		dmg += rnd(15);
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "battle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bitvy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "urush chizilmasin") ) ) dmg += 5;
+	if (uarmf && itemhasappearance(uarmf, APP_BATTLE_BOOTS)) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
 	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT) dmg += 5;
 	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) dmg += 10;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "steel toed boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "stal'nyye kosolapyy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "po'latdan yasalgan poyafzal")) ) dmg++;
+	if (uarmf && itemhasappearance(uarmf, APP_STEEL_TOED_BOOTS) ) dmg++;
 
 	if (uarmf && uarmf->oartifact == ART_HEADCRUNCH && has_head(mon->data) ) dmg += 10;
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS && !rn2(20)) dmg += 10000; /* instant death */
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) dmg += rnd(10);
+	if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) dmg += rnd(10);
 
 	if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) dmg += 2;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qurol engil etigi") )) {
+	if (uarmf && itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) {
 		dmg += u.ulevel;
 		u.ualign.sins++;
 		u.alignlim--;
@@ -201,12 +201,12 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->oartifact == ART_MADELEINE_S_GIRL_FOOTSTEPS) adjalign(1);
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") )) dmg *= 2;
+	if (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS)) dmg *= 2;
 
 	/* quarterback is expert at kicking --Amy */
 	if (Role_if(PM_QUARTERBACK) && dmg > 0) dmg += rnd(dmg);
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
+	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
@@ -216,7 +216,7 @@ register boolean clumsy;
 
 	/* kicking a dragon or an elephant will not harm it */
 	if (thick_skinned(mon->data) && dmg && !(uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) ) dmg = 1;
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) && dmg) dmg = 1;
+	if ((uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) && dmg) dmg = 1;
 
 	/* high heels are the elder priest's kryptonite; he's thick-skinned so this must come after the above line */
 	if (PlayerInHighHeels && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) {
@@ -315,7 +315,7 @@ register boolean clumsy;
 		showdmg(dmg);
 #endif
 	}
-	if (mon->mhp > 0 && (martial() || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni") ))) && !bigmonst(mon->data) && !rn2(3) &&
+	if (mon->mhp > 0 && (martial() || (uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS))) && !bigmonst(mon->data) && !rn2(3) &&
 	    mon->mcanmove && mon != u.ustuck && !mon->mtrapped) {
 		/* see if the monster has a place to move into */
 		mdx = mon->mx + u.dx;
@@ -331,7 +331,7 @@ register boolean clumsy;
 			    if (mintrap(mon) == 2) trapkilled = TRUE;
 			}
 		}
-	} else if (mon->mhp > 0 && mon != u.ustuck && !mon->mtrapped && rn2(10) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "doctor claw boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kolgotki dlya sapog") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shifokor chiziqlari")) ) {
+	} else if (mon->mhp > 0 && mon != u.ustuck && !mon->mtrapped && rn2(10) && uarmf && itemhasappearance(uarmf, APP_DOCTOR_CLAW_BOOTS) ) {
 
 		switch (rnd(4)) {
 			case 1:
@@ -360,7 +360,7 @@ register boolean clumsy;
 		}
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platform boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plato sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platosi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plateau boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sapogi na platforme") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platformalar chizilmasin") ) && !rn2(3) ) {
+	if (uarmf && (itemhasappearance(uarmf, APP_PLATFORM_BOOTS) || itemhasappearance(uarmf, APP_PLATEAU_BOOTS)) && !rn2(3) ) {
 		if (!mon->mstun) 	{
 			if (rn2(3)) pline("%s is stunned by your strong kick!", Monnam(mon));
 			else if (rn2(10)) pline("You stomp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
@@ -385,7 +385,7 @@ register boolean clumsy;
 
 	}
 
-	if (!rn2(10) && MON_WEP(mon) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "gentle sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nezhnyy krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nozik poyafzallar")) ) {
+	if (!rn2(10) && MON_WEP(mon) && uarmf && itemhasappearance(uarmf, APP_GENTLE_SNEAKERS) ) {
 		register struct obj *monwepon;
 		monwepon = MON_WEP(mon);
 		if (monwepon) {
@@ -421,7 +421,7 @@ register boolean clumsy;
 		mon->mconf = TRUE;
 	}
 
-    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin") ) ) {
+    if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) ) {
 		if (!mon->mstun) 	{
 			pline("Your velcro boots joyously scratch along %s's %s, drawing lots of %s!", mon_nam(mon), makeplural(mbodypart(mon,LEG)), mbodypart(mon,BLOOD) );
 		}
@@ -444,7 +444,7 @@ register boolean clumsy;
 
 	}
 
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && !rn2(3) && mon->mcanmove) {
+	if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && !rn2(3) && mon->mcanmove) {
 		pline("Your velcro lashes severely hurt %s.", mon_nam(mon) );
 		mon->mstun = TRUE;
 		mon->mcanmove = 0;
@@ -717,11 +717,11 @@ register xchar x, y;
 	i = -inv_weight();
 	j = weight_cap();
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) i += 6000;
+	if (uarmf && itemhasappearance(uarmf, APP_COMBAT_BOOTS) ) i += 6000;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -737,12 +737,12 @@ register xchar x, y;
 	else if (uarm && objects[uarm->otyp].oc_bulky && ACURR(A_DEX) < rnd(25))
 		clumsy = TRUE;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) clumsy = FALSE;
+	if (uarmf && itemhasappearance(uarmf, APP_COMBAT_BOOTS) ) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
+	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) clumsy = FALSE;
 
@@ -1507,7 +1507,7 @@ dokick()
 		    if (rn2(3)) {
 			if ( !rn2(6) && !(mvitals[PM_KILLER_BEE].mvflags & G_GONE) )
 			    You_hear("a low buzzing."); /* a warning */
-		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rmon chizilmasin") ) ) {
+		    if (uarmf && itemhasappearance(uarmf, APP_JUNGLE_BOOTS) ) {
 			pline("You kick the tree. Nothing happens.");
 			return(1);
 		    } else if (RngeJungleAction) {
@@ -1593,7 +1593,7 @@ dokick()
 			maploc->looted |= TREE_SWARM;
 			return(1);
 		    }
-		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rmon chizilmasin") ) ) {
+		    if (uarmf && itemhasappearance(uarmf, APP_JUNGLE_BOOTS) ) {
 			pline("You kick the tree. Nothing happens.");
 			return(1);
 		    } else if (RngeJungleAction) {

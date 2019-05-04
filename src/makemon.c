@@ -16577,7 +16577,7 @@ register int	mmflags;
 	if (is_golem(ptr)) {
 	    mtmp->mhpmax = mtmp->mhp = golemhp(mndx);
 
-	    if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "celtic helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "kel'tskaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "seltik dubulg'a") ) ) {
+	    if (uarmh && itemhasappearance(uarmh, APP_CELTIC_HELMET) ) {
 		    mtmp->mhpmax *= 3;
 		    mtmp->mhpmax /= 2;
 		    mtmp->mhp *= 3;
@@ -16831,7 +16831,7 @@ register int	mmflags;
 
 	if (!rn2(8192)) mtmp->shinymonst = 1;
 
-	if (!rn2(100) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "aql bovar qilmaydigan plash") ))) {
+	if (!rn2(100) && (uarmc && itemhasappearance(uarmc, APP_ELDRITCH_CLOAK))) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_abomination = 1;
 	}
@@ -18376,7 +18376,7 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
-	if (!rn2(50) && ((mtmp->data->mcolor == CLR_GREEN) || ((mtmp->data->mcolor) == CLR_BRIGHT_GREEN)) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grass cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch trava") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o't plash") ) ) {
+	if (!rn2(50) && ((mtmp->data->mcolor == CLR_GREEN) || ((mtmp->data->mcolor) == CLR_BRIGHT_GREEN)) && uarmc && itemhasappearance(uarmc, APP_GRASS_CLOAK) ) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}
@@ -18401,12 +18401,12 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
-	if (!rn2(20) && is_pokemon(mtmp->data) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") )) {
+	if (!rn2(20) && is_pokemon(mtmp->data) && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK)) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}
 
-	if (!rn2(25) && mtmp->data->mlet == S_BAD_FOOD && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "flower gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "tsvetochnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gul qo'lqoplari")) ) {
+	if (!rn2(25) && mtmp->data->mlet == S_BAD_FOOD && uarmg && itemhasappearance(uarmg, APP_FLOWER_GLOVES) ) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}
@@ -18476,7 +18476,7 @@ register int	mmflags;
 		if (rnd(10) < senserchance ) pline("You sense the arrival of %s.",noit_mon_nam(mtmp) );
 	}
 
-	if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hearing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch dlya slukha") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eshitish plash") ) ) && !rn2(50)) pline("You sense the arrival of %s.",noit_mon_nam(mtmp) );
+	if ((uarmc && itemhasappearance(uarmc, APP_HEARING_CLOAK) ) && !rn2(50)) pline("You sense the arrival of %s.",noit_mon_nam(mtmp) );
 
 	/* immunizer needs a disadvantage; I'm randomly reducing their alignment --Amy */
 	if (Race_if(PM_IMMUNIZER) && !rn2(3) ) adjalign(-1);
@@ -19499,10 +19499,10 @@ loopback:
 		if (ct > 0 && (Role_if(PM_COURIER) && dmgtype(ptr, AD_IDAM) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_MURDERER) && dmgtype(ptr, AD_STAT) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_NUCLEAR_PHYSICIST) && dmgtype(ptr, AD_PAIN) )) ct += 1;
-		if (ct > 0 && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(ptr, AT_SCRA) )) ct += 2;
-		if (ct > 0 && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(ptr, AT_LASH) )) ct += 2;
-		if (ct > 0 && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(ptr, AT_STNG) )) ct += 2;
-		if (ct > 0 && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "grunter helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shturmovoy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "go'shtli dubulg'a")) && dmgtype(ptr, AD_DISE) ) ct += 5;
+		if (ct > 0 && (uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(ptr, AT_SCRA) )) ct += 2;
+		if (ct > 0 && (uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(ptr, AT_LASH) )) ct += 2;
+		if (ct > 0 && (uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(ptr, AT_STNG) )) ct += 2;
+		if (ct > 0 && uarmh && itemhasappearance(uarmh, APP_GRUNTER_HELMET) && dmgtype(ptr, AD_DISE) ) ct += 5;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_IDAM) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_ANTI) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_TECH) )) ct += 2;
@@ -20431,10 +20431,10 @@ int     spc;
 		if ((Role_if(PM_COURIER) && dmgtype(&mons[last], AD_IDAM) )) num += 1;
 		if ((Role_if(PM_MURDERER) && dmgtype(&mons[last], AD_STAT) )) num += 2;
 		if ((Role_if(PM_NUCLEAR_PHYSICIST) && dmgtype(&mons[last], AD_PAIN) )) num += 1;
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[last], AT_SCRA) )) num += 2;
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[last], AT_LASH) )) num += 2;
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[last], AT_STNG) )) num += 2;
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "grunter helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shturmovoy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "go'shtli dubulg'a")) && dmgtype(&mons[last], AD_DISE) ) num += 5;
+		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[last], AT_SCRA) )) num += 2;
+		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[last], AT_LASH) )) num += 2;
+		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[last], AT_STNG) )) num += 2;
+		if (uarmh && itemhasappearance(uarmh, APP_GRUNTER_HELMET) && dmgtype(&mons[last], AD_DISE) ) num += 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_IDAM) )) num += 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_ANTI) )) num += 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_TECH) )) num += 2;
@@ -21079,10 +21079,10 @@ int     spc;
 		if ((Role_if(PM_COURIER) && dmgtype(&mons[first], AD_IDAM) )) num -= 1;
 		if ((Role_if(PM_MURDERER) && dmgtype(&mons[first], AD_STAT) )) num -= 2;
 		if ((Role_if(PM_NUCLEAR_PHYSICIST) && dmgtype(&mons[first], AD_PAIN) )) num -= 1;
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[first], AT_SCRA) )) num -= 2;
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[first], AT_LASH) )) num -= 2;
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[first], AT_STNG) )) num -= 2;
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "grunter helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shturmovoy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "go'shtli dubulg'a")) && dmgtype(&mons[first], AD_DISE) ) num -= 5;
+		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[first], AT_SCRA) )) num -= 2;
+		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[first], AT_LASH) )) num -= 2;
+		if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) && attacktype(&mons[first], AT_STNG) )) num -= 2;
+		if (uarmh && itemhasappearance(uarmh, APP_GRUNTER_HELMET) && dmgtype(&mons[first], AD_DISE) ) num -= 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_IDAM) )) num -= 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_ANTI) )) num -= 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_TECH) )) num -= 2;
@@ -21924,7 +21924,7 @@ register struct permonst *ptr;
 
 	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) return FALSE;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politician cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "siyosatchi plash") ) ) return FALSE;
+	if (uarmc && itemhasappearance(uarmc, APP_POLITICIAN_CLOAK) ) return FALSE;
 
 	if (always_tame(ptr) && (!always_hostile(ptr) || !rn2(3))) return TRUE;
 
@@ -21940,9 +21940,9 @@ register struct permonst *ptr;
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(20) && !Role_if(PM_CONVICT) && u.ualign.type == A_LAWFUL) return TRUE;
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(50) && !Role_if(PM_CONVICT) && u.ualign.type == A_NEUTRAL) return TRUE;
 
-	if (is_pokemon(ptr) && rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) return TRUE;
+	if (is_pokemon(ptr) && rn2(5) && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK) ) return TRUE;
 
-	if (!rn2(5) && ptr->mlet == S_BAD_FOOD && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "flower gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "tsvetochnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gul qo'lqoplari")) ) return TRUE;
+	if (!rn2(5) && ptr->mlet == S_BAD_FOOD && uarmg && itemhasappearance(uarmg, APP_FLOWER_GLOVES) ) return TRUE;
 
 	if (ptr->mlet == S_LICH && uarmg && uarmg->oartifact == ART_BLACKY_S_BACK_WITHOUT_L) return TRUE;
 
@@ -21992,8 +21992,8 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_RUSTMONST && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
 	if ((is_swimmer(ptr) || (ptr)->mflags1 & M1_AMPHIBIOUS) && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 
-	if (ptr->mlet == S_ANGEL && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angelic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angel'skoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "farishtalarning plash") ) ) && rn2(100)) return TRUE;
-	if (ptr->mlet == S_DEMON && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "demonic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "demonicheskaya plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jinlarning plash") ) ) && rn2(2)) return TRUE;
+	if (ptr->mlet == S_ANGEL && (uarmc && itemhasappearance(uarmc, APP_ANGELIC_CLOAK) ) && rn2(100)) return TRUE;
+	if (ptr->mlet == S_DEMON && (uarmc && itemhasappearance(uarmc, APP_DEMONIC_CLOAK) ) && rn2(2)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) && rn2(10)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) && rn2(20)) return TRUE;
 
@@ -22008,11 +22008,11 @@ register struct permonst *ptr;
 	if (uwep && uwep->oartifact == ART_ORANGERY && rn2(10) && (ptr->mcolor == CLR_ORANGE) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_LIGHT_OF_DECEPTION && !rn2(10)) return TRUE;
 
-	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && (is_lord(ptr) && !rn2(5)) ) return TRUE;
-	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && (is_prince(ptr) && !rn2(2)) ) return TRUE;
+	if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && (is_lord(ptr) && !rn2(5)) ) return TRUE;
+	if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && (is_prince(ptr) && !rn2(2)) ) return TRUE;
 
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && (is_lord(ptr) && rn2(2)) ) return TRUE;
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && (is_prince(ptr) && rn2(5)) ) return TRUE;
+	if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && (is_lord(ptr) && rn2(2)) ) return TRUE;
+	if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && (is_prince(ptr) && rn2(5)) ) return TRUE;
 
 	if (always_hostile(ptr)) return FALSE;
 	if (ptr->msound == MS_LEADER || ptr->msound == MS_GUARDIAN)

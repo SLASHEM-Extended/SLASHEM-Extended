@@ -285,7 +285,7 @@ Boots_on()
 	default: impossible(unknown_type, c_boots, uarmf->otyp);
     }
 
-    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin") ) ) {
+    if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) ) {
 	      if (!uarmf->cursed) {
 			curse(uarmf);
 			pline("The velcro boots constrict your %s, and you can't take them off again!", makeplural(body_part(FOOT)) );
@@ -1027,7 +1027,7 @@ Cloak_on()
 	default: impossible(unknown_type, c_cloak, uarmc->otyp);
     }
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "straitjacket cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "smiritel'naya rubashka plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tor kamzul plash") ) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_STRAITJACKET_CLOAK) ) {
 		if (!uarmc->hvycurse) {
 			curse(uarmc);
 			uarmc->hvycurse = 1;
@@ -1035,14 +1035,14 @@ Cloak_on()
 		}
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "johil plash") ) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_IGNORANT_CLOAK) ) {
 		if (!uarmc->cursed) {
 			curse(uarmc);
 		}
 		You_feel("ignorant.");
 	}
 
-	if ( (Role_if(PM_GEEK) || Role_if(PM_GRADUATE) || Role_if(PM_CRACKER) || Role_if(PM_SOFTWARE_ENGINEER)) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qani plash") ) ) {
+	if ( (Role_if(PM_GEEK) || Role_if(PM_GRADUATE) || Role_if(PM_CRACKER) || Role_if(PM_SOFTWARE_ENGINEER)) && uarmc && itemhasappearance(uarmc, APP_GEEK_CLOAK) ) {
 		int i;
 		for (i = 0; i < MAXSPELL; i++)  {
 			if (spellid(i) == SPE_ALTER_REALITY) break;
@@ -1767,7 +1767,7 @@ Helmet_on()
 		else uarmh->spe = -(rnd(5));
     }
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "less helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "men'she shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "kam dubulg'a") )) {
+	if (uarmh && itemhasappearance(uarmh, APP_LESS_HELMET)) {
 		if (uarmh->spe > 0) uarmh->spe--;
 	}
 
@@ -2085,7 +2085,7 @@ Gloves_on()
 	default: impossible(unknown_type, c_gloves, uarmg->otyp);
     }
 
-    if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "spanish gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ispanskiy perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ispaniya qo'lqop") ) ) {
+    if (uarmg && itemhasappearance(uarmg, APP_SPANISH_GLOVES) ) {
 	      if (!uarmg->cursed) {
 			curse(uarmg);
 			pline("Whoops - your %s are squeezed by these gloves!", makeplural(body_part(HAND)) );
@@ -2093,7 +2093,7 @@ Gloves_on()
 
     }
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "inverse gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "obratnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "teskari qo'lqop") )) {
+	if (uarmg && itemhasappearance(uarmg, APP_INVERSE_GLOVES)) {
 
 		if (uarmg->spe) uarmg->spe = -uarmg->spe;
 		if (uarmg->spe < 0) {
@@ -2103,7 +2103,7 @@ Gloves_on()
 
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gameble gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "geymperskiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'yinchoq qo'lqoplari")) ) {
+	if (uarmg && itemhasappearance(uarmg, APP_GAMEBLE_GLOVES)) {
 
 		if (rn2(2)) {
 			pline("Your gloves feel warm.");
@@ -3917,7 +3917,7 @@ dotakeoff()
 	}
 
 	boolean updowninversion = 0;
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-down cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch s verkhnim plashchem") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-pastga plash") )) updowninversion = 1;
+	if (uarmc && itemhasappearance(uarmc, APP_UP_DOWN_CLOAK)) updowninversion = 1;
 
 #define MOREARM(x) if (x) { armorpieces++; otmp = x; }
 	MOREARM(uarmh);
@@ -4779,7 +4779,7 @@ find_ac()
 	if (Race_if(PM_MAYMES) && uright && uright->otyp == RIN_PROTECTION) uac -= 2;
 	if (Race_if(PM_FRO)) uac -= 2;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sekinlashuvi libos") )) uac -= 3;
+	if (uarmc && itemhasappearance(uarmc, APP_SLOWING_GOWN)) uac -= 3;
 
 	if (u.artifactprotection) uac -= 2;
 	if (have_mothrelay() ) uac -= 2;
@@ -4920,11 +4920,11 @@ find_ac()
 
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'ylagi mantiya")) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_MANTLE_OF_COAT)) {
 		uac -= 5;
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) uac += 5;
+	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) uac += 5;
 	if (RngeDnethack) uac += 5;
 
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
@@ -4980,7 +4980,7 @@ find_ac()
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) uac -= 10;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
-	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) uac -= 1;
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) uac -= 1;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -5309,7 +5309,7 @@ register struct obj *otmp;
 	*buf = '\0';			/* lint suppresion */
 
 	boolean updowninversion = 0;
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-down cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch s verkhnim plashchem") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-pastga plash") )) updowninversion = 1;
+	if (uarmc && itemhasappearance(uarmc, APP_UP_DOWN_CLOAK)) updowninversion = 1;
 
 	/* implant check */
 	if (otmp == uimplant) {

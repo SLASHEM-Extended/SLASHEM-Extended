@@ -1489,7 +1489,7 @@ struct monst *mon;
 
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fencing gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ograzhdeniya perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qilichbozlik qo'lqop") ) ) {
+		if (uarmg && itemhasappearance(uarmg, APP_FENCING_GLOVES) ) {
 			if ( (objects[otmp->otyp].oc_skill == P_SHORT_SWORD) || (objects[otmp->otyp].oc_skill == P_BROAD_SWORD) || (objects[otmp->otyp].oc_skill == P_LONG_SWORD) || (objects[otmp->otyp].oc_skill == P_TWO_HANDED_SWORD) || (objects[otmp->otyp].oc_skill == P_SCIMITAR) || (objects[otmp->otyp].oc_skill == P_SABER) || (objects[otmp->otyp].oc_skill == P_DAGGER) ) {
 			bonus += Role_if(PM_FENCER) ? 2 : 1;
 			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_BASIC) bonus += Role_if(PM_FENCER) ? 2 : 1;
@@ -4677,7 +4677,7 @@ struct obj *weapon;
 
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER && weapon && weapon_type(weapon) == P_HAMMER) bonus += 8;
 
-	if (uarmc && weapon && weapon_type(weapon) == P_HAMMER && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") ) ) bonus += 5;
+	if (uarmc && weapon && weapon_type(weapon) == P_HAMMER && itemhasappearance(uarmc, APP_AVENGER_CLOAK) ) bonus += 5;
 
 	if (RngeVengeance && weapon && weapon_type(weapon) == P_HAMMER) bonus += rnd(5);
 

@@ -213,7 +213,7 @@ drinkfountain()
 		return;
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "foundry cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "liteynyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "quyish plash") )) {
+	if (uarmc && itemhasappearance(uarmc, APP_FOUNDRY_CLOAK)) {
 		u.uhunger += 100;
 		pline("The water is very nutritious!");
 	}
@@ -445,7 +445,7 @@ drinkfountain()
 			/* evil patch idea by jonadab:
 			   fountains have a small percentage chance of killing you outright, flavored as drowning */
 
-			if (!Amphibious && !Swimming && !Breathless && !rn2(isfriday ? 10 : 20) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) {
+			if (!Amphibious && !Swimming && !Breathless && !rn2(isfriday ? 10 : 20) && !(uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS) ) ) {
 
 				u.youaredead = 1;
 

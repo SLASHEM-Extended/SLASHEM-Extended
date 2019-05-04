@@ -2306,7 +2306,7 @@ learn()
 			    Your("knowledge of that spell is keener.");
 			    use_skill(P_MEMORIZATION, spellev(i));
 			    incrnknow(i);
-				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			    book->spestudied++;
 
@@ -2354,7 +2354,7 @@ learn()
 			spl_book[i].sp_memorize = TRUE;
 			use_skill(P_MEMORIZATION, spellev(i));
 			incrnknow(i);
-			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			book->spestudied++;
 			You("have keen knowledge of the spell.");
@@ -2706,7 +2706,7 @@ age_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
 	    if (spellknow(i) ) {
 
-		if (!(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "guild cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gil'dii plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birlik plash") ) ) ) {
+		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) ) {
 
 			/* Memorization skill by Amy: if the spell is set to memorization mode, have a skill-based chance here
 			 * that on any given turn the spell memory will not decrease. */
@@ -2753,7 +2753,7 @@ age_spells()
 		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
 		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
-		if (spellknow(i) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "forgetful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zabyvchiv plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "unutuvchan plash") ) ) {
+		if (spellknow(i) && uarmc && itemhasappearance(uarmc, APP_FORGETFUL_CLOAK) ) {
 			decrnknow(i);
 			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
 			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
@@ -3241,7 +3241,7 @@ boolean atme;
 		energy /= 10;
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) {
+	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) {
 		energy *= 11;
 		energy /= 10;
 	}
@@ -3281,7 +3281,7 @@ boolean atme;
 	}
 	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {if (rn2(10)) energy += 1; energy *= 3; energy /= 4;}
 
-	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "occultism gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki okkul'tizma") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "folbinlik qo'lqop") )) && skill == P_OCCULT_SPELL) {
+	if ((uarmg && itemhasappearance(uarmg, APP_OCCULTISM_GLOVES)) && skill == P_OCCULT_SPELL) {
 		if (rn2(10)) energy += 1;
 		energy *= 4;
 		energy /= 5;
@@ -3299,7 +3299,7 @@ boolean atme;
 		energy /= 10;
 	}
 
-	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) {
+	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && itemhasappearance(uarmc, APP_WEEB_CLOAK) ) {
 		if (rn2(10)) energy += 1;
 		energy *= 9;
 		energy /= 10;
@@ -10518,7 +10518,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
@@ -10529,7 +10529,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
@@ -10554,7 +10554,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 36);
 	}
@@ -10565,7 +10565,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 36);
 
@@ -10591,7 +10591,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 	}
@@ -10602,7 +10602,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 
@@ -10629,7 +10629,7 @@ int spell;
 			shieldpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) shieldpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 	}
@@ -10640,7 +10640,7 @@ int spell;
 			shieldpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) shieldpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 
@@ -10666,7 +10666,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmhbon * armorpenalties / 12);
 	}
@@ -10677,7 +10677,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmhbon * armorpenalties / 12);
 
@@ -10703,7 +10703,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / 12);
 	}
@@ -10714,7 +10714,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / 12);
 
@@ -10740,7 +10740,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / 12);
 	}
@@ -10752,7 +10752,7 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / 12);
 
@@ -10973,7 +10973,7 @@ int spell;
 
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) chance -= 10;
+	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) chance -= 10;
 
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
 	if (Race_if(PM_PLAYER_GOLEM)) {
@@ -10991,8 +10991,8 @@ int spell;
 	if (uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID) chance += 50;
 	if (uarmu && uarmu->oartifact == ART_KEITH_S_UNDEROOS) chance += 50;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) chance += 10;
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "knowledgeable helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "znayushchikh shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bilimdon dubulg'a") ) ) chance += 10;
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "science cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nauka plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ilm-fan plash") ) ) chance += 10;
+	if (uarmh && itemhasappearance(uarmh, APP_KNOWLEDGEABLE_HELMET) ) chance += 10;
+	if (uarmc && itemhasappearance(uarmc, APP_SCIENCE_CLOAK) ) chance += 10;
 	if (u.tiksrvzllatdown) chance += 10;
 
 	if (Upolyd && dmgtype(youmonst.data, AD_SPEL) ) {
@@ -11034,14 +11034,14 @@ int spell;
 	if (Race_if(PM_INKA) && spellid(spell) == SPE_NATURE_BEAM)
 		chance += 100;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) chance -= 10;
+	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) chance -= 10;
 	if (RngeDnethack) chance -= 10;
 	if (RngeUnnethack) chance -= 33;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) ) chance -= 20;
+	if (uarmc && itemhasappearance(uarmc, APP_SHELL_CLOAK) ) chance -= 20;
 
 	if (is_grassland(u.ux, u.uy)) chance -= 10;
 	if (Numbed) chance -= 10;
@@ -11058,15 +11058,15 @@ int spell;
 
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "failuncap cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya s provalom") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "noto'g'ri plash")) ) chance += 5;
+	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) chance += 5;
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "failuncap helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem s provalom") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "noto'g'ri zarbdan")) ) chance += 5;
+	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "failuncap gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki s perforatsiyey") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "noto'g'ri qo'lqop")) ) chance += 5;
+	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "failuncap shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "s provalom obuv'") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "poyafzal poyafzallari")) ) chance += 5;
+	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
 
-	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) chance += 5;
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) chance += 5;
 
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) chance += 20;
 
@@ -11230,7 +11230,7 @@ wonderspell()
 			if (spellknow(i) <= MAX_CAN_STUDY) {
 				Your("knowledge of the %s spell is keener.", splname);
 				incrnknow(i);
-				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
@@ -11266,7 +11266,7 @@ wonderspell()
 			spl_book[i].sp_lev = objects[randomspell].oc_level;
 			spl_book[i].sp_memorize = TRUE;
 			incrnknow(i);
-			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			You("gain knowledge of the %s spell.", splname);
 			if (randomspell == SPE_FORBIDDEN_KNOWLEDGE) {

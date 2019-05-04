@@ -12628,7 +12628,7 @@ coord *tm;
 	    kind = FIRE_TRAP;
 	} else if (Role_if(PM_TRANSSYLVANIAN) && !rn2(20) ) {
 	    kind = HEEL_TRAP;
-	} else if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni") )) && !rn2(100) ) {
+	} else if ((uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) && !rn2(100) ) {
 	    kind = SHIT_TRAP;
 	} else {
 	    unsigned lvl = level_difficulty();
@@ -15386,7 +15386,7 @@ mkinvokearea()
 
 	if (!achieve.perform_invocation) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
