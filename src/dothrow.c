@@ -167,7 +167,7 @@ int thrown;
 		instapetrify(killer_buf);
 	}
 	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == EGG &&
-		    touch_petrifies(&mons[obj->corpsenm]))) {
+		    touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON)) {
 		You("throw the %s egg with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
 		sprintf(killer_buf, "%s egg", an(mons[obj->corpsenm].mname));
@@ -1139,7 +1139,7 @@ boolean hitsroof;
 	obj = 0;	/* it's now gone */
 	switch (otyp) {
 	case EGG:
-		if (touch_petrifies(&mons[ocorpsenm]) &&
+		if (touch_petrifies(&mons[ocorpsenm]) && ocorpsenm != PM_PLAYERMON &&
 		    !uarmh && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		    !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)))
 		goto petrify;

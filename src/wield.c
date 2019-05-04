@@ -408,7 +408,7 @@ boolean put_away;
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
 	    sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
-	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == EGG
+	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == EGG && wep->corpsenm != PM_PLAYERMON
 				&& touch_petrifies(&mons[wep->corpsenm])) {
 	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
 	    char kbuf[BUFSZ];
@@ -952,7 +952,7 @@ can_twoweapon()
 	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
         } 	else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && 
-		(uswapwep && uswapwep->otyp == EGG &&
+		(uswapwep && uswapwep->otyp == EGG && uswapwep->corpsenm != PM_PLAYERMON &&
                 (touch_petrifies(&mons[uswapwep->corpsenm])))) {
 	    char kbuf[BUFSZ];
 

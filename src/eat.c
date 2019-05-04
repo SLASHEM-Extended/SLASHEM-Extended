@@ -1006,7 +1006,7 @@ cprefx(pm)
 register int pm;
 {
 	(void) maybe_cannibal(pm,TRUE);
-	if (touch_petrifies(&mons[pm]) || pm == PM_MEDUSA) {
+	if ((touch_petrifies(&mons[pm]) || pm == PM_MEDUSA) && pm != PM_PLAYERMON) {
 	    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 		!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 		/* sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
@@ -5906,7 +5906,7 @@ register struct obj *otmp;
 			    change_luck(-2);
 		}
 
-		if (touch_petrifies(&mons[otmp->corpsenm])) {
+		if (touch_petrifies(&mons[otmp->corpsenm]) && otmp->corpsenm != PM_PLAYERMON) {
 		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
@@ -5977,7 +5977,7 @@ struct obj *otmp;
 
 	if (cadaver || otmp->otyp == EGG || otmp->otyp == TIN) {
 		/* These checks must match those in eatcorpse() */
-	  	stoneorslime = (touch_petrifies(&mons[mnum]) &&
+	  	stoneorslime = (touch_petrifies(&mons[mnum]) && mnum != PM_PLAYERMON &&
 				!Stone_resistance && !poly_when_stoned(youmonst.data));
 
 		if (slime_on_touch(&mons[mnum]))

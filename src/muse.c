@@ -11245,7 +11245,7 @@ struct obj *obj;
 				    (obj->corpsenm == PM_LIZARD ||
 					(acidic(&mons[obj->corpsenm]) && !slime_on_touch(&mons[obj->corpsenm])) )));
 	    if (typ == EGG)
-		return (boolean)(touch_petrifies(&mons[obj->corpsenm]));
+		return (boolean)(touch_petrifies(&mons[obj->corpsenm]) && (obj->corpsenm != PM_PLAYERMON));
 	    break;
 	default:
 	    break;

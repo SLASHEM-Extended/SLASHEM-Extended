@@ -7496,7 +7496,7 @@ boolean force_touch;
 		pline("Eek!");
 		badeffect();
 	}
-	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == EGG && touch_petrifies(&mons[otmp->corpsenm])) ) {
+	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])) ) {
 		pline("Eek!");
 		badeffect();
 	}
@@ -7505,7 +7505,7 @@ boolean force_touch;
 		(otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])))
 			return TRUE;
 	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
-		(otmp->otyp == EGG && touch_petrifies(&mons[otmp->corpsenm])))
+		(otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])))
 			return TRUE;
 	return FALSE;
 }

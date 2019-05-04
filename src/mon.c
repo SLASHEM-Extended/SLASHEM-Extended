@@ -2051,8 +2051,8 @@ movemon()
 #ifdef OVLB
 
 #define mstoning(obj)	(ofood(obj) && \
-					(touch_petrifies(&mons[(obj)->corpsenm]) || \
-					(obj)->corpsenm == PM_MEDUSA))
+					((touch_petrifies(&mons[(obj)->corpsenm]) || \
+					(obj)->corpsenm == PM_MEDUSA) && (obj)->corpsenm != PM_PLAYERMON ))
 
 /*
  * Maybe eat a metallic object (not just gold).

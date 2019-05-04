@@ -1408,7 +1408,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		return -1;
 	    }
 	} else if (obj->otyp == EGG) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && obj->corpsenm != PM_PLAYERMON && (!uarmg || FingerlessGloves)
 				&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !telekinesis) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
@@ -2109,7 +2109,7 @@ boolean invobj;
 	}
 
 	if (obj->otyp == EGG) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && obj->corpsenm != PM_PLAYERMON && (!uarmg || FingerlessGloves)
 		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
@@ -2280,7 +2280,7 @@ register struct obj *obj;
 	}
 
 	if (obj->otyp == EGG) {
-	    if ( (touch_petrifies(&mons[obj->corpsenm])) && (!uarmg || FingerlessGloves)
+	    if ( (touch_petrifies(&mons[obj->corpsenm])) && obj->corpsenm != PM_PLAYERMON && (!uarmg || FingerlessGloves)
 		 && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);

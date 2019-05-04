@@ -1267,7 +1267,7 @@ register struct obj *obj;
 		    could_heal = (obj->corpsenm == PM_NURSE);
 		}
 		if (obj->otyp == EGG) {
-		    could_petrify = touch_petrifies(&mons[obj->corpsenm]);
+		    could_petrify = (touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON);
 		}
 		(void) mpickobj(u.ustuck,obj,FALSE);
 		if (is_animal(u.ustuck->data)) {

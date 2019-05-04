@@ -2139,7 +2139,7 @@ int dieroll;
 				change_luck(-5);
 			}
 
-			if (touch_petrifies(&mons[obj->corpsenm])) {
+			if (touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON) {
 			    /*learn_egg_type(obj->corpsenm);*/
 			    pline("Splat! You hit %s with %s %s egg%s!",
 				mon_nam(mon),
