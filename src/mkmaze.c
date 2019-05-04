@@ -2061,6 +2061,8 @@ movebubbles()
 	if (!wportal) set_wportal();
 
 	vision_recalc(2);
+	/* fix from 3.4.3: keep attached ball&chain separate from bubble objects, otherwise panic! */
+	if (Punished) unplacebc();
 
 	/*
 	 * Pick up everything inside of a bubble then fill all bubble

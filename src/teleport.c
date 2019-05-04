@@ -1293,10 +1293,11 @@ register struct trap *ttmp;
 
 	target_level = ttmp->dst;
 
-	if (In_endgame(&u.uz) && Punished && Is_firelevel(&u.uz) ) {
+	/* a slashem bug: it always panics if you're punished on water... should be fixed now --Amy */
+	/*if (In_endgame(&u.uz) && Punished && Is_firelevel(&u.uz) ) {
 	    You_feel("the iron ball preventing you from proceeding...");
 	    return;
-	}
+	}*/
 
 	schedule_goto(&target_level, FALSE, FALSE, 1,
 		      "You feel dizzy for a moment, but the sensation passes.",

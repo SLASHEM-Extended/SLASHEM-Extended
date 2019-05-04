@@ -9948,7 +9948,7 @@ register struct obj	*sobj;
 	/* KMH -- Punishment is still okay when you are riding */
 	You("are being punished for your misbehavior!");
 
-	if (Is_waterlevel(&u.uz)) return; /* otherwise it crashes for some weird reason --Amy */
+	/*if (Is_waterlevel(&u.uz)) return;*/ /* otherwise it crashes for some weird reason --Amy */
 
 
 	if(Punished){
@@ -9990,7 +9990,7 @@ punishx()
 	/* KMH -- Punishment is still okay when you are riding */
 	You("are being punished for your misbehavior!");
 
-	if (Is_waterlevel(&u.uz)) return; /* otherwise it crashes for some weird reason --Amy */
+	/*if (Is_waterlevel(&u.uz)) return;*/ /* otherwise it crashes for some weird reason --Amy */
 
 	if(Punished){
 		Your("iron ball gets heavier.");

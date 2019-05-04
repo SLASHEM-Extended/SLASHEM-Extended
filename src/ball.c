@@ -125,7 +125,7 @@ placebc()
 	u.bc_order = BCPOS_CHAIN;
     }
 
-    if (!Is_waterlevel(&u.uz)) place_object(uchain, u.ux, u.uy);
+    /*if (!Is_waterlevel(&u.uz))*/ place_object(uchain, u.ux, u.uy);
 
     u.bglyph = u.cglyph = memory_object(u.ux, u.uy);   /* pick up glyph */
 
