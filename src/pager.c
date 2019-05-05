@@ -23086,6 +23086,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel light on your jesus, come on!", /* evilhack :P */
 	"You unmake creation. DYLYPI?", /* by NCommander */
 	"You feel like you're in mortal peril.", /* ditto */
+	"You feel in grave danger...",
 
 };
 

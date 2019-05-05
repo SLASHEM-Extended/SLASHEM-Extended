@@ -329,6 +329,20 @@ drinkfountain()
 				randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
 
 			}
+
+			/* or maybe also reward his courage */
+			if (!rn2(50)) {
+				u.weapon_slots++;
+				You("feel very skillful, and gain an extra skill slot!");
+			}
+			if (!rn2(50)) {
+				int wondertech = rnd(MAXTECH-1);
+				if (!tech_known(wondertech)) {
+				    	learntech(wondertech, FROMOUTSIDE, 1);
+					You("learn how to perform a new technique!");
+				}
+			}
+
 			break;
 
 		case 18: /* Experience (idea by Amy) */
