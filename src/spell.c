@@ -3964,7 +3964,21 @@ magicalenergychoice:
 		(void) peffects(pseudo);
 		break;
 	case SPE_CURE_BLINDNESS:
-		healup(0, 0, FALSE, TRUE);
+		if (HeavyBlind) break;
+		if (Blinded > (rn1(100, 20))) {
+			int effreduction = rnd(Blinded / 2);
+			if (effreduction > 0) {
+				u.ucreamed -= effreduction;
+				Blinded -= effreduction;
+				Your("blindness counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			healup(0, 0, FALSE, TRUE);
+		}
 		break;
 	case SPE_AMNESIA:
 		You_feel("dizzy!");
@@ -7373,25 +7387,116 @@ secureidchoice:
 		healup(0, 0, TRUE, FALSE);
 		break;
 	case SPE_CURE_HALLUCINATION:
-		make_hallucinated(0L,TRUE,0L);
+		if (HeavyHallu) break;
+		if (HHallucination > (rn1(100, 20))) {
+			int effreduction = rnd(HHallucination / 2);
+			if (effreduction > 0) {
+				HHallucination -= effreduction;
+				Your("hallucination counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_hallucinated(0L,TRUE,0L);
+		}
 		break;
 	case SPE_CURE_CONFUSION:
-		make_confused(0L,TRUE);
+		if (HeavyConfusion) break;
+		if (HConfusion > (rn1(100, 20))) {
+			int effreduction = rnd(HConfusion / 2);
+			if (effreduction > 0) {
+				HConfusion -= effreduction;
+				Your("confusion counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_confused(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_STUN:
-		make_stunned(0L,TRUE);
+		if (HeavyStunned) break;
+		if (HStun > (rn1(100, 20))) {
+			int effreduction = rnd(HStun / 2);
+			if (effreduction > 0) {
+				HStun -= effreduction;
+				Your("stun counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_stunned(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_DIM:
-		make_dimmed(0L,TRUE);
+		if (HeavyDimmed) break;
+		if (HDimmed > (rn1(100, 20))) {
+			int effreduction = rnd(HDimmed / 2);
+			if (effreduction > 0) {
+				HDimmed -= effreduction;
+				Your("dimness counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_dimmed(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_BURN:
-		make_burned(0L,TRUE);
+		if (HeavyBurned) break;
+		if (HBurned > (rn1(100, 20))) {
+			int effreduction = rnd(HBurned / 2);
+			if (effreduction > 0) {
+				HBurned -= effreduction;
+				Your("burn counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_burned(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_FREEZE:
-		make_frozen(0L,TRUE);
+		if (HeavyFrozen) break;
+		if (HFrozen > (rn1(100, 20))) {
+			int effreduction = rnd(HFrozen / 2);
+			if (effreduction > 0) {
+				HFrozen -= effreduction;
+				Your("freeze counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_frozen(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_NUMBNESS:
-		make_numbed(0L,TRUE);
+		if (HeavyNumbed) break;
+		if (HNumbed > (rn1(100, 20))) {
+			int effreduction = rnd(HNumbed / 2);
+			if (effreduction > 0) {
+				HNumbed -= effreduction;
+				Your("numbness counter is reduced.");
+			}
+			if (!rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_numbed(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_RANDOM_STATUS:
 		switch (rnd(10)) {
@@ -9002,8 +9107,22 @@ totemsummonchoice:
 
 	case SPE_CURE_GLIB:
 
-		if (Glib) pline("You clean your %s.", makeplural(body_part(HAND)));
-		Glib = 0;
+		if (Glib) {
+			pline("You clean your %s.", makeplural(body_part(HAND)));
+			if (Glib > (rn1(100, 20))) {
+				int effreduction = rnd(Glib / 2);
+				if (effreduction > 0) {
+					Glib -= effreduction;
+					Your("glib counter is reduced.");
+				}
+				if (!rn2(500)) {
+					pline("The spell backlashes!");
+					badeffect();
+				}
+			} else {
+				Glib = 0;
+			}
+		}
 
 		break;
 

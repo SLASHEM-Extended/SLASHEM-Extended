@@ -2416,6 +2416,91 @@ struct obj *box;
 
 #undef Icebox
 
+void
+containerkaboom()
+{
+	    switch(rn2(26)) {
+		case 25:
+		case 24:
+		case 23:
+		case 22:
+		case 21:
+			pline("You're hit by a massive explosion!");
+			wake_nearby();
+			losehp( (d(6,6) + rnd((monster_difficulty()) + 1) ), "massive explosion", KILLED_BY_AN);
+			exercise(A_STR, FALSE);
+			break;
+		case 20:
+		case 19:
+		case 18:
+		case 17:
+			pline("A cloud of noxious gas billows out at you.");
+			poisoned("gas cloud", A_STR, "cloud of poison gas",15);
+			exercise(A_CON, FALSE);
+			break;
+		case 16:
+		case 15:
+		case 14:
+		case 13:
+			You_feel("a needle prick your %s.",body_part(ARM));
+			poisoned("needle", A_CON, "poisoned needle",10);
+			exercise(A_CON, FALSE);
+			break;
+		case 12:
+		case 11:
+		case 10:
+		case 9:
+			dofiretrap((struct obj *)0);
+			break;
+		case 8:
+		case 7:
+		case 6: {
+			int dmg;
+
+			You("are jolted by a surge of electricity!");
+			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
+			    shieldeff(u.ux, u.uy);
+			    You("don't seem to be affected.");
+			    break;
+			} else
+			    losehp(d(4, 4) + rnd((monster_difficulty() / 2) + 1), "electric shock", KILLED_BY_AN);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
+			break;
+		      }
+		case 5:
+		case 4:
+		case 3:
+			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
+			pline("Suddenly you are frozen in place!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			nomul(-d(5, 6), "frozen by a container kaboom", TRUE);
+			exercise(A_DEX, FALSE);
+			nomovemsg = You_can_move_again;
+			} else You("momentarily stiffen.");
+			break;
+		case 2:
+		case 1:
+		case 0:
+			pline("A cloud of %s gas billows out at you.", Blind ? "booming" : rndcolor() );
+			if(!Stunned) {
+			    if (Blind)
+				You("%s and get dizzy...",
+				    stagger(youmonst.data, "stagger"));
+			    else
+				You("%s and your vision blurs...",
+				    stagger(youmonst.data, "stagger"));
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			}
+			make_stunned(HStun + rn1(7, 16) + rnd((monster_difficulty() / 2) + 1),FALSE);
+			(void) make_hallucinated(HHallucination + rn1(5, 16) + rnd((monster_difficulty() / 2) + 1),FALSE,0L);
+			break;
+		default: impossible("bad kaboom trap");
+			break;
+		}
+}
+
 /* used by askchain() to check for magic bag explosion */
 boolean
 container_gone(fn)
@@ -2571,88 +2656,7 @@ int held;
 	}
 
 	if (ContainerKaboom || u.uprops[CONTAINER_KABOOM].extrinsic || have_containerkaboomstone()) {
-
-	    switch(rn2(26)) {
-		case 25:
-		case 24:
-		case 23:
-		case 22:
-		case 21:
-			pline("You're hit by a massive explosion!");
-			wake_nearby();
-			losehp( (d(6,6) + rnd((monster_difficulty()) + 1) ), "massive explosion", KILLED_BY_AN);
-			exercise(A_STR, FALSE);
-			break;
-		case 20:
-		case 19:
-		case 18:
-		case 17:
-			pline("A cloud of noxious gas billows out at you.");
-			poisoned("gas cloud", A_STR, "cloud of poison gas",15);
-			exercise(A_CON, FALSE);
-			break;
-		case 16:
-		case 15:
-		case 14:
-		case 13:
-			You_feel("a needle prick your %s.",body_part(ARM));
-			poisoned("needle", A_CON, "poisoned needle",10);
-			exercise(A_CON, FALSE);
-			break;
-		case 12:
-		case 11:
-		case 10:
-		case 9:
-			dofiretrap((struct obj *)0);
-			break;
-		case 8:
-		case 7:
-		case 6: {
-			int dmg;
-
-			You("are jolted by a surge of electricity!");
-			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
-			    shieldeff(u.ux, u.uy);
-			    You("don't seem to be affected.");
-			    break;
-			} else
-			    losehp(d(4, 4) + rnd((monster_difficulty() / 2) + 1), "electric shock", KILLED_BY_AN);
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
-			break;
-		      }
-		case 5:
-		case 4:
-		case 3:
-			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
-			pline("Suddenly you are frozen in place!");
-			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-d(5, 6), "frozen by a container kaboom", TRUE);
-			exercise(A_DEX, FALSE);
-			nomovemsg = You_can_move_again;
-			} else You("momentarily stiffen.");
-			break;
-		case 2:
-		case 1:
-		case 0:
-			pline("A cloud of %s gas billows out at you.", Blind ? "booming" : rndcolor() );
-			if(!Stunned) {
-			    if (Blind)
-				You("%s and get dizzy...",
-				    stagger(youmonst.data, "stagger"));
-			    else
-				You("%s and your vision blurs...",
-				    stagger(youmonst.data, "stagger"));
-				if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
-			}
-			make_stunned(HStun + rn1(7, 16) + rnd((monster_difficulty() / 2) + 1),FALSE);
-			(void) make_hallucinated(HHallucination + rn1(5, 16) + rnd((monster_difficulty() / 2) + 1),FALSE,0L);
-			break;
-		default: impossible("bad kaboom trap");
-			break;
-		}
-
+		containerkaboom();
 	}
 
 	if (!cnt)

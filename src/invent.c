@@ -12877,17 +12877,17 @@ boolean knoweverything;
 			case SPE_HEALING:
 				pline("A basic healing spell that can be used on yourself or on a monster to heal them."); break;
 			case SPE_CURE_BLINDNESS:
-				pline("Casting this spell cures blindness."); break;
+				pline("Casting this spell cures blindness. If you have a long-lasting blindness effect, its duration will merely be reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_DIM:
-				pline("If you are hit by the dim status effect, this spell will remove the condition."); break;
+				pline("If you are hit by the dim status effect, this spell will remove the condition if its duration was short, or reduce it if it was long. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_SICKNESS:
 				pline("A powerful spell that cures any food poisoning and illness you might be suffering from."); break;
 			case SPE_CURE_HALLUCINATION:
-				pline("If you successfully cast this spell, your hallucinations will end."); break;
+				pline("If you successfully cast this spell, your hallucinations will end, or at least have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_CONFUSION:
-				pline("A spell that can be successfully cast even while confused, and that's also the reason why one would cast it in the first place since it cures the confusion status."); break;
+				pline("A spell that can be successfully cast even while confused, and that's also the reason why one would cast it in the first place since it cures the confusion status. Long-lasting confusion effects will merely be shortened. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_STUN:
-				pline("By casting this spell, you can get rid of the stun condition."); break;
+				pline("By casting this spell, you can get rid of the stun condition. If you have a long-lasting stun effect, every cast will reduce its duration until it reaches zero. On very rare occasions this spell can backfire."); break;
 			case SPE_GENOCIDE:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Casting this spell might allow you to genocide some monster species. However, it often fails."); break;
@@ -13111,7 +13111,7 @@ boolean knoweverything;
 			case SPE_MUTATION:
 				pline("A spell that has several uses. Zapping yourself will polymorph you, zapping objects will polymorph them, and if you zap a monster, it will gain mutations. Backlashes occasionally."); break;
 			case SPE_KNOCK:
-				pline("This spell opens things like locked doors or chests."); break;
+				pline("This spell opens things like locked doors or chests. However, you may have to cast it repeatedly for it to do anything, and sometimes you'll get bad effects that mimic trapped containers if you use it to unlock something."); break;
 			case SPE_FLAME_SPHERE:
 				pline("Conjures a flaming sphere that attacks your enemies by exploding and doing some fire damage."); break;
 			case SPE_FREEZE_SPHERE:
@@ -13121,7 +13121,7 @@ boolean knoweverything;
 			case SPE_ACID_SPHERE:
 				pline("Conjures an acidic sphere that attacks your enemies by exploding and doing some acid damage."); break;
 			case SPE_WIZARD_LOCK:
-				pline("A spell that fires invisible locking beams, which have an effect only if they hit something lockable. It can also repair broken doors."); break;
+				pline("A spell that fires invisible locking beams, which have an effect only if they hit something lockable. It can also repair broken doors. However, it may also randomly fail and very rarely gives you an effect that mimics trapped containers."); break;
 			case SPE_DIG:
 				pline("Casting this can dig through walls and other obstacles."); break;
 			case SPE_CANCELLATION:
@@ -13202,11 +13202,11 @@ boolean knoweverything;
 			case SPE_BANISHING_FEAR:
 				pline("A spell that cures the 'fear' status conditions. At higher spell levels it allows you to resist fear for a period of time."); break;
 			case SPE_CURE_FREEZE:
-				pline("Got hit by the 'freeze' status effect? Cast this spell and it will go away!"); break;
+				pline("Got hit by the 'freeze' status effect? Cast this spell and it may go away! However, long-lsating freeze effects will only have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_BURN:
-				pline("This spell will cure you of burns."); break;
+				pline("This spell will cure you of burns. A long-lasting burn status effect will have its duration reduced, but you can cast the spell repeatedly until you're cured. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_NUMBNESS:
-				pline("A spell that can be cast to cure numbness."); break;
+				pline("A spell that can be cast to cure numbness. If the numbness effect has a short duration, this is guaranteed to work; long-lasting effects will have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_TIME_STOP:
 				pline("This very powerful spell will stop the flow of time for a brief period."); break;
 			case SPE_STINKING_CLOUD:
@@ -13523,7 +13523,7 @@ boolean knoweverything;
 			case SPE_SNIPER_BEAM:
 				pline("This offensive spell can hit monsters standing very far away, but the damage is rather low. On the bright side, nothing can resist it."); break;
 			case SPE_CURE_GLIB:
-				pline("If you don't have a towel, you can cast this spell to cure your glibbery hands."); break;
+				pline("If you don't have a towel, you can cast this spell to cure your glibbery hands. However, if you had a long-lasting glib effect, its duration will merely be reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_MONSTER:
 				pline("If there are monsters adjacent to you that are suffering from confusion, paralysis or other status effects, casting this will cure their afflictions."); break;
 			case SPE_MANA_BATTERY:

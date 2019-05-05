@@ -3257,7 +3257,7 @@ struct obj *obj, *otmp;
 		res = 0;
 	} else if (obj == uchain) {
 		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK || (otmp->otyp == SPE_LOCK_MANIPULATION && rn2(2)) ) {
-		    unpunish();
+		    if (otmp->otyp != SPE_KNOCK || !rn2(5)) unpunish();
 		    makeknown(otmp->otyp);
 		} else
 		    res = 0;

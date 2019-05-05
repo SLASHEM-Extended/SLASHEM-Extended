@@ -2165,6 +2165,7 @@ E int use_container(struct obj **,int);
 E int loot_mon(struct monst *,int *,boolean *);
 E const char *safe_qbuf(const char *,unsigned, const char *,const char *,const char *);
 E boolean is_autopickup_exception(struct obj *, BOOLEAN_P);
+E void containerkaboom(void);
 
 /* ### pline.c ### */
 
