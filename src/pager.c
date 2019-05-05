@@ -23084,6 +23084,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Some of your items were greased!",
 	"Some of your items were greased! Including your stack of throwing weapons, because harharhar!",
 	"You feel light on your jesus, come on!", /* evilhack :P */
+	"You unmake creation. DYLYPI?", /* by NCommander */
+	"You feel like you're in mortal peril.", /* ditto */
 
 };
 

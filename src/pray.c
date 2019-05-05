@@ -2083,23 +2083,24 @@ dosacrifice()
 #endif
 
 		if (!issoviet) {
-pline("An invisible choir sings, and you are bathed in radiance...");
-		godvoice(altaralign, "Congratulations, mortal!");
-		display_nhwindow(WIN_MESSAGE, FALSE);
-verbalize("In return for thy service, I grant thee the gift of Immortality!");
-		You("ascend to the status of Demigod%s...",
-		    flags.female ? "dess" : "");
+			pline("An invisible choir sings, and you are bathed in radiance...");
+			godvoice(altaralign, "Congratulations, mortal!");
+			display_nhwindow(WIN_MESSAGE, FALSE);
+			verbalize("In return for thy service, I grant thee the gift of Immortality!");
+
+			if (Role_if(PM_QUARTERBACK)) You("punt the Amulet of Yendor onto the high altar. You ascend!");
+			else You("ascend to the status of Demigod%s...", flags.female ? "dess" : "");
 		} else {
-pline("An invisible Red Army choir sings, and you are bathed in Chernobyl radiation...");
-		godvoice(altaralign, "Haraso, tovari.");
-		display_nhwindow(WIN_MESSAGE, FALSE);
-verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
+			pline("An invisible Red Army choir sings, and you are bathed in Chernobyl radiation...");
+			godvoice(altaralign, "Haraso, tovari.");
+			display_nhwindow(WIN_MESSAGE, FALSE);
+			verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 
-		/* mocking message inspired by my roommate --Amy */
-		pline("Yesli by vy podumali, chto budet voznagrazhdeniye, vy porezayete sebya! Eto igra-ublyudok, KHAR KHAR KHAR KHAR KHAR KHAR KHAR!!!");
+			/* mocking message inspired by my roommate --Amy */
+			pline("Yesli by vy podumali, chto budet voznagrazhdeniye, vy porezayete sebya! Eto igra-ublyudok, KHAR KHAR KHAR KHAR KHAR KHAR KHAR!!!");
 
-		You("ascend to the status of Demigod%s...",
-		    flags.female ? "dess" : "");
+			if (Role_if(PM_QUARTERBACK)) You("punt the Amulet of Yendor onto the high altar. You ascend!");
+			else You("ascend to the status of Demigod%s...", flags.female ? "dess" : "");
 
 		}
 		done(ASCENDED);

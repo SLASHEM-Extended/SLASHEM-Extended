@@ -843,6 +843,7 @@ doread()
 	"Transsylvanian Teacher Darts Club",
 	"I got the first official notdnethack ascension! *oink oink*", /* Porkman :D */
 	"v qe qe qe qe qd qd qd qd qf qf qf qf qg qg qg qg #quit", /* by Demo */
+	"I haven't watched Game of THrones and I don't care", /* by Elronnd IIRC */
 
 	    };
 	    char buf[BUFSZ];
