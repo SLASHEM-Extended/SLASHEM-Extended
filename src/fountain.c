@@ -568,16 +568,23 @@ register struct obj *obj;
 			/* The lady of the lake acts! - Eric Backus */
 			/* Be *REAL* nice */
 	  pline("From the murky depths, a hand reaches up to bless the sword.");
-			pline("As the hand retreats, the fountain disappears!");
-			obj = oname(obj, artiname(ART_EXCALIBUR));
-			discover_artifact(ART_EXCALIBUR);
-			bless(obj);
-			obj->oeroded = obj->oeroded2 = 0;
-			obj->oerodeproof = TRUE;
-			exercise(A_WIS, TRUE);
+
+			if (evilfriday && (Confusion || Stunned)) { /* idea by NCommander */
+				pline("But you're so stupid and cut it off by mistake.");
+				exercise(A_WIS, FALSE);
+			} else {
+
+				pline("As the hand retreats, the fountain disappears!");
+				obj = oname(obj, artiname(ART_EXCALIBUR));
+				discover_artifact(ART_EXCALIBUR);
+				bless(obj);
+				obj->oeroded = obj->oeroded2 = 0;
+				obj->oerodeproof = TRUE;
+				exercise(A_WIS, TRUE);
 #ifdef LIVELOGFILE
-			livelog_report_trophy("had Excalibur thrown to them by some watery tart");
+				livelog_report_trophy("had Excalibur thrown to them by some watery tart");
 #endif
+			}
 		}
 		update_inventory();
 		levl[u.ux][u.uy].typ = ROOM;
