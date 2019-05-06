@@ -3965,14 +3965,14 @@ magicalenergychoice:
 		break;
 	case SPE_CURE_BLINDNESS:
 		if (HeavyBlind) break;
-		if (Blinded > (rn1(100, 20))) {
+		if (Blinded > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(Blinded / 2);
 			if (effreduction > 0) {
 				u.ucreamed -= effreduction;
 				Blinded -= effreduction;
 				Your("blindness counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7378,6 +7378,17 @@ secureidchoice:
 		You("call upon your chemical knowledge. Nothing happens.");
 		break;
 	case SPE_CURE_SICKNESS:
+
+		if ((Sick || Slimed) && !Role_if(PM_HEALER)) {
+			if (u.uenmax > 0) {
+				u.uenmax--;
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			} else {
+				You("don't have enough power for this spell.");
+				break;
+			}
+		}
+
 		if (Sick) You("are no longer ill.");
 		if (Slimed) {
 		    pline_The("slime disappears!");
@@ -7388,13 +7399,13 @@ secureidchoice:
 		break;
 	case SPE_CURE_HALLUCINATION:
 		if (HeavyHallu) break;
-		if (HHallucination > (rn1(100, 20))) {
+		if (HHallucination > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(HHallucination / 2);
 			if (effreduction > 0) {
 				HHallucination -= effreduction;
 				Your("hallucination counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7404,13 +7415,13 @@ secureidchoice:
 		break;
 	case SPE_CURE_CONFUSION:
 		if (HeavyConfusion) break;
-		if (HConfusion > (rn1(100, 20))) {
+		if (HConfusion > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(HConfusion / 2);
 			if (effreduction > 0) {
 				HConfusion -= effreduction;
 				Your("confusion counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7420,13 +7431,13 @@ secureidchoice:
 		break;
 	case SPE_CURE_STUN:
 		if (HeavyStunned) break;
-		if (HStun > (rn1(100, 20))) {
+		if (HStun > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(HStun / 2);
 			if (effreduction > 0) {
 				HStun -= effreduction;
 				Your("stun counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7436,13 +7447,13 @@ secureidchoice:
 		break;
 	case SPE_CURE_DIM:
 		if (HeavyDimmed) break;
-		if (HDimmed > (rn1(100, 20))) {
+		if (HDimmed > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(HDimmed / 2);
 			if (effreduction > 0) {
 				HDimmed -= effreduction;
 				Your("dimness counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7452,13 +7463,13 @@ secureidchoice:
 		break;
 	case SPE_CURE_BURN:
 		if (HeavyBurned) break;
-		if (HBurned > (rn1(100, 20))) {
+		if (HBurned > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(HBurned / 2);
 			if (effreduction > 0) {
 				HBurned -= effreduction;
 				Your("burn counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7468,13 +7479,13 @@ secureidchoice:
 		break;
 	case SPE_CURE_FREEZE:
 		if (HeavyFrozen) break;
-		if (HFrozen > (rn1(100, 20))) {
+		if (HFrozen > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(HFrozen / 2);
 			if (effreduction > 0) {
 				HFrozen -= effreduction;
 				Your("freeze counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7484,13 +7495,13 @@ secureidchoice:
 		break;
 	case SPE_CURE_NUMBNESS:
 		if (HeavyNumbed) break;
-		if (HNumbed > (rn1(100, 20))) {
+		if (HNumbed > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 			int effreduction = rnd(HNumbed / 2);
 			if (effreduction > 0) {
 				HNumbed -= effreduction;
 				Your("numbness counter is reduced.");
 			}
-			if (!rn2(500)) {
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
 				pline("The spell backlashes!");
 				badeffect();
 			}
@@ -7501,6 +7512,16 @@ secureidchoice:
 	case SPE_CURE_RANDOM_STATUS:
 		switch (rnd(10)) {
 			case 1:
+				if ((Sick || Slimed) && !Role_if(PM_HEALER) && !rn2(5)) {
+					if (u.uenmax > 0) {
+						u.uenmax--;
+						if (u.uen > u.uenmax) u.uen = u.uenmax;
+					} else {
+						You("don't have enough power for this spell.");
+						break;
+					}
+				}
+
 				if (Sick) You("are no longer ill.");
 				if (Slimed) {
 				    pline_The("slime disappears!");
@@ -7509,31 +7530,113 @@ secureidchoice:
 				healup(0, 0, TRUE, FALSE);
 				break;
 			case 2:
-				make_hallucinated(0L,TRUE,0L);
+				if (HeavyHallu) break;
+				if (HHallucination > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HHallucination / 2);
+					if (effreduction > 0) {
+						HHallucination -= effreduction;
+						Your("hallucination counter is reduced.");
+					}
+				} else {
+					make_hallucinated(0L,TRUE,0L);
+				}
 				break;
 			case 3:
-				make_confused(0L,TRUE);
+				if (HeavyConfusion) break;
+				if (HConfusion > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HConfusion / 2);
+					if (effreduction > 0) {
+						HConfusion -= effreduction;
+						Your("confusion counter is reduced.");
+					}
+				} else {
+					make_confused(0L,TRUE);
+				}
 				break;
 			case 4:
-				make_stunned(0L,TRUE);
+				if (HeavyStunned) break;
+				if (HStun > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HStun / 2);
+					if (effreduction > 0) {
+						HStun -= effreduction;
+						Your("stun counter is reduced.");
+					}
+				} else {
+					make_stunned(0L,TRUE);
+				}
 				break;
 			case 5:
-				make_burned(0L,TRUE);
+				if (HeavyBurned) break;
+				if (HBurned > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HBurned / 2);
+					if (effreduction > 0) {
+						HBurned -= effreduction;
+						Your("burn counter is reduced.");
+					}
+				} else {
+					make_burned(0L,TRUE);
+				}
 				break;
 			case 6:
-				make_frozen(0L,TRUE);
+				if (HeavyFrozen) break;
+				if (HFrozen > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HFrozen / 2);
+					if (effreduction > 0) {
+						HFrozen -= effreduction;
+						Your("freeze counter is reduced.");
+					}
+				} else {
+					make_frozen(0L,TRUE);
+				}
 				break;
 			case 7:
-				make_numbed(0L,TRUE);
+				if (HeavyNumbed) break;
+				if (HNumbed > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HNumbed / 2);
+					if (effreduction > 0) {
+						HNumbed -= effreduction;
+						Your("numbness counter is reduced.");
+					}
+				} else {
+					make_numbed(0L,TRUE);
+				}
 				break;
 			case 8:
-				make_blinded(0L,FALSE);
+				if (HeavyBlind) break;
+				if (Blinded > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(Blinded / 2);
+					if (effreduction > 0) {
+						u.ucreamed -= effreduction;
+						Blinded -= effreduction;
+						Your("blindness counter is reduced.");
+					}
+				} else {
+						make_blinded(0L,FALSE);
+				}
 				break;
 			case 9:
-				make_feared(0L,FALSE);
+				if (HeavyFeared) break;
+				if (HFeared > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HFeared / 2);
+					if (effreduction > 0) {
+						HFeared -= effreduction;
+						Your("fear counter is reduced.");
+					}
+				} else {
+					make_feared(0L, TRUE);
+				}
 				break;
 			case 10:
-				make_dimmed(0L,FALSE);
+				if (HeavyDimmed) break;
+				if (HDimmed > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HDimmed / 2);
+					if (effreduction > 0) {
+						HDimmed -= effreduction;
+						Your("dimness counter is reduced.");
+					}
+				} else {
+					make_dimmed(0L,TRUE);
+				}
 				break;
 		}
 		break;
@@ -9109,13 +9212,13 @@ totemsummonchoice:
 
 		if (Glib) {
 			pline("You clean your %s.", makeplural(body_part(HAND)));
-			if (Glib > (rn1(100, 20))) {
+			if (Glib > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
 				int effreduction = rnd(Glib / 2);
 				if (effreduction > 0) {
 					Glib -= effreduction;
 					Your("glib counter is reduced.");
 				}
-				if (!rn2(500)) {
+				if (!Role_if(PM_HEALER) && !rn2(500)) {
 					pline("The spell backlashes!");
 					badeffect();
 				}

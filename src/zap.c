@@ -3257,7 +3257,16 @@ struct obj *obj, *otmp;
 		res = 0;
 	} else if (obj == uchain) {
 		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK || (otmp->otyp == SPE_LOCK_MANIPULATION && rn2(2)) ) {
-		    if (otmp->otyp != SPE_KNOCK || !rn2(5)) unpunish();
+		    if (otmp->otyp != SPE_KNOCK && otmp->otyp != SPE_LOCK_MANIPULATION) unpunish();
+		    if ((otmp->otyp == SPE_KNOCK || otmp->otyp == SPE_LOCK_MANIPULATION) && !rn2(5)) {
+			pline_The("chain is separated from the ball.");
+			if (uchain && uchain->owt > 0) {
+				IncreasedGravity += uchain->owt;
+				u.inertia += (uchain->owt / 10);
+				You("are temporarily slowed by the weight of the chain.");
+			}
+			unpunish();
+		    }
 		    makeknown(otmp->otyp);
 		} else
 		    res = 0;

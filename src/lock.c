@@ -1305,6 +1305,11 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	    break;
 	case SPE_LOCK_MANIPULATION:
 
+	    if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
+		if (!rn2(10)) containerkaboom();
+		break;
+	    }
+
 		if (!rn2(2)) {
 		    if (!obj->olocked) {	/* lock it; fix if broken */
 			pline("Klunk!");
@@ -1392,8 +1397,6 @@ int x, y;
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
 
-	    case SPE_LOCK_MANIPULATION:
-			if (rn2(2)) return FALSE; /* fall through */
 	    case WAN_OPENING:
 	    case WAN_STRIKING:
 	    case WAN_GRAVITY_BEAM:
@@ -1411,6 +1414,24 @@ int x, y;
 		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_LOCK_MANIPULATION)
 		    return TRUE;
 		break;		/* striking: continue door handling below */
+
+	    case SPE_LOCK_MANIPULATION:
+		if (rn2(2)) return FALSE;
+		if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
+			if (!rn2(10)) containerkaboom();
+			return TRUE;
+		}
+
+		if (key)	/* Artifact doors are revealed only */
+		    cvt_sdoor_to_door(door);
+		else {
+		door->typ = DOOR;
+		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+		}
+		newsym(x,y);
+		if (cansee(x,y)) pline("A door appears in the wall!");
+		return TRUE;
+
 	    case SPE_KNOCK:
 		if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
 			if (!rn2(10)) containerkaboom();
@@ -1448,6 +1469,10 @@ int x, y;
 	case SPE_WIZARD_LOCK:
 
 	    if (otmp->otyp == SPE_WIZARD_LOCK && (Role_if(PM_LOCKSMITH) ? !rn2(150) : !rn2(3))) {
+		if (!rn2(10)) containerkaboom();
+		return FALSE;
+	    }
+	    if (otmp->otyp == SPE_LOCK_MANIPULATION && (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3))) {
 		if (!rn2(10)) containerkaboom();
 		return FALSE;
 	    }

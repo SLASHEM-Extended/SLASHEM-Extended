@@ -12881,7 +12881,7 @@ boolean knoweverything;
 			case SPE_CURE_DIM:
 				pline("If you are hit by the dim status effect, this spell will remove the condition if its duration was short, or reduce it if it was long. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_SICKNESS:
-				pline("A powerful spell that cures any food poisoning and illness you might be suffering from."); break;
+				pline("A powerful spell that cures any food poisoning and illness you might be suffering from. But in order to make sure that alternate methods of curing aren't completely useless, every time this spell actually cures something you lose 1 maximum mana."); break;
 			case SPE_CURE_HALLUCINATION:
 				pline("If you successfully cast this spell, your hallucinations will end, or at least have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_CONFUSION:
@@ -13200,7 +13200,7 @@ boolean knoweverything;
 			case SPE_LEVELPORT:
 				pline("If you cast this spell, you will teleport to a random dungeon level in your current branch. However, it always backlashes after teleporting you, causing nasty side effects! Beware!"); break;
 			case SPE_BANISHING_FEAR:
-				pline("A spell that cures the 'fear' status conditions. At higher spell levels it allows you to resist fear for a period of time."); break;
+				pline("A spell that cures the 'fear' status conditions, unless its duration was very long, then it will only be reduced. At higher spell levels it allows you to resist fear for a period of time. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_FREEZE:
 				pline("Got hit by the 'freeze' status effect? Cast this spell and it may go away! However, long-lsating freeze effects will only have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_BURN:
@@ -13262,7 +13262,7 @@ boolean knoweverything;
 			case SPE_BUC_RANDOMIZATION:
 				pline("This spell can affect uncursed items in your inventory, turning them into blessed or cursed ones at random."); break;
 			case SPE_LOCK_MANIPULATION:
-				pline("Cast this spell at doors and chests to manipulate their 'locked' status."); break;
+				pline("Cast this spell at doors and chests to manipulate their 'locked' status. You may occasionally get container trap effects though."); break;
 			case SPE_POLYFORM:
 				pline("A completely random polymorph will affect you if you cast this. It can occasionally backfire, and often the duration of this polymorph is not very long."); break;
 			case SPE_MESSAGE:
@@ -13270,7 +13270,7 @@ boolean knoweverything;
 			case SPE_RUMOR:
 				pline("Displays a random rumor when cast."); break;
 			case SPE_CURE_RANDOM_STATUS:
-				pline("Can be cast even while confused. It will randomly pick one of these status afflictions to cure, regardless of whether you actually have it: sickness/sliming, hallucination, confusion, stun, burn, freezing, numbness, blindness, dimness or fear."); break;
+				pline("Can be cast even while confused. It will randomly pick one of these status afflictions to cure, regardless of whether you actually have it: sickness/sliming, hallucination, confusion, stun, burn, freezing, numbness, blindness, dimness or fear. Long-lasting ones may just have their duration reduced. Very occasionally it can drain your maximum mana if it cures sliming or sickness."); break;
 			case SPE_RESIST_RANDOM_ELEMENT:
 				pline("Gain a random resistance temporarily by casting this spell!"); break;
 			case SPE_RUSSIAN_ROULETTE:

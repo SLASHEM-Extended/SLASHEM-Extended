@@ -23087,6 +23087,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You unmake creation. DYLYPI?", /* by NCommander */
 	"You feel like you're in mortal peril.", /* ditto */
 	"You feel in grave danger...",
+	"You are temporarily slowed by the weight of the chain.",
+	"You are permanently slowed by the weight of the chain. That's a side effect of casting knock when punished - now your carry capacity is permanently lower because your carried weight will never go below the weight of an iron chain.",
 
 };
 

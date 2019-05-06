@@ -5357,8 +5357,6 @@ peffects(otmp)
 			u.uprops[FEAR_RES].intrinsic |= FROMOUTSIDE;
 			pline("You worry about cursed items, but you're not afraid at all anymore.");
 		}
-
-	case SPE_BANISHING_FEAR:
 		{
 			if(otmp->cursed) {
 				make_feared(HFeared + rnd(100 + (monster_difficulty() * 5) ),TRUE);
@@ -5370,6 +5368,31 @@ peffects(otmp)
 					if (Fear_resistance) You_feel("more resistant to fear!");
 				}
 			}
+		}
+		break;
+	case SPE_BANISHING_FEAR:
+		{
+			You("banish your fears.");
+
+			if (HeavyFeared) break;
+			if (HFeared > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+				int effreduction = rnd(HFeared / 2);
+				if (effreduction > 0) {
+					HFeared -= effreduction;
+					Your("fear counter is reduced.");
+				}
+				if (!Role_if(PM_HEALER) && !rn2(500)) {
+					pline("The spell backlashes!");
+					badeffect();
+				}
+			} else {
+				if (HFeared) make_feared(0L, TRUE);
+			}
+			if (otmp->blessed) {
+				incr_itimeout(&HFear_resistance, rnd(250) );
+				if (Fear_resistance) You_feel("more resistant to fear!");
+			}
+
 		}
 		break;
 	case POT_OIL:				/* P. Winner */
