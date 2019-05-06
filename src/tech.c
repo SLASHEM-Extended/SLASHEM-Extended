@@ -3634,6 +3634,12 @@ secureidchoice:
 	          		t_timeout = rnz(50);
 				break;
 		    }
+		    if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(obj) ) {
+				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+				delobj(obj);
+	          		t_timeout = rnz(50);
+				break;
+		    }
 
 		    switch (roll) {
 			case 2:
@@ -6039,6 +6045,11 @@ revid_end:
 		setmnotwielded(mtmp, obj);
 
 		if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+			delobj(obj);
+			t_timeout = rnz(1000);
+			break;
+		} else if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(obj) ) {
 			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 			delobj(obj);
 			t_timeout = rnz(1000);

@@ -630,7 +630,8 @@ int x,y;
 
 	} else create = 1;
 
-	if (obj->mstartinventB && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
+	if (obj->mstartinventB && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
+	if (obj->mstartinventC && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10)) create = 0;
 
 	/* Detonate rockets */
 	if (is_grenade(obj)) {
@@ -670,6 +671,7 @@ int x,y;
 			(t->ttyp == SPIKED_PIT)))) {
 		int objgone = 0;
 		obj->mstartinventB = 0;
+		obj->mstartinventC = 0;
 
 		if (down_gate(x, y) != -1)
 			objgone = ship_object(obj, x, y, FALSE);
