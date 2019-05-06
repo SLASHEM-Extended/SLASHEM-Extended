@@ -10521,18 +10521,17 @@ int spell;
 
 	/* Robes are body armour in SLASH'EM */
 	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarm)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10545,7 +10544,7 @@ int spell;
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarm || !is_metallic(uarm))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
@@ -10557,18 +10556,17 @@ int spell;
 	}
 
 	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmc)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10581,7 +10579,7 @@ int spell;
 		splcaster += (urole.spelarmr * armorpenalties / 36);
 	}
 	if (SpellColorMetal && (!uarmc || !is_metallic(uarmc))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
@@ -10594,18 +10592,17 @@ int spell;
 	}
 
 	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmu)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10618,7 +10615,7 @@ int spell;
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 	}
 	if (SpellColorMetal && (!uarmu || !is_metallic(uarmu))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
@@ -10631,19 +10628,18 @@ int spell;
 	}
 
 	if (uarms && !SpellColorMetal) {
-		shieldpenalties = 15;
 		if (!is_metallic(uarms) || is_etheritem(uarms)) shieldpenalties /= 3;
 
 		switch (objects[(uarms)->otyp].oc_material) {
 			default: break;
-			case METAL: shieldpenalties = 16; break;
-			case COPPER: shieldpenalties = 21; break;
-			case SILVER: shieldpenalties = 17; break;
-			case GOLD: shieldpenalties = 8; break;
-			case PLATINUM: shieldpenalties = 18; break;
-			case MITHRIL: shieldpenalties = 13; break;
-			case VIVA: shieldpenalties = 12; break;
-			case POURPOOR: shieldpenalties = 20; break;
+			case METAL: shieldpenalties *= 16; shieldpenalties /= 15; break;
+			case COPPER: shieldpenalties *= 21; shieldpenalties /= 15; break;
+			case SILVER: shieldpenalties *= 17; shieldpenalties /= 15; break;
+			case GOLD: shieldpenalties *= 8; shieldpenalties /= 15; break;
+			case PLATINUM: shieldpenalties *= 18; shieldpenalties /= 15; break;
+			case MITHRIL: shieldpenalties *= 13; shieldpenalties /= 15; break;
+			case VIVA: shieldpenalties *= 12; shieldpenalties /= 15; break;
+			case POURPOOR: shieldpenalties *= 20; shieldpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10656,7 +10652,7 @@ int spell;
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarms || !is_metallic(uarms))) {
-		shieldpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			shieldpenalties *= 4;
 			shieldpenalties /= 5;
@@ -10669,18 +10665,17 @@ int spell;
 	}
 
 	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmh)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10693,7 +10688,7 @@ int spell;
 		splcaster += (uarmhbon * armorpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarmh || !is_metallic(uarmh))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
@@ -10706,18 +10701,17 @@ int spell;
 	}
 
 	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmg)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10730,7 +10724,7 @@ int spell;
 		splcaster += (uarmgbon * armorpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarmg || !is_metallic(uarmg))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
@@ -10743,18 +10737,17 @@ int spell;
 	}
 
 	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmf)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10768,7 +10761,7 @@ int spell;
 	}
 
 	if (SpellColorMetal && (!uarmf || !is_metallic(uarmf))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
