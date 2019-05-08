@@ -12717,7 +12717,7 @@ boolean knoweverything;
 			case SCR_ACQUIREMENT:
 				pline("You may wish for an object type if you read this."); break;
 			case SCR_PROOF_ARMOR:
-				pline("A random worn armor-class item is made erosionproof if you read this."); break;
+				pline("A worn armor-class item of your choice is made erosionproof if you read this."); break;
 			case SCR_PROOF_WEAPON:
 				pline("If you wield a weapon and read this scroll, that weapon will become erosionproof."); break;
 			case SCR_MASS_MURDER:
