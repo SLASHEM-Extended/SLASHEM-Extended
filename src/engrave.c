@@ -4827,6 +4827,8 @@ static const char *epitaphs[] = {
 	"Fucking game bugs. The loadstone that the lich put into my inventory weighed 21600 units and of course my blessing technique was on timeout.",
 	"Argh, tender jesses are overpowered. How the heck do you handle them?",
 	"Why does the game constantly spawn lulu asses, anyway?",
+	"Are you SURE that's a wand of wishing?",
+	"Croesus?  Who's he?",
 
 };
 
