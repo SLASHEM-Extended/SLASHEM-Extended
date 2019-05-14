@@ -178,6 +178,8 @@ static struct Bool_Opt
 
 	{"materialglyph", &flags.materialglyph, FALSE, SET_IN_GAME},
 
+	{"memorizationknown", &iflags.memorizationknown, FALSE, SET_IN_GAME},
+
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	{"statuscolors", &iflags.use_status_colors, TRUE, SET_IN_GAME},
 #else

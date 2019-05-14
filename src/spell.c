@@ -2315,7 +2315,13 @@ learn()
 					char nervbuf[QBUFSZ];
 					char thisisannoying = 0;
 
-					sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+					if (!u.youhavememorized) {
+						u.youhavememorized = TRUE;
+						if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+					}
+
+					if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+					else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 					thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 					if (thisisannoying != 'n') {
 
@@ -2330,7 +2336,11 @@ learn()
 						}
 					    	boostknow(i, memoboost * 1000);
 						spl_book[i].sp_memorize = TRUE;
-					} else spl_book[i].sp_memorize = FALSE;
+						pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+					} else {
+						spl_book[i].sp_memorize = FALSE;
+						pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+					}
 
 				}
 
@@ -2377,7 +2387,13 @@ learn()
 				char nervbuf[QBUFSZ];
 				char thisisannoying = 0;
 
-				sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+				if (!u.youhavememorized) {
+					u.youhavememorized = TRUE;
+					if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+				}
+
+				if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+				else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 				thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 				if (thisisannoying != 'n') {
 
@@ -2392,7 +2408,11 @@ learn()
 					}
 				    	boostknow(i, memoboost * 1000);
 					spl_book[i].sp_memorize = TRUE;
-				} else spl_book[i].sp_memorize = FALSE;
+					pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+				} else {
+					spl_book[i].sp_memorize = FALSE;
+					pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+				}
 
 			}
 
@@ -7325,7 +7345,7 @@ secureidchoice:
 		}
 		if (!acqo) {
 			pline("Unfortunately it failed.");
-			return 0;
+			break;
 		}
 
 		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
@@ -7653,12 +7673,12 @@ secureidchoice:
 				badeffect();
 			}
 		    obfree(pseudo, (struct obj *)0);
-		    return 0;
+		    break;
 		}
 		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
 		    You("smell rotten eggs.");
 		    obfree(pseudo, (struct obj *)0);
-		    return 0;
+		    break;
 		}
 		(void) create_gas_cloud(cc.x, cc.y, 2, 5);
 		break;
@@ -9938,8 +9958,7 @@ rerollX:
 
 		}
 
-		obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
-		return(1);
+		break;
 
 	default:
 		/*impossible("Unknown spell %d attempted.", spell);*/
@@ -9967,6 +9986,13 @@ rerollX:
 		if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
 		if (Role_if(PM_PSYKER)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
 
+	}
+
+	if (!(iflags.memorizationknown) && !(spl_book[spell].sp_memorize)) {
+		if (yn("You just cast a dememorized spell! If this means that you want to continue using that spell later, you might want to set it back to memorization mode so that its spell memory lasts longer. Press y now to set the spell back to memorization mode, or n to keep it dememorized.") == 'y') {
+			spl_book[spell].sp_memorize = TRUE;
+			pline("Spell memorization was activated!");
+		}
 	}
 
 	if (SpellColorCyan) {
@@ -10223,6 +10249,9 @@ dovspell()
 	int splnum, othnum;
 	struct spell spl_tmp;
 
+	int dememonum = 0;
+	int i;
+
 	char spellcolorbuf[BUFSZ];
 
 	if (SpellColorPink) sprintf(spellcolorbuf, "Your spells are pink.");
@@ -10256,6 +10285,19 @@ dovspell()
 		spl_book[othnum] = spl_tmp;
 	    }
 	}
+
+	dememonum = 0;
+	for (i = 0; i < MAXSPELL; i++) {
+		if (spellid(i) == NO_SPELL) break;
+		if (spellmemorize(i)) continue;
+		dememonum++;
+	}
+	if (iflags.memorizationknown) dememonum = 0;
+
+	if (dememonum >= 10) pline("You set a very large amount of spells to dememorization mode. A common misconception of players unfamiliar with the memorization system is that dememorizing some spells would magically make the memorized spells last longer. That is NOT the case. The spells are independent from each other. Every spell set to memorization mode gets a 10%% reduction in spell decay rate per memorization skill level (i.e. spell memory persists longer), so if you want to keep casting those spells, you should set them back to memorization mode. You can do that by opening the spell menu (with the + key) and pressing ? twice, which brings you to the memorization menu.");
+	else if (dememonum >= 5) pline("You set many spells to dememorization mode (indicated by a - next to the spell level). All those spells aren't getting the spell memory bonus from memorization skill, which is highly impractical unless you WANT to forget those spells for some bizarre reason. It's advisable to have only a single spell set to dememorization mode, i.e. the one you want to turn into a forgotten spell. You can change it in the spell menu (hit + to open it and ? twice to navigate to the memorization menu).");
+	else if (dememonum >= 2) pline("You set several spells to dememorization mode (indicated by a - next to the spell level), which means that those spells currently don't benefit from increased spell memory. If you want your spells to benefit from the memorization skill, you should open the spell menu (+ key by default) and navigate to the memorization menu by pressing ? twice, then setting the spells in question back to memorization mode.");
+
 	return 0;
 }
 
@@ -10300,7 +10342,7 @@ int specialmenutype;
 			"   %3d%%",
 			spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
-			spellmemorize(i) ? " " : "-",
+			spellmemorize(i) ? "+" : "-",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 
@@ -10352,8 +10394,8 @@ int specialmenutype;
 	end_menu(tmpwin, prompt);
 
 	how = PICK_ONE;
-	if (splaction == SPELLMENU_VIEW && spellid(1) == NO_SPELL)
-	    how = PICK_NONE;	/* only one spell => nothing to swap with */
+	/*if (splaction == SPELLMENU_VIEW && spellid(1) == NO_SPELL)
+	    how = PICK_NONE;*/	/* only one spell => nothing to swap with */ /* Amy edit: blah, we have the ? option now */
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
 	if (n > 0 && selected[0].item.a_int == -1) {
@@ -10404,7 +10446,12 @@ int specialmenutype;
 
 		spl_book[selected[0].item.a_int - 1].sp_memorize = !spl_book[selected[0].item.a_int - 1].sp_memorize;
 
-		return dospellmenu(prompt, splaction, spell_no, specialmenutype);
+		char spellcolorbuf[BUFSZ];
+
+		if (spl_book[selected[0].item.a_int - 1].sp_memorize) sprintf(spellcolorbuf, "Spell set to memorization mode!");
+		else sprintf(spellcolorbuf, "Memorization for this spell deactivated.");
+
+		return dospellmenu(spellcolorbuf, splaction, spell_no, specialmenutype);
 	}
 	if (n > 0) {
 		*spell_no = selected[0].item.a_int - 1;
@@ -10446,7 +10493,7 @@ dump_spells()
 		sprintf(buf, "%c - %-20s  %2d%s%s  %-8s %4d%%  %3d%%",
 			spellet(i), spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
-			spellmemorize(i) ? " " : "-",
+			spellmemorize(i) ? "+" : "-",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 			SpellColorCyan ? 100 : issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
@@ -11253,7 +11300,13 @@ wonderspell()
 					char nervbuf[QBUFSZ];
 					char thisisannoying = 0;
 
-					sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+					if (!u.youhavememorized) {
+						u.youhavememorized = TRUE;
+						if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+					}
+
+					if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+					else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 					thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 					if (thisisannoying != 'n') {
 
@@ -11268,7 +11321,11 @@ wonderspell()
 						}
 					    	boostknow(i, memoboost * 1000);
 						spl_book[i].sp_memorize = TRUE;
-					} else spl_book[i].sp_memorize = FALSE;
+						pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+					} else {
+						spl_book[i].sp_memorize = FALSE;
+						pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+					}
 
 				}
 
@@ -11300,7 +11357,13 @@ wonderspell()
 				char nervbuf[QBUFSZ];
 				char thisisannoying = 0;
 
-				sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+				if (!u.youhavememorized) {
+					u.youhavememorized = TRUE;
+					if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+				}
+
+				if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+				else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 				thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 				if (thisisannoying != 'n') {
 
@@ -11315,7 +11378,11 @@ wonderspell()
 					}
 				    	boostknow(i, memoboost * 1000);
 					spl_book[i].sp_memorize = TRUE;
-				} else spl_book[i].sp_memorize = FALSE;
+					pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+				} else {
+					spl_book[i].sp_memorize = FALSE;
+					pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+				}
 
 			}
 

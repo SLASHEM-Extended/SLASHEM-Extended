@@ -1537,6 +1537,8 @@ struct you {
 
 	boolean coronationculmination;	/* for a certain artifact */
 
+	boolean youhavememorized;	/* one-time message for memorization skill */
+
 	int garbagecleaned;	/* for janitor role */
 	int garbagetrucktime;	/* ditto */
 
