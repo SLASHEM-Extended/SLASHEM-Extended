@@ -3418,6 +3418,8 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
    in the absence of Conflict.  There is no provision for targetting
    other monsters; just hand to hand fighting when they happen to be
    next to each other. */
+
+/* Amy keywords: "grudge" "Nephi" (no idea why none of those words appear here) */
 STATIC_OVL long
 mm_aggression(magr, mdef)
 struct monst *magr,	/* monster that is currently deciding where to move */
@@ -3486,6 +3488,20 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 		return ALLOW_M|ALLOW_TM;
 	/* and vice versa */
 	if(mdef->data == &mons[PM_LORD_SIDIOUS] && magr->data == &mons[PM_JEDI])
+		return ALLOW_M|ALLOW_TM;
+
+	/* the three stooges */
+	if (mdef->data == &mons[PM_STOOGE_CURLY] && magr->data == &mons[PM_STOOGE_MOE])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_CURLY] && magr->data == &mons[PM_STOOGE_LARRY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_MOE] && magr->data == &mons[PM_STOOGE_LARRY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_MOE] && magr->data == &mons[PM_STOOGE_CURLY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_LARRY] && magr->data == &mons[PM_STOOGE_CURLY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_LARRY] && magr->data == &mons[PM_STOOGE_MOE])
 		return ALLOW_M|ALLOW_TM;
 
 	return 0L;

@@ -10009,6 +10009,12 @@ u_init()
 	u.horsehopturns = 0;
 	u.ragnarokspelltimeout = 0;
 
+	u.stoogedepth = 0;
+	if (!rn2(10)) {
+		u.stoogedepth = 6 + rn2(5);
+		if (!rn2(20)) u.stoogedepth = rnd(100);
+	}
+
 	u.copwantedlevel = 0;
 
 	u.gmmailsreceived = 0;

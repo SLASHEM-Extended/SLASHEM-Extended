@@ -1552,6 +1552,8 @@ struct you {
 	int bodyfluideffect;	/* how long you have until bodyfluid strengthening spell runs out */
 	int antitelespelltimeout;	/* how long you have until anti-teleportation spell runs out */
 
+	int stoogedepth;	/* occasionally the three stooges will spawn */
+
 	boolean zapem_mode;	/* decided at game start: true if you're a ZAPM role or used the ZAPM birth option */
 
 };	/* end of `struct you' */

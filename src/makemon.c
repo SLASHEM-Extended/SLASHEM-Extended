@@ -17797,6 +17797,28 @@ register int	mmflags;
 			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 		case S_HUMAN:
+
+			if (mtmp->data == &mons[PM_STOOGE_MOE] && mvitals[PM_STOOGE_CURLY].born == 0) {
+				(void) makemon(&mons[PM_STOOGE_CURLY], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_STOOGE_MOE] && mvitals[PM_STOOGE_LARRY].born == 0) {
+				(void) makemon(&mons[PM_STOOGE_LARRY], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
+			if (mtmp->data == &mons[PM_STOOGE_CURLY] && mvitals[PM_STOOGE_MOE].born == 0) {
+				(void) makemon(&mons[PM_STOOGE_MOE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_STOOGE_CURLY] && mvitals[PM_STOOGE_LARRY].born == 0) {
+				(void) makemon(&mons[PM_STOOGE_LARRY], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
+			if (mtmp->data == &mons[PM_STOOGE_LARRY] && mvitals[PM_STOOGE_CURLY].born == 0) {
+				(void) makemon(&mons[PM_STOOGE_CURLY], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+			if (mtmp->data == &mons[PM_STOOGE_LARRY] && mvitals[PM_STOOGE_MOE].born == 0) {
+				(void) makemon(&mons[PM_STOOGE_MOE], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
 			if ((is_waterypool(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y)) && (mndx == PM_HUMAN_WEREPIRANHA || mndx == PM_HUMAN_WEREEEL || mndx == PM_HUMAN_WEREKRAKEN) )
 			    mtmp->mundetected = TRUE;
 			if ( (is_waterypool(x, y) || is_lava(x, y) ) && (mndx == PM_HUMAN_WEREFLYFISH) )

@@ -34,6 +34,7 @@ STATIC_DCL void mswingsm(struct monst *, struct monst *, struct obj *);
 STATIC_DCL void noises(struct monst *,struct attack *);
 STATIC_DCL void missmm(struct monst *,struct monst *, int, int, struct attack *);
 STATIC_DCL int passivemm(struct monst *, struct monst *, BOOLEAN_P, int);
+STATIC_DCL void stoogejoke();
 
 STATIC_PTR void set_lit(int,int,void *);
 
@@ -42,6 +43,44 @@ STATIC_PTR void set_lit(int,int,void *);
  * instead of a global variable.
  */
 static int dieroll;
+
+static const char *random_joke[] = {
+	"Why I ought a ...",
+	"You'll get what's comming!",
+	"I'll murder you!",
+	"I get no respect!",
+	"Right in the kisser!",
+	"Wait a minute!",
+	"Take it easy!",
+	"Alright already!",
+	"That's more like it!",
+	"Well excuse me!",
+	"Take that!",
+	"I'll fix you!",
+	"I'm sorry!",
+	"Your mama!",
+	"Shut up!",
+	"Listen you!",
+	"Pardon me!",
+	"Not that!",
+	"Quiet!",
+	"Relax!",
+	"Certainly!",
+	"Ouch!",
+	"What happened?",
+	"What was that for?",
+	"What's the matter with you?",
+	"Oh Yea?",
+	"Wise guy eh?",
+	"How about a knuckle sandwich?",
+	"You coward!",
+	"You rat you!",
+	"You chuckelhead!",
+	"You bonehead!",
+	"You numbskull!",
+	"Nyak Nyak Nyak ...",
+	"Woop Woop Woop Woop ..."
+};
 
 /* returns mon_nam(mon) relative to other_mon; normal name unless they're
    the same, in which case the reference is to {him|her|it} self */
@@ -422,6 +461,7 @@ meleeattack:
 			}
 			tmp += rno(magrlev);
 		}
+		if (magr->data == &mons[PM_STOOGE_MOE] || magr->data == &mons[PM_STOOGE_CURLY] || magr->data == &mons[PM_STOOGE_LARRY]) tmp += 50;
 		strike = (tmp > dieroll);
 		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
@@ -865,7 +905,49 @@ hitmm(magr, mdef, mattk)
 		    }
 		    pline("%s %s.", buf, mon_nam_too(mdef_name, mdef, magr));
 		}
-	} else  noises(magr, mattk);
+	} else /* not vis */  noises(magr, mattk);
+
+	/* stooges infighting but not actually hurting each other, ported from nethack 2.3e by Amy */
+	if ((magr->data == &mons[PM_STOOGE_LARRY] || magr->data == &mons[PM_STOOGE_CURLY] || magr->data == &mons[PM_STOOGE_MOE]) && (mdef->data == &mons[PM_STOOGE_LARRY] || mdef->data == &mons[PM_STOOGE_CURLY] || mdef->data == &mons[PM_STOOGE_MOE])) {
+
+		if (!rn2(6) && !mdef->mblinded && mdef->mcansee) {
+			if(vis) pline("%s is poked in the %s!", Monnam(mdef), mbodypart(mdef, EYE));
+			mdef->mcansee = 0;
+			mdef->mblinded += rnd(10);
+			if (mdef->mblinded <= 0) mdef->mblinded = 127;
+		} else if (vis) {
+			switch (rn2(100)) {
+			case 0 : pline("%s is shoved!", Monnam(mdef)); 
+				break;
+			case 1 : pline("%s is kicked!", Monnam(mdef));
+				break;
+			case 2 : pline("%s is slapped!", Monnam(mdef));
+				break;
+			case 3 : pline("%s is slugged!", Monnam(mdef));
+				break;
+			case 4 : pline("%s is punched!", Monnam(mdef));
+				break;
+			case 5 : pline("%s is pinched!", Monnam(mdef));
+				break;
+			case 6 : pline("But %s dodges!", mon_nam(mdef));
+				break;
+			case 7 : pline("But %s ducks!", mon_nam(mdef));
+				break;
+			case 8 : pline("%s gets a black %s!", Monnam(mdef), mbodypart(mdef, EYE));
+				break;
+			case 9 : pline("%s gets a bloody %s!", Monnam(mdef), mbodypart(mdef, NOSE));
+				break;
+			case 10: pline("%s gets a broken tooth!", Monnam(mdef));
+				break;
+			default: break; /* nothing */
+			}
+		}
+		if (!rn2(2))
+			stoogejoke();
+
+		return 0;
+	}
+
 	return(mdamagem(magr, mdef, mattk));
 }
 
@@ -3105,6 +3187,13 @@ void * val;
 	    levl[x][y].lit = 0;
 	    snuff_light_source(x, y);
 	}
+}
+
+/* have the stooges say something funny */
+STATIC_OVL void
+stoogejoke()
+{
+	verbalize("%s", random_joke[rn2(SIZE(random_joke))]);
 }
 
 #endif /* OVLB */

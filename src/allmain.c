@@ -3118,6 +3118,11 @@ fukrosionchoice:
 			pline("Suddenly, your wisdom increases.");
 		}
 
+		if (u.stoogedepth && u.stoogedepth == depth(&u.uz)) {
+			u.stoogedepth = 0;
+			if (mvitals[PM_STOOGE_CURLY].born == 0) makemon(&mons[PM_STOOGE_CURLY], 0, 0, NO_MM_FLAGS); /* makemon.c will spawn the other two */
+		}
+
 		if (u.footererlevel && u.footererlevel == depth(&u.uz)) {
 
 			pline("The footerers were waiting for you here, and will attack now.");
