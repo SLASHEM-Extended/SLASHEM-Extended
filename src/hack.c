@@ -3064,7 +3064,10 @@ stillinwater:;
 		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT));
 		if (trap && pit)
 			dotrap(trap, 0);	/* fall into pit */
-		if (pick) (void) pickup(1);
+		/* somehow, being engulfed can sometimes result in "you can't take out blablabla" messages when you very
+		 * obviously just wanted to attack the engulfer, but I can't seem to be able to reproduce it... yet it's
+		 * incredibly annoying whenever it happens; I hope this is the correct line of code to change --Amy */
+		if (pick && !u.uswallow) (void) pickup(1);
 		if (trap && !pit)
 			dotrap(trap, 0);	/* fall into arrow trap, etc. */
 	}
