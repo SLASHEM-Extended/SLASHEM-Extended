@@ -6597,6 +6597,15 @@ struct obj *obj;
 	return xname(obj);
 }
 
+char *
+cxname2(obj)
+struct obj *obj;
+{
+       if (obj->otyp == CORPSE)
+           return corpse_xname(obj, TRUE);
+       return xname2(obj);
+}
+
 /* treat an object as fully ID'd when it might be used as reason for death */
 char *
 killer_xname(obj)

@@ -748,9 +748,11 @@ menu_item **pick_list;		/* return list of items picked */
 int how;			/* type of query */
 boolean (*allow)(OBJ_P);/* allow function */
 {
+	int i, j;
 	int n;
 	winid win;
 	struct obj *curr, *last;
+	struct obj **oarray;
 	char *pack;
 	anything any;
 	boolean printed_type_name;
@@ -780,6 +782,31 @@ boolean (*allow)(OBJ_P);/* allow function */
 	    return 1;
 	}
 
+	/* Make a temporary array to store the objects sorted */
+	oarray = (struct obj **)alloc(n*sizeof(struct obj*));
+
+	/* Add objects to the array */
+	i = 0;
+	for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {
+	  if ((*allow)(curr)) {
+	    if (iflags.sortloot == 'f' ||
+	        (iflags.sortloot == 'l' && !(qflags & USE_INVLET)))
+	      {
+	        /* Insert object at correct index */
+	        for (j = i; j; j--)
+	          {
+	            if (strcmpi(cxname2(curr), cxname2(oarray[j-1]))>0) break;
+	            oarray[j] = oarray[j-1];
+	          }
+	        oarray[j] = curr;
+	        i++;
+	      } else {
+	        /* Just add it to the array */
+	        oarray[i++] = curr;
+	      }
+	  }
+	}
+
 	win = create_nhwindow(NHW_MENU);
 	start_menu(win);
 	any.a_obj = (struct obj *) 0;
@@ -793,7 +820,10 @@ boolean (*allow)(OBJ_P);/* allow function */
 	pack = flags.inv_order;
 	do {
 	    printed_type_name = FALSE;
-	    for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {
+	    /*for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {*/
+	    for (i = 0; i < n; i++) {
+		curr = oarray[i];
+
 		if ((qflags & FEEL_COCKATRICE) && (curr->otyp == CORPSE || curr->otyp == EGG) &&
 		     will_feel_cockatrice(curr, FALSE)) {
 			destroy_nhwindow(win);	/* stop the menu and revert */
@@ -821,6 +851,7 @@ boolean (*allow)(OBJ_P);/* allow function */
 	    pack++;
 	} while (qflags & INVORDER_SORT && *pack);
 
+	free(oarray);
 	end_menu(win, qstr);
 	n = select_menu(win, how, pick_list);
 	destroy_nhwindow(win);

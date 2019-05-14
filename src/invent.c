@@ -6732,6 +6732,8 @@ long* out_cnt;
 #endif
 {
 	struct obj *otmp;
+	struct obj **oarray;
+	int i, j;
 	char ilet, ret;
 	char *invlet = flags.inv_order;
 	int n, classcount;
@@ -6828,12 +6830,68 @@ long* out_cnt;
 	    return ret;
 	}
 
+	/* count the number of items */
+	for (n = 0, otmp = invent; otmp; otmp = otmp->nobj)
+	  if(!lets || !*lets || index(lets, otmp->invlet)) n++;
+
+	/* Make a temporary array to store the objects sorted */
+	oarray = (struct obj **)alloc(n*sizeof(struct obj*));
+
+	/* Add objects to the array */
+	i = 0;
+	for(otmp = invent; otmp; otmp = otmp->nobj)
+	  if(!lets || !*lets || index(lets, otmp->invlet)) {
+	    if (iflags.sortloot == 'f') {
+	      /* Insert object at correct index */
+	      for (j = i; j; j--) {
+	        if (strcmpi(cxname2(otmp), cxname2(oarray[j-1]))>0) break;
+	        oarray[j] = oarray[j-1];
+	      }
+	      oarray[j] = otmp;
+	      i++;
+	    } else {
+	      /* Just add it to the array */
+	      oarray[i++] = otmp;
+	    }
+	  }
+	/* for end */
+
 	start_menu(win);
 nextclass:
 	classcount = 0;
 	any.a_void = 0;		/* set all bits to zero */
 
+	for(i = 0; i < n; i++) {
+	  otmp = oarray[i];
+	  ilet = otmp->invlet;
+	  if (!flags.sortpack || otmp->oclass == *invlet) {
+	    if (flags.sortpack && !classcount) {
+	      any.a_void = 0;             /* zero */
+	      add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+	               let_to_name(*invlet, FALSE, FALSE), MENU_UNSELECTED);
+#ifdef DUMP_LOG
+	      if (want_dump)
+	        dump("  ", let_to_name(*invlet, FALSE, FALSE));
+#endif
+	      classcount++;
+	    }
+	    any.a_char = ilet;
+	    add_menu(win, obj_to_glyph(otmp),
+	             &any, ilet, 0, ATR_NONE, doname(otmp),
+	             MENU_UNSELECTED);
+#ifdef DUMP_LOG
+	    if (want_dump) {
+	      char letbuf[7];
+	      sprintf(letbuf, "  %c - ", ilet);
+	      dump(letbuf, doname(otmp));
+	    }
+#endif
+	  }
+	}
+
 	/*if (flags.alphabetinv) ilet = 'a'-1;*/
+
+#if 0 /* due to sortloot */
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		/*if (!flags.alphabetinv)*/ ilet = otmp->invlet;
@@ -6875,6 +6933,7 @@ nextclass:
 			}
 		}
 	}
+#endif /* if 0 above */
 	if (flags.sortpack) {
 		if (*++invlet) goto nextclass;
 #ifdef WIZARD
@@ -6884,6 +6943,7 @@ nextclass:
 		}
 #endif
 	}
+	free(oarray);
 	end_menu(win, (char *) 0);
 
 	n = select_menu(win, want_reply ? PICK_ONE : PICK_NONE, &selected);

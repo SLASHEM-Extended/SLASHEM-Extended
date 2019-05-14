@@ -2004,6 +2004,7 @@ E char *doname(struct obj *);
 E boolean not_fully_identified(struct obj *);
 E char *corpse_xname(struct obj *,BOOLEAN_P);
 E char *cxname(struct obj *);
+E char *cxname2(struct obj *);
 E char *killer_xname(struct obj *);
 E char *killer_cxname(struct obj *,BOOLEAN_P);
 E const char *singular(struct obj *,char *(*)(OBJ_P));
