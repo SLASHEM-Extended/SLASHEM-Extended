@@ -3323,7 +3323,7 @@ boolean shk_buying;
 		break;
 	case ARMOR_CLASS:
 	case WEAPON_CLASS:
-		if (obj->spe > 0) tmp += 10L * (long) obj->spe;
+		/*if (obj->spe > 0) tmp += 10L * (long) obj->spe;*/ /* fuck price ID :P --Amy */
 		/* Don't buy activated explosives! */
 		if (is_grenade(obj) && obj->oarmed) tmp = 0L;
 		break;

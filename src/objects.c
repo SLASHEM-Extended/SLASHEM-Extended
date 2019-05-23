@@ -5792,11 +5792,12 @@ SCROLL("blank paper",           "unlabeled",            P_NONE, 0, 280, 300, CLR
 
 #undef SCROLL
 
-/* spell books ... */
+/* spell books ...
+ * Amy edit: always cost 500 because fuck price identification :P */
 #define SPELL(name,desc,sub,prob,delay,level,mgc,dir,color,minlvl) OBJECT( \
 		OBJ(name,desc), BITS(0,0,1,0,mgc,1,0,0,0,0,dir,sub,PAPER), 0, \
 		SPBOOK_CLASS, prob, delay, \
-		0, level*100, 0, 0, 0, level, 20, color, minlvl, 0 )
+		0, 500, 0, 0, 0, level, 20, color, minlvl, 0 )
 /* Attack spells */
 SPELL("force bolt",      "red",         P_ATTACK_SPELL, 196, 2, 1, 1, IMMEDIATE, CLR_RED, 1),
 SPELL("mana bolt",    "irresistible",   P_ATTACK_SPELL, 50,  4, 2, 1, IMMEDIATE, CLR_BRIGHT_BLUE, 5),
