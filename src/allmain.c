@@ -2938,7 +2938,7 @@ trapsdone:
 
 				stop_occupation();
 
-				if (ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
+				if (!(Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES)) && ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
 				else {
 				    if (Upolyd) {
 					u.mh -= 5;
