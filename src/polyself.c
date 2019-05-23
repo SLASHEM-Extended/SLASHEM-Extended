@@ -1359,8 +1359,10 @@ dogaze()
 		  	
 			sprintf(qbuf, "Really gaze at %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') return (0);
-			if (mtmp->mpeaceful) setmangry(mtmp);
 	}
+
+	/* WUOT why the hell did they not become hostile if you were e.g. confused??? */
+	if (mtmp->mpeaceful) setmangry(mtmp);
 
 	u.uen -= 20;
 
