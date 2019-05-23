@@ -845,6 +845,7 @@ doread()
 	"v qe qe qe qe qd qd qd qd qf qf qf qf qg qg qg qg #quit", /* by Demo */
 	"I haven't watched Game of THrones and I don't care", /* by Elronnd IIRC */
 	"I should become a SLEX developer so I can inflect EVIL upon the world.", /* by NCommander */
+	"I own your stuff now. fight me", /* by bhaak */
 
 	    };
 	    char buf[BUFSZ];

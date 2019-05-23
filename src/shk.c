@@ -3069,7 +3069,7 @@ xchar x, y;
 					eshkp->credit += delta;
 					eshkp->totalcredit += delta;
 				}
-		    } else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
+		    } else verbalize(isevilvariant ? "I own your stuff now. Fight me." : "What? You want credit? Well, sucks to be you, but I ain't giving you any!");
 		    if(eshkp->debit) {
 			eshkp->debit = 0L;
 			eshkp->loan = 0L;
@@ -3149,7 +3149,7 @@ move_on:
 					eshkp->totalcredit += tmpcr;
 				}
 
-		    } else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
+		    } else verbalize(isevilvariant ? "I own your stuff now. Fight me." : "What? You want credit? Well, sucks to be you, but I ain't giving you any!");
 		    subfrombill(obj, shkp);
 		} else {
 		    if (c == 'q') sell_response = 'n';
