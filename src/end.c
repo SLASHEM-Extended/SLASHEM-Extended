@@ -294,7 +294,7 @@ done2()
 	char buf[BUFSZ];
 	int really_quit = FALSE;
 
-	  getlin ("Really quit [yes/no]?",buf);
+	  getlin ("Really quit? WARNING: this will erase your game permanently! [yes/no]?",buf);
 	  (void) lcase (buf);
 	  if (!(strcmp (buf, "yes"))) really_quit = TRUE;
 	
