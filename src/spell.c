@@ -10438,6 +10438,11 @@ int specialmenutype;
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 
+		if (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) {
+			/* you cheater! you're not supposed to see what the spells are :P */
+			return dospellmenu(prompt, splaction, spell_no, specialmenutype);
+		}
+
 		(void) itemactions(pseudo, TRUE);
 		obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 		return dospellmenu(prompt, splaction, spell_no, specialmenutype);
@@ -10448,7 +10453,8 @@ int specialmenutype;
 
 		char spellcolorbuf[BUFSZ];
 
-		if (spl_book[selected[0].item.a_int - 1].sp_memorize) sprintf(spellcolorbuf, "Spell set to memorization mode!");
+		if (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) sprintf(spellcolorbuf, "Memorization setting changed."); /* no, you don't get to see what it is now :P */
+		else if (spl_book[selected[0].item.a_int - 1].sp_memorize) sprintf(spellcolorbuf, "Spell set to memorization mode!");
 		else sprintf(spellcolorbuf, "Memorization for this spell deactivated.");
 
 		return dospellmenu(spellcolorbuf, splaction, spell_no, specialmenutype);
