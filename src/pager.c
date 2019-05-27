@@ -3500,6 +3500,30 @@ get_description_of_monster_type(struct permonst * ptr, char * description)
 	}
 	return description;
 }
+
+void
+corpsepager(crpsnum)
+int crpsnum;
+{
+	if (DeformattingBug || u.uprops[DEFORMATTING_BUG].extrinsic || have_deformattingstone() || PlayerUninformation) {
+		return;
+	}
+
+	char temp_buf[BUFSZ];
+	struct permonst *pm = (struct permonst *) 0;
+
+	temp_buf[0]='\0';
+	pm = &mons[crpsnum];
+
+	if (!pm || (crpsnum <= PM_PLAYERMON) || (crpsnum >= NUMMONS) ) {
+		return;
+	}
+
+	get_description_of_monster_type(pm, temp_buf);
+	pline("%s", temp_buf);
+
+}
+
 #endif
 
 int

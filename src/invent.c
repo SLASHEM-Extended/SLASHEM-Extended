@@ -12108,9 +12108,17 @@ boolean knoweverything;
 				pline("Despite seeming so mundane, this tool is actually rare and valuable as it allows you to grease your items. However, grease will wear off quickly and needs to be applied again. You can apply up to three layers of grease to a single item."); break;
 #endif
 			case FIGURINE: 
-				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!"); break;
+				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 			case ENERGY_SAP: 
-				pline("If you apply this tool, you'll get effects similar to eating the corpse of the monster it's made of."); break;
+				pline("If you apply this tool, you'll get effects similar to eating the corpse of the monster it's made of.");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 			case MAGIC_MARKER: 
 #ifdef PHANTOM_CRASH_BUG
 				pline("You can engrave with this tool, or attempt to write scrolls or spellbooks if you have blank ones. Writing items that you know is guaranteed to work."); break;
@@ -12173,9 +12181,17 @@ boolean knoweverything;
 			case TRIPE_RATION: 
 				pline("A ration of dog food that's meant to be eaten by carnivorous pets."); break;
 			case CORPSE: 
-				pline("Corpses can be eaten, but it's not always a good idea to do so. Depending on the type of monster and the age of a corpse, different effects can occur."); break;
+				pline("Corpses can be eaten, but it's not always a good idea to do so. Depending on the type of monster and the age of a corpse, different effects can occur.");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 			case EGG: 
-				pline("Eggs can be eaten, but some of them can also hatch after a while. Eating a stale egg causes vomiting."); break;
+				pline("Eggs can be eaten, but some of them can also hatch after a while. Eating a stale egg causes vomiting.");
+#ifdef EXTENDED_INFO
+				if (obj->known || mvitals[obj->corpsenm].mvflags & MV_KNOWS_EGG) corpsepager(obj->corpsenm);
+#endif
+				break;
 			case MEATBALL: 
 				pline("These provide very little nutrition but can be used for training dogs."); break;
 			case MEAT_STICK: 
@@ -12256,10 +12272,14 @@ boolean knoweverything;
 				pline("Soldiers often carry these rations that can be eaten in one turn. For some reason they contain no meat - how can any real-life soldiers even concentrate on their tasks if they ain't getting no real food?"); break;
 			case TIN: 
 #ifdef PHANTOM_CRASH_BUG
-				pline("Open it to see its contents, then decide whether you really want to eat it. They have variable amounts of nutrition."); break;
+				pline("Open it to see its contents, then decide whether you really want to eat it. They have variable amounts of nutrition.");
 #else
-				pline("A tin that may contain some type of food. If you wield a tin opener, you can open it more quickly; after a tin has been opened, you can decide whether you really want to eat it. The nutritional value of a tin is randomized."); break;
+				pline("A tin that may contain some type of food. If you wield a tin opener, you can open it more quickly; after a tin has been opened, you can decide whether you really want to eat it. The nutritional value of a tin is randomized.");
 #endif
+#ifdef EXTENDED_INFO
+				if (obj->known) corpsepager(obj->corpsenm);
+#endif
+				break;
 
 			case SHEAF_OF_STRAW: 
 				pline("This food tastes better if you're a herbivore."); break;
@@ -14571,7 +14591,11 @@ boolean knoweverything;
 			case BOULDER: 
 				pline("A large boulder that weighs a ton. It can be thrown, provided you're strong enough."); break;
 			case STATUE: 
-				pline("This statue depicts some sort of monster. There may be a way to make it come back to life, or you can smash it to see if it contains items."); break;
+				pline("This statue depicts some sort of monster. There may be a way to make it come back to life, or you can smash it to see if it contains items.");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 

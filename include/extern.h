@@ -2068,6 +2068,9 @@ E int dowhatdoes(void);
 E char *dowhatdoes_core(CHAR_P, char *);
 E int dohelp(void);
 E int dohistory(void);
+#ifdef EXTENDED_INFO
+E void corpsepager(int);
+#endif
 
 E const char *fauxmessage(void);
 E const char *bosstaunt(void);
