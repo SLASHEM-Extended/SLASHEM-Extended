@@ -2961,7 +2961,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(399)) {
+			switch (rnd(401)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3362,6 +3362,8 @@ int dieroll;
 			case 397: pline("You gently stroke %s.", mon_nam(mon)); break;
 			case 398: pline("Your honchos at %s are cheering in front of the TV as they see you batter %s!", urole.homebase, mon_nam(mon)); break;
 			case 399: pline("You might in fact be capable of surviving at %s, seeing how you're mixing up %s right now.", urole.intermed, mon_nam(mon)); break;
+			case 400: pline("You make it darker for %s!", mon_nam(mon)); break;
+			case 401: pline("You miss but some guy comes and helps you."); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -3475,7 +3477,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(567)) {
+				switch (rnd(571)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4044,6 +4046,10 @@ int dieroll;
 				case 565: pline("You slash %s's sword %s! Three %s fall to the floor!", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
 				case 566: pline("You made sure that %s can never take over %s!", mon_nam(mon), urole.homebase); break;
 				case 567: pline("Even your worst enemy at %s would be trembling in fear if he could see how brutally you just killed %s.", urole.intermed, mon_nam(mon)); break;
+				case 568: pline("%s makes the error to pull down your airtight pants, and chokes to death in the resulting cloud of farting gas!", Monnam(mon)); break;
+				case 569: pline("%s crashes into the accomodating traffic!", Monnam(mon)); break;
+				case 570: pline("%s has a film rupture with sharp ss!", Monnam(mon)); break;
+				case 571: pline("%s is so stupid and gives Colonel B. Astard the correct code, and therefore ends up being shot.", Monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -6267,7 +6273,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(549)) {
+		switch (rnd(551)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -6818,6 +6824,8 @@ register int roll;
 		case 547: pline("If you can't even hit the wimpy %s, you can completely forgot about your mission to purge %s.", l_monnam(mdef), urole.intermed); break;
 		case 548: pline("All your friends at %s are booing at the TV screen that shows you missing constantly with that little sword.", urole.homebase); break;
 		case 549: pline("You feel the voice of your worst enemy penetrate your mind from %s. It says: 'Ha ha ha, you tin can are no match for me.'", urole.intermed); break;
+		case 550: pline("Some guy comes and diverts you, so you forget to attack."); break;
+		case 551: pline("%s clamps your %s with %s lovely pink pumps.", Monnam(mdef), makeplural(body_part(FINGER)), mhis(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
