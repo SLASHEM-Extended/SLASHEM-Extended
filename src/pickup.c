@@ -789,8 +789,8 @@ boolean (*allow)(OBJ_P);/* allow function */
 	i = 0;
 	for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {
 	  if ((*allow)(curr)) {
-	    if (iflags.sortloot == 'f' ||
-	        (iflags.sortloot == 'l' && !(qflags & USE_INVLET)))
+	    if ((iflags.sortloot == 'f' ||
+	        (iflags.sortloot == 'l' && !(qflags & USE_INVLET))) && !(Hallucination || PlayerUninformation))
 	      {
 	        /* Insert object at correct index */
 	        for (j = i; j; j--)
