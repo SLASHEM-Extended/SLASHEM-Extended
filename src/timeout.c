@@ -161,9 +161,13 @@ slime_dialogue()
 		    if (!Blind)	/* [what if you're already green?] */
 			pline(str, hcolor(NH_GREEN));
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		} else
+		} else {
 		    pline(str, an(Hallucination ? rndmonnam() : "green slime"));
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+			/* make it more obvious for the player how much time they have left --Amy */
+			if (i == 0L && Slimed > 1) pline("You have %d turns to live.", Slimed);
+		}
 	    } else
 		pline("%s", str);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
