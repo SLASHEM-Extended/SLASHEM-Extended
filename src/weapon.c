@@ -2571,8 +2571,86 @@ int skill;
 	return;
     }
 #endif
+
+	/* lightsaber forms would devour way too many skill points for little benefit, unless the lightsaber actually is
+	 * your main weapon... jedi are meant to be very good with lightsabers anyway, and other roles shouldn't feel like
+	 * they're throwing their skill points away, so there's now a chance of not using up a skill point for those skills
+	 * In Soviet Russia, every skill always costs a skill point because that's communism for you. No exceptions will be
+	 * made. If you don't agree with that, move to a non-communist country :P --Amy */
+
+	if (skill == P_SHII_CHO && (P_SKILL(P_SHII_CHO) + 1) > u.lightsabermax1) {
+		u.lightsabermax1 = (P_SKILL(P_SHII_CHO) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_MAKASHI && (P_SKILL(P_MAKASHI) + 1) > u.lightsabermax2) {
+		u.lightsabermax2 = (P_SKILL(P_MAKASHI) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_SORESU && (P_SKILL(P_SORESU) + 1) > u.lightsabermax3) {
+		u.lightsabermax3 = (P_SKILL(P_SORESU) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_ATARU && (P_SKILL(P_ATARU) + 1) > u.lightsabermax4) {
+		u.lightsabermax4 = (P_SKILL(P_ATARU) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_SHIEN && (P_SKILL(P_SHIEN) + 1) > u.lightsabermax5) {
+		u.lightsabermax5 = (P_SKILL(P_SHIEN) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_DJEM_SO && (P_SKILL(P_DJEM_SO) + 1) > u.lightsabermax6) {
+		u.lightsabermax6 = (P_SKILL(P_DJEM_SO) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_NIMAN && (P_SKILL(P_NIMAN) + 1) > u.lightsabermax7) {
+		u.lightsabermax7 = (P_SKILL(P_NIMAN) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_JUYO && (P_SKILL(P_JUYO) + 1) > u.lightsabermax8) {
+		u.lightsabermax8 = (P_SKILL(P_JUYO) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_VAAPAD && (P_SKILL(P_VAAPAD) + 1) > u.lightsabermax9) {
+		u.lightsabermax9 = (P_SKILL(P_VAAPAD) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_WEDI && (P_SKILL(P_WEDI) + 1) > u.lightsabermax10) {
+		u.lightsabermax10 = (P_SKILL(P_WEDI) + 1);
+		if (!issoviet && rn2(Role_if(PM_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
     
     u.weapon_slots -= slots_required(skill);
+jediskip:
     P_SKILL(skill)++;
     u.skill_record[u.skills_advanced++] = skill;
     /* subtly change the advance message to indicate no more advancement */

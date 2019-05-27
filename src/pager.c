@@ -4133,6 +4133,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Giga noob, kotoryy nazyvayet sebya ledyanym blokom, zastavil yego ne vytesnit' igroka, potomu chto 'eto delalo ikh slishkom razdrazhayushchimi dlya bor'by'. Prochitayte eto kak 'potomu chto on takoy plokhoy igrok, chto ne mozhet spravit'sya s kakim-nibud' monstrom, kotoryy na samom dele trebuyet, chtoby TAKTIKA pobezhdal'.",
 "Nadeyus', vy vyzovete ochen' mnogo ognennykh lovushek, potomu chto bylo by ochen' veselo uvidet', kak vy teryayete maksimum svoyego zdorov'ya, khar-khar.",
 "Kakiye? Vy dumayete, chto polimorfnyye ob'yekty budut luchshe? Net, vam vse ravno pridetsya vosstanavlivat' kazhdogo predmeta, potomu chto KHAR BOYARYSHNIK.",
+"Navyki vsegda ispol'zuyut ochki umenly, potomu chto tip ledyanogo bloka KHA KHA - otstoy.",
 };
 
 static NEARDATA const char * const hussylines[] = {

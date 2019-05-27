@@ -1552,6 +1552,17 @@ struct you {
 	int bodyfluideffect;	/* how long you have until bodyfluid strengthening spell runs out */
 	int antitelespelltimeout;	/* how long you have until anti-teleportation spell runs out */
 
+	int lightsabermax1;	/* your highest value you ever had in a lightsaber form */
+	int lightsabermax2;
+	int lightsabermax3;
+	int lightsabermax4;
+	int lightsabermax5;
+	int lightsabermax6;
+	int lightsabermax7;
+	int lightsabermax8;
+	int lightsabermax9;
+	int lightsabermax10;
+
 	int stoogedepth;	/* occasionally the three stooges will spawn */
 
 	boolean zapem_mode;	/* decided at game start: true if you're a ZAPM role or used the ZAPM birth option */

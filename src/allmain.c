@@ -9739,6 +9739,17 @@ aliasagain:
 
 #endif /* RECORD_REALTIME || REALTIME_ON_BOTL */
 
+	u.lightsabermax1 = (P_SKILL(P_SHII_CHO) >= P_BASIC) ? P_SKILL(P_SHII_CHO) : 1;
+	u.lightsabermax2 = (P_SKILL(P_MAKASHI) >= P_BASIC) ? P_SKILL(P_MAKASHI) : 1;
+	u.lightsabermax3 = (P_SKILL(P_SORESU) >= P_BASIC) ? P_SKILL(P_SORESU) : 1;
+	u.lightsabermax4 = (P_SKILL(P_ATARU) >= P_BASIC) ? P_SKILL(P_ATARU) : 1;
+	u.lightsabermax5 = (P_SKILL(P_SHIEN) >= P_BASIC) ? P_SKILL(P_SHIEN) : 1;
+	u.lightsabermax6 = (P_SKILL(P_DJEM_SO) >= P_BASIC) ? P_SKILL(P_DJEM_SO) : 1;
+	u.lightsabermax7 = (P_SKILL(P_NIMAN) >= P_BASIC) ? P_SKILL(P_NIMAN) : 1;
+	u.lightsabermax8 = (P_SKILL(P_JUYO) >= P_BASIC) ? P_SKILL(P_JUYO) : 1;
+	u.lightsabermax9 = (P_SKILL(P_VAAPAD) >= P_BASIC) ? P_SKILL(P_VAAPAD) : 1;
+	u.lightsabermax10 = (P_SKILL(P_WEDI) >= P_BASIC) ? P_SKILL(P_WEDI) : 1;
+
 	/* Success! */
 	welcome(TRUE);
 
