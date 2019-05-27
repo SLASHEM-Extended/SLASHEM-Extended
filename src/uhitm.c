@@ -3752,7 +3752,7 @@ int dieroll;
 				case 273: pline("You resole %s's ass!", mon_nam(mon)); break;
 				case 274: pline("You put a mine into %s's trouser pocket and wait for it to explode.", mon_nam(mon)); break;
 				case 275: pline("%s fails to block your finishing move!", Monnam(mon)); break;
-				case 276: pline("As it turns out, %s is the biggest weaking of this dungeon.", mon_nam(mon)); break;
+				case 276: pline("As it turns out, %s is the biggest weakling of this dungeon.", mon_nam(mon)); break;
 				case 277: pline("You transform %s into several pieces of meat.", mon_nam(mon)); break;
 				case 278: pline("You mince %s.", mon_nam(mon)); break;
 				case 279: pline("%s will no longer stand in your way!", Monnam(mon)); break;

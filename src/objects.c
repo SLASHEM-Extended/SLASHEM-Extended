@@ -5783,6 +5783,9 @@ SCROLL((char *)0,               "1FP30S",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "THE LAKITUS ARE THROWING LAKITUS",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
 SCROLL((char *)0,               "MAVIS BACON",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "AMY MUST WALK BAREFOOT ACROSS A GRAVEL PARKING LOT AT MINUS30 DEGREES C",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "EWOTS GOWINA",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "KOSCHISO HAEIAE",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "A LAW THAT MAKES SNOWFLAKES VISIBLE",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
