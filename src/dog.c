@@ -1473,7 +1473,7 @@ struct monst *mtmp;
 	if (Aggravate_monster || Conflict) mtmp->mtame /=2;
 	else mtmp->mtame--;
 
-	if (mtmp->mtame && !mtmp->isminion)
+	if (mtmp->mtame && !mtmp->isminion && !(Role_if(PM_SLAVE_MASTER) && rn2(5)) )
 	    EDOG(mtmp)->abuse++;
 
 	if (Role_if(PM_CRUEL_ABUSER)) {
