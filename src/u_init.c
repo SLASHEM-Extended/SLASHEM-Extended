@@ -9993,6 +9993,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.riderhack = 0;
 	u.bodyfluideffect = 0;
 	u.garbagecleaned = 0;
 	u.garbagetrucktime = 0;

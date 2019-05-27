@@ -1555,6 +1555,7 @@ struct you {
 	int stoogedepth;	/* occasionally the three stooges will spawn */
 
 	boolean zapem_mode;	/* decided at game start: true if you're a ZAPM role or used the ZAPM birth option */
+	boolean riderhack;	/* to prevent you from easily removing riders */
 
 };	/* end of `struct you' */
 

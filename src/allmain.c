@@ -1785,6 +1785,8 @@ moveloop()
 		    /* once-per-turn things go here */
 		    /********************************/
 
+		if (u.riderhack) u.riderhack = FALSE;
+
 		if (!occupation) u.katitrapocc = FALSE;
 
 		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
