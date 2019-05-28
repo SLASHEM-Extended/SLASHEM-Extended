@@ -17885,7 +17885,7 @@ register int	mmflags;
 
 			break;
 		case S_FUNGUS:
-			if (mndx == PM_INVISIBLE_MOLD || mndx == PM_INVISIBLE_FUNGUS || mndx == PM_INVISIBLE_PATCH || mndx == PM_INVISIBLE_FORCE_FUNGUS || mndx == PM_INVISIBLE_WORT || mndx == PM_INVISIBLE_FORCE_PATCH || mndx == PM_INVISIBLE_WARP_FUNGUS || mndx == PM_INVISIBLE_WARP_PATCH || mndx == PM_INVISIBLE_STALK || mndx == PM_INVISIBLE_SPORE || mndx == PM_INVISIBLE_MUSHROOM || mndx == PM_INVISIBLE_GROWTH || mndx == PM_INVISIBLE_COLONY ) {
+			if (mndx == PM_INVISIBLE_MOLD || mndx == PM_INVISIBLE_FUNGUS || mndx == PM_INVISIBLE_PATCH || mndx == PM_INVISIBLE_FORCE_FUNGUS || mndx == PM_INVISIBLE_WORT || mndx == PM_INVISIBLE_FORCE_PATCH || mndx == PM_INVISIBLE_WARP_FUNGUS || mndx == PM_INVISIBLE_WARP_PATCH || mndx == PM_INVISIBLE_STALK || mndx == PM_INVISIBLE_SPORE || mndx == PM_INVISIBLE_MUSHROOM || mndx == PM_INVISIBLE_GROWTH || mndx == PM_INVISIBLE_COLONY || mndx == PM_STEALTHBOOST_LICHEN ) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}
