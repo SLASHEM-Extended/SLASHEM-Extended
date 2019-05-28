@@ -12688,6 +12688,10 @@ boolean knoweverything;
 #else
 				pline("The best scroll in the game. You will need this to cure the sliming condition, which is difficult to cure otherwise. It can also damage monsters standing next to you, with the side effect of burning you a little."); break;
 #endif
+#ifdef MAIL
+			case SCR_MAIL:
+				pline("This scroll is supposed to contain a message. If the game has been compiled correctly, reading it will display the message."); break;
+#endif
 			case SCR_EARTH:
 				pline("Summons some boulders if read. Beware, they might hit your head and damage you."); break;
 			case SCR_RAGNAROK:
