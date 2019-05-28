@@ -3064,7 +3064,7 @@ stillinwater:;
 		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT));
 		if (trap && pit)
 			dotrap(trap, 0);	/* fall into pit */
-		if (pick) (void) pickup(1);
+		if (pick && !u.uswallow) (void) pickup(1);
 		if (trap && !pit)
 			dotrap(trap, 0);	/* fall into arrow trap, etc. */
 	}

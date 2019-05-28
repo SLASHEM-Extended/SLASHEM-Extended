@@ -1359,8 +1359,8 @@ dogaze()
 		  	
 			sprintf(qbuf, "Really gaze at %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') return (0);
-			if (mtmp->mpeaceful) setmangry(mtmp);
 	}
+	if (mtmp->mpeaceful) setmangry(mtmp);
 
 	u.uen -= 20;
 

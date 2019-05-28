@@ -10374,6 +10374,11 @@ int specialmenutype;
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 
+		if (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) {
+			/* you cheater! you're not supposed to see what the spells are :P */
+			return dospellmenu(prompt, splaction, spell_no, specialmenutype);
+		}
+
 		(void) itemactions(pseudo, TRUE);
 		obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 		return dospellmenu(prompt, splaction, spell_no, specialmenutype);
