@@ -1275,6 +1275,9 @@ struct monst *mtmp;
 		    multishot++;
 		    multishot++;
 		    break;
+	    case PM_BRA_GIANT:
+		    multishot += 5;
+		    break;
 	    case PM_ELPH:
 		    multishot++;
 		    if (otmp->otyp == ELVEN_ARROW && mwep && mwep->otyp == ELVEN_BOW) multishot++;

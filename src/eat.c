@@ -2931,6 +2931,7 @@ register int pm;
 		break;
 
 	    case PM_UMBER_MIND_FLAYER:
+	    case PM_GLOCKATRICE:
 
 		You_feel("ethereal.");
 		incr_itimeout(&HPasses_walls, rn1(10, 50));
@@ -3017,11 +3018,19 @@ register int pm;
 		break;
 
 	    case PM_STEALATRICE:
+	    case PM_LICORICE:
 	    case PM_CONTACT_BEAST:
 		if (u.contamination && u.contamination < 1000) {
 			decontaminate(100);
 		}
 
+		break;
+
+	    case PM_CUCKATRICE:
+
+		change_sex(); /* ignores unchanging (intentional) */
+		You("are suddenly very %s!", flags.female ? "feminine" : "masculine");
+		flags.botl = 1;
 		break;
 
 	    case PM_NEXUS_CHICKEN:
