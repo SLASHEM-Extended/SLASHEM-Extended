@@ -1025,6 +1025,12 @@ register int after;	/* this is extra fast monster movement */
 			    monnear(mtmp2, mtmp->mx, mtmp->my)) {
 			mstatus = mattackm(mtmp2, mtmp);  /* return attack */
 			if (mstatus & MM_DEF_DIED) return 2;
+		    } else if (!(mstatus & MM_HIT) && !(mstatus & MM_DEF_DIED) && !rn2(10) && mtmp2->mlstmv != monstermoves &&
+			    !onscary(mtmp->mx, mtmp->my, mtmp2) && monnear(mtmp2, mtmp->mx, mtmp->my)) {
+
+			/* Amy edit: allow monsters to occasionally fight back even if your pet missed them */
+			mstatus = mattackm(mtmp2, mtmp);  /* return attack */
+			if (mstatus & MM_DEF_DIED) return 2;
 		    }
 
 		    return 0;
