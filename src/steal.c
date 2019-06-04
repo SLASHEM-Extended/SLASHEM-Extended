@@ -802,7 +802,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		if (otmp->owornmask || otmp == wep || otmp->mstartinvent || otmp->petmarked || otmp->mstartinventB || otmp->mstartinventC ||
 		    ((!item1 && otmp->otyp == PICK_AXE) ||
 		     (!item2 && otmp->otyp == UNICORN_HORN && !otmp->cursed))) {
-			if (is_pet) { /* dont drop worn/wielded item */
+			if (is_pet && !evades_destruction(otmp)) { /* dont drop worn/wielded item */
 				if (otmp->otyp == PICK_AXE)
 					item1 = TRUE;
 				if (otmp->otyp == UNICORN_HORN && !otmp->cursed)
