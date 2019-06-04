@@ -292,8 +292,8 @@ struct monst *mon;
 	if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr)) tmp += 3;
 	if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr)) tmp += 3;
 
-	/* polearms versus golems */
-	if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) tmp += 3;
+	/* polearms versus golems and designated steeds */
+	if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN)) tmp += 3;
 
 	if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) tmp += 10;
 
@@ -734,7 +734,7 @@ struct monst *mon;
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr)) bonus += rnd(2);
 
 	    /* polearms versus golems */
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) ) bonus += rnd(2);
 
 	    if ((otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
 
@@ -1506,15 +1506,15 @@ struct monst *mon;
 		}
 
 	    /* polearms versus golems */
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN)) bonus += rnd(2);
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(2);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(4);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(6);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(9);
-	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && ptr->mlet == S_GOLEM && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(12);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(2);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(4);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(6);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(9);
+	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(12);
 
 		}
 

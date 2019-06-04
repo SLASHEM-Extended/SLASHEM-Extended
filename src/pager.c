@@ -23266,6 +23266,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"This blatant advertisement for xNethack brought to you by AOS brand licorice ropes!",
 	"The rumor is they are completely eliminating the stethoscope from the next version of vanilla.",
 	"The AmyBSOD hits you with her shoes! You feel fleecy!",
+	"The polearm lifts you out of your saddle!",
+	"The polearm lifts you out of your saddle, because that's what polearms were originally for. Sadly you can't do the same to monsters because mounted monsters don't exist.",
 
 };
 

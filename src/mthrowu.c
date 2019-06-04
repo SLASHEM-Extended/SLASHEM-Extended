@@ -426,6 +426,19 @@ const char *name;	/* if null, then format `obj' */
 			else increasesanity(rnz(tlev * 5));
 			exercise(A_CON, FALSE);
 		}
+
+		if (obj && objects[obj->otyp].oc_skill == P_POLEARMS && (u.usteed || youmonst.data->mlet == S_CENTAUR || youmonst.data->mlet == S_UNICORN) || (!Upolyd && Race_if(PM_PLAYER_UNICORN)) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR)) || (!Upolyd && Race_if(PM_THUNDERLORD)) ) {
+			dam += rnd(10);
+			if (u.usteed && !rn2(25)) {
+				if (!mayfalloffsteed()) {
+					pline("The polearm lifts you out of your saddle!");
+					dismount_steed(DISMOUNT_FELL);
+				}
+
+			}
+		}
+
+
 		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
