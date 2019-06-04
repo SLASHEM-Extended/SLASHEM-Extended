@@ -6918,6 +6918,7 @@ register int tmp;
 	}
 
 use_weapon:	
+
 	/* Certain monsters don't use weapons when encountered as enemies,
 	 * but players who polymorph into them have hands or claws and thus
 	 * should be able to use weapons.  This shouldn't prohibit the use
@@ -7365,10 +7366,19 @@ use_weapon:
     	      if (!Race_if(PM_UNGENOMOLD)) rehumanize(); /* we don't want ungenomolds polyd into lights to suck */
 		else polyself(FALSE);
 	    }
+
 	    if (sum[i] & HIT_FATAL)
 		return((boolean)passive(mon, sum[i], 0, mattk->aatyp, FALSE));
 							/* defender dead */
 	    else {
+
+	     /* bullshit downside to jabberwock: they have so many melee attacks that are so powerful, they need to be nerfed
+	     * this is achieved by making the monster be able to retaliate faster if it survives your attacks --Amy */
+	     if (mon && Race_if(PM_PLAYER_JABBERWOCK)) {
+			mon->movement++;
+			if (mon->data->mmove >= 3) mon->movement += rn2((mon->data->mmove / 3) + 1);
+	     }
+
 		(void) passive(mon, sum[i], 1, mattk->aatyp, FALSE);
 		nsum |= sum[i];
 	    }
