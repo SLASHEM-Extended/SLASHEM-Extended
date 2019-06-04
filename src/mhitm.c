@@ -362,7 +362,7 @@ mattackm(magr, mdef)
 	switch (mattk->aatyp) {
 	    case AT_BREA:
 	    case AT_SPIT:
-		if (range) {
+		if (range || (mattk->aatyp == AT_SPIT && mdef->mtame) || (mdef->mtame && !mon_reflects(mdef, (char *)0) ) ) {
 		    if (mattk->aatyp == AT_BREA)
 			res[i] = breamm(magr, mdef, mattk);
 		    else
@@ -402,7 +402,7 @@ mattackm(magr, mdef)
 #ifdef REINCARNATION
 		if (!Is_rogue_level(&u.uz) && range) {
 #else
-		if (range) {
+		if (range || (!rn2(4) && mdef->mtame) ) {
 #endif
 		    res[i] = thrwmm(magr, mdef);
 		    attk = 0;
@@ -486,7 +486,7 @@ meleeattack:
 		break;
 
 	    case AT_HUGS:	/* automatic if prev two attacks succeed, but also with a low chance otherwise --Amy */
-		strike = ((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || !rn2(30));
+		strike = ((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || !rn2(mdef->mtame ? 4 : 30));
 		if (strike)
 		    res[i] = hitmm(magr, mdef, mattk);
 

@@ -3426,6 +3426,11 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	     *mdef;	/* another monster which is next to it */
 {
 
+	/* Amy edit: if pets are ignored by everything, it can result in them being way too unkillable because they often
+	 * won't attack things that would kill them... */
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !rn2(20)) return ALLOW_M|ALLOW_TM;
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && ((attacktype(mdef->data, AT_EXPL)) || (mindless(magr->data)) || magr->mfrenzied ) ) return ALLOW_M|ALLOW_TM;
+
 	if (Race_if(PM_ALBAE)) return 0L; /* if you're an albae, everything hates you more than anything else --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstatf(killed_nemesis) ) return 0L; /* or if you killed the abuser nemesis */
 	if (Aggravate_monster && rn2(5) ) return 0L; /* aggravate monster makes monsters much more likely to target you and ignore everything else */
