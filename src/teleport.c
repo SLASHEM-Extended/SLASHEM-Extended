@@ -1967,7 +1967,7 @@ newtry:
 		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
 
 		pline("You're pushed back!");
-		u_on_newpos(ccc.x, ccc.y);
+		teleds(ccc.x, ccc.y, FALSE);
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 		return;
 }
@@ -2012,7 +2012,7 @@ newtry:
 
 		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
 
-		u_on_newpos(ccc.x, ccc.y);
+		teleds(ccc.x, ccc.y, FALSE);
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 		return;
 }
