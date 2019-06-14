@@ -2771,6 +2771,7 @@ E void xpathto(int,XCHAR_P,XCHAR_P,int (*)(void *,int,int),void *);
 E void teleds(int,int,BOOLEAN_P);
 E boolean safe_teleds(BOOLEAN_P);
 E boolean safe_teledsPD(BOOLEAN_P);
+E boolean safe_teledsNOTRAP(BOOLEAN_P);
 E boolean teleport_pet(struct monst *,BOOLEAN_P);
 E void tele(void);
 E void phase_door(BOOLEAN_P);

@@ -705,6 +705,24 @@ boolean confused;
 	}
 }
 
+boolean
+safe_teledsNOTRAP(allow_drag)
+boolean allow_drag;
+{
+	register int nux, nuy, tcnt = 0;
+
+	do {
+		nux = rnd(COLNO-1);
+		nuy = rn2(ROWNO);
+	} while ((!teleok(nux, nuy, (boolean)(tcnt > 200)) || (t_at(nux, nuy)) ) && ++tcnt <= 400);
+
+	if (tcnt <= 400) {
+		teleds(nux, nuy, allow_drag);
+		return TRUE;
+	} else
+		return FALSE;
+}
+
 STATIC_OVL void
 vault_tele()
 {
@@ -1959,7 +1977,7 @@ newtry:
 		}
 
 		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
-			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || t_at(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */
 		}
@@ -2007,7 +2025,7 @@ newtry:
 		}
 
 		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
-			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || t_at(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */
 		}
