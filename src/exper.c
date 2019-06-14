@@ -376,6 +376,30 @@ boolean dresistance;	/* level drain resistance can protect you */
 			u.uexp -= expdrain;
 			return;
 		}
+	} else if (!force && (u.uexp > 20) && (u.uexp <= 320) && !issoviet && u.ulevel > 1) {
+		expdrain = newuexp(u.ulevel) - newuexp(u.ulevel - 1);
+		expdrain /= (isfriday ? 3 : 5);
+		expdrain *= 3;
+		expdrain = rnz(expdrain);
+		if ((u.uexp - expdrain) > newuexp(u.ulevel - 1)) {
+			/* drain some experience, but not enough to make you lose a level */
+			You_feel("your life draining away!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy tol'ko chto poteryali odin uroven', skoro vy poteryayete vse urovni i umeret'." : "Due-l-ue-l-ue-l!");
+			u.uexp -= expdrain;
+			return;
+		}
+	} else if (!force && (u.uexp > 10) && !issoviet && u.ulevel == 1) {
+		expdrain = 20;
+		expdrain /= (isfriday ? 3 : 5);
+		expdrain *= 3;
+		expdrain = rnz(expdrain);
+		if ((u.uexp - expdrain) > 0) {
+			/* drain some experience, but not enough to make you lose a level */
+			You_feel("your life draining away!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy tol'ko chto poteryali odin uroven', skoro vy poteryayete vse urovni i umeret'." : "Due-l-ue-l-ue-l!");
+			u.uexp -= expdrain;
+			return;
+		}
 	}
 
 	if (issoviet) pline("BWAR KHAR (gryaznyy smekh) govorit, chto tip bloka l'da!");
