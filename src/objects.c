@@ -5786,6 +5786,8 @@ SCROLL((char *)0,               "AMY MUST WALK BAREFOOT ACROSS A GRAVEL PARKING 
 SCROLL((char *)0,               "EWOTS GOWINA",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "KOSCHISO HAEIAE",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "A LAW THAT MAKES SNOWFLAKES VISIBLE",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "EY HIER DIVERSITY UND BLAH",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "MYHOELL KITAY",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
@@ -6722,6 +6724,7 @@ WAND((char *)0,        "xygos",  0, 500, 1, 0,        VIVA,     CLR_BRIGHT_MAGEN
 WAND((char *)0,        "bone-carved",  0, 500, 1, 0,        BONE,     CLR_WHITE, 1),
 WAND((char *)0,        "darkwood",  0, 500, 1, 0,        WOOD,     CLR_BLACK, 1),
 WAND((char *)0,        "ironshod",  0, 500, 1, 0,        IRON,     CLR_CYAN, 1),
+WAND((char *)0,        "loveheel",  0, 500, 1, 0,        VEGGY,     CLR_GREEN, 1),
 
 #undef WAND
 

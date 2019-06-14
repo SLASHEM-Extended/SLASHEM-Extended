@@ -18066,7 +18066,7 @@ boolean knoweverything;
 				case ART_MESSAGE_MEGAPHONE:
 					pline("Artifact specs: magic resistance when carried, makes monsters flee when used at the cost of 5 alignment and 1 max alignment, chaotic, demagogue quest artifact."); break;
 				case ART_TEAM_FORTRESS_GL:
-					pline("Artifact specs: lots of multishot bonus, magic resistanec when wielded, stealth when carried, lawful, grenadonin quest artifact."); break;
+					pline("Artifact specs: lots of multishot bonus, magic resistance when wielded, stealth when carried, lawful, grenadonin quest artifact."); break;
 				case ART_MARKER_OF_SAFE_SPEECH:
 					pline("Artifact specs: half spell damage when carried, can potentially be recharged more than once, chaotic, social justice warrior quest artifact."); break;
 				case ART_STAHNGNIR_S_GIANT_CRUSHER:
