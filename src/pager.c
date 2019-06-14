@@ -23268,6 +23268,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"The AmyBSOD hits you with her shoes! You feel fleecy!",
 	"The polearm lifts you out of your saddle!",
 	"The polearm lifts you out of your saddle, because that's what polearms were originally for. Sadly you can't do the same to monsters because mounted monsters don't exist.",
+	"You feel like a proper hussy.",
+	"You feel like a proper hussy. This is because you're using scentful perfume.",
+	"You feel like a proper hussy. Did you press a log of dog shit on the ground?",
+	"You feel like a proper hussy. So I guess you've been successful in your attempts to defeat the walscholars.",
 
 };
 

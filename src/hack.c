@@ -1189,6 +1189,20 @@ int mode;
 				makemon((struct permonst *)0, ux+dx, uy+dy, MM_ADJACENTOK);
 				return FALSE;
 			}
+
+			if (Role_if(PM_HUSSY)) {
+				You("feel like a proper hussy.");
+				adjalign(rnd(5));
+				if (!rn2(10)) {
+					pline("There was some gold hidden in the grave wall!");
+					u.ugold += rnz(10);
+				}
+				if (!rn2(1000) && isok(ux+dx, uy+dy)) {
+					(void) mksobj_at(DIAMOND, ux+dx, uy+dy, TRUE, TRUE);
+					pline("Wow, this was one of the special grave walls where Hans Walt had hidden a diamond!");
+				}
+			}
+
 		}
 
 walscholardone:
