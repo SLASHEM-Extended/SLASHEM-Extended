@@ -1509,8 +1509,7 @@ wildmiss(mtmp, mattk)		/* monster attacked your displaced image */
 	    else
 		pline("%s is fooled by water reflections and misses!",Monnam(mtmp));
 
-	} else impossible("%s attacks you without knowing your location?",
-		Monnam(mtmp));
+	} else impossible("monster attacks you without knowing your location?");
 }
 
 void
