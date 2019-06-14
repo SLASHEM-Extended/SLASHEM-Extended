@@ -824,6 +824,11 @@ secureidchoice:
 	} else if (lays_eggs(youmonst.data)) {
 		struct obj *uegg;
 
+		if (monsndx(youmonst.data) >= NUMMONS) {
+			You("can't lay eggs as a missingno because they would crash the game!");
+			return 0;
+		}
+
 		if (!flags.female) {
 			pline(Hallucination ? "You try to lay an egg, but instead you... okay let's not go there." : "Males can't lay eggs!");
 			return 0;
