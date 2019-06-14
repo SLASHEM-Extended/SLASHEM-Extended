@@ -2785,6 +2785,12 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (ptr->mflags5 & M5_ELONA) {
 		strcat(description, " Origin: Elona.");
 	}
+	if (ptr->mflags5 & M5_AOE) {
+		strcat(description, " Origin: Age of Empires.");
+	}
+	if (ptr->mflags5 & M5_ELDERSCROLLS) {
+		strcat(description, " Origin: Fallout or Elder Scrolls.");
+	}
 
 	
 	if (polyok(ptr)) {

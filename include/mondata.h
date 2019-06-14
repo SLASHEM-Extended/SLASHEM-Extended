@@ -236,6 +236,8 @@
 #define is_evilpatchmonster(ptr)	((ptr)->mflags5 & M5_EVIL)
 #define is_randomizedmonster(ptr)	((ptr)->mflags5 & M5_RANDOMIZED)
 #define is_elonamonster(ptr)	((ptr)->mflags5 & M5_ELONA)
+#define is_aoemonster(ptr)	((ptr)->mflags5 & M5_AOE)
+#define is_elderscrollsmonster(ptr)	((ptr)->mflags5 & M5_ELDERSCROLLS)
 
 #define nocorpsedecay(ptr)		((ptr)->mflags3 & M3_NO_DECAY)
 
