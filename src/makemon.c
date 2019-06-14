@@ -18558,6 +18558,36 @@ register int	mmflags;
 	    if (!is_armed(ptr) && !is_animal(ptr) && !cantweararm(mtmp->data) && !rn2(25))
 		m_initarmorpieces(mtmp); /* chance to have armor; monsters that are armed already had a bigger chance earlier */
 
+		/* permafood should be more common in a way that allows you to get more of it even if you don't constantly
+		 * move on to deeper levels; we'll try to achieve that by making intelligent humanoids capable of spawning
+		 * with random FOOD_CLASS items. They shouldn't be too common though --Amy */
+		if (timebasedlowerchance() && humanoid(ptr) && !mindless(ptr) && !(ptr->geno & G_NOCORPSE) ) {
+			int foodchance = 100;
+			switch (ptr->msize) {
+
+				case MZ_TINY:
+					foodchance = 1000; break;
+				case MZ_SMALL:
+					foodchance = 500; break;
+				case MZ_MEDIUM:
+					foodchance = 200; break;
+				case MZ_LARGE:
+					foodchance = 100; break;
+				case MZ_HUGE:
+					foodchance = 50; break;
+				case MZ_GIGANTIC:
+					foodchance = 25; break;
+				default:
+					foodchance = 200;
+					if (ptr->msize > MZ_HUGE) foodchance = 30;
+					break;
+			}
+
+			if (!rn2(foodchance))
+				(void) mongets(mtmp, rnd_class(TRIPE_RATION,TIN));
+
+		}
+
 	    m_initinv(mtmp);  /* add on a few special items incl. more armor */
 		m_initxtraitem(mtmp);
 

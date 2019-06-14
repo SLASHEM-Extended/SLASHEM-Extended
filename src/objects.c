@@ -3525,6 +3525,8 @@ OBJECT(OBJ("Bell of Opening", "silver bell"),
 /* banana cures hallucination, melon cures confusion, pear cures stun, asian pear cures both confusion and stun --Amy */
 /* apple cures numbness, orange cures freezing, cream pie cures burn, lemon cures fear */
 
+/* tripe ration must be first, see makemon.c */
+
 /* Meat */
 FOOD("tripe ration",        1932, 2, 0, 0, FLESH, 250, CLR_BROWN, 1),
 FOOD("corpse",              500, 1,  0, 0, FLESH,   0, CLR_BROWN, 1),
@@ -3618,6 +3620,8 @@ FOOD("K-ration",             10, 1, 0, 0, VEGGY, 400, HI_ORGANIC, 1),
 FOOD("C-ration",             10, 1, 0, 0, VEGGY, 300, HI_ORGANIC, 1),
 FOOD("tin",                1000, 0, 0, 1, METAL,   0, HI_METAL, 1),
 #undef FOOD
+
+/* tin must be last, see makemon.c */
 
 /* potions ... */
 #define POTION(name,desc,mgc,power,prob,cost,color,minlvl,appearindex) OBJECT( \
