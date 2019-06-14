@@ -5792,6 +5792,8 @@ SCROLL((char *)0,               "KOSCHISO HAEIAE",  P_NONE,     1,   0, 300, CLR
 SCROLL((char *)0,               "A LAW THAT MAKES SNOWFLAKES VISIBLE",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 SCROLL((char *)0,               "EY HIER DIVERSITY UND BLAH",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "MYHOELL KITAY",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "ERMAH ERS SER FLERCER BERNDLERBERNDL",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "HERGHLERMAH QERQ JERJVERM",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

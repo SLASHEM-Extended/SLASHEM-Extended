@@ -4830,6 +4830,7 @@ static const char *epitaphs[] = {
 	"Why does the game constantly spawn lulu asses, anyway?",
 	"Are you SURE that's a wand of wishing?",
 	"Croesus?  Who's he?",
+	"Who knows, how moves the people nowadays is? They are capable and kill one because allegedly a turning place belongs to them!",
 
 };
 

@@ -846,6 +846,8 @@ doread()
 	"I haven't watched Game of THrones and I don't care", /* by Elronnd IIRC */
 	"I should become a SLEX developer so I can inflect EVIL upon the world.", /* by NCommander */
 	"I own your stuff now. fight me", /* by bhaak */
+	"Say YES to plastic! Glass can break. Plastic persists forever and for always in the seas.",
+	"Why did I explain the joke? Now it's not funny anymore you dummy!",
 
 	    };
 	    char buf[BUFSZ];

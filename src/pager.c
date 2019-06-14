@@ -23272,6 +23272,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel like a proper hussy. This is because you're using scentful perfume.",
 	"You feel like a proper hussy. Did you press a log of dog shit on the ground?",
 	"You feel like a proper hussy. So I guess you've been successful in your attempts to defeat the walscholars.",
+	"You buckle your hips.",
+	"You shake your bones.",
 
 };
 
