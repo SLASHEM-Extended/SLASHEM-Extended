@@ -1090,6 +1090,7 @@ register int pm;
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
+	    case PM_CLOCKBACK_LIZARD:
 	    case PM_ADULT_LIZARD:
 	    case PM_KARMIC_LIZARD:
 	    case PM_GREEN_LIZARD:
@@ -1265,6 +1266,7 @@ struct monst *mon;
 	    case PM_OWN_SMOKE:
 	    case PM_ADULT_LIZARD:
 	    case PM_GRANDPA:
+	    case PM_CLOCKBACK_LIZARD:
 	case PM_KARMIC_LIZARD:
 	case PM_GREEN_LIZARD:
 	case PM_BLACK_LIZARD:
@@ -1998,6 +2000,7 @@ register int pm;
 	    case PM_GIGANTIC_NEWT:
 	    case PM_BONUS_MANA_TROVE:
 	    case PM_KILLERTRICE:
+	    case PM_MULTITRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      {int old_uen = u.uen;
 		    u.uen += rnd(4);
@@ -2230,6 +2233,7 @@ register int pm;
 	    case PM_GREATER_BASILISK:
 	    case PM_ETHEREAL_TROVE:
 	    case PM_CENTAURTRICE:
+	    case PM_SPICKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		switch(rnd(10)) {                
 		case 1:
@@ -2848,6 +2852,7 @@ register int pm;
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
+	    case PM_CLOCKBACK_LIZARD:
 	    case PM_FIRE_LIZARD:
 	    case PM_BLACK_LIZARD:
 	    case PM_LIGHTNING_LIZARD:
@@ -3050,7 +3055,9 @@ register int pm;
 	    case PM_KURROE:
 	    case PM_MIND_IMP:
 	    case PM_MASTER_BLASTER:
+	    case PM_SANITY_BLASTER:
 	    case PM_NECROMORB:
+	    case PM_STUPID_ORB:
 	    case PM_EVIL_ORB:
 	    case PM_NERF_ORB:
 	    case PM_ABRA:
@@ -3095,6 +3102,7 @@ register int pm;
 	    case PM_MISTRESS_MIND_FLAYER:
 	    case PM_FOOCUBUS_MIND_FLAYER:
 	    case PM_HUGE_MIND_FLAYER:
+	    case PM_OWNER_MIND_FLAYER:
 	    case PM_MINOR_MIND_FLAYER:
 	    case PM_LOW_MIND_FLAYER:
 	    case PM_LARGE_MIND_FLAYER:

@@ -23280,6 +23280,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel like a proper hussy. So I guess you've been successful in your attempts to defeat the walscholars.",
 	"You buckle your hips.",
 	"You shake your bones.",
+	"You are approached by the LarienTelrunya. She takes off her high heels and stabs you with the points. You feel good enough to do it again.", /* by bouquet <3 */
 
 };
 

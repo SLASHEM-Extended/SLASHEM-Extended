@@ -289,6 +289,7 @@
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_GOLD_DRACONIAN]) ? 1 : \
 				 ((ptr) == &mons[PM_ANIMATED_TORCH]) ? 1 : \
+				 ((ptr) == &mons[PM_SIMMERING_MUSHROOM_PATCH]) ? 1 : \
 				 ((ptr) == &mons[PM_WAX_GOLEM]) ? 1 : 0)
 /*	[note: the light ranges above were reduced to 1 for performance...] */
 /*  WAC increased to 3 and 2?*/
