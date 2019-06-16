@@ -597,31 +597,44 @@ meleeattack:
 	if (attk && !(res[i] & MM_AGR_DIED)) {
 
 	    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 0);
-/*	    if (res[i] & MM_HIT) hashit = TRUE;
+	    if (res[i] & MM_HIT) hashit = TRUE;
+	    if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;
+	    if (res[i] & MM_DEF_DIED) return res[i];
+
 	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
 		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 1);
 		    if (res[i] & MM_HIT) hashit = TRUE;
+		    if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;
+		    if (res[i] & MM_DEF_DIED) return res[i];
 	    }
 	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
 		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 2);
 		    if (res[i] & MM_HIT) hashit = TRUE;
+		    if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;
+		    if (res[i] & MM_DEF_DIED) return res[i];
 	    }
 	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
 		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 3);
 		    if (res[i] & MM_HIT) hashit = TRUE;
+		    if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;
+		    if (res[i] & MM_DEF_DIED) return res[i];
 	    }
 	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
 		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 4);
 		    if (res[i] & MM_HIT) hashit = TRUE;
+		    if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;
+		    if (res[i] & MM_DEF_DIED) return res[i];
 	    }
 	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
 		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 5);
 		    if (res[i] & MM_HIT) hashit = TRUE;
-	    }*/
+		    if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;
+		    if (res[i] & MM_DEF_DIED) return res[i];
+	    }
 
 	}
 
-/*	if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;*/
+	if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;
 
 	if (res[i] & MM_DEF_DIED) return res[i];
 
@@ -2848,10 +2861,8 @@ int attnumber;
 	if (mdef->mtame && !monnear(magr, mdef->mx, mdef->my)) return 0;
 
 	for(i = 0; ; i++) {
-	    if (!mdef) return 0;
-	    if (DEADMONSTER(mdef)) return 0;
 	    if(i >= NATTK) return (mdead | mhit); /* no passive attacks */
-	    if(mddat->mattk[i].aatyp == AT_NONE || mddat->mattk[i].aatyp == AT_RATH) break;
+	    if((i == attnumber) && mddat->mattk[i].aatyp == AT_NONE || mddat->mattk[i].aatyp == AT_RATH) break;
 	}
 
 	if (mddat->mattk[i].damn)
