@@ -369,8 +369,11 @@ struct monst {
 	/* these bigger bitfields mean: 1 = single source is enough, 2 = only see monster if two sources */
 	Bitfield(seeinvisble,1);	/* 2 in 3 chance that single see invisible is enough */
 	Bitfield(infravisble,1);	/* 2 in 3 chance that single infravision is enough */
+	Bitfield(willbebanished,1);	/* got hit by a banishment attack and will be banished on its next turn */
 	int hominglazer;	/* normally zero; very specific monsters can use this to charge up a cannon */
 	int ogrethief;	/* normally zero; used for the huge ogre thief */
+	int bleedout;	/* normally zero; monster bleeds out (takes continuous damage) if nonzero */
+	int healblock;	/* normally zero; monster cannot heal over time if nonzero */
 
 	struct obj *mw;
 	long misc_worn_check;

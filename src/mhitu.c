@@ -2194,7 +2194,7 @@ swingweapon:
 				if (!Is_rogue_level(&u.uz) || !rn2(3) ) {
 #endif
 
-					rangewepon = select_rwep(mtmp);
+					rangewepon = select_rwep(mtmp, FALSE);
 					if (!rangewepon && !range2) goto usemelee;
 
 					if (!blue_on_blue(mtmp)) thrwmu(mtmp);

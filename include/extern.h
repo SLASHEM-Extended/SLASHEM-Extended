@@ -1820,6 +1820,8 @@ E struct obj *m_carrying(struct monst *,int);
 E void m_useup(struct monst *,struct obj *);
 E void m_throw(struct monst *,int,int,int,int,int,struct obj *);
 E boolean hits_bars(struct obj **,int,int,int,int);
+E struct monst *mfind_target(struct monst *, BOOLEAN_P);
+E boolean mlined_up(struct monst *,struct monst *,BOOLEAN_P);
 
 /* ### muse.c ### */
 
@@ -3133,7 +3135,7 @@ E int dosuspend(void);
 E int hitval(struct obj *,struct monst *);
 E int dmgval(struct obj *,struct monst *);
 E int dmgvalX(struct obj *,struct monst *);
-E struct obj *select_rwep(struct monst *);
+E struct obj *select_rwep(struct monst *,BOOLEAN_P);
 E struct obj *select_hwep(struct monst *);
 E void possibly_unwield(struct monst *,BOOLEAN_P);
 E int mon_wield_item(struct monst *);

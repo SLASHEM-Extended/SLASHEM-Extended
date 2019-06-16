@@ -995,6 +995,11 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_THE_ZRUTINATOR] && Race_if(PM_RODNEYAN)) ||
 	/* troves only drop their items if the player kills them, so keep pets away from them */
 			 (mtmp2->data->mlet == S_TROVE) ||
+	/* fear and other status effects should screw over pets */
+			 (mtmp->mflee && rn2(10)) || (mtmp->mstun && rn2(4)) || (mtmp->mconf && rn2(2)) || (mtmp->mblinded && haseyes(mtmp->data) && rn2(3)) ||
+	/* invisible monsters need see invis to be attacked reliably */
+			 (mtmp2->minvis && haseyes(mtmp->data) && !perceives(mtmp->data) && rn2(4)) ||
+			 (mtmp2->minvisreal && rn2(haseyes(mtmp->data) ? 5 : 3)) ||
 	/* petshielder egotype is never attacked by pets either */
 			 (mtmp2->egotype_petshielder || mtmp2->data == &mons[PM_TUXIE]) ||
 	/* directive can be used to make them not attack peacefuls */

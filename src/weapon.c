@@ -1741,8 +1741,9 @@ static NEARDATA const int pwep[] =
 static struct obj *propellor;
 
 struct obj *
-select_rwep(mtmp)	/* select a ranged weapon for the monster */
+select_rwep(mtmp,polespecial)	/* select a ranged weapon for the monster */
 register struct monst *mtmp;
+boolean polespecial; /* may use polearm for monster-versus-monster combat */
 {
 	register struct obj *otmp;
 	int i;
@@ -1762,7 +1763,7 @@ register struct monst *mtmp;
 	 * one direction and 1 in another; one space beyond that would be 3 in
 	 * one direction and 2 in another; 3^2+2^2=13.
 	 */
-	if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= 13 && couldsee(mtmp->mx, mtmp->my)) {
+	if ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= 13 && couldsee(mtmp->mx, mtmp->my)) || polespecial) {
 	    for (i = 0; i < SIZE(pwep); i++) {
 		/* Only strong monsters can wield big (esp. long) weapons.
 		 * Big weapon is basically the same as bimanual.
@@ -2106,7 +2107,7 @@ register struct monst *mon;
 			obj = select_hwep(mon);
 			break;
 		case NEED_RANGED_WEAPON:
-			(void)select_rwep(mon);
+			(void)select_rwep(mon, FALSE);
 			obj = propellor;
 			
 			break;

@@ -9,7 +9,7 @@
 extern boolean notonhead;
 extern const char *breathwep[];		/* from mthrowu.c */
 
-#define POLE_LIM 5	/* How far monsters can use pole-weapons */
+#define POLE_LIM 8	/* How far monsters can use pole-weapons */
 
 #ifdef OVLB
 
@@ -317,6 +317,16 @@ mattackm(magr, mdef)
     }
     tmp += magrlev;
 
+	/* pets need to be subjected to penalties or they'll be overpowered :P --Amy */
+    if (magr->mtame) {
+	if (magr->mflee) tmp -= 20;
+	if (magr->mstun) tmp -= rnd(20);
+	if (magr->mconf) tmp -= rnd(5);
+	if (magr->mblinded && haseyes(magr->data)) tmp -= rnd(8);
+	if (mdef->minvis && haseyes(magr->data) && !perceives(magr->data)) tmp -= 10;
+	if (mdef->minvisreal) tmp -= (haseyes(magr->data) ? 30 : 20);
+    }
+
     if (mdef->mconf || !mdef->mcanmove || mdef->msleeping) {
 	tmp += 4;
 	mdef->msleeping = 0;
@@ -359,14 +369,49 @@ mattackm(magr, mdef)
 	mattk = getmattk(pa, i, res, &alt_attk);
 	otmp = (struct obj *)0;
 	attk = 1;
+
 	switch (mattk->aatyp) {
 	    case AT_BREA:
 	    case AT_SPIT:
+
+		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my) ) {
+		    strike = 0;
+		    attk = 0;
+		    break;
+
+		}
+
 		if (range || (mattk->aatyp == AT_SPIT && mdef->mtame) || (mdef->mtame && !mon_reflects(mdef, (char *)0) ) ) {
-		    if (mattk->aatyp == AT_BREA)
-			res[i] = breamm(magr, mdef, mattk);
-		    else
-			res[i] = spitmm(magr, mdef, mattk);
+
+			if (!rn2(3)) {
+				goto meleeattack;
+			}
+		    if (mattk->aatyp == AT_BREA) {
+
+			if (mattk->adtyp == AD_FIRE && resists_fire(mdef)) {
+				strike = 0;
+			} else if (mattk->adtyp == AD_COLD && resists_cold(mdef)) {
+				strike = 0;
+			} else if (mattk->adtyp == AD_SLEE && resists_sleep(mdef)) {
+				strike = 0;
+			} else if (mattk->adtyp == AD_DISN && resists_disint(mdef)) {
+				strike = 0;
+			} else if (mattk->adtyp == AD_ELEC && resists_elec(mdef)) {
+				strike = 0;
+			} else if (mattk->adtyp == AD_DRST && resists_poison(mdef)) {
+				strike = 0;
+			} else if (mattk->adtyp == AD_ACID && resists_acid(mdef)) {
+				strike = 0;
+			} else if ((mattk->adtyp < AD_MAGM || mattk->adtyp > AD_SPC2) && mattk->adtyp != AD_RBRE) {
+				goto meleeattack;
+			}
+			else res[i] = breamm(magr, mdef, mattk);
+		    } else {
+			if (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_TCKL || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_NAST) {
+				res[i] = spitmm(magr, mdef, mattk);
+			} else goto meleeattack;
+
+		    }
 		    /* We can't distinguish no action from failed attack
 		     * so assume defender doesn't waken unless actually hit.
 		     */
@@ -377,6 +422,14 @@ mattackm(magr, mdef)
 		break;
 
 	    case AT_MAGC:
+
+		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my) ) {
+		    strike = 0;
+		    attk = 0;
+		    break;
+
+		}
+
 		/* [ALI] Monster-on-monster spell casting always fails. This
 		 * is partly for balance reasons and partly because the
 		 * amount of code required to implement it is prohibitive.
@@ -404,6 +457,7 @@ mattackm(magr, mdef)
 #else
 		if (range || (!rn2(4) && mdef->mtame) ) {
 #endif
+
 		    res[i] = thrwmm(magr, mdef);
 		    attk = 0;
 		    strike = res[i] & MM_HIT;
@@ -412,7 +466,9 @@ mattackm(magr, mdef)
 		/* "hand to hand" attacks */
 		if (magr->weapon_check == NEED_WEAPON || !MON_WEP(magr)) {
 		    magr->weapon_check = NEED_HTH_WEAPON;
-		    if (mon_wield_item(magr) != 0) return 0;
+		    if (mon_wield_item(magr) != 0) {
+			return 0;
+		    }
 		}
 		possibly_unwield(magr, FALSE);
 		otmp = MON_WEP(magr);
@@ -435,8 +491,10 @@ mattackm(magr, mdef)
 	    case AT_BEAM:
 meleeattack:
 		/* Nymph that teleported away on first attack? */
-		if (distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1)
-		    return MM_MISS;
+		if ((distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1) && mattk->aatyp != AT_BREA && mattk->aatyp != AT_SPIT && mattk->aatyp != AT_MAGC && (mattk->aatyp != AT_BEAM || (mattk->aatyp == AT_BEAM && !linedup(magr->mx,magr->my,mdef->mx,mdef->my)) ) ) {
+		    strike = 0;
+		    break;
+		}
 		/* Monsters won't attack cockatrices physically if they
 		 * have a weapon instead.  This instinct doesn't work for
 		 * players, or under conflict or confusion. 
@@ -619,6 +677,15 @@ struct attack *mattk;
 	    case AD_DRST:
 		obj = mksobj(BLINDING_VENOM, TRUE, FALSE);
 		break;
+	    case AD_DRLI:
+		obj = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE);
+		break;
+	    case AD_TCKL:
+		obj = mksobj(TAIL_SPIKES, TRUE, FALSE);
+		break;
+	    case AD_NAST:
+		obj = mksobj(SEGFAULT_VENOM, TRUE, FALSE);
+		break;
 	    default:
 		pline("bad attack type in spitmm");
 	    /* fall through */
@@ -652,6 +719,8 @@ struct monst *magr, *mdef;
     int multishot, mhp;
     const char *onm;
 
+	int polelimit = POLE_LIM;
+
     /* Rearranged beginning so monsters can use polearms not in a line */
     if (magr->weapon_check == NEED_WEAPON || !MON_WEP(magr)) {
 	magr->weapon_check = NEED_RANGED_WEAPON;
@@ -660,13 +729,22 @@ struct monst *magr, *mdef;
     }
 
     /* Pick a weapon */
-    obj = select_rwep(magr);
+    obj = select_rwep(magr,TRUE); /* can also select polearms even when far away from the player --Amy */
     if (!obj) return MM_MISS;
 
     if (is_applypole(obj)) {
 	int dam, hitv, vis = canseemon(magr);
 
-	if (dist2(magr->mx, magr->my, mdef->mx, mdef->my) > POLE_LIM ||
+	if (obj->otyp == NOOB_POLLAX || obj->otyp == GREAT_POLLAX) polelimit += 5;
+	if (obj->otyp == YITH_TENTACLE) polelimit += 2;
+	if (obj->otyp == POLE_LANTERN) polelimit += 10;
+	if (obj->otyp == NASTYPOLE) polelimit += 8;
+	if (obj->oartifact == ART_ETHER_PENETRATOR) polelimit += 5;
+	if (obj->oartifact == ART_FUURKER) polelimit += 6;
+	if (obj->otyp == WOODEN_BAR) polelimit += 7;
+	if (obj->oartifact == ART_OVERLONG_STICK) polelimit += 12;
+
+	if (dist2(magr->mx, magr->my, mdef->mx, mdef->my) > polelimit ||
 		!m_cansee(magr, mdef->mx, mdef->my))
 	    return MM_MISS;	/* Out of range, or intervening wall */
 
@@ -681,6 +759,7 @@ struct monst *magr, *mdef;
 	if (hitv < -4) hitv = -4;
 	if (bigmonst(mdef->data)) hitv++;
 	hitv += 8 + obj->spe;
+	if (mdef->mtame) hitv += magr->m_lev;
 	if (dam < 1) dam = 1;
 
 	if (find_mac(mdef) + hitv <= rnd(20)) {
@@ -750,10 +829,39 @@ struct monst *magr, *mdef;
 	if (is_prince(magr->data)) multishot += 2;
 	else if (is_lord(magr->data)) multishot++;
 
+	/* strong, nasty or high-level monsters can also shoot more --Amy */
+	if (magr->m_lev >= 10 && strongmonst(magr->data) && !rn2(3)) multishot++;
+	if (magr->m_lev >= 10 && strongmonst(magr->data) && !rn2(9)) multishot++;
+	if (magr->m_lev >= 10 && strongmonst(magr->data) && !rn2(27)) multishot++;
+
+	if (magr->m_lev >= 10 && extra_nasty(magr->data) && !rn2(2)) multishot++;
+	if (magr->m_lev >= 10 && extra_nasty(magr->data) && !rn2(4)) multishot++;
+	if (magr->m_lev >= 10 && extra_nasty(magr->data) && !rn2(8)) multishot++;
+
+	if (magr->m_lev >= 10 && magr->m_lev < 20) multishot += 1;
+	if (magr->m_lev >= 20 && magr->m_lev < 30) multishot += rnd(2);
+	if (magr->m_lev >= 30 && magr->m_lev < 40) multishot += rnd(3);
+	if (magr->m_lev >= 40 && magr->m_lev < 50) multishot += rnd(4);
+	if (magr->m_lev >= 50 && magr->m_lev < 60) multishot += rnd(5);
+	if (magr->m_lev >= 60 && magr->m_lev < 70) multishot += rnd(6);
+	if (magr->m_lev >= 70 && magr->m_lev < 80) multishot += rnd(7);
+	if (magr->m_lev >= 80 && magr->m_lev < 90) multishot += rnd(8);
+	if (magr->m_lev >= 90 && magr->m_lev < 100) multishot += rnd(9);
+	if (magr->m_lev >= 100) multishot += rnd(10);
+
 	/*  Elven Craftsmanship makes for light,  quick bows */
 	if (obj->otyp == ELVEN_ARROW && !obj->cursed)
 	    multishot++;
 	if (mwep && mwep->otyp == ELVEN_BOW && !mwep->cursed) multishot++;
+
+	if (mwep && mwep->otyp == WILDHILD_BOW && obj->otyp == ODOR_SHOT) multishot++;
+	if (mwep && mwep->otyp == COMPOST_BOW && obj->otyp == FORBIDDEN_ARROW) multishot++;
+
+	if (mwep && mwep->otyp == CATAPULT) multishot += rnd(5);
+
+	if (mwep && mwep->otyp == HYDRA_BOW) multishot += 2;
+	if (mwep && mwep->otyp == WILDHILD_BOW) multishot += 2;
+
 	/* 1/3 of object enchantment */
 	if (mwep && mwep->spe > 1)
 	    multishot += rounddiv(mwep->spe, 3);
@@ -764,8 +872,24 @@ struct monst *magr, *mdef;
 	    multishot += objects[mwep->otyp].oc_rof;
 
 	switch (monsndx(magr->data)) {
+	case PM_SPARD:
+		multishot += 3;
+		break;
 	case PM_RANGER:
+	case PM_ROCKER:
+	case PM_GATLING_ARCHER:
 		multishot++;
+		break;
+	case PM_PELLET_ARCHER:
+	case PM_ECM_ARCHER:
+	case PM_SHOTGUN_HORROR:
+	case PM_SHOTGUN_TERROR:
+	case PM_KOBOLD_PEPPERMASTER:
+		multishot++;
+		multishot++;
+		break;
+	case PM_BRA_GIANT:
+		multishot += 5;
 		break;
 	case PM_ELPH:
 		multishot++;
@@ -791,6 +915,9 @@ struct monst *magr, *mdef;
 		obj->otyp == ORCISH_ARROW &&
 		mwep && mwep->otyp == ORCISH_BOW))
 	    multishot++;
+
+	/* monster-versus-monster is less critical than monster-versus-player, so we don't put the reduction for
+	 * weaker monsters here that is present in mthrowu.c --Amy */
 
 	if ((long)multishot > obj->quan) multishot = (int)obj->quan;
 	if (multishot < 1) multishot = 1;
@@ -887,6 +1014,12 @@ hitmm(magr, mdef, mattk)
 				break;
 			case AT_BEAM:
 				sprintf(buf,"%s blasts", magr_name);
+				break;
+			case AT_BREA:
+				sprintf(buf,"%s breathes at", magr_name);
+				break;
+			case AT_SPIT:
+				sprintf(buf,"%s spits at", magr_name);
 				break;
 			case AT_TENT:
 				sprintf(buf, "%s tentacles suck",
@@ -2636,6 +2769,8 @@ int mdead;
 	register struct permonst *madat = magr->data;
 	char buf[BUFSZ];
 	int i, tmp;
+
+	if (mdef->mtame && !monnear(magr, mdef->mx, mdef->my)) return (mdead | mhit);
 
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return (mdead | mhit); /* no passive attacks */
