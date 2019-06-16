@@ -1057,6 +1057,23 @@ migrate_to_level(mtmp, tolev, xyloc, cc)
 	mtmp->mx = mtmp->my = 0;	/* this implies migration */
 }
 
+/* function that makes your pet more hungry, e.g. because it got hit by a famine attack */
+void
+makedoghungry(mon, amount)
+struct monst *mon;
+int amount;
+{
+	if (!mon->mtame) return;
+
+	struct edog *edog = EDOG(mon);
+
+	if (edog && edog->hungrytime > 1) {
+		edog->hungrytime -= amount;
+		if (edog->hungrytime < 1) edog->hungrytime = 1;
+	}
+
+}
+
 #endif /* OVLB */
 #ifdef OVL1
 

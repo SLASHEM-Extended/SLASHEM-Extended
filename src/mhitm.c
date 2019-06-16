@@ -33,7 +33,7 @@ STATIC_DCL int mdamagem(struct monst *,struct monst *,struct attack *);
 STATIC_DCL void mswingsm(struct monst *, struct monst *, struct obj *);
 STATIC_DCL void noises(struct monst *,struct attack *);
 STATIC_DCL void missmm(struct monst *,struct monst *, int, int, struct attack *);
-STATIC_DCL int passivemm(struct monst *, struct monst *, BOOLEAN_P, int);
+STATIC_DCL int passivemm(struct monst *, struct monst *, BOOLEAN_P, int, int);
 STATIC_DCL void stoogejoke();
 
 STATIC_PTR void set_lit(int,int,void *);
@@ -299,7 +299,7 @@ mattackm(magr, mdef)
     if ((isgridbug(pa) || (uwep && uwep->oartifact == ART_EGRID_BUG && magr->data->mlet == S_XAN) || (uarmf && !rn2(10) && itemhasappearance(uarmf, APP_CHESS_BOOTS) ) ) && magr->mx != mdef->mx && magr->my != mdef->my)
 	return(MM_MISS);
 
-    range = !magr->mtame && !monnear(magr, mdef->mx, mdef->my);
+    range = (!magr->mtame || rn2(3)) && !monnear(magr, mdef->mx, mdef->my);
 
     /* Calculate the armour class differential. */
     tmp = find_mac(mdef);
@@ -592,8 +592,36 @@ meleeattack:
 		break;
 	}
 
-	if (attk && !(res[i] & MM_AGR_DIED))
-	    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED);
+	boolean hashit = FALSE;
+
+	if (attk && !(res[i] & MM_AGR_DIED)) {
+
+	    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 0);
+/*	    if (res[i] & MM_HIT) hashit = TRUE;
+	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
+		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 1);
+		    if (res[i] & MM_HIT) hashit = TRUE;
+	    }
+	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
+		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 2);
+		    if (res[i] & MM_HIT) hashit = TRUE;
+	    }
+	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
+		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 3);
+		    if (res[i] & MM_HIT) hashit = TRUE;
+	    }
+	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
+		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 4);
+		    if (res[i] & MM_HIT) hashit = TRUE;
+	    }
+	    if (!(res[i] & MM_AGR_DIED) && !(res[i] & MM_DEF_DIED)) {
+		    res[i] = passivemm(magr, mdef, strike, res[i] & MM_DEF_DIED, 5);
+		    if (res[i] & MM_HIT) hashit = TRUE;
+	    }*/
+
+	}
+
+/*	if (hashit && !(res[i] & MM_HIT)) res[i] |= MM_HIT;*/
 
 	if (res[i] & MM_DEF_DIED) return res[i];
 
@@ -1253,6 +1281,7 @@ mdamagem(magr, mdef, mattk)
         boolean nohit = FALSE;
 
 	int petdamagebonus;
+	int atttyp;
 
 	if (touch_petrifies(pd) && !rn2(4) && !resists_ston(magr)) {
 	    long protector = attk_protection((int)mattk->aatyp),
@@ -1376,7 +1405,40 @@ mdamagem(magr, mdef, mattk)
 
 	}
 
-	switch(mattk->adtyp) {
+	atttyp = mattk->adtyp;
+
+	if (mdef->mtame) {
+		if (atttyp == AD_RBRE) {
+			while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE) {
+				atttyp = randattack();
+			}
+		}
+
+		if (atttyp == AD_DAMA) {
+			atttyp = randomdamageattack();
+		}
+
+		if (atttyp == AD_THIE) {
+			atttyp = randomthievingattack();
+		}
+
+		if (atttyp == AD_RNG) {
+			while (atttyp == AD_ENDS || atttyp == AD_RNG || atttyp == AD_WERE) {
+				atttyp = rn2(AD_ENDS); }
+		}
+
+		if (atttyp == AD_PART) atttyp = u.adpartattack;
+
+		if (atttyp == AD_MIDI) {
+			atttyp = magr->m_id;
+			if (atttyp < 0) atttyp *= -1;
+			while (atttyp >= AD_ENDS) atttyp -= AD_ENDS;
+			if (!(atttyp >= AD_PHYS && atttyp < AD_ENDS)) atttyp = AD_PHYS; /* fail safe --Amy */
+			if (atttyp == AD_WERE) atttyp = AD_PHYS;
+		}
+	}
+
+	switch(atttyp) {
 	    case AD_DGST:
 
           if (!rnd(25)) { /* since this is an instakill, greatly lower the chance of it connecting --Amy */
@@ -1790,9 +1852,11 @@ physical:
 			tmp = (mattk->adtyp == AD_STON ? 0 : mattk->adtyp == AD_EDGE ? 0 : 1);
 		}
 		break;
+	    case AD_BANI:
+		if (mdef->mtame && !rn2(3)) mdef->willbebanished = TRUE;
+		break;
 	    case AD_TLPT:
 	    case AD_NEXU:
-	    case AD_BANI:
 	    case AD_ABDC:
 		if (!cancelled && tmp < mdef->mhp && !tele_restrict(mdef)) {
 		    char mdef_Monnam[BUFSZ];
@@ -2181,6 +2245,14 @@ physical:
 		}
 		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
+
+	    case AD_FAMN:
+		if (mdef->mtame) {
+			makedoghungry(mdef, tmp * rnd(50));
+			if (vis) pline("%s suddenly looks hungry.", Monnam(mdef));
+		}
+		break;
+
 	    case AD_WRAT:
 	    case AD_MANA:
 	    case AD_TECH:
@@ -2760,23 +2832,28 @@ register struct obj *otemp;
  * handled above.  Returns same values as mattackm.
  */
 STATIC_OVL int
-passivemm(magr,mdef,mhit,mdead)
+passivemm(magr,mdef,mhit,mdead,attnumber)
 register struct monst *magr, *mdef;
 boolean mhit;
 int mdead;
+int attnumber;
 {
 	register struct permonst *mddat = mdef->data;
 	register struct permonst *madat = magr->data;
 	char buf[BUFSZ];
 	int i, tmp;
 
-	if (mdef->mtame && !monnear(magr, mdef->mx, mdef->my)) return (mdead | mhit);
+	int atttypB;
+
+	if (mdef->mtame && !monnear(magr, mdef->mx, mdef->my)) return 0;
 
 	for(i = 0; ; i++) {
+	    if (!mdef) return 0;
+	    if (DEADMONSTER(mdef)) return 0;
 	    if(i >= NATTK) return (mdead | mhit); /* no passive attacks */
-	    if(mddat->mattk[i].aatyp == AT_NONE || mddat->mattk[i].aatyp == AT_RATH /*||
-	       mddat->mattk[i].aatyp == AT_BOOM*/) break;
+	    if(mddat->mattk[i].aatyp == AT_NONE || mddat->mattk[i].aatyp == AT_RATH) break;
 	}
+
 	if (mddat->mattk[i].damn)
 	    tmp = d((int)mddat->mattk[i].damn,
 				    (int)mddat->mattk[i].damd);
@@ -2785,8 +2862,42 @@ int mdead;
 	else
 	    tmp = 0;
 
+	atttypB = mddat->mattk[i].adtyp;
+
+	if (magr->mtame) {
+
+		if (atttypB == AD_RBRE) {
+			while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
+				atttypB = randattack();
+			}
+		}
+
+		if (atttypB == AD_DAMA) {
+			atttypB = randomdamageattack();
+		}
+
+		if (atttypB == AD_THIE) {
+			atttypB = randomthievingattack();
+		}
+
+		if (atttypB == AD_RNG) {
+			while (atttypB == AD_ENDS || atttypB == AD_RNG || atttypB == AD_WERE) {
+				atttypB = rn2(AD_ENDS); }
+		}
+
+		if (atttypB == AD_PART) atttypB = u.adpartattack;
+
+		if (atttypB == AD_MIDI) {
+			atttypB = mdef->m_id;
+			if (atttypB < 0) atttypB *= -1;
+			while (atttypB >= AD_ENDS) atttypB -= AD_ENDS;
+			if (!(atttypB >= AD_PHYS && atttypB < AD_ENDS)) atttypB = AD_PHYS; /* fail safe --Amy */
+			if (atttypB == AD_WERE) atttypB = AD_PHYS;
+		}
+	}
+
 	/* These affect the enemy even if defender killed */
-	switch(mddat->mattk[i].adtyp) {
+	switch(atttypB) {
 	    case AD_ACID:
 		if (mhit && !rn2(2)) {
 		    strcpy(buf, Monnam(magr));
@@ -2799,7 +2910,7 @@ int mdead;
 			tmp = 0;
 		    }
 		} else tmp = 0;
-		goto assess_dmg;
+		break;
 		case AD_MAGM:
 	    /* wrath of gods for attacking Oracle */
 	    if(resists_magm(magr)) {
@@ -2811,7 +2922,7 @@ int mdead;
 		if(canseemon(magr))
 			pline(magr->data == &mons[PM_WOODCHUCK] ? "ZOT!" : 
 			"%s is hit by magic missiles appearing from thin air!",Monnam(magr));
-		goto assess_dmg;
+		break;
 	    }
 	    break;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
@@ -2827,7 +2938,7 @@ int mdead;
 	if (mdead || mdef->mcan) return (mdead|mhit);
 
 	/* These affect the enemy only if defender is still alive */
-	if (rn2(3)) switch(mddat->mattk[i].adtyp) {
+	if (rn2(3)) switch(atttypB) {
 	    case AD_PLYS: /* Floating eye */
 
 		if (dmgtype(magr->data, AD_PLYS)) return 1;
@@ -2918,9 +3029,11 @@ int mdead;
 			if (canseemon(magr)) pline("%s is irradiated!", Monnam(magr));
 		}
 		break;
+	    case AD_BANI:
+		if (magr->mtame && !rn2(3)) magr->willbebanished = TRUE;
+		break;
 	    case AD_TLPT:
 	    case AD_NEXU:
-	    case AD_BANI:
 	    case AD_ABDC:
 		if (!tele_restrict(magr)) (void) rloc(magr, FALSE);
 		break;
@@ -3190,6 +3303,14 @@ int mdead;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
 		break;
+
+	    case AD_FAMN:
+		if (magr->mtame) {
+			makedoghungry(magr, tmp * rnd(50));
+			if (canseemon(magr)) pline("%s suddenly looks hungry.", Monnam(magr));
+		}
+		break;
+
 	    case AD_WRAT:
 	    case AD_MANA:
 	    case AD_TECH:

@@ -723,6 +723,28 @@ register int after;	/* this is extra fast monster movement */
 	long info[9], allowflags;
 #define GDIST(x,y) (dist2(x,y,gx,gy))
 
+	if (mtmp->willbebanished) {
+		mtmp->willbebanished = FALSE;
+		if (u.usteed && u.usteed == mtmp) {
+			if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment.");
+			}
+			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			pline("For some reason you resist the banishment!");
+			}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			if (!u.banishmentbeam) {
+				u.banishmentbeam = 1;
+				nomul(-2, "being banished", FALSE); /* because it's not called until you get another turn... */
+			}
+
+		} else {
+			u_teleport_monB(mtmp, TRUE);
+		}
+		return 0;
+	}
+
 	/*
 	 * Tame Angels have isminion set and an ispriest structure instead of
 	 * an edog structure.  Fortunately, guardian Angels need not worry

@@ -5304,6 +5304,12 @@ register struct attack *mattk;
 	    case AD_TRAI:
 	    	    mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
 		break;
+	    case AD_FAMN:
+		if (mdef->mtame) {
+			makedoghungry(mdef, tmp * rnd(50));
+			pline("%s suddenly looks hungry.", Monnam(mdef));
+		}
+		break;
 	    case AD_DREN:
 	    	if (resists_magm(mdef)) {
 		    if (!Blind) {
@@ -5502,6 +5508,12 @@ register struct attack *mattk;
 		    tmp = mdef->mhp;
 		}
 		goto common;
+	    case AD_FAMN:
+		if (mdef->mtame) {
+			makedoghungry(mdef, tmp * rnd(50));
+			pline("%s suddenly looks hungry.", Monnam(mdef));
+		}
+		break;
 	    case AD_WRAT:
 	    case AD_MANA:
 	    case AD_TECH:
