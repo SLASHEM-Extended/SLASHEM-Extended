@@ -1916,7 +1916,7 @@ mattacku(mtmp)
  	   && mtmp->data != &mons[PM_NEWS_DAEMON]
  	   && mtmp->data != &mons[PM_PRINTER_DAEMON])
 	    if(!mtmp->mcan && !rn2(mtmp->data == &mons[PM_PERCENTI_OPENS_A_GATE_] ? 5 : mtmp->data == &mons[PM_PERCENTI_PASSES_TO_YOU_] ? 5 : 23)) {
-			msummon(mtmp);
+			msummon(mtmp, FALSE);
 			pline("%s opens a gate!",Monnam(mtmp) );
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
 		}
@@ -1944,7 +1944,7 @@ mattacku(mtmp)
 		char buf[BUFSZ], genericwere[BUFSZ];
 
 		strcpy(genericwere, "creature");
-		numhelp = were_summon(mdat, FALSE, &numseen, genericwere);
+		numhelp = were_summon(mdat, FALSE, &numseen, genericwere, FALSE);
 		if (youseeit) {
 			pline("%s summons help!", Monnam(mtmp));
 			if (numhelp > 0) {

@@ -1482,7 +1482,7 @@ E void witherarmor(void);
 
 /* ### minion.c ### */
 
-E void msummon(struct monst *);
+E void msummon(struct monst *, BOOLEAN_P);
 E void summon_minion(ALIGNTYP_P,BOOLEAN_P);
 E int demon_talk(struct monst *);
 E int lawful_minion(int);
@@ -3167,7 +3167,7 @@ E void doubleskilltraining(void);
 E int counter_were(int);
 E void were_change(struct monst *);
 E void new_were(struct monst *);
-E int were_summon(struct permonst *,BOOLEAN_P,int *,char *);
+E int were_summon(struct permonst *,BOOLEAN_P,int *,char *,BOOLEAN_P);
 E void you_were(void);
 E void you_unwere(BOOLEAN_P);
 

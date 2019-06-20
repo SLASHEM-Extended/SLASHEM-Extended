@@ -7,8 +7,9 @@
 #include "epri.h"
 
 void
-msummon(mon)		/* mon summons a monster */
+msummon(mon, ownloc)		/* mon summons a monster */
 struct monst *mon;
+boolean ownloc; /* TRUE = summon wherever I am, FALSE = summon at player's location --Amy */
 {
 	register struct permonst *ptr;
 	register int dtype = NON_PM, cnt = 0;
@@ -74,7 +75,8 @@ struct monst *mon;
 	}
 
 	while (cnt > 0) {
-	    mtmp = makemon(&mons[dtype], u.ux, u.uy, NO_MM_FLAGS);
+	    if (ownloc) mtmp = makemon(&mons[dtype], mon->mx, mon->my, MM_ADJACENTOK);
+	    else mtmp = makemon(&mons[dtype], u.ux, u.uy, NO_MM_FLAGS);
 	    if (mtmp && (dtype == PM_ANGEL)) {
 		/* alignment should match the summoner */
 		EPRI(mtmp)->shralign = atyp;
