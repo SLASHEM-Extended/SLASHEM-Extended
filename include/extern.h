@@ -2243,6 +2243,8 @@ E void make_vomiting(long,BOOLEAN_P);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
 E int dodrink(void);
 E void badeffect(void);
+E void badpeteffect(struct monst *);
+E void allbadpeteffects(struct monst *);
 E void add_monster_egotype(struct monst *);
 E void ragnarok(BOOLEAN_P);
 E void evilragnarok(BOOLEAN_P,int);

@@ -2527,7 +2527,142 @@ meleeattack:
 
 	}
 
-    } /* special attacks targetting pets */
+	if (magr->data->msound == MS_SHRIEK && monnear(magr, mdef->mx, mdef->my)) {
+		if (!YouAreDeaf) pline("%s shrieks.", Monnam(magr));
+		aggravate();
+	}
+
+	if ((magr->data->msound == MS_FART_QUIET || magr->data->msound == MS_FART_NORMAL || magr->data->msound == MS_FART_LOUD || magr->egotype_farter) && monnear(magr, mdef->mx, mdef->my)) {
+		if (magr->fartbonus > 9) magr->fartbonus = 9; /* fail save */
+		int monfartchance = 10 + magr->butthurt - magr->fartbonus;
+		if (monfartchance < 1) monfartchance = 1; /* yet another fail safe */
+
+		if (!rn2(monfartchance)) {
+			if (vis) {
+				if (magr->data->msound == MS_FART_QUIET) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "tender" : "soft", mhis(magr), magr->female ? "sexy" : "ugly");
+				else if (magr->data->msound == MS_FART_NORMAL) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "beautiful" : "squeaky", mhis(magr), magr->female ? "sexy" : "ugly");
+				else if (magr->data->msound == MS_FART_LOUD) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "loud" : "disgusting", mhis(magr), magr->female ? "sexy" : "ugly");
+				else pline("%s produces farting noises with %s %s butt.", Monnam(magr), mhis(magr), magr->female ? "sexy" : "ugly");
+			}
+			else if (!YouAreDeaf) pline("You hear farting noises.");
+			badpeteffect(mdef);
+		}
+
+		if (magr->crapbonus && (rn2(100) < magr->crapbonus)) {
+			if (vis) pline("%s craps in %s's face.", Monnam(magr), mon_nam(magr));
+			else if (!YouAreDeaf) pline("You hear crapping noises.");
+			int rnd_tmp;
+			rnd_tmp = rnd(1 + (level_difficulty() * 3));
+			if ((rnd_tmp += mdef->mblinded) > 127) rnd_tmp = 127;
+			mdef->mblinded = rnd_tmp;
+			mdef->mcansee = 0;
+
+		}
+
+	}
+
+	if ((magr->data->msound == MS_SOUND || magr->egotype_sounder) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
+		if (vis) pline("%s lets out an ear-splitting scream!", Monnam(magr) );
+		else if (!YouAreDeaf) pline("You hear a scream.");
+		mdef->mstun = TRUE;
+		wake_nearby();
+		if (!rn2(5)) badpeteffect(mdef);
+	}
+
+	if (magr->data->msound == MS_CUSS && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+		if (magr->iswiz) {
+			badpeteffect(mdef);
+			mdef->healblock += (1 + magr->m_lev);
+			if (vis) pline("%s calls %s nasty names.", Monnam(magr), mon_nam(mdef) );
+		} else if (magr->data->mlet == S_ANGEL || magr->mnum == PM_CHRISTMAS_CHILD || magr->mnum == PM_HELLS_ANGEL || !rn2(5)) {
+			mdef->healblock += (1 + magr->m_lev);
+			if (vis) pline("%s is dimmed.");
+		}
+	}
+
+	if (magr->data->msound == MS_WHORE && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+		mdef->healblock += (1 + magr->m_lev);
+		if (!rn2(50)) badpeteffect(mdef);
+		if (vis) pline("%s is dimmed.", Monnam(mdef));
+	}
+
+	if (magr->data->msound == MS_SUPERMAN && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+		if (vis) pline("%s is terrorized by the superman!", Monnam(mdef));
+		else You_feel("that something terrible is happening to your companion right now!");
+		allbadpeteffects(mdef);
+	}
+
+	if ((magr->data->msound == MS_CONVERT || magr->egotype_converter) && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
+		mdef->healblock += (1 + magr->m_lev);
+		if (vis) pline("%s seems less faithful.", Monnam(mdef));
+		else You_hear("some foreign sermon.");
+		if (!rn2(200)) {
+			mdat2 = &mons[PM_CAST_DUMMY];
+			a = &mdat2->mattk[3];
+			a->aatyp = AT_TUCH;
+			a->adtyp = AD_CALM;
+			a->damn = 1;
+			a->damd = 1;
+
+			res[i] = hitmm(magr, mdef, a);
+			if (res[i] & MM_AGR_DIED) return res[i];
+			if (res[i] & MM_DEF_DIED) return res[i];
+
+		}
+	}
+
+	if ((magr->data->msound == MS_HCALIEN || magr->egotype_wouwouer) && !rn2(15) && monnear(magr, mdef->mx, mdef->my)) {
+		if (vis) pline("%s seems terrorified.", Monnam(mdef));
+		else You_hear("a frightening taunt.");
+		badpeteffect(mdef);
+		badpeteffect(mdef);
+		if (!rn2(50)) {
+			mdat2 = &mons[PM_CAST_DUMMY];
+			a = &mdat2->mattk[3];
+			a->aatyp = AT_LASH;
+			a->adtyp = AD_FREN;
+			a->damn = 1;
+			a->damd = 1;
+
+			res[i] = hitmm(magr, mdef, a);
+			if (res[i] & MM_AGR_DIED) return res[i];
+			if (res[i] & MM_DEF_DIED) return res[i];
+
+		}
+	}
+
+ 	if (magr->data->msound == MS_SHOE && !rn2(50) && evilfriday && monnear(magr, mdef->mx, mdef->my)) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PLYS;
+		a->damn = 1;
+		a->damd = (1 + (magr->m_lev));
+
+		res[i] = hitmm(magr, mdef, a);
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+	}
+
+ 	if (magr->data->msound == MS_BONES && !rn2(100) && monnear(magr, mdef->mx, mdef->my)) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TRAM;
+		a->adtyp = AD_PLYS;
+		a->damn = 1;
+		a->damd = (1 + (magr->m_lev));
+
+		res[i] = hitmm(magr, mdef, a);
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+	}
+
+	if ((magr->data->msound == MS_STENCH || magr->egotype_perfumespreader) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
+		if (vis) pline("%s inhales the feminine perfume.", Monnam(mdef));
+		badpeteffect(mdef);
+	}
+
+   } /* special attacks targetting pets */
 
     return(struck ? MM_HIT : MM_MISS);
 }

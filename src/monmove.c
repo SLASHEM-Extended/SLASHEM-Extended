@@ -220,6 +220,8 @@ boolean digest_meal;
 
 	int regenrate; /* A level 30 pet large cat would otherwise regenerate waaaaaay too slowly. --Amy */
 
+	if (mon->healblock || mon->bleedout) return; /* sorry --Amy */
+
 	regenrate = (20 - (mon->m_lev / 3));
 	if (regenrate < 6) regenrate = 6;
 	if (ishaxor) regenrate /= 2;
@@ -664,6 +666,30 @@ register struct monst *mtmp;
 
 	/* not frozen or sleeping: wipe out texts written in the dust */
 	wipe_engr_at(mtmp->mx, mtmp->my, 1);
+
+	/* bleeding monsters will take damage and may die from blood loss --Amy */
+	if (mtmp->bleedout) {
+
+		int bleedingdamage = rnd(1 + (mtmp->bleedout / 10));
+		if (bleedingdamage > mtmp->bleedout) bleedingdamage = mtmp->bleedout;
+		mtmp->mhp -= bleedingdamage;
+		mtmp->bleedout -= bleedingdamage;
+		if (cansee(mtmp->mx,mtmp->my) && !rn2(10)) pline("%s bleeds.", Monnam(mtmp));
+		if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* fail safe */
+
+		if (mtmp->mhp <= 0) {
+			if (cansee(mtmp->mx,mtmp->my)) pline("%s dies from loss of blood", Monnam(mtmp));
+			/* the lack of a period is intentional because the message is the same in Elona :P --Amy */
+			mondied(mtmp);
+			return(1);
+		}
+	}
+
+	/* heal block will time out --Amy */
+	if (mtmp->healblock) {
+		mtmp->healblock--;
+		if (mtmp->healblock < 0) mtmp->healblock = 0; /* fail safe */
+	}
 
 	/* confused monsters get unconfused with small probability */
 	if (mtmp->mconf && !rn2(50)) mtmp->mconf = 0;

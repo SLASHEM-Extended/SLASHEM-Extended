@@ -772,6 +772,8 @@ long nmv;		/* number of moves */
 	    m_unleash(mtmp, FALSE);
 	}
 
+	if (mtmp->healblock || mtmp->bleedout) goto healingdone;
+
 	/* recover lost hit points */
 	if (!regenerates(mtmp->data) && (!mtmp->egotype_regeneration) ) imv /= (ishaxor ? 10 : 20);
 	if (mtmp->mhp + imv >= mtmp->mhpmax)
@@ -864,6 +866,8 @@ long nmv;		/* number of moves */
 		}
 	}
 
+healingdone:
+	;
 	}
 }
 

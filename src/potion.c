@@ -3117,6 +3117,210 @@ datadeleteattack()
 
 }
 
+/* Do something bad to the player's pet --Amy */
+void
+badpeteffect(mtmp)
+register struct monst *mtmp;
+{
+	if (!mtmp) return; /* shouldn't happen */
+	if (!mtmp->mtame) return; /* shouldn't happen either */
+
+	boolean vis = cansee(mtmp->mx,mtmp->my);
+
+	switch (rnd(46)) {
+
+		case 1:
+		case 2:
+		case 3:
+			if (mtmp->mspeed != MSLOW) {
+				mon_adjust_speed(mtmp, -1, (struct obj *)0);
+				if (vis) pline("%s slows down.", Monnam(mtmp));
+			}
+			break;
+		case 4:
+		case 5:
+		case 6:
+			mtmp->mhpmax -= rnd(10);
+			if (mtmp->mhpmax < 1) mtmp->mhpmax = 1;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+			if (vis) pline("%s's health is damaged.", Monnam(mtmp));
+			break;
+		case 7:
+			mtmp->m_enmax -= rnd(10);
+			if (mtmp->m_enmax < 0) mtmp->m_enmax = 0;
+			if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
+			if (vis) pline("%s seems less energized.", Monnam(mtmp));
+			break;
+		case 8:
+			if (!mtmp->mcan) {
+				mtmp->mcan = TRUE;
+				if (vis) pline("%s is cancelled.", Monnam(mtmp));
+			}
+			break;
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 13:
+			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+			if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+			break;
+		case 14:
+		case 15:
+		case 16:
+		case 17:
+		case 18:
+			{
+				int rnd_tmp;
+				rnd_tmp = rnd(1 + (level_difficulty() * 3));
+				if ((rnd_tmp += mtmp->mblinded) > 127) rnd_tmp = 127;
+				mtmp->mblinded = rnd_tmp;
+				mtmp->mcansee = 0;
+			}
+			if (vis) pline("%s is blinded.", Monnam(mtmp));
+			break;
+		case 19:
+		case 20:
+		case 21:
+			{
+				int rnd_tmp;
+				rnd_tmp = rnd(1 + level_difficulty());
+				if (rnd_tmp > 127) rnd_tmp = 127;
+				mtmp->mcanmove = 0;
+				mtmp->mfrozen = rnd_tmp;
+			}
+			if (vis) pline("%s is paralyzed.", Monnam(mtmp));
+			break;
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+		case 26:
+			mtmp->mstun = TRUE;
+			if (vis) pline("%s is stunned.", Monnam(mtmp));
+			break;
+		case 27:
+		case 28:
+		case 29:
+		case 30:
+		case 31:
+			mtmp->mconf = TRUE;
+			if (vis) pline("%s is confused.", Monnam(mtmp));
+			break;
+		case 32:
+			if (!rn2(10000)) mtmp->willbebanished = TRUE;
+			else if (!tele_restrict(mtmp)) {
+				if (vis) pline("%s disappears.", Monnam(mtmp));
+				(void) rloc(mtmp, FALSE);
+			}
+			break;
+		case 33:
+		case 34:
+		case 35:
+		case 36:
+			if (vis) {
+				if (!mtmp->bleedout) pline("%s starts bleeding.", Monnam(mtmp));
+				else pline("%s's bleeding gets stronger.", Monnam(mtmp));
+			}
+			mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
+			break;
+		case 37:
+		case 38:
+		case 39:
+		case 40:
+		case 41:
+			mtmp->healblock += rnd(1 + (level_difficulty() * 20));
+			if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
+			break;
+
+		case 42:
+		case 43:
+		case 44:
+		case 45:
+		case 46:
+			makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
+			if (vis) pline("%s looks hungry.", Monnam(mtmp));
+			break;
+
+		default: /* fail safe */
+			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+			if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+			break;
+
+	}
+
+}
+
+/* Make all the bad stuff happen to your pet at once --Amy */
+void
+allbadpeteffects(mtmp)
+register struct monst *mtmp;
+{
+	if (!mtmp) return; /* shouldn't happen */
+	if (!mtmp->mtame) return; /* shouldn't happen either */
+
+	boolean vis = cansee(mtmp->mx,mtmp->my);
+
+	if (mtmp->mspeed != MSLOW) {
+		mon_adjust_speed(mtmp, -1, (struct obj *)0);
+		if (vis) pline("%s slows down.", Monnam(mtmp));
+	}
+
+	mtmp->mhpmax -= rnd(10);
+	if (mtmp->mhpmax < 1) mtmp->mhpmax = 1;
+	if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+	if (vis) pline("%s's health is damaged.", Monnam(mtmp));
+
+	mtmp->m_enmax -= rnd(10);
+	if (mtmp->m_enmax < 0) mtmp->m_enmax = 0;
+	if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
+	if (vis) pline("%s seems less energized.", Monnam(mtmp));
+
+	if (!mtmp->mcan) {
+		mtmp->mcan = TRUE;
+		if (vis) pline("%s is cancelled.", Monnam(mtmp));
+	}
+
+	monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+	if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+
+	{
+		int rnd_tmp;
+		rnd_tmp = rnd(1 + (level_difficulty() * 3));
+		if ((rnd_tmp += mtmp->mblinded) > 127) rnd_tmp = 127;
+		mtmp->mblinded = rnd_tmp;
+		mtmp->mcansee = 0;
+	}
+	if (vis) pline("%s is blinded.", Monnam(mtmp));
+
+	{
+		int rnd_tmp;
+		rnd_tmp = rnd(1 + level_difficulty());
+		if (rnd_tmp > 127) rnd_tmp = 127;
+		mtmp->mcanmove = 0;
+		mtmp->mfrozen = rnd_tmp;
+	}
+
+	mtmp->mstun = TRUE;
+	if (vis) pline("%s is stunned.", Monnam(mtmp));
+
+	mtmp->mconf = TRUE;
+	if (vis) pline("%s is confused.", Monnam(mtmp));
+
+	if (vis) {
+		if (!mtmp->bleedout) pline("%s starts bleeding.", Monnam(mtmp));
+		else pline("%s's bleeding gets stronger.", Monnam(mtmp));
+	}
+	mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
+
+	mtmp->healblock += rnd(1 + (level_difficulty() * 20));
+	if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
+
+	makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
+	if (vis) pline("%s looks hungry.", Monnam(mtmp));
+
+}
+
 /* The monster mtmp gains an egotype. It may roll one that it already has, in which case nothing happens. --Amy */
 void
 add_monster_egotype(mtmp)
