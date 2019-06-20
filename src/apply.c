@@ -5682,6 +5682,7 @@ chargingchoice:
 		if (obj->cursed && rn2(2)) {
 
 			delobj(obj);
+			noartispeak = TRUE;
 			break; /* do not call delobj twice or the game will destabilize! */
 
 		}
