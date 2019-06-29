@@ -115,7 +115,6 @@ STATIC_DCL void do_room_or_subroom(struct mkroom *,int,int,int,int,
 STATIC_DCL void makerooms(void);
 STATIC_DCL void finddpos(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 STATIC_DCL void mkinvpos(XCHAR_P,XCHAR_P,int);
-STATIC_DCL void mk_knox_portal(XCHAR_P,XCHAR_P);
 
 #define create_vault()	create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE, FALSE, FALSE)
 #define init_vault()	vault_x = -1
@@ -15500,7 +15499,7 @@ int dist;
  *
  * Ludios will remain isolated until the branch is corrected by this function.
  */
-STATIC_OVL void
+void
 mk_knox_portal(x, y)
 xchar x, y;
 {

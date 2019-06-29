@@ -5140,6 +5140,7 @@ dlb *fd;
 	corridor	tmpcor;
 	room**		tmproom;
 	int		i, j;
+	coord mm;
 
 	load_common_data(fd, SP_LEV_ROOMS);
 
@@ -5384,6 +5385,12 @@ dlb *fd;
 
 		}
 
+	}
+
+	/* chance to create Ludios portal, by Amy */
+	if (In_dod(&u.uz)) {
+		mazexy_all(&mm);
+		if (isok(mm.x, mm.y)) mk_knox_portal(mm.x, mm.y);
 	}
 
 	return TRUE;
@@ -6172,6 +6179,12 @@ dlb *fd;
 
 		}
 
+	}
+
+	/* chance to create Ludios portal, by Amy */
+	if (In_dod(&u.uz)) {
+		mazexy_all(&mm);
+		if (isok(mm.x, mm.y)) mk_knox_portal(mm.x, mm.y);
 	}
 
     return TRUE;

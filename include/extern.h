@@ -1525,6 +1525,7 @@ E void mkinvokearea(void);
 E void mkrivers(void);
 E void mkrandrivers(void);
 E void specdungeoninit(void);
+E void mk_knox_portal(XCHAR_P,XCHAR_P);
 
 /* ### mkmap.c ### */
 
