@@ -520,7 +520,8 @@ moverock()
 	rx = u.ux + 2 * u.dx;	/* boulder destination position */
 	ry = u.uy + 2 * u.dy;
 	nomul(0, 0, FALSE);
-	if (Levitation || Is_airlevel(&u.uz)) {
+	/* if you combine levitator and sokosolver the game shouldn't be unwinnable --Amy */
+	if ((Levitation || Is_airlevel(&u.uz)) && !Race_if(PM_LEVITATOR) ) {
 		if (Blind) feel_location(sx,sy);
 	    You("don't have enough leverage to push %s.", the(xname(otmp)));
 	    /* Give them a chance to climb over it? */
