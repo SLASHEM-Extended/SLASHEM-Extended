@@ -2601,6 +2601,10 @@ statdrain()
 		pline("The stat drain doesn't seem to affect you.");
 		return;
 	}
+	if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+		pline("Your steeled body prevents the stat loss!");
+		return;
+	}
 
 	ABASE(statdrained) -= 1;
 	AMAX(statdrained) -= 1;

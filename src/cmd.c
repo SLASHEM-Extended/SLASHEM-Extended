@@ -1694,6 +1694,8 @@ domonability()
 	} else if (Role_if(PM_JANITOR) && yn("Do you want to clean up the trash at your location?") == 'y') {
 		register struct obj *objchain, *allchain, *blahchain;
 		register int trashvalue = 0;
+		char objroom;
+		struct monst *shkp = (struct monst *)0;
 
 		if (Levitation && !Race_if(PM_LEVITATOR)) {
 			pline("Since you're levitating, you can't reach the trash!");
@@ -1736,6 +1738,16 @@ domonability()
 
 			u.garbagecleaned += trashvalue;
 			You("clean up %s and add %d weight units to your trash bin.", doname(allchain), trashvalue);
+
+			objroom = *in_rooms(allchain->ox, allchain->oy, SHOPBASE);
+			shkp = shop_keeper(objroom);
+			if (shkp && inhishop(shkp)) {
+				if (costly_spot(u.ux, u.uy) && objroom == *u.ushops) {
+					Norep("You trash it, you pay for it!");
+					bill_dummy_object(allchain);
+				} else (void) stolen_value(allchain, allchain->ox, allchain->oy, FALSE, FALSE, FALSE);
+			}
+
 			delobj(allchain);
 
 			if (u.garbagecleaned >= 1000) {
