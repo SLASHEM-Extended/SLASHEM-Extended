@@ -9212,7 +9212,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
 
-		if (Punished) unplacebc();	/* ball&chain go away */
+		if (Punished) unplacebc();	/* ball&chain would go away but it's crashy --Amy */
 		remove_monster(mtmp->mx, mtmp->my);
 		mtmp->mtrapped = 0;		/* no longer on old trap */
 		place_monster(mtmp, u.ux, u.uy);

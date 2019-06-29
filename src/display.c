@@ -981,8 +981,10 @@ feel_location(x, y)
 	     * something has been dropped on the ball/chain.  If the bit is
 	     * not cleared, then when the ball/chain is moved it will drop
 	     * the wrong glyph.
+	     * Amy edit: there's the bug that the chain can be removed due to errors, in which case we don't want to try to
+	     * place it. In fact we should probably unpunish the player in that case and print an error message...
 	     */
-	    if (uchain->ox == x && uchain->oy == y) {
+	    if (uchain && uchain->ox == x && uchain->oy == y) {
 		if (level.objects[x][y] == uchain)
 		    u.bc_felt |= BC_CHAIN;
 		else

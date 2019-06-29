@@ -1249,9 +1249,9 @@ register struct obj *obj;
 	if (obj == uquiver) setuqwep((struct obj *)0);
 	if (obj == uswapwep) setuswapwep((struct obj *)0, FALSE);
 
-	if (!u.uswallow && flooreffects(obj,u.ux,u.uy,"drop")) return;
+	if ((!u.uswallow) && flooreffects(obj,u.ux,u.uy,"drop")) return;
 	/* uswallow check done by GAN 01/29/87 */
-	if(u.uswallow) {
+	if(u.uswallow ) {
 	    boolean could_petrify = FALSE;
 	    boolean could_poly = FALSE;
 	    boolean could_slime = FALSE;
