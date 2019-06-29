@@ -591,6 +591,8 @@ register struct monst *mtmp;
 	    return(0);	/* other frozen monsters can't do anything */
 	}
 
+	if (mdat == &mons[PM_BUGBEAM_CUBE] && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+
 	/* there is a chance we will wake it */
 	if (mtmp->msleeping && !disturb(mtmp)) {
 		if (Hallucination) newsym(mtmp->mx,mtmp->my);

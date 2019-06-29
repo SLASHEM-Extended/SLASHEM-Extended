@@ -1021,6 +1021,7 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_SABER_CAT]) (void)mongets(mtmp, RAPIER);
 		if (ptr == &mons[PM_NIGHT_TIGER]) (void)mongets(mtmp, JAVELIN);
 		if (ptr == &mons[PM_NIGHT_SLINGER]) { (void)mongets(mtmp, SLING); m_initthrow(mtmp, ROCK, 25);}
+		if (ptr == &mons[PM_CAT_APULT]) { (void)mongets(mtmp, SLING); m_initthrow(mtmp, ROCK, 50); m_initthrow(mtmp, ROCK, 50);}
 		if (ptr == &mons[PM_POISON_SLINGER]) m_initthrow(mtmp, GAS_GRENADE, 3);
 		if (ptr == &mons[PM_INCORRECT_CAT]) (void)mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
 		if (ptr == &mons[PM_ANNOYING_CAT]) (void)mongets(mtmp, AMULET_OF_LIFE_SAVING );

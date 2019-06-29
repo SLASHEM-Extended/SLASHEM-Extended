@@ -3005,6 +3005,13 @@ register int pm;
 
 		break;
 
+	    case PM_NAPT_GIRL:
+
+		pline("Ulch - the asian girl was tainted!");
+	      make_sick(rn1(25,25), "a tainted combat boot", TRUE, SICK_VOMITABLE);
+
+		break;
+
 	    case PM_OLOG_HAI_GORGON:
 	    case PM_BEAR_TROVE:
 	    case PM_SPINACH:
