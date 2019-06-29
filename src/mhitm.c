@@ -325,6 +325,9 @@ mattackm(magr, mdef)
 	if (magr->mblinded && haseyes(magr->data)) tmp -= rnd(8);
 	if (mdef->minvis && haseyes(magr->data) && !perceives(magr->data)) tmp -= 10;
 	if (mdef->minvisreal) tmp -= (haseyes(magr->data) ? 30 : 20);
+
+	if ( (mdef->data == &mons[PM_DISPLACER_BEAST] || mdef->data == &mons[PM_WUXTINA] || mdef->data == &mons[PM_IVEL_WUXTINA] || mdef->data == &mons[PM_FLUTTERBUG] || mdef->data == &mons[PM_ORTHOS] || mdef->data == &mons[PM_SHIMMERING_DRACONIAN] || mdef->data == &mons[PM_JUMPING_CHAMPION] || mdef->data->mlet == S_GRUE || mdef->data == &mons[PM_QUANTUM_MOLD] || mdef->data == &mons[PM_QUANTUM_GROWTH] || mdef->data == &mons[PM_QUANTUM_FUNGUS] || mdef->data == &mons[PM_QUANTUM_PATCH] || mdef->data == &mons[PM_QUANTUM_STALK] || mdef->data == &mons[PM_QUANTUM_MUSHROOM] || mdef->data == &mons[PM_QUANTUM_SPORE] || mdef->data == &mons[PM_QUANTUM_COLONY] || mdef->data == &mons[PM_QUANTUM_FORCE_FUNGUS] || mdef->data == &mons[PM_QUANTUM_WORT] || mdef->data == &mons[PM_QUANTUM_FORCE_PATCH] || mdef->data == &mons[PM_QUANTUM_WARP_FUNGUS] || mdef->data == &mons[PM_QUANTUM_WARP_PATCH] || mdef->egotype_displacer) && !rn2(2)) tmp -= 100;
+
     } /* attacking monster is tame */
 
 	/* monster attacks should be fully effective against pets so you can't just cheese out everything --Amy
@@ -2383,6 +2386,44 @@ meleeattack:
 
 	}
 
+	if (magr->egotype_weaponizer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_WEAP;
+		a->adtyp = AD_PHYS;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_engulfer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PHYS;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (evilfriday && magr->data->mlet == S_ZOMBIE) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -2660,6 +2701,28 @@ meleeattack:
 	if ((magr->data->msound == MS_STENCH || magr->egotype_perfumespreader) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s inhales the feminine perfume.", Monnam(mdef));
 		badpeteffect(mdef);
+	}
+
+	if ((magr->data == &mons[PM_DHWTY] || magr->data == &mons[PM_SVEN] || magr->data == &mons[PM_GRANDMASTER_SVEN] || magr->data == &mons[PM_WORLD_PWNZOR] || magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || magr->egotype_laserpwnzor) && monnear(magr, mdef->mx, mdef->my)) {
+		if (!magr->hominglazer && !rn2(20)) {
+			pline("ATTENTION: Something has started to load an ultra-mega-hyper-dyper laser cannon!");
+			magr->hominglazer = 1;
+		} else if (magr->hominglazer >= 20) {
+			pline("ZIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEIEtschhhhhhhhhhhhhhhhhhhhhhhh...");
+			magr->hominglazer = 0;
+
+			mdat2 = &mons[PM_CAST_DUMMY];
+			a = &mdat2->mattk[3];
+			a->aatyp = AT_BEAM;
+			a->adtyp = AD_PHYS;
+			a->damn = 200;
+			a->damd = 200;
+
+			res[i] = hitmm(magr, mdef, a);
+			if (res[i] & MM_AGR_DIED) return res[i];
+			if (res[i] & MM_DEF_DIED) return res[i];
+
+		}
 	}
 
    } /* special attacks targetting pets */
