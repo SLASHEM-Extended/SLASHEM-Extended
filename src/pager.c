@@ -23307,6 +23307,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The planetary fighter seems terrorified. He's being attacked by a baby from outta space!",
 	"The zakarumite seems less faithful.",
 	"The zakarumite seems less faithful. He's gonna be converted to Diablo's religion and join the legions of terror!",
+	"You hear a noise like a hundred thousand people saying 'foop'.",
 
 };
 
