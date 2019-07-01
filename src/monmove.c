@@ -220,6 +220,11 @@ boolean digest_meal;
 
 	int regenrate; /* A level 30 pet large cat would otherwise regenerate waaaaaay too slowly. --Amy */
 
+	/* is the monster bleeding despite not being able to bleed? if so, stop its bleeding --Amy */
+	if (mon->bleedout && (!has_blood(mon->data) ) ) {
+		mon->bleedout = 0;
+	}
+
 	if (mon->healblock || mon->bleedout) return; /* sorry --Amy */
 
 	regenrate = (20 - (mon->m_lev / 3));

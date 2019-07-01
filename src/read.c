@@ -4872,7 +4872,10 @@ proofarmorchoice:
 		if (confused) break;
 
 		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED);
-		if (!rn2(4)) makerandomtrap();
+		if (!rn2(4)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
 
 		u.aggravation = 0;
 
@@ -5374,7 +5377,10 @@ proofarmorchoice:
 
 	case SPE_SUMMON_UNDEAD:
 		if (confused) break;
-		if (!rn2(10)) makerandomtrap();
+		if (!rn2(10)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
 
 	case SCR_SUMMON_UNDEAD:        
 	    {

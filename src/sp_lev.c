@@ -2091,6 +2091,30 @@ makerandomtrap()
 	}
 }
 
+/* make an invisible trap on some random empty location --Amy */
+void
+makeinvisotrap()
+{
+
+	int rtrap;
+	rtrap = randomtrap();
+	int tryct = 0;
+	int x, y;
+	register struct trap *ttmp;
+
+	for (tryct = 0; tryct < 2000; tryct++) {
+		x = rn1(COLNO-3,2);
+		y = rn2(ROWNO);
+
+		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+			ttmp = maketrap(x, y, rtrap, 100);
+			if (ttmp) ttmp->hiddentrap = TRUE;
+			break;
+			}
+
+	}
+}
+
 /*
  * Create either a fart trap or heel trap on some random empty location, for scroll of girliness --Amy
  */

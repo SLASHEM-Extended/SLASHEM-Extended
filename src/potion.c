@@ -6002,6 +6002,15 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	if (nhp) {
 		mtmp->mhp += nhp;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = (mtmp->mhpmax += nxtra);
+
+		if (mtmp->bleedout && mtmp->bleedout <= nhp) {
+			mtmp->bleedout = 0;
+			if (canseemon(mtmp)) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= nhp;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (canseemon(mtmp)) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 	}
 #if 0
 	if(cureblind) ; /* NOT DONE YET */

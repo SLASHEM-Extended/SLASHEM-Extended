@@ -3852,6 +3852,10 @@ static NEARDATA const char * const demagoguelines[] = {
 "We will end the police brutality by abolishing the police!",
 "All that the current government has ever accomplished is to make the wage gap even bigger! That government needs to be voted off!",
 "Currently, a couple dozen millionaires own about half of this country's total amount of money! We need to steal from the rich and give to the poor!",
+"Why do only stupid people become president? We should probably abolish the position of 'president' entirely!",
+"If we have the choice of having either a dictatorship or anarchy, we should opt for the latter!",
+"We are all sick of authority figures! We're no slaves and therefore we'll take up arms to fight the political leaders and, if necessary, kill them!",
+"The elections are rigged anyway! Governments are giving us the freedom to vote just so that we don't revolt, but we won't fall for that, and the revolution starts NOW!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4531,6 +4535,9 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Walt's fools are all doomed to fail.",
 "It's a fact that the Hussies own this school. When will that Walt freak finally learn?",
 "I'm surprised that Walt hasn't run out of diamonds yet, considering I just stole another bunch.",
+"It's such a calm day today. No walscholars are anywhere deeper than dungeon level 9.",
+"There are a few walscholars making progress, but nothing critical. We set up enough traps to catch them.",
+"What? One of the useless walscholars somehow made it to Gehennom? Red alert! All hussies, attack that intruder!",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4603,6 +4610,9 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Oh come on %s. Go back to Walt and tell him to send someone capable of putting up a fight, you really can't be the best he has to muster.",
 "What? %s managed to defeat some of the hola-hola brigade members? Why did we hire them in the first place if they can't get a job done? Oh well, I guess I'll have to take care of that problem myself then...",
 "Now I'll steal the diamonds, %s! You have two choices: face me so I can steal the ones you're carrying, or be a chicken and run from me so I can steal the ones hidden one floor down from your position.",
+"%s, you didn't even make it to a two-digit dungeon level yet? What's keeping you?",
+"Oh %s, I see you're more cunning than the last walscholar that was here yesterday! But of course you're not a real threat either.",
+"%s, you have gone too far. Anna regards you as a serious threat now and we will use all forces to stop you.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {

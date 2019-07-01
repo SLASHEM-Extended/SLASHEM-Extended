@@ -12952,13 +12952,13 @@ boolean knoweverything;
 			case SPE_FORCE_BOLT:
 				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features."); break;
 			case SPE_CREATE_MONSTER:
-				pline("Casting this spell summons random monsters. Beware, it might also create a trap on the current dungeon level. The summoned monster has a chance of being frenzied too."); break;
+				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too."); break;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
 				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire."); break;
 			case SPE_SUMMON_UNDEAD:
-				pline("Summons an undead monster. Rarely, it also makes a trap on the level. The summoned monster has a chance of being frenzied too."); break;
+				pline("Summons an undead monster. It can also rarely backfire. The summoned monster has a chance of being frenzied too."); break;
 			case SPE_STONE_TO_FLESH:
 				pline("This spell can be cast at items, dungeon features and monsters that are made of stone, turning them into meat."); break;
 			case SPE_HEALING:
@@ -13168,7 +13168,7 @@ boolean knoweverything;
 			case SPE_WARPING:
 				pline("Wanna get out of a sticky situation? This is a possible way, although you won't be able to control your destination. This spell also backlashes fairly frequently, causing undesirable effects."); break;
 			case SPE_TRAP_CREATION:
-				pline("You will create some traps around you by casting this spell."); break;
+				pline("You will create some traps around you by casting this spell. Beware, sometimes the traps will be invisible, in which case you can't detect them and they won't be revealed when triggered."); break;
 			case SPE_STUN_MONSTER:
 				pline("A spell that fires invisible beams to stun monsters."); break;
 			case SPE_CURSE_ITEMS:

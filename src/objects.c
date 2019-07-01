@@ -5798,6 +5798,7 @@ SCROLL((char *)0,               "HERGHLERMAH QERQ JERJVERM",  P_NONE,     1,   0
 SCROLL((char *)0,               "ASSFUCK EXPRESS AND MAXIMUM PENALTY",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "CHICKEN FLAX AS BROOK",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "DAS NIBELUNGENLIEO",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "CUCUMBER TRAVEL ASSOCIATION",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

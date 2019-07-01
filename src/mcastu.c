@@ -1174,12 +1174,24 @@ int spellnum;
 	break;
     case MGC_CURE_SELF:
 	if (mtmp->mhp < mtmp->mhpmax) {
+	    int healamount;
 	    if (canseemon(mtmp))
 		pline("%s looks better.", Monnam(mtmp));
 	    /* note: player healing does 6d4; this used to do 1d8 */
 		/* Amy note: boosted it so that it's no longer completely useless */
-	    if ((mtmp->mhp += (d(3,6) + rnz(1 + (mtmp->m_lev * 3)) )) > mtmp->mhpmax)
+	    healamount = d(3,6) + rnz(1 + (mtmp->m_lev * 3));
+	    if ((mtmp->mhp += healamount) > mtmp->mhpmax)
 		mtmp->mhp = mtmp->mhpmax;
+
+	    if (mtmp->bleedout && mtmp->bleedout <= healamount) {
+			mtmp->bleedout = 0;
+			pline("%s's bleeding stops.", Monnam(mtmp));
+	    } else if (mtmp->bleedout) {
+			mtmp->bleedout -= healamount;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			pline("%s's bleeding diminishes.", Monnam(mtmp));
+	    }
+
 	    dmg = 0;
 	}
 	break;
@@ -1940,13 +1952,27 @@ int spellnum;
 
     case CLC_CURE_SELF:
 	if (mtmp->mhp < mtmp->mhpmax) {
+	    int healamount;
 	    if (canseemon(mtmp))
 		pline("%s looks better.", Monnam(mtmp));
 	    /* note: player healing does 6d4; this used to do 1d8 */
-	    if ((mtmp->mhp += (d(3,6) + rnz(1 + (mtmp->m_lev * 3)) )) > mtmp->mhpmax)
+		/* Amy note: boosted it so that it's no longer completely useless */
+	    healamount = d(3,6) + rnz(1 + (mtmp->m_lev * 3));
+	    if ((mtmp->mhp += healamount) > mtmp->mhpmax)
 		mtmp->mhp = mtmp->mhpmax;
+
+	    if (mtmp->bleedout && mtmp->bleedout <= healamount) {
+			mtmp->bleedout = 0;
+			pline("%s's bleeding stops.", Monnam(mtmp));
+	    } else if (mtmp->bleedout) {
+			mtmp->bleedout -= healamount;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			pline("%s's bleeding diminishes.", Monnam(mtmp));
+	    }
+
 	    dmg = 0;
 	}
+
 	break;
     case CLC_OPEN_WOUNDS:
 

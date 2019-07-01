@@ -4154,6 +4154,7 @@ manloop:
 
 			register struct monst *nexusmon, *nextmon;
 			const char *verb;
+			int healamount;
 
 			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
 			    nextmon = nexusmon->nmon; /* trap might kill mon */
@@ -4162,9 +4163,19 @@ manloop:
 			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
 			    if (!nexusmon->mtame) continue;
 
-				nexusmon->mhp += d(15, 10 + spell_damage_bonus(SPE_PET_SYRINGE) );
+				healamount = d(15, 10 + spell_damage_bonus(SPE_PET_SYRINGE) );
+				nexusmon->mhp += healamount;
 
 				if (nexusmon->mhp > nexusmon->mhpmax) nexusmon->mhp = nexusmon->mhpmax;
+
+				if (nexusmon->bleedout && nexusmon->bleedout <= healamount) {
+					nexusmon->bleedout = 0;
+					pline("%s's bleeding stops.", Monnam(nexusmon));
+				} else if (nexusmon->bleedout) {
+					nexusmon->bleedout -= healamount;
+					if (nexusmon->bleedout < 0) nexusmon->bleedout = 0; /* should never happen */
+					pline("%s's bleeding diminishes.", Monnam(nexusmon));
+				}
 
 				abuse_dog(nexusmon);
 
@@ -7380,6 +7391,7 @@ secureidchoice:
 			if (mtmp->mhp > mtmp->mhpmax) {
 			    mtmp->mhp = mtmp->mhpmax;
 			}
+			if (mtmp->bleedout) mtmp->bleedout = 0;
 
 		    }
 
@@ -7874,6 +7886,7 @@ secureidchoice:
 		{
 			int rtrap;
 		      int i, j, bd = 1;
+			register struct trap *ttmp;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
@@ -7882,19 +7895,32 @@ secureidchoice:
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				ttmp = maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				if (ttmp && !rn2(10)) ttmp->hiddentrap = TRUE;
 			}
 		}
 
-		makerandomtrap();
-		if (!rn2(2)) makerandomtrap();
-		if (!rn2(4)) makerandomtrap();
-		if (!rn2(8)) makerandomtrap();
-		if (!rn2(16)) makerandomtrap();
-		if (!rn2(32)) makerandomtrap();
-		if (!rn2(64)) makerandomtrap();
-		if (!rn2(128)) makerandomtrap();
-		if (!rn2(256)) makerandomtrap();
+		if (rn2(10)) {
+			makerandomtrap();
+			if (!rn2(2)) makerandomtrap();
+			if (!rn2(4)) makerandomtrap();
+			if (!rn2(8)) makerandomtrap();
+			if (!rn2(16)) makerandomtrap();
+			if (!rn2(32)) makerandomtrap();
+			if (!rn2(64)) makerandomtrap();
+			if (!rn2(128)) makerandomtrap();
+			if (!rn2(256)) makerandomtrap();
+		} else {
+			makeinvisotrap();
+			if (!rn2(2)) makeinvisotrap();
+			if (!rn2(4)) makeinvisotrap();
+			if (!rn2(8)) makeinvisotrap();
+			if (!rn2(16)) makeinvisotrap();
+			if (!rn2(32)) makeinvisotrap();
+			if (!rn2(64)) makeinvisotrap();
+			if (!rn2(128)) makeinvisotrap();
+			if (!rn2(256)) makeinvisotrap();
+		}
 
 		break;
 

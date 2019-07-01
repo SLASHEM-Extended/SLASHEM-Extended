@@ -1278,7 +1278,10 @@ armorsmashdone:
 		reveal_invis = TRUE;
 	    if (mtmp->data != &mons[PM_PESTILENCE]) {
 		wake = FALSE;		/* wakeup() makes the target angry */
-		mtmp->mhp +=
+
+		int healamount;
+
+		healamount +=
 		  /* [ALI] FIXME: Makes no sense that cursed wands are more
 		   * effective than uncursed wands. This behaviour dates
 		   * right back to Slash v3 (and probably to v1).
@@ -1289,6 +1292,17 @@ armorsmashdone:
 		  otyp == SPE_HEALING ? rnd(10) + 4 + rnd(rnz(u.ulevel)) : 
 		  otyp == SPE_EXTRA_HEALING ? rnd(20) + 6 + rnd(rnz(u.ulevel) + rnz(u.ulevel)) : 
 		  rnd(40) + 8 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel)) ;
+
+		mtmp->mhp += healamount;
+		if (mtmp->bleedout && mtmp->bleedout <= healamount) {
+			mtmp->bleedout = 0;
+			if (canseemon(mtmp)) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= healamount;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (canseemon(mtmp)) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
+
 		if (mtmp->mhp > mtmp->mhpmax) {
 		    if (otmp->oclass == WAND_CLASS)
 			mtmp->mhpmax++;
@@ -8320,7 +8334,7 @@ xchar sx, sy;
 		You("seem unaffected.");
 		break;
 	    } else if (Antimagic) { /* Sorry people, but being magic resistant no longer makes you immune. --Amy */
-	            dam = d(2,4);
+	            dam = d(2,4) + rno(level_difficulty() + 1);
 			if (StrongAntimagic && dam > 1) dam /= 2;
 			u.uhpmax -= dam/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -8343,7 +8357,7 @@ xchar sx, sy;
 	    return; /* lifesaved */
 		}
 		else
-                dam = d(4,6);
+                dam = d(4,6) + rnd(level_difficulty() + 1);
 			u.uhpmax -= dam/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
                 pline("This hurts a lot!");

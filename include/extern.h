@@ -2683,6 +2683,7 @@ E void fill_room(struct mkroom *,BOOLEAN_P);
 E boolean load_special(const char *);
 E int randomtrap(void);
 E void makerandomtrap(void);
+E void makeinvisotrap(void);
 E void makegirlytrap(void);
 E void makespacewarstrap(void);
 

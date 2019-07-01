@@ -322,6 +322,10 @@ tactics(mtmp)
 		if (distu(mtmp->mx,mtmp->my) > (BOLT_LIM * BOLT_LIM))
 		    if(mtmp->mhp <= mtmp->mhpmax - 8) {
 			mtmp->mhp += rnd(8);
+			if (mtmp->bleedout) {
+				mtmp->bleedout -= rnd(8);
+				if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* fail safe */
+			}
 			return(1);
 		    }
 		/* fall through :-) */
