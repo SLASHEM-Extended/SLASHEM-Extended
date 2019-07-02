@@ -1016,6 +1016,12 @@ register const char *s;
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
+	/* chance to create Ludios portal, by Amy */
+	if (In_dod(&u.uz)) {
+		mazexy_all(&mm);
+		if (isok(mm.x, mm.y)) mk_knox_portal(mm.x, mm.y);
+	}
+
 }
 
 #ifdef MICRO

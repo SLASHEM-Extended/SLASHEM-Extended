@@ -1881,9 +1881,9 @@ struct monst *mon;
 
 	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
 
-    if (mmove && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) mmove += 1;
+	if (mmove && uarmc && itemhasappearance(uarmc, APP_GREEK_CLOAK) ) mmove += 1;
 
-	if (uarmh && mmove && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) mmove += 1;
+	if (uarmh && mmove && itemhasappearance(uarmh, APP_FORMULA_ONE_HELMET) ) mmove += 1;
 
     if (uarmg && uarmg->oartifact == ART_AFK_MEANS_ASS_FUCKER && (dmgtype(mon->data, AD_SITM) || dmgtype(mon->data, AD_SEDU) || dmgtype(mon->data, AD_SSEX) ) ) mmove += 12;
 
@@ -2051,8 +2051,8 @@ movemon()
 #ifdef OVLB
 
 #define mstoning(obj)	(ofood(obj) && \
-					(touch_petrifies(&mons[(obj)->corpsenm]) || \
-					(obj)->corpsenm == PM_MEDUSA))
+					((touch_petrifies(&mons[(obj)->corpsenm]) || \
+					(obj)->corpsenm == PM_MEDUSA) && (obj)->corpsenm != PM_PLAYERMON ))
 
 /*
  * Maybe eat a metallic object (not just gold).
@@ -2528,6 +2528,7 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_FBI_AGENT &&
 			otmp->corpsenm != PM_OWN_SMOKE &&
 			otmp->corpsenm != PM_GRANDPA &&
+			otmp->corpsenm != PM_CLOCKBACK_LIZARD &&
 			otmp->corpsenm != PM_ADULT_LIZARD &&
 			otmp->corpsenm != PM_LIZZY &&
 			otmp->corpsenm != PM_LIZARD_PRINCE &&
@@ -2686,7 +2687,7 @@ mfndpos(mon, poss, info, flag)
 	y = mon->my;
 	nowtyp = levl[x][y].typ;
 
-	nodiag = (isgridbug(mdat) || (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) );
+	nodiag = (isgridbug(mdat) || (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) || (uarmf && !rn2(10) && itemhasappearance(uarmf, APP_CHESS_BOOTS) ) );
 	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_EEL_GOLEM] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
 	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || mon->egotype_watersplasher ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
@@ -3418,11 +3419,18 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
    in the absence of Conflict.  There is no provision for targetting
    other monsters; just hand to hand fighting when they happen to be
    next to each other. */
+
+/* Amy keywords: "grudge" "Nephi" (no idea why none of those words appear here) */
 STATIC_OVL long
 mm_aggression(magr, mdef)
 struct monst *magr,	/* monster that is currently deciding where to move */
 	     *mdef;	/* another monster which is next to it */
 {
+
+	/* Amy edit: if pets are ignored by everything, it can result in them being way too unkillable because they often
+	 * won't attack things that would kill them... */
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !rn2(5)) return ALLOW_M|ALLOW_TM;
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && ((attacktype(mdef->data, AT_EXPL)) || (mindless(magr->data)) || magr->mfrenzied ) ) return ALLOW_M|ALLOW_TM;
 
 	if (Race_if(PM_ALBAE)) return 0L; /* if you're an albae, everything hates you more than anything else --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstatf(killed_nemesis) ) return 0L; /* or if you killed the abuser nemesis */
@@ -3488,6 +3496,20 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	if(mdef->data == &mons[PM_LORD_SIDIOUS] && magr->data == &mons[PM_JEDI])
 		return ALLOW_M|ALLOW_TM;
 
+	/* the three stooges */
+	if (mdef->data == &mons[PM_STOOGE_CURLY] && magr->data == &mons[PM_STOOGE_MOE])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_CURLY] && magr->data == &mons[PM_STOOGE_LARRY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_MOE] && magr->data == &mons[PM_STOOGE_LARRY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_MOE] && magr->data == &mons[PM_STOOGE_CURLY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_LARRY] && magr->data == &mons[PM_STOOGE_CURLY])
+		return ALLOW_M|ALLOW_TM;
+	if (mdef->data == &mons[PM_STOOGE_LARRY] && magr->data == &mons[PM_STOOGE_MOE])
+		return ALLOW_M|ALLOW_TM;
+
 	return 0L;
 }
 
@@ -3498,7 +3520,7 @@ register int x,y;
 /* Is the square close enough for the monster to move or attack into? */
 {
 	register int distance = dist2(mon->mx, mon->my, x, y);
-	if (distance==2 && ( isgridbug(mon->data) || (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) ) return 0;
+	if (distance==2 && ( isgridbug(mon->data) || (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) || (uarmf && !rn2(10) && itemhasappearance(uarmf, APP_CHESS_BOOTS) ) ) ) return 0;
 	return((boolean)(distance < 3));
 }
 
@@ -4098,7 +4120,7 @@ register struct monst *mtmp;
 	if (mtmp->data->mlet == S_KOP) {
 
 	    /* Dead Kops may come back. */
-	    switch(rnd( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) ? 50 : RngeAntiGovernment ? 50 : 25)) {
+	    switch(rnd( (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) ? 50 : RngeAntiGovernment ? 50 : 25)) {
 		case 1:	     /* returns near the stairs */
 			(void) makemon(mtmp->data,xdnstair,ydnstair,MM_ADJACENTOK);
 			break;
@@ -4193,7 +4215,7 @@ register struct monst *mtmp;
 		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 			copcnt = (copcnt / 2) + 1;
 		}
 
@@ -4503,7 +4525,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_medusa) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4522,7 +4544,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_nightmare) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4541,7 +4563,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_vecna) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4559,7 +4581,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_beholder) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4577,7 +4599,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_ruggo) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4595,7 +4617,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_kroo) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4613,7 +4635,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_grund) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4631,7 +4653,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_largestgiant) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4649,7 +4671,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_shelob) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4667,7 +4689,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_girtab) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4685,7 +4707,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_aphrodite) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4703,7 +4725,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_frankenstein) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4721,7 +4743,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_croesus) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4739,7 +4761,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_dagon) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4757,7 +4779,7 @@ register struct monst *mtmp;
 
 		if (!achieve.killed_hydra) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4778,7 +4800,7 @@ register struct monst *mtmp;
 
 	            achieveX.killed_elderpriest = 1;
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4798,7 +4820,7 @@ register struct monst *mtmp;
 
 	            achieveX.killed_glassgolem = 1;
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4818,7 +4840,7 @@ register struct monst *mtmp;
 
 	            achieveX.killed_tiksrvzllat = 1;
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4838,7 +4860,7 @@ register struct monst *mtmp;
 
 	            achieveX.killed_bofh = 1;
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4858,7 +4880,7 @@ register struct monst *mtmp;
 
 	            achieveX.killed_katia = 1;
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -4878,7 +4900,7 @@ register struct monst *mtmp;
 
 	            achieveX.killed_witchking = 1;
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -5025,7 +5047,7 @@ boolean was_swallowed;			/* digestion */
 	if (!timebasedlowerchance() && !timebasedlowerchance() && rn2(8) && !is_reviver(mdat) && !mon->egotype_troll && !(mdat == &mons[PM_TROLL_ZOMBIE]) && !(mdat == &mons[PM_VECNA]) && !(mdat == &mons[PM_NIGHTMARE]) && !(mdat == &mons[PM_BEHOLDER]) && !(mdat == &mons[PM_MEDUSA]) && !(mdat == &mons[PM_EGO_TROLL_MUMMY]) && !(mdat == &mons[PM_TROLL_PERMAMIMIC_MUMMY]) && !(mdat == &mons[PM_TROLL_MUMMY]) && !mon->mtame)
 		return FALSE;
 
-	if (mon->egotype_troll || (is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_KATNISS]
+	if (mon->egotype_troll || (is_reviver(mdat) && !(mdat->mlet == S_FUNGUS) ) || bigmonst(mdat) || mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_ANTI_STONE_LIZARD]  || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_KATNISS]
 		   || is_golem(mdat)
 		   || is_mplayer(mdat)
 		   || is_umplayer(mdat)
@@ -5126,6 +5148,7 @@ register struct monst *mdef;
 		/* reduce amount of musable items the player can use --Amy */
 		if (is_musable(obj) && obj->mstartinvent && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (obj->otyp == POT_BLOOD || obj->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
+		else if (obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ
@@ -5181,7 +5204,7 @@ int how;
 	else
 	    be_sad = (mdef->mtame != 0 && !mdef->isspell);
 
-	if (mdef->mtame != 0 && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) {
+	if (mdef->mtame != 0 && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK) ) {
 		pline("You allowed a pet to die, thereby incurring the wrath of the gods!");
 		u.ugangr += rnd(3);
 	}
@@ -5293,7 +5316,7 @@ xkilled(mtmp, dest)
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 	}
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "red sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasnyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qizil shippak") )) healup( (mtmp->m_lev / 3), 0, FALSE, FALSE);
+	if (uarmf && itemhasappearance(uarmf, APP_RED_SNEAKERS)) healup( (mtmp->m_lev / 3), 0, FALSE, FALSE);
 
 	if (Manaleech && !rn2(3) ) { /* leech mana from killed monsters */
 		u.uen += rno(mtmp->m_lev + 1); /* rno instead of rnd, and added rn2 above, due to this property being too unbalanced --Amy */
@@ -5305,7 +5328,7 @@ xkilled(mtmp, dest)
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "energizer cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "antidepressant plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "energiya plash")) && !rn2(3) ) {
+	if (uarmc && itemhasappearance(uarmc, APP_ENERGIZER_CLOAK) && !rn2(3) ) {
 		u.uen += rno((mtmp->m_lev + 5) / 5);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
@@ -5390,7 +5413,7 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
 		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE);
@@ -5648,7 +5671,7 @@ xkilled(mtmp, dest)
 			otmp = mkobj_at(GEM_CLASS, x, y, TRUE);
 		}
 
-		if (!rn2(100) && (Race_if(PM_ANGBANDER) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") ) ) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
+		if (!rn2(100) && (Race_if(PM_ANGBANDER) || (uarmc && itemhasappearance(uarmc, APP_ANGBAND_CLOAK) ) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
 		if (!rn2(100) && Race_if(PM_ANGBANDER) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_IDENTIFY, x, y, TRUE, FALSE);
 		if (!rn2(100) && RngeAngband && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_TELEPORTATION, x, y, TRUE, FALSE);
 
@@ -5920,7 +5943,7 @@ newbossA:
 		else You_hear("the studio audience applaud!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
 
-		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) {
+		if (uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK) ) {
 			pline("You killed your pet, thereby incurring the wrath of the gods!");
 			u.ugangr += rnd(3);
 		}
@@ -6185,7 +6208,7 @@ register struct monst *mtmp;
 		}
 		badeffect();
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
@@ -6221,7 +6244,7 @@ sarahdone:
 		}
 		badeffect();
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
@@ -6255,7 +6278,7 @@ sarahdone:
 		}
 		badeffect();
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
@@ -6288,7 +6311,7 @@ sarahdone:
 		}
 		badeffect();
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
@@ -7746,7 +7769,7 @@ register boolean silent;
 		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 			copcnt = (copcnt / 2) + 1;
 		}
 

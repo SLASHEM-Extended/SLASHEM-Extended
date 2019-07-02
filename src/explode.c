@@ -643,7 +643,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (damu < 1) damu = 1;
 		}
 
-		if (damu > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+		if (damu > 0 && uarmf && itemhasappearance(uarmf, APP_MARJI_SHOES)) {
 			damu++;
 			damu *= 9;
 			damu /= 10;

@@ -2306,7 +2306,7 @@ learn()
 			    Your("knowledge of that spell is keener.");
 			    use_skill(P_MEMORIZATION, spellev(i));
 			    incrnknow(i);
-				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			    book->spestudied++;
 
@@ -2315,7 +2315,13 @@ learn()
 					char nervbuf[QBUFSZ];
 					char thisisannoying = 0;
 
-					sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+					if (!u.youhavememorized) {
+						u.youhavememorized = TRUE;
+						if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+					}
+
+					if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+					else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 					thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 					if (thisisannoying != 'n') {
 
@@ -2330,7 +2336,11 @@ learn()
 						}
 					    	boostknow(i, memoboost * 1000);
 						spl_book[i].sp_memorize = TRUE;
-					} else spl_book[i].sp_memorize = FALSE;
+						pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+					} else {
+						spl_book[i].sp_memorize = FALSE;
+						pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+					}
 
 				}
 
@@ -2354,7 +2364,7 @@ learn()
 			spl_book[i].sp_memorize = TRUE;
 			use_skill(P_MEMORIZATION, spellev(i));
 			incrnknow(i);
-			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			book->spestudied++;
 			You("have keen knowledge of the spell.");
@@ -2377,7 +2387,13 @@ learn()
 				char nervbuf[QBUFSZ];
 				char thisisannoying = 0;
 
-				sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+				if (!u.youhavememorized) {
+					u.youhavememorized = TRUE;
+					if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+				}
+
+				if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+				else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 				thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 				if (thisisannoying != 'n') {
 
@@ -2392,7 +2408,11 @@ learn()
 					}
 				    	boostknow(i, memoboost * 1000);
 					spl_book[i].sp_memorize = TRUE;
-				} else spl_book[i].sp_memorize = FALSE;
+					pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+				} else {
+					spl_book[i].sp_memorize = FALSE;
+					pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+				}
 
 			}
 
@@ -2706,7 +2726,7 @@ age_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
 	    if (spellknow(i) ) {
 
-		if (!(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "guild cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gil'dii plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birlik plash") ) ) ) {
+		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) ) {
 
 			/* Memorization skill by Amy: if the spell is set to memorization mode, have a skill-based chance here
 			 * that on any given turn the spell memory will not decrease. */
@@ -2753,7 +2773,7 @@ age_spells()
 		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
 		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
-		if (spellknow(i) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "forgetful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zabyvchiv plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "unutuvchan plash") ) ) {
+		if (spellknow(i) && uarmc && itemhasappearance(uarmc, APP_FORGETFUL_CLOAK) ) {
 			decrnknow(i);
 			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
 			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
@@ -3241,7 +3261,7 @@ boolean atme;
 		energy /= 10;
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) {
+	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) {
 		energy *= 11;
 		energy /= 10;
 	}
@@ -3281,7 +3301,7 @@ boolean atme;
 	}
 	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {if (rn2(10)) energy += 1; energy *= 3; energy /= 4;}
 
-	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "occultism gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki okkul'tizma") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "folbinlik qo'lqop") )) && skill == P_OCCULT_SPELL) {
+	if ((uarmg && itemhasappearance(uarmg, APP_OCCULTISM_GLOVES)) && skill == P_OCCULT_SPELL) {
 		if (rn2(10)) energy += 1;
 		energy *= 4;
 		energy /= 5;
@@ -3299,7 +3319,7 @@ boolean atme;
 		energy /= 10;
 	}
 
-	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) {
+	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && itemhasappearance(uarmc, APP_WEEB_CLOAK) ) {
 		if (rn2(10)) energy += 1;
 		energy *= 9;
 		energy /= 10;
@@ -3964,7 +3984,21 @@ magicalenergychoice:
 		(void) peffects(pseudo);
 		break;
 	case SPE_CURE_BLINDNESS:
-		healup(0, 0, FALSE, TRUE);
+		if (HeavyBlind) break;
+		if (Blinded > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(Blinded / 2);
+			if (effreduction > 0) {
+				u.ucreamed -= effreduction;
+				Blinded -= effreduction;
+				Your("blindness counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			healup(0, 0, FALSE, TRUE);
+		}
 		break;
 	case SPE_AMNESIA:
 		You_feel("dizzy!");
@@ -4120,6 +4154,7 @@ manloop:
 
 			register struct monst *nexusmon, *nextmon;
 			const char *verb;
+			int healamount;
 
 			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
 			    nextmon = nexusmon->nmon; /* trap might kill mon */
@@ -4128,9 +4163,19 @@ manloop:
 			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
 			    if (!nexusmon->mtame) continue;
 
-				nexusmon->mhp += d(15, 10 + spell_damage_bonus(SPE_PET_SYRINGE) );
+				healamount = d(15, 10 + spell_damage_bonus(SPE_PET_SYRINGE) );
+				nexusmon->mhp += healamount;
 
 				if (nexusmon->mhp > nexusmon->mhpmax) nexusmon->mhp = nexusmon->mhpmax;
+
+				if (nexusmon->bleedout && nexusmon->bleedout <= healamount) {
+					nexusmon->bleedout = 0;
+					pline("%s's bleeding stops.", Monnam(nexusmon));
+				} else if (nexusmon->bleedout) {
+					nexusmon->bleedout -= healamount;
+					if (nexusmon->bleedout < 0) nexusmon->bleedout = 0; /* should never happen */
+					pline("%s's bleeding diminishes.", Monnam(nexusmon));
+				}
 
 				abuse_dog(nexusmon);
 
@@ -4920,7 +4965,7 @@ aulechoice:
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(23)) {
+			} else switch (rnd(25)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -5359,233 +5404,7 @@ aulechoice:
 
 					break;
 				case 20:
-					You("may double your amount of training points in a skill of your choice!");
-
-					int acquiredskill;
-					acquiredskill = 0;
-
-					pline("Pick a skill to train. The prompt will loop until you actually make a choice.");
-
-					while (acquiredskill == 0) { /* ask the player what they want --Amy */
-
-					if (P_ADVANCE(P_DAGGER) && !(P_RESTRICTED(P_DAGGER)) && yn("Do you want to train the dagger skill?")=='y') {
-						P_ADVANCE(P_DAGGER) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_KNIFE) && !(P_RESTRICTED(P_KNIFE)) && yn("Do you want to train the knife skill?")=='y') {
-						P_ADVANCE(P_KNIFE) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_AXE) && !(P_RESTRICTED(P_AXE)) && yn("Do you want to train the axe skill?")=='y') {
-						P_ADVANCE(P_AXE) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_PICK_AXE) && !(P_RESTRICTED(P_PICK_AXE)) && yn("Do you want to train the pick-axe skill?")=='y') {
-						P_ADVANCE(P_PICK_AXE) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SHORT_SWORD) && !(P_RESTRICTED(P_SHORT_SWORD)) && yn("Do you want to train the short sword skill?")=='y') {
-						P_ADVANCE(P_SHORT_SWORD) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_BROAD_SWORD) && !(P_RESTRICTED(P_BROAD_SWORD)) && yn("Do you want to train the broad sword skill?")=='y') {
-						P_ADVANCE(P_BROAD_SWORD) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_LONG_SWORD) && !(P_RESTRICTED(P_LONG_SWORD)) && yn("Do you want to train the long sword skill?")=='y') {
-						P_ADVANCE(P_LONG_SWORD) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_TWO_HANDED_SWORD) && !(P_RESTRICTED(P_TWO_HANDED_SWORD)) && yn("Do you want to train the two-handed sword skill?")=='y') {
-						P_ADVANCE(P_TWO_HANDED_SWORD) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SCIMITAR) && !(P_RESTRICTED(P_SCIMITAR)) && yn("Do you want to train the scimitar skill?")=='y') {
-						P_ADVANCE(P_SCIMITAR) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SABER) && !(P_RESTRICTED(P_SABER)) && yn("Do you want to train the saber skill?")=='y') {
-						P_ADVANCE(P_SABER) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_CLUB) && !(P_RESTRICTED(P_CLUB)) && yn("Do you want to train the club skill?")=='y') {
-						P_ADVANCE(P_CLUB) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_PADDLE) && !(P_RESTRICTED(P_PADDLE)) && yn("Do you want to train the paddle skill?")=='y') {
-						P_ADVANCE(P_PADDLE) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_MACE) && !(P_RESTRICTED(P_MACE)) && yn("Do you want to train the mace skill?")=='y') {
-						P_ADVANCE(P_MACE) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_MORNING_STAR) && !(P_RESTRICTED(P_MORNING_STAR)) && yn("Do you want to train the morning star skill?")=='y') {
-						P_ADVANCE(P_MORNING_STAR) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_FLAIL) && !(P_RESTRICTED(P_FLAIL)) && yn("Do you want to train the flail skill?")=='y') {
-						P_ADVANCE(P_FLAIL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_HAMMER) && !(P_RESTRICTED(P_HAMMER)) && yn("Do you want to train the hammer skill?")=='y') {
-						P_ADVANCE(P_HAMMER) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_QUARTERSTAFF) && !(P_RESTRICTED(P_QUARTERSTAFF)) && yn("Do you want to train the quarterstaff skill?")=='y') {
-						P_ADVANCE(P_QUARTERSTAFF) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_POLEARMS) && !(P_RESTRICTED(P_POLEARMS)) && yn("Do you want to train the polearms skill?")=='y') {
-						P_ADVANCE(P_POLEARMS) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SPEAR) && !(P_RESTRICTED(P_SPEAR)) && yn("Do you want to train the spear skill?")=='y') {
-						P_ADVANCE(P_SPEAR) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_JAVELIN) && !(P_RESTRICTED(P_JAVELIN)) && yn("Do you want to train the javelin skill?")=='y') {
-						P_ADVANCE(P_JAVELIN) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_TRIDENT) && !(P_RESTRICTED(P_TRIDENT)) && yn("Do you want to train the trident skill?")=='y') {
-						P_ADVANCE(P_TRIDENT) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_LANCE) && !(P_RESTRICTED(P_LANCE)) && yn("Do you want to train the lance skill?")=='y') {
-						P_ADVANCE(P_LANCE) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_BOW) && !(P_RESTRICTED(P_BOW)) && yn("Do you want to train the bow skill?")=='y') {
-						P_ADVANCE(P_BOW) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SLING) && !(P_RESTRICTED(P_SLING)) && yn("Do you want to train the sling skill?")=='y') {
-						P_ADVANCE(P_SLING) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_FIREARM) && !(P_RESTRICTED(P_FIREARM)) && yn("Do you want to train the firearms skill?")=='y') {
-						P_ADVANCE(P_FIREARM) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_CROSSBOW) && !(P_RESTRICTED(P_CROSSBOW)) && yn("Do you want to train the crossbow skill?")=='y') {
-						P_ADVANCE(P_CROSSBOW) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_DART) && !(P_RESTRICTED(P_DART)) && yn("Do you want to train the dart skill?")=='y') {
-						P_ADVANCE(P_DART) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SHURIKEN) && !(P_RESTRICTED(P_SHURIKEN)) && yn("Do you want to train the shuriken skill?")=='y') {
-						P_ADVANCE(P_SHURIKEN) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_BOOMERANG) && !(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
-						P_ADVANCE(P_BOOMERANG) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_WHIP) && !(P_RESTRICTED(P_WHIP)) && yn("Do you want to train the whip skill?")=='y') {
-						P_ADVANCE(P_WHIP) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_UNICORN_HORN) && !(P_RESTRICTED(P_UNICORN_HORN)) && yn("Do you want to train the unicorn horn skill?")=='y') {
-						P_ADVANCE(P_UNICORN_HORN) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_LIGHTSABER) && !(P_RESTRICTED(P_LIGHTSABER)) && yn("Do you want to train the lightsaber skill?")=='y') {
-						P_ADVANCE(P_LIGHTSABER) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_ATTACK_SPELL) && !(P_RESTRICTED(P_ATTACK_SPELL)) && yn("Do you want to train the attack spell skill?")=='y') {
-						P_ADVANCE(P_ATTACK_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_HEALING_SPELL) && !(P_RESTRICTED(P_HEALING_SPELL)) && yn("Do you want to train the healing spell skill?")=='y') {
-						P_ADVANCE(P_HEALING_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_DIVINATION_SPELL) && !(P_RESTRICTED(P_DIVINATION_SPELL)) && yn("Do you want to train the divination spell skill?")=='y') {
-						P_ADVANCE(P_DIVINATION_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_ENCHANTMENT_SPELL) && !(P_RESTRICTED(P_ENCHANTMENT_SPELL)) && yn("Do you want to train the enchantment spell skill?")=='y') {
-						P_ADVANCE(P_ENCHANTMENT_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_PROTECTION_SPELL) && !(P_RESTRICTED(P_PROTECTION_SPELL)) && yn("Do you want to train the protection spell skill?")=='y') {
-						P_ADVANCE(P_PROTECTION_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_BODY_SPELL) && !(P_RESTRICTED(P_BODY_SPELL)) && yn("Do you want to train the body spell skill?")=='y') {
-						P_ADVANCE(P_BODY_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_OCCULT_SPELL) && !(P_RESTRICTED(P_OCCULT_SPELL)) && yn("Do you want to train the occult spell skill?")=='y') {
-						P_ADVANCE(P_OCCULT_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_ELEMENTAL_SPELL) && !(P_RESTRICTED(P_ELEMENTAL_SPELL)) && yn("Do you want to train the elemental spell skill?")=='y') {
-						P_ADVANCE(P_ELEMENTAL_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_CHAOS_SPELL) && !(P_RESTRICTED(P_CHAOS_SPELL)) && yn("Do you want to train the chaos spell skill?")=='y') {
-						P_ADVANCE(P_CHAOS_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_MATTER_SPELL) && !(P_RESTRICTED(P_MATTER_SPELL)) && yn("Do you want to train the matter spell skill?")=='y') {
-						P_ADVANCE(P_MATTER_SPELL) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_RIDING) && !(P_RESTRICTED(P_RIDING)) && yn("Do you want to train the riding skill?")=='y') {
-						P_ADVANCE(P_RIDING) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_HIGH_HEELS) && !(P_RESTRICTED(P_HIGH_HEELS)) && yn("Do you want to train the high heels skill?")=='y') {
-						P_ADVANCE(P_HIGH_HEELS) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_GENERAL_COMBAT) && !(P_RESTRICTED(P_GENERAL_COMBAT)) && yn("Do you want to train the general combat skill?")=='y') {
-						P_ADVANCE(P_GENERAL_COMBAT) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SHIELD) && !(P_RESTRICTED(P_SHIELD)) && yn("Do you want to train the shield skill?")=='y') {
-						P_ADVANCE(P_SHIELD) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_BODY_ARMOR) && !(P_RESTRICTED(P_BODY_ARMOR)) && yn("Do you want to train the body armor skill?")=='y') {
-						P_ADVANCE(P_BODY_ARMOR) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_TWO_HANDED_WEAPON) && !(P_RESTRICTED(P_TWO_HANDED_WEAPON)) && yn("Do you want to train the two-handed weapon skill?")=='y') {
-						P_ADVANCE(P_TWO_HANDED_WEAPON) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_TWO_WEAPON_COMBAT) && !(P_RESTRICTED(P_TWO_WEAPON_COMBAT)) && yn("Do you want to train the two-weapon combat skill?")=='y') {
-						P_ADVANCE(P_TWO_WEAPON_COMBAT) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_POLYMORPHING) && !(P_RESTRICTED(P_POLYMORPHING)) && yn("Do you want to train the polymorphing skill?")=='y') {
-						P_ADVANCE(P_POLYMORPHING) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_DEVICES) && !(P_RESTRICTED(P_DEVICES)) && yn("Do you want to train the devices skill?")=='y') {
-						P_ADVANCE(P_DEVICES) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SEARCHING) && !(P_RESTRICTED(P_SEARCHING)) && yn("Do you want to train the searching skill?")=='y') {
-						P_ADVANCE(P_SEARCHING) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SPIRITUALITY) && !(P_RESTRICTED(P_SPIRITUALITY)) && yn("Do you want to train the spirituality skill?")=='y') {
-						P_ADVANCE(P_SPIRITUALITY) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_PETKEEPING) && !(P_RESTRICTED(P_PETKEEPING)) && yn("Do you want to train the petkeeping skill?")=='y') {
-						P_ADVANCE(P_PETKEEPING) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_MISSILE_WEAPONS) && !(P_RESTRICTED(P_MISSILE_WEAPONS)) && yn("Do you want to train the missile weapons skill?")=='y') {
-						P_ADVANCE(P_MISSILE_WEAPONS) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_TECHNIQUES) && !(P_RESTRICTED(P_TECHNIQUES)) && yn("Do you want to train the techniques skill?")=='y') {
-						P_ADVANCE(P_TECHNIQUES) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_IMPLANTS) && !(P_RESTRICTED(P_IMPLANTS)) && yn("Do you want to train the implants skill?")=='y') {
-						P_ADVANCE(P_IMPLANTS) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SEXY_FLATS) && !(P_RESTRICTED(P_SEXY_FLATS)) && yn("Do you want to train the sexy flats skill?")=='y') {
-						P_ADVANCE(P_SEXY_FLATS) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_MEMORIZATION) && !(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
-						P_ADVANCE(P_MEMORIZATION) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
-						P_ADVANCE(P_SHII_CHO) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_MAKASHI) && !(P_RESTRICTED(P_MAKASHI)) && yn("Do you want to train the form II (Makashi) skill?")=='y') {
-						P_ADVANCE(P_MAKASHI) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SORESU) && !(P_RESTRICTED(P_SORESU)) && yn("Do you want to train the form III (Soresu) skill?")=='y') {
-						P_ADVANCE(P_SORESU) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_ATARU) && !(P_RESTRICTED(P_ATARU)) && yn("Do you want to train the form IV (Ataru) skill?")=='y') {
-						P_ADVANCE(P_ATARU) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_SHIEN) && !(P_RESTRICTED(P_SHIEN)) && yn("Do you want to train the form V (Shien) skill?")=='y') {
-						P_ADVANCE(P_SHIEN) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_DJEM_SO) && !(P_RESTRICTED(P_DJEM_SO)) && yn("Do you want to train the form V (Djem So) skill?")=='y') {
-						P_ADVANCE(P_DJEM_SO) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_NIMAN) && !(P_RESTRICTED(P_NIMAN)) && yn("Do you want to train the form VI (Niman) skill?")=='y') {
-						P_ADVANCE(P_NIMAN) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_JUYO) && !(P_RESTRICTED(P_JUYO)) && yn("Do you want to train the form VII (Juyo) skill?")=='y') {
-						P_ADVANCE(P_JUYO) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_VAAPAD) && !(P_RESTRICTED(P_VAAPAD)) && yn("Do you want to train the form VII (Vaapad) skill?")=='y') {
-						P_ADVANCE(P_VAAPAD) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_WEDI) && !(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
-						P_ADVANCE(P_WEDI) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_BARE_HANDED_COMBAT) && !(P_RESTRICTED(P_BARE_HANDED_COMBAT)) && yn("Do you want to train the bare-handed combat skill?")=='y') {
-						P_ADVANCE(P_BARE_HANDED_COMBAT) *= 2;
-						acquiredskill = 1; }
-					else if (P_ADVANCE(P_MARTIAL_ARTS) && !(P_RESTRICTED(P_MARTIAL_ARTS)) && yn("Do you want to train the martial arts skill?")=='y') {
-						P_ADVANCE(P_MARTIAL_ARTS) *= 2;
-						acquiredskill = 1; }
-					else if (yn("Do you want to train no skill at all?")=='y') {
-						acquiredskill = 1; }
-					}
-					pline("Training complete!");
-
+					doubleskilltraining();
 					break;
 				case 21:
 					if (!(HAggravate_monster & INTRINSIC) && !(HAggravate_monster & TIMEOUT)) {
@@ -5705,6 +5524,32 @@ newbossPENT:
 					u.aggravation = 0;
 					u.heavyaggravation = 0;
 
+					break;
+				case 24:
+					wonderspell();
+					break;
+				case 25:
+
+					{
+					int tryct = 0;
+					int x, y;
+					register struct trap *ttmp;
+					for (tryct = 0; tryct < 2000; tryct++) {
+						x = rn1(COLNO-3,2);
+						y = rn2(ROWNO);
+
+						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+								ttmp = maketrap(x, y, randomtrap(), 0);
+							if (ttmp) {
+								ttmp->tseen = 0;
+								ttmp->hiddentrap = 1;
+							}
+							if (!rn2(5)) break;
+						}
+					}
+
+					You_feel("in grave danger...");
+					}
 					break;
 				default:
 					impossible("undefined pentagram effect");
@@ -7511,7 +7356,7 @@ secureidchoice:
 		}
 		if (!acqo) {
 			pline("Unfortunately it failed.");
-			return 0;
+			break;
 		}
 
 		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
@@ -7546,6 +7391,7 @@ secureidchoice:
 			if (mtmp->mhp > mtmp->mhpmax) {
 			    mtmp->mhp = mtmp->mhpmax;
 			}
+			if (mtmp->bleedout) mtmp->bleedout = 0;
 
 		    }
 
@@ -7564,6 +7410,17 @@ secureidchoice:
 		You("call upon your chemical knowledge. Nothing happens.");
 		break;
 	case SPE_CURE_SICKNESS:
+
+		if ((Sick || Slimed) && !Role_if(PM_HEALER)) {
+			if (u.uenmax > 0) {
+				u.uenmax--;
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			} else {
+				You("don't have enough power for this spell.");
+				break;
+			}
+		}
+
 		if (Sick) You("are no longer ill.");
 		if (Slimed) {
 		    pline_The("slime disappears!");
@@ -7573,29 +7430,130 @@ secureidchoice:
 		healup(0, 0, TRUE, FALSE);
 		break;
 	case SPE_CURE_HALLUCINATION:
-		make_hallucinated(0L,TRUE,0L);
+		if (HeavyHallu) break;
+		if (HHallucination > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(HHallucination / 2);
+			if (effreduction > 0) {
+				HHallucination -= effreduction;
+				Your("hallucination counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_hallucinated(0L,TRUE,0L);
+		}
 		break;
 	case SPE_CURE_CONFUSION:
-		make_confused(0L,TRUE);
+		if (HeavyConfusion) break;
+		if (HConfusion > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(HConfusion / 2);
+			if (effreduction > 0) {
+				HConfusion -= effreduction;
+				Your("confusion counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_confused(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_STUN:
-		make_stunned(0L,TRUE);
+		if (HeavyStunned) break;
+		if (HStun > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(HStun / 2);
+			if (effreduction > 0) {
+				HStun -= effreduction;
+				Your("stun counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_stunned(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_DIM:
-		make_dimmed(0L,TRUE);
+		if (HeavyDimmed) break;
+		if (HDimmed > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(HDimmed / 2);
+			if (effreduction > 0) {
+				HDimmed -= effreduction;
+				Your("dimness counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_dimmed(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_BURN:
-		make_burned(0L,TRUE);
+		if (HeavyBurned) break;
+		if (HBurned > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(HBurned / 2);
+			if (effreduction > 0) {
+				HBurned -= effreduction;
+				Your("burn counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_burned(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_FREEZE:
-		make_frozen(0L,TRUE);
+		if (HeavyFrozen) break;
+		if (HFrozen > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(HFrozen / 2);
+			if (effreduction > 0) {
+				HFrozen -= effreduction;
+				Your("freeze counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_frozen(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_NUMBNESS:
-		make_numbed(0L,TRUE);
+		if (HeavyNumbed) break;
+		if (HNumbed > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+			int effreduction = rnd(HNumbed / 2);
+			if (effreduction > 0) {
+				HNumbed -= effreduction;
+				Your("numbness counter is reduced.");
+			}
+			if (!Role_if(PM_HEALER) && !rn2(500)) {
+				pline("The spell backlashes!");
+				badeffect();
+			}
+		} else {
+			make_numbed(0L,TRUE);
+		}
 		break;
 	case SPE_CURE_RANDOM_STATUS:
 		switch (rnd(10)) {
 			case 1:
+				if ((Sick || Slimed) && !Role_if(PM_HEALER) && !rn2(5)) {
+					if (u.uenmax > 0) {
+						u.uenmax--;
+						if (u.uen > u.uenmax) u.uen = u.uenmax;
+					} else {
+						You("don't have enough power for this spell.");
+						break;
+					}
+				}
+
 				if (Sick) You("are no longer ill.");
 				if (Slimed) {
 				    pline_The("slime disappears!");
@@ -7604,31 +7562,113 @@ secureidchoice:
 				healup(0, 0, TRUE, FALSE);
 				break;
 			case 2:
-				make_hallucinated(0L,TRUE,0L);
+				if (HeavyHallu) break;
+				if (HHallucination > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HHallucination / 2);
+					if (effreduction > 0) {
+						HHallucination -= effreduction;
+						Your("hallucination counter is reduced.");
+					}
+				} else {
+					make_hallucinated(0L,TRUE,0L);
+				}
 				break;
 			case 3:
-				make_confused(0L,TRUE);
+				if (HeavyConfusion) break;
+				if (HConfusion > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HConfusion / 2);
+					if (effreduction > 0) {
+						HConfusion -= effreduction;
+						Your("confusion counter is reduced.");
+					}
+				} else {
+					make_confused(0L,TRUE);
+				}
 				break;
 			case 4:
-				make_stunned(0L,TRUE);
+				if (HeavyStunned) break;
+				if (HStun > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HStun / 2);
+					if (effreduction > 0) {
+						HStun -= effreduction;
+						Your("stun counter is reduced.");
+					}
+				} else {
+					make_stunned(0L,TRUE);
+				}
 				break;
 			case 5:
-				make_burned(0L,TRUE);
+				if (HeavyBurned) break;
+				if (HBurned > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HBurned / 2);
+					if (effreduction > 0) {
+						HBurned -= effreduction;
+						Your("burn counter is reduced.");
+					}
+				} else {
+					make_burned(0L,TRUE);
+				}
 				break;
 			case 6:
-				make_frozen(0L,TRUE);
+				if (HeavyFrozen) break;
+				if (HFrozen > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HFrozen / 2);
+					if (effreduction > 0) {
+						HFrozen -= effreduction;
+						Your("freeze counter is reduced.");
+					}
+				} else {
+					make_frozen(0L,TRUE);
+				}
 				break;
 			case 7:
-				make_numbed(0L,TRUE);
+				if (HeavyNumbed) break;
+				if (HNumbed > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HNumbed / 2);
+					if (effreduction > 0) {
+						HNumbed -= effreduction;
+						Your("numbness counter is reduced.");
+					}
+				} else {
+					make_numbed(0L,TRUE);
+				}
 				break;
 			case 8:
-				make_blinded(0L,FALSE);
+				if (HeavyBlind) break;
+				if (Blinded > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(Blinded / 2);
+					if (effreduction > 0) {
+						u.ucreamed -= effreduction;
+						Blinded -= effreduction;
+						Your("blindness counter is reduced.");
+					}
+				} else {
+						make_blinded(0L,FALSE);
+				}
 				break;
 			case 9:
-				make_feared(0L,FALSE);
+				if (HeavyFeared) break;
+				if (HFeared > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HFeared / 2);
+					if (effreduction > 0) {
+						HFeared -= effreduction;
+						Your("fear counter is reduced.");
+					}
+				} else {
+					make_feared(0L, TRUE);
+				}
 				break;
 			case 10:
-				make_dimmed(0L,FALSE);
+				if (HeavyDimmed) break;
+				if (HDimmed > (rn1(Role_if(PM_HEALER) ? 600 : 300, 20))) {
+					int effreduction = rnd(HDimmed / 2);
+					if (effreduction > 0) {
+						HDimmed -= effreduction;
+						Your("dimness counter is reduced.");
+					}
+				} else {
+					make_dimmed(0L,TRUE);
+				}
 				break;
 		}
 		break;
@@ -7645,12 +7685,12 @@ secureidchoice:
 				badeffect();
 			}
 		    obfree(pseudo, (struct obj *)0);
-		    return 0;
+		    break;
 		}
 		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
 		    You("smell rotten eggs.");
 		    obfree(pseudo, (struct obj *)0);
-		    return 0;
+		    break;
 		}
 		(void) create_gas_cloud(cc.x, cc.y, 2, 5);
 		break;
@@ -7846,6 +7886,7 @@ secureidchoice:
 		{
 			int rtrap;
 		      int i, j, bd = 1;
+			register struct trap *ttmp;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
@@ -7854,19 +7895,32 @@ secureidchoice:
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				ttmp = maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				if (ttmp && !rn2(10)) ttmp->hiddentrap = TRUE;
 			}
 		}
 
-		makerandomtrap();
-		if (!rn2(2)) makerandomtrap();
-		if (!rn2(4)) makerandomtrap();
-		if (!rn2(8)) makerandomtrap();
-		if (!rn2(16)) makerandomtrap();
-		if (!rn2(32)) makerandomtrap();
-		if (!rn2(64)) makerandomtrap();
-		if (!rn2(128)) makerandomtrap();
-		if (!rn2(256)) makerandomtrap();
+		if (rn2(10)) {
+			makerandomtrap();
+			if (!rn2(2)) makerandomtrap();
+			if (!rn2(4)) makerandomtrap();
+			if (!rn2(8)) makerandomtrap();
+			if (!rn2(16)) makerandomtrap();
+			if (!rn2(32)) makerandomtrap();
+			if (!rn2(64)) makerandomtrap();
+			if (!rn2(128)) makerandomtrap();
+			if (!rn2(256)) makerandomtrap();
+		} else {
+			makeinvisotrap();
+			if (!rn2(2)) makeinvisotrap();
+			if (!rn2(4)) makeinvisotrap();
+			if (!rn2(8)) makeinvisotrap();
+			if (!rn2(16)) makeinvisotrap();
+			if (!rn2(32)) makeinvisotrap();
+			if (!rn2(64)) makeinvisotrap();
+			if (!rn2(128)) makeinvisotrap();
+			if (!rn2(256)) makeinvisotrap();
+		}
 
 		break;
 
@@ -9202,8 +9256,22 @@ totemsummonchoice:
 
 	case SPE_CURE_GLIB:
 
-		if (Glib) pline("You clean your %s.", makeplural(body_part(HAND)));
-		Glib = 0;
+		if (Glib) {
+			pline("You clean your %s.", makeplural(body_part(HAND)));
+			if (Glib > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+				int effreduction = rnd(Glib / 2);
+				if (effreduction > 0) {
+					Glib -= effreduction;
+					Your("glib counter is reduced.");
+				}
+				if (!Role_if(PM_HEALER) && !rn2(500)) {
+					pline("The spell backlashes!");
+					badeffect();
+				}
+			} else {
+				Glib = 0;
+			}
+		}
 
 		break;
 
@@ -9916,8 +9984,7 @@ rerollX:
 
 		}
 
-		obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
-		return(1);
+		break;
 
 	default:
 		/*impossible("Unknown spell %d attempted.", spell);*/
@@ -9945,6 +10012,13 @@ rerollX:
 		if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
 		if (Role_if(PM_PSYKER)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
 
+	}
+
+	if (!(iflags.memorizationknown) && !(spl_book[spell].sp_memorize)) {
+		if (yn("You just cast a dememorized spell! If this means that you want to continue using that spell later, you might want to set it back to memorization mode so that its spell memory lasts longer. Press y now to set the spell back to memorization mode, or n to keep it dememorized.") == 'y') {
+			spl_book[spell].sp_memorize = TRUE;
+			pline("Spell memorization was activated!");
+		}
 	}
 
 	if (SpellColorCyan) {
@@ -10201,6 +10275,9 @@ dovspell()
 	int splnum, othnum;
 	struct spell spl_tmp;
 
+	int dememonum = 0;
+	int i;
+
 	char spellcolorbuf[BUFSZ];
 
 	if (SpellColorPink) sprintf(spellcolorbuf, "Your spells are pink.");
@@ -10234,6 +10311,19 @@ dovspell()
 		spl_book[othnum] = spl_tmp;
 	    }
 	}
+
+	dememonum = 0;
+	for (i = 0; i < MAXSPELL; i++) {
+		if (spellid(i) == NO_SPELL) break;
+		if (spellmemorize(i)) continue;
+		dememonum++;
+	}
+	if (iflags.memorizationknown) dememonum = 0;
+
+	if (dememonum >= 10) pline("You set a very large amount of spells to dememorization mode. A common misconception of players unfamiliar with the memorization system is that dememorizing some spells would magically make the memorized spells last longer. That is NOT the case. The spells are independent from each other. Every spell set to memorization mode gets a 10%% reduction in spell decay rate per memorization skill level (i.e. spell memory persists longer), so if you want to keep casting those spells, you should set them back to memorization mode. You can do that by opening the spell menu (with the + key) and pressing ? twice, which brings you to the memorization menu.");
+	else if (dememonum >= 5) pline("You set many spells to dememorization mode (indicated by a - next to the spell level). All those spells aren't getting the spell memory bonus from memorization skill, which is highly impractical unless you WANT to forget those spells for some bizarre reason. It's advisable to have only a single spell set to dememorization mode, i.e. the one you want to turn into a forgotten spell. You can change it in the spell menu (hit + to open it and ? twice to navigate to the memorization menu).");
+	else if (dememonum >= 2) pline("You set several spells to dememorization mode (indicated by a - next to the spell level), which means that those spells currently don't benefit from increased spell memory. If you want your spells to benefit from the memorization skill, you should open the spell menu (+ key by default) and navigate to the memorization menu by pressing ? twice, then setting the spells in question back to memorization mode.");
+
 	return 0;
 }
 
@@ -10278,7 +10368,7 @@ int specialmenutype;
 			"   %3d%%",
 			spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
-			spellmemorize(i) ? " " : "-",
+			spellmemorize(i) ? "+" : "-",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 
@@ -10330,8 +10420,8 @@ int specialmenutype;
 	end_menu(tmpwin, prompt);
 
 	how = PICK_ONE;
-	if (splaction == SPELLMENU_VIEW && spellid(1) == NO_SPELL)
-	    how = PICK_NONE;	/* only one spell => nothing to swap with */
+	/*if (splaction == SPELLMENU_VIEW && spellid(1) == NO_SPELL)
+	    how = PICK_NONE;*/	/* only one spell => nothing to swap with */ /* Amy edit: blah, we have the ? option now */
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
 	if (n > 0 && selected[0].item.a_int == -1) {
@@ -10387,7 +10477,13 @@ int specialmenutype;
 
 		spl_book[selected[0].item.a_int - 1].sp_memorize = !spl_book[selected[0].item.a_int - 1].sp_memorize;
 
-		return dospellmenu(prompt, splaction, spell_no, specialmenutype);
+		char spellcolorbuf[BUFSZ];
+
+		if (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) sprintf(spellcolorbuf, "Memorization setting changed."); /* no, you don't get to see what it is now :P */
+		else if (spl_book[selected[0].item.a_int - 1].sp_memorize) sprintf(spellcolorbuf, "Spell set to memorization mode!");
+		else sprintf(spellcolorbuf, "Memorization for this spell deactivated.");
+
+		return dospellmenu(spellcolorbuf, splaction, spell_no, specialmenutype);
 	}
 	if (n > 0) {
 		*spell_no = selected[0].item.a_int - 1;
@@ -10429,7 +10525,7 @@ dump_spells()
 		sprintf(buf, "%c - %-20s  %2d%s%s  %-8s %4d%%  %3d%%",
 			spellet(i), spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
-			spellmemorize(i) ? " " : "-",
+			spellmemorize(i) ? "+" : "-",
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 			SpellColorCyan ? 100 : issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
@@ -10504,18 +10600,17 @@ int spell;
 
 	/* Robes are body armour in SLASH'EM */
 	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarm)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10523,35 +10618,34 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarm || !is_metallic(uarm))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
 
 	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmc)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10559,36 +10653,35 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 36);
 	}
 	if (SpellColorMetal && (!uarmc || !is_metallic(uarmc))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 36);
 
 	}
 
 	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmu)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10596,37 +10689,36 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 	}
 	if (SpellColorMetal && (!uarmu || !is_metallic(uarmu))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 
 	}
 
 	if (uarms && !SpellColorMetal) {
-		shieldpenalties = 15;
 		if (!is_metallic(uarms) || is_etheritem(uarms)) shieldpenalties /= 3;
 
 		switch (objects[(uarms)->otyp].oc_material) {
 			default: break;
-			case METAL: shieldpenalties = 16; break;
-			case COPPER: shieldpenalties = 21; break;
-			case SILVER: shieldpenalties = 17; break;
-			case GOLD: shieldpenalties = 8; break;
-			case PLATINUM: shieldpenalties = 18; break;
-			case MITHRIL: shieldpenalties = 13; break;
-			case VIVA: shieldpenalties = 12; break;
-			case POURPOOR: shieldpenalties = 20; break;
+			case METAL: shieldpenalties *= 16; shieldpenalties /= 15; break;
+			case COPPER: shieldpenalties *= 21; shieldpenalties /= 15; break;
+			case SILVER: shieldpenalties *= 17; shieldpenalties /= 15; break;
+			case GOLD: shieldpenalties *= 8; shieldpenalties /= 15; break;
+			case PLATINUM: shieldpenalties *= 18; shieldpenalties /= 15; break;
+			case MITHRIL: shieldpenalties *= 13; shieldpenalties /= 15; break;
+			case VIVA: shieldpenalties *= 12; shieldpenalties /= 15; break;
+			case POURPOOR: shieldpenalties *= 20; shieldpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10634,36 +10726,35 @@ int spell;
 			shieldpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) shieldpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarms || !is_metallic(uarms))) {
-		shieldpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			shieldpenalties *= 4;
 			shieldpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) shieldpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 
 	}
 
 	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmh)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10671,36 +10762,35 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmhbon * armorpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarmh || !is_metallic(uarmh))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmhbon * armorpenalties / 12);
 
 	}
 
 	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmg)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10708,36 +10798,35 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / 12);
 	}
 	if (SpellColorMetal && (!uarmg || !is_metallic(uarmg))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / 12);
 
 	}
 
 	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf)) {
-		armorpenalties = 15;
 
 		switch (objects[(uarmf)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties = 16; break;
-			case COPPER: armorpenalties = 21; break;
-			case SILVER: armorpenalties = 17; break;
-			case GOLD: armorpenalties = 8; break;
-			case PLATINUM: armorpenalties = 18; break;
-			case MITHRIL: armorpenalties = 13; break;
-			case VIVA: armorpenalties = 12; break;
-			case POURPOOR: armorpenalties = 20; break;
+			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10745,19 +10834,19 @@ int spell;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / 12);
 	}
 
 	if (SpellColorMetal && (!uarmf || !is_metallic(uarmf))) {
-		armorpenalties = 15;
+
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / 12);
 
@@ -10978,7 +11067,7 @@ int spell;
 
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) chance -= 10;
+	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) chance -= 10;
 
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
 	if (Race_if(PM_PLAYER_GOLEM)) {
@@ -10996,8 +11085,8 @@ int spell;
 	if (uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID) chance += 50;
 	if (uarmu && uarmu->oartifact == ART_KEITH_S_UNDEROOS) chance += 50;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) chance += 10;
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "knowledgeable helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "znayushchikh shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bilimdon dubulg'a") ) ) chance += 10;
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "science cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nauka plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ilm-fan plash") ) ) chance += 10;
+	if (uarmh && itemhasappearance(uarmh, APP_KNOWLEDGEABLE_HELMET) ) chance += 10;
+	if (uarmc && itemhasappearance(uarmc, APP_SCIENCE_CLOAK) ) chance += 10;
 	if (u.tiksrvzllatdown) chance += 10;
 
 	if (Upolyd && dmgtype(youmonst.data, AD_SPEL) ) {
@@ -11039,14 +11128,14 @@ int spell;
 	if (Race_if(PM_INKA) && spellid(spell) == SPE_NATURE_BEAM)
 		chance += 100;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") )) chance -= 10;
+	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) chance -= 10;
 	if (RngeDnethack) chance -= 10;
 	if (RngeUnnethack) chance -= 33;
 
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qobiq plash") ) ) chance -= 20;
+	if (uarmc && itemhasappearance(uarmc, APP_SHELL_CLOAK) ) chance -= 20;
 
 	if (is_grassland(u.ux, u.uy)) chance -= 10;
 	if (Numbed) chance -= 10;
@@ -11063,15 +11152,15 @@ int spell;
 
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "failuncap cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya s provalom") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "noto'g'ri plash")) ) chance += 5;
+	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) chance += 5;
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "failuncap helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem s provalom") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "noto'g'ri zarbdan")) ) chance += 5;
+	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "failuncap gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki s perforatsiyey") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "noto'g'ri qo'lqop")) ) chance += 5;
+	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "failuncap shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "s provalom obuv'") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "poyafzal poyafzallari")) ) chance += 5;
+	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
 
-	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) chance += 5;
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) chance += 5;
 
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) chance += 20;
 
@@ -11235,7 +11324,7 @@ wonderspell()
 			if (spellknow(i) <= MAX_CAN_STUDY) {
 				Your("knowledge of the %s spell is keener.", splname);
 				incrnknow(i);
-				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
@@ -11243,7 +11332,13 @@ wonderspell()
 					char nervbuf[QBUFSZ];
 					char thisisannoying = 0;
 
-					sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+					if (!u.youhavememorized) {
+						u.youhavememorized = TRUE;
+						if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+					}
+
+					if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+					else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 					thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 					if (thisisannoying != 'n') {
 
@@ -11258,7 +11353,11 @@ wonderspell()
 						}
 					    	boostknow(i, memoboost * 1000);
 						spl_book[i].sp_memorize = TRUE;
-					} else spl_book[i].sp_memorize = FALSE;
+						pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+					} else {
+						spl_book[i].sp_memorize = FALSE;
+						pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+					}
 
 				}
 
@@ -11271,7 +11370,7 @@ wonderspell()
 			spl_book[i].sp_lev = objects[randomspell].oc_level;
 			spl_book[i].sp_memorize = TRUE;
 			incrnknow(i);
-			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
 			You("gain knowledge of the %s spell.", splname);
 			if (randomspell == SPE_FORBIDDEN_KNOWLEDGE) {
@@ -11290,7 +11389,13 @@ wonderspell()
 				char nervbuf[QBUFSZ];
 				char thisisannoying = 0;
 
-				sprintf(nervbuf, "Memorize this spell to add more spell memory?");
+				if (!u.youhavememorized) {
+					u.youhavememorized = TRUE;
+					if (!iflags.memorizationknown) pline("You have the memorization skill, which allows you to gain extra spell memory for newly learned spells. Whenever you learn a spell, you are asked whether you want to use the skill to boost the new spell's memory. In the case of doubt you should ALWAYS ANSWER YES. If you answer no, you just throw the bonus away. (Exception is if you want a forgotten spell, but you only ever need one of those normally.)");
+				}
+
+				if (!iflags.memorizationknown) sprintf(nervbuf, "Memorize this spell to add more spell memory? In the case of doubt you should always answer yes, unless you want the bonus to go to waste.");
+				else sprintf(nervbuf, "Memorize this spell to add more spell memory?");
 				thisisannoying = yn_function(nervbuf, ynqchars, 'y');
 				if (thisisannoying != 'n') {
 
@@ -11305,7 +11410,11 @@ wonderspell()
 					}
 				    	boostknow(i, memoboost * 1000);
 					spl_book[i].sp_memorize = TRUE;
-				} else spl_book[i].sp_memorize = FALSE;
+					pline("Spell memory increased! You gained %d%% extra spell memory.", memoboost * 10);
+				} else {
+					spl_book[i].sp_memorize = FALSE;
+					pline("You decided to throw away the spell memory bonus. The spell was set to non-memorization mode. If you did that by mistake, you should open the spell menu and turn memorization for this spell back on so that it properly benefits from memorization skill.");
+				}
 
 			}
 

@@ -41,7 +41,7 @@ boolean
 player_shades_of_grey()
 {
 	if (!uarmg) return FALSE;
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "grey-shaded gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sero-zatenennykh perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kulrang-soyali qo'lqop") ) ) return TRUE;
+	if (uarmg && itemhasappearance(uarmg, APP_GREY_SHADED_GLOVES) ) return TRUE;
 	if (RngeBDSM) return TRUE;
 	return FALSE;
 
@@ -104,7 +104,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) ) { 
+			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) ) { 
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s gently strokes and squeezes your breasts, and you are sexually aroused by the soft touch.", Monnam(mtmp));
@@ -121,7 +121,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "noble sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blagorodnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oqlangan sandallar") )) && !rn2(3)) {
+			if ((uarmf && (itemhasappearance(uarmf, APP_VELCRO_SANDALS) || itemhasappearance(uarmf, APP_NOBLE_SANDALS))) && !rn2(3)) {
 
 				pline("%s claws sensitive parts of your body!", Monnam(mtmp));
 
@@ -211,7 +211,7 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
-			if (uarmf && !rn2(3) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+			if (uarmf && !rn2(3) && itemhasappearance(uarmf, APP_PLOF_HEELS) ) {
 				pline("*plof*");
 				if (uarmf->spe > ((uarmf->oartifact == ART_STEFANJE_S_PROBLEM) ? -50 : -21)) uarmf->spe--;
 				else {
@@ -708,7 +708,7 @@ elena15:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "chiroyli ko'chirish to'piqlarni") ) ) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
 elena16:
 				if (multi >= 0) {
 					pline("You come because %s's high-heeled sandals are so beautiful.", mon_nam(mtmp));
@@ -737,7 +737,7 @@ elena16:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "tartibsizlik chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_IRREGULAR_HEEL] || mtmp->data == &mons[PM_MANGA_GIRL] || mtmp->data == &mons[PM_MANGA_WOMAN] || mtmp->data == &mons[PM_MANGA_LADY] || mtmp->data == &mons[PM_SANDRA_S_DISGUISED_BOOT] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_IRREGULAR_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_IRREGULAR_HEEL] || mtmp->data == &mons[PM_MANGA_GIRL] || mtmp->data == &mons[PM_MANGA_WOMAN] || mtmp->data == &mons[PM_MANGA_LADY] || mtmp->data == &mons[PM_SANDRA_S_DISGUISED_BOOT] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER] ) ) {
 elena17:
 
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -752,7 +752,7 @@ elena17:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "xanjar chizilmasin") ) ) || mtmp->data == &mons[PM_TOPLESS_NURSE] || mtmp->data == &mons[PM_ANN_KATHRIN_S_CUDDLY_BOOT] || mtmp->data == &mons[PM_LISA_S_CUDDLY_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WEDGE_BOOTS) ) || mtmp->data == &mons[PM_TOPLESS_NURSE] || mtmp->data == &mons[PM_ANN_KATHRIN_S_CUDDLY_BOOT] || mtmp->data == &mons[PM_LISA_S_CUDDLY_BOOT] ) ) {
 elena18:
 
 				pline("The wedge heel feels very soft and lovely. In fact, you enjoyed %s's kick.", mon_nam(mtmp));
@@ -773,7 +773,7 @@ elena18:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "havola etdi chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_HUMAN_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_JOHANETTA_S_WINTER_BOOT] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_ANJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_STARLET_BUNDLE] || mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_GRENEUVENIC_TOPMODEL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] || mtmp->data == &mons[PM_FANNY_S_LOVELY_WINTER_BOOT] || mtmp->data == &mons[PM_OFFICER_INA] || mtmp->data == &mons[PM_HUGGER_DRAGON] || mtmp->data == &mons[PM_TAIL_GUTTER] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HUGGING_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_HUMAN_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_JOHANETTA_S_WINTER_BOOT] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_ANJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_STARLET_BUNDLE] || mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_GRENEUVENIC_TOPMODEL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] || mtmp->data == &mons[PM_FANNY_S_LOVELY_WINTER_BOOT] || mtmp->data == &mons[PM_OFFICER_INA] || mtmp->data == &mons[PM_HUGGER_DRAGON] || mtmp->data == &mons[PM_TAIL_GUTTER] ) ) {
 elena19:
 				randomkick = rnd(3);
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -815,7 +815,7 @@ elena19:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qish sandal chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || (FemaleTrapSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || (FemaleTrapSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
 elena20:
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -896,7 +896,7 @@ elena20:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "qisqa ko'chirish to'piqlarni") ) ) || mtmp->data == &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS] || mtmp->data == &mons[PM_ALMUTH_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_SUPER_HIGH_LADY_SHOE] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_SANDAL] || mtmp->data == &mons[PM_THICK_BEAUTY] || mtmp->data == &mons[PM_NINA_S_CLUNKY_HEEL_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_CLUNKY_HEELS) ) || mtmp->data == &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS] || mtmp->data == &mons[PM_ALMUTH_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_SUPER_HIGH_LADY_SHOE] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_SANDAL] || mtmp->data == &mons[PM_THICK_BEAUTY] || mtmp->data == &mons[PM_NINA_S_CLUNKY_HEEL_BOOT] ) ) {
 elena21:
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -910,7 +910,7 @@ elena21:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "bilagi zo'r chizilmasin") ) ) || mtmp->data == &mons[PM_EMMA_S_ANKLE_BOOT] || mtmp->data == &mons[PM_MADELEINE_S_ANKLE_BOOT] || mtmp->data == &mons[PM_BETTINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_JANINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HIGH_HEELED_LADY_SHOE] || mtmp->data == &mons[PM_HC_HIGHHEEL_HUSSY] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_ANKLE_BOOTS) ) || mtmp->data == &mons[PM_EMMA_S_ANKLE_BOOT] || mtmp->data == &mons[PM_MADELEINE_S_ANKLE_BOOT] || mtmp->data == &mons[PM_BETTINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_JANINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HIGH_HEELED_LADY_SHOE] || mtmp->data == &mons[PM_HC_HIGHHEEL_HUSSY] ) ) {
 elena22:
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -959,7 +959,7 @@ elena22:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && OBJ_DESCR(objects[footwear->otyp]) && ( !strcmp(OBJ_DESCR(objects[footwear->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[footwear->otyp]), "blok-o'tish chizilmasin") ) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SLAP_HEELED_SANDAL_BOOT] || mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_LAURA_S__SISTER__COMBAT_BOOT] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_CZECH_WENCH] || mtmp->data == &mons[PM_UNFORTUNATE_FOREST] || mtmp->data == &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_PUSSY] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BLOCK_HEELED_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SLAP_HEELED_SANDAL_BOOT] || mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_LAURA_S__SISTER__COMBAT_BOOT] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_CZECH_WENCH] || mtmp->data == &mons[PM_UNFORTUNATE_FOREST] || mtmp->data == &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_PUSSY] ) ) {
 elena23:
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -1080,7 +1080,7 @@ elena23:
 
 			}
 
-			if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && !rn2(25)) {
+			if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && !rn2(25)) {
 
 				pline("%s deeply stings you for being such a spoiled princess.", Monnam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -1091,7 +1091,7 @@ elena23:
 
 			}
 
-			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && !rn2(15)) {
+			if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && !rn2(15)) {
 
 				pline("%s deeply stings you for being such a spoiled princess.", Monnam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -1138,7 +1138,7 @@ elena23:
 
 			}
 
-			if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && !rn2(15)) {
+			if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && !rn2(15)) {
 
 				pline("%s angrily cuts up your unprotected princess skin.", Monnam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -1151,7 +1151,7 @@ elena23:
 
 			}
 
-			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && !rn2(15)) {
+			if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && !rn2(15)) {
 
 				pline("%s angrily cuts up your unprotected princess skin.", Monnam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -1181,7 +1181,7 @@ elena23:
 			make_confused(HConfusion + monsterlev, FALSE);
 			}
 
-			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && !rn2(15)) {
+			if ((uarmf && itemhasappearance(uarmf, APP_PRINCESS_PUMPS) ) && !rn2(15)) {
 
 				pline("%s lashes you because you're such a spoiled princess.", Monnam(mtmp));
 
@@ -1881,7 +1881,7 @@ mattacku(mtmp)
 
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
+	if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
 
 	if (Conflict) tmp += rnd(1 + mlevfortohit);
 	if (StrongConflict) tmp += rnd(1 + mlevfortohit);
@@ -1916,7 +1916,7 @@ mattacku(mtmp)
  	   && mtmp->data != &mons[PM_NEWS_DAEMON]
  	   && mtmp->data != &mons[PM_PRINTER_DAEMON])
 	    if(!mtmp->mcan && !rn2(mtmp->data == &mons[PM_PERCENTI_OPENS_A_GATE_] ? 5 : mtmp->data == &mons[PM_PERCENTI_PASSES_TO_YOU_] ? 5 : 23)) {
-			msummon(mtmp);
+			msummon(mtmp, FALSE);
 			pline("%s opens a gate!",Monnam(mtmp) );
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
 		}
@@ -1944,7 +1944,7 @@ mattacku(mtmp)
 		char buf[BUFSZ], genericwere[BUFSZ];
 
 		strcpy(genericwere, "creature");
-		numhelp = were_summon(mdat, FALSE, &numseen, genericwere);
+		numhelp = were_summon(mdat, FALSE, &numseen, genericwere, FALSE);
 		if (youseeit) {
 			pline("%s summons help!", Monnam(mtmp));
 			if (numhelp > 0) {
@@ -2016,7 +2016,7 @@ mattacku(mtmp)
 			if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 			    if (foundyou) {
-				if ((tmp > (j = rnd(20+i))) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && !rn2(3) ) ) {
+				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
 					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
 					sum[i] = hitmu(mtmp, mattk);
@@ -2194,7 +2194,7 @@ swingweapon:
 				if (!Is_rogue_level(&u.uz) || !rn2(3) ) {
 #endif
 
-					rangewepon = select_rwep(mtmp);
+					rangewepon = select_rwep(mtmp, FALSE);
 					if (!rangewepon && !range2) goto usemelee;
 
 					if (!blue_on_blue(mtmp)) thrwmu(mtmp);
@@ -2461,7 +2461,7 @@ elena37:
 /* The gnome swings her spiked battle boot! Ouch! The spiked boot soles bore themselves into your skin! The spikes were poisoned! The poison was deadly... Do you want your possessions identified? */
 
 				}
-				if((tmp > (j = dieroll = rnd(20+i))) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && !rn2(3) ) ) {
+				if((tmp > (j = dieroll = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    sum[i] = hitmu(mtmp, mattk);
 					if (!rn2(75)) pushplayer();
 				}
@@ -5071,7 +5071,7 @@ struct attack *mattk;
                        (mattk->adtyp == AD_WRAP) ?
                       "swings itself around of" : "grabs");
                 return TRUE;
-	} else if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slippery gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "skol'zkiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sirg'anchiq qo'lqop") ) && rn2(10) ) {
+	} else if (uarmg && itemhasappearance(uarmg, APP_SLIPPERY_GLOVES) && rn2(10) ) {
                 pline("%s %s you, but your slippery gloves allow you to slip free!",
                        Monnam(mtmp),
                        (mattk->adtyp == AD_WRAP) ?
@@ -6033,7 +6033,7 @@ dopois:
 	    case AD_DRIN:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER) || (rn2(8) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mary janes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri dzheyn") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri janes")) ) ) {
+		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -6044,7 +6044,7 @@ dopois:
 			break;
 		}
 
-		if (uarmh && !(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bir ip yengil bosh kiyim") )) && rn2(evilfriday ? 3 : 8)) {
+		if (uarmh && !(uarmh && itemhasappearance(uarmh, APP_STRIP_BANDANA)) && rn2(evilfriday ? 3 : 8)) {
 		    /* not body_part(HEAD) */
 		    Your("helmet blocks the attack to your head.");
 		    break;
@@ -6456,7 +6456,7 @@ dopois:
 		 * still _can_ attack you when you're flying or mounted.
 		 * [FIXME: why can't a flying attacker overcome this?]
 		 */
-		  if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "high iron boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "vysokiye zheleznyye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yuqori temir chiziqlar")) ) {
+		  if (uarmf && itemhasappearance(uarmf, APP_HIGH_IRON_BOOTS) ) {
 		    pline("%s tries futilely to sting through your high iron boots!", Monnam(mtmp));
 		    dmg = 0; 
 		  } else if ((u.usteed && !is_flyer(mtmp->data) && rn2(3) ) || 
@@ -6528,7 +6528,7 @@ dopois:
 			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+			if (uarmc && itemhasappearance(uarmc, APP_PETRIFIED_CLOAK) && rn2(4)) break;
 	
 			if(!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard())) {
@@ -6578,7 +6578,7 @@ dopois:
 			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+			if (uarmc && itemhasappearance(uarmc, APP_PETRIFIED_CLOAK) && rn2(4)) break;
 	
 			if(!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard())) {
@@ -6785,7 +6785,7 @@ dopois:
 			}
 
 			if (is_drowningpool(mtmp->mx,mtmp->my) && !Swimming
-			    && !Amphibious && !Breathless && !rn2(StrongFlying ? 5 : 3) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) { /* greatly lowered chance of getting drowned --Amy */
+			    && !Amphibious && !Breathless && !rn2(StrongFlying ? 5 : 3) && !(uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS)  ) ) { /* greatly lowered chance of getting drowned --Amy */
 			    boolean moat =
 				(levl[mtmp->mx][mtmp->my].typ != POOL) &&
 				(levl[mtmp->mx][mtmp->my].typ != WATER) &&
@@ -6967,7 +6967,7 @@ dopois:
 			You_feel("a tug on your knapsack"); break;
 		}
 
-		if (!rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slexual cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "polovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jinsiy plash") )) {
+		if (!rn2(5) && uarmc && itemhasappearance(uarmc, APP_SLEXUAL_CLOAK)) {
 			if(could_seduceX(mtmp, &youmonst, mattk) == 1 && !mtmp->mcan)
 			    if (doseduce(mtmp)) return 3;
 		}
@@ -7031,7 +7031,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
-			&& !mtmp->mcan && (issoviet || iserosator || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi") )) ) ) /* 50% chance --Amy */
+			&& !mtmp->mcan && (issoviet || iserosator || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uarmf && itemhasappearance(uarmf, APP_LOLITA_BOOTS)) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
 			return 3;
 		break;
@@ -9106,7 +9106,7 @@ dopois:
 		if (tempval < 1)  tempval = 1;
 		if (tempval > (issoviet ? 20 : 50)) tempval = (issoviet ? 20 : 50); /* max limit increased --Amy */
 
-		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qahramoni mokasen") )) tempval *= 2;
+		if (uarmf && itemhasappearance(uarmf, APP_HEROINE_MOCASSINS)) tempval *= 2;
 
 		if (uarmf && uarmf->oartifact == ART_INDIAN_SMOKE_SYMBOL) tempval *= 2;
 		if (Conflict) tempval /= 2; /* conflict is so powerful that it requires a bunch of nerfs --Amy */
@@ -9212,7 +9212,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
 
-		if (Punished) unplacebc();	/* ball&chain go away */
+		if (Punished) unplacebc();	/* ball&chain would go away but it's crashy --Amy */
 		remove_monster(mtmp->mx, mtmp->my);
 		mtmp->mtrapped = 0;		/* no longer on old trap */
 		place_monster(mtmp, u.ux, u.uy);
@@ -10707,7 +10707,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    You_hear("a hissing noise!");
 			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+			if (uarmc && itemhasappearance(uarmc, APP_PETRIFIED_CLOAK) && rn2(4)) break;
 
 do_stone2:
 			if(!rn2(10) ||
@@ -10748,7 +10748,7 @@ do_stone2:
 			    You_hear("a hissing noise!");
 			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+			if (uarmc && itemhasappearance(uarmc, APP_PETRIFIED_CLOAK) && rn2(4)) break;
 
 			if(!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard())) {
@@ -14228,7 +14228,7 @@ common:
 		    break;
 		}
 
-		if (uarmh && !(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bir ip yengil bosh kiyim") )) && rn2(3)) {
+		if (uarmh && !(uarmh && itemhasappearance(uarmh, APP_STRIP_BANDANA)) && rn2(3)) {
 		    /* not body_part(HEAD) */
 		    Your("helmet blocks the attack to your head.");
 		    break;
@@ -14613,13 +14613,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	if (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY && rn2(10)) return 0; /* no message */
 
-	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
+	if ((uarmg && itemhasappearance(uarmg, APP_MIRRORED_GLOVES) ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
 		/* cut down on message spam - only display it 1 out of 10 times --Amy */
 		if (!rn2(10)) pline("%s gazes at you, but your mirrored gloves protect you from the effects!", Monnam(mtmp));
 		return 0;
 	}
 
-	if ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "netradiation helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "obluchonnyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sof radiatsiya dubulg'a") ) ) && !rn2(2) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
+	if ((uarmh && itemhasappearance(uarmh, APP_NETRADIATION_HELMET) ) && !rn2(2) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
 		if (!rn2(10)) pline("%s gazes at you, but your netradiation helmet protects you from the effects!", Monnam(mtmp));
 		return 0;
 	}
@@ -18151,7 +18151,7 @@ register int n;
 		if (n < 1) n = 1;
 	}
 
-	if (n > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+	if (n > 0 && uarmf && itemhasappearance(uarmf, APP_MARJI_SHOES) ) {
 		n++;
 		n *= 9;
 		n /= 10;
@@ -18436,7 +18436,7 @@ register struct monst *mon;
 	boolean birthing = 0;
 	boolean complications = 0;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birthcloth") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "rozhdeniye tkan'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tug'ilgan mato") )) birthing = 1;
+	if (uarmc && itemhasappearance(uarmc, APP_BIRTHCLOTH)) birthing = 1;
 	else if (RngeChildbirth) birthing = 1;
 	else if (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) birthing = 1;
 	else if (Role_if(PM_GRENADONIN) && mon->data->mcolor == CLR_BLACK) birthing = 1;
@@ -19674,7 +19674,7 @@ register struct attack *mattk;
 		}
 	}
 
-	if (uarmc && !resists_elec(mtmp) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
+	if (uarmc && !resists_elec(mtmp) && itemhasappearance(uarmc, APP_ELECTROSTATIC_CLOAK) ) {
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
 			pline("%s is electrocuted and dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
@@ -20200,6 +20200,8 @@ cloneu()
 {
 	register struct monst *mon;
 	int mndx = monsndx(youmonst.data);
+
+	if (monsndx(youmonst.data) >= NUMMONS) return(struct monst *)0; /* crash prevention */
 
 	if (u.mh <= 1) return(struct monst *)0;
 	if (mvitals[mndx].mvflags & G_EXTINCT) return(struct monst *)0;

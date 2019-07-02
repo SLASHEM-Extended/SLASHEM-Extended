@@ -274,6 +274,7 @@ struct instance_flags {
 				  * on some non-move commands */
 	boolean numpadmessage; /* because Elronnd is so weird and keeps inputting invalid commands, so we have to
 					    * make it possible to disable the message you're getting */
+	boolean memorizationknown;	/* for players who don't want messages about memorization skill */
 	boolean winggraphics;	/* wing yellow graphics */
 	boolean bones;
 	boolean use_menu_glyphs;
@@ -413,6 +414,7 @@ struct instance_flags {
 #define MAX_ALTKEYHANDLER 25
 	char	 altkeyhandler[MAX_ALTKEYHANDLER];
 #endif
+	uchar	sortloot;
 #ifdef REALTIME_ON_BOTL
   boolean  showrealtime; /* show actual elapsed time */
 #endif

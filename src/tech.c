@@ -3634,6 +3634,12 @@ secureidchoice:
 	          		t_timeout = rnz(50);
 				break;
 		    }
+		    if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(obj) ) {
+				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+				delobj(obj);
+	          		t_timeout = rnz(50);
+				break;
+		    }
 
 		    switch (roll) {
 			case 2:
@@ -6043,6 +6049,11 @@ revid_end:
 			delobj(obj);
 			t_timeout = rnz(1000);
 			break;
+		} else if (obj && obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !stack_too_big(obj) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+			delobj(obj);
+			t_timeout = rnz(1000);
+			break;
 		}
 		else if (obj) {
 			You("knock %s %s to the %s!", s_suffix(mon_nam(mtmp)), xname(obj), surface(u.ux, u.uy));
@@ -6137,7 +6148,7 @@ revid_end:
 
 			if (Role_if(PM_MASON)) {
 
-				diamondradius = (techlevX(tech_no) / 5);
+				diamondradius = rounddiv(techlevX(tech_no), 5);
 				if (diamondradius < 1) diamondradius = 1;
 
 				if (diamondradius > 1) pline("The maximum possible radius for the diamond barrier is %d, but you may opt to choose a smaller radius if you want.", diamondradius);

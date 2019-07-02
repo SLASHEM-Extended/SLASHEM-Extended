@@ -8161,13 +8161,13 @@ u_init()
 	u.weakcheat = 0;	/* increases if a character wearing a stat lock ring grows weak to prevent them from restoring strength points they didn't lose in the first place --Amy */
 	u.stethocheat = 0;
 
-      u.monstertimeout = rnz(10000)+rnz(15000); /*This NEEDS to be set here, because otherwise saving/restoring will set*/
-	while (u.monstertimeout < 10) u.monstertimeout = rnz(10000)+rnz(15000);
+      u.monstertimeout = rnz(12000)+rnz(18000);
+	while (u.monstertimeout < 10) u.monstertimeout = rnz(12000)+rnz(18000);
 
-	if (rn2(3)) u.monstertimeout += rnz(10000)+rnz(15000);
+	if (rn2(3)) u.monstertimeout += rnz(12000)+rnz(18000);
 
-      u.monstertimefinish = rnz(30000)+rnz(60000)+u.monstertimeout; /*a new value, allowing the player to cheat. --Amy*/
-	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+      u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
+	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
 
 	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(30000)); /* if you still didn't ascend at this turn count, the game becomes much harder */
 	while (u.ascensiontimelimit < (issoviet ? 500000 : 250000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
@@ -9993,6 +9993,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.riderhack = 0;
 	u.bodyfluideffect = 0;
 	u.garbagecleaned = 0;
 	u.garbagetrucktime = 0;
@@ -10008,6 +10009,12 @@ u_init()
 	u.contingencyturns = 0;
 	u.horsehopturns = 0;
 	u.ragnarokspelltimeout = 0;
+
+	u.stoogedepth = 0;
+	if (!rn2(10)) {
+		u.stoogedepth = 6 + rn2(5);
+		if (!rn2(20)) u.stoogedepth = rnd(100);
+	}
 
 	u.copwantedlevel = 0;
 
@@ -29347,13 +29354,13 @@ int realityflag;
 
 	struct attack* attkptr;
 
-      u.monstertimeout = rnz(10000)+rnz(15000); /*This NEEDS to be set here, because otherwise saving/restoring will set*/
-	while (u.monstertimeout < 10) u.monstertimeout = rnz(10000)+rnz(15000);
+      u.monstertimeout = rnz(12000)+rnz(18000);
+	while (u.monstertimeout < 10) u.monstertimeout = rnz(12000)+rnz(18000);
 
-	if (rn2(3)) u.monstertimeout += rnz(10000)+rnz(15000);
+	if (rn2(3)) u.monstertimeout += rnz(12000)+rnz(18000);
 
-      u.monstertimefinish = rnz(30000)+rnz(60000)+u.monstertimeout; /*a new value, allowing the player to cheat. --Amy*/
-	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+      u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
+	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
 
 	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(30000)); /* if you still didn't ascend at this turn count, the game becomes much harder */
 	while (u.ascensiontimelimit < (issoviet ? 500000 : 250000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));

@@ -408,7 +408,7 @@ boolean put_away;
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
 	    sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
-	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == EGG
+	} else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && wep->otyp == EGG && wep->corpsenm != PM_PLAYERMON
 				&& touch_petrifies(&mons[wep->corpsenm])) {
 	    /* Prevent wielding cockatrice when not wearing gloves --KAA */
 	    char kbuf[BUFSZ];
@@ -952,7 +952,7 @@ can_twoweapon()
 	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
         } 	else if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && 
-		(uswapwep && uswapwep->otyp == EGG &&
+		(uswapwep && uswapwep->otyp == EGG && uswapwep->corpsenm != PM_PLAYERMON &&
                 (touch_petrifies(&mons[uswapwep->corpsenm])))) {
 	    char kbuf[BUFSZ];
 
@@ -1109,11 +1109,11 @@ boolean fade_scrolls;
 
 	if (target->oartifact && rn2(4)) return;
 
-	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[target->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[target->otyp]), "yangi qo'lqop") ) && rn2(4) ) return;
+	if (itemhasappearance(target, APP_BRAND_NEW_GLOVES) && rn2(4) ) return;
 
-	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[target->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[target->otyp]), "xayoliy to'pi") ) ) return;
+	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
 
-	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[target->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[target->otyp]), "shol plash") ) ) return;
+	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
 
 	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;
 

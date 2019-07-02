@@ -698,6 +698,8 @@ register struct monst *mtmp;
 	if (mtmp->meating)	  strcat(info, ", eating");
 	if (mtmp->mcan)		  strcat(info, ", cancelled");
 	if (mtmp->mconf)	  strcat(info, ", confused");
+	if (mtmp->healblock)	  strcat(info, ", healing blocked");
+	if (mtmp->bleedout)	  strcat(info, ", bleeding");
 	if (mtmp->mblinded || !mtmp->mcansee)
 				  strcat(info, ", blind");
 	if (mtmp->mstun)	  strcat(info, ", stunned");
@@ -781,6 +783,8 @@ register struct monst *mtmp;
 	if (mtmp->meating)	  strcat(info, ", eating");
 	if (mtmp->mcan)		  strcat(info, ", cancelled");
 	if (mtmp->mconf)	  strcat(info, ", confused");
+	if (mtmp->healblock)	  strcat(info, ", healing blocked");
+	if (mtmp->bleedout)	  strcat(info, ", bleeding");
 	if (mtmp->mblinded || !mtmp->mcansee)
 				  strcat(info, ", blind");
 	if (mtmp->mstun)	  strcat(info, ", stunned");

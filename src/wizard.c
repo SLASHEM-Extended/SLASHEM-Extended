@@ -322,6 +322,10 @@ tactics(mtmp)
 		if (distu(mtmp->mx,mtmp->my) > (BOLT_LIM * BOLT_LIM))
 		    if(mtmp->mhp <= mtmp->mhpmax - 8) {
 			mtmp->mhp += rnd(8);
+			if (mtmp->bleedout) {
+				mtmp->bleedout -= rnd(8);
+				if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* fail safe */
+			}
 			return(1);
 		    }
 		/* fall through :-) */
@@ -443,7 +447,7 @@ nasty(mcast)
 	}
 
     if(!rn2(10) && Inhell) {
-	msummon((struct monst *) 0);	/* summons like WoY */
+	msummon((struct monst *) 0, TRUE);	/* summons like WoY */
 	count++;
     } else {
 	tmp = (u.ulevel > 6) ? u.ulevel /6 : 1; /* just in case -- rph */

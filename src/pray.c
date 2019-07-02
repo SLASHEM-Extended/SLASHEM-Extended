@@ -740,7 +740,7 @@ aligntyp resp_god;
 	if (!rn2(10)) copcnt /= 3;
 	if (copcnt < 1) copcnt = 1;
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+	if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 		copcnt = (copcnt / 2) + 1;
 	}
 
@@ -1488,7 +1488,7 @@ pleased(g_align)
 	    break;
 	}
 
-	if (!((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "storm coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shtorm") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bo'ron palto") )) && !rn2(2))) u.ublesscnt = rnz(ishaxor ? 175 : 350);
+	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt = rnz(ishaxor ? 175 : 350);
 	kick_on_butt = (u.uevent.udemigod && u.amuletcompletelyimbued) ? 1 : 0;
 	if (u.uevent.uhand_of_elbereth) kick_on_butt++;
 	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
@@ -2063,7 +2063,7 @@ dosacrifice()
 
 		if (!achieve.ascended) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -2083,23 +2083,24 @@ dosacrifice()
 #endif
 
 		if (!issoviet) {
-pline("An invisible choir sings, and you are bathed in radiance...");
-		godvoice(altaralign, "Congratulations, mortal!");
-		display_nhwindow(WIN_MESSAGE, FALSE);
-verbalize("In return for thy service, I grant thee the gift of Immortality!");
-		You("ascend to the status of Demigod%s...",
-		    flags.female ? "dess" : "");
+			pline("An invisible choir sings, and you are bathed in radiance...");
+			godvoice(altaralign, "Congratulations, mortal!");
+			display_nhwindow(WIN_MESSAGE, FALSE);
+			verbalize("In return for thy service, I grant thee the gift of Immortality!");
+
+			if (Role_if(PM_QUARTERBACK)) You("punt the Amulet of Yendor onto the high altar. You ascend!");
+			else You("ascend to the status of Demigod%s...", flags.female ? "dess" : "");
 		} else {
-pline("An invisible Red Army choir sings, and you are bathed in Chernobyl radiation...");
-		godvoice(altaralign, "Haraso, tovari.");
-		display_nhwindow(WIN_MESSAGE, FALSE);
-verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
+			pline("An invisible Red Army choir sings, and you are bathed in Chernobyl radiation...");
+			godvoice(altaralign, "Haraso, tovari.");
+			display_nhwindow(WIN_MESSAGE, FALSE);
+			verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 
-		/* mocking message inspired by my roommate --Amy */
-		pline("Yesli by vy podumali, chto budet voznagrazhdeniye, vy porezayete sebya! Eto igra-ublyudok, KHAR KHAR KHAR KHAR KHAR KHAR KHAR!!!");
+			/* mocking message inspired by my roommate --Amy */
+			pline("Yesli by vy podumali, chto budet voznagrazhdeniye, vy porezayete sebya! Eto igra-ublyudok, KHAR KHAR KHAR KHAR KHAR KHAR KHAR!!!");
 
-		You("ascend to the status of Demigod%s...",
-		    flags.female ? "dess" : "");
+			if (Role_if(PM_QUARTERBACK)) You("punt the Amulet of Yendor onto the high altar. You ascend!");
+			else You("ascend to the status of Demigod%s...", flags.female ? "dess" : "");
 
 		}
 		done(ASCENDED);
@@ -2684,7 +2685,7 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
 	return(0);
     }
 
-	if (uarmc && !rn2(10) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "godless cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bezbozhnaya plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xudosiz plash") ) ) {
+	if (uarmc && !rn2(10) && itemhasappearance(uarmc, APP_GODLESS_CLOAK) ) {
 
 	angrygods(u.ualign.type);
 	return(0);
@@ -2704,7 +2705,7 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
     if (p_type == 0) {
 	if(on_altar() && u.ualign.type != alignment)
 	    (void) water_prayer(FALSE);
-	if (!((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "storm coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shtorm") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bo'ron palto") )) && !rn2(2))) u.ublesscnt += rnz(ishaxor ? 125 : 250);
+	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt += rnz(ishaxor ? 125 : 250);
 	change_luck(-rnd(3)); /* used to always be -3 --Amy */
 	gods_upset(u.ualign.type);
     } else if(p_type == 1) {
@@ -2714,7 +2715,7 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
     } else if(p_type == 2) {
 	if(water_prayer(FALSE)) {
 	    /* attempted water prayer on a non-coaligned altar */
-	    if (!((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "storm coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shtorm") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bo'ron palto") )) && !rn2(2))) u.ublesscnt += rnz(ishaxor ? 125 : 250);
+	    if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt += rnz(ishaxor ? 125 : 250);
 	    change_luck(-3);
 	    gods_upset(u.ualign.type);
 	} else pleased(alignment);

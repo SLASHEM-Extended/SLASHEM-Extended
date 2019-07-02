@@ -259,11 +259,12 @@ register struct monst *mon;
 }
 
 int
-were_summon(ptr,yours,visible,genbuf)	/* were-creature (even you) summons a horde */
+were_summon(ptr,yours,visible,genbuf,ownloc)	/* were-creature (even you) summons a horde */
 register struct permonst *ptr;
 register boolean yours;
 int *visible;			/* number of visible helpers created */
 char *genbuf;
+boolean ownloc; /* TRUE = summon them at a random location, FALSE = summon them at player's location --Amy */
 {
 	register int i, typ, pm = monsndx(ptr);
 	register struct monst *mtmp;
@@ -710,7 +711,8 @@ char *genbuf;
 		default:
 			continue;
 	    }
-	    mtmp = makemon(&mons[typ], u.ux, u.uy, yours ? MM_NOSPECIALS : NO_MM_FLAGS);
+	    if (ownloc) mtmp = makemon(&mons[typ], 0, 0, yours ? MM_NOSPECIALS : NO_MM_FLAGS);
+	    else mtmp = makemon(&mons[typ], u.ux, u.uy, yours ? MM_NOSPECIALS : NO_MM_FLAGS);
 	    if (mtmp) {
 		total++;
 		if (canseemon(mtmp)) *visible += 1;

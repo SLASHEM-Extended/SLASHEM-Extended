@@ -825,7 +825,7 @@ int	mntmp;
 		skinback(FALSE);
 	break_armor();
 	drop_weapon(1);
-	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
+	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 		u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 		u.uundetected = is_waterypool(u.ux, u.uy);
@@ -1360,6 +1360,9 @@ dogaze()
 			sprintf(qbuf, "Really gaze at %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') return (0);
 	}
+	if (mtmp->mpeaceful) setmangry(mtmp);
+
+	/* WUOT why the hell did they not become hostile if you were e.g. confused??? */
 	if (mtmp->mpeaceful) setmangry(mtmp);
 
 	u.uen -= 20;
@@ -2231,7 +2234,7 @@ dosummon()
 
 	You("call upon your brethren for help!");
 	exercise(A_WIS, TRUE);
-	if (!were_summon(youmonst.data, TRUE, &placeholder, (char *)0))
+	if (!were_summon(youmonst.data, TRUE, &placeholder, (char *)0, FALSE))
 		pline("But none arrive.");
 	return(1);
 }

@@ -240,9 +240,7 @@ struct obj *obj;		/* aatyp == AT_WEAP, AT_SPIT */
 	if (check_visor) {
 	    o = (mdef == &youmonst) ? invent : mdef->minvent;
 	    for ( ; o; o = o->nobj)
-		if ((o->owornmask & W_ARMH) &&
-		    (s = OBJ_DESCR(objects[o->otyp])) != (char *)0 &&
-		    (!strcmp(s, "visored helmet") || !strcmp(s, "zabralom shlema") || !strcmp(s, "soyabon zarbdan") || !strcmp(s, "orange visored helmet") || !strcmp(s, "oranzhevyy shlem zabralom") || !strcmp(s, "apelsin soyabon zarbdan") || !strcmp(s, "twisted visor helmet") || !strcmp(s, "shlem vitoy shlema") || !strcmp(s, "buekuemlue soyabon dubulg'a") ) )
+		if ((o->owornmask & W_ARMH) && (itemhasappearance(o, APP_VISORED_HELMET) || itemhasappearance(o, APP_ORANGE_VISORED_HELMET) || itemhasappearance(o, APP_TWISTED_VISOR_HELMET)) )
 		    return FALSE;
 	}
 
@@ -1045,6 +1043,9 @@ static const short grownups[][2] = {
 	{PM_WIMPY_PLATINUM_DRAGON, PM_PLATINUM_DRAGOM},
 	{PM_WIMPY_SAPPHIRE_DRAGON, PM_SAPPHIRE_DRAGOM},
 
+	{PM_OCHRE_NAGA_HATCHLING, PM_OCHRE_NAGA},
+	{PM_VIOLET_NAGA_HATCHLING, PM_VIOLET_NAGA},
+	{PM_SNOW_NAGA_HATCHLING, PM_SNOW_NAGA},
 	{PM_DOME_NAGA_HATCHLING, PM_DOME_NAGA},
 	{PM_POND_NAGA_HATCHLING, PM_POND_NAGA},
 	{PM_SEA_NAGA_HATCHLING, PM_SEA_NAGA},
@@ -1231,6 +1232,11 @@ static const short grownups[][2] = {
 	{PM_EQ_KOMMISSIONER, PM_EQ_KCHIEF},
 	{PM_EQ_KCHIEF, PM_EQ_KATCHER},
 
+	{PM_BABY_GLOP_DRAGON, PM_GLOP_DRAGON},
+	{PM_YOUNG_GLOP_DRAGON, PM_YOUNG_ADULT_GLOP_DRAGON}, {PM_YOUNG_ADULT_GLOP_DRAGON, PM_ADULT_GLOP_DRAGON},
+	{PM_ADULT_GLOP_DRAGON, PM_OLD_GLOP_DRAGON}, {PM_OLD_GLOP_DRAGON, PM_VERY_OLD_GLOP_DRAGON},
+	{PM_VERY_OLD_GLOP_DRAGON, PM_ANCIENT_GLOP_DRAGON},
+
 	{PM_RADIO_KOP, PM_RADIO_SERGEANT},
 	{PM_RADIO_SERGEANT, PM_RADIO_LIEUTENANT},
 	{PM_RADIO_LIEUTENANT, PM_RADIO_KAPTAIN},
@@ -1380,10 +1386,13 @@ static const short grownups[][2] = {
 	{PM_PERFUME_COMPANION, PM_TATJANA},
 
 	{PM_PETTY_NOISE_HELPER, PM_KATI},
+	{PM_NOISE_HELPER, PM_KATI},
 	{PM_SQUEAKE_PART, PM_MARIKE},
 	{PM_PETTY_LATEBLUTT, PM_BIRGIT},
+	{PM_LATEBLUTT, PM_BIRGIT},
 	{PM_BLUE_ABSENCE_OF_NOISE, PM_YVONNE},
 	{PM_PETTY_EXCITING_ASS, PM_ANTJE},
+	{PM_EXCITING_ASS, PM_ANTJE},
 	{PM_ASIAN_BRIDE, PM_THAI},
 
 	{PM_GNOME_THIEF, PM_GNOMISH_BRIGAND_THIEF}, {PM_GNOMISH_BRIGAND_THIEF, PM_GNOMISH_MASTER_THIEF},

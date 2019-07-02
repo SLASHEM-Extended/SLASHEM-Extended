@@ -213,7 +213,7 @@ drinkfountain()
 		return;
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "foundry cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "liteynyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "quyish plash") )) {
+	if (uarmc && itemhasappearance(uarmc, APP_FOUNDRY_CLOAK)) {
 		u.uhunger += 100;
 		pline("The water is very nutritious!");
 	}
@@ -329,6 +329,20 @@ drinkfountain()
 				randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
 
 			}
+
+			/* or maybe also reward his courage */
+			if (!rn2(50)) {
+				u.weapon_slots++;
+				You("feel very skillful, and gain an extra skill slot!");
+			}
+			if (!rn2(50)) {
+				int wondertech = rnd(MAXTECH-1);
+				if (!tech_known(wondertech)) {
+				    	learntech(wondertech, FROMOUTSIDE, 1);
+					You("learn how to perform a new technique!");
+				}
+			}
+
 			break;
 
 		case 18: /* Experience (idea by Amy) */
@@ -445,7 +459,7 @@ drinkfountain()
 			/* evil patch idea by jonadab:
 			   fountains have a small percentage chance of killing you outright, flavored as drowning */
 
-			if (!Amphibious && !Swimming && !Breathless && !rn2(isfriday ? 10 : 20) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) {
+			if (!Amphibious && !Swimming && !Breathless && !rn2(isfriday ? 10 : 20) && !(uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS) ) ) {
 
 				u.youaredead = 1;
 
@@ -554,16 +568,23 @@ register struct obj *obj;
 			/* The lady of the lake acts! - Eric Backus */
 			/* Be *REAL* nice */
 	  pline("From the murky depths, a hand reaches up to bless the sword.");
-			pline("As the hand retreats, the fountain disappears!");
-			obj = oname(obj, artiname(ART_EXCALIBUR));
-			discover_artifact(ART_EXCALIBUR);
-			bless(obj);
-			obj->oeroded = obj->oeroded2 = 0;
-			obj->oerodeproof = TRUE;
-			exercise(A_WIS, TRUE);
+
+			if (evilfriday && (Confusion || Stunned)) { /* idea by NCommander */
+				pline("But you're so stupid and cut it off by mistake.");
+				exercise(A_WIS, FALSE);
+			} else {
+
+				pline("As the hand retreats, the fountain disappears!");
+				obj = oname(obj, artiname(ART_EXCALIBUR));
+				discover_artifact(ART_EXCALIBUR);
+				bless(obj);
+				obj->oeroded = obj->oeroded2 = 0;
+				obj->oerodeproof = TRUE;
+				exercise(A_WIS, TRUE);
 #ifdef LIVELOGFILE
-			livelog_report_trophy("had Excalibur thrown to them by some watery tart");
+				livelog_report_trophy("had Excalibur thrown to them by some watery tart");
 #endif
+			}
 		}
 		update_inventory();
 		levl[u.ux][u.uy].typ = ROOM;

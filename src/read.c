@@ -843,6 +843,11 @@ doread()
 	"Transsylvanian Teacher Darts Club",
 	"I got the first official notdnethack ascension! *oink oink*", /* Porkman :D */
 	"v qe qe qe qe qd qd qd qd qf qf qf qf qg qg qg qg #quit", /* by Demo */
+	"I haven't watched Game of THrones and I don't care", /* by Elronnd IIRC */
+	"I should become a SLEX developer so I can inflect EVIL upon the world.", /* by NCommander */
+	"I own your stuff now. fight me", /* by bhaak */
+	"Say YES to plastic! Glass can break. Plastic persists forever and for always in the seas.",
+	"Why did I explain the joke? Now it's not funny anymore you dummy!",
 
 	    };
 	    char buf[BUFSZ];
@@ -4867,7 +4872,10 @@ proofarmorchoice:
 		if (confused) break;
 
 		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS|MM_ANGRY|MM_FRENZIED);
-		if (!rn2(4)) makerandomtrap();
+		if (!rn2(4)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
 
 		u.aggravation = 0;
 
@@ -5369,7 +5377,10 @@ proofarmorchoice:
 
 	case SPE_SUMMON_UNDEAD:
 		if (confused) break;
-		if (!rn2(10)) makerandomtrap();
+		if (!rn2(10)) {
+			pline("The spell backfires!");
+			badeffect();
+		}
 
 	case SCR_SUMMON_UNDEAD:        
 	    {
@@ -8616,7 +8627,7 @@ newbossC:
 	case SCR_WISHING:
 		known = TRUE;
 		pline("You have found a scroll of wishing!");
-		if ((sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+		if ((sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 			makenonworkingwish();
 			break;
 		}
@@ -8746,7 +8757,7 @@ newbossC:
 		int acquireditem;
 		acquireditem = 0;
 		pline("You have found a scroll of acquirement!");
-		if ((sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+		if ((sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 			pline("Unfortunately, nothing happens.");
 			break;
 		}

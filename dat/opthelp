@@ -22,6 +22,8 @@ legacy         print introductory message                         [TRUE]
 lit_corridor   show a dark corridor as lit if in sight            [FALSE]
 lootabc        use a/b/c rather than o/i/b when looting           [FALSE]
 mail           enable the mail daemon                             [TRUE]
+memorizationknown whether you know what the memorization skill does;
+               if false, print extra help messages                [FALSE]
 missing_safety prevents segfaults for missingno characters        [TRUE]
 null           allow nulls to be sent to your terminal            [TRUE]
                try turning this option off (forcing NetHack to use its own

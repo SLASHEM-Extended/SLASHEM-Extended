@@ -644,12 +644,12 @@ register struct monst *mtmp;
 	if (uarmh && uarmh->oartifact == ART_RUTH_S_DARK_FORCE) tmp += 5;
 	if (uarmh && uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) tmp += 5;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash") ) ) tmp -= 5;
+	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK) ) tmp -= 5;
 	if (RngeDnethack) tmp -= 5;
 	if (RngeUnnethack) tmp -= 10;
 	if (u.twoweap && RngeNethackFourk) tmp -= rn1(10, 10);
 
-	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) tmp += 4;
+	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && itemhasappearance(uarmc, APP_BOXING_GOWN)) tmp += 4;
 	/* the P_UNSKILLED is not an error; it means that you have the skill, and are therefore eligible for a bonus --Amy */
 
 	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && RngeMaritalArts) tmp += 5;
@@ -660,8 +660,8 @@ register struct monst *mtmp;
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 	if (u.tiksrvzllatdown) tmp += 5;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
@@ -681,7 +681,7 @@ register struct monst *mtmp;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 
-	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
@@ -1118,7 +1118,7 @@ martial_dmg()
                 damage *= 2;
         else damage += 2;
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boxing gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks para perchatok") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boks qo'lqoplari") ) ) damage += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
@@ -1140,7 +1140,7 @@ martial_dmg()
 		u.comboactive = TRUE;
 	}
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) damage += 2;
+	if (uarmc && itemhasappearance(uarmc, APP_BOXING_GOWN)) damage += 2;
 
 	/* In Soviet Russia, people LOVE bugs. They love them so much, they even go out of their way to put them back into
 	 * the game, because the Amy was the one to remove them and by definition the Amy is the antichrist. --Amy */
@@ -2139,7 +2139,7 @@ int dieroll;
 				change_luck(-5);
 			}
 
-			if (touch_petrifies(&mons[obj->corpsenm])) {
+			if (touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON) {
 			    /*learn_egg_type(obj->corpsenm);*/
 			    pline("Splat! You hit %s with %s %s egg%s!",
 				mon_nam(mon),
@@ -2472,8 +2472,8 @@ int dieroll;
 		if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 		if (u.tiksrvzllatdown) tmp += 1;
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;
+		if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
+		if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
 		if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) tmp += 3;
 		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
@@ -2499,7 +2499,7 @@ int dieroll;
 		if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (!thrown && Race_if(PM_TURMENE) && tmp > 0) tmp -= 2;
 
-		if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
+		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (GushLevel / 3) );
 		/* If you throw using a propellor, you don't get a strength
@@ -2961,7 +2961,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(399)) {
+			switch (rnd(401)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3362,6 +3362,8 @@ int dieroll;
 			case 397: pline("You gently stroke %s.", mon_nam(mon)); break;
 			case 398: pline("Your honchos at %s are cheering in front of the TV as they see you batter %s!", urole.homebase, mon_nam(mon)); break;
 			case 399: pline("You might in fact be capable of surviving at %s, seeing how you're mixing up %s right now.", urole.intermed, mon_nam(mon)); break;
+			case 400: pline("You make it darker for %s!", mon_nam(mon)); break;
+			case 401: pline("You miss but some guy comes and helps you."); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -3475,7 +3477,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(567)) {
+				switch (rnd(571)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -3752,7 +3754,7 @@ int dieroll;
 				case 273: pline("You resole %s's ass!", mon_nam(mon)); break;
 				case 274: pline("You put a mine into %s's trouser pocket and wait for it to explode.", mon_nam(mon)); break;
 				case 275: pline("%s fails to block your finishing move!", Monnam(mon)); break;
-				case 276: pline("As it turns out, %s is the biggest weaking of this dungeon.", mon_nam(mon)); break;
+				case 276: pline("As it turns out, %s is the biggest weakling of this dungeon.", mon_nam(mon)); break;
 				case 277: pline("You transform %s into several pieces of meat.", mon_nam(mon)); break;
 				case 278: pline("You mince %s.", mon_nam(mon)); break;
 				case 279: pline("%s will no longer stand in your way!", Monnam(mon)); break;
@@ -4044,6 +4046,10 @@ int dieroll;
 				case 565: pline("You slash %s's sword %s! Three %s fall to the floor!", mon_nam(mon), mbodypart(mon, HAND), makeplural(mbodypart(mon, FINGER))); break;
 				case 566: pline("You made sure that %s can never take over %s!", mon_nam(mon), urole.homebase); break;
 				case 567: pline("Even your worst enemy at %s would be trembling in fear if he could see how brutally you just killed %s.", urole.intermed, mon_nam(mon)); break;
+				case 568: pline("%s makes the error to pull down your airtight pants, and chokes to death in the resulting cloud of farting gas!", Monnam(mon)); break;
+				case 569: pline("%s crashes into the accomodating traffic!", Monnam(mon)); break;
+				case 570: pline("%s has a film rupture with sharp ss!", Monnam(mon)); break;
+				case 571: pline("%s is so stupid and gives Colonel B. Astard the correct code, and therefore ends up being shot.", Monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -4287,6 +4293,10 @@ struct attack *mattk;
 			return;
 	    }
 	    if (otmp && otmp->mstartinventB && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) {
+			delobj(otmp);
+			return;
+	    }
+	    if (otmp && otmp->mstartinventC && !(otmp->oartifact) && !(otmp->fakeartifact && !rn2(10)) && rn2(10) ) {
 			delobj(otmp);
 			return;
 	    }
@@ -5294,6 +5304,12 @@ register struct attack *mattk;
 	    case AD_TRAI:
 	    	    mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
 		break;
+	    case AD_FAMN:
+		if (mdef->mtame) {
+			makedoghungry(mdef, tmp * rnd(50));
+			pline("%s suddenly looks hungry.", Monnam(mdef));
+		}
+		break;
 	    case AD_DREN:
 	    	if (resists_magm(mdef)) {
 		    if (!Blind) {
@@ -5492,6 +5508,12 @@ register struct attack *mattk;
 		    tmp = mdef->mhp;
 		}
 		goto common;
+	    case AD_FAMN:
+		if (mdef->mtame) {
+			makedoghungry(mdef, tmp * rnd(50));
+			pline("%s suddenly looks hungry.", Monnam(mdef));
+		}
+		break;
 	    case AD_WRAT:
 	    case AD_MANA:
 	    case AD_TECH:
@@ -6263,7 +6285,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(549)) {
+		switch (rnd(551)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -6814,6 +6836,8 @@ register int roll;
 		case 547: pline("If you can't even hit the wimpy %s, you can completely forgot about your mission to purge %s.", l_monnam(mdef), urole.intermed); break;
 		case 548: pline("All your friends at %s are booing at the TV screen that shows you missing constantly with that little sword.", urole.homebase); break;
 		case 549: pline("You feel the voice of your worst enemy penetrate your mind from %s. It says: 'Ha ha ha, you tin can are no match for me.'", urole.intermed); break;
+		case 550: pline("Some guy comes and diverts you, so you forget to attack."); break;
+		case 551: pline("%s clamps your %s with %s lovely pink pumps.", Monnam(mdef), makeplural(body_part(FINGER)), mhis(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
@@ -6906,6 +6930,7 @@ register int tmp;
 	}
 
 use_weapon:	
+
 	/* Certain monsters don't use weapons when encountered as enemies,
 	 * but players who polymorph into them have hands or claws and thus
 	 * should be able to use weapons.  This shouldn't prohibit the use
@@ -7353,10 +7378,19 @@ use_weapon:
     	      if (!Race_if(PM_UNGENOMOLD)) rehumanize(); /* we don't want ungenomolds polyd into lights to suck */
 		else polyself(FALSE);
 	    }
+
 	    if (sum[i] & HIT_FATAL)
 		return((boolean)passive(mon, sum[i], 0, mattk->aatyp, FALSE));
 							/* defender dead */
 	    else {
+
+	     /* bullshit downside to jabberwock: they have so many melee attacks that are so powerful, they need to be nerfed
+	     * this is achieved by making the monster be able to retaliate faster if it survives your attacks --Amy */
+	     if (mon && Race_if(PM_PLAYER_JABBERWOCK)) {
+			mon->movement++;
+			if (mon->data->mmove >= 3) mon->movement += rn2((mon->data->mmove / 3) + 1);
+	     }
+
 		(void) passive(mon, sum[i], 1, mattk->aatyp, FALSE);
 		nsum |= sum[i];
 	    }
@@ -9334,7 +9368,7 @@ boolean ranged;
 
 	      case AD_DRST:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9348,7 +9382,7 @@ boolean ranged;
 	      break;
 	      case AD_DRDX:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9362,7 +9396,7 @@ boolean ranged;
 	      break;
 	      case AD_DRCO:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9376,7 +9410,7 @@ boolean ranged;
 	      break;
 	      case AD_WISD:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9390,7 +9424,7 @@ boolean ranged;
 	      break;
 	      case AD_DRCH:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9404,7 +9438,7 @@ boolean ranged;
 	      break;
 	      case AD_POIS:
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) break;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
@@ -9417,7 +9451,7 @@ boolean ranged;
 	       }
 	      break;
 	    case AD_VENO:
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(3) ) break;
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(3) ) break;
 
 		if (RngeGasFiltering && !rn2(3)) break;
 

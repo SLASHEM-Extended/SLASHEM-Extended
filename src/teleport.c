@@ -592,7 +592,7 @@ boolean allow_drag;
 	u.ux0 = u.ux;
 	u.uy0 = u.uy;
 
-	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
+	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
 		u.uundetected = OBJ_AT(nux, nuy);
 	else if (is_wagon(nux, nuy))
 	    u.uundetected = TRUE;
@@ -703,6 +703,24 @@ boolean confused;
 
 		return FALSE;
 	}
+}
+
+boolean
+safe_teledsNOTRAP(allow_drag)
+boolean allow_drag;
+{
+	register int nux, nuy, tcnt = 0;
+
+	do {
+		nux = rnd(COLNO-1);
+		nuy = rn2(ROWNO);
+	} while ((!teleok(nux, nuy, (boolean)(tcnt > 200)) || (t_at(nux, nuy)) ) && ++tcnt <= 400);
+
+	if (tcnt <= 400) {
+		teleds(nux, nuy, allow_drag);
+		return TRUE;
+	} else
+		return FALSE;
 }
 
 STATIC_OVL void
@@ -984,7 +1002,7 @@ level_tele()
 							) {
 	    You_feel("very disoriented for a moment.");
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WEEPING_HELMET) ) {
 			pline("Your helmet does not like the idea of blocked level teleportation!");
 			losexp("weeping helmet", TRUE, FALSE);
 		    /* This ignores level-drain resistance (not a bug). --Amy */
@@ -1931,7 +1949,7 @@ pushplayer()
 {
 		coord ccc;
 		int direction, pushwidth, trycnt;
-	    register struct obj *otmp;
+		register struct obj *otmp;
 		trycnt = 0;
 
 newtry:
@@ -1959,7 +1977,7 @@ newtry:
 		}
 
 		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
-			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || t_at(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */
 		}
@@ -1968,6 +1986,7 @@ newtry:
 
 		pline("You're pushed back!");
 		teleds(ccc.x, ccc.y, FALSE);
+
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 		return;
 }
@@ -1977,7 +1996,7 @@ pushplayersilently()
 {
 		coord ccc;
 		int direction, pushwidth, trycnt;
-	    register struct obj *otmp;
+		register struct obj *otmp;
 		trycnt = 0;
 
 newtry:
@@ -2005,7 +2024,7 @@ newtry:
 		}
 
 		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
-			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || t_at(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */
 		}
@@ -2013,6 +2032,7 @@ newtry:
 		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
 
 		teleds(ccc.x, ccc.y, FALSE);
+
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 		return;
 }

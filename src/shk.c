@@ -3069,7 +3069,7 @@ xchar x, y;
 					eshkp->credit += delta;
 					eshkp->totalcredit += delta;
 				}
-		    } else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
+		    } else verbalize(isevilvariant ? "I own your stuff now. Fight me." : "What? You want credit? Well, sucks to be you, but I ain't giving you any!");
 		    if(eshkp->debit) {
 			eshkp->debit = 0L;
 			eshkp->loan = 0L;
@@ -3149,7 +3149,7 @@ move_on:
 					eshkp->totalcredit += tmpcr;
 				}
 
-		    } else verbalize("What? You want credit? Well, sucks to be you, but I ain't giving you any!");
+		    } else verbalize(isevilvariant ? "I own your stuff now. Fight me." : "What? You want credit? Well, sucks to be you, but I ain't giving you any!");
 		    subfrombill(obj, shkp);
 		} else {
 		    if (c == 'q') sell_response = 'n';
@@ -3323,7 +3323,7 @@ boolean shk_buying;
 		break;
 	case ARMOR_CLASS:
 	case WEAPON_CLASS:
-		if (obj->spe > 0) tmp += 10L * (long) obj->spe;
+		/*if (obj->spe > 0) tmp += 10L * (long) obj->spe;*/ /* fuck price ID :P --Amy */
 		/* Don't buy activated explosives! */
 		if (is_grenade(obj) && obj->oarmed) tmp = 0L;
 		break;
@@ -4433,7 +4433,7 @@ coord *mm;
 	kop_cnt[4] = (cnt / 12) + 1;       /* and maybe a kaptain */
  	kop_cnt[5] = (cnt / 16) + 1;       /* and maybe a kaptain */
   
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+	if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 		kop_cnt[0] = ( kop_cnt[0] / 2) + 1;
 		kop_cnt[1] = ( kop_cnt[1] / 2) + 1;
 		kop_cnt[2] = ( kop_cnt[2] / 2) + 1;

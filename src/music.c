@@ -419,7 +419,7 @@ struct obj *instr;
 			use_skill(P_DEVICES,1);
 			use_skill(P_DEVICES,1);
 		}
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
 			use_skill(P_DEVICES,9);
 
 		You("produce soft music.");
@@ -448,7 +448,7 @@ struct obj *instr;
 			use_skill(P_DEVICES,1);
 			use_skill(P_DEVICES,1);
 		}
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
 			use_skill(P_DEVICES,9);
 
 hornchoice:
@@ -547,7 +547,7 @@ hornchoice:
 			use_skill(P_DEVICES,1);
 			use_skill(P_DEVICES,1);
 		}
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
 			use_skill(P_DEVICES,9);
 
 		pline("%s very attractive music.", Tobjnam(instr, "produce"));
@@ -573,7 +573,7 @@ hornchoice:
 			use_skill(P_DEVICES,1);
 			use_skill(P_DEVICES,1);
 		}
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
 			use_skill(P_DEVICES,9);
 
 		You("produce a heavy, thunderous rolling!");

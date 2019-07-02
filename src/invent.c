@@ -318,7 +318,7 @@ struct obj *obj;
 		if (!achieve.get_amulet) {
 			achieve.get_amulet = 1; /* filthy hangup cheater bastard!!! --Amy */
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -357,7 +357,7 @@ struct obj *obj;
 
 		if (!achieve.get_candelabrum) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -390,7 +390,7 @@ struct obj *obj;
 
 		if (!achieve.get_bell) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -421,7 +421,7 @@ struct obj *obj;
 
 		if (!achieve.get_book) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -478,7 +478,7 @@ struct obj *obj;
 
 		if (!achieve.get_luckstone) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -509,7 +509,7 @@ struct obj *obj;
 
 		if (!achieve.finish_sokoban) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -538,7 +538,7 @@ struct obj *obj;
 
 		if (!achieveX.get_magresstone) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -815,6 +815,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 
 		obj->mstartinvent = 0;
 		obj->mstartinventB = 0;
+		obj->mstartinventC = 0;
 		sprintf(qbuf, "Got %s! Drop it?", doname(obj) );
 
 		if (yn_function(qbuf, ynchars, 'n') == 'y' ) {
@@ -1157,6 +1158,8 @@ have_lizard()
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_OWN_SMOKE)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_GRANDPA)
+			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_CLOCKBACK_LIZARD)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_ADULT_LIZARD)
 			return(TRUE);
@@ -6376,7 +6379,7 @@ void
 fully_identify_obj(otmp)
 struct obj *otmp;
 {
-	if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "johil plash") )) {
+	if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_IGNORANT_CLOAK)) {
 		pline("You are too ignorant, and therefore the identification attempt fails.");
 		return;
 	}
@@ -6412,7 +6415,7 @@ void
 maybe_fully_identify_obj(otmp)
 struct obj *otmp;
 {
-	if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "johil plash") )) {
+	if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_IGNORANT_CLOAK)) {
 		pline("You are too ignorant, and therefore the identification attempt fails.");
 		return;
 	}
@@ -6731,6 +6734,8 @@ long* out_cnt;
 #endif
 {
 	struct obj *otmp;
+	struct obj **oarray;
+	int i, j;
 	char ilet, ret;
 	char *invlet = flags.inv_order;
 	int n, classcount;
@@ -6827,12 +6832,68 @@ long* out_cnt;
 	    return ret;
 	}
 
+	/* count the number of items */
+	for (n = 0, otmp = invent; otmp; otmp = otmp->nobj)
+	  if(!lets || !*lets || index(lets, otmp->invlet)) n++;
+
+	/* Make a temporary array to store the objects sorted */
+	oarray = (struct obj **)alloc(n*sizeof(struct obj*));
+
+	/* Add objects to the array */
+	i = 0;
+	for(otmp = invent; otmp; otmp = otmp->nobj)
+	  if(!lets || !*lets || index(lets, otmp->invlet)) {
+	    if (!(Hallucination || PlayerUninformation) && iflags.sortloot == 'f') {
+	      /* Insert object at correct index */
+	      for (j = i; j; j--) {
+	        if (strcmpi(cxname2(otmp), cxname2(oarray[j-1]))>0) break;
+	        oarray[j] = oarray[j-1];
+	      }
+	      oarray[j] = otmp;
+	      i++;
+	    } else {
+	      /* Just add it to the array */
+	      oarray[i++] = otmp;
+	    }
+	  }
+	/* for end */
+
 	start_menu(win);
 nextclass:
 	classcount = 0;
 	any.a_void = 0;		/* set all bits to zero */
 
+	for(i = 0; i < n; i++) {
+	  otmp = oarray[i];
+	  ilet = otmp->invlet;
+	  if (!flags.sortpack || otmp->oclass == *invlet) {
+	    if (flags.sortpack && !classcount) {
+	      any.a_void = 0;             /* zero */
+	      add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+	               let_to_name(*invlet, FALSE, FALSE), MENU_UNSELECTED);
+#ifdef DUMP_LOG
+	      if (want_dump)
+	        dump("  ", let_to_name(*invlet, FALSE, FALSE));
+#endif
+	      classcount++;
+	    }
+	    any.a_char = ilet;
+	    add_menu(win, obj_to_glyph(otmp),
+	             &any, ilet, 0, ATR_NONE, doname(otmp),
+	             MENU_UNSELECTED);
+#ifdef DUMP_LOG
+	    if (want_dump) {
+	      char letbuf[7];
+	      sprintf(letbuf, "  %c - ", ilet);
+	      dump(letbuf, doname(otmp));
+	    }
+#endif
+	  }
+	}
+
 	/*if (flags.alphabetinv) ilet = 'a'-1;*/
+
+#if 0 /* due to sortloot */
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		/*if (!flags.alphabetinv)*/ ilet = otmp->invlet;
@@ -6874,6 +6935,7 @@ nextclass:
 			}
 		}
 	}
+#endif /* if 0 above */
 	if (flags.sortpack) {
 		if (*++invlet) goto nextclass;
 #ifdef WIZARD
@@ -6883,6 +6945,7 @@ nextclass:
 		}
 #endif
 	}
+	free(oarray);
 	end_menu(win, (char *) 0);
 
 	n = select_menu(win, want_reply ? PICK_ONE : PICK_NONE, &selected);
@@ -7492,11 +7555,11 @@ struct obj *otmp;
 boolean force_touch;
 {
 
-	if (uarmg && (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "shitty gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "der'movyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boktan qo'lqop") ) ) {
+	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])) ) {
 		pline("Eek!");
 		badeffect();
 	}
-	if (uarmg && (otmp->otyp == EGG && touch_petrifies(&mons[otmp->corpsenm])) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "shitty gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "der'movyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boktan qo'lqop") ) ) {
+	if (uarmg && itemhasappearance(uarmg, APP_SHITTY_GLOVES) && (otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])) ) {
 		pline("Eek!");
 		badeffect();
 	}
@@ -7505,7 +7568,7 @@ boolean force_touch;
 		(otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])))
 			return TRUE;
 	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
-		(otmp->otyp == EGG && touch_petrifies(&mons[otmp->corpsenm])))
+		(otmp->otyp == EGG && otmp->corpsenm != PM_PLAYERMON && touch_petrifies(&mons[otmp->corpsenm])))
 			return TRUE;
 	return FALSE;
 }
@@ -7867,7 +7930,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
+	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 
@@ -9020,6 +9083,7 @@ boolean knoweverything;
 #else
 		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. Slot: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", is_shield(obj) ? "shield" : is_helmet(obj) ? "helmet" : is_boots(obj) ? "boots" : is_gloves(obj) ? "gloves" : is_cloak(obj) ? "cloak" : is_shirt(obj) ? "shirt" : is_suit(obj) ? "suit" : "weird slot (this may be a bug)");
 #endif
+
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tartibsizlik chizilmasin"))))
 			pline("These boots have weird-shaped high heels, which look a bit like a wedge heel with part of it cut out, which can occasionally cause you to fumble. But while you're wearing them, the turn counter advances at half the normal speed.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "keng dunyo veb-zarbdan"))))
@@ -12046,9 +12110,17 @@ boolean knoweverything;
 				pline("Despite seeming so mundane, this tool is actually rare and valuable as it allows you to grease your items. However, grease will wear off quickly and needs to be applied again. You can apply up to three layers of grease to a single item."); break;
 #endif
 			case FIGURINE: 
-				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!"); break;
+				pline("Apply this at an empty location to transform it into a living monster. Please don't apply a figurine at a square containing a monster; doing so will just cause the figurine to break and do nothing!");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 			case ENERGY_SAP: 
-				pline("If you apply this tool, you'll get effects similar to eating the corpse of the monster it's made of."); break;
+				pline("If you apply this tool, you'll get effects similar to eating the corpse of the monster it's made of.");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 			case MAGIC_MARKER: 
 #ifdef PHANTOM_CRASH_BUG
 				pline("You can engrave with this tool, or attempt to write scrolls or spellbooks if you have blank ones. Writing items that you know is guaranteed to work."); break;
@@ -12111,9 +12183,17 @@ boolean knoweverything;
 			case TRIPE_RATION: 
 				pline("A ration of dog food that's meant to be eaten by carnivorous pets."); break;
 			case CORPSE: 
-				pline("Corpses can be eaten, but it's not always a good idea to do so. Depending on the type of monster and the age of a corpse, different effects can occur."); break;
+				pline("Corpses can be eaten, but it's not always a good idea to do so. Depending on the type of monster and the age of a corpse, different effects can occur.");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 			case EGG: 
-				pline("Eggs can be eaten, but some of them can also hatch after a while. Eating a stale egg causes vomiting."); break;
+				pline("Eggs can be eaten, but some of them can also hatch after a while. Eating a stale egg causes vomiting.");
+#ifdef EXTENDED_INFO
+				if (obj->known || mvitals[obj->corpsenm].mvflags & MV_KNOWS_EGG) corpsepager(obj->corpsenm);
+#endif
+				break;
 			case MEATBALL: 
 				pline("These provide very little nutrition but can be used for training dogs."); break;
 			case MEAT_STICK: 
@@ -12194,10 +12274,14 @@ boolean knoweverything;
 				pline("Soldiers often carry these rations that can be eaten in one turn. For some reason they contain no meat - how can any real-life soldiers even concentrate on their tasks if they ain't getting no real food?"); break;
 			case TIN: 
 #ifdef PHANTOM_CRASH_BUG
-				pline("Open it to see its contents, then decide whether you really want to eat it. They have variable amounts of nutrition."); break;
+				pline("Open it to see its contents, then decide whether you really want to eat it. They have variable amounts of nutrition.");
 #else
-				pline("A tin that may contain some type of food. If you wield a tin opener, you can open it more quickly; after a tin has been opened, you can decide whether you really want to eat it. The nutritional value of a tin is randomized."); break;
+				pline("A tin that may contain some type of food. If you wield a tin opener, you can open it more quickly; after a tin has been opened, you can decide whether you really want to eat it. The nutritional value of a tin is randomized.");
 #endif
+#ifdef EXTENDED_INFO
+				if (obj->known) corpsepager(obj->corpsenm);
+#endif
+				break;
 
 			case SHEAF_OF_STRAW: 
 				pline("This food tastes better if you're a herbivore."); break;
@@ -12606,6 +12690,10 @@ boolean knoweverything;
 #else
 				pline("The best scroll in the game. You will need this to cure the sliming condition, which is difficult to cure otherwise. It can also damage monsters standing next to you, with the side effect of burning you a little."); break;
 #endif
+#ifdef MAIL
+			case SCR_MAIL:
+				pline("This scroll is supposed to contain a message. If the game has been compiled correctly, reading it will display the message."); break;
+#endif
 			case SCR_EARTH:
 				pline("Summons some boulders if read. Beware, they might hit your head and damage you."); break;
 			case SCR_RAGNAROK:
@@ -12715,7 +12803,7 @@ boolean knoweverything;
 			case SCR_ACQUIREMENT:
 				pline("You may wish for an object type if you read this."); break;
 			case SCR_PROOF_ARMOR:
-				pline("A random worn armor-class item is made erosionproof if you read this."); break;
+				pline("A worn armor-class item of your choice is made erosionproof if you read this."); break;
 			case SCR_PROOF_WEAPON:
 				pline("If you wield a weapon and read this scroll, that weapon will become erosionproof."); break;
 			case SCR_MASS_MURDER:
@@ -12864,29 +12952,29 @@ boolean knoweverything;
 			case SPE_FORCE_BOLT:
 				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features."); break;
 			case SPE_CREATE_MONSTER:
-				pline("Casting this spell summons random monsters. Beware, it might also create a trap on the current dungeon level. The summoned monster has a chance of being frenzied too."); break;
+				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too."); break;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
 				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire."); break;
 			case SPE_SUMMON_UNDEAD:
-				pline("Summons an undead monster. Rarely, it also makes a trap on the level. The summoned monster has a chance of being frenzied too."); break;
+				pline("Summons an undead monster. It can also rarely backfire. The summoned monster has a chance of being frenzied too."); break;
 			case SPE_STONE_TO_FLESH:
 				pline("This spell can be cast at items, dungeon features and monsters that are made of stone, turning them into meat."); break;
 			case SPE_HEALING:
 				pline("A basic healing spell that can be used on yourself or on a monster to heal them."); break;
 			case SPE_CURE_BLINDNESS:
-				pline("Casting this spell cures blindness."); break;
+				pline("Casting this spell cures blindness. If you have a long-lasting blindness effect, its duration will merely be reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_DIM:
-				pline("If you are hit by the dim status effect, this spell will remove the condition."); break;
+				pline("If you are hit by the dim status effect, this spell will remove the condition if its duration was short, or reduce it if it was long. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_SICKNESS:
-				pline("A powerful spell that cures any food poisoning and illness you might be suffering from."); break;
+				pline("A powerful spell that cures any food poisoning and illness you might be suffering from. But in order to make sure that alternate methods of curing aren't completely useless, every time this spell actually cures something you lose 1 maximum mana."); break;
 			case SPE_CURE_HALLUCINATION:
-				pline("If you successfully cast this spell, your hallucinations will end."); break;
+				pline("If you successfully cast this spell, your hallucinations will end, or at least have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_CONFUSION:
-				pline("A spell that can be successfully cast even while confused, and that's also the reason why one would cast it in the first place since it cures the confusion status."); break;
+				pline("A spell that can be successfully cast even while confused, and that's also the reason why one would cast it in the first place since it cures the confusion status. Long-lasting confusion effects will merely be shortened. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_STUN:
-				pline("By casting this spell, you can get rid of the stun condition."); break;
+				pline("By casting this spell, you can get rid of the stun condition. If you have a long-lasting stun effect, every cast will reduce its duration until it reaches zero. On very rare occasions this spell can backfire."); break;
 			case SPE_GENOCIDE:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Casting this spell might allow you to genocide some monster species. However, it often fails."); break;
@@ -13080,7 +13168,7 @@ boolean knoweverything;
 			case SPE_WARPING:
 				pline("Wanna get out of a sticky situation? This is a possible way, although you won't be able to control your destination. This spell also backlashes fairly frequently, causing undesirable effects."); break;
 			case SPE_TRAP_CREATION:
-				pline("You will create some traps around you by casting this spell."); break;
+				pline("You will create some traps around you by casting this spell. Beware, sometimes the traps will be invisible, in which case you can't detect them and they won't be revealed when triggered."); break;
 			case SPE_STUN_MONSTER:
 				pline("A spell that fires invisible beams to stun monsters."); break;
 			case SPE_CURSE_ITEMS:
@@ -13110,7 +13198,7 @@ boolean knoweverything;
 			case SPE_MUTATION:
 				pline("A spell that has several uses. Zapping yourself will polymorph you, zapping objects will polymorph them, and if you zap a monster, it will gain mutations. Backlashes occasionally."); break;
 			case SPE_KNOCK:
-				pline("This spell opens things like locked doors or chests."); break;
+				pline("This spell opens things like locked doors or chests. However, you may have to cast it repeatedly for it to do anything, and sometimes you'll get bad effects that mimic trapped containers if you use it to unlock something."); break;
 			case SPE_FLAME_SPHERE:
 				pline("Conjures a flaming sphere that attacks your enemies by exploding and doing some fire damage."); break;
 			case SPE_FREEZE_SPHERE:
@@ -13120,7 +13208,7 @@ boolean knoweverything;
 			case SPE_ACID_SPHERE:
 				pline("Conjures an acidic sphere that attacks your enemies by exploding and doing some acid damage."); break;
 			case SPE_WIZARD_LOCK:
-				pline("A spell that fires invisible locking beams, which have an effect only if they hit something lockable. It can also repair broken doors."); break;
+				pline("A spell that fires invisible locking beams, which have an effect only if they hit something lockable. It can also repair broken doors. However, it may also randomly fail and very rarely gives you an effect that mimics trapped containers."); break;
 			case SPE_DIG:
 				pline("Casting this can dig through walls and other obstacles."); break;
 			case SPE_CANCELLATION:
@@ -13199,13 +13287,13 @@ boolean knoweverything;
 			case SPE_LEVELPORT:
 				pline("If you cast this spell, you will teleport to a random dungeon level in your current branch. However, it always backlashes after teleporting you, causing nasty side effects! Beware!"); break;
 			case SPE_BANISHING_FEAR:
-				pline("A spell that cures the 'fear' status conditions. At higher spell levels it allows you to resist fear for a period of time."); break;
+				pline("A spell that cures the 'fear' status conditions, unless its duration was very long, then it will only be reduced. At higher spell levels it allows you to resist fear for a period of time. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_FREEZE:
-				pline("Got hit by the 'freeze' status effect? Cast this spell and it will go away!"); break;
+				pline("Got hit by the 'freeze' status effect? Cast this spell and it may go away! However, long-lsating freeze effects will only have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_BURN:
-				pline("This spell will cure you of burns."); break;
+				pline("This spell will cure you of burns. A long-lasting burn status effect will have its duration reduced, but you can cast the spell repeatedly until you're cured. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_NUMBNESS:
-				pline("A spell that can be cast to cure numbness."); break;
+				pline("A spell that can be cast to cure numbness. If the numbness effect has a short duration, this is guaranteed to work; long-lasting effects will have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_TIME_STOP:
 				pline("This very powerful spell will stop the flow of time for a brief period."); break;
 			case SPE_STINKING_CLOUD:
@@ -13261,7 +13349,7 @@ boolean knoweverything;
 			case SPE_BUC_RANDOMIZATION:
 				pline("This spell can affect uncursed items in your inventory, turning them into blessed or cursed ones at random."); break;
 			case SPE_LOCK_MANIPULATION:
-				pline("Cast this spell at doors and chests to manipulate their 'locked' status."); break;
+				pline("Cast this spell at doors and chests to manipulate their 'locked' status. You may occasionally get container trap effects though."); break;
 			case SPE_POLYFORM:
 				pline("A completely random polymorph will affect you if you cast this. It can occasionally backfire, and often the duration of this polymorph is not very long."); break;
 			case SPE_MESSAGE:
@@ -13269,7 +13357,7 @@ boolean knoweverything;
 			case SPE_RUMOR:
 				pline("Displays a random rumor when cast."); break;
 			case SPE_CURE_RANDOM_STATUS:
-				pline("Can be cast even while confused. It will randomly pick one of these status afflictions to cure, regardless of whether you actually have it: sickness/sliming, hallucination, confusion, stun, burn, freezing, numbness, blindness, dimness or fear."); break;
+				pline("Can be cast even while confused. It will randomly pick one of these status afflictions to cure, regardless of whether you actually have it: sickness/sliming, hallucination, confusion, stun, burn, freezing, numbness, blindness, dimness or fear. Long-lasting ones may just have their duration reduced. Very occasionally it can drain your maximum mana if it cures sliming or sickness."); break;
 			case SPE_RESIST_RANDOM_ELEMENT:
 				pline("Gain a random resistance temporarily by casting this spell!"); break;
 			case SPE_RUSSIAN_ROULETTE:
@@ -13522,7 +13610,7 @@ boolean knoweverything;
 			case SPE_SNIPER_BEAM:
 				pline("This offensive spell can hit monsters standing very far away, but the damage is rather low. On the bright side, nothing can resist it."); break;
 			case SPE_CURE_GLIB:
-				pline("If you don't have a towel, you can cast this spell to cure your glibbery hands."); break;
+				pline("If you don't have a towel, you can cast this spell to cure your glibbery hands. However, if you had a long-lasting glib effect, its duration will merely be reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_MONSTER:
 				pline("If there are monsters adjacent to you that are suffering from confusion, paralysis or other status effects, casting this will cure their afflictions."); break;
 			case SPE_MANA_BATTERY:
@@ -14509,7 +14597,11 @@ boolean knoweverything;
 			case BOULDER: 
 				pline("A large boulder that weighs a ton. It can be thrown, provided you're strong enough."); break;
 			case STATUE: 
-				pline("This statue depicts some sort of monster. There may be a way to make it come back to life, or you can smash it to see if it contains items."); break;
+				pline("This statue depicts some sort of monster. There may be a way to make it come back to life, or you can smash it to see if it contains items.");
+#ifdef EXTENDED_INFO
+				corpsepager(obj->corpsenm);
+#endif
+				break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
@@ -17976,7 +18068,7 @@ boolean knoweverything;
 				case ART_MESSAGE_MEGAPHONE:
 					pline("Artifact specs: magic resistance when carried, makes monsters flee when used at the cost of 5 alignment and 1 max alignment, chaotic, demagogue quest artifact."); break;
 				case ART_TEAM_FORTRESS_GL:
-					pline("Artifact specs: lots of multishot bonus, magic resistanec when wielded, stealth when carried, lawful, grenadonin quest artifact."); break;
+					pline("Artifact specs: lots of multishot bonus, magic resistance when wielded, stealth when carried, lawful, grenadonin quest artifact."); break;
 				case ART_MARKER_OF_SAFE_SPEECH:
 					pline("Artifact specs: half spell damage when carried, can potentially be recharged more than once, chaotic, social justice warrior quest artifact."); break;
 				case ART_STAHNGNIR_S_GIANT_CRUSHER:

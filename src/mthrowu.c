@@ -269,7 +269,7 @@ const char *name;	/* if null, then format `obj' */
 	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
 
 	if (is_bulletammo) extrachance = 1;
-	else if (is_acid || is_tailspike || is_egg || is_polearm) extrachance = 10;
+	else if (is_acid || is_tailspike || is_egg || is_polearm || (obj && obj->oclass == VENOM_CLASS) ) extrachance = 10;
 	else if (is_thrown_weapon) extrachance = 3;
 	else extrachance = 2;
 
@@ -426,6 +426,19 @@ const char *name;	/* if null, then format `obj' */
 			else increasesanity(rnz(tlev * 5));
 			exercise(A_CON, FALSE);
 		}
+
+		if (obj && objects[obj->otyp].oc_skill == P_POLEARMS && (u.usteed || youmonst.data->mlet == S_CENTAUR || youmonst.data->mlet == S_UNICORN) || (!Upolyd && Race_if(PM_PLAYER_UNICORN)) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR)) || (!Upolyd && Race_if(PM_THUNDERLORD)) ) {
+			dam += rnd(10);
+			if (u.usteed && !rn2(25)) {
+				if (!mayfalloffsteed()) {
+					pline("The polearm lifts you out of your saddle!");
+					dismount_steed(DISMOUNT_FELL);
+				}
+
+			}
+		}
+
+
 		if (is_acid && Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
 			pline("It doesn't seem to hurt you.");
 			if (Stoned) fix_petrification();
@@ -630,7 +643,8 @@ int x,y;
 
 	} else create = 1;
 
-	if (obj->mstartinventB && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
+	if (obj->mstartinventB && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
+	if (obj->mstartinventC && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10)) create = 0;
 
 	/* Detonate rockets */
 	if (is_grenade(obj)) {
@@ -670,6 +684,7 @@ int x,y;
 			(t->ttyp == SPIKED_PIT)))) {
 		int objgone = 0;
 		obj->mstartinventB = 0;
+		obj->mstartinventC = 0;
 
 		if (down_gate(x, y) != -1)
 			objgone = ship_object(obj, x, y, FALSE);
@@ -719,6 +734,10 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	vis = cansee(bhitpos.x, bhitpos.y);
 
 	tmp = 5 + find_mac(mtmp) + omon_adj(mtmp, otmp, FALSE);
+	if (mtmp->mtame && mon) {
+		tmp += mon->m_lev;
+		if (otmp && otmp->oclass == VENOM_CLASS) tmp += 10;
+	}
 	if (tmp < rnd(20)) {
 	    if (!ismimic) {
 		if (vis) miss(distant_name(otmp, mshot_xname), mtmp);
@@ -742,6 +761,10 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    return 1;
 	} else {
 	    damage = dmgval(otmp, mtmp);
+	    if (mtmp->mtame && mon) {
+		if (mon->m_lev >= 5) damage += ((mon->m_lev - 4) / 2);
+		if (otmp->otyp == TAIL_SPIKES) damage += rnd((mon->m_lev * 2) + 30);
+	    }
             if (otmp->otyp == SPOON) {
             pline("The spoon flashes brightly as it hits %s.",
                    the(mon_nam(mtmp)));
@@ -760,7 +783,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				   mon_nam(mtmp));
 		} else {
 		    if (rn2(150)) {
-			damage += rnd(6);
+			damage += rnd(mtmp->mtame ? 15 : 6);
 		    } else {
 			if (vis) pline_The("poison was deadly...");
 			damage = mtmp->mhp;
@@ -1143,7 +1166,7 @@ struct monst *mtmp;
 	}
 
 	/* Pick a weapon */
-	otmp = select_rwep(mtmp);
+	otmp = select_rwep(mtmp, FALSE);
 	if (!otmp) return;
 
 	if ((MON_WEP(mtmp) == otmp) && is_applypole(otmp)) {
@@ -1272,6 +1295,9 @@ struct monst *mtmp;
 	    case PM_KOBOLD_PEPPERMASTER:
 		    multishot++;
 		    multishot++;
+		    break;
+	    case PM_BRA_GIANT:
+		    multishot += 5;
 		    break;
 	    case PM_ELPH:
 		    multishot++;
@@ -1678,6 +1704,97 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 
     return hits;
 }
+
+/* Find a target for a ranged attack. From dnethack (thanks Chris_ANG). Here in SLEX, it's meant to be specifically for
+ * hostile monsters attacking your pets at range. */
+struct monst *
+mfind_target(mtmp, force_linedup)
+struct monst *mtmp;
+boolean force_linedup;
+{
+	int dir, origdir = -1;
+	int x, y, dx, dy, tbx, tby;
+
+	int i;
+
+	struct monst *mat, *mret = (struct monst *)0, *oldmret = (struct monst *)0;
+	struct monst *mtmp2;
+
+	if (mtmp->mpeaceful || mtmp->mtame) return 0;
+
+	struct obj *mrwep = select_rwep(mtmp, TRUE); /* may use polearm even when far from the player --Amy */
+
+	for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+		if(mtmp == mtmp2) continue;
+		if (mtmp2->mtame && (mlined_up(mtmp, mtmp2, FALSE) || attacktype(mtmp->data, AT_GAZE) || attacktype(mtmp->data, AT_WEAP)) &&
+		((attacktype(mtmp->data, AT_GAZE) && !mtmp->mcan)
+		|| (attacktype(mtmp->data, AT_MAGC) && !mtmp->mcan && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)
+		|| (attacktype(mtmp->data, AT_WEAP) && mrwep && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)
+		|| (attacktype(mtmp->data, AT_BREA) && !mtmp->mcan && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)
+		|| (attacktype(mtmp->data, AT_BEAM) && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)
+		|| (attacktype(mtmp->data, AT_SPIT) && !mtmp->mcan && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)) )
+		{
+			if (!mret) {
+				if (!rn2(5) || attacktype(mtmp2->data, AT_EXPL) || mtmp->mfrenzied) mret = mtmp2;
+			}
+		}
+	}
+
+	if (mret != (struct monst *)0) {
+
+		if(!mlined_up(mtmp, mret, FALSE) && !attacktype(mtmp->data, AT_GAZE) && !attacktype(mtmp->data, AT_WEAP)) {
+			tbx = tby = 0;
+		} else return mret;
+	}
+
+	/* Nothing lined up? */
+	tbx = tby = 0;
+	return (struct monst *)0;
+}
+
+boolean
+mlined_up(mtmp, mdef, breath)	/* From dnethack: is mtmp in position to use ranged attack? */
+	register struct monst *mtmp;
+	register struct monst *mdef;
+	register boolean breath;
+{
+	struct monst *mat;
+
+	boolean lined_up = linedup(mdef->mx,mdef->my,mtmp->mx,mtmp->my);
+
+	int dx = sgn(mdef->mx - mtmp->mx),
+	    dy = sgn(mdef->my - mtmp->my);
+
+	int x = mtmp->mx, y = mtmp->my;
+
+	int i = 10; /* arbitrary */
+
+        /* No special checks if confused - can't tell friend from foe */
+	if (!lined_up || mtmp->mconf || !mtmp->mtame) return lined_up;
+
+        /* Check for friendlies in the line of fire. */
+	for (; !breath || i > 0; --i)
+	{
+	    x += dx;
+	    y += dy;
+	    if (!isok(x, y)) break;
+		
+            if (x == u.ux && y == u.uy) 
+	        return FALSE;
+
+	    mat = m_at(x, y);
+	    if (mat)
+	    {
+	        if (!breath && mat == mdef) return lined_up;
+
+		/* Don't hit friendlies - since this is used by hostile monsters, other hostile monsters == friendly */
+		if (!mat->mtame && !mat->mpeaceful) return FALSE;
+	    }
+	}
+
+	return lined_up;
+}
+
 
 #endif /* OVL0 */
 

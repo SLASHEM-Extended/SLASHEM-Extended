@@ -294,7 +294,7 @@ done2()
 	char buf[BUFSZ];
 	int really_quit = FALSE;
 
-	  getlin ("Really quit [yes/no]?",buf);
+	  getlin ("Really quit? WARNING: this will erase your game permanently! [yes/no]?",buf);
 	  (void) lcase (buf);
 	  if (!(strcmp (buf, "yes"))) really_quit = TRUE;
 	
@@ -1877,6 +1877,9 @@ boolean identified, all_containers, want_dump;
 /* The original container_contents function */
 {
 	register struct obj *box, *obj;
+	struct obj **oarray;
+	int i,j,n;
+	char *invlet;
 	char buf[BUFSZ];
 
 	for (box = list; box; box = box->nobj) {
@@ -1885,13 +1888,50 @@ boolean identified, all_containers, want_dump;
 		    continue;	/* wrong type of container */
 		} else if (box->cobj) {
 		    winid tmpwin = create_nhwindow(NHW_MENU);
+
+                   /* count the number of items */
+                   for (n = 0, obj = box->cobj; obj; obj = obj->nobj) n++;
+                   /* Make a temporary array to store the objects sorted */
+                   oarray = (struct obj **) alloc(n*sizeof(struct obj*));
+
+                   /* Add objects to the array */
+                   i = 0;
+                   invlet = flags.inv_order;
+nextclass:
+                   for (obj = box->cobj; obj; obj = obj->nobj) {
+                      if (!flags.sortpack || obj->oclass == *invlet) {
+                       if (iflags.sortloot == 'f'
+                           || iflags.sortloot == 'l') {
+                         /* Insert object at correct index */
+                         for (j = i; j; j--) {
+                           if (strcmpi(cxname2(obj), cxname2(oarray[j-1]))>0
+                           || (flags.sortpack &&
+                               oarray[j-1]->oclass != obj->oclass))
+                             break;
+                           oarray[j] = oarray[j-1];
+                         }
+                         oarray[j] = obj;
+                         i++;
+                       } else {
+                         /* Just add it to the array */
+                         oarray[i++] = obj;
+                       }
+                     }
+                   } /* for loop */
+                   if (flags.sortpack) {
+                     if (*++invlet) goto nextclass;
+                   }
+
 		    sprintf(buf, "Contents of %s:", the(xname(box)));
 		    putstr(tmpwin, 0, buf);
 		    putstr(tmpwin, 0, "");
 #ifdef DUMP_LOG
 		    if (dump_fp) dump("", buf);
 #endif
-		    for (obj = box->cobj; obj; obj = obj->nobj) {
+                   for (i = 0; i < n; i++) {
+                       obj = oarray[i];
+
+		    /*for (obj = box->cobj; obj; obj = obj->nobj) {*/ /* pre-sortloot */
 			if (identified) {
 			    makeknown(obj->otyp);
 			    obj->known = obj->bknown =

@@ -1278,7 +1278,10 @@ armorsmashdone:
 		reveal_invis = TRUE;
 	    if (mtmp->data != &mons[PM_PESTILENCE]) {
 		wake = FALSE;		/* wakeup() makes the target angry */
-		mtmp->mhp +=
+
+		int healamount;
+
+		healamount +=
 		  /* [ALI] FIXME: Makes no sense that cursed wands are more
 		   * effective than uncursed wands. This behaviour dates
 		   * right back to Slash v3 (and probably to v1).
@@ -1289,6 +1292,17 @@ armorsmashdone:
 		  otyp == SPE_HEALING ? rnd(10) + 4 + rnd(rnz(u.ulevel)) : 
 		  otyp == SPE_EXTRA_HEALING ? rnd(20) + 6 + rnd(rnz(u.ulevel) + rnz(u.ulevel)) : 
 		  rnd(40) + 8 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel)) ;
+
+		mtmp->mhp += healamount;
+		if (mtmp->bleedout && mtmp->bleedout <= healamount) {
+			mtmp->bleedout = 0;
+			if (canseemon(mtmp)) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= healamount;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (canseemon(mtmp)) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
+
 		if (mtmp->mhp > mtmp->mhpmax) {
 		    if (otmp->oclass == WAND_CLASS)
 			mtmp->mhpmax++;
@@ -2895,7 +2909,10 @@ poly_obj(obj, id, degradation)
 		unpoly = FALSE;	/* WAC -- no change! */
 	}
 	
-
+	/* Amy change: make it so that occasionally the polymorph sticks, because polypiling in general was nerfed */
+	/* In Soviet Russia, everything has to be exactly like it is in regular SLASH'EM, so it's weird that there was a
+	 * variant of it being made in the first place if every change is considered bullshit anyway. */
+	if (!issoviet && !rn2(5)) unpoly = FALSE;
 
 	/* avoid abusing eggs laid by you */
 	if (obj->otyp == EGG && obj->spe) {
@@ -3257,7 +3274,16 @@ struct obj *obj, *otmp;
 		res = 0;
 	} else if (obj == uchain) {
 		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK || (otmp->otyp == SPE_LOCK_MANIPULATION && rn2(2)) ) {
-		    unpunish();
+		    if (otmp->otyp != SPE_KNOCK && otmp->otyp != SPE_LOCK_MANIPULATION) unpunish();
+		    if ((otmp->otyp == SPE_KNOCK || otmp->otyp == SPE_LOCK_MANIPULATION) && !rn2(5)) {
+			pline_The("chain is separated from the ball.");
+			if (uchain && uchain->owt > 0) {
+				IncreasedGravity += uchain->owt;
+				u.inertia += (uchain->owt / 10);
+				You("are temporarily slowed by the weight of the chain.");
+			}
+			unpunish();
+		    }
 		    makeknown(otmp->otyp);
 		} else
 		    res = 0;
@@ -4432,7 +4458,7 @@ secureidchoice:
 			break;
 		case WAN_WISHING:
 			known = TRUE;
-			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 				makenonworkingwish();
 				break;
 			}
@@ -4442,7 +4468,7 @@ secureidchoice:
 			known = TRUE;
 			int acquireditem;
 			acquireditem = 0;
-			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
+			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 				pline("Unfortunately, nothing happens.");
 				break;
 			}
@@ -7755,7 +7781,7 @@ struct obj **obj_p;			/* object tossed/used */
 			}
 			if (weapon != INVIS_BEAM) {
 			    (*fhitm)(mtmp, obj);
-				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) ) range -= 0;
+				if (uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) range -= 0;
 			    else if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
 			    else if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
 			    else range -= 3;
@@ -7786,7 +7812,7 @@ struct obj **obj_p;			/* object tossed/used */
 	    }
 	    if(fhito) {
 		if(bhitpile(obj,fhito,bhitpos.x,bhitpos.y))
-		    if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) )) range--;
+		    if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) )) range--;
 	    } else {
 		if(weapon == KICKED_WEAPON &&
 		      ((obj->oclass == COIN_CLASS &&
@@ -8308,7 +8334,7 @@ xchar sx, sy;
 		You("seem unaffected.");
 		break;
 	    } else if (Antimagic) { /* Sorry people, but being magic resistant no longer makes you immune. --Amy */
-	            dam = d(2,4);
+	            dam = d(2,4) + rno(level_difficulty() + 1);
 			if (StrongAntimagic && dam > 1) dam /= 2;
 			u.uhpmax -= dam/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -8331,7 +8357,7 @@ xchar sx, sy;
 	    return; /* lifesaved */
 		}
 		else
-                dam = d(4,6);
+                dam = d(4,6) + rnd(level_difficulty() + 1);
 			u.uhpmax -= dam/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
                 pline("This hurts a lot!");
@@ -8881,7 +8907,7 @@ sigilcontroldirection:
 			    slept_monst(mon);
 		    }
 		}
-		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) ) ) range -= 2;
+		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) ) range -= 2;
 	    } else {
 		miss(fltxt,mon);
 	    }
@@ -8893,7 +8919,7 @@ sigilcontroldirection:
 	    } else
 	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) || (Race_if(PM_SPARD) && (zap_hit_player((int) u.uac, 0)) ) || (StrongConflict && (zap_hit_player((int) u.uac, 0)) ) ) {
 
-		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")))) range -= 2;
+		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES))) range -= 2;
 		pline("%s hits you!", The(fltxt));
 		if (Reflecting && ((abstype == ZT_DEATH && rn2(StrongReflecting ? 100 : 20)) || (abstype != ZT_DEATH && rn2(StrongReflecting ? 20 : 5)) ) && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {
@@ -9634,7 +9660,7 @@ register int osym, dmgtyp;
 	    switch(dmgtyp) {
 		case AD_COLD:
 
-		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) {skip++; break;
+		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {skip++; break;
 			}
 
 		    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) {skip++; break;

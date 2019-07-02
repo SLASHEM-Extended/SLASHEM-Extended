@@ -962,6 +962,7 @@ static const char *random_mesg[] = {
 	"Vanilla Nethack getting BORING? Doing soko mazes in your sleep and while sitting on the train? Want a CHANGE? Try.... LAGOBAN! Do Sokoban from a server halfway around the planet, and bounce your signal off a server in yet another country while you're doing it! Make sure your wifi router is no closer than 40m from your current position for the full experience!",
 	"A fortune cookie told me if you try to set message history to before you were born, it angers your god!",
 	"GOOGL EM: Greased Outlandish Opportunist's Guide to Legends: Extended Magic",
+	"At the Shoeshop 69, 00420 Bundletown, Fleecyland",
 
 };
 
@@ -4827,6 +4828,9 @@ static const char *epitaphs[] = {
 	"Fucking game bugs. The loadstone that the lich put into my inventory weighed 21600 units and of course my blessing technique was on timeout.",
 	"Argh, tender jesses are overpowered. How the heck do you handle them?",
 	"Why does the game constantly spawn lulu asses, anyway?",
+	"Are you SURE that's a wand of wishing?",
+	"Croesus?  Who's he?",
+	"Who knows, how moves the people nowadays is? They are capable and kill one because allegedly a turning place belongs to them!",
 
 };
 

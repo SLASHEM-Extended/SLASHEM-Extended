@@ -236,6 +236,8 @@
 #define is_evilpatchmonster(ptr)	((ptr)->mflags5 & M5_EVIL)
 #define is_randomizedmonster(ptr)	((ptr)->mflags5 & M5_RANDOMIZED)
 #define is_elonamonster(ptr)	((ptr)->mflags5 & M5_ELONA)
+#define is_aoemonster(ptr)	((ptr)->mflags5 & M5_AOE)
+#define is_elderscrollsmonster(ptr)	((ptr)->mflags5 & M5_ELDERSCROLLS)
 
 #define nocorpsedecay(ptr)		((ptr)->mflags3 & M3_NO_DECAY)
 
@@ -287,6 +289,7 @@
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_GOLD_DRACONIAN]) ? 1 : \
 				 ((ptr) == &mons[PM_ANIMATED_TORCH]) ? 1 : \
+				 ((ptr) == &mons[PM_SIMMERING_MUSHROOM_PATCH]) ? 1 : \
 				 ((ptr) == &mons[PM_WAX_GOLEM]) ? 1 : 0)
 /*	[note: the light ranges above were reduced to 1 for performance...] */
 /*  WAC increased to 3 and 2?*/

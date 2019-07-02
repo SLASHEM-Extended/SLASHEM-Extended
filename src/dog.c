@@ -772,6 +772,8 @@ long nmv;		/* number of moves */
 	    m_unleash(mtmp, FALSE);
 	}
 
+	if (mtmp->healblock || mtmp->bleedout) goto healingdone;
+
 	/* recover lost hit points */
 	if (!regenerates(mtmp->data) && (!mtmp->egotype_regeneration) ) imv /= (ishaxor ? 10 : 20);
 	if (mtmp->mhp + imv >= mtmp->mhpmax)
@@ -864,6 +866,8 @@ long nmv;		/* number of moves */
 		}
 	}
 
+healingdone:
+	;
 	}
 }
 
@@ -1057,6 +1061,23 @@ migrate_to_level(mtmp, tolev, xyloc, cc)
 	mtmp->mx = mtmp->my = 0;	/* this implies migration */
 }
 
+/* function that makes your pet more hungry, e.g. because it got hit by a famine attack */
+void
+makedoghungry(mon, amount)
+struct monst *mon;
+int amount;
+{
+	if (!mon->mtame) return;
+
+	struct edog *edog = EDOG(mon);
+
+	if (edog && edog->hungrytime > 1) {
+		edog->hungrytime -= amount;
+		if (edog->hungrytime < 1) edog->hungrytime = 1;
+	}
+
+}
+
 #endif /* OVLB */
 #ifdef OVL1
 
@@ -1122,7 +1143,7 @@ register struct obj *obj;
 		case HUGE_CHUNK_OF_MEAT:
 		    return (carni ? DOGFOOD : MANFOOD);
 		case EGG:
-		    if (touch_petrifies(&mons[obj->corpsenm]) && !resists_ston(mon))
+		    if (touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON && !resists_ston(mon))
 			return POISON;
 		    return (carni ? CADAVER : MANFOOD);
 		case CORPSE:
@@ -1473,7 +1494,7 @@ struct monst *mtmp;
 	if (Aggravate_monster || Conflict) mtmp->mtame /=2;
 	else mtmp->mtame--;
 
-	if (mtmp->mtame && !mtmp->isminion)
+	if (mtmp->mtame && !mtmp->isminion && !(Role_if(PM_SLAVE_MASTER) && rn2(5)) )
 	    EDOG(mtmp)->abuse++;
 
 	if (Role_if(PM_CRUEL_ABUSER)) {

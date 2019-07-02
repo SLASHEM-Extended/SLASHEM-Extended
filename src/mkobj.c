@@ -1709,47 +1709,47 @@ int artif;
 	int mndx, tryct;
 	struct obj *otmp;
 
-	if (otyp == u.unobtainable && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable2 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable2 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable3 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable3 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable4 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable4 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable5 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable5 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable6 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable6 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable7 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable7 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable8 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable8 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable9 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable9 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable10 && !(issokosolver && otyp == BOULDER)) {
+	if (otyp == u.unobtainable10 && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainablegeno) { /* your fault for genociding them. No sokosolver specialties! --Amy */
+	if (otyp == u.unobtainablegeno && !(u.riderhack && otyp == CORPSE)) { /* your fault for genociding them. No sokosolver specialties! --Amy */
 		otyp = GOLD_PIECE;
 	}
 
@@ -3011,7 +3011,7 @@ register struct obj *otmp;
 
 		if (!u.dungeongrowthhack) {
 
-			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) otmp->hvycurse = 1;
+			if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_CURSED_CALLED_CLOAK)) otmp->hvycurse = 1;
 
 		}
 
@@ -3107,7 +3107,7 @@ register int chance;
 	    if(!rn2(isfriday ? 2 : 3)) {
 		curse_on_creation(otmp);
 	    } else if (!u.dungeongrowthhack) {
-			if (!rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) {
+			if (!rn2(5) && uarmc && itemhasappearance(uarmc, APP_CURSED_CALLED_CLOAK)) {
 				curse_on_creation(otmp);
 			} else {
 				bless(otmp);
@@ -3280,6 +3280,9 @@ boolean init;
 {
 	register struct obj *otmp;
 
+	/* hack by Amy: can't easily dispose of riders or sins by genociding corpses! */
+	if (mtmp && (is_rider(mtmp->data) || is_deadlysin(mtmp->data)) && objtype == CORPSE) u.riderhack = TRUE;
+
 	if (objtype != CORPSE && objtype != STATUE)
 	    impossible("making corpstat type %d", objtype);
 	if (x == 0 && y == 0) {		/* special case - random placement */
@@ -3287,6 +3290,9 @@ boolean init;
 		if (otmp) rloco(otmp);
 	} else
 		otmp = mksobj_at(objtype, x, y, init, FALSE);
+
+	u.riderhack = FALSE;
+
 	if (otmp) {
 	    if (mtmp) {
 		struct obj *otmp2;
@@ -3854,6 +3860,7 @@ add_to_container(container, obj)
 
     obj->mstartinvent = 0;
     obj->mstartinventB = 0;
+    obj->mstartinventC = 0;
     obj->where = OBJ_CONTAINED;
     obj->ocontainer = container;
     obj->nobj = container->cobj;

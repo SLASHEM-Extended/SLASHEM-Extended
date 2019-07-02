@@ -981,8 +981,10 @@ feel_location(x, y)
 	     * something has been dropped on the ball/chain.  If the bit is
 	     * not cleared, then when the ball/chain is moved it will drop
 	     * the wrong glyph.
+	     * Amy edit: there's the bug that the chain can be removed due to errors, in which case we don't want to try to
+	     * place it. In fact we should probably unpunish the player in that case and print an error message...
 	     */
-	    if (uchain->ox == x && uchain->oy == y) {
+	    if (uchain && uchain->ox == x && uchain->oy == y) {
 		if (level.objects[x][y] == uchain)
 		    u.bc_felt |= BC_CHAIN;
 		else
@@ -1170,7 +1172,7 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
@@ -1185,7 +1187,7 @@ newsym(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
-		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
+		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
@@ -1258,7 +1260,7 @@ newsym(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
@@ -1273,7 +1275,7 @@ newsym(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
-		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
+		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
@@ -1499,7 +1501,7 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
@@ -1514,7 +1516,7 @@ newsymX(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
-		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
+		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
@@ -1587,7 +1589,7 @@ newsymX(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) ||
-		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mon->internetvisible) ||
+		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
 		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
@@ -1602,7 +1604,7 @@ newsymX(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
-		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
+		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
@@ -3454,6 +3456,74 @@ do_crwall:
 	    idx = /*S_stone*/S_dungwall;
     }
     return idx;
+}
+
+boolean
+sensemon(mon)
+struct monst *mon;
+{
+	if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) return FALSE;
+	if (isselfhybrid && (moves % 3 == 0) ) return FALSE;
+
+	if (tp_sensemon(mon)) return TRUE;
+	if (Detect_monsters) return TRUE;
+	if (MATCH_WARN_OF_MON(mon)) return TRUE;
+	if (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) return TRUE;
+	if (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) return TRUE;
+	if (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) return TRUE;
+	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) return TRUE;
+	if (Role_if(PM_PALADIN) && is_demon(mon->data) ) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) return TRUE;
+	if (Race_if(PM_VORTEX) && unsolid(mon->data) ) return TRUE;
+	if (Race_if(PM_VORTEX) && nolimbs(mon->data) ) return TRUE;
+	if (Race_if(PM_CORTEX) && unsolid(mon->data) ) return TRUE;
+	if (Race_if(PM_CORTEX) && nolimbs(mon->data) ) return TRUE;
+	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) return TRUE;
+	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
+	if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
+	if ((uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) return TRUE;
+	if (RngeInternetAccess && mon->internetvisible) return TRUE;
+	if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) return TRUE;
+	if (Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible) return TRUE;
+	if (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) return TRUE;
+	if (Sickopathy && Sick && extra_nasty(mon->data) ) return TRUE;
+	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
+	if (Burnopathy && Burned && infravision(mon->data) ) return TRUE;
+	if (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) return TRUE;
+	if (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) return TRUE;
+	if (Race_if(PM_RODNEYAN) && mon_has_special(mon)) return TRUE;
+	if (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) return TRUE;
+	if (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
+	if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) return TRUE;
+	if (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) return TRUE;
+	if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) return TRUE;
+	if (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) return TRUE;
+	if (uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) return TRUE;
+	if (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) return TRUE;
+	if (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) return TRUE;
+	if (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) return TRUE;
+	if (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) return TRUE;
+	if (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) return TRUE;
+	if (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) return TRUE;
+	if (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) return TRUE;
+	if (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) return TRUE;
+	if (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) return TRUE;
+	if (uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) return TRUE;
+	if (uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) return TRUE;
+	if (uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) return TRUE;
+	if (uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) return TRUE;
+	if (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible ) ) return TRUE;
+
+	return FALSE; /* catchall */
 }
 
 /*display.c*/

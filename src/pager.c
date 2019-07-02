@@ -494,7 +494,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Stunnopathy && Stunned && always_hostile(mtmp->data) && mtmp->stunnovisible)
 		    ways_seen++;
-		if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mtmp->internetvisible)
+		if ( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mtmp->internetvisible)
 		    ways_seen++;
 		if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mtmp->internetvisible)
 		    ways_seen++;
@@ -516,7 +516,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES && (mtmp->mhp < (mtmp->mhpmax * 9 / 10)) )
 		    ways_seen++;
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mtmp->minvis && mtmp->sagesvisible )
+		if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mtmp->minvis && mtmp->sagesvisible )
 		    ways_seen++;
 		if (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mtmp->data, AT_BREA))
 		    ways_seen++;
@@ -637,7 +637,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "stunnopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && mtmp->internetvisible) {
+		    if ( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mtmp->internetvisible) {
 			strcat(monbuf, "internet access");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -681,7 +681,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "Elenette's knowledge");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mtmp->minvis && mtmp->sagesvisible ) {
+		    if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mtmp->minvis && mtmp->sagesvisible ) {
 			strcat(monbuf, "sages helmet");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -2785,6 +2785,12 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (ptr->mflags5 & M5_ELONA) {
 		strcat(description, " Origin: Elona.");
 	}
+	if (ptr->mflags5 & M5_AOE) {
+		strcat(description, " Origin: Age of Empires.");
+	}
+	if (ptr->mflags5 & M5_ELDERSCROLLS) {
+		strcat(description, " Origin: Fallout or Elder Scrolls.");
+	}
 
 	
 	if (polyok(ptr)) {
@@ -3500,6 +3506,30 @@ get_description_of_monster_type(struct permonst * ptr, char * description)
 	}
 	return description;
 }
+
+void
+corpsepager(crpsnum)
+int crpsnum;
+{
+	if (DeformattingBug || u.uprops[DEFORMATTING_BUG].extrinsic || have_deformattingstone() || PlayerUninformation) {
+		return;
+	}
+
+	char temp_buf[BUFSZ];
+	struct permonst *pm = (struct permonst *) 0;
+
+	temp_buf[0]='\0';
+	pm = &mons[crpsnum];
+
+	if (!pm || (crpsnum <= PM_PLAYERMON) || (crpsnum >= NUMMONS) ) {
+		return;
+	}
+
+	get_description_of_monster_type(pm, temp_buf);
+	pline("%s", temp_buf);
+
+}
+
 #endif
 
 int
@@ -3822,6 +3852,10 @@ static NEARDATA const char * const demagoguelines[] = {
 "We will end the police brutality by abolishing the police!",
 "All that the current government has ever accomplished is to make the wage gap even bigger! That government needs to be voted off!",
 "Currently, a couple dozen millionaires own about half of this country's total amount of money! We need to steal from the rich and give to the poor!",
+"Why do only stupid people become president? We should probably abolish the position of 'president' entirely!",
+"If we have the choice of having either a dictatorship or anarchy, we should opt for the latter!",
+"We are all sick of authority figures! We're no slaves and therefore we'll take up arms to fight the political leaders and, if necessary, kill them!",
+"The elections are rigged anyway! Governments are giving us the freedom to vote just so that we don't revolt, but we won't fall for that, and the revolution starts NOW!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4132,6 +4166,8 @@ static NEARDATA const char * const soviettaunts[] = {
 "Seriynyy glupyy ledyanoy blok udalil chek, kotoryy sprashivayet, deystvitel'no li vy khotite szhat' na valun, potomu chto yego igroki slegka zaputalis'. Otlichnaya ideya, chelovek, teper' vse avtomaticheski poluchat shtrafnyye sanktsii v Sokobane, kogda monstr stoit za valunom. VY DOLZHNY DEYSTVITEL'NO PROVERIT' VASHI IZMENENIYA PERVOGO",
 "Giga noob, kotoryy nazyvayet sebya ledyanym blokom, zastavil yego ne vytesnit' igroka, potomu chto 'eto delalo ikh slishkom razdrazhayushchimi dlya bor'by'. Prochitayte eto kak 'potomu chto on takoy plokhoy igrok, chto ne mozhet spravit'sya s kakim-nibud' monstrom, kotoryy na samom dele trebuyet, chtoby TAKTIKA pobezhdal'.",
 "Nadeyus', vy vyzovete ochen' mnogo ognennykh lovushek, potomu chto bylo by ochen' veselo uvidet', kak vy teryayete maksimum svoyego zdorov'ya, khar-khar.",
+"Kakiye? Vy dumayete, chto polimorfnyye ob'yekty budut luchshe? Net, vam vse ravno pridetsya vosstanavlivat' kazhdogo predmeta, potomu chto KHAR BOYARYSHNIK.",
+"Navyki vsegda ispol'zuyut ochki umenly, potomu chto tip ledyanogo bloka KHA KHA - otstoy.",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -4499,6 +4535,9 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Walt's fools are all doomed to fail.",
 "It's a fact that the Hussies own this school. When will that Walt freak finally learn?",
 "I'm surprised that Walt hasn't run out of diamonds yet, considering I just stole another bunch.",
+"It's such a calm day today. No walscholars are anywhere deeper than dungeon level 9.",
+"There are a few walscholars making progress, but nothing critical. We set up enough traps to catch them.",
+"What? One of the useless walscholars somehow made it to Gehennom? Red alert! All hussies, attack that intruder!",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4571,6 +4610,9 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Oh come on %s. Go back to Walt and tell him to send someone capable of putting up a fight, you really can't be the best he has to muster.",
 "What? %s managed to defeat some of the hola-hola brigade members? Why did we hire them in the first place if they can't get a job done? Oh well, I guess I'll have to take care of that problem myself then...",
 "Now I'll steal the diamonds, %s! You have two choices: face me so I can steal the ones you're carrying, or be a chicken and run from me so I can steal the ones hidden one floor down from your position.",
+"%s, you didn't even make it to a two-digit dungeon level yet? What's keeping you?",
+"Oh %s, I see you're more cunning than the last walscholar that was here yesterday! But of course you're not a real threat either.",
+"%s, you have gone too far. Anna regards you as a serious threat now and we will use all forces to stop you.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -23084,6 +23126,198 @@ static NEARDATA const char * const fake_plines[] = {
 	"Some of your items were greased!",
 	"Some of your items were greased! Including your stack of throwing weapons, because harharhar!",
 	"You feel light on your jesus, come on!", /* evilhack :P */
+	"You unmake creation. DYLYPI?", /* by NCommander */
+	"You feel like you're in mortal peril.", /* ditto */
+	"You feel in grave danger...",
+	"You are temporarily slowed by the weight of the chain.",
+	"You are permanently slowed by the weight of the chain. That's a side effect of casting knock when punished - now your carry capacity is permanently lower because your carried weight will never go below the weight of an iron chain.",
+	"Incoming message for Player 1. The message is from 'Anton'. It reads: 'Get out you little lass, or you get a kick in the ass!'",
+	"Incoming message for Player 1. The message is from 'Rhea'. It reads: 'There's a very good doener kebab place nearby. You look like you could eat a big meal, do you want to join me?'",
+	"Incoming message for Player 1. The message is from 'Ina'. It reads: 'When eating in the restaurant, I always order the waiter to use only plates that haven't touched any meat.'",
+	"Incoming message for Player 1. The message is from 'Tin Else'. It reads: 'Information! for! ER E! One! to! Trier! Departure! Eleven o'clock thirty-nine! Estimated delay about ten minutes, reason is an overlong cigarette break of the conductor!'",
+	"Incoming message for Player 1. The message is from 'Eveline'. It reads: 'Ina is not anorexic, even though she deceptively looks like she was. In reality she just thinks she's suffering from food intolerances.'",
+	"Incoming message for Player 1. The message is from 'Irina'. It reads: 'For the purpose of our activities, you automatically count as a girl even if you aren't one biologically.'",
+	"Incoming message for Player 1. The message is from 'Alexia'. It reads: 'Dear passengers! We reach Kaiserslautern main station in a few minutes! Due to a police call the travel will be delayed for another couple minutes... we ask for your understanding! The Suewex train personal apologizes for the inconvenience!'",
+	"Incoming message for Player 1. The message is from 'Larissa'. It reads: 'I'm back in Trier, but this time I remembered to wear my dark boots because I remember how my white sneakers got all dirty from walking through mud back then!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Listen up! You're one of my 94 candidates who will storm the castle of my eternal rival Takeshi today!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'You need a high school yearbook to bribe Strong Kanegou.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'You need a sponge to all-close Strong Kanegou.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'My spies told me that Takeshi's elite guard, Strong Kanegou, is allergic to coconuts! You can go to the forest to get some nuts now, but this is the only opportunity!'",
+	"Incoming message for Player 1. The message is from 'Ella'. It reads: 'Eat this, you little idiot without a dick!'",
+	"Incoming message for Player 1. The message is from 'Ella'. It reads: 'Idiot! It should be clear to you that you vacate the landing area after you jumped! After all, others are going to jump after you!'",
+	"Incoming message for Player 1. The message is from 'Ella'. It reads: 'Damn, I didn't hit the sack hard enough. Next time I'll aim for his head!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'In order to get into the front castle, you have 20 minutes to shoot yourself into the window by using the catapult. If you let the time run out, Takeshi's henchmen will come and try to destroy the catapult, and if they succeed, you will fall, along with all other warriors who didn't make it into the castle yet!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'There's a maze in this castle, and you have to find the exit. Watch out though, for Takeshi and his guys set up plenty of traps!'",
+	"Incoming message for Player 1. The message is from 'Rosy'. It reads: 'With my block heels I can stand firmly on the ground.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'The next challenge that this Takeshi set up is the eliminator, an obstacle course that you now have to master. Watch out that you don't fall in the water or you lose, and if the robot reaches the goal before you do, you're eliminated too!'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Hu! Huhu! Hirwigooo!'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Jahuuuuu!'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Hueuuuuu!'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Wuuuaaaa-aaaaa-aaaaa-aaaaa-aaaaaaaaaah...'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Uhh! Mamma mia.'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Press start to play!'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Mi! Mario!'", /* yeah I know he prefixes this with "it'sa" but it's so muffled that you don't hear it :P */
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Hahahahahahahaaaaaaaaaa!'", /* he seriously says that when he falls into lava! */
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'So long, gay Bowser!'",
+	"Incoming message for Player 1. The message is from 'Super Mario'. It reads: 'Alongdeybayday!'", /* "So long, gay Bowser!", but back in the day I didn't understand what he was really saying and this is what I heard */
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'The next step on the way to Takeshi leads you over the dangerous wooden bridge, and you need to get to the other side of it. Takeshi hired his two clowns Pop and Corn who will try to blast you from the bridge with their cannons, but don't let them get you. Now go, I need you to conquer this castle today!'",
+	"Incoming message for Player 1. The message is from 'The Hugging Topmodel'. It reads: 'You're fully retarded! You can't put a finger on me!'",
+	"Incoming message for Player 1. The message is from 'Ariane'. It reads: 'This is so unfair! You can shoot me and I can't fight back! If only I could slit your veins and watch you bleed...'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'You have to compete in Takeshi's wrestling arena now. For that, Takeshi is sending a few of his own warriors, and you roll the dice to decide who of them is your opponent.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'If you can knock out your opponent, you can proceed to the next level, but if the time for a fight runs out, Takeshi's bribed judges will decide who wins! Don't trust them for in the case of doubt they'll let your opponent win and then you're eliminated!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'You die if you don't come here! This is a safety mechanism created by Takeshi, which causes you to be struck by lightning if you don't roll the dice at most five seconds after you've been called! That mean pig dog!'",
+	"Incoming message for Player 1. The message is from 'Annie'. It reads: 'Aucune ecoliere inferieure ne peut me donner l'eau. Maintenant, vous avez une lecon que vous n'oublierez pas de sitot, petite fille!'",
+	"Incoming message for Player 1. The message is from 'Margret'. It reads: 'I'm not interested in talk. Now I will defeat you.'",
+	"Incoming message for Player 1. The message is from 'Margret'. It reads: 'The time for your little games is over now.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'We're running out of warriors! If we don't have enough people left, we won't manage to defeat Takeshi and then he can cause ragnarok! And if that happens, it means the end of the world as we know it!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'In the forest of illusion there's fog and rain, and you will see things that aren't really there. But there's very real dangers in there too, including Yohichi Shimada and Bondo Oki. Don't get caught by them. And don't sink in the moorland or you're eliminated!'",
+	"Incoming message for Player 1. The message is from 'Yohichi Shimada'. It reads: 'Hai Yo! Kogeki!'",
+	"Incoming message for Player 1. The message is from 'Yohichi Shimada'. It reads: 'Yameru! Nigemichi wa arimasen!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Now you have to travel across a lake with the canoe, then you'll reach Takeshi's main castle. You damn better don't fall in the water or you lose immediately. Anyway, Takeshi is using two gunboats, don't get shot by them!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Right, you're in the semi-final now. You need to choose the correct one of the five secret passages in order to get to Takeshi. If you pick the wrong passage, you have to fight Tatsuo Tokashiki and Makoto Dainenji, Takeshi's sumo ringers, and if they knock you out, you lose!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Only luck can help you now - ransu jenereta ga anata to issho ni iru kamo shiremasen!'",
+	"Incoming message for Player 1. The message is from 'Marihuana'. It reads: 'Hey! Non-smokers aren't allowed in here!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'It is so far! The time has come to finally bludgeon my arch-rival Takeshi. The battle is the same as always: you have a moon spaceship, and this paper circle is the weak spot. In order to defeat Takeshi, you use the mounted gun in your vehicle and shoot at Takeshi's spaceship. Every vehicle whose paper circle is destroyed will be eliminated, and once Takeshi's vehicle is disabled, you win!'",
+	"Incoming message for Player 1. The message is from 'Conse'. It reads: 'Ey you fat cow, I'll get you, you fat bitch with your pudding ass!'",
+	"Incoming message for Player 1. The message is from 'Hannes'. It reads: 'Oh damn, I guess the engine of my car just died.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Damn, it's the self-destruct mechanism! Run for your life! RUN!!!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Takeshi's new auto destruct mechanism will continuously cause explosions and gradually transform the entire area into a fiery inferno! Only if you make it all the way back to the entrance and are still alive at that point, Takeshi will really be defeated, otherwise it's a draw and you have to battle him again in a week!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Takeshi and his team are Japanese, and you should know that Japanese never flee or surrender. They will fight to the last breath and go down with their castle if they have to. If Takeshi caught one of them fleeing, the offender would have to commit hari kari in order to atone for his sins.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Hurry up! You're never safe as long as you're still in Takeshi's general area!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Damn! The idea with the vortices, I'd guess Takeshi got that from Super Kaizo Mario! You only have one chance: Travel into the vortex with your boat and jump off to the front when the boat's getting pulled down, with some luck you end up past the vortex and can make it to dry land!'",
+	"Incoming message for Player 1. The message is from 'Yohichi Shimada'. It reads: 'Anata wa ima ochirudeshou! Watashitachi ga anata o korosunaraba, watashitachi no oji wa hijo ni manzoku shite irudeshou!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'I run in front of you and you run directly behind me. The others shall warn you of incoming cannonballs.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'You must make the jump because it's the only way. I'm pretty sure Takeshi made the jump so Japanese on purpose, to ensure that you don't make it. Take a lot of start!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'You are my last hope. If you die on me now, we didn't make it, and I need to make it out alive too because I'm the general and therefore the only person who can declare victory over Takeshi. Let's do this - watashinounmei o anata no teniireru.'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'You need to walk in front, I really hope you still remember where all the traps are!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Damn! This mean Takeshi, his security system is too strong! You should run to the exit quickly to end this nightmare!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Now freaking jump, this castle will fall down any moment now!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'Run to the wall over there! If you can get to the other side of it, you won!'",
+	"Incoming message for Player 1. The message is from 'General Tani'. It reads: 'It is done. Thanks to your neverending courage I finally managed to defeat Lord Takeshi today after all these years. I am in your debt. You're the best warrior I ever had the honor to lead.'",
+	"Incoming message for Player 1. The message is from 'Irina'. It reads: 'Back in the day, there wasn't this unspeakable orthography reform in Germany, but now my teachers give me errors if I spell words correctly, like 'Kaenguruh', 'Stehgreif' or, worst of all, 'spazierengehen'! The reform is a gigantic regression compared to Oblivion!'",
+	"Incoming message for Player 1. The message is from 'Irina'. It reads: 'Let's go to the cinema today... with a twist. You won't just be watching a movie, but be involved in its production. Of course I'm talking about '28 Days' with Sandra Bullock, and you will work as an actor for the various scenes.'",
+	"Incoming message for Player 1. The message is from 'Irina'. It reads: 'Contrary to Hollywood, we don't use stunt doubles here and all injuries that you sustain as an actor will be real ones. This also means that if you play as Gwen in a scene where she has a broken leg, you have to actually break a leg for real before the scene starts. I don't care how you manage to do it, as long as you do it early enough.'",
+	"You see the following writing on the canvas: 'Irina Pictures presents a ABBOT STONE OH production: a Betty Thomas film starring Natalje as Gwen Cummings! 28 Days (WITH MODELS!!!)'",
+	"Incoming message for Player 1. The message is from 'Natalje'. It reads: 'This was an insane ride! We travelled through the thickest traffic jam in the city and our taxi overhauled everyone, then we boarded a train and raced here with 300 kmh...'",
+	"Incoming message for Player 1. The message is from 'Sofia'. It reads: 'Your date was at TEN. You wretched latecomer.'",
+	"Incoming message for Player 1. The message is from 'Natalje'. It reads: 'Calm down! I'll get you a new cake. I'm on the Bradford Avenue right now. Where's the nearest baker store?'",
+	"You see here a spellbook of source code. You find the runes difficult to comprehend. You continue reading ...",
+	"An alternate explanation of SLEX is what a spontaneously generated AI would create if it had simultaneous access to all the porn on the internet all at once.",
+	"Incoming message for Player 1. The message is from 'Tobi'. It reads: 'Part me clevere maps out!'",
+	"Incoming message for Player 1. The message is from 'Cristi'. It reads: 'now part out'",
+	"The gods have forbidden or prohibited you from using edged weapons such as a spear!",
+	"The gods have forbidden or prohibited you from using edged weapons such as a spear! Which means that the already very weak priest role is now even weaker than before because no single blunt weapon has an artifact at all (Trollsbane doesn't count)!",
+	"You feel like you could use some more practice.",
+	"You feel like you could use some more practice, but you cannot get it because it takes 100 hits to reach basic skill and you automiss 1 in 4 times while unskilled because harharhar.",
+	"Your aklys is too heavy to effectively fight offhand with.",
+	"Your aklys is too heavy to effectively fight offhand with, but weapons that fulfill the very restrictive requirements for being able to dual-wield are grievously rare.",
+	"If you lose the ring before the first meeting with your future bride, she will refuse you and the game will be unwinnable.",
+	"Don't forget to bring a torch before you enter the catacombs, because otherwise it'll be stick dark in there.",
+	"The wing-tufted asian girl absolutely wants to take a photo of you in high heels.",
+	"Incoming message for Player 1. The message is from 'Rita'. It reads: 'Damn! I'm at the rehab center! I caused a car accident while drunk and now I have to go through detox or be put in the brig!'",
+	"Incoming message for Player 1. The message is from 'Anita'. It reads: 'Don't worry, I'll come to visit you regularly and give you a little something.'",
+	"Incoming message for Player 1. The message is from 'Julietta'. It reads: 'Ah, you gotta be the new patient here, huh? Welcome to the Serenity Glen. I'm sorry, but smartphones aren't allowed here.'",
+	"Incoming message for Player 1. The message is from 'Rita'. It reads: 'Well yeah I'm not really addicted to drugs anyway. Just give me the key.'",
+	"Incoming message for Player 1. The message is from 'Eveline'. It reads: 'What kind of drugs do you take? Alcohol, cocaine, heroin or something else?'",
+	"Incoming message for Player 1. The message is from 'Antje'. It reads: 'I see it at the tip of your nose that you're high on drugs.'",
+	"Incoming message for Player 1. The message is from 'Natascha'. It reads: 'This clinic is pure hell. 'Cleanse your soul and spirit', what a load of hypocritical garbage. Come here and help me, quickly!'",
+	"Incoming message for Player 1. The message is from 'Eveline'. It reads: 'My chips taste really good! There's heroin mixed into them, hahaha!'",
+	"Incoming message for Player 1. The message is from 'Roswitha'. It reads: 'Hey, you can't simply stay away from the obligatory group meetings. Also, a cup of coffee costs 50 cents, kindly pay up!'",
+	"Incoming message for Player 1. The message is from 'Natascha'. It reads: 'I just can't stand this place, there's nothing interesting you can do and the other inmates are all rather strange!'",
+	"Incoming message for Player 1. The message is from 'Nadine'. It reads: 'Hey! I'm collecting money for poor orphanized children in Uganda. Do you want to donate? You could help fight the worldwide hunger that way!'",
+	"Incoming message for Player 1. The message is from 'Mariya'. It reads: 'I'm the secretary, in case you haven't known. This morning you didn't come to the group singing and wanted to drink coffee instead. If you slip up like that again, I might have to eliminate you from this clinic.'",
+	"Incoming message for Player 1. The message is from 'Mariya'. It reads: 'It may be that you view my sanctions as inadequate, but I'm leading this clinic for 20 years now and I know what I'm doing.'",
+	"Incoming message for Player 1. The message is from 'Bianca'. It reads: 'Come on, let's do a little joy ride.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'You broke the rules yet again. I already told you that the next time you break the rules you're done here. And your files don't say anything good about you either. Your time in this clinic is over now and tomorrow you'll be dismissed.'",
+	"Incoming message for Player 1. The message is from 'Klara'. It reads: 'You're not even conscientous of your diseases! How are you going to become drug-free if you don't even admit you're addicted?'",
+	"Incoming message for Player 1. The message is from 'Almuth'. It reads: 'It's unfair, I can't be put in jail! I admit that I said evil things about the clinic, but in jail I'll feel even worse...'",
+	"Incoming message for Player 1. The message is from 'Almuth'. It reads: 'You're really a very bad secretary who sorts out his patients at his heart's desire! I wish you'd have to go to jail instead of me! You wretched scumbag!'",
+	"Incoming message for Player 1. The message is from 'Helen'. It reads: 'Hey, I'll borrow your book for a while, alright?'",
+	"Incoming message for Player 1. The message is from 'The Sweet High-Heel-Loving Asian Girl'. It reads: 'Well I very certainly need to stay at the clinic! I realized that I am indeed addicted to drugs after all! You know, I specially jumped out of the window just to get to the drugs and now I have a broken leg because of that! I promise that I'll be the best patient and I'll take part in all group activities! But please give me a second chance and don't eliminate me now! Look here, see how my hands are shaking!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Jack'i tanimiyorsun ve bir bagimlilik problemin oldugunun farkinda bile degildin, kafir.'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Siz kafirler her gece uyusturulur!'",
+	"Incoming message for Player 1. The message is from 'Kerstin'. It reads: 'You have to realize you're in a clinic because you're ill! You ended up here because of the drugs and you need to get clean!'",
+	"Incoming message for Player 1. The message is from 'The Sweet High-Heel-Loving Asian Girl'. It reads: 'I KNOW THAT I'M HERE BECAUSE OF THE DRUGS AND DON'T NEED YOUR ADVICE! JUST KEEP YOUR WISDOM TO YOURSELF BECAUSE IT'S NOT HELPING AT ALL! I HAVE A BROKEN LEG, YOU IDIOT! SO WOULD YOU JUST KINDLY BACK THE FUCK OFF?'",
+	"Incoming message for Player 1. The message is from 'Conny'. It reads: 'Dude, this isn't working! I have a broken leg and still need to work just as hard as the others who are physically healthy! Kindly allow me to sit back or it won't ever heal!'",
+	"Incoming message for Player 1. The message is from 'Nadja'. It reads: 'You will be wearing an idiot sign now, which says 'Confront me if I don't ask for help'.'",
+	"Incoming message for Player 1. The message is from 'Gudrun'. It reads: 'YOU??? What the hell do you want from me now. It's your damn fault that you got put in a mental clinic.'",
+	"Incoming message for Player 1. The message is from 'Gudrun'. It reads: 'You're not worth my time. I have important things to take care of now. Bye.'",
+	"Incoming message for Player 1. The message is from 'Rosy'. It reads: 'They'll report me as missing again, and then another search warrant will be posted on me!'",
+	"Incoming message for Player 1. The message is from 'Rosy'. It reads: 'Dude, I don't need drugs no more! I'm here for detox and it's not helping at all if you constantly want to get me drunk!'",
+	"Incoming message for Player 1. The message is from 'Victoria'. It reads: 'You just have to trust me this time, I don't want you to die!'",
+	"Incoming message for Player 1. The message is from 'Sabrina'. It reads: 'You, listen, I can't partake in hiking tours or other stressful activities. Tell it to the group leader if he insists I participate.'",
+	"Incoming message for Player 1. The message is from 'Franzi'. It reads: 'You ruined my wedding.'",
+	"Incoming message for Player 1. The message is from 'Franzi'. It reads: 'You take drugs, constantly misbehave, destroy my beautiful wedding cake and to top it off you cause a car crash while drunk and now I'm supposed to pretend everything's okay just because you were in a mental clinic for one month? I don't want anything to do with you.'",
+	"Incoming message for Player 1. The message is from 'Franzi'. It reads: 'You are a disgusting person. Talk to you never, you've seen me for the last time in your life.'",
+	"Incoming message for Player 1. The message is from 'Annemarie'. It reads: 'Come on, it's not that hard. Just concentrate on the target and throw the ball such that it hits exactly. You'll see that you can do it.'",
+	"Incoming message for Player 1. The message is from 'Annemarie'. It reads: 'Come, turn your hand in this direction, you don't need to be shaking, I'm not gonna cut off your head.'",
+	"Incoming message for Player 1. The message is from 'Annemarie'. It reads: 'Did you notice? If you concentrate, you can do anything. You just need to believe in your own strengths.'",
+	"Incoming message for Player 1. The message is from 'Karin'. It reads: 'Did you see that guy thinking he's a noble banker just because he has a briefcase? He's a total snob!'",
+	"Incoming message for Player 1. The message is from 'Karin'. It reads: 'Is it really true that you're going to be here for 28 days only? How long have you been here for already, three weeks?'",
+	"Incoming message for Player 1. The message is from 'Ronja'. It reads: 'I don't really have a perspective for when I'm released, I guess I grew used to being in the clinic...'",
+	"Incoming message for Player 1. The message is from 'Ronja'. It reads: 'Apart from the people here no one is there for me! If I get released I'll never see you again and the relationship with my sister is broken too, really great!'",
+	"Incoming message for Player 1. The message is from 'Katharina'. It reads: 'You, something's not correct here! I saw my sister! That can't be, I mean she said she'll never come to visit me again! Can you tell me whether that was all just a dream?'",
+	"Incoming message for Player 1. The message is from 'Dora'. It reads: 'I'm being dismissed tomorrow. It'll be the worst day in my life.'",
+	"Incoming message for Player 1. The message is from 'Dora'. It reads: 'No one's gonna want anything to do with me! For all the people outside I'm still considered a heroin-addicted, promiscuous slutty whore! I was well in here but I'd really rather die than being expelled!'",
+	"Incoming message for Player 1. The message is from 'Larissa'. It reads: 'One of the patients was released but today he was admitted again. Do you want to take care of him?'",
+	"Incoming message for Player 1. The message is from 'Urbaldi'. It reads: 'So you're a baseball player? That sounds really boring, soccer is much more fun! You know, I'm a huge fan of the FC Bavaria Munich, and I'm watching every single game! Are you a soccer fan too even if you're a baseball player?'",
+	"Incoming message for Player 1. The message is from 'Urbaldi'. It reads: 'Those from flat brook even loose to leftright basking, despite those being at the bottom of the league! Those from flat brook just can't do it! Even a girl's team could pull down their trousers because they're that wimpy! Why are you so weird and cheering for such a cucumber team? You really gotta be very stupid!'",
+	"Incoming message for Player 1. The message is from 'Juen'. It reads: 'I know you have a lot on your mind right now, but I wanted to warn you of your boyfriend. He's not good for you. You'd be better off if you were to dump him.'",
+	"Incoming message for Player 1. The message is from 'Miriam'. It reads: 'Come, everything's gonna be like old times! You got out of that nonsensical clinic and from now on we can party again like we used to! Come, let's go to the restaurant!'",
+	"Incoming message for Player 1. The message is from 'Miriam'. It reads: 'Finally you're all mine again! We will dance the night away and drink a lot of alcohol, and in a few years you and me are finally going to get married!'",
+	"Incoming message for Player 1. The message is from 'Rhea'. It reads: 'My disposition to life has changed by now, I'm no longer the party animal I used to be. Being put through detox showed me that there's more to life than excessive drug use.'",
+	"Incoming message for Player 1. The message is from 'Miriam'. It reads: 'Hey! What happened to 'for life'? We wanted to get old together, make kids and be the happiest couple ever! Kindly come back and explain to me what's wrong with you!'",
+	"Incoming message for Player 1. The message is from 'Rhea'. It reads: 'In the clinic I learned to work with noble horses. You certainly can't do that because there's only sex and alcohol in your world.'",
+	"Incoming message for Player 1. The message is from 'Ruth'. It reads: 'I want to buy a pound of flowers but I don't have enough money!'",
+	"It would be unfortunate if a girl were to be unable to exist without her penis.",
+	"Magical energies are absorbed from your gear and transferred to the hostile gnomish wizard that dies in two hits. Yeah, you wish you still had that +5 on your silver dragon scale mail I guess.",
+	"You hear a lot of loud clanging sounds!",
+	"You hear an intense sustained hum.",
+	"You hear someone announce that deafness is not a status effect.",
+	"You hear nothing, which means that you are deaf, but the unicorn horn won't cure that. This is by design.",
+	"Shall I leave your cloak on, lover?",
+	"Shall I leave your cloak on, lover? (This message should randomly appear instead of the one asking whether the foocubus may remove it, just to make it more likely for you to screw up.)",
+	"A voice booms 'Congratulations, mort- *game crashes*",
+	"The glitch monster suddenly appears! You are frightened, unable to move. The glitch monster hits! A segfault occurs! Your save file disintegrates! You die...",
+	"This blatant advertisement for xNethack brought to you by AOS brand licorice ropes!",
+	"The rumor is they are completely eliminating the stethoscope from the next version of vanilla.",
+	"The AmyBSOD hits you with her shoes! You feel fleecy!",
+	"The polearm lifts you out of your saddle!",
+	"The polearm lifts you out of your saddle, because that's what polearms were originally for. Sadly you can't do the same to monsters because mounted monsters don't exist.",
+	"You feel like a proper hussy.",
+	"You feel like a proper hussy. This is because you're using scentful perfume.",
+	"You feel like a proper hussy. Did you press a log of dog shit on the ground?",
+	"You feel like a proper hussy. So I guess you've been successful in your attempts to defeat the walscholars.",
+	"You buckle your hips.",
+	"You shake your bones.",
+	"You are approached by the LarienTelrunya. She takes off her high heels and stabs you with the points. You feel good enough to do it again.", /* by bouquet <3 */
+	"You feel that something terrible is happening to your companion right now!",
+	"You feel that something terrible is happening to your companion right now! Quick, rescue your tame little girl from the evil blood bugs!",
+	"You feel that something terrible is happening to your companion right now! Apparently someone is trying to put your little dog into an iron maiden!",
+	"You feel that something terrible is happening to your companion right now! You have 10 turns left before your kitten is forced to step underneath the guillotine.",
+	"You hear some foreign sermon.",
+	"You hear a frightening taunt.",
+	"You hear some foreign sermon. Maybe it's Klingon?",
+	"You hear a frightening taunt. It sounds like 'Wouwou', even though you're not sure why that's supposed to be so frightening.",
+	"The troll's health is damaged.",
+	"The gnomish wizard seems less energized.",
+	"The black dragon is cancelled.",
+	"The black dragon is cancelled. Now it can't disintegrate you anymore, which means that if it's a pet, you actually want it to be cancelled unless you have a black dragonhide shield.",
+	"The adult man becomes afraid.",
+	"The adult man becomes afraid. And what's the monster that caused him to squeak in fear? A little girl, of course! :-)",
+	"The performaid bloodress starts bleeding.",
+	"Sydney's bleeding gets stronger.",
+	"Sydney's bleeding gets stronger. Apparently she's on her period, even though we all expected her to have the blows and give birth to a baby.",
+	"Christine's healing is blocked.",
+	"Christine's healing is blocked. This may well be the only effect that can stop the dissident's starting pet from obliterating everything, other than the steed-erasing crash upon switching levels (and if the latter happens, TELL AMY BECAUSE IT'S A BUG. In fact, game crashes are always bugs and should always be reported.)",
+	"The green glutton ghost looks hungry.",
+	"The watch captain inhales the feminine perfume.",
+	"The watch captain inhales the feminine perfume. He falls over unconscious and can't attack you any longer, but somehow he still immediately knows if you dry up the fountain.",
+	"The planetary fighter seems terrorified.",
+	"The planetary fighter seems terrorified. He's being attacked by a baby from outta space!",
+	"The zakarumite seems less faithful.",
+	"The zakarumite seems less faithful. He's gonna be converted to Diablo's religion and join the legions of terror!",
+	"You hear a noise like a hundred thousand people saying 'foop'.",
 
 };
 

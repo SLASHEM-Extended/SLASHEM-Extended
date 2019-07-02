@@ -1249,9 +1249,9 @@ register struct obj *obj;
 	if (obj == uquiver) setuqwep((struct obj *)0);
 	if (obj == uswapwep) setuswapwep((struct obj *)0, FALSE);
 
-	if (!u.uswallow && flooreffects(obj,u.ux,u.uy,"drop")) return;
+	if ((!u.uswallow) && flooreffects(obj,u.ux,u.uy,"drop")) return;
 	/* uswallow check done by GAN 01/29/87 */
-	if(u.uswallow) {
+	if(u.uswallow ) {
 	    boolean could_petrify = FALSE;
 	    boolean could_poly = FALSE;
 	    boolean could_slime = FALSE;
@@ -1267,7 +1267,7 @@ register struct obj *obj;
 		    could_heal = (obj->corpsenm == PM_NURSE);
 		}
 		if (obj->otyp == EGG) {
-		    could_petrify = touch_petrifies(&mons[obj->corpsenm]);
+		    could_petrify = (touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON);
 		}
 		(void) mpickobj(u.ustuck,obj,FALSE);
 		if (is_animal(u.ustuck->data)) {
@@ -1598,7 +1598,7 @@ dodown()
 
 		if (!achieve.enter_gehennom) {
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -2022,7 +2022,7 @@ boolean at_stairs, falling, portal;
 			if (!achieveX.swimmingpool_cleared) {
 
 				achieveX.swimmingpool_cleared = TRUE;
-				if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 				if (RngeTeamSplat) pline("TROPHY GET!");
 
 				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -2199,7 +2199,7 @@ rerollchaloc:
 
 		}
 
-		if (isangbander || RngeAngband || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) ) { /* level feelings --Amy */
+		if (isangbander || RngeAngband || (uarmc && itemhasappearance(uarmc, APP_ANGBAND_CLOAK)) ) { /* level feelings --Amy */
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;

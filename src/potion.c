@@ -515,7 +515,7 @@ boolean talk;
 	}
 	if ((xtime && !old) || (!xtime && old)) flags.botl = TRUE;
 
-	if (xtime && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "twisted visor helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem vitoy shlema") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "buekuemlue soyabon dubulg'a") ))) xtime *= 5;
+	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) xtime *= 5;
 
 	set_itimeout(&HConfusion, xtime);
 	if (xtime && !rn2(1000)) {
@@ -768,7 +768,7 @@ int type;
 			return;
 		}
 
-		if (rn2(4) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "inalish cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "glupyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ichki plash")) ) {
+		if (rn2(4) && uarmc && itemhasappearance(uarmc, APP_INALISH_CLOAK) ) {
 			pline("Your inalish cloak prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
@@ -1191,7 +1191,7 @@ playerextrinsicaggravatemon()
 	if (FemaleTrapSolvejg) return TRUE;
 	if (Race_if(PM_HC_ALIEN) && !flags.female) return TRUE;
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) return TRUE;
+	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK)) return TRUE;
 
 	if ((uwep && uwep->oartifact == ART_ASIAN_WINTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ASIAN_WINTER)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_FN_M____PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FN_M____PARA)) return TRUE;
@@ -1199,14 +1199,14 @@ playerextrinsicaggravatemon()
 	if ((uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PICK_OF_THE_GRAVE)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CRUEL_PUNISHER)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL)) return TRUE;
-	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heap of shit boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kucha der'movykh sapog") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boktan etik to'p") ))) return TRUE;
+	if ((uarmf && itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS))) return TRUE;
 	if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_QUEEN_ARTICUNO_S_HULL) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR)) return TRUE;
 	if ((uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || (uwep && uwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) return TRUE;
 	if ((uarm && uarm->oartifact == ART_NON_BLADETURNER) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS)) return TRUE;
-	if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "excrement cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ekskrementy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chiqindi plash") ) )) return TRUE;
+	if ((uarmc && itemhasappearance(uarmc, APP_EXCREMENT_CLOAK) )) return TRUE;
 	if ((uarms && uarms->oartifact == ART_NO_FUTURE_BUT_AGONY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uwep && uwep->oartifact == ART_RATTATTATTATTATT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RATTATTATTATTATT) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT)) return TRUE;
@@ -1218,6 +1218,32 @@ playerextrinsicaggravatemon()
 
 	return FALSE;
 
+}
+
+/* does the item "otmp" have a specific randomized appearance? tested with oc_appearindex variable, because that's much
+ * better than having to always check for regular, soviet and ancient randomized appearance string --Amy */
+boolean
+itemhasappearance(otmp, apptest)
+struct obj *otmp;
+int apptest;
+{
+	if (!otmp) return FALSE; /* error! shouldn't happen */
+	if (otmp->otyp >= NUM_OBJECTS) return FALSE; /* out of bounds - better don't continue, to avoid segfaults */
+	if (objects[otmp->otyp].oc_appearindex == apptest) return TRUE;
+
+	return FALSE; /* catchall */
+}
+
+/* the same function, but testing for base item "itemnum" */
+boolean
+itemnumwithappearance(itemnum, apptest)
+int itemnum, apptest;
+{
+	if (itemnum <= STRANGE_OBJECT) return FALSE; /* error! shouldn't happen */
+	if (itemnum >= NUM_OBJECTS) return FALSE; /* error! shouldn't happen */
+	if (objects[itemnum].oc_appearindex == apptest) return TRUE;
+
+	return FALSE; /* catchall */
 }
 
 boolean
@@ -1234,7 +1260,7 @@ long mask;	/* nonzero if resistance status should change by mask */
 			     "Oh wow!  Everything %s so cosmic!";
 	verb = (!Blind) ? "looks" : "feels";
 
-	if (xtime && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "twisted visor helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem vitoy shlema") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "buekuemlue soyabon dubulg'a") ))) xtime *= 5;
+	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) xtime *= 5;
 
 	if (mask) {
 	    if (HHallucination) changed = TRUE;
@@ -1872,7 +1898,7 @@ badeffect()
 		if (!rn2(10)) copcnt /= 3;
 		if (copcnt < 1) copcnt = 1;
 	
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 			copcnt = (copcnt / 2) + 1;
 		}
 
@@ -2575,6 +2601,10 @@ statdrain()
 		pline("The stat drain doesn't seem to affect you.");
 		return;
 	}
+	if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+		pline("Your steeled body prevents the stat loss!");
+		return;
+	}
 
 	ABASE(statdrained) -= 1;
 	AMAX(statdrained) -= 1;
@@ -3088,6 +3118,210 @@ datadeleteattack()
 			break;
 
 	}
+
+}
+
+/* Do something bad to the player's pet --Amy */
+void
+badpeteffect(mtmp)
+register struct monst *mtmp;
+{
+	if (!mtmp) return; /* shouldn't happen */
+	if (!mtmp->mtame) return; /* shouldn't happen either */
+
+	boolean vis = cansee(mtmp->mx,mtmp->my);
+
+	switch (rnd(46)) {
+
+		case 1:
+		case 2:
+		case 3:
+			if (mtmp->mspeed != MSLOW) {
+				mon_adjust_speed(mtmp, -1, (struct obj *)0);
+				if (vis) pline("%s slows down.", Monnam(mtmp));
+			}
+			break;
+		case 4:
+		case 5:
+		case 6:
+			mtmp->mhpmax -= rnd(10);
+			if (mtmp->mhpmax < 1) mtmp->mhpmax = 1;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+			if (vis) pline("%s's health is damaged.", Monnam(mtmp));
+			break;
+		case 7:
+			mtmp->m_enmax -= rnd(10);
+			if (mtmp->m_enmax < 0) mtmp->m_enmax = 0;
+			if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
+			if (vis) pline("%s seems less energized.", Monnam(mtmp));
+			break;
+		case 8:
+			if (!mtmp->mcan) {
+				mtmp->mcan = TRUE;
+				if (vis) pline("%s is cancelled.", Monnam(mtmp));
+			}
+			break;
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 13:
+			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+			if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+			break;
+		case 14:
+		case 15:
+		case 16:
+		case 17:
+		case 18:
+			{
+				int rnd_tmp;
+				rnd_tmp = rnd(1 + (level_difficulty() * 3));
+				if ((rnd_tmp += mtmp->mblinded) > 127) rnd_tmp = 127;
+				mtmp->mblinded = rnd_tmp;
+				mtmp->mcansee = 0;
+			}
+			if (vis) pline("%s is blinded.", Monnam(mtmp));
+			break;
+		case 19:
+		case 20:
+		case 21:
+			{
+				int rnd_tmp;
+				rnd_tmp = rnd(1 + level_difficulty());
+				if (rnd_tmp > 127) rnd_tmp = 127;
+				mtmp->mcanmove = 0;
+				mtmp->mfrozen = rnd_tmp;
+			}
+			if (vis) pline("%s is paralyzed.", Monnam(mtmp));
+			break;
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+		case 26:
+			mtmp->mstun = TRUE;
+			if (vis) pline("%s is stunned.", Monnam(mtmp));
+			break;
+		case 27:
+		case 28:
+		case 29:
+		case 30:
+		case 31:
+			mtmp->mconf = TRUE;
+			if (vis) pline("%s is confused.", Monnam(mtmp));
+			break;
+		case 32:
+			if (!rn2(10000)) mtmp->willbebanished = TRUE;
+			else if (!tele_restrict(mtmp)) {
+				if (vis) pline("%s disappears.", Monnam(mtmp));
+				(void) rloc(mtmp, FALSE);
+			}
+			break;
+		case 33:
+		case 34:
+		case 35:
+		case 36:
+			if (vis) {
+				if (!mtmp->bleedout) pline("%s starts bleeding.", Monnam(mtmp));
+				else pline("%s's bleeding gets stronger.", Monnam(mtmp));
+			}
+			mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
+			break;
+		case 37:
+		case 38:
+		case 39:
+		case 40:
+		case 41:
+			mtmp->healblock += rnd(1 + (level_difficulty() * 20));
+			if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
+			break;
+
+		case 42:
+		case 43:
+		case 44:
+		case 45:
+		case 46:
+			makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
+			if (vis) pline("%s looks hungry.", Monnam(mtmp));
+			break;
+
+		default: /* fail safe */
+			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+			if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+			break;
+
+	}
+
+}
+
+/* Make all the bad stuff happen to your pet at once --Amy */
+void
+allbadpeteffects(mtmp)
+register struct monst *mtmp;
+{
+	if (!mtmp) return; /* shouldn't happen */
+	if (!mtmp->mtame) return; /* shouldn't happen either */
+
+	boolean vis = cansee(mtmp->mx,mtmp->my);
+
+	if (mtmp->mspeed != MSLOW) {
+		mon_adjust_speed(mtmp, -1, (struct obj *)0);
+		if (vis) pline("%s slows down.", Monnam(mtmp));
+	}
+
+	mtmp->mhpmax -= rnd(10);
+	if (mtmp->mhpmax < 1) mtmp->mhpmax = 1;
+	if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+	if (vis) pline("%s's health is damaged.", Monnam(mtmp));
+
+	mtmp->m_enmax -= rnd(10);
+	if (mtmp->m_enmax < 0) mtmp->m_enmax = 0;
+	if (mtmp->m_en > mtmp->m_enmax) mtmp->m_en = mtmp->m_enmax;
+	if (vis) pline("%s seems less energized.", Monnam(mtmp));
+
+	if (!mtmp->mcan) {
+		mtmp->mcan = TRUE;
+		if (vis) pline("%s is cancelled.", Monnam(mtmp));
+	}
+
+	monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+	if (vis) pline("%s becomes afraid.", Monnam(mtmp));
+
+	{
+		int rnd_tmp;
+		rnd_tmp = rnd(1 + (level_difficulty() * 3));
+		if ((rnd_tmp += mtmp->mblinded) > 127) rnd_tmp = 127;
+		mtmp->mblinded = rnd_tmp;
+		mtmp->mcansee = 0;
+	}
+	if (vis) pline("%s is blinded.", Monnam(mtmp));
+
+	{
+		int rnd_tmp;
+		rnd_tmp = rnd(1 + level_difficulty());
+		if (rnd_tmp > 127) rnd_tmp = 127;
+		mtmp->mcanmove = 0;
+		mtmp->mfrozen = rnd_tmp;
+	}
+
+	mtmp->mstun = TRUE;
+	if (vis) pline("%s is stunned.", Monnam(mtmp));
+
+	mtmp->mconf = TRUE;
+	if (vis) pline("%s is confused.", Monnam(mtmp));
+
+	if (vis) {
+		if (!mtmp->bleedout) pline("%s starts bleeding.", Monnam(mtmp));
+		else pline("%s's bleeding gets stronger.", Monnam(mtmp));
+	}
+	mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
+
+	mtmp->healblock += rnd(1 + (level_difficulty() * 20));
+	if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
+
+	makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
+	if (vis) pline("%s looks hungry.", Monnam(mtmp));
 
 }
 
@@ -3755,7 +3989,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -3826,7 +4060,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -3842,7 +4076,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -3866,7 +4100,7 @@ dodrink()
 			u.dehydrationtime = moves + 1001;
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 			morehungry(-10);
 		}
 
@@ -4025,7 +4259,7 @@ register struct obj *otmp;
 		u.dehydrationtime = moves + 1001;
 	}
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "suv-quvur dubulg'a") ) ) {
+	if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
 		morehungry(-10);
 	}
 
@@ -4053,7 +4287,7 @@ register struct obj *otmp;
 	else if (otmp->where == OBJ_FLOOR) useupf(otmp, 1L);
 	else dealloc_obj(otmp);		/* Dummy potion */
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "levuntation cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "levitatsii plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "havo rido kiygan suzadi") )) badeffect();
+	if (uarmc && itemhasappearance(uarmc, APP_LEVUNTATION_CLOAK)) badeffect();
 
 	return(1);
 }
@@ -4721,238 +4955,8 @@ peffects(otmp)
 		break;
 
 	case POT_TRAINING:
-		{
 
-		You("may double your amount of training points in a skill of your choice!");
-
-		int acquiredskill;
-		acquiredskill = 0;
-
-		pline("Pick a skill to train. The prompt will loop until you actually make a choice.");
-
-		while (acquiredskill == 0) { /* ask the player what they want --Amy */
-
-			if (P_ADVANCE(P_DAGGER) && !(P_RESTRICTED(P_DAGGER)) && yn("Do you want to train the dagger skill?")=='y') {
-				P_ADVANCE(P_DAGGER) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_KNIFE) && !(P_RESTRICTED(P_KNIFE)) && yn("Do you want to train the knife skill?")=='y') {
-				P_ADVANCE(P_KNIFE) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_AXE) && !(P_RESTRICTED(P_AXE)) && yn("Do you want to train the axe skill?")=='y') {
-				P_ADVANCE(P_AXE) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_PICK_AXE) && !(P_RESTRICTED(P_PICK_AXE)) && yn("Do you want to train the pick-axe skill?")=='y') {
-				P_ADVANCE(P_PICK_AXE) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SHORT_SWORD) && !(P_RESTRICTED(P_SHORT_SWORD)) && yn("Do you want to train the short sword skill?")=='y') {
-				P_ADVANCE(P_SHORT_SWORD) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_BROAD_SWORD) && !(P_RESTRICTED(P_BROAD_SWORD)) && yn("Do you want to train the broad sword skill?")=='y') {
-				P_ADVANCE(P_BROAD_SWORD) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_LONG_SWORD) && !(P_RESTRICTED(P_LONG_SWORD)) && yn("Do you want to train the long sword skill?")=='y') {
-				P_ADVANCE(P_LONG_SWORD) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_TWO_HANDED_SWORD) && !(P_RESTRICTED(P_TWO_HANDED_SWORD)) && yn("Do you want to train the two-handed sword skill?")=='y') {
-				P_ADVANCE(P_TWO_HANDED_SWORD) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SCIMITAR) && !(P_RESTRICTED(P_SCIMITAR)) && yn("Do you want to train the scimitar skill?")=='y') {
-				P_ADVANCE(P_SCIMITAR) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SABER) && !(P_RESTRICTED(P_SABER)) && yn("Do you want to train the saber skill?")=='y') {
-				P_ADVANCE(P_SABER) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_CLUB) && !(P_RESTRICTED(P_CLUB)) && yn("Do you want to train the club skill?")=='y') {
-				P_ADVANCE(P_CLUB) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_PADDLE) && !(P_RESTRICTED(P_PADDLE)) && yn("Do you want to train the paddle skill?")=='y') {
-				P_ADVANCE(P_PADDLE) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_MACE) && !(P_RESTRICTED(P_MACE)) && yn("Do you want to train the mace skill?")=='y') {
-				P_ADVANCE(P_MACE) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_MORNING_STAR) && !(P_RESTRICTED(P_MORNING_STAR)) && yn("Do you want to train the morning star skill?")=='y') {
-				P_ADVANCE(P_MORNING_STAR) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_FLAIL) && !(P_RESTRICTED(P_FLAIL)) && yn("Do you want to train the flail skill?")=='y') {
-				P_ADVANCE(P_FLAIL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_HAMMER) && !(P_RESTRICTED(P_HAMMER)) && yn("Do you want to train the hammer skill?")=='y') {
-				P_ADVANCE(P_HAMMER) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_QUARTERSTAFF) && !(P_RESTRICTED(P_QUARTERSTAFF)) && yn("Do you want to train the quarterstaff skill?")=='y') {
-				P_ADVANCE(P_QUARTERSTAFF) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_POLEARMS) && !(P_RESTRICTED(P_POLEARMS)) && yn("Do you want to train the polearms skill?")=='y') {
-				P_ADVANCE(P_POLEARMS) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SPEAR) && !(P_RESTRICTED(P_SPEAR)) && yn("Do you want to train the spear skill?")=='y') {
-				P_ADVANCE(P_SPEAR) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_JAVELIN) && !(P_RESTRICTED(P_JAVELIN)) && yn("Do you want to train the javelin skill?")=='y') {
-				P_ADVANCE(P_JAVELIN) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_TRIDENT) && !(P_RESTRICTED(P_TRIDENT)) && yn("Do you want to train the trident skill?")=='y') {
-				P_ADVANCE(P_TRIDENT) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_LANCE) && !(P_RESTRICTED(P_LANCE)) && yn("Do you want to train the lance skill?")=='y') {
-				P_ADVANCE(P_LANCE) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_BOW) && !(P_RESTRICTED(P_BOW)) && yn("Do you want to train the bow skill?")=='y') {
-				P_ADVANCE(P_BOW) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SLING) && !(P_RESTRICTED(P_SLING)) && yn("Do you want to train the sling skill?")=='y') {
-				P_ADVANCE(P_SLING) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_FIREARM) && !(P_RESTRICTED(P_FIREARM)) && yn("Do you want to train the firearms skill?")=='y') {
-				P_ADVANCE(P_FIREARM) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_CROSSBOW) && !(P_RESTRICTED(P_CROSSBOW)) && yn("Do you want to train the crossbow skill?")=='y') {
-				P_ADVANCE(P_CROSSBOW) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_DART) && !(P_RESTRICTED(P_DART)) && yn("Do you want to train the dart skill?")=='y') {
-				P_ADVANCE(P_DART) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SHURIKEN) && !(P_RESTRICTED(P_SHURIKEN)) && yn("Do you want to train the shuriken skill?")=='y') {
-				P_ADVANCE(P_SHURIKEN) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_BOOMERANG) && !(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
-				P_ADVANCE(P_BOOMERANG) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_WHIP) && !(P_RESTRICTED(P_WHIP)) && yn("Do you want to train the whip skill?")=='y') {
-				P_ADVANCE(P_WHIP) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_UNICORN_HORN) && !(P_RESTRICTED(P_UNICORN_HORN)) && yn("Do you want to train the unicorn horn skill?")=='y') {
-				P_ADVANCE(P_UNICORN_HORN) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_LIGHTSABER) && !(P_RESTRICTED(P_LIGHTSABER)) && yn("Do you want to train the lightsaber skill?")=='y') {
-				P_ADVANCE(P_LIGHTSABER) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_ATTACK_SPELL) && !(P_RESTRICTED(P_ATTACK_SPELL)) && yn("Do you want to train the attack spell skill?")=='y') {
-				P_ADVANCE(P_ATTACK_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_HEALING_SPELL) && !(P_RESTRICTED(P_HEALING_SPELL)) && yn("Do you want to train the healing spell skill?")=='y') {
-				P_ADVANCE(P_HEALING_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_DIVINATION_SPELL) && !(P_RESTRICTED(P_DIVINATION_SPELL)) && yn("Do you want to train the divination spell skill?")=='y') {
-				P_ADVANCE(P_DIVINATION_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_ENCHANTMENT_SPELL) && !(P_RESTRICTED(P_ENCHANTMENT_SPELL)) && yn("Do you want to train the enchantment spell skill?")=='y') {
-				P_ADVANCE(P_ENCHANTMENT_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_PROTECTION_SPELL) && !(P_RESTRICTED(P_PROTECTION_SPELL)) && yn("Do you want to train the protection spell skill?")=='y') {
-				P_ADVANCE(P_PROTECTION_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_BODY_SPELL) && !(P_RESTRICTED(P_BODY_SPELL)) && yn("Do you want to train the body spell skill?")=='y') {
-				P_ADVANCE(P_BODY_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_OCCULT_SPELL) && !(P_RESTRICTED(P_OCCULT_SPELL)) && yn("Do you want to train the occult spell skill?")=='y') {
-				P_ADVANCE(P_OCCULT_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_ELEMENTAL_SPELL) && !(P_RESTRICTED(P_ELEMENTAL_SPELL)) && yn("Do you want to train the elemental spell skill?")=='y') {
-				P_ADVANCE(P_ELEMENTAL_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_CHAOS_SPELL) && !(P_RESTRICTED(P_CHAOS_SPELL)) && yn("Do you want to train the chaos spell skill?")=='y') {
-				P_ADVANCE(P_CHAOS_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_MATTER_SPELL) && !(P_RESTRICTED(P_MATTER_SPELL)) && yn("Do you want to train the matter spell skill?")=='y') {
-				P_ADVANCE(P_MATTER_SPELL) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_RIDING) && !(P_RESTRICTED(P_RIDING)) && yn("Do you want to train the riding skill?")=='y') {
-				P_ADVANCE(P_RIDING) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_HIGH_HEELS) && !(P_RESTRICTED(P_HIGH_HEELS)) && yn("Do you want to train the high heels skill?")=='y') {
-				P_ADVANCE(P_HIGH_HEELS) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_GENERAL_COMBAT) && !(P_RESTRICTED(P_GENERAL_COMBAT)) && yn("Do you want to train the general combat skill?")=='y') {
-				P_ADVANCE(P_GENERAL_COMBAT) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SHIELD) && !(P_RESTRICTED(P_SHIELD)) && yn("Do you want to train the shield skill?")=='y') {
-				P_ADVANCE(P_SHIELD) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_BODY_ARMOR) && !(P_RESTRICTED(P_BODY_ARMOR)) && yn("Do you want to train the body armor skill?")=='y') {
-				P_ADVANCE(P_BODY_ARMOR) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_TWO_HANDED_WEAPON) && !(P_RESTRICTED(P_TWO_HANDED_WEAPON)) && yn("Do you want to train the two-handed weapon skill?")=='y') {
-				P_ADVANCE(P_TWO_HANDED_WEAPON) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_TWO_WEAPON_COMBAT) && !(P_RESTRICTED(P_TWO_WEAPON_COMBAT)) && yn("Do you want to train the two-weapon combat skill?")=='y') {
-				P_ADVANCE(P_TWO_WEAPON_COMBAT) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_POLYMORPHING) && !(P_RESTRICTED(P_POLYMORPHING)) && yn("Do you want to train the polymorphing skill?")=='y') {
-				P_ADVANCE(P_POLYMORPHING) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_DEVICES) && !(P_RESTRICTED(P_DEVICES)) && yn("Do you want to train the devices skill?")=='y') {
-				P_ADVANCE(P_DEVICES) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SEARCHING) && !(P_RESTRICTED(P_SEARCHING)) && yn("Do you want to train the searching skill?")=='y') {
-				P_ADVANCE(P_SEARCHING) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SPIRITUALITY) && !(P_RESTRICTED(P_SPIRITUALITY)) && yn("Do you want to train the spirituality skill?")=='y') {
-				P_ADVANCE(P_SPIRITUALITY) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_PETKEEPING) && !(P_RESTRICTED(P_PETKEEPING)) && yn("Do you want to train the petkeeping skill?")=='y') {
-				P_ADVANCE(P_PETKEEPING) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_MISSILE_WEAPONS) && !(P_RESTRICTED(P_MISSILE_WEAPONS)) && yn("Do you want to train the missile weapons skill?")=='y') {
-				P_ADVANCE(P_MISSILE_WEAPONS) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_TECHNIQUES) && !(P_RESTRICTED(P_TECHNIQUES)) && yn("Do you want to train the techniques skill?")=='y') {
-				P_ADVANCE(P_TECHNIQUES) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_IMPLANTS) && !(P_RESTRICTED(P_IMPLANTS)) && yn("Do you want to train the implants skill?")=='y') {
-				P_ADVANCE(P_IMPLANTS) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SEXY_FLATS) && !(P_RESTRICTED(P_SEXY_FLATS)) && yn("Do you want to train the sexy flats skill?")=='y') {
-				P_ADVANCE(P_SEXY_FLATS) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_MEMORIZATION) && !(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
-				P_ADVANCE(P_MEMORIZATION) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
-				P_ADVANCE(P_SHII_CHO) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_MAKASHI) && !(P_RESTRICTED(P_MAKASHI)) && yn("Do you want to train the form II (Makashi) skill?")=='y') {
-				P_ADVANCE(P_MAKASHI) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SORESU) && !(P_RESTRICTED(P_SORESU)) && yn("Do you want to train the form III (Soresu) skill?")=='y') {
-				P_ADVANCE(P_SORESU) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_ATARU) && !(P_RESTRICTED(P_ATARU)) && yn("Do you want to train the form IV (Ataru) skill?")=='y') {
-				P_ADVANCE(P_ATARU) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_SHIEN) && !(P_RESTRICTED(P_SHIEN)) && yn("Do you want to train the form V (Shien) skill?")=='y') {
-				P_ADVANCE(P_SHIEN) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_DJEM_SO) && !(P_RESTRICTED(P_DJEM_SO)) && yn("Do you want to train the form V (Djem So) skill?")=='y') {
-				P_ADVANCE(P_DJEM_SO) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_NIMAN) && !(P_RESTRICTED(P_NIMAN)) && yn("Do you want to train the form VI (Niman) skill?")=='y') {
-				P_ADVANCE(P_NIMAN) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_JUYO) && !(P_RESTRICTED(P_JUYO)) && yn("Do you want to train the form VII (Juyo) skill?")=='y') {
-				P_ADVANCE(P_JUYO) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_VAAPAD) && !(P_RESTRICTED(P_VAAPAD)) && yn("Do you want to train the form VII (Vaapad) skill?")=='y') {
-				P_ADVANCE(P_VAAPAD) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_WEDI) && !(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
-				P_ADVANCE(P_WEDI) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_BARE_HANDED_COMBAT) && !(P_RESTRICTED(P_BARE_HANDED_COMBAT)) && yn("Do you want to train the bare-handed combat skill?")=='y') {
-				P_ADVANCE(P_BARE_HANDED_COMBAT) *= 2;
-				acquiredskill = 1; }
-			else if (P_ADVANCE(P_MARTIAL_ARTS) && !(P_RESTRICTED(P_MARTIAL_ARTS)) && yn("Do you want to train the martial arts skill?")=='y') {
-				P_ADVANCE(P_MARTIAL_ARTS) *= 2;
-				acquiredskill = 1; }
-			else if (yn("Do you want to train no skill at all?")=='y') {
-				acquiredskill = 1;
-			}
-		} /* ask the player what they want loop */
-		pline("Training complete!");
-
-		}
-
+		doubleskilltraining();
 		break;
 
 	case POT_BENEFICIAL_EFFECT:
@@ -5561,8 +5565,6 @@ peffects(otmp)
 			u.uprops[FEAR_RES].intrinsic |= FROMOUTSIDE;
 			pline("You worry about cursed items, but you're not afraid at all anymore.");
 		}
-
-	case SPE_BANISHING_FEAR:
 		{
 			if(otmp->cursed) {
 				make_feared(HFeared + rnd(100 + (monster_difficulty() * 5) ),TRUE);
@@ -5574,6 +5576,31 @@ peffects(otmp)
 					if (Fear_resistance) You_feel("more resistant to fear!");
 				}
 			}
+		}
+		break;
+	case SPE_BANISHING_FEAR:
+		{
+			You("banish your fears.");
+
+			if (HeavyFeared) break;
+			if (HFeared > (rn1(Role_if(PM_HEALER) ? 200 : 100, 20))) {
+				int effreduction = rnd(HFeared / 2);
+				if (effreduction > 0) {
+					HFeared -= effreduction;
+					Your("fear counter is reduced.");
+				}
+				if (!Role_if(PM_HEALER) && !rn2(500)) {
+					pline("The spell backlashes!");
+					badeffect();
+				}
+			} else {
+				if (HFeared) make_feared(0L, TRUE);
+			}
+			if (otmp->blessed) {
+				incr_itimeout(&HFear_resistance, rnd(250) );
+				if (Fear_resistance) You_feel("more resistant to fear!");
+			}
+
 		}
 		break;
 	case POT_OIL:				/* P. Winner */
@@ -5917,7 +5944,7 @@ healup(nhp, nxtra, curesick, cureblind)
 	register boolean curesick, cureblind;
 {
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") )) nhp *= 2;
+	if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) nhp *= 2;
 	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
@@ -5957,7 +5984,7 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	register boolean curesick, cureblind;
 {
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") ) ) nhp *= 2;
+	if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) nhp *= 2;
 	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
@@ -5975,6 +6002,15 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	if (nhp) {
 		mtmp->mhp += nhp;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = (mtmp->mhpmax += nxtra);
+
+		if (mtmp->bleedout && mtmp->bleedout <= nhp) {
+			mtmp->bleedout = 0;
+			if (canseemon(mtmp)) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= nhp;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (canseemon(mtmp)) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 	}
 #if 0
 	if(cureblind) ; /* NOT DONE YET */
@@ -7111,7 +7147,7 @@ boolean amnesia;
 	struct obj* otmp;
 	boolean used = FALSE;
 
-	if (uarmf && obj == uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) {
+	if (uarmf && obj == uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) {
 		pline("Urgh, your yellow sneakers hate getting wet!");
 		nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
 		losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);

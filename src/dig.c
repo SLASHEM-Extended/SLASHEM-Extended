@@ -311,7 +311,7 @@ dig()
 	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosionX(uwep) + u.udaminc + RngeBloodlust + (Drunken_boxing && Confusion);
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "digger gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kopatel'skiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kazici qo'lqop") )) bonus += 5;
+	if (uarmg && itemhasappearance(uarmg, APP_DIGGER_GLOVES)) bonus += 5;
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_WEDI)) {
 
@@ -441,7 +441,13 @@ dig()
 		 * Soviet, but seriously, fuck that shit, I'm not gonna bother coding that just for an obscure special mode
 		 * that 99.9% of players won't use anyway because they don't understand russian. --Amy */
 			    }
-				(void)wither_dmg(uwep, xname(uwep), rn2(4), TRUE, &youmonst); /* sorry --Amy */
+				if (!rn2(2)) uwep->oeroded++;
+				else uwep->oeroded2++;
+				Your("weapon has taken damage from smashing the bars!");
+				/* it's intentional that the weapon cannot resist, because otherwise you could take one that
+				 * is highly resistant to erosion or even immune to being destroyed and simply smash all bars
+				 * in the entire dungeon, which isn't what we want --Amy */
+
 				if (!rn2(5)) mkobj_at(CHAIN_CLASS, dpx, dpy, FALSE); /* maybe make a chain from the bars --Amy */
 
 				} /* weapon isn't too damaged check */

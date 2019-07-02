@@ -1264,7 +1264,18 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 
 	switch(otmp->otyp) {
 	case WAN_LOCKING:
+	    if (!obj->olocked) {	/* lock it; fix if broken */
+		pline("Klunk!");
+		obj->olocked = 1;
+		obj->obroken = 0;
+		res = 1;
+	    } /* else already closed and locked */
+	    break;
 	case SPE_WIZARD_LOCK:
+	    if (Role_if(PM_LOCKSMITH) ? !rn2(100) : rn2(2)) {
+		if (!rn2(10)) containerkaboom();
+		break;
+	    }
 	    if (!obj->olocked) {	/* lock it; fix if broken */
 		pline("Klunk!");
 		obj->olocked = 1;
@@ -1273,7 +1284,18 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	    } /* else already closed and locked */
 	    break;
 	case WAN_OPENING:
+	    if (obj->olocked) {		/* unlock; couldn't be broken */
+		pline("Klick!");
+		obj->olocked = 0;
+		res = 1;
+	    } else			/* silently fix if broken */
+		obj->obroken = 0;
+	    break;
 	case SPE_KNOCK:
+	    if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
+		if (!rn2(10)) containerkaboom();
+		break;
+	    }
 	    if (obj->olocked) {		/* unlock; couldn't be broken */
 		pline("Klick!");
 		obj->olocked = 0;
@@ -1282,6 +1304,11 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 		obj->obroken = 0;
 	    break;
 	case SPE_LOCK_MANIPULATION:
+
+	    if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
+		if (!rn2(10)) containerkaboom();
+		break;
+	    }
 
 		if (!rn2(2)) {
 		    if (!obj->olocked) {	/* lock it; fix if broken */
@@ -1370,10 +1397,7 @@ int x, y;
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
 
-	    case SPE_LOCK_MANIPULATION:
-			if (rn2(2)) return FALSE; /* fall through */
 	    case WAN_OPENING:
-	    case SPE_KNOCK:
 	    case WAN_STRIKING:
 	    case WAN_GRAVITY_BEAM:
 	    case SPE_GRAVITY_BEAM:
@@ -1387,9 +1411,42 @@ int x, y;
 		}
 		newsym(x,y);
 		if (cansee(x,y)) pline("A door appears in the wall!");
-		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK || otmp->otyp == SPE_LOCK_MANIPULATION)
+		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_LOCK_MANIPULATION)
 		    return TRUE;
 		break;		/* striking: continue door handling below */
+
+	    case SPE_LOCK_MANIPULATION:
+		if (rn2(2)) return FALSE;
+		if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
+			if (!rn2(10)) containerkaboom();
+			return TRUE;
+		}
+
+		if (key)	/* Artifact doors are revealed only */
+		    cvt_sdoor_to_door(door);
+		else {
+		door->typ = DOOR;
+		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+		}
+		newsym(x,y);
+		if (cansee(x,y)) pline("A door appears in the wall!");
+		return TRUE;
+
+	    case SPE_KNOCK:
+		if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
+			if (!rn2(10)) containerkaboom();
+			return TRUE;
+		}
+
+		if (key)	/* Artifact doors are revealed only */
+		    cvt_sdoor_to_door(door);
+		else {
+		door->typ = DOOR;
+		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+		}
+		newsym(x,y);
+		if (cansee(x,y)) pline("A door appears in the wall!");
+		return TRUE;
 	    case WAN_LOCKING:
 	    case SPE_WIZARD_LOCK:
 	    default:
@@ -1410,6 +1467,26 @@ int x, y;
 		} /* else fall through */
 	case WAN_LOCKING:
 	case SPE_WIZARD_LOCK:
+
+	    if (otmp->otyp == SPE_WIZARD_LOCK && (Role_if(PM_LOCKSMITH) ? !rn2(150) : !rn2(3))) {
+		if (!rn2(10)) containerkaboom();
+		return FALSE;
+	    }
+	    if (otmp->otyp == SPE_LOCK_MANIPULATION && (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3))) {
+		if (!rn2(10)) containerkaboom();
+		return FALSE;
+	    }
+
+	    if (door->doormask == D_BROKEN && otmp->otyp == SPE_WIZARD_LOCK && (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3))) {
+		if (!rn2(10)) containerkaboom();
+		return FALSE;
+	    }
+	    if (door->doormask == D_NODOOR && otmp->otyp == SPE_WIZARD_LOCK && (Role_if(PM_LOCKSMITH) ? !rn2(100) : rn2(2))) {
+		if (!rn2(10)) containerkaboom();
+		return FALSE;
+	    }
+
+
 #ifdef REINCARNATION
 	    if (Is_rogue_level(&u.uz)) {
 	    	boolean vis = cansee(x,y);
@@ -1475,7 +1552,16 @@ int x, y;
 	    newsym(x,y);
 	    break;
 	case WAN_OPENING:
+	    if (!key && door->doormask & D_LOCKED) {
+		msg = "The door unlocks!";
+		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
+	    } else res = FALSE;
+	    break;
 	case SPE_KNOCK:
+	    if (Role_if(PM_LOCKSMITH) ? !rn2(50) : rn2(3)) {
+		if (!rn2(10)) containerkaboom();
+		break;
+	    }
 	    if (!key && door->doormask & D_LOCKED) {
 		msg = "The door unlocks!";
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);

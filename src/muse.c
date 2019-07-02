@@ -4025,6 +4025,14 @@ newboss:
 		if (!otmp->cursed) mtmp->mcansee = 1;
 		if (vismon) pline("%s begins to look better.", Monnam(mtmp));
 		if (oseen) makeknown(WAN_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_WAN_EXTRA_HEALING:
@@ -4036,6 +4044,14 @@ newboss:
 		if (!otmp->cursed) mtmp->mcansee = 1;
 		if (vismon) pline("%s begins to look better.", Monnam(mtmp));
 		if (oseen) makeknown(WAN_EXTRA_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_WAN_FULL_HEALING:
@@ -4047,6 +4063,14 @@ newboss:
 		if (!otmp->cursed) mtmp->mcansee = 1;
 		if (vismon) pline("%s begins to look better.", Monnam(mtmp));
 		if (oseen) makeknown(WAN_FULL_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
@@ -4062,6 +4086,14 @@ newboss:
 
 		if (vismon) pline("%s looks better.", Monnam(mtmp));
 		if (oseen) makeknown(SCR_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		/*m_useup(mtmp, otmp); */
@@ -4083,6 +4115,14 @@ newboss:
 
 		if (vismon) pline("%s looks much better.", Monnam(mtmp));
 		if (oseen) makeknown(SCR_EXTRA_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -4097,6 +4137,14 @@ newboss:
 
 		if (vismon) pline("%s looks fully healed.", Monnam(mtmp));
 		if (oseen) makeknown(SCR_POWER_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		return 2;
 
@@ -4112,6 +4160,14 @@ newboss:
 		}
 		if (vismon) pline("%s looks better.", Monnam(mtmp));
 		if (oseen) makeknown(POT_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_EXTRA_HEALING:
@@ -4127,6 +4183,14 @@ newboss:
 		}
 		if (vismon) pline("%s looks much better.", Monnam(mtmp));
 		if (oseen) makeknown(POT_EXTRA_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_FULL_HEALING:
@@ -4140,6 +4204,14 @@ newboss:
 		}
 		if (vismon) pline("%s looks completely healed.", Monnam(mtmp));
 		if (oseen) makeknown(otmp->otyp);
+		if (mtmp->bleedout && mtmp->bleedout <= 400) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= 400;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_CURE_WOUNDS:
@@ -4149,6 +4221,14 @@ newboss:
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		if (vismon) pline("%s looks better.", Monnam(mtmp));
 		if (oseen) makeknown(POT_CURE_WOUNDS);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_CURE_SERIOUS_WOUNDS:
@@ -4158,6 +4238,14 @@ newboss:
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		if (vismon) pline("%s looks much better.", Monnam(mtmp));
 		if (oseen) makeknown(POT_CURE_SERIOUS_WOUNDS);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_CURE_CRITICAL_WOUNDS:
@@ -4165,6 +4253,14 @@ newboss:
 		mtmp->mhp = mtmp->mhpmax;
 		if (vismon) pline("%s looks completely healed.", Monnam(mtmp));
 		if (oseen) makeknown(otmp->otyp);
+		if (mtmp->bleedout && mtmp->bleedout <= 400) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= 400;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_RIN_TIMELY_BACKUP:
@@ -4194,6 +4290,7 @@ newboss:
 		    mtmp->mhpmax += rnd(5);
 		    if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		    if (vismon) pline("%s looks full of life.", Monnam(mtmp));
+		    if (mtmp->bleedout) mtmp->bleedout = 0;
 		}
 		else if (vismon)
 		    pline("%s discards the congealed blood in disgust.", Monnam(mtmp));
@@ -4207,6 +4304,7 @@ newboss:
 		    mtmp->mhp += i;
 		    mtmp->mhpmax += i;
 		    if (vismon) pline("%s looks full of life.", Monnam(mtmp));
+		    if (mtmp->bleedout) mtmp->bleedout = 0;
 		}
 		else if (vismon)
 		    pline("%s discards the congealed blood in disgust.", Monnam(mtmp));
@@ -11245,7 +11343,7 @@ struct obj *obj;
 				    (obj->corpsenm == PM_LIZARD ||
 					(acidic(&mons[obj->corpsenm]) && !slime_on_touch(&mons[obj->corpsenm])) )));
 	    if (typ == EGG)
-		return (boolean)(touch_petrifies(&mons[obj->corpsenm]));
+		return (boolean)(touch_petrifies(&mons[obj->corpsenm]) && (obj->corpsenm != PM_PLAYERMON));
 	    break;
 	default:
 	    break;

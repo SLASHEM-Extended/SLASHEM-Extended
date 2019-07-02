@@ -220,6 +220,13 @@ boolean digest_meal;
 
 	int regenrate; /* A level 30 pet large cat would otherwise regenerate waaaaaay too slowly. --Amy */
 
+	/* is the monster bleeding despite not being able to bleed? if so, stop its bleeding --Amy */
+	if (mon->bleedout && (!has_blood(mon->data) ) ) {
+		mon->bleedout = 0;
+	}
+
+	if (mon->healblock || mon->bleedout) return; /* sorry --Amy */
+
 	regenrate = (20 - (mon->m_lev / 3));
 	if (regenrate < 6) regenrate = 6;
 	if (ishaxor) regenrate /= 2;
@@ -589,6 +596,8 @@ register struct monst *mtmp;
 	    return(0);	/* other frozen monsters can't do anything */
 	}
 
+	if (mdat == &mons[PM_BUGBEAM_CUBE] && !rn2(4)) return 0; /* can sometimes not move; this is by design */
+
 	/* there is a chance we will wake it */
 	if (mtmp->msleeping && !disturb(mtmp)) {
 		if (Hallucination) newsym(mtmp->mx,mtmp->my);
@@ -665,6 +674,30 @@ register struct monst *mtmp;
 	/* not frozen or sleeping: wipe out texts written in the dust */
 	wipe_engr_at(mtmp->mx, mtmp->my, 1);
 
+	/* bleeding monsters will take damage and may die from blood loss --Amy */
+	if (mtmp->bleedout) {
+
+		int bleedingdamage = rnd(1 + (mtmp->bleedout / 10));
+		if (bleedingdamage > mtmp->bleedout) bleedingdamage = mtmp->bleedout;
+		mtmp->mhp -= bleedingdamage;
+		mtmp->bleedout -= bleedingdamage;
+		if (cansee(mtmp->mx,mtmp->my) && !rn2(10)) pline("%s bleeds.", Monnam(mtmp));
+		if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* fail safe */
+
+		if (mtmp->mhp <= 0) {
+			if (cansee(mtmp->mx,mtmp->my)) pline("%s dies from loss of blood", Monnam(mtmp));
+			/* the lack of a period is intentional because the message is the same in Elona :P --Amy */
+			mondied(mtmp);
+			return(1);
+		}
+	}
+
+	/* heal block will time out --Amy */
+	if (mtmp->healblock) {
+		mtmp->healblock--;
+		if (mtmp->healblock < 0) mtmp->healblock = 0; /* fail safe */
+	}
+
 	/* confused monsters get unconfused with small probability */
 	if (mtmp->mconf && !rn2(50)) mtmp->mconf = 0;
 
@@ -709,7 +742,7 @@ register struct monst *mtmp;
 		}
 		badeffect();
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
 			badeffect();
@@ -745,7 +778,7 @@ register struct monst *mtmp;
 			}
 			badeffect();
 
-			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 				badeffect();
 				badeffect();
@@ -1375,7 +1408,7 @@ convertdone:
 
 		}
 
-		if (rn2(10) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gaz niqobi")) ) {
+		if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 			pline("But the gas mask protects you from the effects.");
 		} else {
 
@@ -1417,7 +1450,7 @@ convertdone:
 
 	/* [DS] Cthulhu also uses psychic blasts */
 	else if ((is_mind_flayer(mdat) || mdat == &mons[PM_CTHULHU] || mdat == &mons[PM_FLYING_ASSHOLE] ) 
-			&& !rn2( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "narrow helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzkiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tor dubulg'a") ) ) ? 4 : 20)) {
+			&& !rn2( (uarmh && itemhasappearance(uarmh, APP_NARROW_HELMET) ) ? 4 : 20)) {
 		struct monst *m2, *nmon = (struct monst *)0;
 
 		if (canseemon(mtmp))
@@ -1515,11 +1548,22 @@ convertdone:
 	}
 
 	/* occasionally hint at the presence of psychic beings, if you are telepathic --Amy */
-	if (dmgtype(mdat, AD_SPC2) && !rn2((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "narrow helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "uzkiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tor dubulg'a") ) ) ? 40 : 200) && Blind_telepat) {
+	if (dmgtype(mdat, AD_SPC2) && !rn2((uarmh && itemhasappearance(uarmh, APP_NARROW_HELMET) ) ? 40 : 200) && Blind_telepat) {
 		You(Hallucination ? "sense a fantastic psionic wave." : "sense a faint psionic wave.");
 	}
 
 toofar:
+
+	/* try to attack the player's pets at range, if possible (from dnethack) */
+	if (!mtmp->mpeaceful && !mtmp->mtame) {
+		register struct monst *mtmp2 = mfind_target(mtmp, FALSE);
+		if (mtmp2 && (mtmp2 != &youmonst) && (mtmp2 != mtmp)) {
+
+			int res;
+			res = mattackm(mtmp, mtmp2);
+			if (res & MM_AGR_DIED) return 1; /* Oops. */
+		}
+	}
 
 	/* If monster is nearby you, and has to wield a weapon, do so.   This
 	 * costs the monster a move, of course.
@@ -1539,7 +1583,7 @@ toofar:
 	    mw_tmp = MON_WEP(mtmp);
 	    if (!(scared && mw_tmp && is_pick(mw_tmp)) &&
 		mtmp->weapon_check == NEED_WEAPON &&
-		!(mtmp->mtrapped && !nearby && select_rwep(mtmp))) {
+		!(mtmp->mtrapped && !nearby && select_rwep(mtmp, FALSE))) {
 		mtmp->weapon_check = NEED_HTH_WEAPON;
 		if (mon_wield_item(mtmp) != 0) return(0);
 	    }
@@ -2011,7 +2055,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);
@@ -2044,7 +2088,7 @@ not_special:
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
-	if (mtmp->mconf || (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "inkcoat helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem pal'to chernil") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "siyoh palto dubulg'a") ) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
+	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else if ((monsndx(ptr) == PM_WIMPDAG_BANGER) || (monsndx(ptr) == PM_SLING_BANGER) || (monsndx(ptr) == PM_FLINT_BANGER) || (monsndx(ptr) == PM_DAT_BANGER) || (monsndx(ptr) == PM_BOW_BANGER) || (monsndx(ptr) == PM_PISTOL_BANGER) || (monsndx(ptr) == PM_SPEA_BANGER) || (monsndx(ptr) == PM_XBOW_BANGER) || (monsndx(ptr) == PM_SHOTTY_BANGER) || (monsndx(ptr) == PM_SHURI_BANGER) || (monsndx(ptr) == PM_SMG_BANGER) || (monsndx(ptr) == PM_LASER_BANGER) || (monsndx(ptr) == PM_ASSAULT_BANGER) || (monsndx(ptr) == PM_JAV_BANGER) || (monsndx(ptr) == PM_AUTOSHOT_BANGER) || (monsndx(ptr) == PM_ARMSTREAM_BANGER) || (monsndx(ptr) == PM_BIG_FUCKING_BANGER) )
 		appr = 0;
@@ -2117,11 +2161,11 @@ not_special:
 		}
 	}
 
-	if (appr == 1 && !rn2(5) && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflaj to'n") )) ) appr = 0;
+	if (appr == 1 && !rn2(5) && (uarm && itemhasappearance(uarm, APP_CAMO_ROBE)) ) appr = 0;
 
 	if (appr == 1 && uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT && !rn2(10)) appr = 0;
 
-	if (appr == 1 && !rn2(5) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
+	if (appr == 1 && !rn2(5) && (uarmc && itemhasappearance(uarmc, APP_PINK_CLOAK) )) appr = 0;
 
 	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
 	if (ptr == &mons[PM_BLOWSTREAM_BABY]) appr = -1;
@@ -2294,15 +2338,15 @@ not_special:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "absorbing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pogloshchayushchiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yutucu plash") ) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
 		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
 
-	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bug-tracking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "oshibka otslezhivaniya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "hasharotlar-kuzatish dubulg'a") ) && !rn2(3) ) appr = 1; 
+	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kamalak chizilmasin") ) && !rn2(3) ) appr = 1; 
+	if (uarmf && itemhasappearance(uarmf, APP_RAINBOW_BOOTS) && !rn2(3) ) appr = 1; 
 
 		if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) appr = 1;
 

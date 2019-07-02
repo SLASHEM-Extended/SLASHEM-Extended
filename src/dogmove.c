@@ -56,6 +56,7 @@ register struct monst *mon;
 		}
 		if (obj->mstartinvent) continue;
 		if (obj->mstartinventB) continue;
+		if (obj->mstartinventC) continue;
 		if (obj->petmarked) continue;
 
 		if (!obj->owornmask && obj != wep) return obj;
@@ -667,6 +668,8 @@ register struct monst *mtmp;
     struct edog *edog = EDOG(mtmp);
     int udist = distu(mtmp->mx, mtmp->my);
 
+	if (Role_if(PM_SLAVE_MASTER) && rn2(10)) return FALSE; /* can keep monsters tame more easily --Amy */
+
     if (udist < 4 && has_edog && (!mtmp->isspell || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) ) && !rn2(3)
 		    && (can_betray(mtmp->data) || (isfriday && !rn2(10)) || (is_jonadabmonster(mtmp->data)) || (mtmp->data->mlevel >= 50) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->m_lev >= 40) )
 		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
@@ -719,6 +722,28 @@ register int after;	/* this is extra fast monster movement */
 	coord poss[9];
 	long info[9], allowflags;
 #define GDIST(x,y) (dist2(x,y,gx,gy))
+
+	if (mtmp->willbebanished) {
+		mtmp->willbebanished = FALSE;
+		if (u.usteed && u.usteed == mtmp) {
+			if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment.");
+			}
+			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+			pline("For some reason you resist the banishment!");
+			}
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			if (!u.banishmentbeam) {
+				u.banishmentbeam = 1;
+				nomul(-2, "being banished", FALSE); /* because it's not called until you get another turn... */
+			}
+
+		} else {
+			u_teleport_monB(mtmp, TRUE);
+		}
+		return 0;
+	}
 
 	/*
 	 * Tame Angels have isminion set and an ispriest structure instead of
@@ -992,6 +1017,11 @@ register int after;	/* this is extra fast monster movement */
 			 (mtmp2->data == &mons[PM_THE_ZRUTINATOR] && Race_if(PM_RODNEYAN)) ||
 	/* troves only drop their items if the player kills them, so keep pets away from them */
 			 (mtmp2->data->mlet == S_TROVE) ||
+	/* fear and other status effects should screw over pets */
+			 (mtmp->mflee && rn2(10)) || (mtmp->mstun && rn2(4)) || (mtmp->mconf && rn2(2)) || (mtmp->mblinded && haseyes(mtmp->data) && rn2(3)) ||
+	/* invisible monsters need see invis to be attacked reliably */
+			 (mtmp2->minvis && haseyes(mtmp->data) && !perceives(mtmp->data) && rn2(4)) ||
+			 (mtmp2->minvisreal && rn2(haseyes(mtmp->data) ? 5 : 3)) ||
 	/* petshielder egotype is never attacked by pets either */
 			 (mtmp2->egotype_petshielder || mtmp2->data == &mons[PM_TUXIE]) ||
 	/* directive can be used to make them not attack peacefuls */
@@ -1020,6 +1050,12 @@ register int after;	/* this is extra fast monster movement */
 			    !onscary(mtmp->mx, mtmp->my, mtmp2) &&
 			    /* monnear check needed: long worms hit on tail */
 			    monnear(mtmp2, mtmp->mx, mtmp->my)) {
+			mstatus = mattackm(mtmp2, mtmp);  /* return attack */
+			if (mstatus & MM_DEF_DIED) return 2;
+		    } else if (!(mstatus & MM_HIT) && !(mstatus & MM_DEF_DIED) && !rn2(10) && mtmp2->mlstmv != monstermoves &&
+			    !onscary(mtmp->mx, mtmp->my, mtmp2) && monnear(mtmp2, mtmp->mx, mtmp->my)) {
+
+			/* Amy edit: allow monsters to occasionally fight back even if your pet missed them */
 			mstatus = mattackm(mtmp2, mtmp);  /* return attack */
 			if (mstatus & MM_DEF_DIED) return 2;
 		    }

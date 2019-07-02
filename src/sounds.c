@@ -2027,7 +2027,7 @@ register struct monst *mtmp;
 			break;
 		}
 
-		if (mtmp->data == &mons[PM_NASTROSCHA] && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) && !mtmp->mfrenzied) {
+		if (mtmp->data == &mons[PM_NASTROSCHA] && (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) && !mtmp->mfrenzied) {
 			mtmp->mpeaceful = TRUE;
 			pline("With your velvet gloves, you caress %s...", mon_nam(mtmp));
 
@@ -2051,7 +2051,7 @@ register struct monst *mtmp;
 				} else {
 					pline("Inhaling %s's scentful perfume is not the brightest idea. But in this case you didn't have a choice...", mon_nam(mtmp));
 
-					if (rn2(10) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gaz niqobi")) ) {
+					if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 						pline("But the gas mask protects you from the effects.");
 					} else {
 						badeffect();
@@ -2086,7 +2086,7 @@ register struct monst *mtmp;
 		} else {
 			pline("Inhaling %s's scentful perfume is not the brightest idea.", mon_nam(mtmp));
 
-			if (rn2(10) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gaz niqobi")) ) {
+			if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 				pline("But the gas mask protects you from the effects.");
 			} else {
 				badeffect();
@@ -3328,7 +3328,7 @@ dochat()
 		}
 	}
 
-	if (((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") ))) && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
+	if (((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS))) && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
 
 		if (yn("Pacify this monster?") == 'y') {
 	      	pline("You attempt to pacify %s.",mon_nam(mtmp) );

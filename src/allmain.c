@@ -700,7 +700,7 @@ moveloop()
 				if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
-				if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+				if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 					copcnt = (copcnt / 2) + 1;
 				}
 
@@ -733,7 +733,7 @@ moveloop()
 				u.copwantedlevel--;
 				if (u.copwantedlevel < 0) u.copwantedlevel = 0; /* fail safe */
 
-				if ( !(rn2(2) && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ))) && !(rn2(2) && RngeAntiGovernment) && !rn2(100)) {
+				if ( !(rn2(2) && (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET))) && !(rn2(2) && RngeAntiGovernment) && !rn2(100)) {
 
 					(void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 					if (!rn2(200)) {
@@ -1047,7 +1047,7 @@ moveloop()
 				if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (uarmf && !rn2(6) && (moveamt > 1) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "balet poshnali")))
+				if (uarmf && !rn2(6) && (moveamt > 1) && itemhasappearance(uarmf, APP_BALLET_HEELS))
 					moveamt /= 2;
 
 				if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && (moveamt > 1) && !rn2(2))
@@ -1087,7 +1087,7 @@ moveloop()
 				if (uarm && (uarm->oartifact == ART_CD_ROME_ARENA) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "roman sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rimskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rim fuqarosi kavushlari") ) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
+				if (uarmf && itemhasappearance(uarmf, APP_ROMAN_SANDALS) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
 					moveamt /= 2;
 
 				if (Race_if(PM_SOVIET) && !rn2(8) && moveamt > 1)
@@ -1152,7 +1152,7 @@ moveloop()
 				if (Race_if(PM_WEAPONIZED_DINOSAUR) && uarmf && !PlayerInHighHeels && moveamt > 1) {
 					moveamt /= 2;
 				}
-				if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sekinlashuvi libos") ) ) && moveamt > 1) {
+				if ((uarmc && itemhasappearance(uarmc, APP_SLOWING_GOWN) ) && moveamt > 1) {
 					moveamt /= 2;
 				}
 
@@ -1160,10 +1160,10 @@ moveloop()
 					moveamt /= 2;
 				}
 
-				if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) && moveamt > 1) {
+				if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && moveamt > 1) {
 					moveamt /= 2;
 				}
-				if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && moveamt > 1) {
+				if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && moveamt > 1) {
 					moveamt /= 2;
 				}
 				if (u.inertia && moveamt > 1) {
@@ -1296,7 +1296,7 @@ moveloop()
 			if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (uarmf && !rn2(6) && (moveamt > 1) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "balet poshnali")))
+			if (uarmf && !rn2(6) && (moveamt > 1) && itemhasappearance(uarmf, APP_BALLET_HEELS))
 				moveamt /= 2;
 
 			if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && (moveamt > 1) && !rn2(2))
@@ -1339,7 +1339,7 @@ moveloop()
 			if (uarm && (uarm->oartifact == ART_CD_ROME_ARENA) && !rn2(8) && moveamt > 1) /* roman clothing just generally slows you down */
 				moveamt /= 2;
 
-			if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "roman sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rimskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rim fuqarosi kavushlari") ) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
+			if (uarmf && itemhasappearance(uarmf, APP_ROMAN_SANDALS) && !rn2(8) && moveamt > 1 ) /* Roman sandals aren't made for running. */
 				moveamt /= 2;
 
 			if (Race_if(PM_SOVIET) && !rn2(8) && moveamt > 1) /* And soviets, since they get enough features that make the game easier than it's supposed to be. */
@@ -1431,7 +1431,7 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* dinosaur wearing non-high-heeled boots moves at half speed --Amy */
 			}
-			if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sekinlashuvi libos") ) ) && moveamt > 1) {
+			if ((uarmc && itemhasappearance(uarmc, APP_SLOWING_GOWN) ) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
@@ -1441,11 +1441,11 @@ moveloop()
 				moveamt /= 2;
 			}
 
-			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) && moveamt > 1) {
+			if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
-			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && moveamt > 1) {
+			if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
@@ -1602,9 +1602,9 @@ moveloop()
 			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
-			if (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
-			if (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
-			if (uarmg && !rn2(10) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_FORMULA_ONE_HELMET) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && !rn2(10) && itemhasappearance(uarmf, APP_TURBO_BOOTS) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmg && !rn2(10) && itemhasappearance(uarmg, APP_RACER_GLOVES) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (StrongDetect_monsters && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (StrongFlying && !rn2(20)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
@@ -1612,7 +1612,7 @@ moveloop()
 			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_SUPREME_MASTER) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
-			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_GREEK_CLOAK) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
 			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (speedbonus(moveamt * 5, NORMAL_SPEED * 5));
 
@@ -1715,7 +1715,7 @@ moveloop()
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();
 
-		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
+		    if (!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
@@ -1784,6 +1784,8 @@ moveloop()
 		    /********************************/
 		    /* once-per-turn things go here */
 		    /********************************/
+
+		if (u.riderhack) u.riderhack = FALSE;
 
 		if (!occupation) u.katitrapocc = FALSE;
 
@@ -2145,7 +2147,7 @@ newbossS:
 
 			if (ttmp && ttmp->ttyp == FUMAROLE && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
 
-				if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
+				if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
 					 pline("A cloud of spores surrounds you!");
 				} else if (RngeGasFiltering && !rn2(2)) {
 					 pline("A cloud of spores surrounds you!");
@@ -2611,7 +2613,7 @@ trapsdone:
 			contaminate(rnd(10), FALSE);
 		}
 
-		if (!rn2(2500) && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "demolition gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki dlya snosa") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "buzilgan qo'lqoplar")) ) {
+		if (!rn2(2500) && uarmg && itemhasappearance(uarmg, APP_DEMOLITION_GLOVES) ) {
 			struct obj *dynamite;
 			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE);
 			if (dynamite) {
@@ -2626,7 +2628,7 @@ trapsdone:
 
 		}
 
-		if (!rn2(2500) && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "bise gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "bi sebe perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "bosh o'pish sportchisi")) ) {
+		if (!rn2(2500) && uarmg && itemhasappearance(uarmg, APP_BISE_GLOVES) ) {
 			pline("Suddenly, your gauntlets kiss you!");
 
 			if ((rnd(ABASE(A_CHA)) < 11) && ABASE(A_CHA) < 18) {
@@ -2646,7 +2648,7 @@ trapsdone:
 
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			if (!rn2(1000) && !Breathless) {
 				pline("You're gasping for air!");
 				losehp(rnz(u.ulevel + 5), "breath control fetishism", KILLED_BY);
@@ -2684,7 +2686,7 @@ trapsdone:
 			}
 		}
 
-		if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) {
+		if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_CURSED_CALLED_CLOAK)) {
 
 			register struct obj *cclld;
 
@@ -3116,6 +3118,11 @@ fukrosionchoice:
 			AMAX(A_WIS) += 1;
 			flags.botl = 1;
 			pline("Suddenly, your wisdom increases.");
+		}
+
+		if (u.stoogedepth && u.stoogedepth == depth(&u.uz)) {
+			u.stoogedepth = 0;
+			if (mvitals[PM_STOOGE_CURLY].born == 0) makemon(&mons[PM_STOOGE_CURLY], 0, 0, NO_MM_FLAGS); /* makemon.c will spawn the other two */
 		}
 
 		if (u.footererlevel && u.footererlevel == depth(&u.uz)) {
@@ -4189,7 +4196,7 @@ fukrosionchoice:
 
 		}
 
-		if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rumble boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "gul botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yirtqich chiziqlar")) )) {
+		if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_RUMBLE_BOOTS) )) {
 			wake_nearby();
 		}
 
@@ -4208,7 +4215,7 @@ fukrosionchoice:
 			if (!rn2(20)) NastinessProblem |= FROMOUTSIDE;
 		}
 
-		if ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "netradiation helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "obluchonnyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sof radiatsiya dubulg'a") )) && !rn2(5000)) {
+		if ((uarmh && itemhasappearance(uarmh, APP_NETRADIATION_HELMET)) && !rn2(5000)) {
 
 			pline("The helmet's radiation damages your health!");
 			if (Upolyd && u.mhmax > 1) {
@@ -4244,7 +4251,7 @@ fukrosionchoice:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
-		if (!rn2(5000) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "spooky boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zhutkiy botinok") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jingalak botinkalar")) ) {
+		if (!rn2(5000) && uarmf && itemhasappearance(uarmf, APP_SPOOKY_BOOTS) ) {
 			int aggroamount = rnd(4);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
@@ -4843,7 +4850,7 @@ newbossA:
 			}
 		}
 
-		if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "roadmap cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch dorozhnoy karty") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yo'l xaritasi plash") )) && !rn2(10000)) {
+		if ((uarmc && itemhasappearance(uarmc, APP_ROADMAP_CLOAK)) && !rn2(10000)) {
 			if (!HConfusion) HConfusion = 1;
 			do_mappingX();
 		}
@@ -4897,7 +4904,7 @@ newbossX:
 
 		}
 
-		if ((multi < 0) && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "dream helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem mechty") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "dubulg'a orzu") ))) {
+		if ((multi < 0) && (uarmh && itemhasappearance(uarmh, APP_DREAM_HELMET))) {
 			if (!Upolyd && u.uhp < u.uhpmax) u.uhp++;
 			if (Upolyd && u.mh < u.mhmax) u.mh++;
 			if (u.uen < u.uenmax) u.uen++;
@@ -4972,13 +4979,13 @@ newbossX:
 			}
 		}
 
-		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pink sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rozovyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pushti shippak") )) && !rn2(1000)) {
+		if ((uarmf && itemhasappearance(uarmf, APP_PINK_SNEAKERS)) && !rn2(1000)) {
 			pline("The beguiling stench emanating from your pink sneakers fills the area...");
 			badeffect();
 			turn_allmonsters();
 		}
 
-		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "spellsucking cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch zaklinaniy") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "so'rib imlo plash") )) {
+		if (uarmc && itemhasappearance(uarmc, APP_SPELLSUCKING_CLOAK)) {
 			if (rn2(2)) {
 				u.uen += rnd(5);
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
@@ -5047,7 +5054,7 @@ newbossX:
 			if (!achieve.imbued_bell) {
 
 				achieve.imbued_bell = TRUE;
-				if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 				if (RngeTeamSplat) pline("TROPHY GET!");
 
 				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -5118,7 +5125,7 @@ newbossX:
 			if (!achieve.imbued_amulet) {
 
 				achieve.imbued_amulet = TRUE;
-				if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 				if (RngeTeamSplat) pline("TROPHY GET!");
 
 				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
@@ -5364,7 +5371,7 @@ newbossY:
 
 		}
 
-		if ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bluy helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "siniy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bluy dubulg'a") )) && !rn2(2000) ) {
+		if ((uarmh && itemhasappearance(uarmh, APP_BLUY_HELMET)) && !rn2(2000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -5687,7 +5694,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -5949,7 +5956,7 @@ newbossB:
 
 		}
 
-		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+		if (uarmf && itemhasappearance(uarmf, APP_PLOF_HEELS) ) {
 			if (HStun > 2 && !rn2(5)) {
 				HStun -= rnd(20);
 				if (HStun < 2) HStun = 2;
@@ -6084,7 +6091,7 @@ newbossB:
 
 		}
 
-		if ( (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nazokat etigi") )) && !rn2(1000) ) {
+		if ( (uarmf && itemhasappearance(uarmf, APP_FEMMY_BOOTS)) && !rn2(1000) ) {
 
 			int tryct = 0;
 			int x, y;
@@ -6952,11 +6959,11 @@ newboss:
 
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "graffiti perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'lqop purkash") ) && !rn2(2000) ) {
+		if (uarmg && itemhasappearance(uarmg, APP_GRAFFITI_GLOVES) && !rn2(2000) ) {
 		    incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fatal gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fatal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "halokatli qo'lqop") ) && !rn2(10000) ) {
+		if (uarmg && itemhasappearance(uarmg, APP_FATAL_GLOVES) && !rn2(10000) ) {
 			pline("Fatal attraction!");
 
 		{
@@ -7064,7 +7071,7 @@ newboss:
 
 		}
 
-		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiric gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiry perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sindirishi qo'lqop") ) && (u.uexp > 100) && !rn2(1000) ) {
+		if (uarmg && itemhasappearance(uarmg, APP_VAMPIRIC_GLOVES) && (u.uexp > 100) && !rn2(1000) ) {
 			Your("vampiric gloves drain your experience!");
 			u.uexp -= (u.uexp / 100);
 			if (u.uexp < newuexp(u.ulevel - 1)) {
@@ -7080,7 +7087,7 @@ newboss:
 			}
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "RNG helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem gsch") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "RNG dubulg'a") ) && !rn2(100000) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_RNG_HELMET) && !rn2(100000) ) {
 			badeffect();
 		}
 
@@ -7160,19 +7167,19 @@ newboss:
 					You_feel("that you know more about the contents of your inventory...");
 				}
 
-				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->dknown) {
+				if (!rn2(100000) && uarmc && itemhasappearance(uarmc, APP_MYSTERIOUS_CLOAK) && !otmpi->dknown) {
 					otmpi->dknown = TRUE;
 					You_feel("that you know more about the contents of your inventory...");
 				}
-				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->known) {
+				if (!rn2(100000) && uarmc && itemhasappearance(uarmc, APP_MYSTERIOUS_CLOAK) && !otmpi->known) {
 					otmpi->known = TRUE;
 					You_feel("that you know more about the contents of your inventory...");
 				}
-				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->bknown) {
+				if (!rn2(100000) && uarmc && itemhasappearance(uarmc, APP_MYSTERIOUS_CLOAK) && !otmpi->bknown) {
 					otmpi->bknown = TRUE;
 					You_feel("that you know more about the contents of your inventory...");
 				}
-				if (!rn2(100000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sirli plash") ) && !otmpi->rknown) {
+				if (!rn2(100000) && uarmc && itemhasappearance(uarmc, APP_MYSTERIOUS_CLOAK) && !otmpi->rknown) {
 					otmpi->rknown = TRUE;
 					You_feel("that you know more about the contents of your inventory...");
 				}
@@ -7602,7 +7609,7 @@ newboss:
 			u.dehydrationtime = 0;
 		}
 
-		if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ghostly cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "prizrachnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "diniy plash") ) ) {
+		if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_GHOSTLY_CLOAK) ) {
 			coord mm;   
 			mm.x = u.ux;   
 			mm.y = u.uy;   
@@ -7628,15 +7635,15 @@ newboss:
 		    nomovemsg = "You regain your composure.";
 		}
 
-		if (!rn2(1000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chilling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pugayushchim plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovutgichli plash") ) ) {
+		if (!rn2(1000) && uarmc && itemhasappearance(uarmc, APP_CHILLING_CLOAK) ) {
 			make_frozen(HFrozen + rnd(50),TRUE);
 		}
 
-		if (!rn2(2000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "homicidal cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "smertonosnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "halokatli plash") ) ) {
+		if (!rn2(2000) && uarmc && itemhasappearance(uarmc, APP_HOMICIDAL_CLOAK) ) {
 			makerandomtrap();
 		}
 
-		if (!rn2(2000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gravity cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gravitatsionnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "agar tortishish kuchi plash") ) ) {
+		if (!rn2(2000) && uarmc && itemhasappearance(uarmc, APP_GRAVITY_CLOAK) ) {
 			pline("Gravity warps around you...");
 			phase_door(0);
 			pushplayer();
@@ -7652,7 +7659,7 @@ newboss:
 			make_stunned(HStun + rnd(10), TRUE);
 		}
 
-		if (!rn2(1000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flash cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flesh-plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bir flesh plash") ) ) {
+		if (!rn2(1000) && uarmc && itemhasappearance(uarmc, APP_FLASH_CLOAK) ) {
 			make_blinded(Blinded + rnd(10), TRUE);
 		}
 
@@ -7668,7 +7675,7 @@ newboss:
 
 		}
 
-		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
+		if (uarmc && itemhasappearance(uarmc, APP_ELECTROSTATIC_CLOAK) ) {
 			if (!rn2(500)) {
 				You("receive an electric shock from your cloak!");
 				make_confused(HConfusion + rnd(10),TRUE);
@@ -7679,7 +7686,7 @@ newboss:
 			}
 		}
 
-		if (uarmc && !rn2(5000) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "irradiation cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "oblucheniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurlanish plash") ) ) {
+		if (uarmc && !rn2(5000) && itemhasappearance(uarmc, APP_IRRADIATION_CLOAK) ) {
 			You("are irradiated by your cloak!");
 			u.uhpmax -= 1;
 			if (u.uhp > u.uhpmax) u.uhp--;
@@ -7699,7 +7706,7 @@ newboss:
 
 		}
 
-		if (uarmc && !rn2(2000) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hungry cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "golodnymi plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chanqoq plash") ) ) {
+		if (uarmc && !rn2(2000) && itemhasappearance(uarmc, APP_HUNGRY_CLOAK) ) {
 			pline("Suddenly you notice the smell of food...");
 			morehungry(rnd(1000));
 		}
@@ -7715,7 +7722,7 @@ newboss:
 			}
 		}
 
-		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bug-tracking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "oshibka otslezhivaniya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "hasharotlar-kuzatish dubulg'a") ) && !rn2(10000) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(10000) ) {
 			pline("Bugs are alerted to your position.");
 			int ammount;
 			ammount = rnd(15);
@@ -7910,7 +7917,7 @@ newboss:
 		    if (flags.bypasses) clear_bypasses();
 		    if(IsGlib) glibr();
 
-		    if (!rn2(2) || !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) ) {
+		    if (!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
@@ -7931,7 +7938,7 @@ newboss:
 			}
 		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
-		if (uarmg && u.ublesscnt && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qulay qo'lqop") ) ) u.ublesscnt--;
+		if (uarmg && u.ublesscnt && itemhasappearance(uarmg, APP_COMFORTABLE_GLOVES) ) u.ublesscnt--;
 
 		if (u.ublesscnt && RngePrayer) u.ublesscnt--;
 
@@ -8838,7 +8845,7 @@ newboss:
 
 			}
 cellarnope:
-			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "xitoy plash") ) ) {
+			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_CHINESE_CLOAK) ) {
 
 				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
@@ -8919,13 +8926,13 @@ past2:
 
 			}
 past3:
-			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "polyform cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sopolimer forma plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "belgigacha bo'lgan poli shakli plash") ) ) {
+			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_POLYFORM_CLOAK) ) {
 				if (!HPolymorph_control) HPolymorph_control = 2;
 				You_feel("polyform.");
 				if (!Unchanging) polyself(FALSE);
 			}
 
-			if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "contaminated coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zagryaznennoye pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ifloslangan palto") )) {
+			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_CONTAMINATED_COAT)) {
 				if (IntSick_resistance || (ExtSick_resistance && rn2(20)) ) {
 					You_feel("a slight illness.");
 				} else {
@@ -8947,7 +8954,7 @@ past3:
 
 			}
 
-			if (uarmh && !rn2(1000) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yig'lab dubulg'a") ) ) {
+			if (uarmh && !rn2(1000) && itemhasappearance(uarmh, APP_WEEPING_HELMET) ) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
@@ -9310,7 +9317,7 @@ past3:
 		pline("Alert! You are standing on a trap!");
 	}
 
-	if (uarmg && t_at(u.ux, u.uy) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sensor gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sensornyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "tayinlangan qurilmani qo'lqop") ) ) {
+	if (uarmg && t_at(u.ux, u.uy) && itemhasappearance(uarmg, APP_SENSOR_GLOVES) ) {
 		pline("Alert! You are standing on a trap!");
 	}
 
@@ -9522,7 +9529,7 @@ void
 stop_occupation()
 {
 
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "quicktravel cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bystryy plashch puteshestviya") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tez safar plash") ) ) return;
+	if (uarmc && itemhasappearance(uarmc, APP_QUICKTRAVEL_CLOAK) ) return;
 
 	if (uarmf && uarmf->oartifact == ART_TOO_FAST__TOO_FURIOUS) return;
 
@@ -9608,7 +9615,7 @@ newgame()
 	for (i = 0; i < NUMMONS; i++)
 		mvitals[i].mvflags = mons[i].geno & G_NOCORPSE;
 
-	init_objects();		/* must be before u_init() */
+	init_objects(TRUE);		/* must be before u_init() */
 
 	randommaterials();	/* only done here - do not call this during a running game! --Amy */
 
@@ -9731,6 +9738,17 @@ aliasagain:
 #endif
 
 #endif /* RECORD_REALTIME || REALTIME_ON_BOTL */
+
+	u.lightsabermax1 = (P_SKILL(P_SHII_CHO) >= P_BASIC) ? P_SKILL(P_SHII_CHO) : 1;
+	u.lightsabermax2 = (P_SKILL(P_MAKASHI) >= P_BASIC) ? P_SKILL(P_MAKASHI) : 1;
+	u.lightsabermax3 = (P_SKILL(P_SORESU) >= P_BASIC) ? P_SKILL(P_SORESU) : 1;
+	u.lightsabermax4 = (P_SKILL(P_ATARU) >= P_BASIC) ? P_SKILL(P_ATARU) : 1;
+	u.lightsabermax5 = (P_SKILL(P_SHIEN) >= P_BASIC) ? P_SKILL(P_SHIEN) : 1;
+	u.lightsabermax6 = (P_SKILL(P_DJEM_SO) >= P_BASIC) ? P_SKILL(P_DJEM_SO) : 1;
+	u.lightsabermax7 = (P_SKILL(P_NIMAN) >= P_BASIC) ? P_SKILL(P_NIMAN) : 1;
+	u.lightsabermax8 = (P_SKILL(P_JUYO) >= P_BASIC) ? P_SKILL(P_JUYO) : 1;
+	u.lightsabermax9 = (P_SKILL(P_VAAPAD) >= P_BASIC) ? P_SKILL(P_VAAPAD) : 1;
+	u.lightsabermax10 = (P_SKILL(P_WEDI) >= P_BASIC) ? P_SKILL(P_WEDI) : 1;
 
 	/* Success! */
 	welcome(TRUE);

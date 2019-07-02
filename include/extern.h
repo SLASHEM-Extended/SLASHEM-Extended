@@ -394,6 +394,7 @@ E int back_to_glyph(XCHAR_P,XCHAR_P);
 E int zapdir_to_glyph(int,int,int);
 E int glyph_at(XCHAR_P,XCHAR_P);
 E void set_wall_state(void);
+E boolean sensemon(struct monst *);
 
 /* ### do.c ### */
 
@@ -530,6 +531,7 @@ E struct monst *tamedog(struct monst *,struct obj *, BOOLEAN_P);
 E int make_pet_minion(int,ALIGNTYP_P);
 E void abuse_dog(struct monst *);
 E void wary_dog(struct monst *, BOOLEAN_P);
+E void makedoghungry(struct monst *, int);
 
 /* ### dogmove.c ### */
 
@@ -1480,7 +1482,7 @@ E void witherarmor(void);
 
 /* ### minion.c ### */
 
-E void msummon(struct monst *);
+E void msummon(struct monst *, BOOLEAN_P);
 E void summon_minion(ALIGNTYP_P,BOOLEAN_P);
 E int demon_talk(struct monst *);
 E int lawful_minion(int);
@@ -1523,6 +1525,7 @@ E void mkinvokearea(void);
 E void mkrivers(void);
 E void mkrandrivers(void);
 E void specdungeoninit(void);
+E void mk_knox_portal(XCHAR_P,XCHAR_P);
 
 /* ### mkmap.c ### */
 
@@ -1819,6 +1822,8 @@ E struct obj *m_carrying(struct monst *,int);
 E void m_useup(struct monst *,struct obj *);
 E void m_throw(struct monst *,int,int,int,int,int,struct obj *);
 E boolean hits_bars(struct obj **,int,int,int,int);
+E struct monst *mfind_target(struct monst *, BOOLEAN_P);
+E boolean mlined_up(struct monst *,struct monst *,BOOLEAN_P);
 
 /* ### muse.c ### */
 
@@ -1878,7 +1883,7 @@ E void synch_cursor(void);
 /* ### o_init.c ### */
 
 E void initobjectsamnesia(void);
-E void init_objects(void);
+E void init_objects(BOOLEAN_P);
 E void randommaterials(void);
 E int find_skates(void);
 E int find_skates2(void);
@@ -2003,6 +2008,7 @@ E char *doname(struct obj *);
 E boolean not_fully_identified(struct obj *);
 E char *corpse_xname(struct obj *,BOOLEAN_P);
 E char *cxname(struct obj *);
+E char *cxname2(struct obj *);
 E char *killer_xname(struct obj *);
 E char *killer_cxname(struct obj *,BOOLEAN_P);
 E const char *singular(struct obj *,char *(*)(OBJ_P));
@@ -2066,6 +2072,9 @@ E int dowhatdoes(void);
 E char *dowhatdoes_core(CHAR_P, char *);
 E int dohelp(void);
 E int dohistory(void);
+#ifdef EXTENDED_INFO
+E void corpsepager(int);
+#endif
 
 E const char *fauxmessage(void);
 E const char *bosstaunt(void);
@@ -2164,6 +2173,7 @@ E int use_container(struct obj **,int);
 E int loot_mon(struct monst *,int *,boolean *);
 E const char *safe_qbuf(const char *,unsigned, const char *,const char *,const char *);
 E boolean is_autopickup_exception(struct obj *, BOOLEAN_P);
+E void containerkaboom(void);
 
 /* ### pline.c ### */
 
@@ -2234,6 +2244,8 @@ E void make_vomiting(long,BOOLEAN_P);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
 E int dodrink(void);
 E void badeffect(void);
+E void badpeteffect(struct monst *);
+E void allbadpeteffects(struct monst *);
 E void add_monster_egotype(struct monst *);
 E void ragnarok(BOOLEAN_P);
 E void evilragnarok(BOOLEAN_P,int);
@@ -2271,6 +2283,9 @@ E boolean maybeblockheels(void);
 E boolean maybewedgeheels(void);
 E boolean playerextrinsicaggravatemon(void);
 E boolean automore_active(void);
+
+E boolean itemhasappearance(struct obj *, int);
+E boolean itemnumwithappearance(int, int);
 
 /* ### pray.c ### */
 
@@ -2668,6 +2683,7 @@ E void fill_room(struct mkroom *,BOOLEAN_P);
 E boolean load_special(const char *);
 E int randomtrap(void);
 E void makerandomtrap(void);
+E void makeinvisotrap(void);
 E void makegirlytrap(void);
 E void makespacewarstrap(void);
 
@@ -2762,6 +2778,7 @@ E void xpathto(int,XCHAR_P,XCHAR_P,int (*)(void *,int,int),void *);
 E void teleds(int,int,BOOLEAN_P);
 E boolean safe_teleds(BOOLEAN_P);
 E boolean safe_teledsPD(BOOLEAN_P);
+E boolean safe_teledsNOTRAP(BOOLEAN_P);
 E boolean teleport_pet(struct monst *,BOOLEAN_P);
 E void tele(void);
 E void phase_door(BOOLEAN_P);
@@ -3123,7 +3140,7 @@ E int dosuspend(void);
 E int hitval(struct obj *,struct monst *);
 E int dmgval(struct obj *,struct monst *);
 E int dmgvalX(struct obj *,struct monst *);
-E struct obj *select_rwep(struct monst *);
+E struct obj *select_rwep(struct monst *,BOOLEAN_P);
 E struct obj *select_hwep(struct monst *);
 E void possibly_unwield(struct monst *,BOOLEAN_P);
 E int mon_wield_item(struct monst *);
@@ -3147,13 +3164,14 @@ E void practice_weapon(void);
 E void xtraskillinit(void);
 E int get_obj_skill(struct obj *,BOOLEAN_P);
 E void skilltrainingdecrease(int);
+E void doubleskilltraining(void);
 
 /* ### were.c ### */
 
 E int counter_were(int);
 E void were_change(struct monst *);
 E void new_were(struct monst *);
-E int were_summon(struct permonst *,BOOLEAN_P,int *,char *);
+E int were_summon(struct permonst *,BOOLEAN_P,int *,char *,BOOLEAN_P);
 E void you_were(void);
 E void you_unwere(BOOLEAN_P);
 
