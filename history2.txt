@@ -1,6 +1,65 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.5.2 - June 2019
+- Changed the downsides to the create monster and summon undead spells, and made trap creation more dangerous to cast.
+- The portal to Fort Ludios no longer requires a rooms-and-corridors level with a vault now, meaning it may generate on other dungeon levels too.
+- The astronaut role is capable of resisting permanent stat damage now.
+- The janitor role will now have to pay for trashed items in a shop.
+- Fixed a crash associated with punishment and engulfing.
+- Levitator race players can now push boulders.
+- Fixed a segfault that could occur when the player used a switcher; this was left over from the speaking artifact bugfix.
+- Hostile monsters can now use ranged attacks against the player's pets, and more melee attack types and other monster effects can affect pets now.
+- Drain life effects are less harsh on the player early on.
+- Fixed some corner cases where the missingno race could still segfault.
+- Intelligent monsters may occasionally spawn with food.
+- The hussy role gains alignment and can potentially find treasure when digging out grave walls.
+- Monster attacks should no longer teleport the player onto traps, due to potential segfaults when the trap in question teleports the player off the current dungeon level before all of the monster's attacks have been processed.
+- Changed an impossible message that had a tendency to segfault due to it expecting the name of a monster, which was not guaranteed to be a valid monster and could therefore have its name pointer pointing to an arbitrary location.
+
+2.5.1 - May 2019
+- Changed the function that pushes back the player to hopefully fix a weird segfault.
+- Monsters can now swing at pets in melee of their own volition, instead of only when the pet hits them.
+- Polearms now have damage bonuses versus steeds, and can dismount a riding player.
+- The #mark command cannot be used to make pets hold macguffins permanently.
+- If a pet misses a monster with a melee attack, the monster in question may now retaliate anyway.
+- Player characters of the jabberwock race are now too thick to fit through diagonal passages, and meleeing a monster will speed up the monster in question so that it can retaliate faster.
+- Corpses, eggs and other items that can be of a specific monster will now have pokedex entries when viewed in the item description screen.
+- Smashing iron bars with a weapon capable of doing so should now always damage the weapon.
+- Improved the sliming dialogue to make it more obvious for the player how long they have until they become a green slime.
+- Enhancing a lightsaber form skill won't always use up a skill point now.
+- For the slave master role, pets will tolerate much more abuse before revolting.
+- The riders and deadly sins will now always drop a corpse even if corpses cannot be generated, to thwart the tactic of genociding corpses that would allow players to easily get rid of them permanently.
+- Robes and mummy wrappings drop less often upon death of wraiths and mummies, respectively.
+- Fixed a loophole that allowed the player to gain information about their spells when certain nasty traps were supposed to obscure it.
+- Fixed a bug which may have been introduced earlier, that made monsters not always get angry when the player uses a gaze attack against them.
+- It's no longer possible to price identify the level of spellbooks or the enchantment value of weapons and armor.
+- Polymorphed items may sometimes not be hazy.
+- The charisma loss caused by a natalje trap can no longer be prevented with sustain ability.
+- Made the question posed by the #quit command more verbose to indicate that it will erase the game permanently.
+- Added the three stooges from Nethack 2.3e.
+- Implemented the sortloot patch.
+- When the player is engulfed, autopickup should no longer cause them to lose a turn instead of attacking.
+- Tried to make it more clear to players what the memorization skill does and how to use it effectively.
+- Fixed an oversight that caused the calculation for spell failure rates to be wrong.
+- Nerfed some status-curing spells as well as knock and wizard lock.
+- Dipping for Excalibur in evilvariant mode while confused can have unwanted side effects.
+- Added some effects to fountains and pentagrams.
+- Fixed a bug where plain eggs could sometimes petrify the player or monsters.
+
+2.5.0 - April 2019
+- Fixed the SLASH'EM bug that caused the game to crash if a punished player tried to move on the Plane of Water. With this bug fixed, the player can now also be punished on the Plane of Water again; in previous versions that was made impossible to "seal" the crash bug.
+- Attempted to fix a segfault on bones level generation, though whether the fix works remains to be seen.
+- Fixed a bug where the ZAPM roles would still start in the space base even when using lostsoul or other playing modes.
+- If the player uses the autodig option while wielding an artifact pick that would blast the character, every attempt to move into a wall can now trigger the blast just as if the player had tried to dig manually.
+- Fixed a bug where you could freely lie to vault guards if you didn't set an alias name for your character.
+- Dirge can now also be created via the Sporkhack method.
+- Fixed the date.h dependency issue that caused the game to be recompiled completely even if just a single source file was changed; this problem was introduced when the endgame dumplog screen was updated to show the version number.
+- Fixed a bug inherited from SLASH'EM where lightning spells could sometimes damage monsters that are immune.
+- Fixed a segfault that could occur when the player was subjected to the nastycurse effect.
+- Changed some more special rooms to make them less deadly when they spawn early.
+
 2.4.9 - April 2019
+- Fixed a rare crash that could occur when changing dungeon levels.
 - Toned down some monster spawn routines to make the game less of a slog.
 - Loosened the ascension turn clock a bit.
 - Improved maze level generation routines to make them more interesting.
