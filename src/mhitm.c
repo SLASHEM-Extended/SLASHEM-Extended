@@ -2617,7 +2617,7 @@ meleeattack:
 			if (vis) pline("%s calls %s nasty names.", Monnam(magr), mon_nam(mdef) );
 		} else if (magr->data->mlet == S_ANGEL || magr->mnum == PM_CHRISTMAS_CHILD || magr->mnum == PM_HELLS_ANGEL || !rn2(5)) {
 			mdef->healblock += (1 + magr->m_lev);
-			if (vis) pline("%s is dimmed.");
+			if (vis) pline("%s is dimmed.", Monnam(mdef));
 		}
 	}
 

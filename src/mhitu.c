@@ -6633,10 +6633,9 @@ dopois:
 			    dmg = 0;
 			} else if (Role_if(PM_ASTRONAUT) && rn2(5)) {
 			/* astronauts are good at wriggling free, but will still get hurt by the attack itself --Amy */
-				pline("%s constricts you!"); /* but doesn't wrap around you */
+				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
 			} else {
-			    pline("%s swings itself around you!",
-				  Monnam(mtmp));
+			    pline("%s swings itself around you!", Monnam(mtmp));
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    setustuck(mtmp);
 			}

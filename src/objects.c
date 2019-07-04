@@ -5799,6 +5799,8 @@ SCROLL((char *)0,               "ASSFUCK EXPRESS AND MAXIMUM PENALTY",  P_NONE, 
 SCROLL((char *)0,               "CHICKEN FLAX AS BROOK",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "DAS NIBELUNGENLIEO",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "CUCUMBER TRAVEL ASSOCIATION",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "BATH BLACK HORSE OW CURING PARK",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "AMY MANAGED TO DRIVE RECLUSE INSANE BY MAKING SLEX",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

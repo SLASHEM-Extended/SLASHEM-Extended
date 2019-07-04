@@ -848,6 +848,8 @@ doread()
 	"I own your stuff now. fight me", /* by bhaak */
 	"Say YES to plastic! Glass can break. Plastic persists forever and for always in the seas.",
 	"Why did I explain the joke? Now it's not funny anymore you dummy!",
+	"Good day, I'm Amy from the slexomatic institute. Would you like to take a survey? It will take about 6 minutes. First question: do you like high heels?",
+	"Hello, I'd like to take a survey about your customer satisfaction with the 'Deutsche Bahn'. First question: Do you like the word 'delay'?",
 
 	    };
 	    char buf[BUFSZ];

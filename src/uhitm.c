@@ -4982,7 +4982,7 @@ register struct attack *mattk;
 				case 3:
 					pline("%s feels sick at entrails caught in your tentacles.", Monnam(mdef)); break;
 				case 4:
-					pline("%s sees maggots breed in your rent stomach.", Monnam(mdef), body_part(STOMACH)); break;
+					pline("%s sees maggots breed in your rent %s.", Monnam(mdef), body_part(STOMACH)); break;
 
 			}
 
@@ -5829,7 +5829,7 @@ register struct attack *mattk;
 				case 3:
 					pline("%s feels sick at entrails caught in your tentacles.", Monnam(mdef)); break;
 				case 4:
-					pline("%s sees maggots breed in your rent stomach.", Monnam(mdef), body_part(STOMACH)); break;
+					pline("%s sees maggots breed in your rent %s.", Monnam(mdef), body_part(STOMACH)); break;
 
 			}
 
