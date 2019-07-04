@@ -374,6 +374,7 @@ struct monst {
 	int ogrethief;	/* normally zero; used for the huge ogre thief */
 	int bleedout;	/* normally zero; monster bleeds out (takes continuous damage) if nonzero */
 	int healblock;	/* normally zero; monster cannot heal over time if nonzero */
+	int inertia;	/* normally zero; monster moves at half speed */
 
 	struct obj *mw;
 	long misc_worn_check;

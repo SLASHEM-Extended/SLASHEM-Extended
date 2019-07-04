@@ -23468,6 +23468,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Robin Hood'. It reads: 'At last the time came to get the sheriff, but first I had to get past his witch Mortianna. This time I had a druid's dagger though and just stabbed her blasted skeleton guard repeatedly. When I then approached her, she just spontaneously exploded for some reason.'",
 	"Incoming message for Player 1. The message is from 'Robin Hood'. It reads: 'The Sheriff of Nottingham is the wimpiest enemy in the entire game. I can consistently kill him without getting hit at all. If it weren't for his tendency to jump to the left and pass over me, I could even do it blindfolded.'",
 	"Incoming message for Player 1. The message is from 'Robin Hood'. It reads: 'By cleverly using the talk function, I managed to not only kill the sheriff but even triggered the encounter with him again, which allowed me to fight him twice. In both those battles I offed him without taking a hit because he's such a giga wimp.'",
+	"The giant slows down to a crawl.",
+	"The giant slows down to a crawl. Since he's already slow by default, he is now a really useless pet that gets almost no moves.",
+	"The nice dutch girl's weight increases.",
+	"The nice dutch girl's weight increases. She must have eaten a lot of cheddar cheese...",
 
 };
 

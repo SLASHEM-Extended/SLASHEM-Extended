@@ -3131,7 +3131,7 @@ register struct monst *mtmp;
 
 	boolean vis = cansee(mtmp->mx,mtmp->my);
 
-	switch (rnd(46)) {
+	switch (rnd(48)) {
 
 		case 1:
 		case 2:
@@ -3245,6 +3245,11 @@ register struct monst *mtmp;
 			makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
 			if (vis) pline("%s looks hungry.", Monnam(mtmp));
 			break;
+		case 47:
+		case 48:
+			mtmp->inertia += rnd(1 + (level_difficulty() * 50));
+			if (vis) pline("%s slows to a crawl.", Monnam(mtmp));
+			break;
 
 		default: /* fail safe */
 			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
@@ -3319,6 +3324,9 @@ register struct monst *mtmp;
 
 	mtmp->healblock += rnd(1 + (level_difficulty() * 20));
 	if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
+
+	mtmp->inertia += rnd(1 + (level_difficulty() * 50));
+	if (vis) pline("%s slows to a crawl.", Monnam(mtmp));
 
 	makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
 	if (vis) pline("%s looks hungry.", Monnam(mtmp));

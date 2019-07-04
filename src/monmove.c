@@ -698,6 +698,13 @@ register struct monst *mtmp;
 		if (mtmp->healblock < 0) mtmp->healblock = 0; /* fail safe */
 	}
 
+	/* inertia will also time out, and slows down the monster --Amy */
+	if (mtmp->inertia) {
+		mtmp->inertia--;
+		if (mtmp->inertia < 0) mtmp->inertia = 0; /* fail safe */
+		if (!rn2(2)) return 0; /* because I'm lazy :P monster loses a turn with 50% chance, instead of every other turn */
+	}
+
 	/* confused monsters get unconfused with small probability */
 	if (mtmp->mconf && !rn2(50)) mtmp->mconf = 0;
 

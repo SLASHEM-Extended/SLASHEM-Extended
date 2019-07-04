@@ -17246,6 +17246,7 @@ register int	mmflags;
 	mtmp->ogrethief = 0;
 	mtmp->bleedout = 0;
 	mtmp->healblock = 0;
+	mtmp->inertia = 0;
 	if (!rn2(2)) mtmp->warningvisible = (rn2(2) ? 2 : 1);
 	mtmp->telepatvisible = 0;
 	if (!rn2(3)) mtmp->telepatvisible = (rn2(2) ? 2 : 1);

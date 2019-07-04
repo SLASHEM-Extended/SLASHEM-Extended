@@ -699,6 +699,7 @@ register struct monst *mtmp;
 	if (mtmp->mcan)		  strcat(info, ", cancelled");
 	if (mtmp->mconf)	  strcat(info, ", confused");
 	if (mtmp->healblock)	  strcat(info, ", healing blocked");
+	if (mtmp->inertia)	  strcat(info, ", slowed by inertia");
 	if (mtmp->bleedout)	  strcat(info, ", bleeding");
 	if (mtmp->mblinded || !mtmp->mcansee)
 				  strcat(info, ", blind");
@@ -784,6 +785,7 @@ register struct monst *mtmp;
 	if (mtmp->mcan)		  strcat(info, ", cancelled");
 	if (mtmp->mconf)	  strcat(info, ", confused");
 	if (mtmp->healblock)	  strcat(info, ", healing blocked");
+	if (mtmp->inertia)	  strcat(info, ", slowed by inertia");
 	if (mtmp->bleedout)	  strcat(info, ", bleeding");
 	if (mtmp->mblinded || !mtmp->mcansee)
 				  strcat(info, ", blind");
