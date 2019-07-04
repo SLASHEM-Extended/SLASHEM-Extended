@@ -152,7 +152,7 @@ void
 randommaterials()
 {
 	register int objtomodify;
-	while (rn2(20)) { /* to randomize the # of objects affected --Amy */
+	while (rn2(25)) { /* to randomize the # of objects affected --Amy */
 		objtomodify = -1;
 		while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 		/* we roll until we get an item that can be randomly generated and is not a gold piece or other weird thing --Amy */
@@ -164,7 +164,7 @@ randommaterials()
 
 	if (!rn2(5)) {
 
-		while (rn2(20)) {
+		while (rn2(25)) {
 			objtomodify = -1;
 			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 
@@ -176,7 +176,7 @@ randommaterials()
 
 	if (!rn2(20)) {
 
-		while (rn2(50)) {
+		while (rn2(60)) {
 			objtomodify = -1;
 			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 
@@ -188,7 +188,7 @@ randommaterials()
 
 	if (!rn2(100)) {
 
-		while (rn2(200)) {
+		while (rn2(240)) {
 			objtomodify = -1;
 			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 
