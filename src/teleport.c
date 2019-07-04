@@ -1985,6 +1985,7 @@ newtry:
 		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
 
 		pline("You're pushed back!");
+
 		teleds(ccc.x, ccc.y, FALSE);
 
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
