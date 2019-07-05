@@ -3627,6 +3627,7 @@ mdamagem(magr, mdef, mattk)
 		if (mdef->mtame) {
 			mon_adjust_speed(mdef, -1, (struct obj *)0);
 			mdef->mstrategy &= ~STRAT_WAITFORU;
+			if (!rn2(4)) mdef->inertia += (2 + (tmp * 2));
 		}
 		goto physical;
 	    case AD_TREM:
@@ -3671,6 +3672,7 @@ mdamagem(magr, mdef, mattk)
 			mon_adjust_speed(mdef, -1, (struct obj *)0);
 			mdef->mstrategy &= ~STRAT_WAITFORU;
 			if (tmp > 0) mdef->bleedout += rnd(tmp);
+			if (!rn2(3)) mdef->inertia += (3 + (tmp * 3));
 		}
 		goto physical;
 	    case AD_WERE:
@@ -4039,7 +4041,7 @@ physical:
 	    case AD_EDGE:
 		if (magr->mcan) break;
 
-		if (mdef->mtame && mattk->adtyp == AD_EDGE) {
+		if (mdef->mtame && atttyp == AD_EDGE) {
 			if (mdef->mhpmax > 1) mdef->mhpmax--;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 		}
@@ -4096,6 +4098,15 @@ physical:
 			pline("%s suddenly disappears!", mdef_Monnam);
 		}
 		break;
+	    case AD_AMNE:
+
+		if (mdef->mtame) {
+			if (vis) pline("%s seems oblivious!", Monnam(mdef));
+			mdef->mconf = 1;
+			if (!rn2(3)) badpeteffect(mdef);
+		}
+		break;
+
 	    case AD_NEXU:
 		if (!cancelled && tmp < mdef->mhp && !tele_restrict(mdef)) {
 		    char mdef_Monnam[BUFSZ];
@@ -4331,6 +4342,73 @@ physical:
 
 		}
 
+		break;
+
+	    case AD_VULN:
+		if (mdef->mtame) {
+
+			if (vis) pline("%s seems more vulnerable!", Monnam(mdef));
+			mdef->mhpmax -= rnd(8);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev == 0) tmp = mdef->mhp;
+			else mdef->m_lev--;
+
+		}
+
+		break;
+
+	    case AD_NAST:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+		}
+		break;
+
+	    case AD_CAST:
+		if (mdef->mtame) tmp *= 3;
+		break;
+
+	    case AD_CLRC:
+		if (mdef->mtame) tmp *= 2;
+		break;
+
+	    case AD_SPEL:
+		if (mdef->mtame) tmp *= 2;
+		break;
+
+	    case AD_SAMU:
+		if (mdef->mtame) badpeteffect(mdef);
+		break;
+
+	    case AD_RUNS:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+		}
+		break;
+
+	    case AD_MINA:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+		}
+		break;
+
+	    case AD_DATA:
+		if (mdef->mtame) {
+			tmp += 10000;
+			allbadpeteffects(mdef);
+		}
+		break;
+
+	    case AD_BADE:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+		}
 		break;
 
 	    case AD_RAGN:
@@ -5133,7 +5211,7 @@ physical:
 			}
 		}
 
-		if (mdef->mtame && mattk->adtyp == AD_STTP) {
+		if (mdef->mtame && atttyp == AD_STTP) {
 			badpeteffect(mdef);
 			badpeteffect(mdef);
 		}
@@ -5276,6 +5354,181 @@ physical:
 			if (!rn2(3)) badpeteffect(mdef);
 		}
 		break;
+	    case AD_DISN:
+		if (mdef->mtame && !rn2(10) && !resists_disint(mdef)) {
+			if (vis) pline("%s is hit by disintegration!", Monnam(mdef));
+			struct obj *otmp2;
+			otmp2 = (struct obj *)0;
+			if (mdef->misc_worn_check & W_ARMS) {
+			otmp2 = which_armor(mdef, W_ARMS);
+		    } else if (mdef->misc_worn_check & W_ARMC) {
+			otmp2 = which_armor(mdef, W_ARMC);
+		    } else if (mdef->misc_worn_check & W_ARM) {
+			otmp2 = which_armor(mdef, W_ARM);
+		    } else if (mdef->misc_worn_check & W_ARMU) {
+			otmp2 = which_armor(mdef, W_ARMU);
+		    } else {
+			/* no body armor, victim dies; destroy cloak
+			   and shirt now in case target gets life-saved */
+			tmp += 10000;
+		    }
+			if (otmp2 && (otmp2 != (struct obj *)0) ) m_useup(mdef, otmp2);
+
+		}
+		break;
+	    case AD_SHRD:
+		if (mdef->mtame) {
+			if (vis) pline("%s is being shredded!", Monnam(mdef));
+			struct obj *otmp2;
+			otmp2 = (struct obj *)0;
+
+			if (rn2(3)) {
+				badpeteffect(mdef);
+				badpeteffect(mdef);
+			} else {
+
+				if (mdef->misc_worn_check & W_ARMS) {
+				otmp2 = which_armor(mdef, W_ARMS);
+			    } else if (mdef->misc_worn_check & W_ARMC) {
+				otmp2 = which_armor(mdef, W_ARMC);
+			    } else if (mdef->misc_worn_check & W_ARM) {
+				otmp2 = which_armor(mdef, W_ARM);
+			    } else if (mdef->misc_worn_check & W_ARMU) {
+				otmp2 = which_armor(mdef, W_ARMU);
+			    } else {
+				/* no body armor, victim dies; destroy cloak
+				   and shirt now in case target gets life-saved */
+				tmp += 10000;
+			    }
+				if (otmp2 && (otmp2 != (struct obj *)0) ) m_useup(mdef, otmp2);
+			}
+
+		}
+		break;
+	    case AD_WET:
+		if (mdef->mtame) {
+			if (vis) pline("%s is doused with water!", Monnam(mdef));
+			if (rn2(3)) mdef->mconf = 1;
+			if (!rn2(3)) mon_adjust_speed(mdef, -1, (struct obj *)0);
+			if (!rn2(5)) badpeteffect(mdef);
+		}
+		break;
+	    case AD_AXUS:
+		if (mdef->mtame) tmp *= rnd(4);
+		break;
+	    case AD_SKIL:
+		if (mdef->mtame) badpeteffect(mdef);
+		break;
+	    case AD_SUCK:
+		if (mdef->mtame) {
+			if (vis) pline("%s is sucked by a vacuum cleaner!", Monnam(mdef));
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			if (!rn2(3)) {
+				if (mdef->mhpmax > 1) mdef->mhpmax--;
+				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			}
+		}
+		break;
+	    case AD_VAPO:
+		if (mdef->mtame) tmp *= 3;
+		if (mdef->mtame && !rn2(10) && !resists_disint(mdef)) {
+			if (vis) pline("%s is hit by vaporization!", Monnam(mdef));
+			struct obj *otmp2;
+			otmp2 = (struct obj *)0;
+			if (mdef->misc_worn_check & W_ARMS) {
+			otmp2 = which_armor(mdef, W_ARMS);
+		    } else if (mdef->misc_worn_check & W_ARMC) {
+			otmp2 = which_armor(mdef, W_ARMC);
+		    } else if (mdef->misc_worn_check & W_ARM) {
+			otmp2 = which_armor(mdef, W_ARM);
+		    } else if (mdef->misc_worn_check & W_ARMU) {
+			otmp2 = which_armor(mdef, W_ARMU);
+		    } else {
+			/* no body armor, victim dies; destroy cloak
+			   and shirt now in case target gets life-saved */
+			tmp += 10000;
+		    }
+			if (otmp2 && (otmp2 != (struct obj *)0) ) m_useup(mdef, otmp2);
+
+		}
+		break;
+	    case AD_DISE:
+		if (mdef->mtame && !rn2(3)) {
+			if (vis) pline("%s looks sick.", Monnam(mdef));
+			if (mdef->mhpmax > 1) mdef->mhpmax--;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+		}
+		break;
+	    case AD_VOMT:
+		if (mdef->mtame) {
+			if (vis) pline("%s looks sick.", Monnam(mdef));
+			if (!rn2(3)) {
+				if (mdef->mhpmax > 1) mdef->mhpmax--;
+				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			}
+			if (!rn2(3)) mdef->mconf = TRUE;
+			if (!rn2(3)) mdef->mstun = TRUE;
+			if (!rn2(5) && mdef->mcanmove) {
+				mdef->mcanmove = 0;
+				mdef->mfrozen = 5;
+				mdef->mstrategy &= ~STRAT_WAITFORU;
+			}
+		}
+		break;
+	    case AD_NGRA:
+		if (mdef->mtame && !rn2(20)) badpeteffect(mdef);
+		break;
+	    case AD_WTHR:
+		if (mdef->mtame) {
+			if (vis) pline("%s withers!", Monnam(mdef));
+			if (mdef->mhpmax > 1) mdef->mhpmax -= rnd(8);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev > 0) mdef->m_lev--;
+		}
+		break;
+	    case AD_LUCK:
+		if (mdef->mtame && !rn2(3)) badpeteffect(mdef);
+		break;
+	    case AD_LETH:
+		if (mdef->mtame) {
+			if (vis) pline("%s seems oblivious!", Monnam(mdef));
+			mdef->mhpmax -= 8;
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev > 0) mdef->m_lev--;
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+		}
+		break;
+	    case AD_NPRO:
+		if (mdef->mtame) {
+			if (vis) pline("%s seems less protected!", Monnam(mdef));
+			mdef->mhpmax -= 8;
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev > 0) mdef->m_lev--;
+
+		}
+		break;
+	    case AD_DISP:
+		if (mdef->mtame && mdef->mcanmove) {
+			mdef->mcanmove = 0;
+			mdef->mfrozen = 2;
+			mdef->mstrategy &= ~STRAT_WAITFORU;
+			if (vis) pline("%s is stopped in %s tracks.", Monnam(mdef), mhis(mdef));
+		}
+		break;
+	    case AD_PEST:
+		if (mdef->mtame) {
+			if (vis) pline("%s looks very sick.", Monnam(mdef));
+			if (mdef->mhpmax > 1) mdef->mhpmax--;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+		}
+		break;
 	    case AD_STCK:
 		if (cancelled) tmp = 0;
 		break;
@@ -5292,6 +5545,72 @@ physical:
 		if (mdef->mtame) {
 			if (mdef->mhpmax > 1) mdef->mhpmax--;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			badpeteffect(mdef);
+		}
+		break;
+	    case AD_DEST:
+		if (mdef->mtame) tmp *= 10;
+		break;
+	    case AD_SIN:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+			if (mdef->mhpmax > 1) mdef->mhpmax -= 8;
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+
+			if (!rn2(10)) {
+				int untamingchance = 10;
+
+				if (!(PlayerCannotUseSkills)) {
+					switch (P_SKILL(P_PETKEEPING)) {
+						default: untamingchance = 10; break;
+						case P_BASIC: untamingchance = 9; break;
+						case P_SKILLED: untamingchance = 8; break;
+						case P_EXPERT: untamingchance = 7; break;
+						case P_MASTER: untamingchance = 6; break;
+						case P_GRAND_MASTER: untamingchance = 5; break;
+						case P_SUPREME_MASTER: untamingchance = 4; break;
+					}
+				}
+
+				if (!mdef->mfrenzied && (!mdef->mtame || (mdef->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
+					mdef->mpeaceful = mdef->mtame = 0;
+					mdef->mfrenzied = 1;
+					if (vis) pline("%s enters a state of frenzy!", Monnam(mdef));
+				}
+			}
+
+		}
+		break;
+	    case AD_ALIN:
+		if (mdef->mtame && !rn2(5)) badpeteffect(mdef);
+		break;
+	    case AD_NGEN:
+		if (mdef->mtame) {
+			if (mdef->mhpmax > 1) mdef->mhpmax -= 5;
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+		}
+		break;
+	    case AD_IDAM:
+		if (mdef->mtame) {
+			if (mdef->mhpmax > 1) mdef->mhpmax -= rnd(3);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			badpeteffect(mdef);
+		}
+		break;
+	    case AD_ANTI:
+		if (mdef->mtame) {
+			if (mdef->mhpmax > 1) mdef->mhpmax -= rnd(20);
+			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
 			badpeteffect(mdef);
 		}
 		break;

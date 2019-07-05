@@ -23494,6 +23494,18 @@ static NEARDATA const char * const fake_plines[] = {
 	"The giant slows down to a crawl. Since he's already slow by default, he is now a really useless pet that gets almost no moves.",
 	"The nice dutch girl's weight increases.",
 	"The nice dutch girl's weight increases. She must have eaten a lot of cheddar cheese...",
+	"The secret car is stopped in its tracks.",
+	"The dreadblossom swarm withers!",
+	"The shadow seems less protected!",
+	"The shadow seems less protected! Now he can be hit easily with ranged weapons although he even has a shadow sword!",
+	"The dizzy blonde seems oblivious!",
+	"The dizzy blonde seems oblivious! Poor thing can't even read a map because she always holds it upside down, and now she's completely lost. You should go to her and help her out by pointing the way to Frankfurt main station.",
+	"The chicken is being shredded!",
+	"The chicken is being shredded! You should immediately call the hotline for animals' rights, because what you've just witnessed is clearly a violation that demands punishment.",
+	"The hispanic girl is doused with water!",
+	"The hispanic girl is doused with water! Now she's completely wet, and she'll get a bucket filled with water which she'll empty over your head in retaliation.",
+	"The girl with the most beautiful shoes in the world seems more vulnerable!",
+	"The girl with the most beautiful shoes in the world seems more vulnerable! Please don't step on her toes now, because if you do, you'll break her bones.",
 
 };
 
