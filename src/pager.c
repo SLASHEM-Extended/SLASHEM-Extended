@@ -4558,6 +4558,17 @@ static NEARDATA const char * const hussylines_wal[] = {
 "This is the last line of defense! All the remaining hola-hola brigade members will hunt you now and make sure you won't be making any more progress, you hear?",
 "My painted toenails will tear you up!",
 "I'm watching your futile struggles on the TV in our hussy club office. And I'm having lots of fun as you keep having bad luck with everything, hahaha!",
+"I know that you're here, walscholar. And I shall taunt you repeatedly until you voluntarily leave.",
+"So you call yourself a walscholar because you're licking the boots of that Walt guy? You must really be stupid!",
+"There is no future for walscholars, for the hola-hola brigade is taking over the world.",
+"Listen up, you ain't no hussy and therefore you have no business being at this school! Eventually all non-hussies will be banished!",
+"Who had the bright idea of putting the current teachers in charge of this school? None of them are even good at their job! I'll make sure that they are replaced with real teachers!",
+"That walscholar has actually managed to take out some of my fellow hussies! We'll have to put in double the effort to defeat them now!",
+"What? You're trying to attack our main office? All the Hussies will swarm you and lock you up if you don't retreat!",
+"Everyone who helps a walscholar will be terminated, or converted by our mercenaries.",
+"You should surrender, for if you don't, you'll subject yourself to a long and painful death! Ha ha ha!",
+"I'm very proud to be a hussy! And you? Are you seriously running around saying you were proud to be a walscholar, even though all you ever do is to run errands for that failure Walt?",
+"I've been wondering, why is Walt such a retard and paints his grave walls in such an obvious color? It means I can easily recognize them! Not that I'm complaining, of course, since it makes it easier for me to steal the diamonds contained inside, but still... he really seems to be cursed with a very low IQ.",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4640,6 +4651,17 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Whoa %s, how did you manage to get that far? Just wait, we'll order all the hola-hola brigade members to attack you with full force! You don't stand a chance!",
 "%s, you can prepare to be eviscerated by my female fingernails.",
 "%s, you're either not a girl or not a hussy, and in either case, it means that I'm vastly superior to you.",
+"There is no way for you to escape my taunts, %s! As long as you're in this school, I will annoy you as much as I can to make you quit!",
+"As much as I'd like to take out Walt himself, removing %s will have to do for now.",
+"Us Hussies have realized that the hola-hola brigade is a marginalized group, and we'll help them on their way to take over the world by letting them convert %s!",
+"%s, you recently posted on your Twitter account that the hola-hola brigade is supposedly 'garbage'. I will punish you for that.",
+"It seems that %s is planning something devious. We will have to watch out for any moves they make and, if necessary, intercept them.",
+"%s, I've been watching your progress and it started to bother me! Prepare for lots of traps that I'm going to throw your way!",
+"Oh, the devious %s is trying a flanking attack. That ain't gonna work on me though. You've already been detected and our defenses are impenetrable.",
+"So you brought help with you, %s? Don't think that your pals are making you safe. Our Hussy perfume can clear out entire rooms of walscholars in mere minutes!",
+"%s, if you don't surrender now, I'll do terrible things to you that will make you wish you had never been born.",
+"You can build as many grave walls as you want, %s. My female footwear will break them all to pieces anyway.",
+"It seems that some wiseguy called %s thinks they're powerful just because they can erect grave walls. Well, I'm a hussy, and I have the ability to destroy grave walls! Hahaha!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
