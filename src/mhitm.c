@@ -4332,9 +4332,8 @@ physical:
 		if (mdef->mtame && !rn2(10)) {
 
 			if (!cancelled && rn2(2) && !resists_drli(mdef)) {
-				tmp = d(2,6);
 				if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
-				mdef->mhpmax -= tmp;
+				mdef->mhpmax -= d(2,6);
 				if (mdef->m_lev == 0) tmp = mdef->mhp;
 				else mdef->m_lev--;
 				/* Automatic kill if drained past level 0 */
@@ -4895,6 +4894,7 @@ physical:
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
+		if (mdef->mtame) badpeteffect(mdef);
 		break;
 	    case AD_DEPR:
 		if (!magr->mcan && haseyes(pd) && mdef->mcansee) {
@@ -5057,12 +5057,10 @@ physical:
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
 		
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
-			tmp = d(2,6);
-			if (vis)
-			    pline("%s suddenly seems weaker!", Monnam(mdef));
-			mdef->mhpmax -= tmp;
-			if (mdef->m_lev == 0)
-				tmp = mdef->mhp;
+			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
+			mdef->mhpmax -= d(2,6);
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
 			/* Automatic kill if drained past level 0 */
 		}
@@ -5076,12 +5074,10 @@ physical:
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
 		
 		if (!cancelled && rn2(2) && (!resists_drli(mdef) || mdef->mtame) ) {
-			tmp = d(2,6);
-			if (vis)
-			    pline("%s suddenly seems weaker!", Monnam(mdef));
-			mdef->mhpmax -= tmp;
-			if (mdef->m_lev == 0)
-				tmp = mdef->mhp;
+			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
+			mdef->mhpmax -= d(2,6);
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
 			/* Automatic kill if drained past level 0 */
 		}
@@ -5096,12 +5092,10 @@ physical:
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
 		
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
-			tmp = d(2,6);
-			if (vis)
-			    pline("%s suddenly seems weaker!", Monnam(mdef));
-			mdef->mhpmax -= tmp;
-			if (mdef->m_lev == 0)
-				tmp = mdef->mhp;
+			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
+			mdef->mhpmax -= d(2,6);
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
 			/* Automatic kill if drained past level 0 */
 		}
@@ -5121,12 +5115,10 @@ physical:
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
 		
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
-			tmp = d(2,6);
-			if (vis)
-			    pline("%s suddenly seems weaker!", Monnam(mdef));
-			mdef->mhpmax -= tmp;
-			if (mdef->m_lev == 0)
-				tmp = mdef->mhp;
+			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
+			mdef->mhpmax -= d(2,6);
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
 			/* Automatic kill if drained past level 0 */
 		}
@@ -5140,13 +5132,11 @@ physical:
 			has_blood(pd))
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
 		
-		if ((!cancelled || mdef->mtame) && rn2(2) && !resists_drli(mdef)) {
-			tmp = d(2,6);
-			if (vis)
-			    pline("%s suddenly seems weaker!", Monnam(mdef));
-			mdef->mhpmax -= tmp;
-			if (mdef->m_lev == 0)
-				tmp = mdef->mhp;
+		if ((!cancelled || mdef->mtame) && (rn2(2) || mdef->mtame) && !resists_drli(mdef)) {
+			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
+			mdef->mhpmax -= d(2,6);
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (mdef->m_lev == 0) tmp = mdef->mhp;
 			else mdef->m_lev--;
 			/* Automatic kill if drained past level 0 */
 		}
@@ -5989,16 +5979,34 @@ int attnumber;
 	    }
 	    break;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
+		if (mhit && !mdef->mcan && otmp) {
+			drain_item(otmp);
+		    /* No message */
+		}
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			badpeteffect(magr);
+		}
+		break;
 	    case AD_NGEN:
 		if (mhit && !mdef->mcan && otmp) {
-				drain_item(otmp);
+			drain_item(otmp);
 		    /* No message */
+		}
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax -= 5;
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			badpeteffect(magr);
+			badpeteffect(magr);
+
 		}
 		break;
 	    default:
 		break;
 	}
-	if (mdead || mdef->mcan) return (mdead|mhit);
+	if ((mdead && !magr->mtame) || mdef->mcan) return (mdead|mhit);
 
 	/* These affect the enemy only if defender is still alive */
 	if (rn2(3)) switch(atttypB) {
@@ -6044,21 +6052,149 @@ int attnumber;
 		}
 		if(canseemon(magr))
 		    pline("%s is suddenly very cold!", Monnam(magr));
-		mdef->mhp += tmp / 2;
-		if (mdef->mhpmax < mdef->mhp) mdef->mhpmax = mdef->mhp;
-		if (mdef->mhpmax > ((int) (mdef->m_lev+1) * 8) && !rn2(50) ) /* split much less often --Amy */
-		    (void)split_mon(mdef, magr);
+		if (!mdead) {
+			mdef->mhp += tmp / 2;
+			if (mdef->mhpmax < mdef->mhp) mdef->mhpmax = mdef->mhp;
+			if (mdef->mhpmax > ((int) (mdef->m_lev+1) * 8) && !rn2(50) ) /* split much less often --Amy */
+			(void)split_mon(mdef, magr);
+		}
+		break;
+	    case AD_WERE:
+		if (magr->mtame && !rn2(3)) {
+
+		int untamingchance = 10;
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: untamingchance = 10; break;
+				case P_BASIC: untamingchance = 9; break;
+				case P_SKILLED: untamingchance = 8; break;
+				case P_EXPERT: untamingchance = 7; break;
+				case P_MASTER: untamingchance = 6; break;
+				case P_GRAND_MASTER: untamingchance = 5; break;
+				case P_SUPREME_MASTER: untamingchance = 4; break;
+			}
+		}
+
+		/* Certain monsters aren't even made peaceful. */
+		if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
+			!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+			((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
+		    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
+		    if (magr == u.usteed && !mayfalloffsteed())
+			dismount_steed(DISMOUNT_THROWN);
+		    if (!magr->mfrenzied && !rn2(3)) magr->mpeaceful = 1;
+		    else magr->mpeaceful = 0;
+		    magr->mtame = 0;
+		    tmp = 0;
+		}
+
+		}
+		break;
+	    case AD_CALM:
+		if (magr->mtame) {
+
+		int untamingchance = 10;
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: untamingchance = 10; break;
+				case P_BASIC: untamingchance = 9; break;
+				case P_SKILLED: untamingchance = 8; break;
+				case P_EXPERT: untamingchance = 7; break;
+				case P_MASTER: untamingchance = 6; break;
+				case P_GRAND_MASTER: untamingchance = 5; break;
+				case P_SUPREME_MASTER: untamingchance = 4; break;
+			}
+		}
+
+		/* Certain monsters aren't even made peaceful. */
+		if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
+			!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+			((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
+		    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
+		    if (magr == u.usteed && !mayfalloffsteed())
+			dismount_steed(DISMOUNT_THROWN);
+		    if (!magr->mfrenzied && !rn2(3)) magr->mpeaceful = 1;
+		    else magr->mpeaceful = 0;
+		    magr->mtame = 0;
+		    tmp = 0;
+		}
+
+		}
+		break;
+	    case AD_FREN:
+		if (magr->mtame) {
+
+		int untamingchance = 10;
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: untamingchance = 10; break;
+				case P_BASIC: untamingchance = 9; break;
+				case P_SKILLED: untamingchance = 8; break;
+				case P_EXPERT: untamingchance = 7; break;
+				case P_MASTER: untamingchance = 6; break;
+				case P_GRAND_MASTER: untamingchance = 5; break;
+				case P_SUPREME_MASTER: untamingchance = 4; break;
+			}
+		}
+
+		if (!magr->mfrenzied && (!magr->mtame || (magr->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
+			magr->mpeaceful = magr->mtame = 0;
+			magr->mfrenzied = 1;
+		    if (canseemon(magr)) pline("%s enters a state of frenzy!", Monnam(magr));
+		}
+
+		}
+		break;
+	    case AD_EDGE:
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
 		break;
 	    case AD_STUN:
-		tmp = 0; /* fall through */
+		if (!magr->mtame) tmp = 0;
+		if (!magr->mstun) {
+		    magr->mstun = 1;
+		    if (canseemon(magr))
+			pline("%s %s...", Monnam(magr), makeplural(stagger(magr->data, "stagger")));
+		}
+		break;
 	    case AD_FUMB:
+		if (!magr->mstun) {
+		    magr->mstun = 1;
+		    if (canseemon(magr))
+			pline("%s %s...", Monnam(magr), makeplural(stagger(magr->data, "stagger")));
+		}
+		if (magr->mtame) {
+			mon_adjust_speed(magr, -1, (struct obj *)0);
+			magr->mstrategy &= ~STRAT_WAITFORU;
+			if (!rn2(4)) magr->inertia += (2 + (tmp * 2));
+		}
+		break;
 	    case AD_TREM:
+		if (!magr->mstun) {
+		    magr->mstun = 1;
+		    if (canseemon(magr))
+			pline("%s %s...", Monnam(magr), makeplural(stagger(magr->data, "stagger")));
+		}
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (!rn2(3)) badpeteffect(magr);
+		}
+		break;
 	    case AD_SOUN:
 		if (!magr->mstun) {
 		    magr->mstun = 1;
 		    if (canseemon(magr))
-			pline("%s %s...", Monnam(magr),
-			      makeplural(stagger(magr->data, "stagger")));
+			pline("%s %s...", Monnam(magr), makeplural(stagger(magr->data, "stagger")));
+		}
+		if (magr->mtame) {
+			magr->mconf = 1;
+			if (!rn2(5)) badpeteffect(magr);
 		}
 		break;
 	    case AD_FIRE:
@@ -6091,14 +6227,32 @@ int attnumber;
 			tmp *= 2; /* vampires take more damage from sunlight --Amy */
 			if (canseemon(magr)) pline("%s is irradiated!", Monnam(magr));
 		}
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
 		break;
 	    case AD_BANI:
-		if (magr->mtame && !rn2(3)) magr->willbebanished = TRUE;
-		break;
+		if (magr->mtame && !rn2(3)) {
+			magr->willbebanished = TRUE;
+			break;
+		} /* else fall through */
 	    case AD_TLPT:
+		if (!tele_restrict(magr)) (void) rloc(magr, FALSE);
+		break;
 	    case AD_NEXU:
+		if (!tele_restrict(magr)) (void) rloc(magr, FALSE);
+		if (magr->mtame) {
+			if (!rn2(2)) {
+				if (magr->mhpmax > 1) magr->mhpmax--;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			}
+			if (!rn2(7)) badpeteffect(magr);
+		}
+		break;
 	    case AD_ABDC:
 		if (!tele_restrict(magr)) (void) rloc(magr, FALSE);
+		if (magr->mtame) badpeteffect(magr);
 		break;
 	    case AD_SLEE:
 		if (!magr->msleeping && sleep_monst(magr, rnd(10), -1)) {
@@ -6111,7 +6265,31 @@ int attnumber;
 		break;
 
 	    case AD_SLOW:
+		if(magr->mspeed != MSLOW) {
+		    unsigned int oldspeed = magr->mspeed;
+
+		    mon_adjust_speed(magr, -1, (struct obj *)0);
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		    if (magr->mspeed != oldspeed && canseemon(magr))
+			pline("%s slows down.", Monnam(magr));
+		}
+		break;
+
 	    case AD_WGHT:
+		if(magr->mspeed != MSLOW) {
+		    unsigned int oldspeed = magr->mspeed;
+
+		    mon_adjust_speed(magr, -1, (struct obj *)0);
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		    if (magr->mspeed != oldspeed && canseemon(magr))
+			pline("%s slows down.", Monnam(magr));
+		}
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s's weight increases.", Monnam(magr));
+			magr->inertia += tmp;
+		}
+		break;
+
 	    case AD_INER:
 		if(magr->mspeed != MSLOW) {
 		    unsigned int oldspeed = magr->mspeed;
@@ -6120,6 +6298,13 @@ int attnumber;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		    if (magr->mspeed != oldspeed && canseemon(magr))
 			pline("%s slows down.", Monnam(magr));
+		}
+		if (magr->mtame) {
+			if (canseemon(magr)) {
+				if (!magr->inertia) pline("%s slows down to a crawl.", Monnam(magr));
+				else pline("%s seems even slower.", Monnam(magr));
+			}
+			magr->inertia += (5 + (tmp * 5));
 		}
 		break;
 
@@ -6140,6 +6325,11 @@ int attnumber;
 		    magr->mfrozen = rnd(10);
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
+		if (magr->mtame) {
+			magr->inertia += (3 + (tmp * 3));
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
 		break;
 
 	    case AD_NUMB:
@@ -6151,6 +6341,17 @@ int attnumber;
 		    if (magr->mspeed != oldspeed && canseemon(magr))
 			pline("%s is numbed.", Monnam(magr));
 		}
+		if (magr->mtame && !rn2(8)) badpeteffect(magr);
+		break;
+
+	    case AD_STAT:
+		if (magr->mtame) {
+			tmp += rn1(10,6);
+			if (!rn2(100)) tmp += 10000; /* The poison was deadly... */
+			badpeteffect(magr);
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
 		break;
 
 	    case AD_DARK:
@@ -6160,12 +6361,31 @@ int attnumber;
 		break;
 
 	    case AD_THIR:
-	    case AD_NTHR:
-		if (mdef->mhp > 0) {
-		mdef->mhp += tmp;
-		if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
-		if (canseemon(mdef)) pline("%s looks healthier!", Monnam(mdef) );
+		if (!mdead && (mdef->mhp > 0)) {
+			mdef->mhp += tmp;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (canseemon(mdef)) pline("%s looks healthier!", Monnam(mdef) );
 		}
+		break;
+
+	    case AD_NTHR:
+		if (!mdead && (mdef->mhp > 0)) {
+			mdef->mhp += tmp;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (canseemon(mdef)) pline("%s looks healthier!", Monnam(mdef) );
+		}
+		if (magr->mtame && !rn2(10)) {
+
+			if (rn2(2) && !resists_drli(magr)) {
+				if (canseemon(magr)) pline("%s suddenly seems weaker!", Monnam(magr));
+				magr->mhpmax -= d(2,6);
+				if (magr->m_lev == 0) tmp = magr->mhp;
+				else magr->m_lev--;
+				/* Automatic kill if drained past level 0 */
+			}
+
+		}
+
 		break;
 
 	    case AD_RAGN:		
@@ -6179,7 +6399,7 @@ int attnumber;
 		if (!rn2(20)) {
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
-			(void) makemon((struct permonst *)0, mdef->mx, mdef->my, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+			if (mdef) (void) makemon((struct permonst *)0, mdef->mx, mdef->my, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 			u.aggravation = 0;
 		}
 
@@ -6204,6 +6424,67 @@ int attnumber;
 			magr->egotype_reactor = 1;
 		}
 
+		if (magr->mtame) {
+			if (!rn2(30)) {
+				int untamingchance = 10;
+
+				if (!(PlayerCannotUseSkills)) {
+					switch (P_SKILL(P_PETKEEPING)) {
+						default: untamingchance = 10; break;
+						case P_BASIC: untamingchance = 9; break;
+						case P_SKILLED: untamingchance = 8; break;
+						case P_EXPERT: untamingchance = 7; break;
+						case P_MASTER: untamingchance = 6; break;
+						case P_GRAND_MASTER: untamingchance = 5; break;
+						case P_SUPREME_MASTER: untamingchance = 4; break;
+					}
+				}
+
+				/* Certain monsters aren't even made peaceful. */
+				if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
+					!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+					((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
+				    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
+				    if (magr == u.usteed && !mayfalloffsteed())
+					dismount_steed(DISMOUNT_THROWN);
+				    if (!magr->mfrenzied && !rn2(3)) magr->mpeaceful = 1;
+				    else magr->mpeaceful = 0;
+				    magr->mtame = 0;
+				    tmp = 0;
+				}
+
+			} else if (!rn2(3)) {
+				badpeteffect(magr);
+			} else {
+				if (magr->mhpmax > 1) magr->mhpmax--;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			}
+		}
+
+		break;
+
+	    case AD_RUST:
+		if (magr->mtame && !rn2(5)) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (canseemon(magr)) pline("%s rusts!", Monnam(magr));
+		}
+		break;
+
+	    case AD_CORR:
+		if (magr->mtame && !rn2(5)) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (canseemon(magr)) pline("%s corrodes!", Monnam(magr));
+		}
+		break;
+
+	    case AD_DCAY:
+		if (magr->mtame && !rn2(5)) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (canseemon(magr)) pline("%s decays!", Monnam(magr));
+		}
 		break;
 
 	    case AD_FRZE:
@@ -6211,17 +6492,32 @@ int attnumber;
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is suddenly ice-cold!", Monnam(magr));
 		}
+		if (magr->mtame) {
+			pline("%s seems to be moving slower.", Monnam(magr));
+			if (!rn2(3)) mon_adjust_speed(magr, -1, (struct obj *)0);
+			if (!rn2(3)) magr->inertia += tmp;
+		}
+
 		break;
 	    case AD_ICEB:
 		if (!resists_cold(magr)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is suddenly shockfrosted!", Monnam(magr));
 		}
+		if (magr->mtame) {
+			pline("%s seems to be moving slower.", Monnam(magr));
+			if (!rn2(3)) mon_adjust_speed(magr, -1, (struct obj *)0);
+			if (!rn2(3)) magr->inertia += tmp;
+		}
 		break;
 	    case AD_MALK:
 		if (!resists_elec(magr)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is jolted by high voltage!", Monnam(magr));
+		}
+		if (magr->mtame && !rn2(5)) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 		}
 		break;
 	    case AD_UVUU:
@@ -6232,11 +6528,21 @@ int attnumber;
 				if (canseemon(magr)) pline("%s's %s is torn apart!", Monnam(magr), mbodypart(magr, HEAD));
 			} else if (canseemon(magr)) pline("%s's %s is spiked!", Monnam(magr), mbodypart(magr, HEAD));
 		}
+		if (magr->mtame) {
+			tmp *= 2;
+			if (!which_armor(magr, W_ARMH)) tmp *= 2;
+			badpeteffect(magr);
+		}
 		break;
 	    case AD_GRAV:
 		if (!is_flyer(magr->data)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s slams into the ground!", Monnam(magr));
+		}
+		if (magr->mtame && !magr->mfrozen) {
+			magr->mcanmove = 0;
+			magr->mfrozen = rnd(10);
+			magr->mstrategy &= ~STRAT_WAITFORU;
 		}
 		break;
 	    case AD_CHKH:
@@ -6247,29 +6553,54 @@ int attnumber;
 			magr->mhpmax--;
 			if (canseemon(magr)) pline("%s feels bad!", Monnam(magr));
 		}
+		if (magr->mtame) badpeteffect(magr);
 		break;
 	    case AD_HODS:
 		tmp += magr->m_lev;
 		break;
 	    case AD_DIMN:
 		tmp += mdef->m_lev;
+		if (magr->mtame && !rn2(10)) badpeteffect(magr);
 		break;
 	    case AD_BURN:
 		if (resists_cold(magr) && !resists_fire(magr)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is burning!", Monnam(magr));
 		}
+		if (magr->mtame) magr->healblock += (5 + (tmp * 5));
 		break;
 	    case AD_PLAS:
 		if (!resists_fire(magr)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is suddenly extremely hot!", Monnam(magr));
 		}
+		if (magr->mtame) {
+			magr->healblock += (10 + (tmp * 10));
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
+		break;
+	    case AD_DETH:
+		if (magr->mtame) {
+			if (!rn2(16)) tmp += 10000; /* instant death */
+			else {
+				if (canseemon(magr)) pline("%s is hit by the touch of death!", Monnam(magr));
+				magr->mhpmax -= rnd(10);
+				if (magr->mhpmax < 1) magr->mhpmax = 1;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			}
+		}
 		break;
 	    case AD_SLUD:
 		if (!resists_acid(magr)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is covered with sludge!", Monnam(magr));
+		}
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(3);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+
 		}
 		break;
 	    case AD_LAVA:
@@ -6279,6 +6610,13 @@ int attnumber;
 		} else if (!resists_fire(magr)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is covered with hot lava!", Monnam(magr));
+		}
+		if (magr->mtame) {
+			magr->healblock += (20 + (tmp * 20));
+			if (magr->mhpmax > 1) magr->mhpmax -= 5;
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev > 0) magr->m_lev--;
 		}
 		break;
 	    case AD_FAKE:
@@ -6300,12 +6638,41 @@ int attnumber;
 			magr->mcan = 1;
 			if (canseemon(magr)) pline("%s is covered in sparkling lights!", Monnam(magr));
 		}
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			badpeteffect(magr);
+		}
 		break;
 	    case AD_ICUR:
+		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
+			magr->mcan = 1;
+		}
+		if (magr->mtame) {
+			badpeteffect(magr);
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(8);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev > 0) magr->m_lev--;
+		}
+		break;
 	    case AD_NACU:
+		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
+			magr->mcan = 1;
+		}
+		if (magr->mtame) allbadpeteffects(magr);
+		break;
 	    case AD_CURS:
 		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
 			magr->mcan = 1;
+		}
+		break;
+	    case AD_LEGS:
+		if (magr->mtame) {
+			mon_adjust_speed(magr, -1, (struct obj *)0);
+			magr->mstrategy &= ~STRAT_WAITFORU;
+			if (tmp > 0) magr->bleedout += rnd(tmp);
+			if (!rn2(3)) magr->inertia += (3 + (tmp * 3));
 		}
 		break;
 	    case AD_FEAR:
@@ -6330,6 +6697,7 @@ int attnumber;
 		    magr->mconf = 1;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
+		if (magr->mtame) badpeteffect(magr);
 		break;
 	    case AD_SANI:
 		if (!rn2(10)) {
@@ -6348,6 +6716,7 @@ int attnumber;
 			}
 
 		}
+		if (magr->mtame) badpeteffect(magr);
 
 		break;
 	    case AD_DREA:
@@ -6357,13 +6726,51 @@ int attnumber;
 		}
 		break;
 	    case AD_CONF:
+		if (!magr->mconf) {
+		    if (canseemon(magr)) pline("%s is suddenly very confused!", Monnam(magr));
+		    magr->mconf = 1;
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		}
+		break;
+
 	    case AD_HALU:
+		if (!magr->mconf) {
+		    if (canseemon(magr)) pline("%s is suddenly very confused!", Monnam(magr));
+		    magr->mconf = 1;
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		}
+		if (magr->mtame) badpeteffect(magr);
+		break;
+
 	    case AD_DEPR:
+		if (!magr->mconf) {
+		    if (canseemon(magr)) pline("%s is suddenly very confused!", Monnam(magr));
+		    magr->mconf = 1;
+		    magr->mstrategy &= ~STRAT_WAITFORU;
+		}
+		if (magr->mtame) {
+			badpeteffect(magr);
+			if (magr->m_lev > 0) magr->m_lev--;
+			if (magr->m_lev > 0) magr->m_lev--;
+			if (magr->m_lev == 0) tmp *= 10;
+		}
+		break;
+
 	    case AD_SPC2:
 		if (!magr->mconf) {
 		    if (canseemon(magr)) pline("%s is suddenly very confused!", Monnam(magr));
 		    magr->mconf = 1;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
+		}
+		if (magr->mtame) badpeteffect(magr);
+		break;
+
+	    case AD_AMNE:
+
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s seems oblivious!", Monnam(magr));
+			magr->mconf = 1;
+			if (!rn2(3)) badpeteffect(magr);
 		}
 		break;
 
@@ -6375,11 +6782,62 @@ int attnumber;
 		break;
 
 	    case AD_WRAT:
+		mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
+		if (magr->mtame) {
+			badpeteffect(magr);
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(5);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
+		break;
 	    case AD_MANA:
+		if (magr->mtame) tmp *= 2;
+		mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
+		break;
 	    case AD_TECH:
+		mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
+		if (magr->mtame && !rn2(3)) badpeteffect(magr);
+		break;
 	    case AD_MEMO:
+		mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
+		if (magr->mtame && !rn2(50)) {
+			int untamingchance = 10;
+
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_PETKEEPING)) {
+					default: untamingchance = 10; break;
+					case P_BASIC: untamingchance = 9; break;
+					case P_SKILLED: untamingchance = 8; break;
+					case P_EXPERT: untamingchance = 7; break;
+					case P_MASTER: untamingchance = 6; break;
+					case P_GRAND_MASTER: untamingchance = 5; break;
+					case P_SUPREME_MASTER: untamingchance = 4; break;
+				}
+			}
+
+			/* Certain monsters aren't even made peaceful. */
+			if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
+				!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+				((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
+			    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
+			    if (magr == u.usteed && !mayfalloffsteed())
+				dismount_steed(DISMOUNT_THROWN);
+			    if (!magr->mfrenzied && !rn2(3)) magr->mpeaceful = 1;
+			    else magr->mpeaceful = 0;
+			    magr->mtame = 0;
+			    tmp = 0;
+			}
+
+		}
+		break;
 	    case AD_TRAI:
-	    	    mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
+		mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
+		if (magr->mtame && !rn2(8)) {
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(8);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev > 0) magr->m_lev--;
+		}
 		break;
 	    case AD_DREN:
 	    	if (!resists_magm(magr)) {
@@ -6393,7 +6851,204 @@ int attnumber;
 		    magr->mblinded = tmp;
 		    magr->mcansee = 0;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
-		tmp = 0;
+		if (!magr->mtame) tmp = 0;
+		break;
+
+	    case AD_WET:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s is doused with water!", Monnam(magr));
+			if (rn2(3)) magr->mconf = 1;
+			if (!rn2(3)) mon_adjust_speed(magr, -1, (struct obj *)0);
+			if (!rn2(5)) badpeteffect(magr);
+		}
+		break;
+	    case AD_AXUS:
+		if (magr->mtame) tmp *= rnd(4);
+		break;
+	    case AD_DEST:
+		if (magr->mtame) tmp *= 10;
+		break;
+	    case AD_SIN:
+		if (magr->mtame) {
+			badpeteffect(magr);
+			if (magr->mhpmax > 1) magr->mhpmax -= 8;
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+
+			if (!rn2(10)) {
+				int untamingchance = 10;
+
+				if (!(PlayerCannotUseSkills)) {
+					switch (P_SKILL(P_PETKEEPING)) {
+						default: untamingchance = 10; break;
+						case P_BASIC: untamingchance = 9; break;
+						case P_SKILLED: untamingchance = 8; break;
+						case P_EXPERT: untamingchance = 7; break;
+						case P_MASTER: untamingchance = 6; break;
+						case P_GRAND_MASTER: untamingchance = 5; break;
+						case P_SUPREME_MASTER: untamingchance = 4; break;
+					}
+				}
+
+				if (!magr->mfrenzied && (!magr->mtame || (magr->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
+					magr->mpeaceful = magr->mtame = 0;
+					magr->mfrenzied = 1;
+					if (canseemon(magr)) pline("%s enters a state of frenzy!", Monnam(magr));
+				}
+			}
+
+		}
+		break;
+	    case AD_ALIN:
+		if (magr->mtame && !rn2(5)) badpeteffect(magr);
+		break;
+	    case AD_NGEN:
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax -= 5;
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+	    case AD_IDAM:
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(3);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			badpeteffect(magr);
+		}
+		break;
+	    case AD_ANTI:
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(20);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+	    case AD_WRAP:
+		if (magr->mtame && !rn2(10)) {
+			badpeteffect(magr);
+			if (!mdead && mdef && is_drowningpool(mdef->mx, mdef->my)) tmp *= 10;
+		}
+		break;
+	    case AD_SKIL:
+		if (magr->mtame) badpeteffect(magr);
+		break;
+	    case AD_SUCK:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s is sucked by a vacuum cleaner!", Monnam(magr));
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+			if (!rn2(3)) {
+				if (magr->mhpmax > 1) magr->mhpmax--;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			}
+		}
+		break;
+	    case AD_VAPO:
+		if (magr->mtame) tmp *= 3;
+		if (magr->mtame && !rn2(10) && !resists_disint(magr)) {
+			if (canseemon(magr)) pline("%s is hit by vaporization!", Monnam(magr));
+			struct obj *otmp2;
+			otmp2 = (struct obj *)0;
+			if (magr->misc_worn_check & W_ARMS) {
+			otmp2 = which_armor(magr, W_ARMS);
+		    } else if (magr->misc_worn_check & W_ARMC) {
+			otmp2 = which_armor(magr, W_ARMC);
+		    } else if (magr->misc_worn_check & W_ARM) {
+			otmp2 = which_armor(magr, W_ARM);
+		    } else if (magr->misc_worn_check & W_ARMU) {
+			otmp2 = which_armor(magr, W_ARMU);
+		    } else {
+			/* no body armor, victim dies; destroy cloak
+			   and shirt now in case target gets life-saved */
+			tmp += 10000;
+		    }
+			if (otmp2 && (otmp2 != (struct obj *)0) ) m_useup(magr, otmp2);
+
+		}
+		break;
+	    case AD_DISE:
+		if (magr->mtame && !rn2(3)) {
+			if (canseemon(magr)) pline("%s looks sick.", Monnam(magr));
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
+		break;
+	    case AD_VOMT:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s looks sick.", Monnam(magr));
+			if (!rn2(3)) {
+				if (magr->mhpmax > 1) magr->mhpmax--;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			}
+			if (!rn2(3)) magr->mconf = TRUE;
+			if (!rn2(3)) magr->mstun = TRUE;
+			if (!rn2(5) && magr->mcanmove) {
+				magr->mcanmove = 0;
+				magr->mfrozen = 5;
+				magr->mstrategy &= ~STRAT_WAITFORU;
+			}
+		}
+		break;
+	    case AD_NGRA:
+		if (magr->mtame && !rn2(20)) badpeteffect(magr);
+		break;
+	    case AD_WTHR:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s withers!", Monnam(magr));
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(8);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev > 0) magr->m_lev--;
+		}
+		break;
+	    case AD_LUCK:
+		if (magr->mtame && !rn2(3)) badpeteffect(magr);
+		break;
+	    case AD_LETH:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s seems oblivious!", Monnam(magr));
+			magr->mhpmax -= 8;
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev > 0) magr->m_lev--;
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+	    case AD_NPRO:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s seems less protected!", Monnam(magr));
+			magr->mhpmax -= 8;
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev > 0) magr->m_lev--;
+
+		}
+		break;
+	    case AD_DISP:
+		if (magr->mtame && magr->mcanmove) {
+			magr->mcanmove = 0;
+			magr->mfrozen = 2;
+			magr->mstrategy &= ~STRAT_WAITFORU;
+			if (canseemon(magr)) pline("%s is stopped in %s tracks.", Monnam(magr), mhis(magr));
+		}
+		break;
+	    case AD_PEST:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s looks very sick.", Monnam(magr));
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
 		break;
 
 	    case AD_PAIN:
@@ -6401,10 +7056,207 @@ int attnumber;
 		if (canseemon(magr)) pline("%s shrieks in pain!", Monnam(magr));
 		break;
 
+	    case AD_VULN:
+		if (magr->mtame) {
+
+			if (canseemon(magr)) pline("%s seems more vulnerable!", Monnam(magr));
+			magr->mhpmax -= rnd(8);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev == 0) tmp = magr->mhp;
+			else magr->m_lev--;
+
+		}
+		break;
+
+	    case AD_NAST:
+		if (magr->mtame) {
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_CAST:
+		if (magr->mtame) tmp *= 3;
+		break;
+
+	    case AD_CLRC:
+		if (magr->mtame) tmp *= 2;
+		break;
+
+	    case AD_SPEL:
+		if (magr->mtame) tmp *= 2;
+		break;
+
+	    case AD_SAMU:
+		if (magr->mtame) badpeteffect(magr);
+		break;
+
+	    case AD_SLIM:
+		if (magr->mtame) {
+			if (!rn2(5)) badpeteffect(magr);
+		}
+		break;
+
+	    case AD_DISN:
+		if (magr->mtame && !rn2(10) && !resists_disint(magr)) {
+			if (canseemon(magr)) pline("%s is hit by disintegration!", Monnam(magr));
+			struct obj *otmp2;
+			otmp2 = (struct obj *)0;
+			if (magr->misc_worn_check & W_ARMS) {
+			otmp2 = which_armor(magr, W_ARMS);
+		    } else if (magr->misc_worn_check & W_ARMC) {
+			otmp2 = which_armor(magr, W_ARMC);
+		    } else if (magr->misc_worn_check & W_ARM) {
+			otmp2 = which_armor(magr, W_ARM);
+		    } else if (magr->misc_worn_check & W_ARMU) {
+			otmp2 = which_armor(magr, W_ARMU);
+		    } else {
+			tmp += 10000;
+		    }
+			if (otmp2 && (otmp2 != (struct obj *)0) ) m_useup(magr, otmp2);
+
+		}
+		break;
+	    case AD_SHRD:
+		if (magr->mtame) {
+			if (canseemon(magr)) pline("%s is being shredded!", Monnam(magr));
+			struct obj *otmp2;
+			otmp2 = (struct obj *)0;
+
+			if (rn2(3)) {
+				badpeteffect(magr);
+				badpeteffect(magr);
+			} else {
+
+				if (magr->misc_worn_check & W_ARMS) {
+				otmp2 = which_armor(magr, W_ARMS);
+			    } else if (magr->misc_worn_check & W_ARMC) {
+				otmp2 = which_armor(magr, W_ARMC);
+			    } else if (magr->misc_worn_check & W_ARM) {
+				otmp2 = which_armor(magr, W_ARM);
+			    } else if (magr->misc_worn_check & W_ARMU) {
+				otmp2 = which_armor(magr, W_ARMU);
+			    } else {
+				/* no body armor, victim dies; destroy cloak
+				   and shirt now in case target gets life-saved */
+				tmp += 10000;
+			    }
+				if (otmp2 && (otmp2 != (struct obj *)0) ) m_useup(magr, otmp2);
+			}
+
+		}
+		break;
+
+	    case AD_LITT:
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (!rn2(3)) badpeteffect(magr);
+		}
+		break;
+
+	    case AD_POLY:
+		if (magr->mtame && !rn2(3)) {
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_CHAO:
+		if (magr->mtame) {
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_RUNS:
+		if (magr->mtame) {
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_MINA:
+		if (magr->mtame) {
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_DATA:
+		if (magr->mtame) {
+			tmp += 10000;
+			allbadpeteffects(magr);
+		}
+		break;
+
+	    case AD_BADE:
+		if (magr->mtame) {
+			badpeteffect(magr);
+		}
+		break;
+
 	    case AD_DRLI:
+		if (!resists_drli(magr)) {
+			if (canseemon(magr))
+			    pline("%s suddenly seems weaker!", Monnam(magr));
+			if (magr->m_lev == 0)
+				tmp = magr->mhp;
+			else magr->m_lev--;
+			/* Automatic kill if drained past level 0 */
+		}
+		break;
+
+	    case AD_STTP:
+		if (magr->mtame) {
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+
 	    case AD_TIME:
+		if (!resists_drli(magr)) {
+			if (canseemon(magr))
+			    pline("%s suddenly seems weaker!", Monnam(magr));
+			if (magr->m_lev == 0)
+				tmp = magr->mhp;
+			else magr->m_lev--;
+			/* Automatic kill if drained past level 0 */
+		}
+		if (magr->mtame && !rn2(2)) badpeteffect(magr);
+		break;
+
 	    case AD_DFOO:
+		if (!resists_drli(magr)) {
+			if (canseemon(magr))
+			    pline("%s suddenly seems weaker!", Monnam(magr));
+			if (magr->m_lev == 0)
+				tmp = magr->mhp;
+			else magr->m_lev--;
+			/* Automatic kill if drained past level 0 */
+		}
+		if (magr->mtame) {
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(8);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (magr->m_lev > 0) magr->m_lev--;
+		}
+		break;
+
 	    case AD_WEEP:
+		if (!resists_drli(magr)) {
+			if (canseemon(magr))
+			    pline("%s suddenly seems weaker!", Monnam(magr));
+			if (magr->m_lev == 0)
+				tmp = magr->mhp;
+			else magr->m_lev--;
+			/* Automatic kill if drained past level 0 */
+		}
+		if (magr->mtame && !rn2(50)) magr->willbebanished = 1;
+		break;
+
 	    case AD_VAMP:
 		if (!resists_drli(magr)) {
 			if (canseemon(magr))
@@ -6427,6 +7279,14 @@ int attnumber;
 			    if (canseemon(magr)) pline_The("poison was deadly...");
 			    tmp = magr->mhp;
 			}
+		}
+		if (magr->mtame) {
+			badpeteffect(magr);
+			badpeteffect(magr);
+			if (magr->mhpmax > 1) magr->mhpmax -= rnd(8);
+			if (magr->mhpmax < 1) magr->mhpmax = 1;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+
 		}
 		break;
 
