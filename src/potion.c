@@ -502,6 +502,17 @@ int number;
 }
 
 void
+playerbleed(xtime)
+long xtime;
+{
+	PlayerBleeds += xtime;
+	if (PlayerBleeds > 100) You("have a hemorrhage!");
+	else if (PlayerBleeds > 50) You("are bleeding profusely!");
+	else pline("You're bleeding!");
+	flags.botl = TRUE;
+}
+
+void
 make_confused(xtime,talk)
 long xtime;
 boolean talk;
@@ -1424,7 +1435,7 @@ badeffect()
 		}
 	}
 
-	switch (rnd(416)) {
+	switch (rnd(451)) {
 
 		case 1:
 		case 2:
@@ -2584,6 +2595,55 @@ badeffect()
 			nastytrapcurse();
 		break;
 
+		case 418:
+		case 419:
+		case 420:
+		case 421:
+		case 422:
+		case 423:
+		case 424:
+		case 425:
+		case 426:
+		case 427:
+			playerbleed(rnd(2 + (level_difficulty() * 2)));
+			break;
+
+		case 428:
+		case 429:
+		case 430:
+			shank_player();
+			break;
+
+		case 431:
+		case 432:
+		case 433:
+		case 434:
+		case 435:
+		case 436:
+		case 437:
+		case 438:
+		case 439:
+		case 440:
+		case 441:
+		case 442:
+		case 443:
+		case 444:
+		case 445:
+		case 446:
+		case 447:
+		case 448:
+		case 449:
+		case 450:
+			u.urexp -= ((level_difficulty() + 1) * 50);
+			if (u.urexp < 0) u.urexp = 0;
+			Your("score is drained!");
+
+			break;
+
+		case 451:
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(10)));
+			break;
+
 		default:
 		break;
 	}
@@ -2651,7 +2711,7 @@ reallybadeffect()
 		}
 	}
 
-	switch (rnd(88)) {
+	switch (rnd(92)) {
 
 		case 1:
 		if (Hallucination) You_feel("rather trippy.");
@@ -3481,6 +3541,25 @@ reallybadeffect()
 		case 88:
 			nastytrapcurse();
 		break;
+
+		case 89:
+			playerbleed(rnd(2 + (level_difficulty() * 2)));
+			break;
+
+		case 90:
+			shank_player();
+			break;
+
+		case 91:
+			u.urexp -= ((level_difficulty() + 1) * 50);
+			if (u.urexp < 0) u.urexp = 0;
+			Your("score is drained!");
+
+			break;
+
+		case 92:
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(10)));
+			break;
 
 		default:
 		break;
@@ -4662,6 +4741,352 @@ newbadheeltry:
 			impossible("bad_equipment_heel() made non-boot item");
 			return;
 		}
+
+	}
+
+}
+
+/* shanking: Unequip a random item that the player is wearing --Amy */
+void
+shank_player()
+{
+	int tryct = 0; /* roll repeatedly until we find something that can be removed */
+
+	/* this attack is supposed to be nasty, not helpful. So we'll make sure that cursed items don't come off. */
+newshank:
+	switch (rnd(13)) {
+		case 1:
+			if (uwep && !uwep->cursed) {
+				setnotworn(uwep);
+				Your("weapon is unequipped!");
+				if (uswapwep) {
+					uswapwepgone();
+					pline("And so is your secondary weapon, for that matter.");
+				}
+				return;
+			}
+			break;
+		case 2:
+			if (ublindf && !ublindf->cursed) {
+				remove_worn_item(ublindf, TRUE);
+				Your("blindfold or other tool is unequipped!");
+				return;
+			}
+			break;
+		case 3:
+			if (uright && !uright->cursed) {
+				remove_worn_item(uright, TRUE);
+				Your("right ring is unequipped!");
+				return;
+			}
+			break;
+		case 4:
+			if (uleft && !uleft->cursed) {
+				remove_worn_item(uleft, TRUE);
+				Your("left ring is unequipped!");
+				return;
+			}
+			break;
+		case 5:
+			if (uamul && !uamul->cursed) {
+				remove_worn_item(uamul, TRUE);
+				Your("amulet is unequipped!");
+				return;
+			}
+			break;
+		case 6:
+			if (uimplant && !uimplant->cursed) {
+				remove_worn_item(uimplant, TRUE);
+				Your("implant is unequipped!");
+				/* yes I know, this is an easy way to get rid of an unwanted implant --Amy */
+				return;
+			}
+			break;
+		case 7:
+			if (uarmf && !uarmf->cursed) {
+				remove_worn_item(uarmf, TRUE);
+				Your("pair of boots is unequipped!");
+				return;
+			}
+			break;
+		case 8:
+			if (uarmg && !uarmg->cursed) {
+				remove_worn_item(uarmg, TRUE);
+				Your("pair of gloves is unequipped!");
+				return;
+			}
+			break;
+		case 9:
+			if (uarmh && !uarmh->cursed) {
+				remove_worn_item(uarmh, TRUE);
+				Your("helmet is unequipped!");
+				return;
+			}
+			break;
+		case 10:
+			if (uarmc && !uarmc->cursed) {
+				remove_worn_item(uarmc, TRUE);
+				Your("cloak is unequipped!");
+				return;
+			}
+			break;
+		case 11:
+			if (uarms && !uarms->cursed) {
+				remove_worn_item(uarms, TRUE);
+				Your("shield is unequipped!");
+				return;
+			}
+			break;
+		case 12:
+			if (uarmu && !uarmu->cursed) {
+				remove_worn_item(uarmu, TRUE);
+				Your("shirt is unequipped!");
+				return;
+			}
+			break;
+		case 13:
+			if (uarm && !uarm->cursed) {
+				remove_worn_item(uarm, TRUE);
+				Your("suit is unequipped!");
+				return;
+			}
+			break;
+	}
+	if (tryct > 1000) return; /* we didn't find any eligible item */
+	tryct++;
+	goto newshank;
+}
+
+void
+terrainterror()
+{
+	int terrtype = randomwalltype();
+	int tryct = 0;
+
+	int chaosx, chaosy;
+	while (tryct < 20000) {
+		chaosx = rn1(COLNO-3,2);
+		chaosy = rn2(ROWNO);
+		if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+			levl[chaosx][chaosy].typ = terrtype;
+			tryct = 100000;
+		}
+		tryct++;
+	}
+
+	if (!rn2(20)) {
+		u.aggravation = 1;
+		if (!rn2(10)) u.heavyaggravation = 1;
+		if (!rn2(10)) HighlevelStatus += 1;
+		reset_rndmonst(NON_PM);
+
+		coord dd;
+		int cx,cy;
+		int randsp = rnd(5);
+		int monstercolor, randmnst, randmnsx, i;
+		struct permonst *randmonstforspawn;
+
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		if (!rn2(4)) {
+
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+
+			for (i = 0; i < randsp; i++) {
+
+			if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), cx, cy, MM_ADJACENTOK);
+			else
+		 	    (void) makemon((struct permonst *)0, cx, cy, MM_ADJACENTOK);
+
+			}
+
+		}
+
+		else if (!rn2(3)) {
+
+			randmonstforspawn = rndmonst();
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(randmonstforspawn, cx, cy, MM_ADJACENTOK);
+			}
+
+		}
+
+		else if (!rn2(2)) {
+
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+		}
+
+		else {
+
+			monstercolor = rnd(371);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+		}
+
+		u.aggravation = 0;
+		u.heavyaggravation = 0;
 
 	}
 
@@ -6884,6 +7309,13 @@ healup(nhp, nxtra, curesick, cureblind)
 			if(u.uhp > u.uhpmax) u.uhp = (u.uhpmax += nxtra);
 			else if (!rn2(2)) u.uhpmax += nxtra;
 		}
+
+		if (PlayerBleeds) {
+			PlayerBleeds -= nhp;
+			if (PlayerBleeds < 0) PlayerBleeds = 0; /* fail safe */
+			pline(PlayerBleeds ? "Your bleeding decreases." : "Your bleeding has stopped.");
+		}
+
 	}
 	if(cureblind)	make_blinded(0L,TRUE);
 	if(curesick)	make_sick(0L, (char *) 0, TRUE, SICK_ALL);

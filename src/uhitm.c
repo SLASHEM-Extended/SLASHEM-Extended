@@ -5127,6 +5127,15 @@ register struct attack *mattk;
 		    mdef->mfrozen = rnd(10);
 		}
 		break;
+	    case AD_BLEE:
+		if (tmp > 0) {
+			mdef->bleedout += tmp;
+			pline("%s sustains a cut.", Monnam(mdef));
+		}
+		break;
+	    case AD_TERR:
+		terrainterror();
+		break;
 	    case AD_SLEE:
 		if (mattk->aatyp == AT_GAZE && mon_reflects(mdef, (char *)0)) {
 		    tmp = 0;
@@ -5919,6 +5928,17 @@ register struct attack *mattk;
 				Monnam(mdef));
 		    mdef->mconf++;
 		}
+		break;
+
+	    case AD_BLEE:
+		if (tmp > 0) {
+			mdef->bleedout += tmp;
+			pline("%s is hit by debris and loses a lot of %s!", Monnam(mdef), mbodypart(mdef, BLOOD));
+		}
+		goto common;
+
+	    case AD_TERR:
+		terrainterror();
 		break;
 
 	    case AD_PLYS:
@@ -7552,6 +7572,53 @@ boolean ranged;
 	  case AD_BADE:
 
 		badeffect();
+
+		break;
+
+	  case AD_RBAD:
+
+		reallybadeffect();
+
+		break;
+
+	    case AD_BLEE:
+
+		if (tmp > 0) playerbleed(tmp);
+
+		break;
+
+	    case AD_SHAN:
+
+		shank_player();
+
+		break;
+
+	    case AD_SCOR:
+
+		u.urexp -= (tmp * 50);
+		if (u.urexp < 0) u.urexp = 0;
+		Your("score is drained!");
+
+		break;
+
+	    case AD_TERR:
+
+		terrainterror();
+
+		break;
+
+	    case AD_FEMI:
+
+		randomfeminismtrap(rnz( (tmp + 2) * rnd(10)));
+
+		break;
+
+	    case AD_LEVI:
+
+		You("float up, against an obstacle! Ouch!");
+		HLevitation &= ~I_SPECIAL;
+		incr_itimeout(&HLevitation, tmp);
+		mdamageu(mon, tmp);
 
 		break;
 

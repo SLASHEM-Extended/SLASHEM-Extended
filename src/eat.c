@@ -3535,6 +3535,9 @@ register int pm;
 		if (dmgtype(ptr, AD_BADE) ) {
 			badeffect();
 		}
+		if (dmgtype(ptr, AD_RBAD) ) {
+			reallybadeffect();
+		}
 
 	/* Eating contaminating monsters increases your contamination --Amy */
 		if (dmgtype(ptr, AD_CONT) ) {
@@ -6062,6 +6065,13 @@ struct obj *otmp;
 
 	if (dmgtype(&mons[mnum], AD_BADE)) {
 		sprintf(buf, "%s like %s could be bad for you! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (dmgtype(&mons[mnum], AD_RBAD)) {
+		sprintf(buf, "%s like %s could be really bad for you! %s",
 			foodsmell, it_or_they, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
 		else return 2;

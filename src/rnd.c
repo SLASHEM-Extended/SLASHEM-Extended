@@ -3450,6 +3450,102 @@ getnastytrapintrinsic()
 }
 
 void
+randomfeminismtrap(duration)
+int duration;
+{
+	switch (rnd(22)) {
+		case 1:
+			pline("You can already imagine the farting noises you're gonna hear.");
+			FemaleTrapSarah += duration;
+			break;
+		case 2:
+			pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
+			FemaleTrapClaudia += duration;
+			break;
+		case 3:
+			pline("You'll certainly like to listen to the disgusting toilet noises.");
+			FemaleTrapLudgera += duration;
+			break;
+		case 4:
+			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
+			FemaleTrapKati += duration;
+			break;
+		case 5:
+			pline("All the girls want to use their sexy butt cheeks as weapons now!");
+			FemaleTrapMeltem += duration;
+			break;
+		case 6:
+			pline("Now, the dungeon will be more feminine for a while!");
+			FemaleTrapFemmy += duration;
+			break;
+		case 7:
+			pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
+			FemaleTrapMadeleine += duration;
+			break;
+		case 8:
+			pline("Green is the new favorite color, it seems!");
+			FemaleTrapMarlena += duration;
+			break;
+		case 9:
+			pline("Suddenly, you feel that you're going to step into a heap of shit.");
+			FemaleTrapAnastasia += duration;
+			break;
+		case 10:
+			pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
+			FemaleTrapJessica += duration;
+			break;
+		case 11:
+			pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
+			FemaleTrapSolvejg += duration;
+			break;
+		case 12:
+			pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
+			FemaleTrapWendy += duration;
+			break;
+		case 13:
+			pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
+			FemaleTrapKatharina += duration;
+			break;
+		case 14:
+			pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
+			FemaleTrapElena += duration;
+			break;
+		case 15:
+			pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
+			FemaleTrapThai += duration;
+			break;
+		case 16:
+			pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
+			FemaleTrapElif += duration;
+			break;
+		case 17:
+			pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
+			FemaleTrapNadja += duration;
+			break;
+		case 18:
+			pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
+			FemaleTrapSandra += duration;
+			break;
+		case 19:
+			pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+			FemaleTrapNatalje += duration;
+			break;
+		case 20:
+			pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+			FemaleTrapJeanetta += duration;
+			break;
+		case 21:
+			pline("You feel that people are building toilets for you to use.");
+			FemaleTrapYvonne += duration;
+			break;
+		case 22:
+			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
+			FemaleTrapMaurah += duration;
+			break;
+	}
+}
+
+void
 randomnastytrapeffect(duration, blackngvar)
 int duration, blackngvar;
 {

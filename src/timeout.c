@@ -2541,6 +2541,8 @@ nh_timeout()
 		case PLAYERBLEEDING:
 			if (!PlayerBleeds)
 				pline("Your bleeding stops.");
+			stop_occupation();
+			flags.botl = TRUE;
 			break;
 		case BLACK_NG_WALLS:
 

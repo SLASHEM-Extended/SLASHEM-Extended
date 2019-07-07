@@ -2231,6 +2231,7 @@ E boolean powerfulimplants(void);
 
 E void set_itimeout(long *,long);
 E void incr_itimeout(long *,int);
+E void playerbleed(long);
 E void make_confused(long,BOOLEAN_P);
 E void make_stunned(long,BOOLEAN_P);
 E void make_numbed(long,BOOLEAN_P);
@@ -2270,6 +2271,8 @@ E void bad_equipment_heel(void);
 E void increasesanity(int);
 E void statdrain(void);
 E void nastytrapcurse(void);
+E void shank_player(void);
+E void terrainterror(void);
 
 E boolean is_musable(struct obj *);
 E boolean ismusablenumber(int);
@@ -2490,6 +2493,7 @@ E void randomnastytrapeffect(int, int);
 E int randomgoodskill(void);
 E int randomgoodcombatskill(void);
 E void getnastytrapintrinsic(void);
+E void randomfeminismtrap(int);
 
 /* ### role.c ### */
 

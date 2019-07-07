@@ -4541,8 +4541,58 @@ physical:
 		}
 		break;
 
+	    case AD_BLEE:
+		if (tmp > 0) {
+			mdef->bleedout += tmp;
+			if (vis) pline("%s sustains a cut.", Monnam(mdef));
+		}
+		break;
+
+	    case AD_SHAN:
+		if (mdef->mtame) {
+			if (!rn2(3)) badpeteffect(mdef);
+			if (!rn2(3)) {
+				if (mdef->mhpmax > 1) mdef->mhpmax--;
+				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			}
+		}
+		break;
+
+	    case AD_SCOR:
+		if (mdef->mtame && !rn2(8)) {
+			if (mdef->mhpmax > 1) mdef->mhpmax--;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+		}
+		break;
+
+	    case AD_TERR:
+		terrainterror();
+		break;
+
+	    case AD_FEMI:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+			badpeteffect(mdef);
+		}
+		break;
+
+	    case AD_LEVI:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+		}
+		break;
+
 	    case AD_BADE:
 		if (mdef->mtame) {
+			badpeteffect(mdef);
+		}
+		break;
+
+	    case AD_RBAD:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+			badpeteffect(mdef);
 			badpeteffect(mdef);
 		}
 		break;
@@ -7334,6 +7384,56 @@ int attnumber;
 		break;
 
 	    case AD_BADE:
+		if (magr->mtame) {
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_RBAD:
+		if (magr->mtame) {
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_BLEE:
+		if (tmp > 0) {
+			magr->bleedout += tmp;
+			if (vis) pline("%s is struck by several thorns.", Monnam(magr));
+		}
+		break;
+
+	    case AD_SHAN:
+		if (magr->mtame) {
+			if (!rn2(3)) badpeteffect(magr);
+			if (!rn2(3)) {
+				if (magr->mhpmax > 1) magr->mhpmax--;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			}
+		}
+		break;
+
+	    case AD_SCOR:
+		if (magr->mtame && !rn2(8)) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+		}
+		break;
+
+	    case AD_TERR:
+		terrainterror();
+		break;
+
+	    case AD_FEMI:
+		if (magr->mtame) {
+			badpeteffect(magr);
+			badpeteffect(magr);
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_LEVI:
 		if (magr->mtame) {
 			badpeteffect(magr);
 		}

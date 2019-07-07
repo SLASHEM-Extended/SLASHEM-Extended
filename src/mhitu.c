@@ -5965,6 +5965,60 @@ hitmu(mtmp, mattk)
 
 		break;
 
+	    case AD_BLEE:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (dmg > 0) playerbleed(dmg);
+
+		break;
+
+	    case AD_SHAN:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		shank_player();
+
+		break;
+
+	    case AD_SCOR:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		u.urexp -= (dmg * 50);
+		if (u.urexp < 0) u.urexp = 0;
+		Your("score is drained!");
+
+		break;
+
+	    case AD_TERR:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		terrainterror();
+
+		break;
+
+	    case AD_FEMI:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		randomfeminismtrap(rnz( (dmg + 2) * rnd(10)));
+
+		break;
+
+	    case AD_LEVI:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		You("float up!");
+		HLevitation &= ~I_SPECIAL;
+		incr_itimeout(&HLevitation, dmg);
+
+		break;
+
+	    case AD_RBAD:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		reallybadeffect();
+
+		break;
+
 	    case AD_FUMB:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -9667,6 +9721,53 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			badeffect();
 
 			break;
+
+	      case AD_RBAD:
+			pline("Oh no, something really bad happens!");
+
+			reallybadeffect();
+
+			break;
+
+		case AD_BLEE:
+
+			pline("It rips into your body!");
+			if (tmp > 0) playerbleed(tmp);
+
+			break;
+
+		case AD_SHAN:
+
+			You("have trouble keeping your clothes on!");
+			shank_player();
+
+		break;
+
+		case AD_SCOR:
+
+			u.urexp -= (tmp * 50);
+			if (u.urexp < 0) u.urexp = 0;
+			Your("score is drained!");
+
+		break;
+
+		case AD_TERR:
+			terrainterror();
+		break;
+
+		case AD_FEMI:
+
+			pline("It feels very feminine in here!");
+			randomfeminismtrap(rnz( (tmp + 2) * rnd(10)));
+
+		break;
+
+		case AD_LEVI:
+			You("float up!");
+			HLevitation &= ~I_SPECIAL;
+			incr_itimeout(&HLevitation, tmp);
+
+		break;
 
 	      case AD_FUMB:
 			pline("Mary-Sue alert!");
@@ -13570,6 +13671,48 @@ common:
 
 		badeffect();
 		mdamageu(mtmp, tmp);
+
+		break;
+
+	    case AD_RBAD:
+
+		reallybadeffect();
+		mdamageu(mtmp, tmp);
+
+		break;
+
+	    case AD_BLEE:
+		if (tmp > 0) playerbleed(tmp);
+		mdamageu(mtmp, tmp);
+
+		break;
+
+	    case AD_SHAN:
+		shank_player();
+
+		break;
+
+	    case AD_SCOR:
+		u.urexp -= (tmp * 50);
+		if (u.urexp < 0) u.urexp = 0;
+		Your("score is drained!");
+
+		break;
+
+	    case AD_TERR:
+		terrainterror();
+
+		break;
+
+	    case AD_FEMI:
+		randomfeminismtrap(rnz( (tmp + 2) * rnd(10)));
+
+		break;
+
+	    case AD_LEVI:
+		You("float up!");
+		HLevitation &= ~I_SPECIAL;
+		incr_itimeout(&HLevitation, tmp);
 
 		break;
 
@@ -17825,6 +17968,74 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		break;
 
+	    case AD_RBAD:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(15))) {
+                pline("%s hexes you!", Monnam(mtmp));
+
+			reallybadeffect();
+
+		}
+
+		break;
+
+	    case AD_BLEE:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(4))) {
+                pline("%s points at you, incanting terribly!", Monnam(mtmp));
+
+			if (dmgplus > 0) playerbleed(dmgplus);
+		}
+
+		break;
+
+	    case AD_SHAN:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(12))) {
+                pline("%s commands you to take your clothes off!", Monnam(mtmp));
+			shank_player();
+		}
+
+		break;
+
+	    case AD_SCOR:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(3))) {
+                pline("%s deducts some of your points...", Monnam(mtmp));
+			u.urexp -= (dmgplus * 50);
+			if (u.urexp < 0) u.urexp = 0;
+			Your("score is drained!");
+		}
+
+		break;
+
+	    case AD_TERR:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(20))) {
+                pline("%s casts chaos terrain!", Monnam(mtmp));
+			terrainterror();
+		}
+
+		break;
+
+	    case AD_FEMI:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(20))) {
+                pline("%s gazes at you in a very female way!", Monnam(mtmp));
+			randomfeminismtrap(rnz( (dmgplus + 2) * rnd(10)));
+		}
+
+		break;
+
+	    case AD_LEVI:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(7))) {
+                pline("%s elevates you!", Monnam(mtmp));
+			You("float up!");
+			HLevitation &= ~I_SPECIAL;
+			incr_itimeout(&HLevitation, dmgplus);
+		}
+
+		break;
+
 	    case AD_FUMB:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                 pline("%s's gaze causes you to fumble!", Monnam(mtmp));
@@ -20104,6 +20315,19 @@ register struct attack *mattk;
 
 		}
 
+		break;
+
+	    case AD_BLEE:
+
+		if (tmp > 0) {
+			mtmp->bleedout += tmp;
+			pline("%s is struck by several thorns.", Monnam(mtmp));
+		}
+		break;
+
+	    case AD_TERR:
+
+		terrainterror();
 		break;
 
 	    case AD_CONT:
