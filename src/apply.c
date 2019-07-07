@@ -1925,6 +1925,7 @@ register struct obj *obj;
 	 */
 	if (obj->spe <= 0) {
 		You(Hallucination ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
 	}
 	if (!(corpse = getobj((const char *)tinnables, "tin"))) return;
@@ -2054,6 +2055,7 @@ register struct obj *obj;
 	 */
 	if (obj->spe <= 0) {
 		You(Hallucination ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
 	}
 	if (!(corpse = getobj((const char *)tinnables, "tin"))) return;
@@ -2729,6 +2731,8 @@ struct obj *obj;
 		pline("%s empty.", Tobjnam(obj, "are"));
 	    else
 		pline("%s to be empty.", Tobjnam(obj, "seem"));
+
+	    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 	update_inventory();
 }
