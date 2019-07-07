@@ -3865,9 +3865,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    } else
 	    pline("It smells like %s%s.", (which == 2) ? "the " : "", what);
 
-	    getlin ("Eat it? [yes/no]",buf);
+	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
 	    	/* ALI - you know the tin iff you recognized the contents */
 		if (mvitals[tin.tin->corpsenm].eaten)
 		if (!Hallucination) tin.tin->dknown = tin.tin->known = TRUE;
@@ -3987,9 +3987,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    else
 		pline(Hallucination ? "It contains potato tack or something like that." : "It contains spinach.");
 
-	    getlin ("Eat it? [yes/no]",buf);
+	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -4014,9 +4014,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    else
 		pline(Hallucination ? "It contains french fries." : "It contains beans.");
 
-	    getlin ("Eat it? [yes/no]",buf);
+	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -4057,9 +4057,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    else
 		pline(Hallucination ? "It contains mangos." : "It contains peaches.");
 
-	    getlin ("Eat it? [yes/no]",buf);
+	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -4087,9 +4087,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    else
 		pline(Hallucination ? "It contains submarines and tadpoles." : "It contains fish.");
 
-	    getlin ("Eat it? [yes/no]",buf);
+	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
-	    if (strcmp (buf, "yes")) {
+	    if (strcmp (buf, "yes") && strcmp (buf, "y")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -5881,9 +5881,9 @@ register struct obj *otmp;
 
 		}
 
-		getlin ("Read the fortune? [yes/no]",buf);
+		getlin ("Read the fortune? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!strcmp (buf, "yes")) {
+		if (!strcmp (buf, "yes") || !strcmp (buf, "y")) {
 
 			/* reading it might influence your luck --Amy */
 
@@ -5956,9 +5956,9 @@ register struct obj *otmp;
 
 	if (!rn2(25)) { /* more random fortunes --Amy */
 
-		getlin ("Somehow, a strip of paper appeared in your food! Read it? [yes/no]",buf);
+		getlin ("Somehow, a strip of paper appeared in your food! Read it? [y/yes/no]",buf);
 		(void) lcase (buf);
-		if (!strcmp (buf, "yes")) {
+		if (!strcmp (buf, "yes") || !strcmp (buf, "y")) {
 
 		/* reading it will influence the player's luck --Amy */
 

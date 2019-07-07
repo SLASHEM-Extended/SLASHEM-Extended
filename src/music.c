@@ -687,11 +687,11 @@ struct obj *instr;
     if (instr->otyp != LEATHER_DRUM && instr->otyp != DRUM_OF_EARTHQUAKE) {
 
 		usebufx = TRUE;
-		getlin ("Improvise? [yes/no]",bufX);
+		getlin ("Improvise? [y/yes/no]",bufX);
 		(void) lcase (bufX);
 
     }
-    if (usebufx && strcmp(bufX, "yes")) {
+    if (usebufx && strcmp(bufX, "yes") && strcmp(bufX, "y")) {
 	if (u.uevent.uheard_tune == 2 && yn("Play the passtune?") == 'y') {
 	    strcpy(buf, tune);
 	} else {

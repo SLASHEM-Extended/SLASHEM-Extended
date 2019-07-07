@@ -3092,9 +3092,9 @@ fukrosionchoice:
 			if (spellid(0) != NO_SPELL)  {
 				int numspells;
 
-				getlin ("You may use inertia control to choose a spell of your choice, which will automatically be cast every turn. Do it? [yes/no]",buf);
+				getlin ("You may use inertia control to choose a spell of your choice, which will automatically be cast every turn. Do it? [y/yes/no]",buf);
 				(void) lcase (buf);
-				if (!(strcmp (buf, "yes"))) {
+				if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
 
 					for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
 						if (spellid(numspells) == SPE_INERTIA_CONTROL) continue;
@@ -5329,9 +5329,9 @@ newbossL:
 		if (!(In_endgame(&u.uz)) && !rn2(10000)) {
 
 			pline("Suddenly, a void jumpgate appears.");
-			getlin ("Do you want to enter the jumpgate and be teleported to a random location on this level? [yes/no]",buf);
+			getlin ("Do you want to enter the jumpgate and be teleported to a random location on this level? [y/yes/no]",buf);
 			(void) lcase (buf);
-			if (!(strcmp (buf, "yes"))) {
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
 				pline("Brrrr... it's deathly cold.");
 			      (void) safe_teleds(FALSE);
 			}
