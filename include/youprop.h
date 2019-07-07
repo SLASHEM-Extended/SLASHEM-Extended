@@ -327,6 +327,7 @@
 /* added possibility of playing the entire game blind --Amy*/
 #define HeavyBlind		u.uprops[HEAVY_BLIND].intrinsic
 
+#define PlayerBleeds			u.uprops[PLAYERBLEEDING].intrinsic
 #define Sick			u.uprops[SICK].intrinsic
 #define Stoned			u.uprops[STONED].intrinsic
 #define Strangled		u.uprops[STRANGLED].intrinsic

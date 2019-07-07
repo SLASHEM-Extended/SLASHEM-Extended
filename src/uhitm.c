@@ -7486,6 +7486,10 @@ boolean ranged;
 		atttypC = randomdamageattack();
 	}
 
+	if (atttypC == AD_ILLU) {
+		atttypC = randomillusionattack();
+	}
+
 	if (atttypC == AD_THIE) {
 		atttypC = randomthievingattack();
 	}

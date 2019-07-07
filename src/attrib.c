@@ -2239,6 +2239,9 @@ int x;
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
 
+		if (PlayerBleeds > 50) tmp--;
+		if (PlayerBleeds > 100) tmp -= 2;
+
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
@@ -2318,6 +2321,9 @@ int x;
 		if (have_lowstatstone()) tmp -= 10;
 		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
 
+		/* having a hemorrhage means you don't look so good... --Amy */
+		if (PlayerBleeds > 100) tmp--;
+
 		if (PlayerInHighHeels && !(PlayerCannotUseSkills)) {
 
 			switch (P_SKILL(P_HIGH_HEELS)) {
@@ -2388,6 +2394,7 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+		if (PlayerBleeds > 100) tmp -= 2;
 
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 	} else if (x == A_DEX) {
@@ -2412,6 +2419,7 @@ int x;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 10;
 
 		if (FemaleTrapThai) tmp -= 2;
+		if (PlayerBleeds > 100) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
 		if (AllStatsAreLower) tmp -= 10;
@@ -2448,6 +2456,8 @@ int x;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 
 		if (FemaleTrapJessica) tmp -= 5;
+		if (PlayerBleeds > 50) tmp--;
+		if (PlayerBleeds > 100) tmp -= 2;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;

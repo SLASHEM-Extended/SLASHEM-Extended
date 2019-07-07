@@ -1379,6 +1379,44 @@ meleeattack:
 
 	}
 
+	if (magr->egotype_badowner ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_RBAD;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_bleeder ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BLEE;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->egotype_sludgepuddle ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -1518,6 +1556,44 @@ meleeattack:
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
 		a->adtyp = AD_AMNE;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_shanker ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SHAN;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_terrorizer ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_TERR;
 		a->damn = 1;
 		a->damd = 1;
 
@@ -1683,12 +1759,69 @@ meleeattack:
 
 	}
 
+	if (magr->egotype_feminizer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_FEMI;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->egotype_destructor) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
 		a->adtyp = AD_DEST;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_levitator) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_LEVI;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
+	if (magr->egotype_illusionator) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_ILLU;
 		a->damn = 2;
 		a->damd = (1 + (magr->m_lev));
 
@@ -3528,6 +3661,10 @@ mdamagem(magr, mdef, mattk)
 
 		if (atttyp == AD_DAMA) {
 			atttyp = randomdamageattack();
+		}
+
+		if (atttyp == AD_ILLU) {
+			atttyp = randomillusionattack();
 		}
 
 		if (atttyp == AD_THIE) {
@@ -5927,6 +6064,10 @@ int attnumber;
 
 		if (atttypB == AD_DAMA) {
 			atttypB = randomdamageattack();
+		}
+
+		if (atttypB == AD_ILLU) {
+			atttypB = randomillusionattack();
 		}
 
 		if (atttypB == AD_THIE) {

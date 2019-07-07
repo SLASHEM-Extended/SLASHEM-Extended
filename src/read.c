@@ -5566,7 +5566,7 @@ proofarmorchoice:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(363);
+			monstercolor = rnd(371);
 		}
 
 		while(cnt--) {

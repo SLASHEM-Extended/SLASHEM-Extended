@@ -1046,6 +1046,7 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob("Glib",    IsGlib);
     statprob("Legs",    Wounded_legs);
     statprob("Choke",    Strangled);
+    statprob("Bleed",    PlayerBleeds);
     statprob("Vomit",    Vomiting);
     statprob("Elbereth",    sengr_at("Elbereth", u.ux, u.uy));
     statprob("Fear",    Feared && !Race_if(PM_TUMBLRER));

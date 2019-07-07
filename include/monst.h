@@ -352,6 +352,14 @@ struct monst {
 
 	Bitfield(egotype_laserpwnzor,1); /* ultra-mega-hyper-dyper laser cannon */
 
+	Bitfield(egotype_badowner,1); /* AD_RBAD */
+	Bitfield(egotype_bleeder,1); /* AD_BLEE */
+	Bitfield(egotype_shanker,1); /* AD_SHAN */
+	Bitfield(egotype_terrorizer,1); /* AD_TERR */
+	Bitfield(egotype_feminizer,1); /* AD_FEMI */
+	Bitfield(egotype_levitator,1); /* AD_LEVI */
+	Bitfield(egotype_illusionator,1); /* AD_ILLU */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

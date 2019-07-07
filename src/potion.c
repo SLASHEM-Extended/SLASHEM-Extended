@@ -2591,6 +2591,904 @@ badeffect()
 }
 
 void
+reallybadeffect()
+
+{
+
+	struct obj *otmp;
+	int nastytrapdur;
+	int blackngdur;
+
+/*	if (uarm && objects[(uarm)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka armor, you averted misfortune!");
+		return;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka footwear, you averted misfortune!");
+		return;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka gloves, you averted misfortune!");
+		return;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka helmet, you averted misfortune!");
+		return;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka shield, you averted misfortune!");
+		return;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka cloak, you averted misfortune!");
+		return;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == INKA && !rn2(10)) {
+		pline("Thanks to your inka shirt, you averted misfortune!");
+		return;
+	}
+	if (uwep && uwep->oartifact == ART_LUCK_VERSUS_BAD && !rn2(2)) {
+		pline("Thanks to your inka sling, you averted misfortune!");
+		return;
+	}*/
+
+	if (!(PlayerCannotUseSkills)) {
+		int shiichochance = 0;
+		switch (P_SKILL(P_SHII_CHO)) {
+
+			case P_BASIC:	shiichochance =  1; break;
+			case P_SKILLED:	shiichochance =  2; break;
+			case P_EXPERT:	shiichochance =  3; break;
+			case P_MASTER:	shiichochance =  4; break;
+			case P_GRAND_MASTER:	shiichochance =  5; break;
+			case P_SUPREME_MASTER:	shiichochance =  6; break;
+			default: shiichochance += 0; break;
+		}
+
+		if (shiichochance > rn2(100)) {
+			/* avoid bad effect --Amy */
+			return;
+		}
+	}
+
+	switch (rnd(88)) {
+
+		case 1:
+		if (Hallucination) You_feel("rather trippy.");
+		else You_feel("rather %s.", body_part(LIGHT_HEADED));
+		make_confused(HConfusion + rnz(50),FALSE);
+		break;
+
+		case 2:
+		if (Hallucination) You_feel("uncontrollable.");
+		else You_feel("stunned.");
+		make_stunned(HStun + rnz(50),FALSE);
+		break;
+
+		case 3:
+		if (Hallucination) You_feel("even weirder!");
+		else You_feel("weirded out!");
+		make_hallucinated(HHallucination + rnz(100),FALSE,0L);
+		break;
+
+		case 4:
+		if (!Blind) pline("Everything suddenly goes dark.");
+		make_blinded(Blinded+rnz(100),FALSE);
+		if (!Blind) Your("%s", vision_clears);
+		break;
+
+		case 5:
+		if (Hallucination) You_feel("like your body is trying to fall asleep!");
+		else You_feel("numb.");
+		make_numbed(HNumbed + rnz(150),FALSE);
+		break;
+
+		case 6:
+		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
+		else pline("You're getting the chills.");
+		make_frozen(HFrozen + rnz(150),FALSE);
+		break;
+
+		case 7:
+		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
+		else pline("Your hands start trembling violently!");
+		incr_itimeout(&Glib, rnz(50) );
+		break;
+
+		case 8:
+		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
+		else You_feel("like you're going to throw up.");
+	      make_vomiting(Vomiting+20, TRUE);
+		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		break;
+
+		case 9:
+		pline("The world spins and goes dark.");
+		flags.soundok = 0;
+		nomul(-rnd(10), "helplessly knocked out", TRUE);
+		nomovemsg = "You are conscious again.";
+		afternmv = Hear_again;
+		break;
+
+		case 10:
+	    make_sick(rn1(25,25), "spreading food poisoning", TRUE, SICK_VOMITABLE);
+		break;
+
+		case 11:
+		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+			You("don't feel very well.");
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+		    flags.botl = 1;
+			stop_occupation();
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "summoned slime";
+		}
+		break;
+
+		case 12:
+
+		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
+		You_feel("burdened");
+		otmp->quan = 1;
+		otmp->owt = weight(otmp);
+		if (pickup_object(otmp, 1, FALSE, TRUE) <= 0) {
+		obj_extract_self(otmp);
+		place_object(otmp, u.ux, u.uy);
+		newsym(u.ux, u.uy); }
+		}
+
+		break;
+
+		case 13:
+		pline("You float up!");
+		HLevitation &= ~I_SPECIAL;
+		incr_itimeout(&HLevitation, rnz(50));
+
+		break;
+
+		case 14:
+		create_critters(rnz(10), (struct permonst *)0);
+		break;
+
+		case 15:
+		{coord mm;
+		mm.x = u.ux;
+		mm.y = u.uy;
+		pline("Undead creatures are called forth from the grave!");   
+		mkundead(&mm, FALSE, 0, FALSE);
+		}
+		break;
+
+		case 16:
+		You_feel("that monsters are aware of your presence.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+		aggravate();
+
+		break;
+
+		case 17:
+		You_feel("as if you need some help.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		rndcurse();
+
+		break;
+
+		case 18:
+			{register struct obj *obj;
+
+			pline("Urgh! You feel a malevolent presence!");
+			for(obj = invent; obj ; obj = obj->nobj)
+				if (!rn2(5) && !stack_too_big(obj))	curse(obj);
+			}
+		break;
+
+		case 19:
+			if (!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) {
+				struct obj *otmp2;
+
+				otmp2 = some_armor(&youmonst);
+
+				if (otmp2 && otmp2->blessed && rn2(5)) pline("Your body shakes violently!");
+				else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
+				else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
+				else if (otmp2 && otmp2->greased) {
+					pline("Your body shakes violently!");
+					 if (!rn2(2) || (isfriday && !rn2(2))) {
+						pline_The("grease wears off.");
+						otmp2->greased -= 1;
+						update_inventory();
+					 }
+				}
+
+				else if (!otmp2) pline("Your skin itches.");
+			      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+
+			}
+
+		break;
+
+		case 20:
+		u.ugangr++;
+		if (!rn2(5)) u.ugangr++;
+		if (!rn2(25)) u.ugangr++;
+		prayer_done();
+
+		break;
+
+		case 21:
+			if (!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) {
+			    You("suddenly feel weaker!");
+			    losestr(rnz(4), TRUE);
+			    if (u.uhp < 1) {
+				u.youaredead = 1;
+				u.uhp = 0;
+				killer_format = KILLED_BY;
+				killer = "a fatally low strength";
+				done(DIED);
+				u.youaredead = 0;
+
+				}
+			}
+
+		break;
+
+		case 22:
+		if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+		}
+		if (Burned) make_burned(0L, TRUE);
+
+		break;
+
+		case 23:
+
+		withering_damage(invent, FALSE, FALSE);
+
+		break;
+
+		case 24:
+		if (!Stoned && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+			if (Hallucination && rn2(10)) pline("You are already stoned.");
+			else {
+				You("start turning to stone!");
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				stop_occupation();
+				delayed_killer = "bad petrification effect";
+			}
+		}
+
+		break;
+
+		case 25:
+		{
+		int aligntype;
+		aligntype = rn2((int)A_LAWFUL+2) - 1;
+		 pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+		summon_minion(aligntype, TRUE);
+		}
+		break;
+
+		case 26:
+	      attrcurse();
+
+		break;
+
+		case 27:
+		pline("It gets dark!");
+	    do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
+		15, set_litI, (void *)((char *)0));
+
+		break;
+
+		case 28:
+		{	int rtrap;
+		    int i, j, bd;
+			bd = 1;
+			if (!rn2(5)) bd += rnz(1);
+
+		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+				if (t_at(u.ux + i, u.uy + j)) continue;
+
+			      rtrap = randomtrap();
+				if (!rn2(20)) makerandomtrap();
+
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+			}
+			makerandomtrap();
+			if (!rn2(3)) makerandomtrap();
+		}
+		break;
+
+		case 29:
+	      You_feel("yanked in a new direction!");
+		(void) safe_teleds(FALSE);
+
+		break;
+
+		case 30:
+		pline("You lose  Mana");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
+		drain_en(rnz(monster_difficulty() + 1) );
+		break;
+
+		case 31:
+	      You_feel("out of luck!");
+			change_luck(-1);
+			if (!rn2(10)) change_luck(-5);
+			adjalign(-10);
+			if (!rn2(10)) adjalign(-50);
+
+		break;
+
+		case 32:
+		punishx();
+		break;
+
+		case 33:
+		{int copcnt;
+		copcnt = rnd(monster_difficulty() ) + 1;
+		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
+		if (rn2(5)) copcnt /= 2;
+		if (!rn2(5)) copcnt /= 2; /* don't make too many */
+		if (!rn2(10)) copcnt /= 3;
+		if (copcnt < 1) copcnt = 1;
+	
+		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		if (RngeAntiGovernment) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+	      while(--copcnt >= 0) {
+			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
+
+			if (!rn2(500)) {
+
+				int koptryct = 0;
+				int kox, koy;
+
+				for (koptryct = 0; koptryct < 2000; koptryct++) {
+					kox = rn1(COLNO-3,2);
+					koy = rn2(ROWNO);
+
+					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
+						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						break;
+						}
+				}
+
+			}
+
+		} /* while */
+
+		u.aggravation = 0;
+
+		}
+		break;
+
+		case 34:
+			losexp((char *)0, TRUE, FALSE); 
+
+		break;
+
+		case 35:
+		    attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
+
+		break;
+
+		case 36:
+
+			pline(Hallucination ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
+			u.ublesscnt += rnz(ishaxor ? 150 : 300);
+
+		break;
+
+		case 37:
+		if (Hallucination) You_feel("totally hot! Oh yeah, baby!");
+		else pline("You're burning!");
+		make_burned(HBurned + rnz(150),FALSE);
+		break;
+
+		case 38:
+		if (Hallucination) You("panic! The alarm bells are ringing and you don't know how to get out!");
+		else You_feel("afraid.");
+		make_feared(HFeared + rnz(150),FALSE);
+		break;
+
+		case 39:
+			deacrandomintrinsic(rnz(200));
+			break;
+
+		case 40:
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+		break;
+
+		case 41:
+		    adjalign(-rnd(20));
+		    if (flags.soundok) You_hear("a slight rumbling...");
+		    if (PlayerHearsSoundEffects) pline(issoviet ? "Pomolis'! Vash bog, bezuslovno, pomozhet vam!" : "Wumm.");
+
+		break;
+
+		case 42:
+
+		    adjalign(-rnd(50));
+			u.ualign.sins++;
+			u.alignlim--;
+		    if (flags.soundok) You_hear("a thunderous rumbling!");
+		    if (PlayerHearsSoundEffects) pline(issoviet ? "Seychas ideal'noye vremya dlya molitvy! Vash bog super schastliv s toboy i, bezuslovno, vylechit' vse bolezni i predostavit' vam moshchnyy punkt!" : "Wummmmm! Wummmmm! Grummel!");
+
+		break;
+
+		case 43:
+
+			pline("You are engulfed in flames!");
+			(void) burnarmor(&youmonst);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
+
+		break;
+
+		case 44:
+		{	
+		      int bd = rnd(10);
+			if (!rn2(5)) bd += rnz(10);
+
+			while (bd-- >= 0) makerandomtrap();
+
+		}
+		break;
+
+		case 45:
+			pline("You fall asleep!");
+			fall_asleep(-rnd(15 + rnd((monster_difficulty() / 5) + 1) ), TRUE);
+
+		break;
+
+		case 46:
+
+			pline("You are hit by a needle!");
+		    poisoned("needle", rn2(6), "poison needle", 30);
+
+		break;
+
+		case 47:
+			u_slow_down();
+
+		break;
+
+		case 48:
+			pline("A laser beam hits you out of nowhere!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
+			losehp(monster_difficulty(),"laser beam out of nowhere",KILLED_BY_AN);
+
+		break;
+
+		case 49:
+			pline("Suddenly your %s hurts!", body_part(rn2(19) ) );
+			losehp(1 + u.chokhmahdamage + rnd(u.ualign.sins > 0 ? (isqrt(u.ualign.sins) + 1) : (1)),"escalating damage effect",KILLED_BY_AN);
+			u.chokhmahdamage++;
+
+		break;
+
+		case 50:
+			if (u.ugold) {
+				u.ugold -= (u.ugold / 5);
+				pline("Your purse feels lighter...");
+			}
+
+		break;
+
+		case 51:
+			if (!Unchanging && !Antimagic) {
+				You("undergo a freakish metamorphosis!");
+			      polyself(FALSE);
+			}
+
+		break;
+
+		case 52:
+			You("need reboot.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (!Race_if(PM_UNGENOMOLD)) newman();
+			else polyself(FALSE);
+		break;
+
+		case 53:
+			if (Hallucination)
+				pline("What a groovy feeling!");
+			else
+				You(Blind ? "%s and get dizzy..." :
+					 "%s and your vision blurs...",
+					    stagger(youmonst.data, "stagger"));
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			make_stunned(HStun + rn1(7,16) + monster_difficulty(), FALSE);
+			(void) make_hallucinated(HHallucination + rn1(7,16) + monster_difficulty(),TRUE,0L);
+
+		break;
+
+		case 54:
+			if(!Blind)
+				Your("vision bugged.");
+			(void) make_hallucinated(HHallucination + rn1(10, 25) + rn1(10, 25) + monster_difficulty() + monster_difficulty(),TRUE,0L);
+
+		break;
+
+		case 55:
+			if(!Blind)
+				Your("vision turns to screen saver.");
+			(void) make_hallucinated(HHallucination + rn1(10, 25) + monster_difficulty(),TRUE,0L);
+		break;
+
+		case 56:
+			{
+			    struct obj *objD = some_armor(&youmonst);
+
+			    if (objD && drain_item(objD)) {
+				Your("%s less effective.", aobjnam(objD, "seem"));
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			    }
+			}
+
+		break;
+
+		case 57:
+
+			if (!Disint_resistance || !rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
+				You_feel("like you're falling apart!");
+	
+				if (uarms) {
+				    /* destroy shield; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				    break;
+				} else if (uarmc) {
+				    /* destroy cloak; other possessions are safe */
+				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				    break;
+				} else if (uarm) {
+				    /* destroy suit */
+				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				    break;
+				} else if (uarmu) {
+				    /* destroy shirt */
+				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				    break;
+				} else {
+
+					if (u.uhpmax > 20) {
+						u.uhpmax -= rnd(20);
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+						losehp(rnz(100 + level_difficulty()), "a disintegration died", KILLED_BY);
+						break;
+					} else {
+						u.youaredead = 1;
+						done(DIED);
+						u.youaredead = 0;
+					}
+
+				}
+	
+			}
+
+		break;
+
+		case 58:
+
+			pline("Suddenly a lightning flash hits you!");
+		    destroy_item(RING_CLASS, AD_ELEC);
+		    destroy_item(WAND_CLASS, AD_ELEC);
+		    destroy_item(AMULET_CLASS, AD_ELEC);
+
+		break;
+
+		case 59:
+			pline("Suddenly it's freezing cold!");
+			destroy_item(POTION_CLASS, AD_COLD);
+
+		break;
+
+		case 60:
+
+			MCReduction += rnz(100 * (monster_difficulty() + 1));
+			pline("The magic cancellation granted by your armor seems weaker now...");
+
+		break;
+
+		case 61:
+
+		      u_slow_down();
+			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
+			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+
+		break;
+
+		case 62:
+
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
+		{
+		int dmg;
+		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
+		switch (rnd(10)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				You_feel("life has clocked back.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				switch (rnd(A_MAX)) {
+					case A_STR:
+						pline("You're not as strong as you used to be...");
+						ABASE(A_STR) -= 5;
+						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						break;
+					case A_DEX:
+						pline("You're not as agile as you used to be...");
+						ABASE(A_DEX) -= 5;
+						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						break;
+					case A_CON:
+						pline("You're not as hardy as you used to be...");
+						ABASE(A_CON) -= 5;
+						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						break;
+					case A_WIS:
+						pline("You're not as wise as you used to be...");
+						ABASE(A_WIS) -= 5;
+						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						break;
+					case A_INT:
+						pline("You're not as bright as you used to be...");
+						ABASE(A_INT) -= 5;
+						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						break;
+					case A_CHA:
+						pline("You're not as beautiful as you used to be...");
+						ABASE(A_CHA) -= 5;
+						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						break;
+				}
+				break;
+			case 10:
+				pline("You're not as powerful as you used to be...");
+				ABASE(A_STR)--;
+				ABASE(A_DEX)--;
+				ABASE(A_CON)--;
+				ABASE(A_WIS)--;
+				ABASE(A_INT)--;
+				ABASE(A_CHA)--;
+				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				break;
+		}
+		if (dmg) losehp(dmg, "being timed", KILLED_BY);
+		}
+
+		break;
+
+		case 63:
+
+			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+
+		break;
+
+		case 64:
+
+			forget(3);
+			{
+			if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
+				pline("Suddenly, your mind turns inward on itself!");
+			else 
+				pline("Suddenly, you are overwhelmed by a feeling that urges you to think of Maud.");
+			}
+			exercise(A_WIS, FALSE);
+
+		break;
+
+		case 65:
+			if (IncreasedGravity) pline("Your load feels even heavier!");
+			else pline("Your load feels heavier!");
+
+			IncreasedGravity += rnz(5 * (monster_difficulty() + 1));
+
+		break;
+
+		case 66:
+			if (Upolyd) u.mhmax--; /* lose one hit point */
+			else u.uhpmax--; /* lose one hit point */
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			pline("Your health has been drained!");
+
+		break;
+
+		case 67:
+			u.uenmax--; /* lose one mana point */
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Your mana has been drained!");
+
+		break;
+
+		case 68:
+
+		You_feel("bad!");
+			if (!rn2(20)) losehp(d(10,8), "a bad damage effect", KILLED_BY);
+			else if (!rn2(5)) losehp(d(6,8), "a bad damage effect", KILLED_BY);
+			else losehp(d(4,6), "a bad damage effect", KILLED_BY);
+		break;
+
+		case 69:
+		{    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+		case 70:
+
+			HFumbling = FROMOUTSIDE | rnd(5);
+			incr_itimeout(&HFumbling, rnd(20));
+			u.fumbleduration += rnz(1000);
+
+		break;
+
+		case 71:
+			You_feel("a hole in your %s!", body_part(STOMACH) );
+			morehungry(rnd(1000));
+
+		break;
+
+		case 72:
+
+			pushplayer();
+
+		break;
+
+		case 73:
+			if (!Antimagic || !rn2(StrongAntimagic ? 20 : 5)) {
+				struct obj *otmp2;
+
+				otmp2 = uwep;
+				if (otmp2 && stack_too_big(otmp2)) pline("Your fingers shake violently!");
+
+				else if (otmp2 && otmp2->blessed && rn2(5)) pline("Your fingers shake violently!");
+				else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your fingers shake violently!");
+				else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your fingers shake violently!");
+				else if (otmp2 && otmp2->greased) {
+					pline("Your fingers shake violently!");
+					 if (!rn2(2) || (isfriday && !rn2(2))) {
+						pline_The("grease wears off.");
+						otmp2->greased -= 1;
+						update_inventory();
+					 }
+				}
+
+				else if (!otmp2) pline("Your fingers itch.");
+			      else {
+					useupall(otmp2);
+					pline("Your weapon evaporates!");
+				}
+
+			}
+
+		break;
+
+		case 74:
+			if (!rn2(1000)) skillcaploss();
+
+		break;
+
+		case 75:
+			bad_artifact();
+		break;
+
+		case 76:
+		if (Hallucination) You_feel("totally bad! Your wife is going to abandon you...");
+		else pline("You're dimmed!");
+		make_dimmed(HDimmed + rnz(150),FALSE);
+		break;
+
+		case 77:
+			contaminate(rnd(10 + level_difficulty()), FALSE);
+		break;
+		case 78:
+			contaminate(rnz(100 + (level_difficulty() * 10)), FALSE);
+		break;
+
+		case 79:
+			You_feel("a painful sensation!");
+			losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful attack", KILLED_BY);
+		break;
+
+		case 80:
+			pline("Your %s are trembling!", makeplural(body_part(HAND)));
+			u.tremblingamount++;
+		break;
+
+		case 81:
+			techcapincrease((level_difficulty() + 1) * rnd(50));
+		break;
+
+		case 82:
+			spellmemoryloss(level_difficulty() + 1);
+		break;
+
+		case 83:
+			skilltrainingdecrease(level_difficulty() + 1);
+		break;
+
+		case 84:
+			statdrain();
+		break;
+
+		case 85:
+
+			bad_equipment(0);
+
+		break;
+
+		case 86:
+
+			bad_equipment_heel();
+
+		break;
+
+		case 87:
+
+			if (!rn2(64)) {
+				ragnarok(TRUE);
+				if (evilfriday) evilragnarok(TRUE, level_difficulty());
+			} else if (!rn2(evilfriday ? 100 : 10000)) {
+				pline("OH MY GOD the dungeon master rolled the jackpot. You're screwed.");
+				datadeleteattack();
+			}
+
+		break;
+
+		case 88:
+			nastytrapcurse();
+		break;
+
+		default:
+		break;
+	}
+
+}
+
+void
 statdrain()
 {
 	int statdrained = rn2(A_MAX);
@@ -3339,7 +4237,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(207)) {
+	switch (rnd(216)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -3556,6 +4454,15 @@ register struct monst *mtmp;
 			else mtmp->egotype_curser = 1;
 			break;
 		case 207: mtmp->egotype_sanitizer = 1; break;
+		case 208: mtmp->egotype_badowner = 1; break;
+		case 209:
+		case 210:
+		case 211: mtmp->egotype_bleeder = 1; break;
+		case 212: mtmp->egotype_shanker = 1; break;
+		case 213: mtmp->egotype_terrorizer = 1; break;
+		case 214: mtmp->egotype_feminizer = 1; break;
+		case 215: mtmp->egotype_levitator = 1; break;
+		case 216: mtmp->egotype_illusionator = 1; break;
 
 	}
 

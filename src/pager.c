@@ -3228,8 +3228,24 @@ get_description_of_damage_type(uchar id)
 			damageid = 144; break;
 		case AD_SANI:
 			damageid = 145; break;
-		case AD_ENDS:
+		case AD_RBAD:
 			damageid = 146; break;
+		case AD_BLEE:
+			damageid = 147; break;
+		case AD_SHAN:
+			damageid = 148; break;
+		case AD_SCOR:
+			damageid = 149; break;
+		case AD_TERR:
+			damageid = 150; break;
+		case AD_FEMI:
+			damageid = 151; break;
+		case AD_LEVI:
+			damageid = 152; break;
+		case AD_ILLU:
+			damageid = 153; break;
+		case AD_ENDS:
+			damageid = 154; break;
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -3239,7 +3255,7 @@ get_description_of_damage_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		damageid += u.pokeliedamagetype;
-		if (damageid > 146) damageid -= 146;
+		if (damageid > 154) damageid -= 154;
 	}
 
 	switch(damageid){
@@ -3396,7 +3412,16 @@ get_description_of_damage_type(uchar id)
 		case 144: return "nastycurse";
 		case 145: return "increase sanity";
 
-		case 146: return "placeholder attack";
+		case 146: return "really bad effect";
+		case 147: return "bleeding";
+		case 148: return "shanking";
+		case 149: return "score drain";
+		case 150: return "terrain terror";
+		case 151: return "feminism trap effect";
+		case 152: return "levitation";
+		case 153: return "illusion attack";
+
+		case 154: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";

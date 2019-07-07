@@ -909,6 +909,12 @@ bot2str(char *newbot2)
 #else
 		strcat(nb = eos(nb), flags.showlongstats ? " Choke" : " Chk");
 #endif
+	if (PlayerBleeds)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text(flags.showlongstats ? "Bleed" : "Bld", newbot2);
+#else
+		strcat(nb = eos(nb), flags.showlongstats ? " Bleed" : " Bld");
+#endif
 	if (Vomiting)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Vomit" : "Vmt", newbot2);

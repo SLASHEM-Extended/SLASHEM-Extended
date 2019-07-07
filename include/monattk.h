@@ -190,8 +190,17 @@
 #define AD_NACU		127	/* curse a random worn armor piece and replace its egotype with a nastytrap one */
 #define AD_SANI		128	/* increase sanity */
 
-#define AD_ENDS		129	/* placeholder */
+#define AD_RBAD		129	/* really bad effect - like regular bad effect, but all effects have the same chance */
+#define AD_BLEE		130	/* bleedout - target continuously loses health for a while */
+#define AD_SHAN		131	/* shanking - unequips player's items */
+#define AD_SCOR		132	/* drains player's score */
+#define AD_TERR		133	/* terrain terror - changes floor into other terrain and may sometimes summon monsters */
+#define AD_FEMI		134	/* feminism trap effect */
+#define AD_LEVI		135	/* levitation (always uncontrolled) */
 
+#define AD_ENDS		136	/* placeholder */
+
+#define AD_ILLU		229	/* illusion attack - random effect also seen in illusion rooms */
 #define AD_PART		230	/* specific regular attack (rolled at game start) */
 #define AD_RUNS		231	/* specific nastytrap effect (rolled at game start) */
 

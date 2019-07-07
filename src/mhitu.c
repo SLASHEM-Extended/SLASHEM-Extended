@@ -3747,6 +3747,153 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_badowner) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_RBAD;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_bleeder) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BLEE;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_shanker) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SHAN;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_terrorizer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_TERR;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_feminizer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_FEMI;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_levitator) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_LEVI;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_illusionator) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_ILLU;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_rogue) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -5277,6 +5424,10 @@ hitmu(mtmp, mattk)
 
 	if (atttyp == AD_DAMA) {
 		atttyp = randomdamageattack();
+	}
+
+	if (atttyp == AD_ILLU) {
+		atttyp = randomillusionattack();
 	}
 
 	if (atttyp == AD_THIE) {
@@ -9294,6 +9445,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		atttypA = randomdamageattack();
 	}
 
+	if (atttypA == AD_ILLU) {
+		atttypA = randomillusionattack();
+	}
+
 	if (atttypA == AD_THIE) {
 		atttypA = randomthievingattack();
 	}
@@ -12060,6 +12215,10 @@ boolean ufound;
 		atttypC = randomdamageattack();
 	}
 
+	if (atttypC == AD_ILLU) {
+		atttypC = randomillusionattack();
+	}
+
 	if (atttypC == AD_THIE) {
 		atttypC = randomthievingattack();
 	}
@@ -14589,6 +14748,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	if (atttypB == AD_DAMA) {
 		atttypB = randomdamageattack();
+	}
+
+	if (atttypB == AD_ILLU) {
+		atttypB = randomillusionattack();
 	}
 
 	if (atttypB == AD_THIE) {

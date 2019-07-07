@@ -1111,6 +1111,22 @@ int traitno;
 			return "monsters that put nasty curses on your equipment";
 		case 363:
 			return "monsters whose attacks increase your sanity";
+		case 364:
+			return "monsters whose attacks cause really bad effects";
+		case 365:
+			return "monsters with bleedout attacks";
+		case 366:
+			return "monsters whose attacks shank you out of your armor";
+		case 367:
+			return "monsters that drain your score";
+		case 368:
+			return "monsters that cause terrain terror";
+		case 369:
+			return "monsters with feminism attacks";
+		case 370:
+			return "monsters with levitation attacks";
+		case 371:
+			return "monsters with illusion attacks";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);
@@ -3606,6 +3622,11 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Strangled) {
 		sprintf(buf, (u.uburied) ? "buried" : "being strangled");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", Strangled);
+		you_are(buf);
+	}
+	if ((guaranteed || !rn2(10)) && PlayerBleeds) {
+		sprintf(buf, "bleeding");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", PlayerBleeds);
 		you_are(buf);
 	}
 	if ((guaranteed || !rn2(10)) && Prem_death) {
@@ -7287,6 +7308,11 @@ int final;
 	      sprintf(eos(buf), " (%d)", Strangled);
 		dump(youwere, buf);
 	}
+	if (PlayerBleeds) {
+		sprintf(buf, "bleeding");
+	      sprintf(eos(buf), " (%d)", PlayerBleeds);
+		dump(youwere, buf);
+	}
 	if (Prem_death) {
 		sprintf(buf, "going to die prematurely");
 		dump(youwere, buf);
@@ -10061,6 +10087,7 @@ minimal_enlightenment()
 		if (IsGlib) sprintf(eos(statline), "glib, ");
 		if (Wounded_legs) sprintf(eos(statline), "wounded legs, ");
 		if (Strangled) sprintf(eos(statline), "strangled, ");
+		if (PlayerBleeds) sprintf(eos(statline), "bleeding, ");
 		if (Vomiting) sprintf(eos(statline), "vomiting, ");
 		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);

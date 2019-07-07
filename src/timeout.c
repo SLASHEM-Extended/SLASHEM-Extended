@@ -258,6 +258,17 @@ nh_timeout()
 		}
 	}
 
+	if (PlayerBleeds) {
+		int bleedingdamage = 1;
+		if (PlayerBleeds > 4) bleedingdamage = rnd(PlayerBleeds / 5);
+		losehp(bleedingdamage, (PlayerBleeds > 100) ? "a hemorrhage" : (PlayerBleeds > 50) ? "profuse bleedout" : "bleedout", KILLED_BY);
+		if (!rn2(10)) pline((PlayerBleeds > 100) ? "You're squirting blood everywhere!" : (PlayerBleeds > 50) ? "You're bleeding severely!" : "You're bleeding!");
+		if (bleedingdamage > 1) {
+			PlayerBleeds -= (bleedingdamage - 1);
+		}
+		if (PlayerBleeds < 0) PlayerBleeds = 0; /* fail safe */
+	}
+
 	if (u.garbagetrucktime) {
 		u.garbagetrucktime--;
 		if (u.garbagetrucktime < 0) u.garbagetrucktime = 0; /* fail safe */
@@ -2526,6 +2537,10 @@ nh_timeout()
 		case TECHNICALITY:
 			if (!Technicality)
 				pline("Your techniques are weaker again.");
+			break;
+		case PLAYERBLEEDING:
+			if (!PlayerBleeds)
+				pline("Your bleeding stops.");
 			break;
 		case BLACK_NG_WALLS:
 

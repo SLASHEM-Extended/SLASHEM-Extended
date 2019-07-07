@@ -6028,6 +6028,7 @@ unfixable_trouble_count(is_horn)
 
 	if (Stoned) unfixable_trbl++;
 	if (Strangled) unfixable_trbl++;
+	if (PlayerBleeds) unfixable_trbl++;
 	if (Wounded_legs
 		    && !u.usteed
 				) unfixable_trbl++;

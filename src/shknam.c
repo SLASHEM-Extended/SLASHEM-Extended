@@ -713,6 +713,35 @@ const char * const *nlp;
 			shk->isegotype = 1;
 			shk->egotype_wouwouer = TRUE;
 		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_badowner = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_bleeder = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_shanker = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_terrorizer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_feminizer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_levitator = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_illusionator = TRUE;
+		}
+		/* Izchak always has the laserpwnzor egotype --Amy */
 		shk->isegotype = 1;
 		shk->egotype_laserpwnzor = TRUE;
 
@@ -967,6 +996,34 @@ const char * const *nlp;
 		if (!rn2(10)) {
 			shk->isegotype = 1;
 			shk->egotype_laserpwnzor = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_badowner = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_bleeder = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_shanker = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_terrorizer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_feminizer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_levitator = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_illusionator = TRUE;
 		}
 
 	} else {

@@ -1001,6 +1001,13 @@ stupidsegfault:
 	    if (mtmp->egotype_nastycurser && (++egotypeamount < 21) ) sprintf(eos(buf), " Nastycurser");
 	    if (mtmp->egotype_sanitizer && (++egotypeamount < 21) ) sprintf(eos(buf), " Sanitizer");
 	    if (mtmp->egotype_laserpwnzor && (++egotypeamount < 21) ) sprintf(eos(buf), " LaserPwnz0r");
+	    if (mtmp->egotype_badowner && (++egotypeamount < 21) ) sprintf(eos(buf), " Bad0wn3r");
+	    if (mtmp->egotype_bleeder && (++egotypeamount < 21) ) sprintf(eos(buf), " Bleeder");
+	    if (mtmp->egotype_shanker && (++egotypeamount < 21) ) sprintf(eos(buf), " Shanker");
+	    if (mtmp->egotype_terrorizer && (++egotypeamount < 21) ) sprintf(eos(buf), " Terrorizer");
+	    if (mtmp->egotype_feminizer && (++egotypeamount < 21) ) sprintf(eos(buf), " Feminizer");
+	    if (mtmp->egotype_levitator && (++egotypeamount < 21) ) sprintf(eos(buf), " Levitator");
+	    if (mtmp->egotype_illusionator && (++egotypeamount < 21) ) sprintf(eos(buf), " Illusionator");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}

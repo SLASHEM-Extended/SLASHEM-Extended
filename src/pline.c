@@ -857,6 +857,7 @@ ustatusline()
 	if (Stoned)		strcat(info, ", solidifying");
 	if (Slimed)		strcat(info, ", becoming slimy");
 	if (Strangled)		strcat(info, ", being strangled");
+	if (PlayerBleeds)		strcat(info, ", bleeding");
 	if (Vomiting)		strcat(info, ", nauseated"); /* !"nauseous" */
 	if (Confusion)		strcat(info, ", confused");
 	if (Blind) {

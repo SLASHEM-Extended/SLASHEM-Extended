@@ -251,7 +251,7 @@ int
 randattack()
 {
 
-	switch (rnd(330)) {
+	switch (rnd(342)) {
 
 		case 1:
 		case 2:
@@ -708,6 +708,25 @@ randattack()
 		case 329:
 		case 330:
 			return AD_SANI;
+		case 331:
+			return AD_RBAD;
+		case 332:
+		case 333:
+			return AD_BLEE;
+		case 334:
+			return AD_SHAN;
+		case 335:
+		case 336:
+		case 337:
+		case 338:
+		case 339:
+			return AD_SCOR;
+		case 340:
+			return AD_TERR;
+		case 341:
+			return AD_FEMI;
+		case 342:
+			return AD_LEVI;
 		default:
 			return AD_PHYS;
 
@@ -826,6 +845,69 @@ randomthievingattack()
 			return AD_TRAI;
 		case 24:
 			return AD_STAT;
+		default:
+			return AD_PHYS;
+	}
+}
+
+int
+randomillusionattack()
+{
+	switch (rnd(27)) {
+		case 1:
+			return AD_SPC2;
+		case 2:
+			return AD_STUN;
+		case 3:
+			return AD_DRIN;
+		case 4:
+			return AD_HALU;
+		case 5:
+			return AD_DARK;
+		case 6:
+			return AD_FEAR;
+		case 7:
+			return AD_FAKE;
+		case 8:
+			return AD_LETH;
+		case 9:
+			return AD_CNCL;
+		case 10:
+			return AD_BANI;
+		case 11:
+			return AD_WISD;
+		case 12:
+			return AD_HODS;
+		case 13:
+			return AD_CHRN;
+		case 14:
+			return AD_WEEP;
+		case 15:
+			return AD_STTP;
+		case 16:
+			return AD_DEPR;
+		case 17:
+			return AD_LAZY;
+		case 18:
+			return AD_INER;
+		case 19:
+			return AD_VULN;
+		case 20:
+			return AD_AMNE;
+		case 21:
+			return AD_INSA;
+		case 22:
+			return AD_TRAP;
+		case 23:
+			return AD_SANI;
+		case 24:
+			return AD_SHAN;
+		case 25:
+			return AD_TERR;
+		case 26:
+			return AD_FEMI;
+		case 27:
+			return AD_LEVI;
 		default:
 			return AD_PHYS;
 	}

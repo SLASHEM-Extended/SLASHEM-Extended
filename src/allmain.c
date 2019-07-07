@@ -896,7 +896,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(363);
+				monstercolor = rnd(371);
 
 				if (wizard || !rn2(10)) pline(Hallucination ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -959,7 +959,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(363);
+				monstercolor = rnd(371);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -3139,7 +3139,7 @@ fukrosionchoice:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(363);
+			monstercolor = rnd(371);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -9230,7 +9230,7 @@ past3:
 			u.pokelieflags = 0;
 			u.pokeliespeed = rnd(50);
 			u.pokelieattacktype = rnd(21);
-			u.pokeliedamagetype = rnd(143);
+			u.pokeliedamagetype = rnd(151);
 		}
 	} else {
 		u.pokelieresistances = 0;
@@ -9244,7 +9244,7 @@ past3:
 
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
-		u.frequentationtrait = rnd(363); /* same as monstercolor function */
+		u.frequentationtrait = rnd(371); /* same as monstercolor function */
 	} else {
 		u.frequentationtrait = 0;
 	}
