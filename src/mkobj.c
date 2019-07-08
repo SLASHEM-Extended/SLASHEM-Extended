@@ -1778,6 +1778,8 @@ int artif;
 	otmp->oinvis = 0;
 	otmp->oinvisreal = 0;
 	otmp->petmarked = 0;
+	otmp->obrittle = 0;
+	otmp->obrittle2 = 0;
 	otmp->olocked = FALSE; /* ->recharged */
 	otmp->altmode = WP_MODE_AUTO;
 	otmp->fakeartifact = 0;

@@ -418,11 +418,6 @@ dig()
 				}
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
 
-				/* too eroded weapon can't smash bars, kludge for eternium and similar stuff --Amy */
-				if (uwep && (uwep->oeroded >= MAX_ERODE || uwep->oeroded2 >= MAX_ERODE) ) {
-					pline("Since your weapon has taken too much damage, you can't smash the bars with it.");
-				} else {
-
 			    digtxt = "You smash the bars to the ground.";
 
 			    if (In_sokoban(&u.uz))
@@ -441,16 +436,20 @@ dig()
 		 * Soviet, but seriously, fuck that shit, I'm not gonna bother coding that just for an obscure special mode
 		 * that 99.9% of players won't use anyway because they don't understand russian. --Amy */
 			    }
-				if (!rn2(2)) uwep->oeroded++;
-				else uwep->oeroded2++;
-				Your("weapon has taken damage from smashing the bars!");
+				if (uwep->obrittle == 3 || uwep->obrittle2 == 3) {
+					Your("weapon was destroyed!");
+					useupall(uwep);
+				} else {
+
+					if (!rn2(2)) uwep->obrittle++;
+					else uwep->obrittle2++;
+					Your("weapon has taken damage from smashing the bars!");
+				}
 				/* it's intentional that the weapon cannot resist, because otherwise you could take one that
 				 * is highly resistant to erosion or even immune to being destroyed and simply smash all bars
 				 * in the entire dungeon, which isn't what we want --Amy */
 
 				if (!rn2(5)) mkobj_at(CHAIN_CLASS, dpx, dpy, FALSE); /* maybe make a chain from the bars --Amy */
-
-				} /* weapon isn't too damaged check */
 
 			} else {
 			    digtxt = "You succeed in cutting away some rock.";

@@ -79,6 +79,8 @@ struct obj {
 
 	Bitfield(oeroded,2);	/* rusted/burnt weapon/armor */
 	Bitfield(oeroded2,2);	/* corroded/rotted weapon/armor */
+	Bitfield(obrittle,2);	/* for antibar weapons */
+	Bitfield(obrittle2,2);	/* ditto */
 #define greatest_erosion(otmp) (int)((otmp)->oeroded > (otmp)->oeroded2 ? (otmp)->oeroded : (otmp)->oeroded2)
 
 #define greatest_erosionX(otmp) (int) (objects[(otmp)->otyp].oc_material == COMPOST ? (otmp)->oeroded : ((otmp)->oeroded > (otmp)->oeroded2 ? (otmp)->oeroded : (otmp)->oeroded2))
