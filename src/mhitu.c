@@ -708,7 +708,7 @@ elena15:
 				}
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_PLOF_ANJE] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
 elena16:
 				if (multi >= 0) {
 					pline("You come because %s's high-heeled sandals are so beautiful.", mon_nam(mtmp));
@@ -1856,6 +1856,8 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_FIRST_DUNVEGAN]) tmp += 100; /* this monster also almost always hits */
 	if (mtmp->data == &mons[PM_JOURHEA]) tmp -= 40;	/* has terribly bad aim */
 	if (mtmp->data == &mons[PM_THE_DIN_MISSED_YOU_]) tmp -= 20;	/* also aims badly */
+	if (mtmp->data == &mons[PM_FUNNY_MISSER]) tmp -= rnd(20);	/* ditto */
+	if (mtmp->data == &mons[PM_UNEXPECTED_BANNER]) tmp -= rnd(20);	/* ditto */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
@@ -4524,7 +4526,7 @@ elena37:
 	}
 
 	/* ultra-mega laser cannon for some specific ubermonsters, including the elder priest */
-	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
+	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
 		if (range2 && lined_up(mtmp) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) ) {
 			if (!mtmp->hominglazer && !rn2(20)) {
 				pline("ATTENTION: %s has started to load an ultra-mega-hyper-dyper laser cannon!", Monnam(mtmp));

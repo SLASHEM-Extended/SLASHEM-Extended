@@ -226,6 +226,11 @@ register boolean clumsy;
 
 	}
 
+	if (mon->data == &mons[PM_PLOF_ANJE]) {
+		dmg += rnd(10);
+		pline("*plof*");
+	}
+
 	if (uarmh && uarmh->oartifact == ART_NYPHERISBANE && (mon->data->mlet == S_SNAKE || mon->data->mlet == S_NAGA) ) {
 		You("totally stomp that stupid snake.");
 		dmg += 100;
@@ -705,7 +710,7 @@ register xchar x, y;
 		return;
 	}
 
-	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
+	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mon));
 		if (Hallucination) You("curse at Konami for designing it like that.");

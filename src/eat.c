@@ -396,7 +396,7 @@ register struct obj *obj;
 		return (boolean)(obj->otyp == EUCALYPTUS_LEAF);
 
 	/* Ghouls, ghasts only eat corpses */
-	if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
+	if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_DOGSHIT_SEARCHER || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
 	|| u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) )
 	   	return (boolean)(obj->otyp == CORPSE);
 	/* Vampires drink the blood of meaty corpses */
@@ -1094,6 +1094,7 @@ register int pm;
 	    case PM_ADULT_LIZARD:
 	    case PM_KARMIC_LIZARD:
 	    case PM_GREEN_LIZARD:
+	    case PM_SCORZARD:
 	    case PM_MONSTER_LIZARD:
 	    case PM_FIRE_LIZARD:
 	    case PM_LIGHTNING_LIZARD:
@@ -1139,6 +1140,8 @@ register int pm;
 		make_blinded(0L,TRUE);
 		break;
 	    case PM_RHAUMBUSUN:
+	    case PM_FEMBUSUN:
+	    case PM_BLOODBUSUN:
 	    case PM_BIG_RHAUMBUSUN:
 		if (Slimed) {pline("The slime disappears.");
 		    Slimed = 0;
@@ -1269,6 +1272,7 @@ struct monst *mon;
 	    case PM_CLOCKBACK_LIZARD:
 	case PM_KARMIC_LIZARD:
 	case PM_GREEN_LIZARD:
+	case PM_SCORZARD:
 	case PM_BLACK_LIZARD:
 	case PM_MONSTER_LIZARD:
 	case PM_FIRE_LIZARD:
@@ -1836,6 +1840,8 @@ register int pm;
 			lesshungry(20);
 		break;
 	    case PM_RHAUMBUSUN:
+	    case PM_FEMBUSUN:
+	    case PM_BLOODBUSUN:
 			lesshungry(40);
 	    case PM_SQUIRREL:
 	    case PM_KWIRREL:
@@ -1862,6 +1868,7 @@ register int pm;
 			lesshungry(400);
 		break;
 	    case PM_GORGON:
+	    case PM_HACKBEAKTRICE:
 	    case PM_ATTRACTIVE_TROVE:
 
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
@@ -2739,9 +2746,11 @@ register int pm;
 	    case PM_SILENT_KILLER:
 	    case PM_STONE_STALKER:
 	    case PM_ILLUSION_WEAVER:
+	    case PM_MIRAGE_WEAVER:
 	    case PM_PAIN_MASTER:
 	    case PM_PAIN_MISTER:
 	    case PM_COCKTAUR:
+	    case PM_REVEALING_COCKATRICE:
 	    case PM_HIDDEN_COCKATRICE:
 	    case PM_MIMIC_CHICKEN:
 	    case PM_PETRO_MIMIC:
@@ -2768,6 +2777,8 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_COUNTER_MECHANIC:
+	    case PM_DISMANTLER_MECHANIC:
 	    case PM_PLAYER_MECHANIC:
 	    case PM_QUANTUM_ABERRATION:
 	    case PM_QUANTUMMOID:
@@ -2823,6 +2834,7 @@ register int pm;
 	    case PM_NIGHT_LIZARD:
 	    case PM_KARMIC_LIZARD:
 	    case PM_GREEN_LIZARD:
+	    case PM_SCORZARD:
 	    case PM_CAVE_LIZARD:
 	    case PM_GRASS_LIZARD:
 	    case PM_BLUE_LIZARD:
@@ -3012,6 +3024,13 @@ register int pm;
 
 		break;
 
+	    case PM_FIREBALL_LASS:
+
+		pline("Ulch - the stupid girl was tainted!");
+	      make_sick(rn1(25,25), "a tainted combat boot", TRUE, SICK_VOMITABLE);
+
+		break;
+
 	    case PM_OLOG_HAI_GORGON:
 	    case PM_BEAR_TROVE:
 	    case PM_SPINACH:
@@ -3039,6 +3058,7 @@ register int pm;
 		break;
 
 	    case PM_CUCKATRICE:
+	    case PM_CUP_COCKATRICE:
 
 		change_sex(); /* ignores unchanging (intentional) */
 		You("are suddenly very %s!", flags.female ? "feminine" : "masculine");
@@ -3097,6 +3117,7 @@ register int pm;
 	    case PM_INTELLIGENT_TROVE:
 	    case PM_NEOTHELID:
 	    case PM_VILLITHID:
+	    case PM_FEMIFLAYER:
 	    case PM_ULITHARID:
 	    case PM_ABERRATION_FLAYER:
 	    case PM_MASTER_ABERRATION_FLAYER:
@@ -3112,6 +3133,7 @@ register int pm;
 	    case PM_OWNER_MIND_FLAYER:
 	    case PM_MINOR_MIND_FLAYER:
 	    case PM_LOW_MIND_FLAYER:
+	    case PM_BWARHAR_FLAYER:
 	    case PM_LARGE_MIND_FLAYER:
 	    case PM_EVIL_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
@@ -3168,9 +3190,12 @@ register int pm;
 		case PM_PASSIVE_MIND_FLAYER:
 		case PM_MINDFLAY_WRAITH:
 		case PM_TROLL_FLAYER:
+		case PM_PARASITIC_MIND_FLAYER:
+		case PM_PARASITIC_MASTER_MIND_FLAYER:
 		case PM_BLUE_FLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
+		case PM_CANCEROUS_MIND_FLAYER:
 	    case PM_MIND_FLAYER: {
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 
@@ -4393,7 +4418,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	/* Very rotten corpse will make you sick unless you are a ghoul or a ghast */
 	if (mnum != PM_ACID_BLOB && !stoneable && rotted > 5L) {
 	    boolean cannibal = maybe_cannibal(mnum, FALSE);
-	    if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
+	    if (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_DOGSHIT_SEARCHER || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER
 		|| u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
 	    	pline("Yum - that %s was well aged%s!",
 		      mons[mnum].mlet == S_FUNGUS ? "fungoid vegetation" :
@@ -4430,7 +4455,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		}
 	    }
 	} else if (youmonst.data == &mons[PM_GHOUL] || 
-	youmonst.data == &mons[PM_GASTLY] || youmonst.data == &mons[PM_HAUNTER] || youmonst.data == &mons[PM_GENGAR] || youmonst.data == &mons[PM_PHANTOM_GHOST] || 
+	youmonst.data == &mons[PM_GASTLY] || youmonst.data == &mons[PM_HAUNTER] || youmonst.data == &mons[PM_DOGSHIT_SEARCHER] || youmonst.data == &mons[PM_GENGAR] || youmonst.data == &mons[PM_PHANTOM_GHOST] || 
 		   youmonst.data == &mons[PM_GHAST] || youmonst.data == &mons[PM_STINKING_ALIEN] || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
 		pline (Hallucination ? "You can't seem to find any manky bits!" : "This corpse is too fresh!");
 		return 3;
@@ -6538,7 +6563,7 @@ bite()
 {
 	int vampirenutrition = 0;
 	if ( (is_vampire(youmonst.data) || (Role_if(PM_GOFF) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(6);
-	if ( (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(3);
+	if ( (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_DOGSHIT_SEARCHER || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY || u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) && (u.uhunger < 2500) ) vampirenutrition += rn2(3);
 
 	if(victual.canchoke && u.uhunger >= 5000) { /* allowing players to eat more --Amy */
 		choke(victual.piece);
