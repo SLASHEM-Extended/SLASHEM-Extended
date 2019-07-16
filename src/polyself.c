@@ -1320,20 +1320,23 @@ rehumanize()
 /* WAC -- MUHAHAHAAHA - Gaze attacks! 
  * Note - you can only gaze at one monster at a time, to keep this 
  * from getting out of hand ;B  Also costs 20 energy.
+ * Amy edit: costs scale with level of your current form, since some gazes can be quite unbalanced...
  */
 int
 dogaze()
 {
 	coord cc;
 	struct monst *mtmp;
+	int gazecost = 24;
+	gazecost += (Upolyd ? (mons[u.umonnum].mlevel * 4) : (u.ulevel * 4));
 
 	if (Blind) {
 		You("can't see a thing!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
-	if (u.uen < 20) {
-		You("lack the energy to use your special gaze! Gaze attacks cost 20 mana!");
+	if (u.uen < gazecost) {
+		You("lack the energy to use your special gaze! Your current form's gaze attack costs %d mana!", gazecost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
@@ -1364,7 +1367,7 @@ dogaze()
 	/* WUOT why the hell did they not become hostile if you were e.g. confused??? */
 	if (mtmp->mpeaceful) setmangry(mtmp);
 
-	u.uen -= 20;
+	u.uen -= gazecost;
 
 	You("gaze at %s...", mon_nam(mtmp));
 
