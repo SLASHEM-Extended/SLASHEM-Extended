@@ -2605,7 +2605,7 @@ badeffect()
 		case 425:
 		case 426:
 		case 427:
-			playerbleed(rnd(2 + (level_difficulty() * 2)));
+			playerbleed(rnd(2 + (level_difficulty() * 10)));
 			break;
 
 		case 428:
@@ -2641,7 +2641,7 @@ badeffect()
 			break;
 
 		case 451:
-			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(10)));
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 			break;
 
 		default:
@@ -3543,7 +3543,7 @@ reallybadeffect()
 		break;
 
 		case 89:
-			playerbleed(rnd(2 + (level_difficulty() * 2)));
+			playerbleed(rnd(2 + (level_difficulty() * 10)));
 			break;
 
 		case 90:
@@ -3558,7 +3558,7 @@ reallybadeffect()
 			break;
 
 		case 92:
-			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(10)));
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 			break;
 
 		default:
