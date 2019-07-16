@@ -963,6 +963,7 @@ static const char *random_mesg[] = {
 	"A fortune cookie told me if you try to set message history to before you were born, it angers your god!",
 	"GOOGL EM: Greased Outlandish Opportunist's Guide to Legends: Extended Magic",
 	"At the Shoeshop 69, 00420 Bundletown, Fleecyland",
+	"In the next was at the cover a schiessmaschine, which shot continuing, resounds.",
 
 };
 
