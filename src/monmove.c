@@ -711,6 +711,9 @@ register struct monst *mtmp;
 	/* stunned monsters get un-stunned with larger probability */
 	if (mtmp->mstun && !rn2(10)) mtmp->mstun = 0;
 
+	/* cancelled monsters get un-cancelled with a VERY low probability --Amy */
+	if (mtmp->mcan && !rn2(10000)) mtmp->mcan = 0;
+
 	/* is the monster charging a special laser cannon? */
 	if (mtmp->hominglazer) {
 		mtmp->hominglazer++;
