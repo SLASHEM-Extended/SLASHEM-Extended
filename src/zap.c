@@ -8170,14 +8170,37 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		    sho_shieldeff = TRUE;
 		    break;
 		}
-		tmp = d(nd,8);
-		if (is_vampire(mon->data)) {
-		tmp *= 2; /* vampires take more damage from sunlight --Amy */
-		pline("The light ray sears %s's pale skin!",mon_nam(mon));
+
+		{
+			boolean literes = FALSE;
+			tmp = d(nd,8);
+
+			if (tmp > 1 && dmgtype(mon->data, AD_DARK)) {
+				tmp /= 10;
+				if (tmp < 1) tmp = 1;
+				literes = TRUE;
+			}
+			if (tmp > 1 && !haseyes(mon->data)) {
+				tmp /= 10;
+				if (tmp < 1) tmp = 1;
+				literes = TRUE;
+			}
+			if (tmp > 1 && mon->mblinded) {
+				tmp /= 10;
+				if (tmp < 1) tmp = 1;
+				literes = TRUE;
+			}
+			if (literes) pline("%s resists a lot.", Monnam(mon));
+
+			if (is_vampire(mon->data)) {
+			tmp *= 2; /* vampires take more damage from sunlight --Amy */
+			pline(literes ? "The light ray slightly burns %s's pale skin." : "The light ray sears %s's pale skin!",mon_nam(mon));
+			}
+
 		}
 		break;
 	case ZT_SPC2:
-		if (dmgtype(mon->data, AD_SPC2) ) {
+		if (dmgtype(mon->data, AD_SPC2) || dmgtype(mon->data, AD_INSA) || dmgtype(mon->data, AD_SANI) || mindless(mon->data) ) {
 		    sho_shieldeff = TRUE;
 		    break;
 		}

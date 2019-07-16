@@ -13222,7 +13222,7 @@ boolean knoweverything;
 			case SPE_REPAIR_WEAPON:
 				pline("Casting this spell repairs your weapon."); break;
 			case SPE_PSYBEAM:
-				pline("A spell that zaps monsters with psybeams, dealing damage and confusing everything hit by them. Psi-using monsters are immune."); break;
+				pline("A spell that zaps monsters with psybeams, dealing damage and confusing everything hit by them. Psi-using monsters are immune, and so are mindless or (in)sanity-using ones."); break;
 			case SPE_HYPER_BEAM:
 				pline("Fires a more powerful magic missile."); break;
 			case SPE_MAGIC_MISSILE:
@@ -13242,7 +13242,7 @@ boolean knoweverything;
 			case SPE_ACID_STREAM:
 				pline("A spell that does acid damage by hitting monsters with a ray."); break;
 			case SPE_SOLAR_BEAM:
-				pline("Fires a beam of pure solar energy that does a ton and a half of damage to enemies."); break;
+				pline("Fires a beam of pure solar energy that does a ton and a half of damage to enemies; however, darkness-based enemies and ones without sight will resist."); break;
 			case SPE_BLANK_PAPER:
 				pline("This spellbook is blank. You may be able to write on it with a magic marker, turning it into another spellbook."); break;
 			case SPE_BOOK_OF_THE_DEAD:
@@ -13875,7 +13875,7 @@ boolean knoweverything;
 			case WAN_HYPER_BEAM:
 				pline("An attack wand that fires a very powerful beam. Unfortunately, monsters can still resist it, but if they don't, it deals massive damage."); break;
 			case WAN_PSYBEAM:
-				pline("Fires psychic beams at monsters if zapped. Only monsters that possess psi attacks will resist it, all others take full damage and will also be confused."); break;
+				pline("Fires psychic beams at monsters if zapped. Monsters that possess psi or (in)sanity attacks will resist it, and mindless ones will too; all others take full damage and will also be confused."); break;
 			case WAN_INFERNO:
 				pline("This wand can create permanent engravings and also fires searing hot flames that will damage a monster's maximum hit points as well as blinding it."); break;
 			case WAN_ICE_BEAM:
