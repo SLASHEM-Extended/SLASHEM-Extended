@@ -23531,6 +23531,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The hispanic girl is doused with water! Now she's completely wet, and she'll get a bucket filled with water which she'll empty over your head in retaliation.",
 	"The girl with the most beautiful shoes in the world seems more vulnerable!",
 	"The girl with the most beautiful shoes in the world seems more vulnerable! Please don't step on her toes now, because if you do, you'll break her bones.",
+	"You suddenly ran out of ammo for your ranged attack!",
 
 };
 

@@ -484,6 +484,15 @@ bladeangerdone:
 	m_shot.o = obj->otyp;
 	m_shot.n = multishot;
 	for (m_shot.i = 1; m_shot.i <= m_shot.n; m_shot.i++) {
+
+	    if (!obj) { /* uh-oh */
+		You("suddenly ran out of ammo for your ranged attack!");
+		m_shot.n = m_shot.i = 0;
+		m_shot.o = STRANGE_OBJECT;
+		m_shot.s = FALSE;
+		return 1;
+	    }
+
 	    twoweap = u.twoweap;
 	    /* split this object off from its slot if necessary */
 	    if (obj->quan > 1L) {
