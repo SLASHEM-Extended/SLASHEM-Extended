@@ -9249,6 +9249,14 @@ boolean ranged;
 				if (StrongAntimagic && tmp > 1) tmp /= 2;
 			}
 			u.uhpmax -= tmp/2;
+			if (u.uhpmax < 1) { /* discovered by maxlunar */
+				u.youaredead = 1;
+				u.uhpmax = 1;
+				killer_format = KILLED_BY_AN;
+				killer = "touch of death";
+				done(DIED);
+				u.youaredead = 0;
+			}
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		    break;
 		case 4: case 3: case 2: case 1: case 0:
