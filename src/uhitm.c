@@ -2889,6 +2889,14 @@ int dieroll;
 
 	if (RngeWeakness && tmp > 1) tmp /= 2;
 
+	if (obj) pline("wt %d", objects[obj->otyp].oc_skill);
+	else pline("nowt");
+
+	if (!thrown && obj && obj->oclass == WEAPON_CLASS && (objects[obj->otyp].oc_skill == P_JAVELIN) && tmp > 1) {
+		tmp /= 2;
+		pline("loel");
+	}
+
 	if (!already_killed) mon->mhp -= tmp;
 	/* adjustments might have made tmp become less than what
 	   a level draining artifact has already done to max HP */

@@ -320,7 +320,7 @@ WEAPON("bone club", (char *)0,
 WEAPON("spiked club", (char *)0,
 	1, 0, 0,  2, 8, 50, 8, 6, 0, B, P_CLUB, IRON, CLR_BLACK, 5),
 WEAPON("huge club", (char *)0, /* +4 small and large */
-	1, 0, 0,  1, 60, 3, 16, 20, 0, B, P_CLUB, WOOD, HI_WOOD, 30),
+	1, 0, 1,  1, 60, 3, 16, 20, 0, B, P_CLUB, WOOD, HI_WOOD, 30),
 WEAPON("log", (char *)0,
 	1, 0, 1,  1, 60, 3, 27, 36, 0, B, P_CLUB, WOOD, HI_WOOD, 60),
 
@@ -670,7 +670,7 @@ WEAPON("plow", (char *)0,
 	1, 0, 0,  1, 10,  50,  12,  10, 5, P,   P_TRIDENT, WOOD, CLR_BROWN, 15),
 
 WEAPON("mancatcher", (char *)0,
-	1, 0, 0,  2, 10, 200,  17,  15, 3, P,   P_TRIDENT, WOOD, CLR_BROWN, 35),
+	1, 0, 1,  2, 10, 200,  17,  15, 3, P,   P_TRIDENT, WOOD, CLR_BROWN, 35),
 
 /* Lances */
 WEAPON("lance", (char *)0,

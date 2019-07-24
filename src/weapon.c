@@ -5216,6 +5216,12 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(24);
 	if (weapon && weapon->otyp == LOG && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(30);
 
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_SKILLED) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_EXPERT) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_MASTER) ) bonus += rnd(18);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_GRAND_MASTER) ) bonus += rnd(24);
+	if (weapon && weapon->otyp == HUGE_CLUB && (P_SKILL(P_CLUB) == P_SUPREME_MASTER) ) bonus += rnd(30);
+
 	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_SKILLED) ) bonus += rnd(5);
 	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_EXPERT) ) bonus += rnd(10);
 	if (weapon && weapon->otyp == BATTLE_STAFF && (P_SKILL(P_QUARTERSTAFF) == P_MASTER) ) bonus += rnd(15);

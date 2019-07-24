@@ -8505,7 +8505,7 @@ boolean knoweverything;
 			case SPIKED_CLUB:
 				pline("This club isn't that bad, for a club at least."); break;
 			case HUGE_CLUB:
-				pline("Thankfully this club isn't overpowered at all despite dealing a ton and a half of damage per hit."); break;
+				pline("Thankfully this club isn't overpowered at all despite dealing a ton and a half of damage per hit, because it's two-handed (it used to be completely broken because back in the day it was one-handed)."); break;
 			case LOG:
 				pline("This gigantic log of wood requires two hands to be used and requires the club skill, but wow does it do a lot of damage or what?"); break;
 			case FLY_SWATTER:
@@ -8681,7 +8681,7 @@ boolean knoweverything;
 			case STYGIAN_PIKE: 
 				pline("A trident from the depths of Hell. Good damage and bonus versus eels."); break;
 			case MANCATCHER: 
-				pline("A very strong trident that does extra damage to eels."); break;
+				pline("A very strong two-handed trident that does extra damage to eels."); break;
 			case RADIOACTIVE_DAGGER:
 				pline("This dagger does extra damage to golems, but it's still only a dagger. It can be thrown. It can be applied to bash iron bars."); break;
 			case SECRETION_DAGGER:
