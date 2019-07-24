@@ -1278,6 +1278,10 @@ newboss:
 	    shieldeff(u.ux, u.uy);
 	    dmg = (dmg + 1) / 2;
 	}
+
+	/* Amy change: half damage, but also increase sanity */
+	if (dmg > 1) dmg /= 2;
+
 	if (dmg <= 5)
 	    You("get a slight %sache.", body_part(HEAD));
 	else if (dmg <= 10)
@@ -1286,6 +1290,9 @@ newboss:
 	    Your("%s suddenly aches painfully!", body_part(HEAD));
 	else
 	    Your("%s suddenly aches very painfully!", body_part(HEAD));
+
+	if (!Psi_resist || !rn2(StrongPsi_resist ? 20 : 5) ) increasesanity(dmg);
+
 	break;
     case MGC_ESCALATION:
 
@@ -2055,6 +2062,10 @@ newboss:
 	    shieldeff(u.ux, u.uy);
 	    dmg = (dmg + 1) / 2;
 	}
+
+	/* Amy change: half damage, but also increase bleeding */
+	if (dmg > 1) dmg /= 2;
+
 	if (dmg <= 5)
 	    Your("skin itches badly for a moment.");
 	else if (dmg <= 10)
@@ -2063,6 +2074,9 @@ newboss:
 	    pline("Severe wounds appear on your body!");
 	else
 	    Your("body is covered with painful wounds!");
+
+	playerbleed(dmg);
+
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
