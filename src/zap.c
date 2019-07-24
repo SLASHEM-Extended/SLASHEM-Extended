@@ -8170,6 +8170,10 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		    sho_shieldeff = TRUE;
 		    break;
 		}
+		if (mon->data->mlet == S_LIGHT || emits_light(mon->data) ) { /* suggested by maxlunar IIRC? */
+		    sho_shieldeff = TRUE;
+		    break;
+		}
 
 		{
 			boolean literes = FALSE;
