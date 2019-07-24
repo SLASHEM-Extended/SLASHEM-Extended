@@ -20443,7 +20443,7 @@ register struct attack *mattk;
 		break;
 	    case AD_CNCL:
 		if (rnd(100) > mtmp->data->mr) {
-			mtmp->mcan = 1;
+			cancelmonsterlite(mtmp);
 			pline("%s is covered in sparkling lights!", Monnam(mtmp));
 		}
 		break;
@@ -20451,7 +20451,7 @@ register struct attack *mattk;
 	    case AD_NACU:
 	    case AD_CURS:
 		if (!rn2(10) && (rnd(100) > mtmp->data->mr)) {
-			mtmp->mcan = 1;
+			cancelmonsterlite(mtmp);
 		}
 		break;
 	    case AD_FEAR:

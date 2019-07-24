@@ -2889,12 +2889,8 @@ int dieroll;
 
 	if (RngeWeakness && tmp > 1) tmp /= 2;
 
-	if (obj) pline("wt %d", objects[obj->otyp].oc_skill);
-	else pline("nowt");
-
 	if (!thrown && obj && obj->oclass == WEAPON_CLASS && (objects[obj->otyp].oc_skill == P_JAVELIN) && tmp > 1) {
 		tmp /= 2;
-		pline("loel");
 	}
 
 	if (!already_killed) mon->mhp -= tmp;
@@ -4664,7 +4660,7 @@ register struct attack *mattk;
 			xkilled(mdef, 0);
 			/* Don't return yet; keep hp<1 and tmp=0 for pet msg */
 		    } else {
-			mdef->mcan = 1;
+			cancelmonsterlite(mdef);
 			You("chuckle.");
 		    }
 		}
@@ -4964,7 +4960,7 @@ register struct attack *mattk;
 
 	    case AD_CNCL:
 		if (rnd(100) > mdef->data->mr) {
-			mdef->mcan = 1;
+			cancelmonsterlite(mdef);
 			pline("%s is covered in sparkling lights!", Monnam(mdef));
 		}
 
@@ -5595,7 +5591,7 @@ register struct attack *mattk;
 			xkilled(mdef, 0);
 			/* Don't return yet; keep hp<1 and tmp=0 for pet msg */
 		    } else {
-			mdef->mcan = 1;
+			cancelmonsterlite(mdef);
 			You("chuckle.");
 		    }
 		}
@@ -5824,7 +5820,7 @@ register struct attack *mattk;
 
 	    case AD_CNCL:
 		if (rnd(100) > mdef->data->mr) {
-			mdef->mcan = 1;
+			cancelmonsterlite(mdef);
 			pline("%s is covered in sparkling lights!", Monnam(mdef));
 		}
 		goto common;

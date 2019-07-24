@@ -1412,7 +1412,7 @@ armorsmashdone:
 			if (canseemon(mtmp))
 					pline("%s is deslexified!", Monnam(mtmp));
 			if (!rn2(3)) {
-				mtmp->mcan = 1;
+				cancelmonsterlite(mtmp);
 			} else if (!rn2(2)) {
 				mongone(mtmp);
 			} else {
@@ -1678,13 +1678,10 @@ coord *cc;
 		mtmp2->masleep = 0;
 		/* most cancelled monsters return to normal,
 		   but some need to stay cancelled */
-		if (!dmgtype(mtmp2->data, AD_SEDU)
-			&& !dmgtype(mtmp2->data, AD_SSEX)
-			&& mtmp2->mnum != PM_GYPSY
-			/* Gypsies use mcan to enforce the rule that they only
-			* ever grant one wish.
-			*/
-		    ) mtmp2->mcan = 0;
+		/* Gypsies use mcan to enforce the rule that they only
+		   ever grant one wish. */
+		/* Amy edit: various nerfs made it so that this is no longer needed :D */
+		mtmp2->mcan = 0;
 		mtmp2->mcansee = 1;	/* set like in makemon */
 		mtmp2->mblinded = 0;
 		mtmp2->mstun = 0;
@@ -6991,6 +6988,17 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    }
 	}
 	return TRUE;
+}
+
+void
+cancelmonsterlite(mdef)
+register struct monst	*mdef;
+{
+	mdef->mcan = TRUE;
+
+	/* successfully cancelling a monster removes all egotypes --Amy */
+	mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = mdef->egotype_psychic = mdef->egotype_abomination = mdef->egotype_gazer = mdef->egotype_seducer = mdef->egotype_flickerer = mdef->egotype_hitter = mdef->egotype_piercer = mdef->egotype_petshielder = mdef->egotype_displacer = mdef->egotype_lifesaver = mdef->egotype_venomizer = mdef->egotype_nastinator = mdef->egotype_baddie = mdef->egotype_dreameater = mdef->egotype_sludgepuddle = mdef->egotype_vulnerator = mdef->egotype_marysue = mdef->egotype_shader = mdef->egotype_amnesiac = mdef->egotype_trapmaster = mdef->egotype_midiplayer = mdef->egotype_rngabuser = mdef->egotype_mastercaster = mdef->egotype_aligner = mdef->egotype_sinner = mdef->egotype_minator = mdef->egotype_aggravator = mdef->egotype_contaminator = mdef->egotype_radiator = mdef->egotype_weeper = mdef->egotype_reactor = mdef->egotype_destructor = mdef->egotype_trembler = mdef->egotype_worldender = mdef->egotype_damager = mdef->egotype_antitype = mdef->egotype_painlord = mdef->egotype_empmaster = mdef->egotype_spellsucker = mdef->egotype_eviltrainer = mdef->egotype_statdamager = mdef->egotype_sanitizer = mdef->egotype_nastycurser = mdef->egotype_damagedisher = mdef->egotype_thiefguildmember = mdef->egotype_rogue = mdef->egotype_steed = mdef->egotype_champion = mdef->egotype_boss = mdef->egotype_atomizer = mdef->egotype_perfumespreader = mdef->egotype_converter = mdef->egotype_wouwouer = mdef->egotype_allivore = mdef->egotype_laserpwnzor = mdef->egotype_badowner = mdef->egotype_bleeder = mdef->egotype_shanker = mdef->egotype_terrorizer = mdef->egotype_feminizer = mdef->egotype_levitator = mdef->egotype_illusionator = 0;
+
 }
 
 /* you've zapped an immediate type wand up or down */

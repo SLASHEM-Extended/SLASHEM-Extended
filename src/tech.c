@@ -4530,7 +4530,7 @@ resettechdone:
 			if (DEADMONSTER(nexusmon)) continue;
 			if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
 			if ((distu(nexusmon->mx, nexusmon->my)) > silentoceandist) continue;
-			nexusmon->mcan = 1;
+			nexusmon->mcan = 1; /* don't cancel egotypes */
 		}
 
 		num = 10 + (techlevX(tech_no) * 5);

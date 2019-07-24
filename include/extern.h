@@ -3317,6 +3317,8 @@ E void othergreateffect(void);
 E void zap_strike_fx(XCHAR_P, XCHAR_P, int);
 E void throwspell(void);
 
+E void cancelmonsterlite(struct monst *);
+
 /* ### livelog.c ### */
 #ifdef LIVELOGFILE
 E boolean livelog_start(void);

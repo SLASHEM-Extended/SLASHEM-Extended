@@ -4852,7 +4852,7 @@ physical:
 
 	    case AD_CNCL:
 		if (rnd(100) > mdef->data->mr) {
-			mdef->mcan = 1;
+			cancelmonsterlite(mdef);
 			if (vis) pline("%s is covered in sparkling lights!", Monnam(mdef));
 		}
 		if (mdef->mtame) {
@@ -5107,7 +5107,7 @@ physical:
 		
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
-		    mdef->mcan = 1;	/* cancelled regardless of lifesave */
+		    cancelmonsterlite(mdef); /* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    if (is_were(pd) && pd->mlet != S_HUMAN)
 			were_change(mdef);
@@ -5136,7 +5136,7 @@ physical:
 		
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
-		    mdef->mcan = 1;	/* cancelled regardless of lifesave */
+		    cancelmonsterlite(mdef);	/* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    if (is_were(pd) && pd->mlet != S_HUMAN)
 			were_change(mdef);
@@ -5172,7 +5172,7 @@ physical:
 
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
-		    mdef->mcan = 1;	/* cancelled regardless of lifesave */
+		    cancelmonsterlite(mdef); /* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    if (is_were(pd) && pd->mlet != S_HUMAN)
 			were_change(mdef);
@@ -6826,7 +6826,7 @@ int attnumber;
 
 	    case AD_CNCL:
 		if (rnd(100) > magr->data->mr) {
-			magr->mcan = 1;
+			cancelmonsterlite(magr);
 			if (canseemon(magr)) pline("%s is covered in sparkling lights!", Monnam(magr));
 		}
 		if (magr->mtame) {
@@ -6837,7 +6837,7 @@ int attnumber;
 		break;
 	    case AD_ICUR:
 		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
-			magr->mcan = 1;
+			cancelmonsterlite(magr);
 		}
 		if (magr->mtame) {
 			badpeteffect(magr);
@@ -6849,13 +6849,13 @@ int attnumber;
 		break;
 	    case AD_NACU:
 		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
-			magr->mcan = 1;
+			cancelmonsterlite(magr);
 		}
 		if (magr->mtame) allbadpeteffects(magr);
 		break;
 	    case AD_CURS:
 		if (!rn2(10) && (rnd(100) > magr->data->mr)) {
-			magr->mcan = 1;
+			cancelmonsterlite(magr);
 		}
 		break;
 	    case AD_LEGS:

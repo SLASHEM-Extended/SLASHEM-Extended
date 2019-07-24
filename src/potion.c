@@ -4134,7 +4134,7 @@ register struct monst *mtmp;
 			break;
 		case 8:
 			if (!mtmp->mcan) {
-				mtmp->mcan = TRUE;
+				cancelmonsterlite(mtmp);
 				if (vis) pline("%s is cancelled.", Monnam(mtmp));
 			}
 			break;
@@ -4263,7 +4263,7 @@ register struct monst *mtmp;
 	if (vis) pline("%s seems less energized.", Monnam(mtmp));
 
 	if (!mtmp->mcan) {
-		mtmp->mcan = TRUE;
+		cancelmonsterlite(mtmp);
 		if (vis) pline("%s is cancelled.", Monnam(mtmp));
 	}
 
@@ -7749,7 +7749,7 @@ boolean your_fault;
 		    if (canseemon(mon))
 			pline("%s looks like %s's having a bad hair day!", 
 					Monnam(mon), mhe(mon));
-		    mon->mcan = TRUE;
+		    cancelmonsterlite(mon);
 		    break;
 		case PM_CROESUS:
 		    if (canseemon(mon))
