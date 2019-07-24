@@ -4832,6 +4832,10 @@ static const char *epitaphs[] = {
 	"Are you SURE that's a wand of wishing?",
 	"Croesus?  Who's he?",
 	"Who knows, how moves the people nowadays is? They are capable and kill one because allegedly a turning place belongs to them!",
+	"I died in the cutscene! What the actual fuck!",
+	"I'm out of water. I have no water? I HAVE NO FUCKING WATER??? There is no goddamn water left in my F.L.U.D.D.!",
+	"I hate this stupid game *so* much.",
+
 
 };
 
