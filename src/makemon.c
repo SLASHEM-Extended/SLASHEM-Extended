@@ -14803,7 +14803,7 @@ register struct	monst	*mtmp;
 
 	if (ptr == &mons[PM_TOMAS]) {
 		(void) mongets(mtmp, POT_GAIN_LEVEL);
-		(void) mongets(mtmp, URUK_HAI_SHIELD);
+		(void) mongets(mtmp, ORCISH_CHAIN_MAIL);
 		(void) mongets(mtmp, CATAPULT);
 		m_initthrow(mtmp, FLINT, 40);
 	}

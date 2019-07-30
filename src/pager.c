@@ -23532,6 +23532,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The girl with the most beautiful shoes in the world seems more vulnerable!",
 	"The girl with the most beautiful shoes in the world seems more vulnerable! Please don't step on her toes now, because if you do, you'll break her bones.",
 	"You suddenly ran out of ammo for your ranged attack!",
+	"A demon suddenly appears from nowhere!",
+	"A demon suddenly appears from nowhere! And unluckily for you, it's Demogorgon who will fuck you up now.",
 
 };
 

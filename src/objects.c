@@ -736,7 +736,7 @@ PROJECTILE("bronze arrow", (char *)0,
 BOW("sling", (char *)0,		1, 0, 330,  2, 20, 2, WOOD, P_SLING, HI_LEATHER, 1),
 BOW("metal sling", (char *)0,	1, 0, 40,  2, 20, 2, METAL, P_SLING, CLR_CYAN, 3),
 BOW("inka sling", (char *)0,	1, 0, 20,  2, 20, 5, INKA, P_SLING, CLR_BROWN, 3),
-BOW("catapult", (char *)0,	1, 0,  10,  2, 250, 5, METAL, P_SLING, CLR_BLACK, 40),
+BOW("catapult", (char *)0,	1, 1,  10,  2, 250, 5, METAL, P_SLING, CLR_BLACK, 40),
 
 /* Firearms */
 GUN("pistol", (char *)0,	   1,  0, 38,  8,  100, 15,  0,  4, WP_BULLET, IRON, P_FIREARM, HI_METAL, 1),
@@ -793,7 +793,7 @@ GUN("ballista", (char *)0,				1, 1,  10, 20, 40, 15, -2, 1, WP_GENERIC, MITHRIL,
 GUN("zoom shot crossbow", (char *)0,		1, 1,   6, 20, 80, 20, -1, 1, WP_GENERIC, WAX, P_CROSSBOW, CLR_WHITE, 15),
 GUN("power crossbow", (char *)0,			1, 1,  50, 20, 40, 12, 1, 1, WP_GENERIC, WOOD, P_CROSSBOW, HI_WOOD, 10),
 GUN("droven crossbow", "spider-legged crossbow", 0, 0, 50, 30, 120, 12, -1, 5, WP_GENERIC, GLASS, P_CROSSBOW, CLR_BLACK, 25), 
-GUN("demon crossbow", (char *)0,			1, 1,  10, 20, 250, 12, 5, 0, WP_GENERIC, METAL, P_CROSSBOW, CLR_BROWN, 60),
+GUN("demon crossbow", (char *)0,			1, 1,  10, 20, 250, 12, 1, 0, WP_GENERIC, METAL, P_CROSSBOW, CLR_BROWN, 60),
 GUN("pile bunker", (char *)0,   			1, 0,  2, 16, 40, 12, 0, 0, WP_GENERIC, BONE, P_CROSSBOW, CLR_BRIGHT_BLUE, 12),
 GUN("helo crossbow", (char *)0,			1, 1,  2, 20, 40, 30, -5, 10, WP_GENERIC, WOOD, P_CROSSBOW, CLR_ORANGE, 30),
 

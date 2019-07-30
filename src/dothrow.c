@@ -214,11 +214,13 @@ int thrown;
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
 
-	    if (launcher && launcher->otyp == CATAPULT) multishot += rnd(5);
+	    if (launcher && launcher->otyp == CATAPULT && (!obj || obj->otyp != ROCK)) multishot += rnd(5);
+	    if (launcher && launcher->otyp == CATAPULT && obj && obj->otyp == ROCK) multishot += rno(5);
 
 	    if (launcher && (launcher->otyp == RIFLE || launcher->otyp == SNIPER_RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD) && uarmc && itemhasappearance(uarmc, APP_RIFLING_POWER_CLOAK) ) multishot += rnd(2);
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
+	    if (launcher && launcher->otyp == DEMON_CROSSBOW) multishot += 4;
 	    if (launcher && launcher->otyp == WILDHILD_BOW) multishot += 2;
 
 	    if (launcher && launcher->oartifact == ART_STREAMSHOOTER) multishot += 1;

@@ -3110,6 +3110,7 @@ struct monst *magr, *mdef;
 	if (mwep && mwep->otyp == CATAPULT) multishot += rnd(5);
 
 	if (mwep && mwep->otyp == HYDRA_BOW) multishot += 2;
+	if (mwep && mwep->otyp == DEMON_CROSSBOW) multishot += 4;
 	if (mwep && mwep->otyp == WILDHILD_BOW) multishot += 2;
 
 	/* 1/3 of object enchantment */

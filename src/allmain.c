@@ -4393,6 +4393,35 @@ newbossA:
 
 		}
 
+		if (uwep && uwep->otyp == DEMON_CROSSBOW && !rn2(5000) ) {
+			int attempts = 0;
+			register struct permonst *ptrZ;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossO:
+			do {
+				ptrZ = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !is_demon(ptrZ))) && attempts < 50000);
+
+			if (ptrZ && is_demon(ptrZ)) {
+				(void) makemon(ptrZ, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+				pline("A demon suddenly appears from nowhere!");
+			} else if (rn2(50)) {
+				attempts = 0;
+				goto newbossO;
+			}
+
+			u.aggravation = 0;
+
+		}
+
 		if (RngeImmobility && !rn2(5000) ) {
 
 			int monstcnt;

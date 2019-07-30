@@ -8939,7 +8939,7 @@ boolean knoweverything;
 			case SLING: 
 				pline("The sling is what you want to use if you want your thrown rocks to do more than a single point of damage. You can quiver most types of rocks and gems to shoot them with a sling."); break;
 			case CATAPULT: 
-				pline("A much better version of the sling that shoots more rocks at once and also grants significant bonuses to hit. You can quiver rocks and gems to fire."); break;
+				pline("A much better version of the sling that shoots more rocks at once and also grants significant bonuses to hit, but it has to be wielded with both hands. You can quiver rocks and gems to fire. If you shoot regular rocks from it, as opposed to flint stones or other ammo, the multishot bonus is lower."); break;
 			case PISTOL: 
 				pline("This firearm is capable of shooting bullets to deal damage to enemies."); break;
 			case FLINTLOCK: 
@@ -9013,7 +9013,7 @@ boolean knoweverything;
 			case POWER_CROSSBOW: 
 				pline("Two-handed crossbow that can fire more quickly than a regular one."); break;
 			case DEMON_CROSSBOW: 
-				pline("An automatic crossbow that can quiver several bolts in a single turn."); break;
+				pline("An automatic crossbow that can quiver several bolts in a single turn. Wielding it for a while may occasionally summon hostile demons around you."); break;
 			case PILE_BUNKER: 
 				pline("This crossbow can fire a bit faster than a regular crossbow but at the expense of accuracy. It only requires one hand to be wielded."); break;
 			case HELO_CROSSBOW: 
