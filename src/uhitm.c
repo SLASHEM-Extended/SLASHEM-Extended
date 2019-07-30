@@ -961,7 +961,9 @@ int dieroll;
 
 		int juyofleechance = 25;
 
-		if (!PlayerCannotUseSkills) {
+		/* roles and races that have caitiff conducts might dislike the increased fleeing chance, so it's now possible
+		 * to switch back and forth via #monster (see also cmd.c) --Amy */
+		if (!PlayerCannotUseSkills && u.juyofleeing) {
 			switch (P_SKILL(P_JUYO)) {
 
 				case P_BASIC:	juyofleechance =  20; break;

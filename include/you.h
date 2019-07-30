@@ -1538,6 +1538,7 @@ struct you {
 	boolean coronationculmination;	/* for a certain artifact */
 
 	boolean youhavememorized;	/* one-time message for memorization skill */
+	boolean juyofleeing;	/* control whether your juyo skill increases the odds that a monster flees */
 
 	int garbagecleaned;	/* for janitor role */
 	int garbagetrucktime;	/* ditto */

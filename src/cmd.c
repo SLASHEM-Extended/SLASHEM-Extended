@@ -1707,6 +1707,15 @@ domonability()
 		}
 		return 1;
 
+	} else if (!PlayerCannotUseSkills && u.juyofleeing && P_SKILL(P_JUYO) >= P_BASIC && yn("Do you want to turn off the increased chance of making a monster flee?") == 'y') {
+		u.juyofleeing = 0;
+		pline("Monsters have the regular chance of fleeing from you now, which is useful mainly if you are a role or race that gets penalties for hitting a fleeing monster.");
+		return 0;
+	} else if (!PlayerCannotUseSkills && !u.juyofleeing && P_SKILL(P_JUYO) >= P_BASIC && yn("You have the Juyo skill, which allows you to make it more likely that monsters flee when you hit them. That feature is currently deactivated. Do you want to activate it?") == 'y') {
+		u.juyofleeing = 1;
+		pline("Monsters will now be more likely to flee from you when hit, with the chance depending on your Juyo skill!");
+		return 0;
+
 	} else if (Role_if(PM_JANITOR) && yn("Do you want to clean up the trash at your location?") == 'y') {
 		register struct obj *objchain, *allchain, *blahchain;
 		register int trashvalue = 0;

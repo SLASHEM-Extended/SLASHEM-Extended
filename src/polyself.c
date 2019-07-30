@@ -691,7 +691,24 @@ int	mntmp;
       	case P_GRAND_MASTER:	u.mtimedone = rnz(900); break;
       	case P_SUPREME_MASTER:	u.mtimedone = rnz(1000); break;
       	default: u.mtimedone = rnz(400); break;
-		
+
+	}
+
+	if (!PlayerCannotUseSkills) {
+
+		if (P_SKILL(P_POLYMORPHING) >= P_BASIC) {
+			char nervbuf[QBUFSZ];
+			char thisisannoying = 0;
+
+			sprintf(nervbuf, "You have the polymorphing skill, which allows you to get a longer-lasting polymorph. Do you want a longer polymorph duration? (If you answer no, you just throw the bonus away.)");
+			thisisannoying = yn_function(nervbuf, ynqchars, 'y');
+			if (thisisannoying == 'n') {
+				u.mtimedone = rnz(400);
+				pline("You decided to opt for the regular polymorphing duration, disregarding the bonus that your polymorphing skill would have given you.");
+			}
+			else pline("Your polymorph duration was extended!");
+		}
+
 	}
 
 	u.umonnum = mntmp;
