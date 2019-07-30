@@ -3204,7 +3204,7 @@ secureidchoice:
 			obj->bknown=1;
 			pline("The aura fades.");
 		}
-		t_timeout = rnz(1500);
+		t_timeout = rnz(5000);
 		break;
 	    case T_E_FIST: 
 	    	blitz_e_fist();
@@ -8099,7 +8099,8 @@ blitz_power_surge()
 	num = 50 + (2 * techlevX(tech_no));
     	techt_inuse(tech_no) = num + 1;
 	u.uenmax += num;
-	u.uen = u.uenmax;
+	u.uen += num;
+	if (u.uen > u.uenmax) u.uen = u.uenmax;
 	return 1;
 }
 
