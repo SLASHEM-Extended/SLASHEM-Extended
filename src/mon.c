@@ -5090,6 +5090,39 @@ register struct monst *mdef;
 
 	/* drop special items like the Amulet so that a dismissed Kop or nurse
 	   can't remove them from the game */
+	/* Amy edit: unless you're playing the evil variant :P */
+
+	if (isevilvariant) {
+	    struct obj *obj, *otmp;
+
+	    for (obj = mdef->minvent; obj; obj = otmp) {
+		otmp = obj->nobj;
+		if (obj && obj->otyp == AMULET_OF_YENDOR) {
+			u.youaredead = 1;
+			pline("Oh no! The monster that was holding the Amulet of Yendor has left the dungeon and since your game is no longer winnable now, it ends here. Sorry.");
+			killer_format = NO_KILLER_PREFIX;
+			killer = "allowed the Amulet of Yendor to be removed from the dungeon";
+		      done(DIED);
+		      done(DIED);
+		      done(QUIT); /* sorry but your game *really* ends here --Amy */
+
+		}
+
+		if (obj && (obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->otyp == SPE_BOOK_OF_THE_DEAD) && !u.uevent.invoked) {
+			u.youaredead = 1;
+			pline("Oh no! One of the special items that were required to win the game has just been removed from the dungeon, and therefore your game is now over. Sorry.");
+			killer_format = NO_KILLER_PREFIX;
+			killer = "allowed an invocation artifact to be removed from the dungeon";
+		      done(DIED);
+		      done(DIED);
+		      done(QUIT); /* sorry but your game *really* ends here --Amy */
+
+		}
+
+	    }
+
+	}
+
 	mdrop_special_objs(mdef);
 	/* release rest of monster's inventory--it is removed from game */
 	discard_minvent(mdef);

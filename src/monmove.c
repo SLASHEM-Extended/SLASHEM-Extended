@@ -1274,17 +1274,17 @@ register struct monst *mtmp;
 
 			You_feel("less faithful!");
 
-			if (u.ualign.record < -20 && !rn2(100) && (mtmp->data->maligntyp != u.ualign.type) ) { /* You have been converted! */
+			if (u.ualign.record < -20 && !rn2(100) && (sgn(mtmp->data->maligntyp) != u.ualign.type) ) { /* You have been converted! */
 
 				if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && mtmp->data->maligntyp != A_NONE) {
 					You("have a strong feeling that %s is angry...", u_gname());
-					pline("%s accepts your allegiance.", align_gname(mtmp->data->maligntyp));
+					pline("%s accepts your allegiance.", align_gname(sgn(mtmp->data->maligntyp)));
 
 					/* The player wears a helm of opposite alignment? */
 					if (uarmh && uarmh->otyp == HELM_OF_OPPOSITE_ALIGNMENT)
-						u.ualignbase[A_CURRENT] = mtmp->data->maligntyp;
+						u.ualignbase[A_CURRENT] = sgn(mtmp->data->maligntyp);
 					else
-						u.ualign.type = u.ualignbase[A_CURRENT] = mtmp->data->maligntyp;
+						u.ualign.type = u.ualignbase[A_CURRENT] = sgn(mtmp->data->maligntyp);
 					u.ublessed = 0;
 					flags.botl = 1;
 
@@ -1297,10 +1297,10 @@ register struct monst *mtmp;
 				} else {
 					u.ugangr += 3;
 					adjalign(-25);
-					godvoice(mtmp->data->maligntyp, "Suffer, infidel!");
+					godvoice(sgn(mtmp->data->maligntyp), "Suffer, infidel!");
 					change_luck(-5);
 					(void) adjattrib(A_WIS, -2, TRUE, TRUE);
-					angrygods(mtmp->data->maligntyp);
+					angrygods(sgn(mtmp->data->maligntyp));
 
 				}
 			}
@@ -1947,6 +1947,7 @@ register int after;
 	boolean can_open=0, can_unlock=0, doorbuster=0;
 	boolean uses_items=0, setlikes=0;
 	boolean avoid=FALSE;
+	boolean astralspecial = FALSE;
 	struct permonst *ptr;
 	struct monst *mtoo;
 	schar mmoved = 0;	/* not strictly nec.: chi >= 0 will do */
@@ -2093,6 +2094,49 @@ not_special:
 	omy = mtmp->my;
 	gx = mtmp->mux;
 	gy = mtmp->muy;
+
+	if (isevilvariant && mon_has_amulet(mtmp) && Is_astralevel(&u.uz) ) {
+
+		int altarx = 0, altary = 0;
+		while (altarx++ < COLNO) {
+			altary = 0;
+			while (altary++ < ROWNO) {
+				if (isok(altarx, altary) && (IS_ALTAR(levl[altarx][altary].typ))) {
+
+					aligntyp astalign;
+
+					astalign = levl[altarx][altary].altarmask & AM_MASK;
+					if (astalign == AM_LAWFUL) astalign = 1;
+					else if (astalign == AM_NEUTRAL) astalign = 0;
+					else if (astalign == AM_CHAOTIC) astalign = -1;
+
+					if (astalign == sgn(mtmp->data->maligntyp)) {
+
+						gx = altarx;
+						gy = altary;
+						astralspecial = TRUE;
+
+						if (mtmp->mx == altarx && mtmp->my == altary) { /* game over */
+							u.youaredead = 1;
+							pline("Oh no! Someone else managed to offer the Amulet of Yendor and obtained immortality. You have failed your mission and the game ends here.");
+							killer_format = NO_KILLER_PREFIX;
+							killer = "allowed someone else to offer the Amulet of Yendor to the gods";
+						      done(DIED);
+						      done(DIED);
+						      done(QUIT); /* sorry but your game *really* ends here --Amy */
+
+						}
+
+						goto altarfound;
+
+					}
+				}
+			}
+		}
+
+	}
+altarfound:
+
 	appr = mtmp->mflee ? -1 : 1;
 
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
@@ -2111,6 +2155,8 @@ not_special:
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
 				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : 100) ));
+
+		if (astralspecial) should_see = TRUE;
 
 		if (!mtmp->mcansee ||
 		/* monsters no longer automatically know where you are. That was just incredibly annoying. --Amy */
@@ -2165,7 +2211,7 @@ not_special:
 			register coord *cp;
 
 			cp = gettrack(omx,omy);
-			if (cp) {
+			if (cp && !astralspecial) {
 				gx = cp->x;
 				gy = cp->y;
 			}
@@ -2284,8 +2330,10 @@ not_special:
 			    oomy = min(ROWNO-1, omy+minr);
 			    lmx = max(1, omx-minr);
 			    lmy = max(0, omy-minr);
-			    gx = otmp->ox;
-			    gy = otmp->oy;
+			    if (!astralspecial) {
+				    gx = otmp->ox;
+				    gy = otmp->oy;
+			    }
 			    /*if (gx == omx && gy == omy) {
 				mmoved = 3; actually unnecessary
 				goto postmov;
@@ -2302,13 +2350,15 @@ not_special:
 	}
 
 	if(minr < SQSRCHRADIUS && appr == -1) {
-	    if(distmin(omx,omy,mtmp->mux,mtmp->muy) <= 3) {
+	    if(!astralspecial && (distmin(omx,omy,mtmp->mux,mtmp->muy) <= 3)) {
 		gx = mtmp->mux;
 		gy = mtmp->muy;
 	    } else
 		appr = 1;
 	}
       }
+
+	if (astralspecial) appr = 1;
 
 	/* don't tunnel if hostile and close enough to prefer a weapon */
 	if (can_tunnel && needspick(ptr) &&
@@ -2369,6 +2419,8 @@ not_special:
 		    if(!(info[i] & NOTONL)) avoid=TRUE;
 	    }
 		if (avoid_player(ptr) || mtmp->egotype_avoider ) avoid=TRUE; /* making this into a monster flag --Amy */
+
+		if (astralspecial) appr = 1;
 
 	    for(i=0; i < cnt; i++) {
 		if (avoid && (info[i] & NOTONL)) continue;

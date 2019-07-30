@@ -2238,17 +2238,17 @@ register struct monst *mtmp;
 
 		if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) break;
 
-		if (u.ualign.record < -20 && !rn2(100) && (mtmp->data->maligntyp != u.ualign.type) ) { /* You have been converted! */
+		if (u.ualign.record < -20 && !rn2(100) && (sgn(mtmp->data->maligntyp) != u.ualign.type) ) { /* You have been converted! */
 
 			if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && mtmp->data->maligntyp != A_NONE) {
 				You("have a strong feeling that %s is angry...", u_gname());
-				pline("%s accepts your allegiance.", align_gname(mtmp->data->maligntyp));
+				pline("%s accepts your allegiance.", align_gname(sgn(mtmp->data->maligntyp)));
 
 				/* The player wears a helm of opposite alignment? */
 				if (uarmh && uarmh->otyp == HELM_OF_OPPOSITE_ALIGNMENT)
-					u.ualignbase[A_CURRENT] = mtmp->data->maligntyp;
+					u.ualignbase[A_CURRENT] = sgn(mtmp->data->maligntyp);
 				else
-					u.ualign.type = u.ualignbase[A_CURRENT] = mtmp->data->maligntyp;
+					u.ualign.type = u.ualignbase[A_CURRENT] = sgn(mtmp->data->maligntyp);
 				u.ublessed = 0;
 				flags.botl = 1;
 
@@ -2261,10 +2261,10 @@ register struct monst *mtmp;
 			} else {
 				u.ugangr += 3;
 				adjalign(-25);
-				godvoice(mtmp->data->maligntyp, "Suffer, infidel!");
+				godvoice(sgn(mtmp->data->maligntyp), "Suffer, infidel!");
 				change_luck(-5);
 				(void) adjattrib(A_WIS, -2, TRUE, TRUE);
-				angrygods(mtmp->data->maligntyp);
+				angrygods(sgn(mtmp->data->maligntyp));
 
 			}
 

@@ -23534,6 +23534,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You suddenly ran out of ammo for your ranged attack!",
 	"A demon suddenly appears from nowhere!",
 	"A demon suddenly appears from nowhere! And unluckily for you, it's Demogorgon who will fuck you up now.",
+	"Oh no! The monster that was holding the Amulet of Yendor has left the dungeon and since your game is no longer winnable now, it ends here. Sorry.",
+	"Oh no! One of the special items that were required to win the game has just been removed from the dungeon, and therefore your game is now over. Sorry.",
+	"Oh no! Someone else managed to offer the Amulet of Yendor and obtained immortality. You have failed your mission and the game ends here.",
 
 };
 
