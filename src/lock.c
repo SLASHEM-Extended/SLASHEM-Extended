@@ -416,7 +416,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    if(c == 'q') return(0);
 		    if(c == 'n') continue;
 
-		    if (pick->oartifact) {
+		    if (pick->oartifact && (pick->obrittle || pick->obrittle2) ) {
 		      Your("key doesn't seem to fit.");
 			return 0;
 		    }
@@ -442,6 +442,11 @@ pick_lock(pickp) /* pick a lock with a given object */
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
+			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("credit card becomes dull and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
+				return(1);
+			    }
 			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
 			    break;
 			case DATA_CHIP:
@@ -449,6 +454,11 @@ pick_lock(pickp) /* pick a lock with a given object */
 				Your("data chip breaks in half!");
 				useup(pick);
 				*pickp = (struct obj *)0;
+				return(1);
+			    }
+			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("data chip becomes dull and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
 				return(1);
 			    }
 			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
@@ -462,6 +472,12 @@ pick_lock(pickp) /* pick a lock with a given object */
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
+			    		(!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("pick becomes brittle and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
+				return(1);
+			    }
 			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE) + 50*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
 			    break;
 			case SKELETON_KEY:
@@ -470,6 +486,11 @@ pick_lock(pickp) /* pick a lock with a given object */
 				Your("key didn't quite fit the lock and snapped!");
 				useup(pick);
 				*pickp = (struct obj *)0;
+				return(1);
+			    }
+			    if(!rn2(isfriday ? 7 : 15) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("key becomes brittle and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
 				return(1);
 			    }
 			    ch = 75 + ACURR(A_DEX);
@@ -554,6 +575,12 @@ pick_lock(pickp) /* pick a lock with a given object */
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
+				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("credit card becomes dull and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
+				return(0);
+			    }
 			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
 			    break;
 			case DATA_CHIP:
@@ -562,6 +589,12 @@ pick_lock(pickp) /* pick a lock with a given object */
 				You("break your chip off in the door!");
 				useup(pick);
 				*pickp = (struct obj *)0;
+				return(0);
+			    }
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
+				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("data chip becomes dull and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
 				return(0);
 			    }
 			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH) + 20*Role_if(PM_CYBERNINJA);
@@ -575,6 +608,12 @@ pick_lock(pickp) /* pick a lock with a given object */
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
+				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("pick becomes brittle and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
+				return(0);
+			    }
 			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE) + 60*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
 			    break;
 			case SKELETON_KEY:
@@ -583,6 +622,11 @@ pick_lock(pickp) /* pick a lock with a given object */
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
 				*pickp = (struct obj *)0;
+				return(0);
+			    }
+			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+				Your("key becomes brittle and is no longer capable of picking locks!");
+				pick->obrittle = pick->obrittle2 = 3;
 				return(0);
 			    }
 			    ch = 70 + ACURR(A_DEX) + 10*Role_if(PM_LOCKSMITH) + 5*Role_if(PM_CYBERNINJA);
@@ -604,7 +648,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 			/* artifact keys shouldn't be overpowered --Amy */
 
-		    if (!key && pick->oartifact && !issoviet) {
+		    if (!key && pick->oartifact && (pick->obrittle || pick->obrittle2) && !issoviet) {
 			    Your("key doesn't seem to fit.");
 			    return(0);
 		    }
