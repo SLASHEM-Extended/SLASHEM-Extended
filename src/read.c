@@ -902,6 +902,9 @@ doread()
 	/* Actions required to win the game aren't counted towards conduct */
 	if (scroll->otyp != SPE_BOOK_OF_THE_DEAD &&
 		scroll->otyp != SPE_BLANK_PAPER &&
+#ifdef MAIL
+		scroll->otyp != SCR_MAIL &&
+#endif
 		scroll->otyp != SCR_BLANK_PAPER)
 	    u.uconduct.literate++;
 
