@@ -1781,7 +1781,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - High-level deathmold player characters have more polymorph forms to choose from.
 
 1.2.8 - July 2015
-- Monster groups will sometimes create monsters of the same letter, instead of the same species.
+- Monster groups that sometimes create monsters of the same letter instead of the same species now use a slightly different calculation.
 - Spellcasting skill and spell memory will decrease failure rates of spells now.
 - Fungi that don't decay will also no longer revive.
 - Blessed items are more resistant to water/lethe damage.
@@ -1820,6 +1820,99 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Greased armors will now be protected from scrolls of destroy armor read by monsters, but may lose their grease in the process.
 - Fixed a loophole that still allowed the player to access the "show previous messages" command if it was deactivated.
 - Introduced a hangup penalty that will trigger if the player hangs up at a prompt, in an attempt to thwart cheating attempts.
+
+1.2.4 - July 2015
+- Moved the showdmg message after the actual HP reduction to make it harder for players to hangup cheat the damage away.
+- If the player is about to enter a lava tile or attack a peaceful monster, hitting y will give an extra yes/no prompt. This eliminates the problem where vikeys users have to be very careful when moving in the direction represented by y, but doesn't screw up the muscle memory of players who used to dismiss the y/n prompt with the space bar.
+- The warper race now has a reduced chance of getting sucky polymorph forms.
+- Highly enchanted armor pieces are now resistant to monster-read scrolls of destroy armor.
+- If a monster polymorphs by using an item (potion, wand...) its new form will have full HP now.
+- Uncontrolled player polymorphs are more likely to result in a useful form.
+- Most unique monsters can now be randomly generated.
+- Monster group spawning was toned down somewhat.
+- Fixed a segfault when the game tried to spawn an uncommon monster but failed to find one.
+- If the player somehow ends up with a tame monster of a species that normally cannot be tamed, the monster in question is now much more likely to spontaneously become hostile.
+- Shopkeepers, aligned priests and watchmen cannot be tamed now and also have the traitor flag.
+- Fixed fallthrough bugs when keystone kops were summoned by an angry shopkeeper.
+- Adjusted the spawn frequency of fungi to make them less common.
+
+1.2.3 - July 2015
+- Shopkeepers calling the kops should now also result in kops being spawned if the level is already full of monsters, as long as there's still empty space.
+- Monsters that spawn in groups will occasionally spawn with other monsters of the same letter, instead of a group made up of only one species.
+- Fixed bugs where certain exploding wands didn't have their proper effects.
+- Fishes are now considered vegetarian food.
+- Added Failed Existence and Murderer roles.
+
+1.2.2 - July 2015
+- Fixed a previously introduced bug that caused pets to lose their inventory items whenever they tried to drop something.
+- If a player has high riding skill, the steed's HP will recover faster.
+- Fixed the bug that made the "Ring them Around" sokoban level impossible to solve.
+- Fixed a possible compiling issue that could make the game segfault on unix.
+- Scrolls of proof armor now allow the player to select the piece of armor that can be enchanted.
+- Added a compile-time flag that can turn off certain bits of information regarding the pokedex.
+- Added bastard and undefined races.
+- All sliming monsters work like the green slime now, which means that e.g. eating their corpses will slime the player.
+- Fixed the bug where reading certain scrolls off the floor wouldn't remove them.
+
+1.2.1 - June 2015
+- Fixed the issue that caused the game to lag when creating a statue trap.
+- Heavy iron balls created by punishment are no longer always +1.
+
+1.2.0 - June 2015
+- Random eggs may occasionally have the player's markings, causing them to spawn tame.
+- Monsters no longer have reduced corpse drop odds if their frequency is exactly 1.
+
+1.1.9 - June 2015
+- Fixed a bug with the magic mapping spell.
+- Fixed an information leak that allowed the player to find out what an item is when blind.
+- Fixed the bug where certain breath attacks would segfault if a polymorphed player tried to use them.
+- High spellcasting skill will now make failed spellcasting attempts use less mana.
+- Disabled artifacts being shown on the discoveries screen; they were re-enabled in a later version.
+- Fixed a bug where artifacts with the "protection" effect would cause the bonus to stack when it shouldn't.
+- Fixed a bug with the wallwalking monster egotype that caused monsters to spawn in walls even if they didn't have the egotype.
+- Fungi have a bigger chance of spawning with egotypes compared to other monsters.
+- Fixed some parser bugs that made it impossible to wish for certain types of gray stones.
+
+1.1.8 - June 2015
+- Fixed the bug where a deaf player would sometimes become capable of hearing again prematurely.
+- The cannibalism penalty's magnitude now depends on the player's alignment.
+- The uninformation trap now prevents the player from viewing the discoveries screen.
+- Artifact unicorn horns are less likely to turn to dust.
+- Fixed a segfault with the uninformation trap.
+- Toned down the message spam on item-stealing gaze attacks.
+- Tins and eggs now have a chance of spawning already identified.
+- Sessile monsters may occasionally get turns now.
+- Rarely, a monster may be generated with an egg in its starting inventory.
+- The player has an extra saving throw against the disrobing attack of item-stealers.
+- Monsters can now have egotypes.
+- Fixed the bug with the death message of a player killed by a gray fungus.
+- Item-stealing monsters no longer always teleport away after stealing something.
+- Fixed a bug where the scroll of food detection wouldn't always work properly.
+- Reduced the odds of crashing the game if a chained heavy iron ball is destroyed.
+- Tunneling monsters moving through undiggable rock (due to also being phasing) no longer spam the game with error messages.
+- Monsters will now pick up and use scrolls of fire.
+- Sitting on a throne has more effects to choose from.
+- Monkeys are more likely to successfully steal items, but item-stealers in general are less likely to succeed.
+- Vlad's Tower is now accessed from Sheol.
+- Potions of oil no longer abuse wisdom if a clockwork automaton player character quaffs one.
+- The artifact keys from alignment quests will no longer go into containers.
+- Monster difficulty calculations now take the monster's movement speed into account.
+- Made maze levels more random.
+- Fixed bugs with the scroll of consecration.
+- The monster spell that reduces the player's strength is less powerful now.
+
+1.1.7 - May 2015
+- Fixed bugs with null or randomizer lostsoul player characters.
+- Vlad's Tower now has special rooms that require artifact keys to reach.
+- Monsters can now pick up items on their tile before moving.
+- Fixed an oversight that caused quest leaders, shopkeepers and priests to sometimes change levels with the player when they shouldn't.
+- Maze levels may now have interesting dungeon features.
+- Highly skilled player characters will deal more damage with weapons.
+- After a player uses a staircase, there's now a small chance that using stairs becomes impossible for a period of time and hostile monsters are spawned around the player upon entering the new level.
+- Scrolls that create dungeon features will now cause those dungeon features to block the player's line of sight.
+- Implemented the showsym patch.
+- Rooms can now be irregular sometimes.
+- Many changes to dungeon level generation, especially concerning the chance of unusual terrain types appearing.
 
 (older stuff still needs to be added here)
 
