@@ -2220,10 +2220,11 @@ douglas_adams_mon()
 struct permonst *
 beehivemon()
 {
-	int     i = rn2(85);
+	int     i = rn2(86);
 
-	if (i > 83) return((level_difficulty() > 40) ? &mons[PM_NEUROBEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 82) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_FORCE_BEE] : &mons[PM_KILLER_BEE]);
+	if (i > 84) return((level_difficulty() > 40) ? &mons[PM_NEUROBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 83) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_FORCE_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 82) return((level_difficulty() > 15) ? &mons[PM_THWARTER_BEE] : &mons[PM_KILLER_BEE]);
 	else if (i > 80) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_BEE] : &mons[PM_KILLER_BEE]);
 	else if (i > 79) return(((level_difficulty() > 9) && !rn2(50)) ? &mons[PM_BAN_BEE] : &mons[PM_KILLER_BEE]);
 	else if (i > 78) return((level_difficulty() > 6) ? (rn2(5) ? &mons[PM_ZOMBEE] : &mons[PM_SPIKE_ZOMBEE]) : &mons[PM_KILLER_BEE]);

@@ -359,6 +359,7 @@ struct monst {
 	Bitfield(egotype_feminizer,1); /* AD_FEMI */
 	Bitfield(egotype_levitator,1); /* AD_LEVI */
 	Bitfield(egotype_illusionator,1); /* AD_ILLU */
+	Bitfield(egotype_stealer,1); /* AD_SAMU */
 
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */

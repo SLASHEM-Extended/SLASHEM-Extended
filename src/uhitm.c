@@ -9427,6 +9427,12 @@ boolean ranged;
 		  (void) difeasemu(mon->data); /* plus the normal damage */
 	        break;
 
+        case AD_CAST:
+        case AD_CLRC:
+        case AD_SPEL:
+		castmu(mon, &ptr->mattk[i], FALSE, FALSE);
+		break;
+
         case AD_VOMT:
 
 		if (!rn2(StrongSick_resistance ? 100 : 10) || !Sick_resistance) {
@@ -9560,6 +9566,12 @@ boolean ranged;
 		}
 
 		break;
+
+	      case AD_SAMU:
+			You("get hurt by %s retaliation!", s_suffix(mon_nam(mon)));	
+			mdamageu(mon, tmp);
+			if (malive && !rn2(10)) stealamulet(mon);
+			break;
 
 	      case AD_STCK:
 	      case AD_WRAP:

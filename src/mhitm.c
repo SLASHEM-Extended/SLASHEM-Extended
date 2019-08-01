@@ -1835,6 +1835,25 @@ meleeattack:
 
 	}
 
+	if (magr->egotype_stealer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SAMU;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->egotype_trembler) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -2854,7 +2873,7 @@ meleeattack:
 		badpeteffect(mdef);
 	}
 
-	if ((magr->data == &mons[PM_DHWTY] || magr->data == &mons[PM_AIRTIGHT_FEMMY] || magr->data == &mons[PM_SVEN] || magr->data == &mons[PM_GRANDMASTER_SVEN] || magr->data == &mons[PM_WORLD_PWNZOR] || magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || magr->egotype_laserpwnzor) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((magr->data == &mons[PM_DHWTY] || magr->data == &mons[PM_BLUEBEAM_GOLEM] || magr->data == &mons[PM_AIRTIGHT_FEMMY] || magr->data == &mons[PM_SVEN] || magr->data == &mons[PM_GRANDMASTER_SVEN] || magr->data == &mons[PM_WORLD_PWNZOR] || magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || magr->egotype_laserpwnzor) && monnear(magr, mdef->mx, mdef->my)) {
 		if (!magr->hominglazer && !rn2(20)) {
 			pline("ATTENTION: Something has started to load an ultra-mega-hyper-dyper laser cannon!");
 			magr->hominglazer = 1;

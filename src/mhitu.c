@@ -3917,6 +3917,27 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_stealer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SAMU;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_painlord) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4545,8 +4566,13 @@ elena37:
 		}
 	}
 
+	if (mtmp->data == &mons[PM_TAUNTBUGGER]) {
+		mtmp->minvis = TRUE;
+		mtmp->perminvis = TRUE;
+	}
+
 	/* ultra-mega laser cannon for some specific ubermonsters, including the elder priest */
-	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
+	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_BLUEBEAM_GOLEM] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
 		if (range2 && lined_up(mtmp) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) ) {
 			if (!mtmp->hominglazer && !rn2(20)) {
 				pline("ATTENTION: %s has started to load an ultra-mega-hyper-dyper laser cannon!", Monnam(mtmp));
@@ -5700,6 +5726,12 @@ hitmu(mtmp, mattk)
 		if (statsavingthrow) break;
 		if (rn2(3)) break;
                 if (!diseasemu(mdat) || Invulnerable || (Stoned_chiller && Stoned)) dmg = 0;
+		break;
+
+	    case AD_SPEL:
+	    case AD_CAST:
+	    case AD_CLRC:
+		castmu(mtmp, mattk, FALSE, FALSE);
 		break;
 
 	    case AD_VOMT:
@@ -7204,6 +7236,11 @@ dopois:
 			    if (doseduce(mtmp)) return 3;
 		/* What kind of male person wouldn't want to be seduced by such a wonderfully lovely, sweet lady? */
 
+		}
+
+		if (mtmp->data == &mons[PM_TAUNTBUGGER] && multi >= 0) {
+			pline("%s taunts you relentlessly!", Monnam(mtmp));
+			nomul(-5, "being taunted relentlessly", FALSE);
 		}
 
 		buf[0] = '\0';
@@ -11183,6 +11220,11 @@ do_stone2:
 		pushplayer();
 		break;
 
+	    case AD_SAMU:
+		pline("You're pummeled with debris!");
+		if (!rn2(20)) stealamulet(mtmp);
+		break;
+
 	    case AD_UVUU:{
 		pline("A drill bores into your brain!");
 		if (rn2(10)) break;
@@ -12144,6 +12186,12 @@ do_stone2:
 		    if (!diseasemu(mtmp->data)) tmp = 0;
 		    break;
 
+		case AD_SPEL:
+		case AD_CAST:
+		case AD_CLRC:
+			castmu(mtmp, mattk, FALSE, FALSE);
+			break;
+
 		case AD_VOMT:
 			if (!rn2(StrongSick_resistance ? 100 : 10) || !Sick_resistance) {
 				if (!Vomiting) {
@@ -12444,9 +12492,12 @@ boolean ufound;
 	    case AD_SITM:
 	    case AD_SEDU:
 	    case AD_SSEX:
-	    case AD_SAMU:
 	    case AD_THIR:
 
+		goto common;
+
+	    case AD_SAMU:
+		stealamulet(mtmp);
 		goto common;
 
 	    case AD_NTHR:
@@ -14293,6 +14344,12 @@ common:
 		diseasemu(mdat);
 		break;
 
+	    case AD_SPEL:
+	    case AD_CAST:
+	    case AD_CLRC:
+		castmu(mtmp, mattk, FALSE, FALSE);
+		break;
+
 	    case AD_VOMT:
 		if (!rn2(StrongSick_resistance ? 100 : 10) || !Sick_resistance) {
 			if (!Vomiting) {
@@ -15577,6 +15634,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			stop_occupation();
 			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
 			else makerandomtrap();
+		}
+		break;
+
+	    case AD_SAMU:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(20)) )
+ 		{
+			pline("%s commands you to hand over your macguffins!", Monnam(mtmp));
+			stop_occupation();
+			stealamulet(mtmp);
 		}
 		break;
 
@@ -18288,6 +18354,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			(void) diseasemu(mtmp->data); /* plus the normal damage */
 	        }
 	        break;
+
+	    case AD_SPEL:
+	    case AD_CAST:
+	    case AD_CLRC:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(10))) {
+			castmu(mtmp, mattk, FALSE, FALSE);
+		  }
+		break;
 
           case AD_VOMT:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(12))) {

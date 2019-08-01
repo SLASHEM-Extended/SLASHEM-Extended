@@ -674,49 +674,117 @@ struct monst *mtmp;
     struct obj *otmp = (struct obj *)0;
     int real=0, fake=0;
 
-    /* select the artifact to steal */
-    if(u.uhave.amulet) {
-	real = AMULET_OF_YENDOR;
-	fake = FAKE_AMULET_OF_YENDOR;
-    } else if(u.uhave.bell) {
-	real = BELL_OF_OPENING;
-	fake = BELL;
-    } else if(u.uhave.book) {
-	real = SPE_BOOK_OF_THE_DEAD;
-    } else if(u.uhave.menorah) {
-	real = CANDELABRUM_OF_INVOCATION;
-    } else {
-	/* steal any artifact. Based on the reaction of the 3.6.0 devteam on tungtn's complaint about AD_SAMU behavior --Amy */
-	for(otmp = invent; otmp; otmp = otmp->nobj)
-	    if(otmp->oartifact && rn2(2) ) break; /* randomness :D */
-	if (!otmp) return;
-    }
+	int choiceamount = 0;
+	int totalamount = 0;
+	boolean somethingtosteal = FALSE;
 
-    if (!otmp) {
-	/* If we get here, real and fake have been set up. */
-	for(otmp = invent; otmp; otmp = otmp->nobj)
-	    if(otmp->otyp == real || (otmp->otyp == fake && !mtmp->iswiz))
-		break;
-    }
+	int stealtype = isevilvariant ? 3 : rnd(2);
 
-    if (otmp) { /* we have something to snatch */
-	if (otmp->owornmask)
-	    remove_worn_item(otmp, TRUE);
-	freeinv(otmp);
-	/* mpickobj wont merge otmp because none of the above things
-	   to steal are mergable */
+	/* select the artifact to steal */
+	/* Amy edit: completely overhauled the function; in evilvariant mode it always tries to steal both a macguffin
+	 * and an artifact now, otherwise it either steals one or the other. If it can't find anything in non-evilvariant
+	 * mode, it may try to find something in the other category so the attack isn't wasted */
 
-	if (StealDegrading || u.uprops[STEAL_DEGRADING].extrinsic || have_stealdegradestone()) {
-		if (!stack_too_big(otmp)) curse(otmp);
-		if (!stack_too_big(otmp) && otmp->spe > -20) otmp->spe--;
+tryagain:
+	if (stealtype == 1 || stealtype == 3) {
+		if(u.uhave.amulet) {
+			real = AMULET_OF_YENDOR;
+			fake = FAKE_AMULET_OF_YENDOR;
+			choiceamount++;
+		}
+		if(u.uhave.bell && !rn2(choiceamount + 1)) {
+			real = BELL_OF_OPENING;
+			fake = BELL;
+			choiceamount++;
+		}
+		if(u.uhave.book && !rn2(choiceamount + 1)) {
+			real = SPE_BOOK_OF_THE_DEAD;
+			fake = 0;
+			choiceamount++;
+		}
+		if(u.uhave.menorah && !rn2(choiceamount + 1)) {
+			real = CANDELABRUM_OF_INVOCATION;
+			fake = 0;
+			choiceamount++;
+		}
+
+		if (!otmp) {
+		/* If we get here, real and fake have been set up. */
+			for(otmp = invent; otmp; otmp = otmp->nobj)
+				if(otmp->otyp == real || (otmp->otyp == fake && !mtmp->iswiz))
+				break;
+		}
+
+		if (otmp) { /* we have something to snatch */
+			if (otmp->owornmask)
+				remove_worn_item(otmp, TRUE);
+			freeinv(otmp);
+		/* mpickobj wont merge otmp because none of the above things
+		   to steal are mergable */
+
+			if (StealDegrading || u.uprops[STEAL_DEGRADING].extrinsic || have_stealdegradestone()) {
+				if (!stack_too_big(otmp)) curse(otmp);
+				if (!stack_too_big(otmp) && otmp->spe > -20) otmp->spe--;
+			}
+
+			somethingtosteal = TRUE;
+			(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
+			if (evilfriday) pline("Something seems missing...");
+			else pline("%s stole %s!", Monnam(mtmp), doname(otmp));
+			if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
+			(void) rloc(mtmp, FALSE);
+		}
+		if (!somethingtosteal && stealtype == 1 && rn2(50)) {
+			stealtype = 2;
+			goto tryagain;
+		}
+
 	}
 
-	(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
-	if (evilfriday) pline("Something seems missing...");
-	else pline("%s stole %s!", Monnam(mtmp), doname(otmp));
-	if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
-	    (void) rloc(mtmp, FALSE);
-    }
+	if (stealtype == 2 || stealtype == 3) {
+
+		/* steal any artifact. Based on the reaction of the 3.6.0 devteam on tungtn's complaint about AD_SAMU behavior --Amy */
+		choiceamount = 0;
+		for(otmp = invent; otmp; otmp = otmp->nobj) {
+			if(otmp->oartifact && !rn2(totalamount + 1) ) {
+				choiceamount++;
+				totalamount++;
+			}
+		}
+		for(otmp = invent; otmp; otmp = otmp->nobj) {
+			if(otmp->oartifact) {
+				choiceamount--;
+				if (choiceamount <= 0) break; /* steal this one */
+			}
+		}
+		if (!otmp) return;
+
+		if (otmp) { /* we have something to snatch */
+			if (otmp->owornmask)
+				remove_worn_item(otmp, TRUE);
+			freeinv(otmp);
+		/* mpickobj wont merge otmp because none of the above things
+		   to steal are mergable */
+
+			if (StealDegrading || u.uprops[STEAL_DEGRADING].extrinsic || have_stealdegradestone()) {
+				if (!stack_too_big(otmp)) curse(otmp);
+				if (!stack_too_big(otmp) && otmp->spe > -20) otmp->spe--;
+			}
+
+			somethingtosteal = TRUE;
+			(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
+			if (evilfriday) pline("Something seems missing...");
+			else pline("%s stole %s!", Monnam(mtmp), doname(otmp));
+			if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
+			(void) rloc(mtmp, FALSE);
+		}
+
+		if (!somethingtosteal && stealtype == 2 && rn2(50)) {
+			stealtype = 1;
+			goto tryagain;
+		}
+
+	}
 }
 
 #endif /* OVLB */

@@ -2746,6 +2746,8 @@ register int pm;
 	    case PM_SILENT_KILLER:
 	    case PM_STONE_STALKER:
 	    case PM_ILLUSION_WEAVER:
+	    case PM_INVIS_SAMER:
+	    case PM_INVIS_SCORER:
 	    case PM_MIRAGE_WEAVER:
 	    case PM_PAIN_MASTER:
 	    case PM_PAIN_MISTER:
@@ -2777,6 +2779,10 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_FORGER_MECHANIC:
+	    case PM_IMPORTANT_MECHANIC:
+	    case PM_UNSEEN_MECHANIC:
+	    case PM_HASTY_MECHANIC:
 	    case PM_COUNTER_MECHANIC:
 	    case PM_DISMANTLER_MECHANIC:
 	    case PM_PLAYER_MECHANIC:
