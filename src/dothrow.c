@@ -1880,12 +1880,24 @@ int thrown;
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_MISSILE_WEAPONS)) {
 			default: break;
-			case P_BASIC: tmp += rnd(2); skillpierce = 1; break;
-			case P_SKILLED: tmp += rnd(3); skillpierce = 2; break;
-			case P_EXPERT: tmp += rnd(5); skillpierce = 3; break;
-			case P_MASTER: tmp += rnd(6); skillpierce = 4; break;
-			case P_GRAND_MASTER: tmp += rnd(8); skillpierce = 5; break;
-			case P_SUPREME_MASTER: tmp += rnd(10); skillpierce = 6; break;
+			case P_BASIC: tmp += rnd(2); skillpierce += 1; break;
+			case P_SKILLED: tmp += rnd(3); skillpierce += 2; break;
+			case P_EXPERT: tmp += rnd(5); skillpierce += 3; break;
+			case P_MASTER: tmp += rnd(6); skillpierce += 4; break;
+			case P_GRAND_MASTER: tmp += rnd(8); skillpierce += 5; break;
+			case P_SUPREME_MASTER: tmp += rnd(10); skillpierce += 6; break;
+		}
+
+		if (obj && objects[obj->otyp].oc_skill == -P_FIREARM) {
+			switch (P_SKILL(P_GUN_CONTROL)) {
+				default: break;
+				case P_BASIC: tmp += 2; skillpierce += 1; break;
+				case P_SKILLED: tmp += 4; skillpierce += 2; break;
+				case P_EXPERT: tmp += 6; skillpierce += 3; break;
+				case P_MASTER: tmp += 8; skillpierce += 4; break;
+				case P_GRAND_MASTER: tmp += 10; skillpierce += 5; break;
+				case P_SUPREME_MASTER: tmp += 12; skillpierce += 6; break;
+			}
 		}
 
 		if (!rn2(3)) {

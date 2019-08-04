@@ -1335,6 +1335,7 @@ struct you {
 	int latetrainingtimer;
 	int lavtrainingskill; /* is untrainable unless at least X turns have passed */
 	int lavtrainingtimer;
+	int slowtrainingskill; /* becomes harder to train the higher it already is */
 
 	int drippingtread;
 	int drippingtreadtype;

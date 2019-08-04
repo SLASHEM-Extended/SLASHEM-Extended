@@ -1345,7 +1345,22 @@ dogaze()
 	coord cc;
 	struct monst *mtmp;
 	int gazecost = 24;
+	int squeakamount = 0;
 	gazecost += (Upolyd ? (mons[u.umonnum].mlevel * 4) : (u.ulevel * 4));
+
+	squeakamount = gazecost;
+	/* we can now reduce the cost based on the player's squeaking skill --Amy */
+	if (!PlayerCannotUseSkills && gazecost > 2) {
+		switch (P_SKILL(P_SQUEAKING)) {
+	      	case P_BASIC:	gazecost *= 9; gazecost /= 10; break;
+	      	case P_SKILLED:	gazecost *= 8; gazecost /= 10; break;
+	      	case P_EXPERT:	gazecost *= 7; gazecost /= 10; break;
+	      	case P_MASTER:	gazecost *= 6; gazecost /= 10; break;
+	      	case P_GRAND_MASTER:	gazecost *= 5; gazecost /= 10; break;
+	      	case P_SUPREME_MASTER:	gazecost *= 4; gazecost /= 10; break;
+	      	default: break;
+		}
+	}
 
 	if (Blind) {
 		You("can't see a thing!");
@@ -1390,6 +1405,12 @@ dogaze()
 
 	ranged_thorns(mtmp);
 
+	while (squeakamount > 20) {
+		use_skill(P_SQUEAKING, 1);
+		squeakamount -= 20;
+	}
+	use_skill(P_SQUEAKING, 1);
+
 	if ((mtmp->data==&mons[PM_MEDUSA]) && !mtmp->mcan && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		pline("Gazing at the awake Medusa is not a very good idea.");
 		/* as if gazing at a sleeping anything is fruitful... */
@@ -1431,6 +1452,7 @@ dobreathe()
 {
 	struct attack *mattk;
 	int energy = 0;
+	int squeakamount = 0;
 
 	if (Strangled) {
 	    You_cant("breathe.  Sorry.");
@@ -1458,6 +1480,20 @@ dobreathe()
 
 	if (mattk->adtyp == AD_DISN) energy = u.breathenhancetimer ? 66 : 100;
 	else if (mattk->adtyp == AD_RBRE) energy = u.breathenhancetimer ? 20 : 30; /* can randomly be a disintegration beam */
+
+	squeakamount = energy;
+	/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
+	if (!PlayerCannotUseSkills && energy > 2) {
+		switch (P_SKILL(P_SQUEAKING)) {
+	      	case P_BASIC:	energy *= 9; energy /= 10; break;
+	      	case P_SKILLED:	energy *= 8; energy /= 10; break;
+	      	case P_EXPERT:	energy *= 7; energy /= 10; break;
+	      	case P_MASTER:	energy *= 6; energy /= 10; break;
+	      	case P_GRAND_MASTER:	energy *= 5; energy /= 10; break;
+	      	case P_SUPREME_MASTER:	energy *= 4; energy /= 10; break;
+	      	default: break;
+		}
+	}
 
 	if (u.uen < energy) {
 	    You("don't have enough energy to breathe! You need at least %d mana!",energy);
@@ -1490,6 +1526,11 @@ dobreathe()
 		}
 
 	}
+	while (squeakamount > 20) {
+		use_skill(P_SQUEAKING, 1);
+		squeakamount -= 20;
+	}
+	use_skill(P_SQUEAKING, 1);
 	return(1);
 }
 
@@ -1498,8 +1539,21 @@ dospit()
 {
 	struct obj *otmp;
 	struct attack *mattk;
+	int spitcost = 5;
 
-	if (u.uen < 5) {
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_SQUEAKING)) {
+	      	case P_BASIC:	spitcost = rn2(5) ? 5 : 4; break;
+	      	case P_SKILLED:	spitcost = rn2(2) ? 5 : 4; break;
+	      	case P_EXPERT:	spitcost = !rn2(3) ? 3 : rn2(2) ? 5 : 4; break;
+	      	case P_MASTER:	spitcost = !rn2(3) ? 3 : rn2(5) ? 5 : 4; break;
+	      	case P_GRAND_MASTER:	spitcost = !rn2(2) ? 3 : rn2(3) ? 5 : 4; break;
+	      	case P_SUPREME_MASTER:	spitcost = !rn2(5) ? 2 : !rn2(2) ? 3 : rn2(2) ? 5 : 4; break;
+	      	default: break;
+		}
+	}
+
+	if (u.uen < spitcost) {
 		You("lack the energy to spit - need at least 5 mana!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
@@ -1507,7 +1561,7 @@ dospit()
 
 	if (!getdir((char *)0)) return(0);
 
-	u.uen -= 5;
+	u.uen -= spitcost;
 
 	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
 	if (!mattk)
@@ -1538,6 +1592,7 @@ dospit()
 	    otmp->spe = 1; /* to indicate it's yours */
 	    throwit(otmp, 0L, FALSE, 0);
 	}
+	use_skill(P_SQUEAKING, 1);
 	return(1);
 }
 
@@ -2181,6 +2236,7 @@ dosummon()
 	int placeholder;
 	int somanymana;
 	somanymana = 10;
+	int squeakamount = 0;
 
 	if (u.ulycn == PM_WERESOLDIERANT) somanymana = 15;
 	if (u.ulycn == PM_WEREWOLF) somanymana = 20;
@@ -2244,6 +2300,21 @@ dosummon()
 	if (u.umonnum == PM_WEREUNFAIRSTILETTO && somanymana < 260) somanymana = 260;
 	if (u.umonnum == PM_WEREWINTERSTILETTO && somanymana < 300) somanymana = 300;
 
+	squeakamount = somanymana;
+	/* we can now use the squeaking skill to reduce the cost */
+
+	if (!PlayerCannotUseSkills && somanymana > 2) {
+		switch (P_SKILL(P_SQUEAKING)) {
+	      	case P_BASIC:	somanymana *= 9; somanymana /= 10; break;
+	      	case P_SKILLED:	somanymana *= 8; somanymana /= 10; break;
+	      	case P_EXPERT:	somanymana *= 7; somanymana /= 10; break;
+	      	case P_MASTER:	somanymana *= 6; somanymana /= 10; break;
+	      	case P_GRAND_MASTER:	somanymana *= 5; somanymana /= 10; break;
+	      	case P_SUPREME_MASTER:	somanymana *= 4; somanymana /= 10; break;
+	      	default: break;
+		}
+	}
+
 	if (u.uen < somanymana) {
 	    You("lack the energy to send forth a call for help! You need at least %d!",somanymana);
 	    return(0);
@@ -2255,6 +2326,13 @@ dosummon()
 	exercise(A_WIS, TRUE);
 	if (!were_summon(youmonst.data, TRUE, &placeholder, (char *)0, FALSE))
 		pline("But none arrive.");
+
+	while (squeakamount > 40) {
+		use_skill(P_SQUEAKING, 1);
+		squeakamount -= 40;
+	}
+	use_skill(P_SQUEAKING, 1);
+
 	return(1);
 }
 
@@ -2418,12 +2496,25 @@ int
 domindblast()
 {
 	struct monst *mtmp, *nmon;
+	int mindblastcost = 10;
 
-	if (u.uen < 10) {
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_SQUEAKING)) {
+	      	case P_BASIC:	mindblastcost = 9 + rn2(2); break;
+	      	case P_SKILLED:	mindblastcost = 8 + rn2(3); break;
+	      	case P_EXPERT:	mindblastcost = 7 + rn2(4); break;
+	      	case P_MASTER:	mindblastcost = 6 + rn2(5); break;
+	      	case P_GRAND_MASTER:	mindblastcost = 5 + rn2(6); break;
+	      	case P_SUPREME_MASTER:	mindblastcost = 4 + rn2(7); break;
+	      	default: break;
+		}
+	}
+
+	if (u.uen < mindblastcost) {
 	    You("concentrate but lack the energy to maintain doing so. Wimp, you don't even have 10 mana to spare?!");
 	    return(0);
 	}
-	u.uen -= 10;
+	u.uen -= mindblastcost;
 	flags.botl = 1;
 
 	pline("A wave of psychic energy pours out.");
@@ -2448,6 +2539,8 @@ domindblast()
 				killed(mtmp);
 		}
 	}
+	use_skill(P_SQUEAKING, 1);
+
 	return 1;
 }
 

@@ -4504,6 +4504,18 @@ int degree;
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
 
+	/* squeaking and gun control train slower the higher they already are --Amy */
+	if (skill == P_SQUEAKING || skill == P_GUN_CONTROL) {
+		int advchance = 1;
+		if (P_ADVANCE(skill) >= 4320) advchance = 21;
+		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
+		else if (P_ADVANCE(skill) >= 1280) advchance = 8;
+		else if (P_ADVANCE(skill) >= 540) advchance = 5;
+		else if (P_ADVANCE(skill) >= 160) advchance = 3;
+		else if (P_ADVANCE(skill) >= 20) advchance = 2;
+		if (advchance > 1 && rn2(advchance)) return;
+	}
+
 	if (skill == u.untrainableskill) return; /* cannot train this skill at all, no matter what */
 	if ((skill == u.halfspeedskill) && rn2(2)) return;
 	if ((skill == u.fifthspeedskill) && rn2(5)) return;
@@ -4535,6 +4547,17 @@ int degree;
 		if (moves < u.lavtrainingtimer) {
 			return;
 		}
+	}
+
+	if (skill == u.slowtrainingskill) { /* If this stacks with squeaking or gun control, that's a feature :P --Amy */
+		int advchance = 1;
+		if (P_ADVANCE(skill) >= 4320) advchance = 21;
+		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
+		else if (P_ADVANCE(skill) >= 1280) advchance = 8;
+		else if (P_ADVANCE(skill) >= 540) advchance = 5;
+		else if (P_ADVANCE(skill) >= 160) advchance = 3;
+		else if (P_ADVANCE(skill) >= 20) advchance = 2;
+		if (advchance > 1 && rn2(advchance)) return;
 	}
 
 screwupsdone:
@@ -5747,6 +5770,10 @@ const struct def_skill *class_skill;
 	    skill = class_skill->skill;
 	    skmax = class_skill->skmax;
 
+	    /* Amy note: gun control and squeaking are gender-specific at game start (but you can unlock the other later) */
+	    if (flags.female && skill == P_GUN_CONTROL) continue;
+	    if (!flags.female && skill == P_SQUEAKING) continue;
+
 	    P_MAX_SKILL(skill) = skmax;
 	    if (P_SKILL(skill) == P_ISRESTRICTED)       /* skill pre-set */
 			P_SKILL(skill) = P_UNSKILLED;
@@ -5762,7 +5789,7 @@ const struct def_skill *class_skill;
 	/* Set skill for all objects in inventory to be basic */
 	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
-	    if (skill != P_NONE) {
+	    if (skill != P_NONE && !(flags.female && skill == P_GUN_CONTROL) && !(!flags.female && skill == P_SQUEAKING) ) {
 		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */

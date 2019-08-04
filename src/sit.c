@@ -815,7 +815,20 @@ secureidchoice:
 			stackobj(uegg);
 			morehungry((int)objects[EGG].oc_nutrition);
 			u.egglayingtimeout = rnz(1000);
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.egglayingtimeout *= 9; u.egglayingtimeout /= 10; break;
+			      	case P_SKILLED:	u.egglayingtimeout *= 8; u.egglayingtimeout /= 10; break;
+			      	case P_EXPERT:	u.egglayingtimeout *= 7; u.egglayingtimeout /= 10; break;
+			      	case P_MASTER:	u.egglayingtimeout *= 6; u.egglayingtimeout /= 10; break;
+			      	case P_GRAND_MASTER:	u.egglayingtimeout *= 5; u.egglayingtimeout /= 10; break;
+			      	case P_SUPREME_MASTER:	u.egglayingtimeout *= 4; u.egglayingtimeout /= 10; break;
+			      	default: break;
+
+				}
+			}
 			pline("You will be able to lay another egg in %d turns.", u.egglayingtimeout);
+			use_skill(P_SQUEAKING, rnd(20));
 		}
 	} else if (u.uswallow)
 		There("are no seats in here!");

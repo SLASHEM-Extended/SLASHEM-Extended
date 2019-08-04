@@ -1425,8 +1425,20 @@ domonability()
 	/* snail can't equip pick-axes, so should be able to dig without one from time to time --Amy */
 	if (Race_if(PM_ELONA_SNAIL) && !u.snaildigging && yn("Do you want to fire a digging ray?")=='y' ) {
 		u.snaildigging = rnz(1000);
+		if (!PlayerCannotUseSkills && u.snaildigging >= 2) {
+			switch (P_SKILL(P_SQUEAKING)) {
+		      	case P_BASIC:	u.snaildigging *= 9; u.snaildigging /= 10; break;
+		      	case P_SKILLED:	u.snaildigging *= 8; u.snaildigging /= 10; break;
+		      	case P_EXPERT:	u.snaildigging *= 7; u.snaildigging /= 10; break;
+		      	case P_MASTER:	u.snaildigging *= 6; u.snaildigging /= 10; break;
+		      	case P_GRAND_MASTER:	u.snaildigging *= 5; u.snaildigging /= 10; break;
+		      	case P_SUPREME_MASTER:	u.snaildigging *= 4; u.snaildigging /= 10; break;
+		      	default: break;
+			}
+		}
 		getdir((char *)0);
 		zap_dig(FALSE); /* dig only one tile, just like in Elona */
+		use_skill(P_SQUEAKING, rnd(20));
 		return TRUE;
 	}
 	else if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM && yn("Do you want to repair your 'Stefanje' sandals?")=='y') {
@@ -1440,6 +1452,17 @@ domonability()
 		}
 	} else if (issokosolver && !u.sokosolveboulder && yn("Do you want to create a boulder?")=='y' ) {
 		u.sokosolveboulder = rnz(1000);
+		if (!PlayerCannotUseSkills && u.sokosolveboulder >= 2) {
+			switch (P_SKILL(P_SQUEAKING)) {
+		      	case P_BASIC:	u.sokosolveboulder *= 9; u.sokosolveboulder /= 10; break;
+		      	case P_SKILLED:	u.sokosolveboulder *= 8; u.sokosolveboulder /= 10; break;
+		      	case P_EXPERT:	u.sokosolveboulder *= 7; u.sokosolveboulder /= 10; break;
+		      	case P_MASTER:	u.sokosolveboulder *= 6; u.sokosolveboulder /= 10; break;
+		      	case P_GRAND_MASTER:	u.sokosolveboulder *= 5; u.sokosolveboulder /= 10; break;
+		      	case P_SUPREME_MASTER:	u.sokosolveboulder *= 4; u.sokosolveboulder /= 10; break;
+		      	default: break;
+			}
+		}
 		register struct obj *otmp2;
 		otmp2 = mksobj(BOULDER, FALSE, FALSE);
 		if (!otmp2) {
@@ -1452,12 +1475,24 @@ domonability()
 		stackobj(otmp2);
 		newsym(u.ux, u.uy);
 		pline("Kadoom! A boulder appeared underneath you.");
+		use_skill(P_SQUEAKING, rnd(10));
 		return TRUE;
 	} else if (issokosolver && !u.sokosolveuntrap && yn("Do you want to disarm adjacent traps? (this doesn't work on pits, holes or other boulder-swallowing traps)")=='y' ) {
 		int i, j, bd = 1, trpcount = 0, undtrpcnt = 0;
 		struct trap *ttmp;
 
 		u.sokosolveuntrap = rnz(4000);
+		if (!PlayerCannotUseSkills && u.sokosolveuntrap >= 2) {
+			switch (P_SKILL(P_SQUEAKING)) {
+		      	case P_BASIC:	u.sokosolveuntrap *= 9; u.sokosolveuntrap /= 10; break;
+		      	case P_SKILLED:	u.sokosolveuntrap *= 8; u.sokosolveuntrap /= 10; break;
+		      	case P_EXPERT:	u.sokosolveuntrap *= 7; u.sokosolveuntrap /= 10; break;
+		      	case P_MASTER:	u.sokosolveuntrap *= 6; u.sokosolveuntrap /= 10; break;
+		      	case P_GRAND_MASTER:	u.sokosolveuntrap *= 5; u.sokosolveuntrap /= 10; break;
+		      	case P_SUPREME_MASTER:	u.sokosolveuntrap *= 4; u.sokosolveuntrap /= 10; break;
+		      	default: break;
+			}
+		}
 
 		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 
@@ -1474,6 +1509,7 @@ domonability()
 		(void) doredraw();
 		pline("%d traps were disarmed.", trpcount);
 		if (undtrpcnt) pline("%d traps could not be disarmed.", undtrpcnt);
+		use_skill(P_SQUEAKING, rnd(30));
 		return TRUE;
 	} else if (can_breathe(youmonst.data) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
 	else if (attacktype(youmonst.data, AT_SPIT) && yn("Do you want to use your spit attack?")=='y' ) return dospit();
@@ -1503,6 +1539,7 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "tender" : "soft", flags.female ? "sexy" : "ugly");
+			use_skill(P_SQUEAKING, 1);
 
 			if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
 				healup((level_difficulty() + 5), 0, FALSE, FALSE);
@@ -1548,6 +1585,8 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "beautiful" : "squeaky", flags.female ? "sexy" : "ugly");
+			use_skill(P_SQUEAKING, 1);
+
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
 			      useup(uarmf);
@@ -1586,6 +1625,8 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "disgusting" : "loud", flags.female ? "sexy" : "ugly");
+			use_skill(P_SQUEAKING, 1);
+
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
 			      useup(uarmf);
@@ -1640,6 +1681,18 @@ domonability()
 			}
 		}
 		u.hussyperfume = rnz(4000);
+		if (!PlayerCannotUseSkills && u.hussyperfume >= 2) {
+			switch (P_SKILL(P_SQUEAKING)) {
+		      	case P_BASIC:	u.hussyperfume *= 9; u.hussyperfume /= 10; break;
+		      	case P_SKILLED:	u.hussyperfume *= 8; u.hussyperfume /= 10; break;
+		      	case P_EXPERT:	u.hussyperfume *= 7; u.hussyperfume /= 10; break;
+		      	case P_MASTER:	u.hussyperfume *= 6; u.hussyperfume /= 10; break;
+		      	case P_GRAND_MASTER:	u.hussyperfume *= 5; u.hussyperfume /= 10; break;
+		      	case P_SUPREME_MASTER:	u.hussyperfume *= 4; u.hussyperfume /= 10; break;
+		      	default: break;
+			}
+		}
+		use_skill(P_SQUEAKING, rnd(40));
 
 	} else if (Role_if(PM_HUSSY) && flags.female && u.uhs <= 0 && isok(u.ux, u.uy) && yn("Do you want to take a crap?") == 'y') {
 
@@ -1659,6 +1712,8 @@ domonability()
 			}
 
 		}
+		use_skill(P_SQUEAKING, rnd(10));
+
 		return 1;
 
 	} else if (!PlayerCannotUseSkills && u.juyofleeing && P_SKILL(P_JUYO) >= P_BASIC && yn("Do you want to turn off the increased chance of making a monster flee?") == 'y') {
@@ -1769,7 +1824,19 @@ mushroomannoyance:
 	} else
 flowannoyance:
 	if (Role_if(PM_DEMAGOGUE) && !u.temprecursion && !u.demagoguerecursion && u.demagogueabilitytimer == 0 && !(In_endgame(&u.uz)) && yn("Do you want to use recursion to temporarily become someone else?") == 'y') {
+		use_skill(P_SQUEAKING, rnd(20));
 		u.demagogueabilitytimer = rnz(2500);
+		if (!PlayerCannotUseSkills && u.demagogueabilitytimer >= 2) {
+			switch (P_SKILL(P_SQUEAKING)) {
+		      	case P_BASIC:	u.demagogueabilitytimer *= 9; u.demagogueabilitytimer /= 10; break;
+		      	case P_SKILLED:	u.demagogueabilitytimer *= 8; u.demagogueabilitytimer /= 10; break;
+		      	case P_EXPERT:	u.demagogueabilitytimer *= 7; u.demagogueabilitytimer /= 10; break;
+		      	case P_MASTER:	u.demagogueabilitytimer *= 6; u.demagogueabilitytimer /= 10; break;
+		      	case P_GRAND_MASTER:	u.demagogueabilitytimer *= 5; u.demagogueabilitytimer /= 10; break;
+		      	case P_SUPREME_MASTER:	u.demagogueabilitytimer *= 4; u.demagogueabilitytimer /= 10; break;
+		      	default: break;
+			}
+		}
 		demagoguerecursioneffect();
 	} else if (Upolyd)
 		pline("Any (other) special ability you may have is purely reflexive.");
@@ -2836,6 +2903,11 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && u.lavtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
 		enl_msg("The following skill ", "can't be trained before a certain turn number is reached:", "couldn't be trained before a certain turn number is reached:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.slowtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		sprintf(buf, " %s", P_NAME(u.slowtrainingskill));
+		enl_msg("The following skill ", "becomes harder to train at higher skill levels:", "became harder to train at higher skill levels:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.stickycursechance ) {
@@ -6706,6 +6778,11 @@ int final;
 	if (u.lavtrainingskill) {
 		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
 		dump("  The following skill couldn't be trained before a certain turn number is reached:", buf);
+	}
+
+	if (u.slowtrainingskill) {
+		sprintf(buf, " %s", P_NAME(u.slowtrainingskill));
+		dump("  The following skill became harder to train at higher skill levels:", buf);
 	}
 
 	if (u.stickycursechance) {
