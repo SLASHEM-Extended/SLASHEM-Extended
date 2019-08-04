@@ -5826,6 +5826,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoScentView && (final || u.uprops[DEAC_SCENT_VIEW].intrinsic) ) {
+		sprintf(buf, "prevented from having scent view");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoDiminishedBleeding && (final || u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic) ) {
+		sprintf(buf, "prevented from having diminished bleeding");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic);
+		you_are(buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
@@ -5934,6 +5946,9 @@ boolean guaranteed;
 		case RUBY_DRAGON_SCALE_SHIELD:
 		case GREEN_DRAGON_SCALE_SHIELD:
 		case GOLDEN_DRAGON_SCALE_SHIELD:
+		case FEMINISM_DRAGON_SCALE_SHIELD:
+		case NEGATIVE_DRAGON_SCALE_SHIELD:
+		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
 		case PSYCHIC_DRAGON_SCALE_SHIELD:
@@ -6248,6 +6263,8 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Discount_action) you_have(StrongDiscount_action ? "high discount action" : "discount action");
 	if ((guaranteed || !rn2(10)) && Full_nutrient) you_have(StrongFull_nutrient ? "very full nutrients" : "full nutrients");
 	if ((guaranteed || !rn2(10)) && Technicality) you_have(StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
+	if ((guaranteed || !rn2(10)) && (ScentView || EcholocationActive)) you_have(StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
+	if ((guaranteed || !rn2(10)) && DiminishedBleeding) you_have(StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if ((guaranteed || !rn2(10)) && Psi_resist) you_have(StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", StrongExtra_wpn_practice ? " train skills and attributes much faster" : " train skills and attributes faster");
 	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
@@ -9499,6 +9516,19 @@ int final;
 	    	sprintf(eos(buf), " (%d)", u.uprops[DEAC_TECHNICALITY].intrinsic);
 		dump(youwere, buf);
 	}
+
+	if (NoScentView) {
+		sprintf(buf, "prevented from having scent view");
+		sprintf(eos(buf), " (%d)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoDiminishedBleeding) {
+		sprintf(buf, "prevented from having diminished bleeding");
+		sprintf(eos(buf), " (%d)", u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic);
+		dump(youwere, buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if (uarms) {
@@ -9607,6 +9637,9 @@ int final;
 		case RUBY_DRAGON_SCALE_SHIELD:
 		case GREEN_DRAGON_SCALE_SHIELD:
 		case GOLDEN_DRAGON_SCALE_SHIELD:
+		case FEMINISM_DRAGON_SCALE_SHIELD:
+		case NEGATIVE_DRAGON_SCALE_SHIELD:
+		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
 		case CYAN_DRAGON_SCALE_SHIELD:
 		case PSYCHIC_DRAGON_SCALE_SHIELD:
@@ -9881,6 +9914,8 @@ int final;
 	if (Discount_action) dump(youhad, StrongDiscount_action ? "high discount action" : "discount action");
 	if (Full_nutrient) dump(youhad, StrongFull_nutrient ? "very full nutrients" : "full nutrients");
 	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
+	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
+	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if (Psi_resist) dump(youhad, StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if (Extra_wpn_practice) dump("  ", StrongExtra_wpn_practice ? "You could train skills and attributes much faster" : "You could train skills and attributes faster");
 	if (Death_resistance) dump(youhad, "resistance to death rays");

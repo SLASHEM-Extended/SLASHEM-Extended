@@ -39,6 +39,7 @@ const struct innate {
 
 	xel_abil[] = { {	 1, &(HSwimming), "", "" },
 		     {  1, &(HAcid_resistance), "", "" },
+		     {  1, &(HScentView), "", "" },
 		     {  6, &(HStealth), "stealthy", "noisy" },
 		     {  6, &(HJumping), "able to jump around", "unable to jump around" },
 		     {	10, &(HFear_resistance), "unafraid", "afraid" },
@@ -111,6 +112,12 @@ const struct innate {
 		     {  15, &(HStealth), "stealthy", "noisy" },
 		     {	 0, 0, 0, 0 } },
 
+	hus_abil[] = { {	 1, &(HScentView), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	pro_abil[] = { { 10, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
+		     {	 0, 0, 0, 0 } },
+
 	ass_abil[] = { {	 1, &(HStealth), "", "" },
 		     {   10, &(HFast), "quick", "slow" },
 		     {	15, &(HWarning), "sensitive", "careless" },
@@ -164,6 +171,7 @@ const struct innate {
 		     {	 0, 0, 0, 0 } },
 
 	cav_abil[] = { {	 7, &(HFast), "quick", "slow" },
+		     {  10, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 		     {	15, &(HWarning), "sensitive", "careless" },
 		     {	 0, 0, 0, 0 } },
 
@@ -231,6 +239,7 @@ const struct innate {
 
 	kur_abil[] = { {   4, &(NotSeenBug), "", "" },
 			{	8, &(GrayoutBug), "", "" },
+			{     10, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
 			{	12, &(DifficultyIncreased), "", "" },
 			{	16, &(UnfairAttackBug), "", "" },
 			{	20, &(EnmityBug), "", "" },
@@ -275,6 +284,7 @@ const struct innate {
 			{     9, &(HManaleech), "magically attuned", "no longer magically attuned" },
 			{	10, &(HCorrosivity), "corrosive", "less acidic" },
 			{	12, &(FreeHandLoss), "", "" },
+		     {  14, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
 			{	15, &(HSleep_resistance), "awake", "tired" },
 			{	17, &(DifficultyIncreased), "", "" },
 		       {   18, &(HPolymorph_control), "your choices improve", "choiceless" },
@@ -303,6 +313,7 @@ const struct innate {
 			{  8, &(HSearching), "perceptive", "unaware" },
 		     {	 12, &(HStealth), "stealthy", "noisy" },
 		     {  15, &(HFire_resistance), "cool", "warmer" },
+		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 		     {   0, 0, 0, 0 } },
 
 	yau_abil[] = { {   1, &(HInfravision), "", "" },
@@ -324,6 +335,7 @@ const struct innate {
 
 	coo_abil[] = { {   1, &(HFire_resistance), "", "" },
 		     {  1, &(HFull_nutrient), "", "" },
+		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 		     {   0, 0, 0, 0 } },
 
 	psy_abil[] = { {   1, &(HSee_invisible), "", "" },
@@ -359,6 +371,7 @@ const struct innate {
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		       {   18, &(HPolymorph_control), "your choices improve", "choiceless" },
 		     {   24, &(HClairvoyant), "clairvoyant", "mentally poor" },
+		     {  25, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
 		     {   0, 0, 0, 0 } },
 
 	fig_abil[] = { {	 7, &(HFast), "quick", "slow" },
@@ -447,6 +460,7 @@ const struct innate {
 
 	unt_abil[] = { {   1, &(HPoison_resistance), "", "" },
 		     {   7, &(HCold_resistance), "warm", "cooler" },
+			{     18, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
 		     {   0, 0, 0, 0 } },
 
 	gee_abil[] = { {   1, &(HPoison_resistance), "", "" },
@@ -499,6 +513,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	zoo_abil[] = { {   1, &(HWarning), "", "" },
+			{   1, &(HScentView), "", "" },
 		     {  10, &(HPoison_resistance), "hardy", "less healthy" },
 		     {   0, 0, 0, 0 } },
 
@@ -567,6 +582,7 @@ const struct innate {
 		     {   4, &(HWarning), "sensitive", "careless" },
 		     {   7, &(HSearching), "perceptive", "unaware" },
 		     {   10, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life" },
+		     {   12, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 		     {   13, &(HFast), "quick", "slow" },
 		     {   16, &(HSleep_resistance), "awake", "tired" },
 		     {   19, &(HAcid_resistance), "warded", "endangered" },
@@ -586,6 +602,7 @@ const struct innate {
 	gof_abil[] = {	{1, &(HDrain_resistance), "", ""  },
 		     {   1, &(HInfravision), "", "" },
 		     {  10, &(HReflecting), "reflexive", "nonreflexive" },
+		     {  20, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
 		     {	 0, 0, 0, 0 } },
 	gol_abil[] = { {   5, &(HStealth), "stealthy", "noisy" },
 		     {   9, &(HFast), "quick", "slow" },
@@ -606,6 +623,7 @@ const struct innate {
 
 	lun_abil[] = { {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HRegeneration), "", "" },
+		     {   1, &(HScentView), "", "" },
 		     {   7, &(HStealth), "stealthy", "noisy" },
 		     {   0, 0, 0, 0 } },
 
@@ -705,6 +723,7 @@ const struct innate {
 		     {	 0, 0, 0, 0 } },
 
 	bos_abil[] = { {	1, &(HPoison_resistance), "", "" },
+		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 		     {  7, &(HStealth), "stealthy", "noisy" },
 		     {	 0, 0, 0, 0 } },
 
@@ -725,12 +744,22 @@ const struct innate {
 			{  10, &(HFire_resistance), "cool", "warmer" },
 			{   0, 0, 0, 0 } },
 
+	dra_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
+			{   0, 0, 0, 0 } },
+
+	fel_abil[] = { { 20, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
+			{   0, 0, 0, 0 } },
+
+	kha_abil[] = { { 5, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
+			{   0, 0, 0, 0 } },
+
 	azt_abil[] = { { 1, &(HFast), "", "" },
 			{   0, 0, 0, 0 } },
 
 	jav_abil[] = { { 1, &(HFire_resistance), "", "" },
 		     {	 1, &(HPoison_resistance), "", "" },
 		     {	 1, &(HSick_resistance), "", "" },
+		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 			{   0, 0, 0, 0 } },
 
 	chi_abil[] = { { 1, &(HFull_nutrient), "", "" },
@@ -819,6 +848,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	fen_abil[] = { {   1, &(HSearching), "", "" },
+		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 			{   5, &(HStealth), "stealthy", "noisy" },
 		     {   7, &(HFast), "quick", "slow" },
 		     {	 10, &(HFire_resistance), "heat resistant", "less heat resistant" },
@@ -871,6 +901,9 @@ const struct innate {
 		     {	 26, &(CyanSpells), "", "" },
 		     {	 28, &(BrightCyanSpells), "", "" },
 		     {	 30, &(PinkSpells), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	glm_abil[] = { {   1, &(HDiminishedBleeding), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	nor_abil[] = { {   1, &(HCold_resistance), "", "" },
@@ -1032,6 +1065,7 @@ const struct innate {
 
 	ins_abil[] = { {  1, &(HPoison_resistance), "", "" },
 		     {   1, &(HFull_nutrient), "", "" },
+		     {   1, &(HScentView), "", "" },
 			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
@@ -1047,6 +1081,7 @@ const struct innate {
 		     {   1, &(HCold_resistance), "", "" },
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HDiminishedBleeding), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	mum_abil[] = { {  1, &(HSick_resistance), "", "" },
@@ -1054,9 +1089,11 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HUndead_warning), "", "" },
+		     {   1, &(HDiminishedBleeding), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	din_abil[] = { {  1, &(HDiscount_action), "", "" },
+		     {   1, &(HScentView), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	ske_abil[] = { {  1, &(HSick_resistance), "", "" },
@@ -1065,6 +1102,7 @@ const struct innate {
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HStone_resistance), "", "" },
 		     {   1, &(HMagical_breathing), "", "" },
+		     {   1, &(HDiminishedBleeding), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	lev_abil[] = { {  1, &(HTelepat), "", "" },
@@ -1106,6 +1144,7 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 			{   1, &(HManaleech), "", "" },
 			{   1, &(HDiscount_action), "", "" },
+		     {  8, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
 		     {	 0, 0, 0, 0 } },
 
 	wim_abil[] = { {	 1, &(HFire_resistance), "", "" },
@@ -1139,6 +1178,7 @@ const struct innate {
 
 	lyc_abil[] = { {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HRegeneration), "", "" },
+		     {   1, &(HScentView), "", "" },
 		     {   7, &(HStealth), "stealthy", "noisy" },
 		     {   0, 0, 0, 0 } },
 
@@ -1146,6 +1186,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	sat_abil[] = { {   1, &(HTechnicality), "", "" },
+		     {   1, &(HScentView), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	sho_abil[] = { {   1, &(HDiscount_action), "", "" },
@@ -1153,6 +1194,7 @@ const struct innate {
 
 	ink_abil[] = { {   1, &(HPeacevision), "", "" },
 		     {   1, &(HTechnicality), "", "" },
+		     {   1, &(HScentView), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	sed_abil[] = { {   1, &(HAntimagic), "", "" },
@@ -1873,6 +1915,7 @@ int oldlevel, newlevel;
 	case PM_LADIESMAN:      abil = lad_abil;	break;
 	case PM_FENCER:      abil = fnc_abil;	break;
 	case PM_EMPATH:      abil = emp_abil;	break;
+	case PM_HUSSY:      abil = hus_abil;	break;
 	case PM_QUARTERBACK:      abil = qub_abil;	break;
 	case PM_FIGHTER:      abil = fig_abil;	break;
 	case PM_MEDIUM:      abil = med_abil;	break;
@@ -1899,6 +1942,7 @@ int oldlevel, newlevel;
 	case PM_FAILED_EXISTENCE:        abil = fai_abil;	break;
 	case PM_TRANSSYLVANIAN:        abil = trs_abil;	break;
 	case PM_KURWA:        abil = kur_abil;	break;
+	case PM_PROSTITUTE:        abil = pro_abil;	break;
 	case PM_FLAME_MAGE:	abil = fla_abil;	break;
 	case PM_COOK:	abil = coo_abil;	break;
 	case PM_PSYKER:	abil = psy_abil;	break;
@@ -1977,6 +2021,9 @@ int oldlevel, newlevel;
 	case PM_GREURO:	rabil = gru_abil;	break;
 	case PM_VIKING:	rabil = vik_abil;	break;
 	case PM_DOPPELGANGER:	rabil = dop_abil;	break;
+	case PM_HUMANLIKE_DRAGON:	rabil = dra_abil;	break;
+	case PM_FELID:	rabil = fel_abil;	break;
+	case PM_KHAJIIT:	rabil = kha_abil;	break;
 	case PM_DWARF:		rabil = dwa_abil;	break;
 	case PM_PLAYER_SLIME:		rabil = slm_abil;	break;
 	case PM_DROW:
@@ -2007,6 +2054,7 @@ int oldlevel, newlevel;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
 	case PM_SPIRIT:            rabil = esp_abil;	break;
 	case PM_SHOE:            rabil = sho_abil;	break;
+	case PM_PLAYER_GOLEM:            rabil = glm_abil;	break;
 	case PM_SATRE:            rabil = sat_abil;	break;
 	case PM_BORG:            rabil = bor_abil;	break;
 	case PM_RODNEYAN:            rabil = rod_abil;	break;

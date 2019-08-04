@@ -9774,6 +9774,12 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as poison resistance."); break;
 			case GOLDEN_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as sickness resistance."); break;
+			case FEMINISM_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as scent view."); break;
+			case NEGATIVE_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as death resistance."); break;
+			case HEROIC_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as petrification resistance."); break;
 			case CYAN_DRAGON_SCALE_MAIL: 
@@ -9834,6 +9840,12 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as poison resistance."); break;
 			case GOLDEN_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as sickness resistance."); break;
+			case FEMINISM_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as scent view."); break;
+			case NEGATIVE_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as death resistance."); break;
+			case HEROIC_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as petrification resistance."); break;
 			case CYAN_DRAGON_SCALES: 
@@ -10628,6 +10640,12 @@ boolean knoweverything;
 				pline("A shield made from dragon hide that provides poison resistance as well as protection."); break;
 			case GOLDEN_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides sickness resistance as well as protection."); break;
+			case FEMINISM_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides scent view as well as protection."); break;
+			case NEGATIVE_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides death resistance as well as protection."); break;
+			case HEROIC_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides diminished bleeding as well as protection."); break;
 			case STONE_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides petrification resistance as well as protection."); break;
 			case CYAN_DRAGON_SCALE_SHIELD:

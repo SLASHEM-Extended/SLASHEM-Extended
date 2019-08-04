@@ -372,6 +372,10 @@ int prop;
 			return "cannibalism";
 		case RNGE_POLYVISION:
 			return "polyvision";
+		case DIMINISHED_BLEEDING:
+			return "diminished bleeding";
+		case SCENT_VIEW:
+			return "scent view";
 
 		default:
 			return "Team Nastytrap";
@@ -2982,6 +2986,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ FEMINISM_DRAGON_SCALES, "todo" },
+	{ FEMINISM_DRAGON_SCALE_MAIL, "todo" },
+	{ FEMINISM_DRAGON_SCALE_SHIELD, "todo" },
+	{ NEGATIVE_DRAGON_SCALES, "todo" },
+	{ NEGATIVE_DRAGON_SCALE_MAIL, "todo" },
+	{ NEGATIVE_DRAGON_SCALE_SHIELD, "todo" },
+	{ HEROIC_DRAGON_SCALES, "todo" },
+	{ HEROIC_DRAGON_SCALE_MAIL, "todo" },
+	{ HEROIC_DRAGON_SCALE_SHIELD, "todo" },
+
 	{0, "" }
 };
 
@@ -5417,6 +5431,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_ANTI_TELEPORTATION, "qarshi teleportatsiya" },
 
 	/* todo area */
+
+	{ FEMINISM_DRAGON_SCALES, "todo" },
+	{ FEMINISM_DRAGON_SCALE_MAIL, "todo" },
+	{ FEMINISM_DRAGON_SCALE_SHIELD, "todo" },
+	{ NEGATIVE_DRAGON_SCALES, "todo" },
+	{ NEGATIVE_DRAGON_SCALE_MAIL, "todo" },
+	{ NEGATIVE_DRAGON_SCALE_SHIELD, "todo" },
+	{ HEROIC_DRAGON_SCALES, "todo" },
+	{ HEROIC_DRAGON_SCALE_MAIL, "todo" },
+	{ HEROIC_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };

@@ -265,7 +265,14 @@ nh_timeout()
 		if (!rn2(10)) pline((PlayerBleeds > 100) ? "You're squirting blood everywhere!" : (PlayerBleeds > 50) ? "You're bleeding severely!" : "You're bleeding!");
 		if (bleedingdamage > 1) {
 			PlayerBleeds -= (bleedingdamage - 1);
+			if (StrongDiminishedBleeding) {
+				PlayerBleeds /= 2;
+			} else if (DiminishedBleeding) {
+				if (!rn2(2) && PlayerBleeds > 1) PlayerBleeds -= rnd(PlayerBleeds / 2);
+			}
 		}
+		if (!PlayerBleeds) pline("Your bleeding stops.");
+
 		if (PlayerBleeds < 0) PlayerBleeds = 0; /* fail safe */
 	}
 
@@ -2538,6 +2545,14 @@ nh_timeout()
 			if (!Technicality)
 				pline("Your techniques are weaker again.");
 			break;
+		case SCENT_VIEW:
+			if (!ScentView)
+				pline("Your %s returns to normal.", body_part(NOSE));
+			break;
+		case DIMINISHED_BLEEDING:
+			if (!DiminishedBleeding)
+				pline("Your %s coagulation factor is no longer active.", body_part(BLOOD));
+			break;
 		case PLAYERBLEEDING:
 			if (!PlayerBleeds)
 				pline("Your bleeding stops.");
@@ -2794,6 +2809,12 @@ nh_timeout()
 			break;
 		case DEAC_TECHNICALITY:
 			pline("You are no longer prevented from having technicality.");
+			break;
+		case DEAC_SCENT_VIEW:
+			pline("You are no longer prevented from having scent view.");
+			break;
+		case DEAC_DIMINISHED_BLEEDING:
+			pline("You are no longer prevented from having diminished bleeding.");
 			break;
 
 		}

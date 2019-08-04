@@ -2304,7 +2304,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			goto beheadingdone;
 		} else {
 			/* Invulnerable player won't be bisected */
-			if (bigmonst(youmonst.data) || Invulnerable || (Stoned_chiller && Stoned) ) {
+			if (bigmonst(youmonst.data) || StrongDiminishedBleeding || Invulnerable || (Stoned_chiller && Stoned) ) {
 				pline("%s cuts deeply into you!",
 				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
@@ -4393,7 +4393,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(41)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(43)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -5262,6 +5262,46 @@ retrytrinsic:
 					if(!(HUseTheForce & FROMOUTSIDE)) {
 						You_feel("able to use the force like a true jedi!");
 						HUseTheForce |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 42:
+				if (intloss) {
+					if (HScentView & INTRINSIC) {
+						HScentView &= ~INTRINSIC;
+						You_feel("unable to smell things!");
+						hasmadeachange = 1;
+					}
+					if (HScentView & TIMEOUT) {
+						HScentView &= ~TIMEOUT;
+						You_feel("unable to smell things!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HScentView & FROMOUTSIDE)) {
+						You_feel("a tingling in your %s!", body_part(NOSE));
+						HScentView |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 43:
+				if (intloss) {
+					if (HDiminishedBleeding & INTRINSIC) {
+						HDiminishedBleeding &= ~INTRINSIC;
+						You_feel("your %s coagulants failing!", body_part(BLOOD));
+						hasmadeachange = 1;
+					}
+					if (HDiminishedBleeding & TIMEOUT) {
+						HDiminishedBleeding &= ~TIMEOUT;
+						You_feel("your %s coagulants failing!", body_part(BLOOD));
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HDiminishedBleeding & FROMOUTSIDE)) {
+						You_feel("a %s coagulation factor being injected into your body!", body_part(BLOOD));
+						HDiminishedBleeding |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

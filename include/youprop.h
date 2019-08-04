@@ -1338,4 +1338,26 @@
 
 #define NoTechnicality	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TECHNICALITY].intrinsic || RngeAids || (u.impossibleproperty == TECHNICALITY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HScentView		u.uprops[SCENT_VIEW].intrinsic
+#define EScentView		u.uprops[SCENT_VIEW].extrinsic
+#define IntScentView	(HScentView)
+#define ExtScentView	(EScentView)
+
+#define ScentView		(((IntScentView && u.nonintrinsicproperty != SCENT_VIEW) || (ExtScentView && u.nonextrinsicproperty != SCENT_VIEW)) && !NoScentView)
+#define StrongScentView	(IntScentView && ExtScentView && ScentView)
+#define HaveEcholocation	((Role_if(PM_BARD) || Role_if(PM_STAND_USER) || Race_if(PM_ANCIPITAL) || Race_if(PM_BATMAN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_HC_ALIEN) || (Upolyd && youmonst.data->mlet == S_BAT) ) && !NoScentView && u.nonintrinsicproperty != SCENT_VIEW)
+#define EcholocationActive	(StrongScentView || HaveEcholocation)
+
+#define NoScentView	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SCENT_VIEW].intrinsic || RngeAids || (u.impossibleproperty == SCENT_VIEW) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HDiminishedBleeding		u.uprops[DIMINISHED_BLEEDING].intrinsic
+#define EDiminishedBleeding		u.uprops[DIMINISHED_BLEEDING].extrinsic
+#define IntDiminishedBleeding	(HDiminishedBleeding || (Upolyd && !has_blood(youmonst.data)) )
+#define ExtDiminishedBleeding	(EDiminishedBleeding)
+
+#define DiminishedBleeding		(((IntDiminishedBleeding && u.nonintrinsicproperty != DIMINISHED_BLEEDING) || (ExtDiminishedBleeding && u.nonextrinsicproperty != DIMINISHED_BLEEDING)) && !NoDiminishedBleeding)
+#define StrongDiminishedBleeding	(IntDiminishedBleeding && ExtDiminishedBleeding && DiminishedBleeding)
+
+#define NoDiminishedBleeding	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic || RngeAids || (u.impossibleproperty == DIMINISHED_BLEEDING) || Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #endif /* YOUPROP_H */

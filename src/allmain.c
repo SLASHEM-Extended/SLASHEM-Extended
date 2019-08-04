@@ -10938,6 +10938,10 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* todo area */
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feminism dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "negative dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroic dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -11949,6 +11953,10 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glibskin helmet")) OBJ_DESCR(objects[i]) = "jo'shqin terisi zarbasi";
 
 		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feminism dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "negative dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroic dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

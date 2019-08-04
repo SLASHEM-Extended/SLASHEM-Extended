@@ -9398,7 +9398,7 @@ madnesseffect:
 		 case BISECTION_TRAP:
 		seetrap(trap);
 
-		if (!rn2(20) && !bigmonst(youmonst.data) && !Invulnerable && !(Stoned_chiller && Stoned) ) {
+		if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned) ) {
 			pline("You are bisected by a razor-sharp blade!");
 			losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "bisection trap",KILLED_BY);
 		} else {

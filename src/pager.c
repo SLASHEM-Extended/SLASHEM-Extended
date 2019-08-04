@@ -504,6 +504,10 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
+		if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) )
+		    ways_seen++;
+		if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) )
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
 		if (Burnopathy && Burned && infravision(mtmp->data) )
@@ -655,6 +659,14 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (Freezopathy && Frozen && mtmp->data->mcolor == CLR_WHITE ) {
 			strcat(monbuf, "freezopathy");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) ) {
+			strcat(monbuf, "scent view");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) ) {
+			strcat(monbuf, "echolocation");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE ) {
@@ -23539,6 +23551,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"Oh no! Someone else managed to offer the Amulet of Yendor and obtained immortality. You have failed your mission and the game ends here.",
 	"The tauntbugger taunts you relentlessly!",
 	"The tauntbugger taunts you relentlessly and because you're such an insecure wimp, your soul is crushed and you can no longer fight back!",
+	"You feel unable to smell things!",
+	"You feel unable to smell things! This is extremely dangerous because dangerous gases like hydrogen sulfide, or also the sharp stench of burning wood, can no longer warn you of danger now!",
+	"You feel a tingling in your nose!",
+	"You feel a tingling in your nose! This means that a farting monster is nearby.",
+	"You feel your blood coagulants failing!",
+	"You feel your blood coagulants failing! Oh no, this means you've developed hemophilia, and now even a tiny injury from being pricked with a needle will be life-threatening to you.",
+	"You feel a blood coagulation factor being injected into your body!",
+	"You feel a blood coagulation factor being injected into your body! Wait three days to develop perianal thrombosis.",
 
 };
 

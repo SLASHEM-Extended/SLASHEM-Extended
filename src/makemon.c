@@ -12113,6 +12113,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_CZECH_WENCH]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 		if (ptr == &mons[PM_BOTTLE_DRAGON]) (void) mongets(mtmp, BOTTLE);
 		if (ptr == &mons[PM_IMPOSSIBLE_CHALLENGER]) (void) mongets(mtmp, SCR_LOCKOUT);
+		if (ptr == &mons[PM_FOREST_VINDICATOR]) (void) mongets(mtmp, INKA_SHACKLE);
 
 		if (ptr == &mons[PM_SHOEMAKER]) (void) mongets(mtmp, rnd_class(PLASTEEL_BOOTS,LEVITATION_BOOTS));
 		if (ptr == &mons[PM_DANCRESS]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
@@ -12171,6 +12172,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_BARROWGRIM_SOLDIER]) { (void)mongets(mtmp, BOW); (void)mongets(mtmp, DAGGER);
 			 m_initthrow(mtmp, ARROW, 30);
 
+		}
+		if (ptr == &mons[PM_FINISHED_ROCKER]) {
+			(void)mongets(mtmp, SLING);
+			m_initthrow(mtmp, FLINT, 40);
 		}
 
 		if (ptr == &mons[PM_FLASH_WYVERN]) {

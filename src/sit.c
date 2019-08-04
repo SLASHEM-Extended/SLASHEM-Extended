@@ -2019,6 +2019,24 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			You_feel("that you lost your jedi powers!");
 		}
 		break;
+	case 214: if (HScentView & INTRINSIC) {
+			HScentView &= ~INTRINSIC;
+			You_feel("unable to smell things!");
+		}
+		if (HScentView & TIMEOUT) {
+			HScentView &= ~TIMEOUT;
+			You_feel("unable to smell things!");
+		}
+		break;
+	case 215: if (HDiminishedBleeding & INTRINSIC) {
+			HDiminishedBleeding &= ~INTRINSIC;
+			You_feel("your %s coagulants failing!", body_part(BLOOD));
+		}
+		if (HDiminishedBleeding & TIMEOUT) {
+			HDiminishedBleeding &= ~TIMEOUT;
+			You_feel("your %s coagulants failing!", body_part(BLOOD));
+		}
+		break;
 	default: break;
 	}
 }

@@ -505,6 +505,9 @@ register struct monst *mtmp;
 	    case PM_RUBY_DRAGON:
 	    case PM_GREEN_DRAGON:
 	    case PM_GOLDEN_DRAGON:
+	    case PM_FEMINISM_DRAGON:
+	    case PM_NEGATIVE_DRAGON:
+	    case PM_HEROIC_DRAGON:
 	    case PM_STONE_DRAGON:
 	    case PM_CYAN_DRAGON:
 	    case PM_PSYCHIC_DRAGON:
@@ -548,6 +551,9 @@ register struct monst *mtmp;
 	    case PM_RUBY_DRAGOM:
 	    case PM_GREEN_DRAGOM:
 	    case PM_GOLDEN_DRAGOM:
+	    case PM_FEMINISM_DRAGOM:
+	    case PM_NEGATIVE_DRAGOM:
+	    case PM_HEROIC_DRAGOM:
 	    case PM_STONE_DRAGOM:
 	    case PM_CYAN_DRAGOM:
 	    case PM_PSYCHIC_DRAGOM:
