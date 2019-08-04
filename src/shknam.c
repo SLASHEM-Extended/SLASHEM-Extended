@@ -36,6 +36,12 @@ static const char * const shkliquors[] = {
     /* Schweiz */
     "Leuk", "Brig", "Brienz", "Thun", "Sarnen", "Burglen", "Elm",
     "Flims", "Vals", "Schuls", "Zum Loch",
+    /* Mythology */
+	"Aganippe", "Appias", "Bolbe", "Limnaee", "Pallas", "Tritonis",
+	"Abarbarea", "Aegina", "Asopis", "Chalcis", "Cleone", "Combe",
+	"Corcyra", "Euboea", "Gargaphia", "Harpina", "Ismene", "Nemea",
+	"Ornea", "Peirene", "Salamis", "Sinope", "Tanagra", "Thebe",
+	"Thespeia",
 
 	"Schwiederloch", "Shol", "Pfahlhirsch", "Spendthrift",
 	"Heartfont", "Chansina", "Delilah", "Marihuana", "Boeing",
@@ -57,6 +63,8 @@ static const char * const shkbooks[] = {
     "Droichead Atha", "Inniscrone", "Clonegal", "Lisnaskea",
     "Culdaff", "Dunfanaghy", "Inishbofin", "Kesh",
     "Loughrea", "Croagh", "Maumakeogh", "Ballyjamesduff",
+    /* Deep Ones */
+	"Gilman", "Marsh", "Banks", "Waite", "Eliot", "Olmstead",
 
 	"Benderaz", "Nagano", "Newbig", "Hayabusa", "Eckart",
 	"Usanna", "Tresh", "Also Matte", "SIR", "Schroeder", "Shmeil",
@@ -155,6 +163,14 @@ static const char * const shkweapons[] = {
     "Cazelon", "Eypau", "Carignan", "Monbazillac", "Jonzac",
     "Pons", "Jumilhac", "Fenouilledes", "Laguiolet", "Saujon",
     "Eymoutiers", "Eygurande", "Eauze", "Labouheyre",
+    /* Orkney http://www.contrib.andrew.cmu.edu/~grm/orkney.html */
+	"Crystie", "Marie", "Hector", "Inggagarth", "Cuthbert", "Marion",
+	"Ninian", "Margret", "Edduard", "Alisoun", "Androw", "Christeane",
+	"Henrie", "Sonneta", "Brandam", "Anne", "Malcolm", "Gelis", "Magnus",
+	"Katherein", "Edwart", "Katherine", "Johnne", "Cristiane", "Troelius",
+	"Helline", "Robertt", "Elspet", "Criste", "Alesoun", "Adam", "Helene",
+	"Williame", "Margrete", "Gibboun", "Mariota", "Niniane", "Margarete",
+	"Hugh", "Effe",
 
 	"Legel", "Deathstrike", "Arschegast", "Mashevka", "Valus",
 	"Arm Chest Contractor", "Falcon", "Al Capone", "Schrack", "Mach",
@@ -211,7 +227,7 @@ static const char * const shktools[] = {
 	"Ledanagan", "Yoreel", "Garena", "Tsitonpyh", "Esoreci",
 	"Ikustodam", "Elomacaug Gnimalf", "Qretep", "Blevap", "Tnepocard",
 	"Plug Itna", "Oirdna", "Etinatem", "Lyrebyerg", "Nossllep",
-	"Esulcer", "Anelam", "Tsaebknip",
+	"Esulcer", "Anelam", "Tsaebknip", "Enamkcim",
 
     0
 };
@@ -225,6 +241,11 @@ static const char * const shklight[] = {
     "Silistra", "Tulovo", "Panagyuritshte", "Smolyan", "Kirklareli",
     "Pernik", "Lom", "Haskovo", "Dobrinishte", "Varvara", "Oryahovo",
     "Troyan", "Lovech", "Sliven",
+    /* Brazil */
+    "Andre", "Daniel", "Tiago", "Alexandre", "Joao", 
+    "Carlos", "Fabio", "Ricardo", "Gustavo", "Rafael",
+    "Felipe", "Anderson", "Jorge", "Paulo", "Jose",
+    "Rogerio", "Roberto", "Marcos", "Luis", "Luciano",
 
 	"Habich", "Trong-Oul", "Dumont", "Dumas", "Vittel", "Hattrick",
 	"Pekriah", "Innocentia", "Diagna", "Castor", "Ronaldo", "Ganden",
@@ -249,6 +270,11 @@ static const char * const shkgeneral[] = {
     /* Iceland */
     "Akureyri", "Kopasker", "Budereyri", "Akranes", "Bordeyri",
     "Holmavik",
+    /* Marathi */
+	"Punita", "Shakuntala", "Richa", "Ninad", "Nikhil", "Sumeet",
+	"Roshni", "Mohan", "Ranjeet", "Bipin", "Madhuri", "Abhijeet",
+	"Purnima", "Radha", "Grishma", "Satish", "Aparna", "Reena",
+	"Shrinivas", "Arjun", "Shekhar", "Deep", "Sameer", "Sunil", "Apoorva",
 
 	"Miller", "Merkel", "Stone", "Bitchiya", "Pedas", "Garbage Houses",
 	"Kun-Kwei", "Persh", "Levart", "Gunnhild", "Gardener", "Boker",
@@ -279,6 +305,18 @@ static const char *shkpet[] = {
     "Silistra", "Tulovo", "Panagyuritshte", "Smolyan", "Kirklareli",
     "Pernik", "Lom", "Haskovo", "Dobrinishte", "Varvara", "Oryahovo",
     "Troyan", "Lovech", "Sliven",
+    /* Bee scientific names */
+    "Apis", "Mellifera", "Cerana", "Dorsata", "Andreniformis",
+	"Florea", "Nearctica", "Nigrocincta",
+    /* Ant */
+    "Crematogaster", "Linepithema", "Humile", "Pheidole", "Nylanderia",
+	"Pubens", "Camponotus", "Lasius", "Alienus",
+	"Paratrechina", "Longicornis", "Solenopsis", "Invicta", "Tapinoma",
+	"Melanocephalum", "Monomorium", "Minimum", "Tetramorium", "Caespitum",
+	"Paraonis", "Dorymyrmex", "Brachymyrmex", "Technomyrmex", "Albipes", 
+    /* Crab scientific names */
+	"Potamon", "Ibericum", "Parathelphusa", "Convexa", "Johongarthia", "Lagostoma",
+	"Gecarcoidea", "Natalis", 
 
 	"War Mountain", "Oro", "Pure", "King", "Funo", "Cuntrina",
 	"Tato", "Santana", "Dickmouth", "Mul", "White Logel", "Lhasa",
