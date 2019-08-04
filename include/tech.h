@@ -209,10 +209,31 @@ struct blitz_tab {
 
 #define T_ZAP_EM	148
 
-#define T_JEDI_JUMP	149
-#define T_CHARGE_SABER	150
-#define T_TELEKINESIS	151
+#define T_CARD_TRICK	149
+#define T_SKILLOMORPH	150
+
+#define T_SHOTTY_BLAST	151
+#define T_AMMO_UPGRADE	152
+#define T_LASER_POWER	153
+#define T_BIG_DADDY	154
+#define T_SHUT_THAT_BITCH_UP	155
+#define T_S_PRESSING	156
+#define T_MELTEE	157
+#define T_WOMAN_NOISES	158
+#define T_EXTRA_LONG_SQUEAK	159
+#define T_SEXUAL_HUG	160
+#define T_SEX_CHANGE	161
+#define T_EVEN_MORE_AMMO	162
+#define T_DOUBLESELF	163
+#define T_POLYFIX	164
+#define T_SQUEAKY_REPAIR	165
+#define T_BULLETREUSE	166
+#define T_EXTRACHARGE	167
+
+#define T_JEDI_JUMP	168
+#define T_CHARGE_SABER	169
+#define T_TELEKINESIS	170
  
-#define MAXTECH 152
+#define MAXTECH 171
 
 #endif /* TECH_H */

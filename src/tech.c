@@ -192,6 +192,25 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"use the force luke",
 	"wonder yonder",
 	"zap em",
+	"card trick",
+	"skillomorph",
+	"shotty blast",
+	"ammo upgrade",
+	"laser power",
+	"big daddy",
+	"shut that bitch up",
+	"s-pressing",
+	"meltee",
+	"woman noises",
+	"extra long squeak",
+	"sexual hug",
+	"sex change",
+	"even more ammo",
+	"doubleself",
+	"polyfix",
+	"squeaky repair",
+	"bulletreuse",
+	"extracharge",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -2646,6 +2665,82 @@ dotech()
 
 		case T_ZAP_EM:
 			pline("Tries to tame adjacent evilvariant monsters (use the pokedex to look for the 'Origin: Evil variant' bit). They can try to resist via monster magic resistance though.");
+			break;
+
+		case T_CARD_TRICK:
+			pline("todo");
+			break;
+
+		case T_SKILLOMORPH:
+			pline("todo");
+			break;
+
+		case T_SHOTTY_BLAST:
+			pline("todo");
+			break;
+
+		case T_AMMO_UPGRADE:
+			pline("todo");
+			break;
+
+		case T_LASER_POWER:
+			pline("todo");
+			break;
+
+		case T_BIG_DADDY:
+			pline("todo");
+			break;
+
+		case T_SHUT_THAT_BITCH_UP:
+			pline("todo");
+			break;
+
+		case T_S_PRESSING:
+			pline("todo");
+			break;
+
+		case T_MELTEE:
+			pline("todo");
+			break;
+
+		case T_WOMAN_NOISES:
+			pline("todo");
+			break;
+
+		case T_EXTRA_LONG_SQUEAK:
+			pline("todo");
+			break;
+
+		case T_SEXUAL_HUG:
+			pline("todo");
+			break;
+
+		case T_SEX_CHANGE:
+			pline("todo");
+			break;
+
+		case T_EVEN_MORE_AMMO:
+			pline("todo");
+			break;
+
+		case T_DOUBLESELF:
+			pline("todo");
+			break;
+
+		case T_POLYFIX:
+			pline("todo");
+			break;
+
+		case T_SQUEAKY_REPAIR:
+			pline("todo");
+			break;
+
+		case T_BULLETREUSE:
+			pline("todo");
+			break;
+
+		case T_EXTRACHARGE:
+			pline("todo");
 			break;
 
 		case T_STARWARS_FRIENDS:
@@ -6461,6 +6556,83 @@ revid_end:
 			}
 			wonderspell();
 			t_timeout = rnz(10000);
+			break;
+
+
+		case T_CARD_TRICK:
+			pline("todo");
+			break;
+
+		case T_SKILLOMORPH:
+			pline("todo");
+			break;
+
+		case T_SHOTTY_BLAST:
+			pline("todo");
+			break;
+
+		case T_AMMO_UPGRADE:
+			pline("todo");
+			break;
+
+		case T_LASER_POWER:
+			pline("todo");
+			break;
+
+		case T_BIG_DADDY:
+			pline("todo");
+			break;
+
+		case T_SHUT_THAT_BITCH_UP:
+			pline("todo");
+			break;
+
+		case T_S_PRESSING:
+			pline("todo");
+			break;
+
+		case T_MELTEE:
+			pline("todo");
+			break;
+
+		case T_WOMAN_NOISES:
+			pline("todo");
+			break;
+
+		case T_EXTRA_LONG_SQUEAK:
+			pline("todo");
+			break;
+
+		case T_SEXUAL_HUG:
+			pline("todo");
+			break;
+
+		case T_SEX_CHANGE:
+			pline("todo");
+			break;
+
+		case T_EVEN_MORE_AMMO:
+			pline("todo");
+			break;
+
+		case T_DOUBLESELF:
+			pline("todo");
+			break;
+
+		case T_POLYFIX:
+			pline("todo");
+			break;
+
+		case T_SQUEAKY_REPAIR:
+			pline("todo");
+			break;
+
+		case T_BULLETREUSE:
+			pline("todo");
+			break;
+
+		case T_EXTRACHARGE:
+			pline("todo");
 			break;
 
 		case T_ZAP_EM:

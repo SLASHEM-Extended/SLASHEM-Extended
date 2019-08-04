@@ -13,54 +13,6 @@
 STATIC_DCL int enhance_skill(boolean);
 #endif
 
-/* categories whose names don't come from OBJ_NAME(objects[type]) */
-#define PN_POLEARMS		(-1)
-#define PN_SABER		(-2)
-#define PN_HAMMER		(-3)
-#define PN_WHIP			(-4)
-#define PN_PADDLE		(-5)
-#define PN_FIREARMS		(-6)
-#define PN_ATTACK_SPELL		(-7)
-#define PN_HEALING_SPELL	(-8)
-#define PN_DIVINATION_SPELL	(-9)
-#define PN_ENCHANTMENT_SPELL	(-10)
-#define PN_PROTECTION_SPELL	(-11)
-#define PN_BODY_SPELL		(-12)
-#define PN_OCCULT_SPELL		(-13)
-#define PN_ELEMENTAL_SPELL		(-14)
-#define PN_CHAOS_SPELL		(-15)
-#define PN_MATTER_SPELL		(-16)
-#define PN_BARE_HANDED		(-17)
-#define PN_HIGH_HEELS		(-18)
-#define PN_GENERAL_COMBAT		(-19)
-#define PN_SHIELD		(-20)
-#define PN_BODY_ARMOR		(-21)
-#define PN_TWO_HANDED_WEAPON		(-22)
-#define PN_POLYMORPHING		(-23)
-#define PN_DEVICES		(-24)
-#define PN_SEARCHING		(-25)
-#define PN_SPIRITUALITY		(-26)
-#define PN_PETKEEPING		(-27)
-#define PN_MISSILE_WEAPONS		(-28)
-#define PN_TECHNIQUES		(-29)
-#define PN_IMPLANTS		(-30)
-#define PN_SEXY_FLATS		(-31)
-#define PN_MEMORIZATION		(-32)
-#define PN_SHII_CHO		(-33)
-#define PN_MAKASHI		(-34)
-#define PN_SORESU		(-35)
-#define PN_ATARU		(-36)
-#define PN_SHIEN		(-37)
-#define PN_DJEM_SO		(-38)
-#define PN_NIMAN		(-39)
-#define PN_JUYO		(-40)
-#define PN_VAAPAD		(-41)
-#define PN_WEDI		(-42)
-#define PN_MARTIAL_ARTS		(-43)
-#define PN_RIDING		(-44)
-#define PN_TWO_WEAPONS		(-45)
-#define PN_LIGHTSABER		(-46)
-
 static void give_may_advance_msg(int);
 STATIC_PTR int practice(void);
 /*static int get_obj_skill(struct obj *);*/
@@ -103,7 +55,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,
+	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
@@ -147,6 +99,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "implants",
     "sexy flats",
     "memorization",
+    "gun control",
+    "squeaking",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
@@ -3060,6 +3014,111 @@ jediskip:
 	    	You("learn how to perform form choice!");
 	}
 
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_BASIC && !tech_known(T_SHOTTY_BLAST)) {
+	    	learntech(T_SHOTTY_BLAST, FROMOUTSIDE, 1);
+	    	You("learn how to perform shotty blast!");
+	}
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_SKILLED && !tech_known(T_AMMO_UPGRADE)) {
+	    	learntech(T_AMMO_UPGRADE, FROMOUTSIDE, 1);
+	    	You("learn how to perform ammo upgrade!");
+	}
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_EXPERT && !tech_known(T_LASER_POWER)) {
+	    	learntech(T_LASER_POWER, FROMOUTSIDE, 1);
+	    	You("learn how to perform laser power!");
+	}
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_MASTER && !tech_known(T_BIG_DADDY)) {
+	    	learntech(T_BIG_DADDY, FROMOUTSIDE, 1);
+	    	You("learn how to perform big daddy!");
+	}
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_SHUT_THAT_BITCH_UP)) {
+	    	learntech(T_SHUT_THAT_BITCH_UP, FROMOUTSIDE, 1);
+	    	You("learn how to perform shut that bitch up!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_BASIC && !tech_known(T_S_PRESSING)) {
+	    	learntech(T_S_PRESSING, FROMOUTSIDE, 1);
+	    	You("learn how to perform s-pressing!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_SKILLED && !tech_known(T_MELTEE)) {
+	    	learntech(T_MELTEE, FROMOUTSIDE, 1);
+	    	You("learn how to perform meltee!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_EXPERT && !tech_known(T_WOMAN_NOISES)) {
+	    	learntech(T_WOMAN_NOISES, FROMOUTSIDE, 1);
+	    	You("learn how to perform woman noises!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_MASTER && !tech_known(T_EXTRA_LONG_SQUEAK)) {
+	    	learntech(T_EXTRA_LONG_SQUEAK, FROMOUTSIDE, 1);
+	    	You("learn how to perform extra long squeak!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_SEXUAL_HUG)) {
+	    	learntech(T_SEXUAL_HUG, FROMOUTSIDE, 1);
+	    	You("learn how to perform sexual hug!");
+	}
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_GRAND_MASTER && P_SKILL(P_SQUEAKING) >= P_GRAND_MASTER && !tech_known(T_SEX_CHANGE)) {
+	    	learntech(T_SEX_CHANGE, FROMOUTSIDE, 1);
+	    	You("learn how to perform sex change!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_GRAND_MASTER && P_SKILL(P_GUN_CONTROL) >= P_GRAND_MASTER && !tech_known(T_SEX_CHANGE)) {
+	    	learntech(T_SEX_CHANGE, FROMOUTSIDE, 1);
+	    	You("learn how to perform sex change!");
+	}
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_MASTER && P_SKILL(P_FIREARM) >= P_MASTER && !tech_known(T_EVEN_MORE_AMMO)) {
+	    	learntech(T_EVEN_MORE_AMMO, FROMOUTSIDE, 1);
+	    	You("learn how to perform even more ammo!");
+	}
+	if (skill == P_FIREARM && P_SKILL(skill) == P_MASTER && P_SKILL(P_GUN_CONTROL) >= P_MASTER && !tech_known(T_EVEN_MORE_AMMO)) {
+	    	learntech(T_EVEN_MORE_AMMO, FROMOUTSIDE, 1);
+	    	You("learn how to perform even more ammo!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_EXPERT && P_SKILL(P_POLYMORPHING) >= P_MASTER && !tech_known(T_DOUBLESELF)) {
+	    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+	    	You("learn how to perform doubleself!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_MASTER && P_SKILL(P_POLYMORPHING) >= P_EXPERT && !tech_known(T_DOUBLESELF)) {
+	    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+	    	You("learn how to perform doubleself!");
+	}
+	if (skill == P_POLYMORPHING && P_SKILL(skill) == P_EXPERT && P_SKILL(P_SQUEAKING) >= P_MASTER && !tech_known(T_DOUBLESELF)) {
+	    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+	    	You("learn how to perform doubleself!");
+	}
+	if (skill == P_POLYMORPHING && P_SKILL(skill) == P_MASTER && P_SKILL(P_SQUEAKING) >= P_EXPERT && !tech_known(T_DOUBLESELF)) {
+	    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+	    	You("learn how to perform doubleself!");
+	}
+	if (skill == P_CHAOS_SPELL && P_SKILL(skill) == P_EXPERT && P_SKILL(P_POLYMORPHING) >= P_EXPERT && !tech_known(T_POLYFIX)) {
+	    	learntech(T_POLYFIX, FROMOUTSIDE, 1);
+	    	You("learn how to perform polyfix!");
+	}
+	if (skill == P_POLYMORPHING && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CHAOS_SPELL) >= P_EXPERT && !tech_known(T_POLYFIX)) {
+	    	learntech(T_POLYFIX, FROMOUTSIDE, 1);
+	    	You("learn how to perform polyfix!");
+	}
+	if (skill == P_OCCULT_SPELL && P_SKILL(skill) == P_EXPERT && P_SKILL(P_SQUEAKING) >= P_EXPERT && !tech_known(T_SQUEAKY_REPAIR)) {
+	    	learntech(T_SQUEAKY_REPAIR, FROMOUTSIDE, 1);
+	    	You("learn how to perform squeaky repair!");
+	}
+	if (skill == P_SQUEAKING && P_SKILL(skill) == P_EXPERT && P_SKILL(P_OCCULT_SPELL) >= P_EXPERT && !tech_known(T_SQUEAKY_REPAIR)) {
+	    	learntech(T_SQUEAKY_REPAIR, FROMOUTSIDE, 1);
+	    	You("learn how to perform squeaky repair!");
+	}
+	if (skill == P_OCCULT_SPELL && P_SKILL(skill) == P_EXPERT && P_SKILL(P_GUN_CONTROL) >= P_EXPERT && !tech_known(T_BULLETREUSE)) {
+	    	learntech(T_BULLETREUSE, FROMOUTSIDE, 1);
+	    	You("learn how to perform bulletreuse!");
+	}
+	if (skill == P_GUN_CONTROL && P_SKILL(skill) == P_EXPERT && P_SKILL(P_OCCULT_SPELL) >= P_EXPERT && !tech_known(T_BULLETREUSE)) {
+	    	learntech(T_BULLETREUSE, FROMOUTSIDE, 1);
+	    	You("learn how to perform bulletreuse!");
+	}
+	if (skill == P_ELEMENTAL_SPELL && P_SKILL(skill) == P_EXPERT && P_SKILL(P_DEVICES) >= P_EXPERT && !tech_known(T_EXTRACHARGE)) {
+	    	learntech(T_EXTRACHARGE, FROMOUTSIDE, 1);
+	    	You("learn how to perform extracharge!");
+	}
+	if (skill == P_DEVICES && P_SKILL(skill) == P_EXPERT && P_SKILL(P_ELEMENTAL_SPELL) >= P_EXPERT && !tech_known(T_EXTRACHARGE)) {
+	    	learntech(T_EXTRACHARGE, FROMOUTSIDE, 1);
+	    	You("learn how to perform extracharge!");
+	}
+
 	if (skill == P_WEDI && P_SKILL(skill) == P_EXPERT && !tech_known(T_STAR_DIGGING)) {
 	    	learntech(T_STAR_DIGGING, FROMOUTSIDE, 1);
 	    	You("learn how to perform star digging!");
@@ -3267,6 +3326,12 @@ jediskip:
 		break;
 		case P_MEMORIZATION:
 			    HStealth |= FROMOUTSIDE; pline("Got stealth!"); break;
+		break;
+		case P_GUN_CONTROL:
+			    HDiminishedBleeding |= FROMOUTSIDE; pline("Got diminished bleeding!"); break;
+		break;
+		case P_SQUEAKING:
+			    HScentView |= FROMOUTSIDE; pline("Got scent view!"); break;
 		break;
 
 		default: break;
@@ -3573,6 +3638,16 @@ jediskip:
 		case P_SEXY_FLATS:
 				if (!tech_known(T_DIAMOND_BARRIER)) {    	learntech(T_DIAMOND_BARRIER, FROMOUTSIDE, 1);
 			    	You("learn how to perform diamond barrier!");
+				}
+		break;
+		case P_SQUEAKING:
+				if (!tech_known(T_SKILLOMORPH)) {    	learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
+			    	You("learn how to perform skillomorph!");
+				}
+		break;
+		case P_GUN_CONTROL:
+				if (!tech_known(T_CARD_TRICK)) {    	learntech(T_CARD_TRICK, FROMOUTSIDE, 1);
+			    	You("learn how to perform card trick!");
 				}
 		break;
 
@@ -4270,6 +4345,103 @@ int degree;
 			if (skill == P_HIGH_HEELS && P_ADVANCE(P_SEXY_FLATS) == 0 && !tech_known(T_HIGH_HEELED_SNEAKERS)) {
 				learntech(T_HIGH_HEELED_SNEAKERS, FROMOUTSIDE, 1);
 				You("learn how to perform high-heeled sneakers!");
+			}
+
+			if (skill == P_GUN_CONTROL && !tech_known(T_SHOTTY_BLAST)) {
+			    	learntech(T_SHOTTY_BLAST, FROMOUTSIDE, 1);
+			    	You("learn how to perform shotty blast!");
+			}
+			if (skill == P_GUN_CONTROL && !tech_known(T_AMMO_UPGRADE)) {
+			    	learntech(T_AMMO_UPGRADE, FROMOUTSIDE, 1);
+			    	You("learn how to perform ammo upgrade!");
+			}
+			if (skill == P_GUN_CONTROL && !tech_known(T_LASER_POWER)) {
+			    	learntech(T_LASER_POWER, FROMOUTSIDE, 1);
+			    	You("learn how to perform laser power!");
+			}
+			if (skill == P_GUN_CONTROL && !tech_known(T_BIG_DADDY)) {
+			    	learntech(T_BIG_DADDY, FROMOUTSIDE, 1);
+			    	You("learn how to perform big daddy!");
+			}
+			if (skill == P_GUN_CONTROL && !tech_known(T_SHUT_THAT_BITCH_UP)) {
+			    	learntech(T_SHUT_THAT_BITCH_UP, FROMOUTSIDE, 1);
+			    	You("learn how to perform shut that bitch up!");
+			}
+			if (skill == P_SQUEAKING && !tech_known(T_S_PRESSING)) {
+			    	learntech(T_S_PRESSING, FROMOUTSIDE, 1);
+			    	You("learn how to perform s-pressing!");
+			}
+			if (skill == P_SQUEAKING && !tech_known(T_MELTEE)) {
+			    	learntech(T_MELTEE, FROMOUTSIDE, 1);
+			    	You("learn how to perform meltee!");
+			}
+			if (skill == P_SQUEAKING && !tech_known(T_WOMAN_NOISES)) {
+			    	learntech(T_WOMAN_NOISES, FROMOUTSIDE, 1);
+			    	You("learn how to perform woman noises!");
+			}
+			if (skill == P_SQUEAKING && !tech_known(T_EXTRA_LONG_SQUEAK)) {
+			    	learntech(T_EXTRA_LONG_SQUEAK, FROMOUTSIDE, 1);
+			    	You("learn how to perform extra long squeak!");
+			}
+			if (skill == P_SQUEAKING && !tech_known(T_SEXUAL_HUG)) {
+			    	learntech(T_SEXUAL_HUG, FROMOUTSIDE, 1);
+			    	You("learn how to perform sexual hug!");
+			}
+			if (skill == P_GUN_CONTROL && P_ADVANCE(P_SQUEAKING) == 0 && !tech_known(T_SEX_CHANGE)) {
+			    	learntech(T_SEX_CHANGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform sex change!");
+			}
+			if (skill == P_SQUEAKING && P_ADVANCE(P_GUN_CONTROL) == 0 && !tech_known(T_SEX_CHANGE)) {
+			    	learntech(T_SEX_CHANGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform sex change!");
+			}
+			if (skill == P_GUN_CONTROL && P_ADVANCE(P_FIREARM) == 0 && !tech_known(T_EVEN_MORE_AMMO)) {
+			    	learntech(T_EVEN_MORE_AMMO, FROMOUTSIDE, 1);
+			    	You("learn how to perform even more ammo!");
+			}
+			if (skill == P_FIREARM && P_ADVANCE(P_GUN_CONTROL) == 0 && !tech_known(T_EVEN_MORE_AMMO)) {
+			    	learntech(T_EVEN_MORE_AMMO, FROMOUTSIDE, 1);
+			    	You("learn how to perform even more ammo!");
+			}
+			if (skill == P_SQUEAKING && P_ADVANCE(P_POLYMORPHING) == 0 && !tech_known(T_DOUBLESELF)) {
+			    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+			    	You("learn how to perform doubleself!");
+			}
+			if (skill == P_SQUEAKING && P_ADVANCE(P_POLYMORPHING) == 0 && !tech_known(T_DOUBLESELF)) {
+			    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+			    	You("learn how to perform doubleself!");
+			}
+			if (skill == P_CHAOS_SPELL && P_ADVANCE(P_POLYMORPHING) == 0 && !tech_known(T_POLYFIX)) {
+			    	learntech(T_POLYFIX, FROMOUTSIDE, 1);
+			    	You("learn how to perform polyfix!");
+			}
+			if (skill == P_POLYMORPHING && P_ADVANCE(P_CHAOS_SPELL) == 0 && !tech_known(T_POLYFIX)) {
+			    	learntech(T_POLYFIX, FROMOUTSIDE, 1);
+			    	You("learn how to perform polyfix!");
+			}
+			if (skill == P_OCCULT_SPELL && P_ADVANCE(P_SQUEAKING) == 0 && !tech_known(T_SQUEAKY_REPAIR)) {
+			    	learntech(T_SQUEAKY_REPAIR, FROMOUTSIDE, 1);
+			    	You("learn how to perform squeaky repair!");
+			}
+			if (skill == P_SQUEAKING && P_ADVANCE(P_OCCULT_SPELL) == 0 && !tech_known(T_SQUEAKY_REPAIR)) {
+			    	learntech(T_SQUEAKY_REPAIR, FROMOUTSIDE, 1);
+			    	You("learn how to perform squeaky repair!");
+			}
+			if (skill == P_OCCULT_SPELL && P_ADVANCE(P_GUN_CONTROL) == 0 && !tech_known(T_BULLETREUSE)) {
+			    	learntech(T_BULLETREUSE, FROMOUTSIDE, 1);
+			    	You("learn how to perform bulletreuse!");
+			}
+			if (skill == P_GUN_CONTROL && P_ADVANCE(P_OCCULT_SPELL) == 0 && !tech_known(T_BULLETREUSE)) {
+			    	learntech(T_BULLETREUSE, FROMOUTSIDE, 1);
+			    	You("learn how to perform bulletreuse!");
+			}
+			if (skill == P_ELEMENTAL_SPELL && P_ADVANCE(P_DEVICES) == 0 && !tech_known(T_EXTRACHARGE)) {
+			    	learntech(T_EXTRACHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform extracharge!");
+			}
+			if (skill == P_DEVICES && P_ADVANCE(P_ELEMENTAL_SPELL) == 0 && !tech_known(T_EXTRACHARGE)) {
+			    	learntech(T_EXTRACHARGE, FROMOUTSIDE, 1);
+			    	You("learn how to perform extracharge!");
 			}
 
 			if (skill == P_MAKASHI && P_ADVANCE(P_ATARU) == 0 && P_ADVANCE(P_VAAPAD) == 0 && !tech_known(T_FORM_CHOICE)) {
@@ -5516,6 +5688,8 @@ boolean extraskills;
 		if (obj->otyp == TOWEL) skill = P_ATARU;
 		if (obj->otyp == CHARGER) skill = P_NIMAN;
 		if (obj->otyp == MIRROR) skill = P_SHIEN;
+		if (obj->otyp == HAIRCLIP) skill = P_SQUEAKING;
+		if (obj->otyp == LOCK_PICK) skill = P_GUN_CONTROL;
 		if (obj->otyp == EXPENSIVE_CAMERA) skill = P_DJEM_SO;
 		if (obj->otyp == SWITCHER) skill = P_VAAPAD;
 		if (obj->otyp == PACK_OF_FLOPPIES) skill = P_WEDI;
@@ -6297,6 +6471,28 @@ rerollthree:
 			if (P_MAX_SKILL(P_MEMORIZATION) == P_EXPERT) P_MAX_SKILL(P_MEMORIZATION) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_MEMORIZATION) = P_SUPREME_MASTER;
 		}
+		if (flags.female) {
+			if (P_RESTRICTED(P_SQUEAKING)) {
+				P_SKILL(P_SQUEAKING) = P_BASIC;
+				P_ADVANCE(P_SQUEAKING) = 20;
+				P_MAX_SKILL(P_SQUEAKING) = P_SKILLED;
+			} else {
+				P_SKILL(P_SQUEAKING) = P_BASIC;
+				if (P_MAX_SKILL(P_SQUEAKING) == P_EXPERT) P_MAX_SKILL(P_SQUEAKING) = P_GRAND_MASTER;
+				else P_MAX_SKILL(P_SQUEAKING) = P_SUPREME_MASTER;
+			}
+		}
+		if (!flags.female) {
+			if (P_RESTRICTED(P_GUN_CONTROL)) {
+				P_SKILL(P_GUN_CONTROL) = P_BASIC;
+				P_ADVANCE(P_GUN_CONTROL) = 20;
+				P_MAX_SKILL(P_GUN_CONTROL) = P_SKILLED;
+			} else {
+				P_SKILL(P_GUN_CONTROL) = P_BASIC;
+				if (P_MAX_SKILL(P_GUN_CONTROL) == P_EXPERT) P_MAX_SKILL(P_GUN_CONTROL) = P_GRAND_MASTER;
+				else P_MAX_SKILL(P_GUN_CONTROL) = P_SUPREME_MASTER;
+			}
+		}
 		if (P_RESTRICTED(P_MISSILE_WEAPONS)) {
 			P_SKILL(P_MISSILE_WEAPONS) = P_BASIC;
 			P_ADVANCE(P_MISSILE_WEAPONS) = 20;
@@ -6808,6 +7004,61 @@ rerollthree:
 	    	learntech(T_HIGH_HEELED_SNEAKERS, FROMOUTSIDE, 1);
 	}
 
+	if (P_SKILL(P_GUN_CONTROL) >= P_BASIC && !tech_known(T_SHOTTY_BLAST)) {
+	    	learntech(T_SHOTTY_BLAST, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GUN_CONTROL) >= P_SKILLED && !tech_known(T_AMMO_UPGRADE)) {
+	    	learntech(T_AMMO_UPGRADE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GUN_CONTROL) >= P_EXPERT && !tech_known(T_LASER_POWER)) {
+	    	learntech(T_LASER_POWER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GUN_CONTROL) >= P_MASTER && !tech_known(T_BIG_DADDY)) {
+	    	learntech(T_BIG_DADDY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GUN_CONTROL) >= P_GRAND_MASTER && !tech_known(T_SHUT_THAT_BITCH_UP)) {
+	    	learntech(T_SHUT_THAT_BITCH_UP, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SQUEAKING) >= P_BASIC && !tech_known(T_S_PRESSING)) {
+	    	learntech(T_S_PRESSING, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SQUEAKING) >= P_SKILLED && !tech_known(T_MELTEE)) {
+	    	learntech(T_MELTEE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SQUEAKING) >= P_EXPERT && !tech_known(T_WOMAN_NOISES)) {
+	    	learntech(T_WOMAN_NOISES, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SQUEAKING) >= P_MASTER && !tech_known(T_EXTRA_LONG_SQUEAK)) {
+	    	learntech(T_EXTRA_LONG_SQUEAK, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SQUEAKING) >= P_GRAND_MASTER && !tech_known(T_SEXUAL_HUG)) {
+	    	learntech(T_SEXUAL_HUG, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GUN_CONTROL) >= P_GRAND_MASTER && P_SKILL(P_SQUEAKING) >= P_GRAND_MASTER && !tech_known(T_SEX_CHANGE)) {
+	    	learntech(T_SEX_CHANGE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GUN_CONTROL) >= P_MASTER && P_SKILL(P_FIREARM) >= P_MASTER && !tech_known(T_EVEN_MORE_AMMO)) {
+	    	learntech(T_EVEN_MORE_AMMO, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SQUEAKING) >= P_EXPERT && P_SKILL(P_POLYMORPHING) >= P_MASTER && !tech_known(T_DOUBLESELF)) {
+	    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SQUEAKING) >= P_MASTER && P_SKILL(P_POLYMORPHING) >= P_EXPERT && !tech_known(T_DOUBLESELF)) {
+	    	learntech(T_DOUBLESELF, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CHAOS_SPELL) >= P_EXPERT && P_SKILL(P_POLYMORPHING) >= P_EXPERT && !tech_known(T_POLYFIX)) {
+	    	learntech(T_POLYFIX, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_OCCULT_SPELL) >= P_EXPERT && P_SKILL(P_SQUEAKING) >= P_EXPERT && !tech_known(T_SQUEAKY_REPAIR)) {
+	    	learntech(T_SQUEAKY_REPAIR, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_OCCULT_SPELL) >= P_EXPERT && P_SKILL(P_GUN_CONTROL) >= P_EXPERT && !tech_known(T_BULLETREUSE)) {
+	    	learntech(T_BULLETREUSE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ELEMENTAL_SPELL) >= P_EXPERT && P_SKILL(P_DEVICES) >= P_EXPERT && !tech_known(T_EXTRACHARGE)) {
+	    	learntech(T_EXTRACHARGE, FROMOUTSIDE, 1);
+	}
+
 	if (P_SKILL(P_MAKASHI) >= P_EXPERT && P_SKILL(P_ATARU) >= P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && !tech_known(T_FORM_CHOICE)) {
 	    	learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
 	}
@@ -7057,6 +7308,12 @@ doubleskilltraining()
 		acquiredskill = 1; }
 	else if (P_ADVANCE(P_MEMORIZATION) && !(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
 		P_ADVANCE(P_MEMORIZATION) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SQUEAKING) && !(P_RESTRICTED(P_SQUEAKING)) && yn("Do you want to train the squeaking skill?")=='y') {
+		P_ADVANCE(P_SQUEAKING) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_GUN_CONTROL) && !(P_RESTRICTED(P_GUN_CONTROL)) && yn("Do you want to train the gun control skill?")=='y') {
+		P_ADVANCE(P_GUN_CONTROL) *= 2;
 		acquiredskill = 1; }
 	else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
 		P_ADVANCE(P_SHII_CHO) *= 2;

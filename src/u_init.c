@@ -16518,7 +16518,7 @@ u_init()
 
 	case PM_ANCIENT: /* random technique --Amy */
 
-		switch (rnd(170)) {
+		switch (rnd(172)) {
 
 			case 1: 
 			case 2: 
@@ -16823,6 +16823,12 @@ u_init()
 				break;
 			case 170:
 				if (!tech_known(T_ZAP_EM)) learntech(T_ZAP_EM, FROMOUTSIDE, 1);
+				break;
+			case 171:
+				if (!tech_known(T_CARD_TRICK)) learntech(T_CARD_TRICK, FROMOUTSIDE, 1);
+				break;
+			case 172:
+				if (!tech_known(T_SKILLOMORPH)) learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
 				break;
 
 

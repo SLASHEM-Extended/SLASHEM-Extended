@@ -18,53 +18,6 @@
 
 #include <ctype.h>
 
-#define PN_POLEARMS		(-1)
-#define PN_SABER		(-2)
-#define PN_HAMMER		(-3)
-#define PN_WHIP			(-4)
-#define PN_PADDLE		(-5)
-#define PN_FIREARMS		(-6)
-#define PN_ATTACK_SPELL		(-7)
-#define PN_HEALING_SPELL	(-8)
-#define PN_DIVINATION_SPELL	(-9)
-#define PN_ENCHANTMENT_SPELL	(-10)
-#define PN_PROTECTION_SPELL	(-11)
-#define PN_BODY_SPELL		(-12)
-#define PN_OCCULT_SPELL		(-13)
-#define PN_ELEMENTAL_SPELL		(-14)
-#define PN_CHAOS_SPELL		(-15)
-#define PN_MATTER_SPELL		(-16)
-#define PN_BARE_HANDED		(-17)
-#define PN_HIGH_HEELS		(-18)
-#define PN_GENERAL_COMBAT		(-19)
-#define PN_SHIELD		(-20)
-#define PN_BODY_ARMOR		(-21)
-#define PN_TWO_HANDED_WEAPON		(-22)
-#define PN_POLYMORPHING		(-23)
-#define PN_DEVICES		(-24)
-#define PN_SEARCHING		(-25)
-#define PN_SPIRITUALITY		(-26)
-#define PN_PETKEEPING		(-27)
-#define PN_MISSILE_WEAPONS		(-28)
-#define PN_TECHNIQUES		(-29)
-#define PN_IMPLANTS		(-30)
-#define PN_SEXY_FLATS		(-31)
-#define PN_MEMORIZATION		(-32)
-#define PN_SHII_CHO		(-33)
-#define PN_MAKASHI		(-34)
-#define PN_SORESU		(-35)
-#define PN_ATARU		(-36)
-#define PN_SHIEN		(-37)
-#define PN_DJEM_SO		(-38)
-#define PN_NIMAN		(-39)
-#define PN_JUYO		(-40)
-#define PN_VAAPAD		(-41)
-#define PN_WEDI		(-42)
-#define PN_MARTIAL_ARTS		(-43)
-#define PN_RIDING		(-44)
-#define PN_TWO_WEAPONS		(-45)
-#define PN_LIGHTSABER		(-46)
-
 #ifndef OVLB
 
 STATIC_DCL NEARDATA const short skill_names_indices[];
@@ -95,7 +48,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,
+	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
@@ -139,6 +92,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "implants",
     "sexy flats",
     "memorization",
+    "gun control",
+    "squeaking",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
