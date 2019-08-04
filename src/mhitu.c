@@ -18360,7 +18360,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_CAST:
 	    case AD_CLRC:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(10))) {
-			castmu(mtmp, mattk, FALSE, FALSE);
+			castmu(mtmp, mattk, TRUE, TRUE);
 		  }
 		break;
 
