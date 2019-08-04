@@ -243,7 +243,8 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	zoo_tech[] = { {   12, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
-	jes_tech[] = { {   30, T_EGG_BOMB, 1},
+	jes_tech[] = { {   10, T_CARD_TRICK, 1},
+			 {   30, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
 	stu_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   1, T_JEDI_JUMP, 1},
@@ -257,6 +258,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	ana_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_DECONTAMINATE, 1},
+		       {   10, T_SKILLOMORPH, 1},
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
 		       {   20, T_RECHARGE, 1},
@@ -270,12 +272,14 @@ static const struct innate_tech
 		       {   7, T_RESEARCH, 1},
 		       {   10, T_POKE_BALL, 1},
 		       {   20, T_SUMMON_PET, 1},
+		       {   25, T_CARD_TRICK, 1},
 		       {   0, 0, 0} },
 	ama_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   5, T_CRIT_STRIKE, 1},
 		       {   15, T_VANISH, 1},
 		       {   18, T_CONCENTRATING, 1},
+		       {   20, T_SKILLOMORPH, 1},
 		       {   25, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
 	art_tech[] = { {   10, T_DIAMOND_BARRIER, 1},
@@ -297,7 +301,8 @@ static const struct innate_tech
 	bul_tech[] = { {   6, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
 
-	sta_tech[] = { {   12, T_DECONTAMINATE, 1},
+	sta_tech[] = { {   4, T_SKILLOMORPH, 1},
+			 {   12, T_DECONTAMINATE, 1},
 		       {   16, T_DIAMOND_BARRIER, 1},
 		       {   20, T_ZAP_EM, 1},
 		       {   0, 0, 0} },
@@ -375,6 +380,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	sto_tech[] = { {   1, T_BERSERK, 1},
 		       {   1, T_ZAP_EM, 1},
+		       {   5, T_SKILLOMORPH, 1},
 		       {   10, T_KIII, 1},
 		       {   12, T_DOUBLE_THROWNAGE, 1},
 		       {   15, T_VANISH, 1},
@@ -382,6 +388,7 @@ static const struct innate_tech
 		       {   24, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	cra_tech[] = { {   1, T_ZAP_EM, 1},
+			 {   10, T_CARD_TRICK, 1},
 			 {   15, T_RESEARCH, 1},
 		       {   20, T_RECHARGE, 1},
 		       {   30, T_DOUBLE_TROUBLE, 1},
@@ -488,6 +495,7 @@ static const struct innate_tech
 			 {   7, T_FLURRY, 1},
 			 {   8, T_LUCKY_GAMBLE, 1},
 			 {   9, T_SUMMON_TEAM_ANT, 1},
+			 {   10, T_CARD_TRICK, 1},
 		       {   11, T_CALM_STEED, 1},
 		       {   17, T_RAISE_ZOMBIES, 1},
 		       {   18, T_DIAMOND_BARRIER, 1},
@@ -517,6 +525,7 @@ static const struct innate_tech
 		       {   24, T_SURGERY, 1},
 		       {   24, T_DRAW_ENERGY, 1},
 			 {   25, T_SIGIL_DISCHARGE, 1},
+			 {   25, T_SKILLOMORPH, 1},
 			 {   29, T_BLINK, 1},
 		       {   30, T_LIQUID_LEAP, 1},
 		       {   0, 0, 0} },
@@ -782,6 +791,7 @@ static const struct innate_tech
 	aug_tech[] = { {   1, T_TELEKINESIS, 1},
 		       {   5, T_WONDERSPELL, 1},
 		       {   10, T_SPIRITUALITY_CHECK, 1},
+		       {   15, T_CARD_TRICK, 1},
 		       {   20, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
 	elp_tech[] = { {   1, T_FLURRY, 1},
@@ -839,6 +849,7 @@ static const struct innate_tech
 		       {  20, T_REINFORCE, 1},
 		       {  24, T_POLYFORM, 1},
 		       {  25, T_EGG_BOMB, 1},
+		       {  30, T_SKILLOMORPH, 1},
 		       {   0, 0, 0} },
 	trs_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   17, T_SUMMON_PET, 1},
@@ -965,6 +976,7 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_RESET_TECHNIQUE, 1},
+		       {   1, T_SKILLOMORPH, 1},
 			 {   5, T_RESEARCH, 1},
 			 {   10, T_DIAMOND_BARRIER, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -1380,10 +1392,18 @@ static const struct innate_tech
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_CARD_TRICK, 1},
 		       {   10, T_DOUBLE_TROUBLE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_WONDERSPELL, 1},
 		       {   30, T_RESET_TECHNIQUE, 1},
+		       {   0, 0, 0} },
+
+	man_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_SKILLOMORPH, 1},
 		       {   0, 0, 0} },
 
 	jel_tech[] = { {   1, T_DRAW_ENERGY, 1},
@@ -2668,79 +2688,79 @@ dotech()
 			break;
 
 		case T_CARD_TRICK:
-			pline("todo");
+			pline("Inspired by Splicehack, this technique lets you choose a scroll in your open inventory for a chance to duplicate it. The higher the cost of writing the scroll in question with a magic marker, the lower the chance that your duplication attempt works, but higher technique levels will increase the chance of success. Scrolls that cannot be written with a magic marker, e.g. wishing, can never be duplicated with this technique because that would be too powerful.");
 			break;
 
 		case T_SKILLOMORPH:
-			pline("todo");
+			pline("Lets you pick a skill in which you're not restricted, and trains it by a few points. This lets you bypass the RNG limitations that might have made a skill impossible to train, meaning that repeatedly using this technique may allow you to reach skill levels that you can't otherwise reach, but of course you can't go over the cap displayed in the #enhance screen.");
 			break;
 
 		case T_SHOTTY_BLAST:
-			pline("todo");
+			pline("Creates shotgun shells out of thin air.");
 			break;
 
 		case T_AMMO_UPGRADE:
-			pline("todo");
+			pline("This technique requires you to wield firearm ammo, which will be enhanced in enchantment value and BUC. Remember that like everything that can affect a stack of items, big stacks of ammo (more than 25 ammos in one stack) have a chance to resist depending on the exact stack size.");
 			break;
 
 		case T_LASER_POWER:
-			pline("todo");
+			pline("Creates laser gun ammo out of thin air.");
 			break;
 
 		case T_BIG_DADDY:
-			pline("todo");
+			pline("This powerful technique creates a rocket launcher with ammo out of thin air.");
 			break;
 
 		case T_SHUT_THAT_BITCH_UP:
-			pline("todo");
+			pline("A technique that lasts for a couple of turns and allows your firearm ammos to stop time if they hit a female enemy.");
 			break;
 
 		case T_S_PRESSING:
-			pline("todo");
+			pline("This technique works only if there's no trap on your current location. It also requires 500 points of nutrition. If you fulfill those requirements, you create a trap at your location that can only affect hostile monsters and deals damage relative to your squeaking skill and technique level.");
 			break;
 
 		case T_MELTEE:
-			pline("todo");
+			pline("Shoots acid rays in all directions and may destroy iron bars.");
 			break;
 
 		case T_WOMAN_NOISES:
-			pline("todo");
+			pline("If you use this technique, hostile monsters in a certain radius around you have to make a saving throw or be affected by several bad effects.");
 			break;
 
 		case T_EXTRA_LONG_SQUEAK:
-			pline("todo");
+			pline("After using this technique, it will stay active for a while and protect you from farting effects, and additionally all nearby hostile male monsters will have to make a saving throw each turn or take damage.");
 			break;
 
 		case T_SEXUAL_HUG:
-			pline("todo");
+			pline("This technique tames an adjacent male monster. It has a 1 in 5 chance of taming things that otherwise cannot be tamed.");
 			break;
 
 		case T_SEX_CHANGE:
-			pline("todo");
+			pline("Well DUH :D Using it will change your sex from male to female or the other way around!");
 			break;
 
 		case T_EVEN_MORE_AMMO:
-			pline("todo");
+			pline("You must be wielding firearm ammo to use this technique, and if you do, its stack size will increase.");
 			break;
 
 		case T_DOUBLESELF:
-			pline("todo");
+			pline("Only player characters that are currently polymorphed into a monster can use this technique, and if you do so, you'll spawn a tame monster of the same type as your current polymorph form.");
 			break;
 
 		case T_POLYFIX:
-			pline("todo");
+			pline("Using this technique lets you select a hazy item in your open inventory, which will become un-hazy so it won't polymorph back into the original item.");
 			break;
 
 		case T_SQUEAKY_REPAIR:
-			pline("todo");
+			pline("This technique creates a fart trap on your current location and triggers it, but only if there was no trap on your location. If the trap was successfully made, you then get to repair an item of your choice in your main inventory.");
 			break;
 
 		case T_BULLETREUSE:
-			pline("todo");
+			pline("Using this technique makes your firearm ammo reusable for a while, i.e. ammos that you shot may drop on the ground and be re-used, although most of the time they'll still be mulched.");
 			break;
 
 		case T_EXTRACHARGE:
-			pline("todo");
+			pline("This technique lets you pick a wand in your open inventory and add a charge to it without incrementing the recharge counter and without the chance of blowing up the wand, but caution: the wand must be one that can be recharged indefinitely. Using it on one that can only be recharged once (e.g. wand of wishing) will not work.");
 			break;
 
 		case T_STARWARS_FRIENDS:
@@ -7536,6 +7556,7 @@ race_tech()
 		case PM_PLAYER_UNICORN:		return (uni_tech);
 		case PM_UNMAGIC_FISH:		return (unm_tech);
 		case PM_MOULD:		return (mou_tech);
+		case PM_MANSTER:		return (man_tech);
 		case PM_OCTOPODE:		return (oct_tech);
 		case PM_INKA:		return (ink_tech);
 		case PM_ARGONIAN:		return (arg_tech);
