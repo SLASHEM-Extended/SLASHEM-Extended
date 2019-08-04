@@ -7307,6 +7307,8 @@ newboss:
 		if (!rn2(100) && CaptchaProblem) {
 			u.captchahack = 1;
 			strcpy(buf, rndmonnam() );
+			if ((int) strlen(buf) > 75) buf[75] = '\0';
+
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
@@ -7517,6 +7519,8 @@ newboss:
 		if (!rn2(100) && u.uprops[CAPTCHA].extrinsic) {
 			u.captchahack = 1;
 			strcpy(buf, rndmonnam() );
+			if ((int) strlen(buf) > 75) buf[75] = '\0';
+
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
@@ -7558,6 +7562,8 @@ newboss:
 		if (!rn2(100) && have_captchastone()) {
 			u.captchahack = 1;
 			strcpy(buf, rndmonnam() );
+			if ((int) strlen(buf) > 75) buf[75] = '\0';
+
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
