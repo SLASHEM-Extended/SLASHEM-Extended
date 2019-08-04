@@ -9905,6 +9905,8 @@ struct monst *mtmp;
 #define MUSE_SCR_SUMMON_GHOST_M 25
 #define MUSE_SCR_SUMMON_ELM_M 26
 #define MUSE_WAN_SUMMON_ELM_M 27
+#define MUSE_MAGIC_TRAP 28
+#define MUSE_POT_GAIN_ENERGY 29
 
 boolean
 find_misc(mtmp)
@@ -9954,6 +9956,28 @@ struct monst *mtmp;
 				}
 			    }
 	}
+
+	if (!stuck && !immobile && mtmp->mcan) {
+	  boolean ignore_boulders = (verysmall(mdat) ||
+				     throws_rocks(mdat) || (mtmp->egotype_wallwalk) ||
+				     passes_walls(mdat));
+	  for(xx = x-1; xx <= x+1; xx++)
+	    for(yy = y-1; yy <= y+1; yy++)
+		if (isok(xx,yy) && (xx != u.ux || yy != u.uy))
+		    if (!(isgridbug(mdat)) || xx == x || yy == y)
+			if (/* (xx==x && yy==y) || */ !level.monsters[xx][yy])
+			    if ((t = t_at(xx, yy)) != 0 &&
+			      (ignore_boulders || !sobj_at(BOULDER, xx, yy))
+			      && !onscary(xx, yy, mtmp)) {
+				if (t->ttyp == MAGIC_TRAP) {
+				    trapx = xx;
+				    trapy = yy;
+				    m.has_misc = MUSE_MAGIC_TRAP;
+				    return TRUE;
+				}
+			    }
+	}
+
 	/*if (nohands(mdat))
 		return 0;*/
 
@@ -10030,6 +10054,11 @@ struct monst *mtmp;
 				&& ((monstr[monsndx(mdat)] < 6) || (mtmp->mhp*3 < mtmp->mhpmax) ) ) {
 			m.misc = obj;
 			m.has_misc = MUSE_POT_POLYMORPH;
+		}
+		nomore(MUSE_POT_GAIN_ENERGY);
+		if(obj->otyp == POT_GAIN_ENERGY && mtmp->mcan) {
+			m.misc = obj;
+			m.has_misc = MUSE_POT_GAIN_ENERGY;
 		}
 		nomore(MUSE_POT_MUTATION);
 		if(obj->otyp == POT_MUTATION) {
@@ -10294,6 +10323,14 @@ skipmsg:
 		(void) mon_poly(mtmp, FALSE, "%s suddenly mutates!");
 #endif
 		if (oseen) makeknown(POT_POLYMORPH);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_POT_GAIN_ENERGY:
+		mquaffmsg(mtmp, otmp);
+		mtmp->mcan = 0;
+		if (vismon) pline("%s looks filled with power!", Monnam(mtmp));
+
+		if (oseen) makeknown(POT_GAIN_ENERGY);
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_MUTATION:
@@ -10932,6 +10969,23 @@ newboss:
 		(void) mon_poly(mtmp, FALSE, "%s changes!");
 #endif
 		return 2;
+	case MUSE_MAGIC_TRAP:
+		if (vismon)
+		    pline("%s deliberately %s onto a magic trap!",
+			Monnam(mtmp),
+			makeplural(locomotion(mtmp->data, "jump")));
+		if (vis) seetrap(t_at(trapx,trapy));
+
+		/*  don't use rloc() due to worms */
+		remove_monster(mtmp->mx, mtmp->my);
+		if (t_at(trapx,trapy)) deltrap(t_at(trapx,trapy));
+		newsym(mtmp->mx, mtmp->my);
+		place_monster(mtmp, trapx, trapy);
+		mtmp->mcan = 0;
+		if (mtmp->wormno) worm_move(mtmp);
+		newsym(trapx, trapy);
+
+		return 2;
 	case MUSE_BULLWHIP:
 		/* attempt to disarm hero */
 		if (uwep && !rn2(5)) {
@@ -11195,6 +11249,7 @@ struct obj *obj;
 		    typ == POT_EXTRA_HEALING ||
 		    typ == POT_FULL_HEALING ||
 		    typ == POT_POLYMORPH ||
+		    (typ == POT_GAIN_ENERGY && mon->mcan) ||
 		    typ == POT_MUTATION ||
 		    typ == POT_GAIN_LEVEL ||
 		    typ == POT_PARALYSIS ||

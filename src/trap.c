@@ -15866,6 +15866,15 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			}
 			break;
 		case MAGIC_TRAP:
+
+			if (mtmp->mcan) {
+				deltrap(trap);
+				newsym(mtmp->mx, mtmp->my);
+				if (in_sight) pline("%s is caught in a magical explosion.", Monnam(mtmp));
+				mtmp->mcan = 0;
+				break; /* do not call deltrap twice! */
+			}
+
 			/* A magic trap.  Monsters usually immune. */
 			if (!rn2(30)) {
 			    deltrap(trap);
