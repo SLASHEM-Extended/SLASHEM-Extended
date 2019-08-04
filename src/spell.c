@@ -10250,8 +10250,10 @@ morezapping:
 	if (nzap > n) nzap = n;
 	if (n && nzap > 0) {
 
-		while (spellknow(n) > 0 && nzap > 0) {
-			boostknow(n, -10000);
+		while (nzap > 0) {
+
+			if (spellknow(n) > 0) boostknow(n, -10000);
+			if (spellknow(n) < 0) spellknow(n) = 0;
 
 			if (spellknow(n) <= 0) {
 				spl_book[n].sp_know = 0;
