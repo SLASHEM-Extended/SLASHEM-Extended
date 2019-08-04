@@ -2502,7 +2502,7 @@ struct obj *obj;
 	if(obj->quan > 4L) zap_odds /= 2;
 
 	/* Amy edit: polypiling is so OP that it desperately needs nerfing :P */
-	if (rn2(2)) return TRUE;
+	if (!rn2(3)) return TRUE;
 	if ((obj->oclass == SCROLL_CLASS || obj->oclass == POTION_CLASS) && rn2(2) ) return TRUE;
 	if ((obj->oclass == SPBOOK_CLASS) && rn2(5) ) return TRUE;
 	if ((obj->oclass == WEAPON_CLASS) && objects[obj->otyp].oc_merge && rn2(10) ) return TRUE;
@@ -3311,7 +3311,7 @@ struct obj *obj, *otmp;
 			makeknown(otmp->otyp);
 		    do_osshock(obj);
 		    break;
-		} else if (obj_shudders(obj)) { /* huge nerf by Amy */
+		} else if (rn2(2) && obj_shudders(obj)) { /* huge nerf by Amy */
 		    if (cansee(obj->ox, obj->oy))
 			makeknown(otmp->otyp);
 		    do_osshock(obj);
