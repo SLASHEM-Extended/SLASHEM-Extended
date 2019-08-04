@@ -5731,7 +5731,8 @@ hitmu(mtmp, mattk)
 	    case AD_SPEL:
 	    case AD_CAST:
 	    case AD_CLRC:
-		castmu(mtmp, mattk, FALSE, FALSE);
+		hitmsg(mtmp, mattk);
+		castmu(mtmp, mattk, TRUE, TRUE);
 		break;
 
 	    case AD_VOMT:
@@ -12189,7 +12190,7 @@ do_stone2:
 		case AD_SPEL:
 		case AD_CAST:
 		case AD_CLRC:
-			castmu(mtmp, mattk, FALSE, FALSE);
+			castmu(mtmp, mattk, TRUE, TRUE);
 			break;
 
 		case AD_VOMT:
@@ -14347,7 +14348,7 @@ common:
 	    case AD_SPEL:
 	    case AD_CAST:
 	    case AD_CLRC:
-		castmu(mtmp, mattk, FALSE, FALSE);
+		castmu(mtmp, mattk, TRUE, TRUE);
 		break;
 
 	    case AD_VOMT:

@@ -9430,7 +9430,7 @@ boolean ranged;
         case AD_CAST:
         case AD_CLRC:
         case AD_SPEL:
-		castmu(mon, &ptr->mattk[i], FALSE, FALSE);
+		castmu(mon, &ptr->mattk[i], TRUE, TRUE);
 		break;
 
         case AD_VOMT:
