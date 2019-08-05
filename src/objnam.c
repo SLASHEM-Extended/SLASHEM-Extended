@@ -2983,18 +2983,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_NEXUSPORT, "port svyazi" },
 	{ SPE_GIANT_FOOT, "gigantskaya noga" },
 	{ SPE_ANTI_TELEPORTATION, "anti-teleportatsiya" },
+	{ FEMINISM_DRAGON_SCALES, "feminizm drakon'yey cheshui" },
+	{ FEMINISM_DRAGON_SCALE_MAIL, "feminizm drakon'yey pochty" },
+	{ FEMINISM_DRAGON_SCALE_SHIELD, "feminizm shchit drakon'yey cheshui" },
+	{ NEGATIVE_DRAGON_SCALES, "otritsatel'nyye vesy drakona" },
+	{ NEGATIVE_DRAGON_SCALE_MAIL, "otritsatel'naya cheshuya drakona" },
+	{ NEGATIVE_DRAGON_SCALE_SHIELD, "otritsatel'nyy shchit masshtaba drakona" },
+	{ HEROIC_DRAGON_SCALES, "geroicheskiye vesy drakona" },
+	{ HEROIC_DRAGON_SCALE_MAIL, "geroicheskaya cheshuya drakona" },
+	{ HEROIC_DRAGON_SCALE_SHIELD, "shchit geroicheskoy drakon'yey cheshui" },
 
 	/* todo area */
-
-	{ FEMINISM_DRAGON_SCALES, "todo" },
-	{ FEMINISM_DRAGON_SCALE_MAIL, "todo" },
-	{ FEMINISM_DRAGON_SCALE_SHIELD, "todo" },
-	{ NEGATIVE_DRAGON_SCALES, "todo" },
-	{ NEGATIVE_DRAGON_SCALE_MAIL, "todo" },
-	{ NEGATIVE_DRAGON_SCALE_SHIELD, "todo" },
-	{ HEROIC_DRAGON_SCALES, "todo" },
-	{ HEROIC_DRAGON_SCALE_MAIL, "todo" },
-	{ HEROIC_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };
@@ -5429,18 +5428,17 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_NEXUSPORT, "teleportatsiya elementining porti" },
 	{ SPE_GIANT_FOOT, "ulkan oyoq" },
 	{ SPE_ANTI_TELEPORTATION, "qarshi teleportatsiya" },
+	{ FEMINISM_DRAGON_SCALES, "feminizm ajdaho tarozilari" },
+	{ FEMINISM_DRAGON_SCALE_MAIL, "feminizm ajdaho miqyosidagi pochta" },
+	{ FEMINISM_DRAGON_SCALE_SHIELD, "feminizm ajdaho shkalasi" },
+	{ NEGATIVE_DRAGON_SCALES, "salbiy ajdaho tarozilari" },
+	{ NEGATIVE_DRAGON_SCALE_MAIL, "salbiy ajdaho o'lchovli pochta" },
+	{ NEGATIVE_DRAGON_SCALE_SHIELD, "salbiy ajdaho shkalasi qalqoni" },
+	{ HEROIC_DRAGON_SCALES, "qahramon ajdaho tarozilari" },
+	{ HEROIC_DRAGON_SCALE_MAIL, "qahramon ajdaho miqyosidagi pochta" },
+	{ HEROIC_DRAGON_SCALE_SHIELD, "qahramon ajdaho shkalasi qalqoni" },
 
 	/* todo area */
-
-	{ FEMINISM_DRAGON_SCALES, "todo" },
-	{ FEMINISM_DRAGON_SCALE_MAIL, "todo" },
-	{ FEMINISM_DRAGON_SCALE_SHIELD, "todo" },
-	{ NEGATIVE_DRAGON_SCALES, "todo" },
-	{ NEGATIVE_DRAGON_SCALE_MAIL, "todo" },
-	{ NEGATIVE_DRAGON_SCALE_SHIELD, "todo" },
-	{ HEROIC_DRAGON_SCALES, "todo" },
-	{ HEROIC_DRAGON_SCALE_MAIL, "todo" },
-	{ HEROIC_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };

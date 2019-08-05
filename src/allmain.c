@@ -10935,12 +10935,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boiled gloves")) OBJ_DESCR(objects[i]) = "varenyye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hairnet helmet")) OBJ_DESCR(objects[i]) = "setka dlya volos";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glibskin helmet")) OBJ_DESCR(objects[i]) = "shlem iz tolstoy kozhi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feminism dragonhide shield")) OBJ_DESCR(objects[i]) = "feminizm shchit drakon'yey shkury";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "negative dragonhide shield")) OBJ_DESCR(objects[i]) = "otritsatel'nyy shchit iz drakon'yey shkury";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroic dragonhide shield")) OBJ_DESCR(objects[i]) = "geroicheskiy shchit iz drakon'yey shkury";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feminism dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "negative dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroic dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -11951,12 +11950,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boiled gloves")) OBJ_DESCR(objects[i]) = "qaynatilgan qo'lqoplar";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hairnet helmet")) OBJ_DESCR(objects[i]) = "sochni dubulg'asi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glibskin helmet")) OBJ_DESCR(objects[i]) = "jo'shqin terisi zarbasi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feminism dragonhide shield")) OBJ_DESCR(objects[i]) = "feminizm ajdarho qalqoni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "negative dragonhide shield")) OBJ_DESCR(objects[i]) = "salbiy ajdaho qalqoni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroic dragonhide shield")) OBJ_DESCR(objects[i]) = "qahramon ajdaho qalqoni";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feminism dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "negative dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroic dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
