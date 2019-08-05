@@ -2995,6 +2995,7 @@ register int pm;
 	    case PM_OLOG_HAI_GORGON:
 	    case PM_BEAR_TROVE:
 	    case PM_SPINACH:
+	    case PM_COCKERICH:
 	    case PM_GRAVITY_CHICKEN:
 	    case PM_MEDUSA_S_PET_FISH:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
@@ -3156,6 +3157,7 @@ register int pm;
 		case PM_BLUE_FLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
+		case PM_HAPPY_MEAL:
 		case PM_CANCEROUS_MIND_FLAYER:
 	    case PM_MIND_FLAYER: {
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;

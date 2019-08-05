@@ -6741,6 +6741,18 @@ register struct	monst	*mtmp;
 		else if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (ptr == &mons[PM_GOVERNOR_TARKIN]) {
+			(void)mongets(mtmp, HAND_BLASTER);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+		if (ptr == &mons[PM_WOYZECK]) {
+			(void)mongets(mtmp, SHORT_SWORD);
+			(void)mongets(mtmp, LEATHER_ARMOR);
+			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, LOW_BOOTS);
+			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, LARGE_SHIELD);
+		}
 		if (monsndx(ptr) == PM_EVRA_THE_MOP_LADY) {
 			(void)mongets(mtmp, MOP);
 			(void)mongets(mtmp, BROOM);
@@ -7967,6 +7979,8 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_SONJA_S_TORN_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (ptr == &mons[PM_KLINGELING_WENCH]) (void) mongets(mtmp, YITH_TENTACLE);
+		if (ptr == &mons[PM_ROUND_TUIT]) (void) mongets(mtmp, POT_SPEED);
+		if (ptr == &mons[PM_ANGULAR_TUIT]) (void) mongets(mtmp, POT_SPEED);
 
 		if (mtmp->data == &mons[PM_POTION_MIMIC]) (void) mongets(mtmp, POT_FULL_HEALING);
 		if (mtmp->data == &mons[PM_SCROLL_MIMIC]) (void) mongets(mtmp, SCR_TELEPORTATION);
@@ -10263,6 +10277,21 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, BULLET, 20);
 		}
+		if (ptr == &mons[PM_SAMURUKHAI]) {
+			(void) mongets(mtmp, ELVEN_CLOAK);
+			(void) mongets(mtmp, ORCISH_HELM);
+			(void) mongets(mtmp, ORCISH_SHIELD);
+			(void) mongets(mtmp, ELVEN_DAGGER);
+			(void) mongets(mtmp, LOW_BOOTS);
+		}
+		if (ptr == &mons[PM_ORCHAEALOGIST]) {
+			(void) mongets(mtmp, WAN_DIGGING);
+			(void) mongets(mtmp, PICK_AXE);
+		}
+		if (ptr == &mons[PM_ORC_SCIENTIST]) {
+			(void) mongets(mtmp, WAN_DIGGING);
+			(void) mongets(mtmp, PICK_AXE);
+		}
 
 		if (ptr == &mons[PM_GOBLIN_WOARER]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
@@ -10403,6 +10432,14 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ANNE_S_SNEAKER]) {
 			(void) mongets(mtmp, SOFT_GIRL_SNEAKER);
 			(void) mongets(mtmp, SOFT_SNEAKERS);
+		}
+		if (ptr == &mons[PM_DEEP_SLEEP_VARIANT]) {
+			(void) mongets(mtmp, POT_SLEEPING);
+			(void) mongets(mtmp, POT_SLEEPING);
+		}
+		if (ptr == &mons[PM_MYSTERY_COMPENDIUM]) {
+			(void) mongets(mtmp, POT_SLEEPING);
+			(void) mongets(mtmp, POT_SLEEPING);
 		}
 
 		if (mtmp->data == &mons[PM_ROXY]) {
@@ -11136,6 +11173,14 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, WAN_FIRE);
 		}
 
+		if (ptr == &mons[PM_PURPLE_AMPERSAND]) {
+			otmp = mksobj(SCALPEL, FALSE, FALSE);
+			if (otmp) {
+				otmp->spe = 4;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+		}
+
 		if (ptr == &mons[PM_MANCUBUS]) {
 			mongets(mtmp, BFG);
 			m_initthrow(mtmp, BFG_AMMO, 50);
@@ -11732,6 +11777,19 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_STARLIT_WALL]) (void) mongets(mtmp, WAN_FLEECY_TERRAIN);
 		if (ptr == &mons[PM_EXTRA_STARLIT_WALL]) (void) mongets(mtmp, WAN_FLEECY_TERRAIN);
 		if (ptr == &mons[PM_SYL_STARLIT_WALL]) (void) mongets(mtmp, WAN_FLEECY_TERRAIN);
+		if (ptr == &mons[PM_CARTRIDGE_OF_HAVING_A_HORROR]) (void) mongets(mtmp, WAN_BAD_EFFECT);
+		if (ptr == &mons[PM_BEGINNING_OF_WAR]) {
+			(void) mongets(mtmp, POT_FIRE);
+			(void) mongets(mtmp, POT_FIRE);
+		}
+		if (ptr == &mons[PM_MEGA_BLERTA]) {
+			(void) mongets(mtmp, POT_HALLUCINATION);
+			(void) mongets(mtmp, POT_HALLUCINATION);
+		}
+		if (ptr == &mons[PM_GULP_RECORDER]) {
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, POT_CONFUSION);
+		}
 
 		if (ptr == &mons[PM_LASERCUT_WALL]) {
 			(void) mongets(mtmp, CUTTING_LASER);
@@ -11990,6 +12048,7 @@ register struct	monst	*mtmp;
 
 		if (mtmp->data == &mons[PM_ANNEMARIE_S_GIRL_SHOE]) { (void) mongets(mtmp, LACQUERED_DANCING_SHOE); (void) mongets(mtmp, WEDGE_SANDALS); }
 		if (ptr == &mons[PM_DANIELLE_S_CUDDLY_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_HYPOTONIC_SALINE_INFUSION]) (void) mongets(mtmp, POT_FULL_HEALING);
 
  		break;
 	    case S_SPIDER:
@@ -18165,6 +18224,7 @@ register int	mmflags;
 		case S_ZOMBIE:
 			if (mtmp->data == &mons[PM_ALIENATED_UFO_PART]) set_mimic_sym(mtmp);
 			if (mndx == PM_UNDEFINED_UFO_PART) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PHONE_ZOMBIE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DRONING_UFO_PART) set_mimic_sym(mtmp);
 			break;
 		case S_NAGA:
@@ -18877,6 +18937,7 @@ register int	mmflags;
 		case S_ORC:
 
 			if (mndx == PM_DECEPTIVE_ORC) set_mimic_sym(mtmp);
+			if (mndx == PM_SAMURUKHAI) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			if (mtmp->data == &mons[PM_ALIEN_FROM_MARS]) {
 				(void) makemon(&mons[PM_MAN_FROM_MARS], mtmp->mx, mtmp->my, MM_ADJACENTOK);
@@ -22547,6 +22608,7 @@ int type;
 		case PM_MUD_GOLEM: return 50;
 		case PM_FLUFF_GOLEM: return 60;
 		case PM_DOGOLEM: return 60;
+		case PM_LITTLE_PINOCCHIO: return 70;
 		case PM_ROOT_GOLEM: return 65;
 		case PM_WALL_GOLEM: return 75;
 		case PM_IMPISH_GOLEM: return 80;
@@ -22830,6 +22892,8 @@ int type;
 		case PM_PETTY_BRAIN_GOLEM: return 120;
 		case PM_SPELL_GOLEM: return 130;
 		case PM_GROVE_GUARDIAN: return 170;
+		case PM_FORD_GUARDIAN: return 170;
+		case PM_UBER_FORD_GUARDIAN: return 170;
 		case PM_STATUE_GARGOYLE: return 140;
 		case PM_STATUE_GOLEM: return 140;
 		case PM_CLAY_GOLEM: return 150;
@@ -22873,6 +22937,7 @@ int type;
 		case PM_ANIMATED_ROLLER_BLADE: return 260;
 		case PM_IRONMAN: return 240;
 		case PM_IRON_GOLEM: return 240;
+		case PM_CONSEQUENCE_OF_YOUR_INSOUCIANCE: return 240;
 		case PM_LONG_GOLEM: return 240;
 		case PM_BALL_GOLEM: return 240;
 		case PM_PURPUR_GOLEM: return 240;

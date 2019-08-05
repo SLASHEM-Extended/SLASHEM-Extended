@@ -400,6 +400,16 @@ struct permonst *ptr;
     case PM_PORTER_BLACK_UNICORN:
     case PM_PURPLE_UNICORN:
     case PM_PINK_UNICORN:
+    case PM_ORANGE_UNICORN:
+    case PM_CYAN_UNICORN:
+    case PM_BROWN_UNICORN:
+    case PM_RED_UNICORN:
+    case PM_YELLOW_UNICORN:
+    case PM_GREEN_UNICORN:
+    case PM_ULTRAVIOLET_UNICORN:
+    case PM_XRAY_UNICORN:
+    case PM_SPOTTED_UNICORN:
+    case PM_LESSER_SPOTTED_UNICORN:
     case PM_POLECORN:
     case PM_HUGE_POLECORN:
     case PM_GOLDEN_UNICORN:
