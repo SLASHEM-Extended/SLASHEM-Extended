@@ -6777,6 +6777,18 @@ rerollthree:
 
 	}
 
+	/* if you somehow got the other gender's skill, deactivate it now --Amy */
+	if (flags.female && P_MAX_SKILL(P_GUN_CONTROL) >= P_BASIC) {
+		P_MAX_SKILL(P_GUN_CONTROL) = P_ISRESTRICTED;
+		P_SKILL(P_GUN_CONTROL) = P_ISRESTRICTED;
+		P_ADVANCE(P_GUN_CONTROL) = 0;
+	}
+	if (!flags.female && P_MAX_SKILL(P_SQUEAKING) >= P_BASIC) {
+		P_MAX_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
+		P_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
+		P_ADVANCE(P_SQUEAKING) = 0;
+	}
+
 	/* If you somehow start with a skill at high enough proficiency, learn the associated techniques
 	 * otherwise you might be unable to get the tech at all --Amy */
 
