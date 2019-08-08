@@ -4835,6 +4835,20 @@ static const char *epitaphs[] = {
 	"I died in the cutscene! What the actual fuck!",
 	"I'm out of water. I have no water? I HAVE NO FUCKING WATER??? There is no goddamn water left in my F.L.U.D.D.!",
 	"I hate this stupid game *so* much.",
+	"TAPE MEASURER! Who could ever need a tape measurer? GARBAGE!",
+	"I tried to speedrun real life, but got stuck at the relationship section of the run.",
+	"The most important part is not dying... wait what? NO! I DIED!",
+	"Damn, I only have one hit point left! Well then, I guess I'll start randomly quaffing potions. Let's try the effervescent potion first.",
+	"Uhh I think I'm gonna die in a couple of turns. Might as well read my unidentified scrolls, maybe one of them will save me. I'll start with the one labeled YO I PLAYED THE GAME AND DIED TO SOME UTTER BULLSHIT.",
+	"Oh no, the mind flayer is going to kill me on its next turn because my intelligence was just reduced to 3! I think I'll zap this californium wand at it, maybe it's an attack wand that kills it!",
+	"Engrave-testing wands is stupid, I'd much rather find out what they are by zapping them at myself. Let's see what this cavorite wand will do...",
+	"What? You're supposed to engrave-test wands? That's stupid, a much better method is to break them since that way you'll identify some of the types that give no message upon engraving. Here, hold my beer while I break-test this ribbed wand...",
+	"Josefine killed me with her velcro sneakers while I was unconscious from smelling her sweaty feet!",
+	"Here lies someone who absolutely wanted to find out how far Lydia's lady pumps will go if one lets them. Well, it turns out that they can actually cause death by bleeding from terrible leg scratches.",
+	"This fool was just standing there without retaliating while Katia scratched her block heels over his leg again and again until he died from loss of blood.",
+	"This grave contains yet another poor victim of a pair of stiletto heels that managed to split his skull by beating on it repeatedly.",
+	"Hey, I know the best way to get away from an annoying monster! I'll just start teleporting randomly! That certainly isn't going to land me in a more dang-",
+	"Dammit, if this potion of healing doesn't heal at least as much as the rate at which the monsters are dealing damage to me I'll be dead.",
 
 
 };

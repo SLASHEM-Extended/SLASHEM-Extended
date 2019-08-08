@@ -5826,6 +5826,7 @@ SCROLL((char *)0,               "SCHAF HAT ANGST M",  P_NONE,     1,   0, 300, C
 SCROLL((char *)0,               "AENNERGESCHICHTEN",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "FUCKER HIKIKOMOR",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "I ES WAR EINMAL",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
+SCROLL((char *)0,               "POPO LILI TIKTIK",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
