@@ -1,6 +1,38 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.5.4 - August 2019
+- New skills: gun control and squeaking.
+- New properties: scent view, echolocation and diminished bleeding.
+
+2.5.3 - July 2019
+- Monsters can use magic traps or potions of gain energy when cancelled to become uncancelled.
+- Polypiling is now a bit less likely to shudder an item.
+- Limited the length of a captcha string to ensure that the player doesn't get stuck with captchas that are longer than the maximum possible input length.
+- Fixed a bug where a side effect of the spell memory reduction effect would not trigger if the player's last spell on the list was a forgotten one.
+- In evilvariant mode, player monsters can now steal the Amulet of Yendor. If that happens on the Astral Plane, the monster in question can ascend and thereby end the game, which counts as a loss for the player.
+- Fixed a bug that caused hc converters to convert the game to nonexistant alignments.
+- The demon crossbow and catapult weapons have been nerfed for the player, and the catapult is now two-handed.
+- Artifact lockpicking tools can once again pick locks, but when a regular such tool would have broken, the artifact tool receives a flag that prevents it from being used for future lockpicking attempts.
+- Certain effects of the polymorphing and juyo skills now allow the player to opt out, in case the player feels that the effect is counterproductive in a given situation.
+- The blessing technique has a longer average timeout now, and the power surge technique gives less of a boost to Pw.
+- The scroll of mail no longer violates the illiterate conduct.
+- Cancelling a monster should now always remove its egotypes, if any.
+- The huge club and mancatcher weapons are two-handed now, and javelins are less effective when the player uses them in melee.
+- Fixed a bug that could cause the player's maximum HP to become negative due to passive touch of death effects.
+- The psybolt and open wounds spells used by monsters now deal half as much damage but also have other side effects.
+- Fixed a corner case that could lead to crashes when the player used multishot ranged attacks on monsters with certain passive effects.
+- Gaze attacks used by the player via #monster now scale in cost depending on the level of the player's polymorph form.
+- More monsters resist psi and/or light.
+- Fixed a bug where monsters could still sometimes get turns even if the player had stopped time.
+- Cancelled monsters may rarely spontaneously uncancel themselves.
+- Fixed incorrect calculations for the chance to remove fake artifact projectiles.
+- Robber hideouts can spawn monsters with amulet-stealing attacks now.
+- Smashing iron bars with a weapon now uses a new attribute instead of erosion, to determine whether the weapon will break.
+
 2.5.2 - June 2019
+- Certain yes/no prompts accept a simple "y" as a "yes" now.
+- Autodig interacts correctly with certain nasty traps now.
+- A few more messages force a --More-- now, unless the player disables the moreforced option.
 - Changed the downsides to the create monster and summon undead spells, and made trap creation more dangerous to cast.
 - The portal to Fort Ludios no longer requires a rooms-and-corridors level with a vault now, meaning it may generate on other dungeon levels too.
 - The astronaut role is capable of resisting permanent stat damage now.
