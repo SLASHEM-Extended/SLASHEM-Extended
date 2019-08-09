@@ -1946,7 +1946,155 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Rooms can now be irregular sometimes.
 - Many changes to dungeon level generation, especially concerning the chance of unusual terrain types appearing.
 
-(older stuff still needs to be added here)
+1.1.6 - May 2015
+- Occasionally, a pet may walk over a cursed item without the "moves only reluctantly" message.
+- More aspects of randomized appearance items will be shuffled now.
+- Revised the way out of depth monsters are generated, by no longer making it depend on the amount of monsters that would be out of depth. Instead, the game rolls a maximum level that the spawned monster can have, and then selects one at random that fulfills the requirement. Also, they're no longer skewed towards very low-level monsters if the player's experience level is low.
+- The rage eruption and power surge techniques can now also be used by a polymorphed player.
+- Gremlin attacks can also steal temporary intrinsics now.
+- Fixed bugs when a cockatrice race player character tried to eat a corpse.
+- Fixed an oversight that caused the "ak Thief is dead!" race to not get all of its special effects.
+- Flying players can now pick up items from a pit.
+- Statues of very small monsters are no longer prevented from containing a spellbook.
+- Whetstones can now break if used often.
+- Shield block chance is displayed in the enlightenment screen now.
+- A player with food appraisal will see an "Oversatiated" display on the status line when their nutrition is at a critically high level.
+- Players can now score critical hits with weapon attacks.
+- Some monsters that aren't supposed to be visible to the player are now prevented from showing up in the creatures killed screen.
+- The player's maximum alignment record is calculated dynamically now, and increases more slowly if it's already very high.
+- Improved the edibility of trove corpses; vampires can eat them now, and they shouldn't be rotten anymore.
+
+1.1.5 - May 2015
+- If the player gains intrinsic acid or stoning resistance from a corpse, there's now a 1% chance for it to be permanent.
+- Player race vampires once again have weapon attacks; due to an earlier change they erroneously lost that ability.
+- Getting a four-leaf clover while the player's luck is negative now only gives one point of luck back, instead of unconditionally setting it back to 0.
+- Fixed a bug that was introduced earlier, which allowed animals to wear armor.
+- Cockatrice player characters that managed to eat a heavy iron ball should no longer panic.
+- Sticky attacks used by monsters now give a message.
+- Implemented the epitaph patch, which allows the player to leave a gravestone message upon dying.
+- Sometimes, the game generates a bunch of random items on a dungeon level.
+
+1.1.4 - April 2015
+- Occasionally, items will spawn with some parts of them already identified.
+- Occasionally, the player will regenerate an extra chunk of HP or Pw.
+- Monsters can randomly generate invisible now.
+- Fixed a bug that caused batman race player characters to not always get the correct boomerang skill level.
+- Rarely, a monster that spawns in groups can spawn in larger than usual group sizes.
+- Fixed a bug where special rooms would spawn in rooms that have an upstair.
+
+1.1.3 - April 2015
+- Increased the nutrition span from weak to oversatiated. Famine's attacks now drain more nutrition per hit.
+- A hallucinating player will no longer get a confirmation from trying to step on a visible trap.
+- Gravestones in special rooms can now have buried items.
+- Fixed impossible messages appearing for elemental race players.
+
+1.1.2 - April 2015
+- There will now be one monster glyph that's ungenocidable in a given game, and one monster glyph that spawns more frequently.
+- If a monster steals an item from the player, it may now rarely receive a levelporting scroll. If the stolen item was an artifact, the scroll is always generated.
+- Eating a shapeshifting monster has a small chance of conveying intrinsic polymorphitis.
+- Permanently converting to a different alignment will greatly increase the average prayer timeout.
+- Quaffing from a fountain has a small chance of instakilling the player.
+- Shopkeepers and temple priests occasionally generate with a cloak of invisibility.
+- Nymphs occasionally spawn with a scroll of root password detection.
+- Quaffing from a sink has a chance of generating a green slime.
+- Human-sized or larger monsters with legs have a greater chance of kicking down doors.
+- If a bones level is loaded, it will have additional monsters spawned on top of the ones that were already there when the previous player died.
+- Eroded wands can explode when zapped.
+- The player's HP and Pw regeneration rates are halved while standing on an active Elbereth engraving.
+- Monsters with exactly 1 HP completely ignore Elbereth, scare monster and temple sanctuary effects.
+- Slightly increased the chance of a monster attacking the player in a temple sanctuary.
+- Vaults may occasionally contain a bunch of sleeping liches.
+
+1.1.0 - April 2015
+- Fixed a bug that caused certain special room types to almost never appear.
+- The player still has a minuscule chance of being affected by wands of cancellation even when magic resistant.
+- Fixed bugs that caused rodneyan player characters to not always receive the correct spellbooks upon leveling up.
+- Pets no longer attack Izchak.
+- Filler levels can now be replaced with random special levels sometimes.
+
+1.0.9 - April 2015
+- Hitting Ctrl-X will now display the player's HP and Pw.
+- The display loss trap prevents the player from seeing showdamage-related messages.
+- Monsters sometimes follow the player up or down staircases when adjacent.
+- Monsters with multiplying attacks no longer have death drops.
+- A few trap-related messages now force a --More--.
+
+1.0.8 - April 2015
+- Fixed a segfault with monsters that use a wand of digging.
+- Reduced the chance of projectiles breaking. However, magical gray stones now have a chance of breaking when used as a ranged weapon.
+- The player can now have hybrid races. At this point they could only be selected in tty mode.
+
+1.0.6 - March 2015
+- A monster that polymorphs into a creature of base level 50 or higher no longer receives excessive boosts to its HP.
+- The main missingno race crash no longer happens unless the player disables the missing_safety option.
+- Rodneyan race player characters now see monsters that are holding macguffins, and can revive on death.
+
+1.0.5 - March 2015
+- Special game modes like lostsoul or blindfox are birth options now instead of depending on the player character's name.
+
+1.0.3 - March 2015
+- Blessed scrolls of genocide and mass murder are more powerful.
+
+1.0.2 - March 2015
+- Implemented some segfault fixes from NAO.
+- Teleporting onto a sink while wearing levitation boots no longer segfaults.
+- Implemented the bones pool patch that allows several bones files per level to exist.
+- If the player dies while helpless, the death message now shows why they were helpless.
+- Applied the livelog patch.
+- Missile flurry technique was improved.
+- Rocker and hobbit get multishot bonuses when using a sling.
+- Ctrl-T teleportation no longer fails if the player had exactly enough mana to use it.
+- Applied the statuscolors patch.
+- Fixed the bug where level teleporters could occur on no-teleport branches of the dungeon.
+- Firearms that shoot single bullets had their range increased while automatic ones had it decreased.
+- Wearing racial equipment gives damage or AC bonuses to the player.
+- Sokoban boulders may sometimes be generated invisible.
+- Players can now block projectile attacks with shields or evade them with a chance based on experience level.
+- Higher level soldier types only have one weapon attack now.
+- Soldiers no longer always spawn with grenades.
+- Monsters with firearms will fire them at their actual range now.
+- Monsters use polymorph items in a smarter way.
+- Wishing for a stack of ranged weapon ammo now allows to wish for up to 100 projectiles.
+- Fortunes from eating food can affect the player's luck now.
+- Some branches that used to disallow the generation of bones files can now generate and load them.
+- Made it easier to keep spells memorized when casting them a lot, and the spellcasting skills also train slightly faster than before.
+- Weapons are more likely to generate with a non-zero enchantment value.
+- Monsters using gaze attacks now take the attack's actual damage dice into account now.
+- Status effects can sometimes be "heavy", i.e. unfixable other than by waiting them out.
+
+1.0.1 - February 2015
+- Pick-axes are more common.
+- Fixed a crash with the wand of banishment.
+- Spirit race player characters are resistant to stoning now.
+- Corrected the issue with monster difficulty for very high-level monsters that was causing them to spawn too early.
+- Some powerful spells have had their base level increased.
+- The player can only use #youpoly a certain number of times, depending on their race.
+
+1.0.0 - February 2015
+- Fixed a segfault that happened when a monster died to its own reflected wand beam.
+- The showdamage option now also displays the player's remaining amount of HP in the top line.
+- Monsters can now have multiple passive attacks.
+- Players polymorphed into spellcaster monsters do extra melee damage now.
+- Unseen monsters firing projectiles at the player now give a message.
+- Cursed luckstones and healthstones can no longer be dropped.
+- If the game requests a monster that cannot move, it can now also pick sessile ones with a movement speed greater than zero.
+- A player trying to polymorph into a high-level monster may randomly fail.
+- Techniques now display what they do when selected.
+- Slings now do more damage depending on the player's strength.
+- Food appraisal now warns the player of hallucinatory corpses, among other things.
+- Implemented the hilite items patch.
+- Fixed the bug where artifacts with internal index numbers greater than 127 were malfunctioning.
+
+0.9.8 - February 2015
+- Being on a level that has an alignment quest portal will occasionally give a message.
+- The drain resistance flag on artifacts now works.
+- Fixed the issue where quest nemeses would very rarely actually use the quest artifact.
+- The undertaker role now has the pick-axe skill.
+- The locksmith role is more proficient at picking locks.
+- Some roles get messages about a monster's health status.
+- Land-based monsters can now attack underwater player characters.
+
+Everything from the first version to 0.9.7 wasn't under version control, but we may eventually add the older changes in a random order here.
 
 :-) <3 *bundlebundlebundle* <3 :D
 
