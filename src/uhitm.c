@@ -1256,7 +1256,9 @@ int dieroll;
 	else launcher = 0;
 
 	boolean gunused = 0;
+	boolean crossbowused = 0;
 	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
+	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_CROSSBOW) crossbowused = 1;
 
 	objenchant = !thrown && no_obj || obj->spe < 0 ? 0 : obj->spe;
 
@@ -2561,6 +2563,84 @@ int dieroll;
 
 		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
+
+		if (gunused && !PlayerCannotUseSkills) { /* firearm boosts by Amy */
+			if (launcher && (launcher->otyp == PISTOL || launcher->otyp == HAND_BLASTER || launcher->otyp == FLINTLOCK || launcher->otyp == BEAM_REFLECTOR_GUN || launcher->otyp == AUTO_SHOTGUN)) {
+				switch (P_SKILL(P_FIREARM)) {
+					case P_BASIC: tmp += rn2(2); break;
+					case P_SKILLED: tmp += 1; break;
+					case P_EXPERT: tmp += 1; break;
+					case P_MASTER: tmp += rnd(2); break;
+					case P_GRAND_MASTER: tmp += rnd(2); break;
+					case P_SUPREME_MASTER: tmp += rnd(3); break;
+					default: break;
+				}
+				switch (P_SKILL(P_GUN_CONTROL)) {
+					case P_BASIC: tmp += rn2(2); break;
+					case P_SKILLED: tmp += 1; break;
+					case P_EXPERT: tmp += 1; break;
+					case P_MASTER: tmp += rnd(2); break;
+					case P_GRAND_MASTER: tmp += rnd(2); break;
+					case P_SUPREME_MASTER: tmp += rnd(3); break;
+					default: break;
+				}
+
+			}
+			if (launcher && (launcher->otyp == RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD || launcher->otyp == SHOTGUN || launcher->otyp == PAPER_SHOTGUN || launcher->otyp == CUTTING_LASER)) {
+				switch (P_SKILL(P_FIREARM)) {
+					case P_BASIC: tmp += 1; break;
+					case P_SKILLED: tmp += rnd(2); break;
+					case P_EXPERT: tmp += rnd(3); break;
+					case P_MASTER: tmp += rnd(4); break;
+					case P_GRAND_MASTER: tmp += rnd(5); break;
+					case P_SUPREME_MASTER: tmp += rnd(6); break;
+					default: break;
+				}
+				switch (P_SKILL(P_GUN_CONTROL)) {
+					case P_BASIC: tmp += 1; break;
+					case P_SKILLED: tmp += rnd(2); break;
+					case P_EXPERT: tmp += rnd(3); break;
+					case P_MASTER: tmp += rnd(4); break;
+					case P_GRAND_MASTER: tmp += rnd(5); break;
+					case P_SUPREME_MASTER: tmp += rnd(6); break;
+					default: break;
+				}
+
+			}
+			if (launcher && (launcher->otyp == SNIPER_RIFLE || launcher->otyp == SAWED_OFF_SHOTGUN)) {
+
+				switch (P_SKILL(P_FIREARM)) {
+					case P_BASIC: tmp += 1; break;
+					case P_SKILLED: tmp += rnd(3); break;
+					case P_EXPERT: tmp += rnd(4); break;
+					case P_MASTER: tmp += rnd(6); break;
+					case P_GRAND_MASTER: tmp += rnd(7); break;
+					case P_SUPREME_MASTER: tmp += rnd(9); break;
+					default: break;
+				}
+				switch (P_SKILL(P_GUN_CONTROL)) {
+					case P_BASIC: tmp += 1; break;
+					case P_SKILLED: tmp += rnd(3); break;
+					case P_EXPERT: tmp += rnd(4); break;
+					case P_MASTER: tmp += rnd(6); break;
+					case P_GRAND_MASTER: tmp += rnd(7); break;
+					case P_SUPREME_MASTER: tmp += rnd(9); break;
+					default: break;
+				}
+
+			}
+		}
+		if (crossbowused && !PlayerCannotUseSkills) { /* crossbow boosts by Amy */
+			switch (P_SKILL(P_CROSSBOW)) {
+				case P_SKILLED: tmp += 1; break;
+				case P_EXPERT: tmp += rnd(2); break;
+				case P_MASTER: tmp += rnd(4); break;
+				case P_GRAND_MASTER: tmp += rnd(6); break;
+				case P_SUPREME_MASTER: tmp += rnd(8); break;
+				default: break;
+			}
+
+		}
 
 		if (wep && wep->otyp == COLLUSION_KNIFE) {
 			pline("Collusion!");

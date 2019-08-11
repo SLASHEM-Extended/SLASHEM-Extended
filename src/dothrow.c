@@ -302,6 +302,38 @@ int thrown;
 		break;	/* No bonus */
 	    }
 
+		if (!(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_MISSILE_WEAPONS)) {
+				/* These fallthroughs are intentional --Amy */
+				case P_SUPREME_MASTER:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+				case P_SKILLED:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+				case P_EXPERT:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+			    	case P_MASTER:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+				case P_GRAND_MASTER:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+				case P_BASIC:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+				default: break;
+			}
+		}
+
 	if ((long)multishot > obj->quan) multishot = (int)obj->quan;
 
 	    if (multishot > 0)
