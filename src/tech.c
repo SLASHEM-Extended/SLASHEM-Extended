@@ -2688,7 +2688,7 @@ dotech()
 			break;
 
 		case T_CARD_TRICK:
-			pline("Inspired by Splicehack, this technique lets you choose a scroll in your open inventory for a chance to duplicate it. The higher the cost of writing the scroll in question with a magic marker, the lower the chance that your duplication attempt works, but higher technique levels will increase the chance of success. Scrolls that cannot be written with a magic marker, e.g. wishing, can never be duplicated with this technique because that would be too powerful.");
+			pline("Inspired by Splicehack, this technique lets you choose a scroll in your open inventory for a chance to duplicate it. The higher the cost of writing the scroll in question with a magic marker, the lower the chance that your duplication attempt works, but higher technique levels will increase the chance of success. Scrolls that cannot be written with a magic marker, e.g. wishing, can never be duplicated with this technique because that would be too powerful, and artifact scrolls are impossible too.");
 			break;
 
 		case T_SKILLOMORPH:
@@ -6578,81 +6578,299 @@ revid_end:
 			t_timeout = rnz(10000);
 			break;
 
-
 		case T_CARD_TRICK:
-			pline("todo");
+cardtrickchoice:
+			otmp = getobj(all_count, "duplicate");
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to duplicate a scroll.");
+				else goto cardtrickchoice;
+				pline("A feeling of loss comes over you.");
+				break;
+
+			}
+			if (otmp) {
+				if (otmp->oclass != SCROLL_CLASS) {
+					pline("That isn't a scroll, and therefore the card trick was wasted.");
+					t_timeout = rnz(10000);
+					break;
+				}
+				if (otmp->oartifact) {
+					pline("Artifact scrolls cannot be duplicated, and therefore the card trick was wasted.");
+					t_timeout = rnz(10000);
+					break;
+				}
+
+				int cardpotency = 50 + techlevX(tech_no);
+				if (rnd(cardpotency) > writecost(otmp)) {
+					pline("Success! You managed to duplicate the scroll.");
+					otmp->quan++;
+				} else {
+					pline("Unfortunately your attempt to duplicate the scroll failed.");
+				}
+
+			}
+			t_timeout = rnz(10000);
 			break;
 
 		case T_SKILLOMORPH:
-			pline("todo");
+
+			additionalskilltraining();
+			t_timeout = rnz(10000);
 			break;
 
 		case T_SHOTTY_BLAST:
-			pline("todo");
+
+			You("make some shotgun shells.");
+
+			{
+
+			struct obj *uammo;
+
+			uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE);
+			if (uammo) {
+				uammo->quan = 5 + (techlevX(tech_no) / 3);
+				if (uammo->quan < 1) uammo->quan = 1;
+				if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			}
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_AMMO_UPGRADE:
-			pline("todo");
+
+			if (!uwep) {
+				pline("You're not wielding anything!");
+				break;
+			}
+			if (uwep && !is_bullet(uwep)) {
+				pline("You're not wielding firearm ammo!");
+				break;
+			}
+			if (uwep && is_bullet(uwep)) {
+				You("try to upgrade your ammo.");
+				if (stack_too_big(uwep)) {
+					t_timeout = rnz(4000);
+					pline("But the stack size was too big, and therefore it failed.");
+					break;
+
+				} else {
+					if (uwep->cursed) uncurse(uwep, TRUE);
+					else if (!uwep->cursed && !uwep->blessed) bless(uwep);
+					if (uwep->spe < 2) uwep->spe++;
+					else if (uwep->spe < 10 && uwep->spe > 1 && !rn2(uwep->spe)) uwep->spe++;
+				}
+			}
+
+			t_timeout = rnz(4000);
 			break;
 
 		case T_LASER_POWER:
-			pline("todo");
+
+			You("make some laser ammo.");
+
+			{
+
+			struct obj *uammo;
+
+			if (!rn2(100)) uammo = mksobj(LASER_BEAM, TRUE, FALSE);
+			else if (!rn2(10)) uammo = mksobj(HEAVY_BLASTER_BOLT, TRUE, FALSE);
+			else uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
+			if (uammo) {
+				uammo->quan = 10 + techlevX(tech_no);
+				if (uammo->quan < 1) uammo->quan = 1;
+				if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			}
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_BIG_DADDY:
-			pline("todo");
+
+			You("make a rocket launcher.");
+
+			{
+
+			struct obj *uammo;
+
+			uammo = mksobj(ROCKET_LAUNCHER, TRUE, FALSE);
+			if (uammo) {
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			uammo = mksobj(ROCKET, TRUE, FALSE);
+			if (uammo) {
+				uammo->quan = 5 + (techlevX(tech_no) / 3);
+				if (uammo->quan < 1) uammo->quan = 1;
+				if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			}
+
+			t_timeout = rnz(10000);
 			break;
 
 		case T_SHUT_THAT_BITCH_UP:
-			pline("todo");
+
+			num = 20 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your firearms can temporarily shut up bitches upon hitting them.");
+
+			t_timeout = rnz(7500);
 			break;
 
 		case T_S_PRESSING:
-			pline("todo");
+
+			if (t_at(u.ux, u.uy)) {
+				pline("There is a trap at your location, and therefore the attempt fails!");
+				t_timeout = rnz(2000);
+				break;
+			}
+			if (u.uhunger < 500) {
+				You("don't have enough nutrition, and therefore the attempt fails!");
+				t_timeout = rnz(2000);
+				break;
+			}
+			(void) maketrap(u.ux, u.uy, S_PRESSING_TRAP, 0);
+			/* launch_otyp is set in trap.c and controls the trap's strength --Amy */
+			You("laid a trap.");
+
+			t_timeout = rnz(2000);
 			break;
 
 		case T_MELTEE:
-			pline("todo");
+
+			{
+			int melteestrength = 1;
+			if (techlevX(tech_no) > 9) melteestrength += (techlevX(tech_no) / 10);
+
+		    	techt_inuse(tech_no) = 1;
+			buzz(17, melteestrength, u.ux, u.uy, -1, 0);
+			buzz(17, melteestrength, u.ux, u.uy, 1, 0);
+			buzz(17, melteestrength, u.ux, u.uy, -1, 1);
+			buzz(17, melteestrength, u.ux, u.uy, 1, 1);
+			buzz(17, melteestrength, u.ux, u.uy, 0, 1);
+			buzz(17, melteestrength, u.ux, u.uy, -1, -1);
+			buzz(17, melteestrength, u.ux, u.uy, 1, -1);
+			buzz(17, melteestrength, u.ux, u.uy, 0, -1);
+		    	techt_inuse(tech_no) = 0;
+
+			}
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_WOMAN_NOISES:
-			pline("todo");
+
+			You("make very female noises!");
+			{
+				register struct monst *nexusmon, *nextmon;
+
+				for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				    nextmon = nexusmon->nmon; /* trap might kill mon */
+				    if (DEADMONSTER(nexusmon)) continue;
+				    if (nexusmon->mpeaceful || nexusmon->mtame) continue;
+				    if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
+				    if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
+
+				    if (distu(nexusmon->mx, nexusmon->my) > rnd(50)) continue;
+
+					pline("%s cannot resist!", Monnam(nexusmon));
+					monflee(nexusmon, rnd(20), FALSE, TRUE);
+					if (nexusmon->mblinded < 100) nexusmon->mblinded += 20;
+					nexusmon->mcansee = 0;
+					nexusmon->mstun = TRUE;
+					nexusmon->mconf = TRUE;
+
+					if (!resists_drain(nexusmon) && !resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) {
+						pline("%s shudders in dread!", Monnam(nexusmon));
+						nexusmon->mhpmax -= rnd(10);
+						if (nexusmon->mhpmax < 1) nexusmon->mhpmax = 1;
+						if (nexusmon->mhp > nexusmon->mhpmax) nexusmon->mhp = nexusmon->mhpmax;
+						nexusmon->m_enmax -= rnd(10);
+						if (nexusmon->m_enmax < 0) nexusmon->m_enmax = 0;
+						if (nexusmon->m_en > nexusmon->m_enmax) nexusmon->m_en = nexusmon->m_enmax;
+						if (nexusmon->m_lev > 0) nexusmon->m_lev--;
+						if (nexusmon->m_lev > 0 && !rn2(4)) nexusmon->m_lev--;
+					}
+
+				}
+			}
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_EXTRA_LONG_SQUEAK:
+
 			pline("todo");
+			t_timeout = rnz(5000);
 			break;
 
 		case T_SEXUAL_HUG:
+
 			pline("todo");
+			t_timeout = rnz(20000);
 			break;
 
 		case T_SEX_CHANGE:
-			pline("todo");
+
+			Your("gender is changed!");
+			change_sex();
+			t_timeout = rnz(10000);
 			break;
 
 		case T_EVEN_MORE_AMMO:
 			pline("todo");
+			t_timeout = rnz(8000);
 			break;
 
 		case T_DOUBLESELF:
-			pline("todo");
+
+			if (!Upolyd) {
+				pline("That doesn't work if you're not polymorphed.");
+				break;
+			}
+			You("try to clone yourself!");
+			cloneu();
+			t_timeout = rnz(10000);
 			break;
 
 		case T_POLYFIX:
 			pline("todo");
+			t_timeout = rnz(5000);
 			break;
 
 		case T_SQUEAKY_REPAIR:
 			pline("todo");
+			t_timeout = rnz(8000);
 			break;
 
 		case T_BULLETREUSE:
 			pline("todo");
+			t_timeout = rnz(10000);
 			break;
 
 		case T_EXTRACHARGE:
 			pline("todo");
+			t_timeout = rnz(20000);
 			break;
 
 		case T_ZAP_EM:
@@ -7190,6 +7408,9 @@ tech_timeout()
 			break;
 		    case T_RAGE:
 			Your("anger cools.");
+			break;
+		    case T_SHUT_THAT_BITCH_UP:
+			You("can no longer shut up bitches.");
 			break;
 		    case T_CONCENTRATING:
 			You("stop concentrating.");

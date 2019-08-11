@@ -587,9 +587,10 @@ extern struct trap *ftrap;
 #define SANITY_TREBLE_TRAP 508
 #define STAT_DECREASE_TRAP 509
 #define SIMEOUT_TRAP 510
+#define S_PRESSING_TRAP 511
 
-#define TIMERUN_TRAP	511
+#define TIMERUN_TRAP	512
 
-#define TRAPNUM 512
+#define TRAPNUM 513
 
 #endif /* TRAP_H */

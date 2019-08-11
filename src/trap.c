@@ -66,6 +66,8 @@ STATIC_VAR const char * const blindgas[6] =
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0};
 
+#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
+
 #ifndef OVLB
 
 STATIC_DCL NEARDATA const short skill_names_indices[];
@@ -2522,6 +2524,29 @@ register int x, y, typ, replacechance;
 
 		break;
 	      }
+
+	    case S_PRESSING_TRAP:
+
+		{
+		int spressingstrength = 10;
+		spressingstrength += techlevX(get_tech_no(T_S_PRESSING));
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_SQUEAKING)) {
+				default: break;
+				case P_BASIC: spressingstrength += 10; break;
+				case P_SKILLED: spressingstrength += 20; break;
+				case P_EXPERT: spressingstrength += 30; break;
+				case P_MASTER: spressingstrength += 40; break;
+				case P_GRAND_MASTER: spressingstrength += 50; break;
+				case P_SUPREME_MASTER: spressingstrength += 60; break;
+			}
+		}
+		if (spressingstrength > 125) spressingstrength = 125; /* fail safe */
+		if (spressingstrength < 10) spressingstrength = 10;
+		ttmp->launch_otyp = spressingstrength;
+
+		}
+		break;
 
 	    case MAGIC_BEAM_TRAP:
 	    case PIERCING_BEAM_TRAP:
@@ -11371,6 +11396,9 @@ madnesseffect:
 
 		 break;
 
+		case S_PRESSING_TRAP:
+			break;
+
 		 case CATACLYSM_TRAP:
 
 			if (u.ragnaroktimer) break; /* don't reveal or do anything for that matter */
@@ -15246,6 +15274,17 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 							inescapable, in_sight);
 			    if (mlev_res) return(mlev_res);
 			}
+			break;
+
+		case S_PRESSING_TRAP:
+
+			if (!mtmp->mpeaceful && !mtmp->mtame) {
+				pline("%s was so stupid and stepped into your s-pressing trap!", Monnam(mtmp));
+				if (thitm(0, mtmp, (struct obj *)0, trap->launch_otyp, FALSE))
+					trapkilled = TRUE;
+			}
+			deltrap(trap); /* only triggers once */
+
 			break;
 
 		case LEVEL_BEAMER:

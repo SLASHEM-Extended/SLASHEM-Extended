@@ -567,6 +567,7 @@ selecttrap:
 	    if (!Race_if(PM_DEVELOPER) && !rn2(issoviet ? 2 : 3)) rtrap = rnd(rn2(3) ? ANTI_MAGIC : POLY_TRAP);
 	    switch (rtrap) {
 	     case HOLE:		/* no random holes on special levels */
+	     case S_PRESSING_TRAP:
 	     case MAGIC_PORTAL:	goto selecttrap;
 			break;
 	     case NUPESELL_TRAP:
@@ -1700,6 +1701,7 @@ selecttrap2:
 		if (In_sokoban(&u.uz) && rn2(10) && (rtrap == HOLE || rtrap == TRAPDOOR || rtrap == SHAFT_TRAP || rtrap == CURRENT_SHAFT || rtrap == PIT || rtrap == SPIKED_PIT || rtrap == GIANT_CHASM || rtrap == SHIT_PIT || rtrap == MANA_PIT || rtrap == ANOXIC_PIT || rtrap == ACID_PIT)) goto selecttrap2;
 		if (In_sokoban(&u.uz) && rn2(100) && rtrap == NUPESELL_TRAP) goto selecttrap2;
 		if (rtrap == MAGIC_PORTAL) goto selecttrap2;
+		if (rtrap == S_PRESSING_TRAP) goto selecttrap2;
 		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;
 		if (rtrap == SHAFT_TRAP && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;
 		if (rtrap == CURRENT_SHAFT && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap2;

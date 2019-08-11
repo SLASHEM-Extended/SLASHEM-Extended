@@ -3,13 +3,11 @@
 
 #include "hack.h"
 
-STATIC_DCL int cost(struct obj *);
-
 /*
  * returns basecost of a scroll or a spellbook
  */
-STATIC_OVL int
-cost(otmp)
+int
+writecost(otmp)
 register struct obj *otmp;
 {
 
@@ -314,7 +312,7 @@ found:
 	check_unpaid(pen);
 
 	/* see if there's enough ink */
-	basecost = cost(new_obj);
+	basecost = writecost(new_obj);
 
 	if (!(objects[new_obj->otyp].oc_name_known)) {
 		pline("That item isn't type-identified. If it also isn't type-named, writing it may fail depending on your luck.");

@@ -7398,6 +7398,244 @@ doubleskilltraining()
 }
 
 void
+additionalskilltraining()
+{
+	You("may add a few training points in a skill of your choice!");
+
+	int acquiredskill;
+	acquiredskill = 0;
+
+	pline("Pick a skill to train. The prompt will loop until you actually make a choice.");
+
+	while (acquiredskill == 0) { /* ask the player what they want --Amy */
+
+	if (P_ADVANCE(P_DAGGER) && !(P_RESTRICTED(P_DAGGER)) && yn("Do you want to train the dagger skill?")=='y') {
+		P_ADVANCE(P_DAGGER) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_KNIFE) && !(P_RESTRICTED(P_KNIFE)) && yn("Do you want to train the knife skill?")=='y') {
+		P_ADVANCE(P_KNIFE) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_AXE) && !(P_RESTRICTED(P_AXE)) && yn("Do you want to train the axe skill?")=='y') {
+		P_ADVANCE(P_AXE) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_PICK_AXE) && !(P_RESTRICTED(P_PICK_AXE)) && yn("Do you want to train the pick-axe skill?")=='y') {
+		P_ADVANCE(P_PICK_AXE) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SHORT_SWORD) && !(P_RESTRICTED(P_SHORT_SWORD)) && yn("Do you want to train the short sword skill?")=='y') {
+		P_ADVANCE(P_SHORT_SWORD) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BROAD_SWORD) && !(P_RESTRICTED(P_BROAD_SWORD)) && yn("Do you want to train the broad sword skill?")=='y') {
+		P_ADVANCE(P_BROAD_SWORD) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_LONG_SWORD) && !(P_RESTRICTED(P_LONG_SWORD)) && yn("Do you want to train the long sword skill?")=='y') {
+		P_ADVANCE(P_LONG_SWORD) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_TWO_HANDED_SWORD) && !(P_RESTRICTED(P_TWO_HANDED_SWORD)) && yn("Do you want to train the two-handed sword skill?")=='y') {
+		P_ADVANCE(P_TWO_HANDED_SWORD) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SCIMITAR) && !(P_RESTRICTED(P_SCIMITAR)) && yn("Do you want to train the scimitar skill?")=='y') {
+		P_ADVANCE(P_SCIMITAR) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SABER) && !(P_RESTRICTED(P_SABER)) && yn("Do you want to train the saber skill?")=='y') {
+		P_ADVANCE(P_SABER) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_CLUB) && !(P_RESTRICTED(P_CLUB)) && yn("Do you want to train the club skill?")=='y') {
+		P_ADVANCE(P_CLUB) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_PADDLE) && !(P_RESTRICTED(P_PADDLE)) && yn("Do you want to train the paddle skill?")=='y') {
+		P_ADVANCE(P_PADDLE) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_MACE) && !(P_RESTRICTED(P_MACE)) && yn("Do you want to train the mace skill?")=='y') {
+		P_ADVANCE(P_MACE) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_MORNING_STAR) && !(P_RESTRICTED(P_MORNING_STAR)) && yn("Do you want to train the morning star skill?")=='y') {
+		P_ADVANCE(P_MORNING_STAR) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_FLAIL) && !(P_RESTRICTED(P_FLAIL)) && yn("Do you want to train the flail skill?")=='y') {
+		P_ADVANCE(P_FLAIL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_HAMMER) && !(P_RESTRICTED(P_HAMMER)) && yn("Do you want to train the hammer skill?")=='y') {
+		P_ADVANCE(P_HAMMER) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_QUARTERSTAFF) && !(P_RESTRICTED(P_QUARTERSTAFF)) && yn("Do you want to train the quarterstaff skill?")=='y') {
+		P_ADVANCE(P_QUARTERSTAFF) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_POLEARMS) && !(P_RESTRICTED(P_POLEARMS)) && yn("Do you want to train the polearms skill?")=='y') {
+		P_ADVANCE(P_POLEARMS) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SPEAR) && !(P_RESTRICTED(P_SPEAR)) && yn("Do you want to train the spear skill?")=='y') {
+		P_ADVANCE(P_SPEAR) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_JAVELIN) && !(P_RESTRICTED(P_JAVELIN)) && yn("Do you want to train the javelin skill?")=='y') {
+		P_ADVANCE(P_JAVELIN) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_TRIDENT) && !(P_RESTRICTED(P_TRIDENT)) && yn("Do you want to train the trident skill?")=='y') {
+		P_ADVANCE(P_TRIDENT) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_LANCE) && !(P_RESTRICTED(P_LANCE)) && yn("Do you want to train the lance skill?")=='y') {
+		P_ADVANCE(P_LANCE) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BOW) && !(P_RESTRICTED(P_BOW)) && yn("Do you want to train the bow skill?")=='y') {
+		P_ADVANCE(P_BOW) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SLING) && !(P_RESTRICTED(P_SLING)) && yn("Do you want to train the sling skill?")=='y') {
+		P_ADVANCE(P_SLING) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_FIREARM) && !(P_RESTRICTED(P_FIREARM)) && yn("Do you want to train the firearms skill?")=='y') {
+		P_ADVANCE(P_FIREARM) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_CROSSBOW) && !(P_RESTRICTED(P_CROSSBOW)) && yn("Do you want to train the crossbow skill?")=='y') {
+		P_ADVANCE(P_CROSSBOW) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_DART) && !(P_RESTRICTED(P_DART)) && yn("Do you want to train the dart skill?")=='y') {
+		P_ADVANCE(P_DART) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SHURIKEN) && !(P_RESTRICTED(P_SHURIKEN)) && yn("Do you want to train the shuriken skill?")=='y') {
+		P_ADVANCE(P_SHURIKEN) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BOOMERANG) && !(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
+		P_ADVANCE(P_BOOMERANG) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_WHIP) && !(P_RESTRICTED(P_WHIP)) && yn("Do you want to train the whip skill?")=='y') {
+		P_ADVANCE(P_WHIP) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_UNICORN_HORN) && !(P_RESTRICTED(P_UNICORN_HORN)) && yn("Do you want to train the unicorn horn skill?")=='y') {
+		P_ADVANCE(P_UNICORN_HORN) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_LIGHTSABER) && !(P_RESTRICTED(P_LIGHTSABER)) && yn("Do you want to train the lightsaber skill?")=='y') {
+		P_ADVANCE(P_LIGHTSABER) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_ATTACK_SPELL) && !(P_RESTRICTED(P_ATTACK_SPELL)) && yn("Do you want to train the attack spell skill?")=='y') {
+		P_ADVANCE(P_ATTACK_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_HEALING_SPELL) && !(P_RESTRICTED(P_HEALING_SPELL)) && yn("Do you want to train the healing spell skill?")=='y') {
+		P_ADVANCE(P_HEALING_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_DIVINATION_SPELL) && !(P_RESTRICTED(P_DIVINATION_SPELL)) && yn("Do you want to train the divination spell skill?")=='y') {
+		P_ADVANCE(P_DIVINATION_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_ENCHANTMENT_SPELL) && !(P_RESTRICTED(P_ENCHANTMENT_SPELL)) && yn("Do you want to train the enchantment spell skill?")=='y') {
+		P_ADVANCE(P_ENCHANTMENT_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_PROTECTION_SPELL) && !(P_RESTRICTED(P_PROTECTION_SPELL)) && yn("Do you want to train the protection spell skill?")=='y') {
+		P_ADVANCE(P_PROTECTION_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BODY_SPELL) && !(P_RESTRICTED(P_BODY_SPELL)) && yn("Do you want to train the body spell skill?")=='y') {
+		P_ADVANCE(P_BODY_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_OCCULT_SPELL) && !(P_RESTRICTED(P_OCCULT_SPELL)) && yn("Do you want to train the occult spell skill?")=='y') {
+		P_ADVANCE(P_OCCULT_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_ELEMENTAL_SPELL) && !(P_RESTRICTED(P_ELEMENTAL_SPELL)) && yn("Do you want to train the elemental spell skill?")=='y') {
+		P_ADVANCE(P_ELEMENTAL_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_CHAOS_SPELL) && !(P_RESTRICTED(P_CHAOS_SPELL)) && yn("Do you want to train the chaos spell skill?")=='y') {
+		P_ADVANCE(P_CHAOS_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_MATTER_SPELL) && !(P_RESTRICTED(P_MATTER_SPELL)) && yn("Do you want to train the matter spell skill?")=='y') {
+		P_ADVANCE(P_MATTER_SPELL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_RIDING) && !(P_RESTRICTED(P_RIDING)) && yn("Do you want to train the riding skill?")=='y') {
+		P_ADVANCE(P_RIDING) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_HIGH_HEELS) && !(P_RESTRICTED(P_HIGH_HEELS)) && yn("Do you want to train the high heels skill?")=='y') {
+		P_ADVANCE(P_HIGH_HEELS) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_GENERAL_COMBAT) && !(P_RESTRICTED(P_GENERAL_COMBAT)) && yn("Do you want to train the general combat skill?")=='y') {
+		P_ADVANCE(P_GENERAL_COMBAT) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SHIELD) && !(P_RESTRICTED(P_SHIELD)) && yn("Do you want to train the shield skill?")=='y') {
+		P_ADVANCE(P_SHIELD) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BODY_ARMOR) && !(P_RESTRICTED(P_BODY_ARMOR)) && yn("Do you want to train the body armor skill?")=='y') {
+		P_ADVANCE(P_BODY_ARMOR) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_TWO_HANDED_WEAPON) && !(P_RESTRICTED(P_TWO_HANDED_WEAPON)) && yn("Do you want to train the two-handed weapon skill?")=='y') {
+		P_ADVANCE(P_TWO_HANDED_WEAPON) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_TWO_WEAPON_COMBAT) && !(P_RESTRICTED(P_TWO_WEAPON_COMBAT)) && yn("Do you want to train the two-weapon combat skill?")=='y') {
+		P_ADVANCE(P_TWO_WEAPON_COMBAT) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_POLYMORPHING) && !(P_RESTRICTED(P_POLYMORPHING)) && yn("Do you want to train the polymorphing skill?")=='y') {
+		P_ADVANCE(P_POLYMORPHING) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_DEVICES) && !(P_RESTRICTED(P_DEVICES)) && yn("Do you want to train the devices skill?")=='y') {
+		P_ADVANCE(P_DEVICES) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SEARCHING) && !(P_RESTRICTED(P_SEARCHING)) && yn("Do you want to train the searching skill?")=='y') {
+		P_ADVANCE(P_SEARCHING) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SPIRITUALITY) && !(P_RESTRICTED(P_SPIRITUALITY)) && yn("Do you want to train the spirituality skill?")=='y') {
+		P_ADVANCE(P_SPIRITUALITY) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_PETKEEPING) && !(P_RESTRICTED(P_PETKEEPING)) && yn("Do you want to train the petkeeping skill?")=='y') {
+		P_ADVANCE(P_PETKEEPING) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_MISSILE_WEAPONS) && !(P_RESTRICTED(P_MISSILE_WEAPONS)) && yn("Do you want to train the missile weapons skill?")=='y') {
+		P_ADVANCE(P_MISSILE_WEAPONS) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_TECHNIQUES) && !(P_RESTRICTED(P_TECHNIQUES)) && yn("Do you want to train the techniques skill?")=='y') {
+		P_ADVANCE(P_TECHNIQUES) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_IMPLANTS) && !(P_RESTRICTED(P_IMPLANTS)) && yn("Do you want to train the implants skill?")=='y') {
+		P_ADVANCE(P_IMPLANTS) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SEXY_FLATS) && !(P_RESTRICTED(P_SEXY_FLATS)) && yn("Do you want to train the sexy flats skill?")=='y') {
+		P_ADVANCE(P_SEXY_FLATS) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_MEMORIZATION) && !(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
+		P_ADVANCE(P_MEMORIZATION) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SQUEAKING) && !(P_RESTRICTED(P_SQUEAKING)) && yn("Do you want to train the squeaking skill?")=='y') {
+		P_ADVANCE(P_SQUEAKING) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_GUN_CONTROL) && !(P_RESTRICTED(P_GUN_CONTROL)) && yn("Do you want to train the gun control skill?")=='y') {
+		P_ADVANCE(P_GUN_CONTROL) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
+		P_ADVANCE(P_SHII_CHO) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_MAKASHI) && !(P_RESTRICTED(P_MAKASHI)) && yn("Do you want to train the form II (Makashi) skill?")=='y') {
+		P_ADVANCE(P_MAKASHI) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SORESU) && !(P_RESTRICTED(P_SORESU)) && yn("Do you want to train the form III (Soresu) skill?")=='y') {
+		P_ADVANCE(P_SORESU) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_ATARU) && !(P_RESTRICTED(P_ATARU)) && yn("Do you want to train the form IV (Ataru) skill?")=='y') {
+		P_ADVANCE(P_ATARU) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_SHIEN) && !(P_RESTRICTED(P_SHIEN)) && yn("Do you want to train the form V (Shien) skill?")=='y') {
+		P_ADVANCE(P_SHIEN) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_DJEM_SO) && !(P_RESTRICTED(P_DJEM_SO)) && yn("Do you want to train the form V (Djem So) skill?")=='y') {
+		P_ADVANCE(P_DJEM_SO) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_NIMAN) && !(P_RESTRICTED(P_NIMAN)) && yn("Do you want to train the form VI (Niman) skill?")=='y') {
+		P_ADVANCE(P_NIMAN) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_JUYO) && !(P_RESTRICTED(P_JUYO)) && yn("Do you want to train the form VII (Juyo) skill?")=='y') {
+		P_ADVANCE(P_JUYO) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_VAAPAD) && !(P_RESTRICTED(P_VAAPAD)) && yn("Do you want to train the form VII (Vaapad) skill?")=='y') {
+		P_ADVANCE(P_VAAPAD) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_WEDI) && !(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
+		P_ADVANCE(P_WEDI) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BARE_HANDED_COMBAT) && !(P_RESTRICTED(P_BARE_HANDED_COMBAT)) && yn("Do you want to train the bare-handed combat skill?")=='y') {
+		P_ADVANCE(P_BARE_HANDED_COMBAT) += rnd(10);
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_MARTIAL_ARTS) && !(P_RESTRICTED(P_MARTIAL_ARTS)) && yn("Do you want to train the martial arts skill?")=='y') {
+		P_ADVANCE(P_MARTIAL_ARTS) += rnd(10);
+		acquiredskill = 1; }
+	else if (yn("Do you want to train no skill at all?")=='y') {
+		acquiredskill = 1; }
+	}
+	pline("Training complete!");
+
+}
+
+void
 practice_weapon()
 {
 	if (can_practice(weapon_type(uwep))

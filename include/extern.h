@@ -3264,6 +3264,7 @@ E int racial_exception(struct monst *, struct obj *);
 
 /* ### write.c ### */
 
+E int writecost(struct obj *);
 E int dowrite(struct obj *);
 
 /* ### zap.c ### */

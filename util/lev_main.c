@@ -652,6 +652,7 @@ static struct {
 	{ "sanity treble", SANITY_TREBLE_TRAP },
 	{ "stat decrease", STAT_DECREASE_TRAP },
 	{ "simeout", SIMEOUT_TRAP },
+	{ "spressing", S_PRESSING_TRAP },
 
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }

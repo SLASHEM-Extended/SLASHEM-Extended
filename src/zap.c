@@ -9291,7 +9291,7 @@ boolean *shopdamage;
 		if (cansee(x,y)) newsym(x,y);
 	    }
 
-	    if (is_ash(x,y)) {
+		if (is_ash(x,y)) {
 		    const char *msgtxt = "You hear a flaming sound.";
 		    rangemod -= 3;
 		    lev->typ = LAVAPOOL;
@@ -9368,6 +9368,16 @@ boolean *shopdamage;
 			pline("Steam billows from the fountain.");
 		    rangemod -= 1;
 		    dryup(x, y, type > 0);
+	    }
+	}
+
+	else if(abstype == ZT_ACID && IS_IRONBAR(levl[x][y].typ)) {
+	    if (tech_inuse(T_MELTEE) && !rn2(5)) {
+		    const char *msgtxt = "You hear a sizzling sound.";
+		    lev->typ = CORR;
+		    if (cansee(x,y)) msgtxt = "The iron bars are dissolved!";
+		    if (cansee(x,y)) newsym(x,y);
+		    Norep("%s", msgtxt);
 	    }
 	}
 	else if(abstype == ZT_LITE && is_burningwagon(x,y)) {

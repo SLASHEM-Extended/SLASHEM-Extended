@@ -1660,6 +1660,11 @@ dospinweb()
 	}
 	exercise(A_DEX, TRUE);
 	if (ttmp) switch (ttmp->ttyp) {
+		case S_PRESSING_TRAP:
+			You("enclose the s-pressing trap in a web.");
+			deltrap(ttmp);
+			newsym(u.ux, u.uy);
+			return(1);
 		case PIT:
 		case SHIT_PIT:
 		case MANA_PIT:

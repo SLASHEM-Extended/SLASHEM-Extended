@@ -12656,6 +12656,7 @@ selecttrap:
 		/* reject "too hard" traps */
 		switch (kind) {
 		    case MAGIC_PORTAL:
+		    case S_PRESSING_TRAP:
 			goto selecttrap;
 			break;
 		    case NUPESELL_TRAP:

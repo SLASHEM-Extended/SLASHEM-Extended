@@ -2564,6 +2564,13 @@ int dieroll;
 		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
+		if (gunused && tech_inuse(T_SHUT_THAT_BITCH_UP) && mon && mon->female && humanoid(mon->data)) {
+			if (!TimeStopped || !rn2(TimeStopped)) {
+				You("managed to shut the %s bitch up!", mon_nam(mon));
+				TimeStopped++;
+			}
+		}
+
 		if (gunused && !PlayerCannotUseSkills) { /* firearm boosts by Amy */
 			if (launcher && (launcher->otyp == PISTOL || launcher->otyp == HAND_BLASTER || launcher->otyp == FLINTLOCK || launcher->otyp == BEAM_REFLECTOR_GUN || launcher->otyp == AUTO_SHOTGUN)) {
 				switch (P_SKILL(P_FIREARM)) {
