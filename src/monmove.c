@@ -2321,6 +2321,10 @@ altarfound:
 			  touch_petrifies(&mons[otmp->corpsenm])))
 		      ) && touch_artifact(otmp,mtmp)) {
 			if(can_carry(mtmp,otmp) &&
+				otmp->otyp != STATUE && 
+				otmp->otyp != CHARGER && 
+				otmp->otyp != SWITCHER && 
+				otmp->otyp != UGH_MEMORY_TO_CREATE_INVENTORY && 
 			   (throws_rocks(ptr) ||
 				!sobj_at(BOULDER,xx,yy)) &&
 			   (!is_unicorn(ptr) ||

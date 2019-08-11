@@ -2522,8 +2522,12 @@ mpickstuff(mtmp, str)
 			!acidic(&mons[otmp->corpsenm])) continue;
 
 		/* Giants used to pluck the statues off of statue traps, rendering the traps inoperative!
-		 * I'm just going to ban monsters from picking up statues, that oughta fix it. --Amy */
+		 * I'm just going to ban monsters from picking up statues, that oughta fix it. --Amy
+		 * also they shouldn't pick up certain items from special rooms */
 		if (otmp->otyp == STATUE) continue;
+		if (otmp->otyp == SWITCHER) continue;
+		if (otmp->otyp == CHARGER) continue;
+		if (otmp->otyp == UGH_MEMORY_TO_CREATE_INVENTORY) continue;
 		if (!touch_artifact(otmp,mtmp)) continue;
 		if (!can_carry(mtmp,otmp)) continue;
 		if (is_waterypool(mtmp->mx,mtmp->my)) continue;
