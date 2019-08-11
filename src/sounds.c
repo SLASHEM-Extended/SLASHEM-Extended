@@ -2559,10 +2559,22 @@ register struct monst *mtmp;
 	    /* deliberately vague, since it's not actually casting any spell */
 	    pline_msg = "seems to mutter a cantrip.";
 	    break;
-	case MS_NURSE:
+	case MS_NURSE: /* services added by Amy - maybe we should make this into a menu instead of y/n prompts? */
 
 	    {
-		int nursedecontcost = u.nursedecontamcost;
+		int nursesanitycost = (u.usanity * 100); /* fixed cost */
+
+		if (u.usanity && (u.ugold >= nursesanitycost)) {
+			verbalize("I can cure your sanity for %d dollars if you want.", nursesanitycost);
+			if (yn("Accept the offer?") == 'y') {
+				verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+				u.ugold -= nursesanitycost;
+				reducesanity(u.usanity);
+				break;
+			}
+		}
+
+		int nursedecontcost = u.nursedecontamcost; /* goes up every time you purchase it */
 	
 		if (u.ugold >= nursedecontcost && u.contamination) {
 			verbalize("I can decontaminate you for %d dollars if you want.", nursedecontcost);
@@ -2578,7 +2590,7 @@ register struct monst *mtmp;
 			}
 		}
 
-		int nursehpcost = u.nurseextracost;
+		int nursehpcost = u.nurseextracost; /* goes up every time you purchase it */
 		if (Upolyd) nursehpcost /= 5;
 	
 		if (u.ugold >= nursehpcost) {

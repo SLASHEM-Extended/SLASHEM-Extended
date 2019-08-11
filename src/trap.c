@@ -4501,7 +4501,7 @@ newegomon:
 		seetrap(trap);
 		pline("You trip over a strange fountain!");
 
-		switch (rnd(30)) {
+		switch (rnd(40)) {
 			case 1:
 			case 2:
 			case 3:
@@ -4663,10 +4663,34 @@ newegomon:
 				pluslvl(FALSE);
 				break;
 			case 26:
+				if (!rn2(10)) {
+					pline("Wow, this is healing water!");
+					if (u.usanity > 0) {
+						if (u.usanity > 50) reducesanity(u.usanity / 2);
+						else reducesanity(u.usanity);
+					}
+				} else {
+					You("cannot remember quaffing from the fountain.");
+					if (Hallucination) You("also cannot remember who Maud is supposed to be.");
+					forget(1 + rn2(5));
+				}
+				break;
+
 			case 27:
 			case 28:
 			case 29:
 			case 30:
+			case 31:
+			case 32:
+			case 33:
+			case 34:
+			case 35:
+			case 36:
+			case 37:
+			case 38:
+			case 39:
+			case 40:
+			default:
 				pline("This tepid water is tasteless.");
 				u.uhunger += rnd(5); /* don't choke on water */
 				newuhs(FALSE);

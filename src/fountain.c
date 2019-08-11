@@ -206,7 +206,7 @@ drinkfountain()
 
 	/* What happens when you drink from a fountain? */
 	register boolean mgkftn = (levl[u.ux][u.uy].blessedftn == 1);
-	register int fate = rnd(30);
+	register int fate = rnd(40);
 
 	if (Levitation) {
 		floating_above("fountain");
@@ -479,6 +479,21 @@ drinkfountain()
 			if (!rn2(isfriday ? 5 : 10)) {
 				levl[u.ux][u.uy].typ = POOL;
 				if (!Wwalking && !Flying && !Levitation) drown();
+			}
+
+			break;
+
+		case 31:
+			if (!rn2(10)) {
+				pline("Wow, this is healing water!");
+				if (u.usanity > 0) {
+					if (u.usanity > 50) reducesanity(u.usanity / 2);
+					else reducesanity(u.usanity);
+				}
+			} else {
+				You("cannot remember quaffing from the fountain.");
+				if (Hallucination) You("also cannot remember who Maud is supposed to be.");
+				forget(1 + rn2(5));
 			}
 
 			break;
