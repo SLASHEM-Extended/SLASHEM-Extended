@@ -3171,6 +3171,7 @@ E void xtraskillinit(void);
 E int get_obj_skill(struct obj *,BOOLEAN_P);
 E void skilltrainingdecrease(int);
 E void doubleskilltraining(void);
+E void additionalskilltraining(void);
 
 /* ### were.c ### */
 
