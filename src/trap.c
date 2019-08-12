@@ -15283,8 +15283,8 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				pline("%s was so stupid and stepped into your s-pressing trap!", noit_Monnam(mtmp));
 				if (thitm(0, mtmp, (struct obj *)0, trap->launch_otyp, FALSE))
 					trapkilled = TRUE;
+				deltrap(trap); /* only triggers once */
 			}
-			deltrap(trap); /* only triggers once */
 
 			break;
 

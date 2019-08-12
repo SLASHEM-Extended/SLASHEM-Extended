@@ -2732,7 +2732,7 @@ dotech()
 			break;
 
 		case T_SEXUAL_HUG:
-			pline("This technique tames an adjacent male monster. It has a 1 in 5 chance of taming things that otherwise cannot be tamed.");
+			pline("This technique tames an adjacent male monster. It has a 1 in 5 chance of taming boss monsters.");
 			break;
 
 		case T_SEX_CHANGE:
@@ -6861,7 +6861,7 @@ cardtrickchoice:
 		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 			if (!isok(u.ux + k, u.uy + l)) continue;
 			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && !mtmp3->iswiz && mtmp3->data != &mons[PM_WIZARD_OF_YENDOR] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && !is_rider(mtmp3->data) && !is_deadlysin(mtmp3->data) && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(rn2(5) && mtmp3->data->geno & G_UNIQ) && caughtX == 0)
 
 			{
@@ -6903,12 +6903,16 @@ cardtrickchoice:
 			if (uwep && is_bullet(uwep)) {
 				if (uwep->otyp == BULLET || uwep->otyp == SILVER_BULLET || uwep->otyp == ANTIMATTER_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
 					uwep->quan += (20 + techlevX(tech_no));
+					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == BFG_AMMO) {
 					uwep->quan += (80 + (techlevX(tech_no) * 5));
+					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == SHOTGUN_SHELL) {
 					uwep->quan += (10 + (techlevX(tech_no) / 2));
+					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == ROCKET) {
 					uwep->quan += (1 + (techlevX(tech_no) / 5));
+					pline("The amount of ammo was increased!");
 				} else {
 					pline("The ammo you're wielding cannot be duplicated. Sorry. Please try some other type of ammo.");
 					break;
@@ -6977,6 +6981,8 @@ repairitemchoice:
 						pline("A feeling of loss comes over you.");
 						t_timeout = rnz(8000);
 						break;
+					} else if (stack_too_big(otmp)) {
+						pline("The stack was too big, and therefore the attempt failed.");
 					} else if (otmp && greatest_erosion(otmp) > 0) {
 						pline("Your %s is in perfect condition again!", xname(otmp));
 						if (otmp->oeroded > 0) { otmp->oeroded = 0; }

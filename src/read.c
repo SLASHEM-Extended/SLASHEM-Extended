@@ -4382,8 +4382,9 @@ repairitemchoice:
 			pline("A feeling of loss comes over you.");
 			break;
 		}
-
-		if (otmp && confused) {
+		if (otmp && stack_too_big(otmp)) {
+			pline("The stack was too big and therefore didn't get repaired!");
+		} else if (otmp && confused) {
 			if (!Blind) {
 				pline("Your %s looks like it might fall apart if you sneeze at it!",xname(otmp));
 			}
