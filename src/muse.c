@@ -6706,7 +6706,7 @@ struct monst *mtmp;
 			if ((safe_pos > 0) && !rn2(20 + Luck) )
 				do_floodd(u.ux, u.uy, (void *)&stilldry);
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"A totally gnarly wave comes in!" :
 						"A flood surges through the area!" );
 			if (!stilldry && !Wwalking && !Flying && !Levitation)
@@ -7150,7 +7150,7 @@ struct monst *mtmp;
 				}
 				break;
 			    case 14:
-				if (Hallucination)
+				if (FunnyHallu)
 					pline("What a groovy feeling!");
 				else
 					You(Blind ? "%s and get dizzy..." :
@@ -7395,7 +7395,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolB)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Wow, that's, like, TOTALLY HOT, dude!" :
 						"A stream of lava surges through the area!" );
 
@@ -7430,7 +7430,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Hans Walt has hidden the diamonds here! Are you a badass enough hussy to steal them?" :
 						"Hans Walt erects grave walls!" );
 
@@ -7467,7 +7467,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"The course is driving through a tunnel and therefore your mobile phone does not go!" :
 						"It seems that construction workers have carved tunnels through the rock." );
 
@@ -7504,7 +7504,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"The Greens are forcing new nature preservation laws upon you!" :
 						"All the local farmers are claiming land on this dungeon level." );
 
@@ -7541,7 +7541,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"The Amy her roommate uses a wing-tufted facial expression on you! :-)" :
 						"Strange... the underground dungeon seems to become mountainous." );
 
@@ -7578,7 +7578,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Deep sea diving challenge! You must collect 50 clams in three minutes or lose the game automatically!" :
 						"Watery tunnels are erected!" );
 
@@ -7615,7 +7615,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Due to the laws of physics, the water flows upward." :
 						"Crystallized water appears on the ceiling." );
 
@@ -7652,7 +7652,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Watch out, the swamp holes are like shifting sand - you drown if you fall into them." :
 						"The dungeon gets swampy." );
 
@@ -7689,7 +7689,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Holy crap, you get to watch Mira create her 'swimming pools' firsthand..." :
 						"Mira pees all over the dungeon." );
 
@@ -7726,7 +7726,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Uh-oh, on one side you have a cube and there's a cute asian girl on the other! Both of them are deadly!" :
 						"Deadly sandholes appear." );
 
@@ -7763,7 +7763,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"A constant 'Jason... Jason... Jason...' chant is audible in the distance..." :
 						"Hellish green water flows into the dungeon!" );
 
@@ -7800,7 +7800,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"A hailstorm! Quick, find a shelter, because otherwise the hailstones will get bigger and bigger until they crush you!" :
 						"It starts snowing!" );
 
@@ -7837,7 +7837,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Mehrunes Dagon has opened yet another gate to Oblivion!" :
 						"The floor becomes red." );
 
@@ -7874,7 +7874,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Oh no, you're stranded in the desert and your water reserves are depleted! This is the end!" :
 						"Soft sand appears in the dungeon." );
 
@@ -7911,7 +7911,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Holy shit there are paved roads and large fountains and whoa you absolutely need to play part 2 of this game!" :
 						"Suddenly there are paved roads everywhere!" );
 
@@ -7948,7 +7948,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"DUDE! The secret entrance to the right is open! RUN, it will close in 100 turns!" :
 						"Highways are being built all over the dungeon!" );
 
@@ -7985,7 +7985,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"You sense the presence of a bunch of spies." :
 						"You feel the grass grow." );
 
@@ -8022,7 +8022,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Suddenly Galadriel throws you into the void, and you need to defeat Melkor before you can come back." :
 						"Purple mist appears." );
 
@@ -8059,7 +8059,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Team Piercer is attacking, even though they're actually rather rare." :
 						"Stalactites shoot out of the ceiling!" );
 
@@ -8096,7 +8096,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Argh! In your stupidity, you forgot to get the torch and now the crypts are completely dark!" :
 						"Seems you're in the crypt now." );
 
@@ -8133,7 +8133,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"There are some air bubbles... maybe you can reach higher places with them?" :
 						"Floating bubbles appear!" );
 
@@ -8170,7 +8170,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolSS)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Suddenly, rain starts to pour down from the sky." :
 						"It starts to rain." );
 
@@ -8205,7 +8205,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolL)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Whoa, swimming pools and stuff!" :
 						"The dungeon is flooded!" );
 
@@ -8276,10 +8276,10 @@ struct monst *mtmp;
 			}
 
 			if (madepoolQ)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"It's getting a little bit tight in here!" :
 						"Walls and obstacles shoot up from the ground!" );
-			else pline(Hallucination ?
+			else pline(FunnyHallu ?
 						"You hear a grating that reminds you of Chinese water torture!" :
 						"You see dust particles flying around." );
 
@@ -8312,7 +8312,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolC)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Uh... everything is so... green!?" :
 						"You see trees growing out of the ground!" );
 
@@ -8362,7 +8362,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolD)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Damn, this is giving you the chills!" :
 						"The floor crackles with ice!" );
 
@@ -8407,7 +8407,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolE)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Wow! Floating clouds..." :
 						"Foggy clouds appear out of thin air!" );
 
@@ -8440,7 +8440,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolF)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Aw shit, this feels like being in a jail!" :
 						"Iron bars shoot up from the ground!" );
 
@@ -8473,7 +8473,7 @@ struct monst *mtmp;
 			}
 
 			if (madepoolR)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Oh wow, look at all the stuff that is happening around you!" :
 						"What the heck is happening to the dungeon?!" );
 
@@ -9094,7 +9094,7 @@ newboss:
 				}
 				break;
 			    case 14:
-				if (Hallucination)
+				if (FunnyHallu)
 					pline("What a groovy feeling!");
 				else
 					You(Blind ? "%s and get dizzy..." :
@@ -9240,7 +9240,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		if(!Confusion) {
-		    if (Hallucination) {
+		    if (FunnyHallu) {
 			pline("What a trippy feeling!");
 		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) )
 			pline("Blimey! Ye're one sheet to the wind!");
@@ -10233,7 +10233,7 @@ skipmsg:
 		    if ((See_invisible && mtmp->seeinvisble) || StrongSee_invisible)
 			pline("%s body takes on a %s transparency.",
 			      s_suffix(nambuf),
-			      Hallucination ? "normal" : "strange");
+			      FunnyHallu ? "normal" : "strange");
 		    else
 			pline("Suddenly you cannot see %s.", nambuf);
 		    if (oseen) makeknown(otmp->otyp);
@@ -11656,7 +11656,7 @@ boolean stoning;
 	return;
     }
     if (stoning && canseemon(mon)) {
-	if (Hallucination)
+	if (FunnyHallu)
     pline("What a pity - %s just ruined a future piece of art!",
 	    mon_nam(mon));
 	else

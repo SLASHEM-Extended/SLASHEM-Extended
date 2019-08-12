@@ -106,7 +106,7 @@ moveloop()
 
     flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {
-	You(Hallucination ? "are on the moon tonight!" : "are lucky!  Full moon tonight.");
+	You(FunnyHallu ? "are on the moon tonight!" : "are lucky!  Full moon tonight.");
 	change_luck(1);
     } else if(flags.moonphase == NEW_MOON) {
 	pline("Be careful!  New moon tonight.");
@@ -332,7 +332,7 @@ moveloop()
 				randmnst = (rn2(187) + 1);
 				randmnsx = (rn2(100) + 1);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "You fear that you'll get a segmentation fault on your next turn!" : "You suddenly feel a surge of tension!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "You fear that you'll get a segmentation fault on your next turn!" : "You suddenly feel a surge of tension!");
 
 			for (i = 0; i < randsp; i++) {
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
@@ -497,7 +497,7 @@ moveloop()
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "You fear that you'll get a segmentation fault on your next turn!" : "You suddenly feel a surge of tension!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "You fear that you'll get a segmentation fault on your next turn!" : "You suddenly feel a surge of tension!");
 
 			for (i = 0; i < randsp; i++) {
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
@@ -661,7 +661,7 @@ moveloop()
 				if (!rn2(10000)) randsp *= 10;
 				if (randsp > 1) randsp = rnd(randsp);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that someone reseeded the RNG!" : "You feel that someone was busy hiding treasure!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that someone reseeded the RNG!" : "You feel that someone was busy hiding treasure!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -681,7 +681,7 @@ moveloop()
 				if (!rn2(10000)) randsp *= 10;
 				if (randsp > 1) randsp = rnd(randsp);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that the RNG loves you!" : "You feel that someone was busy hiding useful items!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that the RNG loves you!" : "You feel that someone was busy hiding useful items!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -826,7 +826,7 @@ moveloop()
 				if (!rn2(10000)) randsp *= 10;
 				if (randsp > 1) randsp = rnd(randsp);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "You feel that the RNG hates you!" : "You feel that the monsters are coming for you with everything they got!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that the RNG hates you!" : "You feel that the monsters are coming for you with everything they got!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -858,7 +858,7 @@ moveloop()
 				if (!rn2(10000)) randsp *= 10;
 				randmonstforspawn = rndmonst();
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "Someone hacked into the game data files to prevent you from ascending!" : "You feel the arrival of monsters!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone hacked into the game data files to prevent you from ascending!" : "You feel the arrival of monsters!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -879,7 +879,7 @@ moveloop()
 				monstercolor = rnd(15);
 				do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "The colors, the colors!" : "You feel a colorful sensation!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "The colors, the colors!" : "You feel a colorful sensation!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -898,7 +898,7 @@ moveloop()
 				if (!rn2(10000)) randsp *= 10;
 				monstercolor = rnd(371);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -919,7 +919,7 @@ moveloop()
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "Someone hacked into the game data files to prevent you from ascending!" : "You feel the arrival of monsters!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone hacked into the game data files to prevent you from ascending!" : "You feel the arrival of monsters!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -942,7 +942,7 @@ moveloop()
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "The colors, the colors!" : "You feel a colorful sensation!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "The colors, the colors!" : "You feel a colorful sensation!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -963,7 +963,7 @@ moveloop()
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
 				for (i = 0; i < randsp; i++) {
 
@@ -2896,7 +2896,7 @@ trapsdone:
 			make_confused(HConfusion + rnd(20), FALSE);
 			set_itimeout(&HeavyConfusion, HConfusion);
 			pline("Whoops, you're getting really dizzy.");
-			if (Hallucination) pline("Are you a blonde by any chance?");
+			if (FunnyHallu) pline("Are you a blonde by any chance?");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
@@ -4917,7 +4917,7 @@ newbossO:
 		    case 1: make_blinded(Blinded + lcount, TRUE);
 			    break;
 		    case 2: if (!Confusion)
-				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + lcount, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + lcount, TRUE);
@@ -4951,7 +4951,7 @@ newbossO:
 		    case 1: make_blinded(Blinded + lcount, TRUE);
 			    break;
 		    case 2: if (!Confusion)
-				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + lcount, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + lcount, TRUE);
@@ -4985,7 +4985,7 @@ newbossO:
 		    case 1: make_blinded(Blinded + lcount, TRUE);
 			    break;
 		    case 2: if (!Confusion)
-				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + lcount, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + lcount, TRUE);
@@ -6310,7 +6310,7 @@ newbossB:
 
 			if (Slimed && !rn2(400)) {
 				verbalize("That foul green goo is to be devoured by holy fire!");
-				Hallucination ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
+				FunnyHallu ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
 				Slimed = 0;
 				flags.botl = 1;
 				delayed_killer = 0;
@@ -8206,11 +8206,11 @@ newboss:
 			    u.youaredead = 1;
 			    killer_format = KILLED_BY;
 			    killer = "molten lava";
-			    You(Hallucination ? "dissolve completely, warping to another plane of existence." : "sink below the surface and die.");
+			    You(FunnyHallu ? "dissolve completely, warping to another plane of existence." : "sink below the surface and die.");
 			    done(DISSOLVED);
 			    u.youaredead = 0;
 			} else if(didmove && !u.umoved) {
-			    /*Norep*/pline(Hallucination ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
+			    /*Norep*/pline(FunnyHallu ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    u.utrap += rnd(4);
 			}
@@ -8475,7 +8475,7 @@ newboss:
 			    } else if (!Upolyd && u.uhp > 1) {
 				u.uhp--;
 			    } else {
-				You(Hallucination ? "are too trippy to stand on two legs, so you fall down." : "pass out from exertion!");
+				You(FunnyHallu ? "are too trippy to stand on two legs, so you fall down." : "pass out from exertion!");
 				exercise(A_CON, FALSE);
 				fall_asleep(-10, FALSE);
 			    }
@@ -9039,7 +9039,7 @@ newboss:
 		    if(!u.uinvulnerable) {
 			if(Teleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
-				You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
+				You(FunnyHallu ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    if (u.ux != old_ux || u.uy != old_uy) {
@@ -9054,7 +9054,7 @@ newboss:
 
 			if(StrongTeleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
-				You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
+				You(FunnyHallu ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    if (u.ux != old_ux || u.uy != old_uy) {
@@ -9318,7 +9318,7 @@ past3:
 
 				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_WESTERN_FRANKISH_COURSE) {
 					xchar old_ux = u.ux, old_uy = u.uy;
-					You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
+					You(FunnyHallu ? "open a warp gate!" : "suddenly get teleported!");
 					HTeleport_control++;
 					tele();
 					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -9556,7 +9556,7 @@ past3:
 	if (u.shiftingsandsinking && !(is_shiftingsand(u.ux, u.uy))) {
 		u.shiftingsandsinking = 0;
 		You("escaped the shifting sand.");
-		if (Hallucination) pline("The Grim Reaper was waiting to take you away, too.");
+		if (FunnyHallu) pline("The Grim Reaper was waiting to take you away, too.");
 	}
 
 	if (TheGameLaaaaags) {

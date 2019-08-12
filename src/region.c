@@ -818,7 +818,7 @@ void * p2;
     if (p2 == NULL) {		/* That means the player */
 	if (!Blind)
 		You("bump into %s. Ouch!",
-		    Hallucination ? "an invisible tree" :
+		    FunnyHallu ? "an invisible tree" :
 			"some kind of invisible wall");
 	else
 	    pline("Ouch!");

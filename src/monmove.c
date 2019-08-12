@@ -1430,7 +1430,7 @@ convertdone:
 
 	/* Monsters with MS_BONES can rattle. If this causes you to snap out of a longer paralysis, more power to you :D */
 	if (mdat->msound == MS_BONES && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
-		pline(Hallucination ? "%s plays the xylophone!" : "%s rattles noisily!", Monnam(mtmp));
+		pline(FunnyHallu ? "%s plays the xylophone!" : "%s rattles noisily!", Monnam(mtmp));
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -1466,7 +1466,7 @@ convertdone:
 		if (canseemon(mtmp))
 			pline("%s concentrates.", Monnam(mtmp));
 		if (distu(mtmp->mx, mtmp->my) > BOLT_LIM * BOLT_LIM) {
-			You(Hallucination ? "sense a fantastic wave of psychic energy." : "sense a faint wave of psychic energy.");
+			You(FunnyHallu ? "sense a fantastic wave of psychic energy." : "sense a faint wave of psychic energy.");
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
@@ -1559,7 +1559,7 @@ convertdone:
 
 	/* occasionally hint at the presence of psychic beings, if you are telepathic --Amy */
 	if (dmgtype(mdat, AD_SPC2) && !rn2((uarmh && itemhasappearance(uarmh, APP_NARROW_HELMET) ) ? 40 : 200) && Blind_telepat) {
-		You(Hallucination ? "sense a fantastic psionic wave." : "sense a faint psionic wave.");
+		You(FunnyHallu ? "sense a fantastic psionic wave." : "sense a faint psionic wave.");
 	}
 
 toofar:

@@ -776,7 +776,7 @@ int mclass;			/* monster class, 0 for all */
 
     if (!mcnt) {
 	if (otmp)
-	    strange_feeling(otmp, Hallucination ?
+	    strange_feeling(otmp, FunnyHallu ?
 			    "You get the heebie jeebies." :
 			    "You feel threatened.");
 	return 1;
@@ -807,7 +807,7 @@ int mclass;			/* monster class, 0 for all */
 	display_self();
 	You("sense the presence of monsters.");
 	if (woken)
-	    pline(Hallucination ? "They're after you! Now you know why you were always paranoid - they REALLY want to eat you alive!" : "Monsters sense the presence of you.");
+	    pline(FunnyHallu ? "They're after you! Now you know why you were always paranoid - they REALLY want to eat you alive!" : "Monsters sense the presence of you.");
 	display_nhwindow(WIN_MAP, TRUE);
 	docrt();
 	if (Underwater) under_water(2);
@@ -1660,7 +1660,7 @@ register int aflag;
 
 	if(u.uswallow) {
 		if (!aflag)
-			pline(Hallucination ? "There must be some door here, allowing you to get out..." : "What are you looking for?  The exit?");
+			pline(FunnyHallu ? "There must be some door here, allowing you to get out..." : "What are you looking for?  The exit?");
 	} else {
 	    int fund = (uwep && uwep->oartifact &&
 		    spec_ability(uwep, SPFX_SEARCH)) ?

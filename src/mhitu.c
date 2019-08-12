@@ -6644,7 +6644,7 @@ dopois:
 			}
 			break;
 		    case 14:
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("What a groovy feeling!");
 			else
 				You(Blind ? "%s and get dizzy..." :
@@ -8808,7 +8808,7 @@ dopois:
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + dmg, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + dmg, TRUE);
@@ -9025,7 +9025,7 @@ dopois:
 				    break;
 			    case 2: if (!Confusion)
 					You("suddenly feel %s.",
-					    Hallucination ? "trippy" : "confused");
+					    FunnyHallu ? "trippy" : "confused");
 				    make_confused(HConfusion + dmg, TRUE);
 				    break;
 			    case 3: make_stunned(HStun + dmg, TRUE);
@@ -9073,7 +9073,7 @@ dopois:
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + dmg, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + dmg, TRUE);
@@ -10822,7 +10822,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			}
 			break;
 		    case 14:
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("What a groovy feeling!");
 			else
 				You(Blind ? "%s and get dizzy..." :
@@ -11518,7 +11518,7 @@ do_stone2:
 
 	    case AD_AMNE:
 		pline("You can't remember seeing anything like this before.");
-		if (Hallucination) pline("You also can't remember ever suffering from amnesia.");
+		if (FunnyHallu) pline("You also can't remember ever suffering from amnesia.");
 		maprot();
 		break;
 
@@ -11796,7 +11796,7 @@ do_stone2:
 				    break;
 			    case 2: if (!Confusion)
 					You("suddenly feel %s.",
-					    Hallucination ? "trippy" : "confused");
+					    FunnyHallu ? "trippy" : "confused");
 				    make_confused(HConfusion + tmp, TRUE);
 				    break;
 			    case 3: make_stunned(HStun + tmp, TRUE);
@@ -11880,7 +11880,7 @@ do_stone2:
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + tmp, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + tmp, TRUE);
@@ -11976,7 +11976,7 @@ do_stone2:
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + tmp, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + tmp, TRUE);
@@ -12004,7 +12004,7 @@ do_stone2:
 			You("are covered with a seemingly harmless goo.");
 			tmp = 0;
 		    } else {
-		      if (Hallucination) pline("Ouch!  You've been slimed!");
+		      if (FunnyHallu) pline("Ouch!  You've been slimed!");
 		      else You("are covered in slime!  It burns!");
 		      exercise(A_STR, FALSE);
 		    }
@@ -12413,7 +12413,7 @@ boolean ufound;
 	switch (atttypC) {
 	    case AD_CONF:
 		    if (mon_visible(mtmp) || (rnd(tmp /= 2) > u.ulevel)) {
-			if (!Hallucination) You("are confused by a blast of light!");
+			if (!FunnyHallu) You("are confused by a blast of light!");
 			else pline("%s TO ORDER! %s MESSED!",urole.name.m,urole.name.m);
 			make_confused(HConfusion + (long)tmp, FALSE); }
 		break;
@@ -13538,7 +13538,7 @@ common:
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + tmp, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + tmp, TRUE);
@@ -13570,7 +13570,7 @@ common:
 				    break;
 			    case 2: if (!Confusion)
 					You("suddenly feel %s.",
-					    Hallucination ? "trippy" : "confused");
+					    FunnyHallu ? "trippy" : "confused");
 				    make_confused(HConfusion + tmp, TRUE);
 				    break;
 			    case 3: make_stunned(HStun + tmp, TRUE);
@@ -13695,7 +13695,7 @@ common:
 			}
 			break;
 		    case 14:
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("What a groovy feeling!");
 			else
 				You(Blind ? "%s and get dizzy..." :
@@ -14488,7 +14488,7 @@ common:
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + tmp, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + tmp, TRUE);
@@ -14771,7 +14771,7 @@ common:
 	    case AD_STUN:
 		not_affected = (Blind && rn2(2));
 		if (!not_affected) {
-			if (!Hallucination) You("are stunned by a blast of light!");
+			if (!FunnyHallu) You("are stunned by a blast of light!");
 			else pline("%s NUMBED CAN'T DO",urole.name.m);
 			make_stunned(HStun + (long)tmp, FALSE);
 		}
@@ -14780,7 +14780,7 @@ common:
 	    case AD_NUMB:
 		not_affected = (Blind && rn2(2));
 		if (!not_affected) {
-			if (!Hallucination) You("are numbed by a blast of light!");
+			if (!FunnyHallu) You("are numbed by a blast of light!");
 			else pline("%s NUMBED YER",urole.name.m);
 			make_numbed(HNumbed + (long)tmp, FALSE);
 		}
@@ -14851,7 +14851,7 @@ common:
 	    case AD_FRZE:
 		not_affected = (Blind && rn2(2));
 		if (!not_affected) {
-			if (!Hallucination) You("are frozen solid by a blast of light!");
+			if (!FunnyHallu) You("are frozen solid by a blast of light!");
 			else pline("%s COOLING",urole.name.m);
 			make_frozen(HFrozen + (long)tmp, FALSE);
 		}
@@ -14860,7 +14860,7 @@ common:
 	    case AD_BURN:
 		not_affected = (Blind && rn2(2));
 		if (!not_affected) {
-			if (!Hallucination) You("are burned by a blast of light!");
+			if (!FunnyHallu) You("are burned by a blast of light!");
 			else pline("%s BURNED",urole.name.m);
 			make_burned(HBurned + (long)tmp, FALSE);
 		}
@@ -14869,7 +14869,7 @@ common:
 	    case AD_DIMN:
 		not_affected = (Blind && !rn2(3));
 		if (!not_affected) {
-			if (!Hallucination) You("are dimmed by a blast of light!");
+			if (!FunnyHallu) You("are dimmed by a blast of light!");
 			else pline("%s DISPIRITED",urole.name.m);
 			make_dimmed(HDimmed + (long)tmp, FALSE);
 		}
@@ -14878,7 +14878,7 @@ common:
 	    case AD_FEAR:
 		not_affected = (Blind && rn2(2));
 		if (!not_affected) {
-			if (!Hallucination) You("are stricken with fear by a blast of light!");
+			if (!FunnyHallu) You("are stricken with fear by a blast of light!");
 			else pline("%s FEARED",urole.name.m);
 			make_feared(HFeared + (long)tmp, FALSE);
 		}
@@ -15222,7 +15222,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			char visageword[BUFSZ]; /* from ToME */
 			strcpy(visageword, "bad"); /* fail safe --Amy */
 
-			if (!Hallucination) switch(rnd(20)) {
+			if (!FunnyHallu) switch(rnd(20)) {
 
 				case 1:
 					strcpy(visageword, "abominable");
@@ -15357,7 +15357,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			}
 
 		pline("You behold the %s visage of %s!", visageword, mon_nam(mtmp));
-		if (Hallucination && rn2(2) ) switch (rnd(5)) {
+		if (FunnyHallu && rn2(2) ) switch (rnd(5)) {
 
 			case 1:
 				pline("Wow, cosmic, man!");
@@ -15909,7 +15909,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + dmgplus, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + dmgplus, TRUE);
@@ -16053,7 +16053,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			}
 			break;
 		    case 14:
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("What a groovy feeling!");
 			else
 				You(Blind ? "%s and get dizzy..." :
@@ -16643,7 +16643,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
 		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) blnd = (int)mattk->damn * (int)mattk->damd;
 
-		    if (Hallucination) pline("The power of %s aurora overwhelms you!", s_suffix(mon_nam(mtmp)));
+		    if (FunnyHallu) pline("The power of %s aurora overwhelms you!", s_suffix(mon_nam(mtmp)));
 		    else You("are blinded by %s radiance!", s_suffix(mon_nam(mtmp)));
 
 		    make_blinded((long)blnd,FALSE);
@@ -18165,7 +18165,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                 pline("%s uses %s acu phaser to breach your defenses!", Monnam(mtmp), mhis(mtmp));
-			if (Hallucination) You_feel("reminded of Mandevil's Junethack 2018 feat.");
+			if (FunnyHallu) You_feel("reminded of Mandevil's Junethack 2018 feat.");
 
 			{
 			    register struct obj *objX, *objX2;
@@ -18392,7 +18392,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + dmgplus, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + dmgplus, TRUE);
@@ -18429,7 +18429,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				    break;
 			    case 2: if (!Confusion)
 					You("suddenly feel %s.",
-					    Hallucination ? "trippy" : "confused");
+					    FunnyHallu ? "trippy" : "confused");
 				    make_confused(HConfusion + dmgplus, TRUE);
 				    break;
 			    case 3: make_stunned(HStun + dmgplus, TRUE);

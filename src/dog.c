@@ -144,7 +144,7 @@ boolean quietly;
 		    if (!quietly)
 			/* have just been given "You <do something with>
 			   the figurine and it transforms." message */
-			pline(Hallucination ? "... into a pile of garbage. Even you know that that's of no use." : "... into a pile of dust.");
+			pline(FunnyHallu ? "... into a pile of garbage. Even you know that that's of no use." : "... into a pile of dust.");
 		    break;	/* mtmp is null */
 		}
 	    } else if (!rn2(3)) {
@@ -183,7 +183,7 @@ boolean quietly;
 		mtmp->mtame = 0;	/* not tame after all */
 		if (chance == 2) { /* hostile (cursed figurine) */
 		    if (!quietly)
-		       You(Hallucination ? "shiver." : "get a bad feeling about this.");
+		       You(FunnyHallu ? "shiver." : "get a bad feeling about this.");
 		    mtmp->mpeaceful = 0;
 		    set_malign(mtmp);
 		}
@@ -195,7 +195,7 @@ boolean quietly;
 	set_malign(mtmp); /* more alignment changes */
 	newsym(mtmp->mx, mtmp->my);
 
-	if (mtmp && mtmp->mtame && Hallucination) verbalize("wassup fam");
+	if (mtmp && mtmp->mtame && FunnyHallu) verbalize("wassup fam");
 
 	/* must wield weapon immediately since pets will otherwise drop it */
 	if (mtmp->mtame && attacktype(mtmp->data, AT_WEAP)) {
@@ -1499,7 +1499,7 @@ struct monst *mtmp;
 
 	if (Role_if(PM_CRUEL_ABUSER)) {
 		adjalign(5);
-		pline(Hallucination ? "Let's whip that bitch some more!" : "You feel empowered."); /* Christian Grey likes to be needlessly cruel */
+		pline(FunnyHallu ? "Let's whip that bitch some more!" : "You feel empowered."); /* Christian Grey likes to be needlessly cruel */
 	}
 
 	if (!mtmp->mtame && mtmp->mleashed)

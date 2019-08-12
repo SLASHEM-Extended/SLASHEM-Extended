@@ -2929,7 +2929,7 @@ boolean in_view;
 		default: /* glass or crystal wand */
 		    if (obj->oclass != WAND_CLASS)
 			/*impossible("breaking odd object?");*/
-			pline(Hallucination ? "Shards, lots of shards!" : "An odd object broke!"); /*quartz rings for example*/
+			pline(FunnyHallu ? "Shards, lots of shards!" : "An odd object broke!"); /*quartz rings for example*/
 		case CRYSTAL_PLATE_MAIL:
 		case LENSES:
 		case MIRROR:

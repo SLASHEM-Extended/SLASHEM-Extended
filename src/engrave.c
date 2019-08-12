@@ -1214,7 +1214,7 @@ register xchar x,y,cnt;
 
 	/* Burned Elbereth engravings will no longer be truly permanent. --Amy */
 
-		pline(Hallucination ? "Flaming words rising up into the air... this must be MAGIC!" : "Suddenly, the burned engraving disappears into the ether!");
+		pline(FunnyHallu ? "Flaming words rising up into the air... this must be MAGIC!" : "Suddenly, the burned engraving disappears into the ether!");
 	    del_engr(ep);
 	    ep = (struct engr *)0;
 
@@ -1224,7 +1224,7 @@ register xchar x,y,cnt;
 
 	/* scare monster scrolls might randomly disappear --Amy */
 
-		if (!rn2(10)) pline(issoviet ? "Vy chuvstvuyete nekotoruyu ekstremal'nuyu zharu! Popytka Soveta SSSR sokhranit' ispug monstr svitkov obratnyy effekt, kha-kha-kha!" : Hallucination ? "You get a hot feeling! Maybe some sexy girls are around here somewhere?" : "You sense some sort of heat for a moment!");
+		if (!rn2(10)) pline(issoviet ? "Vy chuvstvuyete nekotoruyu ekstremal'nuyu zharu! Popytka Soveta SSSR sokhranit' ispug monstr svitkov obratnyy effekt, kha-kha-kha!" : FunnyHallu ? "You get a hot feeling! Maybe some sexy girls are around here somewhere?" : "You sense some sort of heat for a moment!");
 		(void) burn_floor_paper(x, y, TRUE, FALSE); /* The actual chance of this removing the scroll is about 3%. */
 
 	}
@@ -2189,7 +2189,7 @@ doengrave()
 	    case VENOM_CLASS:
 #ifdef WIZARD
 		/*if (wizard) {*/
-		    pline(Hallucination ? "That would require some huge hands as it's just smearing big letters everywhere." : "Writing a poison pen letter??"); /* why the heck was this wizard-mode only??? --Amy */
+		    pline(FunnyHallu ? "That would require some huge hands as it's just smearing big letters everywhere." : "Writing a poison pen letter??"); /* why the heck was this wizard-mode only??? --Amy */
 		    break;
 		/*}*/
 #endif

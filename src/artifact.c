@@ -3484,7 +3484,7 @@ chargingchoice:
 		    Your("%s chains itself to you!", xname(obj));
 		}
 	    }
-        if (!Hallucination) {    
+        if (!FunnyHallu) {    
             Your("body begins to feel less solid.");
         } else {
             You_feel("one with the spirit world.");
@@ -3543,7 +3543,7 @@ nothing_special:
 	    newsym(u.ux, u.uy);
 	    if (on)
 		    Your("body takes on a %s transparency...",
-			 Hallucination ? "normal" : "strange");
+			 FunnyHallu ? "normal" : "strange");
 	    else
 		    Your("body seems to unfade...");
 	    break;
@@ -3763,7 +3763,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HFire_resistance & FROMOUTSIDE)) {
-						You(Hallucination ? "be chillin'." : "feel a momentary chill.");
+						You(FunnyHallu ? "be chillin'." : "feel a momentary chill.");
 						HFire_resistance |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
@@ -3783,7 +3783,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HTeleportation & FROMOUTSIDE)) {
-						You_feel(Hallucination ? "diffuse." : "very jumpy.");
+						You_feel(FunnyHallu ? "diffuse." : "very jumpy.");
 						HTeleportation |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
@@ -3823,7 +3823,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HTelepat & FROMOUTSIDE)) {
-						You_feel(Hallucination ? "in touch with the cosmos." : "a strange mental acuity.");
+						You_feel(FunnyHallu ? "in touch with the cosmos." : "a strange mental acuity.");
 						HTelepat |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
@@ -3873,12 +3873,12 @@ retrytrinsic:
 				if (intloss) {
 					if (HSee_invisible & INTRINSIC) {
 						HSee_invisible &= ~INTRINSIC;
-						You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+						You("%s!", FunnyHallu ? "tawt you taw a puttie tat" : "thought you saw something");
 						hasmadeachange = 1;
 					}
 					if (HSee_invisible & TIMEOUT) {
 						HSee_invisible &= ~TIMEOUT;
-						You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+						You("%s!", FunnyHallu ? "tawt you taw a puttie tat" : "thought you saw something");
 						hasmadeachange = 1;
 					}
 				} else {
@@ -3963,7 +3963,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HDisint_resistance & FROMOUTSIDE)) {
-						You_feel(Hallucination ? "totally together, man." : "very firm.");
+						You_feel(FunnyHallu ? "totally together, man." : "very firm.");
 						HDisint_resistance |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
@@ -3983,7 +3983,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HShock_resistance & FROMOUTSIDE)) {
-						if (Hallucination)
+						if (FunnyHallu)
 							You_feel("grounded in reality.");
 						else
 							Your("health currently feels amplified!");
@@ -4006,7 +4006,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HTeleport_control & FROMOUTSIDE)) {
-						You_feel(Hallucination ? "centered in your personal space." : "in control of yourself.");
+						You_feel(FunnyHallu ? "centered in your personal space." : "in control of yourself.");
 						HTeleport_control |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
@@ -4026,7 +4026,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HAcid_resistance & FROMOUTSIDE)) {
-						You(Hallucination ? "wanna do more acid!" : "feel less afraid of corrosives.");
+						You(FunnyHallu ? "wanna do more acid!" : "feel less afraid of corrosives.");
 						HAcid_resistance |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
@@ -4052,7 +4052,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HHallu_party & FROMOUTSIDE)) {
-								You_feel(Hallucination ?
+								You_feel(FunnyHallu ?
 								    "like throwing wild parties with lots of sexy girls! Yeah!" :
 								    "a strange desire to celebrate.");
 								HHallu_party |= FROMOUTSIDE;
@@ -4075,7 +4075,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HDrunken_boxing & FROMOUTSIDE)) {
-								You_feel(Hallucination ? "like Mike Tyson!" : "ready for a good brawl.");
+								You_feel(FunnyHallu ? "like Mike Tyson!" : "ready for a good brawl.");
 								HDrunken_boxing |= FROMOUTSIDE;
 								hasmadeachange = 1;
 							}
@@ -4096,7 +4096,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HStunnopathy & FROMOUTSIDE)) {
-								You_feel(Hallucination ? "a controlled wobbling! Feels like being on a bouncy ship!" : "steadily observant.");
+								You_feel(FunnyHallu ? "a controlled wobbling! Feels like being on a bouncy ship!" : "steadily observant.");
 								HStunnopathy |= FROMOUTSIDE;
 								hasmadeachange = 1;
 							}
@@ -4117,7 +4117,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HNumbopathy & FROMOUTSIDE)) {
-								You_feel(Hallucination ?
+								You_feel(FunnyHallu ?
 						    "as if a sweet woman were clamping your toes with a block-heeled combat boot!" :
 					    "a numb feeling spreading through your body. Somehow, it doesn't feel bad at all...");
 								HNumbopathy |= FROMOUTSIDE;
@@ -4130,18 +4130,18 @@ retrytrinsic:
 						if (intloss) {
 							if (HDimmopathy & INTRINSIC) {
 								HDimmopathy &= ~INTRINSIC;
-								You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+								You_feel(FunnyHallu ? "that your marriage is no longer safe..." : "worried about the future!");
 								hasmadeachange = 1;
 							}
 							if (HDimmopathy & TIMEOUT) {
 								HDimmopathy &= ~TIMEOUT;
-								You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+								You_feel(FunnyHallu ? "that your marriage is no longer safe..." : "worried about the future!");
 								hasmadeachange = 1;
 							}
 						} else {
 							if(!(HDimmopathy & FROMOUTSIDE)) {
 								HDimmopathy |= FROMOUTSIDE;
-								You_feel(Hallucination ?
+								You_feel(FunnyHallu ?
 								    "like your wife was contemplating a breakup, but then you realize that she's gonna stay with you to the end of all time." :
 								    "a little down. But then, good feelings overcome you.");
 								hasmadeachange = 1;
@@ -4163,7 +4163,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HFreezopathy & FROMOUTSIDE)) {
-								You_feel(Hallucination ? "like eating a big cone of ice-cream - mmmmmmmm!" : "icy.");
+								You_feel(FunnyHallu ? "like eating a big cone of ice-cream - mmmmmmmm!" : "icy.");
 								HFreezopathy |= FROMOUTSIDE;
 								hasmadeachange = 1;
 							}
@@ -4184,7 +4184,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HStoned_chiller & FROMOUTSIDE)) {
-								You_feel(Hallucination ? "that you're simply the best - yeah, no shit, man!" :     "like relaxing on a couch.");
+								You_feel(FunnyHallu ? "that you're simply the best - yeah, no shit, man!" :     "like relaxing on a couch.");
 								HStoned_chiller |= FROMOUTSIDE;
 								hasmadeachange = 1;
 							}
@@ -4205,7 +4205,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HCorrosivity & FROMOUTSIDE)) {
-								You_feel(Hallucination ? "like you just got splashed with gunks of acid!" : "an acidic burning.");
+								You_feel(FunnyHallu ? "like you just got splashed with gunks of acid!" : "an acidic burning.");
 								HCorrosivity |= FROMOUTSIDE;
 								hasmadeachange = 1;
 							}
@@ -4226,7 +4226,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HFear_factor & FROMOUTSIDE)) {
-								You_feel(Hallucination ? "like you're always running - from something! And the 'something' is a prostitute." : "ready to face your fears.");
+								You_feel(FunnyHallu ? "like you're always running - from something! And the 'something' is a prostitute." : "ready to face your fears.");
 								HFear_factor |= FROMOUTSIDE;
 								hasmadeachange = 1;
 							}
@@ -4247,7 +4247,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HBurnopathy & FROMOUTSIDE)) {
-								You_feel(Hallucination ? "super burninated by enemy with very tired!" : "a burning inside. Strangely, it feels quite soothing.");
+								You_feel(FunnyHallu ? "super burninated by enemy with very tired!" : "a burning inside. Strangely, it feels quite soothing.");
 								HBurnopathy |= FROMOUTSIDE;
 								hasmadeachange = 1;
 							}
@@ -4268,7 +4268,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HSickopathy & FROMOUTSIDE)) {
-								You_feel(Hallucination ?
+								You_feel(FunnyHallu ?
 							    "that you just smoked some really wacky stuff! What the heck was in there?" :
 						    "ill for a moment, but get the feeling that you know more about diseases now.");
 								HSickopathy |= FROMOUTSIDE;
@@ -4291,7 +4291,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HWonderlegs & FROMOUTSIDE)) {
-								You_feel(Hallucination ?
+								You_feel(FunnyHallu ?
 								    "a wonderful sensation in your shins, like they were just kicked by female hugging boots! How lovely!" :
 							    "like having your legs scratched up and down by sexy leather pumps.");
 								HWonderlegs |= FROMOUTSIDE;
@@ -4314,7 +4314,7 @@ retrytrinsic:
 							}
 						} else {
 							if(!(HGlib_combat & FROMOUTSIDE)) {
-								You_feel(Hallucination ?
+								You_feel(FunnyHallu ?
 					    "like an absolute marital arts champion, so you can start fighting off your spouse!" :
 								    "the fliction in your hands disappearing.");
 								HGlib_combat |= FROMOUTSIDE;
@@ -4339,7 +4339,7 @@ retrytrinsic:
 					}
 				} else {
 					if(!(HStone_resistance & FROMOUTSIDE)) {
-						You(Hallucination ? "feel stony and groovy, man." : "feel rock solid.");
+						You(FunnyHallu ? "feel stony and groovy, man." : "feel rock solid.");
 						HStone_resistance |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}

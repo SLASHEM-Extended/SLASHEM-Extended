@@ -536,7 +536,7 @@ register struct obj *food;
 			return;
 	} else if ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF)) {
 			adjalign(-3);		/* gluttony is unchivalrous */
-		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
+		You(FunnyHallu ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
 	if (Race_if(PM_VEELA) || Role_if(PM_FAILED_EXISTENCE) ) badeffect();
@@ -544,15 +544,15 @@ register struct obj *food;
 	if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) { /* They aren't used to eat much. --Amy */
 
 	if(!rn2(4)) {
-		if (Hallucination) You_feel("rather trippy.");
+		if (FunnyHallu) You_feel("rather trippy.");
 		else You_feel("rather %s.", body_part(LIGHT_HEADED));
 		make_confused(HConfusion + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("uncontrollable."); /* this and some other effects added by Amy */
+		if (FunnyHallu) You_feel("uncontrollable."); /* this and some other effects added by Amy */
 		else You_feel("stunned.");
 		make_stunned(HStun + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("even weirder!");
+		if (FunnyHallu) You_feel("even weirder!");
 		else You_feel("weirded out!");
 		make_hallucinated(HHallucination + d(2,10),FALSE,0L);
 	} else if(!rn2(4)) {
@@ -560,31 +560,31 @@ register struct obj *food;
 		make_blinded(Blinded+d(2,10),FALSE);
 		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
-		if (Hallucination) You_feel("like your body is trying to fall asleep!");
+		if (FunnyHallu) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");
 		make_numbed(HNumbed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
+		if (FunnyHallu) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
 		else You_feel("fear spreading through your body.");
 		make_feared(HFeared + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like your on fire despite there being no heat!");
+		if (FunnyHallu) You_feel("like your on fire despite there being no heat!");
 		else You_feel("like you're on fire!");
 		make_burned(HBurned + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
+		if (FunnyHallu) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		if (FunnyHallu) You_feel("that your wife is gonna break up with you!");
 		else pline("You're dimmed.");
 		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
+		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
+		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
@@ -625,15 +625,15 @@ register struct obj *food;
 		/* ALI - nor does other non-food nutrition (eg., life-blood) */
 		if (!food || food->otyp == AMULET_OF_STRANGULATION) {
 			nomovemsg = "You recover your composure.";
-			You(Hallucination ? "spew bits of puke everywhere." : "choke over it.");
+			You(FunnyHallu ? "spew bits of puke everywhere." : "choke over it.");
 			morehungry(100);	/* remove a bit of nutrition so you don't choke again instantly --Amy */
 			nomul(-2, "vomiting", TRUE);
 			u_wipe_engr(100);
 			return;
 		}
-		You(Hallucination ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
+		You(FunnyHallu ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
 		if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) {adjalign(-20);	/* overeating doesn't befit a topmodel */
-		pline(Hallucination ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
+		pline(FunnyHallu ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
 		morehungry(2000);	/* you just got *very* sick! */
 		u_wipe_engr(100);
 		nomovemsg = 0;
@@ -836,7 +836,7 @@ boolean message;
 	/* Bleeders who can drain corpses will benefit from doing so */
 	if(victual.piece->otyp == CORPSE && victual.piece->odrained && Role_if(PM_BLEEDER) ) {
 
-		pline(Hallucination ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
+		pline(FunnyHallu ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
 		healup(d(8,8) + rnz(u.ulevel), 0, TRUE, TRUE);
 		exercise(A_CON, TRUE);
 
@@ -844,7 +844,7 @@ boolean message;
 
 	if(victual.piece->otyp == CORPSE && victual.piece->odrained && Race_if(PM_HEMOPHAGE) ) {
 
-		pline(Hallucination ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
+		pline(FunnyHallu ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
 		healup(d(8,8) + rnz(u.ulevel), 0, TRUE, TRUE);
 		exercise(A_CON, TRUE);
 
@@ -1277,7 +1277,7 @@ fix_petrification()
 {
 	Stoned = 0;
 	delayed_killer = 0;
-	if (Hallucination)
+	if (FunnyHallu)
 	    pline("What a pity - you just ruined a future piece of %sart!",
 		  ACURR(A_CHA) > 15 ? "fine " : "");
 	else {
@@ -1549,7 +1549,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give acid resistance");
 #endif
 		if(!(Acid_resistance & INTRINSIC)) {
-			You(Hallucination ? "wanna do more acid!" :
+			You(FunnyHallu ? "wanna do more acid!" :
 			    "feel less afraid of corrosives.");
 			if (rn2(100)) incr_itimeout(&HAcid_resistance, rn1(1000, 500));
 			else HAcid_resistance |= FROMOUTSIDE;
@@ -1560,7 +1560,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give petrify resistance");
 #endif
 		if(!(HStone_resistance & INTRINSIC)) {
-			You(Hallucination ? "feel stony and groovy, man." :
+			You(FunnyHallu ? "feel stony and groovy, man." :
 			    "feel rock solid.");
 			if (rn2(100)) incr_itimeout(&HStone_resistance, rn1(1000, 500));
 			else HStone_resistance |= FROMOUTSIDE;
@@ -1571,7 +1571,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give fire resistance");
 #endif
 		if(!(HFire_resistance & FROMOUTSIDE)) {
-			You(Hallucination ? "be chillin'." :
+			You(FunnyHallu ? "be chillin'." :
 			    "feel a momentary chill.");
 			HFire_resistance |= FROMOUTSIDE;
 		}
@@ -1599,7 +1599,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give disintegration resistance");
 #endif
 		if(!(HDisint_resistance & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "totally together, man." :
 			    "very firm.");
 			HDisint_resistance |= FROMOUTSIDE;
@@ -1610,7 +1610,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give shock resistance");
 #endif
 		if(!(HShock_resistance & FROMOUTSIDE)) {
-			if (Hallucination)
+			if (FunnyHallu)
 				You_feel("grounded in reality.");
 			else
 				Your("health currently feels amplified!");
@@ -1632,7 +1632,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give teleport");
 #endif
 		if(!(HTeleportation & FROMOUTSIDE)) {
-			You_feel(Hallucination ? "diffuse." :
+			You_feel(FunnyHallu ? "diffuse." :
 			    "very jumpy.");
 			HTeleportation |= FROMOUTSIDE;
 		}
@@ -1642,7 +1642,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give teleport control");
 #endif
 		if(!(HTeleport_control & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "centered in your personal space." :
 			    "in control of yourself.");
 			HTeleport_control |= FROMOUTSIDE;
@@ -1653,7 +1653,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give telepathy");
 #endif
 		if(!(HTelepat & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "in touch with the cosmos." :
 			    "a strange mental acuity.");
 			HTelepat |= FROMOUTSIDE;
@@ -1664,7 +1664,7 @@ register struct permonst *ptr;
 
 	    case HALLU_PARTY:
 		if(!(HHallu_party & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "like throwing wild parties with lots of sexy girls! Yeah!" :
 			    "a strange desire to celebrate.");
 			HHallu_party |= FROMOUTSIDE;
@@ -1672,7 +1672,7 @@ register struct permonst *ptr;
 		break;
 	    case DRUNKEN_BOXING:
 		if(!(HDrunken_boxing & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "like Mike Tyson!" :
 			    "ready for a good brawl.");
 			HDrunken_boxing |= FROMOUTSIDE;
@@ -1680,7 +1680,7 @@ register struct permonst *ptr;
 		break;
 	    case STUNNOPATHY:
 		if(!(HStunnopathy & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "a controlled wobbling! Feels like being on a bouncy ship!" :
 			    "steadily observant.");
 			HStunnopathy |= FROMOUTSIDE;
@@ -1688,7 +1688,7 @@ register struct permonst *ptr;
 		break;
 	    case NUMBOPATHY:
 		if(!(HNumbopathy & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "as if a sweet woman were clamping your toes with a block-heeled combat boot!" :
 			    "a numb feeling spreading through your body. Somehow, it doesn't feel bad at all...");
 			HNumbopathy |= FROMOUTSIDE;
@@ -1696,7 +1696,7 @@ register struct permonst *ptr;
 		break;
 	    case DIMMOPATHY:
 		if(!(HDimmopathy & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "like your wife was contemplating a breakup, but then you realize that she's gonna stay with you to the end of all time." :
 			    "a little down. But then, good feelings overcome you.");
 			HDimmopathy |= FROMOUTSIDE;
@@ -1704,7 +1704,7 @@ register struct permonst *ptr;
 		break;
 	    case FREEZOPATHY:
 		if(!(HFreezopathy & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "like eating a big cone of ice-cream - mmmmmmmm!" :
 			    "icy.");
 			HFreezopathy |= FROMOUTSIDE;
@@ -1712,7 +1712,7 @@ register struct permonst *ptr;
 		break;
 	    case STONED_CHILLER:
 		if(!(HStoned_chiller & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "that you're simply the best - yeah, no shit, man!" :
 			    "like relaxing on a couch.");
 			HStoned_chiller |= FROMOUTSIDE;
@@ -1720,7 +1720,7 @@ register struct permonst *ptr;
 		break;
 	    case CORROSIVITY:
 		if(!(HCorrosivity & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "like you just got splashed with gunks of acid!" :
 			    "an acidic burning.");
 			HCorrosivity |= FROMOUTSIDE;
@@ -1728,7 +1728,7 @@ register struct permonst *ptr;
 		break;
 	    case FEAR_FACTOR:
 		if(!(HFear_factor & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "like you're always running - from something! And the 'something' is a prostitute." :
 			    "ready to face your fears.");
 			HFear_factor |= FROMOUTSIDE;
@@ -1736,7 +1736,7 @@ register struct permonst *ptr;
 		break;
 	    case BURNOPATHY:
 		if(!(HBurnopathy & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "super burninated by enemy with very tired!" :
 			    "a burning inside. Strangely, it feels quite soothing.");
 			HBurnopathy |= FROMOUTSIDE;
@@ -1744,7 +1744,7 @@ register struct permonst *ptr;
 		break;
 	    case SICKOPATHY:
 		if(!(HSickopathy & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "that you just ate some really wacky stuff! What the heck was in there?" :
 			    "ill for a moment, but get the feeling that you know more about diseases now.");
 			HSickopathy |= FROMOUTSIDE;
@@ -1752,7 +1752,7 @@ register struct permonst *ptr;
 		break;
 	    case WONDERLEGS:
 		if(!(HWonderlegs & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "a wonderful sensation in your shins, like they were just kicked by female hugging boots! How lovely!" :
 			    "like having your legs scratched up and down by sexy leather pumps.");
 			HWonderlegs |= FROMOUTSIDE;
@@ -1760,7 +1760,7 @@ register struct permonst *ptr;
 		break;
 	    case GLIB_COMBAT:
 		if(!(HGlib_combat & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "like an absolute marital arts champion, so you can start fighting off your spouse!" :
 			    "the fliction in your hands disappearing.");
 			HGlib_combat |= FROMOUTSIDE;
@@ -1879,7 +1879,7 @@ register int pm;
 		if (!rn2(20)) {
 
 			if(!(HPolymorph & FROMOUTSIDE)) {
-				You_feel(Hallucination ?
+				You_feel(FunnyHallu ?
 				    "able to take on different shapes! Yeah! Let's transform into something fun!" :
 				    "unstable.");
 				HPolymorph  |= FROMOUTSIDE;
@@ -2894,7 +2894,7 @@ register int pm;
 		if (!rn2(20)) {
 
 			if(!(HPolymorph & FROMOUTSIDE)) {
-				You_feel(Hallucination ?
+				You_feel(FunnyHallu ?
 				    "able to take on different shapes! Yeah! Let's transform into something fun!" :
 				    "unstable.");
 				HPolymorph  |= FROMOUTSIDE;
@@ -2921,7 +2921,7 @@ register int pm;
 	    case PM_CONTACT_BEASTLING:
 
 		if(!(HPolymorph & FROMOUTSIDE)) {
-			You_feel(Hallucination ?
+			You_feel(FunnyHallu ?
 			    "able to take on different shapes! Yeah! Let's transform into something fun!" :
 			    "unstable.");
 			HPolymorph  |= FROMOUTSIDE;
@@ -2943,7 +2943,7 @@ register int pm;
 		if (!rn2(20)) {
 
 			if(!(HPolymorph & FROMOUTSIDE)) {
-				You_feel(Hallucination ?
+				You_feel(FunnyHallu ?
 				    "able to take on different shapes! Yeah! Let's transform into something fun!" :
 				    "unstable.");
 				HPolymorph  |= FROMOUTSIDE;
@@ -2960,13 +2960,13 @@ register int pm;
 
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(2)) {
-				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
+				pline(FunnyHallu ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
 				(void) adjattrib(A_INT, 1, FALSE, TRUE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
 		else {
-			pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
+			pline(FunnyHallu ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
 
 		break;
@@ -3000,7 +3000,7 @@ register int pm;
 	    case PM_MEDUSA_S_PET_FISH:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		gainstr((struct obj *)0, 0);
-		pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
+		pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!");
 		break;
 
 	    case PM_KATOISEFUL:
@@ -3059,13 +3059,13 @@ register int pm;
 
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(5)) {
-				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
+				pline(FunnyHallu ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
 				(void) adjattrib(A_INT, 1, FALSE, TRUE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
 		else {
-			pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
+			pline(FunnyHallu ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
 		}
 		break;
@@ -3164,13 +3164,13 @@ register int pm;
 
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(2)) {
-				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
+				pline(FunnyHallu ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
 				(void) adjattrib(A_INT, 1, FALSE, TRUE);
 				break;	/* don't give them telepathy, too */
 			}
 		}
 		else {
-			pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
+			pline(FunnyHallu ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 		}
 		}
 		/* fall through to default case */
@@ -3187,7 +3187,7 @@ register int pm;
 			pline ("Oh wow!  Great stuff!");
 			make_hallucinated(HHallucination + rnz(200),FALSE,0L);
 		}
-		if(is_giant(ptr) && !rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {gainstr((struct obj *)0, 0); pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!"); }
+		if(is_giant(ptr) && !rn2(4) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {gainstr((struct obj *)0, 0); pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!"); }
 
 		/* Check the monster for all of the intrinsics.  If this
 		 * monster can give more than one, pick one to try to give
@@ -3424,19 +3424,19 @@ register int pm;
 			break;
 			case 9:
 				gainstr((struct obj *)0, 0);
-				pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
+				pline(FunnyHallu ? "You feel like ripping out some trees!" : "You feel stronger!");
 				break;
 			break;
 			case 10:
 				if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 					if (!rn2(2)) {
-						pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
+						pline(FunnyHallu ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
 						(void) adjattrib(A_INT, 1, FALSE, TRUE);
 						break;
 					}
 				}
 				else {
-					pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
+					pline(FunnyHallu ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 				}
 			break;
 			case 11:
@@ -3462,7 +3462,7 @@ register int pm;
 			break;
 			case 15:
 				if(!(HPolymorph & FROMOUTSIDE)) {
-				You_feel(Hallucination ? "able to take on different shapes! Yeah! Let's transform into something fun!" : "unstable.");
+				You_feel(FunnyHallu ? "able to take on different shapes! Yeah! Let's transform into something fun!" : "unstable.");
 					HPolymorph  |= FROMOUTSIDE;
 				}
 			break;
@@ -3539,11 +3539,11 @@ register int pm;
 			if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
 			    char buf[BUFSZ];
 			    You_cant("resist the temptation to mimic %s.",
-				Hallucination ? "an orange" : "a pile of gold");
+				FunnyHallu ? "an orange" : "a pile of gold");
 	                    /* A pile of gold can't ride. */
 			    if (u.usteed) dismount_steed(DISMOUNT_FELL);
 			    nomul(-(rnd(60)), "pretending to be a pile of gold", TRUE);
-			    sprintf(buf, Hallucination ?
+			    sprintf(buf, FunnyHallu ?
 				"You suddenly dread being peeled and mimic %s again!" :
 				"You now prefer mimicking %s again.",
 				an( (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun));
@@ -3552,7 +3552,7 @@ register int pm;
 			    afternmv = eatmdone;
 			    /* ??? what if this was set before? */
 			    youmonst.m_ap_type = M_AP_OBJECT;
-			    youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
+			    youmonst.mappearance = FunnyHallu ? ORANGE : GOLD_PIECE;
 			    newsym(u.ux,u.uy);
 			    curs_on_u();
 			    /* make gold symbol show up now */
@@ -3604,7 +3604,7 @@ gluttonous()
 	/* only happens if you were satiated, extra check by Amy to make that conduct mean more */
 	if ((u.uhs == SATIATED) && ((Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_PALADIN) || Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) ) {
 			adjalign(-3);		/* gluttony is unchivalrous */
-		You(Hallucination ? "feel that your belly's gonna burst!" : "feel like a glutton!");
+		You(FunnyHallu ? "feel that your belly's gonna burst!" : "feel like a glutton!");
 	}
 
 	if ((u.uhs == SATIATED) && (Race_if(PM_VEELA) || Role_if(PM_FAILED_EXISTENCE)) ) {	badeffect();
@@ -3613,15 +3613,15 @@ gluttonous()
 	if (u.uhs == SATIATED && (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_GOFF) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) ) { /* They aren't used to eat much. --Amy */
 
 	if(!rn2(4)) {
-		if (Hallucination) You_feel("rather trippy.");
+		if (FunnyHallu) You_feel("rather trippy.");
 		else You_feel("rather %s.", body_part(LIGHT_HEADED));
 		make_confused(HConfusion + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("uncontrollable."); /* this and some other effects added by Amy */
+		if (FunnyHallu) You_feel("uncontrollable."); /* this and some other effects added by Amy */
 		else You_feel("stunned.");
 		make_stunned(HStun + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("even weirder!");
+		if (FunnyHallu) You_feel("even weirder!");
 		else You_feel("weirded out!");
 		make_hallucinated(HHallucination + d(2,10),FALSE,0L);
 	} else if(!rn2(4)) {
@@ -3629,31 +3629,31 @@ gluttonous()
 		make_blinded(Blinded+d(2,10),FALSE);
 		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
-		if (Hallucination) You_feel("like your body is trying to fall asleep!");
+		if (FunnyHallu) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");
 		make_numbed(HNumbed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
+		if (FunnyHallu) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
 		else You_feel("fear spreading through your body.");
 		make_feared(HFeared + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like your on fire despite there being no heat!");
+		if (FunnyHallu) You_feel("like your on fire despite there being no heat!");
 		else You_feel("like you're on fire!");
 		make_burned(HBurned + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
+		if (FunnyHallu) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		if (FunnyHallu) You_feel("that your wife is gonna break up with you!");
 		else pline("You're dimmed.");
 		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
+		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
+		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
@@ -3701,15 +3701,15 @@ violated_vegetarian()
 	if (Role_if(PM_TOPMODEL) || Role_if(PM_GOFF) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) { /* Their metabolism isn't used to meat. --Amy */
 
 	if(!rn2(4)) {
-		if (Hallucination) You_feel("rather trippy.");
+		if (FunnyHallu) You_feel("rather trippy.");
 		else You_feel("rather %s.", body_part(LIGHT_HEADED));
 		make_confused(HConfusion + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("uncontrollable."); /* this and some other effects added by Amy */
+		if (FunnyHallu) You_feel("uncontrollable."); /* this and some other effects added by Amy */
 		else You_feel("stunned.");
 		make_stunned(HStun + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("even weirder!");
+		if (FunnyHallu) You_feel("even weirder!");
 		else You_feel("weirded out!");
 		make_hallucinated(HHallucination + d(2,10),FALSE,0L);
 	} else if(!rn2(4)) {
@@ -3717,31 +3717,31 @@ violated_vegetarian()
 		make_blinded(Blinded+d(2,10),FALSE);
 		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
-		if (Hallucination) You_feel("like your body is trying to fall asleep!");
+		if (FunnyHallu) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");
 		make_numbed(HNumbed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
+		if (FunnyHallu) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
 		else You_feel("fear spreading through your body.");
 		make_feared(HFeared + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like your on fire despite there being no heat!");
+		if (FunnyHallu) You_feel("like your on fire despite there being no heat!");
 		else You_feel("like you're on fire!");
 		make_burned(HBurned + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
+		if (FunnyHallu) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		if (FunnyHallu) You_feel("that your wife is gonna break up with you!");
 		else pline("You're dimmed.");
 		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
+		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
+		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
@@ -3807,7 +3807,7 @@ opentin()		/* called during each move whilst opening a tin */
 					/* perhaps it was stolen? */
 		return(0);		/* %% probably we should use tinoid */
 	if(tin.usedtime++ >= 50) {
-		You(Hallucination ? "get bored while playing with that dildo-like thing." : "give up your attempt to open the tin.");
+		You(FunnyHallu ? "get bored while playing with that dildo-like thing." : "give up your attempt to open the tin.");
 		return(0);
 	}
 	if(tin.usedtime < tin.reqtime)
@@ -3818,10 +3818,10 @@ opentin()		/* called during each move whilst opening a tin */
 		costly_tin("destroyed");
 		goto use_me;
 	}
-	You(Hallucination ? "open it! Now let's see the contents, maybe it's some acid?" : "succeed in opening the tin.");
+	You(FunnyHallu ? "open it! Now let's see the contents, maybe it's some acid?" : "succeed in opening the tin.");
 	if(tin.tin->spe < 1) {
 	    if (tin.tin->corpsenm == NON_PM) {
-		pline(Hallucination ? "Nothing in there, might as well throw it in the trash can." : "It turns out to be empty.");
+		pline(FunnyHallu ? "Nothing in there, might as well throw it in the trash can." : "It turns out to be empty.");
 		tin.tin->dknown = tin.tin->known = TRUE;
 		costly_tin((const char*)0);
 		goto use_me;
@@ -3976,7 +3976,7 @@ opentin()		/* called during each move whilst opening a tin */
 		pline("It contains some decaying%s%s substance.",
 			Blind ? "" : " ", Blind ? "" : hcolor(NH_GREEN));
 	    else
-		pline(Hallucination ? "It contains potato tack or something like that." : "It contains spinach.");
+		pline(FunnyHallu ? "It contains potato tack or something like that." : "It contains spinach.");
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
@@ -3994,7 +3994,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    if (!tin.tin->cursed)
 		pline("This makes you feel like %s!",
-		      Hallucination ? "Swee'pea" : "Popeye");
+		      FunnyHallu ? "Swee'pea" : "Popeye");
 	    lesshungry(600);
 	    gainstr(tin.tin, 0);
 	    u.uconduct.food++;
@@ -4003,7 +4003,7 @@ opentin()		/* called during each move whilst opening a tin */
 		pline("It contains some decaying%s%s substance.",
 			Blind ? "" : " ", Blind ? "" : hcolor(NH_WHITE));
 	    else
-		pline(Hallucination ? "It contains french fries." : "It contains beans.");
+		pline(FunnyHallu ? "It contains french fries." : "It contains beans.");
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
@@ -4046,7 +4046,7 @@ opentin()		/* called during each move whilst opening a tin */
 		pline("It contains some decaying%s%s substance.",
 			Blind ? "" : " ", Blind ? "" : hcolor(NH_PURPLE));
 	    else
-		pline(Hallucination ? "It contains mangos." : "It contains peaches.");
+		pline(FunnyHallu ? "It contains mangos." : "It contains peaches.");
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
@@ -4076,7 +4076,7 @@ opentin()		/* called during each move whilst opening a tin */
 	    if (tin.tin->cursed)
 		pline("It contains something extremely stinky.");
 	    else
-		pline(Hallucination ? "It contains submarines and tadpoles." : "It contains fish.");
+		pline(FunnyHallu ? "It contains submarines and tadpoles." : "It contains fish.");
 
 	    getlin ("Eat it? [y/yes/no]",buf);
 	    (void) lcase (buf);
@@ -4123,7 +4123,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		You("cannot handle the tin properly to open it.");
 		return;
 	} else if (otmp->blessed) {
-		pline_The(Hallucination ? "tin is opened by the little man sitting inside!" : "tin opens like magic!");
+		pline_The(FunnyHallu ? "tin is opened by the little man sitting inside!" : "tin opens like magic!");
 		tmp = 1;
 	} else if(uwep) {
 		switch(uwep->otyp) {
@@ -4158,7 +4158,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 			aobjnam(uwep, (char *)0));
 	} else {
 no_opener:
-		pline(Hallucination ? "Using your fingernails, you try to open this tin." : "It is not so easy to open this tin.");
+		pline(FunnyHallu ? "Using your fingernails, you try to open this tin." : "It is not so easy to open this tin.");
 		if(IsGlib) {
 			pline_The("tin slips from your %s.",
 			      makeplural(body_part(FINGER)));
@@ -4193,20 +4193,20 @@ struct obj *obj;
 	pline("Blecch!  Rotten %s!", foodword(obj));
 	if (issoviet) pline("Tip bloka l'da vinovat v etom!");
 
-	if (Hallucination && (obj->otyp == K_RATION || obj->otyp == C_RATION)) {
+	if (FunnyHallu && (obj->otyp == K_RATION || obj->otyp == C_RATION)) {
 		pline("That wasn't a meal, it wasn't ready, and you shouldn't have eaten it.");
 	}
 
 	if(!rn2(4)) {
-		if (Hallucination) You_feel("rather trippy.");
+		if (FunnyHallu) You_feel("rather trippy.");
 		else You_feel("rather %s.", body_part(LIGHT_HEADED));
 		make_confused(HConfusion + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("uncontrollable."); /* this and some other effects added by Amy */
+		if (FunnyHallu) You_feel("uncontrollable."); /* this and some other effects added by Amy */
 		else You_feel("stunned.");
 		make_stunned(HStun + d(2,4),FALSE);
 	} else if(!rn2(5)) {
-		if (Hallucination) You_feel("even weirder!");
+		if (FunnyHallu) You_feel("even weirder!");
 		else You_feel("weirded out!");
 		make_hallucinated(HHallucination + d(2,10),FALSE,0L);
 	} else if(!rn2(4)) {
@@ -4214,31 +4214,31 @@ struct obj *obj;
 		make_blinded(Blinded+d(2,10),FALSE);
 		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
-		if (Hallucination) You_feel("like your body is trying to fall asleep!");
+		if (FunnyHallu) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");
 		make_numbed(HNumbed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
+		if (FunnyHallu) pline("Crap! A %s suddenly appeared! RUN!",rndmonnam() );
 		else You_feel("fear spreading through your body.");
 		make_feared(HFeared + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like your on fire despite there being no heat!");
+		if (FunnyHallu) You_feel("like your on fire despite there being no heat!");
 		else You_feel("like you're on fire!");
 		make_burned(HBurned + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("a giant ice cream cone enclosing you!");
+		if (FunnyHallu) You_feel("a giant ice cream cone enclosing you!");
 		else pline("You're getting the chills.");
 		make_frozen(HFrozen + d(2,15),FALSE);
 	} else if(!rn2(20)) {
-		if (Hallucination) You_feel("that your wife is gonna break up with you!");
+		if (FunnyHallu) You_feel("that your wife is gonna break up with you!");
 		else pline("You're dimmed.");
 		make_dimmed(HDimmed + d(2,15),FALSE);
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
+		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
 	} else if(!rn2(10)) {
-		if (Hallucination) You_feel("totally down! Seems you tried some illegal shit!");
+		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
 	      make_vomiting(Vomiting+20, TRUE);
 		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
@@ -4354,7 +4354,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    /* oeaten is set up by touchfood */
 	    if (otmp->odrained ? otmp->oeaten <= drainlevel(otmp) :
 	      otmp->oeaten < mons[otmp->corpsenm].cnutrit) {
-	    	pline(Hallucination ? "No juice left - gotta get a new bottle from your cellar!" : "There is no blood left in this corpse!");
+	    	pline(FunnyHallu ? "No juice left - gotta get a new bottle from your cellar!" : "There is no blood left in this corpse!");
 	    	return 3;
 	    } else if (rotted <= 0 &&
 	      (peek_at_iced_corpse_age(otmp) + 5) >= monstermoves) {
@@ -4371,7 +4371,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    	pline("You drain the blood from %s.", buf);
 		otmp->odrained = 1;
 	    } else {
-	    	pline(Hallucination ? "You try to suck, but it just tastes very disgusting!" : "The blood in this corpse has coagulated!");
+	    	pline(FunnyHallu ? "You try to suck, but it just tastes very disgusting!" : "The blood in this corpse has coagulated!");
 	    	return 3;
 	    }
 	}
@@ -4393,7 +4393,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		      !vegetarian(&mons[mnum]) ? "meat" : "protoplasm",
 		      cannibal ? ", cannibal" : "");
 		if (IntSick_resistance || (ExtSick_resistance && rn2(20)) ) {
-			pline(Hallucination ? "Interesting taste, though..." : "It doesn't seem at all sickening, though...");
+			pline(FunnyHallu ? "Interesting taste, though..." : "It doesn't seem at all sickening, though...");
 		} else {
 			char buf[BUFSZ];
 			long sick_time;
@@ -4420,7 +4420,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	} else if (youmonst.data == &mons[PM_GHOUL] || 
 	youmonst.data == &mons[PM_GASTLY] || youmonst.data == &mons[PM_HAUNTER] || youmonst.data == &mons[PM_DOGSHIT_SEARCHER] || youmonst.data == &mons[PM_GENGAR] || youmonst.data == &mons[PM_PHANTOM_GHOST] || 
 		   youmonst.data == &mons[PM_GHAST] || youmonst.data == &mons[PM_STINKING_ALIEN] || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
-		pline (Hallucination ? "You can't seem to find any manky bits!" : "This corpse is too fresh!");
+		pline (FunnyHallu ? "You can't seem to find any manky bits!" : "This corpse is too fresh!");
 		return 3;
 	} else if (acidic(&mons[mnum]) && (!Acid_resistance || (!StrongAcid_resistance && !rn2(10))) ) {
 		tp++;
@@ -4428,7 +4428,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		losehp(rnd(15 + ptr->mlevel), "acidic corpse", KILLED_BY_AN);
 	} else if (poisonous(&mons[mnum]) && rn2(5)) {
 		tp++;
-		pline(Hallucination ? "Feels like your face is turning green!" : "Ecch - that must have been poisonous!");
+		pline(FunnyHallu ? "Feels like your face is turning green!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
 			if (!rn2(3)) losestr(rnd(2), TRUE); /* tone down strength loss, since you have to eat many more poisonous */
 			if (!rn2(60)) losestr(rnd(2), TRUE); /* corpses in order to get poison resistance --Amy */
@@ -4548,7 +4548,7 @@ struct obj *otmp;
 	    case BREAD:
 	    case FOOD_RATION:
 		if(u.uhunger <= 500)
-		    pline(Hallucination ? "Oh wow, like, superior, man!" :
+		    pline(FunnyHallu ? "Oh wow, like, superior, man!" :
 			  "That food really hit the spot!");
 		else if(u.uhunger <= 1200) pline("That satiated your %s!",
 						body_part(STOMACH));
@@ -4574,7 +4574,7 @@ struct obj *otmp;
 		     */
 		    pline("That tripe ration was surprisingly good!");
 		else if (maybe_polyd(is_orc(youmonst.data), Race_if(PM_ORC)))
-		    pline(Hallucination ? "Tastes great! Less filling!" :
+		    pline(FunnyHallu ? "Tastes great! Less filling!" :
 			  "Mmm, tripe... not bad!");
 		else {
 		    pline("Yak - dog food!");
@@ -4653,8 +4653,8 @@ struct obj *otmp;
 		break;
 	    case MUSHROOM:
 	       pline("This %s is %s", singular(otmp, xname),
-	       otmp->cursed ? (Hallucination ? "far-out!" : "terrible!") :
-		      Hallucination ? "groovy!" : "delicious!");
+	       otmp->cursed ? (FunnyHallu ? "far-out!" : "terrible!") :
+		      FunnyHallu ? "groovy!" : "delicious!");
 		switch(rn2(10))
 		{
 		   case 0:
@@ -4698,7 +4698,7 @@ struct obj *otmp;
 
 	    case X_MAS_CAKE:
 
-		if (!rn2(3)) pline(Hallucination ? "...It tastes sweet, so, too sweet!" :
+		if (!rn2(3)) pline(FunnyHallu ? "...It tastes sweet, so, too sweet!" :
 			"You munched, munched, munched...It's delicious!");
 		else pline(rn2(2) ? "(That's dud, tut.)  You feel that someone clucked her tongue." :
 			"Very delicious, mew!  You feel that your toon seems changing, mew.");
@@ -4764,12 +4764,12 @@ struct obj *otmp;
 		if (otmp->otyp == SLIME_MOLD && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())
 			&& otmp->spe == current_fruit)
 		    pline("My, that was a %s %s!",
-			  Hallucination ? "primo" : "yummy",
+			  FunnyHallu ? "primo" : "yummy",
 			  singular(otmp, xname));
 		else
 #ifdef UNIX
 		if (otmp->otyp == APPLE || otmp->otyp == PEAR) {
-		    if (!Hallucination) pline("Core dumped.");
+		    if (!FunnyHallu) pline("Core dumped.");
 		    else {
 /* This is based on an old Usenet joke, a fake a.out manual page */
 			int x = rnd(100);
@@ -4787,7 +4787,7 @@ struct obj *otmp;
 		} else
 #endif
 		if (otmp->otyp == EGG && stale_egg(otmp)) {
-		    pline(Hallucination ? "Uaaah! That tasted like hydrogen sulfide!" : "Ugh.  Rotten egg.");	/* perhaps others like it */
+		    pline(FunnyHallu ? "Uaaah! That tasted like hydrogen sulfide!" : "Ugh.  Rotten egg.");	/* perhaps others like it */
 		if (Role_if(PM_CONVICT) && (rn2(8) > u.ulevel)) {
 		    You_feel("a slight stomach ache.");	/* prisoners are used to bad food */
 		} else
@@ -4801,12 +4801,12 @@ struct obj *otmp;
 		      ((Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_)) &&
 		      otmp->otyp == SPRIG_OF_WOLFSBANE);
 		    pline("This %s is %s", singular(otmp, xname),
-		      bad_for_you ? (Hallucination ? "grody!" : "terrible!") :
+		      bad_for_you ? (FunnyHallu ? "grody!" : "terrible!") :
 		      (otmp->otyp == CRAM_RATION
 		      || otmp->otyp == K_RATION
 		      || otmp->otyp == C_RATION)
-		      ? (Hallucination ? "enjoyable." : "bland.") :
-		      Hallucination ? "gnarly!" : "delicious!");
+		      ? (FunnyHallu ? "enjoyable." : "bland.") :
+		      FunnyHallu ? "gnarly!" : "delicious!");
 		}
 		if (otmp->otyp == EGG && otmp->oartifact == ART_EGG_OF_SPLAT) {
 		    pline("Ulch - that was a contaminated egg!");
@@ -4867,7 +4867,7 @@ struct obj *otmp;
 					!See_invisible && !Blind) {
 			newsym(u.ux,u.uy);
 			Your("body takes on a %s transparency...",
-				Hallucination ? "normal" : "strange");
+				FunnyHallu ? "normal" : "strange");
 			makeknown(typ);
 		    }
 		    break;
@@ -5083,13 +5083,13 @@ eatspecial() /* called after eating non-food */
 	/* KMH -- idea by "Tommy the Terrorist" */
 	if ((otmp->otyp == TRIDENT) && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 	{
-		pline(Hallucination ? "Four out of five dentists agree." :
+		pline(FunnyHallu ? "Four out of five dentists agree." :
 				"That was pure chewing satisfaction!");
 		exercise(A_WIS, TRUE);
 	}
 	if ((otmp->otyp == FLINT) && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )
 	{
-		pline(Hallucination ? "Whoops, what's that grating sound? Was that a piece of your tooth?" : "Yabba-dabba delicious!");
+		pline(FunnyHallu ? "Whoops, what's that grating sound? Was that a piece of your tooth?" : "Yabba-dabba delicious!");
 		exercise(A_CON, TRUE);
 	}
 
@@ -5917,7 +5917,7 @@ register struct obj *otmp;
 
 		/* eating your own eggs is bad luck --Amy */
 		if (otmp->spe && otmp->corpsenm >= LOW_PM) {
-				pline(Hallucination ? "Great taste, like what chewing your own nails is like!" : "How are your children, you sorry excuse for a parent?");
+				pline(FunnyHallu ? "Great taste, like what chewing your own nails is like!" : "How are your children, you sorry excuse for a parent?");
 			    change_luck(-2);
 		}
 
@@ -6097,7 +6097,7 @@ struct obj *otmp;
 		    mnum == PM_VIOLET_FUNGUS || mnum == PM_VIOLET_STALK || mnum == PM_VIOLET_SPORE || mnum == PM_VIOLET_COLONY) { 
 		sprintf(buf, "%s like %s may be %s! %s", 
 			foodsmell, it_or_they, 
-			Hallucination ? "some real hard stuff" 
+			FunnyHallu ? "some real hard stuff" 
 			: "hallucinogenic", eat_it_anyway); 
 		if (yn_function(buf,ynchars,'n')=='n') return 1; 
 		/*adjalign(-sgn(u.ualign.type));*/ /* you took it knowingly */ /*what the heck??? --Amy */
@@ -6156,7 +6156,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	
 	boolean dont_start = FALSE;
 	if (Strangled) {
-		pline(Hallucination ? "You just can't seem to get it down your throat - is it too big?!" : "If you can't breathe air, how can you consume solids?");
+		pline(FunnyHallu ? "You just can't seem to get it down your throat - is it too big?!" : "If you can't breathe air, how can you consume solids?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
@@ -6310,7 +6310,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		(void) rottenfood(otmp);
 
 	    if (otmp->oclass == WEAPON_CLASS && otmp->opoisoned) {
-		pline(Hallucination ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
+		pline(FunnyHallu ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
 		    if (!rn2(2)) losestr(rnd(2), TRUE);
 		    if (!rn2(15)) losestr(rnd(2), TRUE);
@@ -6689,7 +6689,7 @@ register int num;
 	     */
 	    if (u.uhunger >= 4500) {
 		if (!victual.eating || (victual.eating && !victual.fullwarn)) {
-		    pline(Hallucination ? "You feel like taking the All-You-Can-Eat challenge." : "You're having a hard time getting all of it down.");
+		    pline(FunnyHallu ? "You feel like taking the All-You-Can-Eat challenge." : "You're having a hard time getting all of it down.");
 		    nomovemsg = "You're finally finished.";
 		    if (!victual.eating)
 			multi = -2;
@@ -6823,10 +6823,10 @@ boolean incr;
 			if(!is_fainted() && multi >= 0 /* %% */) {
 				/* stop what you're doing, then faint */
 				stop_occupation();
-				You(Hallucination ? "pass out due to those damn munchies." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "enter a state of trance." : "faint from lack of food.");
+				You(FunnyHallu ? "pass out due to those damn munchies." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "enter a state of trance." : "faint from lack of food.");
 
 	/* warn player if starvation will happen soon, that is, less than 200 nutrition remaining --Amy */
-			if(u.uhunger < -(int)(800 + 50*ACURR(A_CON))) { You(Hallucination ? "sense the Grim Reaper approaching." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "sense that you're getting closer to your deity." : "are close to starvation.");
+			if(u.uhunger < -(int)(800 + 50*ACURR(A_CON))) { You(FunnyHallu ? "sense the Grim Reaper approaching." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "sense that you're getting closer to your deity." : "are close to starvation.");
 		if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) adjalign(5);
 		}
 				flags.soundok = 0;
@@ -6842,7 +6842,7 @@ boolean incr;
 			u.uhs = STARVED;
 			flags.botl = 1;
 			bot();
-			You(Hallucination ? "are taken away by the grim reaper..." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "meet your deity at last." : "die from starvation.");
+			You(FunnyHallu ? "are taken away by the grim reaper..." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ? "meet your deity at last." : "die from starvation.");
 			killer_format = KILLED_BY;
 			killer = "starvation";
 			done(STARVING);
@@ -6863,7 +6863,7 @@ boolean incr;
 			}
 		switch(newhs){
 		case HUNGRY:
-			if (Hallucination) {
+			if (FunnyHallu) {
 			    You((!incr) ?
 				"now have a lesser case of the munchies." :
 				"are getting the munchies.");
@@ -6876,7 +6876,7 @@ boolean incr;
 			    stop_occupation();
 			break;
 		case WEAK:
-			if (Hallucination)
+			if (FunnyHallu)
 			    pline((!incr) ?
 				  "You still have the munchies." :
       "The munchies are interfering with your motor capabilities.");
@@ -6900,7 +6900,7 @@ boolean incr;
 		bot();
 		if ((Upolyd ? u.mh : u.uhp) < 1) {
 			u.youaredead = 1;
-			You(Hallucination ? "pass away like a filthy bum." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK))) ? "are embraced by the shadowy figure of your deity..." : "die from hunger and exhaustion.");
+			You(FunnyHallu ? "pass away like a filthy bum." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK))) ? "are embraced by the shadowy figure of your deity..." : "die from hunger and exhaustion.");
 			killer_format = KILLED_BY;
 			killer = "exhaustion";
 			done(STARVING);

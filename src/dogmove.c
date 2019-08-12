@@ -334,7 +334,7 @@ register struct edog *edog;
 		    pline("%s starves.", Monnam(mtmp));
 		else {
 		    You_feel("%s for a moment.",
-			Hallucination ? "bummed" : "sad");
+			FunnyHallu ? "bummed" : "sad");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
 
 		}

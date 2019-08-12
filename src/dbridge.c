@@ -746,7 +746,7 @@ int dest, how;
 			if (!e_survives_at(etmp, etmp->ex, etmp->ey)) {
 			    if (enexto(&xy, etmp->ex, etmp->ey, etmp->edata)) {
 				pline("A %s force teleports you away...",
-				      Hallucination ? "normal" : "strange");
+				      FunnyHallu ? "normal" : "strange");
 				teleds(xy.x, xy.y, FALSE);
 			    }
 			    /* otherwise on top of the drawbridge is the
@@ -1068,7 +1068,7 @@ struct entity *etmp;
 			/* drown() will supply msgs if nec. */
 			boolean lava = is_lava(etmp->ex, etmp->ey);
 
-			if (Hallucination)
+			if (FunnyHallu)
 			    pline("%s the %s and disappears.",
 				  E_phrase(etmp, "drink"),
 				  lava ? "lava" : "moat");
@@ -1269,7 +1269,7 @@ int x,y;
 #endif
 		} else {
 			if (e_inview) {
-			    if (!is_u(etmp1) && Hallucination)
+			    if (!is_u(etmp1) && FunnyHallu)
 				pline("%s into some heavy metal!",
 				      E_phrase(etmp1, "get"));
 			    else

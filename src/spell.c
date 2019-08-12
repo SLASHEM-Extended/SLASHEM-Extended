@@ -3458,7 +3458,7 @@ castanyway:
 		    case 1: make_blinded(Blinded + lcount, TRUE);
 			    break;
 		    case 2: if (!Confusion)
-				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + lcount, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + lcount, TRUE);
@@ -4809,7 +4809,7 @@ aulechoice:
 	case SPE_REMOVE_BLESSING:
 		{
 
-		    if (Hallucination)
+		    if (FunnyHallu)
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
@@ -6505,7 +6505,7 @@ secureidchoice:
 		pline("You start to disguise.");
 
 		youmonst.m_ap_type = M_AP_OBJECT;
-		youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
+		youmonst.mappearance = FunnyHallu ? ORANGE : GOLD_PIECE;
 		newsym(u.ux,u.uy);
 
 		break;
@@ -6904,7 +6904,7 @@ secureidchoice:
 	case SPE_GAIN_CORRUPTION:
 
 		pline("Okay, if that's really what you want... you feel corrupted.");
-		if (Hallucination) pline("At least this isn't ADOM, where having too many corruptions would instakill you!");
+		if (FunnyHallu) pline("At least this isn't ADOM, where having too many corruptions would instakill you!");
 
 		getnastytrapintrinsic();
 
@@ -7046,7 +7046,7 @@ secureidchoice:
 	case SPE_BUC_RANDOMIZATION:
 
 	    {	register struct obj *objC;
-		    if (Hallucination)
+		    if (FunnyHallu)
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
@@ -7731,7 +7731,7 @@ secureidchoice:
 	case SPE_ACID_INGESTION:
 		pline("Sulfuric acid forms in your mouth...");
 		if (Acid_resistance && (StrongAcid_resistance || rn2(10)) ) {
-			pline("This tastes %s.", Hallucination ? "tangy" : "sour");
+			pline("This tastes %s.", FunnyHallu ? "tangy" : "sour");
 		} else {
 			pline("This burns a lot!");
 			losehp(d(2, 8), "ingesting acid", KILLED_BY);
@@ -7899,7 +7899,7 @@ secureidchoice:
 		break;
 
 	case SPE_AIR_CURRENT:
-		if (Hallucination)
+		if (FunnyHallu)
 			You_hear("air current noises, and a remark by Amy about how sexy they are.");
 		else
 			You_hear("air current noises.");
@@ -9414,7 +9414,7 @@ totemsummonchoice:
 		break;
 	case SPE_RESIST_SLEEP:
 		if(!(HSleep_resistance & INTRINSIC)) {
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("Too much coffee!");
 			else
 				You("no longer feel tired.");
@@ -9453,7 +9453,7 @@ totemsummonchoice:
 		break;
 	case SPE_ENDURE_HEAT:
 		if(!(HFire_resistance & INTRINSIC)) {
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("Excellent! You feel, like, totally cool!");
 			else
 				You_feel("colder.");
@@ -9468,7 +9468,7 @@ totemsummonchoice:
 		break;
 	case SPE_INSULATE:
 		if(!(HShock_resistance & INTRINSIC)) {
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("Bummer! You've been grounded!");
 			else
 				You("are not at all shocked by this feeling.");
@@ -9512,7 +9512,7 @@ totemsummonchoice:
 		switch (rnd(9)) {
 			case 1:
 				if(!(HShock_resistance & INTRINSIC)) {
-					if (Hallucination)
+					if (FunnyHallu)
 						pline("Bummer! You've been grounded!");
 					else
 						You("are not at all shocked by this feeling.");
@@ -9527,7 +9527,7 @@ totemsummonchoice:
 				break;
 			case 2:
 				if(!(HFire_resistance & INTRINSIC)) {
-					if (Hallucination)
+					if (FunnyHallu)
 						pline("Excellent! You feel, like, totally cool!");
 					else
 						You_feel("colder.");
@@ -9554,7 +9554,7 @@ totemsummonchoice:
 				break;
 			case 4:
 				if(!(HSleep_resistance & INTRINSIC)) {
-					if (Hallucination)
+					if (FunnyHallu)
 						pline("Too much coffee!");
 					else
 						You("no longer feel tired.");
@@ -9633,7 +9633,7 @@ totemsummonchoice:
 
 	case SPE_FORBIDDEN_KNOWLEDGE:
 		if(!(HHalf_spell_damage & INTRINSIC)) {
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("Let the casting commence!");
 			else
 				You_feel("a sense of spell knowledge.");
@@ -9641,7 +9641,7 @@ totemsummonchoice:
 				spell_damage_bonus(spellid(spell))*10);
 		}
 		if(!(HHalf_physical_damage & INTRINSIC)) {
-			if (Hallucination)
+			if (FunnyHallu)
 				You_feel("like a tough motherfucker!");
 			else
 				You("are resistant to normal damage.");

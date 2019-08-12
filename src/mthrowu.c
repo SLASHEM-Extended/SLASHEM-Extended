@@ -1497,7 +1497,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 		    if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
-			      Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
+			      FunnyHallu ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
 		    else if (flags.soundok && !issoviet) {
 				if (isangbander) pline("It breathes.");
 				else You_hear("an exhaling sound.");
@@ -1534,7 +1534,7 @@ xchar ax, ay;
 	if((typ >= AD_MAGM) && (typ <= AD_SPC2)) {
 		if(canseemon(mtmp))
 			pline("%s breathes %s!", Monnam(mtmp),
-				Hallucination ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
+				FunnyHallu ? hallubreathwep[rn2(SIZE(hallubreathwep))] : breathwep[typ-1]);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* Do the door first - monster is ON TOP so call direct */
 		zap_over_floor(mtmp->mx, mtmp->my, (int) (-20 - (typ-1)), NULL);

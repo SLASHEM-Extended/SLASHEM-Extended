@@ -1124,7 +1124,7 @@ int mode;
 				}
 			} else {
 				You("cannot cross the farmland!");
-				if (Hallucination) pline("Nature preservation and all that.");
+				if (FunnyHallu) pline("Nature preservation and all that.");
 				/* Even passwall does not help here, this is intentional. --Amy */
 			}
 
@@ -1176,7 +1176,7 @@ int mode;
 
 			if (Role_if(PM_WALSCHOLAR)) {
 				You_feel("like a miserably hussy.");
-				if (Hallucination) pline("Maybe you should buy a bottle of drum stint reluctance perfume.");
+				if (FunnyHallu) pline("Maybe you should buy a bottle of drum stint reluctance perfume.");
 				u.ualign.sins++;
 				u.alignlim--;
 				adjalign(-10);
@@ -2257,7 +2257,7 @@ domove()
 			    Norep("%s is still in a pit.",
 				  upstart(y_monnam(u.usteed)));
 			else
-			Norep( (Hallucination && !rn2(5)) ?
+			Norep( (FunnyHallu && !rn2(5)) ?
 				"You've fallen, and you can't get up." :
 				"You are still in a pit." );
 		    }
@@ -2904,7 +2904,7 @@ invocation_message()
 	    struct obj *otmp = carrying(CANDELABRUM_OF_INVOCATION);
 
 	    nomul(0, 0, FALSE);		/* stop running or travelling */
-	    if (Hallucination) {
+	    if (FunnyHallu) {
 		pline("You're picking up good vibrations!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else {
@@ -3008,7 +3008,7 @@ boolean pick;
 
 	/* strong winds over the Grand Canyon. Please don't ask me how they can continue working underwater. :-) --Amy */
 
-		pline(Hallucination ? "This whirl is like the eye of a hurricane, but it tickles!" : "There are scathing winds here! Your skin is scraped off!");
+		pline(FunnyHallu ? "This whirl is like the eye of a hurricane, but it tickles!" : "There are scathing winds here! Your skin is scraped off!");
 		losehp(rnz(u.legscratching), "scathing winds", KILLED_BY);
 
 		You("tumble...");
@@ -3021,7 +3021,7 @@ boolean pick;
 
 	/* every trap on the Grand Canyon level also has a lesser wind effect. --Amy */
 
-		pline(Hallucination ? "A twister... or is that a tornado?" : "You are enclosed in a whirlwind!");
+		pline(FunnyHallu ? "A twister... or is that a tornado?" : "You are enclosed in a whirlwind!");
 		losehp(rnd(u.legscratching + 2), "whirlwinds", KILLED_BY);
 
 	}
@@ -3396,7 +3396,7 @@ register boolean newlev;
 		/* "Special Room monster change. Entering a special room will no longer awaken all monsters inside of the room, making the behavior the same as Vanilla Nethack and Slash'EM. Removed wake_nearby, gets really annoying" In Soviet Russia, players want to be able to mindlessly slaughter all the denizens of special rooms, because they're somehow unable to handle a game posing an actual challenge. They don't view it as too easy if they can hack up one monster after the other without the remaining ones even reacting or doing anything. But of course we all know that this is not the way it's supposed to be, so for all the other races the monsters will wake up. --Amy */
 
 		case ZOO:
-		    pline(Hallucination ? "Welcome to our Theme Park!" : "Welcome to David's treasure zoo!");
+		    pline(FunnyHallu ? "Welcome to our Theme Park!" : "Welcome to David's treasure zoo!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case SWAMP:
@@ -3406,27 +3406,27 @@ register boolean newlev;
 		    if (!issoviet) wake_nearby();
 		    break;
 		case COURT:
-		    You(Hallucination ? "enter the Queen's chambers!" : "enter an opulent throne room!");
+		    You(FunnyHallu ? "enter the Queen's chambers!" : "enter an opulent throne room!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case REALZOO:
-		    You(Hallucination ? "feel that some extinct species might still live here!" : "enter a smelly zoo!");
+		    You(FunnyHallu ? "feel that some extinct species might still live here!" : "enter a smelly zoo!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case GIANTCOURT:
-		    You(Hallucination ? "enter a real huge hall!" : "enter a giant throne room!");
+		    You(FunnyHallu ? "enter a real huge hall!" : "enter a giant throne room!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case DRAGONLAIR:
-		    You(Hallucination ? "enter a fairy lair!" : "enter a dragon lair...");
+		    You(FunnyHallu ? "enter a fairy lair!" : "enter a dragon lair...");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case BADFOODSHOP:
-		    You(Hallucination ? "enter some sort of market! Perhaps you can buy some weed here?" : "enter an abandoned store...");
+		    You(FunnyHallu ? "enter some sort of market! Perhaps you can buy some weed here?" : "enter an abandoned store...");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case LEPREHALL:
-		    You(Hallucination ? "encounter a Stonehenge replica!" : "enter a leprechaun hall!");
+		    You(FunnyHallu ? "encounter a Stonehenge replica!" : "enter a leprechaun hall!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case MORGUE:
@@ -3438,75 +3438,75 @@ register boolean newlev;
 		    if (!issoviet) wake_nearby();
 		    break;
 		case BEEHIVE:
-		    You(Hallucination ? "enter a tracker jacker nest! RUN AWAY!!!" : "enter a giant beehive!");
+		    You(FunnyHallu ? "enter a tracker jacker nest! RUN AWAY!!!" : "enter a giant beehive!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case LEMUREPIT:
-		    You(Hallucination ? "enter the Devil's Lair!" : "enter a pit of screaming lemures!");
+		    You(FunnyHallu ? "enter the Devil's Lair!" : "enter a pit of screaming lemures!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case MIGOHIVE:
-		    You(Hallucination ? "enter some futuristic alien structure!" : "enter a strange hive!");
+		    You(FunnyHallu ? "enter some futuristic alien structure!" : "enter a strange hive!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case FUNGUSFARM:
-		    You(Hallucination ? "enter a sticky, slimy room..." : "enter a room full of fungi!");
+		    You(FunnyHallu ? "enter a sticky, slimy room..." : "enter a room full of fungi!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case COCKNEST:
-		    You(Hallucination ? "sense the well-known smell of weed as you enter this room!" : "enter a disgusting nest!");
+		    You(FunnyHallu ? "sense the well-known smell of weed as you enter this room!" : "enter a disgusting nest!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case ANTHOLE:
-		    You(Hallucination ? "enter a room filled with bugs!" : "enter an anthole!");
+		    You(FunnyHallu ? "enter a room filled with bugs!" : "enter an anthole!");
 		    if (!issoviet) wake_nearby();
 		    break;
             case CLINIC:
-                You(Hallucination ? "feel reminded of 'Emergency Room' as you enter this area!" : "enter a modern hospital.");
+                You(FunnyHallu ? "feel reminded of 'Emergency Room' as you enter this area!" : "enter a modern hospital.");
 		    if (!issoviet) wake_nearby();
                 break;
             case ANGELHALL:
-                You(Hallucination ? "see the gods as you enter! WOW! So that's what they look like..." : "enter a radiating hall of Angels!");
+                You(FunnyHallu ? "see the gods as you enter! WOW! So that's what they look like..." : "enter a radiating hall of Angels!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case TERRORHALL:
-                You(Hallucination ? "feel like you just got detected by a tripwire!" : "enter a terrifying hall.");
+                You(FunnyHallu ? "feel like you just got detected by a tripwire!" : "enter a terrifying hall.");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case TENSHALL:
-                You(Hallucination ? "have died. Do you want your possessions identified? [ynq] (n) _" : "enter a killer room! This is actually an ADOM tension room.");
+                You(FunnyHallu ? "have died. Do you want your possessions identified? [ynq] (n) _" : "enter a killer room! This is actually an ADOM tension room.");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case ELEMHALL:
-                You(Hallucination ? "get a vision of Mother Nature as you enter!" : "enter a room full of elementals!");
+                You(FunnyHallu ? "get a vision of Mother Nature as you enter!" : "enter a room full of elementals!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case NYMPHHALL:
-                You(Hallucination ? "see a picture on the wall of this room. It shows the most beautiful woman you ever saw..." : "enter a beautiful garden!");
+                You(FunnyHallu ? "see a picture on the wall of this room. It shows the most beautiful woman you ever saw..." : "enter a beautiful garden!");
 		    if (!issoviet) wake_nearby();
                 break;
             case ARMORY:
-                You(Hallucination ? "enter some old weapon storage chamber! Let's see what weapons are left!" : "enter a dilapidated armory.");
+                You(FunnyHallu ? "enter some old weapon storage chamber! Let's see what weapons are left!" : "enter a dilapidated armory.");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case COINHALL:
-                You(Hallucination ? "enter a room full of treasure, and it's all going to be yours! YEAH!" : "enter a room filled with money!");
+                You(FunnyHallu ? "enter a room full of treasure, and it's all going to be yours! YEAH!" : "enter a room filled with money!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case TROLLHALL:
-                You(Hallucination ? "feel that this room smells like a public toilet!" : "enter a room full of stinking trolls...");
+                You(FunnyHallu ? "feel that this room smells like a public toilet!" : "enter a room full of stinking trolls...");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case HUMANHALL:
-                You(Hallucination ? "encounter a party room! Let's invite some hot girls!" : "encounter a living room!");
+                You(FunnyHallu ? "encounter a party room! Let's invite some hot girls!" : "encounter a living room!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case SPIDERHALL:
-                You(Hallucination ? "notice spiders of all forms and sizes in this room sitting everywhere!" : "stumble into a nest of spiders...");
+                You(FunnyHallu ? "notice spiders of all forms and sizes in this room sitting everywhere!" : "stumble into a nest of spiders...");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case GOLEMHALL:
-                You(Hallucination ? "encounter some warmeches!" : "enter a room full of golems!");
+                You(FunnyHallu ? "encounter some warmeches!" : "enter a room full of golems!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case TRAPROOM:
@@ -3525,110 +3525,110 @@ register boolean newlev;
                 if (wizard) You("enter a nasty central!");
                 break;
 	      case INSIDEROOM:
-                You(Hallucination ? "enter a normal-looking room." : "enter a weird-looking room...");
+                You(FunnyHallu ? "enter a normal-looking room." : "enter a weird-looking room...");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case RIVERROOM:
-                You(Hallucination ? "encounter an underground mountain! Wait, what? This makes no sense!" : "encounter an underground river!");
+                You(FunnyHallu ? "encounter an underground mountain! Wait, what? This makes no sense!" : "encounter an underground river!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case GRUEROOM:
-                pline(Hallucination ? "It is radiant bright. You are likely to be eaten by the sun." : "It is pitch black. You are likely to be eaten by a grue.");
+                pline(FunnyHallu ? "It is radiant bright. You are likely to be eaten by the sun." : "It is pitch black. You are likely to be eaten by a grue.");
 	    do_clear_areaX(u.ux,u.uy,		/* extra darkness --Amy */
 		15, set_litX, (void *)((char *)0));
 		/* IMHO grue rooms may remove light every time you enter them. --Amy */
 		    if (!issoviet) wake_nearby();
                 break;
 	      case CRYPTROOM:
-                You(Hallucination ? "forgot to bring your light source and can't see anything in this room." : "enter the dark crypts!");
+                You(FunnyHallu ? "forgot to bring your light source and can't see anything in this room." : "enter the dark crypts!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case TROUBLEZONE:
-                You(Hallucination ? "got tons of trouble, baby!" : "enter the trouble zone!");
+                You(FunnyHallu ? "got tons of trouble, baby!" : "enter the trouble zone!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case WEAPONCHAMBER:
-                You(Hallucination ? "see people with long pointy sticks who want to impale you!" : "enter a weapons chamber!");
+                You(FunnyHallu ? "see people with long pointy sticks who want to impale you!" : "enter a weapons chamber!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case HELLPIT:
-                pline(Hallucination ? "Gee, this looks exactly like the realms of Oblivion!" : "You enter the fiery pits of Hell!");
+                pline(FunnyHallu ? "Gee, this looks exactly like the realms of Oblivion!" : "You enter the fiery pits of Hell!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case FEMINISMROOM:
-                You(Hallucination ? "enter a room full of girls in sexy bikinis and high-heeled leather boots! WOW!" : "enter a feminist meeting room!");
+                You(FunnyHallu ? "enter a room full of girls in sexy bikinis and high-heeled leather boots! WOW!" : "enter a feminist meeting room!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case MEADOWROOM:
-                You(Hallucination ? "stumble into a ranch! Where's the cowboys and horses?" : "encounter a cattle meadow!");
+                You(FunnyHallu ? "stumble into a ranch! Where's the cowboys and horses?" : "encounter a cattle meadow!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case COOLINGCHAMBER:
-                You(Hallucination ? "entered the radiator area!" : "freeze as you enter the cooling chamber.");
+                You(FunnyHallu ? "entered the radiator area!" : "freeze as you enter the cooling chamber.");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case VOIDROOM:
-                pline(Hallucination ? "Your body warps strangely and you cease to exist... Do you want your possessions identified? [ynq] (n) _" : "You entered the Void!");
+                pline(FunnyHallu ? "Your body warps strangely and you cease to exist... Do you want your possessions identified? [ynq] (n) _" : "You entered the Void!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case HAMLETROOM:
-                pline(Hallucination ? "This room looks not dangerous at all." : "You've stumbled over a tiny hamlet!");
+                pline(FunnyHallu ? "This room looks not dangerous at all." : "You've stumbled over a tiny hamlet!");
 			if (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER)) {
-	            	pline(Hallucination ? "You feel that you've seen this before... it reminds you of the Woodstock Festival!" : "It looks familiar... didn't your adventures usually start in a similar place?");
+	            	pline(FunnyHallu ? "You feel that you've seen this before... it reminds you of the Woodstock Festival!" : "It looks familiar... didn't your adventures usually start in a similar place?");
 
 			}
 		    if (!issoviet) wake_nearby();
                 break;
 	      case KOPSTATION:
-                pline(Hallucination ? "As you enter the heavily guarded army base, bullets start flying in your direction! TAKE COVER!" : "You've entered the local police station!");
+                pline(FunnyHallu ? "As you enter the heavily guarded army base, bullets start flying in your direction! TAKE COVER!" : "You've entered the local police station!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case BOSSROOM:
-                You(Hallucination ? "were fated to die here. DIE!" : "feel that you will meet your fate here.");
+                You(FunnyHallu ? "were fated to die here. DIE!" : "feel that you will meet your fate here.");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case RNGCENTER:
-                You(Hallucination ? "enter a room that looks like it was designed by God Himself!" : "enter the Random Number Generator central!");
+                You(FunnyHallu ? "enter a room that looks like it was designed by God Himself!" : "enter the Random Number Generator central!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case WIZARDSDORM:
-                You(Hallucination ? "disturbed some old wizened fool that lives here, and now you have to kill that stupid git!" : "entered a wizard's dormitory!");
+                You(FunnyHallu ? "disturbed some old wizened fool that lives here, and now you have to kill that stupid git!" : "entered a wizard's dormitory!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case DOOMEDBARRACKS:
-                You(Hallucination ? "realize that the game has turned into DoomRL! Quick, ready your kalashnikov and BFG!" : "enter an alien barracks!");
+                You(FunnyHallu ? "realize that the game has turned into DoomRL! Quick, ready your kalashnikov and BFG!" : "enter an alien barracks!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case SLEEPINGROOM:
-                pline(Hallucination ? "I heard you were sleeping there." : "You stumble into a sleeping room!");
+                pline(FunnyHallu ? "I heard you were sleeping there." : "You stumble into a sleeping room!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case DIVERPARADISE:
-                You(Hallucination ? "enter a huge swimming pool, and the entrance is free! YEAH! Now you can splash around in the water and have many hours of pure FUN!" : "encounter the diver's paradise!");
+                You(FunnyHallu ? "enter a huge swimming pool, and the entrance is free! YEAH! Now you can splash around in the water and have many hours of pure FUN!" : "encounter the diver's paradise!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case MENAGERIE:
-                You(Hallucination ? "enter a zoo filled with prehistoric animals! Err... I really hope they're peaceful!" : "enter a menagerie!");
+                You(FunnyHallu ? "enter a zoo filled with prehistoric animals! Err... I really hope they're peaceful!" : "enter a menagerie!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case EMPTYDESERT:
-                pline(Hallucination ? "This looks like the Shifting Sand Land from Super Mario 64!" : "The air in this room is hot and arid.");
+                pline(FunnyHallu ? "This looks like the Shifting Sand Land from Super Mario 64!" : "The air in this room is hot and arid.");
                 break;
 	      case RARITYROOM:
-                pline(Hallucination ? "It's the dungeon master's rarity collection! Quick, steal it before he turns up!" : "You enter a room filled with rare creatures!");
+                pline(FunnyHallu ? "It's the dungeon master's rarity collection! Quick, steal it before he turns up!" : "You enter a room filled with rare creatures!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case EXHIBITROOM:
-                pline(Hallucination ? "Oh, look at all the zoo exhibits! Can I feed them? Can I pet them? Mind if I incinerate them?" : "You encounter an exhibit of strange creatures!");
+                pline(FunnyHallu ? "Oh, look at all the zoo exhibits! Can I feed them? Can I pet them? Mind if I incinerate them?" : "You encounter an exhibit of strange creatures!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case PRISONCHAMBER:
-                pline(Hallucination ? "Go directly to jail. Do not pass go. Do not collect 200 zorkmids." : "You enter a prison!");
-			if (Hallucination) pline("Do you want your possessions identified? [ynq] (n) _");
+                pline(FunnyHallu ? "Go directly to jail. Do not pass go. Do not collect 200 zorkmids." : "You enter a prison!");
+			if (FunnyHallu) pline("Do you want your possessions identified? [ynq] (n) _");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case NUCLEARCHAMBER:
-                pline(Hallucination ? "It's where the government is researching weaponized uranium! If you can steal their technology, you can nuke the entire dungeon and ascend prematurely!" : "You encounter a nuclear power plant!");
+                pline(FunnyHallu ? "It's where the government is researching weaponized uranium! If you can steal their technology, you can nuke the entire dungeon and ascend prematurely!" : "You encounter a nuclear power plant!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case LEVELSEVENTYROOM: /* no message but still wake_nearby --Amy */
@@ -3636,15 +3636,15 @@ register boolean newlev;
 		    if (!issoviet) wake_nearby();
                 break;
 	      case VARIANTROOM:
-                pline(Hallucination ? "The game suddenly turned into dnethack. The elder priest tentacles to tentacle you! Your cloak of magic resistance disintegrates!" : "You encounter a room from another variant!");
+                pline(FunnyHallu ? "The game suddenly turned into dnethack. The elder priest tentacles to tentacle you! Your cloak of magic resistance disintegrates!" : "You encounter a room from another variant!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case ROBBERCAVE:
-                pline(Hallucination ? "Oh my god, Amy's fanfics have come true!" : "You enter the robbers' hideout!");
+                pline(FunnyHallu ? "Oh my god, Amy's fanfics have come true!" : "You enter the robbers' hideout!");
 		    if (!issoviet) wake_nearby();
                 break;
 	      case SANITATIONCENTRAL:
-                pline(Hallucination ? "Muahahahahaha, you feel like focusing your gaze on a great race of yith because who needs sanity anyway?" : "Something seems to focus on your mind as you enter this room.");
+                pline(FunnyHallu ? "Muahahahahaha, you feel like focusing your gaze on a great race of yith because who needs sanity anyway?" : "Something seems to focus on your mind as you enter this room.");
 		    if (!issoviet) wake_nearby();
                 break;
 
@@ -3669,27 +3669,27 @@ register boolean newlev;
 		    if (!issoviet) wake_nearby();
 		    break;
 		case EVILROOM:
-			pline(Hallucination ? "Eek, you've stumbled into a SJW meeting!" : "The feel of this room is giving you the creeps.");
+			pline(FunnyHallu ? "Eek, you've stumbled into a SJW meeting!" : "The feel of this room is giving you the creeps.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case RELIGIONCENTER:
-			pline(Hallucination ? "Ugh, an overwhelming cancerous stench floods your nostrils as you enter this room!" : "This room smells like rotten holy water.");
+			pline(FunnyHallu ? "Ugh, an overwhelming cancerous stench floods your nostrils as you enter this room!" : "This room smells like rotten holy water.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case CURSEDMUMMYROOM:
-			pline(Hallucination ? "You entered the Pharao's chambers!" : "Things that should be dead are walking this room.");
+			pline(FunnyHallu ? "You entered the Pharao's chambers!" : "Things that should be dead are walking this room.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case ARDUOUSMOUNTAIN:
-			pline(Hallucination ? "You encounter an underground mountain. Wait, why the hell is there a mountain in the dungeon???" : "You encounter an underground mountain.");
+			pline(FunnyHallu ? "You encounter an underground mountain. Wait, why the hell is there a mountain in the dungeon???" : "You encounter an underground mountain.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case LEVELFFROOM:
-			pline(Hallucination ? "Hey, this room looks just like your own living room!" : "This room looks familiar, but somehow different too.");
+			pline(FunnyHallu ? "Hey, this room looks just like your own living room!" : "This room looks familiar, but somehow different too.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case VERMINROOM:
-			pline(Hallucination ? "Oh great, you entered a room full of shit." : "The air in this room is rank with mildew.");
+			pline(FunnyHallu ? "Oh great, you entered a room full of shit." : "The air in this room is rank with mildew.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case CHAOSROOM:
@@ -3702,33 +3702,33 @@ register boolean newlev;
 			if (wizard) pline("You enter a mixed pool!");
 		    break;
 		case MIRASPA:
-			pline(Hallucination ? "Whoa, this room totally smells of ammonia!" : "As you enter the room, you can hear Mira inviting you for a swim.");
+			pline(FunnyHallu ? "Whoa, this room totally smells of ammonia!" : "As you enter the room, you can hear Mira inviting you for a swim.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case MACHINEROOM:
-			pline(Hallucination ? "It's the inside of the Space Shuttle!" : "You enter a machinery room.");
+			pline(FunnyHallu ? "It's the inside of the Space Shuttle!" : "You enter a machinery room.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case SHOWERROOM:
-			pline(Hallucination ? "Wow! You seem to have found the Niagara Falls!" : "You enter the shower.");
+			pline(FunnyHallu ? "Wow! You seem to have found the Niagara Falls!" : "You enter the shower.");
 		    break;
 		case GREENCROSSROOM:
-			pline(Hallucination ? "Entering this room feels like being put in headlock by your wonderful fleecy roommate!" : "This room has a very peaceful atmosphere.");
+			pline(FunnyHallu ? "Entering this room feels like being put in headlock by your wonderful fleecy roommate!" : "This room has a very peaceful atmosphere.");
 		    break;
 		case RUINEDCHURCH:
-			pline(Hallucination ? "You enter Satan's chamber! Quick, ask him what is inferior to SLEX!" : "You enter a desecrated church.");
+			pline(FunnyHallu ? "You enter Satan's chamber! Quick, ask him what is inferior to SLEX!" : "You enter a desecrated church.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case GAMECORNER:
-			pline(Hallucination ? "You've entered the local Game Stop store! The storeclerk says: 'Hello sir or miss, what can I do for you? I have GTA 5, the newest Call of Duty and of course also the latest Pokemon generation games available!'" : "You encounter a game corner!");
+			pline(FunnyHallu ? "You've entered the local Game Stop store! The storeclerk says: 'Hello sir or miss, what can I do for you? I have GTA 5, the newest Call of Duty and of course also the latest Pokemon generation games available!'" : "You encounter a game corner!");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case ILLUSIONROOM:
-			pline(Hallucination ? "This room is an illusion and a trap devisut by Satan. Go ahead dauntlessly! Make rapid progres!" : "Somehow, this room doesn't seem to be what it looks like.");
+			pline(FunnyHallu ? "This room is an illusion and a trap devisut by Satan. Go ahead dauntlessly! Make rapid progres!" : "Somehow, this room doesn't seem to be what it looks like.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case CENTRALTEDIUM:
-			pline(Hallucination ? "It's the Straight Road! In order to get through this room, you need to stay on the road at all times and be fast or the Straight Road will weaken and ultimately be destroyed!" : "You encounter a highway to the left.");
+			pline(FunnyHallu ? "It's the Straight Road! In order to get through this room, you need to stay on the road at all times and be fast or the Straight Road will weaken and ultimately be destroyed!" : "You encounter a highway to the left.");
 		    break;
 		case TEMPLE:
 		    intemple(roomno + ROOMOFFSET);
@@ -4465,12 +4465,12 @@ boolean tellplayer;
 
 	u.contamination += amount;
 
-	if (u.contamination >= 100 && u.contamination < 200 && precheckamount < 100) pline(Hallucination ? "Your body itches comfortably." : "You are now afflicted with minor contamination.");
-	if (u.contamination >= 200 && u.contamination < 400 && precheckamount < 200) pline(Hallucination ? "The itching on your body increases." : "You are now afflicted with light contamination.");
-	if (u.contamination >= 400 && u.contamination < 600 && precheckamount < 400) pline(Hallucination ? "You seem to be developing ulcers." : "You are now afflicted with contamination.");
-	if (u.contamination >= 600 && u.contamination < 800 && precheckamount < 600) pline(Hallucination ? "You feel like your digestive tract started to digest itself." : "You are now afflicted with severe contamination.");
-	if (u.contamination >= 800 && u.contamination < 1000 && precheckamount < 800) pline(Hallucination ? "You feel that your body is consuming itself from within." : "You are now afflicted with lethal contamination.");
-	if (u.contamination >= 1000 && precheckamount < 1000) pline(Hallucination ? "You feel terminally ill. Something tells you that you only have three days to live." : "You are now afflicted with fatal contamination. Seek medical attention immediately.");
+	if (u.contamination >= 100 && u.contamination < 200 && precheckamount < 100) pline(FunnyHallu ? "Your body itches comfortably." : "You are now afflicted with minor contamination.");
+	if (u.contamination >= 200 && u.contamination < 400 && precheckamount < 200) pline(FunnyHallu ? "The itching on your body increases." : "You are now afflicted with light contamination.");
+	if (u.contamination >= 400 && u.contamination < 600 && precheckamount < 400) pline(FunnyHallu ? "You seem to be developing ulcers." : "You are now afflicted with contamination.");
+	if (u.contamination >= 600 && u.contamination < 800 && precheckamount < 600) pline(FunnyHallu ? "You feel like your digestive tract started to digest itself." : "You are now afflicted with severe contamination.");
+	if (u.contamination >= 800 && u.contamination < 1000 && precheckamount < 800) pline(FunnyHallu ? "You feel that your body is consuming itself from within." : "You are now afflicted with lethal contamination.");
+	if (u.contamination >= 1000 && precheckamount < 1000) pline(FunnyHallu ? "You feel terminally ill. Something tells you that you only have three days to live." : "You are now afflicted with fatal contamination. Seek medical attention immediately.");
 
 	/* if you got told that you were contaminated, and wisdom is low, give a warning --Amy */
 	if (tellplayer) {
@@ -4495,13 +4495,13 @@ register int amount;
 	u.contamination -= amount;
 	if (u.contamination < 0) u.contamination = 0;
 
-	if (u.contamination == 0 && precheckamount >= 1) pline(Hallucination ? "Your body feels completely normal again." : "Your contamination has faded away completely.");
-	if (u.contamination < 100 && u.contamination >= 1 && precheckamount >= 100) pline(Hallucination ? "Your body no longer itches." : "You are only very slightly contaminated now.");
-	if (u.contamination < 200 && u.contamination >= 100 && precheckamount >= 200) pline(Hallucination ? "The itching on your body decreases." : "Your contamination decreased to a low level.");
-	if (u.contamination < 400 && u.contamination >= 200 && precheckamount >= 400) pline(Hallucination ? "Your ulcers disappear." : "You are only lightly contaminated now.");
-	if (u.contamination < 600 && u.contamination >= 400 && precheckamount >= 600) pline(Hallucination ? "Your digestive tract seems okay now." : "Your contamination is no longer severe.");
-	if (u.contamination < 800 && u.contamination >= 600 && precheckamount >= 800) pline(Hallucination ? "Your body no longer tries to consume itself." : "You are only severely contaminated now.");
-	if (u.contamination < 1000 && u.contamination >= 800 && precheckamount >= 1000) pline(Hallucination ? "Your terminal illness has passed and you may actually survive." : "You are only lethally contaminated now.");
+	if (u.contamination == 0 && precheckamount >= 1) pline(FunnyHallu ? "Your body feels completely normal again." : "Your contamination has faded away completely.");
+	if (u.contamination < 100 && u.contamination >= 1 && precheckamount >= 100) pline(FunnyHallu ? "Your body no longer itches." : "You are only very slightly contaminated now.");
+	if (u.contamination < 200 && u.contamination >= 100 && precheckamount >= 200) pline(FunnyHallu ? "The itching on your body decreases." : "Your contamination decreased to a low level.");
+	if (u.contamination < 400 && u.contamination >= 200 && precheckamount >= 400) pline(FunnyHallu ? "Your ulcers disappear." : "You are only lightly contaminated now.");
+	if (u.contamination < 600 && u.contamination >= 400 && precheckamount >= 600) pline(FunnyHallu ? "Your digestive tract seems okay now." : "Your contamination is no longer severe.");
+	if (u.contamination < 800 && u.contamination >= 600 && precheckamount >= 800) pline(FunnyHallu ? "Your body no longer tries to consume itself." : "You are only severely contaminated now.");
+	if (u.contamination < 1000 && u.contamination >= 800 && precheckamount >= 1000) pline(FunnyHallu ? "Your terminal illness has passed and you may actually survive." : "You are only lethally contaminated now.");
 
 }
 

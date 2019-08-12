@@ -58,7 +58,7 @@ use_camera(obj)
 	register struct monst *mtmp;
 
 	if(Underwater) {
-		pline(Hallucination ? "You see tons of little fishes, jellyfish, seaweed and submarines..." : "Using your camera underwater would void the warranty.");
+		pline(FunnyHallu ? "You see tons of little fishes, jellyfish, seaweed and submarines..." : "Using your camera underwater would void the warranty.");
 		return(0);
 	}
 	if(!getdir((char *)0)) return(0);
@@ -133,7 +133,7 @@ use_towel(obj)
 		You("have no free %s!", body_part(HAND));
 		return 0;
 	} else if (obj->owornmask) {
-		You(Hallucination ? "cannot get that sticky thing off!" : "cannot use it while you're wearing it!");
+		You(FunnyHallu ? "cannot get that sticky thing off!" : "cannot use it while you're wearing it!");
 		return 0;
 	} else if (obj->cursed) {
 		long old;
@@ -235,7 +235,7 @@ int rx, ry, *resp;
 	if (!can_reach_floor()) return FALSE;
 
 	/* additional stethoscope messages from jyoung@apanix.apana.org.au */
-	if (Hallucination && sobj_at(CORPSE, rx, ry)) {
+	if (FunnyHallu && sobj_at(CORPSE, rx, ry)) {
 	    /* (a corpse doesn't retain the monster's sex,
 	       so we're forced to use generic pronoun here) */
 	    You_hear("a voice say, \"It's dead, Jim.\"");
@@ -434,7 +434,7 @@ use_stethoscope(obj)
 	if (memory_is_invisible(rx, ry)) {
 		unmap_object(rx, ry);
 		newsym(rx, ry);
-		Hallucination ? pline("No one there! Oh no, where have they gone?") : pline_The("invisible monster must have moved.");
+		FunnyHallu ? pline("No one there! Oh no, where have they gone?") : pline_The("invisible monster must have moved.");
 	}
 	lev = &levl[rx][ry];
 	switch(lev->typ) {
@@ -454,7 +454,7 @@ use_stethoscope(obj)
 	}
 
 	if (!its_dead(rx, ry, &res))
-	    You(Hallucination ? "hear something special." : "hear nothing special.");	/* not You_hear()  */
+	    You(FunnyHallu ? "hear something special." : "hear nothing special.");	/* not You_hear()  */
 	return res;
 }
 
@@ -517,17 +517,17 @@ struct obj *obj;
 	register struct monst *mtmp, *nextmon;
 
 	if(obj->cursed && !rn2(2)) {
-		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+		You(FunnyHallu ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 		wake_nearby();
 	} else if (!rn2(obj->blessed ? 200 : 50)) {
-		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+		You(FunnyHallu ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 		wake_nearby();
 
 	} else {
 		int pet_cnt = 0;
-		You(whistle_str, Hallucination ? "normal" : "strange");
+		You(whistle_str, FunnyHallu ? "normal" : "strange");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
@@ -555,15 +555,15 @@ struct obj *obj;
 	register struct monst *mtmp, *nextmon;
 
 	if(obj->cursed && !rn2(2)) {
-		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
+		You(FunnyHallu ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
 		badeffect();
 	} else if (!rn2(obj->blessed ? 200 : 50)) {
-		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
+		You(FunnyHallu ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
 		badeffect();
 	} else {
-		You(whistle_str, Hallucination ? "soothing" : "terrifying");
+		You(whistle_str, FunnyHallu ? "soothing" : "terrifying");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy pomnite, chto v kommunizm, igrayet muzyka zapreshchena?" : "Traaaaaaaa!");
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
@@ -655,7 +655,7 @@ struct obj *obj;
 	int spotmon;
 
 	if(!obj->leashmon && number_leashed() >= MAXLEASHED) {
-		You(Hallucination ? "futilely try to leash that bitch but it slips away!" : "cannot leash any more pets.");
+		You(FunnyHallu ? "futilely try to leash that bitch but it slips away!" : "cannot leash any more pets.");
 		return;
 	}
 
@@ -667,7 +667,7 @@ struct obj *obj;
 		    spotmon = 1;
 		    goto got_target;
 		}
-		pline(Hallucination ? "Wow, now is that a string-tanga or a leather belt? Hard to see with those colors..." : "Leash yourself?  Very funny...");
+		pline(FunnyHallu ? "Wow, now is that a string-tanga or a leather belt? Hard to see with those colors..." : "Leash yourself?  Very funny...");
 		return;
 	}
 
@@ -722,11 +722,11 @@ struct obj *obj;
 		return;
 	}
 	if(obj->leashmon != (int)mtmp->m_id) {
-		pline(Hallucination ? "It's not working! If you only knew why..." : "This leash is not attached to that creature.");
+		pline(FunnyHallu ? "It's not working! If you only knew why..." : "This leash is not attached to that creature.");
 		return;
 	} else {
 		if(obj->cursed) {
-			Hallucination ? pline("You pull and you pull, yet it just won't snap?!") : pline_The("leash would not come off!");
+			FunnyHallu ? pline("You pull and you pull, yet it just won't snap?!") : pline_The("leash would not come off!");
 			obj->bknown = TRUE;
 			return;
 		}
@@ -738,7 +738,7 @@ struct obj *obj;
 		if ((mtmp->data == &mons[PM_SUCCUBUS]) ||
 				(mtmp->data == &mons[PM_INCUBUS]))
 		{
-		    Hallucination ? pline("%s is suddenly getting all emo!", Monnam(mtmp)) : pline("%s is infuriated!", Monnam(mtmp));
+		    FunnyHallu ? pline("%s is suddenly getting all emo!", Monnam(mtmp)) : pline("%s is infuriated!", Monnam(mtmp));
 		    mtmp->mtame = 0;
 		    mtmp->mpeaceful = 0;
 		}
@@ -877,14 +877,14 @@ struct obj *obj;
 	if(!getdir((char *)0)) return 0;
 	if(obj->cursed && !rn2(2)) {
 		if (vis)
-			Hallucination ? pline("Trippy messy rainbow colors... wow!") : pline_The("mirror fogs up and doesn't reflect!");
+			FunnyHallu ? pline("Trippy messy rainbow colors... wow!") : pline_The("mirror fogs up and doesn't reflect!");
 		return 1;
 	}
 	if(!u.dx && !u.dy && !u.dz) {
 		if(vis && !Invisible) {
 		    if (u.umonnum == PM_FLOATING_EYE) {
 			if (!Free_action || !rn2(StrongFree_action ? 100 : 20)) {
-			pline(Hallucination ?
+			pline(FunnyHallu ?
 			      "Yow!  The mirror stares back!" :
 			      "Yikes!  You've frozen yourself!");
 			nomul(-rnd((MAXULEV+6) - u.ulevel), "gazing into a mirror", TRUE);
@@ -923,7 +923,7 @@ struct obj *obj;
 	}
 	if(Underwater) {
 		if (!obj->oinvis)
-		You(Hallucination ?
+		You(FunnyHallu ?
 		    "give the fish a chance to fix their makeup." :
 		    "reflect the murky water.");
 		return 1;
@@ -1051,11 +1051,11 @@ struct obj **optr;
 #ifdef	AMIGA
 	    amii_speaker( obj, "AhDhGqEqDhEhAqDqFhGw", AMII_MUFFLED_VOLUME );
 #endif
-	    pline(Hallucination ? "Sounds like a christmas song..." : "But the sound is muffled.");
+	    pline(FunnyHallu ? "Sounds like a christmas song..." : "But the sound is muffled.");
 
 	} else if (invoking && ordinary) {
 	    /* needs to be recharged... */
-	    pline(Hallucination ? "Where is the button? You can't seem to find it..." : "But it makes no sound.");
+	    pline(FunnyHallu ? "Where is the button? You can't seem to find it..." : "But it makes no sound.");
 	    learno = TRUE;	/* help player figure out why */
 
 	} else if (ordinary) {
@@ -1206,7 +1206,7 @@ register struct obj *obj;
 	}
 
 	if(Underwater) {
-		You(Hallucination ? "don't even know what this thing is good for." : "cannot make fire under water.");
+		You(FunnyHallu ? "don't even know what this thing is good for." : "cannot make fire under water.");
 		return;
 	}
 	if(obj->lamplit) {
@@ -1270,7 +1270,7 @@ struct obj **optr;
 		return;
 	}
 	if(Underwater) {
-		pline(Hallucination ? "This gearing seems to be made for use on dry land!" : "Sorry, fire and water don't mix.");
+		pline(FunnyHallu ? "This gearing seems to be made for use on dry land!" : "Sorry, fire and water don't mix.");
 		return;
 	}
 
@@ -1434,7 +1434,7 @@ struct obj *obj;
 	}
 
 	if(Underwater) {
-		pline(Hallucination ? "You fumble around with that thing but it won't work." : "This is not a diving lamp.");
+		pline(FunnyHallu ? "You fumble around with that thing but it won't work." : "This is not a diving lamp.");
 		return;
 	}
 	if(obj->lamplit) {
@@ -1545,7 +1545,7 @@ struct obj *obj;
 	return 0;
     }
     if (Underwater) {
-	pline(Hallucination ? "The crappy tool doesn't seem to do what you want it to do!" : "Sorry, fire and water don't mix.");
+	pline(FunnyHallu ? "The crappy tool doesn't seem to do what you want it to do!" : "Sorry, fire and water don't mix.");
 	return 0;
     }
     if (obj->quan > 1L) {
@@ -1582,7 +1582,7 @@ light_cocktail(obj)
 	}
 
 	if(Underwater) {
-		You(Hallucination ? "fumble around with the fuse but nothing happens." : "can't light this underwater!");
+		You(FunnyHallu ? "fumble around with the fuse but nothing happens." : "can't light this underwater!");
 		return;
 	}
 
@@ -1656,7 +1656,7 @@ dorub()
 		use_stone(obj);
 		return 1;
 	    } else {
-		pline(Hallucination ? "You rub it over your hand... better stop before you hurt yourself." : "Sorry, I don't know how to use that.");
+		pline(FunnyHallu ? "You rub it over your hand... better stop before you hurt yourself." : "Sorry, I don't know how to use that.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	    }
@@ -1731,7 +1731,7 @@ int magic; /* 0=Physical, otherwise skill level */
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
-		pline(Hallucination ? "It's all wobbly here, like a ship on a stormy sea!" : "You've got to be kidding!");
+		pline(FunnyHallu ? "It's all wobbly here, like a ship on a stormy sea!" : "You've got to be kidding!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
@@ -1742,7 +1742,7 @@ int magic; /* 0=Physical, otherwise skill level */
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
-		pline(Hallucination ? "You try to jump but that weird liquid stuff around you resists your attempts." : "This calls for swimming, not jumping!");
+		pline(FunnyHallu ? "You try to jump but that weird liquid stuff around you resists your attempts." : "This calls for swimming, not jumping!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
@@ -1814,16 +1814,16 @@ int magic; /* 0=Physical, otherwise skill level */
 		/* The Knight jumping restriction still applies when riding a
 		 * horse.  After all, what shape is the knight piece in chess?
 		 */
-		pline(Hallucination ? "The referee suggests you to try another move!" : "Illegal move!");
+		pline(FunnyHallu ? "The referee suggests you to try another move!" : "Illegal move!");
 		return 0;
 	} else if (distu(cc.x, cc.y) > (magic ? (6 + magic * 3 + (StrongJumping ? 3 : 0) ) : StrongJumping ? 12 : 9)) {
-		pline(Hallucination ? "Now that would be a world-class jump." : "Too far!");
+		pline(FunnyHallu ? "Now that would be a world-class jump." : "Too far!");
 		return 0;
 	} else if (!cansee(cc.x, cc.y)) {
-		You(Hallucination ? "are too afraid of grues that might lurk over there!" : "cannot see where to land!");
+		You(FunnyHallu ? "are too afraid of grues that might lurk over there!" : "cannot see where to land!");
 		return 0;
 	} else if (!isok(cc.x, cc.y)) {
-		You(Hallucination ? "see a cactus over there! Better not jump into it..." : "cannot jump there!");
+		You(FunnyHallu ? "see a cactus over there! Better not jump into it..." : "cannot jump there!");
 		return 0;
 	} else {
 	    coord uc;
@@ -1924,7 +1924,7 @@ register struct obj *obj;
 	 * moves, we've got to deal with decaying corpses...
 	 */
 	if (obj->spe <= 0) {
-		You(Hallucination ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
+		You(FunnyHallu ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
 	}
@@ -1963,7 +1963,7 @@ register struct obj *obj;
 		return;
 	}
 	if (mons[corpse->corpsenm].cnutrit == 0) {
-		pline(Hallucination ? "Huh... those bits are going everywhere but into the tin..." : "That's too insubstantial to tin.");
+		pline(FunnyHallu ? "Huh... those bits are going everywhere but into the tin..." : "That's too insubstantial to tin.");
 		return;
 	}
 
@@ -2054,7 +2054,7 @@ register struct obj *obj;
 	 * moves, we've got to deal with decaying corpses...
 	 */
 	if (obj->spe <= 0) {
-		You(Hallucination ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
+		You(FunnyHallu ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
 	}
@@ -2093,7 +2093,7 @@ register struct obj *obj;
 		return;
 	}
 	if (mons[corpse->corpsenm].cnutrit == 0) {
-		pline(Hallucination ? "Huh... those bits are going everywhere but into the tin..." : "That's too insubstantial to tin.");
+		pline(FunnyHallu ? "Huh... those bits are going everywhere but into the tin..." : "That's too insubstantial to tin.");
 		return;
 	}
 
@@ -2202,12 +2202,12 @@ struct obj *obj;
 degradeagain:
 	    if (obj->spe < 1) {
 	    useup(obj);
-	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+	    pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
 		return 1;
 	    } else {
 		obj->spe -= 1;
-		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+		pline(FunnyHallu ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		if (!rn2(3)) goto degradeagain;
 		if(obj->blessed && !rn2(10) )
@@ -2220,12 +2220,12 @@ degradeagain:
 	if (obj && obj->oartifact && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
 	    if (obj->spe < 1) {
 	    useup(obj);
-	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+	    pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
 		return 1;
 	    } else {
 		obj->spe -= 1;
-		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+		pline(FunnyHallu ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		if(obj->blessed && !rn2(10) )
 			unbless(obj);
@@ -2246,7 +2246,7 @@ degradeagain:
 		    break;
 	    case 2: if (!Confusion)
 			You("suddenly feel %s.",
-			    Hallucination ? "trippy" : "confused");
+			    FunnyHallu ? "trippy" : "confused");
 		    make_confused(HConfusion + lcount, TRUE);
 		    break;
 	    case 3: make_stunned(HStun + lcount, TRUE);
@@ -2456,7 +2456,7 @@ fixthings:
 		  (did_prop + did_attr) == (trouble_count + unfixable_trbl) ?
 		  "great" : "better");
 	else if (did_atno)
-	    pline(Hallucination ? "Bummer! It just beeps loudly!" : "Damn! It didn't work!");
+	    pline(FunnyHallu ? "Bummer! It just beeps loudly!" : "Damn! It didn't work!");
 	else if (!did_prop)
 	    pline("Nothing seems to happen.");
 
@@ -2826,7 +2826,7 @@ set_whetstone()
 		}
 	    reset_whetstone();
 	} else {
-	    if (Hallucination)
+	    if (FunnyHallu)
 		pline("%s %s must be faulty!",
 		    is_plural(ows) ? "These" : "This", xname(ows));
 	    else pline("%s", Blind ? "Pheww!  This is hard work!" :
@@ -2870,9 +2870,9 @@ struct obj *stone, *obj;
 	    && !IS_SINK(levl[u.ux][u.uy].typ) && !IS_TOILET(levl[u.ux][u.uy].typ)
 	    ) {
 	    if (carrying(POT_WATER) && objects[POT_WATER].oc_name_known) {
-		pline(Hallucination ? "You'd probably just spill it everywhere." : "Better not waste bottled water for that.");
+		pline(FunnyHallu ? "You'd probably just spill it everywhere." : "Better not waste bottled water for that.");
 	    } else
-		You(Hallucination ? "try to rub, but the stone just seems to get duller and duller?!" : "need some water when you use that.");
+		You(FunnyHallu ? "try to rub, but the stone just seems to get duller and duller?!" : "need some water when you use that.");
 	} else
 	if (Levitation && !Lev_at_will && !u.uinwater) {
 	    You("can't reach the water.");
@@ -2979,7 +2979,7 @@ struct obj *tstone;
 	    !obj_resists(obj, 80, 100)) {
 	if (Blind)
 	    You_feel("something shatter.");
-	else if (Hallucination)
+	else if (FunnyHallu)
 	    pline("Oh, wow, look at the pretty shards.");
 	else
 	    pline("A sharp crack shatters %s%s.",
@@ -3255,7 +3255,7 @@ struct obj *obj;
 
 	if(!isok(rx, ry)) { /* gotta fix that unneccessary segfault for once and for all! --Amy */
 
-	pline(Hallucination ? "You get a great rebound effect!" : "Your whip hits an invisible barrier.");
+	pline(FunnyHallu ? "You get a great rebound effect!" : "Your whip hits an invisible barrier.");
 	return(1);
 	}
 
@@ -3293,7 +3293,7 @@ struct obj *obj;
 	    /* Have a shot at snaring something on the floor */
 	    otmp = level.objects[u.ux][u.uy];
 	    if (otmp && otmp->otyp == CORPSE && otmp->corpsenm == PM_HORSE) {
-		pline(Hallucination ? "Crack! Some messy stuff flies around." : "Why beat a dead horse?");
+		pline(FunnyHallu ? "Crack! Some messy stuff flies around." : "Why beat a dead horse?");
 		return 1;
 	    }
 	    if (otmp && proficient) {
@@ -3371,7 +3371,7 @@ struct obj *obj;
     } else if (mtmp) {
 	if (!canspotmon(mtmp) &&
 		!memory_is_invisible(rx, ry)) {
-	   pline(Hallucination ? "Oh no, it hit some invisible barrier... or wait... that barrier must be a monster! Help!" : "A monster is there that you couldn't see.");
+	   pline(FunnyHallu ? "Oh no, it hit some invisible barrier... or wait... that barrier must be a monster! Help!" : "A monster is there that you couldn't see.");
 	   map_invisible(rx, ry);
 	}
 	otmp = MON_WEP(mtmp);	/* can be null */
@@ -3563,10 +3563,10 @@ use_pole (obj)
 	}
 
 	if (distu(cc.x, cc.y) > max_range) {
-	    pline(Hallucination ? "Your stick's not long enough, it seems!" : "Too far!");
+	    pline(FunnyHallu ? "Your stick's not long enough, it seems!" : "Too far!");
 	    return (res);
 	} else if (distu(cc.x, cc.y) < min_range) {
-	    pline(Hallucination ? "Your stick's too long, it seems!" : "Too close!");
+	    pline(FunnyHallu ? "Your stick's too long, it seems!" : "Too close!");
 	    return (res);
 	} else if (!cansee(cc.x, cc.y) && obj->otyp != DARK_BAR &&
 		   ((mtmp = m_at(cc.x, cc.y)) == (struct monst *)0 || !canseemon(mtmp))) {
@@ -3679,7 +3679,7 @@ use_pole (obj)
 				pline("Your ball sustains damage.");
 			} else {
 				uwepgone();              /* set unweapon */
-				pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 				useup(obj);
 				return (1);
@@ -3692,7 +3692,7 @@ use_pole (obj)
 				pline("Your weapon sustains damage.");
 			} else {
 				uwepgone();              /* set unweapon */
-				pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+				pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 				useup(obj);
 				return (1);
@@ -3703,13 +3703,13 @@ use_pole (obj)
 	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && obj->otyp == AKLYS && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 		if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
-			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+			pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 			useup(obj);
 			return (1);
 		} else {
 			obj->spe -= rnd(obj->spe);
-			pline(Hallucination ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
+			pline(FunnyHallu ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 	    }
@@ -3718,7 +3718,7 @@ use_pole (obj)
 
 		if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
 			uwepgone();              /* set unweapon */
-			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+			pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 			useup(obj);
 			return (1);
@@ -3846,7 +3846,7 @@ struct obj *obj;
 		several = TRUE;
 		obj = splitobj(obj, 1L);
 	}
-	if (Hallucination)
+	if (FunnyHallu)
 		You("give yourself a facial.");
 	else
 		pline("You immerse your %s in %s%s.", body_part(FACE),
@@ -3906,7 +3906,7 @@ use_grapple (obj)
 	else if (P_SKILL(typ) == P_SKILLED) max_range = 5;
 	else max_range = 8;
 	if (distu(cc.x, cc.y) > max_range) {
-		pline(Hallucination ? "Seems like you can't reach it!" : "Too far!");
+		pline(FunnyHallu ? "Seems like you can't reach it!" : "Too far!");
 		return (res);
 	} else if (!cansee(cc.x, cc.y)) {
 		You(cant_see_spot);
@@ -4377,7 +4377,7 @@ void use_floppies(struct obj *obj)
 	int x;
 
 	if (!Role_if(PM_GEEK) && !Role_if(PM_GRADUATE) && !Role_if(PM_CRACKER) && !Role_if(PM_SOFTWARE_ENGINEER) ) {
-		pline(Hallucination ? "Is this some old Atari or Commodore machine? It's not starting, it seems..." : "If only you knew what the heck this is ... ");
+		pline(FunnyHallu ? "Is this some old Atari or Commodore machine? It's not starting, it seems..." : "If only you knew what the heck this is ... ");
 		return;
 	}
 
@@ -4888,7 +4888,7 @@ doapply()
 		res = use_mirror(obj);
 		break;
 	case SPOON:
-		pline(Hallucination ? "Seems like exactly the thing needed to kill everything in one hit." : "It's a finely crafted antique spoon; what do you want to do with it?");
+		pline(FunnyHallu ? "Seems like exactly the thing needed to kill everything in one hit." : "It's a finely crafted antique spoon; what do you want to do with it?");
 		break;
 	case BELL:
 	case BELL_OF_OPENING:
@@ -5494,7 +5494,7 @@ doapply()
 		if (!obj->oarmed) {
 			You("arm %s.", yname(obj));
 			arm_bomb(obj, TRUE);
-		} else pline(Hallucination ? "Oh, CRAP! You hear the ticking of a bomb! Throw it away, NOW!" : "It's already armed!");
+		} else pline(FunnyHallu ? "Oh, CRAP! You hear the ticking of a bomb! Throw it away, NOW!" : "It's already armed!");
 		break;
 	case STICK_OF_DYNAMITE:
 		light_cocktail(obj);
@@ -5515,7 +5515,7 @@ doapply()
 			pline("There's a little badly burned moth in that relay!");
 			makeknown(RELAY);
 			if (Role_if(PM_GEEK) || Role_if(PM_GRADUATE) || Role_if(PM_CRACKER) || Role_if(PM_SOFTWARE_ENGINEER)) {
-				You_feel("remembered of %s.",Hallucination ? "when the net was flat" : "the old times");
+				You_feel("remembered of %s.",FunnyHallu ? "when the net was flat" : "the old times");
 				break;
 			}
 		}	/* fall through */
@@ -5524,7 +5524,7 @@ doapply()
 	case DIODE:
 	case TRANSISTOR:
 	case IC:
-		pline(Hallucination ? "Hmm... is this stuff edible?" : "You don't understand anything about electronics !!!");
+		pline(FunnyHallu ? "Hmm... is this stuff edible?" : "You don't understand anything about electronics !!!");
 		break;
 
 	case MATERIAL_KIT:

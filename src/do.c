@@ -970,7 +970,7 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_MAP_AMNESIA:
 		You("don't remember whether there was a toilet at all.");
-		if (Hallucination) You("also forgot that you have to take a crap, and shit your trousers by mistake.");
+		if (FunnyHallu) You("also forgot that you have to take a crap, and shit your trousers by mistake.");
 		break;
 	case AMULET_OF_DEPRESSION:
 		You("feel like you lost an important part of yourself.");
@@ -1026,7 +1026,7 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_EDIBILITY:
 		pline_The("toilet looks delicious! You wonder whether you can eat it.");
-		if (Hallucination) pline("In fact, it seems to have turned into an edible bra! Mmmmmmmmmmmmm... candy!");
+		if (FunnyHallu) pline("In fact, it seems to have turned into an edible bra! Mmmmmmmmmmmmm... candy!");
 		break;
 	case AMULET_OF_WAKING:
 		pline("Suddenly, a very loud flushing sound seems to jolt you back to your senses.");
@@ -1109,7 +1109,7 @@ register const char *word;
 			pline("For some reason, you cannot %s%s the stone%s!",
 			      word, obj->corpsenm ? " any of" : "",
 			      plur(obj->quan));
-			if (Hallucination) pline("Your fault for picking it up, you damn idiot!"); /* YANI by Yasdorian */
+			if (FunnyHallu) pline("Your fault for picking it up, you damn idiot!"); /* YANI by Yasdorian */
 		}
 		obj->corpsenm = 0;		/* reset */
 		obj->bknown = 1;
@@ -1477,7 +1477,7 @@ dodown()
 
 	if (NoStaircase && u.uhave.amulet && (stairs_down || ladder_down) ) {
 
-		pline(Hallucination ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
+		pline(FunnyHallu ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
 		return(0);
 
 	}
@@ -1652,7 +1652,7 @@ doup()
 
 	if (NoStaircase && !u.uhave.amulet ) {
 
-		pline(Hallucination ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
+		pline(FunnyHallu ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
 		return(0);
 
 	}
@@ -3110,7 +3110,7 @@ rerollchaloc:
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "Crash bugs probably abound here, the dungeon is likely to collapse soon..." : "The air around here seems charged with tension!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "Crash bugs probably abound here, the dungeon is likely to collapse soon..." : "The air around here seems charged with tension!");
 
 			for (i = 0; i < randsp; i++) {
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
@@ -3275,7 +3275,7 @@ rerollchaloc:
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
-				if (wizard || !rn2(10)) pline(Hallucination ? "Crash bugs probably abound here, the dungeon is likely to collapse soon..." : "The air around here seems charged with tension!");
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "Crash bugs probably abound here, the dungeon is likely to collapse soon..." : "The air around here seems charged with tension!");
 
 			for (i = 0; i < randsp; i++) {
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
@@ -3437,7 +3437,7 @@ rerollchaloc:
 			if (!rn2(10000)) randsp *= 10;
 			if (randsp > 1) randsp = rnd(randsp);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG exceptionally seems to be on your side..." : "You feel that there's lots of treasure to be found here!");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "The RNG exceptionally seems to be on your side..." : "You feel that there's lots of treasure to be found here!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -3457,7 +3457,7 @@ rerollchaloc:
 			if (!rn2(10000)) randsp *= 10;
 			if (randsp > 1) randsp = rnd(randsp);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG whispers to you: 'Today's your lucky day!'" : "You feel that there's lots of good stuff to be found here!");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "The RNG whispers to you: 'Today's your lucky day!'" : "You feel that there's lots of good stuff to be found here!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -3477,7 +3477,7 @@ rerollchaloc:
 			if (!rn2(10000)) randsp *= 10;
 			if (randsp > 1) randsp = rnd(randsp);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "The RNG's voice booms out: 'You were fated to die on this level. DIE!'" : "You feel that the monsters are exceptionally well-armed here!");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "The RNG's voice booms out: 'You were fated to die on this level. DIE!'" : "You feel that the monsters are exceptionally well-armed here!");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -3510,7 +3510,7 @@ rerollchaloc:
 			if (!rn2(10000)) randsp *= 10;
 			randmonstforspawn = rndmonst();
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "Very unstable architecture here, it seems..." : "It seems there might be lots of monsters around here...");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "Very unstable architecture here, it seems..." : "It seems there might be lots of monsters around here...");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -3596,7 +3596,7 @@ rerollchaloc:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "Uh... wow, what a strong color flash of rainbows!" : "You feel that a certain color might be prominent around here...");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "Uh... wow, what a strong color flash of rainbows!" : "You feel that a certain color might be prominent around here...");
 
 			for (i = 0; i < randsp; i++) {
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
@@ -3617,7 +3617,7 @@ rerollchaloc:
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "Very unstable architecture here, it seems..." : "It seems there might be lots of monsters around here...");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "Very unstable architecture here, it seems..." : "It seems there might be lots of monsters around here...");
 
 			for (i = 0; i < randsp; i++) {
 
@@ -3706,7 +3706,7 @@ rerollchaloc:
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "Uh... wow, what a strong color flash of rainbows!" : "You feel that a certain color might be prominent around here...");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "Uh... wow, what a strong color flash of rainbows!" : "You feel that a certain color might be prominent around here...");
 
 			for (i = 0; i < randsp; i++) {
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
@@ -3725,7 +3725,7 @@ rerollchaloc:
 			if (!rn2(10000)) randsp *= 10;
 			monstercolor = rnd(371);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
 
 			for (i = 0; i < randsp; i++) {
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
@@ -3747,7 +3747,7 @@ rerollchaloc:
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
-			if (wizard || !rn2(10)) pline(Hallucination ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
 
 			for (i = 0; i < randsp; i++) {
 				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
@@ -4271,7 +4271,7 @@ rerollchaloc:
 	    char buf[BUFSZ];
 	    int which = rn2(4);
 
-	    if (Hallucination)
+	    if (FunnyHallu)
 		mesg = halu_fam_msgs[which];
 	    else
 		mesg = fam_msgs[which];
@@ -4381,7 +4381,7 @@ final_level()
 				     mm.x, mm.y, FALSE);
 	    }
 	} else if (u.ualign.record > 8) {	/* fervent */
-	    if (Hallucination) pline("You hear Amy say \"Bundlebundlebundle!\""); /* thanks FlamingGuacamole */
+	    if (FunnyHallu) pline("You hear Amy say \"Bundlebundlebundle!\""); /* thanks FlamingGuacamole */
 	    else pline("A voice whispers: \"Thou hast been worthy of me!\"");
 	    mm.x = u.ux;
 	    mm.y = u.uy;
@@ -4484,7 +4484,7 @@ deferred_goto()
 
 	if (portaldeferring == TRUE && !program_state.gameover) {
 
-		pline(Hallucination ? "Things open up on the flipside!" : "The portal radiates strange energy, and monsters appear from nowhere!");
+		pline(FunnyHallu ? "Things open up on the flipside!" : "The portal radiates strange energy, and monsters appear from nowhere!");
 		pushplayer();
 		(void)nasty((struct monst *)0);
 		u.stairscumslowing += rn1(5,5);

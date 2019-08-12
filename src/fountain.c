@@ -492,7 +492,7 @@ drinkfountain()
 				}
 			} else {
 				You("cannot remember quaffing from the fountain.");
-				if (Hallucination) You("also cannot remember who Maud is supposed to be.");
+				if (FunnyHallu) You("also cannot remember who Maud is supposed to be.");
 				forget(1 + rn2(5));
 			}
 
@@ -859,7 +859,7 @@ int x, y;
     if (!rn2(3)) {
       if (!(mvitals[PM_BABY_CROCODILE].mvflags & G_GONE)) {
 	if (!Blind) {
-	    if (!Hallucination) pline("Oh no! Crocodiles come out from the pipes!");
+	    if (!FunnyHallu) pline("Oh no! Crocodiles come out from the pipes!");
 	    else pline("Oh no! Tons of poopies!");
 	} else
 	    You("hear something scuttling around you!");
@@ -1050,9 +1050,9 @@ newwere:
 				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 			}
                   break;
-            case 17: if (Hallucination)
+            case 17: if (FunnyHallu)
                   pline_The("water flies out of the plughole and into the faucet!");
-		case 19: if (Hallucination) {
+		case 19: if (FunnyHallu) {
 		   pline("From the murky drain, a hand reaches up... --oops--");
 				break;
 			}
@@ -1285,7 +1285,7 @@ register struct obj *obj;
 			break;
 		case 6: You_hear("snatches of song from among the sewers...");
 			break;
-		case 19: if (Hallucination) {
+		case 19: if (FunnyHallu) {
 		   pline("From the murky drain, a hand reaches up... --oops--");
 				break;
 			}

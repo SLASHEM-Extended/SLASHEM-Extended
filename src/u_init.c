@@ -42989,8 +42989,8 @@ polyinitredoX:
 
 	if (realityflag == 0) {
 
-		pline(Hallucination ? "You invoke the power of Eru Iluvator... err, Sauron. Whatever it's called." : "The power of Eru Iluvator flows through you!");
-		pline(Hallucination ? "Somehow, that did all of jack diddly." : "The world changes!");
+		pline(FunnyHallu ? "You invoke the power of Eru Iluvator... err, Sauron. Whatever it's called." : "The power of Eru Iluvator flows through you!");
+		pline(FunnyHallu ? "Somehow, that did all of jack diddly." : "The world changes!");
 	}
 
 	if (realityflag == 1 && !rn2(10)) {

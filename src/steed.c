@@ -287,7 +287,7 @@ mount_steed(mtmp, force)
 	}
 
 	/* Is the player in the right form? */
-	if (Hallucination && !force) {
+	if (FunnyHallu && !force) {
 	    pline("Maybe you should find a designated driver.");
 	    /*return (FALSE); well, if the horse is saddled, a hallucinating player should be able to ride it --Amy*/
 	}
@@ -655,7 +655,7 @@ dismount_steed(reason)
 		if (!mtmp->mnamelth) {
 			pline("You've been through the dungeon on %s with no name.",
 				an(mtmp->data->mname));
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("It felt good to get out of the rain.");
 		} else
 			You("dismount %s.", mon_nam(mtmp));

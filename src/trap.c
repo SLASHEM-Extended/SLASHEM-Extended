@@ -3836,7 +3836,7 @@ unsigned trflags;
 		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
 		    if (!Blind) {
 			seetrap(trap);
-			if (Hallucination)
+			if (FunnyHallu)
 				You("notice a crease in the linoleum.");
 			else
 				You("notice a loose board below you.");
@@ -3905,7 +3905,7 @@ unsigned trflags;
 		seetrap(trap);
 
 		pline("Uh-oh, should have watched your step...");
-		pline(Hallucination ? "Wow... you're suddenly walking on air!" : "You float up!");
+		pline(FunnyHallu ? "Wow... you're suddenly walking on air!" : "You float up!");
 
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, rnz(50));
@@ -4697,7 +4697,7 @@ newegomon:
 					}
 				} else {
 					You("cannot remember quaffing from the fountain.");
-					if (Hallucination) You("also cannot remember who Maud is supposed to be.");
+					if (FunnyHallu) You("also cannot remember who Maud is supposed to be.");
 					forget(1 + rn2(5));
 				}
 				break;
@@ -5174,7 +5174,7 @@ secureidchoice:
 		docrt();
 
 		pline("Suddenly, you realize that you forgot to think about Maud.");
-		if (Hallucination) pline("You also forgot that you were suffering from amnesia.");
+		if (FunnyHallu) pline("You also forgot that you were suffering from amnesia.");
 
 		break;
 
@@ -5438,7 +5438,7 @@ rerollX:
 
 		u.aggravation = 0;
 
-		pline(Hallucination ? "And she's buying a stairway to heaven... er, hell." : "From the dark stairway to hell, demons appear to surround you!");
+		pline(FunnyHallu ? "And she's buying a stairway to heaven... er, hell." : "From the dark stairway to hell, demons appear to surround you!");
 
 		deltrap(trap); /* only triggers once */
 		break;
@@ -5462,7 +5462,7 @@ rerollX:
 
 		u.aggravation = 0;
 
-		pline(Hallucination ? "Alien alert! I will kick you in the god damn ass! Shit these alien creeps are hot!" : "The barriers between the dungeon and the elemental planes have been breached!");
+		pline(FunnyHallu ? "Alien alert! I will kick you in the god damn ass! Shit these alien creeps are hot!" : "The barriers between the dungeon and the elemental planes have been breached!");
 
 		deltrap(trap); /* only triggers once */
 		break;
@@ -6776,7 +6776,7 @@ newbossPENT:
 		adjalign(-5);
 
 		You_feel("sinful...");
-		if (Hallucination) pline("But why would you care?");
+		if (FunnyHallu) pline("But why would you care?");
 
 		break;
 
@@ -7156,7 +7156,7 @@ newbossPENT:
 				}
 				break;
 			    case 14:
-				if (Hallucination)
+				if (FunnyHallu)
 					pline("What a groovy feeling!");
 				else
 					You(Blind ? "%s and get dizzy..." :
@@ -8745,7 +8745,7 @@ madnesseffect:
 			"You are crowded feebly.",
 			"has the belt pulled! Oh-No-(turn and turn)",
 			};
-			if (Confusion || Hallucination) {
+			if (Confusion || FunnyHallu) {
 			    int mess_num = rn2(SIZE(confmsg1));
 			    message = confmsg1[mess_num];
 			    message2 = confmsg2[mess_num];
@@ -8809,7 +8809,7 @@ madnesseffect:
 
 				if(is_undead(youmonst.data) || hates_silver(youmonst.data)) {
 
-					pline("Eek - this smells like %s!", Hallucination ? "priest's fart" : "exocism incense");
+					pline("Eek - this smells like %s!", FunnyHallu ? "priest's fart" : "exocism incense");
 					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"holy incense",KILLED_BY);
 
 				} else if(youbreath) {
@@ -8892,7 +8892,7 @@ madnesseffect:
 					u.uhs = 6; /* STARVED */
 					flags.botl = 1;
 					bot();
-				    You(Hallucination ? "fired the last match, and ascended with your grandmother..." : "faint from starvation, and died...");
+				    You(FunnyHallu ? "fired the last match, and ascended with your grandmother..." : "faint from starvation, and died...");
 					killer_format = KILLED_BY;
 					killer = "being caught in smell of gorgeous dinners which can't get";
 					done(DIED);
@@ -8972,7 +8972,7 @@ madnesseffect:
 				has_head(youmonst.data) ? body_part(HEAD) : "");
 			if ( Confusion )
 				You_hear("someone laughing.");
-			if (Hallucination) {
+			if (FunnyHallu) {
 				You(rn2(2) ? "saw stars!" : "can see stars yet.");
 				if (Confusion)
 					You_feel("cosmic lifestream.");
@@ -8999,7 +8999,7 @@ madnesseffect:
 		break;
 
 	    case ALARM:
-		pline((Hallucination|| Confusion) ?	"Oops! Alarm:" : "Oops! Here is alarm!");
+		pline((FunnyHallu || Confusion) ?	"Oops! Alarm:" : "Oops! Here is alarm!");
 		trap->once = 1;
 		seetrap(trap);
 		aggravate();
@@ -9617,7 +9617,7 @@ madnesseffect:
 
 		 case VENTILATOR:
 
-			if (Hallucination)
+			if (FunnyHallu)
 				You_hear("air current noises, and a remark by Amy about how sexy they are.");
 			else
 				You_hear("air current noises.");
@@ -14180,7 +14180,7 @@ int style;
 	switch (style) {
 	    case ROLL|LAUNCH_UNSEEN:
 			if (otyp == BOULDER) {
-			    You_hear(Hallucination ?
+			    You_hear(FunnyHallu ?
 				     "someone bowling." :
 				     "rumbling in the distance.");
 			}
@@ -16205,7 +16205,7 @@ uunstone()
 {
 	if (Stoned) {
 		Stoned = 0;
-		if (!Hallucination)
+		if (!FunnyHallu)
 			You_feel("limber!");
 	    else
 		pline("What a pity - you just ruined a future piece of %sart!",
@@ -16249,7 +16249,7 @@ float_up()
 		    is_animal(u.ustuck->data) ?
 			surface(u.ux, u.uy) :
 			mon_nam(u.ustuck));
-	else if (Hallucination)
+	else if (FunnyHallu)
 		pline("Up, up, and awaaaay!  You're walking on air!");
 	else if(Is_airlevel(&u.uz))
 		You("gain control over your movements.");
@@ -16349,7 +16349,7 @@ long hmask, emask;     /* might cancel timeout */
 		if (!(emask & W_SADDLE))
 		{
 		    boolean sokoban_trap = (In_sokoban(&u.uz) && trap);
-		    if (Hallucination)
+		    if (FunnyHallu)
 			pline("Bummer!  You've %s.",
 			      is_waterypool(u.ux,u.uy) ?
 			      "splashed down" : sokoban_trap ? "crashed" :
@@ -16776,7 +16776,7 @@ domagictrap()
 
 			break;
 	     case 14:
-			You_hear(Hallucination ? "the moon howling at you." : "distant howling.");
+			You_hear(FunnyHallu ? "the moon howling at you." : "distant howling.");
 
 			attempts = 0;
 			u.aggravation = 1;
@@ -16813,7 +16813,7 @@ newwere:
 				     "oddly " : "");
 			else
 			    You("suddenly yearn for %s.",
-				Hallucination ? "Cleveland" :
+				FunnyHallu ? "Cleveland" :
 			    (In_quest(&u.uz) || at_dgn_entrance("The Quest")) ?
 						"your nearby homeland" :
 						"your distant homeland");
@@ -16841,7 +16841,7 @@ newwere:
 			break;
 			}
 	     case 17:
-			You(Hallucination ? "smell hamburgers." : "smell charred flesh.");
+			You(FunnyHallu ? "smell hamburgers." : "smell charred flesh.");
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -17653,7 +17653,7 @@ drown()
 		Amphibious || Breathless || Swimming ? '.' : '!');
 	    if (!Swimming && !Is_waterlevel(&u.uz))
 		    You("sink like %s.",
-			Hallucination ? "the Titanic" : "a rock");
+			FunnyHallu ? "the Titanic" : "a rock");
 	}
 
 	if (level.flags.lethe) {
@@ -17690,7 +17690,7 @@ drown()
 			if (flags.verbose)
 				pline("But you aren't drowning.");
 			if (!Is_waterlevel(&u.uz)) {
-				if (Hallucination || (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ))
+				if (FunnyHallu || (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ))
 					Your("keel hits the bottom.");
 				else
 					You("touch bottom.");
@@ -19160,7 +19160,7 @@ boolean disarm;
 				Blind ? blindgas[rn2(SIZE(blindgas))] :
 				rndcolor(), the(xname(obj)));
 			if(!Stunned) {
-			    if (Hallucination)
+			    if (FunnyHallu)
 				pline("What a groovy feeling!");
 			    else if (Blind)
 				You("%s and get dizzy...",

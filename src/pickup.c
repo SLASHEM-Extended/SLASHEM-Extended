@@ -471,7 +471,7 @@ int what;		/* should be a long */
 	if (!u.uswallow) {
 		objchain = level.objects[u.ux][u.uy];
 		traverse_how = BY_NEXTHERE;
-	} else {pline(Hallucination ? "There's something embedded here, but you can't dislodge it..." : "You can't take items out of a monster's interior!"); 
+	} else {pline(FunnyHallu ? "There's something embedded here, but you can't dislodge it..." : "You can't take items out of a monster's interior!"); 
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return (0); /* otherwise the player could snatch worn amulets of life saving or similar stuff! --Amy */
 
@@ -2077,7 +2077,7 @@ boolean invobj;
 		You("must be kidding.");
 		return 0;
 	} else if (obj == current_container) {
-		pline(Hallucination ? "You try folding it with some ikebana technique but to no avail." : "That would be an interesting topological exercise.");
+		pline(FunnyHallu ? "You try folding it with some ikebana technique but to no avail." : "That would be an interesting topological exercise.");
 		return 0;
 	} else if (obj->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) {
 		Norep("You cannot %s %s you are wearing.",

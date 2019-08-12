@@ -12057,7 +12057,7 @@ register char *cmd;
 		if (TronEffectIsActive || SpellColorPink) {
 
 			pline("Some sinister force is preventing you from using the rush command.");
-			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (FunnyHallu) pline("Could this be the work of Arabella?");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			flags.move = FALSE;
 			return;
@@ -12075,7 +12075,7 @@ register char *cmd;
 		if (TronEffectIsActive || SpellColorPink) {
 
 			pline("Some sinister force is preventing you from using the run command.");
-			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (FunnyHallu) pline("Could this be the work of Arabella?");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			flags.move = FALSE;
 			return;
@@ -12112,7 +12112,7 @@ register char *cmd;
 		if (TronEffectIsActive || SpellColorPink) {
 
 			pline("Some sinister force is preventing you from using the run-no-pickup command.");
-			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (FunnyHallu) pline("Could this be the work of Arabella?");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			flags.move = FALSE;
 			return;
@@ -12144,7 +12144,7 @@ register char *cmd;
 		if (TronEffectIsActive || SpellColorPink) {
 
 			pline("Some sinister force is preventing you from using the meta-run command.");
-			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (FunnyHallu) pline("Could this be the work of Arabella?");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			flags.move = FALSE;
 			return;
@@ -12158,7 +12158,7 @@ register char *cmd;
 		if (TronEffectIsActive || SpellColorPink) {
 
 			pline("Some sinister force is preventing you from using whatever weird run command this is.");
-			if (Hallucination) pline("Could this be the work of Arabella?");
+			if (FunnyHallu) pline("Could this be the work of Arabella?");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			flags.move = FALSE;
 			return;
@@ -12625,7 +12625,7 @@ click_to_cmd(x, y, mod)
 
 	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
-		if (Hallucination) pline("Could this be the work of Arabella?");
+		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		cmd[0] = ' ';
 		return cmd;
@@ -12919,7 +12919,7 @@ dotravel()
 
 	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
-		if (Hallucination) pline("Could this be the work of Arabella?");
+		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 

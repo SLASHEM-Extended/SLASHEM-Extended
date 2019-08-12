@@ -922,13 +922,13 @@ self_invis_message()
 {
 	if(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ){
 	pline("%s %s.",
-	    Hallucination ? "Arr, Matey!  Ye" : "Avast!  All of a sudden, ye",
+	    FunnyHallu ? "Arr, Matey!  Ye" : "Avast!  All of a sudden, ye",
 	    See_invisible ? "can see right through yerself" :
 		"can't see yerself");
 	}
 	else{
 	pline("%s %s.",
-	    Hallucination ? "Far out, man!  You" : "Gee!  All of a sudden, you",
+	    FunnyHallu ? "Far out, man!  You" : "Gee!  All of a sudden, you",
 	    See_invisible ? "can see right through yourself" :
 		"can't see yourself");
 	}

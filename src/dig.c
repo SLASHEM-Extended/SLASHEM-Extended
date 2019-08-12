@@ -978,7 +978,7 @@ dig_up_grave()
 	    	otmp->age -= 100;		/* this is an *OLD* corpse */;
 	    break;
 	case 2:
-	    if (!Blind) pline(Hallucination ? "Dude!  The living dead!" :
+	    if (!Blind) pline(FunnyHallu ? "Dude!  The living dead!" :
  			"The grave's owner is very upset!");
 
 		if (Aggravate_monster) {
@@ -992,7 +992,7 @@ dig_up_grave()
 
 	    break;
 	case 3:
-	    if (!Blind) pline(Hallucination ? "I want my mummy!" :
+	    if (!Blind) pline(FunnyHallu ? "I want my mummy!" :
  			"You've disturbed a tomb!");
 
 		if (Aggravate_monster) {
@@ -1193,7 +1193,7 @@ struct obj *obj;
 			}
 			else {
 			    You("swing your %s through thin air.", aobjnam(obj, (char *)0));
-				if (Hallucination) pline("It creates erotic air current noises.");
+				if (FunnyHallu) pline("It creates erotic air current noises.");
 			}
 		} else {
 			static const char * const d_action[7][2] = {
@@ -1238,7 +1238,7 @@ struct obj *obj;
 	} else if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)) {
 		/* it must be air -- water checked above */
 		You("swing your %s through thin air.", aobjnam(obj, (char *)0));
-		if (Hallucination) pline("It creates erotic air current noises.");
+		if (FunnyHallu) pline("It creates erotic air current noises.");
 	} else if (!can_reach_floor()) {
 		You_cant("reach the %s.", surface(u.ux,u.uy));
 	} else if (is_waterypool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {

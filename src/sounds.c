@@ -68,7 +68,7 @@ dosounds()
 
     if (!flags.soundok || u.uswallow || Underwater) return;
 
-    hallu = Hallucination ? 1 : 0;
+    hallu = FunnyHallu ? 1 : 0;
 
     if (level.flags.nfountains && !rn2(400)) {
 	static const char * const fountain_msg[] = {
@@ -1925,7 +1925,7 @@ register struct monst *mtmp;
 	    pline_msg = "bellows.";
 	    break;
 	case MS_BONES:
-	    pline(Hallucination ? "%s plays the xylophone!" : "%s rattles noisily.", Monnam(mtmp));
+	    pline(FunnyHallu ? "%s plays the xylophone!" : "%s rattles noisily.", Monnam(mtmp));
 	    You("freeze for a moment.");
 	    nomul(-2, "scared by rattling", TRUE);
 	    nomovemsg = 0;
@@ -2074,7 +2074,7 @@ register struct monst *mtmp;
 					nomul(-2, "being banished", FALSE);
 				}
 				verbalize(!rn2(4) ? "Don't molest me ever again. If you do, I'll kick your hands bloodily with my dancing shoes." : !rn2(3) ? "Good riddance. Now get lost and annoy other girls instead." : !rn2(2) ? "Get lost before I start burning your arm with my candle." : "If you ever come back, I'm gonna extinguish my cigarette right in your face.");
-				if (Hallucination) pline("(She obviously likes assholes, you say to yourself.)");
+				if (FunnyHallu) pline("(She obviously likes assholes, you say to yourself.)");
 
 			}
 
@@ -2583,7 +2583,7 @@ register struct monst *mtmp;
 				u.ugold -= nursedecontcost;
 				decontaminate(u.contamination);
 				pline("Now you don't have the %d gold pieces any longer.", nursedecontcost);
-				if (Hallucination) pline("You offer a 'thank you' to Captain Obvious.");
+				if (FunnyHallu) pline("You offer a 'thank you' to Captain Obvious.");
 				u.nursedecontamcost += 500;
 				if (u.nursedecontamcost < 1000) u.nursedecontamcost = 1000; /* fail safe */
 				break;

@@ -394,7 +394,7 @@ register int trouble;
 		    delayed_killer = 0;
 		    break;
 	    case TROUBLE_SLIMED:
-		    Hallucination ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
+		    FunnyHallu ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
 		    Slimed = 0;
 		    flags.botl = 1;
 		    delayed_killer = 0;
@@ -523,7 +523,7 @@ decurse:
 		    update_inventory();
 		    break;
 	    case TROUBLE_POISONED:
-		    if (Hallucination)
+		    if (FunnyHallu)
 			pline("There's a tiger in your tank.");
 		    else
 			You_feel("in good health again.");
@@ -805,7 +805,7 @@ aligntyp resp_god;
 	switch (rn2(maxanger)) {
 	    case 0:
 	    case 1:	You_feel("that %s is %s.", align_gname(resp_god),
-			    Hallucination ? "bummed" : "displeased");
+			    FunnyHallu ? "bummed" : "displeased");
 			break;
 	    case 2:
 	    case 3:
@@ -1255,10 +1255,10 @@ pleased(g_align)
 
 	You_feel("that %s is %s.", align_gname(g_align),
 	    u.ualign.record >= DEVOUT ?
-	    Hallucination ? "pleased as punch" : "well-pleased" :
+	    FunnyHallu ? "pleased as punch" : "well-pleased" :
 	    u.ualign.record >= STRIDENT ?
-	    Hallucination ? "ticklish" : "pleased" :
-	    Hallucination ? "full" : "satisfied");
+	    FunnyHallu ? "ticklish" : "pleased" :
+	    FunnyHallu ? "full" : "satisfied");
 
 	/* not your deity */
 	if (on_altar() && p_aligntyp != u.ualign.type) {
@@ -1615,7 +1615,7 @@ STATIC_OVL void
 consume_offering(otmp)
 register struct obj *otmp;
 {
-    if (Hallucination)
+    if (FunnyHallu)
 	switch (rn2(3)) {
 	    case 0:
 		Your("sacrifice sprouts wings and a propeller and roars away!");
@@ -1784,7 +1784,7 @@ dosacrifice()
 	for(orac = fmon; orac; orac = orac->nmon)
 	    if (orac->data == &mons[PM_ORACLE]) break;
 	if (!orac || distu(orac->mx, orac->my) > 2 || !mon_visible(orac)) {
-	    pline(Hallucination ? "You hold your hands up in the air. Nobody seems to notice though." : "I see no one next to you to take a sacrifice.");
+	    pline(FunnyHallu ? "You hold your hands up in the air. Nobody seems to notice though." : "I see no one next to you to take a sacrifice.");
 	    return 0;
 	}
     }
@@ -2038,7 +2038,7 @@ dosacrifice()
 
     if (otmp->otyp == AMULET_OF_YENDOR) {
 	if (!Is_astralevel(&u.uz)) {
-	    if (Hallucination)
+	    if (FunnyHallu)
 		    You_feel("homesick.");
 	    else
 		    You_feel("an urge to return to the surface.");
@@ -2120,7 +2120,7 @@ dosacrifice()
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Davay! Predlozheniye amulet na nevernom altar'! Vy poluchite tysyachu bonusnykh ochkov, yesli vy delayete!" : "Daaaaaaaaaau dai dai.");
 	    if (!otmp->known) {
 		You("realize you have made a %s.",
-		    Hallucination ? "boo-boo" : "mistake");
+		    FunnyHallu ? "boo-boo" : "mistake");
 		otmp->known = TRUE;
 		change_luck(-1);
 		return 1;
@@ -2344,7 +2344,7 @@ dosacrifice()
 	if (Role_if(PM_POLITICIAN) && !rn2(5)) {
 
 	u.ugold += rnz(100);
-	pline(Hallucination ? "Bribe money! Yay!" : "Your budget is extended!");
+	pline(FunnyHallu ? "Bribe money! Yay!" : "Your budget is extended!");
 
 	}
 
@@ -2365,17 +2365,17 @@ dosacrifice()
 	    if(u.ugangr != saved_anger) {
 		if (u.ugangr) {
 		    pline("%s seems %s.", u_gname(),
-			  Hallucination ? "groovy" : "slightly mollified");
+			  FunnyHallu ? "groovy" : "slightly mollified");
 
 		    if ((int)u.uluck < 0) change_luck(1);
 		} else {
-		    pline("%s seems %s.", u_gname(), Hallucination ?
+		    pline("%s seems %s.", u_gname(), FunnyHallu ?
 			  "cosmic (not a new fact)" : "mollified");
 
 		    if ((int)u.uluck < 0) change_luck(1); /* used to be set to 0, gotta make it harder to get your luck back --Amy */
 		}
 	    } else { /* not satisfied yet */
-		if (Hallucination)
+		if (FunnyHallu)
 		    pline_The("gods seem tall.");
 		else You("have a feeling of inadequacy.");
 	    }
@@ -2390,13 +2390,13 @@ dosacrifice()
 	    if(u.ublesscnt < 0) u.ublesscnt = 0;
 	    if(u.ublesscnt != saved_cnt) {
 		if (u.ublesscnt) {
-		    if (Hallucination)
+		    if (FunnyHallu)
 			You("realize that the gods are not like you and I.");
 		    else
 			You("have a hopeful feeling.");
 		    if ((int)u.uluck < 0) change_luck(1);
 		} else {
-		    if (Hallucination)
+		    if (FunnyHallu)
 			pline("Overall, there is a smell of fried onions.");
 		    else
 			You("have a feeling of reconciliation.");
@@ -2475,7 +2475,7 @@ dosacrifice()
 	    if (u.uluck != saved_luck) {
 		if (Blind)
 		    You("think %s brushed your %s.",something, body_part(FOOT));
-		else You(Hallucination ?
+		else You(FunnyHallu ?
 		    "see crabgrass at your %s.  A funny thing in a dungeon." :
 		    "glimpse a four-leaf clover at your %s.",
 		    makeplural(body_part(FOOT)));

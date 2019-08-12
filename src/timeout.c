@@ -51,14 +51,14 @@ STATIC_OVL void
 phasing_dialogue()
 {
     if (Phasing == 15) {
-        if (!Hallucination) {
+        if (!FunnyHallu) {
             Your("body is beginning to feel more solid.");
         } else {
             You_feel("more distant from the spirit world.");
         }
         stop_occupation();
     } else if (Phasing == 1) {
-        if (!Hallucination) {
+        if (!FunnyHallu) {
             Your("body is solid again.");
         } else {
             You_feel("totally separated from the spirit world.");
@@ -2561,7 +2561,7 @@ nh_timeout()
 			break;
 		case BLACK_NG_WALLS:
 
-			pline(Hallucination ? "Rien ne va plus... You seem to remember this slogan being printed on all official Pokemon games' box covers. It's like 'Rien ne va plus' is the official Pokemon slogan!" : "Rien ne va plus...");
+			pline(FunnyHallu ? "Rien ne va plus... You seem to remember this slogan being printed on all official Pokemon games' box covers. It's like 'Rien ne va plus' is the official Pokemon slogan!" : "Rien ne va plus...");
 			/* Of course it's actually the Roulette slogan. --Amy */
 
 			if (Upolyd) losehp(u.mhmax, "failing to defeat Blacky in time", KILLED_BY);
@@ -3485,12 +3485,12 @@ slip_or_trip()
 		name; if not, look for rocks to trip over; trip over
 		anonymous "something" if there aren't any rocks.
 	     */
-	    pronoun = otmp->quan == 1L ? "it" : Hallucination ? "they" : "them";
+	    pronoun = otmp->quan == 1L ? "it" : FunnyHallu ? "they" : "them";
 	    what = !otmp->nexthere ? pronoun :
 		  (otmp->dknown || !Blind) ? doname(otmp) :
 		  ((otmp = sobj_at(ROCK, u.ux, u.uy)) == 0 ? something :
 		  (otmp->quan == 1L ? "a rock" : "some rocks"));
-	    if (Hallucination) {
+	    if (FunnyHallu) {
 		what = strcpy(buf, what);
 		buf[0] = highc(buf[0]);
 		pline("Egads!  %s bite%s your %s!",
@@ -3508,11 +3508,11 @@ slip_or_trip()
 	    if (on_foot) {
 		switch (rn2(4)) {
 		  case 1:
-			You("trip over your own %s.", Hallucination ?
+			You("trip over your own %s.", FunnyHallu ?
 				"elbow" : makeplural(body_part(FOOT)));
 			break;
 		  case 2:
-			You("slip %s.", Hallucination ?
+			You("slip %s.", FunnyHallu ?
 				"on a banana peel" : "and nearly fall");
 			break;
 		  case 3:
@@ -3569,7 +3569,7 @@ struct obj *obj;
 	switch (obj->where) {
 	    case OBJ_INVENT:
 		Your("lantern is getting dim.");
-		if (Hallucination)
+		if (FunnyHallu)
 		    pline("Batteries have not been invented yet.");
 		break;
 	    case OBJ_FLOOR:
@@ -3850,7 +3850,7 @@ long timeout;
 				}
 
 				/* post message */
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 					(many ? "They shriek!" :
 						"It shrieks!") :
 					Blind ? "" :

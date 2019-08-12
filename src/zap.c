@@ -3851,7 +3851,7 @@ newboss:
 
 		case WAN_AMNESIA:
 
-			if (Hallucination)
+			if (FunnyHallu)
 			    pline("Hakuna matata!");
 			else
 			    You_feel("your memories dissolve.");
@@ -4208,7 +4208,7 @@ secureidchoice:
 				}
 				break;
 			    case 14:
-				if (Hallucination)
+				if (FunnyHallu)
 					pline("What a groovy feeling!");
 				else
 					You(Blind ? "%s and get dizzy..." :
@@ -4360,7 +4360,7 @@ secureidchoice:
 
 		case WAN_CONFUSION:
 		if(!Confusion) {
-		    if (Hallucination) {
+		    if (FunnyHallu) {
 			pline("What a trippy feeling!");
 		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) )
 			pline("Blimey! Ye're one sheet to the wind!");
@@ -6902,7 +6902,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	static const char your[] = "your";	/* should be extern */
 
 	if (youdefend) {
-	    You(!Hallucination? "are covered in sparkling lights!"
+	    You(!FunnyHallu? "are covered in sparkling lights!"
 			      : "are enveloped by psychedelic fireworks!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
 	}
@@ -7169,7 +7169,7 @@ struct obj *obj;	/* wand or spell */
 		case SPE_STONE_TO_FLESH:
 		    if (e->engr_type == ENGRAVE) {
 			/* only affects things in stone */
-			pline_The(Hallucination ?
+			pline_The(FunnyHallu ?
 			    "floor runs like butter!" :
 			    "edges on the floor get smoother.");
 			wipe_engr_at(x, y, d(2,4));
@@ -10113,7 +10113,7 @@ retry:
 		/* another evil patch idea by jonadab: getting a wish causes amnesia as a side effect. */
 	    if (!rn2(100)) {
 		pline("Whoops... you wish you hadn't forgotten to think about Maud from all the thinking about what to wish for.");		
-		if (Hallucination) pline("You also wish you were able to remember that you suffer from amnesia.");
+		if (FunnyHallu) pline("You also wish you were able to remember that you suffer from amnesia.");
 		forget(1 + rn2(5));
 	    }
 	}

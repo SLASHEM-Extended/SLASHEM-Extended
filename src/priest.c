@@ -301,7 +301,7 @@ char *pname;		/* caller-supplied output buffer */
 				strcat(pname, "high ");
 			if (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])
 				strcat(pname, "elder ");
-			if (Hallucination)
+			if (FunnyHallu)
 				strcat(pname, "poohbah ");
 			else if (mon->female)
 				strcat(pname, "priestess ");
@@ -501,7 +501,7 @@ register struct monst *priest;
 		if (priest->mgold > 0L) {
 		    /* Note: two bits is actually 25 cents.  Hmm. */
 		    pline("%s gives you %s for an ale.", Monnam(priest),
-			Hallucination ? ((priest->mgold == 1L) ? "one bitcoin" : "two bitcoins") :
+			FunnyHallu ? ((priest->mgold == 1L) ? "one bitcoin" : "two bitcoins") :
 			(priest->mgold == 1L) ? "one bit" : "two bits");
 		    if (priest->mgold > 1L)
 			u.ugold = 2L;

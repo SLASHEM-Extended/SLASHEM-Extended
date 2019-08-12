@@ -313,7 +313,7 @@ dosit()
 
 		if (Sleep_resistance) {
 
-			pline(Hallucination ? "It seems you drank too much coffee and therefore cannot sleep." : "You can't seem to fall asleep.");
+			pline(FunnyHallu ? "It seems you drank too much coffee and therefore cannot sleep." : "You can't seem to fall asleep.");
 
 		} else if (!Sleep_resistance && (moves < u.bedsleeping)) {
 
@@ -322,7 +322,7 @@ dosit()
 		} else if (!Sleep_resistance && (moves >= u.bedsleeping)) {
 
 			You("go to bed.");
-			if (Hallucination) pline("Sleep-bundle-wing!");
+			if (FunnyHallu) pline("Sleep-bundle-wing!");
 			u.bedsleeping = moves + 100;
 			fall_asleep(-rnd(20), TRUE);
 
@@ -788,7 +788,7 @@ secureidchoice:
 		}
 
 		if (!flags.female) {
-			pline(Hallucination ? "You try to lay an egg, but instead you... okay let's not go there." : "Males can't lay eggs!");
+			pline(FunnyHallu ? "You try to lay an egg, but instead you... okay let's not go there." : "Males can't lay eggs!");
 			return 0;
 		}
 
@@ -1240,12 +1240,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 65 : 
 	case 66 : if (HSee_invisible & INTRINSIC) {
 			HSee_invisible &= ~INTRINSIC;
-			You("%s!", Hallucination ? "tawt you taw a puttie tat"
+			You("%s!", FunnyHallu ? "tawt you taw a puttie tat"
 						: "thought you saw something");
 		}
 		if (HSee_invisible & TIMEOUT) {
 			HSee_invisible &= ~TIMEOUT;
-			You("%s!", Hallucination ? "tawt you taw a puttie tat"
+			You("%s!", FunnyHallu ? "tawt you taw a puttie tat"
 						: "thought you saw something");
 		}
 		break;
@@ -1837,11 +1837,11 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		break;
 	case 195: if (HDimmopathy & INTRINSIC) {
 			HDimmopathy &= ~INTRINSIC;
-			You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+			You_feel(FunnyHallu ? "that your marriage is no longer safe..." : "worried about the future!");
 		}
 		if (HDimmopathy & TIMEOUT) {
 			HDimmopathy &= ~TIMEOUT;
-			You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+			You_feel(FunnyHallu ? "that your marriage is no longer safe..." : "worried about the future!");
 		}
 		break;
 	case 196: if (HFreezopathy & INTRINSIC) {

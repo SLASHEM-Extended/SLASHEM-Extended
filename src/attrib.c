@@ -1660,7 +1660,7 @@ exerchk()
 	    for(i = 0; i < A_MAX; AEXE(i++) /= 2) {
 
 		if (contaminated && i == A_WIS) {
-			pline(Hallucination ? "You have a severe coughing fit and an intense desire to vomit!" : "You are consumed by your contamination!");
+			pline(FunnyHallu ? "You have a severe coughing fit and an intense desire to vomit!" : "You are consumed by your contamination!");
 
 			/* Sustainer race has no way of improving wisdom and should therefore be resistant --Amy */
 			if (Race_if(PM_SUSTAINER) && rn2(10)) pline("But you resist the effects!");

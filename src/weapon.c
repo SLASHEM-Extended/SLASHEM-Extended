@@ -7694,7 +7694,7 @@ int lossamount;
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + lossamount, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + lossamount, TRUE);

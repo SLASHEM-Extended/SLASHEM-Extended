@@ -189,7 +189,7 @@ doread()
 		return 0;
 	    }
 	    if (scroll->where != OBJ_INVENT || !(scroll->owornmask & W_RING)) {
-		pline(Hallucination ? "The writing is so small, you'd need to take a closer look..." : "Perhaps you should put it on first.");
+		pline(FunnyHallu ? "The writing is so small, you'd need to take a closer look..." : "Perhaps you should put it on first.");
 		return 0;
 	    }
 	    if (scroll->dknown && objects[scroll->otyp].oc_name_known)
@@ -888,7 +888,7 @@ doread()
 	  else
 	    pline("As you read the scroll, it disappears.");
 	  if(confused) {
-	    if (Hallucination)
+	    if (FunnyHallu)
 		pline("Being so trippy, you screw up...");
 	    else
 		pline("Being confused, you mis%s the magic words...",
@@ -4735,13 +4735,13 @@ proofarmorchoice:
 	case SCR_REMOVE_CURSE:
 	    {	register struct obj *obj;
 		if(confused) {
-		    if (Hallucination)
+		    if (FunnyHallu)
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		} else {
-		    if (Hallucination)
+		    if (FunnyHallu)
 			You_feel("in touch with the Universal Oneness.");
 		    else
 			You_feel("like someone is helping you.");
@@ -5210,7 +5210,7 @@ proofarmorchoice:
 				}
 				break;
 			    case 14:
-				if (Hallucination)
+				if (FunnyHallu)
 					pline("What a groovy feeling!");
 				else
 					You(Blind ? "%s and get dizzy..." :
@@ -6062,10 +6062,10 @@ newboss:
 			/*if (!madepool && stilldry)
 				break;*/
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"It's getting a little bit tight in here!" :
 						"Walls and obstacles shoot up from the ground!" );
-			else pline(Hallucination ?
+			else pline(FunnyHallu ?
 						"You hear a grating that reminds you of Chinese water torture!" :
 						"You see dust particles flying around." );
 
@@ -6113,7 +6113,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Wow, that's, like, TOTALLY HOT, dude!" :
 						"A stream of lava surges through the area!" );
 			known = TRUE;
@@ -6158,7 +6158,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Hans Walt has hidden the diamonds here! Are you a badass enough hussy to steal them?" :
 						"Hans Walt erects grave walls!" );
 			known = TRUE;
@@ -6203,7 +6203,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"The course is driving through a tunnel and therefore your mobile phone does not go!" :
 						"It seems that construction workers have carved tunnels through the rock." );
 			known = TRUE;
@@ -6248,7 +6248,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"The Greens are forcing new nature preservation laws upon you!" :
 						"All the local farmers are claiming land on this dungeon level." );
 			known = TRUE;
@@ -6293,7 +6293,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"The Amy her roommate uses a wing-tufted facial expression on you! :-)" :
 						"Strange... the underground dungeon seems to become mountainous." );
 			known = TRUE;
@@ -6338,7 +6338,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Deep sea diving challenge! You must collect 50 clams in three minutes or lose the game automatically!" :
 						"Watery tunnels are erected!" );
 			known = TRUE;
@@ -6383,7 +6383,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Due to the laws of physics, the water flows upward." :
 						"Crystallized water appears on the ceiling." );
 			known = TRUE;
@@ -6428,7 +6428,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Watch out, the swamp holes are like shifting sand - you drown if you fall into them." :
 						"The dungeon gets swampy." );
 			known = TRUE;
@@ -6473,7 +6473,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Holy crap, you get to watch Mira create her 'swimming pools' firsthand..." :
 						"Mira pees all over the dungeon." );
 			known = TRUE;
@@ -6518,7 +6518,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Uh-oh, on one side you have a cube and there's a cute asian girl on the other! Both of them are deadly!" :
 						"Deadly sandholes appear." );
 			known = TRUE;
@@ -6563,7 +6563,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"A constant 'Jason... Jason... Jason...' chant is audible in the distance..." :
 						"Hellish green water flows into the dungeon!" );
 			known = TRUE;
@@ -6608,7 +6608,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"A hailstorm! Quick, find a shelter, because otherwise the hailstones will get bigger and bigger until they crush you!" :
 						"It starts snowing!" );
 			known = TRUE;
@@ -6653,7 +6653,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Mehrunes Dagon has opened yet another gate to Oblivion!" :
 						"The floor becomes red." );
 			known = TRUE;
@@ -6698,7 +6698,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Oh no, you're stranded in the desert and your water reserves are depleted! This is the end!" :
 						"Soft sand appears in the dungeon." );
 			known = TRUE;
@@ -6743,7 +6743,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Holy shit there are paved roads and large fountains and whoa you absolutely need to play part 2 of this game!" :
 						"Suddenly there are paved roads everywhere!" );
 			known = TRUE;
@@ -6788,7 +6788,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"DUDE! The secret entrance to the right is open! RUN, it will close in 100 turns!" :
 						"Highways are being built all over the dungeon!" );
 			known = TRUE;
@@ -6833,7 +6833,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"You sense the presence of a bunch of spies." :
 						"You feel the grass grow." );
 			known = TRUE;
@@ -6878,7 +6878,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Suddenly Galadriel throws you into the void, and you need to defeat Melkor before you can come back." :
 						"Purple mist appears." );
 			known = TRUE;
@@ -6923,7 +6923,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Team Piercer is attacking, even though they're actually rather rare." :
 						"Stalactites shoot out of the ceiling!" );
 			known = TRUE;
@@ -6968,7 +6968,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Argh! In your stupidity, you forgot to get the torch and now the crypts are completely dark!" :
 						"Seems you're in the crypt now." );
 			known = TRUE;
@@ -7013,7 +7013,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"There are some air bubbles... maybe you can reach higher places with them?" :
 						"Floating bubbles appear!" );
 			known = TRUE;
@@ -7058,7 +7058,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Suddenly, rain starts to pour down from the sky." :
 						"It starts to rain." );
 			known = TRUE;
@@ -7096,7 +7096,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Whoa, swimming pools and stuff!" :
 						"The dungeon is flooded!" );
 			known = TRUE;
@@ -7161,7 +7161,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Uh... everything is so... green!?" :
 						"You see trees growing out of the ground!" );
 			known = TRUE;
@@ -7207,7 +7207,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Damn, this is giving you the chills!" :
 						"The floor crackles with ice!" );
 			known = TRUE;
@@ -7279,7 +7279,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Wow! Floating clouds..." :
 						"Foggy clouds appear out of thin air!" );
 			known = TRUE;
@@ -7325,7 +7325,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Aw shit, this feels like being in a jail!" :
 						"Iron bars shoot up from the ground!" );
 			known = TRUE;
@@ -7365,7 +7365,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"Oh wow, look at all the stuff that is happening around you!" :
 						"What the heck is happening to the dungeon?!" );
 			known = TRUE;
@@ -7540,7 +7540,7 @@ newboss:
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
-				pline(Hallucination ?
+				pline(FunnyHallu ?
 						"A totally gnarly wave comes in!" :
 						"A flood surges through the area!" );
 			if (!stilldry && !Wwalking && !Flying && !Levitation)
@@ -7966,7 +7966,7 @@ randenchchoice:
 				HHalf_physical_damage &= ~TIMEOUT;
 				You_feel("less protected!");
 			} else {
-				if (Hallucination)
+				if (FunnyHallu)
 					You_feel("like a tough motherfucker!");
 				else
 					You("are resistant to normal damage.");
@@ -7990,7 +7990,7 @@ randenchchoice:
 			} else {
 				incr_itimeout(&HHalf_spell_damage, rnd(500));
 				if (sobj->blessed) incr_itimeout(&HHalf_spell_damage, rnd(500));
-				if (Hallucination)
+				if (FunnyHallu)
 					pline("Let the casting commence!");
 				else
 					You_feel("a sense of spell knowledge.");
@@ -8001,7 +8001,7 @@ randenchchoice:
 	case SCR_MAGIC_MAPPING:
 		if (level.flags.nommap) {
 		    Your("mind is filled with crazy lines!");
-		    if (Hallucination)
+		    if (FunnyHallu)
 			pline("Wow!  Modern art.");
 		    else
 			Your("%s spins in bewilderment.", body_part(HEAD));
@@ -8074,7 +8074,7 @@ randenchchoice:
 		known = TRUE;
 		forget(	(!sobj->blessed ? ALL_SPELLS : 0) |
 			(!confused || sobj->cursed ? ALL_MAP : 0) );
-		if (Hallucination) /* Ommmmmm! */
+		if (FunnyHallu) /* Ommmmmm! */
 			Your("mind releases itself from mundane concerns.");
 		else if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 			pline("As your mind turns inward on itself, you forget everything else.");
@@ -8089,7 +8089,7 @@ randenchchoice:
 		/* not known! You forget about this scroll while reading it :D --Amy */
 		forget(	(!sobj->blessed ? ALL_SPELLS : 0) |
 			(!confused || sobj->cursed ? ALL_MAP : 0) );
-		if (Hallucination) /* Ommmmmm! */
+		if (FunnyHallu) /* Ommmmmm! */
 			Your("mind releases itself from mundane concerns.");
 		else if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 			pline("As your mind turns inward on itself, you forget everything else.");
@@ -8286,9 +8286,9 @@ randenchchoice:
 			if (sobj->blessed) {
 				if (u.ugangr) {
 					u.ugangr--;
-					if (u.ugangr) pline("%s seems %s.", u_gname(), Hallucination ? "groovy" : "slightly mollified");
-					else pline("%s seems %s.", u_gname(), Hallucination ? "cosmic (not a new fact)" : "mollified");
-				} else pline("%s seems %s.", u_gname(), Hallucination ? "high above the clouds" : "content");
+					if (u.ugangr) pline("%s seems %s.", u_gname(), FunnyHallu ? "groovy" : "slightly mollified");
+					else pline("%s seems %s.", u_gname(), FunnyHallu ? "cosmic (not a new fact)" : "mollified");
+				} else pline("%s seems %s.", u_gname(), FunnyHallu ? "high above the clouds" : "content");
 			} else if (sobj->cursed) {
 				u.ugangr++;
 				prayer_done();
@@ -8805,7 +8805,7 @@ newbossC:
 		}
 		known = TRUE;
 		pline("Suddenly a pentagram is inscribed on the floor!");
-		if (Hallucination) pline("USEITUSEITUSEITUSEITUSEIT!"); /* thanks Antichthon :D */
+		if (FunnyHallu) pline("USEITUSEITUSEITUSEITUSEIT!"); /* thanks Antichthon :D */
 		levl[u.ux][u.uy].typ = PENTAGRAM;
 
 		break;
@@ -10060,7 +10060,7 @@ wandofchaosterrain()
 	if (!madepool && stilldry)
 		return;
 	if (madepool)
-		pline(Hallucination ?
+		pline(FunnyHallu ?
 				"Oh wow, look at all the stuff that is happening around you!" :
 				"What the heck is happening to the dungeon?!" );
 	return;

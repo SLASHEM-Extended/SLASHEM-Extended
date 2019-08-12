@@ -2293,7 +2293,7 @@ meatcorpse(mtmp)
 			pline("%s eats %s!", Monnam(mtmp),
 				distant_name(otmp,doname));
 		    else if (flags.soundok && flags.verbose) {
-			You(Hallucination ? "hear an alien's noises!" : "hear an awful gobbling noise!");
+			You(FunnyHallu ? "hear an alien's noises!" : "hear an awful gobbling noise!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy boites' ne meneye, vy malen'kiy rebenok? Postaraytes', chtoby ne ispachkat' sebya, kha-kha!" : "Kwololololo lololololo!");
 			}
 		    mtmp->meating = 2;
@@ -5231,7 +5231,7 @@ int how;
 	    mondied(mdef);
 
 	if (be_sad && mdef->mhp <= 0) {
-	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    You(FunnyHallu ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
 	}
 
@@ -5263,7 +5263,7 @@ mon_xkilled(mdef, fltxt, how)
 		xkilled(mdef,0);
 
 	if (be_sad && mdef->mhp <= 0) {
-	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    You(FunnyHallu ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
 	}
 }
@@ -5822,7 +5822,7 @@ cleanup:
 
 	if ( Role_if(PM_LADIESMAN) && !flags.female && mtmp->female && humanoid(mtmp->data) ) {
 
-	    You(Hallucination ? "feel very bad for killing your future wife." : "feel very bad for killing a defenseless woman.");
+	    You(FunnyHallu ? "feel very bad for killing your future wife." : "feel very bad for killing a defenseless woman.");
 	    adjalign(-25);
 		u.ualign.sins++; 
 		u.alignlim--;
@@ -5833,7 +5833,7 @@ cleanup:
 	/* Batman may not kill women, but you can be a female batman and it would be unfair to only punish males. --Amy */
 	if ( Race_if(PM_BATMAN) && ((!flags.female && mtmp->female) || (flags.female && !mtmp->female)) && humanoid(mtmp->data)) {
 
-	    Hallucination ? You_feel("very bad for killing your future %s.", flags.female ? "husband" : "wife") : You_feel("very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
+	    FunnyHallu ? You_feel("very bad for killing your future %s.", flags.female ? "husband" : "wife") : You_feel("very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
 	    adjalign(-25);
 		u.ualign.sins++; 
 		u.alignlim--;
@@ -5848,7 +5848,7 @@ cleanup:
 		if (always_peaceful(mdat)) { /* being penalized for killing maia, imperials etc. was just stupid. --Amy */
 		HTelepat &= ~INTRINSIC;
 		change_luck( u.ualign.type == A_LAWFUL ? -2 : -1); /* lower penalty for neutrals --Amy */
-		You(Hallucination ? "killed someone you weren't supposed to - whoops!" : "murderer!");
+		You(FunnyHallu ? "killed someone you weren't supposed to - whoops!" : "murderer!");
 
 		if (Role_if(PM_CELLAR_CHILD)) {
 			register int cellarvar = rnz(25000);
@@ -5943,7 +5943,7 @@ newbossA:
 	    adjalign((u.alignlim/4));
 	else if (mdat->msound == MS_GUARDIAN) {	/* Bad */
 	    adjalign(-(u.alignlim/8));
-	    if (!Hallucination) pline("That was probably a bad idea...");
+	    if (!FunnyHallu) pline("That was probably a bad idea...");
 	    else pline("Whoopsie-daisy!");
 	} else if (mtmp->ispriest) {
 		adjalign((p_coaligned(mtmp)) ? -2 : 2);
@@ -5954,7 +5954,7 @@ newbossA:
 	} else if (mtmp->mtame) {
 		adjalign(-50);	/* bad!! */
 		/* your god is mighty displeased... */
-		if (!Hallucination) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
+		if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
 		else You_hear("the studio audience applaud!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
 
@@ -5965,7 +5965,7 @@ newbossA:
 
 	} else if (mtmp->mpeaceful) {
 		adjalign(-15);
-		if (!Hallucination) pline("The gods will probably not appreciate this...");
+		if (!FunnyHallu) pline("The gods will probably not appreciate this...");
 		else pline("Whoopsie-daisy!");
 	}
 

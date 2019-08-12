@@ -499,7 +499,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !rn2(4) && mon->mcanmove ) {
 
 		pline("Your very elegant snakeskin boots stop %s in its tracks.", mon_nam(mon) );
-		if (Hallucination) pline("You wonder if the PETA activists saw that.");
+		if (FunnyHallu) pline("You wonder if the PETA activists saw that.");
 		mon->mcanmove = 0;
 		mon->mfrozen = rnd(10);
 		mon->mstrategy &= ~STRAT_WAITFORU;
@@ -669,7 +669,7 @@ register xchar x, y;
 
 	if(Levitation && !rn2(3) && verysmall(mon->data) && (!mon->egotype_flying) &&
 	   !is_flyer(mon->data)) {
-		pline(Hallucination ? "Your legs seem to have a mind of their own!" : "Floating in the air, you miss wildly!");
+		pline(FunnyHallu ? "Your legs seem to have a mind of their own!" : "Floating in the air, you miss wildly!");
 		exercise(A_DEX, FALSE);
 		(void) passive(mon, FALSE, 1, AT_KICK, FALSE);
 		return;
@@ -713,7 +713,7 @@ register xchar x, y;
 	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mon));
-		if (Hallucination) You("curse at Konami for designing it like that.");
+		if (FunnyHallu) You("curse at Konami for designing it like that.");
 		if (!rn2(30)) pline("Reminder: you must use something else in order to damage this monster!");
 		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
 		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
@@ -995,7 +995,7 @@ xchar x, y;
 			 trap->ttyp == WEB)) {
 		if (!trap->tseen && !trap->hiddentrap) find_trap(trap);
 		You_cant("kick %s that's in a %s!", something,
-			 Hallucination ? "tizzy" :
+			 FunnyHallu ? "tizzy" :
 			 (trap->ttyp == WEB) ? "web" : "pit");
 		return 1;
 	}
@@ -1307,7 +1307,7 @@ dokick()
 
 	if(!isok(x, y)) { /* gotta fix that unneccessary segfault for once and for all! --Amy */
 
-	pline(Hallucination ? "You get a great rebound effect!" : "Your kick hits an invisible barrier.");
+	pline(FunnyHallu ? "You get a great rebound effect!" : "Your kick hits an invisible barrier.");
 	return(1);
 	}
 
@@ -1682,7 +1682,7 @@ ouch:
 				return(1);
 			}
 
-		    pline(Hallucination ? "You stumped your little toe - ouch!" : "Ouch!  That hurts!");
+		    pline(FunnyHallu ? "You stumped your little toe - ouch!" : "Ouch!  That hurts!");
 		    exercise(A_DEX, FALSE);
 		    exercise(A_STR, FALSE);
 		    if (Blind) feel_location(x,y); /* we know we hit it */
@@ -1711,7 +1711,7 @@ dumb:
 			You("kick at empty space.");
 			if (Blind) feel_location(x,y);
 		} else {
-			pline(Hallucination ? "Argh... this feels like overdoing sports!" : "Dumb move!  You strain a muscle.");
+			pline(FunnyHallu ? "Argh... this feels like overdoing sports!" : "Dumb move!  You strain a muscle.");
 			exercise(A_STR, FALSE);
 			set_wounded_legs(RIGHT_SIDE, HWounded_legs + 5 + rnd(5));
 		}

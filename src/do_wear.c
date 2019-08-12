@@ -155,10 +155,10 @@ Boots_on()
 	case SYNTHETIC_SANDALS:
 		break;
 	case BOOTS_OF_MOLASSES:
-		pline(Hallucination ? "Icy legs, how cool!" : "These boots feel a little cold...");
+		pline(FunnyHallu ? "Icy legs, how cool!" : "These boots feel a little cold...");
 		break;
 	case ZIPPER_BOOTS:
-		pline(Hallucination ? "Lovely fleecy caressing feelings stream into your legs!" : "While putting on this pair of boots, their zippers try to scratch your legs!");
+		pline(FunnyHallu ? "Lovely fleecy caressing feelings stream into your legs!" : "While putting on this pair of boots, their zippers try to scratch your legs!");
 		losehp(rnd(20), "foolishly putting on a zipper boot", KILLED_BY);
 		break;
 	case HIPPIE_HEELS:
@@ -498,7 +498,7 @@ Boots_off()
 		}
 		break;
 	case ZIPPER_BOOTS:
-		pline(Hallucination ? "You get the feeling that something soft just slid along the full length of your legs!" : "While taking off this pair of boots, you scratch open your legs at their zippers!");
+		pline(FunnyHallu ? "You get the feeling that something soft just slid along the full length of your legs!" : "While taking off this pair of boots, you scratch open your legs at their zippers!");
 		losehp(rnd(20), "foolishly taking off a zipper boot", KILLED_BY);
 		    set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(35, 41));
 		    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(35, 41));
@@ -756,7 +756,7 @@ Cloak_on()
 		break;
 	case POISONOUS_CLOAK:
 		if (Poison_resistance && (StrongPoison_resistance || rn2(10)) )
-			pline(Hallucination ? "Very tight, like a latex shirt!" : "This cloak feels a little itchy.");
+			pline(FunnyHallu ? "Very tight, like a latex shirt!" : "This cloak feels a little itchy.");
 		else {
 		    makeknown(uarmc->otyp);
 		    poisoned("cloak",A_STR,"poisonous cloak",3);
@@ -896,7 +896,7 @@ Cloak_on()
 				polycloak->oldtyp = STRANGE_OBJECT;
 			}
 			if (uarmc) (void) Cloak_off();
-			You_feel("a little %s.", Hallucination ? "normal" : "strange");
+			You_feel("a little %s.", FunnyHallu ? "normal" : "strange");
 			if (!Unchanging) polyself(FALSE);
 			return 0;
 			break;
@@ -2068,7 +2068,7 @@ Gloves_on()
 
 	case GAUNTLETS_OF_SWIMMING:
 		if (u.uinwater) {
-		   pline(Hallucination ? "Suddenly, you're floating! Whee!" : "Hey! You can swim!");
+		   pline(FunnyHallu ? "Suddenly, you're floating! Whee!" : "Hey! You can swim!");
 		   spoteffects(TRUE);
 		}
 		break;

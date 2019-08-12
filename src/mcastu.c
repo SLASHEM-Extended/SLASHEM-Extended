@@ -746,7 +746,7 @@ int spellnum;
 	break;
     case MGC_CREATE_POOL:
 	if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
-	    pline(Hallucination ? "Huh - the ground suddenly turned into a swimming pool!" : "A pool appears beneath you!");
+	    pline(FunnyHallu ? "Huh - the ground suddenly turned into a swimming pool!" : "A pool appears beneath you!");
 	    levl[u.ux][u.uy].typ = POOL;
 	    del_engr_at(u.ux, u.uy);
 	    water_damage(level.objects[u.ux][u.uy], FALSE, TRUE);
@@ -759,7 +759,7 @@ int spellnum;
 
     case MGC_MEGALOAD:
 	if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
-	pline(Hallucination ? "Aww, something's killing your good feelings!" : "You feel burdened");
+	pline(FunnyHallu ? "Aww, something's killing your good feelings!" : "You feel burdened");
 	otmp->quan = 1;
 	otmp->owt = weight(otmp);
 	if (pickup_object(otmp, 1, FALSE, TRUE) <= 0) {
@@ -772,7 +772,7 @@ int spellnum;
 	break;
 
     case MGC_LEVITATE:
-	pline(Hallucination ? "Wow... you're suddenly walking on air!" : "You float up!");
+	pline(FunnyHallu ? "Wow... you're suddenly walking on air!" : "You float up!");
 	HLevitation &= ~I_SPECIAL;
 	incr_itimeout(&HLevitation, rnz(50));
 
@@ -781,12 +781,12 @@ int spellnum;
 
     case MGC_CLONE_WIZ:
 	if (mtmp->iswiz && (flags.no_of_wizards == 1 || !rn2(20)) ) { /* let's have a small chance of triple trouble --Amy */
-	    if (flags.no_of_wizards == 1) pline(Hallucination ? "Doublevision!" : "Double Trouble...");
-	    else pline(Hallucination ? "Triplevision!" : "Triple Trouble...");
+	    if (flags.no_of_wizards == 1) pline(FunnyHallu ? "Doublevision!" : "Double Trouble...");
+	    else pline(FunnyHallu ? "Triplevision!" : "Triple Trouble...");
 	    clonewiz();
 	    dmg = 0;
 	} else
-	    pline(Hallucination ? "For a moment you had triplevision, but seeing double is funny enough." : "For a moment you saw another Wizard, but it disappeared.");
+	    pline(FunnyHallu ? "For a moment you had triplevision, but seeing double is funny enough." : "For a moment you saw another Wizard, but it disappeared.");
 	break;
     case MGC_SUMMON_MONS:
     {
@@ -1628,7 +1628,7 @@ int spellnum;
 	case 31:
 	case 32:
 	case 33:
-	      pline(Hallucination ? "You suddenly feel like you're on cold turkey!" : "Your hands start trembling!"); /* disarm */
+	      pline(FunnyHallu ? "You suddenly feel like you're on cold turkey!" : "Your hands start trembling!"); /* disarm */
 		int glibberX;
 		glibberX = (rnz(1 + mtmp->m_lev));
 		    incr_itimeout(&Glib, glibberX);
@@ -1642,7 +1642,7 @@ int spellnum;
 		dmg = 0;
 		break;
 	case 37:
-	      pline(Hallucination ? "You feel like you just got dumped by your girlfriend!" : "You feel out of luck!"); /* dementor force */
+	      pline(FunnyHallu ? "You feel like you just got dumped by your girlfriend!" : "You feel out of luck!"); /* dementor force */
 			change_luck(-1);
 			if (!rn2(10)) change_luck(-5);
 			adjalign(-10);
@@ -1901,7 +1901,7 @@ int spellnum;
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    if (StrongHalf_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    make_confused(HConfusion + dmg, TRUE);
-	    if (Hallucination)
+	    if (FunnyHallu)
 		You_feel("%s!", oldprop ? "trippier" : "trippy");
 	    else
 		You_feel("%sconfused!", oldprop ? "more " : "");
@@ -1938,7 +1938,7 @@ int spellnum;
 	break;
     case CLC_SEPARATION:
 	u.ublesscnt += (dmg * 10);
-	pline(Hallucination ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
+	pline(FunnyHallu ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
 	dmg = 0;
 	break;
     case CLC_STAT_DRAIN:		/* drain a random stat */

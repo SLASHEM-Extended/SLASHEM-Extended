@@ -862,7 +862,7 @@ register struct monst *mtmp;
 	   (m_move(mtmp, 0) == 2 ||			    /* it died */
 	   mtmp->mx != u.ux+u.dx || mtmp->my != u.uy+u.dy)) { /* it moved */
 
-		if (Hallucination) pline("%s uses a pogo stick!", Monnam(mtmp));
+		if (FunnyHallu) pline("%s uses a pogo stick!", Monnam(mtmp));
 		else You("miss wildly and stumble forwards.");
 
 		/* evil variant by Amy: paralysis */
@@ -5496,7 +5496,7 @@ register struct attack *mattk;
 	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_IMMOVABLE_OBSTACLE] || mdef->data == &mons[PM_INVINCIBLE_HAEN] || mdef->data == &mons[PM_CHAREY] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mdef->data == &mons[PM_FIRST_DUNVEGAN] || mdef->data == &mons[PM_PERCENTI_HAS_LOST___] || mdef->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mdef));
-		if (Hallucination) You("curse at Konami for designing it like that.");
+		if (FunnyHallu) You("curse at Konami for designing it like that.");
 		if (!rn2(30)) pline("Reminder: you must use something else in order to damage this monster!");
 		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
 		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
@@ -7175,12 +7175,12 @@ use_weapon:
 
 				if (uwep && uwep->oartifact == ART_ANNOYING_DOG_WHISTLE) {
 					if (uwep->cursed && !rn2(2)) {
-						You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+						You(FunnyHallu ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 						wake_nearby();
 					} else {
 						register struct monst *wisselmon, *nextmon;
-						You("produce a %s whistling sound.", Hallucination ? "normal" : "strange");
+						You("produce a %s whistling sound.", FunnyHallu ? "normal" : "strange");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
 						for(wisselmon = fmon; wisselmon; wisselmon = nextmon) {
 						    nextmon = wisselmon->nmon; /* trap might kill mon */
@@ -7199,12 +7199,12 @@ use_weapon:
 				}
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ANNOYING_DOG_WHISTLE) {
 					if (uwep->cursed && !rn2(2)) {
-						You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+						You(FunnyHallu ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 						wake_nearby();
 					} else {
 						register struct monst *wisselmon, *nextmon;
-						You("produce a %s whistling sound.", Hallucination ? "normal" : "strange");
+						You("produce a %s whistling sound.", FunnyHallu ? "normal" : "strange");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
 						for(wisselmon = fmon; wisselmon; wisselmon = nextmon) {
 						    nextmon = wisselmon->nmon; /* trap might kill mon */
@@ -7899,7 +7899,7 @@ boolean ranged;
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + tmp, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + tmp, TRUE);
@@ -9434,7 +9434,7 @@ boolean ranged;
 				    break;
 			    case 2: if (!Confusion)
 					You("suddenly feel %s.",
-					    Hallucination ? "trippy" : "confused");
+					    FunnyHallu ? "trippy" : "confused");
 				    make_confused(HConfusion + tmp, TRUE);
 				    break;
 			    case 3: make_stunned(HStun + tmp, TRUE);
@@ -9483,7 +9483,7 @@ boolean ranged;
 			    break;
 		    case 2: if (!Confusion)
 				You("suddenly feel %s.",
-				    Hallucination ? "trippy" : "confused");
+				    FunnyHallu ? "trippy" : "confused");
 			    make_confused(HConfusion + tmp, TRUE);
 			    break;
 		    case 3: make_stunned(HStun + tmp, TRUE);
@@ -9902,7 +9902,7 @@ boolean ranged;
 			}
 			break;
 		    case 14:
-			if (Hallucination)
+			if (FunnyHallu)
 				pline("What a groovy feeling!");
 			else
 				You(Blind ? "%s and get dizzy..." :
