@@ -10333,6 +10333,7 @@ ghnhom4:
     {
 	register int u_depth = depth(&u.uz);
 	boolean gehxtra = FALSE;
+	boolean gehxtra2 = FALSE;
 
 #ifdef WIZARD
 	if(wizard && nh_getenv("SHOPTYPE")) mkroom(SHOPBASE); else
@@ -10529,8 +10530,8 @@ gehennomxtra:
 	}
 #ifdef BIGSLEX
 	/* big dungeon levels need more special rooms on average or they'll get boring quickly... */
-	if (!rn2(3) && !gehxtra) {
-		gehxtra = TRUE;
+	if (!rn2(3) && !gehxtra2) {
+		gehxtra2 = TRUE;
 		goto gehennomxtra;
 	}
 #endif
