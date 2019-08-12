@@ -5546,7 +5546,9 @@ struct obj *otmp;
 		|| (!strcmp(word, "untrap with") &&
 		    (otmp->oclass == TOOL_CLASS && otyp != CAN_OF_GREASE && otyp != LUBRICANT_CAN))
 		|| (!strcmp(word, "charge") && !is_chargeable(otmp))
-		|| (!strcmp(word, "duplicate") && (otmp->oclass == SCROLL_CLASS && !otmp->oartifact) )
+		|| (!strcmp(word, "duplicate") && !(otmp->oclass == SCROLL_CLASS && !otmp->oartifact) )
+		|| (!strcmp(word, "extracharge") && !(otmp->oclass == WAND_CLASS) )
+		|| (!strcmp(word, "polyfix") && !is_hazy(otmp) )
 		|| (!strcmp(word, "randomly enchant") && !is_enchantable(otmp))
 		|| (!strcmp(word, "poison") && !is_poisonable(otmp))
 		|| (!strcmp(word, "rustproof") && objects[(otmp)->otyp].oc_material == IRON)

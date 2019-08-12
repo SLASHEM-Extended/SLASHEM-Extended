@@ -23793,6 +23793,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"The goblin was so stupid and stepped into your s-pressing trap!",
 	"The goblin was so stupid and stepped into your s-pressing trap even though he clearly saw it! He must have had at most 5 intelligence.",
 	"You managed to shut the Christine bitch up! Good thing too, because all she ever did was spam you with garbage messages.",
+	"Your own farting noises deflect the hostile farting gas!",
+	"Your butt starts squeaking.",
+	"Your butt starts squeaking in a very female, sexy way.",
+	"The young man inhales your farting gas and feels bad!",
+	"The young man inhales your farting gas and feels bad! Do you actually have the weapons license that is required for having such a stinking fart butt? Because if not, the young man will now kall the kops.",
+	"You try to hug the monsters next to you!",
+	"You try to hug the monsters next to you! But sadly they aren't impressed, and proceed to tear you apart.",
+	"The bondage lover is infatuated with you and asks to become your slave!",
+	"The ammo you're wielding cannot be duplicated. Sorry. Please try some other type of ammo.",
+	"The ammo you're wielding cannot be duplicated. Sorry. Please try some other type of ammo. (Hint: only ammo whose enchantment is -5 or lower can be duplicated, which means this ability is actually rather useless.)",
 
 };
 

@@ -1663,6 +1663,12 @@ ask_about_trap(int x, int y)
 
 	if (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) return FALSE;
 
+	/* hallu means you cannot tell traps apart, and we used to make it so that you never get any confirmation;
+	 * it's much more fair if you always get one though --Amy
+	 * what we definitely cannot do is make it give the confirmation depending on what trap it is, because that would
+	 * be leaking info */
+	if (Hallucination && (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist)) return TRUE;
+
 	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && !Hallucination)  {
 
 		/* who the heck included this? Maybe the player doesn't really want to use the portal at all! --Amy */
@@ -1676,6 +1682,10 @@ ask_about_trap(int x, int y)
 			return TRUE;
 		if (Role_if(PM_FAILED_EXISTENCE) && Is_qlocate(&u.uz))
 			return TRUE;
+
+		if (traphere->ttyp == S_PRESSING_TRAP) {
+			return FALSE;
+		}
 
 		if (Levitation || Flying) {
 			if (!In_sokoban(&u.uz) && traphere->ttyp == PIT) {

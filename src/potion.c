@@ -27,6 +27,7 @@ STATIC_PTR void set_litI(int,int,void *);
 STATIC_DCL void healup_mon(struct monst *, int,int,BOOLEAN_P,BOOLEAN_P);
 	/* For healing monsters - analogous to healup for players */
 
+#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
 
 /* force `val' to be within valid range for intrinsic timeout value */
 STATIC_OVL long
@@ -3565,6 +3566,20 @@ reallybadeffect()
 		break;
 	}
 
+}
+
+boolean
+extralongsqueak()
+{
+	if (tech_inuse(T_EXTRA_LONG_SQUEAK)) {
+		int squeakchance = 20;
+		squeakchance += techlevX(get_tech_no(T_EXTRA_LONG_SQUEAK));
+		if (rnd(100) < squeakchance) {
+			pline("Your own farting noises deflect the hostile farting gas!");
+			return TRUE;
+		}
+	}
+	return FALSE;
 }
 
 void

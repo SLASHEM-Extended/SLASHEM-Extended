@@ -1844,6 +1844,24 @@ moveloop()
 
 			} /* monster is catchable loop */
 		    } /* for loop */
+		}
+
+		if (tech_inuse(T_EXTRA_LONG_SQUEAK)) {
+			struct monst *mtmp3;
+			int k, l;
+
+		    for (k = -3; k <= 3; k++) for(l = -3; l <= 3; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->mpeaceful == 0) {
+
+				if (humanoid(mtmp3->data) && !resist(mtmp3, RING_CLASS, 0, NOTELL) && !mtmp3->female) {
+					mtmp3->mhp -= techlevX(get_tech_no(T_EXTRA_LONG_SQUEAK));
+					if (cansee(mtmp3->mx,mtmp3->my)) pline("%s inhales your farting gas and feels bad!", Monnam(mtmp3));
+					if (mtmp3->mhp < 1) killed(mtmp3);
+				}
+
+			} /* monster is catchable loop */
+		    } /* for loop */
 
 		}
 
@@ -2825,7 +2843,7 @@ trapsdone:
 		if (FemaleTrapMaurah && !rn2(100)) {
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
-			badeffect();
+			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
 		}
@@ -2833,7 +2851,7 @@ trapsdone:
 		if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && !rn2(100)) {
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
-			badeffect();
+			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
 		}
@@ -2895,7 +2913,7 @@ trapsdone:
 				case 2:
 					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
 					if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) healup((level_difficulty() + 5), 0, FALSE, FALSE);
-					else badeffect();
+					else if (!extralongsqueak()) badeffect();
 					break;
 				case 3:
 					pline("Elif suddenly uses her very sharp-edged female fingernails and cuts your unprotected skin!");
@@ -6154,6 +6172,7 @@ newbossB:
 					hussytraptype = rnd(TRAPNUM-1);
 					if (hussytraptype == MAGIC_PORTAL) hussytraptype = ROCKTRAP;
 					if (hussytraptype == WISHING_TRAP) hussytraptype = BLINDNESS_TRAP;
+					if (hussytraptype == S_PRESSING_TRAP) hussytraptype = ROCKTRAP;
 					if (In_sokoban(&u.uz) && rn2(10) && (hussytraptype == HOLE || hussytraptype == TRAPDOOR || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT || hussytraptype == PIT || hussytraptype == SPIKED_PIT || hussytraptype == GIANT_CHASM || hussytraptype == SHIT_PIT || hussytraptype == MANA_PIT || hussytraptype == ANOXIC_PIT || hussytraptype == ACID_PIT)) hussytraptype = ROCKTRAP;
 					if (In_sokoban(&u.uz) && rn2(100) && hussytraptype == NUPESELL_TRAP) hussytraptype = FIRE_TRAP;
 					if (hussytraptype == ELDER_TENTACLING_TRAP) hussytraptype = FIRE_TRAP;

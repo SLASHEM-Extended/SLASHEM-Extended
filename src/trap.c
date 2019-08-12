@@ -2340,6 +2340,7 @@ register int x, y, typ, replacechance;
 	if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && (rnd(u.freqtrapbonus + 200) > 200)) {
 		typ = u.frequenttrap;
 		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
+		if (typ == S_PRESSING_TRAP) typ = ROCKTRAP;
 		if (typ == WISHING_TRAP) typ = BLINDNESS_TRAP;
 		if (In_sokoban(&u.uz) && rn2(10) && (typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT || typ == PIT || typ == SPIKED_PIT || typ == GIANT_CHASM || typ == SHIT_PIT || typ == MANA_PIT || typ == ANOXIC_PIT || typ == ACID_PIT)) typ = ROCKTRAP;
 		if (In_sokoban(&u.uz) && rn2(100) && typ == NUPESELL_TRAP) typ = FIRE_TRAP;
@@ -2360,7 +2361,7 @@ register int x, y, typ, replacechance;
 		typ = rnd(TRAPNUM-1);
 		if (In_sokoban(&u.uz) && rn2(10) && (typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT || typ == PIT || typ == SPIKED_PIT || typ == GIANT_CHASM || typ == SHIT_PIT || typ == MANA_PIT || typ == ANOXIC_PIT || typ == ACID_PIT)) typ = ROCKTRAP;
 		if (In_sokoban(&u.uz) && rn2(100) && typ == NUPESELL_TRAP) typ = FIRE_TRAP;
-		while (typ == MAGIC_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == DATA_DELETE_TRAP || typ == ELDER_TENTACLING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
+		while (typ == MAGIC_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == S_PRESSING_TRAP || typ == DATA_DELETE_TRAP || typ == ELDER_TENTACLING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
 	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && uarmh && uarmh->oartifact == ART_BOMB_BLOW && !rn2(100)) {
 		typ = CATACLYSM_TRAP;
 	}
@@ -3564,7 +3565,7 @@ unsigned trflags;
 			badeffect();
 		}
 
-		badeffect();
+		if (!extralongsqueak()) badeffect();
 
 		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
@@ -15278,8 +15279,8 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 		case S_PRESSING_TRAP:
 
-			if (!mtmp->mpeaceful && !mtmp->mtame) {
-				pline("%s was so stupid and stepped into your s-pressing trap!", Monnam(mtmp));
+			if (!mtmp->mpeaceful && !mtmp->mtame && !mtmp->spressingseen && !canseemon(mtmp)) {
+				pline("%s was so stupid and stepped into your s-pressing trap!", noit_Monnam(mtmp));
 				if (thitm(0, mtmp, (struct obj *)0, trap->launch_otyp, FALSE))
 					trapkilled = TRUE;
 			}
@@ -19461,7 +19462,7 @@ fartingweb()
 		badeffect();
 	}
 
-	badeffect();
+	if (!extralongsqueak()) badeffect();
 
 	if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 		pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));

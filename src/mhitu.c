@@ -1218,7 +1218,7 @@ elena23:
 
 			if (FemaleTrapJessica && !rn2(3)) {
 				pline("Your tender butt cheeks are stimulated by %s's caressing touch... and you start producing tender farting noises.", mon_nam(mtmp));
-				badeffect();
+				if (!extralongsqueak()) badeffect();
 			}
 
 			if (mtmp->data == &mons[PM_BLACK_DEATH]) { /* lose one maximum HP --Amy */

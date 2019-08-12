@@ -1431,8 +1431,10 @@ int thrown;
 			    WEAPON_CLASS, EXPL_FIERY);
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
-		obfree(obj, (struct obj *)0);
-		return;
+		if (!(tech_inuse(T_BULLETREUSE)) || rn2(3)) {
+			obfree(obj, (struct obj *)0);
+			return;
+		}
 	    } else if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		obfree(obj, (struct obj *)0);
@@ -1576,8 +1578,10 @@ int thrown;
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) &&
 		!is_grenade(obj))) {
 	    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
-	    obfree(obj, (struct obj *)0);
-	    return;
+	    if (!(tech_inuse(T_BULLETREUSE)) || rn2(3)) {
+			obfree(obj, (struct obj *)0);
+			return;
+	    }
 	}
 
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {

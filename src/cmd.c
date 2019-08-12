@@ -1558,7 +1558,7 @@ domonability()
 				badeffect();
 				badeffect();
 			}
-			badeffect();
+			if (!extralongsqueak()) badeffect();
 
 			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
@@ -1598,7 +1598,7 @@ domonability()
 				badeffect();
 				badeffect();
 			}
-			badeffect();
+			if (!extralongsqueak()) badeffect();
 
 			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
@@ -1638,7 +1638,7 @@ domonability()
 				badeffect();
 				badeffect();
 			}
-			badeffect();
+			if (!extralongsqueak()) badeffect();
 
 			if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));

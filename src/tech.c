@@ -2716,7 +2716,7 @@ dotech()
 			break;
 
 		case T_S_PRESSING:
-			pline("This technique works only if there's no trap on your current location. It also requires 500 points of nutrition. If you fulfill those requirements, you create a trap at your location that can only affect hostile monsters and deals damage relative to your squeaking skill and technique level.");
+			pline("This technique works only if there's no trap on your current location. It also requires 500 points of nutrition. If you fulfill those requirements, you create a trap at your location that can only affect hostile monsters and deals damage relative to your squeaking skill and technique level. However, only monsters that didn't see you create the trap can trigger it and they can also only ever trigger it while they're outside of your line of sight!");
 			break;
 
 		case T_MELTEE:
@@ -6749,9 +6749,27 @@ cardtrickchoice:
 				t_timeout = rnz(2000);
 				break;
 			}
-			(void) maketrap(u.ux, u.uy, S_PRESSING_TRAP, 0);
+			{
+				struct trap *ttrap;
+				ttrap = maketrap(u.ux, u.uy, S_PRESSING_TRAP, 0);
+				if (ttrap && !ttrap->hiddentrap) {
+					ttrap->tseen = 1;
+					ttrap->madeby_u = 1;
+				}
+			}
 			/* launch_otyp is set in trap.c and controls the trap's strength --Amy */
 			You("laid a trap.");
+
+			{
+				register struct monst *nexusmon, *nextmon;
+
+				for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				    nextmon = nexusmon->nmon;
+				    if (DEADMONSTER(nexusmon)) continue;
+				    if (canseemon(nexusmon)) nexusmon->spressingseen = TRUE;
+
+				}
+			}
 
 			t_timeout = rnz(2000);
 			break;
@@ -6820,13 +6838,48 @@ cardtrickchoice:
 
 		case T_EXTRA_LONG_SQUEAK:
 
-			pline("todo");
+			num = 20 + techlevX(tech_no);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your butt starts squeaking.");
 			t_timeout = rnz(5000);
 			break;
 
 		case T_SEXUAL_HUG:
 
-			pline("todo");
+			if (u.uswallow) {
+				pline("Did you seriously expect to be able to hug a monster that has engulfed you?");
+				return 0;
+			}
+
+			{
+
+			int k, l, caughtX;
+			struct monst *mtmp3;
+			caughtX = 0;
+			pline("You try to hug the monsters next to you!");
+
+		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(rn2(5) && mtmp3->data->geno & G_UNIQ) && caughtX == 0)
+
+			{
+
+				if (humanoid(mtmp3->data) && !mtmp3->female) {
+					pline("%s is infatuated with you and asks to become your slave!", mon_nam(mtmp3));
+					(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+					if (techlevX(tech_no) < rnd(100)) caughtX++;
+					t_timeout = rnz(20000);
+				}
+
+				else pline("%s brushes you away.", mon_nam(mtmp3));
+
+			} /* monster is catchable loop */
+		    } /* for loop */
+
+			}
+
 			t_timeout = rnz(20000);
 			break;
 
@@ -6838,7 +6891,29 @@ cardtrickchoice:
 			break;
 
 		case T_EVEN_MORE_AMMO:
-			pline("todo");
+
+			if (!uwep) {
+				pline("You're not wielding anything!");
+				break;
+			}
+			if (uwep && !is_bullet(uwep)) {
+				pline("You're not wielding firearm ammo!");
+				break;
+			}
+			if (uwep && is_bullet(uwep)) {
+				if (uwep->otyp == BULLET || uwep->otyp == SILVER_BULLET || uwep->otyp == ANTIMATTER_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
+					uwep->quan += (20 + techlevX(tech_no));
+				} else if (uwep->otyp == BFG_AMMO) {
+					uwep->quan += (80 + (techlevX(tech_no) * 5));
+				} else if (uwep->otyp == SHOTGUN_SHELL) {
+					uwep->quan += (10 + (techlevX(tech_no) / 2));
+				} else if (uwep->otyp == ROCKET) {
+					uwep->quan += (1 + (techlevX(tech_no) / 5));
+				} else {
+					pline("The ammo you're wielding cannot be duplicated. Sorry. Please try some other type of ammo.");
+					break;
+				}
+			}
 			t_timeout = rnz(8000);
 			break;
 
@@ -6854,22 +6929,113 @@ cardtrickchoice:
 			break;
 
 		case T_POLYFIX:
-			pline("todo");
+
+polyfixchoice:
+			otmp = getobj(all_count, "polyfix");
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to polyfix an item.");
+				else goto polyfixchoice;
+				pline("A feeling of loss comes over you.");
+				break;
+
+			}
+			if (otmp) {
+				if (!is_hazy(otmp)) {
+					pline("That item wasn't hazy, and therefore nothing happens.");
+				} else if (!stack_too_big(otmp)) {
+					stop_timer(UNPOLY_OBJ, (void *) otmp);
+					otmp->oldtyp = STRANGE_OBJECT;
+					pline("%s is no longer hazy.", Yname2(otmp));
+				} else pline("The stack was too big, and therefore nothing happens.");
+
+			}
+
 			t_timeout = rnz(5000);
 			break;
 
 		case T_SQUEAKY_REPAIR:
-			pline("todo");
+
+			if (t_at(u.ux, u.uy)) {
+				pline("There is a trap at your location, and therefore the attempt fails!");
+				t_timeout = rnz(8000);
+				break;
+			}
+			{
+				struct trap *ttrap;
+				ttrap = maketrap(u.ux, u.uy, FART_TRAP, 0);
+				if (ttrap) {
+					dotrap(ttrap, 0);
+
+					pline("You may repair a damaged item.");
+repairitemchoice:
+					otmp = getobj(all_count, "magically repair");
+					if (!otmp) {
+						if (yn("Really exit with no object selected?") == 'y')
+							pline("You just wasted the opportunity to repair your items.");
+						else goto repairitemchoice;
+						pline("A feeling of loss comes over you.");
+						t_timeout = rnz(8000);
+						break;
+					} else if (otmp && greatest_erosion(otmp) > 0) {
+						pline("Your %s is in perfect condition again!", xname(otmp));
+						if (otmp->oeroded > 0) { otmp->oeroded = 0; }
+						if (otmp->oeroded2 > 0) { otmp->oeroded2 = 0; }
+
+					} else pline("Your %s is still as undamaged as ever.", xname(otmp));
+
+				} else pline("For some unknown reason, the attempt failed.");
+			}
 			t_timeout = rnz(8000);
 			break;
 
 		case T_BULLETREUSE:
-			pline("todo");
+
+			num = 100 + (techlevX(tech_no) * 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your ammo can temporarily be reused.");
 			t_timeout = rnz(10000);
 			break;
 
 		case T_EXTRACHARGE:
-			pline("todo");
+
+extrachargechoice:
+			otmp = getobj(all_count, "extracharge");
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to extracharge a wand.");
+				else goto extrachargechoice;
+				pline("A feeling of loss comes over you.");
+				t_timeout = rnz(20000);
+				break;
+			}
+			if (otmp) {
+				if (otmp->oclass != WAND_CLASS) {
+					pline("You selected something that isn't a wand, and therefore the charge dissipates.");
+					t_timeout = rnz(20000);
+					break;
+				} else {
+					switch (otmp->otyp) {
+
+						case WAN_WISHING:
+						case WAN_CHARGING:
+						case WAN_ACQUIREMENT:
+						case WAN_GAIN_LEVEL:
+						case WAN_INCREASE_MAX_HITPOINTS:
+							pline("That wand is too powerful, and therefore the charge dissipates.");
+							t_timeout = rnz(20000);
+							break;
+						default:
+							if (otmp->spe > 125) { /* very unlikely to ever happen --Amy */
+								pline("That wand already has the maximum amount of charges stored.");
+							} else {
+								otmp->spe++;
+								pline("Success! Your wand gained an additional charge.");
+							}
+					}
+				}
+			}
+
 			t_timeout = rnz(20000);
 			break;
 
@@ -7411,6 +7577,12 @@ tech_timeout()
 			break;
 		    case T_SHUT_THAT_BITCH_UP:
 			You("can no longer shut up bitches.");
+			break;
+		    case T_EXTRA_LONG_SQUEAK:
+			pline("Your butt has stopped squeaking.");
+			break;
+		    case T_BULLETREUSE:
+			pline("Your ammo can no longer be reused.");
 			break;
 		    case T_CONCENTRATING:
 			You("stop concentrating.");

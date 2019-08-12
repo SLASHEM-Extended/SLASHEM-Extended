@@ -2274,6 +2274,8 @@ E void nastytrapcurse(void);
 E void shank_player(void);
 E void terrainterror(void);
 
+E boolean extralongsqueak(void);
+
 E boolean is_musable(struct obj *);
 E boolean ismusablenumber(int);
 E boolean ishighheeled(struct obj *);
