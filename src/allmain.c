@@ -1160,10 +1160,10 @@ moveloop()
 					moveamt /= 2;
 				}
 
-				if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && moveamt > 1) {
+				if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && u.umoved && moveamt > 1) {
 					moveamt /= 2;
 				}
-				if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && moveamt > 1) {
+				if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && u.umoved && moveamt > 1) {
 					moveamt /= 2;
 				}
 				if (u.inertia && moveamt > 1) {
@@ -1441,11 +1441,11 @@ moveloop()
 				moveamt /= 2;
 			}
 
-			if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && moveamt > 1) {
+			if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && u.umoved && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
-			if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && moveamt > 1) {
+			if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && u.umoved && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
