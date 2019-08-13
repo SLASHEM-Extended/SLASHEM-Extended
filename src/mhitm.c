@@ -531,11 +531,7 @@ mattackm(magr, mdef)
 
 	    case AT_WEAP:
 		/* "ranged" attacks */
-#ifdef REINCARNATION
-		if (!Is_rogue_level(&u.uz) && range) {
-#else
 		if (range || (!rn2(4) && mdef->mtame) ) {
-#endif
 
 		    res[i] = thrwmm(magr, mdef);
 		    attk = 0;
@@ -623,7 +619,7 @@ meleeattack:
 		break;
 
 	    case AT_HUGS:	/* automatic if prev two attacks succeed, but also with a low chance otherwise --Amy */
-		strike = ((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || !rn2(mdef->mtame ? 4 : 30));
+		strike = ((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || (!rn2(mdef->mtame ? 4 : 30) && (dist2(mdef->mx, mdef->my, magr->mx, magr->my) <= (BOLT_LIM * BOLT_LIM)) ) );
 		if (strike)
 		    res[i] = hitmm(magr, mdef, mattk);
 
@@ -631,7 +627,10 @@ meleeattack:
 
 	    case AT_GAZE:
 		strike = 0;	/* will not wake up a sleeper */
-		res[i] = gazemm(magr, mdef, mattk);
+
+		if (!range || clear_path(magr->mx, magr->my, mdef->mx, mdef->my) ) {
+			res[i] = gazemm(magr, mdef, mattk);
+		}
 		break;
 
 	    case AT_EXPL:
