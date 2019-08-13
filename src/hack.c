@@ -2493,7 +2493,7 @@ peacedisplace:
 		trap = t_at(x, y);
 		sprintf(qbuf,"Do you really want to %s into that %s?", 
 				locomotion(youmonst.data, "step"),
-				defsyms[trap_to_defsym(trap->ttyp)].explanation);
+				Hallucination ? "trap" : defsyms[trap_to_defsym(trap->ttyp)].explanation);
 		if (yn(qbuf) != 'y') {
 			forcenomul(0, 0);
 			flags.move = 0;
