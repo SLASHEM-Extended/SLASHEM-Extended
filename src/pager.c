@@ -3911,6 +3911,9 @@ static NEARDATA const char * const demagoguelines[] = {
 "We can no longer tolerate all the discrimination that minorities are subjected to everyday. If I become president, I'll make some radical changes that will make life more enjoyable for EVERYONE!",
 "There still isn't true gender equality in this country! Men still get treated like aliens if they try to wear high heels in public! I will not shut up and not stop my fight for equal rights until everyone, man and woman alike, can wear heels as they damn well please!",
 "We shall ban ALL discrimination that targets a person's sexuality! You should be allowed to love whoever you want!",
+"Anti-discrimination laws shouldn't be a one-way street! Both those who agree with the government's party line and those who don't should be protected from discrimination!",
+"Politicians are the anti-fun squad! They only ever make laws that ban people from having fun, and therefore all those laws should be abolished ASAP!",
+"Why is our police so corrupt? If I were president, they'd be honorable lawful citizens that cannot be bribed by any ass criminal!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4229,6 +4232,14 @@ static NEARDATA const char * const longinglines[] = {
 "Would you like to be smashed into the stomach by %s's elbow?",
 "If you break down because %s kicked you in the nuts too often, she'll patiently wait for you to stand back up so your most sensitive body parts can receive her lovely heels again.",
 "%s's knee can kick you in the nuts so quickly, she'll be able to kick you a second time before the pain from the first kick even starts to set in.",
+"You want to listen to the arousing %s noises on the toilet.",
+"%s should be your BFF, because she's such a wonderful woman.",
+"Did you know that %s would really like to torture you?",
+"You want to just sit there together with %s, holding hands.",
+"Would you love it if %s were to suddenly materialize in your bedroom at night and lay down next to you?",
+"Oh look! It's %s, your favorite girl back from elementary school! And she's still exactly as gorgeous and lovely as ever!",
+"%s was your childhood crush, right? Well, now she's grown up, but you're lucky: she's still a single woman! You should ask for her hand!",
+"You wouldn't mind being forced to clean the %s shoes after she fully stepped into dog shit, even if the conditions say that you can only use your bare hands for that task.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -23803,6 +23814,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"The bondage lover is infatuated with you and asks to become your slave!",
 	"The ammo you're wielding cannot be duplicated. Sorry. Please try some other type of ammo.",
 	"The ammo you're wielding cannot be duplicated. Sorry. Please try some other type of ammo. (Hint: only ammo whose enchantment is -5 or lower can be duplicated, which means this ability is actually rather useless.)",
+	"The iron golem throws a dagger! You are hit by a dagger! Your game disintegrates!", /* thanks ShivanHunter */
+	"Your pet looks less powerful, and this repeats 20 times until it dies!",
+	"Friendly reminder that you should always play the newest version of SLEX, because old versions are no longer supported. Even if you somehow think the game had jumped the shark in some newer version (which it didn't, but you might mistakenly assume it), the older versions are no longer receiving bugfixes and will eventually disappear from the public servers.",
 
 };
 

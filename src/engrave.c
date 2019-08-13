@@ -4849,7 +4849,19 @@ static const char *epitaphs[] = {
 	"This grave contains yet another poor victim of a pair of stiletto heels that managed to split his skull by beating on it repeatedly.",
 	"Hey, I know the best way to get away from an annoying monster! I'll just start teleporting randomly! That certainly isn't going to land me in a more dang-",
 	"Dammit, if this potion of healing doesn't heal at least as much as the rate at which the monsters are dealing damage to me I'll be dead.",
-
+	"Noooooooo! That Amy bitch fixed my favorite exploit from an older slex version and therefore the new version sucks! I will only ever play games that don't fix obvious loopholes, because I can't handle a game that is actually challenging!",
+	"Whaaaaat you made black dragon breath cost 100 mana? This is fucking unplayable, and I will go back to an older slex version now because I'm such a filthy heretic.",
+	"omg ever since amy changed it so that digestion attacks dont always instakill monsters the game has become very sucky, why even play",
+	"What? You actually die instantly if you spend too much time inside a purple worm?",
+	"Say what, you're not supposed to hit mirror patches with a cockatrice corpse?",
+	"Yeah uhh I was made deathly sick and don't know what a scroll of cure is, I just punched random buttons instead of familiarizing myself with my starting inventory before I started playing.",
+	"What? The scroll of healing doesn't heal sickness??? What even IS this?",
+	"Wait what? That can HAPPEN? In vanilla such a bullshit death would have been unthinkable!",
+	"I wanted to grab Bowser's tail but missed, and ended up falling into a pool of lava.",
+	"Yay I actually got a VC crash, that makes me so happy.",
+	"Lost the run to a fucking cartridge tilt.",
+	"Damn, why did the stupid game crash instead of simply loading the next area???",
+	"Yeah uhh, the game just loaded and loaded and didn't actually get done with it, so I suspected that it had frozen and killed it.",
 
 };
 
