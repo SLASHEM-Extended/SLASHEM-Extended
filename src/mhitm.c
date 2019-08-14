@@ -619,7 +619,7 @@ meleeattack:
 		break;
 
 	    case AT_HUGS:	/* automatic if prev two attacks succeed, but also with a low chance otherwise --Amy */
-		strike = ((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || (!rn2(mdef->mtame ? 4 : 30) && (dist2(mdef->mx, mdef->my, magr->mx, magr->my) <= (BOLT_LIM * BOLT_LIM)) ) );
+		strike = (((i >= 2 && res[i-1] == MM_HIT && res[i-2] == MM_HIT) || (!rn2(mdef->mtame ? 10 : 30) && (dist2(mdef->mx, mdef->my, magr->mx, magr->my) <= (BOLT_LIM * BOLT_LIM)) ) ) && (tmp > dieroll));
 		if (strike)
 		    res[i] = hitmm(magr, mdef, mattk);
 
