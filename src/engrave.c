@@ -964,6 +964,7 @@ static const char *random_mesg[] = {
 	"GOOGL EM: Greased Outlandish Opportunist's Guide to Legends: Extended Magic",
 	"At the Shoeshop 69, 00420 Bundletown, Fleecyland",
 	"In the next was at the cover a schiessmaschine, which shot continuing, resounds.",
+	"Please brush your feet before entering the Dungeons of Doom. Sincerely, Moloch.",
 
 };
 
@@ -4862,6 +4863,16 @@ static const char *epitaphs[] = {
 	"Lost the run to a fucking cartridge tilt.",
 	"Damn, why did the stupid game crash instead of simply loading the next area???",
 	"Yeah uhh, the game just loaded and loaded and didn't actually get done with it, so I suspected that it had frozen and killed it.",
+	"Oh damn, why did that wand have to be out of charges just now.",
+	"The annoying thing with bows is that you constantly run out of arrows! How are you even supposed to play an archer role?",
+	"The elder priest used an aimbot and a wallhack!",
+	"I tried to do wizard farming but the wizards just kept casting slow on me until I was so slow that they proceeded to actually kill me.",
+	"Damn, the thief speedup bug is back! Quick, everyone, run for your lives, children and women first!",
+	"Man this is such a stupid bug, the thief tried to unsuccessfully steal my money four times in a row but then he suddenly ninetuple-turned me and I died from full HP.",
+	"Why does the game put up warning messages and then freeze if I cast sleep monster, leave the level that the sleeping monster was on, and return after a while?",
+	"What is wrong with the game developer? I didn't feel like picking up every stupid item on the floor, so eventually a lot of crap accumulated from killed monsters but I didn't expect the game to run out of memory if there are too many items!",
+	"Why are the 19BE trips capable of magically attracting teleports?",
+	"Stupid level bug, why can't that one go on vacation for once.",
 
 };
 
