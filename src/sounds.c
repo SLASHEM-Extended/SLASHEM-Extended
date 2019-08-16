@@ -2231,6 +2231,12 @@ register struct monst *mtmp;
 				"Kafa bezi sadece bir bez parcasi degildir! Onu takariz cuenkue bizi Allah'in kutsal mueminleri olarak tanimlar! Sadece kafirlerin anlamadigi icin hicbir anlam ifade etmez!",
 				"Bir Yahudi dini semboluenue giydigi icin saldiriya ugrarsa, kendi hatasidir. Biz mueslueman bir kafa bezi giymek icin bize saldiran kimseyi asla kabul etmeyecegiz, cuenkue biz kafir topuklularimizla bir asyali tekmelemizi dogrudan kafir somunlarina yerlestirecegiz.",
 				"Siz kafirsiniz, Allah'a doenmelisiniz cuenkue o zaman cennette doksan dokuz genc kadin var! Eger yapmazsan, cehennemin kirmizi seytanlari acimasizca iskence edecek!",
+				"Halkimizin kutsal topraklara seyahat etmesine izin verilmemesi bir hakaret! Bueyuek Tanri, bu karardan sorumlu olan buetuen kafirleri cezalandirir!",
+				"Kongremizdeki kadinlar suclu degil! Ancak baskan kirli bir kuefuer ve Tanri sahsen ona yildirim carpacak!",
+				"Bir bildirimin ardindan geri doendueguemuez icin neden uezuelmemiz gerektigini duesuenueyorsunuz? Siz heretik, istediginizi aldiniz, cuenkue yuece Tanrimiz affetmez!",
+				"Yasli ihtiyar bizim icadi olan doener kebabi yiyorsun, ama dinimiz hakkinda yalan soeylueyorsun! Tanrimiz seni mahvedecek!",
+				"Ceviri makinesi kirli kafirler tarafindan isletiliyor, cuenkue tanri adina varsayilan ceviriyi degistirdiler!",
+				"Benim konusmalarimi zaten anlamiyorsunuz, bu yuezden irkinizin tamamen ortadan kaldirilmasi icin cagri yapabilirim, sizi allahimiza inanmayan insafsizsiniz.",
 			};
 			verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 

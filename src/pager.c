@@ -3914,6 +3914,11 @@ static NEARDATA const char * const demagoguelines[] = {
 "Anti-discrimination laws shouldn't be a one-way street! Both those who agree with the government's party line and those who don't should be protected from discrimination!",
 "Politicians are the anti-fun squad! They only ever make laws that ban people from having fun, and therefore all those laws should be abolished ASAP!",
 "Why is our police so corrupt? If I were president, they'd be honorable lawful citizens that cannot be bribed by any ass criminal!",
+"There are a few people that have way too much money while everyone else has too little! We gotta redistribute the possessions!",
+"We stand now, at the precipice. Our great nation is threatening to sink into the sea of lawlessness and despair like it already did once, many years ago!",
+"God shall protect our people! God shall protect our country!",
+"Our courageous soldiers have one mission: bringing back peace and prosperity to our country.",
+"In their arrogance, our political enemies have seized control of the water supply! They want to steal our country's water and all the work we've put in! We have to punish them for that crime by sending our military forces to reclaim what is ours!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4240,6 +4245,12 @@ static NEARDATA const char * const longinglines[] = {
 "Oh look! It's %s, your favorite girl back from elementary school! And she's still exactly as gorgeous and lovely as ever!",
 "%s was your childhood crush, right? Well, now she's grown up, but you're lucky: she's still a single woman! You should ask for her hand!",
 "You wouldn't mind being forced to clean the %s shoes after she fully stepped into dog shit, even if the conditions say that you can only use your bare hands for that task.",
+"%s is weaaring totally gentle-soft leather peep-toes!",
+"You get an absolutely ecstatic feeling whenever %s slams her stroking-soft peeptoe front portion against your leg.",
+"Did you know that %s's lovely peep-toes can cause hellish pain by kicking you in the legs?",
+"%s's female footwear is made of one of the most wonderful materials in existence: velvet. They feel sooooooooo soft to the touch, yet she can cause a lot of pain to you by kicking you with them!",
+"You want %s to put on tons of clothing pieces, because then you can get busy to remove each of them from her body in succession, getting ever more excited because you know that in the end you'll get to admire the beautiful female body that is underneath.",
+"%s can put you in headlock very beautifully, causing you to feel indescribably snug.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4412,6 +4423,14 @@ static NEARDATA const char * const soviettaunts[] = {
 "Nadeyus', vy vyzovete ochen' mnogo ognennykh lovushek, potomu chto bylo by ochen' veselo uvidet', kak vy teryayete maksimum svoyego zdorov'ya, khar-khar.",
 "Kakiye? Vy dumayete, chto polimorfnyye ob'yekty budut luchshe? Net, vam vse ravno pridetsya vosstanavlivat' kazhdogo predmeta, potomu chto KHAR BOYARYSHNIK.",
 "Navyki vsegda ispol'zuyut ochki umenly, potomu chto tip ledyanogo bloka KHA KHA - otstoy.",
+"Vy upuskayete vse uluchsheniya etogo varianta, potomu chto vy igrayete v nepravil'nom rezhime, razrabotannom tipom ledyanogo bloka, chtoby vas perebit'. Novichok.",
+"Chuvak, etot sovetskiy pyatiletniy paren' otkazalsya ot svoyego varianta GODA nazad! Pochemu vy vse yeshche tratite svoye vremya na igry?",
+"Pochemu vy igrayete za parnya, kotoryy sdelal patch iz loga dampa sboy igry, yesli vy voznesetes'? Yego duratskaya igra v popku bukval'no ne vyigryvayet!",
+"Kogda Sovetskiy Tip Ledyanykh Blokov byl zakonchen, udalyaya vse, chto sdelala Emi, on ischez navsegda, chtoby yego bol'she nikogda ne videli... potomu chto on ne mog pridumat' ni odnoy iz svoikh sobstvennykh idey, krome neskol'kikh snosno khoroshikh artefaktov.",
+"Smiris' s etim! Emi prosto luchshiy modder, chem sozdatel' slesha. V kontse kontsov, ona ne tol'ko prodolzhayet razrabatyvat' svoyu igru, ona dazhe podobrala mnogiye iz yego 'uluchsheniy' (kotoryye na samom dele yavlyayutsya prosto regressiyami, takimi kak vosstanovleniye oshibok, kotoryye ona uzhe ispravila) i pereklyuchila ikh v sobstvennyy rezhim, kotoryy nikto kogda-nibud' igrayet ... krome vas po kakoy-to strannoy prichine!",
+"V nekotorom smysle, ya dolzhen byt' blagodaren, chto Sovetskaya pyaterka sdelala svoy variant, potomu chto v protivnom sluchaye osobyy sovetskiy rezhim, v kotoryy vy seychas igrayete, ne sushchestvoval by.",
+"Nezavisimo ot togo, chto vy delayete, tot fakt, chto tip ledyanogo bloka udalyayetsya VSE, vse yeshche yavlyayetsya ogromnym oskorbleniyem. SLEKS byl daleko ne takim neuravnoveshennym i neigrabel'nym, kak on dumal, chto eto budet, no on ne smog ponyat', chto NE KAZHDOYE IZMENENIYE, SDELANNOYE EMI, PLOKHO!",
+"Va-kha-kha-kha, vy NASTOYASHCHIM obrecheny, potomu chto vse izmenilos' po-nastoyashchemu GLUPYMI sposobami, kotoryye ne mog pridumat' ni odin zdravomyslyashchiy razrabotchik, i vy - odin iz bessmyslennykh dronov, kotoryye ne ugrozhayut CHERT-razrabotchiku fakelami i vilami, OTKLONENNYY CHELOVEK.",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -23972,6 +23991,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"In your haste, you rip the scroll to pieces.",
 	"In your haste, you rip the scroll to pieces. You stupid head! Now you can no longer use it to genocide those asshole monsters!",
 	"You fool, that scroll's not blank!",
+	"Welcome to experience level 10! You feel more resistant to crashes! You learn to perform bugfix! You feel more confident in your coding skills.",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Halkimizin kutsal topraklara seyahat etmesine izin verilmemesi bir hakaret! Bueyuek Tanri, bu karardan sorumlu olan buetuen kafirleri cezalandirir!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Kongremizdeki kadinlar suclu degil! Ancak baskan kirli bir kuefuer ve Tanri sahsen ona yildirim carpacak!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Bir bildirimin ardindan geri doendueguemuez icin neden uezuelmemiz gerektigini duesuenueyorsunuz? Siz heretik, istediginizi aldiniz, cuenkue yuece Tanrimiz affetmez!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Yasli ihtiyar bizim icadi olan doener kebabi yiyorsun, ama dinimiz hakkinda yalan soeylueyorsun! Tanrimiz seni mahvedecek!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Ceviri makinesi kirli kafirler tarafindan isletiliyor, cuenkue tanri adina varsayilan ceviriyi degistirdiler!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Benim konusmalarimi zaten anlamiyorsunuz, bu yuezden irkinizin tamamen ortadan kaldirilmasi icin cagri yapabilirim, sizi allahimiza inanmayan insafsizsiniz.'",
 
 };
 
