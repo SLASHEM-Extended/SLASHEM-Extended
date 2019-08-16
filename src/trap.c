@@ -178,11 +178,12 @@ static const char * const farttrapnames[] = {
 "Kati", "Maurah", "Eveline", "Larissa", "Sandra", 
 "Meltem", "Kerstin", "Karin", "Ina", "Lou", 
 "Lisa", "Miriam", "Elena", "Katharina", "Simone", 
-"Jasieen", "Marike", "Sue Lyn", "Marleen", /* 12-30 */
+"Jasieen", "Marike", "Sue Lyn", "Marleen", "Claudia",
+"Ksenia", /* 12-32 */
 
 /* loud */
 "Sunali", "Thai", "Klara", "Ludgera", "Johanetta", 
-"Antje", "Ruea", "Mariya", "Wendy", "Katia", /* 31-40 */
+"Antje", "Ruea", "Mariya", "Wendy", "Katia", /* 33-42 */
 
 };
 
@@ -3543,7 +3544,7 @@ unsigned trflags;
 		seetrap(trap);
 
 		if (trap->launch_otyp < 12) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "tender" : "soft");
-		else if (trap->launch_otyp < 31) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
+		else if (trap->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 
 		if (trap->launch_otyp < 12 && uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
@@ -17989,7 +17990,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == UNKNOWN_TRAP) chance = 5;
 	if (ttmp->ttyp == SCYTHING_BLADE) chance = 4;
 
-	if (ttmp->ttyp == FART_TRAP) chance = (ttmp->launch_otyp == 2) ? 4 : (ttmp->launch_otyp == 5) ? 3 : (ttmp->launch_otyp == 12) ? 7 : (ttmp->launch_otyp == 18) ? 6 : (ttmp->launch_otyp == 20) ? 8 : (ttmp->launch_otyp == 24) ? 15 : (ttmp->launch_otyp == 25) ? 20 :  (ttmp->launch_otyp == 27) ? 2 : (ttmp->launch_otyp == 28) ? 5 : (ttmp->launch_otyp == 29) ? 7 : (ttmp->launch_otyp == 39) ? 10 : (ttmp->launch_otyp == 40) ? 100 : (ttmp->launch_otyp < 12) ? 5 : (ttmp->launch_otyp < 31) ? 10 : 20;
+	if (ttmp->ttyp == FART_TRAP) chance = (ttmp->launch_otyp == 2) ? 4 : (ttmp->launch_otyp == 5) ? 3 : (ttmp->launch_otyp == 12) ? 7 : (ttmp->launch_otyp == 18) ? 6 : (ttmp->launch_otyp == 20) ? 8 : (ttmp->launch_otyp == 24) ? 15 : (ttmp->launch_otyp == 25) ? 20 :  (ttmp->launch_otyp == 27) ? 2 : (ttmp->launch_otyp == 28) ? 5 : (ttmp->launch_otyp == 29) ? 7 : (ttmp->launch_otyp == 31) ? 20 : (ttmp->launch_otyp == 41) ? 10 : (ttmp->launch_otyp == 42) ? 100 : (ttmp->launch_otyp < 12) ? 5 : (ttmp->launch_otyp < 33) ? 10 : 20;
 
 	if (Confusion || Hallucination) chance++;
 	if (Blind) chance++;
@@ -18397,11 +18398,12 @@ struct trap *ttmp;
 	if (ttmp->launch_otyp == 25) diceroll -= rnd(5);
 	if (ttmp->launch_otyp == 28) diceroll -= rnd(30);
 	if (ttmp->launch_otyp == 29) diceroll -= rnd(20);
-	if (ttmp->launch_otyp == 39) diceroll -= rnd(15);
+	if (ttmp->launch_otyp == 31) diceroll -= rnd(10);
+	if (ttmp->launch_otyp == 41) diceroll -= rnd(15);
 	if (diceroll < 1) diceroll = 1; /* fail safe */
 
 	if (ttmp->launch_otyp < 12) diceroll -= rnd(diceroll);
-	else if (!rn2(2) && ttmp->launch_otyp < 31) diceroll -= rnd(diceroll);
+	else if (!rn2(2) && ttmp->launch_otyp < 33) diceroll -= rnd(diceroll);
 
 	if (diceroll < 0) diceroll = 0; /* fail safe */
 
@@ -19446,7 +19448,7 @@ fartingweb()
 	if (ttmp->ttyp != FARTING_WEB) return;
 
 	if (ttmp->launch_otyp < 12) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "tender" : "soft");
-	else if (ttmp->launch_otyp < 31) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
+	else if (ttmp->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 	else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "disgusting" : "loud");
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
