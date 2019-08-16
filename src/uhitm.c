@@ -3578,7 +3578,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(571)) {
+				switch (rnd(574)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4151,6 +4151,9 @@ int dieroll;
 				case 569: pline("%s crashes into the accomodating traffic!", Monnam(mon)); break;
 				case 570: pline("%s has a film rupture with sharp ss!", Monnam(mon)); break;
 				case 571: pline("%s is so stupid and gives Colonel B. Astard the correct code, and therefore ends up being shot.", Monnam(mon)); break;
+				case 572: pline("%s gets a hell travel command!", Monnam(mon)); break;
+				case 573: pline("Client %s sent a bogus command packet and is removed from the game.", m_monnam(mon)); break;
+				case 574: pline("Client %s sent an unreadable command packet and can no longer participate in this game.", m_monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
