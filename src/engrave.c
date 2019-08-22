@@ -536,7 +536,7 @@ static const char *random_mesg[] = {
 	"Mairzy Doats And Dozy Doats And Liddle Lamzy Divey A kiddley divey too, wouldn't you?",
 	"Madam, I may be drunk, but you are ugly, and in the morning I shall be sober.",
 	"Outside of a dog, a book is a man's best friend.",
-	"Inside of a dog, it's too dark to read." ,
+	"Inside of a dog, it's too dark to read.",
 	"You are superior in only one aspect. You are better at dying.",
 	"No McFly ever amounted to anything in the history of Hill Valley!",
 	"You've got to ask yourself one question: 'Do I feel lucky?' Well, do ya, punk?",
@@ -615,7 +615,7 @@ static const char *random_mesg[] = {
 	"We will BUILD heroes!", /* THE PROTOMEN */
 		"If you replace the working parts, you get a different machine.",
 		"If you destroy the working parts, what you get is a broken machine.",
-	"Never tell me the odds!" /* Starwars */,
+	"Never tell me the odds!", /* Starwars */
 	"Needle-like the new log to know that SlashEM Extended are you ...",
 	"http://nethackwiki.com/wiki/Slash%27EM_Extended I will not cease to poison by carbon monoxide",
 	"after opportunity to kill Cthulhu Geenome lightsaber, playing for the Khajiit-transsexual talk about that in other games is the freedom to choose make me laugh only",
@@ -668,8 +668,8 @@ static const char *random_mesg[] = {
 	"@ <--- You are here.",
 	
 	"Jesus was here 2/15/57 B.C.", /* Family Guy */
-	"If you have time to read this, you should get to the down stairs immediately!" /* Zelda 3 */
-	"Gary was here! Ash is a loser!" /* Pokemon */
+	"If you have time to read this, you should get to the down stairs immediately!", /* Zelda 3 */
+	"Gary was here! Ash is a loser!", /* Pokemon */
 	
 	"I see you...",
 		"...do you see me?",
@@ -4322,7 +4322,7 @@ static const char *epitaphs[] = {
 	"Did you see him passing by?", /* Dark Souls 3 */
 		"The world began without knowledge, and without knowledge will it end.", /* Dark Souls */
 		"Fear not the dark, my friend. And let the feast begin.",
-	"For every hero commemorated, a thousand martyrs die unmourned and unremembered." /*Warhammer 40k*/
+	"For every hero commemorated, a thousand martyrs die unmourned and unremembered.", /*Warhammer 40k*/
 	"FIQ:  One step from divinity.",
 		"FIQ:  Debugging dNethack, one iron ball to the face at a time.",
 		"FIQ, killed by a clockwork bug.",
@@ -4341,7 +4341,7 @@ static const char *epitaphs[] = {
 	"I beat you in the human race.", /*Fable*/
 	"Nobody expects the Spanish Inquisition!", /*Monty Python*/
 	"Omnes una manet nox", /*One night awaits us all*/
-	"I wake. I work. I sleep. I die." /*Alpha Centauri*/
+	"I wake. I work. I sleep. I die.", /*Alpha Centauri*/
 	"I suddenly have a LOT of regrets.", /*Water Phoenix King is very quoteable...*/
 	"You either die a hero, or you live long enough to see yourself become the villain.", /* Batman, the Dark Knight */
 	"What can men do against such reckless hate?", /* the Lord of the Rings (Two Towers movie) */

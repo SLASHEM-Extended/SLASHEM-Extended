@@ -23998,6 +23998,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Yasli ihtiyar bizim icadi olan doener kebabi yiyorsun, ama dinimiz hakkinda yalan soeylueyorsun! Tanrimiz seni mahvedecek!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Ceviri makinesi kirli kafirler tarafindan isletiliyor, cuenkue tanri adina varsayilan ceviriyi degistirdiler!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Benim konusmalarimi zaten anlamiyorsunuz, bu yuezden irkinizin tamamen ortadan kaldirilmasi icin cagri yapabilirim, sizi allahimiza inanmayan insafsizsiniz.'",
+	"Read what? (aMY or ?*) a - an uncursed scroll of identify. What do you want to identify first? (oHMY or ?*) M - a pair of ankle strap sandals -> M - a heavily cursed -5 pair of enchanted (of fainting) sandals of toejamming. What do you want to wear? (M or ?*) You are now wearing a pair of sandals of toejamming. Your toes (with purple nail polish) shriek in pain!",
 
 };
 
