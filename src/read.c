@@ -4591,7 +4591,7 @@ proofarmorchoice:
 
 			pline("The spell effect backlashes!");
 
-		    switch (rn2(17)) {
+		    if (!obsidianprotection()) switch (rn2(17)) {
 		    case 0:
 		    case 1:
 		    case 2:
@@ -9295,6 +9295,8 @@ register boolean on;
 {
 	char is_lit;	/* value is irrelevant; we use its address
 			   as a `not null' flag for set_lit() */
+
+	if (!on && shadowprotection()) return;
 
 	if (rn2(10)) {
 		do_clear_area(u.ux,u.uy, 7, set_lit, (void *)(on ? &is_lit : (char *)0));

@@ -1580,6 +1580,8 @@ E void curse_on_creation(struct obj *);
 E void uncurse(struct obj *, BOOLEAN_P);
 E void blessorcurse(struct obj *,int);
 E void blessorcurse_on_creation(struct obj *,int);
+E boolean is_rustprone(struct obj *);
+E boolean is_corrodeable(struct obj *);
 E boolean is_flammable(struct obj *);
 E boolean is_rottable(struct obj *);
 E void place_object(struct obj *,int,int);
@@ -2273,6 +2275,12 @@ E void statdrain(void);
 E void nastytrapcurse(void);
 E void shank_player(void);
 E void terrainterror(void);
+
+E boolean sandprotection(void);
+E boolean shadowprotection(void);
+E boolean obsidianprotection(void);
+E boolean chromeprotection(void);
+E int angelshadowstuff(void);
 
 E boolean extralongsqueak(void);
 

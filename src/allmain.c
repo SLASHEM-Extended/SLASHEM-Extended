@@ -1078,7 +1078,7 @@ moveloop()
 				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (is_sand(u.ux,u.uy) && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				if (is_sand(u.ux,u.uy) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1330,7 +1330,7 @@ moveloop()
 			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (is_sand(u.ux,u.uy) && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+			if (is_sand(u.ux,u.uy) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -2336,6 +2336,22 @@ trapsdone:
 
 		}
 
+		if (!rn2(5000)) {
+			int nanorepaired = 0;
+			register struct obj *grsobj, *grsXXX;
+			for(grsobj = invent; grsobj ; grsobj = grsobj->nobj) {
+				if (grsobj && !stack_too_big(grsobj) && grsobj->oeroded) {
+					grsobj->oeroded--;
+					nanorepaired++;
+				}
+				if (grsobj && !stack_too_big(grsobj) && grsobj->oeroded2) {
+					grsobj->oeroded2--;
+					nanorepaired++;
+				}
+			}
+			if (nanorepaired) pline("Your nanomachines have repaired some of the damage they sustained!");
+		}
+
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(10000)) {
 			register struct obj *crsobj, *crsXXX;
 			for(crsobj = invent; crsobj ; crsobj = crsobj->nobj) {
@@ -3060,6 +3076,7 @@ steelingchoice:
 			}
 		}
 
+		/* Amy grepping target: "materialeffect" */
 		if (uarmc && uarmc->oartifact == ART_PROTECT_WHAT_CANNOT_BE_PRO && !rn2(5000) ) {
 			register struct obj *steeling;
 			pline("You may erodeproof a nonerodable object.");
@@ -4912,7 +4929,7 @@ newbossO:
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 				"horrible sickness", TRUE, SICK_NONVOMITABLE);
 			    break;
@@ -4946,7 +4963,7 @@ newbossO:
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 				"horrible sickness", TRUE, SICK_NONVOMITABLE);
 			    break;
@@ -4980,7 +4997,7 @@ newbossO:
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 				"horrible sickness", TRUE, SICK_NONVOMITABLE);
 			    break;
@@ -5970,7 +5987,7 @@ newbossB:
 			levl[u.ux][u.uy].typ = POOL;
 		}
 
-		if (is_sand(u.ux, u.uy) && !rn2(isfriday ? 10 : 20)) {
+		if (is_sand(u.ux, u.uy) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
 			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
 			make_blinded(Blinded + rnd(5),FALSE);
 		}

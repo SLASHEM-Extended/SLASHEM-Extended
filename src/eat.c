@@ -5687,6 +5687,7 @@ eatspecial() /* called after eating non-food */
 
 /* NOTE: the order of these words exactly corresponds to the
    order of oc_material values #define'd in objclass.h. */
+/* Amy grepping target: "materialeffect" */
 static const char *foodwords[] = {
 	"meal", "liquid", "wax", "food", "meat",
 	"paper", "cloth", "leather", "wood", "bone", "scale",

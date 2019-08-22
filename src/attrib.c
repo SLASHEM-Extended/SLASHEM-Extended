@@ -2296,6 +2296,7 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 
 			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_CHA) {
@@ -2364,14 +2365,6 @@ int x;
 		if (FemaleTrapSolvejg) tmp += 5;
 		if (FemaleTrapNatalje) tmp += 10;
 
-		if (AllStatsAreLower) tmp -= 10;
-		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
-		if (have_lowstatstone()) tmp -= 10;
-		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
-
-		/* having a hemorrhage means you don't look so good... --Amy */
-		if (PlayerBleeds > 100) tmp--;
-
 		if (PlayerInHighHeels && !(PlayerCannotUseSkills)) {
 
 			switch (P_SKILL(P_HIGH_HEELS)) {
@@ -2416,6 +2409,15 @@ int x;
 
 		if (uarmf && itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) tmp += 5;
 
+		if (AllStatsAreLower) tmp -= 10;
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
+		if (have_lowstatstone()) tmp -= 10;
+		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
+		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
+
+		/* having a hemorrhage means you don't look so good... --Amy */
+		if (PlayerBleeds > 100) tmp--;
+
 		return((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_INT || x == A_WIS) {
 		/* yes, this may raise int/wis if player is sufficiently
@@ -2443,6 +2445,7 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (PlayerBleeds > 100) tmp -= 2;
+		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 	} else if (x == A_DEX) {
@@ -2473,6 +2476,7 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 
 	} else { /* A_CON */
 
@@ -2510,6 +2514,7 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 
 	}
 #ifdef WIN32_BUG

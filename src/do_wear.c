@@ -5074,6 +5074,27 @@ find_ac()
 		uac -= (ublindf->oeroded * 3);
 		uac -= (ublindf->oeroded2 * 3);
 	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_CERAMIC) {
+		uac -= 2;
+	}
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_CERAMIC) {
+		uac -= 2;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_CERAMIC) {
+		uac -= 2;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_CERAMIC) {
+		uac -= 2;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_CERAMIC) {
+		uac -= 2;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_CERAMIC) {
+		uac -= 2;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_CERAMIC) {
+		uac -= 2;
+	}
 
 	if (u.negativeprotection) uac += u.negativeprotection;
 

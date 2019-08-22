@@ -90,15 +90,12 @@ struct objclass {
 
 #define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
 #define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= MT_IRON && \
-				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_POURPOOR)
-#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK)
+				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_CHROME)
+#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_SAND || objects[(otmp)->otyp].oc_material == MT_OBSIDIAN || objects[(otmp)->otyp].oc_material == MT_CERAMIC || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK)
 
 /* primary damage: fire/rust/--- */
-/* is_flammable(otmp), is_rottable(otmp) in mkobj.c */
-#define is_rustprone(otmp)	(SpellColorMetal ? (!(is_metallic(otmp))) : (objects[otmp->otyp].oc_material == MT_IRON || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_ARCANIUM || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_ETERNIUM || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_BRICK))
-
 /* secondary damage: rot/acid/acid */
-#define is_corrodeable(otmp)	((uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) ? (!(is_metallic(otmp))) : (objects[otmp->otyp].oc_material == MT_COPPER || ((objects[otmp->otyp].oc_material == MT_METAL || objects[otmp->otyp].oc_material == MT_SILVER || objects[otmp->otyp].oc_material == MT_PLATINUM) && evilfriday ) || objects[otmp->otyp].oc_material == MT_IRON || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_ARCANIUM || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_ETERNIUM || objects[(otmp)->otyp].oc_material == MT_BRICK))
+/* all of them in mkobj.c now --Amy */
 
 #define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == MT_BRICK)
 #define hard_to_destruct(otmp)	(objects[otmp->otyp].oc_material == MT_ETERNIUM || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )

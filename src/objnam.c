@@ -6152,6 +6152,7 @@ char *prefix;
 	if (obj->rknown && obj->oerodeproof)
 		strcat(prefix,
 		       iscrys ? "fixed " :
+			/* Amy grepping target: "materialeffect" */
 			(objects[(obj)->otyp].oc_material == MT_VIVA) ? "fissionproof " :
 			(objects[(obj)->otyp].oc_material == MT_INKA) ? "beautified " :
 			(objects[(obj)->otyp].oc_material == MT_SECREE) ? "coagulated " :
@@ -6159,6 +6160,7 @@ char *prefix;
 			(objects[(obj)->otyp].oc_material == MT_COMPOST) ? "preserved " :
 			(objects[(obj)->otyp].oc_material == MT_ETERNIUM) ? "everlasting " :
 			(objects[(obj)->otyp].oc_material == MT_ETHER) ? "windy " :
+			(objects[(obj)->otyp].oc_material == MT_NANOMACHINE) ? "laser-protected " :
 			(objects[(obj)->otyp].oc_material == MT_BRICK) ? "rock-solid " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
@@ -6209,6 +6211,7 @@ register struct obj *obj;
 /* there is absolutely no reason to not display this outside of wizard mode! --Amy */
 
 	/* warn player if items are made of glass or ether --Amy */
+	/* Amy grepping target: "materialeffect" */
 	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_GLASS && ((obj->oclass != POTION_CLASS && obj->oclass != GEM_CLASS) || flags.materialglyph) ) strcat(prefix,"* ");
 	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_ETHER) strcat(prefix,"! ");
 	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_OBSIDIAN) strcat(prefix,"^ ");

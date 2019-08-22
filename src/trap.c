@@ -7916,6 +7916,7 @@ newbossPENT:
 	    case TOXIC_VENOM_TRAP:
 		pline("CLICK! You have triggered a trap!");
 		seetrap(trap);
+		if (chromeprotection()) break;
 
 		if (!Poison_resistance) pline("You're badly poisoned!");
 		else pline("You're poisoned!");
@@ -8053,7 +8054,7 @@ newbossPENT:
 	    case NEGATIVE_TRAP:
 		pline("You stepped on a trigger!");
 		seetrap(trap);
-		switch (rnd(11)) {
+		if (!obsidianprotection()) switch (rnd(11)) {
 			case 1:
 				make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 				break;

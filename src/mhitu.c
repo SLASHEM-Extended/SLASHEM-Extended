@@ -1366,7 +1366,7 @@ register struct attack *mattk;
 		}
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2((objects[blocker->otyp].oc_material == MT_LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
+		if (!rn2((objects[blocker->otyp].oc_material == MT_CERAMIC) ? 100 : (objects[blocker->otyp].oc_material == MT_LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[blocker->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
 			if (blocker->greased) {
 				blocker->greased--;
 				pline("Your %s loses its grease.", simple_typename(blocker->otyp));
@@ -6226,6 +6226,8 @@ hitmu(mtmp, mattk)
 	    case AD_VENO:
 		hitmsg(mtmp, mattk);
 
+		if (chromeprotection()) break;
+
 		if (!Poison_resistance) pline("You're badly poisoned!");
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
@@ -8801,7 +8803,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
 			    break;
 		    case 1: make_blinded(Blinded + dmg, TRUE);
@@ -9018,7 +9020,7 @@ dopois:
 		if (uncancelled) {
 			pline("You are frenzied!");
 			if (u.berserktime) {
-			    switch (rn2(11)) {
+			    if (!obsidianprotection()) switch (rn2(11)) {
 			    case 0: diseasemu(mdat);
 				    break;
 			    case 1: make_blinded(Blinded + dmg, TRUE);
@@ -9066,7 +9068,7 @@ dopois:
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 		}
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
 			    break;
 		    case 1: make_blinded(Blinded + dmg, TRUE);
@@ -9962,6 +9964,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	      case AD_VENO:
 				pline("You are covered with toxic venom!");
+
+			if (chromeprotection()) break;
 
 			if (!Poison_resistance) pline("You're badly poisoned!");
 			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
@@ -11789,7 +11793,7 @@ do_stone2:
 	    case AD_FREN:
 		pline("You suddenly feel angry!");
 			if (u.berserktime) {
-			    switch (rn2(11)) {
+			    if (!obsidianprotection()) switch (rn2(11)) {
 			    case 0: diseasemu(mtmp->data);
 				    break;
 			    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -11873,7 +11877,7 @@ do_stone2:
 		    polyself(FALSE);
 		}
 		if (rn2(4)) break;
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
 		    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -11969,7 +11973,7 @@ do_stone2:
 	    case AD_CHRN:
 		pline("You are surrounded by a black glow.");
 		if (rn2(4)) break;
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
 		    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -13531,7 +13535,7 @@ common:
 
 	    case AD_CHRN:
 
-	      switch (rn2(11)) {
+	      if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
 			    break;
 		    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -13563,7 +13567,7 @@ common:
 
 	    case AD_FREN:
 			if (u.berserktime) {
-			    switch (rn2(11)) {
+			    if (!obsidianprotection()) switch (rn2(11)) {
 			    case 0: diseasemu(mtmp->data);
 				    break;
 			    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -14481,7 +14485,7 @@ common:
 			polyself(FALSE);
 		}
 
-	      switch (rn2(11)) {
+	      if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
 			    break;
 		    case 1: make_blinded(Blinded + tmp, TRUE);
@@ -14556,6 +14560,11 @@ common:
 		break;
 
 	    case AD_VENO:
+
+		if (chromeprotection()) {
+		      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
+			break;
+		}
 
 		if (!Poison_resistance || !rn2(StrongPoison_resistance ? 5 : 3) ) {
 		poisoned("blast", rn2(A_MAX), "venom explosion", 5);
@@ -15902,7 +15911,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 			}
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
 		    case 1: make_blinded(Blinded + dmgplus, TRUE);
@@ -18324,6 +18333,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		  if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares into your eyes...", Monnam(mtmp));
 
+			if (chromeprotection()) break;
+
 			if (!Poison_resistance) pline("You're badly poisoned!");
 			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
 			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
@@ -18385,7 +18396,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                pline("%s gazes at you and curses horribly.", Monnam(mtmp));
 		    stop_occupation();
 
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
 		    case 1: make_blinded(Blinded + dmgplus, TRUE);
@@ -18422,7 +18433,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 
 			if (u.berserktime) {
-			    switch (rn2(11)) {
+			    if (!obsidianprotection()) switch (rn2(11)) {
 			    case 0: diseasemu(mtmp->data);
 				    break;
 			    case 1: make_blinded(Blinded + dmgplus, TRUE);

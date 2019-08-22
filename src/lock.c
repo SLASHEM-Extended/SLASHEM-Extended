@@ -1686,6 +1686,7 @@ struct obj *otmp;
 	Blinded = 1;
 	thing = singular(otmp, xname);
 	Blinded = save_Blinded;
+	/* Amy grepping target: "materialeffect" */
 	switch (objects[otmp->otyp].oc_material) {
 	case MT_PAPER:	disposition = "is torn to shreds";
 		break;
@@ -1704,6 +1705,8 @@ struct obj *otmp;
 	case MT_SECREE:	disposition = "decomposes";
 		break;
 	case MT_WOOD:	disposition = "splinters to fragments";
+		break;
+	case MT_SHADOWSTUFF:	disposition = "is swallowed";
 		break;
 	default:	disposition = "is destroyed";
 		break;

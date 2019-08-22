@@ -3080,7 +3080,7 @@ int spell;
     long duration = (long)((spellev(spell) + 1) * 3);	 /* 6..24 */
 
     /* prior to 3.4.1, the only effect was confusion; it still predominates */
-    switch (rn2(17)) {
+    if (!obsidianprotection()) switch (rn2(17)) {
     case 0:
     case 1:
     case 2:
@@ -3451,7 +3451,7 @@ castanyway:
 
 		int lcount = rnd(monster_difficulty() ) + 1;
 
-		switch (rn2(11)) {
+		if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 				"red spell sickness", TRUE, SICK_NONVOMITABLE);
 			    break;
@@ -6579,7 +6579,7 @@ secureidchoice:
 
 			pline("The spell effect backlashes!");
 
-		    switch (rn2(17)) {
+		    if (!obsidianprotection()) switch (rn2(17)) {
 		    case 0:
 		    case 1:
 		    case 2:
@@ -7764,7 +7764,7 @@ secureidchoice:
 
 		int duration = rn1(25,25);
 
-		switch (rn2(17)) {
+		if (!obsidianprotection()) switch (rn2(17)) {
 		case 0:
 		case 1:
 		case 2:
@@ -10561,6 +10561,7 @@ int spell;
 	/* Robes are body armour in SLASH'EM */
 	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm)) {
 
+		/* Amy grepping target: "materialeffect" */
 		switch (objects[(uarm)->otyp].oc_material) {
 			default: break;
 			case MT_METAL: armorpenalties *= 16; armorpenalties /= 15; break;
@@ -10571,6 +10572,8 @@ int spell;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
+			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10606,6 +10609,8 @@ int spell;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
+			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10642,6 +10647,8 @@ int spell;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
+			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10679,6 +10686,8 @@ int spell;
 			case MT_MITHRIL: shieldpenalties *= 13; shieldpenalties /= 15; break;
 			case MT_VIVA: shieldpenalties *= 12; shieldpenalties /= 15; break;
 			case MT_POURPOOR: shieldpenalties *= 20; shieldpenalties /= 15; break;
+			case MT_LEAD: shieldpenalties *= 25; shieldpenalties /= 15; break;
+			case MT_CHROME: shieldpenalties *= 11; shieldpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10715,6 +10724,8 @@ int spell;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
+			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10751,6 +10762,8 @@ int spell;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
+			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10787,6 +10800,8 @@ int spell;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
 			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
+			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {

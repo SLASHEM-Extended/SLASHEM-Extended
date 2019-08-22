@@ -2572,6 +2572,7 @@ create_polymon(obj, okind)
 	if(!obj || (!obj->nexthere && obj->quan == 1L)) return;
 
 	/* some of these choices are arbitrary */
+	/* Amy grepping target: "materialeffect" */
 	switch(okind) {
 	case MT_IRON:
 	case MT_METAL:
@@ -2583,9 +2584,21 @@ create_polymon(obj, okind)
 	    pm_index = PM_MITHRIL_GOLEM;
 	    material = "mithril ";
 	    break;
+	case MT_BRICK:
+	    pm_index = PM_BRICK_GOLEM;
+	    material = "brick ";
+	    break;
 	case MT_TAR:
 	    pm_index = PM_TAR_GOLEM;
 	    material = "tar ";
+	    break;
+	case MT_ETHER:
+	    pm_index = PM_ETHER_GOLEM;
+	    material = "ether ";
+	    break;
+	case MT_DRAGON_HIDE:
+	    pm_index = PM_DRAGONHIDE_GOLEM;
+	    material = "dragonhide ";
 	    break;
 	case MT_SECREE:
 	    pm_index = PM_SECRETION_GOLEM;
@@ -2599,9 +2612,41 @@ create_polymon(obj, okind)
 		pm_index = PM_SILVER_GOLEM;
 		material = "silver ";
 		break;
+	case MT_SILK:
+		pm_index = PM_SILK_GOLEM;
+		material = "silk ";
+		break;
+	case MT_LEAD:
+		pm_index = PM_LEAD_GOLEM;
+		material = "lead ";
+		break;
+	case MT_CHROME:
+		pm_index = PM_CHROME_GOLEM;
+		material = "chrome ";
+		break;
+	case MT_SAND:
+		pm_index = PM_SAND_GOLEM;
+		material = "sand ";
+		break;
+	case MT_OBSIDIAN:
+		pm_index = PM_OBSIDIAN_GOLEM;
+		material = "obsidian ";
+		break;
+	case MT_CERAMIC:
+		pm_index = PM_CERAMIC_GOLEM;
+		material = "ceramic ";
+		break;
+	case MT_NANOMACHINE:
+		pm_index = PM_NANO_GOLEM;
+		material = "nanomachine ";
+		break;
+	case MT_SHADOWSTUFF:
+		pm_index = PM_SHADOW_GOLEM;
+		material = "shadowstuff ";
+		break;
 	case MT_PLATINUM:
 		pm_index = PM_PLATINUM_GOLEM;
-		material = "silver ";
+		material = "platinum ";
 		break;
 	case MT_GEMSTONE:
 	case MT_MINERAL:
@@ -2609,12 +2654,18 @@ create_polymon(obj, okind)
 	    material = "lithic ";
 	    break;
 	case MT_MYSTERIOUS:
+	    pm_index = PM_MYSTERIOUS_GOLEM;
+	    material = "mysterious ";
+	    break;
 	case MT_FLESH:
 	case MT_VEGGY:
-	case MT_COMPOST:
 	    /* there is no flesh type, but all food is type 0, so we use it */
 	    pm_index = PM_FLESH_GOLEM;
 	    material = "organic ";
+	    break;
+	case MT_COMPOST:
+	    pm_index = PM_COMPOST_GOLEM;
+	    material = "compost ";
 	    break;
 	case MT_WAX:
 		pm_index = PM_WAX_GOLEM;

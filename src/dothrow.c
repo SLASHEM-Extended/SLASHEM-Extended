@@ -1431,7 +1431,7 @@ int thrown;
 			    WEAPON_CLASS, EXPL_FIERY);
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
-		if (!(tech_inuse(T_BULLETREUSE)) || rn2(3)) {
+		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -1578,7 +1578,7 @@ int thrown;
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) &&
 		!is_grenade(obj))) {
 	    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
-	    if (!(tech_inuse(T_BULLETREUSE)) || rn2(3)) {
+	    if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
 			obfree(obj, (struct obj *)0);
 			return;
 	    }
@@ -2525,6 +2525,7 @@ int thrown;
 		    if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && broken && !rn2(2))
 			broken = 0;
 
+		    if (objects[otyp].oc_material == MT_LEAD && broken && !rn2(4)) broken = 0;
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
 
 			/* Due to segfaults and stuff when trying to make this work in other functions, I'm just deciding that
@@ -2554,6 +2555,10 @@ int thrown;
 			obfree(obj, (struct obj *)0);
 			return 1;
 		    }
+		}
+		/* ceramic stuff dulls in melee, but we want ceramic missiles to dull too --Amy */
+		if (obj && objects[obj->otyp].oc_material == MT_CERAMIC && !rn2(10) && obj->spe > -10) {
+			obj->spe--;
 		}
 		passive_obj(mon, obj, (struct attack *)0);
 	    } else {
@@ -2897,7 +2902,7 @@ struct obj *obj;
 {
 	if (obj_resists(obj, 1, 99)) return 0;
 	if (stack_too_big(obj)) return 0;
-	if (objects[obj->otyp].oc_material == MT_GLASS && !obj->oartifact &&
+	if ((objects[obj->otyp].oc_material == MT_GLASS || objects[obj->otyp].oc_material == MT_OBSIDIAN) && !obj->oartifact &&
 		obj->oclass != GEM_CLASS)
 	    return 1;
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {

@@ -2238,7 +2238,7 @@ degradeagain:
 	if (obj && obj->cursed) {
 	    long lcount = (long) rnd(100);
 
-	    switch (rn2(11)) {
+	    if (!obsidianprotection()) switch (rn2(11)) {
 	    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 			xname(obj), TRUE, SICK_NONVOMITABLE);
 		    break;
@@ -3028,6 +3028,7 @@ struct obj *tstone;
 	streak_color = c_obj_colors[objects[obj->otyp].oc_color];
 	break;		/* gem or ring */
 
+	/* Amy grepping target: "materialeffect" */
     default:
 	switch (objects[obj->otyp].oc_material) {
 	case MT_CLOTH:

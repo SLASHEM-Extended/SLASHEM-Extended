@@ -486,7 +486,7 @@ hornchoice:
 
 	    awaken_monsters(GushLevel * 30);
 
-	    switch (rn2(17)) {
+	    if (!obsidianprotection()) switch (rn2(17)) {
 		    case 0:
 		    case 1:
 		    case 2:
@@ -615,7 +615,7 @@ hornchoice:
 	    Deafness += (GushLevel * 40);
 	    flags.soundok = 0;
 
-	    switch (rn2(52)) {
+	    if (!obsidianprotection()) switch (rn2(52)) {
 		    case 0:
 		    case 1:
 		    case 2:

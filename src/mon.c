@@ -6099,6 +6099,8 @@ int  typ, fatal;
 	int i, plural, kprefix = KILLED_BY_AN;
 	boolean thrown_weapon = (fatal < 0);
 
+	if (chromeprotection()) return;
+
 	if (thrown_weapon) fatal = -fatal;
 	if(strcmp(string, "blast") && !thrown_weapon) {
 	    /* 'blast' has already given a 'poison gas' message */

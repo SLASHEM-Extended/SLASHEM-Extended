@@ -292,6 +292,7 @@ struct c_common_strings c_common_strings = {
 
 /* NOTE: the order of these words exactly corresponds to the
    order of oc_material values #define'd in objclass.h. */
+/* Amy grepping target: "materialeffect" */
 const char *materialnm[] = {
 	"mysterious", "liquid", "wax", "organic", "flesh",
 	"paper", "cloth", "leather", "wooden", "bone", "dragonhide",

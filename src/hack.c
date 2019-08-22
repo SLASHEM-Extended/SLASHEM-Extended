@@ -4461,6 +4461,64 @@ boolean tellplayer;
 		return;
 	}
 
+	/* lead shields against contamination even more --Amy */
+	if (uwep && objects[uwep->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead weapon prevents you from being contaminated!");
+		return;
+	}
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead off-hand weapon prevents you from being contaminated!");
+		return;
+	}
+	if (uarm && objects[uarm->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead armor prevents you from being contaminated!");
+		return;
+	}
+	if (uarmc && objects[uarmc->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead cloak prevents you from being contaminated!");
+		return;
+	}
+	if (uarmh && objects[uarmh->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead helmet prevents you from being contaminated!");
+		return;
+	}
+	if (uarms && objects[uarms->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead shield prevents you from being contaminated!");
+		return;
+	}
+	if (uarmg && objects[uarmg->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead pair of gauntlets prevents you from being contaminated!");
+		return;
+	}
+	if (uarmf && objects[uarmf->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead pair of boots prevents you from being contaminated!");
+		return;
+	}
+	if (uarmu && objects[uarmu->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead shirt prevents you from being contaminated!");
+		return;
+	}
+	if (uamul && objects[uamul->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead amulet prevents you from being contaminated!");
+		return;
+	}
+	if (uimplant && objects[uimplant->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead implant prevents you from being contaminated!");
+		return;
+	}
+	if (uleft && objects[uleft->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead left ring prevents you from being contaminated!");
+		return;
+	}
+	if (uright && objects[uright->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead right ring prevents you from being contaminated!");
+		return;
+	}
+	if (ublindf && objects[ublindf->otyp].oc_material == MT_LEAD && !rn2(5)) {
+		if (tellplayer) pline("Your lead blindfold prevents you from being contaminated!");
+		return;
+	}
+
 	precheckamount = u.contamination;
 
 	u.contamination += amount;

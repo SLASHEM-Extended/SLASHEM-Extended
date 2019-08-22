@@ -5473,6 +5473,9 @@ struct obj *weapon;
 
 	}
 
+	/* ceramic weapons are super sharp and deal more damage; this also affects blunt ones because realism sux :P --Amy */
+	if (weapon && objects[weapon->otyp].oc_material == MT_CERAMIC) bonus += 2;
+
     return bonus;
 }
 
@@ -5577,6 +5580,8 @@ struct obj *weapon;
 	}
 
 	}
+
+	if (weapon && objects[weapon->otyp].oc_material == MT_CERAMIC) bonus += 2;
 
     return bonus;
 }
@@ -7685,7 +7690,7 @@ int lossamount;
 
 		pline("You are frenzied!");
 		if (u.berserktime) {
-		    switch (rn2(11)) {
+		    if (!obsidianprotection()) switch (rn2(11)) {
 		    case 0:
 				make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
 				"demagogic sickness", TRUE, SICK_NONVOMITABLE);

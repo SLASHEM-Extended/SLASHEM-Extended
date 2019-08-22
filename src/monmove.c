@@ -1349,7 +1349,7 @@ convertdone:
 
 			badeffect();
 			stop_occupation();
-		    switch (rn2(17)) {
+		    if (!obsidianprotection()) switch (rn2(17)) {
 		    case 0:
 		    case 1:
 		    case 2:

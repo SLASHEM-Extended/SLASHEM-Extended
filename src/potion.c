@@ -1805,7 +1805,7 @@ badeffect()
 		case 170:
 		case 171:
 		pline("It gets dark!");
-	    do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
+	    if (!shadowprotection()) do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
 		15, set_litI, (void *)((char *)0));
 
 		break;
@@ -2933,7 +2933,7 @@ reallybadeffect()
 
 		case 27:
 		pline("It gets dark!");
-	    do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
+	    if (!shadowprotection()) do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
 		15, set_litI, (void *)((char *)0));
 
 		break;
@@ -3819,6 +3819,300 @@ destroyarmorattack()
 
 	stop_occupation();
 
+}
+
+/* does your equipment made of sand protect you from sand terrain? --Amy */
+boolean
+sandprotection()
+{
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uright && objects[(uright)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_SAND && !rn2(10)) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/* does your equipment made of chrome protect you from poison? --Amy */
+boolean
+chromeprotection()
+{
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uright && objects[(uright)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/* does your equipment made of shadowstuff protect you from a darkness attack? --Amy */
+boolean
+shadowprotection()
+{
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uright && objects[(uright)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_SHADOWSTUFF && !rn2(10)) {
+		pline("Your shadowstuff equipment prevents the darkness effect!");
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/* does your equipment made of obsidian protect you from a cursed unihorn effect? --Amy */
+boolean
+obsidianprotection()
+{
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uright && objects[(uright)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_OBSIDIAN && !rn2(10)) {
+		pline("Thanks to your obsidian equipment, the detrimental effect was avoided.");
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/* if you're an angel, shadowstuff items reduce your stats --Amy */
+int
+angelshadowstuff()
+{
+	int shadowitems = 0;
+
+	if (!Race_if(PM_HUMANOID_ANGEL)) return 0;
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uright && objects[(uright)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_SHADOWSTUFF) {
+		shadowitems++;
+	}
+	return shadowitems;
 }
 
 void

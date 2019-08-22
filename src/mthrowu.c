@@ -580,7 +580,7 @@ int x,y;
                     (obj->oartifact == ART_HOUCHOU) ||
 		    /* WAC -- assume monsters don't throw without 
 		    	using the right propellor */
-                    (is_bullet(obj)) ||
+                    (is_bullet(obj) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) ||
 		    (ohit && obj->otyp == EGG)))
 		create = 0;
 	else if (ohit && (is_multigen(obj) || obj->otyp == ROCK)) {
@@ -642,6 +642,7 @@ int x,y;
 	    if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !create && !rn2(2))
 		create = 1;
 
+	    if (objects[obj->otyp].oc_material == MT_LEAD && !create && !rn2(4)) create = 1;
 	    if (obj->otyp == DART_OF_DISINTEGRATION && rn2(10)) create = 0;
 
 	} else create = 1;
