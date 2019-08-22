@@ -599,7 +599,7 @@ meleeattack:
 		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
 		    if((mdef->data == &mons[PM_BLACK_PUDDING] || mdef->data == &mons[PM_SHOCK_PUDDING] || mdef->data == &mons[PM_VOLT_PUDDING] || mdef->data == &mons[PM_DRUDDING] || mdef->data == &mons[PM_BLACK_DRUDDING] || mdef->data == &mons[PM_BLACKSTEEL_PUDDING] || mdef->data == &mons[PM_BLOOD_PUDDING] || mdef->data == &mons[PM_MORAL_HAZARD] || mdef->data == &mons[PM_MORAL_EVENT_HORIZON] || mdef->data == &mons[PM_BLACK_PIERCER] || mdef->data == &mons[PM_BROWN_PUDDING])
-		       && otmp && objects[otmp->otyp].oc_material == IRON
+		       && otmp && objects[otmp->otyp].oc_material == MT_IRON
 		       && mdef->mhp > 1 && !mdef->mcan && !rn2(100) ) /* slowing pudding farming to a crawl --Amy */
 		    {
 			if (clone_mon(mdef, 0, 0)) {
@@ -3059,7 +3059,7 @@ struct monst *magr, *mdef;
 		pline("It hits %s%s", a_monnam(mdef), exclam(dam));
 	    else if (vis)
 		pline("It hits.");
-	    if (objects[obj->otyp].oc_material == SILVER &&
+	    if (objects[obj->otyp].oc_material == MT_SILVER &&
 		    hates_silver(mdef->data) && canseemon(mdef)) {
 		if (vis)
 		    pline_The("silver sears %s flesh!",
@@ -3067,16 +3067,16 @@ struct monst *magr, *mdef;
 		else
 		    pline("%s flesh is seared!", s_suffix(Monnam(mdef)));
 	    }
-	    if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdef->data) && canseemon(mdef)) {
+	    if (objects[obj->otyp].oc_material == MT_VIVA && hates_viva(mdef->data) && canseemon(mdef)) {
 		    pline("%s is severely hurt by the radiation!", s_suffix(Monnam(mdef)));
 	    }
-	    if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdef->data) && canseemon(mdef)) {
+	    if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdef->data) && canseemon(mdef)) {
 		    pline("%s decomposes from the contact with copper!", s_suffix(Monnam(mdef)));
 	    }
 	    if (obj->cursed && hates_cursed(mdef->data) && canseemon(mdef)) {
 		    pline("%s is blasted by darkness!", s_suffix(Monnam(mdef)));
 	    }
-	    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdef->data) && canseemon(mdef)) {
+	    if (objects[obj->otyp].oc_material == MT_INKA && hates_inka(mdef->data) && canseemon(mdef)) {
 		    pline("%s is hurt by the inka string!", s_suffix(Monnam(mdef)));
 	    }
 	    if (obj->otyp == ODOR_SHOT && hates_odor(mdef->data) && canseemon(mdef)) {
@@ -3909,7 +3909,7 @@ physical:
 			    /* WAC -- or using a pole at short range... */
 			    (is_pole(otmp))) {
 			    /* then do only 1-2 points of damage */
-			    if ( (is_shade(pd) || (mdef && mdef->egotype_shader)) && objects[otmp->otyp].oc_material != SILVER && objects[otmp->otyp].oc_material != ARCANIUM)
+			    if ( (is_shade(pd) || (mdef && mdef->egotype_shader)) && objects[otmp->otyp].oc_material != MT_SILVER && objects[otmp->otyp].oc_material != MT_ARCANIUM)
 				tmp = 0;
 			    else
 				tmp = rnd(2);
@@ -3962,11 +3962,11 @@ physical:
 			}
 
                         /* WAC Weres get seared */
-                        if(otmp && objects[otmp->otyp].oc_material == SILVER && (hates_silver(pd))) {
+                        if(otmp && objects[otmp->otyp].oc_material == MT_SILVER && (hates_silver(pd))) {
                                 tmp += 8;
                                 if (vis) pline("The silver sears %s!", mon_nam(mdef));
                         }
-                        if(otmp && objects[otmp->otyp].oc_material == COPPER && (hates_copper(pd))) { 
+                        if(otmp && objects[otmp->otyp].oc_material == MT_COPPER && (hates_copper(pd))) { 
                                 tmp += 20;
                                 if (vis) pline("The copper decomposes %s!", mon_nam(mdef));
                         }
@@ -3979,11 +3979,11 @@ physical:
 					  if (otmp->morgcurse) tmp += 15;
                                 if (vis) pline("The unholy aura blasts %s!", mon_nam(mdef));
                         }
-                        if(otmp && objects[otmp->otyp].oc_material == VIVA && (hates_viva(pd))) { 
+                        if(otmp && objects[otmp->otyp].oc_material == MT_VIVA && (hates_viva(pd))) { 
                                 tmp += 20;
                                 if (vis) pline("The radiation damages %s!", mon_nam(mdef));
                         }
-                        if(otmp && objects[otmp->otyp].oc_material == INKA && (hates_inka(pd))) { 
+                        if(otmp && objects[otmp->otyp].oc_material == MT_INKA && (hates_inka(pd))) { 
                                 tmp += 5;
                                 if (vis) pline("The inka string damages %s!", mon_nam(mdef));
                         }

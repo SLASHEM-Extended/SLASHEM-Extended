@@ -2573,102 +2573,102 @@ create_polymon(obj, okind)
 
 	/* some of these choices are arbitrary */
 	switch(okind) {
-	case IRON:
-	case METAL:
-	case POURPOOR:
+	case MT_IRON:
+	case MT_METAL:
+	case MT_POURPOOR:
 	    pm_index = PM_IRON_GOLEM;
 	    material = "metal ";
 	    break;
-	case MITHRIL:
+	case MT_MITHRIL:
 	    pm_index = PM_MITHRIL_GOLEM;
 	    material = "mithril ";
 	    break;
-	case TAR:
+	case MT_TAR:
 	    pm_index = PM_TAR_GOLEM;
 	    material = "tar ";
 	    break;
-	case SECREE:
+	case MT_SECREE:
 	    pm_index = PM_SECRETION_GOLEM;
 	    material = "secree ";
 	    break;
-	case COPPER:
+	case MT_COPPER:
 		pm_index = PM_COPPER_GOLEM;
 		material = "copper ";
 		break;
-	case SILVER:
+	case MT_SILVER:
 		pm_index = PM_SILVER_GOLEM;
 		material = "silver ";
 		break;
-	case PLATINUM:
+	case MT_PLATINUM:
 		pm_index = PM_PLATINUM_GOLEM;
 		material = "silver ";
 		break;
-	case GEMSTONE:
-	case MINERAL:
+	case MT_GEMSTONE:
+	case MT_MINERAL:
 	    pm_index = rn2(2) ? PM_STONE_GOLEM : PM_CLAY_GOLEM;
 	    material = "lithic ";
 	    break;
-	case 0:
-	case FLESH:
-	case VEGGY:
-	case COMPOST:
+	case MT_MYSTERIOUS:
+	case MT_FLESH:
+	case MT_VEGGY:
+	case MT_COMPOST:
 	    /* there is no flesh type, but all food is type 0, so we use it */
 	    pm_index = PM_FLESH_GOLEM;
 	    material = "organic ";
 	    break;
-	case WAX:
+	case MT_WAX:
 		pm_index = PM_WAX_GOLEM;
 		material = "wax ";
 		break;
-	case ETERNIUM:
+	case MT_ETERNIUM:
 		pm_index = PM_ETERNIUM_GOLEM;
 		material = "eternium ";
 		break;
-	case VIVA:
+	case MT_VIVA:
 		pm_index = PM_VIVA_GOLEM;
 		material = "viva ";
 		break;
-	case ARCANIUM:
+	case MT_ARCANIUM:
 		pm_index = PM_ARCANIUM_GOLEM;
 		material = "arcanium ";
 		break;
-	case WOOD:
+	case MT_WOOD:
 	    pm_index = PM_WOOD_GOLEM;
 	    material = "wood ";
 	    break;
-	case LIQUID:
+	case MT_LIQUID:
 	    pm_index = PM_LIQUID_GOLEM;
 	    material = "liquid ";
 	    break;
-	case INKA:
+	case MT_INKA:
 	    pm_index = PM_INKA_GOLEM;
 	    material = "inka ";
 	    break;
-	case LEATHER:
+	case MT_LEATHER:
 	    pm_index = PM_LEATHER_GOLEM;
 	    material = "leather ";
 	    break;
-	case CLOTH:
+	case MT_CLOTH:
 	    pm_index = PM_ROPE_GOLEM;
 	    material = "cloth ";
 	    break;
-	case PLASTIC:
+	case MT_PLASTIC:
 	    pm_index = PM_PLASTIC_GOLEM;
 	    material = "plastic ";
 	    break;
-	case BONE:
+	case MT_BONE:
 	    pm_index = PM_SKELETON;     /* nearest thing to "bone golem" */
 	    material = "bony ";
 	    break;
-	case GOLD:
+	case MT_GOLD:
 	    pm_index = PM_GOLD_GOLEM;
 	    material = "gold ";
 	    break;
-	case GLASS:
+	case MT_GLASS:
 	    pm_index = PM_GLASS_GOLEM;
 	    material = "glassy ";
 	    break;
-	case PAPER:
+	case MT_PAPER:
 	    pm_index = PM_PAPER_GOLEM;
 	    material = "paper ";
 	    break;
@@ -3040,8 +3040,8 @@ poly_obj(obj, id, degradation)
 
 	case GEM_CLASS:
 	    if (otmp->quan > (long) rnd(4) &&
-		    objects[obj->otyp].oc_material == MINERAL &&
-		    objects[otmp->otyp].oc_material != MINERAL) {
+		    objects[obj->otyp].oc_material == MT_MINERAL &&
+		    objects[otmp->otyp].oc_material != MT_MINERAL) {
 		otmp->otyp = ROCK;	/* transmutation backfired */
 		otmp->quan /= 2L;	/* some material has been lost */
 	    }
@@ -3538,8 +3538,8 @@ struct obj *obj, *otmp;
 		break;
 	case SPE_STONE_TO_FLESH:
 		refresh_x = obj->ox; refresh_y = obj->oy;
-		if (objects[obj->otyp].oc_material != MINERAL && objects[obj->otyp].oc_material != TAR &&
-			objects[obj->otyp].oc_material != GEMSTONE) {
+		if (objects[obj->otyp].oc_material != MT_MINERAL && objects[obj->otyp].oc_material != MT_TAR &&
+			objects[obj->otyp].oc_material != MT_GEMSTONE) {
 		    res = 0;
 		    break;
 		}
@@ -3721,7 +3721,7 @@ register struct obj *wand;
 		return 0;
 	if(wand->spe == 0)
 		You("wrest one last charge from the worn-out wand.");
-	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && !(uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !(wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
+	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == MT_VIVA) ) && !(uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !(wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
 
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 
@@ -3739,11 +3739,11 @@ register struct obj *wand;
 		use_skill(P_DEVICES,1);
 		use_skill(P_DEVICES,1);
 	}
-	if (objects[(wand)->otyp].oc_material == INKA) use_skill(P_DEVICES,1);
+	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
 
 	if (Race_if(PM_INKA)) {
 		use_skill(P_DEVICES,1);
-		if (objects[(wand)->otyp].oc_material == INKA) use_skill(P_DEVICES,1);
+		if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
 	}
 
 	return 1;
@@ -4065,7 +4065,7 @@ secureidchoice:
 
 				      otmpii = otmpi->nobj;
 
-					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 						if (otmpi->owornmask & W_ARMOR) {
 						    if (otmpi == uskin) {
@@ -4988,19 +4988,19 @@ dozap()
 	}
 
 	/* evil patch idea by jonadab: eroded wands have a chance of exploding */
-	else if ( (obj->oeroded > 2 || (obj->oeroded2 > 2 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(5) ) {
+	else if ( (obj->oeroded > 2 || (obj->oeroded2 > 2 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(5) ) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);
 
 	}
-	else if ( (obj->oeroded > 1 || (obj->oeroded2 > 1 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(20) ) {
+	else if ( (obj->oeroded > 1 || (obj->oeroded2 > 1 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(20) ) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);
 
 	}
-	else if ( (obj->oeroded > 0 || (obj->oeroded2 > 0 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(80) ) {
+	else if ( (obj->oeroded > 0 || (obj->oeroded2 > 0 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(80) ) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);

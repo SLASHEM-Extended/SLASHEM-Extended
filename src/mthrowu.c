@@ -392,12 +392,12 @@ const char *name;	/* if null, then format `obj' */
 			badeffect();
 		}
 
-		if (obj && objects[obj->otyp].oc_material == SILVER && hates_silver(youmonst.data)) {
+		if (obj && objects[obj->otyp].oc_material == MT_SILVER && hates_silver(youmonst.data)) {
 			dam += rnd(20);
 			pline_The("silver sears your flesh!");
 			exercise(A_CON, FALSE);
 		}
-		if (obj && objects[obj->otyp].oc_material == COPPER && hates_copper(youmonst.data)) {
+		if (obj && objects[obj->otyp].oc_material == MT_COPPER && hates_copper(youmonst.data)) {
 			dam += 20;
 			pline_The("copper decomposes you!");
 			exercise(A_CON, FALSE);
@@ -412,12 +412,12 @@ const char *name;	/* if null, then format `obj' */
 			pline("An unholy aura blasts you!");
 			exercise(A_CON, FALSE);
 		}
-		if (obj && objects[obj->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
+		if (obj && objects[obj->otyp].oc_material == MT_VIVA && hates_viva(youmonst.data)) {
 			dam += 20;
 			pline_The("irradiation severely hurts you!");
 			exercise(A_CON, FALSE);
 		}
-		if (obj && objects[obj->otyp].oc_material == INKA) {
+		if (obj && objects[obj->otyp].oc_material == MT_INKA) {
 			dam += 5;
 			pline_The("inka string hurts you!");
 			exercise(A_CON, FALSE);
@@ -637,7 +637,7 @@ int x,y;
 
 	    if (objects[obj->otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && !create && !rn2(2))
 		create = 1;
-	    if (objects[obj->otyp].oc_material == MINERAL && uarm && uarm->oartifact == ART_QUARRY && !create && !rn2(2))
+	    if (objects[obj->otyp].oc_material == MT_MINERAL && uarm && uarm->oartifact == ART_QUARRY && !create && !rn2(2))
 		create = 1;
 	    if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !create && !rn2(2))
 		create = 1;
@@ -793,22 +793,22 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		    }
 		}
 	    }
-	    if (objects[otmp->otyp].oc_material == SILVER &&
+	    if (objects[otmp->otyp].oc_material == MT_SILVER &&
 		    hates_silver(mtmp->data)) {
 		if (vis) pline_The("silver sears %s flesh!",
 				s_suffix(mon_nam(mtmp)));
 		else if (verbose) pline("Its flesh is seared!");
 	    }
-	    if (objects[otmp->otyp].oc_material == VIVA && hates_viva(mtmp->data)) {
+	    if (objects[otmp->otyp].oc_material == MT_VIVA && hates_viva(mtmp->data)) {
 		if (verbose) pline("It is irradiated!");
 	    }
-	    if (objects[otmp->otyp].oc_material == COPPER && hates_copper(mtmp->data)) {
+	    if (objects[otmp->otyp].oc_material == MT_COPPER && hates_copper(mtmp->data)) {
 		if (verbose) pline("It is decomposed!");
 	    }
 	    if (otmp->cursed && hates_cursed(mtmp->data)) {
 		if (verbose) pline("It is blasted by darkness!");
 	    }
-	    if (objects[otmp->otyp].oc_material == INKA && hates_inka(mtmp->data)) {
+	    if (objects[otmp->otyp].oc_material == MT_INKA && hates_inka(mtmp->data)) {
 		if (verbose) pline("It is hurt!");
 	    }
 	    if (otmp->otyp == ODOR_SHOT && hates_odor(mtmp->data)) {
@@ -1699,8 +1699,8 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 	else if (obj_type == BOULDER || obj_type == HEAVY_IRON_BALL)
 	    pline("Whang!");
 	else if (otmp->oclass == COIN_CLASS ||
-		objects[obj_type].oc_material == GOLD ||
-		objects[obj_type].oc_material == SILVER)
+		objects[obj_type].oc_material == MT_GOLD ||
+		objects[obj_type].oc_material == MT_SILVER)
 	    pline("Clink!");
 	else
 	    pline("Clonk!");

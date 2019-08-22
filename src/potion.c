@@ -731,51 +731,51 @@ int type;
 		}
 
 		/* Copper has fungicidal properties and therefore also sometimes kills the microorganisms that make you sick --Amy */
-		if (uarm && objects[uarm->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uarm && objects[uarm->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper armor prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uarmc && objects[uarmc->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uarmc && objects[uarmc->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper cloak prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uarmh && objects[uarmh->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uarmh && objects[uarmh->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper helmet prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uarms && objects[uarms->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uarms && objects[uarms->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper shield prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uarmg && objects[uarmg->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uarmg && objects[uarmg->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper pair of gauntlets prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uarmf && objects[uarmf->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uarmf && objects[uarmf->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper pair of boots prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uarmu && objects[uarmu->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uarmu && objects[uarmu->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper shirt prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uamul && objects[uamul->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uamul && objects[uamul->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper amulet prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uimplant && objects[uimplant->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uimplant && objects[uimplant->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper implant prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uleft && objects[uleft->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uleft && objects[uleft->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper left ring prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (uright && objects[uright->otyp].oc_material == COPPER && !rn2(10)) {
+		if (uright && objects[uright->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper right ring prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
-		if (ublindf && objects[ublindf->otyp].oc_material == COPPER && !rn2(10)) {
+		if (ublindf && objects[ublindf->otyp].oc_material == MT_COPPER && !rn2(10)) {
 			pline("Your copper blindfold prevents you from becoming %ssick!", old ? "even more " : "");
 			return;
 		}
@@ -1384,31 +1384,31 @@ badeffect()
 	int nastytrapdur;
 	int blackngdur;
 
-	if (uarm && objects[(uarm)->otyp].oc_material == INKA && !rn2(10)) {
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_INKA && !rn2(10)) {
 		pline("Thanks to your inka armor, you averted misfortune!");
 		return;
 	}
-	if (uarmf && objects[(uarmf)->otyp].oc_material == INKA && !rn2(10)) {
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_INKA && !rn2(10)) {
 		pline("Thanks to your inka footwear, you averted misfortune!");
 		return;
 	}
-	if (uarmg && objects[(uarmg)->otyp].oc_material == INKA && !rn2(10)) {
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_INKA && !rn2(10)) {
 		pline("Thanks to your inka gloves, you averted misfortune!");
 		return;
 	}
-	if (uarmh && objects[(uarmh)->otyp].oc_material == INKA && !rn2(10)) {
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_INKA && !rn2(10)) {
 		pline("Thanks to your inka helmet, you averted misfortune!");
 		return;
 	}
-	if (uarms && objects[(uarms)->otyp].oc_material == INKA && !rn2(10)) {
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_INKA && !rn2(10)) {
 		pline("Thanks to your inka shield, you averted misfortune!");
 		return;
 	}
-	if (uarmc && objects[(uarmc)->otyp].oc_material == INKA && !rn2(10)) {
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_INKA && !rn2(10)) {
 		pline("Thanks to your inka cloak, you averted misfortune!");
 		return;
 	}
-	if (uarmu && objects[(uarmu)->otyp].oc_material == INKA && !rn2(10)) {
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_INKA && !rn2(10)) {
 		pline("Thanks to your inka shirt, you averted misfortune!");
 		return;
 	}
@@ -2660,38 +2660,34 @@ reallybadeffect()
 	int nastytrapdur;
 	int blackngdur;
 
-/*	if (uarm && objects[(uarm)->otyp].oc_material == INKA && !rn2(10)) {
-		pline("Thanks to your inka armor, you averted misfortune!");
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_LEAD && !rn2(10)) {
+		pline("Thanks to your lead armor, you averted misfortune!");
 		return;
 	}
-	if (uarmf && objects[(uarmf)->otyp].oc_material == INKA && !rn2(10)) {
-		pline("Thanks to your inka footwear, you averted misfortune!");
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_LEAD && !rn2(10)) {
+		pline("Thanks to your lead footwear, you averted misfortune!");
 		return;
 	}
-	if (uarmg && objects[(uarmg)->otyp].oc_material == INKA && !rn2(10)) {
-		pline("Thanks to your inka gloves, you averted misfortune!");
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_LEAD && !rn2(10)) {
+		pline("Thanks to your lead gloves, you averted misfortune!");
 		return;
 	}
-	if (uarmh && objects[(uarmh)->otyp].oc_material == INKA && !rn2(10)) {
-		pline("Thanks to your inka helmet, you averted misfortune!");
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_LEAD && !rn2(10)) {
+		pline("Thanks to your lead helmet, you averted misfortune!");
 		return;
 	}
-	if (uarms && objects[(uarms)->otyp].oc_material == INKA && !rn2(10)) {
-		pline("Thanks to your inka shield, you averted misfortune!");
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_LEAD && !rn2(10)) {
+		pline("Thanks to your lead shield, you averted misfortune!");
 		return;
 	}
-	if (uarmc && objects[(uarmc)->otyp].oc_material == INKA && !rn2(10)) {
-		pline("Thanks to your inka cloak, you averted misfortune!");
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_LEAD && !rn2(10)) {
+		pline("Thanks to your lead cloak, you averted misfortune!");
 		return;
 	}
-	if (uarmu && objects[(uarmu)->otyp].oc_material == INKA && !rn2(10)) {
-		pline("Thanks to your inka shirt, you averted misfortune!");
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_LEAD && !rn2(10)) {
+		pline("Thanks to your lead shirt, you averted misfortune!");
 		return;
 	}
-	if (uwep && uwep->oartifact == ART_LUCK_VERSUS_BAD && !rn2(2)) {
-		pline("Thanks to your inka sling, you averted misfortune!");
-		return;
-	}*/
 
 	if (!(PlayerCannotUseSkills)) {
 		int shiichochance = 0;
@@ -9773,7 +9769,7 @@ dodip()
 		    pline("%s %s to burn for a moment.",
 			  Yname2(obj), otense(obj, "seem"));
 		} else {
-		    if ((omat == PLASTIC || omat == PAPER) && !obj->oartifact)
+		    if ((omat == MT_PLASTIC || omat == MT_PAPER) && !obj->oartifact)
 			obj->oeroded = MAX_ERODE;
 		    pline_The("burning oil %s %s.",
 			    obj->oeroded == MAX_ERODE ? "destroys" : "damages",

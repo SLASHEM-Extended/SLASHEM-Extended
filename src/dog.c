@@ -1183,18 +1183,18 @@ register struct obj *obj;
 			obj->otyp == RIN_SLOW_DIGESTION)
 		return TABU;
 	    if (hates_silver(mon->data) &&
-		objects[obj->otyp].oc_material == SILVER)
+		objects[obj->otyp].oc_material == MT_SILVER)
 		return(TABU);
 	    if (hates_copper(mon->data) &&
-		objects[obj->otyp].oc_material == COPPER)
+		objects[obj->otyp].oc_material == MT_COPPER)
 		return(TABU);
 	    if (hates_cursed(mon->data) && obj->cursed)
 		return(TABU);
 	    if (hates_viva(mon->data) &&
-		objects[obj->otyp].oc_material == VIVA)
+		objects[obj->otyp].oc_material == MT_VIVA)
 		return(TABU);
 	    if (hates_inka(mon->data) &&
-		objects[obj->otyp].oc_material == INKA)
+		objects[obj->otyp].oc_material == MT_INKA)
 		return(TABU);
 		/* KMH -- Taz likes organics, too! */
 	    if ((organivorous(mon->data) || mon->egotype_organivore) && is_organic(obj))

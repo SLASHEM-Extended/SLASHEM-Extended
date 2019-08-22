@@ -10563,14 +10563,14 @@ int spell;
 
 		switch (objects[(uarm)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
-			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
-			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
-			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
-			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
-			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
-			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
-			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case MT_COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10598,14 +10598,14 @@ int spell;
 
 		switch (objects[(uarmc)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
-			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
-			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
-			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
-			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
-			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
-			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
-			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case MT_COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10634,14 +10634,14 @@ int spell;
 
 		switch (objects[(uarmu)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
-			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
-			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
-			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
-			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
-			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
-			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
-			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case MT_COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10671,14 +10671,14 @@ int spell;
 
 		switch (objects[(uarms)->otyp].oc_material) {
 			default: break;
-			case METAL: shieldpenalties *= 16; shieldpenalties /= 15; break;
-			case COPPER: shieldpenalties *= 21; shieldpenalties /= 15; break;
-			case SILVER: shieldpenalties *= 17; shieldpenalties /= 15; break;
-			case GOLD: shieldpenalties *= 8; shieldpenalties /= 15; break;
-			case PLATINUM: shieldpenalties *= 18; shieldpenalties /= 15; break;
-			case MITHRIL: shieldpenalties *= 13; shieldpenalties /= 15; break;
-			case VIVA: shieldpenalties *= 12; shieldpenalties /= 15; break;
-			case POURPOOR: shieldpenalties *= 20; shieldpenalties /= 15; break;
+			case MT_METAL: shieldpenalties *= 16; shieldpenalties /= 15; break;
+			case MT_COPPER: shieldpenalties *= 21; shieldpenalties /= 15; break;
+			case MT_SILVER: shieldpenalties *= 17; shieldpenalties /= 15; break;
+			case MT_GOLD: shieldpenalties *= 8; shieldpenalties /= 15; break;
+			case MT_PLATINUM: shieldpenalties *= 18; shieldpenalties /= 15; break;
+			case MT_MITHRIL: shieldpenalties *= 13; shieldpenalties /= 15; break;
+			case MT_VIVA: shieldpenalties *= 12; shieldpenalties /= 15; break;
+			case MT_POURPOOR: shieldpenalties *= 20; shieldpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10707,14 +10707,14 @@ int spell;
 
 		switch (objects[(uarmh)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
-			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
-			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
-			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
-			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
-			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
-			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
-			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case MT_COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10743,14 +10743,14 @@ int spell;
 
 		switch (objects[(uarmg)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
-			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
-			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
-			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
-			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
-			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
-			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
-			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case MT_COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
@@ -10779,14 +10779,14 @@ int spell;
 
 		switch (objects[(uarmf)->otyp].oc_material) {
 			default: break;
-			case METAL: armorpenalties *= 16; armorpenalties /= 15; break;
-			case COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
-			case SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
-			case GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
-			case PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
-			case MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
-			case VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
-			case POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
+			case MT_METAL: armorpenalties *= 16; armorpenalties /= 15; break;
+			case MT_COPPER: armorpenalties *= 21; armorpenalties /= 15; break;
+			case MT_SILVER: armorpenalties *= 17; armorpenalties /= 15; break;
+			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
+			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
+			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
+			case MT_POURPOOR: armorpenalties *= 20; armorpenalties /= 15; break;
 		}
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {

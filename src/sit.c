@@ -173,7 +173,7 @@ dosit()
 
 	    obj = level.objects[u.ux][u.uy];
 	    You("sit on %s.", the(xname(obj)));
-	    if (!(Is_box(obj) || objects[obj->otyp].oc_material == CLOTH || objects[obj->otyp].oc_material == SILK || objects[obj->otyp].oc_material == INKA))
+	    if (!(Is_box(obj) || objects[obj->otyp].oc_material == MT_CLOTH || objects[obj->otyp].oc_material == MT_SILK || objects[obj->otyp].oc_material == MT_INKA))
 		pline("It's not very comfortable...");
 
 	} else if ((trap = t_at(u.ux, u.uy)) != 0 ||
@@ -1085,7 +1085,7 @@ rndcurse()			/* curse a few inventory items at random! */
 		}
 
 		/* materials overhaul: gold resists curses --Amy */
-		if (objects[otmp->otyp].oc_material == GOLD && rn2(2)) {
+		if (objects[otmp->otyp].oc_material == MT_GOLD && rn2(2)) {
 		    pline("%s!", Tobjnam(otmp, "resist"));
 		    continue;
 		}

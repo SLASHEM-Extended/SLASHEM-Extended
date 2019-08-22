@@ -110,11 +110,11 @@ unsigned material;
 		if (material && objects[glyph_to_obj(glyph)].oc_material == material) {
 			/* the object shown here is of interest because material matches */
 			for (otmp = level.objects[x][y]; otmp; otmp = otmp->nexthere)
-				if (o_material(otmp, GOLD)) return FALSE;
+				if (o_material(otmp, MT_GOLD)) return FALSE;
 			/* didn't find it; perhaps a monster is carrying it */
 			if ((mtmp = m_at(x,y)) != 0) {
 				for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
-					if (o_material(otmp, GOLD)) return FALSE;
+					if (o_material(otmp, MT_GOLD)) return FALSE;
 		        }
 			/* detection indicates removal of this object from the map */
 			return TRUE;
@@ -181,7 +181,7 @@ register struct obj *sobj;
     boolean stale;
 
     known = stale = clear_stale_map(COIN_CLASS,
-				(unsigned)(sobj->blessed ? GOLD : 0));
+				(unsigned)(sobj->blessed ? MT_GOLD : 0));
 
     /* look for gold carried by monsters (might be in a container) */
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
@@ -194,7 +194,7 @@ register struct obj *sobj;
 	    known = TRUE;
 	    goto outgoldmap;	/* skip further searching */
 	} else for (obj = mtmp->minvent; obj; obj = obj->nobj)
-	    if (sobj->blessed && o_material(obj, GOLD)) {
+	    if (sobj->blessed && o_material(obj, MT_GOLD)) {
 	    	known = TRUE;
 	    	goto outgoldmap;
 	    } else if (o_in(obj, COIN_CLASS)) {
@@ -205,7 +205,7 @@ register struct obj *sobj;
     
     /* look for gold objects */
     for (obj = fobj; obj; obj = obj->nobj) {
-	if (sobj->blessed && o_material(obj, GOLD)) {
+	if (sobj->blessed && o_material(obj, MT_GOLD)) {
 	    known = TRUE;
 	    if (obj->ox != u.ux || obj->oy != u.uy) goto outgoldmap;
 	} else if (o_in(obj, COIN_CLASS)) {
@@ -247,7 +247,7 @@ outgoldmap:
     u.uinwater = 0;
     /* Discover gold locations. */
     for (obj = fobj; obj; obj = obj->nobj) {
-    	if (sobj->blessed && (temp = o_material(obj, GOLD))) {
+    	if (sobj->blessed && (temp = o_material(obj, MT_GOLD))) {
 	    if (temp != obj) {
 		temp->ox = obj->ox;
 		temp->oy = obj->oy;
@@ -275,7 +275,7 @@ outgoldmap:
 	    gold.oy = mtmp->my;
 	    map_object(&gold,1);
 	} else for (obj = mtmp->minvent; obj; obj = obj->nobj)
-	    if (sobj->blessed && (temp = o_material(obj, GOLD))) {
+	    if (sobj->blessed && (temp = o_material(obj, MT_GOLD))) {
 		temp->ox = mtmp->mx;
 		temp->oy = mtmp->my;
 		map_object(temp,1);

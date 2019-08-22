@@ -375,7 +375,7 @@ register struct obj *obj;
 		return (boolean)(obj->oclass == FOOD_CLASS && (!obj->odrained || obj->oeaten > drainlevel(obj)));
 
      /* return((boolean)(!!index(comestibles, obj->oclass))); */
-	return (boolean)((obj->oclass == FOOD_CLASS) || (objects[(obj)->otyp].oc_material == VEGGY) || (objects[(obj)->otyp].oc_material == SECREE) || (objects[(obj)->otyp].oc_material == FLESH) ) ;
+	return (boolean)((obj->oclass == FOOD_CLASS) || (objects[(obj)->otyp].oc_material == MT_VEGGY) || (objects[(obj)->otyp].oc_material == MT_SECREE) || (objects[(obj)->otyp].oc_material == MT_FLESH) ) ;
 }
 
 #endif /* OVL1 */
@@ -4841,7 +4841,7 @@ struct obj *otmp;
 	    if (u.uhp <= 0) return; /* died from sink fall */
 	}
 	otmp->known = otmp->dknown = 1; /* by taste */
-	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : otmp->oclass == IMPLANT_CLASS ? 2 : 10)) || (Race_if(PM_OCTOPODE) && otmp->oclass == RING_CLASS) || objects[(otmp)->otyp].oc_material == VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
+	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : otmp->oclass == IMPLANT_CLASS ? 2 : 10)) || (Race_if(PM_OCTOPODE) && otmp->oclass == RING_CLASS) || objects[(otmp)->otyp].oc_material == MT_VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
 	  switch (otmp->otyp) {
 	    default:
 	        if (!objects[typ].oc_oprop) break; /* should never happen */
@@ -5694,7 +5694,9 @@ static const char *foodwords[] = {
 	"plastic", "glass", "rich food", "stone",
 	"fissile metal", "elasthan", "bitumen", "silk",
 	"arcanium", "secretion", "poor food", "compost",
-	"eternium", "contamination", "brick wall",
+	"eternium", "contamination", "brick wall", "sand",
+	"shadow material", "volcanic glass", "lead", "chrome",
+	"porcelain", "nanomachines",
 };
 
 STATIC_OVL const char *
@@ -5703,7 +5705,7 @@ register struct obj *otmp;
 {
 	if (otmp->oclass == FOOD_CLASS) return "food";
 	if (otmp->oclass == GEM_CLASS &&
-	    objects[otmp->otyp].oc_material == GLASS &&
+	    objects[otmp->otyp].oc_material == MT_GLASS &&
 	    otmp->dknown)
 		makeknown(otmp->otyp);
 	return foodwords[objects[otmp->otyp].oc_material];
@@ -6115,9 +6117,9 @@ struct obj *otmp;
 	 */
 	 
 	if (!u.uconduct.unvegan &&
-	    ((material == LEATHER || material == BONE ||
-	      material == EYEBALL || material == SEVERED_HAND ||
-	      material == DRAGON_HIDE || material == WAX) ||
+	    ((material == MT_LEATHER || material == MT_BONE ||
+	      otmp->otyp == EYEBALL || otmp->otyp == SEVERED_HAND ||
+	      material == MT_DRAGON_HIDE || material == MT_WAX) ||
 	     (cadaver && !vegan(&mons[mnum])))) {
 		sprintf(buf, "%s foul and unfamiliar to you. %s",
 			foodsmell, eat_it_anyway);
@@ -6125,9 +6127,9 @@ struct obj *otmp;
 		else return 2;
 	}
 	if (!u.uconduct.unvegetarian &&
-	    ((material == LEATHER || material == BONE ||
-	      material == EYEBALL || material == SEVERED_HAND ||
-	      material == DRAGON_HIDE) ||
+	    ((material == MT_LEATHER || material == MT_BONE ||
+	      otmp->otyp == EYEBALL || otmp->otyp == SEVERED_HAND ||
+	      material == MT_DRAGON_HIDE) ||
 	     (cadaver && !vegetarian(&mons[mnum])))) {
 		sprintf(buf, "%s unfamiliar to you. %s",
 			foodsmell, eat_it_anyway);
@@ -6295,12 +6297,12 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    victual.eating = TRUE; /* needed for lesshungry() */
 
 	    material = objects[otmp->otyp].oc_material;
-	    if (material == LEATHER ||
-		material == EYEBALL || material == SEVERED_HAND ||
-		material == BONE || material == DRAGON_HIDE) {
+	    if (material == MT_LEATHER ||
+		otmp->otyp == EYEBALL || otmp->otyp == SEVERED_HAND ||
+		material == MT_BONE || material == MT_DRAGON_HIDE) {
 	 		u.uconduct.unvegan++;
 	    		violated_vegetarian();
-	    } else if (material == WAX)
+	    } else if (material == MT_WAX)
 			u.uconduct.unvegan++;
 	    u.uconduct.food++;
 		gluttonous();
@@ -6317,21 +6319,21 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
 		} else
 		    You("seem unaffected by the poison.");
-	    } else if (!otmp->cursed && material != SECREE && material != ETHER && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) {
+	    } else if (!otmp->cursed && material != MT_SECREE && material != MT_ETHER && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) {
 		pline("This %s is delicious!",
 		      otmp->oclass == COIN_CLASS ? foodword(otmp) :
 		      singular(otmp, xname));
 	    }
 
-	    if (material == SECREE) {
+	    if (material == MT_SECREE) {
 			pline("Ulch - this %s tastes like secretion!", otmp->oclass == COIN_CLASS ? foodword(otmp) : singular(otmp, xname));
 			badeffect();
 	    }
-	    if (material == ETHER) {
+	    if (material == MT_ETHER) {
 			pline("The contamination spreads through your body.");
 			contaminate(rnz((level_difficulty() + 40) * 5), TRUE);
 	    }
-	    if (material == VIVA) {
+	    if (material == MT_VIVA) {
 			pline("Eating radioactive metal is a bad idea.");
 			ABASE(A_STR)--;
 			ABASE(A_DEX)--;
@@ -6347,7 +6349,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CHA) = ATTRMIN(A_CHA);}
 	    }
 
-	    if (material == INKA) {
+	    if (material == MT_INKA) {
 			pline("Urgh... your %s is turning as it's having difficulties digesting inka leather.", body_part(STOMACH));
 			nomul(-20, "trying to digest an inka object", TRUE);
 			/* This ignores free action. --Amy */
@@ -6434,7 +6436,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    /* No checks for WAX, LEATHER, BONE, DRAGON_HIDE.  These are
 	     * all handled in the != FOOD_CLASS case, above */
 	    switch (objects[otmp->otyp].oc_material) {
-	    case FLESH:
+	    case MT_FLESH:
 		u.uconduct.unvegan++;
 		gluttonous();
 		if (otmp->otyp != EGG && otmp->otyp != CHEESE) {

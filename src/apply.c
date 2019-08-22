@@ -1990,13 +1990,13 @@ register struct obj *obj;
 	    can->blessed = obj->blessed;
 
 		/* evil patch idea by hackedhead: eroded tinning kits are less reliable */
-		if ( (obj->oeroded == 3 || (obj->oeroded2 == 3 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(2) ) {
+		if ( (obj->oeroded == 3 || (obj->oeroded2 == 3 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(2) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
-		else if ( (obj->oeroded == 2 || (obj->oeroded2 == 2 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(5) ) {
+		else if ( (obj->oeroded == 2 || (obj->oeroded2 == 2 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(5) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
-		else if ( (obj->oeroded == 1 || (obj->oeroded2 == 1 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(10) ) {
+		else if ( (obj->oeroded == 1 || (obj->oeroded2 == 1 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(10) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
 	    if (obj && obj->oartifact == ART_YASDORIAN_S_TROPHY_GETTER) {
@@ -2120,13 +2120,13 @@ register struct obj *obj;
 	    can->blessed = obj->blessed;
 
 		/* evil patch idea by hackedhead: eroded tinning kits are less reliable */
-		if ( (obj->oeroded == 3 || (obj->oeroded2 == 3 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(2) ) {
+		if ( (obj->oeroded == 3 || (obj->oeroded2 == 3 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(2) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
-		else if ( (obj->oeroded == 2 || (obj->oeroded2 == 2 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(5) ) {
+		else if ( (obj->oeroded == 2 || (obj->oeroded2 == 2 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(5) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
-		else if ( (obj->oeroded == 1 || (obj->oeroded2 == 1 && !(objects[(obj)->otyp].oc_material == COMPOST) ) ) && !rn2(10) ) {
+		else if ( (obj->oeroded == 1 || (obj->oeroded2 == 1 && !(objects[(obj)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(10) ) {
 			can->cursed = 1; can->blessed = 0;
 		}
 
@@ -3020,7 +3020,7 @@ struct obj *tstone;
 	    return;
 	} else {
 	    /* either a ring or the touchstone was not effective */
-	    if (objects[obj->otyp].oc_material == GLASS) {
+	    if (objects[obj->otyp].oc_material == MT_GLASS) {
 		do_scratch = TRUE;
 		break;
 	    }
@@ -3030,46 +3030,46 @@ struct obj *tstone;
 
     default:
 	switch (objects[obj->otyp].oc_material) {
-	case CLOTH:
+	case MT_CLOTH:
 	    pline("%s a little more polished now.", Tobjnam(tstone, "look"));
 	    return;
-	case SILK:
+	case MT_SILK:
 	    pline("%s a little softer now.", Tobjnam(tstone, "look"));
 	    return;
-	case COMPOST:
+	case MT_COMPOST:
 	    pline("%s a little dirtier now.", Tobjnam(tstone, "look"));
 	    return;
-	case ETHER:
+	case MT_ETHER:
 	    pline("%s seems contaminated.", Tobjnam(tstone, "look"));
 	    return;
-	case SECREE:
+	case MT_SECREE:
 	    pline("%s has gunk on it now.", Tobjnam(tstone, "look"));
 	    return;
-	case LIQUID:
+	case MT_LIQUID:
 	    if (!obj->known)		/* note: not "whetstone" */
 		You("must think this is a wetstone, do you?");
 	    else
 		pline("%s a little wetter now.", Tobjnam(tstone, "are"));
 	    return;
-	case WAX:
+	case MT_WAX:
 	    streak_color = "waxy";
 	    break;		/* okay even if not touchstone */
-	case WOOD:
+	case MT_WOOD:
 	    streak_color = "wooden";
 	    break;		/* okay even if not touchstone */
-	case GOLD:
+	case MT_GOLD:
 	    do_scratch = TRUE;	/* scratching and streaks */
 	    streak_color = "golden";
 	    break;
-	case SILVER:
+	case MT_SILVER:
 	    do_scratch = TRUE;	/* scratching and streaks */
 	    streak_color = "silvery";
 	    break;
-	case TAR:
+	case MT_TAR:
 	    do_scratch = TRUE;	/* scratching and streaks */
 	    streak_color = "inky black";
 	    break;
-	case VIVA:
+	case MT_VIVA:
 	    do_scratch = TRUE;	/* scratching and streaks */
 	    streak_color = "radiating";
 	    break;

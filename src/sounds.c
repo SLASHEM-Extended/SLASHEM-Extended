@@ -1625,11 +1625,11 @@ register struct monst *mtmp;
 
     if (mtmp->egotype_farter) {
 
-		if (uleft && objects[(uleft)->otyp].oc_material == INKA) {
+		if (uleft && objects[(uleft)->otyp].oc_material == MT_INKA) {
 			verbalize("Let me take off that ring for you.");
 			remove_worn_item(uleft, TRUE);
 		}
-		if (uright && objects[(uright)->otyp].oc_material == INKA) {
+		if (uright && objects[(uright)->otyp].oc_material == MT_INKA) {
 			verbalize("Let me take off that ring for you.");
 			remove_worn_item(uright, TRUE);
 		}
@@ -1886,11 +1886,11 @@ register struct monst *mtmp;
 	case MS_FART_NORMAL:
 	case MS_FART_LOUD:
 
-		if (uleft && objects[(uleft)->otyp].oc_material == INKA) {
+		if (uleft && objects[(uleft)->otyp].oc_material == MT_INKA) {
 			verbalize("Let me take off that ring for you.");
 			remove_worn_item(uleft, TRUE);
 		}
-		if (uright && objects[(uright)->otyp].oc_material == INKA) {
+		if (uright && objects[(uright)->otyp].oc_material == MT_INKA) {
 			verbalize("Let me take off that ring for you.");
 			remove_worn_item(uright, TRUE);
 		}

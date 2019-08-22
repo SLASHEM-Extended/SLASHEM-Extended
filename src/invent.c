@@ -5551,7 +5551,7 @@ struct obj *otmp;
 		|| (!strcmp(word, "polyfix") && !is_hazy(otmp) )
 		|| (!strcmp(word, "randomly enchant") && !is_enchantable(otmp))
 		|| (!strcmp(word, "poison") && !is_poisonable(otmp))
-		|| (!strcmp(word, "rustproof") && objects[(otmp)->otyp].oc_material == IRON)
+		|| (!strcmp(word, "rustproof") && objects[(otmp)->otyp].oc_material == MT_IRON)
 		|| (!strcmp(word, "magically enchant") && !(otmp->owornmask & W_ARMOR) )
 		|| ((!strcmp(word, "draw blood with") ||
 			!strcmp(word, "bandage your wounds with")) &&

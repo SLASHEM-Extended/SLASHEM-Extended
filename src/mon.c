@@ -2449,7 +2449,7 @@ mpickgold(mtmp)
 	if (cansee(mtmp->mx, mtmp->my) ) {
 	    if (flags.verbose && !mtmp->isgd)
 		pline("%s picks up some %s.", Monnam(mtmp),
-			mat_idx == GOLD ? "gold" : "money");
+			mat_idx == MT_GOLD ? "gold" : "money");
 	    newsym(mtmp->mx, mtmp->my);
 	}
     }
@@ -2614,7 +2614,7 @@ struct obj *otmp;
 	    return FALSE;
 	if (otyp == CORPSE && is_deadlysin(&mons[otmp->corpsenm]))
 	    return FALSE;
-	if (objects[otyp].oc_material == SILVER && hates_silver(mdat) &&
+	if (objects[otyp].oc_material == MT_SILVER && hates_silver(mdat) &&
 		(otyp != BELL_OF_OPENING || !is_covetous(mdat)))
 	    return FALSE;
 
@@ -2637,7 +2637,7 @@ struct obj *otmp;
 	if (curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return FALSE;
 
 	/* if the monster hates silver,  don't pick it up */
-	if (objects[otmp->otyp].oc_material == SILVER && hates_silver(mtmp->data)) 
+	if (objects[otmp->otyp].oc_material == MT_SILVER && hates_silver(mtmp->data)) 
 		return(FALSE);
 
 	if(curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return(FALSE);

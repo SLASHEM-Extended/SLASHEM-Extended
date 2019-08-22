@@ -1366,7 +1366,7 @@ register struct attack *mattk;
 		}
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2((objects[blocker->otyp].oc_material == LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == GOLD) ) && !(objects[blocker->otyp].oc_material == SECREE || objects[blocker->otyp].oc_material == ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
+		if (!rn2((objects[blocker->otyp].oc_material == MT_LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? 1 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
 			if (blocker->greased) {
 				blocker->greased--;
 				pline("Your %s loses its grease.", simple_typename(blocker->otyp));
@@ -5567,7 +5567,7 @@ hitmu(mtmp, mattk)
 				/* WAC -- or using a pole at short range... */
 				(is_pole(otmp))) {
 			    /* then do only 1-2 points of damage */
-			    if (is_shade(youmonst.data) && objects[otmp->otyp].oc_material != SILVER && objects[otmp->otyp].oc_material != ARCANIUM && rn2(3))
+			    if (is_shade(youmonst.data) && objects[otmp->otyp].oc_material != MT_SILVER && objects[otmp->otyp].oc_material != MT_ARCANIUM && rn2(3))
 				dmg = 0;
 			    else
 				dmg += rnd(2); /* don't lose the base damage from monst.txt --Amy */
@@ -5604,21 +5604,21 @@ hitmu(mtmp, mattk)
 
 			}
 
-			if (objects[otmp->otyp].oc_material == SILVER &&
+			if (objects[otmp->otyp].oc_material == MT_SILVER &&
 				hates_silver(youmonst.data)) {
 			    pline("The silver sears your flesh!");
 			}
-			if (objects[otmp->otyp].oc_material == COPPER &&
+			if (objects[otmp->otyp].oc_material == MT_COPPER &&
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
 			}
 			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");
 			}
-			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
+			if (objects[otmp->otyp].oc_material == MT_VIVA && hates_viva(youmonst.data)) {
 			    pline("The irradiation severely hurts you!");
 			}
-			if (objects[otmp->otyp].oc_material == INKA) { /* you are always vulnerable to inka, no matter what --Amy */
+			if (objects[otmp->otyp].oc_material == MT_INKA) { /* you are always vulnerable to inka, no matter what --Amy */
 			    pline("The inka string hurts you!");
 			}
 			if (otmp->otyp == ODOR_SHOT) {
@@ -5699,7 +5699,7 @@ hitmu(mtmp, mattk)
 
 			if (!dmg) break;
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
-				   objects[otmp->otyp].oc_material == IRON &&
+				   objects[otmp->otyp].oc_material == MT_IRON &&
 					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
@@ -6521,7 +6521,7 @@ dopois:
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -9230,21 +9230,21 @@ dopois:
 
 			} else dmg += dmgval(otmp, &youmonst);
 
-			if (objects[otmp->otyp].oc_material == SILVER &&
+			if (objects[otmp->otyp].oc_material == MT_SILVER &&
 				hates_silver(youmonst.data)) {
 			    pline("The silver sears your flesh!");
 			}
-			if (objects[otmp->otyp].oc_material == COPPER &&
+			if (objects[otmp->otyp].oc_material == MT_COPPER &&
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
 			}
 			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");
 			}
-			if (objects[otmp->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
+			if (objects[otmp->otyp].oc_material == MT_VIVA && hates_viva(youmonst.data)) {
 			    pline("The irradiation severely hurts you!");
 			}
-			if (objects[otmp->otyp].oc_material == INKA) {
+			if (objects[otmp->otyp].oc_material == MT_INKA) {
 			    pline("The inka string severely hurts you!");
 			}
 			if (otmp->otyp == ODOR_SHOT) {
@@ -9324,7 +9324,7 @@ dopois:
 			}
 
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
-				   objects[otmp->otyp].oc_material == IRON &&
+				   objects[otmp->otyp].oc_material == MT_IRON &&
 					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
@@ -11162,7 +11162,7 @@ do_stone2:
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -13243,7 +13243,7 @@ common:
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -15659,7 +15659,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {

@@ -2319,7 +2319,7 @@ altarfound:
 		       (uses_items && searches_for_item(mtmp, otmp)) ||
 		       (likerock && otmp->otyp == BOULDER) ||
 		       (likegems && otmp->oclass == GEM_CLASS &&
-			objects[otmp->otyp].oc_material != MINERAL) ||
+			objects[otmp->otyp].oc_material != MT_MINERAL) ||
 		       (conceals && !cansee(otmp->ox,otmp->oy)) ||
 		       (ptr == &mons[PM_GELATINOUS_CUBE] &&
 			!index(indigestion, otmp->oclass) &&
@@ -2334,7 +2334,7 @@ altarfound:
 			   (throws_rocks(ptr) ||
 				!sobj_at(BOULDER,xx,yy)) &&
 			   (!is_unicorn(ptr) ||
-			    objects[otmp->otyp].oc_material == GEMSTONE) &&
+			    objects[otmp->otyp].oc_material == MT_GEMSTONE) &&
 			   /* Don't get stuck circling an Elbereth */
 			   !(onscary(xx, yy, mtmp))) {
 			    minr = distmin(omx,omy,xx,yy);

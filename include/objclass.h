@@ -43,56 +43,66 @@ struct objclass {
 #define WHACK		0
 
 	int oc_material; /* wow. Managed to run out of a bitfield again! --Amy */
-#define LIQUID		1	/* currently only for venom */
-#define WAX		2
-#define VEGGY		3	/* foodstuffs */
-#define FLESH		4	/*   ditto    */
-#define PAPER		5
-#define CLOTH		6
-#define LEATHER		7
-#define WOOD		8
-#define BONE		9
-#define DRAGON_HIDE	10	/* not leather! */
-#define IRON		11	/* Fe - includes steel */
-#define METAL		12	/* Sn, &c. */
-#define COPPER		13	/* Cu - includes brass */
-#define SILVER		14	/* Ag */
-#define GOLD		15	/* Au */
-#define PLATINUM	16	/* Pt */
-#define MITHRIL		17
-#define PLASTIC		18
-#define GLASS		19
-#define GEMSTONE	20
-#define MINERAL		21
+/* edit by Amy: for easier grepping on windows and reducing the chance of naming clashes, we do the sensible thing
+ * that the vanilla developers unfortunately never did: prefixing all the materials with MT_ */
+#define MT_MYSTERIOUS	0	/* for objects.c */
+#define MT_LIQUID		1	/* currently only for venom */
+#define MT_WAX		2
+#define MT_VEGGY		3	/* foodstuffs */
+#define MT_FLESH		4	/*   ditto    */
+#define MT_PAPER		5
+#define MT_CLOTH		6
+#define MT_LEATHER		7
+#define MT_WOOD		8
+#define MT_BONE		9
+#define MT_DRAGON_HIDE	10	/* not leather! */
+#define MT_IRON		11	/* Fe - includes steel */
+#define MT_METAL		12	/* Sn, &c. */
+#define MT_COPPER		13	/* Cu - includes brass */
+#define MT_SILVER		14	/* Ag */
+#define MT_GOLD		15	/* Au */
+#define MT_PLATINUM	16	/* Pt */
+#define MT_MITHRIL		17
+#define MT_PLASTIC		18
+#define MT_GLASS		19
+#define MT_GEMSTONE	20
+#define MT_MINERAL		21
 /* new materials by Amy - some of them are obviously fictional */
-#define VIVA		22	/* vivardoradorium: a highly unstable, radioactive chemical element */
-#define INKA		23	/* extraordinarily durable form of leather */
-#define TAR		24	/* actually bitumen */
-#define SILK		25
-#define ARCANIUM		26	/* completely nondescript material */
-#define SECREE		27	/* "secretion" would sound too icky, I think */
-#define POURPOOR		28	/* the "poor man's" version of iron */
-#define COMPOST		29	/* organic material that's not flammable (too wet or humid to catch fire) */
-#define ETERNIUM		30	/* inedible material that resists destruction */
-#define ETHER		31	/* like Elona, except that we have generic contamination instead of ether disease */
-#define BRICK		32	/* lithic material that resists withering */
-#define LASTMATERIAL	BRICK
+#define MT_VIVA		22	/* vivardoradorium: a highly unstable, radioactive chemical element */
+#define MT_INKA		23	/* extraordinarily durable form of leather */
+#define MT_TAR		24	/* actually bitumen */
+#define MT_SILK		25
+#define MT_ARCANIUM		26	/* completely nondescript material */
+#define MT_SECREE		27	/* "secretion" would sound too icky, I think */
+#define MT_POURPOOR		28	/* the "poor man's" version of iron */
+#define MT_COMPOST		29	/* organic material that's not flammable (too wet or humid to catch fire) */
+#define MT_ETERNIUM		30	/* inedible material that resists destruction */
+#define MT_ETHER		31	/* like Elona, except that we have generic contamination instead of ether disease */
+#define MT_BRICK		32	/* lithic material that resists withering */
+#define MT_SAND		33	/* lithic */
+#define MT_SHADOWSTUFF		34	/* inedible, from dnethack */
+#define MT_OBSIDIAN		35	/* lithic, practically equivalent to glass, from dnethack */
+#define MT_LEAD		36	/* metallic, protects against contamination and extra bad effects */
+#define MT_CHROME		37	/* metallic, protects against poison */
+#define MT_CERAMIC		38	/* lithic, from dnethack */
+#define MT_NANOMACHINE		39	/* inedible, repairs itself */
+#define LASTMATERIAL	MT_NANOMACHINE
 
-#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= WOOD || objects[(otmp)->otyp].oc_material == DRAGON_HIDE || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == SILK || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == COMPOST)
-#define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= IRON && \
-				 objects[(otmp)->otyp].oc_material <= MITHRIL) || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == ETHER || objects[(otmp)->otyp].oc_material == POURPOOR)
-#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == BONE || objects[(otmp)->otyp].oc_material == GLASS || objects[(otmp)->otyp].oc_material == GEMSTONE || objects[(otmp)->otyp].oc_material == MINERAL || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == BRICK)
+#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
+#define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= MT_IRON && \
+				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_POURPOOR)
+#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK)
 
 /* primary damage: fire/rust/--- */
 /* is_flammable(otmp), is_rottable(otmp) in mkobj.c */
-#define is_rustprone(otmp)	(SpellColorMetal ? (!(is_metallic(otmp))) : (objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == ETHER || objects[(otmp)->otyp].oc_material == BRICK))
+#define is_rustprone(otmp)	(SpellColorMetal ? (!(is_metallic(otmp))) : (objects[otmp->otyp].oc_material == MT_IRON || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_ARCANIUM || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_ETERNIUM || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_BRICK))
 
 /* secondary damage: rot/acid/acid */
-#define is_corrodeable(otmp)	((uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) ? (!(is_metallic(otmp))) : (objects[otmp->otyp].oc_material == COPPER || ((objects[otmp->otyp].oc_material == METAL || objects[otmp->otyp].oc_material == SILVER || objects[otmp->otyp].oc_material == PLATINUM) && evilfriday ) || objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == BRICK))
+#define is_corrodeable(otmp)	((uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) ? (!(is_metallic(otmp))) : (objects[otmp->otyp].oc_material == MT_COPPER || ((objects[otmp->otyp].oc_material == MT_METAL || objects[otmp->otyp].oc_material == MT_SILVER || objects[otmp->otyp].oc_material == MT_PLATINUM) && evilfriday ) || objects[otmp->otyp].oc_material == MT_IRON || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_ARCANIUM || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_ETERNIUM || objects[(otmp)->otyp].oc_material == MT_BRICK))
 
-#define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == BRICK)
-#define hard_to_destruct(otmp)	(objects[otmp->otyp].oc_material == ETERNIUM || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
-#define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == ETHER)
+#define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == MT_BRICK)
+#define hard_to_destruct(otmp)	(objects[otmp->otyp].oc_material == MT_ETERNIUM || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
+#define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == MT_ETHER)
 
 #define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || \
 				is_rottable(otmp) || is_corrodeable(otmp))

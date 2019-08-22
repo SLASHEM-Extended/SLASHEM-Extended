@@ -2060,8 +2060,8 @@ struct monst *victim;
 
 			/* Amy edit: leather and especially wood are hard to burn. They do burn of course, but not as good
 			 * as cloth or paper, and therefore get a saving throw versus burning */
-			if (objects[otmp->otyp].oc_material == WOOD && rn2(4)) vulnerable = FALSE;
-			if (objects[otmp->otyp].oc_material == LEATHER && rn2(2)) vulnerable = FALSE;
+			if (objects[otmp->otyp].oc_material == MT_WOOD && rn2(4)) vulnerable = FALSE;
+			if (objects[otmp->otyp].oc_material == MT_LEATHER && rn2(2)) vulnerable = FALSE;
 			break;
 		case 1: vulnerable = is_rustprone(otmp);
 			break;
@@ -2129,7 +2129,7 @@ burnagain:
 	    }
 
 		/* Amy edit: paper is particularly flammable and should therefore burn even faster */
-	    if (otmp && objects[otmp->otyp].oc_material == PAPER && !rn2(2)) goto burnagain;
+	    if (otmp && objects[otmp->otyp].oc_material == MT_PAPER && !rn2(2)) goto burnagain;
 
 	} else if (!hard_to_destruct(otmp) && (!otmp->oartifact || !rn2(4))) {
 		    if (youdefend) {
@@ -6539,7 +6539,7 @@ newbossPENT:
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -7010,7 +7010,7 @@ newbossPENT:
 
 				      otmpii = otmpi->nobj;
 
-					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 						if (otmpi->owornmask & W_ARMOR) {
 						    if (otmpi == uskin) {
@@ -9052,7 +9052,7 @@ madnesseffect:
 
 			for(otmp2 = otmp =invent; otmp2 ; otmp = otmp2) {
 				otmp2 = otmp->nobj;
-				if (objects[(otmp)->otyp].oc_material == IRON ) {
+				if (objects[(otmp)->otyp].oc_material == MT_IRON ) {
 
 					if (otmp->owornmask & W_ARMOR) {
 					    if (otmp == uskin) {

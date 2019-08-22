@@ -3454,11 +3454,11 @@ register struct obj *otmp;
 	if (objects[otyp].oc_oprop == FIRE_RES || otyp == WAN_FIRE)
 		return FALSE;
 
-	if (objects[otyp].oc_material == DRAGON_HIDE && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == COMPOST && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == INKA && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_COMPOST && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_INKA && evilfriday) return TRUE;
 
-	return((boolean)((omat <= WOOD && omat != LIQUID) || omat == PLASTIC || omat == VIVA || omat == SILK || omat == ARCANIUM || omat == POURPOOR || omat == ETHER || omat == BRICK));
+	return((boolean)((omat <= MT_WOOD && omat != MT_LIQUID) || omat == MT_PLASTIC || omat == MT_VIVA || omat == MT_SILK || omat == MT_ARCANIUM || omat == MT_POURPOOR || omat == MT_ETHER || omat == MT_BRICK));
 }
 
 boolean
@@ -3471,16 +3471,16 @@ register struct obj *otmp;
 		return (!(is_metallic(otmp)));
 	}
 
-	if (objects[otyp].oc_material == INKA) return TRUE;
-	if (objects[otyp].oc_material == ARCANIUM) return TRUE;
-	if (objects[otyp].oc_material == SECREE) return TRUE;
-	if (objects[otyp].oc_material == COMPOST) return TRUE;
-	if (objects[otyp].oc_material == BRICK) return TRUE;
-	if (objects[otyp].oc_material == BONE && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == DRAGON_HIDE && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_INKA) return TRUE;
+	if (objects[otyp].oc_material == MT_ARCANIUM) return TRUE;
+	if (objects[otyp].oc_material == MT_SECREE) return TRUE;
+	if (objects[otyp].oc_material == MT_COMPOST) return TRUE;
+	if (objects[otyp].oc_material == MT_BRICK) return TRUE;
+	if (objects[otyp].oc_material == MT_BONE && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
 
-	return((boolean)(objects[otyp].oc_material <= WOOD &&
-			objects[otyp].oc_material != LIQUID));
+	return((boolean)(objects[otyp].oc_material <= MT_WOOD &&
+			objects[otyp].oc_material != MT_LIQUID));
 }
 
 #endif /* OVLB */

@@ -1237,20 +1237,20 @@ adjattrib(ndx, incr, msgflg, canresist)
 
 		int mithrilitemcount = 0;
 
-		if (uwep && objects[uwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uarm && objects[uarm->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uarmc && objects[uarmc->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uarmh && objects[uarmh->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uarms && objects[uarms->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uarmg && objects[uarmg->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uarmf && objects[uarmf->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uarmu && objects[uarmu->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uamul && objects[uamul->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uimplant && objects[uimplant->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uleft && objects[uleft->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (uright && objects[uright->otyp].oc_material == MITHRIL) mithrilitemcount++;
-		if (ublindf && objects[ublindf->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uwep && objects[uwep->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uarm && objects[uarm->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uarmc && objects[uarmc->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uarmh && objects[uarmh->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uarms && objects[uarms->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uarmg && objects[uarmg->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uarmf && objects[uarmf->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uarmu && objects[uarmu->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uamul && objects[uamul->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uimplant && objects[uimplant->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uleft && objects[uleft->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (uright && objects[uright->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+		if (ublindf && objects[ublindf->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
 
 		if (mithrilitemcount > 0 && (mithrilitemcount >= rnd(20))) {
 			pline("Your mithril equipment prevents the stat loss!");

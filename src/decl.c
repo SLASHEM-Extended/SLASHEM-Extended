@@ -299,7 +299,8 @@ const char *materialnm[] = {
 	"plastic", "glass", "gemstone", "stone",
 	"vivardoradorium", "elasthan", "tar", "silk",
 	"arcanium", "secree", "pourpoor", "compost",
-	"eternium", "ether", "brick",
+	"eternium", "ether", "brick", "sand", "shadowstuff",
+	"obsidian", "lead", "chrome", "ceramic", "nanomachine",
 };
 
 /* Vision */

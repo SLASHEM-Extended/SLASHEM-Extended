@@ -253,14 +253,14 @@ register boolean clumsy;
 	}
 
 	/* attacking a shade is useless */
-	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) )
+	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) )
 	    dmg = 0;
 
 	if ((is_undead(mon->data) || is_demon(mon->data)) && uarmf &&
 		uarmf->blessed)
 	    blessed_foot_damage = 1;
 
-	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) && !blessed_foot_damage) {
+	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) && !blessed_foot_damage) {
 	    pline_The("%s.", kick_passes_thru);
 	    /* doesn't exercise skill or abuse alignment or frighten pet,
 	       and shades have no passive counterattack */
@@ -648,7 +648,7 @@ register xchar x, y;
 		/* we only care about kicking attacks here */
 		if (uattk->aatyp != AT_KICK) continue;
 
-		if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) && (!uarmf || !uarmf->blessed)) {
+		if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) && (!uarmf || !uarmf->blessed)) {
 		    /* doesn't matter whether it would have hit or missed,
 		       and shades have no passive counterattack */
 		    Your("%s %s.", kick_passes_thru, mon_nam(mon));
@@ -933,7 +933,7 @@ struct obj *obj;
 	    const char *result = (char *)0;
 
 	    otmp2 = otmp->nobj;
-	    if (objects[otmp->otyp].oc_material == GLASS &&
+	    if (objects[otmp->otyp].oc_material == MT_GLASS &&
 		otmp->oclass != GEM_CLASS && !obj_resists(otmp, 33, 100) && !stack_too_big(otmp)) {
 		result = "shatter";
 	    } else if (otmp->otyp == EGG && !rn2(3) && !stack_too_big(otmp)) {
@@ -2041,7 +2041,7 @@ boolean shop_floor_obj;
 	if (breaktest(otmp)) {
 	    const char *result;
 
-	    if (objects[otmp->otyp].oc_material == GLASS
+	    if (objects[otmp->otyp].oc_material == MT_GLASS
 		|| otmp->otyp == EXPENSIVE_CAMERA
 		) {
 		if (otmp->otyp == MIRROR)

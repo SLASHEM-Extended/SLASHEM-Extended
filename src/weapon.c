@@ -529,10 +529,10 @@ struct monst *mon;
 		if (tmp < 0) tmp = 0;
 	}
 
-	if ((objects[otyp].oc_material <= LEATHER || (objects[otyp].oc_material == INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == SILK) || (objects[otyp].oc_material == COMPOST) ) && thick_skinned(ptr) && tmp > 0)
+	if ((objects[otyp].oc_material <= MT_LEATHER || (objects[otyp].oc_material == MT_INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == MT_SILK) || (objects[otyp].oc_material == MT_COMPOST) ) && thick_skinned(ptr) && tmp > 0)
 		/* thick skinned/scaled creatures don't feel it */
 		tmp = 1;
-	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != SILVER && objects[otyp].oc_material != ARCANIUM)
+	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != MT_SILVER && objects[otyp].oc_material != MT_ARCANIUM)
 		tmp = 0;
 
 	/* "very heavy iron ball"; weight increase is in increments of 300 */
@@ -555,9 +555,9 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (is_axe(otmp) && is_wooden(ptr))
 		bonus += rnd(4);
-	    if (objects[otyp].oc_material == SILVER && hates_silver(ptr))
+	    if (objects[otyp].oc_material == MT_SILVER && hates_silver(ptr))
 		bonus += rnd(20);
-	    if (objects[otyp].oc_material == COPPER && hates_copper(ptr))
+	    if (objects[otyp].oc_material == MT_COPPER && hates_copper(ptr))
 		bonus += 20;
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {
 		bonus += 4;
@@ -567,9 +567,9 @@ struct monst *mon;
 		if (otmp->evilcurse) bonus += 15;
 		if (otmp->morgcurse) bonus += 15;
 		}
-	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
+	    if (objects[otyp].oc_material == MT_VIVA && hates_viva(ptr))
 		bonus += 20;
-	    if (objects[otyp].oc_material == INKA && hates_inka(ptr))
+	    if (objects[otyp].oc_material == MT_INKA && hates_inka(ptr))
 		bonus += 5;
 	    if (otyp == ODOR_SHOT && hates_odor(ptr))
 		bonus += rnd(10);
@@ -899,10 +899,10 @@ struct monst *mon;
 		if (tmp < 0) tmp = 0;
 	}
 
-	if ((objects[otyp].oc_material <= LEATHER || (objects[otyp].oc_material == INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == SILK) || (objects[otyp].oc_material == COMPOST) ) && thick_skinned(ptr) && tmp > 0)
+	if ((objects[otyp].oc_material <= MT_LEATHER || (objects[otyp].oc_material == MT_INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == MT_SILK) || (objects[otyp].oc_material == MT_COMPOST) ) && thick_skinned(ptr) && tmp > 0)
 		/* thick skinned/scaled creatures don't feel it */
 		tmp = 1;
-	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != SILVER && objects[otyp].oc_material != ARCANIUM)
+	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != MT_SILVER && objects[otyp].oc_material != MT_ARCANIUM)
 		tmp = 0;
 
 	/* "very heavy iron ball"; weight increase is in increments of 300 */
@@ -925,9 +925,9 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (is_axe(otmp) && is_wooden(ptr))
 		bonus += rnd(4);
-	    if (objects[otyp].oc_material == SILVER && hates_silver(ptr))
+	    if (objects[otyp].oc_material == MT_SILVER && hates_silver(ptr))
 		bonus += rnd(20);
-	    if (objects[otyp].oc_material == COPPER && hates_copper(ptr))
+	    if (objects[otyp].oc_material == MT_COPPER && hates_copper(ptr))
 		bonus += 20;
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {
 		bonus += 4;
@@ -937,7 +937,7 @@ struct monst *mon;
 		if (otmp->evilcurse) bonus += 15;
 		if (otmp->morgcurse) bonus += 15;
 		}
-	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
+	    if (objects[otyp].oc_material == MT_VIVA && hates_viva(ptr))
 		bonus += 20;
 	    if (otyp == ODOR_SHOT && hates_odor(ptr))
 		bonus += rnd(10);
@@ -1728,7 +1728,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 
 		if (((/*strongmonst(mtmp->data) &&*/ (mtmp->misc_worn_check & W_ARMS) == 0)
 			|| !objects[pwep[i]].oc_bimanual) /*&&
-		    (objects[pwep[i]].oc_material != SILVER
+		    (objects[pwep[i]].oc_material != MT_SILVER
 			|| !hates_silver(mtmp->data))*/) {
 		    if ((otmp = oselect(mtmp, pwep[i])) != 0) {
 			propellor = otmp; /* force the monster to wield it */
@@ -1976,7 +1976,7 @@ register struct monst *mtmp;
 		continue;
 	    if (((/*strong &&*/ !wearing_shield)
 			|| !objects[hwep[i]].oc_bimanual) /*&&
-		    (objects[hwep[i]].oc_material != SILVER
+		    (objects[hwep[i]].oc_material != MT_SILVER
 			|| !hates_silver(mtmp->data))*/)
 		Oselect(hwep[i]);
 	}
@@ -4942,7 +4942,7 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
-	if (Race_if(PM_INKA) && weapon && objects[weapon->otyp].oc_material == INKA) {
+	if (Race_if(PM_INKA) && weapon && objects[weapon->otyp].oc_material == MT_INKA) {
 		bonus += 5;
 	}
 

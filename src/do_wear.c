@@ -2843,7 +2843,7 @@ Amulet_on()
 
     if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL && !is_metallic(uamul)) {
 		pline_The("amulet automatically becomes metal.");
-		objects[uamul->otyp].oc_material = METAL;
+		objects[uamul->otyp].oc_material = MT_METAL;
     }
 
     switch(uamul->otyp) {
@@ -3059,7 +3059,7 @@ Amulet_off()
     long oldprop = u.uprops[objects[otyp].oc_oprop].extrinsic & ~WORN_AMUL;
     takeoff_mask &= ~W_AMUL;
 
-	if (uamul && !(Race_if(PM_INKA)) && objects[(uamul)->otyp].oc_material == INKA) {
+	if (uamul && !(Race_if(PM_INKA)) && objects[(uamul)->otyp].oc_material == MT_INKA) {
 		pline("The inka amulet tries to resist being taken off, and severely strangulates you before you can finally slip it from your %s!", body_part(NECK));
 		if (Upolyd) losehp( (u.mhmax / 2) + 2, "inka amulet", KILLED_BY_AN);
 		else losehp( (u.uhpmax / 2) + 2, "inka amulet", KILLED_BY_AN);
@@ -4754,17 +4754,17 @@ find_ac()
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmc && uarmc->otyp == ELVEN_CLOAK) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmg && uarmg->otyp == ELVEN_GAUNTLETS) uac -= 1;
 
-	if (Race_if(PM_INKA) && uarmg && objects[(uarmg)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uarmc && objects[(uarmc)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uarmu && objects[(uarmu)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uarm && objects[(uarm)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uarms && objects[(uarms)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uarmh && objects[(uarmh)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uarmf && objects[(uarmf)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uleft && objects[(uleft)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uright && objects[(uright)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uamul && objects[(uamul)->otyp].oc_material == INKA) uac -= 6;
-	if (Race_if(PM_INKA) && uimplant && objects[(uimplant)->otyp].oc_material == INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmg && objects[(uarmg)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmc && objects[(uarmc)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmu && objects[(uarmu)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarm && objects[(uarm)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarms && objects[(uarms)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmh && objects[(uarmh)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uarmf && objects[(uarmf)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uleft && objects[(uleft)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uright && objects[(uright)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uamul && objects[(uamul)->otyp].oc_material == MT_INKA) uac -= 6;
+	if (Race_if(PM_INKA) && uimplant && objects[(uimplant)->otyp].oc_material == MT_INKA) uac -= 6;
 
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_LEATHER_HELM) uac -= 1;
 	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_HELM) uac -= 1;
@@ -5021,55 +5021,55 @@ find_ac()
 		if (uarms) uac -= 5;
 	}
 
-	if (uarmc && objects[(uarmc)->otyp].oc_material == VIVA) {
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarmc->oeroded * 2);
 		uac -= (uarmc->oeroded2 * 2);
 	}
-	if (uarm && objects[(uarm)->otyp].oc_material == VIVA) {
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarm->oeroded * 2);
 		uac -= (uarm->oeroded2 * 2);
 	}
-	if (uarmu && objects[(uarmu)->otyp].oc_material == VIVA) {
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarmu->oeroded * 2);
 		uac -= (uarmu->oeroded2 * 2);
 	}
-	if (uarms && objects[(uarms)->otyp].oc_material == VIVA) {
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarms->oeroded * 2);
 		uac -= (uarms->oeroded2 * 2);
 	}
-	if (uarmh && objects[(uarmh)->otyp].oc_material == VIVA) {
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarmh->oeroded * 2);
 		uac -= (uarmh->oeroded2 * 2);
 	}
-	if (uarmf && objects[(uarmf)->otyp].oc_material == VIVA) {
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarmf->oeroded * 2);
 		uac -= (uarmf->oeroded2 * 2);
 	}
-	if (uarmg && objects[(uarmg)->otyp].oc_material == VIVA) {
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_VIVA) {
 		uac -= (uarmg->oeroded * 2);
 		uac -= (uarmg->oeroded2 * 2);
 	}
-	if (uamul && objects[(uamul)->otyp].oc_material == VIVA) {
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_VIVA) {
 		uac -= 3;
 		uac -= (uamul->oeroded * 2);
 		uac -= (uamul->oeroded2 * 2);
 	}
-	if (uimplant && objects[(uimplant)->otyp].oc_material == VIVA) {
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_VIVA) {
 		uac -= 3;
 		uac -= (uimplant->oeroded * 2);
 		uac -= (uimplant->oeroded2 * 2);
 	}
-	if (uleft && objects[(uleft)->otyp].oc_material == VIVA) {
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_VIVA) {
 		uac -= 2;
 		uac -= (uleft->oeroded);
 		uac -= (uleft->oeroded2);
 	}
-	if (uright && objects[(uright)->otyp].oc_material == VIVA) {
+	if (uright && objects[(uright)->otyp].oc_material == MT_VIVA) {
 		uac -= 2;
 		uac -= (uright->oeroded);
 		uac -= (uright->oeroded2);
 	}
-	if (ublindf && objects[(ublindf)->otyp].oc_material == VIVA) {
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_VIVA) {
 		uac -= 4;
 		uac -= (ublindf->oeroded * 3);
 		uac -= (ublindf->oeroded2 * 3);
@@ -5367,7 +5367,7 @@ register struct obj *otmp;
 		pline_The("ring is stuck.");
 		return 0;
 	    }
-	    if (objects[(otmp)->otyp].oc_material == INKA && !(Race_if(PM_INKA))  && !(youmonst.data->msound == MS_FART_QUIET || youmonst.data->msound == MS_FART_NORMAL || youmonst.data->msound == MS_FART_LOUD) ) {
+	    if (objects[(otmp)->otyp].oc_material == MT_INKA && !(Race_if(PM_INKA))  && !(youmonst.data->msound == MS_FART_QUIET || youmonst.data->msound == MS_FART_NORMAL || youmonst.data->msound == MS_FART_LOUD) ) {
 		pline("Inka rings cannot be taken off. You need to chat to a farting monster to have it removed.");
 		return 0;
 	    }

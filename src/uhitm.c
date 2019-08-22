@@ -537,7 +537,7 @@ register struct monst *mtmp;
                     weapon objects.
     } */
 
-	if (Race_if(PM_INKA) && uwep && objects[uwep->otyp].oc_material == INKA) {
+	if (Race_if(PM_INKA) && uwep && objects[uwep->otyp].oc_material == MT_INKA) {
 		tmp += 5;
 	}
 
@@ -1398,9 +1398,9 @@ int dieroll;
 	     * don't get both bonuses.
 	     */
 	    if (!uarmg) {
-		if (uleft && objects[uleft->otyp].oc_material == SILVER)
+		if (uleft && objects[uleft->otyp].oc_material == MT_SILVER)
 		    barehand_silver_rings++;
-		if (uright && objects[uright->otyp].oc_material == SILVER)
+		if (uright && objects[uright->otyp].oc_material == MT_SILVER)
 		    barehand_silver_rings++;
 		if (barehand_silver_rings && hates_silver(mdat)) {
 		    tmp += rnd(20);
@@ -1528,7 +1528,7 @@ int dieroll;
 		    (thrown == 2 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher))) {
 		    /* then do only 1-2 points of damage */
-		    if ((is_shade(mdat) || mon->egotype_shader) && objects[obj->otyp].oc_material != SILVER && objects[obj->otyp].oc_material != ARCANIUM)
+		    if ((is_shade(mdat) || mon->egotype_shader) && objects[obj->otyp].oc_material != MT_SILVER && objects[obj->otyp].oc_material != MT_ARCANIUM)
 			tmp = 0;
 		    else
 			tmp = rnd(2);
@@ -1877,13 +1877,13 @@ int dieroll;
 				if (tmp == 0) return TRUE;
 				hittxt = TRUE;
 			}
-		    if (objects[obj->otyp].oc_material == SILVER && hates_silver(mdat)) {
+		    if (objects[obj->otyp].oc_material == MT_SILVER && hates_silver(mdat)) {
 			silvermsg = TRUE; silverobj = TRUE;
 		    }
-		    if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdat)) {
+		    if (objects[obj->otyp].oc_material == MT_VIVA && hates_viva(mdat)) {
 			vivaobj = TRUE;
 		    }
-		    if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdat)) {
+		    if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
 			copperobj = TRUE;
 		    }
 		    if (obj->cursed && hates_cursed(mdat)) {
@@ -1894,7 +1894,7 @@ int dieroll;
 			if (obj->evilcurse) cursedobj++;
 			if (obj->morgcurse) cursedobj++;
 		    }
-		    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdat)) {
+		    if (objects[obj->otyp].oc_material == MT_INKA && hates_inka(mdat)) {
 			inkaobj = TRUE;
 		    }
 		    if (obj->otyp == ODOR_SHOT && hates_odor(mdat)) {
@@ -2395,11 +2395,11 @@ int dieroll;
 			 * Things like silver wands can arrive here so
 			 * so we need another silver check.
 			 */
-			if (objects[obj->otyp].oc_material == SILVER && hates_silver(mdat)) {
+			if (objects[obj->otyp].oc_material == MT_SILVER && hates_silver(mdat)) {
 				tmp += rnd(20);
 				silvermsg = TRUE; silverobj = TRUE;
 			}
-			if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdat)) {
+			if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
 				tmp += 20;
 				copperobj = TRUE;
 			}
@@ -2417,11 +2417,11 @@ int dieroll;
 				if (obj->evilcurse) cursedobj++;
 				if (obj->morgcurse) cursedobj++;
 			}
-			if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdat)) {
+			if (objects[obj->otyp].oc_material == MT_VIVA && hates_viva(mdat)) {
 				tmp += 20;
 				vivaobj = TRUE;
 			}
-			if (objects[obj->otyp].oc_material == INKA && hates_inka(mdat)) {
+			if (objects[obj->otyp].oc_material == MT_INKA && hates_inka(mdat)) {
 				tmp += 5;
 				inkaobj = TRUE;
 			}
@@ -3007,7 +3007,7 @@ int dieroll;
 	if((mdat == &mons[PM_SHOCK_PUDDING] || mdat == &mons[PM_VOLT_PUDDING] || mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_DRUDDING] || mdat == &mons[PM_BLACK_DRUDDING] || mdat == &mons[PM_BLACKSTEEL_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_MORAL_HAZARD] || mdat == &mons[PM_MORAL_EVENT_HORIZON] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
 		   && obj /* && obj == uwep -- !thrown and obj == weapon */
 		   && !thrown
-		   && objects[obj->otyp].oc_material == IRON
+		   && objects[obj->otyp].oc_material == MT_IRON
 		   && mon->mhp > 1 && !thrown && !mon->mcan && !rn2(10) /*slowing down pudding farming --Amy*/
 		   /* && !destroyed  -- guaranteed by mhp > 1 */ ) {
 		if (clone_mon(mon, 0, 0)) {
@@ -4205,7 +4205,7 @@ struct obj *obj;
 	    || obj->otyp == IRON_CHAIN		/* dmgval handles those first three */
 	    || obj->otyp == MIRROR		/* silver in the reflective surface */
 	    || obj->otyp == CLOVE_OF_GARLIC	/* causes shades to flee */
-	    || objects[obj->otyp].oc_material == SILVER)
+	    || objects[obj->otyp].oc_material == MT_SILVER)
 		return TRUE;
 	return FALSE;
 }
@@ -4587,7 +4587,7 @@ register struct attack *mattk;
 		    if(uwep) tmp = 0;
 		} else if(mattk->aatyp == AT_KICK) {
 		    if(thick_skinned(mdef->data) && tmp) tmp = 1;
-		    if((is_shade(mdef->data) || mdef->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) ) {
+		    if((is_shade(mdef->data) || mdef->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) ) {
 			if (!(uarmf && uarmf->blessed)) {
 			    impossible("bad shade attack function flow?");
 			    tmp = 0;
@@ -7168,7 +7168,7 @@ use_weapon:
 				}
 
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == PLATINUM) ? 1 : 0) && (uwep->spe > rn2(8)) && !rn2((objects[uwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == GOLD)) && !issoviet && !(objects[uwep->otyp].oc_material == SECREE || objects[uwep->otyp].oc_material == ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
+				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == MT_PLATINUM) ? 1 : 0) && (uwep->spe > rn2(8)) && !rn2((objects[uwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uwep->otyp].oc_material == MT_SECREE || objects[uwep->otyp].oc_material == MT_ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -7245,7 +7245,7 @@ use_weapon:
 					}
 				}
 
-				if (u.twoweap && uswapwep && uswapwep->spe > ((objects[uswapwep->otyp].oc_material == PLATINUM) ? 1 : 0) && (uswapwep->spe > rn2(8)) && !rn2((objects[uswapwep->otyp].oc_material == LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == SECREE || objects[uswapwep->otyp].oc_material == ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
+				if (u.twoweap && uswapwep && uswapwep->spe > ((objects[uswapwep->otyp].oc_material == MT_PLATINUM) ? 1 : 0) && (uswapwep->spe > rn2(8)) && !rn2((objects[uswapwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == MT_SECREE || objects[uswapwep->otyp].oc_material == MT_ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
 					if (uswapwep->greased) {
 						uswapwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -7340,7 +7340,7 @@ use_weapon:
 			    }
 			    wakeup(mon);
 			    /* maybe this check should be in damageum()? */
-			    if ((is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) &&
+			    if ((is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) &&
 					!(mattk->aatyp == AT_KICK &&
 					    uarmf && uarmf->blessed)) {
 				Your("attack passes harmlessly through %s.",
@@ -9738,7 +9738,7 @@ boolean ranged;
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -10533,12 +10533,12 @@ struct attack *mattk;		/* null means we find one internally */
 	case AD_LAVA:
 
 burnagain:
-	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == LEATHER && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
+	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == MT_WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == MT_LEATHER && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
 
 			if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) {
 				obj->oeroded++;
 				pline("%s weapon is damaged by fire!", carried(obj) ? "Your" : "A");
-				if (obj && objects[obj->otyp].oc_material == PAPER && !rn2(2)) goto burnagain;
+				if (obj && objects[obj->otyp].oc_material == MT_PAPER && !rn2(2)) goto burnagain;
 				}
 			else if (obj->oeroded == MAX_ERODE && !(obj->oartifact && rn2(4)) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
@@ -10816,20 +10816,20 @@ register struct monst *mon;
 
 	int mithrilitemcount = 0;
 
-	if (uwep && objects[uwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uarm && objects[uarm->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uarmc && objects[uarmc->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uarmh && objects[uarmh->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uarms && objects[uarms->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uarmg && objects[uarmg->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uarmf && objects[uarmf->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uarmu && objects[uarmu->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uamul && objects[uamul->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uimplant && objects[uimplant->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uleft && objects[uleft->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (uright && objects[uright->otyp].oc_material == MITHRIL) mithrilitemcount++;
-	if (ublindf && objects[ublindf->otyp].oc_material == MITHRIL) mithrilitemcount++;
+	if (uwep && objects[uwep->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarm && objects[uarm->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmc && objects[uarmc->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmh && objects[uarmh->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarms && objects[uarms->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmg && objects[uarmg->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmf && objects[uarmf->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmu && objects[uarmu->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uamul && objects[uamul->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uimplant && objects[uimplant->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uleft && objects[uleft->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uright && objects[uright->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (ublindf && objects[ublindf->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
 
 	if (mithrilitemcount > 0 && (mithrilitemcount >= rnd(20))) {
 		pline("Your mithril equipment prevents %s's retaliation!", mon_nam(mon));

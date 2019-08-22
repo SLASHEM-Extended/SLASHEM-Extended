@@ -3051,7 +3051,7 @@ steelingchoice:
 				else goto steelingchoice;
 				pline("Oh well, if you don't wanna...");
 			} else {
-				if (!(objects[(steeling)->otyp].oc_material == IRON) ) {
+				if (!(objects[(steeling)->otyp].oc_material == MT_IRON) ) {
 					pline("That is not made of iron!");
 				} else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
@@ -3071,15 +3071,17 @@ protectwhatchoice:
 				else goto protectwhatchoice;
 				pline("Oh well, if you don't wanna...");
 			} else {
-				if (objects[(steeling)->otyp].oc_material >= WAX && objects[(steeling)->otyp].oc_material <= WOOD) 
+				if (objects[(steeling)->otyp].oc_material >= MT_WAX && objects[(steeling)->otyp].oc_material <= MT_WOOD) 
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material == IRON)
+				else if (objects[(steeling)->otyp].oc_material == MT_IRON)
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material == COPPER)
+				else if (objects[(steeling)->otyp].oc_material == MT_COPPER)
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material == PLASTIC)
+				else if (objects[(steeling)->otyp].oc_material == MT_PLASTIC)
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material >= VIVA && objects[(steeling)->otyp].oc_material <= BRICK) 
+				else if (objects[(steeling)->otyp].oc_material >= MT_VIVA && objects[(steeling)->otyp].oc_material <= MT_SAND) 
+					pline("That is erodable, and therefore it doesn't work!");
+				else if (objects[(steeling)->otyp].oc_material >= MT_CHROME && objects[(steeling)->otyp].oc_material <= MT_NANOMACHINE) 
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
@@ -7267,7 +7269,7 @@ newboss:
 		{
 			for(otmpii = otmpi =invent; otmpii ; otmpi = otmpii) {
 				otmpii = otmpi->nobj;
-				if (objects[(otmpi)->otyp].oc_material == IRON ) {
+				if (objects[(otmpi)->otyp].oc_material == MT_IRON ) {
 
 					if (otmpi->owornmask & W_ARMOR) {
 					    if (otmpi == uskin) {
@@ -7321,7 +7323,7 @@ newboss:
 		{
 			for(otmpii = otmpi =invent; otmpii ; otmpi = otmpii) {
 				otmpii = otmpi->nobj;
-				if (objects[(otmpi)->otyp].oc_material == IRON ) {
+				if (objects[(otmpi)->otyp].oc_material == MT_IRON ) {
 
 					if (otmpi->owornmask & W_ARMOR) {
 					    if (otmpi == uskin) {
