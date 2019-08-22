@@ -218,7 +218,9 @@ boolean barehanded;
 		return 0;
 	}
 
-	if (mtmp->mundetected && !canseemon(mtmp) &&
+	/* it used to say "canseemon" here but that was bullshit, because you'd constantly lose turns if you were
+	 * detecting monsters via some other weird method! --Amy */
+	if (mtmp->mundetected && !canspotmon(mtmp) &&
 		!glyph_is_warning(glyph_at(u.ux+u.dx,u.uy+u.dy)) &&
 		(hides_under(mtmp->data) || mtmp->data->mlet == S_FLYFISH || ((mtmp->data->mlet == S_EEL) && !(mtmp->data == &mons[PM_DEFORMED_FISH])) ) ) {
 	    mtmp->mundetected = mtmp->msleeping = 0;
