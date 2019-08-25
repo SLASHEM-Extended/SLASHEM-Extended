@@ -671,9 +671,9 @@ register struct monst *mtmp;
 	if (Role_if(PM_SLAVE_MASTER) && rn2(10)) return FALSE; /* can keep monsters tame more easily --Amy */
 
     if (udist < 4 && has_edog && (!mtmp->isspell || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) ) && !rn2(3)
-		    && (can_betray(mtmp->data) || (isfriday && !rn2(10)) || (is_jonadabmonster(mtmp->data)) || (mtmp->data->mlevel >= 50) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->m_lev >= 40) )
+		    && (can_betray(mtmp->data) || (isfriday && !rn2(10)) || (is_jonadabmonster(mtmp->data)) || (mtmp->data->mlevel >= 50) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->m_lev >= 40) )
 		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
-		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (is_jonadabmonster(mtmp->data)) || (isfriday && !rn2(10)) || (mtmp->data->mlevel >= 50) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
+		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) || Rebellions || have_rebelstone() || (is_jonadabmonster(mtmp->data)) || (isfriday && !rn2(10)) || (mtmp->data->mlevel >= 50) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
 		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
 		    && !((rnd(30 - ACURR(A_CHA))) < 4) /* Roll against charisma */
 		    && rn2(edog->abuse + rnd(2) )) {
@@ -802,6 +802,7 @@ register int after;	/* this is extra fast monster movement */
 		if (betrayed(mtmp)) return 1;
 	}
 	if ((u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) && !rn2(85) && betrayed(mtmp)) return 1;
+	if (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) return 1;
 
 	/* If you abused your pet, it will _very_ slowly time out. --Amy */
 	if (!rn2(10000) && has_edog && edog->abuse) {
