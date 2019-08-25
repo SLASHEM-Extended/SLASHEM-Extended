@@ -92,6 +92,7 @@ struct flag {
 #ifdef MAC
 	boolean  page_wait;	/* put up a --More-- after a page of messages */
 #endif
+	boolean  paranoidquit;	/* whether #quit requires a full "yes" confirmation */
 	boolean  perm_invent;	/* keep full inventories up until dismissed */
 	boolean  pickup;	/* whether you pickup or move and look */
 	boolean  pickup_thrown;		/* auto-pickup items you threw */

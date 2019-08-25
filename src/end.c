@@ -294,9 +294,17 @@ done2()
 	char buf[BUFSZ];
 	int really_quit = FALSE;
 
+	if (flags.paranoidquit) {
+
 	  getlin ("Really quit? WARNING: this will erase your game permanently! [yes/no]?",buf);
 	  (void) lcase (buf);
 	  if (!(strcmp (buf, "yes"))) really_quit = TRUE;
+
+	} else {
+
+		if(yn("Really quit? WARNING: this will erase your game permanently and you disabled the paranoidquit safety option so if you hit 'y' now, your game will be GONE!") != 'n') really_quit = TRUE;
+
+	}
 	
 	if (!really_quit) {
 #ifndef NO_SIGNAL
