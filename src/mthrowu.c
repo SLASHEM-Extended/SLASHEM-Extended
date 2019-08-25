@@ -733,15 +733,233 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	int damage, tmp;
 	boolean vis, ismimic;
 	int objgone = 1;
+	register struct obj *blocker = (struct obj *)0;
+	int shieldblockrate = 0;
 
 	ismimic = mtmp->m_ap_type && mtmp->m_ap_type != M_AP_MONSTER;
 	vis = cansee(bhitpos.x, bhitpos.y);
 
 	tmp = 5 + find_mac(mtmp) + omon_adj(mtmp, otmp, FALSE);
+
+	/* Amy edit: if a pet is the target and the monster is high-level, add to-hit to make sure it can actually hit */
 	if (mtmp->mtame && mon) {
-		tmp += mon->m_lev;
+		int armordifferential = 0;
+		if (mon->m_lev > 0) armordifferential += mon->m_lev;
+		if (mtmp->m_lev > mon->m_lev) armordifferential -= (mtmp->m_lev - mon->m_lev);
+		if (armordifferential < 0) armordifferential = 0; /* fail safe */
+		tmp += armordifferential;
 		if (otmp && otmp->oclass == VENOM_CLASS) tmp += 10;
 	}
+	if (verysmall(mtmp->data) && !rn2(8)) {
+	    if (!ismimic) {
+		if (vis) pline("%s avoids a projectile.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (rathersmall(mtmp->data) && !verysmall(mtmp->data) && !rn2(20)) {
+	    if (!ismimic) {
+		if (vis) pline("%s avoids a projectile.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (hugemonst(mtmp->data) && !rn2(8)) {
+	    if (!ismimic) {
+		if (vis) pline("%s shrugs off a projectile.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (bigmonst(mtmp->data) && !hugemonst(mtmp->data) && !rn2(15)) {
+	    if (!ismimic) {
+		if (vis) pline("%s shrugs off a projectile.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (amorphous(mtmp->data) && !rn2(10)) {
+	    if (!ismimic) {
+		if (vis) pline("%s's amorphous body skillfully dodges a projectile.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (noncorporeal(mtmp->data) && !rn2(2)) {
+	    if (!ismimic) {
+		if (vis) pline("%s avoids a projectile due to being noncorporeal.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (unsolid(mtmp->data) && !rn2(8)) {
+	    if (!ismimic) {
+		if (vis) pline("%s's unsolid body lets a projectile pass through harmlessly.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_ATHLEANNIE] || mtmp->data == &mons[PM_LILAC_FEMMY] || mtmp->data == &mons[PM_GREEN]) { /* will never be hit by monsters' ranged attacks */
+	    if (!ismimic) {
+		pline("%s swats a projectile away.", Monnam(mtmp));
+	    }
+	    if (!range) { /* Last position; object drops */
+		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+		return 1;
+	    }
+	} else if (blocker = (which_armor(mtmp, W_ARMS))) {
+
+		switch (blocker->otyp) {
+
+			case SMALL_SHIELD:
+				shieldblockrate = 20;
+				break;
+			case PAPER_SHIELD:
+			case DIFFICULT_SHIELD:
+				shieldblockrate = 50;
+				break;
+			case ICKY_SHIELD:
+				shieldblockrate = 10;
+				break;
+			case HEAVY_SHIELD:
+				shieldblockrate = 20;
+				break;
+			case BARRIER_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case TROLL_SHIELD:
+			case MAGICAL_SHIELD:
+			case SPECIAL_SHIELD:
+				shieldblockrate = 30;
+				break;
+			case TARRIER:
+				shieldblockrate = 35;
+				break;
+			case SHIELD_OF_PEACE:
+				shieldblockrate = 30;
+				break;
+			case ELVEN_SHIELD:
+				shieldblockrate = 30;
+				if (is_elf(mon->data)) shieldblockrate += 5;
+				break;
+			case URUK_HAI_SHIELD:
+				shieldblockrate = 32;
+				if (is_orc(mon->data)) shieldblockrate += 5;
+				break;
+			case ORCISH_SHIELD:
+			case ORCISH_GUARD_SHIELD:
+				shieldblockrate = 28;
+				if (is_orc(mon->data)) shieldblockrate += 5;
+				break;
+			case DWARVISH_ROUNDSHIELD:
+				shieldblockrate = 34;
+				if (is_dwarf(mon->data)) shieldblockrate += 5;
+				break;
+			case LARGE_SHIELD:
+			case SHIELD:
+				shieldblockrate = 35;
+				break;
+			case STEEL_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case CRYSTAL_SHIELD:
+			case RAPIRAPI:
+			case HIDE_SHIELD:
+				shieldblockrate = 45;
+				break;
+			case SHIELD_OF_REFLECTION:
+			case SILVER_SHIELD:
+			case MIRROR_SHIELD:
+				shieldblockrate = 35;
+				break;
+			case FLAME_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case ICE_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case LIGHTNING_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case VENOM_SHIELD:
+				shieldblockrate = 40;
+				break;
+			case SHIELD_OF_LIGHT:
+				shieldblockrate = 40;
+				break;
+			case SHIELD_OF_MOBILITY:
+				shieldblockrate = 40;
+				break;
+
+			case GRAY_DRAGON_SCALE_SHIELD:
+			case SILVER_DRAGON_SCALE_SHIELD:
+			case MERCURIAL_DRAGON_SCALE_SHIELD:
+			case SHIMMERING_DRAGON_SCALE_SHIELD:
+			case DEEP_DRAGON_SCALE_SHIELD:
+			case RED_DRAGON_SCALE_SHIELD:
+			case WHITE_DRAGON_SCALE_SHIELD:
+			case ORANGE_DRAGON_SCALE_SHIELD:
+			case BLACK_DRAGON_SCALE_SHIELD:
+			case BLUE_DRAGON_SCALE_SHIELD:
+			case COPPER_DRAGON_SCALE_SHIELD:
+			case PLATINUM_DRAGON_SCALE_SHIELD:
+			case BRASS_DRAGON_SCALE_SHIELD:
+			case AMETHYST_DRAGON_SCALE_SHIELD:
+			case PURPLE_DRAGON_SCALE_SHIELD:
+			case DIAMOND_DRAGON_SCALE_SHIELD:
+			case EMERALD_DRAGON_SCALE_SHIELD:
+			case SAPPHIRE_DRAGON_SCALE_SHIELD:
+			case RUBY_DRAGON_SCALE_SHIELD:
+			case GREEN_DRAGON_SCALE_SHIELD:
+			case GOLDEN_DRAGON_SCALE_SHIELD:
+			case FEMINISM_DRAGON_SCALE_SHIELD:
+			case NEGATIVE_DRAGON_SCALE_SHIELD:
+			case HEROIC_DRAGON_SCALE_SHIELD:
+			case STONE_DRAGON_SCALE_SHIELD:
+			case CYAN_DRAGON_SCALE_SHIELD:
+			case PSYCHIC_DRAGON_SCALE_SHIELD:
+			case RAINBOW_DRAGON_SCALE_SHIELD:
+			case BLOOD_DRAGON_SCALE_SHIELD:
+			case PLAIN_DRAGON_SCALE_SHIELD:
+			case SKY_DRAGON_SCALE_SHIELD:
+			case WATER_DRAGON_SCALE_SHIELD:
+			case MAGIC_DRAGON_SCALE_SHIELD:
+			case YELLOW_DRAGON_SCALE_SHIELD:
+
+				shieldblockrate = 33;
+				break;
+
+			case EVIL_DRAGON_SCALE_SHIELD:
+
+				shieldblockrate = 43;
+				break;
+
+			default: impossible("Unknown type of shield (%d)", blocker->otyp);
+
+		}
+
+		if (shieldblockrate && (blocker->spe > 0)) shieldblockrate += (blocker->spe * 2);
+		if (blocker->blessed) shieldblockrate += 5;
+
+		if (rnd(100) < shieldblockrate) {
+			    if (!ismimic) {
+				pline("%s's shield blocks a projectile.", Monnam(mtmp));
+			    }
+			    if (!range) { /* Last position; object drops */
+				(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
+				return 1;
+			    }
+		}
+		else goto blockingdone;
+	} else
+blockingdone:	
 	if (tmp < rnd(20)) {
 	    if (!ismimic) {
 		if (vis) miss(distant_name(otmp, mshot_xname), mtmp);
@@ -1740,7 +1958,7 @@ boolean force_linedup;
 		|| (attacktype(mtmp->data, AT_SPIT) && !mtmp->mcan && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)) )
 		{
 			if (!mret) {
-				if (!rn2(5) || attacktype(mtmp2->data, AT_EXPL) || mtmp->mfrenzied) mret = mtmp2;
+				if (!rn2(20) || attacktype(mtmp2->data, AT_EXPL) || mtmp->mfrenzied) mret = mtmp2;
 			}
 		}
 	}
