@@ -1785,6 +1785,9 @@ moveloop()
 		    /* once-per-turn things go here */
 		    /********************************/
 
+		if (!rn2(2)) u.funnyhalluroll = 9999999;
+		else u.funnyhalluroll = rn2(10000);
+
 		if (u.riderhack) u.riderhack = FALSE;
 
 		if (!occupation) u.katitrapocc = FALSE;

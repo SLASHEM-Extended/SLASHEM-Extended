@@ -1568,6 +1568,8 @@ struct you {
 
 	int stoogedepth;	/* occasionally the three stooges will spawn */
 
+	int funnyhalluroll;	/* how much sanity you need to have in order to get funny hallu messages */
+
 	boolean zapem_mode;	/* decided at game start: true if you're a ZAPM role or used the ZAPM birth option */
 	boolean riderhack;	/* to prevent you from easily removing riders */
 
