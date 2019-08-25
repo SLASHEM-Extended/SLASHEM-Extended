@@ -3434,7 +3434,7 @@ gulpmm(magr, mdef, mattk)
 	char buf[BUFSZ];
 	struct obj *obj;
 
-	if (mdef->data->msize >= MZ_HUGE) return MM_MISS;
+	if (mdef->data->msize >= MZ_HUGE && magr->data->msize < MZ_HUGE) return MM_MISS;
 
 	if (vis) {
 		sprintf(buf,"%s swallows", Monnam(magr));

@@ -9473,7 +9473,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	struct obj *optr;
 
 	if (!u.uswallow) {	/* swallows you */
-		if (youmonst.data->msize >= MZ_HUGE) return(0);
+		if (youmonst.data->msize >= MZ_HUGE && mtmp->data->msize < MZ_HUGE) return(0);
 		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
@@ -12326,7 +12326,7 @@ do_stone2:
 	    pline("%s very hurriedly %s you!", Monnam(mtmp),
 		  is_animal(mtmp->data)? "regurgitates" : "expels");
 	    expels(mtmp, mtmp->data, FALSE);
-	} else if (!u.uswldtim || youmonst.data->msize >= MZ_HUGE) {
+	} else if (!u.uswldtim || (youmonst.data->msize >= MZ_HUGE && mtmp->data->msize < MZ_HUGE)) {
 	    You("get %s!", is_animal(mtmp->data)? "regurgitated" : "expelled");
 	    if (flags.verbose && (is_animal(mtmp->data) ||
 		    (dmgtype(mtmp->data, AD_DGST) && Slow_digestion)))
