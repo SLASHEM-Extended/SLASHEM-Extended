@@ -220,7 +220,7 @@ int thrown;
 	    if (launcher && (launcher->otyp == RIFLE || launcher->otyp == SNIPER_RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD) && uarmc && itemhasappearance(uarmc, APP_RIFLING_POWER_CLOAK) ) multishot += rnd(2);
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
-	    if (launcher && launcher->otyp == DEMON_CROSSBOW) multishot += 4;
+	    if (launcher && launcher->otyp == DEMON_CROSSBOW && launcher->altmode == WP_MODE_AUTO) multishot += 4;
 	    if (launcher && launcher->otyp == WILDHILD_BOW) multishot += 2;
 
 	    if (launcher && launcher->oartifact == ART_STREAMSHOOTER) multishot += 1;

@@ -1438,6 +1438,10 @@ struct obj *obj;
 	char buf[BUFSZ];
 	char qbuf[QBUFSZ];
 
+	boolean vaapadcheck = FALSE;
+
+	if (!PlayerCannotUseSkills && P_SKILL(P_VAAPAD) >= P_EXPERT) vaapadcheck = TRUE;
+
 	if (Race_if(PM_SATRE) && !is_lightsaber(obj)) {
 		pline("As a satre, you are unable to use a light source.");
 		return;
@@ -1453,8 +1457,44 @@ struct obj *obj;
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
 		} else if(is_lightsaber(obj)) {
 		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+
 			/* Do we want to activate dual bladed mode? */
-			if (!obj->altmode && (!obj->cursed || rn2(4))) {
+			if (vaapadcheck) {
+
+				if (!obj->altmode) {
+					if (yn("Turn the double lightsaber off? (If you say no, you activate the second blade)") != 'n') {
+						obj->altmode = FALSE;
+						lightsaber_deactivate(obj, TRUE);
+						return;
+					} else {
+						if (obj->cursed && !rn2(4)) {
+							obj->altmode = FALSE;
+							lightsaber_deactivate(obj, TRUE);
+							return;
+						}
+						You("ignite the second blade of %s.", yname(obj));
+						obj->altmode = TRUE;
+						return;
+					}
+				} else {
+					if (yn("Turn the double lightsaber off? (If you say no, you only turn off one of the blades)") != 'n') {
+						obj->altmode = FALSE;
+						lightsaber_deactivate(obj, TRUE);
+						return;
+					} else {
+						if (obj->cursed && !rn2(4)) {
+							obj->altmode = FALSE;
+							lightsaber_deactivate(obj, TRUE);
+							return;
+						}
+						You("turn off the second blade of %s.", yname(obj));
+						obj->altmode = FALSE;
+						return;
+					}
+
+				}
+
+			} else if (!obj->altmode && (!obj->cursed || rn2(4))) {
 			    You("ignite the second blade of %s.", yname(obj));
 			    obj->altmode = TRUE;
 			    return;
@@ -1515,6 +1555,17 @@ struct obj *obj;
 		    
 		    if (!Blind) makeknown(obj->otyp);
 		    You("ignite %s.", yname(obj));
+
+			if (vaapadcheck) {
+				if (yn("Use only one of the two blades? (If you say no, you ignite both)") != 'n') {
+					; /* do nothing */
+				} else {
+					You("ignite the second blade of %s.", yname(obj));
+					obj->altmode = TRUE;
+				}
+
+			}
+
 		    unweapon = FALSE;
 		} else {	/* candle(s) */
 		    sprintf(qbuf, "Light all of %s?", the(xname(obj)));
@@ -5486,13 +5537,54 @@ doapply()
 	case ASSAULT_RIFLE:
 	case KALASHNIKOV:
 		/* Switch between WP_MODE_SINGLE, WP_MODE_BURST and WP_MODE_AUTO */
+		/* Amy edit: with enough firearm or gun control skill, you can select the mode */
 
-		if (obj->altmode == WP_MODE_AUTO) {
-			obj->altmode = WP_MODE_BURST;
-		} else if (obj->altmode == WP_MODE_BURST) {
-			obj->altmode = WP_MODE_SINGLE;
+		if (!PlayerCannotUseSkills && (P_SKILL(P_FIREARM) >= P_EXPERT || P_SKILL(P_GUN_CONTROL) >= P_EXPERT)) {
+
+			winid tmpwin;
+			anything any;
+			menu_item *selected;
+			int n;
+
+			any.a_void = 0;         /* zero out all bits */
+			tmpwin = create_nhwindow(NHW_MENU);
+			start_menu(tmpwin);
+			any.a_int = 1;
+			add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE, "Automatic", MENU_UNSELECTED);
+			any.a_int = 2;
+			add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE, "Burst Fire", MENU_UNSELECTED);
+			any.a_int = 3;
+			add_menu(tmpwin, NO_GLYPH, &any , 's', 0, ATR_NONE, "Single Shot", MENU_UNSELECTED);
+
+			end_menu(tmpwin, "Select a fire mode");
+			n = select_menu(tmpwin, PICK_ONE, &selected);
+			destroy_nhwindow(tmpwin);
+
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						obj->altmode = WP_MODE_AUTO;
+						break;
+					case 2:
+						obj->altmode = WP_MODE_BURST;
+						break;
+					case 3:
+						obj->altmode = WP_MODE_SINGLE;
+						break;
+
+				}
+
+			}
+
 		} else {
-			obj->altmode = WP_MODE_AUTO;
+
+			if (obj->altmode == WP_MODE_AUTO) {
+				obj->altmode = WP_MODE_BURST;
+			} else if (obj->altmode == WP_MODE_BURST) {
+				obj->altmode = WP_MODE_SINGLE;
+			} else {
+				obj->altmode = WP_MODE_AUTO;
+			}
 		}
 		
 		You("switch %s to %s mode.", yname(obj), 

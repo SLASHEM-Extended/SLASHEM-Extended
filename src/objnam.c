@@ -6335,6 +6335,11 @@ plus:
 			strcat(prefix, sitoa(obj->spe));
 			strcat(prefix, " ");
 		}
+		if (has_firemodes(obj)) {
+			if (obj->altmode == WP_MODE_BURST) strcat(bp, " (burst)");
+			else if (obj->altmode == WP_MODE_SINGLE) strcat(bp, " (single)");
+			else strcat(bp, " (auto)");
+		}
 		if (
 			is_lightsaber(obj) ||
 			obj->otyp == STICK_OF_DYNAMITE) {
