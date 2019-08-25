@@ -5594,7 +5594,14 @@ int snamount;
 		}
 	}
 
-	if (rn2(10) && (u.usanity > rn2(1000)) ) badeffect();
+	if (u.usanity > 90000) {
+		pline("In fact, you're certain that the apocalypse is near as there's murder and pillaging taking place everywhere.");
+	}
+
+	if (rn2(10) && (u.usanity > rn2(1000)) ) {
+		if (u.usanity > 90000) reallybadeffect();
+		else badeffect();
+	}
 
 }
 
