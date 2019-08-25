@@ -325,7 +325,7 @@ use_stethoscope(obj)
 			}
 
 		}
-		return 0;
+		else return 0;
 	}
 	if (!freehandX()) {
 		You("have no free %s.", body_part(HAND));
@@ -4089,7 +4089,7 @@ do_break_wand(obj)
 			return 1;
 		}
 	}
-	return 0;
+	else return 0;
     }
     if (ACURR(A_STR) < 10) {
 	You("don't have the strength to break %s!", the_wand);
