@@ -6408,6 +6408,10 @@ boolean guaranteed;
 #ifdef WIZARD
 	 else if (wizard) enl_msg("Your mana bonus ", "is", "was", " zero");
 #endif
+	if (guaranteed || !rn2(10)) {
+		sprintf(buf, "spell retention for remembering %d spells", urole.spelrete);
+		you_have(buf);
+	}
 
 	if ((guaranteed || !rn2(10)) && u.ugangr) {
 	    sprintf(buf, " %sangry with you",
@@ -10043,6 +10047,9 @@ int final;
 	      dump(youhad, buf);
 	}
 	else dump("  ", "Your mana bonus was zero");
+
+	sprintf(buf, "spell retention for remembering %d spells", urole.spelrete);
+	dump(youhad, buf);
 
 	    sprintf(buf, "Your pantheon consisted of %s, %s and %s", align_gname(A_LAWFUL), align_gname(A_NEUTRAL), align_gname(A_CHAOTIC) );
 	    dump("  ", buf);
