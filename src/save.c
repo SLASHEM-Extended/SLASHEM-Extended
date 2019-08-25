@@ -372,6 +372,7 @@ savegamestate(fd, mode)
 register int fd, mode;
 {
 	int uid;
+	struct obj * bc_objs = (struct obj *)0;
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
         time_t realtime;
 #endif
@@ -726,7 +727,16 @@ register int fd, mode;
 	save_timers(fd, mode, RANGE_GLOBAL);
 	save_light_sources(fd, mode, RANGE_GLOBAL);
 
+	if (CHAIN_IN_MON) {
+		uchain->nobj = bc_objs;
+		bc_objs = uchain;
+	}
+	if (BALL_IN_MON) {
+		uball->nobj = bc_objs;
+		bc_objs = uball;
+	}
 	saveobjchn(fd, invent, mode);
+	saveobjchn(fd, bc_objs, mode);
 	saveobjchn(fd, migrating_objs, mode);
 	savemonchn(fd, migrating_mons, mode);
 	if (release_data(mode)) {
