@@ -17644,6 +17644,7 @@ drown()
 	if (u.uinwater && !(is_crystalwater(u.ux-u.dx,u.uy-u.dy)) && is_drowningpool(u.ux-u.dx,u.uy-u.dy) &&
 	    (Swimming || Amphibious || Breathless)) {
 		/* water effects on objects every now and then */
+		u.udrowning = FALSE;
 		if (!rn2(5)) inpool_ok = TRUE;
 		else return(FALSE);
 	}
@@ -17678,7 +17679,10 @@ drown()
 	    if (u.mhmax > i) u.mhmax -= i;
 	    losehp(i, "rusting away", KILLED_BY);
 	}
-	if (inpool_ok) return(FALSE);
+	if (inpool_ok) {
+		u.udrowning = FALSE;
+		return(FALSE);
+	}
 
 	if ((i = number_leashed()) > 0) {
 		pline_The("leash%s slip%s loose.",
@@ -17706,6 +17710,7 @@ drown()
 		u.uinwater = 1;
 		under_water(1);
 		vision_full_recalc = 1;
+		u.udrowning = FALSE;
 		return(FALSE);
 	}
 	else if (Swimming && !Is_waterlevel(&u.uz)) {
@@ -17716,6 +17721,7 @@ drown()
 		u.uinwater = 1;
 		under_water(1);
 		vision_full_recalc = 1;
+		u.udrowning = FALSE;
 		return(FALSE);
 	}
 	if ((Teleportation || can_teleport(youmonst.data)) &&
@@ -17779,8 +17785,9 @@ drown()
 	u.uinwater = 1;
 
 	if (uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS) ) {
-	pline("Your fin boots prevent you from drowning.");
-	return(FALSE);
+		pline("Your fin boots prevent you from drowning.");
+		u.udrowning = FALSE;
+		return(FALSE);
 	}
 
 	if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) You("go to Davy Jones' locker.");
@@ -17794,8 +17801,22 @@ drown()
 		rehumanize();
 		u.uinwater = 0;
 		You("fly up out of the water!");
+		u.udrowning = FALSE;
 		return (TRUE);
 	}
+
+	if (u.uhpmax >= 100) {
+		u.udrowning = TRUE;
+		You("inhale an unhealthy amount of water.");
+		if (Upolyd) losehp(100, "drowning", NO_KILLER_PREFIX);
+		losehp(rnd(100), "drowning", NO_KILLER_PREFIX);
+		vision_recalc(2);	/* unsee old position */
+		u.uinwater = 1;
+		under_water(1);
+		vision_full_recalc = 1;
+		return(FALSE);
+	}
+
 	u.youaredead = 1;
 	killer_format = KILLED_BY_AN;
 	killer = (levl[u.ux][u.uy].typ == POOL || Is_medusa_level(&u.uz)) ?
@@ -17847,7 +17868,10 @@ crystaldrown()
 	    if (u.mhmax > i) u.mhmax -= i;
 	    losehp(i, "rusting away", KILLED_BY);
 	}
-	if (inpool_ok) return(FALSE);
+	if (inpool_ok) {
+		u.udrowning = FALSE;
+		return(FALSE);
+	}
 
 	if ((Teleportation || can_teleport(youmonst.data)) &&
 		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
@@ -17900,13 +17924,27 @@ crystaldrown()
 	}
 
 	if (uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS) ) {
-	pline("Your fin boots prevent you from drowning.");
-	return(FALSE);
+		pline("Your fin boots prevent you from drowning.");
+		u.udrowning = FALSE;
+		return(FALSE);
 	}
 	u.youaredead = 1;
 
 	You("drown.");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");
+
+	if (u.uhpmax >= 100) {
+		u.udrowning = TRUE;
+		You("inhale an unhealthy amount of water.");
+		if (FunnyHallu) pline("Sadly, despite being crystal clear, it's still killing you.");
+		if (Upolyd) losehp(100, "drowned in crystal water", NO_KILLER_PREFIX);
+		losehp(rnd(100), "drowned in crystal water", NO_KILLER_PREFIX);
+		vision_recalc(2);	/* unsee old position */
+		u.uinwater = 1;
+		under_water(1);
+		vision_full_recalc = 1;
+		return(FALSE);
+	}
 
 	killer_format = KILLED_BY_AN;
 	killer = "crystal water";

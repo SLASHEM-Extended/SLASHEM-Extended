@@ -1785,6 +1785,12 @@ moveloop()
 		    /* once-per-turn things go here */
 		    /********************************/
 
+		if (!u.uinwater) u.udrowning = FALSE;
+		if (u.udrowning) {
+			if (isok(u.ux, u.uy) && is_crystalwater(u.ux, u.uy)) crystaldrown();
+			else drown();
+		}
+
 		if (!rn2(2)) u.funnyhalluroll = 9999999;
 		else u.funnyhalluroll = rn2(10000);
 

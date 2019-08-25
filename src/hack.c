@@ -3044,14 +3044,14 @@ boolean pick;
 		}
 		else if (Is_waterlevel(&u.uz))
 			goto stillinwater;
-		else if (Levitation)
+		else if (Levitation && !is_crystalwater(u.ux,u.uy))
 			You("pop out of the water like a cork!");
 		/* KMH, balance patch -- new intrinsic */
-		else if (Flying)
+		else if (Flying && !is_crystalwater(u.ux,u.uy))
 			You("fly out of the water.");
-		else if (uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK))
+		else if (uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK) && !is_crystalwater(u.ux,u.uy))
 			You("fly out of the water.");
-		else if (Wwalking)
+		else if (Wwalking && !is_crystalwater(u.ux,u.uy))
 			You("slowly rise above the surface.");
 /*              else if (Swimming)
 			You("paddle up to the surface.");*/
