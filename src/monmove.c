@@ -2148,6 +2148,8 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_STUPIDITY_AUTIST) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SEIZURE_FOOBACUS) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HIGHEST_PRIESTEST) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;

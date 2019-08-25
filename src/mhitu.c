@@ -1934,6 +1934,13 @@ mattacku(mtmp)
 		/* even if the player stole it; arbitrators can somehow whistle anyway */
 	}
 
+	if (mtmp->data == &mons[PM_WHISTLE_HEAD_NERVE_HEAD] && !rn2(25) ) {
+
+		wake_nearby();
+		pline("%s makes an ultra-annoying whistling sound!",Monnam(mtmp) ); 
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Kakoy-to ublyudok - nadoyedlivyy mudak." : "Pfiepfiepfie pfiiiie pfiePFIEpfie");
+	}
+
 /*	Special lycanthrope handling code */
 	if(!mtmp->cham && is_were(mdat) && !range2) {
 	    if(is_human(mdat)) {

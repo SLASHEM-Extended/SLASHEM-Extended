@@ -581,6 +581,9 @@ register int fd, mode;
 	bwrite(fd, (void *) &mons[PM_BABY_TATZELWORM_X], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_BABY_AMPHITERE_X], sizeof(struct permonst));
 
+	bwrite(fd, (void *) &mons[PM_SPLICED_AMALGAMATION], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SPLICED_BAD_CLONE], sizeof(struct permonst));
+
 	bwrite(fd, (void *) &mons[PM_PUPURIN], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_SAPUSAUR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_TSUBOTSUBO], sizeof(struct permonst));

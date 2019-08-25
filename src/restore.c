@@ -1053,6 +1053,13 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mons[PM_BABY_AMPHITERE_X].mname = tname;
 #endif
 
+	tname = mons[PM_SPLICED_AMALGAMATION].mname;
+	mread(fd, (void *) &mons[PM_SPLICED_AMALGAMATION], sizeof(struct permonst));
+	mons[PM_SPLICED_AMALGAMATION].mname = tname;
+	tname = mons[PM_SPLICED_BAD_CLONE].mname;
+	mread(fd, (void *) &mons[PM_SPLICED_BAD_CLONE], sizeof(struct permonst));
+	mons[PM_SPLICED_BAD_CLONE].mname = tname;
+
 	tname = mons[PM_PUPURIN].mname;
 	mread(fd, (void *) &mons[PM_PUPURIN], sizeof(struct permonst));
 	mons[PM_PUPURIN].mname = tname;

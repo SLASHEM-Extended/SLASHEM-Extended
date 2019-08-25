@@ -659,6 +659,8 @@ register struct monst *mtmp;
 		newsym(x, y);
 		return (struct obj *)0;
 	    case PM_KILLER_FOOD_RATION:
+	    case PM_GIANT_FOOD_RATION:
+	    case PM_EXTRA_ONIONY_FOOD_RATION:
 	    case PM_ROTTEN_FOOD_RATION:
 		(void) mksobj_at(FOOD_RATION, x, y, TRUE, FALSE);
 		newsym(x, y);
@@ -1083,6 +1085,24 @@ register struct monst *mtmp;
 		num = d(2,4);
 		while (num--)
 			obj = mksobj_at(SAPPHIRE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_EMERALD_GOLEM:
+		num = d(2,4);
+		while (num--)
+			obj = mksobj_at(EMERALD, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_TOPAZ_GOLEM:
+		num = d(2,4);
+		while (num--)
+			obj = mksobj_at(TOPAZ, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_AMETHYST_GOLEM:
+		num = d(2,4);
+		while (num--)
+			obj = mksobj_at(AMETHYST, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_STEEL_GOLEM:

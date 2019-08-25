@@ -401,7 +401,100 @@ boolean forcecontrol;
 		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 	}
-	else if (Race_if(PM_DEATHMOLD)) mntmp = (PM_WHITE_MISSINGNO + rn2(14 + (u.ulevel / 2) ) );
+	else if (Race_if(PM_DEATHMOLD)) {
+		/* since we added new tilde-class monsters... have to hardwire this --Amy */
+		int deathmolds = 14 + (u.ulevel / 2);
+		switch (rnd(deathmolds)) {
+			case 1:
+				mntmp = PM_WHITE_MISSINGNO;
+				break;
+			case 2:
+				mntmp = PM_GRAY_MISSINGNO;
+				break;
+			case 3:
+				mntmp = PM_BLACK_MISSINGNO;
+				break;
+			case 4:
+				mntmp = PM_RED_MISSINGNO;
+				break;
+			case 5:
+				mntmp = PM_GREEN_MISSINGNO;
+				break;
+			case 6:
+				mntmp = PM_BROWN_MISSINGNO;
+				break;
+			case 7:
+				mntmp = PM_MAGENTA_MISSINGNO;
+				break;
+			case 8:
+				mntmp = PM_CYAN_MISSINGNO;
+				break;
+			case 9:
+				mntmp = PM_ORANGE_MISSINGNO;
+				break;
+			case 10:
+				mntmp = PM_BRIGHT_GREEN_MISSINGNO;
+				break;
+			case 11:
+				mntmp = PM_YELLOW_MISSINGNO;
+				break;
+			case 12:
+				mntmp = PM_BRIGHT_BLUE_MISSINGNO;
+				break;
+			case 13:
+				mntmp = PM_BRIGHT_MAGENTA_MISSINGNO;
+				break;
+			case 14:
+				mntmp = PM_BRIGHT_CYAN_MISSINGNO;
+				break;
+			case 15:
+				mntmp = PM_BEIGE_MISSINGNO;
+				break;
+			case 16:
+				mntmp = PM_SHADY_MISSINGNO;
+				break;
+			case 17:
+				mntmp = PM_DARK_MISSINGNO;
+				break;
+			case 18:
+				mntmp = PM_SCARLET_MISSINGNO;
+				break;
+			case 19:
+				mntmp = PM_VIRIDIAN_MISSINGNO;
+				break;
+			case 20:
+				mntmp = PM_UMBRA_MISSINGNO;
+				break;
+			case 21:
+				mntmp = PM_PURPLE_MISSINGNO;
+				break;
+			case 22:
+				mntmp = PM_STEEL_MISSINGNO;
+				break;
+			case 23:
+				mntmp = PM_VIVID_MISSINGNO;
+				break;
+			case 24:
+				mntmp = PM_POISONOUS_MISSINGNO;
+				break;
+			case 25:
+				mntmp = PM_TOPAZ_MISSINGNO;
+				break;
+			case 26:
+				mntmp = PM_ULTRAMARINE_MISSINGNO;
+				break;
+			case 27:
+				mntmp = PM_PINK_MISSINGNO;
+				break;
+			case 28:
+				mntmp = PM_AZURE_MISSINGNO;
+				break;
+			case 29:
+				mntmp = PM_MULTICOLORED_MISSINGNO;
+				break;
+		}
+		mntmp = (PM_WHITE_MISSINGNO + rn2(14 + (u.ulevel / 2) ) );
+	}
 	else if ((Polymorph_control || forcecontrol) && !u.wormpolymorph && rn2(StrongPolymorph_control ? 5 : 3)) {
 		do {
 			getlin("Become what kind of monster? [type the name]",

@@ -8013,6 +8013,9 @@ u_init()
 	struct permonst* rrandombdragonb = &mons[PM_BABY_TATZELWORM_X];
 	struct permonst* rrandombdragonc = &mons[PM_BABY_AMPHITERE_X];
 
+	struct permonst* splicemona = &mons[PM_SPLICED_AMALGAMATION];
+	struct permonst* splicemonb = &mons[PM_SPLICED_BAD_CLONE];
+
 	struct permonst* pokshamblerl = &mons[PM_PUPURIN];
 	struct permonst* pokshamblerla = &mons[PM_SAPUSAUR];
 	struct permonst* pokshamblerm = &mons[PM_ODDOSHISHI];
@@ -22079,6 +22082,125 @@ u_init()
 	shamblerplayerae->mflags2 &= ~M2_PNAME;				/* not a proper name */
 	shamblerplayerae->mflags2 &= ~M2_NOPOLY;				/* polymorph ok for monsters */
 
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(16)-7;*/				/* shuffle level */
+	splicemona->mmove = rn2(9)+9;				/* slow to very fast */
+	splicemona->ac = rn2(18)-7;				/* any AC */
+	splicemona->mr = rn2(5)*25;				/* varying amounts of MR */
+	splicemona->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &splicemona->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+	splicemona->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	splicemona->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	splicemona->cnutrit = rnd(2000);					/* see above */
+	splicemona->msound = randmonsound();			/* any but the specials */
+	splicemona->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		splicemona->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		splicemona->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	splicemona->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	splicemona->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		splicemona->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*splicemona->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*splicemona->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	splicemona->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		splicemona->mflags2 |= (1 << rn2(31));
+	}
+	splicemona->mflags2 &= ~M2_MERC;				/* no guards */
+	splicemona->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	splicemona->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	splicemona->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
+	splicemonb->mmove = rn2(14)+9;				/* slow to very fast */
+	splicemonb->ac = rn2(31)-20;				/* any AC */
+	splicemonb->mr = rn2(5)*25;				/* varying amounts of MR */
+	splicemonb->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &splicemonb->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	splicemonb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	splicemonb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	splicemonb->cnutrit = rnd(2000);					/* see above */
+	splicemonb->msound = randmonsound();			/* any but the specials */
+	splicemonb->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		splicemonb->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		splicemonb->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	splicemonb->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	splicemonb->mflags1 = M1_HERBIVORE;
+	for (i = 0; i < rnd(17); i++) {
+		splicemonb->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	splicemonb->mflags1 &= ~M1_HIDE;				/* no hiding */
+
+	splicemonb->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		splicemonb->mflags2 |= (1 << rn2(31));
+	}
+	splicemonb->mflags2 &= ~M2_MERC;				/* no guards */
+	splicemonb->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	splicemonb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	splicemonb->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
 	if (!rn2(10)) {
 	attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
 	attkptr->aatyp = AT_MAGC; /* well, at least one out of ten games he does */
@@ -29290,6 +29412,9 @@ int realityflag;
 	struct permonst* rrandomdragonc = &mons[PM_ADULT_AMPHITERE_X];
 	struct permonst* rrandombdragonb = &mons[PM_BABY_TATZELWORM_X];
 	struct permonst* rrandombdragonc = &mons[PM_BABY_AMPHITERE_X];
+
+	struct permonst* splicemona = &mons[PM_SPLICED_AMALGAMATION];
+	struct permonst* splicemonb = &mons[PM_SPLICED_BAD_CLONE];
 
 	struct permonst* pokshamblerl = &mons[PM_PUPURIN];
 	struct permonst* pokshamblerla = &mons[PM_SAPUSAUR];
@@ -36882,6 +37007,125 @@ int realityflag;
 	shamblerplayerae->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	shamblerplayerae->mflags2 &= ~M2_PNAME;				/* not a proper name */
 	shamblerplayerae->mflags2 &= ~M2_NOPOLY;				/* polymorph ok for monsters */
+
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(16)-7;*/				/* shuffle level */
+	splicemona->mmove = rn2(9)+9;				/* slow to very fast */
+	splicemona->ac = rn2(18)-7;				/* any AC */
+	splicemona->mr = rn2(5)*25;				/* varying amounts of MR */
+	splicemona->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(3); i++) {
+		attkptr = &splicemona->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+2;				/* either too high or too low */
+	}
+	splicemona->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	splicemona->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	splicemona->cnutrit = rnd(2000);					/* see above */
+	splicemona->msound = randmonsound();			/* any but the specials */
+	splicemona->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		splicemona->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		splicemona->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	splicemona->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	splicemona->mflags1 = 0;
+	for (i = 0; i < rnd(17); i++) {
+		splicemona->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	/*splicemona->mflags1 &= ~M1_UNSOLID;*/			/* no ghosts */
+	/*splicemona->mflags1 &= ~M1_WALLWALK;*/			/* no wall-walkers */
+
+	splicemona->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		splicemona->mflags2 |= (1 << rn2(31));
+	}
+	splicemona->mflags2 &= ~M2_MERC;				/* no guards */
+	splicemona->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	splicemona->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	splicemona->mflags2 &= ~M2_PNAME;				/* not a proper name */
+
+	/* what a horrible night to have a curse */
+	/*shambler->mlevel += rnd(18)-4;*/				/* shuffle level */
+	splicemonb->mmove = rn2(14)+9;				/* slow to very fast */
+	splicemonb->ac = rn2(31)-20;				/* any AC */
+	splicemonb->mr = rn2(5)*25;				/* varying amounts of MR */
+	splicemonb->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &splicemonb->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+2;				/* either too high or too low */
+	}
+	splicemonb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	splicemonb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	splicemonb->cnutrit = rnd(2000);					/* see above */
+	splicemonb->msound = randmonsound();			/* any but the specials */
+	splicemonb->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		splicemonb->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		splicemonb->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	splicemonb->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	splicemonb->mflags1 = M1_HERBIVORE;
+	for (i = 0; i < rnd(17); i++) {
+		splicemonb->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+	splicemonb->mflags1 &= ~M1_HIDE;				/* no hiding */
+
+	splicemonb->mflags2 = M2_HOSTILE;		/* Don't let the player be one of these yet. */
+	for (i = 0; i < rnd(17); i++) {
+		splicemonb->mflags2 |= (1 << rn2(31));
+	}
+	splicemonb->mflags2 &= ~M2_MERC;				/* no guards */
+	splicemonb->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	splicemonb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+	splicemonb->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
 	if (!rn2(10)) {
 	attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
