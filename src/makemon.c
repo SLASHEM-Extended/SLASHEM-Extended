@@ -17540,6 +17540,8 @@ register int	mmflags;
 	mtmp->stunnovisible = rn2(4);
 	mtmp->selfhybridvisible = !rn2(2);
 	mtmp->warningvisible = 0;
+	mtmp->scentvisible = rn2(3);
+	mtmp->echolocatevisible = rn2(5);
 	mtmp->hominglazer = 0;
 	mtmp->ogrethief = 0;
 	mtmp->bleedout = 0;

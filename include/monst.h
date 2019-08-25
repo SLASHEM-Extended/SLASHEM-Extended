@@ -380,6 +380,8 @@ struct monst {
 	Bitfield(infravisble,1);	/* 2 in 3 chance that single infravision is enough */
 	Bitfield(willbebanished,1);	/* got hit by a banishment attack and will be banished on its next turn */
 	Bitfield(spressingseen,1);	/* saw you create a s-pressing trap and can thus no longer trigger it */
+	Bitfield(scentvisible,1);	/* 2 in 3 chance to be visible to scent view */
+	Bitfield(echolocatevisible,1);	/* 4 in 5 chance to be visible to echolocation */
 	int hominglazer;	/* normally zero; very specific monsters can use this to charge up a cannon */
 	int ogrethief;	/* normally zero; used for the huge ogre thief */
 	int bleedout;	/* normally zero; monster bleeds out (takes continuous damage) if nonzero */
