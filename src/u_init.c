@@ -9654,7 +9654,8 @@ u_init()
 		else if (!rn2(2000)) u.veryobtainclass1 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = ROCK_CLASS;
-		else switch (rnd(12)) {
+		else if (!rn2(1000)) u.veryobtainclass1 = IMPLANT_CLASS;
+		else switch (rnd(11)) {
 			case 1: u.veryobtainclass1 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass1 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass1 = RING_CLASS; break;
@@ -9666,7 +9667,6 @@ u_init()
 			case 9: u.veryobtainclass1 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass1 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass1 = GEM_CLASS; break;
-			case 12: u.veryobtainclass1 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass1boost = rnd(100);
 	}
@@ -9677,7 +9677,8 @@ u_init()
 		else if (!rn2(2000)) u.veryobtainclass2 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = ROCK_CLASS;
-		else switch (rnd(12)) {
+		else if (!rn2(1000)) u.veryobtainclass2 = IMPLANT_CLASS;
+		else switch (rnd(11)) {
 			case 1: u.veryobtainclass2 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass2 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass2 = RING_CLASS; break;
@@ -9689,7 +9690,6 @@ u_init()
 			case 9: u.veryobtainclass2 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass2 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass2 = GEM_CLASS; break;
-			case 12: u.veryobtainclass2 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass2boost = rnd(100);
 	}
@@ -9700,7 +9700,8 @@ u_init()
 		else if (!rn2(2000)) u.veryobtainclass3 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = ROCK_CLASS;
-		else switch (rnd(12)) {
+		else if (!rn2(1000)) u.veryobtainclass3 = IMPLANT_CLASS;
+		else switch (rnd(11)) {
 			case 1: u.veryobtainclass3 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass3 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass3 = RING_CLASS; break;
@@ -9712,7 +9713,6 @@ u_init()
 			case 9: u.veryobtainclass3 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass3 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass3 = GEM_CLASS; break;
-			case 12: u.veryobtainclass3 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass3boost = rnd(100);
 	}
@@ -30786,7 +30786,8 @@ int realityflag;
 		else if (!rn2(2000)) u.veryobtainclass1 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = ROCK_CLASS;
-		else switch (rnd(12)) {
+		else if (!rn2(1000)) u.veryobtainclass1 = IMPLANT_CLASS;
+		else switch (rnd(11)) {
 			case 1: u.veryobtainclass1 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass1 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass1 = RING_CLASS; break;
@@ -30798,7 +30799,6 @@ int realityflag;
 			case 9: u.veryobtainclass1 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass1 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass1 = GEM_CLASS; break;
-			case 12: u.veryobtainclass1 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass1boost = rnd(100);
 	}
@@ -30809,7 +30809,8 @@ int realityflag;
 		else if (!rn2(2000)) u.veryobtainclass2 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = ROCK_CLASS;
-		else switch (rnd(12)) {
+		else if (!rn2(1000)) u.veryobtainclass2 = IMPLANT_CLASS;
+		else switch (rnd(11)) {
 			case 1: u.veryobtainclass2 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass2 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass2 = RING_CLASS; break;
@@ -30821,7 +30822,6 @@ int realityflag;
 			case 9: u.veryobtainclass2 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass2 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass2 = GEM_CLASS; break;
-			case 12: u.veryobtainclass2 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass2boost = rnd(100);
 	}
@@ -30832,7 +30832,8 @@ int realityflag;
 		else if (!rn2(2000)) u.veryobtainclass3 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = ROCK_CLASS;
-		else switch (rnd(12)) {
+		else if (!rn2(1000)) u.veryobtainclass3 = IMPLANT_CLASS;
+		else switch (rnd(11)) {
 			case 1: u.veryobtainclass3 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass3 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass3 = RING_CLASS; break;
@@ -30844,7 +30845,6 @@ int realityflag;
 			case 9: u.veryobtainclass3 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass3 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass3 = GEM_CLASS; break;
-			case 12: u.veryobtainclass3 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass3boost = rnd(100);
 	}
