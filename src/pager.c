@@ -24003,6 +24003,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Great. Now your blood is squirting everywhere.",
 	"Hmm, that seems to have been a magical discharge!",
 	"Hmm, that seems to have been a magical discharge! Maybe the weather forecast would have warned you of that if you had actually bothered to read it today?",
+	"You get a cut.",
+	"You get a cut because someone threw a shuriken at you.",
 
 };
 

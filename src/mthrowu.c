@@ -503,6 +503,11 @@ const char *name;	/* if null, then format `obj' */
 			exercise(A_STR, FALSE);
 		}
 
+		if (obj && (objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_SHURIKEN) && dam > 0) {
+			You("get a cut.");
+			playerbleed(dam);
+		}
+
 		/* evil patch: antimatter bullets will damage the player's inventory --Amy */
 		if (obj && obj->otyp == ANTIMATTER_BULLET) {
 			antimatter_damage(invent, FALSE, FALSE);
