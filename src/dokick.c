@@ -1248,7 +1248,10 @@ dokick()
 			}
 		}
 		else {no_kick = TRUE;}
-	} else if (u.usteed) {
+	}
+	/* end checks that let you try anyway */
+
+	if (u.usteed) {
 		if (yn_function("Kick your steed?", ynchars, 'n') == 'y') {
 		    You("kick %s.", mon_nam(u.usteed));
 		    kick_steed();

@@ -17957,9 +17957,18 @@ dountrap()	/* disarm a trap */
 	}
 	if ((nohands(youmonst.data) && !webmaker(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || !youmonst.data->mmove) {
 	    pline("And just how do you expect to do that?");
-		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-	    return 0;
-	} else if (u.ustuck && sticks(youmonst.data)) {
+		if (yn("Attempt it anyway?") == 'y') {
+			if (rn2(3) && !polyskillchance()) {
+				incr_itimeout(&Glib, rnd(40));
+				pline("You failed, and your %s became very slippery.", makeplural(body_part(HAND)));
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
+
+		}
+		else return 0;
+	}
+	if (u.ustuck && sticks(youmonst.data)) {
 	    pline("You'll have to let go of %s first.", mon_nam(u.ustuck));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;

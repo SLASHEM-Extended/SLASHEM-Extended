@@ -1901,8 +1901,17 @@ playersteal()
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		pline("Could be hard without hands ...");
-		no_steal = TRUE;
-	} else
+		if (yn("Attempt it anyway?") == 'y') {
+			if (rn2(3) && !polyskillchance()) {
+				drain_en(rnz(monster_difficulty() + 1) );
+				pline("You lose  Mana");
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
+
+		}
+		else no_steal = TRUE;
+	}
 	if (near_capacity() > SLT_ENCUMBER) {
 		Your("load is too heavy to attempt to steal.");
 		no_steal = TRUE;

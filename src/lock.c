@@ -360,7 +360,16 @@ pick_lock(pickp) /* pick a lock with a given object */
 	if(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		You_cant("hold %s -- you have no hands!", doname(pick));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		return(0);
+		if (yn("Attempt it anyway?") == 'y') {
+			if (rn2(3) && !polyskillchance()) {
+				playerbleed(rnd(2 + (level_difficulty() * 10)));
+				pline("Great. Now your %s is squirting everywhere.", body_part(BLOOD));
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
+
+		}
+		else return(0);
 	}
 
 	if((picktyp != LOCK_PICK &&

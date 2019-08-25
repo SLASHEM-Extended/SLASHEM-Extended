@@ -215,8 +215,18 @@ register struct obj *pen;
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("need hands to be able to write!");
-	    return 0;
-	} else if (IsGlib) {
+		if (yn("Attempt it anyway?") == 'y') {
+			if (rn2(3) && !polyskillchance()) {
+				drain_en(rnz(monster_difficulty() + 1) );
+				pline("You lose  Mana");
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
+
+		}
+	    else return 0;
+	}
+	if (IsGlib) {
 	    pline("%s from your %s.",
 		  Tobjnam(pen, "slip"), makeplural(body_part(FINGER)));
 	    dropx(pen);

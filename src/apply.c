@@ -314,10 +314,20 @@ use_stethoscope(obj)
 		}
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {	/* should also check for no ears and/or deaf */
-		You("have no hands!");	/* not `body_part(HAND)' */
+		You("have no hands, so you can't use the stethoscope!");	/* not `body_part(HAND)' */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (yn("Attempt it anyway?") == 'y') {
+			if (rn2(3) && !polyskillchance()) {
+				playerbleed(rnd(2 + (level_difficulty() * 10)));
+				pline("Great. Now your %s is squirting everywhere.", body_part(BLOOD));
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
+
+		}
 		return 0;
-	} else if (!freehandX()) {
+	}
+	if (!freehandX()) {
 		You("have no free %s.", body_part(HAND));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -4019,8 +4029,18 @@ do_break_wand(obj)
 
     if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	You_cant("break %s without hands!", the_wand);
+	if (yn("Attempt it anyway?") == 'y') {
+		if (rn2(3) && !polyskillchance()) {
+			badeffect();
+			pline("Hmm, that seems to have been a magical discharge!");
+			if (FunnyHallu) pline("Maybe the weather forecast would have warned you of that if you had actually bothered to read it today?");
+			if (!rn2(20)) badeffect();
+			return 1;
+		}
+	}
 	return 0;
-    } else if (ACURR(A_STR) < 10) {
+    }
+    if (ACURR(A_STR) < 10) {
 	You("don't have the strength to break %s!", the_wand);
 	return 0;
     }
