@@ -381,7 +381,15 @@ struct monst *mtmp;
 	if (FemaleTrapNadja && mtmp->female && humanoid(mtmp->data)) {
 
 		pline("%s is really angry about the fact that you tried to hit her, and uses a pair of buckled shoes to scratch up and down your %s, ripping a lot of skin to shreds.", Monnam(mtmp), body_part(LEG));
-		if (!rn2(10) || !(u.legscratching)) u.legscratching++;
+
+		/* this can now increase the player's legscratching variable. Since the damage you take depends on how much
+		 * legscratching you already have, and you might get hit by a long-lasting effect of this trap, we need to
+		 * make absolutely sure that the increases don't happen too quickly or it becomes unplayable; this is achieved
+		 * by having only 1 in (legscratching squared) chance for an increase --Amy */
+		if (!u.legscratching) u.legscratching++;
+		else if (u.legscratching > 60000) {
+			if (!rn2(3600000000)) u.legscratching++;
+		} else if (!rn2(u.legscratching * u.legscratching)) u.legscratching++;
 		losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
 		if (u.legscratching > 20) {
 			pline("She notices that you're bleeding, which seems to make her even more angry as she continues slitting your %s full length with the metal buckle!", body_part(LEG));
