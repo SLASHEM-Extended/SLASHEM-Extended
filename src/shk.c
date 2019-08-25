@@ -6367,6 +6367,9 @@ shk_offer_price(slang, charge, shkp)
 #endif
 	bot();
 
+	/* here's us throwing a bone to lawful politicians or evilvariant characters --Amy */
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+
 	return(TRUE);
 }
 
