@@ -8387,6 +8387,8 @@ boolean knoweverything;
 				pline("A crappy dagger that doesn't do much damage. It can be thrown."); break;
 			case DAGGER:
 				pline("A basic dagger that doesn't do much damage. It can be thrown."); break;
+			case WONDER_DAGGER:
+				pline("A random-material dagger that doesn't do much damage. It can be thrown."); break;
 			case DROVEN_DAGGER:
 				pline("This dagger does a lot of damage but breaks when thrown."); break;
 			case ATHAME:
@@ -8407,10 +8409,14 @@ boolean knoweverything;
 				pline("A crappy knife that can be turned into a very powerful knife if enchanted. It can be thrown."); break;
 			case KNIFE:
 				pline("A totally piece of crap weapon. It can be thrown."); break;
+			case CERAMIC_KNIFE:
+				pline("As long as it's in good condition, this knife will deal respectable damage. It can be thrown."); break;
 			case TENNIS_RACKET:
 				pline("This paddle doesn't do all that much damage, but it has a large to-hit bonus versus bats and birds."); break;
 			case SURVIVAL_KNIFE:
 				pline("A knife that deals extra damage to animals. It can be thrown."); break;
+			case UNKNOWN_KNIFE:
+				pline("This knife doesn't do much damage. It can be thrown."); break;
 			case STILETTO:
 				pline("This knife is more likely to hit than a regular knife, but it's still awfully weak. It can be thrown."); break;
 			case SCALPEL:
@@ -8421,8 +8427,12 @@ boolean knoweverything;
 				pline("This razor-sharp knife cuts meat like butter. It can be thrown."); break;
 			case AXE:
 				pline("A standard axe that does moderate damage. It can be used to chop down trees."); break;
+			case NANO_AXE:
+				pline("A rather strong one-handed axe. It can be used to chop down trees."); break;
 			case OBSIDIAN_AXE:
 				pline("This glass axe does good damage to large monsters. It can be used to chop down trees."); break;
+			case SHARP_AXE:
+				pline("It's a rather plain one-handed axe. It can be used to chop down trees."); break;
 			case MOON_AXE:
 				pline("This silver axe does more damage than a standard axe and is super-effective versus undead. It can be used to chop down trees."); break;
 			case BATTLE_AXE:
@@ -8431,10 +8441,16 @@ boolean knoweverything;
 				pline("The heavy hitter among the axes that can chop down most monsters in a few hits. It can be used to chop down trees."); break;
 			case DWARVISH_MATTOCK:
 				pline("A two-handed pick-axe that can do a lot of damage. It can be used for digging."); break;
+			case ETERNIUM_MATTOCK:
+				pline("This highly damaging weapon uses the pick-axe skill and needs to be wielded with both hands. It can be used for digging."); break;
 			case ORCISH_SHORT_SWORD:
 				pline("The weakest short sword in the game. It is inferior to other short swords in every way."); break;
 			case SHORT_SWORD:
 				pline("A basic short sword that doesn't deal a lot of damage."); break;
+			case SHORT_BLADE:
+				pline("Only marginally stronger than a short sword."); break;
+			case SAND_SWORD:
+				pline("This short sword isn't very powerful."); break;
 			case VIBROBLADE:
 				pline("This object looks like a penis (LOL) and is made of plastic but otherwise it's exactly the same as a bog-standard short sword."); break;
 			case DROVEN_SHORT_SWORD:
@@ -8449,22 +8465,32 @@ boolean knoweverything;
 				pline("If your weapon type of choice reads 'short sword', use this. It outdamages all other short swords in the game."); break;
 			case BROADSWORD: 
 				pline("A standard broadsword. It does more damage than a short sword but less than a long sword."); break;
+			case VOLCANIC_BROADSWORD:
+				pline("A rather good broadsword. Please make sure that you don't throw it, or it'll break."); break;
 			case RUNESWORD: 
 				pline("This weapon is basically a broadsword, with the exact same stats."); break;
 			case BLACK_AESTIVALIS: 
 				pline("A useful broadsword."); break;
 			case WHITE_FLOWER_SWORD: 
 				pline("A wooden broadsword with good damage bonus."); break;
+			case ELEGANT_BROADSWORD:
+				pline("This broadsword does moderate damage."); break;
 			case ELVEN_BROADSWORD: 
 				pline("Far better than a regular broadsword, this weapon has the highest base damage among all broadswords in the game."); break;
 			case LONG_SWORD: 
 				pline("A basic long sword that does respectable damage."); break;
+			case MAIN_SWORD:
+				pline("A random-material long sword."); break;
+			case HEAVY_LONG_SWORD:
+				pline("Apart from its weight and material, this is a regular long sword."); break;
 			case CRYSTAL_SWORD: 
 				pline("A basic long sword that breaks when thrown. Use it in melee instead."); break;
 			case SILVER_LONG_SWORD: 
 				pline("A long sword that does respectable damage, with a bonus against undead."); break;
 			case KATANA: 
 				pline("This Japanese long sword can deal more damage than a regular long sword."); break;
+			case AUTOMATIC_KATANA:
+				pline("It's more damaging than a long sword."); break;
 			case SUGUHANOKEN: 
 				pline("A totally shitty longsword. You should replace this with a real longsword!"); break;
 			case GREAT_HOUCHOU: 
@@ -8473,32 +8499,52 @@ boolean knoweverything;
 				pline("The most powerful of the long swords. It can be applied to bash iron bars."); break;
 			case TWO_HANDED_SWORD: 
 				pline("It's heavy and requires both hands, but does quite a lot of damage."); break;
+			case ROMAN_SWORD:
+				pline("This damaging two-handed sword is pretty powerful."); break;
 			case TSURUGI: 
 				pline("A long samurai sword that can only be wielded with both hands. It does lots of damage."); break;
 			case CHAINSWORD: 
 				pline("A golden two-handed sword that deals enormous amounts of damage."); break;
+			case SHADOWBLADE:
+				pline("Two-handed sword with rather good damage output."); break;
+			case ETHER_SAW:
+				pline("A very powerful two-handed sword."); break;
 			case BASTERD_SWORD: 
 				pline("This huge fucking sword can make short work of anything that tries to oppose you. However, you have to wield it with two hands."); break;
 			case DROVEN_GREATSWORD: 
 				pline("It doesn't actually bisect enemies, but it deals a ton and a half of damage. Basically, it's like you were wielding a tank. It requires both hands though."); break;
 			case SCIMITAR: 
 				pline("A light but useful blade, the scimitar can outdamage a standard short sword."); break;
+			case MYTHICAL_SABLE:
+				pline("For a scimitar, this thing actually has quite good damage output."); break;
+			case DESERT_SWORD:
+				pline("This scimitar does mediocre damage."); break;
+			case CHROME_BLADE:
+				pline("A scimitar that's especially useful against small enemies."); break;
 			case BENT_SABLE: 
 				pline("This sharpened scimitar is actually very useful for quickly cutting up your enemies."); break;
 			case HIGH_ELVEN_WARSWORD: 
 				pline("An elven scimitar that does more damage than a regular scimitar and also hits more often."); break;
 			case RAPIER: 
 				pline("A basic saber that's not stronger than a short sword."); break;
+			case ETERNIUM_SABER:
+				pline("It's a saber that doesn't do all that much damage."); break;
 			case IRON_SABER: 
 				pline("It's a saber made of iron that does moderate damage."); break;
+			case CRYPTIC_SABER:
+				pline("Sabers generally don't deal all that much damage, but this one isn't all that bad."); break;
 			case SILVER_SABER: 
 				pline("This saber does moderate damage, but unlike most other weapons it's super-effective against undead."); break;
 			case GOLDEN_SABER: 
 				pline("A rare saber made of pure gold. It can do good damage. It can be applied to bash iron bars."); break;
 			case CLUB: 
 				pline("Don't bother with this weapon. The club just doesn't ever deal any meaningful damage."); break;
+			case DARKNESS_CLUB:
+				pline("It sure deals more damage than the regular club, but hitting things with it also makes areas dark."); break;
 			case AKLYS:
 				pline("Stronger than a regular club, but still crappy. You can apply it to hit monsters standing two tiles away, with your skill determining the actual maximum range."); break;
+			case BLOW_AKLYS:
+				pline("A club that can be used to bash enemies. You can also apply it to hit monsters standing two tiles away, and your club skill controls the euclidean distance at which it'll be effective."); break;
 			case BASEBALL_BAT:
 				pline("This wooden club does respectable damage for its type."); break;
 			case METAL_CLUB:
@@ -8515,6 +8561,8 @@ boolean knoweverything;
 				pline("This paddle has good to-hit and small damage, but low large damage."); break;
 			case BROOM:
 				pline("A two-handed paddle that doesn't deal a lot of damage."); break;
+			case TELEPHONE:
+				pline("Yes, you can use this paddle as a melee weapon. If you apply it while its enchantment value is positive, it will lose a point of enchantment and call a demon to help you."); break;
 			case MOP:
 				pline("This two-handed paddle is fairly useless."); break;
 			case SPECIAL_MOP:
@@ -8539,6 +8587,12 @@ boolean knoweverything;
 				pline("The main use of this mace is to bash undead, which take extra damage from it."); break;
 			case MACE:
 				pline("A mace. It's quite a weak weapon, actually."); break;
+			case BATLETH:
+				pline("The klingons invented this weapon, and I have no real idea what it's supposed to represent so I decided to make it a mace-class weapon. Its damage output is mediocre."); break;
+			case ELITE_BATLETH:
+				pline("This weapon is better than the regular batleth (yes I know, it's spelled 'bat'leth'), but not actually that strong, and it uses the mace skill."); break;
+			case LEAD_FILLED_MACE:
+				pline("This mace deals much more damage than a regular mace but weighs a whole lot."); break;
 			case ELVEN_MACE:
 				pline("A mace made of wood. It's slightly better than a standard mace."); break;
 			case FLANGED_MACE:
@@ -8547,18 +8601,28 @@ boolean knoweverything;
 				pline("If you want a mace that does respectable damage, use this one."); break;
 			case MORNING_STAR:
 				pline("The morning star can be used to whack enemies. Its damage output is mediocre."); break;
+			case CALCULATOR:
+				pline("A rather powerful morning star."); break;
 			case BRONZE_MORNING_STAR:
 				pline("This morning star does respectable damage."); break;
 			case SPINED_BALL:
 				pline("A metal ball that counts as a morning star. It does good damage. You can apply it to hit monsters standing two tiles away, with your skill determining the actual maximum range."); break;
 			case JAGGED_STAR:
 				pline("An improved morning star that actually packs a punch."); break;
+			case SHINY_STAR:
+				pline("Using this morning star on large monsters won't do much, but it's good against small ones."); break;
 			case DEVIL_STAR:
 				pline("The strongest version of the morning star. A very strong one-handed melee weapon. It can be applied to bash iron bars."); break;
 			case FLAIL:
 				pline("A basic flail. It doesn't do a lot of damage."); break;
+			case WEIGHTED_FLAIL:
+				pline("This flail only does d7 damage per hit."); break;
 			case KNOUT:
 				pline("A better flail that does mediocre damage."); break;
+			case ETHER_KNOUT:
+				pline("This flail does mediocre damage and has a to-hit bonus, but is made of ether and will slowly contaminate you."); break;
+			case SPIKERACK:
+				pline("A flail that does quite a bit more damage than a regular flail and also has good to-hit, but is likely to degrade when used repeatedly."); break;
 			case CHAIN_AND_SICKLE:
 				pline("You might as well forget using this weapon in melee because even a regular flail is better, but you can apply it to hit monsters standing two tiles away, with your skill determining the actual maximum range."); break;
 			case TWO_HANDED_FLAIL:
@@ -8581,6 +8645,8 @@ boolean knoweverything;
 				pline("A heavy plateau boot that can be swung at monsters to whack them for mediocre damage. It uses the hammer skill."); break;
 			case HUGGING_BOOT: 
 				pline("This thick winter boot is made of unyielding material, making it a useful weapon for bonking enemies' heads. It uses the hammer skill. It can be applied to bash iron bars."); break;
+			case BLOCK_HEELED_SANDAL:
+				pline("A very beautiful female sandal that can smash enemies' heads. It uses the hammer skill. It can be applied to bash iron bars."); break;
 			case BLOCK_HEELED_COMBAT_BOOT: 
 				pline("A very fleecy lady's boot with a massive block heel. Seems like you can bash enemies' skulls with it. It uses the hammer skill. It can be applied to bash iron bars."); break;
 			case WOODEN_GETA: 
@@ -8593,6 +8659,8 @@ boolean knoweverything;
 				pline("This beautiful lilac women's shoe looks very tender. However, the funneled heel can actually cause a lot of damage if it is struck on somebody's head. It uses the hammer skill. It can be applied to bash iron bars."); break;
 			case SPIKED_BATTLE_BOOT: 
 				pline("A heavy boot with spikes made of steel. Excellent for bashing monsters. It uses the hammer skill."); break;
+			case PROSTITUTE_SHOE:
+				pline("A very elegant lady shoe that has a massive heel (mmmmmmmm!) which allows it to be used as a melee weapon. It uses the hammer skill."); break;
 			case QUARTERSTAFF: 
 				pline("The basic quarterstaff is a two-handed weapon that does pitiful damage compared to other two-handers."); break;
 			case SILVER_KHAKKHARA: 
@@ -8605,6 +8673,12 @@ boolean knoweverything;
 				pline("This iron quarterstaff does usable damage but it's not great either."); break;
 			case PLATINUM_FIRE_HOOK: 
 				pline("Quarterstaff that does usable damage."); break;
+			case BO_STAFF:
+				pline("A two-handed quarterstaff with medium damage output."); break;
+			case MASSIVE_STAFF:
+				pline("It weighs a ton and is two-handed, plus it uses the quarterstaff skill that's generally not regarded as the strongest melee weapon skill in existence, but it does good damage to make up for it."); break;
+			case CHROME_STAFF:
+				pline("Using this quarterstaff will do moderate damage. It requires two hands."); break;
 			case BATTLE_STAFF: 
 				pline("A metal quarterstaff that does relatively good damage but requires both hands."); break;
 			case IRON_BAR: 
@@ -8627,6 +8701,10 @@ boolean knoweverything;
 				pline("A reliable two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case BARDICHE:
 				pline("A heavy two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case LONG_POLE:
+				pline("A very long two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case SHARP_POLE:
+				pline("A sharp two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case VOULGE:
 				pline("A dicey two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case PITCHFORK:
@@ -8639,6 +8717,12 @@ boolean knoweverything;
 				pline("A mediocre two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case GUISARME:
 				pline("A challenging two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case NANO_POLE:
+				pline("A nanoscale two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case LEADBAR:
+				pline("A super-heavy two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case ETERNAL_POLE:
+				pline("A protective two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding. Wielding it grants half physical damage."); break;
 			case BILL_GUISARME:
 				pline("A reinforced two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case LUCERN_HAMMER:
@@ -8657,10 +8741,14 @@ boolean knoweverything;
 				pline("A standard spear. It can be thrown."); break;
 			case DROVEN_SPEAR: 
 				pline("This spear deals great damage but will break if you throw it. It is two-handed."); break;
+			case CERAMIC_SPEAR:
+				pline("This spear does good damage, but will degrade quickly and then its damage output is much worse. It can be thrown."); break;
 			case SILVER_SPEAR: 
 				pline("A spear that does extra damage to undead. It can be thrown."); break;
 			case ELVEN_SPEAR: 
 				pline("A good spear. It can be thrown."); break;
+			case RANDOSPEAR:
+				pline("This spear is made of a random material. It can be thrown."); break;
 			case DWARVISH_SPEAR: 
 				pline("The strongest spear in the game. It can be thrown."); break;
 			case BRONZE_SPEAR: 
@@ -8673,6 +8761,10 @@ boolean knoweverything;
 				pline("Weaker than the elven spear. It can be thrown."); break;
 			case JAVELIN: 
 				pline("A basic javelin that doesn't do much damage. It can be thrown."); break;
+			case STACK_JAVELIN:
+				pline("It's a rather weak javelin. It can be thrown."); break;
+			case BRICK_MISSILE:
+				pline("This javelin is rather powerful. It can be thrown."); break;
 			case SPIRIT_THROWER: 
 				pline("A javelin that does good damage. It can be thrown."); break;
 			case TORPEDO: 
@@ -8683,6 +8775,8 @@ boolean knoweverything;
 				pline("A relatively damaging trident that does bonus damage versus eels, however it also requires both hands to use."); break;
 			case STYGIAN_PIKE: 
 				pline("A trident from the depths of Hell. Good damage and bonus versus eels."); break;
+			case DIFFICULT_TRIDENT:
+				pline("Very heavy, and it doesn't even deal much more damage than the regular trident."); break;
 			case MANCATCHER: 
 				pline("A very strong two-handed trident that does extra damage to eels."); break;
 			case RADIOACTIVE_DAGGER:
@@ -8837,6 +8931,10 @@ boolean knoweverything;
 				pline("Tridents usually suck, but this one in particular sucks bad."); break;
 			case PLOW:
 				pline("It's a relatively useful trident with good to-hit."); break;
+			case SPEC_LANCE:
+				pline("If you're lucky, this lance is made of a useful material. You can apply it to hit monsters standing two squares away, or hit things in melee while riding, which causes you to joust (but then it may occasionally break)."); break;
+			case BRICKLAYER_BAR:
+				pline("Applying this lance at a distance lets you hit monsters, and while riding you can also joust things in melee but it can cause the lance to break."); break;
 			case POKER_STICK:
 				pline("Lances can be applied to hit monsters at a distance, and if you melee things while riding, you can joust monsters but that can cause it to break. This particular type also causes you to teleport uncontrollably, even if you have equipment that would allow you to control your teleportation."); break;
 			case BRONZE_LANCE:
@@ -8847,14 +8945,22 @@ boolean knoweverything;
 				pline("An arrow type that can be fired with a bow. If you fire it with a compost bow, you can fire more of them in a single turn."); break;
 			case WILDHILD_BOW:
 				pline("This bow can fire several arrows in a single turn. Firing odor shots from it gives a multishot bonus"); break;
+			case META_BOW:
+				pline("The material of this bow is randomized, which doesn't actually affect all that much. Equip some arrows in your quiver and fire away."); break;
+			case WIND_BOW:
+				pline("Wielding this bow makes you very fast, and it can shoot arrows from your quiver."); break;
 			case ODOR_SHOT:
 				pline("These arrows deal extra damage to animals and humanoids because they can't stand the stench. If you fire them with a wildhild bow, you gain a multishot bonus."); break;
 			case BRONZE_ARROW:
 				pline("A highly damaging type of arrow that can be fired from a bow."); break;
+			case WONDER_ARROW:
+				pline("These arrows deal average damage and may be made of a rare material."); break;
 			case PAPER_ARROW:
 				pline("If you don't have real arrows, you can use these weak ones with your bow."); break;
 			case METAL_SLING:
 				pline("A launcher that can shoot rocks and gems."); break;
+			case SNIPESLING:
+				pline("This sling has increased range compared to the regular sling, but equipping it also causes weak sight. Use a portable light source to offset that penalty."); break;
 			case INKA_SLING:
 				pline("This weapon can be used to fire rocks, stones and gems at monsters with high accuracy."); break;
 			case PAPER_SHOTGUN:
@@ -8869,24 +8975,32 @@ boolean knoweverything;
 				pline("A slow-firing crossbow that can fire bolts at a distance of 15 squares."); break;
 			case FLEECE_BOLT:
 				pline("A very fleecy crossbow bolt."); break;
+			case MATERIAL_BOLT:
+				pline("Maybe you got lucky and have the randomized material of this crossbow bolt be something useful."); break;
 			case MINERAL_BOLT:
 				pline("This crossbow bolt does slightly more damage than a regular one."); break;
 			case PIN_BOLT:
 				pline("A crossbow bolt that does low damage."); break;
 			case INKA_STINGER:
 				pline("These darts have a high chance to hit, and are meant to be thrown."); break;
+			case RANDOM_DART:
+				pline("Only you will know what material this dart is made of. It's meant to be used as a throwing weapon."); break;
 			case FLIMSY_DART:
 				pline("You can throw these darts at targets, but they have a tendency to fly in the wrong direction."); break;
 			case SOFT_STAR:
 				pline("Uses the shuriken skill. It is made of soft material and therefore does less damage than a real shuriken. Meant to be used for throwing."); break;
 			case TAR_STAR:
 				pline("These shuriken can be thrown at enemies."); break;
+			case CUBIC_STAR:
+				pline("Using these shuriken as a thrown weapon may prove effective against some targets."); break;
 			case WINDMILL_BLADE:
 				pline("It's a particularly damaging shuriken that's also made of noneroding material."); break;
 			case INKA_SHACKLE:
 				pline("A very lovely whip that can cause incredibly soothing pain :) Joking aside, it does relatively good damage and has increased to-hit, but whips are generally a weak type of weapon."); break;
 			case BULLETPROOF_CHAINWHIP:
 				pline("Whips suck, but this one sucks a bit less than the others because it does relatively good damage. It will break if you throw it, so don't do that unless you want to get rid of it."); break;
+			case SEXPLAY_WHIP:
+				pline("Well, do you want to engage in some hot BDSM action? Then this whip is for you. It deals rather good small damage considering that whips are generally sucky, and also has a to-hit bonus. Then again, there might be other weapon types that are more effective."); break;
 			case SECRET_WHIP:
 				pline("It's an incredibly sucky weapon that has good to-hit but does very low damage, however there's a hidden quality to it: while wielding it, you take less physical damage than otherwise."); break;
 			case MARE_TRIDENT: 
@@ -8987,6 +9101,8 @@ boolean knoweverything;
 				pline("If you want your grenades to pack a bigger punch, fire them with this weapon. The grenade launcher has a low rate of fire though."); break;
 			case BULLET: 
 				pline("A metal bullet that can be fired with pistols, submachine guns, rifles of all kinds, and heavy machine guns."); break;
+			case LEAD_BULLET:
+				pline("Firearm ammo for pistols, SMGs, rifles and machine guns. It may occasionally be re-used when fired."); break;
 			case ANTIMATTER_BULLET: 
 				pline("This bullet does much more damage than regular ones. It must be fired from a pistol, SMG, rifle or heavy MG."); break;
 			case SILVER_BULLET: 
@@ -9001,6 +9117,8 @@ boolean knoweverything;
 				pline("Only the BFG can fire this type of ammo. The damage per ammo isn't that high, but wait until you see the # of ammo fired per turn!"); break;
 			case SHOTGUN_SHELL: 
 				pline("This shell does a lot of damage if fired with a shotgun."); break;
+			case LEAD_SHOT:
+				pline("You can fire this ammo from a shotgun, and very occasionally you can even pick it back up and use it again."); break;
 			case ROCKET: 
 				pline("A highly explosive rocket. It requires a rocket launcher to be used effectively, but the explosion can hit several enemies at once."); break;
 			case FRAG_GRENADE: 
@@ -9029,16 +9147,26 @@ boolean knoweverything;
 				pline("These glass bolts can be fired with a crossbow, doing more damage than regular bolts, but unfortunately they are very likely to break on impact."); break;
 			case KOKKEN: 
 				pline("Silver crossbow ammo. They deal very good damage."); break;
+			case POISON_BOLT:
+				pline("This crossbow bolt is permanently poisoned."); break;
+			case HEAVY_CROSSBOW_BOLT:
+				pline("Crossbow ammunition made of lead."); break;
+			case ETHER_BOLT:
+				pline("You can fire this ammo with a crossbow, and it has increased range compared to regular crossbow bolts."); break;
 			case DROVEN_ARROW: 
 				pline("These glass arrows can be fired with a bow, doing more damage than regular arrows, but unfortunately they are very likely to break on impact."); break;
 			case DART: 
 				pline("Darts are throwing weapons that are often found in stacks. They deal moderate amounts of damage. Don't bother whacking enemies with them though; they're meant to be thrown."); break;
+			case SAND_DART:
+				pline("Throwing these darts at monsters doesn't deal all that much damage."); break;
 			case DART_OF_DISINTEGRATION: 
 				pline("They do more damage than regular darts... much more, in fact. Don't allow the monsters to throw those at you though, unless you want to be disintegrated!"); break;
 			case SPIKE: 
 				pline("A bone dart that can be thrown at enemies."); break;
 			case SHURIKEN: 
 				pline("These razor-sharp throwing stars used to be the only weapon to use the shuriken skill. Throw them at enemies to slice them into tiny bits."); break;
+			case NANO_SHURIKEN:
+				pline("This weapon uses the shuriken skill and is meant to be thrown at enemies."); break;
 			case NEEDLE: 
 				pline("Needles use the shuriken skill and can be thrown to kill enemies."); break;
 			case CALTROP: 
@@ -9053,6 +9181,8 @@ boolean knoweverything;
 				pline("A silver version of the boomerang. If you guessed that this weapon still sucks, you are right."); break;
 			case BATARANG: 
 				pline("This weapon cannot stun the little poison ivies, but it can kill them! :D Joking aside, it's a far stronger version of the boomerang but it still flies in that weird circle pattern and rarely hits what you aim for."); break;
+			case DARK_BATARANG:
+				pline("The Joker won't stand a chance if you throw this boomerang at him... provided you hit, because it flies in a weird circle pattern."); break;
 			case BULLWHIP: 
 #ifdef PHANTOM_CRASH_BUG
 				pline("Pitiful damage, and thick-skinned monsters are immune to it. Applying it allows you to perform certain feats though."); break;
@@ -9062,6 +9192,8 @@ boolean knoweverything;
 			case STEEL_WHIP: 
 				pline("A metal version of the bullwhip. While far stronger than a regular bullwhip, this weapon is still a whip and you know that whips suck. Steer clear. It can be applied to bash iron bars."); break;
 
+			case ETHER_WHIP:
+				pline("For its base type, this weapon certainly isn't that bad damage-wise... but unfortunately it's made of ether, so you'll be contaminated over time while wielding it, which you probably don't want."); break;
 			case CHAINWHIP: 
 				pline("Forget it! This iron whip does not make a good weapon."); break;
 			case MITHRIL_WHIP: 
@@ -9528,6 +9660,47 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "mary janes") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "meri dzheyn") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "meri janes"))))
 			pline("These cone heels magically grant resistance to mind flayers' intelligence drain attacks.");
 
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "volcanic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vulkanicheskiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vulkanik plash"))))
+			pline("Wearing this cloak makes you resistant to the very bad effects of falling into lava, but even with it, lava will still be VERY BAD, so you shouldn't ever rely on it to get you across a pool of lava.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "different cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "drugoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "har xil plash"))))
+			pline("Certain monsters spawn a bit more often if you wear this.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fuel cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "toplivnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yonilg'i plashi"))))
+			pline("While wearing this cloak, you don't have to pay yendorian fuel tax.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "pure cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chistyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "toza plash"))))
+			pline("If you're wearing this cloak, you have a little extra protection from poison and sickness effects.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "cloister cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch monastyrya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "monastir plashi"))))
+			pline("A cloak that makes it more likely for buried items to exist on a newly generated dungeon level.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shemagh") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "arabskiy golovnoy ubor") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "arabcha bosh kiyim"))))
+			pline("If you don't know what a shemagh is, it's a type of arabian headgear that protects against sand. This is reflected in-game, where you're immune to sandstorms while wearing it.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "lead helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vedushchiy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'rg'oshin dubulg'asi"))))
+			pline("While wearing this helmet, your carried weight is increased, meaning you can carry less other stuff.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "serrated helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zubchatyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jag'li dubulg'a"))))
+			pline("If you're attacked by a mind flayer while wearing this helmet, the helmet will retaliate with its spikes.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "technical helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tekhnicheskiy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "texnik dubulg'a"))))
+			pline("Wearing this helmet increases your techniques' effective level by one, but not beyond 50.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "thick boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tolstyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qalin etiklar"))))
+			pline("A pair of boots that offers full protection against xans.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sand-als") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pesok kak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qum kabi"))))
+			pline("This pair of sandals protects you from the bad effect of sandstorms.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shadowy heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "temnyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "soyali poshnalar"))))
+			pline("These cone-heeled lady pumps are almost invisible.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "reflective slippers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "svetootrazhayushchiye tapochki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yansitici terlik"))))
+			pline("A pair of shoes that counts as sexy flats, and allows you to occasionally reflect beams.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "lead boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "svintsovyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'rg'oshin etiklari"))))
+			pline("Wearing these boots adds 100 points to the weight of your stuff, so your effective carry capacity will be decreased. Because these boots are rather geavy.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weight attachment boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi navesnyye") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vazn biriktiruvchi etiklar"))))
+			pline("These boots will turn out to weigh an additional 500 units if you put them on, and also prevent you from flying.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fungal sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gribnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'ziqorin sandallari"))))
+			pline("This pair of sandals is infected with fungi, sadly. For some reason they still count as sexy flats though, and while you're wearing them, there's a 1 in 50000 chance per turn that you polymorph into a fungus!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "porcelain sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "farforovyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chinni sandal"))))
+			pline("You shouldn't kick with these sandals, because they will be disenchanted every time and eventually break!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "3D-printed sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "trekhmernyye pechatnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uch o'lchamli bosma sandal"))))
+			pline("This pair of stiletto sandals was created with a 3D printer.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "3D-printed wedges") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "trekhmernyye pechatnyye klin'ya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uch o'lchamli bosilgan takozlar"))))
+			pline("This pair of wedge sandals was created with a 3D printer.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "standing footwear") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "stoyachaya obuv'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tik turgan poyafzal"))))
+			pline("A pair of shoes that's unsuitable for walking, because the wedge heels are so weirdly-shaped. Every once in a while they will cause you to sink into the ground, forcing you to free yourself before you can move again, but on the bright side, monsters may occasionally be scared when they see you in such outerspace heels.");
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -9537,8 +9710,14 @@ boolean knoweverything;
 				pline("This is a legendary shirt that used to be worn by Kurt Cobain. Unlike other shirts, it can be safely enchanted when it's at +5."); break;
 			case T_SHIRT: 
 				pline("A shirt that can be worn under a suit of armor. It can be read."); break;
+			case TOILET_ROLL:
+				pline("Yeah I know, this makes no sense... but what did you expect, this is SLEX! It doesn't have to make sense :-P Anyway, this armor piece can be worn in the shirt slot. It can be read."); break;
 			case PRINTED_SHIRT: 
 				pline("It's an extra piece of armor that goes in the shirt slot. It can be read."); break;
+			case METAL_SHIRT:
+				pline("This shirt grants poison resistance when worn. It can be read."); break;
+			case RED_STRING:
+				pline("Not really a shirt, but there's no belt slot so you can equip it as a shirt instead, and it causes your bleeding wounds to close more quickly. It can be read."); break;
 			case WOOLEN_SHIRT: 
 				pline("A shirt that provides cold resistance when worn. It can be read."); break;
 			case YOGA_PANTS: 
@@ -9557,22 +9736,32 @@ boolean knoweverything;
 				pline("A very heavy plate mail that offers less protection than regular plate mail."); break;
 			case RIBBED_PLATE_MAIL:
 				pline("This very strong armor is resistant to rust and corrosion."); break;
+			case WONDER_PLATE:
+				pline("Hmm, I wonder what material this suit of armor is made from. It provides very good armor class and 2 points of magic cancellation."); break;
 			case METAL_LAMELLAR_ARMOR:
 				pline("A relatively good suit of armor that resists erosion."); break;
 			case BAR_CHAIN_MAIL:
 				pline("It's a chain mail that cannot rust, although it's still subject to corrosion."); break;
 			case TAR_CHAIN_MAIL:
 				pline("Chain mail made of lithic material, useful if you want to cast spells and still wear armor."); break;
+			case FULL_LEAD_SUIT:
+				pline("This extremely heavy suit of armor provides a whole lot of armor class, medium magic cancellation, and the very useful contamination resistance property!"); break;
 			case PEACEKEEPER_MAIL:
 				pline("A wooden armor that offers very high armor class and also grants peacevision."); break;
 			case GOTHIC_PLATE_MAIL:
 				pline("This suit offers even more protection than regular plate mail."); break;
+			case NANO_SUIT:
+				pline("A lightweight suit of armor that offers mediocre protection."); break;
 			case EMBOSSED_PLATE_MAIL:
 				pline("A very powerful suit that's superior to regular plate mail and doesn't hinder spellcasting, however it's subject to all erosion effects unless you specifically erodeproof it."); break;
+			case MEDIUM_MITHRIL_COAT:
+				pline("This suit of armor is most probably not made of mithril, but it offers good armor class and 3 points of magic cancellation."); break;
 			case INKA_MITHRIL_COAT:
 				pline("It's misnamed, because the material it is made of isn't actually mithril, but it offers good armor class and 3 points of magic cancellation."); break;
 			case DROVEN_MITHRIL_COAT:
 				pline("A coat that is not made of mithril. Instead, the material is glass, which means that throwing it will cause it to shatter, but why would you do that? It offers good armor class and 3 points of magic cancellation, and due to the fact it's non-metallic, it doesn't hinder spellcasting."); break;
+			case TAPERED_MAIL:
+				pline("This suit is rather mediocre."); break;
 			case SILK_MAIL:
 				pline("A weak suit of armor."); break;
 			case HEAVY_MAIL:
@@ -10014,6 +10203,10 @@ boolean knoweverything;
 
 			case CLOAK_OF_QUENCHING: 
 				pline("Wearing this cloak grants fire resistance and 3 points of magic cancellation."); break;
+			case CLOAK_OF_COAGULATION:
+				pline("This cloak gives diminished bleeding, which helps when you sustain bleeding damage, and it also has 3 points of magic cancellation."); break;
+			case CLOAK_OF_SCENT:
+				pline("Wearing this cloak lets you smell nearby enemies, and it has a magic cancellation value of 3."); break;
 
 			case CLOAK_OF_AGGRAVATION:
 				pline("Usually generated cursed. It makes monsters come after you directly, but provides 3 points of magic cancellation."); break;
@@ -10134,6 +10327,8 @@ boolean knoweverything;
 				pline("This cloak prevents you from polymorphing, so it should actually be called 'cloak of unchanging'. It also grants 3 points of magic cancellation."); break;
 			case CLOAK_OF_SLOW_DIGESTION:
 				pline("It slows your metabolism while also granting MC3."); break;
+			case LORICATED_CLOAK:
+				pline("The material of this cloak is randomized at game start, and it grants 3 points of magic cancellation."); break;
 			case CLOAK_OF_INFRAVISION:
 				pline("If you're not of a race that has intrinsic infravision, you can wear this cloak to get it extrinsically. It also gives MC3 extrinsically, because there is no intrinsic MC. :-P"); break;
 			case CLOAK_OF_BANISHING_FEAR:
@@ -10210,6 +10405,8 @@ boolean knoweverything;
 				pline("A basic helmet that gives a little bit of protection."); break;
 			case DWARVISH_IRON_HELM:
 				pline("A good helmet that offers some protection."); break;
+			case BASINET:
+				pline("A rather plain helmet, but its base material is different per game."); break;
 			case DROVEN_HELM:
 				pline("This helmet offers surprisingly good protection."); break;
 			case FEDORA:
@@ -10418,6 +10615,8 @@ boolean knoweverything;
 				pline("This helm causes BIGscript. It provides low AC and no magic cancellation."); break;
 			case QUIZ_HELM:
 				pline("This helm causes quizzes. It provides medium AC and no magic cancellation."); break;
+			case SCENTY_HELMET:
+				pline("A helmet that should probably be spelled 'scentsy helmet' but isn't. Anyway, if you wear it, you'll be able to smell certain types of monsters at a distance."); break;
 			case DIZZY_HELMET:
 				pline("This helm causes map bugs. It provides moderately good AC and medium magic cancellation."); break;
 			case MUTING_HELM:
@@ -10438,6 +10637,8 @@ boolean knoweverything;
 				pline("Wearing this helmet conveys 'weak' telepathy that displays monsters close by, and 'good' telepathy that displays all monsters on the level if you are blind."); break;
 			case PLASTEEL_GLOVES:
 				pline("This pair of gloves offers good protection."); break;
+			case ROCKET_GAUNTLETS:
+				pline("A pair of gauntlets that improves your armor class by 2 points."); break;
 			case GAUNTLETS_OF_THE_FORCE:
 				pline("This pair of gloves offers good protection and enhances your ability to use the force."); break;
 			case LEATHER_GLOVES:
@@ -10575,6 +10776,8 @@ boolean knoweverything;
 				pline("This shield offers very good protection."); break;
 			case FLAME_SHIELD:
 				pline("A heat-resistant shield that offers fire resistance to the wearer."); break;
+			case ANCIENT_SHIELD:
+				pline("It's a rather good shield that has quite high armor class."); break;
 			case ORCISH_GUARD_SHIELD:
 				pline("Similar to a standard orcish shield, this offers good armor class."); break;
 			case SHIELD:
@@ -10593,6 +10796,10 @@ boolean knoweverything;
 				pline("A cold-resistant shield that offers cold resistance to the wearer."); break;
 			case LIGHTNING_SHIELD:
 				pline("A shock-resistant shield that offers shock resistance to the wearer."); break;
+			case CHROME_SHIELD:
+				pline("Wearing this shield grants sickness resistance."); break;
+			case ANTISHADOW_SHIELD:
+				pline("If you wear this shield, your sight in dark areas is improved."); break;
 			case VENOM_SHIELD:
 				pline("A poison-resistant shield that offers poison resistance to the wearer."); break;
 			case SHIELD_OF_LIGHT:
@@ -10714,6 +10921,10 @@ boolean knoweverything;
 				pline("This footwear prevents you from seeing lit squares if them being lit was the only reason you saw them. They provide mediocre AC and medium magic cancellation."); break;
 			case KILLER_HEELS:
 				pline("This footwear is high-heeled (stilettos that can kill both the wearer and the one that's being kicked by them :D just kidding!) and allows monsters to create more traps. They provide very good AC and 7 points of magic cancellation."); break;
+			case LADY_BOOTS:
+				pline("Mmmmmmmmmmmm <3<3<3 These block-heeled combat boots are soooooooo kind and gentle! They also provide a few points of armor class."); break;
+			case STILETTO_SANDALS:
+				pline("This pair of stiletto heels sadly doesn't have armor class, but it protects you from the bad effects caused by being in sand terrain."); break;
 			case CHECKER_BOOTS:
 				pline("This footwear causes checkerboard vision. They provide excellent AC and 3 points of magic cancellation."); break;
 			case ELVIS_SHOES:
@@ -10728,6 +10939,8 @@ boolean knoweverything;
 				pline("This footwear is block-heeled and causes the highscore effect from SPACE WARS that the Amy her roommate invented. They provide excellent AC and 8 points of magic cancellation."); break;
 			case REPEATABLE_BOOTS:
 				pline("This footwear repeats messages. They provide almost no AC and medium magic cancellation."); break;
+			case ITALIAN_HEELS:
+				pline("The manufacturers of this pair of stiletto heels use a different material for making them every time you start a new game."); break;
 			case TRON_BOOTS:
 				pline("This footwear prevents you from moving into the same direction twice in a row. They provide quite good AC and 3 points of magic cancellation."); break;
 			case RED_SPELL_HEELS:
@@ -10965,6 +11178,30 @@ boolean knoweverything;
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_Y].oc_oprop), objects[DUMMY_CLOAK_Y].a_ac, objects[DUMMY_CLOAK_Y].a_can ); break;
 			case DUMMY_CLOAK_Z:
 				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_Z].oc_oprop), objects[DUMMY_CLOAK_Z].a_ac, objects[DUMMY_CLOAK_Z].a_can ); break;
+			case DUMMY_CLOAK_AA:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AA].oc_oprop), objects[DUMMY_CLOAK_AA].a_ac, objects[DUMMY_CLOAK_AA].a_can ); break;
+			case DUMMY_CLOAK_AB:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AB].oc_oprop), objects[DUMMY_CLOAK_AB].a_ac, objects[DUMMY_CLOAK_AB].a_can ); break;
+			case DUMMY_CLOAK_AC:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AC].oc_oprop), objects[DUMMY_CLOAK_AC].a_ac, objects[DUMMY_CLOAK_AC].a_can ); break;
+			case DUMMY_CLOAK_AD:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AD].oc_oprop), objects[DUMMY_CLOAK_AD].a_ac, objects[DUMMY_CLOAK_AD].a_can ); break;
+			case DUMMY_CLOAK_AE:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AE].oc_oprop), objects[DUMMY_CLOAK_AE].a_ac, objects[DUMMY_CLOAK_AE].a_can ); break;
+			case DUMMY_CLOAK_AF:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AF].oc_oprop), objects[DUMMY_CLOAK_AF].a_ac, objects[DUMMY_CLOAK_AF].a_can ); break;
+			case DUMMY_CLOAK_AG:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AG].oc_oprop), objects[DUMMY_CLOAK_AG].a_ac, objects[DUMMY_CLOAK_AG].a_can ); break;
+			case DUMMY_CLOAK_AH:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AH].oc_oprop), objects[DUMMY_CLOAK_AH].a_ac, objects[DUMMY_CLOAK_AH].a_can ); break;
+			case DUMMY_CLOAK_AI:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AI].oc_oprop), objects[DUMMY_CLOAK_AI].a_ac, objects[DUMMY_CLOAK_AI].a_can ); break;
+			case DUMMY_CLOAK_AJ:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AJ].oc_oprop), objects[DUMMY_CLOAK_AJ].a_ac, objects[DUMMY_CLOAK_AJ].a_can ); break;
+			case DUMMY_CLOAK_AK:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AK].oc_oprop), objects[DUMMY_CLOAK_AK].a_ac, objects[DUMMY_CLOAK_AK].a_can ); break;
+			case DUMMY_CLOAK_AL:
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_AL].oc_oprop), objects[DUMMY_CLOAK_AL].a_ac, objects[DUMMY_CLOAK_AL].a_can ); break;
 
 			case DUMMY_HELMET_A: 
 				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_A].oc_oprop), objects[DUMMY_HELMET_A].a_ac, objects[DUMMY_HELMET_A].a_can ); break;
@@ -10988,6 +11225,26 @@ boolean knoweverything;
 				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_J].oc_oprop), objects[DUMMY_HELMET_J].a_ac, objects[DUMMY_HELMET_J].a_can ); break;
 			case DUMMY_HELMET_K: 
 				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_K].oc_oprop), objects[DUMMY_HELMET_K].a_ac, objects[DUMMY_HELMET_K].a_can ); break;
+			case DUMMY_HELMET_L: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_L].oc_oprop), objects[DUMMY_HELMET_L].a_ac, objects[DUMMY_HELMET_L].a_can ); break;
+			case DUMMY_HELMET_M: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_M].oc_oprop), objects[DUMMY_HELMET_M].a_ac, objects[DUMMY_HELMET_M].a_can ); break;
+			case DUMMY_HELMET_N: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_N].oc_oprop), objects[DUMMY_HELMET_N].a_ac, objects[DUMMY_HELMET_N].a_can ); break;
+			case DUMMY_HELMET_O: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_O].oc_oprop), objects[DUMMY_HELMET_O].a_ac, objects[DUMMY_HELMET_O].a_can ); break;
+			case DUMMY_HELMET_P: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_P].oc_oprop), objects[DUMMY_HELMET_P].a_ac, objects[DUMMY_HELMET_P].a_can ); break;
+			case DUMMY_HELMET_Q: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_Q].oc_oprop), objects[DUMMY_HELMET_Q].a_ac, objects[DUMMY_HELMET_Q].a_can ); break;
+			case DUMMY_HELMET_R: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_R].oc_oprop), objects[DUMMY_HELMET_R].a_ac, objects[DUMMY_HELMET_R].a_can ); break;
+			case DUMMY_HELMET_S: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_S].oc_oprop), objects[DUMMY_HELMET_S].a_ac, objects[DUMMY_HELMET_S].a_can ); break;
+			case DUMMY_HELMET_T: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_T].oc_oprop), objects[DUMMY_HELMET_T].a_ac, objects[DUMMY_HELMET_T].a_can ); break;
+			case DUMMY_HELMET_U: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_U].oc_oprop), objects[DUMMY_HELMET_U].a_ac, objects[DUMMY_HELMET_U].a_can ); break;
 
 			case DUMMY_GLOVES_A: 
 				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_A].oc_oprop), objects[DUMMY_GLOVES_A].a_ac, objects[DUMMY_GLOVES_A].a_can ); break;
@@ -11007,6 +11264,12 @@ boolean knoweverything;
 				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_H].oc_oprop), objects[DUMMY_GLOVES_H].a_ac, objects[DUMMY_GLOVES_H].a_can ); break;
 			case DUMMY_GLOVES_I: 
 				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_I].oc_oprop), objects[DUMMY_GLOVES_I].a_ac, objects[DUMMY_GLOVES_I].a_can ); break;
+			case DUMMY_GLOVES_J: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_J].oc_oprop), objects[DUMMY_GLOVES_J].a_ac, objects[DUMMY_GLOVES_J].a_can ); break;
+			case DUMMY_GLOVES_K: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_K].oc_oprop), objects[DUMMY_GLOVES_K].a_ac, objects[DUMMY_GLOVES_K].a_can ); break;
+			case DUMMY_GLOVES_L: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_L].oc_oprop), objects[DUMMY_GLOVES_L].a_ac, objects[DUMMY_GLOVES_L].a_can ); break;
 
 			case DUMMY_BOOTS_A: 
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_A].oc_oprop), objects[DUMMY_BOOTS_A].a_ac, objects[DUMMY_BOOTS_A].a_can ); break;
@@ -11028,10 +11291,44 @@ boolean knoweverything;
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_I].oc_oprop), objects[DUMMY_BOOTS_I].a_ac, objects[DUMMY_BOOTS_I].a_can ); break;
 			case DUMMY_BOOTS_J: 
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_J].oc_oprop), objects[DUMMY_BOOTS_J].a_ac, objects[DUMMY_BOOTS_J].a_can ); break;
-			case DUMMY_BOOTS_K: 
+			case DUMMY_BOOTS_K:
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_K].oc_oprop), objects[DUMMY_BOOTS_K].a_ac, objects[DUMMY_BOOTS_K].a_can ); break;
-			case DUMMY_BOOTS_L: 
+			case DUMMY_BOOTS_L:
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_L].oc_oprop), objects[DUMMY_BOOTS_L].a_ac, objects[DUMMY_BOOTS_L].a_can ); break;
+			case DUMMY_BOOTS_M:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_M].oc_oprop), objects[DUMMY_BOOTS_M].a_ac, objects[DUMMY_BOOTS_M].a_can ); break;
+			case DUMMY_BOOTS_N:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_N].oc_oprop), objects[DUMMY_BOOTS_N].a_ac, objects[DUMMY_BOOTS_N].a_can ); break;
+			case DUMMY_BOOTS_O:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_O].oc_oprop), objects[DUMMY_BOOTS_O].a_ac, objects[DUMMY_BOOTS_O].a_can ); break;
+			case DUMMY_BOOTS_P:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_P].oc_oprop), objects[DUMMY_BOOTS_P].a_ac, objects[DUMMY_BOOTS_P].a_can ); break;
+			case DUMMY_BOOTS_Q:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_Q].oc_oprop), objects[DUMMY_BOOTS_Q].a_ac, objects[DUMMY_BOOTS_Q].a_can ); break;
+			case DUMMY_BOOTS_R:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_R].oc_oprop), objects[DUMMY_BOOTS_R].a_ac, objects[DUMMY_BOOTS_R].a_can ); break;
+			case DUMMY_BOOTS_S:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_S].oc_oprop), objects[DUMMY_BOOTS_S].a_ac, objects[DUMMY_BOOTS_S].a_can ); break;
+			case DUMMY_BOOTS_T:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_T].oc_oprop), objects[DUMMY_BOOTS_T].a_ac, objects[DUMMY_BOOTS_T].a_can ); break;
+			case DUMMY_BOOTS_U:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_U].oc_oprop), objects[DUMMY_BOOTS_U].a_ac, objects[DUMMY_BOOTS_U].a_can ); break;
+			case DUMMY_BOOTS_V:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_V].oc_oprop), objects[DUMMY_BOOTS_V].a_ac, objects[DUMMY_BOOTS_V].a_can ); break;
+			case DUMMY_BOOTS_W:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_W].oc_oprop), objects[DUMMY_BOOTS_W].a_ac, objects[DUMMY_BOOTS_W].a_can ); break;
+			case DUMMY_BOOTS_X:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_X].oc_oprop), objects[DUMMY_BOOTS_X].a_ac, objects[DUMMY_BOOTS_X].a_can ); break;
+			case DUMMY_BOOTS_Y:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_Y].oc_oprop), objects[DUMMY_BOOTS_Y].a_ac, objects[DUMMY_BOOTS_Y].a_can ); break;
+			case DUMMY_BOOTS_Z:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_Z].oc_oprop), objects[DUMMY_BOOTS_Z].a_ac, objects[DUMMY_BOOTS_Z].a_can ); break;
+			case DUMMY_BOOTS_AA:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AA].oc_oprop), objects[DUMMY_BOOTS_AA].a_ac, objects[DUMMY_BOOTS_AA].a_can ); break;
+			case DUMMY_BOOTS_AB:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AB].oc_oprop), objects[DUMMY_BOOTS_AB].a_ac, objects[DUMMY_BOOTS_AB].a_can ); break;
+			case DUMMY_BOOTS_AC:
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AC].oc_oprop), objects[DUMMY_BOOTS_AC].a_ac, objects[DUMMY_BOOTS_AC].a_can ); break;
 
 			case EVIL_DRAGON_SCALE_MAIL:
 				pline("An extremely sturdy armor that can deflect a heck of a lot of attacks. It also does something very nasty when worn, though..."); break;
@@ -11059,6 +11356,8 @@ boolean knoweverything;
 				pline("This suit of armor gives more than double the protection of full plate mail. But that comes at a high price..."); break;
 			case EVIL_LEATHER_ARMOR:
 				pline("Lightweight, doesn't hinder spellcasting, provides the same amount of armor class as a plate mail, but very evil indeed."); break;
+			case EXCITING_ARMOR:
+				pline("A rather weak suit of armor. It does however provide the %s enchantment, which may or may not be useful to you.", enchname(objects[EXCITING_ARMOR].oc_oprop)); break;
 			case SPECIAL_LEATHER_ARMOR:
 				pline("It's a rather weak suit of armor, but it always spawns with an enchantment."); break;
 			case MAGE_PLATE_MAIL:
@@ -11096,6 +11395,8 @@ boolean knoweverything;
 				pline("You will hallucinate as long as you wear this ring. Putting it on causes it to autocurse."); break;
 			case RIN_INTRINSIC_LOSS: 
 				pline("This ring can cause intrinsic loss."); break;
+			case RIN_DIMINISHED_BLEEDING:
+				pline("Wearing this ring lets you recover from the bleeding status effect more quickly."); break;
 			case RIN_TRAP_REVEALING: 
 				pline("A very rare ring that grants its wearer the ability to randomly detect traps on the current dungeon level."); break;
 			case RIN_BLOOD_LOSS:
@@ -11890,6 +12191,8 @@ boolean knoweverything;
 				pline("A magical amulet that grants energy regeneration if you wear it."); break;
 			case AMULET_OF_INSOMNIA:
 				pline("Considering that this amulet conveys sleep resistance (which is rather mundane), it's quite rare."); break;
+			case AMULET_OF_SCENT:
+				pline("While wearing this amulet, you're magically capable of smelling nearby animals and scent-based monsters."); break;
 			case AMULET_OF_MENTAL_STABILITY:
 				pline("Put on this amulet to get confusion resistance."); break;
 			case AMULET_OF_CONTAMINATION_RESIST:
@@ -12034,6 +12337,12 @@ boolean knoweverything;
 				pline("This instrument can shoot bolts of electricity."); break;
 			case FIRE_HORN: 
 				pline("This instrument can shoot bolts of fire."); break;
+			case ETHER_HORN:
+				pline("This instrument can shoot magic missiles."); break;
+			case SHADOW_HORN:
+				pline("This instrument can shoot rays of acid."); break;
+			case CHROME_HORN:
+				pline("This instrument cah shoot rays of poison."); break;
 			case HORN_OF_PLENTY: 
 				pline("A magic horn that generates food."); break;
 			case WOODEN_HARP: 
@@ -12056,12 +12365,22 @@ boolean knoweverything;
 				pline("This tool is also a weapon that can be thrown. It uses the dart skill."); break;
 			case PICK_AXE: 
 				pline("A tool that can also be used as a weapon. It can be applied for digging."); break;
+			case BRICK_PICK:
+				pline("A rather damaging pick-axe weapon that can be applied for digging."); break;
+			case MYSTERY_PICK:
+				pline("It's slightly better than the regular pick-axe weapon and can also be applied for digging."); break;
+			case NANO_PICK:
+				pline("This weapon does good damage to large monsters and can also be applied for digging."); break;
 			case FISHING_POLE: 
 				pline("This polearm weapon-tool can be applied to catch fish."); break;
 			case GRAPPLING_HOOK: 
 				pline("A flail-type weapon-tool that can be used to pull objects and monsters toward you."); break;
 			case UNICORN_HORN: 
 				pline("The unicorn horn can be used as a two-handed melee weapon that uses its own skill, and applying it can cure a variety of bad effects."); break;
+			case DARK_HORN:
+				pline("It's a two-handed melee weapon that uses the unicorn horn skill, but its main use is to be applied, which can cure some bad effects. Every time you apply it, the area around you is darkened."); break;
+			case ARCANE_HORN:
+				pline("This unicorn horn is a two-handed melee weapon that cannot be applied (unlike the regular unicorn horn). Instead, in order to fix troubles with it, you have to hit a monster in melee with it."); break;
 			case TORCH: 
 				pline("A tool that counts as a club for in-game purposes; unfortunately a lit torch must be wielded in order to work, which makes it a very useless item."); break;
 			case GREEN_LIGHTSABER: 
@@ -12080,8 +12399,14 @@ boolean knoweverything;
 				pline("This lightsaber does RNG-determined damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case WHITE_DOUBLE_LIGHTSABER: 
 				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It's especially effective against small monsters."); break;
+			case MYSTERY_LIGHTSABER:
+				pline("The material of this lightsaber is randomized on a per-game basis, and it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case LASER_SWATTER: 
 				pline("A laser-based fly swatter that uses the paddle skill. If you turn it on, it will do great damage to small monsters."); break;
+			case NANO_HAMMER:
+				pline("This laser-powered hammer deals much more damage if you turn it on, but will eventually run out of power."); break;
+			case LIGHTWHIP:
+				pline("It's a whip, which is generally not considered a good type of melee weapon, but this one is laser-powered. Turn it on to make it into an awesome weapon. However, it'll eventually run out of energy."); break;
 			case EXPENSIVE_CAMERA: 
 				pline("A tool that can be used to photograph monsters."); break;
 			case MIRROR: 
@@ -14067,6 +14392,12 @@ boolean knoweverything;
 				pline("Healthstones are usually generated cursed, but if you carry around noncursed ones your health regeneration will speed up."); break;
 			case TALC:
 				pline("A useless gray stone."); break;
+			case LEAD_CLUMP:
+				pline("This type of sling ammunition does decent damage."); break;
+			case SLING_AMMO:
+				pline("Using this ammo for the sling is definitely better than firing regular rocks."); break;
+			case BONE_FRAGMENT:
+				pline("It's better than a rock, but not as good as a flint stone. You can fire it with a sling to deal damage to monsters."); break;
 			case GRAPHITE:
 				pline("It's a gray stone that doesn't do anything special, but at least it doesn't do anything bad, unlike some other stones..."); break;
 			case VOLCANIC_GLASS_FRAGMENT:
@@ -14649,7 +14980,7 @@ boolean knoweverything;
 			case REALLY_HEAVY_IRON_BALL: 
 				pline("Rarely found, this flail-class weapon weighs really much but does a ton of damage."); break;
 			case EXTREMELY_HEAVY_IRON_BALL: 
-				pline("The single most damaging weapon in the entire game. Provided you're capable of lifting and wielding it, this extremely heavy flail-class weapon will smack the living daylights out of your enemies."); break;
+				pline("One of the most damaging weapons in the entire game. Provided you're capable of lifting and wielding it, this extremely heavy flail-class weapon will smack the living daylights out of your enemies."); break;
 			case IMPOSSIBLY_HEAVY_IRON_BALL: 
 				pline("You probably won't be able to lift this ball. It seems you somehow managed to get it into your inventory, but now you're probably overburdened and cannot move unless you drop it."); break;
 
@@ -14661,6 +14992,58 @@ boolean knoweverything;
 				pline("With this very heavy ball, you can do great damage to monsters if you use it as a melee or thrown weapon. The flail skill is used to determine the damage and chance to hit."); break;
 			case HEAVY_ELYSIUM_BALL: 
 				pline("A ball made of unbreakable material. It does tons of damage on a successful hit, and it uses the flail skill."); break;
+			case HEAVY_BRICK_BALL:
+				pline("It's a ball made of brick material, which can be used as a weapon that depends on the flail skill."); break;
+			case HEAVY_PAPER_BALL:
+				pline("A rather flimsy ball that can be used as a weapon. The associated weapon skill is flail."); break;
+			case HEAVY_CHROME_BALL:
+				pline("This rather heavy ball deals good damage and depends on the flail skill."); break;
+			case HEAVY_NANO_BALL:
+				pline("A very powerful ball made of a rare material, which uses the flail skill."); break;
+			case IMPOSSIBLY_HEAVY_SAND_BALL:
+				pline("I don't know how you managed to get this ultra-heavy item into your inventory, but if you're somehow able to wield it, it uses the flail skill."); break;
+			case HEAVY_METAL_BALL:
+				pline("A nonrusting ball that can be used as a flail-class weapon."); break;
+			case HEAVY_PLASTIC_BALL:
+				pline("Despite being made of a very light material, this ball still weighs a ton and deals good damage in melee. It uses the flail skill."); break;
+			case HEAVY_SHADOW_BALL:
+				pline("Using this ball as a weapon deals great damage, and it depends on the flail skill."); break;
+			case HEAVY_LEAD_BALL:
+				pline("A very heavyweight flail-class weapon."); break;
+			case IMPOSSIBLY_HEAVY_ETHER_BALL:
+				pline("You'll probably want to drop this extremely heavy weapon because it's really unlikely that you can actually swing it."); break;
+			case HEAVY_WAX_BALL:
+				pline("Despite being made of wax, this ball deals d25 damage when used as a flail-class melee weapon."); break;
+			case HEAVY_WOOD_BALL:
+				pline("Ever felt like hitting monsters with a huge ball made of solid wood? Then use this flail-class weapon."); break;
+			case HEAVY_COPPER_BALL:
+				pline("This ball weighs much, but also deals much damage, and depends on the flail skill."); break;
+			case HEAVY_SILVER_BALL:
+				pline("Yeah I know, it's a flail-class weapon that has huge base damage and is made of silver to boot. Go ahead and smash those demons in Gehennom with it!"); break;
+			case IMPOSSIBLY_HEAVY_OBSIDIAN_BALL:
+				pline("Theoretically this ball can be used as a flail weapon, but in practice it weighs much more than the maximum carry capacity so I expect you to not be able to actually equip it."); break;
+			case BULKY_POURPOOR_BALL:
+				pline("A two-handed ball that deals a lot of melee damage. It uses the flail skill."); break;
+			case BULKY_GEMSTONE_BALL:
+				pline("This ball weighs a ton, but can do up to 50 points of damage in a single hit. You have to wield it with both hands, and the flail skill controls its damage bonuses."); break;
+			case BULKY_FLESH_BALL:
+				pline("If you expect this ball to deal little damage because it's made of flesh, you'd better think again... It's a two-handed weapon and uses the flail skill."); break;
+			case BULKY_MITHRIL_BALL:
+				pline("This ball weighs almost as much as the carry cap. That said, if you can wield it with both hands, it will deal enormous damage with every hit, and it depends on the flail skill."); break;
+			case HEAVY_CLOTH_BALL:
+				pline("A ball that deals less damage than a heavy iron ball, but has increased to-hit. It uses the flail skill."); break;
+			case HEAVY_TAR_BALL:
+				pline("If you whack monsters with this heavy ball, you'll deal good damage and enjoy a to-hit bonus. It depends on the flail skill."); break;
+			case HEAVY_SILK_BALL:
+				pline("This ball weighs quite a lot and uses the flail skill. It also has a good to-hit bonus."); break;
+			case HEAVY_LEATHER_BALL:
+				pline("A ball that weighs a whole lot, and doesn't deal as much damage as you'd expect for such a heavy weapon, but its to-hit is improved and it also trains the flail skill."); break;
+			case WONDER_BALL:
+				pline("The material of this flail-class weapon is randomized at game start."); break;
+			case NULL_BALL:
+				pline("A powerful flail-class weapon made of a rather weird material."); break;
+			case LIQUID_BALL:
+				pline("Despite being liquid, this ball can smack enemies over the head and deals good damage. It uses the flail skill."); break;
 
 			case HEAVY_CLAY_BALL: 
 				pline("A very heavy mineral ball that uses the flail skill."); break;
@@ -14717,9 +15100,9 @@ boolean knoweverything;
 				pline("This mineral chain is relatively heavy but does moderate damage in melee."); break;
 			case SCOURGE: 
 				pline("A powerful iron chain that also has a considerable weight."); break;
-			case ELYSIUM_SCOURGE: 
+			case ELYSIUM_SCOURGE:
 				pline("A powerful unbreakable chain that also has a considerable weight."); break;
-			case GRANITE_SCOURGE: 
+			case GRANITE_SCOURGE:
 				pline("A powerful mineral chain that also has a considerable weight."); break;
 			case NUNCHIAKU: 
 				pline("This is the second-strongest iron chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
@@ -14727,7 +15110,7 @@ boolean knoweverything;
 				pline("This is the second-strongest unbreakable chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
 			case CONCRETE_NUNCHIAKU: 
 				pline("This is the second-strongest mineral chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
-			case HOSTAGE_CHAIN: 
+			case HOSTAGE_CHAIN:
 				pline("An iron chain that weighs the same as a heavy iron ball, yet does more damage."); break;
 			case GLASS_HOSTAGE_CHAIN: 
 				pline("A glass chain that weighs the same as a heavy iron ball, yet does more damage."); break;
@@ -14745,6 +15128,58 @@ boolean knoweverything;
 				pline("It's a flail-class weapon that does quite good damage."); break;
 			case NUCLEAR_HOSTAGE_CHAIN:
 				pline("While it weighs a lot, this type of flail does very good damage if you swing it."); break;
+			case BRICK_CHAIN:
+				pline("A basic brick chain that doesn't do much damage."); break;
+			case PAPER_CHAIN:
+				pline("This paper chain is relatively heavy but does moderate damage in melee."); break;
+			case CHROME_SCOURGE:
+				pline("A powerful chrome chain that also has a considerable weight."); break;
+			case NANO_NUNCHIAKU:
+				pline("This is the second-strongest nano chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
+			case SAND_HOSTAGE_CHAIN:
+				pline("A sand chain that weighs the same as a heavy iron ball, yet does more damage."); break;
+			case METAL_CHAIN:
+				pline("A basic metal chain that doesn't do much damage."); break;
+			case PLASTIC_CHAIN:
+				pline("This plastic chain is relatively heavy but does moderate damage in melee."); break;
+			case SHADOW_SCOURGE:
+				pline("A powerful shadowy chain that also has a considerable weight."); break;
+			case LEAD_NUNCHIAKU:
+				pline("This is the second-strongest lead chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
+			case ETHER_HOSTAGE_CHAIN:
+				pline("An ether chain that weighs the same as a heavy iron ball, yet does more damage."); break;
+			case WAX_CHAIN:
+				pline("A basic wax chain that doesn't do much damage."); break;
+			case WOOD_CHAIN:
+				pline("This wooden chain is relatively heavy but does moderate damage in melee."); break;
+			case COPPER_SCOURGE:
+				pline("A powerful copper chain that also has a considerable weight."); break;
+			case SILVER_NUNCHIAKU:
+				pline("This is the second-strongest silver chain in the game that does quite a lot of damage while still being lighter than a heavy iron ball."); break;
+			case OBSIDIAN_HOSTAGE_CHAIN:
+				pline("An obsidian chain that weighs the same as a heavy iron ball, yet does more damage."); break;
+			case POURPOOR_LASH:
+				pline("This two-handed chain does little damage."); break;
+			case GEMSTONE_LASH:
+				pline("This two-handed chain does moderate damage."); break;
+			case FLESH_LASH:
+				pline("This two-handed chain does good damage."); break;
+			case MITHRIL_LASH:
+				pline("This two-handed chain does great damage."); break;
+			case CLOTH_CHAIN:
+				pline("A basic cloth chain that does very little damage, but has increased to-hit."); break;
+			case TAR_CHAIN:
+				pline("This tar chain is relatively heavy but does mediocre damage in melee and has increased to-hit."); break;
+			case SILK_SCOURGE:
+				pline("A relatively powerful silk chain that also has a considerable weight and increased to-hit."); break;
+			case LEATHER_NUNCHIAKU:
+				pline("This is the third-strongest leather chain in the game that does a good amount damage while still being lighter than a heavy iron ball. It has increased to-hit."); break;
+			case WONDER_CHAIN:
+				pline("A chain with a randomized material that does a medium amount of damage."); break;
+			case NULL_CHAIN:
+				pline("A chain made of mysterious material that does a medium amount of damage."); break;
+			case LIQUID_CHAIN:
+				pline("A chain made of liquid material that does a medium amount of damage."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
