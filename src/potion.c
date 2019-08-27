@@ -123,6 +123,9 @@ struct obj *otmp;
 		case FROST_HORN:
 		case FIRE_HORN:
 		case TEMPEST_HORN:
+		case ETHER_HORN:
+		case SHADOW_HORN:
+		case CHROME_HORN:
 		case WAN_DRAINING:
 		case WAN_INCREASE_MAX_HITPOINTS:
 		case WAN_REDUCE_MAX_HITPOINTS:
@@ -338,6 +341,9 @@ int number;
 		case FROST_HORN:
 		case FIRE_HORN:
 		case TEMPEST_HORN:
+		case ETHER_HORN:
+		case SHADOW_HORN:
+		case CHROME_HORN:
 		case WAN_DRAINING:
 		case WAN_INCREASE_MAX_HITPOINTS:
 		case WAN_REDUCE_MAX_HITPOINTS:
@@ -8478,6 +8484,8 @@ register struct obj *o1, *o2;
 			}
 			break;
 		case UNICORN_HORN:
+		case DARK_HORN:
+		case ARCANE_HORN:
 			switch (o2->otyp) {
 			    case POT_SICKNESS:
 				return POT_FRUIT_JUICE;
@@ -9010,6 +9018,9 @@ boolean amnesia;
 			case FIRE_HORN:
 			case FROST_HORN:
 			case TEMPEST_HORN:
+			case ETHER_HORN:
+			case SHADOW_HORN:
+			case CHROME_HORN:
 			case HORN_OF_PLENTY:
 			    downgrade_obj(obj, TOOLED_HORN, &used);
 			    break;
@@ -9467,6 +9478,9 @@ register struct obj *obj;
 		case FIRE_HORN:
 		case FROST_HORN:
 		case TEMPEST_HORN:
+		case ETHER_HORN:
+		case SHADOW_HORN:
+		case CHROME_HORN:
 			obj->otyp = TOOLED_HORN;
 			break;
 		case WOODEN_HARP:
@@ -10191,14 +10205,14 @@ dodip()
 	}
 
 	potion->in_use = FALSE;         /* didn't go poof */
-	if ((obj->otyp == UNICORN_HORN || obj->oclass == GEM_CLASS) &&
+	if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN || obj->oclass == GEM_CLASS) &&
 	    (mixture = mixtype(obj, potion)) != 0) {
 		char oldbuf[BUFSZ], newbuf[BUFSZ];
 		short old_otyp = potion->otyp;
 		boolean old_dknown = FALSE;
 		boolean more_than_one = potion->quan > 1;
 
-		if (obj->otyp == UNICORN_HORN && obj->cursed) { /* uh-oh */
+		if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && obj->cursed) { /* uh-oh */
 			pline("BOOM! The potion explodes!");
 			potion->in_use = TRUE;
 			if (!breathless(youmonst.data) || haseyes(youmonst.data)) potionbreathe(potion);
@@ -10303,7 +10317,7 @@ dodip()
 		update_inventory();
 		}
 
-		if (obj && obj->otyp == UNICORN_HORN && !rn2(10)) {
+		if (obj && (obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && !rn2(10)) {
 
 			if (obj->spe > -20) obj->spe--;
 			if(obj->blessed) unbless(obj);

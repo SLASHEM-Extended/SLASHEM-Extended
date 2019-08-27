@@ -5599,6 +5599,13 @@ hitmu(mtmp, mattk)
 
 			}
 
+			if (otmp && otmp->otyp == DARKNESS_CLUB) {
+
+				pline("Collusion!");
+				litroomlite(FALSE);
+
+			}
+
 			if (otmp && otmp->otyp == YITH_TENTACLE) {
 
 				increasesanity(rnz(monster_difficulty() + 1));

@@ -1141,6 +1141,11 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	    /* D: Hellfire is handled in drop_throw */
 	}
 
+	if (mwep && singleobj && ammo_and_launcher(singleobj, mwep) && is_ammo(singleobj) && singleobj->otyp == POISON_BOLT) {
+		singleobj->opoisoned = 1;
+
+	}
+
 	if (singleobj->cursed && (dx || dy) && !rn2(7)) {
 	    if(canseemon(mon) && flags.verbose) {
 		if(is_ammo(singleobj))
@@ -1282,6 +1287,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		    } /* This ignores level-drain resistance (not a bug). --Amy */
 
 		    if (hitu && singleobj->otyp == COLLUSION_KNIFE) {
+				pline("Collusion!");
+				litroomlite(FALSE);
+		    }
+		    if (hitu && singleobj->otyp == DARKNESS_CLUB) {
 				pline("Collusion!");
 				litroomlite(FALSE);
 		    }

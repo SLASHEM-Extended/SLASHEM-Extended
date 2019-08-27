@@ -4158,6 +4158,8 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case PICK_AXE:
 		case CONGLOMERATE_PICK:
 		case BRONZE_PICK:
+		case BRICK_PICK:
+		case NANO_PICK:
 		case AXE:
 			tmp = 6;
 			break;

@@ -1319,6 +1319,8 @@ int curse_bless;
 	    case RED_DOUBLE_LIGHTSABER:
 	    case WHITE_DOUBLE_LIGHTSABER:
 	    case LASER_SWATTER:
+	    case NANO_HAMMER:
+	    case LIGHTWHIP:
 
 		if (is_cursed) {
 		    if (obj->lamplit) {
@@ -1400,6 +1402,9 @@ int curse_bless;
 	    case MAGIC_HARP:
 	    case FROST_HORN:
 	    case TEMPEST_HORN:
+	    case CHROME_HORN:
+	    case SHADOW_HORN:
+	    case ETHER_HORN:
 	    case FIRE_HORN:
 	    case DRUM_OF_EARTHQUAKE:
 

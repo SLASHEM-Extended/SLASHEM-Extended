@@ -45,7 +45,7 @@ register struct monst *mon;
 	if (!tunnels(mon->data) || !needspick(mon->data))
 		item1 = TRUE;
 	for(obj = mon->minvent; obj; obj = obj->nobj) {
-		if (!item1 && is_pick(obj) && ((obj->otyp != DWARVISH_MATTOCK && obj->otyp != SOFT_MATTOCK)
+		if (!item1 && is_pick(obj) && ((obj->otyp != DWARVISH_MATTOCK && obj->otyp != SOFT_MATTOCK && obj->otyp != ETERNIUM_MATTOCK)
 						|| !which_armor(mon, W_ARMS))) {
 			item1 = TRUE;
 			continue;

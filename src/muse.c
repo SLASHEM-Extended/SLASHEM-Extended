@@ -4573,6 +4573,9 @@ struct monst *mtmp;
 #define MUSE_SCR_RAIN 151
 #define MUSE_WAN_CHAOS_TERRAIN 152
 #define MUSE_WAN_FLEECY_TERRAIN 153
+#define MUSE_ETHER_HORN 154
+#define MUSE_SHADOW_HORN 155
+#define MUSE_CHROME_HORN 156
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -4760,6 +4763,21 @@ struct monst *mtmp;
 		    if(obj->otyp == TEMPEST_HORN && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_TEMPEST_HORN;
+		    }
+		    nomore(MUSE_ETHER_HORN);
+		    if(obj->otyp == ETHER_HORN && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
+			m.offensive = obj;
+			m.has_offense = MUSE_ETHER_HORN;
+		    }
+		    nomore(MUSE_SHADOW_HORN);
+		    if(obj->otyp == SHADOW_HORN && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SHADOW_HORN;
+		    }
+		    nomore(MUSE_CHROME_HORN);
+		    if(obj->otyp == CHROME_HORN && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
+			m.offensive = obj;
+			m.has_offense = MUSE_CHROME_HORN;
 		    }
 		    nomore(MUSE_WAN_LIGHTNING);
 		    if(obj->otyp == WAN_LIGHTNING && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
@@ -6430,6 +6448,9 @@ struct monst *mtmp;
 	case MUSE_FIRE_HORN:
 	case MUSE_FROST_HORN:
 	case MUSE_TEMPEST_HORN:
+	case MUSE_ETHER_HORN:
+	case MUSE_SHADOW_HORN:
+	case MUSE_CHROME_HORN:
 		if (oseen) {
 			makeknown(otmp->otyp);
 			pline("%s plays a %s!", Monnam(mtmp), xname(otmp));
@@ -6462,7 +6483,7 @@ struct monst *mtmp;
 		}
 
 
-		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : AD_FIRE-1),
+		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : (otmp->otyp==SHADOW_HORN) ? AD_ACID-1 : (otmp->otyp==ETHER_HORN) ? AD_MAGM-1 : (otmp->otyp==CHROME_HORN) ? AD_DRST-1 : AD_FIRE-1),
 			rn1(6,6), mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
 		m_using = FALSE;
@@ -9611,7 +9632,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(258)) {
+	switch (rn2(261)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -9871,6 +9892,9 @@ struct monst *mtmp;
 		case 255: return SCR_RAIN;
 		case 256: return WAN_CHAOS_TERRAIN;
 		case 257: return WAN_FLEECY_TERRAIN;
+		case 258: return ETHER_HORN;
+		case 259: return SHADOW_HORN;
+		case 260: return CHROME_HORN;
 
 	}
 	/*NOTREACHED*/
@@ -11381,9 +11405,13 @@ struct obj *obj;
 		return (boolean)needspick(mon->data);
 	    if (typ == BRONZE_PICK)
 		return (boolean)needspick(mon->data);
+	    if (typ == BRICK_PICK)
+		return (boolean)needspick(mon->data);
+	    if (typ == NANO_PICK)
+		return (boolean)needspick(mon->data);
 	    if (typ == UNICORN_HORN)
 		return (boolean)(!obj->cursed && !is_unicorn(mon->data));
-	    if (typ == FROST_HORN || typ == FIRE_HORN || typ == TEMPEST_HORN)
+	    if (typ == FROST_HORN || typ == FIRE_HORN || typ == TEMPEST_HORN || typ == ETHER_HORN || typ == SHADOW_HORN || typ == CHROME_HORN)
 		return (obj->spe > 0);
 	    if (is_weptool(obj))
 	    	return (boolean)likes_objs(mon->data);

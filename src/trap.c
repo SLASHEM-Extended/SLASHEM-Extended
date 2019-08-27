@@ -17264,6 +17264,9 @@ register boolean force, here;
 			    case FIRE_HORN:
 			    case FROST_HORN:
 			    case TEMPEST_HORN:
+			    case ETHER_HORN:
+			    case CHROME_HORN:
+			    case SHADOW_HORN:
 			    case HORN_OF_PLENTY:
 				obj->otyp = TOOLED_HORN;
 				obj->spe  = 0;
@@ -17400,6 +17403,9 @@ register boolean force, here;
 			    case FIRE_HORN:
 			    case FROST_HORN:
 			    case TEMPEST_HORN:
+			    case ETHER_HORN:
+			    case CHROME_HORN:
+			    case SHADOW_HORN:
 			    case HORN_OF_PLENTY:
 				obj->otyp = TOOLED_HORN;
 				obj->spe  = 0;

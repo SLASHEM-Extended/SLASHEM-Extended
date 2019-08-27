@@ -5494,6 +5494,7 @@ boolean ordinary;
         	    break;
 		case WAN_ACID:
 		    makeknown(WAN_ACID);
+		case SHADOW_HORN:
 		if (Stoned) fix_petrification();
 		    if (Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) {
 			shieldeff(u.ux,u.uy);
@@ -5742,6 +5743,7 @@ boolean ordinary;
 		case WAN_POISON:
 		case WAN_VENOM_SCATTERING:
 		    makeknown(obj->otyp);
+		case CHROME_HORN:
 			You("poison yourself!");
 			if (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5)) {
 			  shieldeff(u.ux,u.uy);
@@ -6073,6 +6075,7 @@ boolean ordinary;
 
 		case WAN_MAGIC_MISSILE:
 		    makeknown(WAN_MAGIC_MISSILE);
+		case ETHER_HORN:
 		case SPE_MAGIC_MISSILE:
 		    if(Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);

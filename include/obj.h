@@ -244,11 +244,11 @@ struct obj {
 			(is_ammo(otmp) && (ltmp) && \
 			objects[(otmp)->otyp].oc_skill == -objects[(ltmp)->otyp].oc_skill && \
 			  objects[(otmp)->otyp].w_ammotyp == objects[(ltmp)->otyp].w_ammotyp)
-#define bimanual(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
-			  (otmp)->oclass == TOOL_CLASS) && \
+#define bimanual(otmp)	(((otmp)->oclass == WEAPON_CLASS || (otmp)->oclass == BALL_CLASS || \
+			  (otmp)->oclass == CHAIN_CLASS || (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_bimanual)
 
-#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER)
+#define is_lightsaber(otmp) (objects[(otmp)->otyp].oc_skill == P_LIGHTSABER || (otmp)->otyp == LASER_SWATTER || (otmp)->otyp == NANO_HAMMER || (otmp)->otyp == LIGHTWHIP)
 
 #define is_firearm(otmp) \
 			((otmp)->oclass == WEAPON_CLASS && \
@@ -464,6 +464,9 @@ struct obj {
 				 (obj)->otyp == GRAPHITE     || \
 				 (obj)->otyp == VOLCANIC_GLASS_FRAGMENT     || \
 				 (obj)->otyp == TOUCHSTONE || \
+				 (obj)->otyp == LEAD_CLUMP || \
+				 (obj)->otyp == SLING_AMMO || \
+				 (obj)->otyp == BONE_FRAGMENT || \
 				 (obj)->otyp == HEALTHSTONE || \
 				 (obj)->otyp == SALT_CHUNK || \
 				 (obj)->otyp == MANASTONE || \

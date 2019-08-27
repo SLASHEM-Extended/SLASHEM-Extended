@@ -1582,7 +1582,7 @@ int dieroll;
 		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
 
 		    if (!thrown && (obj == uwep || obj == uswapwep) && 
-				(obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG) && !rnl(4) == 4-1) {
+				(obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && !rnl(4) == 4-1) {
 			boolean more_than_1 = (obj->quan > 1L);
 
 			pline("As you hit %s, %s%s %s breaks into splinters.",
@@ -1974,6 +1974,7 @@ int dieroll;
 			      if (Role_if(PM_ROCKER)) {
 				if ((obj->otyp == SLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == INKA_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
+				if ((obj->otyp == SNIPESLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == METAL_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == CATAPULT) && tech_inuse(T_FLURRY)) tmp += 5;
 				tmp++;
@@ -2051,6 +2052,58 @@ int dieroll;
 		    case HEAVY_GRANITE_BALL: 
 		    case HEAVY_CONUNDRUM_BALL: 
 		    case HEAVY_CONCRETE_BALL: 
+		    case HEAVY_BRICK_BALL: 
+		    case HEAVY_PAPER_BALL:
+		    case HEAVY_CHROME_BALL:
+		    case HEAVY_NANO_BALL:
+		    case IMPOSSIBLY_HEAVY_SAND_BALL:
+		    case HEAVY_METAL_BALL:
+		    case HEAVY_PLASTIC_BALL:
+		    case HEAVY_SHADOW_BALL:
+		    case HEAVY_LEAD_BALL:
+		    case IMPOSSIBLY_HEAVY_ETHER_BALL:
+		    case HEAVY_WAX_BALL:
+		    case HEAVY_WOOD_BALL:
+		    case HEAVY_COPPER_BALL:
+		    case HEAVY_SILVER_BALL:
+		    case IMPOSSIBLY_HEAVY_OBSIDIAN_BALL:
+		    case BULKY_POURPOOR_BALL:
+		    case BULKY_GEMSTONE_BALL:
+		    case BULKY_FLESH_BALL:
+		    case BULKY_MITHRIL_BALL:
+		    case HEAVY_CLOTH_BALL:
+		    case HEAVY_TAR_BALL:
+		    case HEAVY_SILK_BALL:
+		    case HEAVY_LEATHER_BALL:
+		    case WONDER_BALL:
+		    case NULL_BALL:
+		    case LIQUID_BALL:
+		    case BRICK_CHAIN:
+		    case PAPER_CHAIN:
+		    case CHROME_SCOURGE:
+		    case NANO_NUNCHIAKU:
+		    case SAND_HOSTAGE_CHAIN:
+		    case METAL_CHAIN:
+		    case PLASTIC_CHAIN:
+		    case SHADOW_SCOURGE:
+		    case LEAD_NUNCHIAKU:
+		    case ETHER_HOSTAGE_CHAIN:
+		    case WAX_CHAIN:
+		    case WOOD_CHAIN:
+		    case COPPER_SCOURGE:
+		    case SILVER_NUNCHIAKU:
+		    case OBSIDIAN_HOSTAGE_CHAIN:
+		    case POURPOOR_LASH:
+		    case GEMSTONE_LASH:
+		    case FLESH_LASH:
+		    case MITHRIL_LASH:
+		    case CLOTH_CHAIN:
+		    case TAR_CHAIN:
+		    case SILK_SCOURGE:
+		    case LEATHER_NUNCHIAKU:
+		    case WONDER_CHAIN:
+		    case NULL_CHAIN:
+		    case LIQUID_CHAIN:
 		    case IMPOSSIBLY_HEAVY_GLASS_BALL:
 		    case IMPOSSIBLY_HEAVY_ELYSIUM_BALL:
 		    case IMPOSSIBLY_HEAVY_MINERAL_BALL:
@@ -2662,6 +2715,18 @@ int dieroll;
 		if (wep && wep->otyp == COLLUSION_KNIFE) {
 			pline("Collusion!");
 			litroomlite(FALSE);
+		}
+
+		if (wep && wep->otyp == DARKNESS_CLUB) {
+			pline("Collusion!");
+			litroomlite(FALSE);
+		}
+
+		if (wep && wep->otyp == ARCANE_HORN) {
+			if (use_unicorn_horn(wep)) { /* wep has now been REMOVED - make sure we don't segfault! --Amy */
+				nomul(0, 0, FALSE);
+				return FALSE;
+			}
 		}
 
 		if (tech_inuse(T_JOKERBANE) && mon->mcanmove && wep && thrown && (weapon_type(wep) == P_BOOMERANG || weapon_type(wep) == -P_BOOMERANG) ) {

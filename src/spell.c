@@ -4328,6 +4328,7 @@ aulechoice:
 
 			opbullet = carrying(BULLET);
 			if (!opbullet) opbullet = carrying(SILVER_BULLET);
+			if (!opbullet) opbullet = carrying(LEAD_BULLET);
 			if (!opbullet) {
 				pline("There are no bullets, and therefore you can't shoot!");
 				break;

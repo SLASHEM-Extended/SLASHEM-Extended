@@ -5407,7 +5407,7 @@ heelschosen:
 				struct obj *uboomerang;
 
 				pline("A boomerang is created!");
-				uboomerang = mksobj(rn2(3) ? BOOMERANG : rn2(2) ? BATARANG : SILVER_CHAKRAM, TRUE, FALSE);
+				uboomerang = mksobj(rn2(3) ? BOOMERANG : !rn2(3) ? BATARANG : rn2(2) ? DARK_BATARANG : SILVER_CHAKRAM, TRUE, FALSE);
 				if (uboomerang) {
 					uboomerang->quan = 1;
 					uboomerang->known = uboomerang->dknown = uboomerang->bknown = uboomerang->rknown = 1;
@@ -6901,13 +6901,13 @@ cardtrickchoice:
 				break;
 			}
 			if (uwep && is_bullet(uwep)) {
-				if (uwep->otyp == BULLET || uwep->otyp == SILVER_BULLET || uwep->otyp == ANTIMATTER_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
+				if (uwep->otyp == BULLET || uwep->otyp == SILVER_BULLET || uwep->otyp == LEAD_BULLET || uwep->otyp == ANTIMATTER_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
 					uwep->quan += (20 + techlevX(tech_no));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == BFG_AMMO) {
 					uwep->quan += (80 + (techlevX(tech_no) * 5));
 					pline("The amount of ammo was increased!");
-				} else if (uwep->otyp == SHOTGUN_SHELL) {
+				} else if (uwep->otyp == SHOTGUN_SHELL || uwep->otyp == LEAD_SHOT) {
 					uwep->quan += (10 + (techlevX(tech_no) / 2));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == ROCKET) {
@@ -7190,6 +7190,10 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 2; }
 					else if (yn("Do you want to switch to a laser swatter?")=='y') {
 						    madechoice = 1; sabertype = 3; }
+					else if (yn("Do you want to switch to a nano hammer?")=='y') {
+						    madechoice = 1; sabertype = 4; }
+					else if (yn("Do you want to switch to a lightwhip?")=='y') {
+						    madechoice = 1; sabertype = 5; }
 
 				}
 
@@ -7209,7 +7213,12 @@ extrachargechoice:
 					}
 				} else if (sabertype == 2) {
 					uwep->otyp = rn2(2) ? RED_DOUBLE_LIGHTSABER : WHITE_DOUBLE_LIGHTSABER;
-				} else uwep->otyp = LASER_SWATTER;
+				} else if (sabertype == 3) {
+					uwep->otyp = LASER_SWATTER;
+				} else if (sabertype == 4) {
+					uwep->otyp = NANO_HAMMER;
+				} else /* sabertype == 5 */
+					uwep->otyp = LIGHTWHIP;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

@@ -1346,6 +1346,8 @@ int thrown;
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
 		obj->opoisoned = 1;
 
+	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == POISON_BOLT) obj->opoisoned = 1;
+
 	obj->was_thrown = 1;
 	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || is_grassland(u.ux, u.uy) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
@@ -1449,7 +1451,7 @@ int thrown;
 	    thrownobj = (struct obj*)0;
 	    return;
 
-	} else if( (obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG) && !Underwater) {
+	} else if( (obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && !Underwater) {
 		if(Is_airlevel(&u.uz) || Levitation)
 		    hurtle(-u.dx, -u.dy, 1, TRUE);
 		mon = boomhit(u.dx, u.dy);
@@ -1496,6 +1498,8 @@ int thrown;
 		}
 
 		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj && obj->otyp == ETHER_BOLT) range += 2;
 
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 2;
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 2;
@@ -2398,7 +2402,7 @@ int thrown;
 		    }
 		}
 	    } else {
-		if (otyp == BOOMERANG || otyp == SILVER_CHAKRAM || otyp == BATARANG)		/* arbitrary */
+		if (otyp == BOOMERANG || otyp == SILVER_CHAKRAM || otyp == BATARANG || otyp == DARK_BATARANG)		/* arbitrary */
 		    tmp += 4;
 		else if (throwing_weapon(obj))	/* meant to be thrown */
 		    tmp += 2;

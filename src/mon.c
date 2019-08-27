@@ -2704,12 +2704,14 @@ mfndpos(mon, poss, info, flag)
 		       mon->weapon_check == NO_WEAPON_WANTED) {
 		rockok = is_pick(mw_tmp);
 	    } else {
-		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, BRONZE_PICK) ||
+		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, BRONZE_PICK) || m_carrying(mon, BRICK_PICK) || m_carrying(mon, NANO_PICK) ||
 			  (m_carrying(mon, DWARVISH_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) || 
 			  (m_carrying(mon, SOFT_MATTOCK) &&
+			   !which_armor(mon, W_ARMS)) || 
+			  (m_carrying(mon, ETERNIUM_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) );
-		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, TUBING_PLIERS) ||
+		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, NANO_AXE) || m_carrying(mon, TUBING_PLIERS) ||
 			  (m_carrying(mon, BATTLE_AXE) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, MOON_AXE) &&

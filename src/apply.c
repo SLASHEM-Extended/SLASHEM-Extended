@@ -1943,7 +1943,7 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	    teleds(cc.x, cc.y, TRUE);
 
-	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(INKA_BLADE,cc.x,cc.y)  || sobj_at(ETERNIUM_BLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(PAPER_SWORD,cc.x,cc.y)  || sobj_at(MEATSWORD,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(OSBANE_KATANA,cc.x,cc.y)  || sobj_at(ICKY_BLADE,cc.x,cc.y)  || sobj_at(GRANITE_IMPALER,cc.x,cc.y)  || sobj_at(FLAME_MOUNTAIN,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(BIDENHANDER,cc.x,cc.y) || sobj_at(ORGANOBLADE,cc.x,cc.y) || sobj_at(COLOSSUS_BLADE,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)   || sobj_at(PLATINUM_SABER,cc.x,cc.y)  || sobj_at(WILD_BLADE,cc.x,cc.y)  || sobj_at(LEATHER_SABER,cc.x,cc.y)  || sobj_at(ARCANE_RAPIER,cc.x,cc.y) || sobj_at(INKUTLASS,cc.x,cc.y)  || sobj_at(HOE_SABLE,cc.x,cc.y)  || sobj_at(YATAGAN,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
+	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(INKA_BLADE,cc.x,cc.y)  || sobj_at(SAND_SWORD,cc.x,cc.y)  || sobj_at(ETERNIUM_BLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(VOLCANIC_BROADSWORD,cc.x,cc.y)  || sobj_at(PAPER_SWORD,cc.x,cc.y)  || sobj_at(MEATSWORD,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(OSBANE_KATANA,cc.x,cc.y)  || sobj_at(AUTOMATIC_KATANA,cc.x,cc.y)  || sobj_at(HEAVY_LONG_SWORD,cc.x,cc.y)  || sobj_at(ICKY_BLADE,cc.x,cc.y)  || sobj_at(GRANITE_IMPALER,cc.x,cc.y)  || sobj_at(FLAME_MOUNTAIN,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(BIDENHANDER,cc.x,cc.y) || sobj_at(ORGANOBLADE,cc.x,cc.y) || sobj_at(SHADOWBLADE,cc.x,cc.y) || sobj_at(ETHER_SAW,cc.x,cc.y) || sobj_at(COLOSSUS_BLADE,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)   || sobj_at(PLATINUM_SABER,cc.x,cc.y)  || sobj_at(WILD_BLADE,cc.x,cc.y)  || sobj_at(LEATHER_SABER,cc.x,cc.y)  || sobj_at(ARCANE_RAPIER,cc.x,cc.y) || sobj_at(INKUTLASS,cc.x,cc.y)  || sobj_at(HOE_SABLE,cc.x,cc.y)  || sobj_at(DESERT_SWORD,cc.x,cc.y)  || sobj_at(CHROME_BLADE,cc.x,cc.y)  || sobj_at(YATAGAN,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(ETERNIUM_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
 
 		u.youaredead = 1;
 		killer = "a sharp-edged sword";		/* the thing that killed you */
@@ -4794,7 +4794,10 @@ doapply()
 	case PICK_AXE:
 	case CONGLOMERATE_PICK:
 	case BRONZE_PICK:
+	case BRICK_PICK:
+	case NANO_PICK:
 	case SOFT_MATTOCK:
+	case ETERNIUM_MATTOCK:
 	case DWARVISH_MATTOCK: /* KMH, balance patch -- the mattock is a pick, too */
 		if (uwep && uwep == obj) res = use_pick_axe(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
@@ -4990,6 +4993,8 @@ doapply()
 	case YELLOW_LIGHTSABER:
 	case RED_LIGHTSABER:
 	case LASER_SWATTER:
+	case NANO_HAMMER:
+	case LIGHTWHIP:
 	case RED_DOUBLE_LIGHTSABER:
 	case WHITE_DOUBLE_LIGHTSABER:
 		if (!(uswapwep == obj && u.twoweap))
@@ -5093,6 +5098,12 @@ doapply()
 	case UNICORN_HORN:
 		if (use_unicorn_horn(obj)) noartispeak = TRUE;
 		break;
+	case DARK_HORN:
+		pline("That felt evil and sinister!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Konechno, Sovetskiy sdelal eto tak, chto vy ne mozhete uvidet' bol'shinstvo monstrov pryamo seychas. Kha-kha-kha ..." : "Diedaedodiedaerr!");
+		litroomlite(FALSE);
+		if (use_unicorn_horn(obj)) noartispeak = TRUE;
+		break;
 	case WOODEN_FLUTE:
 	case MAGIC_FLUTE:
 	case TOOLED_HORN:
@@ -5101,6 +5112,9 @@ doapply()
 	case PIANO:
 	case FROST_HORN:
 	case TEMPEST_HORN:
+	case ETHER_HORN:
+	case SHADOW_HORN:
+	case CHROME_HORN:
 	case FIRE_HORN:
 	case WOODEN_HARP:
 	case MAGIC_HARP:
@@ -5281,6 +5295,9 @@ doapply()
 	case LOADBOULDER:
 	case TALC:
 	case GRAPHITE:
+	case BONE_FRAGMENT:
+	case LEAD_CLUMP:
+	case SLING_AMMO:
 	case VOLCANIC_GLASS_FRAGMENT:
 	case STARLIGHTSTONE:
 	case STONE_OF_MAGIC_RESISTANCE:

@@ -7901,7 +7901,7 @@ newboss:
 
 		if (Race_if(PM_BATMAN) && u.ualign.record > 0 && (rnd(300000) < u.ualign.record) ) {
 			struct obj *ubatarang;
-			ubatarang = mksobj(BATARANG, TRUE, FALSE);
+			ubatarang = mksobj(rn2(10) ? BATARANG : DARK_BATARANG, TRUE, FALSE);
 			if (ubatarang) {
 				ubatarang->known = ubatarang->dknown = ubatarang->bknown = ubatarang->rknown = 1;
 				ubatarang->owt = weight(ubatarang);

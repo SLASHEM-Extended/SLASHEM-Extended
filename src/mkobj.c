@@ -1806,23 +1806,27 @@ int artif;
 		/* KMH, balance patch -- new macros */
 		otmp->quan = is_multigen(otmp) ? (long) rn1(12,12) : 1L;
 		if (otmp->otyp == BULLET) otmp->quan += rnd(50);
+		if (otmp->otyp == LEAD_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == SILVER_BULLET) otmp->quan += rnd(75);
 		if (otmp->otyp == ANTIMATTER_BULLET) otmp->quan += rnd(75);
 		if (otmp->otyp == BLASTER_BOLT) otmp->quan += rnd(30);
 		if (otmp->otyp == HEAVY_BLASTER_BOLT) otmp->quan += rnd(40);
 		if (otmp->otyp == LASER_BEAM) otmp->quan += rnd(50);
 		if (otmp->otyp == SHOTGUN_SHELL) otmp->quan += rnd(20);
+		if (otmp->otyp == LEAD_SHOT) otmp->quan += rnd(20);
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
 		if (otmp->otyp == CROSSBOW_BOLT) otmp->quan += rnd(25);
 		if (otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(75);
 		if (otmp->otyp == DROVEN_ARROW) otmp->quan += rnd(75);
-		if (otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT) otmp->quan += rnd(50);
+		if (otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == POISON_BOLT || otmp->otyp == HEAVY_CROSSBOW_BOLT || otmp->otyp == ETHER_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT) otmp->quan += rnd(50);
 		if (otmp->otyp == PAPER_ARROW || otmp->otyp == FORBIDDEN_ARROW || otmp->otyp == GOLDEN_ARROW || otmp->otyp == ANCIENT_ARROW || otmp->otyp == BRONZE_ARROW) otmp->quan += rnd(15);
 		if (otmp->otyp == YA) otmp->quan += rnd(20);
 		if (otmp->otyp == FLIMSY_DART) otmp->quan += rnd(30);
+		if (otmp->otyp == SAND_DART) otmp->quan += rnd(50);
 		if (otmp->otyp == INKA_STINGER || otmp->otyp == SPIKE) otmp->quan += rnd(30);
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == TAR_STAR) otmp->quan += rnd(100);
+		if (otmp->otyp == NANO_SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == WINDMILL_BLADE) otmp->quan += rnd(100);
 		if (otmp->otyp == NEEDLE) otmp->quan += rnd(100);
 		if (otmp->otyp == SOFT_STAR) otmp->quan += rnd(200);
@@ -1841,7 +1845,7 @@ int artif;
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
 
-		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
+		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
 			otmp->quan += rnd(5);
 		}
 
@@ -2117,6 +2121,8 @@ int artif;
 		case YELLOW_LIGHTSABER:
 		case RED_LIGHTSABER:
 		case LASER_SWATTER:
+		case NANO_HAMMER:
+		case LIGHTWHIP:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->lamplit = 0;
@@ -2247,6 +2253,9 @@ int artif;
 		case MAGIC_HARP:
 		case FROST_HORN:
 		case TEMPEST_HORN:
+		case ETHER_HORN:
+		case SHADOW_HORN:
+		case CHROME_HORN:
 		case FIRE_HORN:
 		case DRUM_OF_EARTHQUAKE:
 		/* KMH, balance patch -- removed

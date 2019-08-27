@@ -402,6 +402,9 @@ struct Jitem {
 			   typ != TOURMALINE && 	\
 			   typ != PERIDOT && 	\
 			   typ != VOLCANIC_GLASS_FRAGMENT && 	\
+			   typ != BONE_FRAGMENT && 	\
+			   typ != LEAD_CLUMP && 	\
+			   typ != SLING_AMMO && 	\
 			   typ != MOONSTONE && 	\
 			   typ != WONDER_STONE && 	\
 			   typ != MAGICITE_CRYSTAL && 	\
@@ -5863,7 +5866,7 @@ register int otyp;
 		} else {
 			strcpy(buf, dn ? dn : actualn);
 			if(ocl->oc_class == GEM_CLASS)
-				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == SILVER_SLINGSTONE ) ?
+				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == SILVER_SLINGSTONE ) ?
 						" stone" : " gem");
 			if(un)
 				sprintf(eos(buf), " called %s", un);
@@ -6303,7 +6306,7 @@ register struct obj *obj;
 	case GEM_CLASS:
 	    {
 		const char *rock =
-			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == SILVER_SLINGSTONE) ? "stone" : "gem";
+			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == SILVER_SLINGSTONE) ? "stone" : "gem";
 		if (!obj->dknown || PlayerUninformation) {
 		    strcpy(buf, rock);
 		} else if (!nn) {
@@ -6868,7 +6871,7 @@ ring:
 	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
 	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
-&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
+&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
 		        sprintf (eos(bp), " {%d}", obj->owt);
 /* show the freaking weight of all items! --Amy */
@@ -9027,7 +9030,8 @@ typfnd:
 #endif
 		 (cnt <= 7 && Is_candle(otmp)) ||
 		 (cnt <= 7 && (typ == BATARANG) && Race_if(PM_BATMAN)) ||
-		 (cnt <= 100 && (typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != BATARANG) &&	/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
+		 (cnt <= 7 && (typ == DARK_BATARANG) && Race_if(PM_BATMAN)) ||
+		 (cnt <= 100 && (typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != BATARANG) && (typ != DARK_BATARANG) &&	/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
 		  ((oclass == WEAPON_CLASS && is_ammo(otmp))
 				|| typ == ROCK || is_missile(otmp)))))
 			otmp->quan = (long) cnt;

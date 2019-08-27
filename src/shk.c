@@ -676,10 +676,13 @@ register char *enterstring;
 	    struct obj *pick = carrying(PICK_AXE),
 			 *pickB = carrying(CONGLOMERATE_PICK),
 			 *pickC = carrying(BRONZE_PICK),
+			 *pickD = carrying(BRICK_PICK),
+			 *pickE = carrying(NANO_PICK),
 		       *mattock = carrying(DWARVISH_MATTOCK),
-			 *mattockB = carrying(SOFT_MATTOCK);
+		       *mattockB = carrying(SOFT_MATTOCK),
+			 *mattockC = carrying(ETERNIUM_MATTOCK);
 
-	    if (pick || pickB || pickC || mattock || mattockB) {
+	    if (pick || pickB || pickC || pickD || pickE || mattock || mattockB || mattockC) {
 		cnt = 1;
 		if (pick && mattock) {	/* carrying both types */
 		    tool = "digging tool";
@@ -697,16 +700,28 @@ register char *enterstring;
 		    tool = "bronze pick";
 		    while ((pickC = pickC->nobj) != 0)
 			if (pickC->otyp == BRONZE_PICK) ++cnt;
+		} else if (pickD) {
+		    tool = "brick pick";
+		    while ((pickD = pickD->nobj) != 0)
+			if (pickD->otyp == BRICK_PICK) ++cnt;
+		} else if (pickE) {
+		    tool = "nano pick";
+		    while ((pickE = pickE->nobj) != 0)
+			if (pickE->otyp == NANO_PICK) ++cnt;
 		} else if (mattock) {
 		    tool = "mattock";
 		    while ((mattock = mattock->nobj) != 0)
 			if (mattock->otyp == DWARVISH_MATTOCK) ++cnt;
 		    /* [ALI] Shopkeeper indicates mattock(s) */
 		    if (!Blind) makeknown(DWARVISH_MATTOCK);
-		} else { /* mattockB */
+		} else if (mattockB) {
 		    tool = "mattock";
 		    while ((mattockB = mattockB->nobj) != 0)
-			if (mattockB->otyp == SOFT_MATTOCK) ++cnt;
+			if (mattockB->otyp == ETERNIUM_MATTOCK) ++cnt;
+		} else { /* mattockC */
+		    tool = "mattock";
+		    while ((mattockC = mattockC->nobj) != 0)
+			if (mattockC->otyp == SOFT_MATTOCK) ++cnt;
 		}
 		verbalize(NOTANGRY(shkp) ?
 			  "Will you please leave your %s%s outside?" :
@@ -722,7 +737,7 @@ register char *enterstring;
 	    verbalize("I don't sell to your kind here.");
 		should_block = TRUE;
 	    } else {
-		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) ||
+		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
 				      sobj_at(DWARVISH_MATTOCK, u.ux, u.uy)));
 	    }
 	    if (should_block) (void) dochug(shkp);  /* shk gets extra move */
@@ -4245,9 +4260,9 @@ register struct monst *shkp;
 		} else {
 		    uondoor = (u.ux == eshkp->shd.x && u.uy == eshkp->shd.y);
 		    if(uondoor) {
-			badinv = (carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) ||
+			badinv = (carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) ||
             eshkp->pbanned ||
-				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) ||
+				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
 				  sobj_at(DWARVISH_MATTOCK, u.ux, u.uy))));
 			if(satdoor && badinv)
 			    return(0);
@@ -5329,7 +5344,7 @@ register xchar x, y;
 	if(shkp->mx == sx && shkp->my == sy
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
-		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || u.usteed
+		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || u.usteed
 	  )) {
 		pline("%s%s blocks your way!", shkname(shkp),
 				Invis ? " senses your motion and" : "");
