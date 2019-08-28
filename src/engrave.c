@@ -4873,6 +4873,8 @@ static const char *epitaphs[] = {
 	"What is wrong with the game developer? I didn't feel like picking up every stupid item on the floor, so eventually a lot of crap accumulated from killed monsters but I didn't expect the game to run out of memory if there are too many items!",
 	"Why are the 19BE trips capable of magically attracting teleports?",
 	"Stupid level bug, why can't that one go on vacation for once.",
+	"Why did you save the game while engulfed? Some genius you are!",
+	"Amy, I'd advise you to remove all your stupid monsters and leave only the ones from vanilla, SLASH'EM and dnethack in the game.",
 
 };
 
