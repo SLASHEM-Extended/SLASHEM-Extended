@@ -19394,8 +19394,9 @@ enjoyable:
 
 	}
 
-        boolean protect_test = !(ublindf && (ublindf->otyp == CONDOME              || ublindf->otyp == SOFT_CHASTITY_BELT))
-                            && !(uarm    && (uarm->oartifact == ART_CHASTITY_ARMOR || uarm->oartifact == ART_LITTLE_PENIS_WANKER));
+        boolean protect_test = !(ublindf && (ublindf->otyp == CONDOME || ublindf->otyp == SOFT_CHASTITY_BELT))
+				    && !(uwep && uwep->oartifact == ART_HARMONY_VIRGIN)
+                            && !(uarm && (uarm->oartifact == ART_CHASTITY_ARMOR || uarm->oartifact == ART_LITTLE_PENIS_WANKER));
 
 	/* maybe contract a disease? --Amy */
 	if (protect_test) {
@@ -20074,6 +20075,7 @@ enjoyable:
         } else {
             if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
             if (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
+		if (uwep && uwep->oartifact == ART_HARMONY_VIRGIN) pline("Your harmony whip kept you safe from any diseases you might otherwise have contracted.");
             if (uarm && uarm->oartifact == ART_CHASTITY_ARMOR) pline("Your chastity armor kept you safe from any diseases you might otherwise have contracted.");
             if (uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) {
 		pline("Your penis-protection armor kept you safe from any diseases you might otherwise have contracted.");

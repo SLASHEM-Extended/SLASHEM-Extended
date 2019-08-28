@@ -5090,6 +5090,8 @@ find_ac()
 	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
+	if (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) uac -= 5;
+	if (uarm && uarm->oartifact == ART_STABLE_EXOSKELETON) uac -= 10;
 	if (HardcoreAlienMode) uac -= 1;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) uac -= 10;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;

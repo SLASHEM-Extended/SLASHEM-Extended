@@ -1595,6 +1595,7 @@ moveloop()
 			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) moveamt *= 2;
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2607,6 +2608,14 @@ trapsdone:
 			contaminate(rnd(10), FALSE);
 		}
 
+		if (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_BLACK_PRONG && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
 		if (u.uprops[FALLOUT_EFFECT].extrinsic && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
@@ -2981,7 +2990,7 @@ trapsdone:
 
 				stop_occupation();
 
-				if (!(Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES)) && ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
+				if (!SustainAbilityOn && ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
 				else {
 				    if (Upolyd) {
 					u.mh -= 5;

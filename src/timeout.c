@@ -1796,6 +1796,10 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
+	if (!rn2(500) && uarmc && uarmc->oartifact == ART_TERRIBLE_LOSS) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
 	if (!rn2(500) && uwep && uwep->oartifact == ART_SCALPEL_OF_THE_BLOODLETTER) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);

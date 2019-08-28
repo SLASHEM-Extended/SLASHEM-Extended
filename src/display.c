@@ -1165,6 +1165,7 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1194,6 +1195,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
+		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
@@ -1255,6 +1257,7 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1284,6 +1287,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
+		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
@@ -1498,6 +1502,7 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1527,6 +1532,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
+		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
@@ -1588,6 +1594,7 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1617,6 +1624,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
+		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
@@ -3482,6 +3490,7 @@ struct monst *mon;
 	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) return TRUE;
 	if (Role_if(PM_PALADIN) && is_demon(mon->data) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) return TRUE;
 	if (Race_if(PM_VORTEX) && unsolid(mon->data) ) return TRUE;
 	if (Race_if(PM_VORTEX) && nolimbs(mon->data) ) return TRUE;
 	if (Race_if(PM_CORTEX) && unsolid(mon->data) ) return TRUE;
@@ -3512,6 +3521,7 @@ struct monst *mon;
 	if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) return TRUE;
 	if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) return TRUE;

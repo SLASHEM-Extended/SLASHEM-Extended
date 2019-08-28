@@ -6349,7 +6349,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) )) you_are("very slow");
 	if ((guaranteed || !rn2(10)) && Reflecting) you_have(StrongReflecting ? "powerful reflection" : "reflection");
 	if ((guaranteed || !rn2(10)) && Free_action) you_have(StrongFree_action ? "very free action" : "free action");
-	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) )) you_have("fixed abilities");
+	if ((guaranteed || !rn2(10)) && SustainAbilityOn) you_have("fixed abilities");
 	if ((guaranteed || !rn2(10)) && (uamul && uamul->otyp == AMULET_VERSUS_STONE))
 		enl_msg("You ", "will be", "would have been", " depetrified");
 	if ((guaranteed || !rn2(10)) && Lifesaved)
@@ -10015,7 +10015,7 @@ int final;
 	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) ) dump(youwere, "very slow");
 	if (Reflecting) dump(youhad, StrongReflecting ? "powerful reflection" : "reflection");
 	if (Free_action) dump(youhad, StrongFree_action ? "very free action" : "free action");
-	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) dump(youhad, "fixed abilities");
+	if (SustainAbilityOn) dump(youhad, "fixed abilities");
 	if (uamul && uamul->otyp == AMULET_VERSUS_STONE)
 		dump("  ", "You would have been depetrified");
 	if (Lifesaved)

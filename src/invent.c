@@ -18637,6 +18637,248 @@ boolean knoweverything;
 					pline("Artifact specs: disables regeneration when worn but increases your speed the more wounded you are. If you're female, the bonus is bigger."); break;
 				case ART_DEINE_MUDDA:
 					pline("Artifact specs: displays random 'your momma' jokes when worn. If you're in a form without hands or otherwise capable of getting bonuses from its enchantment, every point of enchantment will improve your AC by 5 points instead of the standard 1."); break;
+				case ART_HAIR_BRACKET:
+					pline("Artifact specs: no specialties."); break;
+				case ART_DICEROLLER_S_KIT:
+					pline("Artifact specs: can be used several times and changes the material after every use."); break;
+				case ART_MATERIAL_RAIN:
+					pline("Artifact specs: using it will randomly change some item materials."); break;
+				case ART_NEW_OVERCAST:
+					pline("Artifact specs: if you use it, the material contained will also be applied to some randomly selected items."); break;
+				case ART_SCENTFOLD:
+					pline("Artifact specs: scent view when worn."); break;
+				case ART_EXTRA_HEAVY_BULLET:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_ARENA_LITTER:
+					pline("Artifact specs: +5 to-hit and +2 damage."); break;
+				case ART_BAD_HITTER_BOY:
+					pline("Artifact specs: -d20 to-hit and +14 damage."); break;
+				case ART_SVEN_S_GARBAGE_BOOSTER:
+					pline("Artifact specs: hitting a monster with it causes it to bleed."); break;
+				case ART_GIANT_MEAT_STICK:
+					pline("Artifact specs: +10 damage, hunger and full nutrition when wielded."); break;
+				case ART_VARIANT_SOURCE_PACKAGE:
+					pline("Artifact specs: clairvoyance when wielded."); break;
+				case ART_DIFFERENT_TIMER:
+					pline("Artifact specs: +6 to-hit and +8 damage."); break;
+				case ART_WALLER_SMACK:
+					pline("Artifact specs: +3 to-hit and +12 damage, lawful."); break;
+				case ART_CYCLE_WHACK_WHACK:
+					pline("Artifact specs: double attacks if you're riding."); break;
+				case ART_FUYER_BREV:
+					pline("Artifact specs: +20 to-hit and +40 damage to F-class monsters, displays all fungi while wielded."); break;
+				case ART_GOLDIFICATION:
+					pline("Artifact specs: creates zorkmids whenever you kill a monster, neutral."); break;
+				case ART_SOFTRASH:
+					pline("Artifact specs: +6 to-hit and double damage."); break;
+				case ART_ZERO_NOTION:
+					pline("Artifact specs: +1 to-hit and double damage."); break;
+				case ART_GEOLOGY_RULES_THE_WORLD:
+					pline("Artifact specs: while wielded, your pick-axe skill trains three times as fast."); break;
+				case ART_YES__HIT_IT_MORE_OFTEN:
+					pline("Artifact specs: +15 to-hit and +2 damage."); break;
+				case ART_SCIENCE_POWER:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_EQUALITY_TWIN:
+					pline("Artifact specs: +8 to-hit and +8 damage."); break;
+				case ART_HERITAGE_DIGGER:
+					pline("Artifact specs: +12 damage, petrification resistance when wielded, lawful."); break;
+				case ART_SANDY_OASES:
+					pline("Artifact specs: +5 to-hit and +10 damage to fire-susceptible monsters."); break;
+				case ART_H__S_BRITTLE_REPLICA:
+					pline("Artifact specs: +12 to-hit and +12 damage, but since this is actually a replica of a real sword, it will shatter after using it a couple of times."); break;
+				case ART_DAEDRA_SEEKER:
+					pline("Artifact specs: +6 to-hit and +8 damage, displays ampersands while wielded."); break;
+				case ART_PERNICIOUS_GRID:
+					pline("Artifact specs: +6 to-hit and +10 damage, poison resistance and free action while wielded."); break;
+				case ART_TODAY_S_REPAIR:
+					pline("Artifact specs: +4 to-hit and +4 damage, technicality while wielded."); break;
+				case ART_HALLOW_MOONFALL:
+					pline("Artifact specs: does extra poison damage, sight bonus when wielded, chaotic."); break;
+				case ART_NEED_ELITE_UPGRADE:
+					pline("Artifact specs: its enchantment will occasionally go up if you hit something with it."); break;
+				case ART_DEATHWRECKER:
+					pline("Artifact specs: +10 damage, stun resistance when wielded."); break;
+				case ART_PEREGRINE_OF_NIGHT:
+					pline("Artifact specs: +5 to-hit and +6 damage, ESP and echolocation when wielded."); break;
+				case ART_BOARDED_SHELF:
+					pline("Artifact specs: if you successfully use enchant weapon on it, it gains 5 extra points of enchantment."); break;
+				case ART_QUEUE_STAFF:
+					pline("Artifact specs: +6 to-hit and +12 damage, does extra poison damage."); break;
+				case ART_MANA_EATER:
+					pline("Artifact specs: +4 to-hit and +10 damage, manaleech when wielded."); break;
+				case ART_QUICKER_RHEOLOGY:
+					pline("Artifact specs: very fast speed and swimming when wielded."); break;
+				case ART_CANTONESE_SMACK:
+					pline("Artifact specs: +16 damage."); break;
+				case ART_PRICKER_SMACKER:
+					pline("Artifact specs: +5 to-hit and +6 damage."); break;
+				case ART_ARABELLA_S_BLACK_PRONG:
+					pline("Artifact specs: Man, this thing's great! It has +8 to-hit and +2 damage, and also grants diminished bleeding and increased skill training! It may have some other effects but who cares about those?"); break;
+				case ART_CRASH_JOUST:
+					pline("Artifact specs: +10 damage when jousting a target, and the jousted target will occasionally be paralyzed for a few turns."); break;
+				case ART_LULWY_S_TRICK:
+					pline("Artifact specs: shock resistance when wielded, and also makes you move another little bit faster."); break;
+				case ART_PARABLE_AMMUNITION:
+					pline("Artifact specs: +18 damage."); break;
+				case ART_CASING_BUCKSHOT:
+					pline("Artifact specs: +30 damage."); break;
+				case ART_BECOMING_GREENER:
+					pline("Artifact specs: +5 to-hit and +2 damage."); break;
+				case ART_MESHERABANE:
+					pline("Artifact specs: +10 to-hit and +40 damage to F-class monsters, +d40 damage to Elona monsters."); break;
+				case ART_MANYFOLT_SHOTS:
+					pline("Artifact specs: +5 to-hit and +6 damage. The typo was originally unintended but was deemed too funny to fix."); break;
+				case ART_TECHNICAL_WONDER:
+					pline("Artifact specs: +4 to-hit and +10 damage."); break;
+				case ART_CLAYFACE_S_FEAR:
+					pline("Artifact specs: +8 to-hit and +14 damage. However, Clayface is actually immune to batarangs :P"); break;
+				case ART_HARMONY_VIRGIN:
+					pline("Artifact specs: +6 to-hit and +12 damage to shock-susceptible monsters, discount action when wielded and prevents you from contracting STDs."); break;
+				case ART_ONYX_MANTLE:
+					pline("Artifact specs: disintegration resistance when worn."); break;
+				case ART_ASTEROID_BELT:
+					pline("Artifact specs: half physical and spell damage when worn."); break;
+				case ART_REQUIRED_POWER_PLANT_GEAR:
+					pline("Artifact specs: increases armor class by 5 points and grants technicality as well as resistances to fire, poison and sickness when worn."); break;
+				case ART_STABLE_EXOSKELETON:
+					pline("Artifact specs: half physical damage when worn and improves your AC by 10 points."); break;
+				case ART_TERRIFYING_LOSS:
+					pline("Artifact specs: blood loss and resist fear when worn."); break;
+				case ART_PHEROMONE_CASE:
+					pline("Artifact specs: perfume monsters spawn more often while you're wearing it, because they're attracted by the sexual pheromones."); break;
+				case ART_NO_REDUCTION_ALLOWED:
+					pline("Artifact specs: sustain ability when worn."); break;
+				case ART_I_IN_THE_SKY:
+					pline("Artifact specs: flying when worn, chaotic."); break;
+				case ART_LISA_S_BUCKLED_BEAUTIES:
+					pline("Artifact specs: disintegration resistance and discount action when worn. They also have pretty metallic buckles."); break;
+				case ART_KRISTIN_S_CHEATS:
+					pline("Artifact specs: stun resistance and free action when worn, neutral. They're known to cheat by continuing to attack even after they're supposedly defeated."); break;
+				case ART_JOHANNA_S_RED_CHARM:
+					pline("Artifact specs: fire resistance and can walk in lava while you're wearing them, +5 charisma and +1 to all other stats. They're soooooooo beautiful and leather-soft! You gotta admit that wine red is a really pretty color for a pair of lady boots!"); break;
+				case ART_DORA_S_SCRATCHY_HEELS:
+					pline("Artifact specs: sickness resistance when worn and kicking a monster causes it to bleed, improves charisma by 3 and strength/dexterity by 1 but reduces wisdom and intelligence by 2 and makes your armor class worse by 5, chaotic."); break;
+				case ART_ELENA_S_CHALLENGE:
+					pline("Artifact specs: half physical damage when worn, and kicking a male monster with them rarely forces it to make a saving throw or become tame. They also autocurse when worn and give random bad effects as well as random nastytrap effects while worn, so decide for yourself whether they're worth wearing."); break;
+				case ART_KATI_S_IRRESISTIBLE_STILET:
+					pline("Artifact specs: improves charisma by 5 and armor class as well as damage output by 2 and also grants diminished bleeding while worn, chaotic. Their heels are very cuuuuute but also incredibly sharp-edged and can cause great damage to unprotected skin!"); break;
+				case ART_VERENA_S_DUELING_SANDALS:
+					pline("Artifact specs: +10 charisma and you deal +d10 damage with hammer shoes while wearing them, because Verena loves to slam her stiletto heels on the enemy's head. Neutral."); break;
+				case ART_IMPOSSIBLE_CATWALK:
+					pline("Artifact specs: cold resistance, free action and discount action when worn, improves charisma by 10 and can walk on ice and snow, but since running with them is basically impossible, they disable the speed in/extrinsic."); break;
+				case ART_CORGON_S_RING:
+					pline("Artifact specs: magic, lightning and sickness resistance when worn, increases your carry capacity by 100, disables speed. Chaotic."); break;
+				case ART_JANA_S_DIMINISHER:
+					pline("Artifact specs: flying and unbreathing when worn. You don't know if it does anything else though."); break;
+				case ART_WALT_VERSUS_ANNA:
+					pline("Artifact specs: autocurses when worn, causes farting and perfume monsters to spawn more often because Anna will keep sending them, and kicking a diggable wall may occasionally cause it (the wall, not the amulet!) to crumble and become walkable floor."); break;
+				case ART_SUE_LYN_S_SEX_GAME:
+					pline("Artifact specs: while wearing it, you can chat to monsters that produce squeaky farting noises to tame them. If you have enough zorkmids in your open inventory, you can even tame them."); break;
+				case ART_REJUVENATION_BY_GATE:
+					pline("Artifact specs: regeneration while worn, causes inertia to time out more quickly."); break;
+				case ART_INCREDIBLY_SEXY_SQUEAKING:
+					pline("Artifact specs: unbreathing while worn, and putting it on while it's -4 or better will disenchant it by 5 points and summon a tame farting monster."); break;
+				case ART_FOOKING_TANK:
+					pline("Artifact specs: 10 extra points of AC when worn."); break;
+				case ART_DARKSIGHT_HELM:
+					pline("Artifact specs: blindness resistance when worn and increases your sight range by 2 points."); break;
+				case ART_AA_S_CRASHING_TRAGEDY:
+					pline("Artifact specs: 5 extra points of AC and random nasty trap effects when worn."); break;
+				case ART_KITE_ME:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_PRADA_S_DEVIL_WEAR:
+					pline("Artifact specs: all ampersands have 90%% chance of spawning peaceful, autocurses, DYWYPI problem, autopilot and death ray resistance when worn, chaotic."); break;
+				case ART_LENA_S_PEACE_OFFERING:
+					pline("Artifact specs: +5 to-hit and +6 damage, peacevision when wielded."); break;
+				case ART_SELF_PROTECTION_IMPLEMENT:
+					pline("Artifact specs: +12 damage and diminished bleeding when wielded."); break;
+				case ART_SUICIDAL_UNIQUE:
+					pline("Artifact specs: +4 to-hit and +4 damage."); break;
+				case ART_ONCE_IN_A_BLUE_MOON:
+					pline("Artifact specs: +5 to-hit and +4 damage. If you wield it while it's both a Friday the 13th and a new moon, your luck is maxxed."); break;
+				case ART_SORTIE_A_GAUCHE:
+					pline("Artifact specs: +8 to-hit and +6 damage. If you wield it while riding, you're capable of reaching the ground even without sufficient riding skill."); break;
+				case ART_ETRUSCIAN_SWIMMING_LESSON:
+					pline("Artifact specs: +2 to-hit and +12 damage, swimming, makes you thick-skinned but also slows you down slightly due to all the fat. Hahaha."); break;
+				case ART_MISSING_UNIQUE_ITEM:
+					pline("Artifact specs: no specialties. Seems that someone simply forgot to give an effect to this item."); break;
+				case ART_GLACIERDALE:
+					pline("Artifact specs: +8 to-hit and +10 damage to cold-susceptible monsters, cold resistance while wielded and allows you to walk on snow and ice unharmed and protects your potions from cold."); break;
+				case ART_JONADAB_S_VEHEMENCE:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_SIGNO_ONE:
+					pline("Artifact specs: +6 to-hit and +2 damage, psi resistance when wielded."); break;
+				case ART_MOLOCH_S_PERSONAL_PHONE:
+					pline("Artifact specs: +6 to-hit and +2 damage, applying it will call hostile demon lords, chaotic."); break;
+				case ART_KLINGON_COMMANDER_S_ARMS:
+					pline("Artifact specs: +10 to-hit and +14 damage to shock-susceptible monsters, chaotic."); break;
+				case ART_PRICK_BEARER_S_RANSOM:
+					pline("Artifact specs: causes the target to bleed, and killing a monster while wielding it produces zorkmids."); break;
+				case ART_TEXAS_INSTRUMENTS_XS:
+					pline("Artifact specs: +12 to-hit and +12 damage."); break;
+				case ART_FULL_LEAD_A_FAST_BEING:
+					pline("Artifact specs: +10 damage, occasionally gives you temporary very fast speed."); break;
+				case ART_SAXS_BEAUTY:
+					pline("Artifact specs: resist fire, cold, shock, poison and psi when wielded."); break;
+				case ART_YVONNE_S_HONOR:
+					pline("Artifact specs: +8 to-hit and +12 damage to cold-susceptible monsters, resist cold, shock and fear when wielded. They're also made of a velvety-soft blue color and Amy actually has them in real life."); break;
+				case ART_MILLICENT_S_CONE:
+					pline("Artifact specs: +6 to-hit and +8 damage, lawful."); break;
+				case ART_MARTHA_S_FOREIGN_GOER:
+					pline("Artifact specs: +4 to-hit and +4 damage, causes bleeding damage to monsters, and increases the chance that foocubuses want to have sex with you. Chaotic."); break;
+				case ART_TOMMY_S_DEFERRED_HEEL:
+					pline("Artifact specs: +10 to-hit and +12 damage, monsters are always spawned hostile while you wield it. These prostitute shoes belong to a girl that is a deferred feature in GTA San Andreas, but by modding you can make her spawn."); break;
+				case ART_MARITAL_ACTION:
+					pline("Artifact specs: +10 to-hit and +16 damage to @-class monsters."); break;
+				case ART_HIT_EM_REALLY_HARD:
+					pline("Artifact specs: +14 damage."); break;
+				case ART_STOP_EVADING_ME:
+					pline("Artifact specs: +14 to-hit and +2 damage, reduces the odds that monsters dodge your thrusts."); break;
+				case ART_PROJECTION_FAULTER:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_JOUSTER_POWER:
+					pline("Artifact specs: stun resistance when wielded, greatly increases jousting damage."); break;
+				case ART_GAME_KNOWLEDGE_CHEAT_SHEET:
+					pline("Artifact specs: clairvoyance and echolocation when wielded."); break;
+				case ART_APEC_PRODUCTION:
+					pline("Artifact specs: +3 to-hit and +2 damage. This superior crossbow ammo was made by the APEC Company (Ammunition Producers Exploiting their Customers)."); break;
+				case ART_APEC_EXPLOIT:
+					pline("Artifact specs: +3 to-hit and +2 damage. This superior crossbow ammo was made by the APEC Company (Ammunition Producers Exploiting their Customers)."); break;
+				case ART_NEZ_SPECIAL_OFFER:
+					pline("Artifact specs: +8 to-hit and +6 damage, also causes monsters to bleed on a hit."); break;
+				case ART_MISTY_S_MELEE_PLEASURE:
+					pline("Artifact specs: +8 to-hit and +14 damage against male monsters, +5 charisma and fire resistance when wielded, prevents you from contracting STDs."); break;
+				case ART_CORPORAL_DIGGING:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_COLONEL_PROUDSTER:
+					pline("Artifact specs: +5 to-hit and +10 damage. If you apply it while it's out of charges and you have at least 10000 zorkmids in your inventory, it gains 750 extra charges at the cost of 10k dollars."); break;
+				case ART_COMMON_SHOTTER:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_BOWSER_S_FUN_ARENA:
+					pline("Artifact specs: fire resistance when worn and protects your scrolls, potions and books from fire."); break;
+				case ART_BILLS_PAID:
+					pline("Artifact specs: sight bonus when worn. After all, you've paid your bills, so you don't have to suffer from a shortage of electricity."); break;
+				case ART_FINDING_THYSELF:
+					pline("Artifact specs: while wearing it, your spirituality skill trains five times as fast."); break;
+				case ART_SALADIN_S_DESERT_FOX:
+					pline("Artifact specs: fire resistance and full nutrients when worn, allows you to deal more damage with swords of all kinds, and trying to pray will occasionally warn you if it wouldn't be safe to do so."); break;
+				case ART_JAMILA_S_BELIEF:
+					pline("Artifact specs: protects you from converters and wouwou taunts, and slowly improves your alignment record while wearing it. But if you ever take it off for any reason, you take a massive alignment hit."); break;
+				case ART_SLIPPING_SUCKING:
+					pline("Artifact specs: sustain ability when worn."); break;
+				case ART_INERT_GREAVES:
+					pline("Artifact specs: half physical damage and 4 extra points of AC when worn."); break;
+				case ART_DESERT_MEDITATION:
+					pline("Artifact specs: keen memory when worn."); break;
+				case ART_GORGEOUS_VEIL_MODEL:
+					pline("Artifact specs: invisibility and ESP when worn, chaotic."); break;
+				case ART_SUBLEVEL_FLOODING:
+					pline("Artifact specs: occasionally causes flooding."); break;
+				case ART_USE_THE_NORMALNESS_TURNS:
+					pline("Artifact specs: regeneration, drain resistance and wereform effect when worn."); break;
+				case ART_UNFELLABLE_TREE:
+					pline("Artifact specs: if you're burrowed while wearing them, you have 20 extra points of AC and resist fire, cold, shock, sleep, confusion, stoning and disintegration."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

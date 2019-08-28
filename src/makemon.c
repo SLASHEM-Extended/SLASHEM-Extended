@@ -20575,6 +20575,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_SHELL) && is_elonamonster(ptr) )) ct += 8;
 		if (ct > 0 && (Race_if(PM_SPIRIT) && dmgtype(ptr, AD_LEVI) )) ct += 2;
 
+		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
+
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
 		if (ct > 0 && monster_with_trait(ptr, u.frequenttrait1)) ct += u.freqtraitbonus1;
@@ -21574,6 +21576,8 @@ int     spc;
 		if ((Race_if(PM_SHELL) && is_elonamonster(&mons[last]) )) num += 8;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[last], AD_LEVI) )) num += 2;
 
+		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
+
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
 		if (u.frequenttrait3 && monster_with_trait(&mons[last], u.frequenttrait3)) num += u.freqtraitbonus3;
@@ -22288,6 +22292,8 @@ int     spc;
 		if ((Race_if(PM_SCURRIER) && dmgtype(&mons[first], AD_SHAN) )) num -= 2;
 		if ((Race_if(PM_SHELL) && is_elonamonster(&mons[first]) )) num -= 8;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[first], AD_LEVI) )) num -= 2;
+
+		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;

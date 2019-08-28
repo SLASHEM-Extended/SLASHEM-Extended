@@ -5692,9 +5692,43 @@ materialchoice:
 				pline("The material of that item cannot be changed!");
 				return(1);
 			} else {
+				if (obj->oartifact == ART_MATERIAL_RAIN) {
+					pline("Some items have had their base material changed.");
+					randommaterials();
+				}
 				objects[otmpC->otyp].oc_material = (obj->shirtmessage % (LASTMATERIAL + 1));
+
+				if (obj->oartifact == ART_NEW_OVERCAST) {
+					while (rn2(25)) {
+						int objtomodify;
+						objtomodify = -1;
+	/* we roll until we get an item that can be randomly generated and is not a gold piece or other weird thing --Amy */
+						while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
+						objects[objtomodify].oc_material = (obj->shirtmessage % (LASTMATERIAL + 1));
+					}
+					pline("The material has been applied to several random items.");
+				}
+
 				if (obj->oartifact == ART_GAROK_S_HAMMER_KIT && rn2(5)) {
 					pline("You use some material from the kit.");
+				} else if (obj->oartifact == ART_DICEROLLER_S_KIT) {
+					pline("You use some material from the kit.");
+
+					if (!rn2(5)) {
+						if (obj->unpaid) {
+							struct monst *shkp = shop_keeper(*u.ushops);
+							if (shkp) {
+								You("use it, you pay for it!");
+								bill_dummy_object(obj);
+							}
+						}
+						delobj(obj);
+						noartispeak = TRUE;
+					} else {
+						obj->shirtmessage = rnd(1000000);
+						pline("You use the material kit... and now it contains a different material.");
+					}
+
 				} else {
 					if (obj->unpaid) {
 						struct monst *shkp = shop_keeper(*u.ushops);
@@ -5708,6 +5742,7 @@ materialchoice:
 
 					noartispeak = TRUE;
 				}
+
 				pline("Success! The item's material got changed.");
 			}
 

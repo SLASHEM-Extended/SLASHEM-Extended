@@ -4871,6 +4871,7 @@ int degree;
 	}
 	if (Race_if(PM_EGYMID) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_ITAQUE) && !rn2(10)) degree *= 2;
+	if (uwep && uwep->oartifact == ART_GEOLOGY_RULES_THE_WORLD && skill == P_PICK_AXE) degree *= 3;
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */

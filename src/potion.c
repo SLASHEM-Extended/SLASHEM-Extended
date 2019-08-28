@@ -6827,7 +6827,7 @@ peffects(otmp)
 		    else {
 			int typ = rn2(A_MAX);
 
-			if (!Fixed_abil && !Race_if(PM_SUSTAINER) && !(uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) && !(uarms && uarms->oartifact == ART_BONUS_HOLD) && !(uamul && uamul->oartifact == ART_FIX_EVERYTHING) && !(uarmf && uarmf->oartifact == ART_ELENETTES) ) {
+			if (!SustainAbilityOn) {
 			    poisontell(typ);
 			    if (!StrongPoison_resistance || !rn2(3)) {
 				(void) adjattrib(typ, Poison_resistance ? -1 : -rno(5), TRUE, TRUE);
@@ -6931,7 +6931,7 @@ peffects(otmp)
 			adjattrib(rn2(A_MAX), -1, 0, TRUE);
 		    }
 		    unkn++;
-		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) {
+		} else if (SustainAbilityOn) {
 		    nothing++;
 		} else {      /* If blessed, increase all; if not, try up to */
 		    int itmp; /* 6 times to find one which can be increased. */

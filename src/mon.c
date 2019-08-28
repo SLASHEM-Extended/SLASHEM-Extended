@@ -5340,6 +5340,10 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 
+	if (uwep && uwep->oartifact == ART_GOLDIFICATION && mtmp->m_lev > 0) {
+		u.ugold += mtmp->m_lev;
+	}
+
 	if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && !rn2(50)) {
 		u.uhpmax++;
 		if (Upolyd) u.mhmax++;

@@ -476,6 +476,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data))
 		    ways_seen++;
+		if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mtmp->data->mlet == S_DEMON)
+		    ways_seen++;
 		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
 		    ways_seen++;
 		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || mtmp->selfhybridvisible) ) 
@@ -529,6 +531,8 @@ lookat(x, y, buf, monbuf)
 		if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) )
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
+		    ways_seen++;
+		if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) )
 		    ways_seen++;
@@ -597,6 +601,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data)) {
+			strcat(monbuf, "warned of demons");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mtmp->data->mlet == S_DEMON) {
 			strcat(monbuf, "warned of demons");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -711,6 +719,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN) {
 			strcat(monbuf, "egrid bug");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS) {
+			strcat(monbuf, "fuyer brev");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) ) {
@@ -24010,6 +24022,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"You dial a number... but unfortunately, your ex-girlfriend doesn't pick up. Shame, you really want to see her again...",
 	"You dial a number... Demogorgon picks up your call and snarls: 'You summoned ME, mortal? ME? Alright, I'll come and make you deathly sick and blow your brains out with my psybolt spell. That'll teach you.'",
 	"Suddenly your footwear causes you to sink into the ground!",
+	"Some items have had their base material changed.",
+	"The material has been applied to several random items. Which material? Paper, of course! You love it if your melee weapons are all made of flimsy material!",
+	"The material has been applied to several random items. Which material? Ether, of course! You love it if most of your equipment causes your contamination to deteriorate!",
+	"The material has been applied to several random items. Which material? Glass, of course! You love it if all of your ranged ammo breaks when fired!",
+	"Your weapon seems more effective.",
+	"Your weapon seems more effective, but in reality it became less effective.",
+	"Your weapon seems more effective. 'Seems' implies that it's not actually become more effective, it's all just an illusion.",
 
 };
 

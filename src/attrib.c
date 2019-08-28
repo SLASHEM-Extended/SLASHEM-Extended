@@ -1217,7 +1217,7 @@ adjattrib(ndx, incr, msgflg, canresist)
 /* 3 => no message at all and no development message, 2 => no message at all (but development can be given),
  * 1 => no message except encumber, zero => message, and negative => conditional (msg if change made) */
 {
-	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) || !incr) return FALSE;
+	if (SustainAbilityOn || !incr) return FALSE;
 
 	if ((ndx == A_INT || ndx == A_WIS)
 				&& uarmh && uarmh->otyp == DUNCE_CAP) {

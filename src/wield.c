@@ -1292,6 +1292,7 @@ register int amount;
 		makeknown(otyp);
 	}
 	uwep->spe += amount;
+	if (uwep && uwep->oartifact == ART_BOARDED_SHELF && amount > 0 && uwep->spe < 22) uwep->spe += 4;
 	if (Race_if(PM_SPARD) && amount > 0) uwep->spe++;
 	if(amount > 0) {
 

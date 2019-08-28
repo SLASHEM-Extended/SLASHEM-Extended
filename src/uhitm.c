@@ -679,13 +679,15 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uwep && uwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAD_HITTER_BOY) tmp -= rnd(20);
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
-	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -2563,7 +2565,7 @@ int dieroll;
 		if (Race_if(PM_VIKING)) tmp += 1;
 		if (Race_if(PM_ITAQUE)) tmp -= 1;
 		if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
-		if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (!thrown && Race_if(PM_TURMENE) && tmp > 0) tmp -= 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
@@ -2626,6 +2628,10 @@ int dieroll;
 
 		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
+
+		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
+			tmp + rnd(40);
+		}
 
 		if (gunused && tech_inuse(T_SHUT_THAT_BITCH_UP) && mon && mon->female && humanoid(mon->data)) {
 			if (!TimeStopped || !rn2(TimeStopped)) {
@@ -2720,6 +2726,11 @@ int dieroll;
 		if (wep && wep->otyp == DARKNESS_CLUB) {
 			pline("Collusion!");
 			litroomlite(FALSE);
+		}
+
+		if (wep && wep->oartifact == ART_SVEN_S_GARBAGE_BOOSTER) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
 		}
 
 		if (wep && wep->otyp == ARCANE_HORN) {
@@ -2894,6 +2905,14 @@ int dieroll;
 
 	if (jousting) {
 	    tmp += d(2, (obj == uwep) ? 10 : 2);        /* [was in dmgval()] */
+	    if (obj && obj->oartifact == ART_CRASH_JOUST) {
+			tmp += 10;
+			if (!rn2(3) && mon->mcanmove) {
+				mon->mcanmove = 0;
+				mon->mfrozen = rnd(5);
+				mon->mstrategy &= ~STRAT_WAITFORU;
+			}
+	    }
 	    You("joust %s%s",
 			 mon_nam(mon), canseemon(mon) ? exclam(tmp) : ".");
 	    if (jousting < 0) {
@@ -7308,6 +7327,14 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
+				if (uwep && uwep->oartifact == ART_NEED_ELITE_UPGRADE) {
+					int eliteupgradechance = 100;
+					if (uwep->spe > 1) eliteupgradechance = (uwep->spe * 100);
+					if (uwep->spe < 12 && !rn2(eliteupgradechance)) {
+						uwep->spe++;
+						pline("Your weapon seems more effective.");
+					}
+				}
 				if (uwep && uwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {
 					uwep->spe--;
 					pline("Your steel-capped sandal degrades.");
@@ -7316,6 +7343,11 @@ use_weapon:
 						pline("Your steel-capped sandal is destroyed.");
 						return FALSE;
 					}
+				}
+				if (uwep && uwep->oartifact == ART_H__S_BRITTLE_REPLICA && !rn2(10)) {
+					useupall(uwep);
+					pline("Your broadsword replica shatters into a thousand fragments.");
+					return FALSE;
 				}
 
 				if (u.twoweap && uswapwep && uswapwep->spe > ((objects[uswapwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uswapwep->spe > rn2(8)) && !rn2((objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? 100 : (objects[uswapwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == MT_SECREE || objects[uswapwep->otyp].oc_material == MT_ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
@@ -7344,6 +7376,11 @@ use_weapon:
 						pline("Your steel-capped sandal is destroyed.");
 						return FALSE;
 					}
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_H__S_BRITTLE_REPLICA && !rn2(10)) {
+					useupall(uswapwep);
+					pline("Your broadsword replica shatters into a thousand fragments.");
+					return FALSE;
 				}
 
 			}

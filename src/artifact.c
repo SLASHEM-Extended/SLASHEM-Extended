@@ -568,6 +568,19 @@ hack_artifacts()
 	artilist[ART_CLICHE_WEAR].otyp = find_mary_janes();
 	artilist[ART_YVONNE_S_MODEL_AMBITION].otyp = find_velvet_pumps();
 
+	artilist[ART_BOWSER_S_FUN_ARENA].otyp = find_volcanic_cloak();
+	artilist[ART_BILLS_PAID].otyp = find_fuel_cloak();
+	artilist[ART_FINDING_THYSELF].otyp = find_cloister_cloak();
+	artilist[ART_SALADIN_S_DESERT_FOX].otyp = find_shemagh();
+	artilist[ART_JAMILA_S_BELIEF].otyp = find_shemagh();
+	artilist[ART_SLIPPING_SUCKING].otyp = find_serrated_helmet();
+	artilist[ART_INERT_GREAVES].otyp = find_thick_boots();
+	artilist[ART_DESERT_MEDITATION].otyp = find_sand_als();
+	artilist[ART_GORGEOUS_VEIL_MODEL].otyp = find_shadowy_heels();
+	artilist[ART_SUBLEVEL_FLOODING].otyp = find_weight_attachment_boots();
+	artilist[ART_USE_THE_NORMALNESS_TURNS].otyp = find_fungal_sandals();
+	artilist[ART_UNFELLABLE_TREE].otyp = find_standing_footwear();
+
 #if 0
 	/* Fix up the gifts */
 	if (urole.gift1arti) {
@@ -2149,7 +2162,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));

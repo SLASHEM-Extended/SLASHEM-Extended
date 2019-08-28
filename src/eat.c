@@ -6872,7 +6872,7 @@ boolean incr;
 	if(newhs != u.uhs) {
 		if(newhs >= WEAK && u.uhs < WEAK) {
 			losestr(1, FALSE);	/* this may kill you -- see below */
-			if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES) ) u.weakcheat++; /* cheater! */
+			if (SustainAbilityOn) u.weakcheat++; /* cheater! */
 			}
 		else if(newhs < WEAK && u.uhs >= WEAK) {
 			if (!u.weakcheat) losestr(-1, TRUE); /* otherwise this could be exploited until you have 25 str --Amy */
