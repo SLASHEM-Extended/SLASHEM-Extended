@@ -3892,6 +3892,7 @@ long timeout;
 	    	}
 	    case GREEN_LIGHTSABER: 
 	    case BLUE_LIGHTSABER:
+	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
@@ -4063,6 +4064,7 @@ begin_burn(obj, already_lit)
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
 	    case BLUE_LIGHTSABER:
+	    case MYSTERY_LIGHTSABER:
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:

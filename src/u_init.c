@@ -972,6 +972,10 @@ static struct trobj BlueSaber[] = {
 	{ BLUE_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
 };
+static struct trobj MysterySaber[] = {
+	{ MYSTERY_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0, }
+};
 static struct trobj RedSaber[] = {
 	{ RED_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
@@ -11679,7 +11683,7 @@ u_init()
 
 	case PM_JEDI:
 		ini_inv(Jedi);
-		switch(rnd(8)) {
+		switch(rnd(9)) {
 			case 1: ini_inv(RedSaber); break;
 			case 2: ini_inv(BlueSaber); break;
 			case 3: ini_inv(GreenSaber); break;
@@ -11688,6 +11692,7 @@ u_init()
 			case 6: ini_inv(YellowSaber); break;
 			case 7: ini_inv(RedDoubleSaber); break;
 			case 8: ini_inv(WhiteDoubleSaber); break;
+			case 9: ini_inv(MysterySaber); break;
 			default: break;
 		}
 		if(!rn2(2)) ini_inv(Blindfold);
@@ -13706,7 +13711,7 @@ u_init()
 
 	case 39:
 		ini_inv(Jedi);
-		switch(rnd(8)) {
+		switch(rnd(9)) {
 			case 1: ini_inv(RedSaber); break;
 			case 2: ini_inv(BlueSaber); break;
 			case 3: ini_inv(GreenSaber); break;
@@ -13715,6 +13720,7 @@ u_init()
 			case 6: ini_inv(YellowSaber); break;
 			case 7: ini_inv(RedDoubleSaber); break;
 			case 8: ini_inv(WhiteDoubleSaber); break;
+			case 9: ini_inv(MysterySaber); break;
 			default: break;
 		}
 		if(!rn2(2)) ini_inv(Blindfold);
@@ -15286,7 +15292,7 @@ u_init()
 
 	case 39:
 		ini_inv(Jedi);
-		switch(rnd(8)) {
+		switch(rnd(9)) {
 			case 1: ini_inv(RedSaber); break;
 			case 2: ini_inv(BlueSaber); break;
 			case 3: ini_inv(GreenSaber); break;
@@ -15295,6 +15301,7 @@ u_init()
 			case 6: ini_inv(YellowSaber); break;
 			case 7: ini_inv(RedDoubleSaber); break;
 			case 8: ini_inv(WhiteDoubleSaber); break;
+			case 9: ini_inv(MysterySaber); break;
 			default: break;
 		}
 		if(!rn2(2)) ini_inv(Blindfold);
@@ -28779,6 +28786,9 @@ register struct trobj *trop;
             if (objX->otyp == BEAUTIFUL_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == TOILET_ROLL && !issoviet ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == PETA_COMPLIANT_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -28789,6 +28799,12 @@ register struct trobj *trop;
                 objX->cursed = TRUE;
             }
             if (objX->otyp == WOOLEN_SHIRT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == METAL_SHIRT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == RED_STRING && !issoviet ) {
                 objX->cursed = TRUE;
             }
             if (objX->otyp == YOGA_PANTS && !issoviet ) {
@@ -28972,6 +28988,9 @@ register struct trobj *trop;
             if (obj->otyp == PETA_COMPLIANT_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
+            if (obj->otyp == TOILET_ROLL && !issoviet ) {
+                obj->cursed = TRUE;
+            }
             if (obj->otyp == RADIOACTIVE_UNDERGARMENT && !issoviet ) {
                 obj->cursed = TRUE;
             }
@@ -28979,6 +28998,12 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == WOOLEN_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == METAL_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == RED_STRING && !issoviet ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == YOGA_PANTS && !issoviet ) {

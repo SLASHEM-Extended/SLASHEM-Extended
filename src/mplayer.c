@@ -876,7 +876,7 @@ register boolean special;
 		case PM_PADAWAN:
 		case PM_UNDEAD_JEDI:
 		case PM_UNDEAD_PADAWAN:
-		    switch(rnd(8)){
+		    switch(rnd(9)){
 		      case 1: weapon = RED_LIGHTSABER; break;
 		      case 2: weapon = BLUE_LIGHTSABER; break;
 		      case 3: weapon = GREEN_LIGHTSABER; break;
@@ -885,6 +885,7 @@ register boolean special;
 		      case 6: weapon = VIOLET_LIGHTSABER; break;
 		      case 7: weapon = RED_DOUBLE_LIGHTSABER; break;
 		      case 8: weapon = WHITE_DOUBLE_LIGHTSABER; break;
+		      case 9: weapon = MYSTERY_LIGHTSABER; break;
 		    }
 		    cloak = STRANGE_OBJECT;
 		    armor = rn2(2) ? ROBE : ROBE_OF_POWER;

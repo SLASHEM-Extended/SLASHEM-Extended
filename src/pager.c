@@ -24005,6 +24005,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Hmm, that seems to have been a magical discharge! Maybe the weather forecast would have warned you of that if you had actually bothered to read it today?",
 	"You get a cut.",
 	"You get a cut because someone threw a shuriken at you.",
+	"You dial a number...",
+	"You dial a number... but the calling does not decrease.",
+	"You dial a number... but unfortunately, your ex-girlfriend doesn't pick up. Shame, you really want to see her again...",
+	"You dial a number... Demogorgon picks up your call and snarls: 'You summoned ME, mortal? ME? Alright, I'll come and make you deathly sick and blow your brains out with my psybolt spell. That'll teach you.'",
 
 };
 

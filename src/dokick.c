@@ -99,6 +99,19 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->otyp == STILETTO_SANDALS)
+	    dmg += 2;
+
+	if (!(PlayerCannotUseSkills)) {
+
+	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 1;
+	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 2;
+	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 4;
+	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 6;
+	if (uarmf && (uarmf->otyp == STILETTO_SANDALS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 8;
+
+	}
+
 	if (uarmf && uarmf->otyp == COMBAT_STILETTOS)
 	    dmg += 5;
 

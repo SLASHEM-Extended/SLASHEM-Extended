@@ -1943,7 +1943,7 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	    teleds(cc.x, cc.y, TRUE);
 
-	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(INKA_BLADE,cc.x,cc.y)  || sobj_at(SAND_SWORD,cc.x,cc.y)  || sobj_at(ETERNIUM_BLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(VOLCANIC_BROADSWORD,cc.x,cc.y)  || sobj_at(PAPER_SWORD,cc.x,cc.y)  || sobj_at(MEATSWORD,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(OSBANE_KATANA,cc.x,cc.y)  || sobj_at(AUTOMATIC_KATANA,cc.x,cc.y)  || sobj_at(HEAVY_LONG_SWORD,cc.x,cc.y)  || sobj_at(ICKY_BLADE,cc.x,cc.y)  || sobj_at(GRANITE_IMPALER,cc.x,cc.y)  || sobj_at(FLAME_MOUNTAIN,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(BIDENHANDER,cc.x,cc.y) || sobj_at(ORGANOBLADE,cc.x,cc.y) || sobj_at(SHADOWBLADE,cc.x,cc.y) || sobj_at(ETHER_SAW,cc.x,cc.y) || sobj_at(COLOSSUS_BLADE,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)   || sobj_at(PLATINUM_SABER,cc.x,cc.y)  || sobj_at(WILD_BLADE,cc.x,cc.y)  || sobj_at(LEATHER_SABER,cc.x,cc.y)  || sobj_at(ARCANE_RAPIER,cc.x,cc.y) || sobj_at(INKUTLASS,cc.x,cc.y)  || sobj_at(HOE_SABLE,cc.x,cc.y)  || sobj_at(DESERT_SWORD,cc.x,cc.y)  || sobj_at(CHROME_BLADE,cc.x,cc.y)  || sobj_at(YATAGAN,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(ETERNIUM_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
+	if ( (sobj_at(ORCISH_SHORT_SWORD,cc.x,cc.y) || sobj_at(SHORT_SWORD,cc.x,cc.y) || sobj_at(SILVER_SHORT_SWORD,cc.x,cc.y) || sobj_at(DWARVISH_SHORT_SWORD,cc.x,cc.y)  || sobj_at(ELVEN_SHORT_SWORD,cc.x,cc.y) || sobj_at(HIGH_ELVEN_WARSWORD,cc.x,cc.y)  || sobj_at(DARK_ELVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(DROVEN_SHORT_SWORD,cc.x,cc.y)  || sobj_at(VIBROBLADE,cc.x,cc.y)  || sobj_at(INKA_BLADE,cc.x,cc.y)  || sobj_at(SAND_SWORD,cc.x,cc.y)  || sobj_at(SHORT_BLADE,cc.x,cc.y)  || sobj_at(ETERNIUM_BLADE,cc.x,cc.y)  || sobj_at(BROADSWORD,cc.x,cc.y)  || sobj_at(RUNESWORD,cc.x,cc.y)   || sobj_at(SUGUHANOKEN,cc.x,cc.y)   || sobj_at(GREAT_HOUCHOU,cc.x,cc.y)   || sobj_at(BLACK_AESTIVALIS,cc.x,cc.y)  || sobj_at(VOLCANIC_BROADSWORD,cc.x,cc.y)  || sobj_at(ELEGANT_BROADSWORD,cc.x,cc.y)  || sobj_at(PAPER_SWORD,cc.x,cc.y)  || sobj_at(MEATSWORD,cc.x,cc.y)  || sobj_at(WHITE_FLOWER_SWORD,cc.x,cc.y) || sobj_at(ELVEN_BROADSWORD,cc.x,cc.y)  || sobj_at(LONG_SWORD,cc.x,cc.y)  || sobj_at(SILVER_LONG_SWORD,cc.x,cc.y)  || sobj_at(CRYSTAL_SWORD,cc.x,cc.y)  || sobj_at(MAIN_SWORD,cc.x,cc.y)  || sobj_at(KATANA,cc.x,cc.y)  || sobj_at(OSBANE_KATANA,cc.x,cc.y)  || sobj_at(AUTOMATIC_KATANA,cc.x,cc.y)  || sobj_at(HEAVY_LONG_SWORD,cc.x,cc.y)  || sobj_at(ICKY_BLADE,cc.x,cc.y)  || sobj_at(GRANITE_IMPALER,cc.x,cc.y)  || sobj_at(FLAME_MOUNTAIN,cc.x,cc.y)  || sobj_at(ELECTRIC_SWORD,cc.x,cc.y)  || sobj_at(TWO_HANDED_SWORD,cc.x,cc.y)  || sobj_at(TSURUGI,cc.x,cc.y)   || sobj_at(CHAINSWORD,cc.x,cc.y)   || sobj_at(BASTERD_SWORD,cc.x,cc.y) || sobj_at(BIDENHANDER,cc.x,cc.y) || sobj_at(ORGANOBLADE,cc.x,cc.y) || sobj_at(ROMAN_SWORD,cc.x,cc.y) || sobj_at(SHADOWBLADE,cc.x,cc.y) || sobj_at(ETHER_SAW,cc.x,cc.y) || sobj_at(COLOSSUS_BLADE,cc.x,cc.y) || sobj_at(DROVEN_GREATSWORD,cc.x,cc.y)  || sobj_at(SCIMITAR,cc.x,cc.y)  || sobj_at(BENT_SABLE,cc.x,cc.y)  || sobj_at(RAPIER,cc.x,cc.y)   || sobj_at(PLATINUM_SABER,cc.x,cc.y)  || sobj_at(WILD_BLADE,cc.x,cc.y)  || sobj_at(LEATHER_SABER,cc.x,cc.y)  || sobj_at(ARCANE_RAPIER,cc.x,cc.y) || sobj_at(INKUTLASS,cc.x,cc.y)  || sobj_at(HOE_SABLE,cc.x,cc.y)  || sobj_at(MYTHICAL_SABLE,cc.x,cc.y)  || sobj_at(DESERT_SWORD,cc.x,cc.y)  || sobj_at(CHROME_BLADE,cc.x,cc.y)  || sobj_at(YATAGAN,cc.x,cc.y)  || sobj_at(SILVER_SABER,cc.x,cc.y)  || sobj_at(GOLDEN_SABER,cc.x,cc.y)  || sobj_at(CRYPTIC_SABER,cc.x,cc.y)  || sobj_at(ETERNIUM_SABER,cc.x,cc.y)  || sobj_at(IRON_SABER,cc.x,cc.y) ) && flags.iwbtg ) {
 
 		u.youaredead = 1;
 		killer = "a sharp-edged sword";		/* the thing that killed you */
@@ -3762,7 +3762,7 @@ use_pole (obj)
 			}
 		}
 
-	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && obj->otyp == AKLYS && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
+	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 		if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
 			pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
@@ -3776,7 +3776,7 @@ use_pole (obj)
 		}
 	    }
 
-	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && obj->otyp == AKLYS && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
+	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 
 		if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
 			uwepgone();              /* set unweapon */
@@ -3790,16 +3790,16 @@ use_pole (obj)
 
 	    }
 
-	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && obj->otyp == AKLYS)) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS))) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mtmp->mfrenzied = 1;
 		pline("%s is frenzied!", Monnam(mtmp));
 	    }
 
-	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && obj->otyp == AKLYS)) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS))) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mon_adjust_speed(mtmp, 1, (struct obj *)0);
 	    }
 
-	    if ((!rn2(isfriday ? 100 : 200) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && obj->otyp == AKLYS)) && attacktype(mtmp->data, AT_WEAP)) {
+	    if ((!rn2(isfriday ? 100 : 200) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 12 : 25) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS))) && attacktype(mtmp->data, AT_WEAP)) {
 		pline("%s laughs fiendishly, and snatches your weapon!", Monnam(mtmp));
 		setnotworn(obj);
 		freeinv(obj);
@@ -3807,7 +3807,7 @@ use_pole (obj)
 		return (1);
 	    }
 
-	    if ((!rn2(isfriday ? 125 : 250) || (!rn2(10) && mtmp->data == &mons[PM_GREUVENENE] ) || (!rn2(isfriday ? 25 : 50) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 25 : 50) && obj->otyp == AKLYS)) && humanoid(mtmp->data) && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
+	    if ((!rn2(isfriday ? 125 : 250) || (!rn2(10) && mtmp->data == &mons[PM_GREUVENENE] ) || (!rn2(isfriday ? 25 : 50) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 25 : 50) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS))) && humanoid(mtmp->data) && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
@@ -4791,8 +4791,26 @@ doapply()
 	case SECRET_KEY:
 		(void) pick_lock(&obj);
 		break;
+	case TELEPHONE:
+		if (obj && obj->spe > 0) {
+			obj->spe--;
+			You("dial a number...");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy nabrali nepravil'nyy nomer, slabak!" : "BeepbeepBeepbeepbeepbeepBeepbeepbeep!");
+
+			int summondemon = ndemon(A_CHAOTIC);
+			if (summondemon == NON_PM) {
+				pline("But no one picks up your call.");
+			} else {
+				pline("%s", Blind ? "You hear an evil chuckle!" : "A miasma of stinking vapors coalesces around you!");
+				make_pet_minion(summondemon, A_CHAOTIC);
+				godvoice(A_CHAOTIC, "My minion shall serve thee!");
+			}
+
+		}
+		break;
 	case PICK_AXE:
 	case CONGLOMERATE_PICK:
+	case MYSTERY_PICK:
 	case BRONZE_PICK:
 	case BRICK_PICK:
 	case NANO_PICK:
@@ -4988,6 +5006,7 @@ doapply()
 		break;
 	case GREEN_LIGHTSABER:
   	case BLUE_LIGHTSABER:
+  	case MYSTERY_LIGHTSABER:
 	case VIOLET_LIGHTSABER:
 	case WHITE_LIGHTSABER:
 	case YELLOW_LIGHTSABER:

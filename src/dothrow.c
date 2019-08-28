@@ -1303,7 +1303,7 @@ struct obj *obj;
 		(is_blade(obj) && !is_sword(obj) &&
 		 (objects[obj->otyp].oc_dir & PIERCE)) ||
 		/* special cases [might want to add AXE] */
-		obj->otyp == WAR_HAMMER || obj->otyp == AKLYS);
+		obj->otyp == WAR_HAMMER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS);
 }
 
 /* the currently thrown object is returning to you (not for boomerangs) */
@@ -2151,6 +2151,7 @@ int thrown;
 				break;
 			case SHIELD_OF_REFLECTION:
 			case SILVER_SHIELD:
+			case ANCIENT_SHIELD:
 			case MIRROR_SHIELD:
 				shieldblockrate = 35;
 				break;
@@ -2164,6 +2165,8 @@ int thrown;
 				shieldblockrate = 40;
 				break;
 			case VENOM_SHIELD:
+			case CHROME_SHIELD:
+			case ANTISHADOW_SHIELD:
 				shieldblockrate = 40;
 				break;
 			case SHIELD_OF_LIGHT:

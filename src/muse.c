@@ -11403,6 +11403,8 @@ struct obj *obj;
 		return (boolean)needspick(mon->data);
 	    if (typ == CONGLOMERATE_PICK)
 		return (boolean)needspick(mon->data);
+	    if (typ == MYSTERY_PICK)
+		return (boolean)needspick(mon->data);
 	    if (typ == BRONZE_PICK)
 		return (boolean)needspick(mon->data);
 	    if (typ == BRICK_PICK)

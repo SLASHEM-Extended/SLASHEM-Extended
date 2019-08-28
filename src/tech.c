@@ -7203,13 +7203,14 @@ extrachargechoice:
 				}
 
 				if (sabertype == 1) {
-					switch (rnd(6)) {
+					switch (rnd(7)) {
 						case 1: uwep->otyp = GREEN_LIGHTSABER; break;
 						case 2: uwep->otyp = BLUE_LIGHTSABER; break;
 						case 3: uwep->otyp = RED_LIGHTSABER; break;
 						case 4: uwep->otyp = YELLOW_LIGHTSABER; break;
 						case 5: uwep->otyp = VIOLET_LIGHTSABER; break;
 						case 6: uwep->otyp = WHITE_LIGHTSABER; break;
+						case 7: uwep->otyp = MYSTERY_LIGHTSABER; break;
 					}
 				} else if (sabertype == 2) {
 					uwep->otyp = rn2(2) ? RED_DOUBLE_LIGHTSABER : WHITE_DOUBLE_LIGHTSABER;

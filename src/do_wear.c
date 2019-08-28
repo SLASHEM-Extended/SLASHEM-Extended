@@ -131,6 +131,9 @@ Boots_on()
 	case SOFT_SNEAKERS:
 	case LEATHER_PEEP_TOES:
 	case COMBAT_STILETTOS:
+	case ITALIAN_HEELS:
+	case LADY_BOOTS:
+	case STILETTO_SANDALS:
 	case JUMPING_BOOTS:
 	case FLYING_BOOTS:
 	case KICKING_BOOTS:
@@ -233,6 +236,23 @@ Boots_on()
 	case DUMMY_BOOTS_J:
 	case DUMMY_BOOTS_K:
 	case DUMMY_BOOTS_L:
+	case DUMMY_BOOTS_M:
+	case DUMMY_BOOTS_N:
+	case DUMMY_BOOTS_O:
+	case DUMMY_BOOTS_P:
+	case DUMMY_BOOTS_Q:
+	case DUMMY_BOOTS_R:
+	case DUMMY_BOOTS_S:
+	case DUMMY_BOOTS_T:
+	case DUMMY_BOOTS_U:
+	case DUMMY_BOOTS_V:
+	case DUMMY_BOOTS_W:
+	case DUMMY_BOOTS_X:
+	case DUMMY_BOOTS_Y:
+	case DUMMY_BOOTS_Z:
+	case DUMMY_BOOTS_AA:
+	case DUMMY_BOOTS_AB:
+	case DUMMY_BOOTS_AC:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
 
@@ -514,6 +534,9 @@ Boots_off()
 	case SOFT_SNEAKERS:
 	case LEATHER_PEEP_TOES:
 	case COMBAT_STILETTOS:
+	case ITALIAN_HEELS:
+	case LADY_BOOTS:
+	case STILETTO_SANDALS:
 	case HIGH_BOOTS:
 	case CRYSTAL_BOOTS:
 	case JUMPING_BOOTS:
@@ -533,6 +556,23 @@ Boots_off()
 	case DUMMY_BOOTS_J:
 	case DUMMY_BOOTS_K:
 	case DUMMY_BOOTS_L:
+	case DUMMY_BOOTS_M:
+	case DUMMY_BOOTS_N:
+	case DUMMY_BOOTS_O:
+	case DUMMY_BOOTS_P:
+	case DUMMY_BOOTS_Q:
+	case DUMMY_BOOTS_R:
+	case DUMMY_BOOTS_S:
+	case DUMMY_BOOTS_T:
+	case DUMMY_BOOTS_U:
+	case DUMMY_BOOTS_V:
+	case DUMMY_BOOTS_W:
+	case DUMMY_BOOTS_X:
+	case DUMMY_BOOTS_Y:
+	case DUMMY_BOOTS_Z:
+	case DUMMY_BOOTS_AA:
+	case DUMMY_BOOTS_AB:
+	case DUMMY_BOOTS_AC:
 	case DISCONNECTED_BOOTS:
 	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
@@ -645,6 +685,8 @@ Cloak_on()
 	case LEATHER_CLOAK:
 	case CLOAK_OF_WARMTH:
 	case CLOAK_OF_LEECH:
+	case CLOAK_OF_COAGULATION:
+	case CLOAK_OF_SCENT:
 	case FILLER_CLOAK:
 	case CLOAK_OF_GROUNDING:
 	case CLOAK_OF_QUENCHING:
@@ -653,6 +695,7 @@ Cloak_on()
 	case MISSING_CLOAK:
 	case TROLL_HIDE:
 	case PLASTEEL_CLOAK:
+	case LORICATED_CLOAK:
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case CLOAK_OF_DRAIN_RESISTANCE:              
@@ -867,6 +910,18 @@ Cloak_on()
 	case DUMMY_CLOAK_X:
 	case DUMMY_CLOAK_Y:
 	case DUMMY_CLOAK_Z:
+	case DUMMY_CLOAK_AA:
+	case DUMMY_CLOAK_AB:
+	case DUMMY_CLOAK_AC:
+	case DUMMY_CLOAK_AD:
+	case DUMMY_CLOAK_AE:
+	case DUMMY_CLOAK_AF:
+	case DUMMY_CLOAK_AG:
+	case DUMMY_CLOAK_AH:
+	case DUMMY_CLOAK_AI:
+	case DUMMY_CLOAK_AJ:
+	case DUMMY_CLOAK_AK:
+	case DUMMY_CLOAK_AL:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -1245,11 +1300,14 @@ Cloak_off()
 	case ALCHEMY_SMOCK:
 	case LEO_NEMAEUS_HIDE:
 	case PLASTEEL_CLOAK:
+	case LORICATED_CLOAK:
 	case LEATHER_CLOAK:
 	case CLOAK_OF_WARMTH:
 	case CLOAK_OF_GROUNDING:
 	case CLOAK_OF_QUENCHING:
 	case CLOAK_OF_LEECH:
+	case CLOAK_OF_COAGULATION:
+	case CLOAK_OF_SCENT:
 	case FILLER_CLOAK:
 
 	case LETHE_CLOAK:
@@ -1303,6 +1361,18 @@ Cloak_off()
 	case DUMMY_CLOAK_X:
 	case DUMMY_CLOAK_Y:
 	case DUMMY_CLOAK_Z:
+	case DUMMY_CLOAK_AA:
+	case DUMMY_CLOAK_AB:
+	case DUMMY_CLOAK_AC:
+	case DUMMY_CLOAK_AD:
+	case DUMMY_CLOAK_AE:
+	case DUMMY_CLOAK_AF:
+	case DUMMY_CLOAK_AG:
+	case DUMMY_CLOAK_AH:
+	case DUMMY_CLOAK_AI:
+	case DUMMY_CLOAK_AJ:
+	case DUMMY_CLOAK_AK:
+	case DUMMY_CLOAK_AL:
 	case ANTI_DISQUIET_CLOAK:
 	case HUGGING_GOWN:
 	case COCLOAK:
@@ -1501,6 +1571,7 @@ Helmet_on()
 	case RANDOMIZED_HELMET:
 	case CRYSTAL_HELM:
 	case DENTED_POT:
+	case BASINET:
 	case ELVEN_LEATHER_HELM:
 	case ELVEN_HELM:
 	case WAR_HAT:
@@ -1515,6 +1586,7 @@ Helmet_on()
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
+	case SCENTY_HELMET:
 	case OILSKIN_COIF:
 	case HELM_OF_ANTI_MAGIC:
 	case HELMET_OF_UNDEAD_WARNING:
@@ -1695,6 +1767,16 @@ Helmet_on()
 	case DUMMY_HELMET_I:
 	case DUMMY_HELMET_J:
 	case DUMMY_HELMET_K:
+	case DUMMY_HELMET_L:
+	case DUMMY_HELMET_M:
+	case DUMMY_HELMET_N:
+	case DUMMY_HELMET_O:
+	case DUMMY_HELMET_P:
+	case DUMMY_HELMET_Q:
+	case DUMMY_HELMET_R:
+	case DUMMY_HELMET_S:
+	case DUMMY_HELMET_T:
+	case DUMMY_HELMET_U:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
@@ -1830,6 +1912,7 @@ Helmet_off()
 	case CRYSTAL_HELM:
 	case HELM_OF_STEEL:
 	case DENTED_POT:
+	case BASINET:
 	case ELVEN_LEATHER_HELM:
 	case ELVEN_HELM:
 	case WAR_HAT:
@@ -1902,12 +1985,23 @@ Helmet_off()
 	case DUMMY_HELMET_I:
 	case DUMMY_HELMET_J:
 	case DUMMY_HELMET_K:
+	case DUMMY_HELMET_L:
+	case DUMMY_HELMET_M:
+	case DUMMY_HELMET_N:
+	case DUMMY_HELMET_O:
+	case DUMMY_HELMET_P:
+	case DUMMY_HELMET_Q:
+	case DUMMY_HELMET_R:
+	case DUMMY_HELMET_S:
+	case DUMMY_HELMET_T:
+	case DUMMY_HELMET_U:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
 	case HELM_OF_TELEPORTATION:
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
+	case SCENTY_HELMET:
 	case OILSKIN_COIF:
 	case HELM_OF_ANTI_MAGIC:
 	case HELMET_OF_UNDEAD_WARNING:
@@ -1979,6 +2073,7 @@ Gloves_on()
 
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
+	case ROCKET_GAUNTLETS:
 	case LEATHER_GLOVES:
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
@@ -2058,6 +2153,9 @@ Gloves_on()
 	case DUMMY_GLOVES_G:
 	case DUMMY_GLOVES_H:
 	case DUMMY_GLOVES_I:
+	case DUMMY_GLOVES_J:
+	case DUMMY_GLOVES_K:
+	case DUMMY_GLOVES_L:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -2247,6 +2345,7 @@ Gloves_off()
 
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
+	case ROCKET_GAUNTLETS:
 	case LEATHER_GLOVES:
 	case OILSKIN_GLOVES:
 	case GAUNTLETS_OF_STEEL:
@@ -2304,6 +2403,9 @@ Gloves_off()
 	case DUMMY_GLOVES_G:
 	case DUMMY_GLOVES_H:
 	case DUMMY_GLOVES_I:
+	case DUMMY_GLOVES_J:
+	case DUMMY_GLOVES_K:
+	case DUMMY_GLOVES_L:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
@@ -2391,6 +2493,7 @@ Shield_on()
 	case ORCISH_GUARD_SHIELD:
 	case SHIELD:
 	case SILVER_SHIELD:
+	case ANCIENT_SHIELD:
 	case MIRROR_SHIELD:
 	case RAPIRAPI:
 	case HIDE_SHIELD:
@@ -2400,6 +2503,8 @@ Shield_on()
 	case BARRIER_SHIELD:
 	case TROLL_SHIELD:
 	case TARRIER:
+	case CHROME_SHIELD:
+	case ANTISHADOW_SHIELD:
 	case DIFFICULT_SHIELD:
 	case SPECIAL_SHIELD:
 	case MAGICAL_SHIELD:
@@ -2570,6 +2675,7 @@ Shield_off()
 	case ORCISH_GUARD_SHIELD:
 	case SHIELD:
 	case SILVER_SHIELD:
+	case ANCIENT_SHIELD:
 	case MIRROR_SHIELD:
 	case RAPIRAPI:
 	case HIDE_SHIELD:
@@ -2578,6 +2684,8 @@ Shield_off()
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
 	case TROLL_SHIELD:
+	case CHROME_SHIELD:
+	case ANTISHADOW_SHIELD:
 	case TARRIER:
 	case DIFFICULT_SHIELD:
 	case SPECIAL_SHIELD:

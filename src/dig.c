@@ -1132,7 +1132,9 @@ struct obj *obj;
 		else if (obj->otyp == HOMING_TORPEDO) pline("The torpedo strikes right into your vital organs!");
 		else if (obj->otyp == RADIOACTIVE_DAGGER) pline("You irradiate yourself with your dagger!");
 		else if (obj->otyp == IMPACT_STAFF) pline("Dock! You hit yourself with your staff!");
+		else if (obj->otyp == BLOCK_HEELED_SANDAL) pline("Mmmmmmmm, the massive block heel hits your %s so wonderfully painfully!", body_part(HEAD));
 		else if (obj->otyp == INKA_BOOT) pline("You come right as the lovely, soft boot heel hits you.");
+		else if (obj->otyp == PROSTITUTE_SHOE) pline("You have an orgasm as you hit yourself with the incredibly female prostitute shoe.");
 		else if (obj->otyp == SOFT_LADY_SHOE) pline("You feel wonderful intense pain as the incredibly soft lady shoe hits you.");
 		else if (obj->otyp == STEEL_WHIP) {
 			if (flags.female) You_feel("like a submissive girl as you whip yourself!");

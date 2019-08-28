@@ -685,6 +685,9 @@ giveback:
 		case RIN_DISCOUNT_ACTION:
 		    pline("Waterdrops are quickly running down the drain.");
 		    break;
+		case RIN_DIMINISHED_BLEEDING:
+		    pline("The waterdrops seem to be slowing down.");
+		    break;
 		case RIN_SEE_INVISIBLE:
 		    You("see some air in the sink.");
 		    break;
@@ -896,6 +899,9 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_CONTAMINATION_RESIST:
 		pline_The("toilet water cleans instantly!");
+		break;
+	case AMULET_OF_SCENT:
+		pline_The("toilet suddenly smells like roses!");
 		break;
 	case AMULET_OF_THE_RNG:
 	case AMULET_OF_INFINITY:

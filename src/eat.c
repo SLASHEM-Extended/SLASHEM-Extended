@@ -4152,11 +4152,13 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case GREAT_DAGGER:
 		case RADIOACTIVE_DAGGER:
 		case SECRETION_DAGGER:
+		case WONDER_DAGGER:
 		case DROVEN_DAGGER:
 			tmp = 3;
 			break;
 		case PICK_AXE:
 		case CONGLOMERATE_PICK:
+		case MYSTERY_PICK:
 		case BRONZE_PICK:
 		case BRICK_PICK:
 		case NANO_PICK:

@@ -5938,6 +5938,7 @@ boolean guaranteed;
 			break;
 		case SHIELD_OF_REFLECTION:
 		case SILVER_SHIELD:
+		case ANCIENT_SHIELD:
 		case MIRROR_SHIELD:
 			shieldblockrate = 25;
 			break;
@@ -5951,6 +5952,8 @@ boolean guaranteed;
 			shieldblockrate = 30;
 			break;
 		case VENOM_SHIELD:
+		case CHROME_SHIELD:
+		case ANTISHADOW_SHIELD:
 			shieldblockrate = 30;
 			break;
 		case SHIELD_OF_LIGHT:
@@ -9638,6 +9641,7 @@ int final;
 			break;
 		case SHIELD_OF_REFLECTION:
 		case SILVER_SHIELD:
+		case ANCIENT_SHIELD:
 		case MIRROR_SHIELD:
 			shieldblockrate = 25;
 			break;
@@ -9651,6 +9655,8 @@ int final;
 			shieldblockrate = 30;
 			break;
 		case VENOM_SHIELD:
+		case CHROME_SHIELD:
+		case ANTISHADOW_SHIELD:
 			shieldblockrate = 30;
 			break;
 		case SHIELD_OF_LIGHT:

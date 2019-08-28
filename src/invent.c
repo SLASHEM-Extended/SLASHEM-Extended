@@ -5716,10 +5716,13 @@ register const char *let,*word;
 			|| otmp->otyp == BAD_SHIRT
 			|| otmp->otyp == BODYGLOVE
 			|| otmp->otyp == BEAUTIFUL_SHIRT
+			|| otmp->otyp == TOILET_ROLL
 			|| otmp->otyp == PETA_COMPLIANT_SHIRT
 			|| otmp->otyp == RADIOACTIVE_UNDERGARMENT
 			|| otmp->otyp == KYRT_SHIRT
 			|| otmp->otyp == WOOLEN_SHIRT
+			|| otmp->otyp == RED_STRING
+			|| otmp->otyp == METAL_SHIRT
 			|| otmp->otyp == YOGA_PANTS
 			|| otmp->otyp == GREEN_GOWN
 			|| otmp->otyp == RUFFLED_SHIRT

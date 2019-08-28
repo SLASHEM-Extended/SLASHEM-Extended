@@ -120,6 +120,7 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case SHIELD_OF_REFLECTION:
 		case SILVER_SHIELD:
+		case ANCIENT_SHIELD:
 		case MIRROR_SHIELD:
 			shieldblockrate = 25;
 			break;
@@ -133,6 +134,8 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate = 30;
 			break;
 		case VENOM_SHIELD:
+		case CHROME_SHIELD:
+		case ANTISHADOW_SHIELD:
 			shieldblockrate = 30;
 			break;
 		case SHIELD_OF_LIGHT:
@@ -267,7 +270,7 @@ const char *name;	/* if null, then format `obj' */
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
-	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || obj->otyp == AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
+	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
 
@@ -880,6 +883,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				shieldblockrate = 45;
 				break;
 			case SHIELD_OF_REFLECTION:
+			case ANCIENT_SHIELD:
 			case SILVER_SHIELD:
 			case MIRROR_SHIELD:
 				shieldblockrate = 35;
@@ -894,6 +898,8 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				shieldblockrate = 40;
 				break;
 			case VENOM_SHIELD:
+			case CHROME_SHIELD:
+			case ANTISHADOW_SHIELD:
 				shieldblockrate = 40;
 				break;
 			case SHIELD_OF_LIGHT:
