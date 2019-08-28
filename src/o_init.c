@@ -3529,6 +3529,8 @@ int fd, mode;
 	    bwrite(fd, (void *)disco, sizeof disco);
 	    bwrite(fd, (void *)objects,
 		   sizeof(struct objclass) * NUM_OBJECTS);
+	    /*bwrite(fd, (void *)mons,
+		   sizeof(struct permonst) * NUMMONS);*/
 	}
 	/* as long as we use only one version of Hack we
 	   need not save oc_name and oc_descr, but we must save
@@ -3557,6 +3559,7 @@ register int fd;
 	mread(fd, (void *) bases, sizeof bases);
 	mread(fd, (void *) disco, sizeof disco);
 	mread(fd, (void *) objects, sizeof(struct objclass) * NUM_OBJECTS);
+	/*mread(fd, (void *) mons, sizeof(struct permonst) * NUMMONS);*/
 	for (i = 0; i < NUM_OBJECTS; i++)
 	    if (objects[i].oc_uname) {
 		mread(fd, (void *) &len, sizeof len);

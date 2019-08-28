@@ -387,6 +387,15 @@ register int fd, mode;
 
 	/* save random monsters*/
 
+	{
+		int monstcursor = PM_PLAYERMON + 1;
+		while (monstcursor < NUMMONS) {
+			bwrite(fd, (void *) &mons[monstcursor], sizeof(struct permonst));
+			monstcursor++;
+		}
+	}
+
+	/*
 	bwrite(fd, (void *) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_SPEEDHACK_HORROR], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
@@ -725,6 +734,7 @@ register int fd, mode;
 	bwrite(fd, (void *) &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
+	*/
 
 	/* must come before migrating_objs and migrating_mons are freed */
 	save_timers(fd, mode, RANGE_GLOBAL);

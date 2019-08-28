@@ -394,6 +394,49 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	/* reload random monster*/
 
 	const char *tname; /* bugfix by Chris_ANG */
+
+	{
+		int monstcursor = PM_PLAYERMON + 1;
+		while (monstcursor < NUMMONS) {
+			tname = mons[monstcursor].mname;
+			mread(fd, (void *) &mons[monstcursor], sizeof(struct permonst));
+			mons[monstcursor].mname = tname;
+			monstcursor++;
+		}
+
+		mons[PM_SUIKUN_X].mname = u.strpokshamblert;
+		mons[PM_HOUOU_X].mname = u.strpokshamblertp;
+		mons[PM_INTERHACK_HORROR_X].mname = u.strshamblerx;
+		mons[PM_NHTNG_HORROR_X].mname = u.strshamblerxa;
+		mons[PM_PETROGRAPHY_HORROR_X].mname = u.strshamblerza;
+		mons[PM_STONE_COLD_HORROR_X].mname = u.strshamblerz;
+		mons[PM_MISNAMED_STARLIT_SKY].mname = u.starlit1;
+		mons[PM_WRONG_NAMED_STARLIT_SKY].mname = u.starlit2;
+		mons[PM_ERRONEOUS_STARLIT_SKY].mname = u.starlit3;
+		mons[PM_UNKNOWN_MIMIC_X].mname = u.strandommimic;
+		mons[PM_UNKNOWN_PERMAMIMIC_X].mname = u.strandommimicb;
+		mons[PM_COLORLESS_MOLD_X].mname = u.strandomfungus;
+		mons[PM_COLORLESS_FUNGUS_X].mname = u.strandomfungusb;
+		mons[PM_COLORLESS_PATCH_X].mname = u.strandomfungusc;
+		mons[PM_COLORLESS_FORCE_FUNGUS_X].mname = u.strandomfungusd;
+		mons[PM_COLORLESS_WORT_X].mname = u.strandomfungusd;
+		mons[PM_COLORLESS_FORCE_PATCH_X].mname = u.strandomfunguse;
+		mons[PM_COLORLESS_WARP_FUNGUS_X].mname = u.strandomfungusf;
+		mons[PM_COLORLESS_WARP_PATCH_X].mname = u.strandomfungusg;
+		mons[PM_COLORLESS_STALK_X].mname = u.strandomfungush;
+		mons[PM_COLORLESS_SPORE_X].mname = u.strandomfungusi;
+		mons[PM_COLORLESS_MUSHROOM_X].mname = u.strandomfungusj;
+		mons[PM_COLORLESS_GROWTH_X].mname = u.strandomfungusk;
+		mons[PM_COLORLESS_COLONY_X].mname = u.strandomfungusl;
+		mons[PM_KRONG_SEPHIRAH_X].mname = u.strandomkopb;
+		mons[PM_ADULT_TATZELWORM_X].mname = u.strandomdragonb;
+		mons[PM_ADULT_AMPHITERE_X].mname = u.strandomdragonc;
+		mons[PM_BABY_TATZELWORM_X].mname = u.strandombdragonb;
+		mons[PM_BABY_AMPHITERE_X].mname = u.strandombdragonc;
+
+	}
+
+	/*
 	tname = mons[PM_NITROHACK_HORROR].mname;
 	mread(fd, (void *) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
 	mons[PM_NITROHACK_HORROR].mname = tname;
@@ -1473,6 +1516,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_FANNY_S_LOVELY_WINTER_BOOT].mname;
 	mread(fd, (void *) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
 	mons[PM_FANNY_S_LOVELY_WINTER_BOOT].mname = tname;
+	*/
 
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
