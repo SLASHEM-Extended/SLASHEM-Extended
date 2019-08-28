@@ -696,6 +696,51 @@ elena14:
 					goto elena14;
 				}
 			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS)) ) {
+elenalady:
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rnd(2);
+				pline("%s scratches over your %s with her block heel!", Monnam(mtmp), body_part(LEG));
+				playerbleed(monsterlev);
+				if (FemaleTrapElena && !rn2(3)) {
+					pline("You long for more!");
+					goto elenalady;
+				}
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ITALIAN_HEELS)) ) {
+elenaitaly:
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rnd(2);
+				pline("%s's high heels scratch your %s very painfully!", Monnam(mtmp), body_part(LEG));
+				playerbleed(monsterlev);
+				badeffect();
+				if (FemaleTrapElena && !rn2(3)) {
+					pline("You long for more!");
+					goto elenaitaly;
+				}
+
+			}
+
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == STILETTO_SANDALS)) ) {
+elenass:
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev *= rnd(2);
+				pline("%s's razor-sharp stiletto heel scratches very %sy wounds on your %s!", Monnam(mtmp), body_part(BLOOD), body_part(LEG));
+				playerbleed(monsterlev);
+				losehp(rnd(monsterlev), "extremely sharp-edged stiletto sandal", KILLED_BY_AN);
+				if (FemaleTrapElena && !rn2(3)) {
+					pline("You long for more!");
+					goto elenass;
+				}
+
+			}
+
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO] || mtmp->data == &mons[PM_WERECOMBATSTILETTO] || mtmp->data == &mons[PM_HUMAN_WERECOMBATSTILETTO]) ) {
 elena15:
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -2261,6 +2306,30 @@ elena26:
 							pline("You long for more!");
 							goto elena26;
 						}
+					}
+
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_SANDAL && (tmp > rnd(20+i)) ) {
+elenabhs:
+					pline("Your %s is bashed by a very fleecy block heel!", body_part(HEAD));
+					make_dimmed(HDimmed + rnd(50), TRUE);
+					losehp(rnd(10),"a pretty block-heeled sandal",KILLED_BY);
+
+						if (FemaleTrapElena && !rn2(3)) {
+							pline("You long for more!");
+							goto elenabhs;
+						}
+					}
+
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == PROSTITUTE_SHOE && (tmp > rnd(20+i)) ) {
+elenaps:
+					pline("Wow, you just can't resist the beautiful prostitute shoe as the massive heel slams on your %s.", body_part(HEAD));
+					losehp(rnd(10),"a sexy prostitute shoe",KILLED_BY);
+					badeffect();
+						if (FemaleTrapElena && !rn2(3)) {
+							pline("You long for more!");
+							goto elenaps;
+						}
+
 					}
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT && (tmp > rnd(20+i)) ) {
@@ -6309,6 +6378,13 @@ dopois:
 	    case AD_DRIN:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
+
+		if (uarmh && itemhasappearance(uarmh, APP_SERRATED_HELMET)) {
+			if (mtmp->mhp < 5) break;
+			mtmp->mhp -= rnd(4);
+			if (mtmp->mhp < 1) break;
+		}
+
 		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
@@ -6732,7 +6808,10 @@ dopois:
 		 * still _can_ attack you when you're flying or mounted.
 		 * [FIXME: why can't a flying attacker overcome this?]
 		 */
-		  if (uarmf && itemhasappearance(uarmf, APP_HIGH_IRON_BOOTS) ) {
+		  if (uarmf && itemhasappearance(uarmf, APP_THICK_BOOTS) ) {
+		    pline("%s tries futilely to sting through your thick boots!", Monnam(mtmp));
+		    dmg = 0; 
+		  } else if (uarmf && itemhasappearance(uarmf, APP_HIGH_IRON_BOOTS) ) {
 		    pline("%s tries futilely to sting through your high iron boots!", Monnam(mtmp));
 		    dmg = 0; 
 		  } else if ((u.usteed && !is_flyer(mtmp->data) && rn2(3) ) || 

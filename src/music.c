@@ -28,7 +28,6 @@
 
 #include "hack.h"
 
-STATIC_DCL void awaken_monsters(int);
 STATIC_DCL void put_monsters_to_sleep(int);
 STATIC_DCL void charm_snakes(int);
 STATIC_DCL void calm_nymphs(int);
@@ -57,7 +56,7 @@ void amii_speaker(struct obj *, char *, int );
  * Wake every monster in range...
  */
 
-STATIC_OVL void
+void
 awaken_monsters(distance)
 int distance;
 {

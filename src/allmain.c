@@ -28,8 +28,6 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 static void p_glow2(struct obj *,const char *);
 
-#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
-
 /* hunger texts used on bottom line (each 8 chars long) */
 #define SATIATED	0
 #define NOT_HUNGRY	1
@@ -1078,7 +1076,7 @@ moveloop()
 				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (is_sand(u.ux,u.uy) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1330,7 +1328,7 @@ moveloop()
 			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (is_sand(u.ux,u.uy) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -4659,6 +4657,24 @@ newbossF:
 
 		}
 
+		if (uarmf && itemhasappearance(uarmf, APP_STANDING_FOOTWEAR) && !rn2(1000)) {
+			u.burrowed = 100;
+			u.utrap = 100;
+			u.utraptype = TT_INFLOOR;
+			pline("Suddenly your footwear causes you to sink into the ground!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if (uarmf && itemhasappearance(uarmf, APP_STANDING_FOOTWEAR) && !rn2(1000)) {
+			awaken_monsters(30);
+		}
+
+		if (uarmf && itemhasappearance(uarmf, APP_FUNGAL_SANDALS) && !rn2(50000)) {
+			u.fungalsandals = TRUE;
+			polyself(FALSE);
+			u.fungalsandals = FALSE;
+		}
+
 		if (RngeBossEncounters && !rn2(10000) ) {
 			int attempts = 0;
 			register struct permonst *ptrZ;
@@ -5996,7 +6012,7 @@ newbossB:
 			levl[u.ux][u.uy].typ = POOL;
 		}
 
-		if (is_sand(u.ux, u.uy) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
+		if (is_sand(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
 			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
 			make_blinded(Blinded + rnd(5),FALSE);
 		}
@@ -8229,7 +8245,7 @@ newboss:
 		    if(!is_lava(u.ux,u.uy))
 			u.utrap = 0;
 		    else if (!u.uinvulnerable) {
-			u.utrap -= 1<<8;
+			if (!(uarmc && itemhasappearance(uarmc, APP_VOLCANIC_CLOAK) && rn2(2))) u.utrap -= 1<<8;
 			if(u.utrap < 1<<8) {
 			    u.youaredead = 1;
 			    killer_format = KILLED_BY;
@@ -8237,7 +8253,7 @@ newboss:
 			    You(FunnyHallu ? "dissolve completely, warping to another plane of existence." : "sink below the surface and die.");
 			    done(DISSOLVED);
 			    u.youaredead = 0;
-			} else if(didmove && !u.umoved) {
+			} else /*if(didmove && !u.umoved)*/ {
 			    /*Norep*/pline(FunnyHallu ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    u.utrap += rnd(4);

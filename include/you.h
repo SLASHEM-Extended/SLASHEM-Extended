@@ -1566,6 +1566,8 @@ struct you {
 	int lightsabermax9;
 	int lightsabermax10;
 
+	boolean fungalsandals;
+
 	int stoogedepth;	/* occasionally the three stooges will spawn */
 
 	int funnyhalluroll;	/* how much sanity you need to have in order to get funny hallu messages */

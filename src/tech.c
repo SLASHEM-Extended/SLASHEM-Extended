@@ -1611,7 +1611,6 @@ static const struct innate_tech
 #define techt_inuse(tech)       tech_list[tech].t_inuse
 #define techtout(tech)        tech_list[tech].t_tout
 #define techlev(tech)         (u.ulevel - tech_list[tech].t_lev)
-#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
 #define techid(tech)          tech_list[tech].t_id
 #define techname(tech)        (tech_names[techid(tech)])
 #define techlet(tech)  \
@@ -8112,6 +8111,26 @@ manacalccomplete:
 	u.uen = 0;
 	flags.botl = 1;
 	return(0);
+}
+
+int
+techlevX(tech)
+int tech;
+{
+	int finaltechlevel = (u.ulevel - tech_list[tech].t_lev);
+	if (StrongTechnicality) {
+		finaltechlevel *= 4;
+		finaltechlevel /= 3;
+		finaltechlevel += 10;
+	} else {
+		finaltechlevel *= 4;
+		finaltechlevel /= 3;
+		finaltechlevel += 3;
+	}
+	if (uarmh && itemhasappearance(uarmh, APP_TECHNICAL_HELMET)) finaltechlevel++;
+
+	if (finaltechlevel > 50) finaltechlevel = 50; /* fail safe */
+	return finaltechlevel;
 }
 
 /*WAC tinker code*/

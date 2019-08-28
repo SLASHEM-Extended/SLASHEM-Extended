@@ -319,7 +319,7 @@ boolean forcecontrol;
 
 	/* Amy edit: early polymorph traps shouldn't kill you by system shock either because that would suck */
 
-	if(!Polymorph_control && !(tech_inuse(T_POLYFORM) || tech_inuse(T_FUNGOISM) || tech_inuse(T_BECOME_UNDEAD)) && !u.wormpolymorph && !forcecontrol && !draconian && !iswere &&
+	if(!Polymorph_control && !(tech_inuse(T_POLYFORM) || tech_inuse(T_FUNGOISM) || u.fungalsandals || tech_inuse(T_BECOME_UNDEAD)) && !u.wormpolymorph && !forcecontrol && !draconian && !iswere &&
 			!isvamp && !Race_if(PM_DOPPELGANGER) && !Role_if(PM_SHAPESHIFTER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
 		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !u.polyprotected && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) ) {
 
@@ -346,7 +346,7 @@ boolean forcecontrol;
 		goto made_change;
 	}
 
-	if (tech_inuse(T_FUNGOISM)) {
+	if (tech_inuse(T_FUNGOISM) || u.fungalsandals) {
 
 		do {
 			mntmp = rn2(NUMMONS);

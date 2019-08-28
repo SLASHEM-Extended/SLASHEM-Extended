@@ -24009,6 +24009,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You dial a number... but the calling does not decrease.",
 	"You dial a number... but unfortunately, your ex-girlfriend doesn't pick up. Shame, you really want to see her again...",
 	"You dial a number... Demogorgon picks up your call and snarls: 'You summoned ME, mortal? ME? Alright, I'll come and make you deathly sick and blow your brains out with my psybolt spell. That'll teach you.'",
+	"Suddenly your footwear causes you to sink into the ground!",
 
 };
 

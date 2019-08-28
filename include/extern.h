@@ -1854,6 +1854,7 @@ E boolean munstone(struct monst *,BOOLEAN_P);
 E void awaken_soldiers(void);
 E int do_play_instrument(struct obj *);
 E void do_earthquake(int);
+E void awaken_monsters(int);
 
 /* ### nhlan.c ### */
 #ifdef LAN_FEATURES
@@ -2783,6 +2784,7 @@ E int disarm_squeaky_board(struct trap *);
 E int disarm_shooting_trap(struct trap *, int);
 E void techcapincrease(int);
 E int get_tech_no(int);
+E int techlevX(int);
 
 /* ### teleport.c ### */
 

@@ -19887,6 +19887,8 @@ loopback:
 
 		if (ct > 0 && (Role_if(PM_MYSTIC) || (uarmc && uarmc->oartifact == ART_NOW_IT_BECOMES_DIFFERENT)) && !flags.female) ct = 1;
 
+		if (((int)(ptr->geno & G_FREQ)) == 1 && uarmc && itemhasappearance(uarmc, APP_DIFFERENT_CLOAK)) ct++;
+
 		/* evil patch - one monster class is always generated with a higher frequency (even for mystics) --Amy */
 		if (ct > 0 && (ptr->mlet == u.frequentmonster)) ct += u.freqmonsterbonus;
 		if (ct > 0 && (ptr->mlet == urole.enemy1sym)) ct += 5;
@@ -20908,6 +20910,7 @@ int     spc;
 		   monstr[last] != monstr[last-1]) break; */
 
 		num += mons[last].geno & G_FREQ;
+		if (((int)(mons[last].geno & G_FREQ)) == 1 && uarmc && itemhasappearance(uarmc, APP_DIFFERENT_CLOAK)) num++;
 		if (last == u.frequentspecies) num += u.freqspeciesbonus;
 		if (last == u.frequentspecies2) num += u.freqspeciesbonus2;
 		if (last == u.frequentspecies3) num += u.freqspeciesbonus3;
@@ -21622,6 +21625,7 @@ int     spc;
 					&& (first != u.nospawnspecies) && (first != u.nospawnspecies2) && (first != u.nospawnspecies3) && (first != u.nospawnspecies4) && (first != u.nospawnspecies5) && (first != u.nospawnspecies6) && (first != u.nospawnspecies7) && (first != u.nospawnspecies8) && (first != u.nospawnspecies9) && (first != u.nospawnspecies10)
 				) {
 		num -= mons[first].geno & G_FREQ;
+		if (((int)(mons[first].geno & G_FREQ)) == 1 && uarmc && itemhasappearance(uarmc, APP_DIFFERENT_CLOAK)) num--;
 		if (first == u.frequentspecies) num -= u.freqspeciesbonus;
 		if (first == u.frequentspecies2) num -= u.freqspeciesbonus2;
 		if (first == u.frequentspecies3) num -= u.freqspeciesbonus3;

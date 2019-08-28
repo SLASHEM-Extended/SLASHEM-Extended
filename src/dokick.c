@@ -576,6 +576,16 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && itemhasappearance(uarmf, APP_PORCELAIN_SANDALS)) {
+		uarmf->spe--;
+		if (uarmf->spe < -10) {
+			pline("Suddenly, your porcelain sandals break into a thousand fragments.");
+			useup(uarmf);
+			nomul(0, 0, FALSE);
+			return;
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_WUMSHIN && rn2(4) && mon->mcanmove) {
 
 		pline("Wumm! You kick %s in the shins with your bum bum boots.", mon_nam(mon));

@@ -66,8 +66,6 @@ STATIC_VAR const char * const blindgas[6] =
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0};
 
-#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
-
 #ifndef OVLB
 
 STATIC_DCL NEARDATA const short skill_names_indices[];
@@ -19587,7 +19585,7 @@ lava_effects()
 #endif
 	for(obj = invent; obj; obj = obj2) {
 	    obj2 = obj->nobj;
-	    if(is_organic(obj) && !obj->oerodeproof && !rn2(obj->blessed ? 15 : 3) && !stack_too_big(obj)) {
+	    if(is_organic(obj) && !obj->oerodeproof && !(uarmc && itemhasappearance(uarmc, APP_VOLCANIC_CLOAK) && rn2(2)) && !rn2(obj->blessed ? 15 : 3) && !stack_too_big(obj)) {
 		if(obj->owornmask) {
 		    if (usurvive)
 			Your("%s into flame!", aobjnam(obj, "burst"));
@@ -19687,7 +19685,7 @@ lava_effects()
     }
     /* just want to burn boots, not all armor; destroy_item doesn't work on armor anyway */
 burn_stuff:
-    if(uarmf && !uarmf->oerodeproof && is_organic(uarmf) && !rn2(uarmf->blessed ? 15 : 3)) {
+    if(uarmf && !uarmf->oerodeproof && is_organic(uarmf) && !(uarmc && itemhasappearance(uarmc, APP_VOLCANIC_CLOAK) && rn2(2)) && !rn2(uarmf->blessed ? 15 : 3)) {
 	/* save uarmf value because Boots_off() sets uarmf to null */
 	obj = uarmf;
 	Your("%s bursts into flame!", xname(obj));

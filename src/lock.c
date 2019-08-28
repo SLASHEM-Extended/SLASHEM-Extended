@@ -23,8 +23,6 @@ STATIC_DCL const char *lock_action(void);
 STATIC_DCL boolean obstructed(int,int);
 STATIC_DCL void chest_shatter_msg(struct obj *);
 
-#define techlevX(tech)         (StrongTechnicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 10) : Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
-
 boolean
 picking_lock(x, y)
 	int *x, *y;

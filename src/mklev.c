@@ -12227,7 +12227,7 @@ mineralize()
 			otmp->ox = x,  otmp->oy = y;
 			otmp->quan = 1L + rnd(goldprob * 3);
 			otmp->owt = weight(otmp);
-			if (!rn2(3)) add_to_buried(otmp);
+			if (!rn2((uarmc && itemhasappearance(uarmc, APP_CLOISTER_CLOAK)) ? 2 : 3)) add_to_buried(otmp);
 			else place_object(otmp, x, y);
 		    }
 		}
@@ -12238,7 +12238,7 @@ mineralize()
 				dealloc_obj(otmp);	/* discard it */
 			    } else {
 				otmp->ox = x,  otmp->oy = y;
-				if (!rn2(3)) add_to_buried(otmp);
+				if (!rn2((uarmc && itemhasappearance(uarmc, APP_CLOISTER_CLOAK)) ? 2 : 3)) add_to_buried(otmp);
 				else place_object(otmp, x, y);
 			    }
 		    }
@@ -12250,7 +12250,7 @@ mineralize()
 				dealloc_obj(otmp);	/* discard it */
 			    } else {
 				otmp->ox = x,  otmp->oy = y;
-				if (!rn2(3)) add_to_buried(otmp);
+				if (!rn2((uarmc && itemhasappearance(uarmc, APP_CLOISTER_CLOAK)) ? 2 : 3)) add_to_buried(otmp);
 				else place_object(otmp, x, y);
 			    }
 		    }
