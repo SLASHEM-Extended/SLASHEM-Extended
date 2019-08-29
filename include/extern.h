@@ -2030,7 +2030,7 @@ E char *ysimple_name(struct obj *);
 E char *Ysimple_name2(struct obj *);
 E char *makeplural(const char *);
 E char *makesingular(const char *);
-E struct obj *readobjnam(char *,struct obj *,BOOLEAN_P);
+E struct obj *readobjnam(char *,struct obj *,BOOLEAN_P, BOOLEAN_P);
 E int rnd_class(int,int);
 E const char *cloak_simple_name(struct obj *);
 E const char *mimic_obj_name(struct monst *);

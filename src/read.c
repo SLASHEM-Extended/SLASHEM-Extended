@@ -7600,7 +7600,7 @@ retry:
 		/* If confused, you will always genocide something, and you won't know what. --Amy 
 		 * Sometimes it also happens if the scroll was cursed. */
 
-		otmpY = (confused || (sobj->cursed && rn2(2) )) ? mkobj(RANDOM_CLASS, TRUE) : readobjnam(buf, &nothing, TRUE);
+		otmpY = (confused || (sobj->cursed && rn2(2) )) ? mkobj(RANDOM_CLASS, TRUE) : readobjnam(buf, &nothing, TRUE, FALSE);
 		if (!otmpY) {
 		    pline("Nothing fitting that description exists in the game.");
 		    if (++tries < 5) goto retry;
@@ -7621,7 +7621,11 @@ retry:
 			else pline("In your confusion, you genocided some item. But you forgot what it is.");
 		}
 
-		if (otmpY) obfree(otmpY, (struct obj *)0);
+		if (otmpY) {
+			if (Has_contents(otmpY))
+				delete_contents(otmpY);
+			obfree(otmpY, (struct obj *)0);
+		}
 
 		break;
 
@@ -8437,7 +8441,7 @@ armorspecchoice:
 					getlin("What do you want to identify?",buf);
 					if (buf[0] == 0) continue;
 					oldgold = u.ugold;
-					otmp = readobjnam(buf, (struct obj *)0, TRUE);
+					otmp = readobjnam(buf, (struct obj *)0, TRUE, FALSE);
 					if (u.ugold != oldgold) {
 pline("Don't you date cheat me again! -- Your fault!");
 						/* Make them pay */
@@ -8453,6 +8457,9 @@ pline("Don't you date cheat me again! -- Your fault!");
 				strcpy(buf,xname(otmp));
 				makeknown(otmp->otyp);
 				pline("The %s is a %s.",buf,xname(otmp));
+				if (Has_contents(otmp))
+					delete_contents(otmp);
+				obfree(otmp,(struct obj *) 0);
 				/*if (otmp->oartifact) artifact_unexist(otmp);*/
 			}
 		}

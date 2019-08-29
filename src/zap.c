@@ -2865,7 +2865,7 @@ poly_obj(obj, id, degradation)
 	    int typ;
 	    char buf[BUFSZ];
 	    getlin("Polymorph into what? [type the name]", buf);
-	    otmp = readobjnam(buf, (struct obj *)0, TRUE);
+	    otmp = readobjnam(buf, (struct obj *)0, TRUE, FALSE);
 	    if (otmp && otmp->oclass != obj->oclass) {
 		delobj(otmp);
 		otmp = (struct obj *)0;
@@ -10130,12 +10130,12 @@ retry:
 	 *  has been denied.  Wishing for "nothing" requires a separate
 	 *  value to remain distinct.
 	 */
-	otmp = readobjnam(buf, &nothing, TRUE);
+	otmp = readobjnam(buf, &nothing, TRUE, TRUE);
 	if (!otmp) {
 	    pline("Nothing fitting that description exists in the game.");
 	    if (++tries < 5) goto retry;
 	    pline("%s", thats_enough_tries);
-	    /*otmp = readobjnam((char *)0, (struct obj *)0, TRUE);
+	    /*otmp = readobjnam((char *)0, (struct obj *)0, TRUE, TRUE);
 	    if (!otmp)*/ return;	/* for safety; should never happen */
 	} else if (otmp == &nothing) {
 	    /* explicitly wished for "nothing", presumeably attempting

@@ -5633,7 +5633,7 @@ incarnationfinish:
 				getlin("What do you want to identify?", buf);
 				if (buf[0] == 0) continue;
 				oldgold = u.ugold;
-				otmp = readobjnam(buf, (struct obj *)0, TRUE);
+				otmp = readobjnam(buf, (struct obj *)0, TRUE, FALSE);
 				if (u.ugold != oldgold) {
 					pline("Don't you date cheat me again! -- Your fault!");
 					/* Make them pay */
@@ -5649,6 +5649,9 @@ incarnationfinish:
 			strcpy(buf,xname(otmp));
 			makeknown(otmp->otyp);
 			pline("The %s is a %s.",buf,xname(otmp));
+			if (Has_contents(otmp))
+				delete_contents(otmp);
+			obfree(otmp,(struct obj *) 0);
 		}
 revid_end:
 		pline("You also learn the identity of some other objects:");

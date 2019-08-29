@@ -8020,10 +8020,11 @@ struct alt_spellings {
  * If from_user is false, we're reading from the wizkit, nothing was typed in.
  */
 struct obj *
-readobjnam(bp, no_wish, from_user)
+readobjnam(bp, no_wish, from_user, actualwish)
 register char *bp;
 struct obj *no_wish;
 boolean from_user;
+boolean actualwish;
 {
 	register char *p;
 	register int i;
@@ -8238,7 +8239,7 @@ boolean from_user;
 		wand of wishing
 		elven cloak
 	*/
-	if ((p = strstri(bp, " named ")) != 0) {
+	if ((p = strstri(bp, " named ")) != 0 && actualwish) {
 		*p = 0;
 		name = p+7;
 	}
@@ -8418,12 +8419,14 @@ boolean from_user;
 						) cnt=5000;
 		if (cnt < 1) cnt=1;
 #ifndef GOLDOBJ
-		if (from_user)
+		if (from_user && actualwish)
 		    pline("%d gold piece%s.", cnt, plur(cnt));
-		u.ugold += cnt;
+		if (actualwish) u.ugold += cnt;
 		flags.botl=1;
 		return (&zeroobj);
 #else
+		if (!actualwish) return (&zeroobj);
+
                 otmp = mksobj(GOLD_PIECE, FALSE, FALSE);
 		otmp->quan = cnt;
                 otmp->owt = weight(otmp);
@@ -9260,7 +9263,7 @@ typfnd:
 			otmp->otyp != POT_WATER)
 		otmp->odiluted = 1;
 
-	if (name) {
+	if (name && actualwish) {
 		const char *aname;
 		/*short*/int objtyp;
 		char nname[256];
@@ -9350,6 +9353,9 @@ typfnd:
 		delete_contents(otmp);
 	    obfree(otmp, (struct obj *) 0);
 	    otmp = &zeroobj;
+
+	    if (!actualwish) return (&zeroobj);
+
 	    pline("For a moment, you feel %s in your %s, but it disappears!",
 		  something,
 		  makeplural(body_part(HAND)));

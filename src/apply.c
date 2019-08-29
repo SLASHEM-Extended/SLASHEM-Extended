@@ -4557,7 +4557,7 @@ use_chemistry_set(struct obj *chemset)
 		strcpy(potbuf,"potion of ");
 	}
 	strcat(potbuf,namebuf);
-	new_obj = readobjnam(potbuf, (struct obj *)0, TRUE);
+	new_obj = readobjnam(potbuf, (struct obj *)0, TRUE, FALSE);
 
 	if (!new_obj || new_obj->oclass != POTION_CLASS) {
 		goto blast_him;
@@ -4619,6 +4619,8 @@ blast_him:
 		pline("You seem to have made a mistake!");
 		pline("The bottle explodes!");
 		losehp(rnd(chemset->cursed ? 25 : 10),"alchemic blast",KILLED_BY_AN);
+		if (Has_contents(new_obj))
+			delete_contents(new_obj);
 		obfree(new_obj,(struct obj *) 0);
 		return;
 	}
