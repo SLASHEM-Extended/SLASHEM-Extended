@@ -1477,11 +1477,7 @@ struct obj *obj;
 						return;
 					}
 				} else {
-					if (yn("Turn the double lightsaber off? (If you say no, you only turn off one of the blades)") != 'n') {
-						obj->altmode = FALSE;
-						lightsaber_deactivate(obj, TRUE);
-						return;
-					} else {
+					if (yn("Turn only one blade of the double lightsaber off? (If you say no, you turn it off completely)") != 'n') {
 						if (obj->cursed && !rn2(4)) {
 							obj->altmode = FALSE;
 							lightsaber_deactivate(obj, TRUE);
@@ -1489,6 +1485,10 @@ struct obj *obj;
 						}
 						You("turn off the second blade of %s.", yname(obj));
 						obj->altmode = FALSE;
+						return;
+					} else {
+						obj->altmode = FALSE;
+						lightsaber_deactivate(obj, TRUE);
 						return;
 					}
 
