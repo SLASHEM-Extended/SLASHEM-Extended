@@ -24029,6 +24029,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your weapon seems more effective.",
 	"Your weapon seems more effective, but in reality it became less effective.",
 	"Your weapon seems more effective. 'Seems' implies that it's not actually become more effective, it's all just an illusion.",
+	"You try to call someone, but there's no prepaid balance on your phone and therefore it fails.",
+	"You full-lead a fast-being.",
+	"Strict you on, you super wimp!",
+	"Incoming message for Player 1. The message is from 'Marc'. It reads: 'A little close combat with your brother obligingly/pleasingly?'",
+	"Your lightsaber was recharged.",
+	"Your lightsaber was recharged, but by so little that it'll run out again soon.",
+	"Taking off your headgear is a terribly bad idea, and the gods will certainly not be pleased!",
+	"Taking off your headgear is a terribly bad idea, and the gods will certainly not be pleased! But the mind flayers will, because then they have an easier time to suck your brain out, you idiot.",
 
 };
 

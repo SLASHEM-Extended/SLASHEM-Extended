@@ -2283,6 +2283,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -2360,6 +2362,12 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_WONDERLOVELINESS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_CERULEAN_SMASH) tmp += 10;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_VERENA_S_DUELING_SANDALS) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) tmp += 10;
+		if (uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemaleTrapSolvejg) tmp += 5;
@@ -2436,8 +2444,11 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp += 5;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
+		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
+
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp -= 2;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
@@ -2468,6 +2479,8 @@ int x;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 10;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2493,6 +2506,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) tmp -= 5;
 		if (uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

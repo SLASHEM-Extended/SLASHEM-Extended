@@ -911,6 +911,8 @@ nh_timeout()
 
 	if (!rn2(200) && have_badeffectstone() ) badeffect();
 
+	if (!rn2(200) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) badeffect();
+
 	if (!rn2(100) && u.uprops[RANDOM_RUMORS].extrinsic) {
 		const char *line;
 		char buflin[BUFSZ];
@@ -1714,6 +1716,19 @@ nh_timeout()
 
 	}
 
+	if (!rn2(1000) && uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
 	if (!rn2(1000) && uamul && uamul->oartifact == ART_SATAN_S_FINAL_TRICK) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
@@ -1728,6 +1743,19 @@ nh_timeout()
 	}
 
 	if (!rn2(1000) && have_nastystone() ) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
+	if (!rn2(1000) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -1796,7 +1824,7 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
-	if (!rn2(500) && uarmc && uarmc->oartifact == ART_TERRIBLE_LOSS) {
+	if (!rn2(500) && uarmc && uarmc->oartifact == ART_TERRIFYING_LOSS) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
@@ -1984,6 +2012,30 @@ nh_timeout()
 		u.uenmax -= 1;
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
+	if (!rn2(2500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_VAMPIRIC_SNEAKER) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
+	if (!rn2(2500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_NEW_FOOTWEAR) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
+	if (!rn2(2500) && uarmc && uarmc->oartifact == ART_TERRIFYING_LOSS) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
 
 	/* stone of magic resistance is teh uber, and means that if you wish for MR you'll never pick something else.
 	 * So I decided to be mean (like always :P) and make it so that the stone curses itself after a while. --Amy */
@@ -2026,6 +2078,18 @@ nh_timeout()
 		u.legscratching++;
 	}
 	if (!rn2(7500) && have_bloodlossstone() ) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_VAMPIRIC_SNEAKER ) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_NEW_FOOTWEAR ) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && uarmc && uarmc->oartifact == ART_TERRIFYING_LOSS ) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}

@@ -1231,6 +1231,7 @@ boolean hitsroof;
 
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) dmg += 3;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) dmg += 2;
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_YES_TO_RANGED_COMBAT) dmg += rnd(6);
@@ -1813,6 +1814,8 @@ int thrown;
 	if (objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
 	if (objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
 	if (obj->otyp == GRAPPLING_HOOK) pieks = 1;
+	boolean stopevading = 0;
+	if (obj->oartifact == ART_STOP_EVADING_ME) stopevading = 1;
 
 	register int shieldblockrate = 0;
 
@@ -1978,6 +1981,8 @@ int thrown;
 		}
 
 	}
+
+	if (stopevading) skillpierce += rnd(5);
 
 	if (Race_if(PM_FRO) && objects[obj->otyp].oc_skill == P_AXE) {
 		tmp += 5;

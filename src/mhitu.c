@@ -185,7 +185,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_KICK:
 			pline("%s kicks you%c", Monnam(mtmp),
-				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
+				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
@@ -2072,7 +2072,7 @@ mattacku(mtmp)
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
-					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
+					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
 					sum[i] = hitmu(mtmp, mattk);
 				} else
 				    missmu(mtmp, tmp, j, mattk);
@@ -7390,7 +7390,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
-			&& !mtmp->mcan && (issoviet || iserosator || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uarmf && itemhasappearance(uarmf, APP_LOLITA_BOOTS)) ) ) /* 50% chance --Amy */
+			&& !mtmp->mcan && (issoviet || iserosator || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uwep && uwep->oartifact == ART_MARTHA_S_FOREIGN_GOER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MARTHA_S_FOREIGN_GOER) || (uarmf && itemhasappearance(uarmf, APP_LOLITA_BOOTS)) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
 			return 3;
 		break;
@@ -19396,6 +19396,7 @@ enjoyable:
 
         boolean protect_test = !(ublindf && (ublindf->otyp == CONDOME || ublindf->otyp == SOFT_CHASTITY_BELT))
 				    && !(uwep && uwep->oartifact == ART_HARMONY_VIRGIN)
+				    && !(uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE)
                             && !(uarm && (uarm->oartifact == ART_CHASTITY_ARMOR || uarm->oartifact == ART_LITTLE_PENIS_WANKER));
 
 	/* maybe contract a disease? --Amy */
@@ -20076,6 +20077,7 @@ enjoyable:
             if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
             if (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
 		if (uwep && uwep->oartifact == ART_HARMONY_VIRGIN) pline("Your harmony whip kept you safe from any diseases you might otherwise have contracted.");
+		if (uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE) pline("Your pleasure whip kept you safe from any diseases you might otherwise have contracted.");
             if (uarm && uarm->oartifact == ART_CHASTITY_ARMOR) pline("Your chastity armor kept you safe from any diseases you might otherwise have contracted.");
             if (uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) {
 		pline("Your penis-protection armor kept you safe from any diseases you might otherwise have contracted.");

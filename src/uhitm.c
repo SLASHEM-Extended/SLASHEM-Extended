@@ -2546,6 +2546,7 @@ int dieroll;
 
 		if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) tmp += 3;
 		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) tmp += 2;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 		if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp += 10;
@@ -2631,6 +2632,10 @@ int dieroll;
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp + rnd(40);
+		}
+		if (thrown && obj && obj->oartifact == ART_NEZ_SPECIAL_OFFER) {
+			mon->bleedout += rnd(10);
+			pline("%s gets a cut.", Monnam(mon));
 		}
 
 		if (gunused && tech_inuse(T_SHUT_THAT_BITCH_UP) && mon && mon->female && humanoid(mon->data)) {
@@ -2729,6 +2734,16 @@ int dieroll;
 		}
 
 		if (wep && wep->oartifact == ART_SVEN_S_GARBAGE_BOOSTER) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_MARTHA_S_FOREIGN_GOER) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_PRICK_BEARER_S_RANSOM) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
 		}
@@ -2905,6 +2920,7 @@ int dieroll;
 
 	if (jousting) {
 	    tmp += d(2, (obj == uwep) ? 10 : 2);        /* [was in dmgval()] */
+	    if (obj && obj->oartifact == ART_JOUSTER_POWER) tmp += rnd(20);
 	    if (obj && obj->oartifact == ART_CRASH_JOUST) {
 			tmp += 10;
 			if (!rn2(3) && mon->mcanmove) {

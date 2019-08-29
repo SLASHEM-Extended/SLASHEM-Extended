@@ -19,6 +19,8 @@ STATIC_DCL void do_positionbar(void);
 STATIC_PTR int unfaintX(void);
 STATIC_DCL void pumpsminigame(void);
 
+STATIC_PTR void do_megafloodingf(int, int, void *);
+
 #define decrnknow(spell)	spl_book[spell].sp_know--
 #define spellid(spell)		spl_book[spell].sp_id
 #define spellknow(spell)	spl_book[spell].sp_know
@@ -1036,6 +1038,12 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (Race_if(PM_PLAYER_HULK) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1122,7 +1130,9 @@ moveloop()
 						    || (uarmf && uarmf->otyp == skates2)
 						    || (uarmf && uarmf->otyp == skates3)
 						    || (uarmf && uarmf->otyp == skates4)
+						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
 					if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
@@ -1285,6 +1295,12 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (Race_if(PM_PLAYER_HULK) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
@@ -1383,7 +1399,9 @@ moveloop()
 					    || (uarmf && uarmf->otyp == skates2)
 					    || (uarmf && uarmf->otyp == skates3)
 					    || (uarmf && uarmf->otyp == skates4)
+					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
 				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
@@ -4674,8 +4692,27 @@ newbossF:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
+		if (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF && !rn2(1000)) {
+			adjalign(1);
+		}
+
 		if (uarmf && itemhasappearance(uarmf, APP_STANDING_FOOTWEAR) && !rn2(1000)) {
 			awaken_monsters(30);
+		}
+
+		if (uwep && uwep->oartifact == ART_FULL_LEAD_A_FAST_BEING && !rn2(1000)) {
+			You("full-lead a fast-being.");
+			incr_itimeout(&HFast, rnd(50));
+		}
+
+		if (uarmf && uarmf->oartifact == ART_SUBLEVEL_FLOODING && !rn2(10000)) {
+			int madepoolQ = 0;
+
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_megafloodingf, (void *)&madepoolQ);
+			if (madepoolQ)
+				pline("The dungeon is flooded!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
 		}
 
 		if (uarmf && itemhasappearance(uarmf, APP_FUNGAL_SANDALS) && !rn2(50000)) {
@@ -6044,7 +6081,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -8129,6 +8166,10 @@ newboss:
 
 		}
 
+		if (uarm && uarm->oartifact == ART_REJUVENATION_BY_GATE && u.inertia > 3) {
+			u.inertia /= 2;
+		}
+
 		if (u.inertiacontrol) {
 
 			castinertiaspell();
@@ -9437,7 +9478,7 @@ past3:
 
 			}
 
-			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone()) && !rn2(1200 - (200 * night()))) {
+			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone() || (uarmf && uarmf->oartifact == ART_USE_THE_NORMALNESS_TURNS)) && !rn2(1200 - (200 * night()))) {
 
 				int wereformattempts = 0;
 
@@ -12993,6 +13034,90 @@ int amount, max;
 {
 	if (amount > max) amount = max;
 	return amount;
+}
+
+STATIC_PTR void
+do_megafloodingf(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			if (rn2(4)) {
+				levl[randomx][randomy].typ = MOAT;
+				makemon(mkclass(S_EEL,0), randomx, randomy, NO_MM_FLAGS);
+			} else {
+				levl[randomx][randomy].typ = LAVAPOOL;
+				makemon(mkclass(S_FLYFISH,0), randomx, randomy, NO_MM_FLAGS);
+			}
+
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+
+		if (rn2(4)) {
+			levl[x][y].typ = MOAT;
+			makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
+		} else {
+			levl[x][y].typ = LAVAPOOL;
+			makemon(mkclass(S_FLYFISH,0), x, y, NO_MM_FLAGS);
+		}
+
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+	u.aggravation = 0;
+
 }
 
 STATIC_OVL void

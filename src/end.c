@@ -867,7 +867,7 @@ int how;
 
 	if (how < PANICKED) u.umortality++;
 
-	if (DywypiProblem || u.uprops[DYWYPI_PROBLEM].extrinsic || have_dywypistone()) {
+	if (DywypiProblem || u.uprops[DYWYPI_PROBLEM].extrinsic || have_dywypistone() || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR)) {
 		wanttodie = 1;
 		char qbuf[QBUFSZ];
 		char possid = 0;

@@ -1126,7 +1126,7 @@ register struct monst *mtmp;
 		}
 	}
 
-	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
 
 		static const char *conversion_msgs[] = {
 			"Kafir! Yuece Tanri sizi sevmez, ve sonra doenuestuermek yoksa cezalandirilacaktir!",
@@ -1318,7 +1318,7 @@ register struct monst *mtmp;
 
 convertdone:
 
-	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(15)) {
+	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
 
 		static const char *hcalien_msgs[] = {
 			"Wouwou.",

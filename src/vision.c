@@ -514,6 +514,7 @@ vision_recalc(control)
     static unsigned char colbump[COLNO+1];	/* cols to bump sv */
     unsigned char *sv;				/* ptr to seen angle bits */
     int oldseenv;				/* previous seenv value */
+    int efflightradius;
 
     vision_full_recalc = 0;			/* reset flag */
     if (in_mklev || !iflags.vision_inited) return;
@@ -651,16 +652,19 @@ vision_recalc(control)
 	    }
 	}
 
-	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() ) && !(uwep && uwep->oartifact == ART_WEAKITE_THRUST) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) && u.xray_range < (u.nv_range + Sight_bonus + StrongSight_bonus) ) {
-	    if (!(u.nv_range + Sight_bonus + StrongSight_bonus) ) {	/* range is 0 */
+	efflightradius = (u.nv_range + Sight_bonus + StrongSight_bonus);
+	if (uarmh && uarmh->oartifact == ART_DARKSIGHT_HELM) efflightradius += 2;
+
+	if (has_night_vision && !(u.uprops[WEAKSIGHT].extrinsic || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() ) && !(uwep && uwep->oartifact == ART_WEAKITE_THRUST) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) && u.xray_range < efflightradius) {
+	    if (!efflightradius) {	/* range is 0 */
 		next_array[u.uy][u.ux] |= IN_SIGHT;
 		levl[u.ux][u.uy].seenv = SVALL;
 		next_rmin[u.uy] = min(u.ux, next_rmin[u.uy]);
 		next_rmax[u.uy] = max(u.ux, next_rmax[u.uy]);
-	    } else if (( (u.nv_range + Sight_bonus + StrongSight_bonus) > 0) && !(u.uprops[WEAKSIGHT].extrinsic || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) ) {
-		ranges = circle_ptr(u.nv_range + Sight_bonus + StrongSight_bonus);
+	    } else if ((efflightradius > 0) && !(u.uprops[WEAKSIGHT].extrinsic || (uwep && uwep->otyp == SNIPESLING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || WeakSight || (uleft && uleft->oartifact == ART_BLIND_PILOT) || (uright && uright->oartifact == ART_BLIND_PILOT) || have_weaksightstone() || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST) ) && !(uarmh && uarmh->oartifact == ART_FIRE_CHIEF_HELMET) ) {
+		ranges = circle_ptr(efflightradius);
 
-		for (row = u.uy-(u.nv_range + Sight_bonus + StrongSight_bonus); row <= u.uy+(u.nv_range + Sight_bonus + StrongSight_bonus); row++) {
+		for (row = (u.uy - efflightradius); row <= (u.uy + efflightradius); row++) {
 		    if (row < 0) continue;	if (row >= ROWNO) break;
 		    dy = v_abs(u.uy-row);	next_row = next_array[row];
 

@@ -8663,7 +8663,7 @@ madnesseffect:
 		 case SPEAR_TRAP:
 		seetrap(trap);
 		pline("A spear stabs up from a hole in the ground at you!");
-		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) {
+		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
 		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
@@ -18159,7 +18159,7 @@ boolean force_failure;
 	}
 	/* untrappable traps are located on the ground. */
 	if (!can_reach_floor()) {
-		if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 		else
@@ -18918,7 +18918,7 @@ boolean force;
 			case 'q': return(0);
 			case 'n': continue;
 		    }
-		    if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		    if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			You("aren't skilled enough to reach from %s.",
 				mon_nam(u.usteed));
 			return(0);
@@ -19565,6 +19565,7 @@ lava_effects()
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
     if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
     if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
+    if (uarm && uarm->oartifact == ART_JOHANNA_S_RED_CHARM) return FALSE;
     if (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) return FALSE;
 
     if (!Fire_resistance) {

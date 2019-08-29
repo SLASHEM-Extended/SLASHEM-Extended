@@ -510,6 +510,23 @@ void
 playerbleed(xtime)
 long xtime;
 {
+	if (uleft && uleft->oartifact == ART_JANA_S_DIMINISHER && !rn2(100)) {
+		u.youaredead = 1;
+		pline("NETHACK caused a General Protection Fault at address 0010:50E8.");
+		killer_format = KILLED_BY;
+		killer = "Jana's diminisher";
+		done(DIED);
+		u.youaredead = 0;
+	}
+	if (uright && uright->oartifact == ART_JANA_S_DIMINISHER && !rn2(100)) {
+		u.youaredead = 1;
+		pline("NETHACK caused a General Protection Fault at address 0010:50E8.");
+		killer_format = KILLED_BY;
+		killer = "Jana's diminisher";
+		done(DIED);
+		u.youaredead = 0;
+	}
+
 	PlayerBleeds += xtime;
 	if (PlayerBleeds > 100) You("have a hemorrhage!");
 	else if (PlayerBleeds > 50) You("are bleeding profusely!");
@@ -9729,7 +9746,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above(tmp);
-		    } else if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
@@ -9755,7 +9772,7 @@ dodip()
 		if (yn(qbuf) == 'y') {
 		    if (Levitation) {
 			floating_above("lava");
-		    } else if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+		    } else if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
 			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {

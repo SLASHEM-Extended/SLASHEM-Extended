@@ -6748,7 +6748,7 @@ A("Millicent's Cone",				PROSTITUTE_SHOE,
 	PHYS(6, 8), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
 
 A("Martha's Foreign Goer",				PROSTITUTE_SHOE, /* hitting an enemy with it causes d10 bleeding damage, foocubuses are more likely to want sex with you */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
 
 A("Tommy's Deferred Heel",				PROSTITUTE_SHOE, /* monsters are always spawned hostile while you wield it */

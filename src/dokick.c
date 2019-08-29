@@ -327,6 +327,12 @@ register boolean clumsy;
 
 	/*if (dmg > 127) dmg = 127;*/ /* sanity check... but not actually needed --Amy */
 
+	if (uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE && !is_neuter(mon->data) && !(mon->female) && humanoid(mon->data) && !rn2(100) && !resist(mon, TOOL_CLASS, 0, NOTELL) ) {
+		pline("%s gets all submissive from being kicked by your beautiful high-heeled combat boots!", Monnam(mon));
+		(void) tamedog(mon, (struct obj *) 0, FALSE);
+		return;
+	}
+
 	if (dmg > 0) {
 		mon->mhp -= dmg;
 #ifdef SHOW_DMG
@@ -480,6 +486,11 @@ register boolean clumsy;
 		mon->mfrozen = rnd(10);
 		mon->mstrategy &= ~STRAT_WAITFORU;
 
+	}
+
+	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) {
+		mon->bleedout += rnd(10);
+		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 
 	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT && !rn2(10) && mon->mcanmove ) {
@@ -1702,6 +1713,12 @@ dokick()
 		    if(!IS_STWALL(maploc->typ) && maploc->ladder == LA_DOWN)
 			goto dumb;
 ouch:
+
+			if (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && !rn2(3) && IS_STWALL(maploc->typ) && !(levl[x][y].wall_info & W_NONDIGGABLE)) {
+				pline("Crash! Your kick razed the wall!");
+				maploc->typ = CORR;
+				return(1);
+			}
 
 			if (Role_if(PM_QUARTERBACK)) { /* expert at kicking and thus doesn't take damage, from PRIME --Amy */
 				pline("Thump - you kicked an obstacle.");

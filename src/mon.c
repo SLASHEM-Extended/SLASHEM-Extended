@@ -5343,6 +5343,9 @@ xkilled(mtmp, dest)
 	if (uwep && uwep->oartifact == ART_GOLDIFICATION && mtmp->m_lev > 0) {
 		u.ugold += mtmp->m_lev;
 	}
+	if (uwep && uwep->oartifact == ART_PRICK_BEARER_S_RANSOM && mtmp->m_lev > 0) {
+		u.ugold += mtmp->m_lev;
+	}
 
 	if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && !rn2(50)) {
 		u.uhpmax++;

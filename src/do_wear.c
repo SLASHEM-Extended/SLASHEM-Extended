@@ -332,6 +332,13 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("The devils curse your boots.");
+		}
+    }
+
     if (uarmf && uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) {
 		if (!uarmf->cursed) curse(uarmf);
 		if (uarmf->spe > -10) uarmf->spe = -10;
@@ -345,6 +352,13 @@ Boots_on()
     if (uarmf && uarmf->oartifact == ART_RNG_S_BEAUTY && uarmf->spe == 0) {
 		if (!rn2(2)) uarmf->spe = rnd(7);
 		else uarmf->spe = -(rnd(7));
+    }
+
+    if (uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("You decided to enact Elena's Challenge, which means that all men need to endure being kicked by you in an attempt to 'conquer' you. In order to prevent you from simply ending the challenge prematurely, your block-heeled combat boots just welded themselves to your %s.", makeplural(body_part(FOOT)));
+		}
     }
 
     if (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) {
@@ -1871,6 +1885,18 @@ Helmet_on()
 int
 Helmet_off()
 {
+    if (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) {
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-200);
+		pline("Taking off your headgear is a terribly bad idea, and the gods will certainly not be pleased!");
+		if (HardcoreAlienMode) {
+			u.ualign.sins += 4;
+			u.alignlim -= 4;
+			adjalign(-1000);
+		}
+    }
+
     takeoff_mask &= ~W_ARMH;
 
     switch(uarmh->otyp) {
@@ -2888,6 +2914,36 @@ Armor_on()
 		change_sex();
 	}
 
+	if (uarm && uarm->oartifact == ART_INCREDIBLY_SEXY_SQUEAKING && uarm->spe > -5) {
+		uarm->spe -= 5;
+
+		int attempts = 0;
+		register struct permonst *ptrZ;
+		register struct monst *bossmon;
+sexysqueaking:
+		do {
+
+			ptrZ = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!ptrZ || (ptrZ && !(ptrZ->msound == MS_FART_NORMAL))) && attempts < 50000);
+
+		if (ptrZ && ptrZ->msound == MS_FART_NORMAL) {
+			bossmon = makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+		}
+		else if (rn2(50)) {
+			attempts = 0;
+			goto sexysqueaking;
+		}
+
+		if (bossmon) {
+			tamedog(bossmon, (struct obj *) 0, TRUE);
+			pline("Someone sexy is waiting for you nearby...");
+		}
+
+	}
+
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_ISILDUR && uarm->spe < 1) uarm->spe = rnd(10);
 
 	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarm);
@@ -3140,6 +3196,11 @@ Amulet_on()
 		curse(uamul);
 		uamul->hvycurse = 1;
 		pline("Mortal creatures cannot master such a powerful amulet, and are therefore afflicted by a dark, evil curse!");
+    }
+
+    if (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA) {
+		curse(uamul);
+		pline("Now you have to fight on Walt's side, and to make sure you cannot run off, the amulet cursed itself!");
     }
 
     if (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) {
@@ -5040,6 +5101,7 @@ find_ac()
 
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) uac += 5;
 	if (RngeDnethack) uac += 5;
+	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) uac += 5;
 
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) uac -= 5;
@@ -5097,6 +5159,11 @@ find_ac()
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) uac -= 1;
+	if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) uac -= 2;
+	if (uarmc && uarmc->oartifact == ART_FOOKING_TANK) uac -= 10;
+	if (uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_INERT_GREAVES) uac -= 4;
+	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {

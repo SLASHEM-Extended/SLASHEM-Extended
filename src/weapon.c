@@ -1743,6 +1743,18 @@ struct monst *mon;
 			}
 		}
 
+		if (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX) {
+			if ( (objects[otmp->otyp].oc_skill == P_SHORT_SWORD) || (objects[otmp->otyp].oc_skill == P_BROAD_SWORD) || (objects[otmp->otyp].oc_skill == P_LONG_SWORD) || (objects[otmp->otyp].oc_skill == P_TWO_HANDED_SWORD) || (objects[otmp->otyp].oc_skill == P_SCIMITAR) || (objects[otmp->otyp].oc_skill == P_SABER) || (objects[otmp->otyp].oc_skill == P_DAGGER) ) {
+			bonus += 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_BASIC) bonus += 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_SKILLED) bonus += 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_EXPERT) bonus += 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_MASTER) bonus += 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_GRAND_MASTER) bonus += 1;
+			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_SUPREME_MASTER) bonus += 1;
+			}
+		}
+
 		if (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN && (objects[otmp->otyp].oc_skill == P_AXE)) {
 			bonus += 5;
 		}
@@ -4872,6 +4884,7 @@ int degree;
 	if (Race_if(PM_EGYMID) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_ITAQUE) && !rn2(10)) degree *= 2;
 	if (uwep && uwep->oartifact == ART_GEOLOGY_RULES_THE_WORLD && skill == P_PICK_AXE) degree *= 3;
+	if (uarmc && uarmc->oartifact == ART_FINDING_THYSELF && skill == P_SPIRITUALITY) degree *= 5;
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
@@ -5365,6 +5378,8 @@ struct obj *weapon;
 	}
 
 	if (RngeHighHeeling && weapon && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == STICKSHOE || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == BLOCK_HEELED_SANDAL || weapon->otyp == PROSTITUTE_SHOE || weapon->otyp == DOGSHIT_BOOT) ) bonus += rnd(10);
+
+	if (uarmf && uarmf->oartifact == ART_VERENA_S_DUELING_SANDALS && weapon && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == STICKSHOE || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == BLOCK_HEELED_SANDAL || weapon->otyp == PROSTITUTE_SHOE || weapon->otyp == DOGSHIT_BOOT) ) bonus += rnd(10);
 
 	if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK && weapon && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == STICKSHOE || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == BLOCK_HEELED_SANDAL || weapon->otyp == PROSTITUTE_SHOE || weapon->otyp == DOGSHIT_BOOT) ) bonus += 2;
 

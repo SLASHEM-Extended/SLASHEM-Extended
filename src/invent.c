@@ -18848,7 +18848,7 @@ boolean knoweverything;
 				case ART_NEZ_SPECIAL_OFFER:
 					pline("Artifact specs: +8 to-hit and +6 damage, also causes monsters to bleed on a hit."); break;
 				case ART_MISTY_S_MELEE_PLEASURE:
-					pline("Artifact specs: +8 to-hit and +14 damage against male monsters, +5 charisma and fire resistance when wielded, prevents you from contracting STDs."); break;
+					pline("Artifact specs: +8 to-hit and +14 damage against male monsters, +5 charisma and fire resistance when wielded, prevents you from contracting STDs. A little close combat with your future bride obligingly/pleasingly? :-)"); break;
 				case ART_CORPORAL_DIGGING:
 					pline("Artifact specs: +8 damage."); break;
 				case ART_COLONEL_PROUDSTER:

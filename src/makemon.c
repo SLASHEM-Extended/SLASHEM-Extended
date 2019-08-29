@@ -20307,6 +20307,10 @@ loopback:
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_CONVERT) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_WALSCHOLAR) && (ptr->msound == MS_HCALIEN) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_CELLAR_CHILD) && is_angbandmonster(ptr) )) ct += 20;
+		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_NORMAL) )) ct += 5;
+		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_QUIET) )) ct += 5;
+		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_FART_LOUD) )) ct += 5;
+		if (ct > 0 && (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (ptr->msound == MS_STENCH) )) ct += 20;
 		if (ct > 0 && (Role_if(PM_DEMAGOGUE) && (ptr->mlet == S_KOP))) ct += 5;
 		if (ct > 0 && (Role_if(PM_DEMAGOGUE) && (ptr->mresists & MR_PLUSFOUR))) ct += 1;
 		if (ct > 0 && (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (ptr->mflags2 & M2_DEMON) )) ct += 5;
@@ -21314,6 +21318,10 @@ int     spc;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_CONVERT) )) num += 5;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[last].msound == MS_HCALIEN) )) num += 5;
 		if ((Role_if(PM_CELLAR_CHILD) && is_angbandmonster(&mons[last]) )) num += 20;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_FART_NORMAL) )) num += 5;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_FART_QUIET) )) num += 5;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_FART_LOUD) )) num += 5;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[last].msound == MS_STENCH) )) num += 20;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[last].mresists & MR_PLUSFOUR))) num += 1;
 		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (mons[last].mflags2 & M2_DEMON) )) num += 5;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[last].mflags3 & M3_NOTAME) )) num += 2;
@@ -22031,6 +22039,10 @@ int     spc;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_CONVERT) )) num -= 5;
 		if ((Role_if(PM_WALSCHOLAR) && (mons[first].msound == MS_HCALIEN) )) num -= 5;
 		if ((Role_if(PM_CELLAR_CHILD) && is_angbandmonster(&mons[first]) )) num -= 20;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_FART_NORMAL) )) num -= 5;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_FART_QUIET) )) num -= 5;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_FART_LOUD) )) num -= 5;
+		if ((uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && (mons[first].msound == MS_STENCH) )) num -= 20;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[first].mresists & MR_PLUSFOUR))) num -= 1;
 		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && (mons[first].mflags2 & M2_DEMON) )) num -= 5;
 		if ((Role_if(PM_DEMAGOGUE) && (mons[first].mflags3 & M3_NOTAME) )) num -= 2;
@@ -23112,7 +23124,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone()) return FALSE;
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone() || (uwep && uwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
@@ -23201,6 +23213,7 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_ANGEL && (uarmc && itemhasappearance(uarmc, APP_ANGELIC_CLOAK) ) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmc && itemhasappearance(uarmc, APP_DEMONIC_CLOAK) ) && rn2(2)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) && rn2(10)) return TRUE;
+	if (ptr->mlet == S_DEMON && (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) && rn2(10)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) && rn2(20)) return TRUE;
 
 	if (!always_hostile(ptr) && Race_if(PM_ANGBANDER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;

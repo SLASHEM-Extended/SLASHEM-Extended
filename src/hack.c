@@ -718,7 +718,7 @@ moverock()
 		 if (Blind) feel_location(sx,sy);
 	cannot_push:
 	    if (throws_rocks(youmonst.data)) {
-		if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick up" : "push aside",
@@ -1975,8 +1975,10 @@ domove()
 			    || (uarmf && uarmf->otyp == skates2)
 			    || (uarmf && uarmf->otyp == skates3)
 			    || (uarmf && uarmf->otyp == skates4)
+			    || (uwep && uwep->oartifact == ART_GLACIERDALE)
 			    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 			    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)
+			    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
 			    || resists_cold(&youmonst) || Flying
 			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			    || is_whirly(youmonst.data))
@@ -4005,7 +4007,7 @@ dopickup()
 			|| (Flying && !StrongFlying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
-	    } else if (!likes_lava(youmonst.data) && !(uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
+	    } else if (!likes_lava(youmonst.data) && !(uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) && !(uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) ) {
 		You("would burn to a crisp trying to pick things up.");
 		return(0);
 	    }
@@ -4015,7 +4017,7 @@ dopickup()
 		return(0);
 	}
 	if (!can_reach_floor()) {
-		if (u.usteed && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 		    You("aren't skilled enough to reach from %s.",
 			y_monnam(u.usteed));
 		else
@@ -4791,6 +4793,8 @@ weight_cap()
 	if (uarmg && uarmg->oartifact == ART_HANDBOXED) carrcap += 1000;
 	if (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
+	if (uleft && uleft->oartifact == ART_CORGON_S_RING) carrcap += 100;
+	if (uright && uright->oartifact == ART_CORGON_S_RING) carrcap += 100;
 
 	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 

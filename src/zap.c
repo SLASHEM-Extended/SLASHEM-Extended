@@ -9759,22 +9759,39 @@ register int osym, dmgtyp;
 	    switch(dmgtyp) {
 		case AD_COLD:
 
-		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {skip++; break;
+		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {
+				skip++;
+				break;
 			}
 
-		    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) {skip++; break;
+		    if (uwep && uwep->oartifact == ART_GLACIERDALE ) {
+				skip++;
+				break;
 			}
 
-		    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_DUBAI_TOWER_BREAK) {skip++; break;
+		    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) {
+				skip++;
+				break;
 			}
 
-		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {skip++; break;
+		    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_DUBAI_TOWER_BREAK) {
+				skip++;
+				break;
 			}
 
-		    if (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) {skip++; break;
+		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {
+				skip++;
+				break;
 			}
 
-		    if (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) {skip++; break;
+		    if (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) {
+				skip++;
+				break;
+			}
+
+		    if (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) {
+				skip++;
+				break;
 			}
 
 		    if(osym == POTION_CLASS && obj->otyp != POT_OIL) {
@@ -9797,6 +9814,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_FIRE:
 		    xresist = (Fire_resistance && obj->oclass != POTION_CLASS);
+
+			if (uarmc && uarmc->oartifact == ART_BOWSER_S_FUN_ARENA) {
+				skip++;
+				break;
+			}
 
 			if (osym==SCROLL_CLASS && obj->oartifact)
 			skip++;

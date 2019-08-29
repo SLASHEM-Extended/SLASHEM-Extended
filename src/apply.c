@@ -4797,16 +4797,27 @@ doapply()
 			You("dial a number...");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy nabrali nepravil'nyy nomer, slabak!" : "BeepbeepBeepbeepbeepbeepBeepbeepbeep!");
 
-			int summondemon = ndemon(A_CHAOTIC);
-			if (summondemon == NON_PM) {
-				pline("But no one picks up your call.");
+			if (obj->oartifact == ART_MOLOCH_S_PERSONAL_PHONE) {
+				int pm;
+				pm = !rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+				if (pm && (pm != NON_PM)) {
+					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+					pline("An angry demon was summoned!");
+				}
+
 			} else {
-				pline("%s", Blind ? "You hear an evil chuckle!" : "A miasma of stinking vapors coalesces around you!");
-				make_pet_minion(summondemon, A_CHAOTIC);
-				godvoice(A_CHAOTIC, "My minion shall serve thee!");
+
+				int summondemon = ndemon(A_CHAOTIC);
+				if (summondemon == NON_PM) {
+					pline("But no one picks up your call.");
+				} else {
+					pline("%s", Blind ? "You hear an evil chuckle!" : "A miasma of stinking vapors coalesces around you!");
+					make_pet_minion(summondemon, A_CHAOTIC);
+					godvoice(A_CHAOTIC, "My minion shall serve thee!");
+				}
 			}
 
-		}
+		} else pline("You try to call someone, but there's no prepaid balance on this phone and therefore it fails.");
 		break;
 	case PICK_AXE:
 	case CONGLOMERATE_PICK:
@@ -5016,6 +5027,15 @@ doapply()
 	case LIGHTWHIP:
 	case RED_DOUBLE_LIGHTSABER:
 	case WHITE_DOUBLE_LIGHTSABER:
+
+		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
+			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
+				u.ugold -= 10000;
+				obj->age += 750;
+				Your("lightsaber was recharged.");
+			}
+		}
+
 		if (!(uswapwep == obj && u.twoweap))
 		  if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
 		/* Fall through - activate via use_lamp */

@@ -1896,6 +1896,11 @@ register struct monst *mtmp;
 		}
 
 		pline("You gently caress %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
+
+		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_SEX_GAME && !mtmp->mpeaceful && !mtmp->mfrenzied) {
+			mtmp->mpeaceful = TRUE;
+		}
+
 		if (mtmp->mtame) {
 			pline("%s seems to love you even more than before.", Monnam(mtmp) );
 			if (mtmp->mtame < 30) mtmp->mtame++;
@@ -1911,6 +1916,20 @@ register struct monst *mtmp;
 			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
 		}
 	    m_respond(mtmp);
+
+		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_SEX_GAME && mtmp->mpeaceful && !mtmp->mfrenzied && !mtmp->mtame && (mtmp->m_lev < 1 || (u.ugold >= (mtmp->m_lev * 100))) ) {
+			pline("%s offers to join you for %d zorkmids.", (mtmp->m_lev < 1) ? 0 : (mtmp->m_lev * 100));
+			if (yn("Accept the offer?") != 'y') {
+				if (mtmp->m_lev > 0) u.ugold -= (mtmp->m_lev * 100);
+				struct monst *suepet;
+				suepet = tamedog(mtmp, (struct obj *) 0, TRUE);
+				if (suepet) mtmp = suepet;
+				if (mtmp) verbalize("You really caressed my butt cheeks so beautifully, I think I'm in love with you!");
+				else impossible("suepet was tamed but doesn't exist now??");
+			}
+
+		}
+
 	    break;
 	case MS_IMITATE:
 	    pline_msg = "imitates you.";
@@ -2104,7 +2123,7 @@ register struct monst *mtmp;
 
 			break;
 
-		} else if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN)) {
+		} else if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
 
 			break;
 
@@ -2291,7 +2310,7 @@ register struct monst *mtmp;
 
 		}
 
-		if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN)) {
+		if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
 			break;
 		}
 

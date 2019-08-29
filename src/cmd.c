@@ -11933,7 +11933,7 @@ register char *cmd;
 	}
 
 	/* Autopilot means your char does random things depending on your contamination --Amy */
-	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || have_autopilotstone()) ) {
+	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
 		int autopilotchance = u.contamination;
 		if (isevilvariant && (autopilotchance > 900)) autopilotchance = 900;
 		else if (!isevilvariant && (autopilotchance > 500)) autopilotchance = 500;

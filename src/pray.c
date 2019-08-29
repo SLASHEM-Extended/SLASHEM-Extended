@@ -2555,7 +2555,7 @@ dopray()
 {
     /* Confirm accidental slips of Alt-P */
 
-    if (Role_if(PM_GANG_SCHOLAR) && u.scholarturns < moves) {
+    if ((Role_if(PM_GANG_SCHOLAR) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX)) && u.scholarturns < moves) {
 
 	u.scholarturns = moves + 1000;
 
