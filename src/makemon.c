@@ -5002,6 +5002,70 @@ register struct monst *mtmp;
 		} else if (mm == PM_LITTLE_GIRL){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
 
+		} else if (mm == PM_ITALIAN_GIRL){
+			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+			(void)mongets(mtmp, ITALIAN_HEELS);
+		} else if (mm == PM_FEMININE_GIRL){
+			(void)mongets(mtmp, LADY_BOOTS);
+			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		} else if (mm == PM_ELEGANT_GIRL){
+			(void)mongets(mtmp, BLOCK_HEELED_SANDAL);
+			(void)mongets(mtmp, STILETTO_SANDALS);
+		} else if (mm == PM_ITALIAN_LASS){
+			(void)mongets(mtmp, SOFT_LADY_SHOE);
+			(void)mongets(mtmp, ITALIAN_HEELS);
+		} else if (mm == PM_FEMININE_LASS){
+			(void)mongets(mtmp, LADY_BOOTS);
+			(void)mongets(mtmp, HUGGING_BOOT);
+		} else if (mm == PM_ELEGANT_LASS){
+			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void)mongets(mtmp, STILETTO_SANDALS);
+		} else if (mm == PM_ITALIAN_WOMAN){
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+			(void)mongets(mtmp, ITALIAN_HEELS);
+		} else if (mm == PM_FEMININE_WOMAN){
+			(void)mongets(mtmp, LADY_BOOTS);
+			(void)mongets(mtmp, INKA_BOOT);
+		} else if (mm == PM_ELEGANT_WOMAN){
+			(void)mongets(mtmp, PROSTITUTE_SHOE);
+			(void)mongets(mtmp, STILETTO_SANDALS);
+		} else if (mm == PM_ITALIAN_DAME){
+			(void)mongets(mtmp, BLOCK_HEELED_SANDAL);
+			(void)mongets(mtmp, ITALIAN_HEELS);
+		} else if (mm == PM_FEMININE_DAME){
+			(void)mongets(mtmp, LADY_BOOTS);
+			(void)mongets(mtmp, STEEL_CAPPED_SANDAL);
+		} else if (mm == PM_ELEGANT_DAME){
+			(void)mongets(mtmp, SOFT_LADY_SHOE);
+			(void)mongets(mtmp, STILETTO_SANDALS);
+		} else if (mm == PM_ITALIAN_LADY){
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+			(void)mongets(mtmp, ITALIAN_HEELS);
+		} else if (mm == PM_FEMININE_LADY){
+			(void)mongets(mtmp, LADY_BOOTS);
+			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
+		} else if (mm == PM_ELEGANT_LADY){
+			(void)mongets(mtmp, PROSTITUTE_SHOE);
+			(void)mongets(mtmp, STILETTO_SANDALS);
+		} else if (mm == PM_SOUR_PROSTITUTE){
+			(void)mongets(mtmp, PROSTITUTE_SHOE);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+		} else if (mm == PM_ANGRY_PROSTITUTE){
+			(void)mongets(mtmp, PROSTITUTE_SHOE);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+		} else if (mm == PM_PINK_PROSTITUTE){
+			(void)mongets(mtmp, PROSTITUTE_SHOE);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+		} else if (mm == PM_REDGUARD_PROSTITUTE){
+			(void)mongets(mtmp, PROSTITUTE_SHOE);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+		} else if (mm == PM_SEXY_PROSTITUTE){
+			(void)mongets(mtmp, SEXPLAY_WHIP);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+		} else if (mm == PM_GORGEOUS_PROSTITUTE){
+			(void)mongets(mtmp, SEXPLAY_WHIP);
+			(void)mongets(mtmp, HIPPIE_HEELS);
+
 		} else if (mm == PM_HC_GIRL){
 			(void)mongets(mtmp, SWEET_MOCASSINS);
 
@@ -8356,6 +8420,7 @@ register struct	monst	*mtmp;
 		break;
 	    case S_GNOME:
 
+		if (mtmp->data == &mons[PM_GNOME_HARLOT]) (void) mongets(mtmp, PROSTITUTE_SHOE);
 		if (mtmp->data == &mons[PM_ALIEN_PHALANX]) (void) mongets(mtmp, HALBERD);
 		if (mtmp->data == &mons[PM_GNOME_MACER]) (void) mongets(mtmp, MACE);
 		if (mtmp->data == &mons[PM_GNOME_BADASS]) (void) mongets(mtmp, WAN_REMOVE_RESISTANCE);
@@ -8766,6 +8831,13 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_CATERPILLAR_SNIPER]) {
 		  	(void) mongets(mtmp, SNIPER_RIFLE);
 		  	m_initthrow(mtmp, BULLET, 20);
+		}
+		if (ptr == &mons[PM_JANE_SANDRA]) {
+		  	(void) mongets(mtmp, LADY_BOOTS);
+		  	(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		  	(void) mongets(mtmp, ROCKET_GAUNTLETS);
+		  	(void) mongets(mtmp, WAN_SPEED_MONSTER);
+		  	(void) mongets(mtmp, POT_FULL_HEALING);
 		}
 		if (ptr == &mons[PM_OMEGA_HERAKLES]) {
 		  	(void) mongets(mtmp, !rn2(3) ? ASSAULT_RIFLE : !rn2(2) ? SUBMACHINE_GUN : RIFLE);
@@ -9245,6 +9317,9 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_DEMOLITIONS_EXPERT]) {
 			m_initthrow(mtmp, FRAG_GRENADE, 15);
 			(void) mongets(mtmp, SCR_TRAP_CREATION);
+		}
+		if (ptr == &mons[PM_TAWNY]) {
+			(void) mongets(mtmp, LADY_BOOTS);
 		}
 
 		if (mtmp->data == &mons[PM_FIRE_METROID]) (void) mongets(mtmp, SCR_FLOODING);
