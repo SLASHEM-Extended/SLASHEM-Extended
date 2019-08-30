@@ -1,6 +1,37 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.5.5 - August 2019
+- Fixed the exploits and obj_is_local panic errors associated with reverse identify effects.
+- If the player bumps into a peaceful or tame monster that is hiding and has passive attacks, the passive attack should no longer trigger. It still triggers when bumping into a hostile monster though.
+- Changed the method for saving randomized stats monsters into the savegame file. This new method makes savegame files slightly bigger but should cut down on the potential of "forgetting" monsters when new ones are added.
+- Drowning in water doesn't instakill a player who has a lot of HP, but instead damages them quickly over time. This does not affect the drowning attack of eels, which are still an instakill.
+- Firearms and Vaapad skills add extra options when applying automatic firearms and two-handed lightsabers, respectively, as soon as they reach expert skill level.
+- Added the paranoidquit option, which is on by default and should never be turned off. If the player does turn it off, #quit can be confirmed by a simple 'y' which is highly dangerous.
+- Lawful characters gain a point of alignment whenever they purchase a shopkeeper service.
+- Higher sanity can occasionally replace regular messages with hallucinatory ones.
+- Being hit by a shuriken can cause the player to bleed.
+- Made it possible to try to perform a few more actions while not having the necessary hands, with the usual chance of failure and bad effects.
+- Huge monsters or players can still be engulfed as long as the engulfer is also at least huge size.
+- Fixed the vanilla bug where saving the game while punished caused errors and usually ate the iron ball or chain.
+- Scent view and echolocation no longer display all monsters.
+- For the undead slayer role, undead pets are always capable of turning traitor.
+- Spell retention values are now displayed in the enlightenment screen.
+- The damage done to the player by the nadja trap scales up more slowly.
+- Implants are picked much less often as the item class to generate more frequently.
+- Monsters are less likely to attack pets, and ranged monster-versus-monster attacks now take evasiveness, armor class, the presence of a shield and other factors into account.
+- If the player's sanity is greater than 90000, any further sanity increases will cause really bad effects.
+- Added some new item materials: sand, obsidian, ceramic, shadowstuff, lead, chrome and nanomachine.
+
 2.5.4 - August 2019
+- Moving into a detected monster should no longer cause the player to waste a turn. Now, the player will correctly attack the monster.
+- Monster-versus-monster hug attacks now take to-hit into account.
+- Fixed the bug where monsters could hit pets with gaze attacks through walls.
+- Hallucination messages are no longer suppressed by hallucination resistance, although the actual effects from hallucination still are.
+- The slowness effect from wearing fetish heels or velcro sandals now applies only if the player is moving.
+- Rooms-and-corridors levels should no longer spawn excessive amounts of special rooms in Gehennom or when playing bigslex.
+- Throwing weapons now gain multishot bonus from the missile weapons skill, while crossbows and certain types of firearms gain extra damage bonuses when their respective weapon skills are high enough.
+- Chatting to a nurse now offers a service to cure sanity, and quaffing from a fountain can also occasionally cure it.
+- Monsters no longer pick up switchers, chargers or ugh memory to create inventory windows.
 - New skills: gun control and squeaking.
 - New properties: scent view, echolocation and diminished bleeding.
 
