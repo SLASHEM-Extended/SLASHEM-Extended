@@ -5518,6 +5518,7 @@ struct obj *otmp;
 		      otyp != AUTO_SHOTGUN &&
 		      otyp != ASSAULT_RIFLE &&
 		      otyp != KALASHNIKOV &&
+		      otyp != TELEPHONE &&
 		      otyp != FRAG_GRENADE &&
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&

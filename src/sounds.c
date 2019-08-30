@@ -1918,8 +1918,8 @@ register struct monst *mtmp;
 	    m_respond(mtmp);
 
 		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_SEX_GAME && mtmp->mpeaceful && !mtmp->mfrenzied && !mtmp->mtame && (mtmp->m_lev < 1 || (u.ugold >= (mtmp->m_lev * 100))) ) {
-			pline("%s offers to join you for %d zorkmids.", (mtmp->m_lev < 1) ? 0 : (mtmp->m_lev * 100));
-			if (yn("Accept the offer?") != 'y') {
+			pline("%s offers to join you for %d zorkmids.", Monnam(mtmp), (mtmp->m_lev < 1) ? 0 : (mtmp->m_lev * 100));
+			if (yn("Accept the offer?") == 'y') {
 				if (mtmp->m_lev > 0) u.ugold -= (mtmp->m_lev * 100);
 				struct monst *suepet;
 				suepet = tamedog(mtmp, (struct obj *) 0, TRUE);

@@ -19565,7 +19565,7 @@ lava_effects()
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
     if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
     if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
-    if (uarm && uarm->oartifact == ART_JOHANNA_S_RED_CHARM) return FALSE;
+    if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) return FALSE;
     if (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) return FALSE;
 
     if (!Fire_resistance) {

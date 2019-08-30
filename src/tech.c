@@ -8125,7 +8125,7 @@ int tech;
 		finaltechlevel *= 4;
 		finaltechlevel /= 3;
 		finaltechlevel += 10;
-	} else {
+	} else if (Technicality) {
 		finaltechlevel *= 4;
 		finaltechlevel /= 3;
 		finaltechlevel += 3;

@@ -2631,7 +2631,7 @@ int dieroll;
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
-			tmp + rnd(40);
+			tmp += rnd(40);
 		}
 		if (thrown && obj && obj->oartifact == ART_NEZ_SPECIAL_OFFER) {
 			mon->bleedout += rnd(10);

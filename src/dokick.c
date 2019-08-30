@@ -1717,6 +1717,7 @@ ouch:
 			if (uamul && uamul->oartifact == ART_WALT_VERSUS_ANNA && !rn2(3) && IS_STWALL(maploc->typ) && !(levl[x][y].wall_info & W_NONDIGGABLE)) {
 				pline("Crash! Your kick razed the wall!");
 				maploc->typ = CORR;
+				newsym(x,y);
 				return(1);
 			}
 

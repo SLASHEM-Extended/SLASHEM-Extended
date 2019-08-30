@@ -2617,32 +2617,32 @@ A("The Wand of Orcus", WAN_DEATH, /* bloodthirsty */
 	DRLI(5,12),	NO_DFNS,	NO_CARY,
 	0, A_CHAOTIC, NON_PM, NON_PM, 8000L), 
 
-A("The Sword of Erathaol",			LONG_SWORD,		/*  */
+A("The Sword of Erathaol",			LONG_SWORD, /* blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,	/**/
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L), 	/**/
 
-A("The Saber of Sabaoth",			SILVER_SABER,		/*  */
+A("The Saber of Sabaoth",			SILVER_SABER,		/* blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,	/**/
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L), 	/**/
 
-A("The Sword of Onoel",			TWO_HANDED_SWORD,		/*  */
+A("The Sword of Onoel",			TWO_HANDED_SWORD,		/* blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,	/**/
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L), 	/**/
 
-A("The Glaive of Shamsiel",			GLAIVE,		/*  */
+A("The Glaive of Shamsiel",			GLAIVE,		/* blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,	/**/
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L), 	/**/
 
-A("The Lance of Uriel",			LANCE,		/*  */
+A("The Lance of Uriel",			LANCE,		/* blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,	/**/
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L), 	/**/
 
-A("The Hammer of Barquiel",			LUCERN_HAMMER,		/* Yes, I know it's bladed ;-) */
+A("The Hammer of Barquiel",			LUCERN_HAMMER, /* blindness resistance */		/* Yes, I know it's bladed ;-) */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,	/**/
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L), 	/**/
@@ -4413,7 +4413,7 @@ A("Lixertypie", LONG_SWORD,
 	PHYS(9,18),	DFNS(AD_MAGM),	NO_CARY,
 	0,	A_LAWFUL, NON_PM, NON_PM, 9999L), 
 
-A("The Sameness of Chris",			LONG_SWORD,
+A("The Sameness of Chris",			LONG_SWORD, /* blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L),
@@ -4888,7 +4888,7 @@ A("Filthy Press",		BOW, /* messages often get replaced by random ones */
 	PHYS(5,10),	DRLI(0,0),	NO_CARY,	
 	0, A_LAWFUL, NON_PM, NON_PM, 8000L), 
 
-A("Mub Puh Mub Dit Dit",			LONG_SWORD,
+A("Mub Puh Mub Dit Dit",			LONG_SWORD, /* blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_SEARCH), 0, 0,
 	PHYS(7,10),	DFNS(AD_BLND),	NO_CARY,
 	0, A_LAWFUL, NON_PM, NON_PM, 7500L),
@@ -6659,7 +6659,7 @@ A("Fooking Tank",				LORICATED_CLOAK, /* 10 extra points of AC */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
-A("Darksight Helm",				BASINET, /* increases sight range by 2 (stacks with sight bonus) */
+A("Darksight Helm",				BASINET, /* increases sight range by 2 (stacks with sight bonus), blindness resistance */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_BLND), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
