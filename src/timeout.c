@@ -264,11 +264,23 @@ nh_timeout()
 		losehp(bleedingdamage, (PlayerBleeds > 100) ? "a hemorrhage" : (PlayerBleeds > 50) ? "profuse bleedout" : "bleedout", KILLED_BY);
 		if (!rn2(10)) pline((PlayerBleeds > 100) ? "You're squirting blood everywhere!" : (PlayerBleeds > 50) ? "You're bleeding severely!" : "You're bleeding!");
 		if (bleedingdamage > 1) {
-			PlayerBleeds -= (bleedingdamage - 1);
-			if (StrongDiminishedBleeding) {
-				PlayerBleeds /= 2;
-			} else if (DiminishedBleeding) {
-				if (!rn2(2) && PlayerBleeds > 1) PlayerBleeds -= rnd(PlayerBleeds / 2);
+
+			/* bad luck makes your wounds heal more slowly --Amy */
+			int bleedreductionchance = 100;
+			if (Luck < 0) bleedreductionchance += (Luck * 5); /* because "Luck" is negative! */
+			if (isfriday && bleedreductionchance > 1) bleedreductionchance /= 2;
+
+			/* being a bleeder (or hemophage = racial bleeder) means you have hemophilia... */
+			if ((Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE)) && rn2(3)) bleedreductionchance = 0;
+
+			if (bleedreductionchance > rn2(100)) {
+
+				PlayerBleeds -= (bleedingdamage - 1);
+				if (StrongDiminishedBleeding) {
+					PlayerBleeds /= 2;
+				} else if (DiminishedBleeding) {
+					if (!rn2(2) && PlayerBleeds > 1) PlayerBleeds -= rnd(PlayerBleeds / 2);
+				}
 			}
 		}
 		if (!PlayerBleeds) pline("Your bleeding stops.");
