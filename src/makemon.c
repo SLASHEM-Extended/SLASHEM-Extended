@@ -19319,6 +19319,28 @@ register int	mmflags;
 	    if(is_armed(ptr))
 		m_initweap(mtmp);	/* equip with weapons / armor */
 
+	    if (humanoid(ptr) && (ptr->msound == MS_CONVERT || ptr->msound == MS_HCALIEN) && !rn2(100)) {
+
+			int ixs;
+			for (ixs = STRANGE_OBJECT; ixs < NUM_OBJECTS; ixs++) {
+				register const char *zn;
+				if ((zn = OBJ_DESCR(objects[ixs])) && !strcmpi(zn, "shemagh")) {
+					if (!OBJ_NAME(objects[ixs])) ixs = STRANGE_OBJECT;
+					break;
+				}
+				if ((zn = OBJ_DESCR(objects[ixs])) && !strcmpi(zn, "arabskiy golovnoy ubor")) {
+					if (!OBJ_NAME(objects[ixs])) ixs  = STRANGE_OBJECT;
+					break;
+				}
+				if ((zn = OBJ_DESCR(objects[ixs])) && !strcmpi(zn, "arabcha bosh kiyim")) {
+					if (!OBJ_NAME(objects[ixs])) ixs  = STRANGE_OBJECT;
+					break;
+				}
+			}
+			if (ixs  != NUM_OBJECTS) (void)mongets(mtmp, ixs);
+
+	    }
+
 	    if (!is_armed(ptr) && !is_animal(ptr) && !cantweararm(mtmp->data) && !rn2(25))
 		m_initarmorpieces(mtmp); /* chance to have armor; monsters that are armed already had a bigger chance earlier */
 
