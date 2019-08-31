@@ -288,6 +288,7 @@
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_GOLD_DRACONIAN]) ? 1 : \
+				 ((ptr) == &mons[PM_FIRECRACKER_KANGAROO]) ? 1 : \
 				 ((ptr) == &mons[PM_ANIMATED_TORCH]) ? 1 : \
 				 ((ptr) == &mons[PM_CENTAUR_FLAMESTICKER]) ? 1 : \
 				 ((ptr) == &mons[PM_SIMMERING_MUSHROOM_PATCH]) ? 1 : \

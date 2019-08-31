@@ -1392,6 +1392,27 @@ register struct monst *mtmp;
 			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+	    case PM_BOOT_GOLEM:
+		num = d(1,6);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(LADY_BOOTS, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_SANDAL_GOLEM:
+		num = d(1,6);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(STILETTO_SANDALS, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_ITALIAN_GOLEM:
+		num = d(1,6);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(ITALIAN_HEELS, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
 	    case PM_STUDDED_GOLEM:
 		num = d(2,3);
 		if (num > 1 && rn2(2)) num /= 2;
