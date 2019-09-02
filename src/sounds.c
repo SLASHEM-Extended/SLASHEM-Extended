@@ -1092,7 +1092,7 @@ dosounds()
 		static const char *ruinedchurch_msg[] = {
 			"feel a haunting presence.",
 			"hear a chiming bell.",
-			"a C major chord.",
+			"hear a C major chord.",
 			"feel that all sanctity of this place has been lost.",
 			"are sure that the dead are floating around here.",
 			"hear an orchestral melody that goes 'Daaaaa... daaaaaa... DAAAAAAAAAAAAAAA!!!'",
