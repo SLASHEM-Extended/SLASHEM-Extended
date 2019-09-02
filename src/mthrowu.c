@@ -1978,7 +1978,7 @@ boolean force_linedup;
 		|| (attacktype(mtmp->data, AT_SPIT) && !mtmp->mcan && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)) )
 		{
 			if (!mret) {
-				if (!rn2(20) || attacktype(mtmp2->data, AT_EXPL) || mtmp->mfrenzied) mret = mtmp2;
+				if ((!rn2(20) && (mtmp2->m_lev > rn2(6)) && ((mtmp->m_lev - mtmp2->m_lev) < (2 + rn2(5)) ) ) || attacktype(mtmp2->data, AT_EXPL) || mtmp->mfrenzied) mret = mtmp2;
 			}
 		}
 	}

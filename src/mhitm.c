@@ -237,10 +237,14 @@ fightm(mtmp)		/* have monsters fight each other */
 
 		    /* Allow attacked monsters a chance to hit back. Primarily
 		     * to allow monsters that resist conflict to respond.
+		     * Amy edit: since monsters can lash out at pets now, the pets should have a considerable chance of
+		     * retaliating, regardless of that weird movement value
 		     */
-		    if ((result & MM_HIT) && !(result & MM_DEF_DIED) &&
-			rn2(4) && mon->movement >= NORMAL_SPEED) {
+		    if ( ((result & MM_HIT) || (mon->mtame && !mtmp->mtame && !rn2(4))) && !(result & MM_DEF_DIED) &&
+			((rn2(4) && mon->movement >= NORMAL_SPEED) || (mon->mtame && !mtmp->mtame))
+			) {
 			mon->movement -= NORMAL_SPEED;
+			if (mon->movement < 0) mon->movement = 0; /* fail safe */
 			notonhead = 0;
 			(void) mattackm(mon, mtmp);	/* return attack */
 		    }
