@@ -9723,6 +9723,7 @@ dodip()
 	char allowall[2], qbuf[QBUFSZ], Your_buf[BUFSZ];
 	short mixture;
 	int res;
+	boolean potfinalized = FALSE;
 
 	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 	if(!(obj = getobj(allowall, "dip")))
@@ -9999,6 +10000,7 @@ dodip()
 		if (!Blind)
 			pline("%s seems less hazy.", Yname2(obj));
 		}
+		if (!objects[potion->otyp].oc_name_known && !objects[potion->otyp].oc_uname) docall(potion);
 		useup(potion);
 		return (1);
 	} else if(obj->oclass == POTION_CLASS && obj->otyp != potion->otyp) {
@@ -10022,6 +10024,20 @@ dodip()
 
 		obj->blessed = obj->cursed = obj->bknown = 0;
 		if (Blind || Hallucination) obj->dknown = 0;
+
+		/* Amy edit: finalized potions are unlikely to work in alchemy */
+		if (obj->finalcancel && !rn2(3)) {
+			if (!Blind) pline_The("mixture glows brightly and evaporates.");
+			useup(obj);
+			useup(potion);
+			return(1);
+		}
+		if (potion->finalcancel && !rn2(3)) {
+			if (!Blind) pline_The("mixture glows brightly and evaporates.");
+			useup(obj);
+			useup(potion);
+			return(1);
+		}
 
 		if ((mixture = mixtype(obj, potion)) != 0) {
 			obj->otyp = mixture;
@@ -10249,8 +10265,9 @@ dodip()
 		short old_otyp = potion->otyp;
 		boolean old_dknown = FALSE;
 		boolean more_than_one = potion->quan > 1;
+		if (potion && potion->finalcancel) potfinalized = TRUE;
 
-		if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && obj->cursed) { /* uh-oh */
+		if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && (obj->cursed || (obj->spe < (-rn1(10, 10)))) ) { /* uh-oh */
 			pline("BOOM! The potion explodes!");
 			potion->in_use = TRUE;
 			if (!breathless(youmonst.data) || haseyes(youmonst.data)) potionbreathe(potion);
@@ -10355,7 +10372,9 @@ dodip()
 		update_inventory();
 		}
 
-		if (obj && (obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && !rn2(10)) {
+		/* clearing potions can strain the unihorn; if you do it on a finalized potion, it always happens because
+		 * finalized potions are actually meant to be used as what they are --Amy */
+		if (obj && (obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && (potfinalized || !rn2(10)) ) {
 
 			if (obj->spe > -20) obj->spe--;
 			if(obj->blessed) unbless(obj);
