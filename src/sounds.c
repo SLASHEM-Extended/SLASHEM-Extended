@@ -2589,47 +2589,184 @@ register struct monst *mtmp;
 	    {
 		int nursesanitycost = (u.usanity * 100); /* fixed cost */
 
-		if (u.usanity && (u.ugold >= nursesanitycost)) {
-			verbalize("I can cure your sanity for %d dollars if you want.", nursesanitycost);
-			if (yn("Accept the offer?") == 'y') {
-				verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
-				u.ugold -= nursesanitycost;
-				reducesanity(u.usanity);
-				break;
-			}
-		}
-
 		int nursedecontcost = u.nursedecontamcost; /* goes up every time you purchase it */
-	
-		if (u.ugold >= nursedecontcost && u.contamination) {
-			verbalize("I can decontaminate you for %d dollars if you want.", nursedecontcost);
-			if (yn("Accept the offer?") == 'y') {
-				verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
-				u.ugold -= nursedecontcost;
-				decontaminate(u.contamination);
-				pline("Now you don't have the %d gold pieces any longer.", nursedecontcost);
-				if (FunnyHallu) pline("You offer a 'thank you' to Captain Obvious.");
-				u.nursedecontamcost += 500;
-				if (u.nursedecontamcost < 1000) u.nursedecontamcost = 1000; /* fail safe */
-				break;
-			}
-		}
 
 		int nursehpcost = u.nurseextracost; /* goes up every time you purchase it */
 		if (Upolyd) nursehpcost /= 5;
-	
-		if (u.ugold >= nursehpcost) {
-			verbalize("I can inject extra health into you for %d dollars if you want.", nursehpcost);
-			if (yn("Accept the offer?") == 'y') {
-				verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
-				u.ugold -= nursehpcost;
-				if (!Upolyd) u.uhpmax++;
-				else u.mhmax++;
-				u.nurseextracost += 50;
-				if (u.nurseextracost < 1000) u.nurseextracost = 1000; /* fail safe */
-				break;
-			}
-		}
+
+			winid tmpwin;
+			anything any;
+			menu_item *selected;
+			int n;
+
+			any.a_void = 0;         /* zero out all bits */
+			tmpwin = create_nhwindow(NHW_MENU);
+			start_menu(tmpwin);
+			any.a_int = 1;
+			add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, "Extra Health", MENU_UNSELECTED);
+			any.a_int = 2;
+			add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, "Decontaminate", MENU_UNSELECTED);
+			any.a_int = 3;
+			add_menu(tmpwin, NO_GLYPH, &any , 'h', 0, ATR_NONE, "Healing", MENU_UNSELECTED);
+			any.a_int = 4;
+			add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE, "Cure Sickness", MENU_UNSELECTED);
+			any.a_int = 5;
+			add_menu(tmpwin, NO_GLYPH, &any , 'l', 0, ATR_NONE, "Cure Sliming", MENU_UNSELECTED);
+			any.a_int = 6;
+			add_menu(tmpwin, NO_GLYPH, &any , 'i', 0, ATR_NONE, "Cure Sanity", MENU_UNSELECTED);
+			any.a_int = 7;
+			add_menu(tmpwin, NO_GLYPH, &any , 'm', 0, ATR_NONE, "Medical Supplies", MENU_UNSELECTED);
+			any.a_int = 8;
+			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Purchase Drugs", MENU_UNSELECTED);
+
+			end_menu(tmpwin, "Services Available:");
+			n = select_menu(tmpwin, PICK_ONE, &selected);
+			destroy_nhwindow(tmpwin);
+
+			if (n > 0) {
+				switch (selected[0].item.a_int) {
+					case 1:
+						if (u.ugold >= nursehpcost) {
+							verbalize("I can inject extra health into you for %d dollars if you want.", nursehpcost);
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= nursehpcost;
+								if (!Upolyd) u.uhpmax++;
+								else u.mhmax++;
+								u.nurseextracost += 50;
+								if (u.nurseextracost < 1000) u.nurseextracost = 1000; /* fail safe */
+								break;
+							}
+						} else verbalize("Sorry, extra health costs %d dollars.", nursehpcost);
+
+						break;
+					case 2:
+						if (u.ugold >= nursedecontcost && u.contamination) {
+							verbalize("I can decontaminate you for %d dollars if you want.", nursedecontcost);
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= nursedecontcost;
+								decontaminate(u.contamination);
+								pline("Now you don't have the %d gold pieces any longer.", nursedecontcost);
+								if (FunnyHallu) pline("You offer a 'thank you' to Captain Obvious.");
+								u.nursedecontamcost += 500;
+								if (u.nursedecontamcost < 1000) u.nursedecontamcost = 1000; /* fail safe */
+								break;
+							}
+						} else if (!u.contamination) verbalize("Huh? You don't need to do that.");
+						else verbalize("Sorry, decontamination costs %d dollars.", nursedecontcost);
+
+						break;
+					case 3:
+
+						if (u.uhp == u.uhpmax && (!Upolyd || (Upolyd && u.mh == u.mhmax))) {
+							verbalize("Apart from potential mental disorders everything's fine with you. There's no need for me to waste my medical supplies on you.");
+							break;
+						}
+						if (u.ugold >= 500) {
+							verbalize("Sure thing, I can heal you for 500 dollars.");
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= 500;
+								u.uhp += 50;
+								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+								if (Upolyd) {
+									u.mh += 50;
+									if (u.mh > u.mhmax) u.mh = u.mhmax;
+								}
+								break;
+							}
+						} else verbalize("Sorry, healing costs 500 dollars.");
+
+						break;
+					case 4:
+						if (!Sick) {
+							verbalize("Don't call in sick when you aren't! Come back to me when you actually have a sickness that needs curing.");
+							break;
+						}
+						if (u.ugold >= 5000) {
+							verbalize("It is wise of you to come to see a doctor. For only 5000 dollars, I can heal you.");
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= 5000;
+								You_feel("better.");
+								make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+								break;
+							}
+						} else verbalize("Sorry, the cure for sickness costs 5000 dollars.");
+
+						break;
+					case 5:
+						if (!Slimed) {
+							verbalize("Do you see any slime on your body? No? Well, me neither. Come back when you're actually slimed.");
+							break;
+						}
+						if (u.ugold >= 10000) {
+							verbalize("Eek! Yeah that would normally require a medical doctor, but if you have 10000 dollars I can give you something that should hopefully cure the sliming.");
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= 10000;
+								FunnyHallu ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
+								Slimed = 0;
+								flags.botl = 1;
+								delayed_killer = 0;
+								break;
+							}
+						} else verbalize("Sorry, the cure for sliming costs 10000 dollars.");
+
+						break;
+					case 6:
+						if (u.usanity && (u.ugold >= nursesanitycost)) {
+							verbalize("I can cure your sanity for %d dollars if you want.", nursesanitycost);
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= nursesanitycost;
+								reducesanity(u.usanity);
+								break;
+							}
+						} else if (!u.usanity) verbalize("You have no sanity that could be cured! Be glad, being insane is the preferred state of mind you want in this dungeon!");
+						else verbalize("Sorry, the cure for sanity costs %d dollars.", nursesanitycost);
+
+						break;
+					case 7:
+						if (u.ugold >= 10000) {
+							verbalize("Ah, you look like a walking coinpurse. Sure, you can have medical supplies, but they come at a price. For 10000 dollars I can sell you a medical kit.");
+							if (yn("Accept the offer?") == 'y') {
+								u.ugold -= 10000;
+								struct obj *medkit;
+								medkit = mksobj(MEDICAL_KIT, TRUE, FALSE);
+								verbalize(medkit ? "A pleasure doing business with you. The medical kit is waiting on the ground below you." : "Whoops. It seems that I don't have supplies for you right now, but for technical reasons I can't give you a refund. Sorry.");
+								if (medkit) {
+									medkit->quan = 1;
+									medkit->known = medkit->dknown = medkit->bknown = medkit->rknown = 1;
+									medkit->owt = weight(medkit);
+									dropy(medkit);
+									stackobj(medkit);
+								}
+							}
+						} else verbalize("Sorry, medical supplies cost 10000 dollars.");
+						break;
+					case 8:
+						if (u.ugold >= 2000) {
+							verbalize("Hmm, I think I can give you a little something, but I need 2000 dollars to cover up expenses.");
+							if (yn("Accept the offer?") == 'y') {
+								u.ugold -= 2000;
+								struct obj *medkit;
+								medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE);
+								verbalize(medkit ? "Here, your stuff is on the ground. Have fun, but remember: if you call the cops, I'll send my assassins after you!" : "Oh, sorry, I don't have anything for you... but thanks for the money, sucker!");
+								if (medkit) {
+									medkit->quan = 1;
+									medkit->known = medkit->dknown = medkit->bknown = medkit->rknown = 1;
+									medkit->owt = weight(medkit);
+									dropy(medkit);
+									stackobj(medkit);
+								}
+
+							}
+						} else verbalize("What? I'm not a dealer! But I might change my mind if you can bring at least 2000 dollars.");
+						break;
+				} /* switch statement */
+			} /* n > 0 menu check */
 
 	    if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
 		|| (u.twoweap && uswapwep && (uswapwep->oclass == WEAPON_CLASS
