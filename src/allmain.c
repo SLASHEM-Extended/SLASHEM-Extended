@@ -2366,11 +2366,11 @@ trapsdone:
 			int nanorepaired = 0;
 			register struct obj *grsobj, *grsXXX;
 			for(grsobj = invent; grsobj ; grsobj = grsobj->nobj) {
-				if (grsobj && !stack_too_big(grsobj) && grsobj->oeroded) {
+				if (grsobj && objects[grsobj->otyp].oc_material == MT_NANOMACHINE && !stack_too_big(grsobj) && grsobj->oeroded) {
 					grsobj->oeroded--;
 					nanorepaired++;
 				}
-				if (grsobj && !stack_too_big(grsobj) && grsobj->oeroded2) {
+				if (grsobj && objects[grsobj->otyp].oc_material == MT_NANOMACHINE && !stack_too_big(grsobj) && grsobj->oeroded2) {
 					grsobj->oeroded2--;
 					nanorepaired++;
 				}
