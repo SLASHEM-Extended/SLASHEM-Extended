@@ -24037,6 +24037,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your lightsaber was recharged, but by so little that it'll run out again soon.",
 	"Taking off your headgear is a terribly bad idea, and the gods will certainly not be pleased!",
 	"Taking off your headgear is a terribly bad idea, and the gods will certainly not be pleased! But the mind flayers will, because then they have an easier time to suck your brain out, you idiot.",
+	"This is a test message to see what happens.",
+	"NetHack version 'what can we change to make amy complain even more'",
 
 };
 
