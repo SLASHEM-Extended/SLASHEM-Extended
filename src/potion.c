@@ -1278,6 +1278,8 @@ itemhasappearance(otmp, apptest)
 struct obj *otmp;
 int apptest;
 {
+	if (program_state.gameover) return FALSE; /* objects array might already be filled with garbage at this point */
+
 	if (!otmp) return FALSE; /* error! shouldn't happen */
 	if (otmp->otyp >= NUM_OBJECTS) return FALSE; /* out of bounds - better don't continue, to avoid segfaults */
 	if (objects[otmp->otyp].oc_appearindex == apptest) return TRUE;
@@ -1290,6 +1292,8 @@ boolean
 itemnumwithappearance(itemnum, apptest)
 int itemnum, apptest;
 {
+	if (program_state.gameover) return FALSE; /* objects array might already be filled with garbage at this point */
+
 	if (itemnum <= STRANGE_OBJECT) return FALSE; /* error! shouldn't happen */
 	if (itemnum >= NUM_OBJECTS) return FALSE; /* error! shouldn't happen */
 	if (objects[itemnum].oc_appearindex == apptest) return TRUE;
