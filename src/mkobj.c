@@ -2015,6 +2015,18 @@ int artif;
 			otmp->quan = (long) rn1(6,6);
 			if (!rn2(10)) otmp->quan *= 2;
 		}
+		else if (otmp->otyp == SLING_AMMO && rn2(2) ) {
+			otmp->quan = (long) rn1(7,7);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
+		else if (otmp->otyp == LEAD_CLUMP && rn2(2) ) {
+			otmp->quan = (long) rn1(6,6);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
+		else if (otmp->otyp == BONE_FRAGMENT && rn2(2) ) {
+			otmp->quan = (long) rn1(8,8);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
 		else if (otmp->otyp == SILVER_SLINGSTONE && rn2(2) ) {
 			otmp->quan = (long) rn1(10,10);
 			if (!rn2(10)) otmp->quan *= 2;
