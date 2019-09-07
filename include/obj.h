@@ -195,6 +195,7 @@ struct obj {
 			(otmp)->oclass == TOOL_CLASS) && \
 			 (objects[(otmp)->otyp].oc_skill == P_POLEARMS || \
 			 (otmp)->otyp == AKLYS || \
+			 (otmp)->otyp == BLOW_AKLYS || \
 			 (otmp)->otyp == SPINED_BALL || \
 			 (otmp)->otyp == CHAIN_AND_SICKLE || \
 			 objects[(otmp)->otyp].oc_skill == P_LANCE))
