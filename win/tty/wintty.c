@@ -1032,6 +1032,15 @@ give_up:	/* Quit */
 
 				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = 0;
 
+				if (!Race_if(PM_AGGRAVATOR)) {if (yn("Add the aggravator hybrid race to your character?") == 'y')
+					{flags.hybridaggravator = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_AMERICAN)) {if (yn("Add the american hybrid race to your character?") == 'y')
+					{flags.hybridamerican = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_AMNESIAC)) {if (yn("Add the amnesiac hybrid race to your character?") == 'y')
+					{flags.hybridamnesiac = 1; flags.hybridization++;}
+				}
 				if (!Race_if(PM_ANGBANDER)) {if (yn("Add the angbander hybrid race to your character?") == 'y')
 					{flags.hybridangbander = 1; flags.hybridization++;}
 				}
@@ -1041,44 +1050,32 @@ give_up:	/* Quit */
 				if (!Race_if(PM_CURSER)) {if (yn("Add the curser hybrid race to your character?") == 'y')
 					{flags.hybridcurser = 1; flags.hybridization++;}
 				}
+				if (!Race_if(PM_EROSATOR)) {if (yn("Add the erosator hybrid race to your character?") == 'y')
+					{flags.hybriderosator = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_EVILVARIANT)) {if (yn("Add the evilvariant hybrid race to your character?") == 'y')
+					{flags.hybridevilvariant = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_EXTRAVATOR)) {if (yn("Add the extravator hybrid race to your character?") == 'y')
+					{flags.hybridextravator = 1; flags.hybridization++;}
+				}
 				if (!Race_if(PM_HAXOR)) {if (yn("Add the haxor hybrid race to your character?") == 'y')
 					{flags.hybridhaxor = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_HOMICIDER)) {if (yn("Add the homicider hybrid race to your character?") == 'y')
-					{flags.hybridhomicider = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_SUXXOR)) {if (yn("Add the suxxor hybrid race to your character?") == 'y')
-					{flags.hybridsuxxor = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_WARPER)) {if (yn("Add the warper hybrid race to your character?") == 'y')
-					{flags.hybridwarper = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_RANDOMIZER)) {if (yn("Add the randomizer hybrid race to your character?") == 'y')
-					{flags.hybridrandomizer = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_NULL)) {if (yn("Add the null hybrid race to your character?") == 'y')
-					{flags.hybridnullrace = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_MAZEWALKER)) {if (yn("Add the mazewalker hybrid race to your character?") == 'y')
-					{flags.hybridmazewalker = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_SOVIET)) {if (yn("Add the soviet hybrid race to your character?") == 'y')
-					{flags.hybridsoviet = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_RACE_X)) {if (yn("Add the x-race hybrid race to your character?") == 'y')
-					{flags.hybridxrace = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_HERETIC)) {if (yn("Add the heretic hybrid race to your character?") == 'y')
 					{flags.hybridheretic = 1; flags.hybridization++;}
 				}
-				if (!Race_if(PM_SOKOSOLVER)) {if (yn("Add the sokosolver hybrid race to your character?") == 'y')
-					{flags.hybridsokosolver = 1; flags.hybridization++;}
+				if (!Race_if(PM_HOMICIDER)) {if (yn("Add the homicider hybrid race to your character?") == 'y')
+					{flags.hybridhomicider = 1; flags.hybridization++;}
 				}
-				if (!Race_if(PM_SPECIALIST)) {if (yn("Add the specialist hybrid race to your character?") == 'y')
-					{flags.hybridspecialist = 1; flags.hybridization++;}
+				if (!Race_if(PM_IRONMAN)) {if (yn("Add the ironman hybrid race to your character?") == 'y')
+					{flags.hybridironman = 1; flags.hybridization++;}
 				}
-				if (!Race_if(PM_AMERICAN)) {if (yn("Add the american hybrid race to your character?") == 'y')
-					{flags.hybridamerican = 1; flags.hybridization++;}
+				if (!Race_if(PM_LEVELSCALER)) {if (yn("Add the levelscaler hybrid race to your character?") == 'y')
+					{flags.hybridlevelscaler = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_MAZEWALKER)) {if (yn("Add the mazewalker hybrid race to your character?") == 'y')
+					{flags.hybridmazewalker = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_MINIMALIST)) {if (yn("Add the minimalist hybrid race to your character?") == 'y')
 					{flags.hybridminimalist = 1; flags.hybridization++;}
@@ -1086,39 +1083,43 @@ give_up:	/* Quit */
 				if (!Race_if(PM_NASTINATOR)) {if (yn("Add the nastinator hybrid race to your character?") == 'y')
 					{flags.hybridnastinator = 1; flags.hybridization++;}
 				}
-				if (!Race_if(PM_ROUGELIKE)) {if (yn("Add the rougelike hybrid race to your character?") == 'y')
-					{flags.hybridrougelike = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_AMNESIAC)) {if (yn("Add the amnesiac hybrid race to your character?") == 'y')
-					{flags.hybridamnesiac = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_IRONMAN)) {if (yn("Add the ironman hybrid race to your character?") == 'y')
-					{flags.hybridironman = 1; flags.hybridization++;}
+				if (!Race_if(PM_NULL)) {if (yn("Add the null hybrid race to your character?") == 'y')
+					{flags.hybridnullrace = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_PROBLEMATIC)) {if (yn("Add the problematic hybrid race to your character?") == 'y')
 					{flags.hybridproblematic = 1; flags.hybridization++;}
 				}
-				if (!Race_if(PM_WIND_INHABITANT)) {if (yn("Add the wind inhabitant hybrid race to your character?") == 'y')
-					{flags.hybridwindinhabitant = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_AGGRAVATOR)) {if (yn("Add the aggravator hybrid race to your character?") == 'y')
-					{flags.hybridaggravator = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_EVILVARIANT)) {if (yn("Add the evilvariant hybrid race to your character?") == 'y')
-					{flags.hybridevilvariant = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_LEVELSCALER)) {if (yn("Add the levelscaler hybrid race to your character?") == 'y')
-					{flags.hybridlevelscaler = 1; flags.hybridization++;}
-				}
-				if (!Race_if(PM_EROSATOR)) {if (yn("Add the erosator hybrid race to your character?") == 'y')
-					{flags.hybriderosator = 1; flags.hybridization++;}
+				if (!Race_if(PM_RANDOMIZER)) {if (yn("Add the randomizer hybrid race to your character?") == 'y')
+					{flags.hybridrandomizer = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_ROOMMATE)) {if (yn("Add the roommate hybrid race to your character?") == 'y')
 					{flags.hybridroommate = 1; flags.hybridization++;}
 				}
-				if (!Race_if(PM_EXTRAVATOR)) {if (yn("Add the extravator hybrid race to your character?") == 'y')
-					{flags.hybridextravator = 1; flags.hybridization++;}
+				if (!Race_if(PM_ROUGELIKE)) {if (yn("Add the rougelike hybrid race to your character?") == 'y')
+					{flags.hybridrougelike = 1; flags.hybridization++;}
 				}
+				if (!Race_if(PM_SOKOSOLVER)) {if (yn("Add the sokosolver hybrid race to your character?") == 'y')
+					{flags.hybridsokosolver = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_SOVIET)) {if (yn("Add the soviet hybrid race to your character?") == 'y')
+					{flags.hybridsoviet = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_SPECIALIST)) {if (yn("Add the specialist hybrid race to your character?") == 'y')
+					{flags.hybridspecialist = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_SUXXOR)) {if (yn("Add the suxxor hybrid race to your character?") == 'y')
+					{flags.hybridsuxxor = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_WARPER)) {if (yn("Add the warper hybrid race to your character?") == 'y')
+					{flags.hybridwarper = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_WIND_INHABITANT)) {if (yn("Add the wind inhabitant hybrid race to your character?") == 'y')
+					{flags.hybridwindinhabitant = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_RACE_X)) {if (yn("Add the x-race hybrid race to your character?") == 'y')
+					{flags.hybridxrace = 1; flags.hybridization++;}
+				}
+
 				if (!Race_if(PM_SEGFAULTER)) {if (yn("Add the segfaulter hybrid race to your character (WARNING: NOT RECOMMENDED!)?") == 'y')
 					{flags.hybridsegfaulter = 1; flags.hybridization++;}
 				}
