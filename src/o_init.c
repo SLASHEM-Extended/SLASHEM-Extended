@@ -1568,10 +1568,8 @@ register char oclass;
 	}
 
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);
-	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_cost = (objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level * 100);
 
 	objects[SPE_CHARACTER_RECURSION].oc_level = rnd(8);
-	objects[SPE_CHARACTER_RECURSION].oc_cost = (objects[SPE_CHARACTER_RECURSION].oc_level * 100);
 
 	objects[WONDER_BALL].oc_material = rn2(LASTMATERIAL + 1);
 	objects[WONDER_CHAIN].oc_material = rn2(LASTMATERIAL + 1);
