@@ -5702,6 +5702,7 @@ dodrink()
 	    }
 	    else if (IS_WELL(levl[u.ux][u.uy].typ)) {
 		You("draw water from a well.");
+		if (u.ualign.type == A_NEUTRAL) adjalign(1);
 
 		if (level.flags.lethe) {
 			pline("Whoops, you forgot that it contains lethe water.");
@@ -5725,6 +5726,7 @@ dodrink()
 	    }
 	    else if (IS_POISONEDWELL(levl[u.ux][u.uy].typ)) {
 		You("draw water from a well.");
+		if (u.ualign.type == A_NEUTRAL) adjalign(1);
 
 		if (level.flags.lethe) {
 			pline("Whoops, you forgot that it contains lethe water.");

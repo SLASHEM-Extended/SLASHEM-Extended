@@ -772,6 +772,8 @@ secureidchoice:
 		    You_feel("somehow out of place...");
 	    }
 
+	    if (u.ualign.type == A_CHAOTIC) adjalign(1);
+
 	    if (!rn2(6) && IS_THRONE(levl[u.ux][u.uy].typ)) {
 		/* may have teleported */
 		levl[u.ux][u.uy].typ = ROOM;

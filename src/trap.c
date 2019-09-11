@@ -4526,6 +4526,8 @@ newegomon:
 		seetrap(trap);
 		pline("You trip over a strange fountain!");
 
+		if (u.ualign.type == A_NEUTRAL) adjalign(1);
+
 		switch (rnd(40)) {
 			case 1:
 			case 2:
@@ -4732,6 +4734,8 @@ newegomon:
 	    case THRONE_TRAP:
 		seetrap(trap);
 		pline("You trip over a strange throne!");
+
+		if (u.ualign.type == A_CHAOTIC) adjalign(1);
 
 		if (rn2(2)) {
 			if (is_prince(youmonst.data))
@@ -5620,6 +5624,8 @@ rerollX:
 
 		break;
 		case PENTAGRAM_TRAP:
+
+			if (u.ualign.type == A_CHAOTIC) adjalign(1);
 
 			pline("You trip over a strange pentagram!");
 			seetrap(trap);

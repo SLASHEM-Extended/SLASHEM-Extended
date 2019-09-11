@@ -523,6 +523,8 @@ drinkfountain()
 		u.youaredead = 0;
 	}
 
+	if (u.ualign.type == A_NEUTRAL) adjalign(1);
+
 	dryup(u.ux, u.uy, TRUE);
 }
 
@@ -786,6 +788,9 @@ newhamburger:
 		    break;
 	}
 	update_inventory();
+
+	if (u.ualign.type == A_NEUTRAL) adjalign(1);
+
 	dryup(u.ux, u.uy, TRUE);
 }
 
@@ -1221,6 +1226,9 @@ register struct obj *obj;
 		    break;
 	}
 	update_inventory();
+
+	if (u.ualign.type == A_NEUTRAL) adjalign(1);
+
 	dryup(u.ux, u.uy, TRUE);
 }
 

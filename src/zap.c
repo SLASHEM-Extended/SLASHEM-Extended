@@ -9357,6 +9357,9 @@ boolean *shopdamage;
 		    rangemod -= 3;
 		    lev->typ = rn2(10) ? CORR : ASH;
 		    if (cansee(x,y)) msgtxt = "The farmland burns up!";
+		    /* yeah I know, this doesn't check whether YOU burned the farmland... but allowing monsters with fire
+			* to burn the farmland is also a chaotic act, so there! :P --Amy */
+		    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 		    if (cansee(x,y)) newsym(x,y);
 		    Norep("%s", msgtxt);
 	    } else if (is_raincloud(x,y) && !rn2(5)) {
@@ -9370,6 +9373,7 @@ boolean *shopdamage;
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
 		    lev->typ = rn2(25) ? CORR : ASH;
+		    if (u.ualign.type == A_CHAOTIC && !rn2(5)) adjalign(1);
 		    if (cansee(x,y)) msgtxt = "The grass burns up!";
 		    if (cansee(x,y)) newsym(x,y);
 		    Norep("%s", msgtxt);
@@ -9381,16 +9385,19 @@ boolean *shopdamage;
 	    } else if (is_mattress(x,y) && !rn2(5)) {
 		    rangemod -= 3;
 		    lev->typ = CORR;
+		    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 		    if (cansee(x,y)) Norep("The mattress burns up.");
 		    if (cansee(x,y)) newsym(x,y);
 	    } else if (is_table(x,y) && !rn2(5)) {
 		    rangemod -= 3;
 		    lev->typ = CORR;
+		    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 		    if (cansee(x,y)) Norep("The table burns up.");
 		    if (cansee(x,y)) newsym(x,y);
 	    } else if (is_carvedbed(x,y) && !rn2(5)) {
 		    rangemod -= 3;
 		    lev->typ = CORR;
+		    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 		    if (cansee(x,y)) Norep("The bed burns up.");
 		    if (cansee(x,y)) newsym(x,y);
 	    } else if (is_wagon(x,y)) {
@@ -9418,6 +9425,7 @@ boolean *shopdamage;
 		Norep("%s", msgtxt);
 		if (lev->typ == ROOM) newsym(x,y);
 	    } else if(IS_FOUNTAIN(lev->typ)) {
+		    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 		    if (cansee(x,y))
 			pline("Steam billows from the fountain.");
 		    rangemod -= 1;

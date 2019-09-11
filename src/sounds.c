@@ -2631,6 +2631,7 @@ register struct monst *mtmp;
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
 								u.ugold -= nursehpcost;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								if (!Upolyd) u.uhpmax++;
 								else u.mhmax++;
 								u.nurseextracost += 50;
@@ -2646,6 +2647,7 @@ register struct monst *mtmp;
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
 								u.ugold -= nursedecontcost;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								decontaminate(u.contamination);
 								pline("Now you don't have the %d gold pieces any longer.", nursedecontcost);
 								if (FunnyHallu) pline("You offer a 'thank you' to Captain Obvious.");
@@ -2668,6 +2670,7 @@ register struct monst *mtmp;
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
 								u.ugold -= 500;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.uhp += 50;
 								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 								if (Upolyd) {
@@ -2689,6 +2692,7 @@ register struct monst *mtmp;
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
 								u.ugold -= 5000;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								You_feel("better.");
 								make_sick(0L, (char *) 0, FALSE, SICK_ALL);
 								break;
@@ -2706,6 +2710,7 @@ register struct monst *mtmp;
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
 								u.ugold -= 10000;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								FunnyHallu ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
 								Slimed = 0;
 								flags.botl = 1;
@@ -2721,6 +2726,7 @@ register struct monst *mtmp;
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
 								u.ugold -= nursesanitycost;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								reducesanity(u.usanity);
 								break;
 							}
@@ -2733,6 +2739,7 @@ register struct monst *mtmp;
 							verbalize("Ah, you look like a walking coinpurse. Sure, you can have medical supplies, but they come at a price. For 10000 dollars I can sell you a medical kit.");
 							if (yn("Accept the offer?") == 'y') {
 								u.ugold -= 10000;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								struct obj *medkit;
 								medkit = mksobj(MEDICAL_KIT, TRUE, FALSE);
 								verbalize(medkit ? "A pleasure doing business with you. The medical kit is waiting on the ground below you." : "Whoops. It seems that I don't have supplies for you right now, but for technical reasons I can't give you a refund. Sorry.");
@@ -2751,6 +2758,7 @@ register struct monst *mtmp;
 							verbalize("Hmm, I think I can give you a little something, but I need 2000 dollars to cover up expenses.");
 							if (yn("Accept the offer?") == 'y') {
 								u.ugold -= 2000;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								struct obj *medkit;
 								medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE);
 								verbalize(medkit ? "Here, your stuff is on the ground. Have fun, but remember: if you call the cops, I'll send my assassins after you!" : "Oh, sorry, I don't have anything for you... but thanks for the money, sucker!");

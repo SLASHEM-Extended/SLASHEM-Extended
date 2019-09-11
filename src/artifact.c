@@ -2485,6 +2485,8 @@ doinvoke()
 
 			You("attune yourself with the magical energy.");
 
+			if (u.ualign.type == A_CHAOTIC) adjalign(1);
+
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;

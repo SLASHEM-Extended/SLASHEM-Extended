@@ -405,6 +405,7 @@ dig()
 			}
 			if (IS_TREE(lev->typ)) {
 			    digtxt = "You cut down the tree.";
+			    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 			    lev->typ = ROOM;
 			    if (!rn2(5)) (void) rnd_treefruit_at(dpx, dpy);
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
