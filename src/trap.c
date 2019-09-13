@@ -18969,6 +18969,7 @@ boolean force;
 				(void) chest_trap(otmp, FINGER, TRUE);
 			    } else {
 				You("disarm it!");
+				if (u.ualign.type == A_LAWFUL) adjalign(1);
 				otmp->otrapped = 0;
 			    }
 			} else pline("That %s was not trapped.", xname(otmp));
@@ -19035,6 +19036,7 @@ boolean force;
 			if (*in_rooms(x, y, SHOPBASE)) add_damage(x, y, 0L);
 		    } else {
 			You("disarm it!");
+			if (u.ualign.type == A_LAWFUL) adjalign(1);
 			levl[x][y].doormask &= ~D_TRAPPED;
 		    }
 		} else pline("This door was not trapped.");
