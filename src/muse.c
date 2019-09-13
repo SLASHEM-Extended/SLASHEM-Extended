@@ -9248,7 +9248,8 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		You_feel("a hole in your %s!", body_part(STOMACH) );
-		morehungry(rnd(1000));
+		if (u.uhunger > 0) morehungry(rnd(1000));
+		else morehungry(rnd(200)); /* we don't want to be TOO unfair... --Amy */
 
 		if (oseen) makeknown(WAN_STARVATION);
 
