@@ -6266,6 +6266,7 @@ revid_end:
 			if (Role_if(PM_MASON)) {
 
 				diamondradius = rounddiv(techlevX(tech_no), 5);
+				if ((techlevX(tech_no), 5) > 4) diamondradius++; /* fix off-by-one error --Amy */
 				if (diamondradius < 1) diamondradius = 1;
 
 				if (diamondradius > 1) pline("The maximum possible radius for the diamond barrier is %d, but you may opt to choose a smaller radius if you want.", diamondradius);
