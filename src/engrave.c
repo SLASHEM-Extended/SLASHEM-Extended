@@ -4875,6 +4875,7 @@ static const char *epitaphs[] = {
 	"Stupid level bug, why can't that one go on vacation for once.",
 	"Why did you save the game while engulfed? Some genius you are!",
 	"Amy, I'd advise you to remove all your stupid monsters and leave only the ones from vanilla, SLASH'EM and dnethack in the game.",
+	"Umm, guys?  You know I just cast epic-level Hour of Silence, right?  None of your spells have any effect whatsoever.",
 
 };
 

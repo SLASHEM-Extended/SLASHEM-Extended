@@ -24039,6 +24039,18 @@ static NEARDATA const char * const fake_plines[] = {
 	"Taking off your headgear is a terribly bad idea, and the gods will certainly not be pleased! But the mind flayers will, because then they have an easier time to suck your brain out, you idiot.",
 	"This is a test message to see what happens.",
 	"NetHack version 'what can we change to make amy complain even more'",
+	"The cockatrice hits! You pull out your Uno reverse card. The cockatrice turns to stone!",
+	"The contact rat-man was even a super-away-teleport-stair-contact-rat-man and you made the mistake to click it with the right mouse button and it additionally was a you see and now you're game over.",
+	"When left to themselves, the fishermen stupefy.",
+	"Attack me will you?  I shall cast epic familicide, and everyone related to you shall perish!",
+	"Ah, nice try, but I prepared a counterspell that reflects familicide-type spells back to the caster!",
+	"Oooh, good call.  Fortunately, I already cast Greater Dispell Counterspell right before our encounter.",
+	"Ah, did you?  Too bad my counterspell is epic-level, so the Greater Dispell will fail...",
+	"You have become extinct.",
+	"You have become a green slime. You have become extinct because 120 green slimes have been generated already in this game.",
+	"You have become a green slime. You have become extinct because green slimes are genocided. Game over.",
+	"The sauna feels relaxing!  You disrobe, wearing nothing but a small towel!",
+	"The sauna feels relaxing!  You disrobe, wearing nothing but a small towel because you're a wimp who's too scared to become fully naked!",
 
 };
 
