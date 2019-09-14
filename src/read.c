@@ -920,6 +920,8 @@ doread()
 
 	if (scroll && scroll->oclass == SCROLL_CLASS && scroll->otyp != SCR_CREATE_CREATE_SCROLL && !(scroll->oartifact == ART_MARAUDER_S_MAP)) {
 
+		u.cnd_scrollcount++;
+
 		use_skill(P_DEVICES,1);
 		if (Race_if(PM_FAWN)) {
 			use_skill(P_DEVICES,1);
@@ -1751,6 +1753,8 @@ int howmuch;
 	if (u.contamination && u.contamination < 1000) {
 		decontaminate(100);
 	}
+
+	u.cnd_amnesiacount++;
 
 	reducesanity(100);
 
@@ -4972,7 +4976,11 @@ proofarmorchoice:
 		known = TRUE;
 
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 
 		break;
 
@@ -5247,6 +5255,7 @@ proofarmorchoice:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					u.cnd_disenchantamount++;
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
@@ -7749,6 +7758,7 @@ retry:
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+		u.cnd_banishmentcount++;
 		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -9934,6 +9944,7 @@ register struct obj	*sobj;
 	/* KMH -- Punishment is still okay when you are riding */
 	/* KMH -- Punishment is still okay when you are riding */
 	You("are being punished for your misbehavior!");
+	u.cnd_punishmentcount++;
 
 	/*if (Is_waterlevel(&u.uz)) return;*/ /* otherwise it crashes for some weird reason --Amy */
 
@@ -9978,6 +9989,7 @@ punishx()
 	You("are being punished for your misbehavior!");
 
 	/*if (Is_waterlevel(&u.uz)) return;*/ /* otherwise it crashes for some weird reason --Amy */
+	u.cnd_punishmentcount++;
 
 	if(Punished){
 		Your("iron ball gets heavier.");

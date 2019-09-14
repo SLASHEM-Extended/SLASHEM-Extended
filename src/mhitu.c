@@ -108,10 +108,12 @@ on the first floor, especially when you're playing as something with drain resis
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s gently strokes and squeezes your breasts, and you are sexually aroused by the soft touch.", Monnam(mtmp));
+					u.cnd_breastripamount++;
 					healup(mtmp->m_lev, 0, FALSE, FALSE);
 
 				} else {
 					pline("%s rips into your breast with maniacal fervor!", Monnam(mtmp));
+					u.cnd_breastripamount++;
 
 					monsterlev = ((mtmp->m_lev) + 1);
 					if (monsterlev <= 0) monsterlev = 1;
@@ -230,11 +232,13 @@ on the first floor, especially when you're playing as something with drain resis
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s powerfully kicks you in the nuts, and you moan in lust because you love the pain.", Monnam(mtmp));
+					u.cnd_nutkickamount++;
 					healup(mtmp->m_lev, 0, FALSE, FALSE);
 
 				} else {
 
 					pline("%s's kick painfully slams into your nuts!", Monnam(mtmp));
+					u.cnd_nutkickamount++;
 
 					monsterlev = ((mtmp->m_lev) + 1);
 					if (monsterlev <= 0) monsterlev = 1;
@@ -246,15 +250,22 @@ on the first floor, especially when you're playing as something with drain resis
 
 			struct obj *footwear = which_armor(mtmp, W_ARMF);
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
+elenaWDG:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s sandals against your shins! It hurts!", Monnam(mtmp), mhis(mtmp) );
 				losehp(d(1,monsterlev), "sandal to the shin bone", KILLED_BY_AN);
+				if (FemaleTrapElena && !rn2(3)) {
+					pline("You long for more!");
+					goto elenaWDG;
+				}
 			}
 
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ATSUZOKO_BOOTS) || mtmp->data == &mons[PM_ANIMATED_ATSUZOKO_BOOT] || mtmp->data == &mons[PM_PLATEAU_GIRL] || mtmp->data == &mons[PM_KATI_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_VERENA_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_SUE_LYN_S_PLATEAU_BOOT]) ) {
 elena1:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s plateau soles against your shins, and stomps your %s!", Monnam(mtmp), mhis(mtmp), makeplural(body_part(FOOT)) );
@@ -268,6 +279,7 @@ elena1:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIGH_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_STILETTO_SANDAL] || mtmp->data == &mons[PM_WERESTILETTOSANDAL] || mtmp->data == &mons[PM_HUMAN_WERESTILETTOSANDAL] || mtmp->data == &mons[PM_SANDRA_S_EVIL_SANDAL] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->data == &mons[PM_NADINE_S_ANKLE_STRAP_SANDAL]) ) {
 elena2:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rnd(10);
@@ -292,6 +304,7 @@ elena2:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO] || mtmp->data == &mons[PM_WEREUNFAIRSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREUNFAIRSTILETTO]) ) {
 elena3:
+				u.cnd_shoedamageamount++;
 				pline("%s uses %s stilettos in a very unfair way!", Monnam(mtmp), mhis(mtmp) );
 				if (!rn2(3)) pline("Your %s are scratched to the bone and your %s is squirting everywhere!", makeplural(body_part(LEG)), body_part(BLOOD) );
 				else if (!rn2(2)) pline("Your sensitive sexual organs are squeezed flat and you're gasping for air!");
@@ -307,6 +320,7 @@ elena3:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SKY_HIGH_HEELS) || mtmp->data == &mons[PM_ANIMATED_SKY_HIGH_HEEL]) ) {
 elena4:
+				u.cnd_shoedamageamount++;
 				pline("%s kicks you in the %s with %s very high heel!", Monnam(mtmp), body_part(HEAD), mhis(mtmp) );
 				monsterlev = ((mtmp->m_lev) + 1);
 
@@ -327,6 +341,7 @@ elena4:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SYNTHETIC_SANDALS) || mtmp->data == &mons[PM_ANIMATED_SYNTHETIC_SANDAL]) ) {
 elena5:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 
 				pline("The wonderful rainbow-colored female sandal slams against your shins!");
@@ -432,6 +447,7 @@ elena5:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ROLLER_BLADE) || mtmp->data == &mons[PM_ANIMATED_ROLLER_BLADE] || mtmp->data == &mons[PM_JUEN_S_ROLLER_BLADE]) ) {
 elena6:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s rolls over you with %s roller blades!", Monnam(mtmp), mhis(mtmp) );
@@ -444,6 +460,7 @@ elena6:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == PET_STOMPING_PLATFORM_BOOTS) ) {
 elena7:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rnd(5);
@@ -460,6 +477,7 @@ elena7:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ASS_KICKER_BOOTS)) || mtmp->data == &mons[PM_DANIELLE_S_COMBAT_BOOT] ) {
 elena8:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rnd(10);
@@ -475,6 +493,7 @@ elena8:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == DANCING_SHOES) ) {
 elena9:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s dancing shoes against your shins! You stagger...", Monnam(mtmp), mhis(mtmp) );
@@ -488,6 +507,7 @@ elena9:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && (footwear && footwear->otyp == SWEET_MOCASSINS) ) {
 elena10:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slides %s mocassins over your %ss, opening your arteries and squirting %s everywhere!", Monnam(mtmp), mhis(mtmp), body_part(HAND), body_part(BLOOD) );
@@ -500,6 +520,7 @@ elena10:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SOFT_SNEAKERS) || mtmp->data == &mons[PM_GIRL_WHO_LOOKS_LIKE_HER_NAME_WAS_FANNY] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER]) ) {
 elena11:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s hits your %s with %s sneakers!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
@@ -513,6 +534,7 @@ elena11:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE] || mtmp->data == &mons[PM_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HUMAN_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_SPIDER_FAGUS]) ) {
 elena12:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				randomkick = rnd(15);
@@ -636,6 +658,7 @@ elena12:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LEATHER_PEEP_TOES) || mtmp->data == &mons[PM_ANIMATED_LEATHER_PEEP_TOE] || mtmp->data == &mons[PM_WEREPEEPTOE] || mtmp->data == &mons[PM_HUMAN_WEREPEEPTOE] || mtmp->data == &mons[PM_NORTHERN_SHIN_SMASHER]) ) {
 elena13:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s leather peep-toes against your shins!", Monnam(mtmp), mhis(mtmp) );
@@ -664,6 +687,7 @@ elena13:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_HUMAN_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_ARVOGENIC_TOPMODEL] || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES] || mtmp->data == &mons[PM_DISINTERESTED_OLDER_WOMAN] || mtmp->data == &mons[PM_JOY_PORN_STAR]) ) {
 elena14:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s scratches up and down your %ss with %s heels!", Monnam(mtmp), body_part(LEG), mhis(mtmp) );
@@ -699,6 +723,7 @@ elena14:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS) || mtmp->data == &mons[PM_ANIMATED_LADY_BOOT] ) ) {
 elenalady:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rnd(2);
@@ -713,6 +738,7 @@ elenalady:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ITALIAN_HEELS)) ) {
 elenaitaly:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rnd(2);
@@ -728,6 +754,7 @@ elenaitaly:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == STILETTO_SANDALS) || mtmp->data == &mons[PM_ANIMATED_PRETTY_SANDAL]) ) {
 elenass:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rnd(2);
@@ -743,6 +770,7 @@ elenass:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO] || mtmp->data == &mons[PM_WERECOMBATSTILETTO] || mtmp->data == &mons[PM_HUMAN_WERECOMBATSTILETTO]) ) {
 elena15:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s does a round-house and painfully hits you with %s combat boots!", Monnam(mtmp), mhis(mtmp) );
@@ -755,6 +783,7 @@ elena15:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_PLOF_ANJE] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
 elena16:
+				u.cnd_shoedamageamount++;
 				if (multi >= 0) {
 					pline("You come because %s's high-heeled sandals are so beautiful.", mon_nam(mtmp));
 					nomul(-2, "having a sexual orgasm", TRUE);
@@ -784,6 +813,7 @@ elena16:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_IRREGULAR_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_IRREGULAR_HEEL] || mtmp->data == &mons[PM_MANGA_GIRL] || mtmp->data == &mons[PM_MANGA_WOMAN] || mtmp->data == &mons[PM_MANGA_LADY] || mtmp->data == &mons[PM_SANDRA_S_DISGUISED_BOOT] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER] ) ) {
 elena17:
+				u.cnd_shoedamageamount++;
 
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -799,6 +829,7 @@ elena17:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WEDGE_BOOTS) ) || mtmp->data == &mons[PM_TOPLESS_NURSE] || mtmp->data == &mons[PM_ANN_KATHRIN_S_CUDDLY_BOOT] || mtmp->data == &mons[PM_LISA_S_CUDDLY_BOOT] ) ) {
 elena18:
+				u.cnd_shoedamageamount++;
 
 				pline("The wedge heel feels very soft and lovely. In fact, you enjoyed %s's kick.", mon_nam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -820,6 +851,7 @@ elena18:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_HUGGING_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_HUGGING_BOOT] || mtmp->data == &mons[PM_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_HUMAN_WEREHUGGINGBOOT] || mtmp->data == &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_LUISA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_REBECCA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BITCHY_LARA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARLEEN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_VILEA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LISELOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_OVERSLEPT_GIRL] || mtmp->data == &mons[PM_AMELJE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MELANIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_HUGGING_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SHY_ASIAN_GIRL] || mtmp->data == &mons[PM_MARIAN_S_PERSIAN_BOOT] || mtmp->data == &mons[PM_LAURA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LITTLE_MARIE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_CHARLOTTE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_STUPID_BLONDE_GIRL] || mtmp->data == &mons[PM_FRIEDERIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_SOPHIA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_HEIKE_S_HUGGING_BOOT] || mtmp->data == &mons[PM_DORA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT] || mtmp->data == &mons[PM_BUNDLE_NADJA] || mtmp->data == &mons[PM_JOHANETTA_S_WINTER_BOOT] || mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL] || mtmp->data == &mons[PM_ANJA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_LOVING_ASIAN_GIRL] || mtmp->data == &mons[PM_STARLET_BUNDLE] || mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT] || mtmp->data == &mons[PM_GRENEUVENIC_TOPMODEL] || mtmp->data == &mons[PM_OVERSLEPT_TROLL] || mtmp->data == &mons[PM_FANNY_S_LOVELY_WINTER_BOOT] || mtmp->data == &mons[PM_OFFICER_INA] || mtmp->data == &mons[PM_HUGGER_DRAGON] || mtmp->data == &mons[PM_TAIL_GUTTER] ) ) {
 elena19:
+				u.cnd_shoedamageamount++;
 				randomkick = rnd(3);
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -862,6 +894,7 @@ elena19:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || (FemaleTrapSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
 elena20:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				int comboscratch = 1;
@@ -943,6 +976,7 @@ elena20:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_CLUNKY_HEELS) ) || mtmp->data == &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS] || mtmp->data == &mons[PM_ALMUTH_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_SUPER_HIGH_LADY_SHOE] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_SANDAL] || mtmp->data == &mons[PM_THICK_BEAUTY] || mtmp->data == &mons[PM_NINA_S_CLUNKY_HEEL_BOOT] ) ) {
 elena21:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				monsterlev *= rn2(20) ? rnd(10) : rnd(20);
@@ -957,6 +991,7 @@ elena21:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_ANKLE_BOOTS) ) || mtmp->data == &mons[PM_EMMA_S_ANKLE_BOOT] || mtmp->data == &mons[PM_MADELEINE_S_ANKLE_BOOT] || mtmp->data == &mons[PM_BETTINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_JANINA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_ARABELLA_S_HIGH_HEELED_LADY_SHOE] || mtmp->data == &mons[PM_HC_HIGHHEEL_HUSSY] ) ) {
 elena22:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 
@@ -1006,6 +1041,7 @@ elena22:
 
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BLOCK_HEELED_BOOTS) ) || mtmp->data == &mons[PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_SLAP_HEELED_SANDAL_BOOT] || mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT] || mtmp->data == &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT] || mtmp->data == &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT] || mtmp->data == &mons[PM_HANNAH_S_COMBAT_BOOT] || mtmp->data == &mons[PM_SABINE_S_ZIPPER_BOOT] || mtmp->data == &mons[PM_LARISSA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_NICOLE_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_ANTJE_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_LISA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_KRISTIN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUEA_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_JUEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_RUTH_S_BLOCK_HEELED_LADY_BOOT] || mtmp->data == &mons[PM_PATRICIA_S_COMBAT_BOOT] || mtmp->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_INGE_S_COMBAT_BOOT] || mtmp->data == &mons[PM_CORINA_S_SPECIAL_COMBAT_BOOT] || mtmp->data == &mons[PM_KATRIN_S_COMBAT_BOOT] || mtmp->data == &mons[PM_BIRGIT_S_LADY_BOOT] || mtmp->data == &mons[PM_BLOCK_HEELED_GIRL] || mtmp->data == &mons[PM_LAURA_S__SISTER__COMBAT_BOOT] || mtmp->data == &mons[PM_POWERFUL_BLONDE_GIRL] || mtmp->data == &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT] || mtmp->data == &mons[PM_CZECH_WENCH] || mtmp->data == &mons[PM_UNFORTUNATE_FOREST] || mtmp->data == &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT] || mtmp->data == &mons[PM_PERSONA_NON_GRATA] || mtmp->data == &mons[PM_BLOCK_HEELED_PUSSY] ) ) {
 elena23:
+				u.cnd_shoedamageamount++;
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 				randomkick = rnd(12);
@@ -2278,6 +2314,7 @@ usemelee:
 				    mswings(mtmp, otmp);
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL && (tmp > rnd(20+i)) ) {
 elena24:
+					u.cnd_shoedamageamount++;
 					pline("The massive wedge heel thunders painfully on your %s!", body_part(HEAD));
 					losehp(rnd(4),"a wedged little-girl sandal",KILLED_BY);
 						if (FemaleTrapElena && !rn2(3)) {
@@ -2287,6 +2324,7 @@ elena24:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_GIRL_SNEAKER && (tmp > rnd(20+i)) ) {
 elena25:
+					u.cnd_shoedamageamount++;
 					pline("The soft leather sneaker actually feels quite soothing.");
 
 					if (Upolyd) u.mh++; /* heal one hit point */
@@ -2301,6 +2339,7 @@ elena25:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS && (tmp > rnd(20+i)) ) {
 elena26:
+					u.cnd_shoedamageamount++;
 					pline("The unyielding plateau boot bonks your %s!", body_part(HEAD));
 					losehp(rnd(10),"a sturdy plateau boot for girls",KILLED_BY);
 						if (FemaleTrapElena && !rn2(3)) {
@@ -2311,6 +2350,7 @@ elena26:
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_SANDAL && (tmp > rnd(20+i)) ) {
 elenabhs:
+					u.cnd_shoedamageamount++;
 					pline("Your %s is bashed by a very fleecy block heel!", body_part(HEAD));
 					make_dimmed(HDimmed + rnd(50), TRUE);
 					losehp(rnd(10),"a pretty block-heeled sandal",KILLED_BY);
@@ -2323,6 +2363,7 @@ elenabhs:
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == PROSTITUTE_SHOE && (tmp > rnd(20+i)) ) {
 elenaps:
+					u.cnd_shoedamageamount++;
 					pline("Wow, you just can't resist the beautiful prostitute shoe as the massive heel slams on your %s.", body_part(HEAD));
 					losehp(rnd(10),"a sexy prostitute shoe",KILLED_BY);
 					badeffect();
@@ -2335,6 +2376,7 @@ elenaps:
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == BLOCK_HEELED_COMBAT_BOOT && (tmp > rnd(20+i)) ) {
 elena27:
+					u.cnd_shoedamageamount++;
 					if (flags.female) {
 						pline("The massive heel hits your %s. Wow, this feels soothing and lovely!", body_part(HEAD));
 
@@ -2367,6 +2409,7 @@ elena27:
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == HUGGING_BOOT && (tmp > rnd(20+i)) ) {
 elena28:
+					u.cnd_shoedamageamount++;
 					pline("Uff! Your %s got hit hard!", body_part(HEAD));
 					losehp(rnd(12),"a hugging boot",KILLED_BY);
 						if (Upolyd) u.mhmax--; /* lose one hit point */
@@ -2381,6 +2424,7 @@ elena28:
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == WOODEN_GETA && (tmp > rnd(20+i)) ) {
 elena29:
+					u.cnd_shoedamageamount++;
 					pline("Argh! The unyielding piece of wood painfully lands on your %s!", body_part(HEAD));
 					losehp(rnd(15),"a wooden Japanese sandal",KILLED_BY);
 
@@ -2402,6 +2446,7 @@ elena29:
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == LACQUERED_DANCING_SHOE && (tmp > rnd(20+i)) ) {
 elena30:
+					u.cnd_shoedamageamount++;
 					if (Role_if(PM_COURIER)) pline("The lacquered dancing shoe harmlessly scratches you.");
 					else {pline("The lacquered dancing shoe scratches your %s!", body_part(HEAD));
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Budem nadeyat'sya, chto mat' Selin zastavit vas istekat' krov'yu do smerti neodnokratno tsarapat' vas kablukami." : "KRRRRRRIEZ!");
@@ -2458,6 +2503,7 @@ elena30:
 
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == HIGH_HEELED_SANDAL && (tmp > rnd(20+i)) ) {
 elena31:
+					u.cnd_shoedamageamount++;
 					pline("Your %s is hit painfully by the high heel!", body_part(HEAD));
 					losehp(rnd(12),"a high-heeled sandal",KILLED_BY);
 						if (FemaleTrapElena && !rn2(3)) {
@@ -2467,6 +2513,7 @@ elena31:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SEXY_LEATHER_PUMP && (tmp > rnd(20+i)) ) {
 elena32:
+					u.cnd_shoedamageamount++;
 					pline("Klock! The heel slams on your %s, producing a beautiful sound.", body_part(HEAD));
 					losehp(rnd(20),"a sexy leather pump",KILLED_BY);
 						if (FemaleTrapElena && !rn2(3)) {
@@ -2476,6 +2523,7 @@ elena32:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == INKA_BOOT && (tmp > rnd(20+i)) ) {
 elena33:
+					u.cnd_shoedamageamount++;
 					pline("You have an orgasm because the soft inka leather is so lovely.");
 					badeffect();
 						if (FemaleTrapElena && !rn2(3)) {
@@ -2485,6 +2533,7 @@ elena33:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_LADY_SHOE && (tmp > rnd(20+i)) ) {
 elena34:
+					u.cnd_shoedamageamount++;
 					pline("Ouch! Despite being incredibly soft, the lady shoe hit your optical nerve!");
 					make_blinded(Blinded + rnd(30),FALSE);
 						if (FemaleTrapElena && !rn2(3)) {
@@ -2494,6 +2543,7 @@ elena34:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == STEEL_CAPPED_SANDAL && (tmp > rnd(20+i)) ) {
 elena35:
+					u.cnd_shoedamageamount++;
 					pline("AAAAAHHHHH! Your %s screams as it gets hit by the massive, unyielding metal heel!", body_part(HEAD));
 					make_stunned(HStun + rnd(100), FALSE);
 						if (!rn2(10)) {
@@ -2510,6 +2560,7 @@ elena35:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == DOGSHIT_BOOT && (tmp > rnd(20+i)) ) {
 elena36:
+					u.cnd_shoedamageamount++;
 					pline("Ulch! You're immersed with dog shit!");
 
 					    register struct obj *objX, *objX2;
@@ -2527,6 +2578,7 @@ elena36:
 					}
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SPIKED_BATTLE_BOOT && (tmp > rnd(20+i)) ) {
 elena37:
+					u.cnd_shoedamageamount++;
 					pline("Ouch! The spiked boot soles bore themselves into your skin!");
 					losehp(rnd(10),"a spiked battle boot",KILLED_BY);
 				    if (!rn2(6))
@@ -4717,6 +4769,7 @@ elena37:
 							for(i=rn2(4); i>=0; i--)
 								drain_item_severely(uarmu);
 								Your("%s less effective.", aobjnam(uarmu, "seem"));
+								u.cnd_disenchantamount++;
 								if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 						}
 						else{
@@ -4744,6 +4797,7 @@ elena37:
 							for(i=rn2(4); i>=0; i--)
 								drain_item_severely(uarm);
 								Your("%s less effective.", aobjnam(uarm, "seem"));
+								u.cnd_disenchantamount++;
 								if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 						 }
 						 else{
@@ -4770,6 +4824,7 @@ elena37:
 						for(i=rn2(4); i>=0; i--)
 							drain_item_severely(uarmc);
 							Your("%s less effective.", aobjnam(uarmc, "seem"));
+							u.cnd_disenchantamount++;
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				 	}
 					else{
@@ -4799,6 +4854,7 @@ elena37:
 						for(i=rn2(4); i>=0; i--)
 							drain_item_severely(uarmf);
 							Your("%s less effective.", aobjnam(uarmf, "seem"));
+							u.cnd_disenchantamount++;
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
 					else{
@@ -4836,6 +4892,7 @@ elena37:
 						drain_item_severely(uwep);
 						drain_item_severely(uwep);
 						Your("%s less effective.", aobjnam(uwep, "seem"));
+						u.cnd_disenchantamount++;
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
 				 }
@@ -4850,6 +4907,7 @@ elena37:
 						for(i=rn2(4); i>=0; i--)
 							drain_item_severely(uarmg);
 							Your("%s less effective.", aobjnam(uarmg, "seem"));
+							u.cnd_disenchantamount++;
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
 					else{
@@ -4889,6 +4947,7 @@ elena37:
 						drain_item_severely(uarms);
 						drain_item_severely(uarms);
 						Your("%s less effective.", aobjnam(uarms, "seem"));
+						u.cnd_disenchantamount++;
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
 				 }
@@ -4903,6 +4962,7 @@ elena37:
 						for(i=rn2(4); i>=0; i--)
 							drain_item_severely(uarmh);
 							Your("%s less effective.", aobjnam(uarmh, "seem"));
+							u.cnd_disenchantamount++;
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
 					else{
@@ -6767,6 +6827,7 @@ dopois:
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
@@ -7497,6 +7558,7 @@ dopois:
 
 		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		} else if (obj && rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		
@@ -7566,6 +7628,7 @@ dopois:
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -8339,7 +8402,11 @@ dopois:
 	    case AD_FAKE:
 		hitmsg(mtmp, mattk);
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 		break;
 
 	    case AD_NEXU:
@@ -8702,6 +8769,7 @@ dopois:
 			if (!rn2(7)) {
 			    /* no upper limit necessary; effect is temporary */
 			    u.mhmax++;
+			    u.cnd_nursehealamount++;
 			    if (!rn2(13)) goaway = TRUE;
 			}
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -8711,6 +8779,7 @@ dopois:
 			    /* hard upper limit via nurse care: 25 * ulevel */
 			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
 				u.uhpmax++;
+				u.cnd_nursehealamount++;
 			    }
 			    if (!rn2(10)) goaway = TRUE;
 			}
@@ -9258,6 +9327,7 @@ dopois:
 
 		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
@@ -9271,6 +9341,7 @@ dopois:
 
 		    if (obj && drain_item_severely(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
@@ -9711,6 +9782,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!rn2(7)) {
 			    /* no upper limit necessary; effect is temporary */
 			    u.mhmax++;
+			    u.cnd_nursehealamount++;
 			    if (!rn2(13)) goaway = TRUE;
 			}
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -9720,6 +9792,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    /* hard upper limit via nurse care: 25 * ulevel */
 			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
 				u.uhpmax++;
+				u.cnd_nursehealamount++;
 			    }
 			    if (!rn2(10)) goaway = TRUE;
 			}
@@ -10130,6 +10203,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				reset_rndmonst(NON_PM);
 				while (aggroamount) {
 
+					u.cnd_aggravateamount++;
 					makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					aggroamount--;
 					if (aggroamount < 0) aggroamount = 0;
@@ -10950,6 +11024,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
@@ -11611,7 +11686,11 @@ do_stone2:
 
 	    case AD_FAKE:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 		break;
 
 	    case AD_AMNE:
@@ -11925,6 +12004,7 @@ do_stone2:
 
 		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		break;
@@ -11936,6 +12016,7 @@ do_stone2:
 
 		    if (objDV && drain_item_severely(objDV)) {
 			Your("%s less effective.", aobjnam(objDV, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		break;
@@ -11948,6 +12029,7 @@ do_stone2:
 
 		if (objX && drain_item(objX)) {
 			Your("%s less effective.", aobjnam(objX, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		} else if (objX && rn2(3)) wither_dmg(objX, xname(objX), rn2(4), FALSE, &youmonst);
 
@@ -12664,6 +12746,7 @@ common:
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -13316,6 +13399,7 @@ common:
 
 			if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
@@ -13327,6 +13411,7 @@ common:
 
 			if (obj && drain_item_severely(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
@@ -13590,12 +13675,14 @@ common:
 			u.mh += rnd(7);
 			    /* no upper limit necessary; effect is temporary */
 			    u.mhmax++;
+			    u.cnd_nursehealamount++;
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		    } else {
 			u.uhp += rnd(7);
 			    /* hard upper limit via nurse care: 25 * ulevel */
 			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
 				u.uhpmax++;
+				u.cnd_nursehealamount++;
 			    }
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		    }
@@ -13704,6 +13791,7 @@ common:
 
 			if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			} else if (obj) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		}
@@ -13823,6 +13911,7 @@ common:
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
@@ -14257,7 +14346,11 @@ common:
 
 	    case AD_FAKE:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 	      mdamageu(mtmp, tmp);
 		break;
 
@@ -15256,6 +15349,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(7)) {
 			    /* no upper limit necessary; effect is temporary */
 			    u.mhmax++;
+			    u.cnd_nursehealamount++;
 			    if (!rn2(13)) goaway = TRUE;
 			}
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -15265,6 +15359,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    /* hard upper limit via nurse care: 25 * ulevel */
 			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
 				u.uhpmax++;
+				u.cnd_nursehealamount++;
 			    }
 			    if (!rn2(10)) goaway = TRUE;
 			}
@@ -15942,6 +16037,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
@@ -15958,6 +16054,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    if (obj && drain_item_severely(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
@@ -15972,6 +16069,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		} else if (obj && rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 
@@ -16040,7 +16138,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee)
  		{
 			pline("%s", fauxmessage());
-			if (!rn2(3)) pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+			if (!rn2(3)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
 		}
 		break;
 
@@ -16186,6 +16288,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
@@ -17444,6 +17547,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				reset_rndmonst(NON_PM);
 				while (aggroamount) {
 
+					u.cnd_aggravateamount++;
 					makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					aggroamount--;
 					if (aggroamount < 0) aggroamount = 0;
@@ -20513,6 +20617,7 @@ register struct attack *mattk;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -20636,7 +20741,11 @@ register struct attack *mattk;
 		break;
 	    case AD_FAKE:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 		break;
 	    case AD_WEBS:
 		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0);

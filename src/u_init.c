@@ -43256,6 +43256,8 @@ polyinitredoX:
 	randfwean->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	randfwean->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 
+	u.cnd_alterrealityamount++;
+
 	if (realityflag == 0) {
 
 		pline(FunnyHallu ? "You invoke the power of Eru Iluvator... err, Sauron. Whatever it's called." : "The power of Eru Iluvator flows through you!");

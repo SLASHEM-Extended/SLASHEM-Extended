@@ -4876,7 +4876,11 @@ physical:
 
 	    case AD_FAKE:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 
 		break;
 
@@ -6854,7 +6858,11 @@ int attnumber;
 		break;
 	    case AD_FAKE:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 		break;
 	    case AD_WEBS:
 		(void) maketrap(magr->mx, magr->my, WEB, 0);

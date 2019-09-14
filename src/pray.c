@@ -735,6 +735,7 @@ aligntyp resp_god;
 	register int	maxanger;
 
 	int copcnt; /* Angry gods will send in the police and sephirah! --Amy */
+	u.cnd_kopsummonamount++;
 	copcnt = rnd(monster_difficulty() ) + 1;
 	if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 
@@ -2209,6 +2210,7 @@ dosacrifice()
 		    /* lower chance of conversion --Amy */
 		    struct monst *pri;
 		    You_feel("the power of %s increase.", u_gname());
+		    u.cnd_altarconvertamount++;
 		    if (!rn2(2) || rnl(u.ulevel) > 3) { /* higher chance of conversion creating minions --Amy */
 		    	/* KMH -- Only a chance of this happening */
 				You_feel("%s is very angry at you!", a_gname());                    

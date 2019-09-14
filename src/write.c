@@ -423,6 +423,7 @@ found:
 		use_skill(P_DEVICES,10);
 		use_skill(P_DEVICES,10);
 	}
+	u.cnd_markercount++;
 
 	/* success */
 	if (new_obj->oclass == SPBOOK_CLASS) {

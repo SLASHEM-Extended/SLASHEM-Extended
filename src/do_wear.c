@@ -1015,6 +1015,7 @@ Cloak_on()
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 		break;

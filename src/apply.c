@@ -2528,6 +2528,9 @@ fixthings:
 	}
 
 	flags.botl = (did_attr || did_prop || did_atno);
+
+	if (did_attr || did_prop) u.cnd_unihorncount++;
+
 #undef PROP_COUNT
 #undef ATTR_COUNT
 #undef prop2trbl
@@ -3814,6 +3817,7 @@ use_pole (obj)
 			u.heavyaggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -4636,6 +4640,7 @@ blast_him:
 		use_skill(P_DEVICES,1);
 		use_skill(P_DEVICES,1);
 	}
+	u.cnd_chemistrycount++;
 }
 
 
@@ -6166,6 +6171,7 @@ chargingchoice:
 			else u.ublesscnt += rn2(10);
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			noartispeak = TRUE;
+			u.cnd_applycount++;
 			return 0;
 			}
 
@@ -6215,6 +6221,8 @@ chargingchoice:
 	}
 
 mushroompolecheck:
+
+	u.cnd_applycount++;
 
 	nomul(0, 0, FALSE);
 	if (!obj) return res;

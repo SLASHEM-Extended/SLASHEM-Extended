@@ -1952,7 +1952,9 @@ badeffect()
 		if (!rn2(5)) copcnt /= 2; /* don't make too many */
 		if (!rn2(10)) copcnt /= 3;
 		if (copcnt < 1) copcnt = 1;
-	
+
+		u.cnd_kopsummonamount++;
+
 		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 			copcnt = (copcnt / 2) + 1;
 		}
@@ -2244,6 +2246,7 @@ badeffect()
 
 			    if (objD && drain_item(objD)) {
 				Your("%s less effective.", aobjnam(objD, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
@@ -3035,7 +3038,9 @@ reallybadeffect()
 		if (!rn2(5)) copcnt /= 2; /* don't make too many */
 		if (!rn2(10)) copcnt /= 3;
 		if (copcnt < 1) copcnt = 1;
-	
+
+		u.cnd_kopsummonamount++;
+
 		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
 			copcnt = (copcnt / 2) + 1;
 		}
@@ -3244,6 +3249,7 @@ reallybadeffect()
 
 			    if (objD && drain_item(objD)) {
 				Your("%s less effective.", aobjnam(objD, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
@@ -3637,6 +3643,8 @@ statdrain()
 		return;
 	}
 
+	u.cnd_permstatdamageamount++;
+
 	ABASE(statdrained) -= 1;
 	AMAX(statdrained) -= 1;
 	flags.botl = 1;
@@ -3677,6 +3685,7 @@ boolean guaranteed;
 	if (!rn2(5)) EntireLevelMode += rnz(100);
 
 	pline("Let's Ragnarok!");
+	u.cnd_ragnarokamount++;
 
 	FalloutEffect += rnz(200);
 
@@ -4168,6 +4177,7 @@ datadeleteattack()
 
 {
 
+	u.cnd_datadeleteamount++;
 	Your("data is deleted!");
 	stop_occupation();
 
@@ -5825,6 +5835,8 @@ dodrink()
 
 	potion_descr = OBJ_DESCR(objects[otmp->otyp]);
 
+	u.cnd_quaffcount++;
+
 	use_skill(P_DEVICES,1);
 	if (Race_if(PM_FAWN)) {
 		use_skill(P_DEVICES,1);
@@ -6645,7 +6657,11 @@ peffects(otmp)
 		} break;
 	case POT_MEHOHO_BURUSASAN_G:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 		if (otmp->cursed || !rn2(3)) {
 			adjattrib(A_CON,-1,-1, TRUE);
 		}
@@ -7609,7 +7625,11 @@ peffects(otmp)
 	case POT_TERCES_DLU:
 
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 
 		break;
 

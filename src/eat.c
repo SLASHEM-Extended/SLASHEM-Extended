@@ -1549,6 +1549,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give acid resistance");
 #endif
 		if(!(Acid_resistance & INTRINSIC)) {
+			u.cnd_eatrinsicamount++;
 			You(FunnyHallu ? "wanna do more acid!" :
 			    "feel less afraid of corrosives.");
 			if (rn2(100)) incr_itimeout(&HAcid_resistance, rn1(1000, 500));
@@ -1560,6 +1561,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give petrify resistance");
 #endif
 		if(!(HStone_resistance & INTRINSIC)) {
+			u.cnd_eatrinsicamount++;
 			You(FunnyHallu ? "feel stony and groovy, man." :
 			    "feel rock solid.");
 			if (rn2(100)) incr_itimeout(&HStone_resistance, rn1(1000, 500));
@@ -1571,6 +1573,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give fire resistance");
 #endif
 		if(!(HFire_resistance & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You(FunnyHallu ? "be chillin'." :
 			    "feel a momentary chill.");
 			HFire_resistance |= FROMOUTSIDE;
@@ -1581,6 +1584,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give sleep resistance");
 #endif
 		if(!(HSleep_resistance & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel("wide awake.");
 			HSleep_resistance |= FROMOUTSIDE;
 		}
@@ -1590,6 +1594,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give cold resistance");
 #endif
 		if(!(HCold_resistance & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel("full of hot air.");
 			HCold_resistance |= FROMOUTSIDE;
 		}
@@ -1599,6 +1604,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give disintegration resistance");
 #endif
 		if(!(HDisint_resistance & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "totally together, man." :
 			    "very firm.");
@@ -1610,6 +1616,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give shock resistance");
 #endif
 		if(!(HShock_resistance & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			if (FunnyHallu)
 				You_feel("grounded in reality.");
 			else
@@ -1622,6 +1629,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give poison resistance");
 #endif
 		if(!(HPoison_resistance & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(Poison_resistance ?
 				 "especially healthy." : "healthy.");
 			HPoison_resistance |= FROMOUTSIDE;
@@ -1632,6 +1640,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give teleport");
 #endif
 		if(!(HTeleportation & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ? "diffuse." :
 			    "very jumpy.");
 			HTeleportation |= FROMOUTSIDE;
@@ -1642,6 +1651,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give teleport control");
 #endif
 		if(!(HTeleport_control & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "centered in your personal space." :
 			    "in control of yourself.");
@@ -1653,6 +1663,7 @@ register struct permonst *ptr;
 		debugpline("Trying to give telepathy");
 #endif
 		if(!(HTelepat & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "in touch with the cosmos." :
 			    "a strange mental acuity.");
@@ -1664,6 +1675,7 @@ register struct permonst *ptr;
 
 	    case HALLU_PARTY:
 		if(!(HHallu_party & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "like throwing wild parties with lots of sexy girls! Yeah!" :
 			    "a strange desire to celebrate.");
@@ -1672,6 +1684,7 @@ register struct permonst *ptr;
 		break;
 	    case DRUNKEN_BOXING:
 		if(!(HDrunken_boxing & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "like Mike Tyson!" :
 			    "ready for a good brawl.");
@@ -1680,6 +1693,7 @@ register struct permonst *ptr;
 		break;
 	    case STUNNOPATHY:
 		if(!(HStunnopathy & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "a controlled wobbling! Feels like being on a bouncy ship!" :
 			    "steadily observant.");
@@ -1688,6 +1702,7 @@ register struct permonst *ptr;
 		break;
 	    case NUMBOPATHY:
 		if(!(HNumbopathy & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "as if a sweet woman were clamping your toes with a block-heeled combat boot!" :
 			    "a numb feeling spreading through your body. Somehow, it doesn't feel bad at all...");
@@ -1696,6 +1711,7 @@ register struct permonst *ptr;
 		break;
 	    case DIMMOPATHY:
 		if(!(HDimmopathy & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "like your wife was contemplating a breakup, but then you realize that she's gonna stay with you to the end of all time." :
 			    "a little down. But then, good feelings overcome you.");
@@ -1704,6 +1720,7 @@ register struct permonst *ptr;
 		break;
 	    case FREEZOPATHY:
 		if(!(HFreezopathy & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "like eating a big cone of ice-cream - mmmmmmmm!" :
 			    "icy.");
@@ -1712,6 +1729,7 @@ register struct permonst *ptr;
 		break;
 	    case STONED_CHILLER:
 		if(!(HStoned_chiller & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "that you're simply the best - yeah, no shit, man!" :
 			    "like relaxing on a couch.");
@@ -1720,6 +1738,7 @@ register struct permonst *ptr;
 		break;
 	    case CORROSIVITY:
 		if(!(HCorrosivity & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "like you just got splashed with gunks of acid!" :
 			    "an acidic burning.");
@@ -1728,6 +1747,7 @@ register struct permonst *ptr;
 		break;
 	    case FEAR_FACTOR:
 		if(!(HFear_factor & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "like you're always running - from something! And the 'something' is a prostitute." :
 			    "ready to face your fears.");
@@ -1736,6 +1756,7 @@ register struct permonst *ptr;
 		break;
 	    case BURNOPATHY:
 		if(!(HBurnopathy & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "super burninated by enemy with very tired!" :
 			    "a burning inside. Strangely, it feels quite soothing.");
@@ -1744,6 +1765,7 @@ register struct permonst *ptr;
 		break;
 	    case SICKOPATHY:
 		if(!(HSickopathy & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "that you just ate some really wacky stuff! What the heck was in there?" :
 			    "ill for a moment, but get the feeling that you know more about diseases now.");
@@ -1752,6 +1774,7 @@ register struct permonst *ptr;
 		break;
 	    case WONDERLEGS:
 		if(!(HWonderlegs & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "a wonderful sensation in your shins, like they were just kicked by female hugging boots! How lovely!" :
 			    "like having your legs scratched up and down by sexy leather pumps.");
@@ -1760,6 +1783,7 @@ register struct permonst *ptr;
 		break;
 	    case GLIB_COMBAT:
 		if(!(HGlib_combat & FROMOUTSIDE)) {
+			u.cnd_eatrinsicamount++;
 			You_feel(FunnyHallu ?
 			    "like an absolute marital arts champion, so you can start fighting off your spouse!" :
 			    "the fliction in your hands disappearing.");
@@ -3308,7 +3332,11 @@ register int pm;
 	/* eating anything that spouts fake messages will give another one --Amy */
 		if (dmgtype(ptr, AD_FAKE)) {
 			pline("%s", fauxmessage());
-			if (!rn2(3)) pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+			if (!rn2(3)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
 		}
 
 	/* AD_HEAL monsters are rare; let's make them give one extra max HP --Amy */

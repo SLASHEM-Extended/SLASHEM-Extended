@@ -3544,6 +3544,7 @@ unsigned trflags;
 		if (trap->launch_otyp < 12) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "tender" : "soft");
 		else if (trap->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
+		u.cnd_fartingcount++;
 
 		if (trap->launch_otyp < 12 && uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
 			healup((level_difficulty() + 5), 0, FALSE, FALSE);
@@ -5718,6 +5719,7 @@ rerollX:
 					u.aggravation = 1;
 					reset_rndmonst(NON_PM);
 					while (aggroamount) {
+						u.cnd_aggravateamount++;
 						makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 						aggroamount--;
 						if (aggroamount < 0) aggroamount = 0;
@@ -6448,6 +6450,7 @@ newbossPENT:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Sarah.");
 			pline("You can already imagine the farting noises you're gonna hear.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapSarah = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapSarah += 100;
@@ -6461,6 +6464,7 @@ newbossPENT:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Claudia.");
 			pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapClaudia = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapClaudia += 100;
@@ -6474,6 +6478,7 @@ newbossPENT:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Ludgera.");
 			pline("You'll certainly like to listen to the disgusting toilet noises.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapLudgera = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapLudgera += 100;
@@ -6487,6 +6492,7 @@ newbossPENT:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Kati.");
 			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapKati = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapKati += 100;
@@ -7191,6 +7197,7 @@ newbossPENT:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					u.cnd_disenchantamount++;
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
@@ -7739,6 +7746,7 @@ newbossPENT:
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+		u.cnd_banishmentcount++;
 		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -9120,6 +9128,7 @@ madnesseffect:
 		if (isfriday) aggroamount *= 2;
 
 		while (aggroamount) {
+			u.cnd_aggravateamount++;
 			makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 			aggroamount--;
 			if (aggroamount < 0) aggroamount = 0;
@@ -9461,20 +9470,29 @@ madnesseffect:
 		 case LOUDSPEAKER: /* fake message */
 			{
 				pline("%s", fauxmessage());
-				if (!rn2(3)) pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+				if (!rn2(3)) {
+					pline("%s", fauxmessage());
+					u.cnd_plineamount++;
+				}
 			}
 		 break;
 
 		 case ARABELLA_SPEAKER: /* fake message */
 			{
 				pline("%s", fauxmessage());
-				if (!rn2(3)) pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+				if (!rn2(3)) {
+					pline("%s", fauxmessage());
+					u.cnd_plineamount++;
+				}
 			}
 		 break;
 
 		 case RMB_LOSS_TRAP:
 
 			if (RMBLoss) break;
+			u.cnd_nastytrapamount++;
 
 			RMBLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9483,6 +9501,7 @@ madnesseffect:
 		 case DROP_TRAP:
 
 			if (NoDropProblem) break;
+			u.cnd_nastytrapamount++;
 
 			NoDropProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9491,6 +9510,7 @@ madnesseffect:
 		 case DSTW_TRAP:
 
 			if (DSTWProblem) break;
+			u.cnd_nastytrapamount++;
 
 			DSTWProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9499,6 +9519,7 @@ madnesseffect:
 		 case STATUS_TRAP:
 
 			if (StatusTrapProblem) break;
+			u.cnd_nastytrapamount++;
 
 			StatusTrapProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9523,6 +9544,7 @@ madnesseffect:
 			if (Superscroller) break;
 
 			else {
+			u.cnd_nastytrapamount++;
 			deltrap(trap);
 			(void) maketrap(u.ux, u.uy, SUPERSCROLLER_TRAP, 0);
 			/* no recursive trap - just give the nasty effect here */
@@ -9535,6 +9557,7 @@ madnesseffect:
 		 case SUPERSCROLLER_TRAP:
 
 			if (Superscroller) break;
+			u.cnd_nastytrapamount++;
 
 			Superscroller = rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1));
 			(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
@@ -9544,6 +9567,7 @@ madnesseffect:
 		 case MENU_TRAP:
 
 			if (MenuBug) break;
+			u.cnd_nastytrapamount++;
 
 			MenuBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9552,6 +9576,7 @@ madnesseffect:
 		 case FREE_HAND_TRAP:
 
 			if (FreeHandLoss) break;
+			u.cnd_nastytrapamount++;
 
 			FreeHandLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9560,6 +9585,7 @@ madnesseffect:
 		 case UNIDENTIFY_TRAP:
 
 			if (Unidentify) break;
+			u.cnd_nastytrapamount++;
 
 			Unidentify = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9568,6 +9594,7 @@ madnesseffect:
 		 case METABOLIC_TRAP:
 
 			if (FastMetabolismEffect) break;
+			u.cnd_nastytrapamount++;
 
 			FastMetabolismEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9576,6 +9603,7 @@ madnesseffect:
 		 case TRAP_OF_NO_RETURN:
 
 			if (NoReturnEffect) break;
+			u.cnd_nastytrapamount++;
 
 			NoReturnEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9584,6 +9612,7 @@ madnesseffect:
 		 case EGOTRAP:
 
 			if (AlwaysEgotypeMonsters) break;
+			u.cnd_nastytrapamount++;
 
 			AlwaysEgotypeMonsters = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9592,6 +9621,7 @@ madnesseffect:
 		 case FAST_FORWARD_TRAP:
 
 			if (TimeGoesByFaster) break;
+			u.cnd_nastytrapamount++;
 
 			TimeGoesByFaster = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9600,6 +9630,7 @@ madnesseffect:
 		 case TRAP_OF_ROTTENNESS:
 
 			if (FoodIsAlwaysRotten) break;
+			u.cnd_nastytrapamount++;
 
 			FoodIsAlwaysRotten = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9608,6 +9639,7 @@ madnesseffect:
 		 case UNSKILLED_TRAP:
 
 			if (AllSkillsUnskilled) break;
+			u.cnd_nastytrapamount++;
 
 			AllSkillsUnskilled = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9616,6 +9648,7 @@ madnesseffect:
 		 case DESECRATION_TRAP:
 
 			if (Desecration) break;
+			u.cnd_nastytrapamount++;
 
 			Desecration = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9647,6 +9680,7 @@ madnesseffect:
 		 case STARVATION_TRAP:
 
 			if (StarvationEffect) break;
+			u.cnd_nastytrapamount++;
 
 			StarvationEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9655,6 +9689,7 @@ madnesseffect:
 		 case DROPLESS_TRAP:
 
 			if (NoDropsEffect) break;
+			u.cnd_nastytrapamount++;
 
 			NoDropsEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9663,6 +9698,7 @@ madnesseffect:
 		 case LOW_EFFECT_TRAP:
 
 			if (LowEffects) break;
+			u.cnd_nastytrapamount++;
 
 			LowEffects = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9671,6 +9707,7 @@ madnesseffect:
 		 case INVISIBLE_TRAP:
 
 			if (InvisibleTrapsEffect) break;
+			u.cnd_nastytrapamount++;
 
 			InvisibleTrapsEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9679,6 +9716,7 @@ madnesseffect:
 		 case GHOST_WORLD_TRAP:
 
 			if (GhostWorld) break;
+			u.cnd_nastytrapamount++;
 
 			GhostWorld = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9687,6 +9725,7 @@ madnesseffect:
 		 case DEHYDRATION_TRAP:
 
 			if (Dehydration) break;
+			u.cnd_nastytrapamount++;
 
 			Dehydration = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9695,6 +9734,7 @@ madnesseffect:
 		 case HATE_TRAP:
 
 			if (HateTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			HateTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9703,6 +9743,7 @@ madnesseffect:
 		 case TOTTER_TRAP:
 
 			if (TotterTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			TotterTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9711,6 +9752,7 @@ madnesseffect:
 		 case NONINTRINSICAL_TRAP:
 
 			if (Nonintrinsics) break;
+			u.cnd_nastytrapamount++;
 
 			Nonintrinsics = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9719,6 +9761,7 @@ madnesseffect:
 		 case DROPCURSE_TRAP:
 
 			if (Dropcurses) break;
+			u.cnd_nastytrapamount++;
 
 			Dropcurses = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9727,6 +9770,7 @@ madnesseffect:
 		 case NAKEDNESS_TRAP:
 
 			if (Nakedness) break;
+			u.cnd_nastytrapamount++;
 
 			Nakedness = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9735,6 +9779,7 @@ madnesseffect:
 		 case ANTILEVEL_TRAP:
 
 			if (Antileveling) break;
+			u.cnd_nastytrapamount++;
 
 			Antileveling = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9743,6 +9788,7 @@ madnesseffect:
 		 case STEALER_TRAP:
 
 			if (ItemStealingEffect) break;
+			u.cnd_nastytrapamount++;
 
 			ItemStealingEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9751,6 +9797,7 @@ madnesseffect:
 		 case REBELLION_TRAP:
 
 			if (Rebellions) break;
+			u.cnd_nastytrapamount++;
 
 			Rebellions = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9759,6 +9806,7 @@ madnesseffect:
 		 case CRAP_TRAP:
 
 			if (CrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			CrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9767,6 +9815,7 @@ madnesseffect:
 		 case MISFIRE_TRAP:
 
 			if (ProjectilesMisfire) break;
+			u.cnd_nastytrapamount++;
 
 			ProjectilesMisfire = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9775,6 +9824,7 @@ madnesseffect:
 		 case TRAP_OF_WALLS:
 
 			if (WallTrapping) break;
+			u.cnd_nastytrapamount++;
 
 			WallTrapping = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9783,6 +9833,7 @@ madnesseffect:
 		 case LOW_STATS_TRAP:
 
 			if (AllStatsAreLower) break;
+			u.cnd_nastytrapamount++;
 
 			AllStatsAreLower = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9791,6 +9842,7 @@ madnesseffect:
 		 case TRAINING_TRAP:
 
 			if (PlayerCannotTrainSkills) break;
+			u.cnd_nastytrapamount++;
 
 			PlayerCannotTrainSkills = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9799,6 +9851,7 @@ madnesseffect:
 		 case EXERCISE_TRAP:
 
 			if (PlayerCannotExerciseStats) break;
+			u.cnd_nastytrapamount++;
 
 			PlayerCannotExerciseStats = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9807,6 +9860,7 @@ madnesseffect:
 		 case LIMITATION_TRAP:
 
 			if (TurnLimitation) break;
+			u.cnd_nastytrapamount++;
 
 			TurnLimitation = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9815,6 +9869,7 @@ madnesseffect:
 		 case WEAK_SIGHT_TRAP:
 
 			if (WeakSight) break;
+			u.cnd_nastytrapamount++;
 
 			WeakSight = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9823,6 +9878,7 @@ madnesseffect:
 		 case RANDOM_MESSAGE_TRAP:
 
 			if (RandomMessages) break;
+			u.cnd_nastytrapamount++;
 
 			RandomMessages = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9831,6 +9887,7 @@ madnesseffect:
 		 case RECURRING_AMNESIA_TRAP:
 
 			if (RecurringAmnesia) break;
+			u.cnd_nastytrapamount++;
 
 			RecurringAmnesia = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9839,6 +9896,7 @@ madnesseffect:
 		 case BIGSCRIPT_TRAP:
 
 			if (BigscriptEffect) break;
+			u.cnd_nastytrapamount++;
 
 			BigscriptEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9847,6 +9905,7 @@ madnesseffect:
 		 case BANK_TRAP:
 
 			if (BankTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			BankTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9859,6 +9918,7 @@ madnesseffect:
 		 case MAP_TRAP:
 
 			if (MapTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			MapTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9867,6 +9927,7 @@ madnesseffect:
 		 case TECH_TRAP:
 
 			if (TechTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			TechTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9875,6 +9936,7 @@ madnesseffect:
 		 case DISENCHANT_TRAP:
 
 			if (RecurringDisenchant) break;
+			u.cnd_nastytrapamount++;
 
 			RecurringDisenchant = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9883,6 +9945,7 @@ madnesseffect:
 		 case VERISIERT:
 
 			if (verisiertEffect) break;
+			u.cnd_nastytrapamount++;
 
 			verisiertEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9891,6 +9954,7 @@ madnesseffect:
 		 case CHAOS_TRAP:
 
 			if (ChaosTerrain) break;
+			u.cnd_nastytrapamount++;
 
 			ChaosTerrain = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9899,6 +9963,7 @@ madnesseffect:
 		 case MUTENESS_TRAP:
 
 			if (Muteness) break;
+			u.cnd_nastytrapamount++;
 
 			Muteness = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9907,6 +9972,7 @@ madnesseffect:
 		 case ENGRAVING_TRAP:
 
 			if (EngravingDoesntWork) break;
+			u.cnd_nastytrapamount++;
 
 			EngravingDoesntWork = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9915,6 +9981,7 @@ madnesseffect:
 		 case MAGIC_DEVICE_TRAP:
 
 			if (MagicDeviceEffect) break;
+			u.cnd_nastytrapamount++;
 
 			MagicDeviceEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9923,6 +9990,7 @@ madnesseffect:
 		 case BOOK_TRAP:
 
 			if (BookTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			BookTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9931,6 +9999,7 @@ madnesseffect:
 		 case LEVEL_TRAP:
 
 			if (LevelTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			LevelTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9939,6 +10008,7 @@ madnesseffect:
 		 case QUIZ_TRAP:
 
 			if (QuizTrapEffect) break;
+			u.cnd_nastytrapamount++;
 
 			QuizTrapEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9979,6 +10049,7 @@ madnesseffect:
 		 case THIRST_TRAP:
 
 			if (Thirst) break;
+			u.cnd_nastytrapamount++;
 
 			Thirst = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9987,6 +10058,7 @@ madnesseffect:
 		 case LUCK_TRAP:
 
 			if (LuckLoss) break;
+			u.cnd_nastytrapamount++;
 
 			LuckLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -9995,6 +10067,7 @@ madnesseffect:
 		 case SHADES_OF_GREY_TRAP:
 
 			if (ShadesOfGrey) break;
+			u.cnd_nastytrapamount++;
 
 			ShadesOfGrey = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10003,6 +10076,7 @@ madnesseffect:
 		 case FAINT_TRAP:
 
 			if (FaintActive) break;
+			u.cnd_nastytrapamount++;
 
 			FaintActive = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10011,6 +10085,7 @@ madnesseffect:
 		 case CURSE_TRAP:
 
 			if (Itemcursing) break;
+			u.cnd_nastytrapamount++;
 
 			Itemcursing = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10019,6 +10094,7 @@ madnesseffect:
 		 case DIFFICULTY_TRAP:
 
 			if (DifficultyIncreased) break;
+			u.cnd_nastytrapamount++;
 
 			DifficultyIncreased = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10027,6 +10103,7 @@ madnesseffect:
 		 case SOUND_TRAP:
 
 			if (Deafness) break;
+			u.cnd_nastytrapamount++;
 
 			Deafness = rnz(nastytrapdur * (monster_difficulty() + 1));
 			flags.soundok = 0;
@@ -10036,6 +10113,7 @@ madnesseffect:
 		 case CASTER_TRAP:
 
 			if (CasterProblem) break;
+			u.cnd_nastytrapamount++;
 
 			CasterProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10044,6 +10122,7 @@ madnesseffect:
 		 case WEAKNESS_TRAP:
 
 			if (WeaknessProblem) break;
+			u.cnd_nastytrapamount++;
 
 			WeaknessProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10052,6 +10131,7 @@ madnesseffect:
 		 case ROT_THIRTEEN_TRAP:
 
 			if (RotThirteen) break;
+			u.cnd_nastytrapamount++;
 
 			RotThirteen = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10060,6 +10140,7 @@ madnesseffect:
 		 case BISHOP_TRAP:
 
 			if (BishopGridbug) break;
+			u.cnd_nastytrapamount++;
 
 			BishopGridbug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10068,6 +10149,7 @@ madnesseffect:
 		 case UNINFORMATION_TRAP:
 
 			if (UninformationProblem) break;
+			u.cnd_nastytrapamount++;
 
 			UninformationProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10076,6 +10158,7 @@ madnesseffect:
 		case LOOTCUT_TRAP:
 
 			if (LootcutBug) break;
+			u.cnd_nastytrapamount++;
 
 			LootcutBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10084,6 +10167,7 @@ madnesseffect:
 		case MONSTER_SPEED_TRAP:
 
 			if (MonsterSpeedBug) break;
+			u.cnd_nastytrapamount++;
 
 			MonsterSpeedBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10092,6 +10176,7 @@ madnesseffect:
 		case SCALING_TRAP:
 
 			if (ScalingBug) break;
+			u.cnd_nastytrapamount++;
 
 			ScalingBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10100,6 +10185,7 @@ madnesseffect:
 		case ENMITY_TRAP:
 
 			if (EnmityBug) break;
+			u.cnd_nastytrapamount++;
 
 			EnmityBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10108,6 +10194,7 @@ madnesseffect:
 		case WHITE_SPELL_TRAP:
 
 			if (WhiteSpells) break;
+			u.cnd_nastytrapamount++;
 
 			WhiteSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10116,6 +10203,7 @@ madnesseffect:
 		case COMPLETE_GRAY_SPELL_TRAP:
 
 			if (CompleteGraySpells) break;
+			u.cnd_nastytrapamount++;
 
 			CompleteGraySpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10124,6 +10212,7 @@ madnesseffect:
 		case QUASAR_TRAP:
 
 			if (QuasarVision) break;
+			u.cnd_nastytrapamount++;
 
 			QuasarVision = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10132,6 +10221,7 @@ madnesseffect:
 		case MOMMA_TRAP:
 
 			if (MommaBugEffect) break;
+			u.cnd_nastytrapamount++;
 
 			MommaBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10140,6 +10230,7 @@ madnesseffect:
 		case HORROR_TRAP:
 
 			if (HorrorBugEffect) break;
+			u.cnd_nastytrapamount++;
 
 			HorrorBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10148,6 +10239,7 @@ madnesseffect:
 		case ARTIFICER_TRAP:
 
 			if (ArtificerBug) break;
+			u.cnd_nastytrapamount++;
 
 			ArtificerBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10156,6 +10248,7 @@ madnesseffect:
 		case WEREFORM_TRAP:
 
 			if (WereformBug) break;
+			u.cnd_nastytrapamount++;
 
 			WereformBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10164,6 +10257,7 @@ madnesseffect:
 		case NON_PRAYER_TRAP:
 
 			if (NonprayerBug) break;
+			u.cnd_nastytrapamount++;
 
 			NonprayerBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10172,6 +10266,7 @@ madnesseffect:
 		case EVIL_PATCH_TRAP:
 
 			if (EvilPatchEffect) break;
+			u.cnd_nastytrapamount++;
 
 			EvilPatchEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10180,6 +10275,7 @@ madnesseffect:
 		case HARD_MODE_TRAP:
 
 			if (HardModeEffect) break;
+			u.cnd_nastytrapamount++;
 
 			HardModeEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10188,6 +10284,7 @@ madnesseffect:
 		case SECRET_ATTACK_TRAP:
 
 			if (SecretAttackBug) break;
+			u.cnd_nastytrapamount++;
 
 			SecretAttackBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10196,6 +10293,7 @@ madnesseffect:
 		case EATER_TRAP:
 
 			if (EaterBugEffect) break;
+			u.cnd_nastytrapamount++;
 
 			EaterBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10204,6 +10302,7 @@ madnesseffect:
 		case COVETOUSNESS_TRAP:
 
 			if (CovetousnessBug) break;
+			u.cnd_nastytrapamount++;
 
 			CovetousnessBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10212,6 +10311,7 @@ madnesseffect:
 		case NOT_SEEN_TRAP:
 
 			if (NotSeenBug) break;
+			u.cnd_nastytrapamount++;
 
 			NotSeenBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10220,6 +10320,7 @@ madnesseffect:
 		case DARK_MODE_TRAP:
 
 			if (DarkModeBug) break;
+			u.cnd_nastytrapamount++;
 
 			DarkModeBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10228,6 +10329,7 @@ madnesseffect:
 		case ANTISEARCH_TRAP:
 
 			if (AntisearchEffect) break;
+			u.cnd_nastytrapamount++;
 
 			AntisearchEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10236,6 +10338,7 @@ madnesseffect:
 		case HOMICIDE_TRAP:
 
 			if (HomicideEffect) break;
+			u.cnd_nastytrapamount++;
 
 			HomicideEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10244,6 +10347,7 @@ madnesseffect:
 		case NASTY_NATION_TRAP:
 
 			if (NastynationBug) break;
+			u.cnd_nastytrapamount++;
 
 			NastynationBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10252,6 +10356,7 @@ madnesseffect:
 		case WAKEUP_CALL_TRAP:
 
 			if (WakeupCallBug) break;
+			u.cnd_nastytrapamount++;
 
 			WakeupCallBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10260,6 +10365,7 @@ madnesseffect:
 		case GRAYOUT_TRAP:
 
 			if (GrayoutBug) break;
+			u.cnd_nastytrapamount++;
 
 			GrayoutBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10268,6 +10374,7 @@ madnesseffect:
 		case GRAY_CENTER_TRAP:
 
 			if (GrayCenterBug) break;
+			u.cnd_nastytrapamount++;
 
 			GrayCenterBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10276,6 +10383,7 @@ madnesseffect:
 		case CHECKERBOARD_TRAP:
 
 			if (CheckerboardBug) break;
+			u.cnd_nastytrapamount++;
 
 			CheckerboardBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10284,6 +10392,7 @@ madnesseffect:
 		case CLOCKWISE_SPIN_TRAP:
 
 			if (ClockwiseSpinBug) break;
+			u.cnd_nastytrapamount++;
 
 			ClockwiseSpinBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10292,6 +10401,7 @@ madnesseffect:
 		case COUNTERCLOCKWISE_SPIN_TRAP:
 
 			if (CounterclockwiseSpin) break;
+			u.cnd_nastytrapamount++;
 
 			CounterclockwiseSpin = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10300,6 +10410,7 @@ madnesseffect:
 		case LAG_TRAP:
 
 			if (LagBugEffect) break;
+			u.cnd_nastytrapamount++;
 
 			LagBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10308,6 +10419,7 @@ madnesseffect:
 		case BLESSCURSE_TRAP:
 
 			if (BlesscurseEffect) break;
+			u.cnd_nastytrapamount++;
 
 			BlesscurseEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10316,6 +10428,7 @@ madnesseffect:
 		case DE_LIGHT_TRAP:
 
 			if (DeLightBug) break;
+			u.cnd_nastytrapamount++;
 
 			DeLightBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10324,6 +10437,7 @@ madnesseffect:
 		case DISCHARGE_TRAP:
 
 			if (DischargeBug) break;
+			u.cnd_nastytrapamount++;
 
 			DischargeBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10332,6 +10446,7 @@ madnesseffect:
 		case TRASHING_TRAP:
 
 			if (TrashingBugEffect) break;
+			u.cnd_nastytrapamount++;
 
 			TrashingBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10340,6 +10455,7 @@ madnesseffect:
 		case FILTERING_TRAP:
 
 			if (FilteringBug) break;
+			u.cnd_nastytrapamount++;
 
 			FilteringBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10348,6 +10464,7 @@ madnesseffect:
 		case DEFORMATTING_TRAP:
 
 			if (DeformattingBug) break;
+			u.cnd_nastytrapamount++;
 
 			DeformattingBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10356,6 +10473,7 @@ madnesseffect:
 		case FLICKER_STRIP_TRAP:
 
 			if (FlickerStripBug) break;
+			u.cnd_nastytrapamount++;
 
 			FlickerStripBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10364,6 +10482,7 @@ madnesseffect:
 		case UNDRESSING_TRAP:
 
 			if (UndressingEffect) break;
+			u.cnd_nastytrapamount++;
 
 			UndressingEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10372,6 +10491,7 @@ madnesseffect:
 		case HYPERBLUEWALL_TRAP:
 
 			if (Hyperbluewalls) break;
+			u.cnd_nastytrapamount++;
 
 			Hyperbluewalls = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10380,6 +10500,7 @@ madnesseffect:
 		case NOLITE_TRAP:
 
 			if (NoliteBug) break;
+			u.cnd_nastytrapamount++;
 
 			NoliteBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10388,6 +10509,7 @@ madnesseffect:
 		case PARANOIA_TRAP:
 
 			if (ParanoiaBugEffect) break;
+			u.cnd_nastytrapamount++;
 
 			ParanoiaBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10396,6 +10518,7 @@ madnesseffect:
 		case FLEECESCRIPT_TRAP:
 
 			if (FleecescriptBug) break;
+			u.cnd_nastytrapamount++;
 
 			FleecescriptBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10404,6 +10527,7 @@ madnesseffect:
 		case INTERRUPT_TRAP:
 
 			if (InterruptEffect) break;
+			u.cnd_nastytrapamount++;
 
 			InterruptEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10412,6 +10536,7 @@ madnesseffect:
 		case DUSTBIN_TRAP:
 
 			if (DustbinBug) break;
+			u.cnd_nastytrapamount++;
 
 			DustbinBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10420,6 +10545,7 @@ madnesseffect:
 		case MANA_BATTERY_TRAP:
 
 			if (ManaBatteryBug) break;
+			u.cnd_nastytrapamount++;
 
 			ManaBatteryBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10428,6 +10554,7 @@ madnesseffect:
 		case MONSTERFINGERS_TRAP:
 
 			if (Monsterfingers) break;
+			u.cnd_nastytrapamount++;
 
 			Monsterfingers = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10436,6 +10563,7 @@ madnesseffect:
 		case MISCAST_TRAP:
 
 			if (MiscastBug) break;
+			u.cnd_nastytrapamount++;
 
 			MiscastBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10444,6 +10572,7 @@ madnesseffect:
 		case MESSAGE_SUPPRESSION_TRAP:
 
 			if (MessageSuppression) break;
+			u.cnd_nastytrapamount++;
 
 			MessageSuppression = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10452,6 +10581,7 @@ madnesseffect:
 		case STUCK_ANNOUNCEMENT_TRAP:
 
 			if (StuckAnnouncement) break;
+			u.cnd_nastytrapamount++;
 
 			StuckAnnouncement = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10460,6 +10590,7 @@ madnesseffect:
 		case BLOODTHIRSTY_TRAP:
 
 			if (BloodthirstyEffect) break;
+			u.cnd_nastytrapamount++;
 
 			BloodthirstyEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10468,6 +10599,7 @@ madnesseffect:
 		case MAXIMUM_DAMAGE_TRAP:
 
 			if (MaximumDamageBug) break;
+			u.cnd_nastytrapamount++;
 
 			MaximumDamageBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10476,6 +10608,7 @@ madnesseffect:
 		case LATENCY_TRAP:
 
 			if (LatencyBugEffect) break;
+			u.cnd_nastytrapamount++;
 
 			LatencyBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10484,6 +10617,7 @@ madnesseffect:
 		case STARLIT_TRAP:
 
 			if (StarlitBug) break;
+			u.cnd_nastytrapamount++;
 
 			StarlitBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10492,6 +10626,7 @@ madnesseffect:
 		case KNOWLEDGE_TRAP:
 
 			if (KnowledgeBug) break;
+			u.cnd_nastytrapamount++;
 
 			KnowledgeBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10500,6 +10635,7 @@ madnesseffect:
 		case HIGHSCORE_TRAP:
 
 			if (HighscoreBug) break;
+			u.cnd_nastytrapamount++;
 
 			HighscoreBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10508,6 +10644,7 @@ madnesseffect:
 		case PINK_SPELL_TRAP:
 
 			if (PinkSpells) break;
+			u.cnd_nastytrapamount++;
 
 			PinkSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10516,6 +10653,7 @@ madnesseffect:
 		case GREEN_SPELL_TRAP:
 
 			if (GreenSpells) break;
+			u.cnd_nastytrapamount++;
 
 			GreenSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10524,6 +10662,7 @@ madnesseffect:
 		case EVC_TRAP:
 
 			if (EvencoreEffect) break;
+			u.cnd_nastytrapamount++;
 
 			EvencoreEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10532,6 +10671,7 @@ madnesseffect:
 		case UNDERLAYER_TRAP:
 
 			if (UnderlayerBug) break;
+			u.cnd_nastytrapamount++;
 
 			UnderlayerBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10540,6 +10680,7 @@ madnesseffect:
 		case DAMAGE_METER_TRAP:
 
 			if (DamageMeterBug) break;
+			u.cnd_nastytrapamount++;
 
 			DamageMeterBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10548,6 +10689,7 @@ madnesseffect:
 		case ARBITRARY_WEIGHT_TRAP:
 
 			if (ArbitraryWeightBug) break;
+			u.cnd_nastytrapamount++;
 
 			ArbitraryWeightBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10556,6 +10698,7 @@ madnesseffect:
 		case FUCKED_INFO_TRAP:
 
 			if (FuckedInfoBug) break;
+			u.cnd_nastytrapamount++;
 
 			FuckedInfoBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10564,6 +10707,7 @@ madnesseffect:
 		case BLACK_SPELL_TRAP:
 
 			if (BlackSpells) break;
+			u.cnd_nastytrapamount++;
 
 			BlackSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10572,6 +10716,7 @@ madnesseffect:
 		case CYAN_SPELL_TRAP:
 
 			if (CyanSpells) break;
+			u.cnd_nastytrapamount++;
 
 			CyanSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10580,6 +10725,7 @@ madnesseffect:
 		case HEAP_TRAP:
 
 			if (HeapEffectBug) break;
+			u.cnd_nastytrapamount++;
 
 			HeapEffectBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10588,6 +10734,7 @@ madnesseffect:
 		case BLUE_SPELL_TRAP:
 
 			if (BlueSpells) break;
+			u.cnd_nastytrapamount++;
 
 			BlueSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10596,6 +10743,7 @@ madnesseffect:
 		case TRON_TRAP:
 
 			if (TronEffect) break;
+			u.cnd_nastytrapamount++;
 
 			TronEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10604,6 +10752,7 @@ madnesseffect:
 		case RED_SPELL_TRAP:
 
 			if (RedSpells) break;
+			u.cnd_nastytrapamount++;
 
 			RedSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10612,6 +10761,7 @@ madnesseffect:
 		case TOO_HEAVY_TRAP:
 
 			if (TooHeavyEffect) break;
+			u.cnd_nastytrapamount++;
 
 			TooHeavyEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10620,6 +10770,7 @@ madnesseffect:
 		case ELONGATION_TRAP:
 
 			if (ElongationBug) break;
+			u.cnd_nastytrapamount++;
 
 			ElongationBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10628,6 +10779,7 @@ madnesseffect:
 		case WRAPOVER_TRAP:
 
 			if (WrapoverEffect) break;
+			u.cnd_nastytrapamount++;
 
 			WrapoverEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10636,6 +10788,7 @@ madnesseffect:
 		case DESTRUCTION_TRAP:
 
 			if (DestructionEffect) break;
+			u.cnd_nastytrapamount++;
 
 			DestructionEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10644,6 +10797,7 @@ madnesseffect:
 		case MELEE_PREFIX_TRAP:
 
 			if (MeleePrefixBug) break;
+			u.cnd_nastytrapamount++;
 
 			MeleePrefixBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10652,6 +10806,7 @@ madnesseffect:
 		case AUTOMORE_TRAP:
 
 			if (AutomoreBug) break;
+			u.cnd_nastytrapamount++;
 
 			AutomoreBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10660,6 +10815,7 @@ madnesseffect:
 		case UNFAIR_ATTACK_TRAP:
 
 			if (UnfairAttackBug) break;
+			u.cnd_nastytrapamount++;
 
 			UnfairAttackBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10668,6 +10824,7 @@ madnesseffect:
 		 case TIMERUN_TRAP:
 
 			if (TimerunBug) break;
+			u.cnd_nastytrapamount++;
 
 			TimerunBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10676,6 +10833,7 @@ madnesseffect:
 		 case SANITY_TREBLE_TRAP:
 
 			if (SanityTrebleEffect) break;
+			u.cnd_nastytrapamount++;
 
 			SanityTrebleEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10683,6 +10841,7 @@ madnesseffect:
 		 case STAT_DECREASE_TRAP:
 
 			if (StatDecreaseBug) break;
+			u.cnd_nastytrapamount++;
 
 			StatDecreaseBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10690,6 +10849,7 @@ madnesseffect:
 		 case SIMEOUT_TRAP:
 
 			if (SimeoutBug) break;
+			u.cnd_nastytrapamount++;
 
 			SimeoutBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10698,6 +10858,7 @@ madnesseffect:
 		 case BAD_PART_TRAP:
 
 			if (BadPartBug) break;
+			u.cnd_nastytrapamount++;
 
 			BadPartBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10706,6 +10867,7 @@ madnesseffect:
 		 case COMPLETELY_BAD_PART_TRAP:
 
 			if (CompletelyBadPartBug) break;
+			u.cnd_nastytrapamount++;
 
 			CompletelyBadPartBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10714,6 +10876,7 @@ madnesseffect:
 		 case EVIL_VARIANT_TRAP:
 
 			if (EvilVariantActive) break;
+			u.cnd_nastytrapamount++;
 
 			EvilVariantActive = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10722,6 +10885,7 @@ madnesseffect:
 		 case ORANGE_SPELL_TRAP:
 
 			if (OrangeSpells) break;
+			u.cnd_nastytrapamount++;
 
 			OrangeSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10730,6 +10894,7 @@ madnesseffect:
 		 case VIOLET_SPELL_TRAP:
 
 			if (VioletSpells) break;
+			u.cnd_nastytrapamount++;
 
 			VioletSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10738,6 +10903,7 @@ madnesseffect:
 		 case TRAP_OF_LONGING:
 
 			if (LongingEffect) break;
+			u.cnd_nastytrapamount++;
 
 			LongingEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10746,6 +10912,7 @@ madnesseffect:
 		 case CURSED_PART_TRAP:
 
 			if (CursedParts) break;
+			u.cnd_nastytrapamount++;
 
 			CursedParts = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10754,6 +10921,7 @@ madnesseffect:
 		 case QUAVERSAL_TRAP:
 
 			if (Quaversal) break;
+			u.cnd_nastytrapamount++;
 
 			Quaversal = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10762,6 +10930,7 @@ madnesseffect:
 		 case APPEARANCE_SHUFFLING_TRAP:
 
 			if (AppearanceShuffling) break;
+			u.cnd_nastytrapamount++;
 
 			AppearanceShuffling = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10770,6 +10939,7 @@ madnesseffect:
 		 case BROWN_SPELL_TRAP:
 
 			if (BrownSpells) break;
+			u.cnd_nastytrapamount++;
 
 			BrownSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10778,6 +10948,7 @@ madnesseffect:
 		 case CHOICELESS_TRAP:
 
 			if (Choicelessness) break;
+			u.cnd_nastytrapamount++;
 
 			Choicelessness = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10786,6 +10957,7 @@ madnesseffect:
 		 case GOLDSPELL_TRAP:
 
 			if (Goldspells) break;
+			u.cnd_nastytrapamount++;
 
 			Goldspells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10794,6 +10966,7 @@ madnesseffect:
 		 case DEPROVEMENT_TRAP:
 
 			if (Deprovement) break;
+			u.cnd_nastytrapamount++;
 
 			Deprovement = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10802,6 +10975,7 @@ madnesseffect:
 		 case INITIALIZATION_TRAP:
 
 			if (InitializationFail) break;
+			u.cnd_nastytrapamount++;
 
 			InitializationFail = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10810,6 +10984,7 @@ madnesseffect:
 		 case GUSHLUSH_TRAP:
 
 			if (GushlushEffect) break;
+			u.cnd_nastytrapamount++;
 
 			GushlushEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10818,6 +10993,7 @@ madnesseffect:
 		 case SOILTYPE_TRAP:
 
 			if (SoiltypeEffect) break;
+			u.cnd_nastytrapamount++;
 
 			SoiltypeEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10826,6 +11002,7 @@ madnesseffect:
 		 case DANGEROUS_TERRAIN_TRAP:
 
 			if (DangerousTerrains) break;
+			u.cnd_nastytrapamount++;
 
 			DangerousTerrains = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10834,6 +11011,7 @@ madnesseffect:
 		 case FALLOUT_TRAP:
 
 			if (FalloutEffect) break;
+			u.cnd_nastytrapamount++;
 
 			FalloutEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10842,6 +11020,7 @@ madnesseffect:
 		 case MOJIBAKE_TRAP:
 
 			if (MojibakeEffect) break;
+			u.cnd_nastytrapamount++;
 
 			MojibakeEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10850,6 +11029,7 @@ madnesseffect:
 		 case GRAVATION_TRAP:
 
 			if (GravationEffect) break;
+			u.cnd_nastytrapamount++;
 
 			GravationEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10858,6 +11038,7 @@ madnesseffect:
 		 case UNCALLED_TRAP:
 
 			if (UncalledEffect) break;
+			u.cnd_nastytrapamount++;
 
 			UncalledEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10866,6 +11047,7 @@ madnesseffect:
 		 case EXPLODING_DICE_TRAP:
 
 			if (ExplodingDiceEffect) break;
+			u.cnd_nastytrapamount++;
 
 			ExplodingDiceEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10874,6 +11056,7 @@ madnesseffect:
 		 case PERMACURSE_TRAP:
 
 			if (PermacurseEffect) break;
+			u.cnd_nastytrapamount++;
 
 			PermacurseEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10882,6 +11065,7 @@ madnesseffect:
 		 case SHROUDED_IDENTITY_TRAP:
 
 			if (ShroudedIdentity) break;
+			u.cnd_nastytrapamount++;
 
 			ShroudedIdentity = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10890,6 +11074,7 @@ madnesseffect:
 		 case FEELER_GAUGES_TRAP:
 
 			if (FeelerGauges) break;
+			u.cnd_nastytrapamount++;
 
 			FeelerGauges = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10898,6 +11083,7 @@ madnesseffect:
 		 case LONG_SCREWUP_TRAP:
 
 			if (LongScrewup) break;
+			u.cnd_nastytrapamount++;
 
 			LongScrewup = rnz(nastytrapdur * 20 * (monster_difficulty() + 1));
 
@@ -10906,6 +11092,7 @@ madnesseffect:
 		 case WING_YELLOW_CHANGER:
 
 			if (WingYellowChange) break;
+			u.cnd_nastytrapamount++;
 
 			WingYellowChange = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10914,6 +11101,7 @@ madnesseffect:
 		 case LIFE_SAVING_TRAP:
 
 			if (LifeSavingBug) break;
+			u.cnd_nastytrapamount++;
 
 			LifeSavingBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10922,6 +11110,7 @@ madnesseffect:
 		 case CURSEUSE_TRAP:
 
 			if (CurseuseEffect) break;
+			u.cnd_nastytrapamount++;
 
 			CurseuseEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10930,6 +11119,7 @@ madnesseffect:
 		 case CUT_NUTRITION_TRAP:
 
 			if (CutNutritionEffect) break;
+			u.cnd_nastytrapamount++;
 
 			CutNutritionEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10938,6 +11128,7 @@ madnesseffect:
 		 case SKILL_LOSS_TRAP:
 
 			if (SkillLossEffect) break;
+			u.cnd_nastytrapamount++;
 
 			SkillLossEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10946,6 +11137,7 @@ madnesseffect:
 		 case AUTOPILOT_TRAP:
 
 			if (AutopilotEffect) break;
+			u.cnd_nastytrapamount++;
 
 			AutopilotEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10954,6 +11146,7 @@ madnesseffect:
 		 case FORCE_TRAP:
 
 			if (MysteriousForceActive) break;
+			u.cnd_nastytrapamount++;
 
 			MysteriousForceActive = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10962,6 +11155,7 @@ madnesseffect:
 		 case MONSTER_GLYPH_TRAP:
 
 			if (MonsterGlyphChange) break;
+			u.cnd_nastytrapamount++;
 
 			MonsterGlyphChange = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10970,6 +11164,7 @@ madnesseffect:
 		 case CHANGING_DIRECTIVE_TRAP:
 
 			if (ChangingDirectives) break;
+			u.cnd_nastytrapamount++;
 
 			ChangingDirectives = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10978,6 +11173,7 @@ madnesseffect:
 		 case CONTAINER_KABOOM_TRAP:
 
 			if (ContainerKaboom) break;
+			u.cnd_nastytrapamount++;
 
 			ContainerKaboom = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10986,6 +11182,7 @@ madnesseffect:
 		 case STEAL_DEGRADE_TRAP:
 
 			if (StealDegrading) break;
+			u.cnd_nastytrapamount++;
 
 			StealDegrading = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -10994,6 +11191,7 @@ madnesseffect:
 		 case LEFT_INVENTORY_TRAP:
 
 			if (LeftInventoryBug) break;
+			u.cnd_nastytrapamount++;
 
 			LeftInventoryBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11002,6 +11200,7 @@ madnesseffect:
 		 case FLUCTUATING_SPEED_TRAP:
 
 			if (FluctuatingSpeed) break;
+			u.cnd_nastytrapamount++;
 
 			FluctuatingSpeed = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11010,6 +11209,7 @@ madnesseffect:
 		 case TARMUSTROKINGNORA_TRAP:
 
 			if (TarmuStrokingNora) break;
+			u.cnd_nastytrapamount++;
 
 			TarmuStrokingNora = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11018,6 +11218,7 @@ madnesseffect:
 		 case FAILURE_TRAP:
 
 			if (FailureEffects) break;
+			u.cnd_nastytrapamount++;
 
 			FailureEffects = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11026,6 +11227,7 @@ madnesseffect:
 		 case BRIGHT_CYAN_SPELL_TRAP:
 
 			if (BrightCyanSpells) break;
+			u.cnd_nastytrapamount++;
 
 			BrightCyanSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11034,6 +11236,7 @@ madnesseffect:
 		 case FREQUENTATION_SPAWN_TRAP:
 
 			if (FrequentationSpawns) break;
+			u.cnd_nastytrapamount++;
 
 			FrequentationSpawns = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11042,6 +11245,7 @@ madnesseffect:
 		 case PET_AI_TRAP:
 
 			if (PetAIScrewed) break;
+			u.cnd_nastytrapamount++;
 
 			PetAIScrewed = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11050,6 +11254,7 @@ madnesseffect:
 		 case SATAN_TRAP:
 
 			if (SatanEffect) break;
+			u.cnd_nastytrapamount++;
 
 			SatanEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11058,6 +11263,7 @@ madnesseffect:
 		 case REMEMBERANCE_TRAP:
 
 			if (RememberanceEffect) break;
+			u.cnd_nastytrapamount++;
 
 			RememberanceEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11066,6 +11272,7 @@ madnesseffect:
 		 case POKELIE_TRAP:
 
 			if (PokelieEffect) break;
+			u.cnd_nastytrapamount++;
 
 			PokelieEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11074,6 +11281,7 @@ madnesseffect:
 		 case AUTOPICKUP_TRAP:
 
 			if (AlwaysAutopickup) break;
+			u.cnd_nastytrapamount++;
 
 			AlwaysAutopickup = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11082,6 +11290,7 @@ madnesseffect:
 		 case DYWYPI_TRAP:
 
 			if (DywypiProblem) break;
+			u.cnd_nastytrapamount++;
 
 			DywypiProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11090,6 +11299,7 @@ madnesseffect:
 		 case SILVER_SPELL_TRAP:
 
 			if (SilverSpells) break;
+			u.cnd_nastytrapamount++;
 
 			SilverSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11098,6 +11308,7 @@ madnesseffect:
 		 case METAL_SPELL_TRAP:
 
 			if (MetalSpells) break;
+			u.cnd_nastytrapamount++;
 
 			MetalSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11106,6 +11317,7 @@ madnesseffect:
 		 case PLATINUM_SPELL_TRAP:
 
 			if (PlatinumSpells) break;
+			u.cnd_nastytrapamount++;
 
 			PlatinumSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11114,6 +11326,7 @@ madnesseffect:
 		 case MANLER_TRAP:
 
 			if (ManlerEffect) break;
+			u.cnd_nastytrapamount++;
 
 			ManlerEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11122,6 +11335,7 @@ madnesseffect:
 		 case DOORNING_TRAP:
 
 			if (DoorningEffect) break;
+			u.cnd_nastytrapamount++;
 
 			DoorningEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11130,6 +11344,7 @@ madnesseffect:
 		 case NOWNSIBLE_TRAP:
 
 			if (NownsibleEffect) break;
+			u.cnd_nastytrapamount++;
 
 			NownsibleEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11138,6 +11353,7 @@ madnesseffect:
 		 case ELM_STREET_TRAP:
 
 			if (ElmStreetEffect) break;
+			u.cnd_nastytrapamount++;
 
 			ElmStreetEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11146,6 +11362,7 @@ madnesseffect:
 		 case MONNOISE_TRAP:
 
 			if (MonnoiseEffect) break;
+			u.cnd_nastytrapamount++;
 
 			MonnoiseEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11154,6 +11371,7 @@ madnesseffect:
 		 case RANG_CALL_TRAP:
 
 			if (RangCallEffect) break;
+			u.cnd_nastytrapamount++;
 
 			RangCallEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11162,6 +11380,7 @@ madnesseffect:
 		 case RECURRING_SPELL_LOSS_TRAP:
 
 			if (RecurringSpellLoss) break;
+			u.cnd_nastytrapamount++;
 
 			RecurringSpellLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11170,6 +11389,7 @@ madnesseffect:
 		 case ANTITRAINING_TRAP:
 
 			if (AntitrainingEffect) break;
+			u.cnd_nastytrapamount++;
 
 			AntitrainingEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11178,6 +11398,7 @@ madnesseffect:
 		 case TECHOUT_TRAP:
 
 			if (TechoutBug) break;
+			u.cnd_nastytrapamount++;
 
 			TechoutBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11186,6 +11407,7 @@ madnesseffect:
 		 case STAT_DECAY_TRAP:
 
 			if (StatDecay) break;
+			u.cnd_nastytrapamount++;
 
 			StatDecay = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11194,6 +11416,7 @@ madnesseffect:
 		 case MOVEMORK_TRAP:
 
 			if (Movemork) break;
+			u.cnd_nastytrapamount++;
 
 			Movemork = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11246,6 +11469,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Meltem.");
 			pline("All the girls want to use their sexy butt cheeks as weapons now!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapMeltem = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMeltem += 100;
@@ -11460,6 +11684,7 @@ madnesseffect:
 		 case DISCONNECT_TRAP:
 
 			if (DisconnectedStairs) break;
+			u.cnd_nastytrapamount++;
 
 			DisconnectedStairs = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11468,6 +11693,7 @@ madnesseffect:
 		 case INTERFACE_SCREW_TRAP:
 
 			if (InterfaceScrewed) break;
+			u.cnd_nastytrapamount++;
 
 			InterfaceScrewed = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11476,6 +11702,7 @@ madnesseffect:
 		 case BOSSFIGHT_TRAP:
 
 			if (Bossfights) break;
+			u.cnd_nastytrapamount++;
 
 			Bossfights = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11484,6 +11711,7 @@ madnesseffect:
 		 case ENTIRE_LEVEL_TRAP:
 
 			if (EntireLevelMode) break;
+			u.cnd_nastytrapamount++;
 
 			EntireLevelMode = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11492,6 +11720,7 @@ madnesseffect:
 		 case BONES_TRAP:
 
 			if (BonesLevelChange) break;
+			u.cnd_nastytrapamount++;
 
 			BonesLevelChange = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11500,6 +11729,7 @@ madnesseffect:
 		 case AUTOCURSE_TRAP:
 
 			if (AutocursingEquipment) break;
+			u.cnd_nastytrapamount++;
 
 			AutocursingEquipment = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11508,6 +11738,7 @@ madnesseffect:
 		 case HIGHLEVEL_TRAP:
 
 			if (HighlevelStatus) break;
+			u.cnd_nastytrapamount++;
 
 			HighlevelStatus = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11516,6 +11747,7 @@ madnesseffect:
 		 case SPELL_FORGETTING_TRAP:
 
 			if (SpellForgetting) break;
+			u.cnd_nastytrapamount++;
 
 			SpellForgetting = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11524,6 +11756,7 @@ madnesseffect:
 		 case SOUND_EFFECT_TRAP:
 
 			if (SoundEffectBug) break;
+			u.cnd_nastytrapamount++;
 
 			SoundEffectBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11532,6 +11765,7 @@ madnesseffect:
 		 case FARLOOK_TRAP:
 
 			if (FarlookProblem) break;
+			u.cnd_nastytrapamount++;
 
 			FarlookProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11540,6 +11774,7 @@ madnesseffect:
 		 case RESPAWN_TRAP:
 
 			if (RespawnProblem) break;
+			u.cnd_nastytrapamount++;
 
 			RespawnProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11548,6 +11783,7 @@ madnesseffect:
 		 case CAPTCHA_TRAP:
 
 			if (CaptchaProblem) break;
+			u.cnd_nastytrapamount++;
 
 			CaptchaProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -11560,6 +11796,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Femmy.");
 			pline("Now, the dungeon will be more feminine for a while!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapFemmy = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapFemmy += 100;
@@ -11574,6 +11811,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Madeleine.");
 			pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapMadeleine = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMadeleine += 100;
@@ -11588,6 +11826,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Marlena.");
 			pline("Green is the new favorite color, it seems!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapMarlena = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMarlena += 100;
@@ -11602,6 +11841,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Anastasia.");
 			pline("Suddenly, you feel that you're going to step into a heap of shit.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapAnastasia = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapAnastasia += 100;
@@ -11616,6 +11856,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jessica.");
 			pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapJessica = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapJessica += 100;
@@ -11630,6 +11871,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Solvejg.");
 			pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapSolvejg = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapSolvejg += 100;
@@ -11644,6 +11886,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Wendy.");
 			pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapWendy = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapWendy += 100;
@@ -11658,6 +11901,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Katharina.");
 			pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapKatharina = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapKatharina += 100;
@@ -11672,6 +11916,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Elena.");
 			pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapElena = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapElena += 100;
@@ -11686,6 +11931,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Thai.");
 			pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapThai = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapThai += 100;
@@ -11700,6 +11946,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Elif.");
 			pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapElif = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapElif += 100;
@@ -11714,6 +11961,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Nadja.");
 			pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapNadja = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapNadja += 100;
@@ -11728,6 +11976,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Sandra.");
 			pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapSandra = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapSandra += 100;
@@ -11742,6 +11991,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Natalje.");
 			pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapNatalje = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapNatalje += 100;
@@ -11759,6 +12009,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Jeanetta.");
 			pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapJeanetta = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapJeanetta += 100;
@@ -11773,6 +12024,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Yvonne.");
 			pline("You feel that people are building toilets for you to use.");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapYvonne = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapYvonne += 100;
@@ -11787,6 +12039,7 @@ madnesseffect:
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Maurah.");
 			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
+			u.cnd_feminismtrapamount++;
 
 			FemaleTrapMaurah = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMaurah += 100;
@@ -11905,6 +12158,7 @@ madnesseffect:
 					if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 				}
 				Your("equipment seems less effective.");
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 
 			}
@@ -11922,6 +12176,7 @@ madnesseffect:
 					if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
 				}
 				Your("equipment seems less effective.");
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 
 			}
@@ -12037,6 +12292,7 @@ madnesseffect:
 			}
 
 			if (IntrinsicLossProblem) break;
+			u.cnd_nastytrapamount++;
 
 			IntrinsicLossProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12045,6 +12301,7 @@ madnesseffect:
 		 case BLOOD_LOSS_TRAP:
 
 			if (BloodLossProblem) break;
+			u.cnd_nastytrapamount++;
 
 			BloodLossProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12055,6 +12312,7 @@ madnesseffect:
 			if (!rn2(5)) badeffect();
 
 			if (BadEffectProblem) break;
+			u.cnd_nastytrapamount++;
 
 			BadEffectProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12081,6 +12339,7 @@ madnesseffect:
 			makerandomtrap();
 
 			if (TrapCreationProblem) break;
+			u.cnd_nastytrapamount++;
 
 			TrapCreationProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12094,6 +12353,7 @@ madnesseffect:
 			}
 
 			if (AutomaticVulnerabilitiy) break;
+			u.cnd_nastytrapamount++;
 
 			AutomaticVulnerabilitiy = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12102,6 +12362,7 @@ madnesseffect:
 		 case TELE_ITEMS_TRAP:
 
 			if (TeleportingItems) break;
+			u.cnd_nastytrapamount++;
 
 			TeleportingItems = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12377,6 +12638,7 @@ madnesseffect:
 			}
 
 			if (NastinessProblem) break;
+			u.cnd_nastytrapamount++;
 
 			NastinessProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12385,6 +12647,7 @@ madnesseffect:
 		 case STAIRS_TRAP:
 
 			if (StairsProblem) break;
+			u.cnd_nastytrapamount++;
 
 			StairsProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12393,6 +12656,7 @@ madnesseffect:
 		 case ALIGNMENT_TRAP:
 
 			if (AlignmentProblem) break;
+			u.cnd_nastytrapamount++;
 
 			AlignmentProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12401,6 +12665,7 @@ madnesseffect:
 		 case CONFUSION_TRAP:
 
 			if (ConfusionProblem) break;
+			u.cnd_nastytrapamount++;
 
 			ConfusionProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -12893,6 +13158,7 @@ madnesseffect:
 		 case SPEED_TRAP:
 
 			if (SpeedBug) break;
+			u.cnd_nastytrapamount++;
 
 			SpeedBug = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -13775,6 +14041,7 @@ madnesseffect:
 		 case DISPLAY_TRAP:
 
 			if (DisplayLoss) break;
+			u.cnd_nastytrapamount++;
 
 			DisplayLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -13783,6 +14050,7 @@ madnesseffect:
 		 case SPELL_LOSS_TRAP:
 
 			if (SpellLoss) break;
+			u.cnd_nastytrapamount++;
 
 			SpellLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -13791,6 +14059,7 @@ madnesseffect:
 		 case YELLOW_SPELL_TRAP:
 
 			if (YellowSpells) break;
+			u.cnd_nastytrapamount++;
 
 			YellowSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -13799,6 +14068,7 @@ madnesseffect:
 		 case AUTO_DESTRUCT_TRAP:
 
 			if (AutoDestruct) break;
+			u.cnd_nastytrapamount++;
 
 			AutoDestruct = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -13807,6 +14077,7 @@ madnesseffect:
 		 case MEMORY_TRAP:
 
 			if (MemoryLoss) break;
+			u.cnd_nastytrapamount++;
 
 			MemoryLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -13815,6 +14086,7 @@ madnesseffect:
 		 case INVENTORY_TRAP:
 
 			if (InventoryLoss) break;
+			u.cnd_nastytrapamount++;
 
 			InventoryLoss = rnz(nastytrapdur * (monster_difficulty() + 1));
 
@@ -13823,6 +14095,7 @@ madnesseffect:
 		 case BLACK_NG_WALL_TRAP:
 
 			if (BlackNgWalls) break;
+			u.cnd_nastytrapamount++;
 
 			BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
 			(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
@@ -15884,13 +16157,21 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case LOUDSPEAKER:
 			{
 				pline("%s", fauxmessage());
-				if (!rn2(3)) pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+				if (!rn2(3)) {
+					pline("%s", fauxmessage());
+					u.cnd_plineamount++;
+				}
 			}
 			break;
 		case ARABELLA_SPEAKER:
 			{
 				pline("%s", fauxmessage());
-				if (!rn2(3)) pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+				if (!rn2(3)) {
+					pline("%s", fauxmessage());
+					u.cnd_plineamount++;
+				}
 			}
 			break;
 		case MAGIC_TRAP:
@@ -19528,6 +19809,7 @@ fartingweb()
 	if (ttmp->launch_otyp < 12) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "tender" : "soft");
 	else if (ttmp->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 	else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "disgusting" : "loud");
+	u.cnd_fartingcount++;
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 		pline("The farting gas destroys your footwear instantly.");

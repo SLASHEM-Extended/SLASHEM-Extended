@@ -590,6 +590,7 @@ gotobj:
 	freeinv(otmp);
 	if (evilfriday) pline("Something seems missing...");
 	else pline("%s stole %s.", named ? "It" : Monnam(mtmp), doname(otmp));
+	u.cnd_itemstealamount++;
 
 	/* evil patch idea by jonadab - levelporting stealers
          he wants them to always levelport if they manage to steal an artifact...
@@ -731,6 +732,7 @@ tryagain:
 			(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
 			if (evilfriday) pline("Something seems missing...");
 			else pline("%s stole %s!", Monnam(mtmp), doname(otmp));
+			u.cnd_itemstealamount++;
 			if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
 			(void) rloc(mtmp, FALSE);
 		}
@@ -775,6 +777,7 @@ tryagain:
 			(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
 			if (evilfriday) pline("Something seems missing...");
 			else pline("%s stole %s!", Monnam(mtmp), doname(otmp));
+			u.cnd_itemstealamount++;
 			if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
 			(void) rloc(mtmp, FALSE);
 		}

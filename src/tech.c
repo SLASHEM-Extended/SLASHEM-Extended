@@ -7422,6 +7422,7 @@ extrachargechoice:
 			use_skill(P_TECHNIQUES, 1);
 		}
 		if (timeoutamount >= 1 && (timeoutamount > rn2(1000))) use_skill(P_TECHNIQUES, 1);
+		u.cnd_techcount++;
 	  }
 
 	  if (!PlayerCannotUseSkills) {

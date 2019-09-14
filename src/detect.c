@@ -1388,6 +1388,7 @@ void * num;
 	if(levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
+		u.cnd_searchsecretcount++;
 		use_skill(P_SEARCHING,1);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
@@ -1397,6 +1398,7 @@ void * num;
 		levl[zx][zy].typ = CORR;
 		unblock_point(zx,zy);
 		You("find a secret passage!");
+		u.cnd_searchsecretcount++;
 		use_skill(P_SEARCHING,1);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
@@ -1440,6 +1442,7 @@ void * num;
 	if(!rn2(3) && levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
+		u.cnd_searchsecretcount++;
 		use_skill(P_SEARCHING,1);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
@@ -1449,6 +1452,7 @@ void * num;
 		levl[zx][zy].typ = CORR;
 		unblock_point(zx,zy);
 		You("find a secret passage!");
+		u.cnd_searchsecretcount++;
 		use_skill(P_SEARCHING,1);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
@@ -1602,6 +1606,7 @@ struct trap *trap;
     }
 
     You("find %s.", an(defsyms[trap_to_defsym(tt)].explanation));
+	u.cnd_searchtrapcount++;
 	if (!trap->tdetected) {
 		use_skill(P_SEARCHING,1);
 		trap->tdetected = TRUE;
@@ -1683,6 +1688,7 @@ register int aflag;
 			if(rnl(7-fund) && rn2(fundxtrachange) && (rn2(fundxtrachange) || !rn2(2)) ) continue; /* better chance --Amy */
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
 			You("find a secret door!");
+			u.cnd_searchsecretcount++;
 			use_skill(P_SEARCHING,1);
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
@@ -1696,6 +1702,7 @@ register int aflag;
 			levl[x][y].typ = CORR;
 			unblock_point(x,y);	/* vision */
 			You("find a secret passage!");
+			u.cnd_searchsecretcount++;
 			use_skill(P_SEARCHING,1);
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
@@ -1756,6 +1763,7 @@ register int aflag;
 			    if (trap->ttyp == STATUE_TRAP || trap->ttyp == SATATUE_TRAP) {
  				mtmp = activate_statue_trap(trap, x, y, FALSE);
  				if (mtmp != (struct monst *)0) {
+				    u.cnd_searchtrapcount++;
 				    exercise(A_WIS, TRUE);
 				    use_skill(P_SEARCHING,1); /* you found a trap, so the skill should train --Amy */
 				}

@@ -828,6 +828,7 @@ tele()
 		}
 	}
 
+	u.cnd_teleportcount++;
 	(void) safe_teleds(FALSE);
 }
 
@@ -851,6 +852,7 @@ teleX()
 	    You_feel("disoriented for a moment.");
 	    return;
 	}
+	u.cnd_teleportcount++;
 	(void) safe_teleds(FALSE);
 }
 
@@ -875,6 +877,7 @@ boolean confused;
 #ifdef PUBLIC_SERVER
 	pline("Your body is transported to another location!"); /* for debug purposes --Amy */
 #endif
+	u.cnd_phasedoorcount++;
 	(void) safe_teledsPD(confused);
 }
 
@@ -1275,6 +1278,8 @@ level_tele()
 #endif
 	    get_level(&newlevel, newlev);
 	}
+	u.cnd_telelevelcount++;
+
 	schedule_goto(&newlevel, FALSE, FALSE, 0, (char *)0, (char *)0);
 	/* in case player just read a scroll and is about to be asked to
 	   call it something, we can't defer until the end of the turn */

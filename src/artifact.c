@@ -2570,6 +2570,7 @@ doinvoke()
 					u.aggravation = 1;
 					reset_rndmonst(NON_PM);
 					while (aggroamount) {
+						u.cnd_aggravateamount++;
 						makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 						aggroamount--;
 						if (aggroamount < 0) aggroamount = 0;
@@ -3141,6 +3142,8 @@ arti_invoke(obj)
 	}
 	obj->age = monstermoves + rnz(1000);
 
+	u.cnd_invokecount++;
+
 	switch(oart->inv_prop) {
 	case TAMING: {
 	    struct obj pseudo;
@@ -3441,6 +3444,7 @@ chargingchoice:
 	    } else {
 		if(!Blind) You("are surrounded by a shimmering sphere!");
 		else You_feel("weightless for a moment.");
+		u.cnd_branchportcount++;
 		goto_level(&newlev, FALSE, FALSE, FALSE);
 	    }
 	    if (obj && obj->oartifact == ART_BIZARRO_ORGASMATRON) {

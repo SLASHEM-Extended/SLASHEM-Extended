@@ -5022,6 +5022,7 @@ register struct attack *mattk;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -5152,7 +5153,11 @@ register struct attack *mattk;
 
 	    case AD_FAKE:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 
 		break;
 
@@ -5942,6 +5947,7 @@ register struct attack *mattk;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -6015,7 +6021,11 @@ register struct attack *mattk;
 		goto common;
 	    case AD_FAKE:
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 		goto common;
 	    case AD_WEBS:
 		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
@@ -8112,6 +8122,7 @@ boolean ranged;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -8929,7 +8940,11 @@ boolean ranged;
 	    case AD_FAKE:
 		{
 			pline("%s", fauxmessage());
-			if (!rn2(3)) pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+			if (!rn2(3)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
 		}
 		break;
 
@@ -9294,6 +9309,7 @@ boolean ranged;
 			if (!rn2(7)) {
 			    /* no upper limit necessary; effect is temporary */
 			    u.mhmax++;
+			    u.cnd_nursehealamount++;
 			    if (!rn2(4)) goaway = TRUE;
 			}
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -9303,6 +9319,7 @@ boolean ranged;
 			    /* hard upper limit via nurse care: 25 * ulevel */
 			    if (u.uhpmax < 5 * u.ulevel + d(2 * u.ulevel, 10)) {
 				u.uhpmax++;
+				u.cnd_nursehealamount++;
 			    }
 			    if (!rn2(3)) goaway = TRUE;
 			}
@@ -10064,6 +10081,7 @@ boolean ranged;
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				u.cnd_disenchantamount++;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
@@ -10551,6 +10569,7 @@ boolean ranged;
 				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 
 		}
@@ -10723,29 +10742,34 @@ burnagain:
 	    break;
 	case AD_ENCH:
 	    if (!mon->mcan) {
-		if (drain_item(obj) && carried(obj) &&
-		    (obj->known || obj->oclass == ARMOR_CLASS)) {
-		    Your("%s less effective.", aobjnam(obj, "seem"));
-			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
-	    	}
+		if (drain_item(obj)) {
+			u.cnd_disenchantamount++;
+			if (obj && carried(obj) && (obj->known || obj->oclass == ARMOR_CLASS)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		    	}
+		} 
 	    	break;
 	    }
 	case AD_NGEN:
 	    if (!mon->mcan) {
-		if (drain_item_severely(obj) && carried(obj) &&
-		    (obj->known || obj->oclass == ARMOR_CLASS)) {
-		    Your("%s less effective.", aobjnam(obj, "seem"));
-			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		if (drain_item_severely(obj)) {
+			u.cnd_disenchantamount++;
+			if (obj && carried(obj) && (obj->known || obj->oclass == ARMOR_CLASS)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			}
 	    	}
 	    	break;
 	    }
 	case AD_SHRD:
 	    if (!mon->mcan) {
-		if (drain_item(obj)) { if(carried(obj) &&
-		    (obj->known || obj->oclass == ARMOR_CLASS)) {
-		    Your("%s less effective.", aobjnam(obj, "seem"));
-			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
-		    }
+		if (drain_item(obj)) {
+			u.cnd_disenchantamount++;
+			if(carried(obj) && (obj->known || obj->oclass == ARMOR_CLASS)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			}
 	    	}
 
 		else if(obj->otyp != SPE_BOOK_OF_THE_DEAD && !is_unwitherable(obj) && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {

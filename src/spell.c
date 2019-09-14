@@ -2259,6 +2259,7 @@ learn()
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 			    use_skill(P_MEMORIZATION, spellev(i));
+			    u.cnd_spellbookcount++;
 			    incrnknow(i);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
@@ -2317,6 +2318,7 @@ learn()
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			spl_book[i].sp_memorize = TRUE;
 			use_skill(P_MEMORIZATION, spellev(i));
+			u.cnd_spellbookcount++;
 			incrnknow(i);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
@@ -3143,6 +3145,7 @@ boolean atme;
 	if (spellknow(spell) <= 0) {
 	    Your("knowledge of this spell is twisted.");
 	    pline("It invokes nightmarish images in your mind...");
+	    u.cnd_forgottenspellcount++;
 	    spell_backfire(spell);
 	    if (!rn2(25)) {
 		badeffect();
@@ -3491,6 +3494,7 @@ castanyway:
 
 	if (SpellColorPink) {
 		pline("%s", fauxmessage());
+		u.cnd_plineamount++;
 	}
 
 	if (SpellColorViolet) pushplayer();
@@ -3527,6 +3531,7 @@ castanyway:
 	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && (!StrongConf_resist || !rn2(3)) && rn2(Conf_resist ? 2 : 10) ) || (rnd(100) > chance)) {
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
+		u.cnd_spellfailcount++;
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		if (!rn2(100)) { /* evil patch idea by Amy: failure effect */
 			pline("In fact, you cast the spell incorrectly in a way that causes bad stuff to happen...");
@@ -3556,6 +3561,7 @@ castanyway:
 		if (rn2(100) < rnd(tremblechance)) {
 			You("screw up while casting the spell...");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			u.cnd_spellfailcount++;
 
 			if (!rn2(10)) {
 				pline("In fact, you screwed up so badly that bad stuff happens...");
@@ -3593,11 +3599,14 @@ castanyway:
 	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
 	if (u.uhave.amulet && u.amuletcompletelyimbued && u.uen < 0) {
 		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
+		u.cnd_spellfailcount++;
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		u.uen = 0;
 		if (SpellColorSilver) u.seesilverspell = 0;
 		return(1);
 	}
+
+	u.cnd_spellcastcount++;
 
 	if (uarmg && uarmg->oartifact == ART_WHOOSHZHOOSH) {
 		incr_itimeout(&HFast, rn1(15, 5));
@@ -5005,6 +5014,7 @@ aulechoice:
 					u.aggravation = 1;
 					reset_rndmonst(NON_PM);
 					while (aggroamount) {
+						u.cnd_aggravateamount++;
 						makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 						aggroamount--;
 						if (aggroamount < 0) aggroamount = 0;
@@ -7106,7 +7116,11 @@ secureidchoice:
 	case SPE_MESSAGE:
 
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 
 		break;
 
@@ -7825,6 +7839,7 @@ secureidchoice:
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+		u.cnd_banishmentcount++;
 		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 

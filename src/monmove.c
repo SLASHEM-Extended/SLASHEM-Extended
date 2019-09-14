@@ -466,6 +466,7 @@ boolean fleemsg;
 	    if (!mtmp->mflee && fleemsg && canseemon(mtmp) && !mtmp->mfrozen) {
 		if (rn2(3)) {
 		  pline("%s turns to flee!", (Monnam(mtmp)));
+		  if (isok(u.ux, u.uy) && sengr_at("Elbereth", u.ux, u.uy)) u.cnd_elberethamount++;
 		  mtmp->mflee = 1;
 		}
 		else {
@@ -737,6 +738,7 @@ register struct monst *mtmp;
 
 	if (FemaleTrapMeltem && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		u.cnd_fartingcount++;
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
 		      useup(uarmf);
@@ -773,6 +775,7 @@ register struct monst *mtmp;
 		while (FemaleTrapElena && !rn2(3)) {
 			pline("You long for more!");
 			pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+			u.cnd_fartingcount++;
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
 			      useup(uarmf);
@@ -1258,6 +1261,7 @@ register struct monst *mtmp;
 			};
 
 		verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
+		u.cnd_conversioncount++;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -1329,6 +1333,7 @@ convertdone:
 			"Wwwouu.",
 		};
 		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
+		u.cnd_wouwoucount;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -1423,6 +1428,7 @@ convertdone:
 				break;
 
 		}
+		u.cnd_perfumecount++;
 
 		if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 			pline("But the gas mask protects you from the effects.");
@@ -1723,13 +1729,21 @@ toofar:
 	    if(inrange && dmgtype(mtmp->data, AD_FAKE) && !mtmp->mpeaceful && !rn2(20))
 		{
 			pline("%s", fauxmessage());
-			if (!rn2(3)) pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+			if (!rn2(3)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
 		}
 
 	    if(inrange && mtmp->egotype_faker && !mtmp->mpeaceful && !rn2(20))
 		{
 			pline("%s", fauxmessage());
-			if (!rn2(3)) pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+			if (!rn2(3)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
 		}
 
 	    if(inrange && mtmp->data->msound == MS_BOSS && !mtmp->mpeaceful && !rn2(10))

@@ -1577,6 +1577,67 @@ struct you {
 	boolean zapem_mode;	/* decided at game start: true if you're a ZAPM role or used the ZAPM birth option */
 	boolean riderhack;	/* to prevent you from easily removing riders */
 
+	/* extra statistics: some of these display with #conduct, others only at the end of your game --Amy */
+	int cnd_applycount;	/* how often you applied items */
+	int cnd_unihorncount;	/* how often you benefitted from a unicorn horn effect */
+	int cnd_markercount;	/* how many items you created with magic markers */
+	int cnd_chemistrycount;	/* how many items you created with the chemistry set */
+	int cnd_quaffcount;	/* how many potions you quaffed */
+	int cnd_zapcount;		/* how many wands you zapped */
+	int cnd_scrollcount;	/* how many scrolls you read */
+	int cnd_spellbookcount;	/* how many spellbooks you read successfully */
+	int cnd_spellcastcount;	/* how many spells you successfully cast */
+	int cnd_spellfailcount;	/* how many times you failed to cast a spell */
+	int cnd_forgottenspellcount;	/* how many times you cast a forgotten spell */
+	int cnd_invokecount;	/* how many times you invoked an artifact that had an actual invoke effect */
+	int cnd_techcount;	/* how many times you used a technique that had a nonzero timeout */
+	int cnd_phasedoorcount;	/* how many times you phase doored */
+	int cnd_teleportcount;	/* how many times you teleported */
+	int cnd_telelevelcount;	/* how many times you levelported */
+	int cnd_branchportcount;	/* how many times you branchported */
+	int cnd_banishmentcount;	/* how many times you were banished */
+	int cnd_punishmentcount;	/* how many times you got punished */
+	int cnd_petdeathcount;	/* how many of your pets died */
+	int cnd_amnesiacount;	/* how many times you suffered from amnesia */
+	int cnd_maxalignment;	/* the maximum positive alignment you ever had */
+	int cnd_minalignment;	/* the minimum negative alignment you ever had */
+	int cnd_maxsanity;	/* the maximum amount of sanity you ever had */
+	int cnd_maxcontamination;	/* the maximum amount of contamination you ever had */
+	int cnd_searchtrapcount;	/* how many traps you found via searching */
+	int cnd_searchsecretcount;	/* how many secret doors and corridors you found via searching */
+	int cnd_fartingcount;	/* how many times you heard farting noises */
+	int cnd_conversioncount;	/* how many times you were subjected to converting taunts */
+	int cnd_wouwoucount;	/* how many times you heard wouwou taunts */
+	int cnd_perfumecount;	/* how many times you inhaled perfume */
+	int cnd_nutkickamount;	/* how many times you were kicked in the nuts */
+	int cnd_breastripamount;	/* how many times your breasts were violated */
+	int cnd_saveamount;	/* how many times you saved the game */
+	int cnd_ragnarokamount;	/* how many times ragnarok was caused */
+	int cnd_datadeleteamount;	/* how many times your data got deleted */
+	int cnd_curseitemsamount;	/* how many times you got hit with the curse items effect */
+	int cnd_nastytrapamount;	/* how many times you triggered a nasty trap */
+	int cnd_feminismtrapamount;	/* how many times you triggered a feminism trap */
+	int cnd_plineamount;	/* how many random plines you read */
+	int cnd_aggravateamount;	/* how many times monsters came out of portals */
+	int cnd_eatrinsicamount;	/* how often you got intrinsics from eating corpses */
+	int cnd_shkserviceamount;	/* how many times you purchased shopkeeper services */
+	int cnd_kopsummonamount;	/* how often shopkeepers, watchmen etc. called the kops */
+	int cnd_captchaamount;	/* how many captchas you solved */
+	int cnd_captchafail;	/* how many times you failed to solve a captcha */
+	int cnd_quizamount;	/* how many quiz questions you answered correctly */
+	int cnd_quizfail;		/* how many times you failed to answer a quiz question */
+	int cnd_alterrealityamount;	/* how many times reality was altered */
+	int cnd_unlockamount;	/* how many times you unlocked something with an unlocking tool */
+	int cnd_altarconvertamount;	/* how many times you converted an altar to another deity */
+	int cnd_itemstealamount;	/* how many times your items were stolen */
+	int cnd_poisonamount;	/* how many times you were poisoned */
+	int cnd_nursehealamount;	/* how many extra HP you got from nurse dancing */
+	int cnd_nurseserviceamount;	/* how many times you purchased nurse services */
+	int cnd_elberethamount;	/* how many times an Elbereth engraving scared a monster */
+	int cnd_disenchantamount;	/* how many times your items got disenchanted */
+	int cnd_permstatdamageamount;	/* how many times your stats got permanently damaged */
+	int cnd_shoedamageamount;	/* how many times you got hurt with female shoes */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

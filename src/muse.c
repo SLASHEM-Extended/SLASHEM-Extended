@@ -6922,7 +6922,11 @@ struct monst *mtmp;
 		makeknown(otmp->otyp);
 
 		pline("%s", fauxmessage());
-		if (!rn2(3)) pline("%s", fauxmessage());
+		u.cnd_plineamount++;
+		if (!rn2(3)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -7201,6 +7205,7 @@ struct monst *mtmp;
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					u.cnd_disenchantamount++;
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
@@ -8807,6 +8812,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -9145,6 +9151,7 @@ newboss:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					u.cnd_disenchantamount++;
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}

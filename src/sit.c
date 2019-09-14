@@ -1020,7 +1020,7 @@ rndcurse()			/* curse a few inventory items at random! */
 	    return;
 	}
 
-	else if(u.ukinghill && rn2(20)){
+	if(u.ukinghill && rn2(20)){
 	    You(mal_aura, "the cursed treasure chest");
 		otmp = 0;
 		for(otmp = invent; otmp; otmp=otmp->nobj)
@@ -1034,6 +1034,9 @@ rndcurse()			/* curse a few inventory items at random! */
 	    update_inventory();		
 		return;
 	}
+
+	u.cnd_curseitemsamount++;
+
 	if(Antimagic) {
 	    shieldeff(u.ux, u.uy);
 	    You(mal_aura, "you");

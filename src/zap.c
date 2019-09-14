@@ -3776,6 +3776,7 @@ register struct obj *wand;
 
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 
+	u.cnd_zapcount++;
 	use_skill(P_DEVICES,1);
 	if (Race_if(PM_STICKER)) {
 		use_skill(P_DEVICES,1);
@@ -3954,6 +3955,7 @@ secureidchoice:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
 			}
+			u.cnd_disenchantamount++;
 			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
@@ -4288,6 +4290,7 @@ secureidchoice:
 				    struct obj *objD = some_armor(&youmonst);
 	
 				    if (objD && drain_item(objD)) {
+					u.cnd_disenchantamount++;
 					Your("%s less effective.", aobjnam(objD, "seem"));
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
@@ -6647,6 +6650,7 @@ boolean ordinary;
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+		u.cnd_banishmentcount++;
 		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 		else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -6842,6 +6846,7 @@ struct obj *obj;	/* wand or spell */
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+			u.cnd_banishmentcount++;
 			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 

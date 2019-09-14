@@ -575,6 +575,7 @@ letknow:
 			    "are confronted by an angry %s.",
 			    g_monnam(grd));
 
+			u.cnd_kopsummonamount++;
 			copcnt = rnd(monster_difficulty() ) + 1;
 			if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 			if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);

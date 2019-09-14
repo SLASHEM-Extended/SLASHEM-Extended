@@ -120,11 +120,13 @@ picklock()	/* try to open/close a lock */
 		    if (*in_rooms(u.ux+u.dx, u.uy+u.dy, SHOPBASE))
 			add_damage(u.ux+u.dx, u.uy+u.dy, 0L);
 		    newsym(u.ux+u.dx, u.uy+u.dy);
-	    } else if(xlock.door->doormask == D_LOCKED)
+	    } else if(xlock.door->doormask == D_LOCKED) {
 		xlock.door->doormask = D_CLOSED;
-	    else xlock.door->doormask = D_LOCKED;
+		u.cnd_unlockamount++;
+	    } else xlock.door->doormask = D_LOCKED;
 	} else {
 	    xlock.box->olocked = !xlock.box->olocked;
+	    if (!xlock.box->olocked) u.cnd_unlockamount++;
 	    if(xlock.box->otrapped) {
 		if (Role_if(PM_CYBERNINJA) && rn2(5)) You("also disarm the trap you found on it.");
 		else (void) chest_trap(xlock.box, FINGER, FALSE);

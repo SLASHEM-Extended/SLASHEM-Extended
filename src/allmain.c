@@ -696,6 +696,7 @@ moveloop()
 
 				if (!rn2(20)) u.copwantedlevel += rnz(u.ualign.sins + 1);
 
+				u.cnd_kopsummonamount++;
 				int copcnt = rnd(monster_difficulty() ) + 1;
 				if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
@@ -1808,6 +1809,11 @@ moveloop()
 			else drown();
 		}
 
+		if (u.ualign.record > u.cnd_maxalignment) u.cnd_maxalignment = u.ualign.record;
+		if (u.ualign.record < u.cnd_minalignment) u.cnd_minalignment = u.ualign.record;
+		if (u.usanity > u.cnd_maxsanity) u.cnd_maxsanity = u.usanity;
+		if (u.contamination > u.cnd_maxcontamination) u.cnd_maxcontamination = u.contamination;
+
 		if (!rn2(2)) u.funnyhalluroll = 9999999;
 		else u.funnyhalluroll = rn2(10000);
 
@@ -2057,17 +2063,29 @@ moveloop()
 
 		if (RngeLoudspeakers && !rn2(100)) {
 			pline("%s", fauxmessage());
-			if (!rn2(3)) pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+			if (!rn2(3)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
 		}
 
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) { /* this function is probably expensive... --Amy */
 			if (ttmp && ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) {
 				pline("%s", fauxmessage());
-				if (!rn2(3)) pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+				if (!rn2(3)) {
+					pline("%s", fauxmessage());
+					u.cnd_plineamount++;
+				}
 			}
 			if (ttmp && ttmp->ttyp == ARABELLA_SPEAKER && !rn2(50) ) {
 				pline("%s", fauxmessage());
-				if (!rn2(3)) pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+				if (!rn2(3)) {
+					pline("%s", fauxmessage());
+					u.cnd_plineamount++;
+				}
 			}
 
 			if (ttmp && ttmp->ttyp == KOP_CUBE && !rn2(2000) && !(m_at(ttmp->tx, ttmp->ty)) ) {
@@ -2893,6 +2911,7 @@ trapsdone:
 		if (FemaleTrapMaurah && !rn2(100)) {
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
+			u.cnd_fartingcount++;
 			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
@@ -2901,6 +2920,7 @@ trapsdone:
 		if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && !rn2(100)) {
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
+			u.cnd_fartingcount++;
 			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
@@ -2962,6 +2982,7 @@ trapsdone:
 					break;
 				case 2:
 					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
+					u.cnd_fartingcount++;
 					if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) healup((level_difficulty() + 5), 0, FALSE, FALSE);
 					else if (!extralongsqueak()) badeffect();
 					break;
@@ -4313,6 +4334,7 @@ fukrosionchoice:
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -4329,6 +4351,7 @@ fukrosionchoice:
 			u.heavyaggravation = 1;
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon(mkclass(S_GHOST,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -4367,6 +4390,7 @@ fukrosionchoice:
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -4385,6 +4409,7 @@ fukrosionchoice:
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
 
+				u.cnd_aggravateamount++;
 				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 				aggroamount--;
 				if (aggroamount < 0) aggroamount = 0;
@@ -4676,6 +4701,7 @@ newbossF:
 			}
 
 			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+			u.cnd_aggravateamount++;
 
 			} /* while (aggroamount) */
 
@@ -6868,6 +6894,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6885,6 +6912,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6895,6 +6923,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6905,6 +6934,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6915,6 +6945,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6925,6 +6956,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6935,6 +6967,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6945,6 +6978,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6955,6 +6989,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -6965,6 +7000,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -7672,6 +7708,7 @@ newboss:
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
+				u.cnd_captchafail++;
 
 				if (multi >= 0) nomul(-2, "paralyzed by a captcha", FALSE);
 
@@ -7702,7 +7739,10 @@ newboss:
 				}
 
 			}
-			else pline("Alright. Please move on.");
+			else {
+				pline("Alright. Please move on.");
+				u.cnd_captchaamount++;
+			}
 			u.captchahack = 0;
 		}
 
@@ -7729,11 +7769,13 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					u.cnd_quizfail++;
 					badeffect();
 
 				} else {
 
 					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+					u.cnd_quizamount++;
 
 				}
 
@@ -7742,10 +7784,12 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+					u.cnd_quizamount++;
 
 				} else {
 
 					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					u.cnd_quizfail++;
 					badeffect();
 
 				}
@@ -7769,11 +7813,13 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					u.cnd_quizfail++;
 					badeffect();
 
 				} else {
 
 					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+					u.cnd_quizamount++;
 
 				}
 
@@ -7782,10 +7828,12 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+					u.cnd_quizamount++;
 
 				} else {
 
 					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					u.cnd_quizfail++;
 					badeffect();
 
 				}
@@ -7809,11 +7857,13 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					u.cnd_quizfail++;
 					badeffect();
 
 				} else {
 
 					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+					u.cnd_quizamount++;
 
 				}
 
@@ -7822,10 +7872,12 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+					u.cnd_quizamount++;
 
 				} else {
 
 					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					u.cnd_quizfail++;
 					badeffect();
 
 				}
@@ -7849,11 +7901,13 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Haha, you guessed wrong! Tough luck, player, it seems you're just not good enough and now there will be a bad effect to punish you, ha-ha!");
+					u.cnd_quizfail++;
 					badeffect();
 
 				} else {
 
 					pline("Damn it, you guessed correctly! I can't believe it! This rumor was actually false!");
+					u.cnd_quizamount++;
 
 				}
 
@@ -7862,10 +7916,12 @@ newboss:
 				if (rumoristrue) {
 
 					pline("Oh no, how did you know that this rumor was true? You cheated! You're playing with a spoiler sheet, admit it!");
+					u.cnd_quizamount++;
 
 				} else {
 
 					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					u.cnd_quizfail++;
 					badeffect();
 
 				}
@@ -7884,6 +7940,7 @@ newboss:
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
+				u.cnd_captchafail++;
 
 				if (multi >= 0) nomul(-2, "paralyzed by a captcha", FALSE);
 
@@ -7914,7 +7971,10 @@ newboss:
 				}
 
 			}
-			else pline("Alright. Please move on.");
+			else {
+				pline("Alright. Please move on.");
+				u.cnd_captchaamount++;
+			}
 			u.captchahack = 0;
 		}
 
@@ -7927,6 +7987,7 @@ newboss:
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
+				u.cnd_captchafail++;
 
 				if (multi >= 0) nomul(-2, "paralyzed by a captcha", FALSE);
 
@@ -7957,7 +8018,10 @@ newboss:
 				}
 
 			}
-			else pline("Alright. Please move on.");
+			else {
+				pline("Alright. Please move on.");
+				u.cnd_captchaamount++;
+			}
 			u.captchahack = 0;
 		}
 
@@ -9122,7 +9186,11 @@ newboss:
 			/* more faux messages */
 			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) {
 				pline("%s", fauxmessage());
-				if (!rn2(3)) pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+				if (!rn2(3)) {
+					pline("%s", fauxmessage());
+					u.cnd_plineamount++;
+				}
 			}
 
 			if (u.stairscumslowing) {
@@ -9233,6 +9301,7 @@ newboss:
 				reset_rndmonst(NON_PM);
 				while (aggroamount) {
 
+					u.cnd_aggravateamount++;
 					makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					aggroamount--;
 					if (aggroamount < 0) aggroamount = 0;
@@ -9259,6 +9328,7 @@ cellarnope:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+				u.cnd_banishmentcount++;
 				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -9286,6 +9356,7 @@ past1:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+				u.cnd_banishmentcount++;
 				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -9313,6 +9384,7 @@ past2:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+				u.cnd_banishmentcount++;
 				if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 				else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -9439,6 +9511,7 @@ past3:
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+					u.cnd_banishmentcount++;
 					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -9463,6 +9536,7 @@ past3:
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
+					u.cnd_banishmentcount++;
 					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
@@ -9897,6 +9971,7 @@ past3:
 			pline("Somehow, the banishment beam doesn't do anything."); u.banishmentbeam = 0; break;
 		}
 
+		u.cnd_banishmentcount++;
 		if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
 		else { (void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 		u.banishmentbeam = 0; /* player got warped, now clear the flag even if it crashes afterwards */

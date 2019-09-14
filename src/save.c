@@ -79,6 +79,7 @@ dosave()
 	} else {
 		clear_nhwindow(WIN_MESSAGE);
 		pline("Saving...");
+		u.cnd_saveamount++;
 #if defined(UNIX) || defined(VMS) || defined(__EMX__)
 		program_state.done_hup = 0;
 #endif
