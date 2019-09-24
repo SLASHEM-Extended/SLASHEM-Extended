@@ -468,7 +468,10 @@ const char *name;	/* if null, then format `obj' */
 				int tempval;
 
 				int effectiveac = (-(u.uac));
-				if (issoviet) effectiveac -= 20;
+				if (issoviet) {
+					effectiveac -= 20;
+					if (effectiveac < 1) effectiveac = 1;
+				}
 				if (effectiveac > (issoviet ? 100 : 120)) {
 					if (issoviet) effectiveac -= rn3(effectiveac - 99);
 					else effectiveac -= rn3(effectiveac - 119);
@@ -483,7 +486,7 @@ const char *name;	/* if null, then format `obj' */
 				}
 
 				tempval = rnd((effectiveac / (issoviet ? 5 : 4)) + 1);
-				if (tempval < 1)  tempval = 1;
+				if (tempval < 1) tempval = 1;
 				if (tempval > (issoviet ? 20 : 50)) tempval = (issoviet ? 20 : 50); /* max limit increased --Amy */
 
 				if (issoviet) {
