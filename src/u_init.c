@@ -28597,6 +28597,7 @@ register struct trobj *trop;
 				obj->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
 			    if (trop->trquan < 1) trop->trquan = 1; /* fail safe */
 			    obj->quan = (long) trop->trquan;
+			    if (Race_if(PM_UNDEFINED_CREATURE) && !objects[obj->otyp].oc_merge) obj->quan = 1;
 			    trop->trquan = 1;
 			} else if (obj->oclass == GEM_CLASS &&
 				is_graystone(obj) && obj->otyp != FLINT) {
@@ -28731,6 +28732,7 @@ register struct trobj *trop;
 				obj->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
 			    if (trop->trquan < 1) trop->trquan = 1; /* fail safe */
 			    obj->quan = (long) trop->trquan;
+			    if (Race_if(PM_UNDEFINED_CREATURE) && !objects[obj->otyp].oc_merge) obj->quan = 1;
 			    trop->trquan = 1;
 			} else if (obj->oclass == GEM_CLASS &&
 				is_graystone(obj) && obj->otyp != FLINT) {
@@ -28750,6 +28752,7 @@ register struct trobj *trop;
 				objX->oclass == TOOL_CLASS || Race_if(PM_UNDEFINED_CREATURE) ) {
 			    if (trop->trquan < 1) trop->trquan = 1; /* fail safe */
 			    objX->quan = (long) trop->trquan;
+			    if (Race_if(PM_UNDEFINED_CREATURE) && !objects[objX->otyp].oc_merge) objX->quan = 1;
 			    trop->trquan = 1;
 			} else if (objX->oclass == GEM_CLASS &&
 				is_graystone(objX) && objX->otyp != FLINT) {
