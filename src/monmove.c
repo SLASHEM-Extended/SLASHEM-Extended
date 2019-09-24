@@ -1333,7 +1333,7 @@ convertdone:
 			"Wwwouu.",
 		};
 		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
-		u.cnd_wouwoucount;
+		u.cnd_wouwoucount++;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;

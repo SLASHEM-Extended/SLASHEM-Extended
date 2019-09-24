@@ -10846,7 +10846,7 @@ int final;
 		sprintf(buf, " %ld time%s", u.cnd_datadeleteamount, plur(u.cnd_datadeleteamount));
 		enl_msg(You_, "had your data deleted ", "had your data deleted ", buf);
 	}
-	if (u.cnd_curseitemsamount) {
+	if (u.cnd_curseitemsamount && final) {
 		sprintf(buf, " %ld time%s", u.cnd_curseitemsamount, plur(u.cnd_curseitemsamount));
 		enl_msg(You_, "encountered the curse items effect ", "encountered the curse items effect ", buf);
 	}
