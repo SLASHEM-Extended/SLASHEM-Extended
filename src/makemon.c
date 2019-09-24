@@ -6840,6 +6840,13 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 		}
 
+		if (ptr == &mons[PM_ALABASTER_ELF]) {
+			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+		}
+		if (ptr == &mons[PM_ALABASTER_ELF_ELDER]) {
+			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+		}
+
 		if (ptr == &mons[PM_SHARPWOODSMAN]) {
 			(void) mongets(mtmp, STRAW_HAT);
 			(void) mongets(mtmp, SHARP_AXE);
@@ -11718,6 +11725,10 @@ register struct	monst	*mtmp;
 
 		if (monsndx(ptr) == PM_DRAUGR_MEGASLEEPER) (void) mongets(mtmp, POT_PARALYSIS);
 		if (monsndx(ptr) == PM_JULIETTEN_WOMAN) (void) mongets(mtmp, LACQUERED_DANCING_SHOE);
+
+		if (ptr == &mons[PM_ALABASTER_MUMMY]) {
+			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+		}
 
 		if (monsndx(ptr) == PM_LASER_MUMMY) {
 			(void) mongets(mtmp, HAND_BLASTER);
@@ -23777,7 +23788,10 @@ int type;
 		case PM_CLUMPED_GOLEM: return 120;
 		case PM_ROCKSHOT_GOLEM: return 200;
 		case PM_BOOT_GOLEM: return 100;
+		case PM_CARYATID: return 100;
+		case PM_KNIGHT_OF_EMPTY_REFLECTIONS: return 300;
 		case PM_SANDAL_GOLEM: return 150;
+		case PM_SENTINEL_OF_MITHARDIR: return 150;
 		case PM_ITALIAN_GOLEM: return 150;
 		case PM_PEARL_GOLEM: return 12;
 		case PM_OXYGEN_GOLEM: return 16;
