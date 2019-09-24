@@ -958,7 +958,7 @@ int	mntmp;
 	if (!sticky && !u.uswallow && u.ustuck && sticks(youmonst.data)) setustuck(0);
 	else if (sticky && !sticks(youmonst.data)) uunstick();
 	if (u.usteed) {
-	    if (touch_petrifies(u.usteed->data) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
+	    if (touch_petrifies(u.usteed->data) && (PlayerCannotUseSkills || (P_SKILL(P_RIDING) < P_EXPERT)) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
 	    	char buf[BUFSZ];
 
 	    	pline("No longer petrifying-resistant, you touch %s.",

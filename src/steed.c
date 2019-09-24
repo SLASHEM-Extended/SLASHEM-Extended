@@ -374,8 +374,9 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 	ptr = mtmp->data;
-	/* Amy edit: you should be able to ride as long as your body is sufficiently covered in clothing */
-	if (touch_petrifies(ptr) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) ) {
+	/* Amy edit: you should be able to ride a cockatrice as long as your body is sufficiently covered in clothing
+	 * or also if you're highly skilled (making high riding skill more useful in the process) */
+	if (touch_petrifies(ptr) && (PlayerCannotUseSkills || (P_SKILL(P_RIDING) < P_EXPERT)) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) ) {
 	    char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
