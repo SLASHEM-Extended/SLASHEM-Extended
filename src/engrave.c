@@ -4876,6 +4876,8 @@ static const char *epitaphs[] = {
 	"Why did you save the game while engulfed? Some genius you are!",
 	"Amy, I'd advise you to remove all your stupid monsters and leave only the ones from vanilla, SLASH'EM and dnethack in the game.",
 	"Umm, guys?  You know I just cast epic-level Hour of Silence, right?  None of your spells have any effect whatsoever.",
+	"evilhack is 'with a purpose but balanced and challenging' evil. slex is 'bwaaaaaah i'm on acid I smell purple lets add n to the x things weeee' evil", /* by K2; obviously I disagree with him on that one, because I view slex as very balanced (yes, seriously! just because the game is unfair and tries to kill player characters doesn't automatically mean it's unbalanced) --Amy */
+	"I didn't know cats could break the illiterate conduct.", /* by Hekik */
 
 };
 

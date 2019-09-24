@@ -6221,6 +6221,7 @@ SCROLL((char *)0,               "GULLIVER GOOMBA",  P_NONE,     1,   0, 300, CLR
 SCROLL((char *)0,               "TICK TOCK TRAUMA",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "RAINBOW FRENZY",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "COCHELN AND TARRIER ARE REAL TRAIN STATIONS",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "AUSGEHLOCH DOKTER",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
 
 
 #ifdef MAIL

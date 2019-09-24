@@ -24051,6 +24051,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have become a green slime. You have become extinct because green slimes are genocided. Game over.",
 	"The sauna feels relaxing!  You disrobe, wearing nothing but a small towel!",
 	"The sauna feels relaxing!  You disrobe, wearing nothing but a small towel because you're a wimp who's too scared to become fully naked!",
+	"You hear a large cat reading a scroll of hearing.",
+	"You read the scroll of hearing. You can hear again.",
+	"You read the scroll of reading. You learn how to read!",
+	"Liu ben ren mo tian tou ying jian meng!", /* actually "Bush hid the facts" */
 
 };
 
