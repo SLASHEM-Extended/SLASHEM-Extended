@@ -805,6 +805,9 @@ doread()
 	"Why did I explain the joke? Now it's not funny anymore you dummy!",
 	"Good day, I'm Amy from the slexomatic institute. Would you like to take a survey? It will take about 6 minutes. First question: do you like high heels?",
 	"Hello, I'd like to take a survey about your customer satisfaction with the 'Deutsche Bahn'. First question: Do you like the word 'delay'?",
+	"What? You're saying you want the game to be realistic? Man, I play games to escape from reality for a while, not to try to emulate reality as accurately as possible!",
+	"I'm not burdened by a too low carry capacity and I won't play any variant that doesn't have slex-level carry caps for the player character. Because I want to spend my time actually PLAYING the game, not doing a tedious inventory management chore that is more work than the work I'm getting PAID to do in real life.",
+	"My car has 400 HP and a filter gear shift!",
 
 	    };
 	    char buf[BUFSZ];
