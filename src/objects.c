@@ -6252,6 +6252,7 @@ SCROLL((char *)0,               "WHY IS THERE NO UPPER HELL MODE",  P_NONE,     
 SCROLL((char *)0,               "THERE IS NO POSTGAME AFTER YOU KILLED BAAL IN HELL",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "NO ONE RUNS ACT 1 TO FIND A HARLEQUIN CREST",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "NO ONE RUNS THRESH SOCKET BECAUSE HES TOO HARD TO REACH",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
+SCROLL((char *)0,               "SURPRISE INSIDE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 
 
 #ifdef MAIL

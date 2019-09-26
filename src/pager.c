@@ -4282,6 +4282,22 @@ static NEARDATA const char * const longinglines[] = {
 "%s is such a wonderful girl... *fleecy heart bundle*",
 "Wow, it's incredible that a single girl can be SO fleecy, but %s really is that fleecy!",
 "When seeing the gorgeous %s, your eyes become little sweethearts because she's just so amazingly beautiful.",
+"You love to get kicked by the %s shoes again and again, because they're so wonderfully soft and gentle.",
+"Being kicked in the nuts is really an intimate attack, especially if %s performs it on you!",
+"You absolutely want to be hurt by the %s zippers.",
+"Being physically abused by %s is pure lust! You don't have to lift a finger, just let the beautiful girl cause soothing pain to you that will feel very exciting!",
+"%s can put you to sleep by farting into your face very powerfully, and she will produce erotic air current noises in the process.",
+"It's really exciting to have %s throw high kicks at your face with her lovely female footwear, because she'll really bludgeon you that way!",
+"When %s knocks you down, you absolutely looooooove it if she stomps on you again and again with her lady shoes. Admit it, everyone would enjoy being at the mercy of her cuuuuuute heels!",
+"It's incredible that the cute %s heels can cause so much damage - if you let them, they'll make a real mess of your legs, and after you let your wounds heal, the heels can just rip them open again, squirting even more blood in the process!",
+"You really enjoy the pain when the cold metal of %s's female zipper slides over your skin and ratches dangerous wounds in the process.",
+"Do you like it if the metallic buckles of %s's woman's shoes scratch over your skin very slowly and extremely painfully? The scratching sound when she does so is indescribably wonderful!",
+"You can't believe that such a cute %s trained her little-girl sandals so well.",
+"When she's wearing her cute girl sandals, %s's toes poke out in front and look sooooooooo sweeeeeeeet and female! <3<3<3",
+"You want your skin to be cut by %s's curvy toenails, which are really great cutting tools that also look very sexy.",
+"It would feel wonderfully humiliating to let %s pull down your pants in public.",
+"If you make the mistake of touching %s's shoelaces, your hands will be corroded. But actually the thought of having that happen to you seems very arousing, so you should probably try to feel the dangerous laces on purpose...",
+"You want to stroke %s's butt curves.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4852,6 +4868,7 @@ static NEARDATA const char * const hussylines_wal[] = {
 "I've been wondering, why is Walt such a retard and paints his grave walls in such an obvious color? It means I can easily recognize them! Not that I'm complaining, of course, since it makes it easier for me to steal the diamonds contained inside, but still... he really seems to be cursed with a very low IQ.",
 "Why did you name yourself after your leader? I'd never do that, especially not if my leader was as incapable as that Walt guy.",
 "You should really ask yourself why you allowed that Walt guy to brainwash you. He just made you a part of his 'army' of cannon fodder and you'll fall just like all the other walscholars!",
+"We still have several gallons of perfume! If our attempts to stop you didn't succeed so far, wait until you smell what we've got up our sleeves!",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4947,6 +4964,7 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "It seems that some wiseguy called %s thinks they're powerful just because they can erect grave walls. Well, I'm a hussy, and I have the ability to destroy grave walls! Hahaha!",
 "%s, you should defect to us Hussies because things will be much better for you, after all we're led by Anna who is a capable leader, unlike that Walt guy!",
 "%s, it seems that you're unlucky to be on the wrong team. You could have been a Hussy, but as it is, you're bound to become someone who was defeated by the Hussies.",
+"You have no chance, %s, because you're not wearing female clothing. That cheap noname backpack you're wearing there will be absolutely emptied of its contents by me.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -24203,6 +24221,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"sorry, no fire hydrants in NetHack",
 	"sorry, no fire hydrants in NetHack (guys don't mention that in front of the slex dev, she might actually add them as a new feature)",
 	"this isn't quite right; if sensing a monster without being able to see its location, you really shouldn't be told you sense it becoming furniture or an object that you can't see (on the other hand, perhaps you're sensing a brief glimpse of its mind as it changes form)",
+	"You kick Jesus. Jesus turns the other cheek.",
+	"You kick Jesus. Jesus turns the other cheek. But actually he should turn the other shin, because that's where you kicked him :D",
 
 };
 

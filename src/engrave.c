@@ -5151,6 +5151,7 @@ static const char *epitaphs[] = {
 	"Single hit kill, boeoeoeoeoeoeoeoep...",
 	"With so many NDEs it was clear that the mage baddies would get me eventually.",
 	"Sure that his static field takes off so much.",
+	"jesus kicking is broken", /* by Demo; kicking Jesus is really overpowered because he won't fight back */
 
 };
 
