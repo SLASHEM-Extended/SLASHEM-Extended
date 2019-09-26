@@ -1637,6 +1637,13 @@ struct you {
 	int cnd_disenchantamount;	/* how many times your items got disenchanted */
 	int cnd_permstatdamageamount;	/* how many times your stats got permanently damaged */
 	int cnd_shoedamageamount;	/* how many times you got hurt with female shoes */
+	int cnd_farmlandremoved;	/* how many farmland tiles you removed via #force */
+	int cnd_nethermistremoved;	/* how many nether mist tiles you dissipated by killing lawful monsters */
+	int cnd_ammomulched;	/* how many of your ranged weapon ammos (excluding bullets) were mulched */
+	int cnd_gunpowderused;	/* how many bullets, grenades etc. you used */
+	int cnd_chargingcount;	/* how often you recharged items */
+	int cnd_offercount;	/* how many corpses you offered to the gods */
+	int cnd_forcecount;	/* how many times you used #force on a monster */
 
 };	/* end of `struct you' */
 

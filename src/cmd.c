@@ -10702,241 +10702,287 @@ int final;
 	    enl_msg(You_, "have broken ", "broke ", buf);
 	}
 
+	/* extra statistics by Amy. Most of them can be accessed by using the #conduct command, but some would leak info
+	 * that the player couldn't otherwise have during a running game and are therefore only displayed when the game is
+	 * over. In fact, you could probably leak info with all of them when having nasty traps active, but oh well... */
+
 	if (u.cnd_applycount) {
-		sprintf(buf, " %ld time%s", u.cnd_applycount, plur(u.cnd_applycount));
+		sprintf(buf, "%ld time%s", u.cnd_applycount, plur(u.cnd_applycount));
 		enl_msg(You_, "have applied items ", "applied items ", buf);
 	}
 	if (u.cnd_unihorncount) {
-		sprintf(buf, " %ld time%s", u.cnd_unihorncount, plur(u.cnd_unihorncount));
+		sprintf(buf, "%ld time%s", u.cnd_unihorncount, plur(u.cnd_unihorncount));
 		enl_msg(You_, "experienced the healing effects of unicorn horns ", "experienced the healing effects of unicorn horns ", buf);
 	}
 	if (u.cnd_markercount) {
-		sprintf(buf, " %ld item%s with the magic marker", u.cnd_markercount, plur(u.cnd_markercount));
+		sprintf(buf, "%ld item%s with the magic marker", u.cnd_markercount, plur(u.cnd_markercount));
 		enl_msg(You_, "have created ", "created ", buf);
 	}
 	if (u.cnd_chemistrycount) {
-		sprintf(buf, " %ld item%s with the chemistry set", u.cnd_chemistrycount, plur(u.cnd_chemistrycount));
+		sprintf(buf, "%ld item%s with the chemistry set", u.cnd_chemistrycount, plur(u.cnd_chemistrycount));
 		enl_msg(You_, "have created ", "created ", buf);
 	}
 	if (u.cnd_quaffcount) {
-		sprintf(buf, " %ld potion%s", u.cnd_quaffcount, plur(u.cnd_quaffcount));
+		sprintf(buf, "%ld potion%s", u.cnd_quaffcount, plur(u.cnd_quaffcount));
 		enl_msg(You_, "have quaffed ", "quaffed ", buf);
 	}
 	if (u.cnd_zapcount) {
-		sprintf(buf, " %ld time%s", u.cnd_zapcount, plur(u.cnd_zapcount));
+		sprintf(buf, "%ld time%s", u.cnd_zapcount, plur(u.cnd_zapcount));
 		enl_msg(You_, "have zapped wands ", "zapped wands ", buf);
 	}
 	if (u.cnd_scrollcount) {
-		sprintf(buf, " %ld time%s", u.cnd_scrollcount, plur(u.cnd_scrollcount));
+		sprintf(buf, "%ld time%s", u.cnd_scrollcount, plur(u.cnd_scrollcount));
 		enl_msg(You_, "have read scrolls ", "read scrolls ", buf);
 	}
 	if (u.cnd_spellbookcount) {
-		sprintf(buf, " %ld time%s", u.cnd_spellbookcount, plur(u.cnd_spellbookcount));
+		sprintf(buf, "%ld time%s", u.cnd_spellbookcount, plur(u.cnd_spellbookcount));
 		enl_msg(You_, "have read spellbooks ", "read spellbooks ", buf);
 	}
 	if (u.cnd_spellcastcount) {
-		sprintf(buf, " %ld time%s", u.cnd_spellcastcount, plur(u.cnd_spellcastcount));
+		sprintf(buf, "%ld time%s", u.cnd_spellcastcount, plur(u.cnd_spellcastcount));
 		enl_msg(You_, "have successfully cast spells ", "successfully cast spells ", buf);
 	}
 	if (u.cnd_spellfailcount) {
-		sprintf(buf, " %ld time%s", u.cnd_spellfailcount, plur(u.cnd_spellfailcount));
+		sprintf(buf, "%ld time%s", u.cnd_spellfailcount, plur(u.cnd_spellfailcount));
 		enl_msg(You_, "have failed to cast a spell ", "failed to cast a spell ", buf);
 	}
 	if (u.cnd_forgottenspellcount) {
-		sprintf(buf, " %ld time%s", u.cnd_forgottenspellcount, plur(u.cnd_forgottenspellcount));
+		sprintf(buf, "%ld time%s", u.cnd_forgottenspellcount, plur(u.cnd_forgottenspellcount));
 		enl_msg(You_, "have attempted to cast forgotten spells ", "attempted to cast forgotten spells ", buf);
 	}
 	if (u.cnd_invokecount) {
-		sprintf(buf, " %ld time%s", u.cnd_invokecount, plur(u.cnd_invokecount));
+		sprintf(buf, "%ld time%s", u.cnd_invokecount, plur(u.cnd_invokecount));
 		enl_msg(You_, "have used the invocation effects of artifacts ", "used the invocation effects of artifacts ", buf);
 	}
 	if (u.cnd_techcount) {
-		sprintf(buf, " %ld time%s", u.cnd_techcount, plur(u.cnd_techcount));
+		sprintf(buf, "%ld time%s", u.cnd_techcount, plur(u.cnd_techcount));
 		enl_msg(You_, "have used techniques ", "used techniques ", buf);
 	}
 	if (u.cnd_phasedoorcount) {
-		sprintf(buf, " %ld time%s", u.cnd_phasedoorcount, plur(u.cnd_phasedoorcount));
+		sprintf(buf, "%ld time%s", u.cnd_phasedoorcount, plur(u.cnd_phasedoorcount));
 		enl_msg(You_, "have phase doored ", "phase doored ", buf);
 	}
 	if (u.cnd_teleportcount) {
-		sprintf(buf, " %ld time%s", u.cnd_teleportcount, plur(u.cnd_teleportcount));
+		sprintf(buf, "%ld time%s", u.cnd_teleportcount, plur(u.cnd_teleportcount));
 		enl_msg(You_, "have teleported ", "teleported ", buf);
 	}
 	if (u.cnd_telelevelcount) {
-		sprintf(buf, " %ld time%s", u.cnd_telelevelcount, plur(u.cnd_telelevelcount));
+		sprintf(buf, "%ld time%s", u.cnd_telelevelcount, plur(u.cnd_telelevelcount));
 		enl_msg(You_, "have levelported ", "levelported ", buf);
 	}
 	if (u.cnd_branchportcount) {
-		sprintf(buf, " %ld time%s", u.cnd_branchportcount, plur(u.cnd_branchportcount));
+		sprintf(buf, "%ld time%s", u.cnd_branchportcount, plur(u.cnd_branchportcount));
 		enl_msg(You_, "have branchported ", "branchported ", buf);
 	}
 	if (u.cnd_banishmentcount) {
-		sprintf(buf, " %ld time%s", u.cnd_banishmentcount, plur(u.cnd_banishmentcount));
+		sprintf(buf, "%ld time%s", u.cnd_banishmentcount, plur(u.cnd_banishmentcount));
 		enl_msg(You_, "were banished ", "were banished ", buf);
 	}
 	if (u.cnd_punishmentcount) {
-		sprintf(buf, " %ld time%s", u.cnd_punishmentcount, plur(u.cnd_punishmentcount));
+		sprintf(buf, "%ld time%s", u.cnd_punishmentcount, plur(u.cnd_punishmentcount));
 		enl_msg(You_, "were punished ", "were punished ", buf);
 	}
+	/* pet death count not disclosed because you might not notice that your pet died --Amy */
 	if (u.cnd_petdeathcount && final) {
-		sprintf(buf, " %ld pet%s", u.cnd_petdeathcount, plur(u.cnd_petdeathcount));
+		sprintf(buf, "%ld pet%s", u.cnd_petdeathcount, plur(u.cnd_petdeathcount));
 		enl_msg(You_, "had to mourn the death of ", "had to mourn the death of ", buf);
 	}
+	/* amnesia count not disclosed because there's not always a clue that you got hit by amnesia --Amy */
 	if (u.cnd_amnesiacount && final) {
-		sprintf(buf, " %ld time%s", u.cnd_amnesiacount, plur(u.cnd_amnesiacount));
+		sprintf(buf, "%ld time%s", u.cnd_amnesiacount, plur(u.cnd_amnesiacount));
 		enl_msg(You_, "have suffered from amnesia ", "suffered from amnesia ", buf);
 	}
 	if (final) {
-		sprintf(buf, " %ld", u.cnd_minalignment);
+		sprintf(buf, "%ld", u.cnd_minalignment);
 		enl_msg(You_, "had a minimum alignment of ", "had a minimum alignment of ", buf);
 	}
 	if (final) {
-		sprintf(buf, " %ld", u.cnd_maxalignment);
+		sprintf(buf, "%ld", u.cnd_maxalignment);
 		enl_msg(You_, "had a maximum alignment of ", "had a maximum alignment of ", buf);
 	}
 	if (u.cnd_maxsanity) {
-		sprintf(buf, " %ld", u.cnd_maxsanity);
+		sprintf(buf, "%ld", u.cnd_maxsanity);
 		enl_msg(You_, "had a maximum sanity of ", "had a maximum sanity of ", buf);
 	}
+	/* sanity can be displayed, contamination requires enlightenment, so the latter is not disclosed --Amy */
 	if (u.cnd_maxcontamination && final) {
-		sprintf(buf, " %ld", u.cnd_maxcontamination);
+		sprintf(buf, "%ld", u.cnd_maxcontamination);
 		enl_msg(You_, "had a maximum contamination of ", "had a maximum contamination of ", buf);
 	}
 	if (u.cnd_searchtrapcount) {
-		sprintf(buf, " %ld time%s", u.cnd_searchtrapcount, plur(u.cnd_searchtrapcount));
+		sprintf(buf, "%ld time%s", u.cnd_searchtrapcount, plur(u.cnd_searchtrapcount));
 		enl_msg(You_, "have successfully searched for traps ", "successfully searched for traps ", buf);
 	}
 	if (u.cnd_searchsecretcount) {
-		sprintf(buf, " %ld time%s", u.cnd_searchsecretcount, plur(u.cnd_searchsecretcount));
+		sprintf(buf, "%ld time%s", u.cnd_searchsecretcount, plur(u.cnd_searchsecretcount));
 		enl_msg(You_, "have successfully searched for doors or corridors ", "successfully searched for doors or corridors ", buf);
 	}
 	if (u.cnd_fartingcount) {
-		sprintf(buf, " %ld time%s", u.cnd_fartingcount, plur(u.cnd_fartingcount));
+		sprintf(buf, "%ld time%s", u.cnd_fartingcount, plur(u.cnd_fartingcount));
 		enl_msg(You_, "heard farting noises ", "heard farting noises ", buf);
 	}
 	if (u.cnd_conversioncount) {
-		sprintf(buf, " %ld time%s", u.cnd_conversioncount, plur(u.cnd_conversioncount));
+		sprintf(buf, "%ld time%s", u.cnd_conversioncount, plur(u.cnd_conversioncount));
 		enl_msg(You_, "listened to conversion sermon ", "listened to conversion sermon ", buf);
 	}
 	if (u.cnd_wouwoucount) {
-		sprintf(buf, " %ld time%s", u.cnd_wouwoucount, plur(u.cnd_wouwoucount));
+		sprintf(buf, "%ld time%s", u.cnd_wouwoucount, plur(u.cnd_wouwoucount));
 		enl_msg(You_, "heard the frightening wouwou taunts ", "heard the frightening wouwou taunts ", buf);
 	}
 	if (u.cnd_perfumecount) {
-		sprintf(buf, " %ld time%s", u.cnd_perfumecount, plur(u.cnd_perfumecount));
+		sprintf(buf, "%ld time%s", u.cnd_perfumecount, plur(u.cnd_perfumecount));
 		enl_msg(You_, "inhaled scentful feminine perfume ", "inhaled scentful feminine perfume ", buf);
 	}
 	if (u.cnd_nutkickamount) {
-		sprintf(buf, " %ld time%s", u.cnd_nutkickamount, plur(u.cnd_nutkickamount));
+		sprintf(buf, "%ld time%s", u.cnd_nutkickamount, plur(u.cnd_nutkickamount));
 		enl_msg(You_, "got your nuts kicked ", "got your nuts kicked ", buf);
 	}
 	if (u.cnd_breastripamount) {
-		sprintf(buf, " %ld time%s", u.cnd_breastripamount, plur(u.cnd_breastripamount));
+		sprintf(buf, "%ld time%s", u.cnd_breastripamount, plur(u.cnd_breastripamount));
 		enl_msg(You_, "got hit in the breasts ", "got hit in the breasts ", buf);
 	}
 	if (u.cnd_saveamount) {
-		sprintf(buf, " %ld time%s", u.cnd_saveamount, plur(u.cnd_saveamount));
+		sprintf(buf, "%ld time%s", u.cnd_saveamount, plur(u.cnd_saveamount));
 		enl_msg(You_, "have saved the game ", "saved the game ", buf);
 	}
 	if (u.cnd_ragnarokamount) {
-		sprintf(buf, " %ld time%s", u.cnd_ragnarokamount, plur(u.cnd_ragnarokamount));
+		sprintf(buf, "%ld time%s", u.cnd_ragnarokamount, plur(u.cnd_ragnarokamount));
 		enl_msg(You_, "encountered the ragnarok event ", "encountered the ragnarok event ", buf);
 	}
 	if (u.cnd_datadeleteamount) {
-		sprintf(buf, " %ld time%s", u.cnd_datadeleteamount, plur(u.cnd_datadeleteamount));
+		sprintf(buf, "%ld time%s", u.cnd_datadeleteamount, plur(u.cnd_datadeleteamount));
 		enl_msg(You_, "had your data deleted ", "had your data deleted ", buf);
 	}
+	/* the curse items effect seems to give no message if you're blind, so you don't always see it happen --Amy */
 	if (u.cnd_curseitemsamount && final) {
-		sprintf(buf, " %ld time%s", u.cnd_curseitemsamount, plur(u.cnd_curseitemsamount));
+		sprintf(buf, "%ld time%s", u.cnd_curseitemsamount, plur(u.cnd_curseitemsamount));
 		enl_msg(You_, "encountered the curse items effect ", "encountered the curse items effect ", buf);
 	}
+	/* nasty traps give no message and don't reveal themselves, so I sure as heck won't leak info here --Amy */
 	if (u.cnd_nastytrapamount && final) {
-		sprintf(buf, " %ld time%s", u.cnd_nastytrapamount, plur(u.cnd_nastytrapamount));
+		sprintf(buf, "%ld time%s", u.cnd_nastytrapamount, plur(u.cnd_nastytrapamount));
 		enl_msg(You_, "have triggered nasty traps ", "triggered nasty traps ", buf);
 	}
+	/* these do give messages, but still, there might be situations where they don't --Amy */
 	if (u.cnd_feminismtrapamount && final) {
-		sprintf(buf, " %ld time%s", u.cnd_feminismtrapamount, plur(u.cnd_feminismtrapamount));
+		sprintf(buf, "%ld time%s", u.cnd_feminismtrapamount, plur(u.cnd_feminismtrapamount));
 		enl_msg(You_, "have triggered feminism traps ", "triggered feminism traps ", buf);
 	}
 	if (u.cnd_plineamount) {
-		sprintf(buf, " %ld time%s", u.cnd_plineamount, plur(u.cnd_plineamount));
+		sprintf(buf, "%ld time%s", u.cnd_plineamount, plur(u.cnd_plineamount));
 		enl_msg(You_, "had to read random messages ", "had to read random messages ", buf);
 	}
+	/* yeah we obviously can't leak how many monsters were summoned --Amy */
 	if (u.cnd_aggravateamount && final) {
-		sprintf(buf, " %ld monster%s come out of portals", u.cnd_aggravateamount, plur(u.cnd_aggravateamount));
+		sprintf(buf, "%ld monster%s come out of portals", u.cnd_aggravateamount, plur(u.cnd_aggravateamount));
 		enl_msg(You_, "saw ", "saw ", buf);
 	}
 	if (u.cnd_eatrinsicamount) {
-		sprintf(buf, " %ld time%s", u.cnd_eatrinsicamount, plur(u.cnd_eatrinsicamount));
+		sprintf(buf, "%ld time%s", u.cnd_eatrinsicamount, plur(u.cnd_eatrinsicamount));
 		enl_msg(You_, "have gained intrinsics from eating corpses ", "gained intrinsics from eating corpses ", buf);
 	}
 	if (u.cnd_shkserviceamount) {
-		sprintf(buf, " %ld time%s", u.cnd_shkserviceamount, plur(u.cnd_shkserviceamount));
+		sprintf(buf, "%ld time%s", u.cnd_shkserviceamount, plur(u.cnd_shkserviceamount));
 		enl_msg(You_, "have purchased shopkeeper services ", "purchased shopkeeper services ", buf);
 	}
+	/* yet again, player doesn't always know how many were summoned --Amy */
 	if (u.cnd_kopsummonamount && final) {
-		sprintf(buf, " %ld time%s", u.cnd_kopsummonamount, plur(u.cnd_kopsummonamount));
+		sprintf(buf, "%ld time%s", u.cnd_kopsummonamount, plur(u.cnd_kopsummonamount));
 		enl_msg(You_, "had the kops called on you ", "had the kops called on you ", buf);
 	}
 	if (u.cnd_captchaamount) {
-		sprintf(buf, " %ld captcha%s", u.cnd_captchaamount, plur(u.cnd_captchaamount));
+		sprintf(buf, "%ld captcha%s", u.cnd_captchaamount, plur(u.cnd_captchaamount));
 		enl_msg(You_, "have solved ", "solved ", buf);
 	}
 	if (u.cnd_captchafail) {
-		sprintf(buf, " %ld time%s", u.cnd_captchafail, plur(u.cnd_captchafail));
+		sprintf(buf, "%ld time%s", u.cnd_captchafail, plur(u.cnd_captchafail));
 		enl_msg(You_, "failed to solve a captcha ", "failed to solve a captcha ", buf);
 	}
 	if (u.cnd_quizamount) {
-		sprintf(buf, " %ld quiz question%s", u.cnd_quizamount, plur(u.cnd_quizamount));
+		sprintf(buf, "%ld quiz question%s", u.cnd_quizamount, plur(u.cnd_quizamount));
 		enl_msg(You_, "correctly answered ", "correctly answered ", buf);
 	}
 	if (u.cnd_quizfail) {
-		sprintf(buf, " %ld quiz question%s", u.cnd_quizfail, plur(u.cnd_quizfail));
+		sprintf(buf, "%ld quiz question%s", u.cnd_quizfail, plur(u.cnd_quizfail));
 		enl_msg(You_, "incorrectly answered ", "incorrectly answered ", buf);
 	}
+	/* alter reality doesn't always give a message --Amy */
 	if (u.cnd_alterrealityamount && final) {
-		sprintf(buf, " %ld time%s", u.cnd_alterrealityamount, plur(u.cnd_alterrealityamount));
+		sprintf(buf, "%ld time%s", u.cnd_alterrealityamount, plur(u.cnd_alterrealityamount));
 		enl_msg(You_, "had the reality altered ", "had the reality altered ", buf);
 	}
 	if (u.cnd_unlockamount) {
-		sprintf(buf, " %ld lock%s", u.cnd_unlockamount, plur(u.cnd_unlockamount));
+		sprintf(buf, "%ld lock%s", u.cnd_unlockamount, plur(u.cnd_unlockamount));
 		enl_msg(You_, "picked ", "picked ", buf);
 	}
 	if (u.cnd_altarconvertamount) {
-		sprintf(buf, " %ld altar%s", u.cnd_altarconvertamount, plur(u.cnd_altarconvertamount));
+		sprintf(buf, "%ld altar%s", u.cnd_altarconvertamount, plur(u.cnd_altarconvertamount));
 		enl_msg(You_, "have converted ", "converted ", buf);
 	}
 	if (u.cnd_itemstealamount) {
-		sprintf(buf, " %ld time%s", u.cnd_itemstealamount, plur(u.cnd_itemstealamount));
+		sprintf(buf, "%ld time%s", u.cnd_itemstealamount, plur(u.cnd_itemstealamount));
 		enl_msg(You_, "had your items stolen ", "had your items stolen ", buf);
 	}
 	if (u.cnd_poisonamount) {
-		sprintf(buf, " %ld time%s", u.cnd_poisonamount, plur(u.cnd_poisonamount));
+		sprintf(buf, "%ld time%s", u.cnd_poisonamount, plur(u.cnd_poisonamount));
 		enl_msg(You_, "got poisoned ", "got poisoned ", buf);
 	}
 	if (u.cnd_nursehealamount) {
-		sprintf(buf, " %ld extra hit point%s from nurses", u.cnd_nursehealamount, plur(u.cnd_nursehealamount));
+		sprintf(buf, "%ld extra hit point%s from nurses", u.cnd_nursehealamount, plur(u.cnd_nursehealamount));
 		enl_msg(You_, "have gained ", "gained ", buf);
 	}
 	if (u.cnd_nurseserviceamount) {
-		sprintf(buf, " %ld time%s", u.cnd_nurseserviceamount, plur(u.cnd_nurseserviceamount));
+		sprintf(buf, "%ld time%s", u.cnd_nurseserviceamount, plur(u.cnd_nurseserviceamount));
 		enl_msg(You_, "have purchased nurse services ", "purchased nurse services ", buf);
 	}
+	/* if you're blind, the game doesn't tell you that elbereth did something --Amy */
 	if (u.cnd_elberethamount && final) {
-		sprintf(buf, " %ld monster%s with Elbereth engravings", u.cnd_elberethamount, plur(u.cnd_elberethamount));
+		sprintf(buf, "%ld monster%s with Elbereth engravings", u.cnd_elberethamount, plur(u.cnd_elberethamount));
 		enl_msg(You_, "scared ", "scared ", buf);
 	}
+	/* disenchantment can also happen silently --Amy */
 	if (u.cnd_disenchantamount && final) {
-		sprintf(buf, " %ld time%s", u.cnd_disenchantamount, plur(u.cnd_disenchantamount));
+		sprintf(buf, "%ld time%s", u.cnd_disenchantamount, plur(u.cnd_disenchantamount));
 		enl_msg(You_, "had your items disenchanted ", "had your items disenchanted ", buf);
 	}
 	if (u.cnd_permstatdamageamount) {
-		sprintf(buf, " %ld time%s", u.cnd_permstatdamageamount, plur(u.cnd_permstatdamageamount));
+		sprintf(buf, "%ld time%s", u.cnd_permstatdamageamount, plur(u.cnd_permstatdamageamount));
 		enl_msg(You_, "permanently lost stat points ", "permanently lost stat points ", buf);
 	}
 	if (u.cnd_shoedamageamount) {
-		sprintf(buf, " %ld time%s", u.cnd_shoedamageamount, plur(u.cnd_shoedamageamount));
+		sprintf(buf, "%ld time%s", u.cnd_shoedamageamount, plur(u.cnd_shoedamageamount));
 		enl_msg(You_, "got whacked or kicked by female shoes ", "got whacked or kicked by female shoes ", buf);
+	}
+	if (u.cnd_farmlandremoved) {
+		sprintf(buf, "%ld time%s", u.cnd_farmlandremoved, plur(u.cnd_farmlandremoved));
+		enl_msg(You_, "forced farmland tiles out of existence ", "forced farmland tiles out of existence ", buf);
+	}
+	if (u.cnd_nethermistremoved) {
+		sprintf(buf, "%ld time%s", u.cnd_nethermistremoved, plur(u.cnd_nethermistremoved));
+		enl_msg(You_, "dissipated nether mist ", "dissipated nether mist ", buf);
+	}
+	/* you don't necessarily see the square that your ammo ended up on --Amy */
+	if (u.cnd_ammomulched && final) {
+		sprintf(buf, "%ld ranged weapon ammo%s", u.cnd_ammomulched, plur(u.cnd_ammomulched));
+		enl_msg(You_, "have mulched ", "mulched ", buf);
+	}
+	/* you don't always see or hear your grenades explode either --Amy */
+	if (u.cnd_gunpowderused && final) {
+		sprintf(buf, "%ld gram%s of gunpowder", u.cnd_gunpowderused, plur(u.cnd_gunpowderused));
+		enl_msg(You_, "have used up ", "used up ", buf);
+	}
+	/* we won't leak whether your scroll of charging was cursed or not --Amy */
+	if (u.cnd_chargingcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_chargingcount, plur(u.cnd_chargingcount));
+		enl_msg(You_, "have recharged your items ", "recharged your items ", buf);
+	}
+	if (u.cnd_offercount) {
+		sprintf(buf, "%ld time%s", u.cnd_offercount, plur(u.cnd_offercount));
+		enl_msg(You_, "have made offerings to the gods ", "made offerings to the gods ", buf);
+	}
+	if (u.cnd_forcecount) {
+		sprintf(buf, "%ld time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
+		enl_msg(You_, "have used the force against an enemy ", "used the force against an enemy ", buf);
 	}
 
 	/* Pop up the window and wait for a key */
@@ -11239,6 +11285,27 @@ int final;
 
 	sprintf(buf, " %ld time%s", u.cnd_shoedamageamount, plur(u.cnd_shoedamageamount));
 	dump("  You got whacked or kicked by female shoes ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_farmlandremoved, plur(u.cnd_farmlandremoved));
+	dump("  You forced farmland tiles out of existence ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_nethermistremoved, plur(u.cnd_nethermistremoved));
+	dump("  You dissipated nether mist ", buf);
+
+	sprintf(buf, "%ld ranged weapon ammo%s", u.cnd_ammomulched, plur(u.cnd_ammomulched));
+	dump("  You mulched ", buf);
+
+	sprintf(buf, "%ld gram%s of gunpowder", u.cnd_gunpowderused, plur(u.cnd_gunpowderused));
+	dump("  You used up ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_chargingcount, plur(u.cnd_chargingcount));
+	dump("  You recharged your items ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_offercount, plur(u.cnd_offercount));
+	dump("  You made offerings to the gods ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
+	dump("  You used the force against an enemy ", buf);
 
 	dump("", "");
 }

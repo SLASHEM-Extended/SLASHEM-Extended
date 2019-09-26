@@ -5988,6 +5988,7 @@ newbossA:
 		levl[mtmp->mx][mtmp->my].typ = CORR;
 		if (cansee(mtmp->mx,mtmp->my)) {
 			pline("The nether mist dissipates.");
+			u.cnd_nethermistremoved++;
 			newsym(mtmp->mx, mtmp->my);
 		}
 	}

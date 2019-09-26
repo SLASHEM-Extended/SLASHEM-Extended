@@ -1117,6 +1117,7 @@ int curse_bless;
 		    wand_explode(obj, FALSE);
 		    return;
 		}*/
+		u.cnd_chargingcount++;
 		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 	    }
@@ -1175,6 +1176,7 @@ int curse_bless;
 		else obj->spe++;
 		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
+		u.cnd_chargingcount++;
 	    }
 
 	} else if (obj->oclass == RING_CLASS &&
@@ -1192,13 +1194,13 @@ int curse_bless;
 		useup(obj);
 		losehp(s, "exploding ring", KILLED_BY_AN);
 	    } else {
-		long mask = is_on ? (obj == uleft ? LEFT_RING :
-				     RIGHT_RING) : 0L;
+		long mask = is_on ? (obj == uleft ? LEFT_RING : RIGHT_RING) : 0L;
 		Your("%s spins %sclockwise for a moment.",
 		     xname(obj), s < 0 ? "counter" : "");
 		/* cause attributes and/or properties to be updated */
 		if (is_on) Ring_off(obj);
 		obj->spe += s;	/* update the ring while it's off */
+		if (s > 0) u.cnd_chargingcount++;
 		if (is_on) setworn(obj, mask), Ring_on(obj);
 		/* oartifact: if a touch-sensitive artifact ring is
 		   ever created the above will need to be revised  */
@@ -1216,6 +1218,7 @@ int curse_bless;
 		if (((obj->spe + s) < 8) || !rn2(3)) { /* make it hard to reach ultra-high enchantment values --Amy */
 			Your("%s spins %sclockwise for a moment.", xname(obj), s < 0 ? "counter" : "");
 			obj->spe += s;	/* we don't need to take it off because it just affects AC and poly'd stuff */
+			if (s > 0) u.cnd_chargingcount++;
 		} else {
 			Your("%s seems unchanged.", xname(obj));
 		}
@@ -1236,6 +1239,8 @@ int curse_bless;
 		else if (is_blessed) obj->spe += rnd(30);
 		else obj->spe += 10;
 		if (obj->spe > 100) obj->spe = 100;
+		if (!is_cursed) u.cnd_chargingcount++;
+
 		break;
 	    case MAGIC_MARKER:
 	    case FELT_TIP_MARKER:
@@ -1273,7 +1278,8 @@ int curse_bless;
 			else
 				obj->spe += n;
 
-		    p_glow2(obj, NH_BLUE);
+			p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
 		} else {
 		    n = rnd(20);		/* 10..20 */
 		    if (rn2(2)) n += rnd(30);
@@ -1284,7 +1290,8 @@ int curse_bless;
 			else
 				obj->spe += n;
 
-		    p_glow2(obj, NH_WHITE);
+			p_glow2(obj, NH_WHITE);
+			u.cnd_chargingcount++;
 		}
 		break;
 	    case OIL_LAMP:
@@ -1305,6 +1312,7 @@ int curse_bless;
 		    }
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
 		} else {
 		    obj->spe = 1;
 		    obj->age += 750;
@@ -1313,6 +1321,7 @@ int curse_bless;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
 		    }
 		    p_glow1(obj);
+			u.cnd_chargingcount++;
 		}
 		break;
 	    case GREEN_LIGHTSABER:
@@ -1343,6 +1352,7 @@ int curse_bless;
 		    }
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
 		} else {
 		    obj->age += 750;
 		    if (issoviet && obj->age > 1500) {
@@ -1350,6 +1360,7 @@ int curse_bless;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
 		    }
 		    p_glow1(obj);
+			u.cnd_chargingcount++;
 		}
 		break;
 	    case CRYSTAL_BALL:
@@ -1365,9 +1376,11 @@ int curse_bless;
 		else if (is_blessed) {
 		    obj->spe = 6;
 		    p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
 		} else {
 		    if (obj->spe < 5) {
 			obj->spe++;
+			u.cnd_chargingcount++;
 			p_glow1(obj);
 		    } else {
 				pline("%s", nothing_happens);
@@ -1398,10 +1411,12 @@ int curse_bless;
 
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
 		} else {
 		    obj->spe += rnd(5);
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow1(obj);
+			u.cnd_chargingcount++;
 		}
 		break;
 	    case MAGIC_FLUTE:
@@ -1427,10 +1442,12 @@ int curse_bless;
 		    obj->spe += d(2,4);
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
 		} else {
 		    obj->spe += rnd(4);
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow1(obj);
+			u.cnd_chargingcount++;
 		}
 		break;
 	    default:

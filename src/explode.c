@@ -1192,6 +1192,8 @@ int dest;
 
     grenadedamage = d(3,6);
 
+    if (isyou) u.cnd_gunpowderused++;
+
     if (Role_if(PM_GRENADONIN)) {
 
 	if (isyou) {

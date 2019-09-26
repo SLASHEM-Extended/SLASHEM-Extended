@@ -869,6 +869,7 @@ doforce()		/* try to force a chest with your weapon */
 				boolean trapkilled = FALSE;
 
 				pline("You use the force on %s.", mon_nam(mtmp));
+				u.cnd_forcecount++;
 
 				setmangry(mtmp);
 
@@ -1000,6 +1001,7 @@ doforce()		/* try to force a chest with your weapon */
 				if (rn2(20)) pline("It doesn't seem to have any effect.");
 				else {
 					pline("The farmland disappears.");
+					u.cnd_farmlandremoved++;
 					levl[x][y].typ = CORR;
 					newsym(x,y);
 				}

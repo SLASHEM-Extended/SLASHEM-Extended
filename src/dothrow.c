@@ -1434,6 +1434,7 @@ int thrown;
 			    WEAPON_CLASS, EXPL_FIERY);
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
+		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
 		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
 			obfree(obj, (struct obj *)0);
 			return;
@@ -1580,13 +1581,13 @@ int thrown;
 	    explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
 		    d(3,8), WEAPON_CLASS, EXPL_FIERY);
 	}
-	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) &&
-		!is_grenade(obj))) {
-	    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
-	    if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
+	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) && !is_grenade(obj))) {
+		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
+		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
+		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
 			obfree(obj, (struct obj *)0);
 			return;
-	    }
+		}
 	}
 
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
@@ -2554,17 +2555,18 @@ int thrown;
 			 */
 			if ((thrown == 1 || thrown == 2) && is_grenade(obj)) {
 			    grenade_explode(obj, bhitpos.x, bhitpos.y, TRUE, 0);
-			} else if (ammo_and_launcher(obj, launcher) &&
-				(objects[obj->otyp].oc_dir & EXPLOSION)) {
-			    if (cansee(bhitpos.x,bhitpos.y)) 
-				pline("%s explodes in a ball of fire!",
-					Doname2(obj));
-			    else You_hear("an explosion");
-			    explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
-				    d(3,8), WEAPON_CLASS, EXPL_FIERY);
-			    obfree(obj, (struct obj *)0);
-			} else
-			obfree(obj, (struct obj *)0);
+			} else if (ammo_and_launcher(obj, launcher) && (objects[obj->otyp].oc_dir & EXPLOSION)) {
+				if (cansee(bhitpos.x,bhitpos.y)) 
+					pline("%s explodes in a ball of fire!", Doname2(obj));
+				else You_hear("an explosion"); /* Amy note: we do not add an exclamation mark here on purpose */
+
+				explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE), d(3,8), WEAPON_CLASS, EXPL_FIERY);
+				u.cnd_gunpowderused++;
+				obfree(obj, (struct obj *)0);
+			} else {
+				obfree(obj, (struct obj *)0);
+				u.cnd_ammomulched++; /* known problem: bullets can also run this code --Amy */
+			}
 			return 1;
 		    }
 		}

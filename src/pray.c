@@ -1759,6 +1759,7 @@ offer_oracle (mtmp, otmp)
 	pline("%s looks at you %sfully.", Monnam(mtmp), woodchuck ? "scorn" : "thought");
 	outrumor(woodchuck ? -1 : 0, FALSE, FALSE);
 	consume_offering(otmp);
+	u.cnd_offercount++;
 	adjalign(-5);	/* Your god is jealous */
 	if (woodchuck) {
 		/* You are annoying the Oracle */
@@ -2173,6 +2174,7 @@ dosacrifice()
 		   altaralign != A_NONE) {
 		    You("have a strong feeling that %s is angry...", u_gname());
 		    consume_offering(otmp);
+		    u.cnd_offercount++;
 		    pline("%s accepts your allegiance.", a_gname());
 
 		    /* The player wears a helm of opposite alignment? */
@@ -2204,6 +2206,7 @@ dosacrifice()
 		return(1);
 	    } else {
 		consume_offering(otmp);
+		u.cnd_offercount++;
 		You("sense a conflict between %s and %s.",
 		    u_gname(), a_gname());
 		if (((rn2(2) && rn2(8 + u.ulevel) > 5) || (Race_if(PM_EGYMID) && rn2(2) && rn2(8 + u.ulevel) > 5)) && !(Race_if(PM_CHIQUAI) && rn2(3)) ) {
@@ -2296,6 +2299,7 @@ dosacrifice()
 	}
 
 	consume_offering(otmp);
+	u.cnd_offercount++;
 
 	if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
 
