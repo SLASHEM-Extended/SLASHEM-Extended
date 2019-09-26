@@ -430,10 +430,23 @@ bot1()
 	if (FlimmeringStrips) {
 
 		strcpy(newbot1, " ");
-	     	add_flicker_textA(generate_garbage_string(), newbot1);
-	     	add_flicker_textA(generate_garbage_string(), newbot1);
-	     	add_flicker_textA(generate_garbage_string(), newbot1);
-	     	if (!rn2(2)) add_flicker_textA(generate_garbage_string(), newbot1);
+
+		if (FunnyHallu) {
+			int funnyhallucnt = rnd(37);
+			if (!rn2(2)) funnyhallucnt += rnd(12);
+
+			while (funnyhallucnt > 0) {
+				funnyhallucnt--;
+			     	add_flicker_textA(generate_garbage_char(), newbot1);
+			}
+
+		} else {
+
+		     	add_flicker_textA(generate_garbage_string(), newbot1);
+		     	add_flicker_textA(generate_garbage_string(), newbot1);
+		     	add_flicker_textA(generate_garbage_string(), newbot1);
+		     	if (!rn2(2)) add_flicker_textA(generate_garbage_string(), newbot1);
+		}
 
 		goto flicker1;
 	}
@@ -740,17 +753,58 @@ bot2str(char *newbot2)
 	if (FlimmeringStrips) {
 		nb = newbot2;
 		strcpy(newbot2, " ");
-	     	add_flicker_text(generate_garbage_string(), newbot2);
-		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
-		sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
-            add_flicker_text(generate_garbage_string(), newbot2);
-		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
-		sprintf(nb = eos(nb), "%d(%d)", u.uen, u.uenmax);
-            add_flicker_text(generate_garbage_string(), newbot2);
-		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
-            if (!rn2(2)) add_flicker_text(generate_garbage_string(), newbot2);
-		if (!rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
 
+		if (FunnyHallu) {
+			int funnyhallucnt = rnd(12);
+			if (rn2(3)) funnyhallucnt += rnd(12);
+
+			while (funnyhallucnt > 0) {
+				funnyhallucnt--;
+			     	add_flicker_text(generate_garbage_char(), newbot2);
+			}
+
+			sprintf(nb = eos(nb), "%d", hp);
+			sprintf(nb = eos(nb), "(");
+			sprintf(nb = eos(nb), "%d", hpmax);
+			sprintf(nb = eos(nb), ")");
+
+			funnyhallucnt = rnd(12);
+			if (rn2(3)) funnyhallucnt += rnd(12);
+
+			while (funnyhallucnt > 0) {
+				funnyhallucnt--;
+			     	add_flicker_text(generate_garbage_char(), newbot2);
+			}
+
+			sprintf(nb = eos(nb), "%d", u.uen);
+			sprintf(nb = eos(nb), "(");
+			sprintf(nb = eos(nb), "%d", u.uenmax);
+			sprintf(nb = eos(nb), ")");
+
+			funnyhallucnt = rnd(12);
+			if (rn2(3)) funnyhallucnt += rnd(12);
+			if (!rn2(2)) funnyhallucnt += rnd(12);
+			if (!rn2(3)) funnyhallucnt += rnd(12);
+
+			while (funnyhallucnt > 0) {
+				funnyhallucnt--;
+			     	add_flicker_text(generate_garbage_char(), newbot2);
+			}
+
+
+		} else {
+
+		     	add_flicker_text(generate_garbage_string(), newbot2);
+			if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+			sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
+	            add_flicker_text(generate_garbage_string(), newbot2);
+			if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+			sprintf(nb = eos(nb), "%d(%d)", u.uen, u.uenmax);
+	            add_flicker_text(generate_garbage_string(), newbot2);
+			if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+	            if (!rn2(2)) add_flicker_text(generate_garbage_string(), newbot2);
+			if (!rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+		}
 
 		goto flicker2;
 	}

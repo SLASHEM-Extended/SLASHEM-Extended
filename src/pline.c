@@ -665,6 +665,32 @@ generate_garbage_string()
 	return string;
 }
 
+const char *
+generate_garbage_char()
+{
+	static char string[BUFSZ];
+	string[0] = '\0';
+
+	char tmpstr[2] = {0, 0};
+
+#ifdef UNIX
+	tmpstr[0] = 32 + rnd(94);
+#else
+	tmpstr[0] = rnd(255);
+#endif
+
+	/* get rid of some control codes that mess everything up */
+	switch (tmpstr[0]) {
+		case 7: case 10: case 11: case 13: case '%':
+			tmpstr[0] = ' ';
+	}
+	tmpstr[1] = '\0';
+
+	sprintf(eos(string), "%s", tmpstr);
+
+	return string;
+}
+
 void
 mstatusline(mtmp)
 register struct monst *mtmp;

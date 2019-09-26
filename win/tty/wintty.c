@@ -2202,9 +2202,18 @@ struct WinDesc *cw;
 			  cp++, n++)
 #else
 			  *cp && (int) ttyDisplay->curx < (int) ttyDisplay->cols;
-			  cp++, n++, ttyDisplay->curx++)
+			  cp++, n++, ttyDisplay->curx++) {
 #endif
+
+			  if (FleeceyScripts && FunnyHallu) {
+				int fleececolor = rn2(CLR_MAX);
+				while (fleececolor == NO_COLOR) fleececolor = rn2(CLR_MAX);
+				term_start_color(fleececolor);
+
+			  }
+
 			  (void) putchar(*cp);
+			}
 #ifdef MENU_COLOR
 		   if (FleeceyScripts) {
 			term_end_color();

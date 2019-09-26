@@ -2199,6 +2199,7 @@ E const char *align_str(ALIGNTYP_P);
 E const char *hybrid_str(void);
 E const char *hybrid_strcode(void);
 E const char *generate_garbage_string(void);
+E const char *generate_garbage_char(void);
 E void mstatusline(struct monst *);
 E void mstatuslinebl(struct monst *);
 E void ustatusline(void);
