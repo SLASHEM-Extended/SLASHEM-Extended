@@ -246,7 +246,8 @@ fightm(mtmp)		/* have monsters fight each other */
 			mon->movement -= NORMAL_SPEED;
 			if (mon->movement < 0) mon->movement = 0; /* fail safe */
 			notonhead = 0;
-			(void) mattackm(mon, mtmp);	/* return attack */
+
+			if (!DEADMONSTER(mon) && !DEADMONSTER(mtmp)) (void) mattackm(mon, mtmp);	/* return attack */
 		    }
 
 		    return ((result & MM_HIT) ? 1 : 0);
@@ -298,6 +299,9 @@ mattackm(magr, mdef)
     boolean range;
 
     if (!magr || !mdef) return(MM_MISS);		/* mike@genat */
+    if (DEADMONSTER(mdef)) { /* catchall by Amy */
+	return(MM_MISS);
+    }
     if (!magr->mcanmove || magr->msleeping) return(MM_MISS);
     pa = magr->data;  pd = mdef->data;
 

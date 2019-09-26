@@ -3451,6 +3451,9 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 
 	if (TimeStopped) return 0L; /* turned out they were still able to bash each other during time stop! */
 
+	if (!magr || !mdef) return 0L; /* error - shouldn't happen */
+	if (DEADMONSTER(magr) || DEADMONSTER(mdef)) return 0L; /* bugfix */
+
 	/* Amy edit: if pets are ignored by everything, it can result in them being way too unkillable because they often
 	 * won't attack things that would kill them... */
 	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2(20)) return ALLOW_M|ALLOW_TM;

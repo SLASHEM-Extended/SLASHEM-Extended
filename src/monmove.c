@@ -1577,7 +1577,7 @@ convertdone:
 toofar:
 
 	/* try to attack the player's pets at range, if possible (from dnethack) */
-	if (!mtmp->mpeaceful && !mtmp->mtame) {
+	if (!DEADMONSTER(mtmp) && !mtmp->mpeaceful && !mtmp->mtame) {
 		register struct monst *mtmp2 = mfind_target(mtmp, FALSE);
 		if (mtmp2 && (mtmp2 != &youmonst) && (mtmp2 != mtmp)) {
 
