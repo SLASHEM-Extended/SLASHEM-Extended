@@ -9981,6 +9981,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		break;
 
 		case AD_TERR:
+			You("are whirled together!");
 			terrainterror();
 		break;
 
