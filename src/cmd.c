@@ -10793,7 +10793,7 @@ int final;
 		enl_msg(You_, "have suffered from amnesia ", "suffered from amnesia ", buf);
 	}
 	if (final) {
-		sprintf(buf, "%ld", u.cnd_minalignment);
+		sprintf(buf, "%d", u.cnd_minalignment);
 		enl_msg(You_, "had a minimum alignment of ", "had a minimum alignment of ", buf);
 	}
 	if (final) {
@@ -11172,7 +11172,7 @@ int final;
 	sprintf(buf, " %ld time%s", u.cnd_amnesiacount, plur(u.cnd_amnesiacount));
 	dump("  You suffered from amnesia ", buf);
 
-	sprintf(buf, " %ld", u.cnd_minalignment);
+	sprintf(buf, " %d", u.cnd_minalignment);
 	dump("  You had a minimum alignment of ", buf);
 
 	sprintf(buf, " %ld", u.cnd_maxalignment);
