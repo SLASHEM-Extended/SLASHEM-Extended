@@ -2199,7 +2199,7 @@ struct WinDesc *cw;
 		    for (n = 0, cp = curr->str;
 #ifndef WIN32CON
 			  *cp && (int) ++ttyDisplay->curx < (int) ttyDisplay->cols;
-			  cp++, n++)
+			  cp++, n++) {
 #else
 			  *cp && (int) ttyDisplay->curx < (int) ttyDisplay->cols;
 			  cp++, n++, ttyDisplay->curx++) {
