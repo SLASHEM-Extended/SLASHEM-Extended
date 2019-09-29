@@ -4298,6 +4298,8 @@ static NEARDATA const char * const longinglines[] = {
 "It would feel wonderfully humiliating to let %s pull down your pants in public.",
 "If you make the mistake of touching %s's shoelaces, your hands will be corroded. But actually the thought of having that happen to you seems very arousing, so you should probably try to feel the dangerous laces on purpose...",
 "You want to stroke %s's butt curves.",
+"Whoa, does %s have a long bundle!",
+"Whoa, are %s her heels sharp-edged!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -24223,6 +24225,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"this isn't quite right; if sensing a monster without being able to see its location, you really shouldn't be told you sense it becoming furniture or an object that you can't see (on the other hand, perhaps you're sensing a brief glimpse of its mind as it changes form)",
 	"You kick Jesus. Jesus turns the other cheek.",
 	"You kick Jesus. Jesus turns the other cheek. But actually he should turn the other shin, because that's where you kicked him :D",
+	"You get poisoned and dissolve! DYWYPI?",
 
 };
 
