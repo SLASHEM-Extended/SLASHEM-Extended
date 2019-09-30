@@ -5419,7 +5419,7 @@ newbossX:
 
 		if (In_sewerplant(&u.uz) && !u.sewerplantcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
 			u.sewerplantcomplete = 1;
-			tele();
+		      (void) safe_teleds(FALSE);
 			pline("Well done, you've reached the bottom of the Sewer Plant! The entrance to the Gamma Caves is now open.");
 			if (iszapem && !(u.zapemescape)) {
 				pline("The exit of this spaceship was opened and you can go back to the Dungeons of Doom now! However, you might want to finish the Gamma Caves and Mainframe first, because once you leave, the monster difficulty in the entire ZAPM branch will increase.");
@@ -5428,7 +5428,7 @@ newbossX:
 
 		if (In_gammacaves(&u.uz) && !u.gammacavescomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
 			u.gammacavescomplete = 1;
-			tele();
+		      (void) safe_teleds(FALSE);
 			pline("Well done, you've reached the bottom of the Gamma Caves! The entrance to the Mainframe is now open.");
 		}
 
