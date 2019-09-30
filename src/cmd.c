@@ -11109,181 +11109,181 @@ int final;
 	    dump("  You have broken ", buf);
 	}
 
-	sprintf(buf, " %ld time%s", u.cnd_applycount, plur(u.cnd_applycount));
+	sprintf(buf, "%ld time%s", u.cnd_applycount, plur(u.cnd_applycount));
 	dump("  You applied items ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_unihorncount, plur(u.cnd_unihorncount));
+	sprintf(buf, "%ld time%s", u.cnd_unihorncount, plur(u.cnd_unihorncount));
 	dump("  You experienced the healing effects of unicorn horns ", buf);
 
-	sprintf(buf, " %ld item%s with the magic marker", u.cnd_markercount, plur(u.cnd_markercount));
+	sprintf(buf, "%ld item%s with the magic marker", u.cnd_markercount, plur(u.cnd_markercount));
 	dump("  You created ", buf);
 
-	sprintf(buf, " %ld item%s with the chemistry set", u.cnd_chemistrycount, plur(u.cnd_chemistrycount));
+	sprintf(buf, "%ld item%s with the chemistry set", u.cnd_chemistrycount, plur(u.cnd_chemistrycount));
 	dump("  You created ", buf);
 
-	sprintf(buf, " %ld potion%s", u.cnd_quaffcount, plur(u.cnd_quaffcount));
+	sprintf(buf, "%ld potion%s", u.cnd_quaffcount, plur(u.cnd_quaffcount));
 	dump("  You quaffed ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_zapcount, plur(u.cnd_zapcount));
+	sprintf(buf, "%ld time%s", u.cnd_zapcount, plur(u.cnd_zapcount));
 	dump("  You zapped wands ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_scrollcount, plur(u.cnd_scrollcount));
+	sprintf(buf, "%ld time%s", u.cnd_scrollcount, plur(u.cnd_scrollcount));
 	dump("  You read scrolls ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_spellbookcount, plur(u.cnd_spellbookcount));
+	sprintf(buf, "%ld time%s", u.cnd_spellbookcount, plur(u.cnd_spellbookcount));
 	dump("  You read spellbooks ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_spellcastcount, plur(u.cnd_spellcastcount));
+	sprintf(buf, "%ld time%s", u.cnd_spellcastcount, plur(u.cnd_spellcastcount));
 	dump("  You successfully cast spells ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_spellfailcount, plur(u.cnd_spellfailcount));
+	sprintf(buf, "%ld time%s", u.cnd_spellfailcount, plur(u.cnd_spellfailcount));
 	dump("  You failed to cast a spell ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_forgottenspellcount, plur(u.cnd_forgottenspellcount));
+	sprintf(buf, "%ld time%s", u.cnd_forgottenspellcount, plur(u.cnd_forgottenspellcount));
 	dump("  You attempted to cast forgotten spells ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_invokecount, plur(u.cnd_invokecount));
+	sprintf(buf, "%ld time%s", u.cnd_invokecount, plur(u.cnd_invokecount));
 	dump("  You used the invocation effects of artifacts ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_techcount, plur(u.cnd_techcount));
+	sprintf(buf, "%ld time%s", u.cnd_techcount, plur(u.cnd_techcount));
 	dump("  You used techniques ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_phasedoorcount, plur(u.cnd_phasedoorcount));
+	sprintf(buf, "%ld time%s", u.cnd_phasedoorcount, plur(u.cnd_phasedoorcount));
 	dump("  You phase doored ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_teleportcount, plur(u.cnd_teleportcount));
+	sprintf(buf, "%ld time%s", u.cnd_teleportcount, plur(u.cnd_teleportcount));
 	dump("  You teleported ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_telelevelcount, plur(u.cnd_telelevelcount));
+	sprintf(buf, "%ld time%s", u.cnd_telelevelcount, plur(u.cnd_telelevelcount));
 	dump("  You levelported ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_branchportcount, plur(u.cnd_branchportcount));
+	sprintf(buf, "%ld time%s", u.cnd_branchportcount, plur(u.cnd_branchportcount));
 	dump("  You branchported ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_banishmentcount, plur(u.cnd_banishmentcount));
+	sprintf(buf, "%ld time%s", u.cnd_banishmentcount, plur(u.cnd_banishmentcount));
 	dump("  You were banished ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_punishmentcount, plur(u.cnd_punishmentcount));
+	sprintf(buf, "%ld time%s", u.cnd_punishmentcount, plur(u.cnd_punishmentcount));
 	dump("  You were punished ", buf);
 
-	sprintf(buf, " %ld pet%s", u.cnd_petdeathcount, plur(u.cnd_petdeathcount));
+	sprintf(buf, "%ld pet%s", u.cnd_petdeathcount, plur(u.cnd_petdeathcount));
 	dump("  You had to mourn the death of ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_amnesiacount, plur(u.cnd_amnesiacount));
+	sprintf(buf, "%ld time%s", u.cnd_amnesiacount, plur(u.cnd_amnesiacount));
 	dump("  You suffered from amnesia ", buf);
 
-	sprintf(buf, " %d", u.cnd_minalignment);
+	sprintf(buf, "%d", u.cnd_minalignment);
 	dump("  You had a minimum alignment of ", buf);
 
-	sprintf(buf, " %ld", u.cnd_maxalignment);
+	sprintf(buf, "%ld", u.cnd_maxalignment);
 	dump("  You had a maximum alignment of ", buf);
 
-	sprintf(buf, " %ld", u.cnd_maxsanity);
+	sprintf(buf, "%ld", u.cnd_maxsanity);
 	dump("  You had a maximum sanity of ", buf);
 
-	sprintf(buf, " %ld", u.cnd_maxcontamination);
+	sprintf(buf, "%ld", u.cnd_maxcontamination);
 	dump("  You had a maximum contamination of ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_searchtrapcount, plur(u.cnd_searchtrapcount));
+	sprintf(buf, "%ld time%s", u.cnd_searchtrapcount, plur(u.cnd_searchtrapcount));
 	dump("  You successfully searched for traps ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_searchsecretcount, plur(u.cnd_searchsecretcount));
+	sprintf(buf, "%ld time%s", u.cnd_searchsecretcount, plur(u.cnd_searchsecretcount));
 	dump("  You successfully searched for doors or corridors ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_fartingcount, plur(u.cnd_fartingcount));
+	sprintf(buf, "%ld time%s", u.cnd_fartingcount, plur(u.cnd_fartingcount));
 	dump("  You heard farting noises ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_conversioncount, plur(u.cnd_conversioncount));
+	sprintf(buf, "%ld time%s", u.cnd_conversioncount, plur(u.cnd_conversioncount));
 	dump("  You listened to conversion sermon ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_wouwoucount, plur(u.cnd_wouwoucount));
+	sprintf(buf, "%ld time%s", u.cnd_wouwoucount, plur(u.cnd_wouwoucount));
 	dump("  You heard the frightening wouwou taunts ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_perfumecount, plur(u.cnd_perfumecount));
+	sprintf(buf, "%ld time%s", u.cnd_perfumecount, plur(u.cnd_perfumecount));
 	dump("  You inhaled scentful feminine perfume ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_nutkickamount, plur(u.cnd_nutkickamount));
+	sprintf(buf, "%ld time%s", u.cnd_nutkickamount, plur(u.cnd_nutkickamount));
 	dump("  You got your nuts kicked ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_breastripamount, plur(u.cnd_breastripamount));
+	sprintf(buf, "%ld time%s", u.cnd_breastripamount, plur(u.cnd_breastripamount));
 	dump("  You got hit in the breasts ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_saveamount, plur(u.cnd_saveamount));
+	sprintf(buf, "%ld time%s", u.cnd_saveamount, plur(u.cnd_saveamount));
 	dump("  You saved the game ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_ragnarokamount, plur(u.cnd_ragnarokamount));
+	sprintf(buf, "%ld time%s", u.cnd_ragnarokamount, plur(u.cnd_ragnarokamount));
 	dump("  You encountered the ragnarok event ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_datadeleteamount, plur(u.cnd_datadeleteamount));
+	sprintf(buf, "%ld time%s", u.cnd_datadeleteamount, plur(u.cnd_datadeleteamount));
 	dump("  You had your data deleted ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_curseitemsamount, plur(u.cnd_curseitemsamount));
+	sprintf(buf, "%ld time%s", u.cnd_curseitemsamount, plur(u.cnd_curseitemsamount));
 	dump("  You encountered the curse items effect ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_nastytrapamount, plur(u.cnd_nastytrapamount));
+	sprintf(buf, "%ld time%s", u.cnd_nastytrapamount, plur(u.cnd_nastytrapamount));
 	dump("  You triggered nasty traps ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_feminismtrapamount, plur(u.cnd_feminismtrapamount));
+	sprintf(buf, "%ld time%s", u.cnd_feminismtrapamount, plur(u.cnd_feminismtrapamount));
 	dump("  You triggered feminism traps ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_plineamount, plur(u.cnd_plineamount));
+	sprintf(buf, "%ld time%s", u.cnd_plineamount, plur(u.cnd_plineamount));
 	dump("  You had to read random messages ", buf);
 
-	sprintf(buf, " %ld monster%s come out of portals", u.cnd_aggravateamount, plur(u.cnd_aggravateamount));
+	sprintf(buf, "%ld monster%s come out of portals", u.cnd_aggravateamount, plur(u.cnd_aggravateamount));
 	dump("  You saw ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_eatrinsicamount, plur(u.cnd_eatrinsicamount));
+	sprintf(buf, "%ld time%s", u.cnd_eatrinsicamount, plur(u.cnd_eatrinsicamount));
 	dump("  You gained intrinsics from eating corpses ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_shkserviceamount, plur(u.cnd_shkserviceamount));
+	sprintf(buf, "%ld time%s", u.cnd_shkserviceamount, plur(u.cnd_shkserviceamount));
 	dump("  You purchased shopkeeper services ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_kopsummonamount, plur(u.cnd_kopsummonamount));
+	sprintf(buf, "%ld time%s", u.cnd_kopsummonamount, plur(u.cnd_kopsummonamount));
 	dump("  You had the kops called on you ", buf);
 
-	sprintf(buf, " %ld captcha%s", u.cnd_captchaamount, plur(u.cnd_captchaamount));
+	sprintf(buf, "%ld captcha%s", u.cnd_captchaamount, plur(u.cnd_captchaamount));
 	dump("  You solved ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_captchafail, plur(u.cnd_captchafail));
+	sprintf(buf, "%ld time%s", u.cnd_captchafail, plur(u.cnd_captchafail));
 	dump("  You failed to solve a captcha ", buf);
 
-	sprintf(buf, " %ld quiz question%s", u.cnd_quizamount, plur(u.cnd_quizamount));
+	sprintf(buf, "%ld quiz question%s", u.cnd_quizamount, plur(u.cnd_quizamount));
 	dump("  You correctly answered ", buf);
 
-	sprintf(buf, " %ld quiz question%s", u.cnd_quizfail, plur(u.cnd_quizfail));
+	sprintf(buf, "%ld quiz question%s", u.cnd_quizfail, plur(u.cnd_quizfail));
 	dump("  You incorrectly answered ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_alterrealityamount, plur(u.cnd_alterrealityamount));
+	sprintf(buf, "%ld time%s", u.cnd_alterrealityamount, plur(u.cnd_alterrealityamount));
 	dump("  You had the reality altered ", buf);
 
-	sprintf(buf, " %ld lock%s", u.cnd_unlockamount, plur(u.cnd_unlockamount));
+	sprintf(buf, "%ld lock%s", u.cnd_unlockamount, plur(u.cnd_unlockamount));
 	dump("  You picked ", buf);
 
-	sprintf(buf, " %ld altar%s", u.cnd_altarconvertamount, plur(u.cnd_altarconvertamount));
+	sprintf(buf, "%ld altar%s", u.cnd_altarconvertamount, plur(u.cnd_altarconvertamount));
 	dump("  You converted ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_itemstealamount, plur(u.cnd_itemstealamount));
+	sprintf(buf, "%ld time%s", u.cnd_itemstealamount, plur(u.cnd_itemstealamount));
 	dump("  You had your items stolen ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_poisonamount, plur(u.cnd_poisonamount));
+	sprintf(buf, "%ld time%s", u.cnd_poisonamount, plur(u.cnd_poisonamount));
 	dump("  You got poisoned ", buf);
 
-	sprintf(buf, " %ld extra hit point%s from nurses", u.cnd_nursehealamount, plur(u.cnd_nursehealamount));
+	sprintf(buf, "%ld extra hit point%s from nurses", u.cnd_nursehealamount, plur(u.cnd_nursehealamount));
 	dump("  You gained ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_nurseserviceamount, plur(u.cnd_nurseserviceamount));
+	sprintf(buf, "%ld time%s", u.cnd_nurseserviceamount, plur(u.cnd_nurseserviceamount));
 	dump("  You purchased nurse services ", buf);
 
-	sprintf(buf, " %ld monster%s with Elbereth engravings", u.cnd_elberethamount, plur(u.cnd_elberethamount));
+	sprintf(buf, "%ld monster%s with Elbereth engravings", u.cnd_elberethamount, plur(u.cnd_elberethamount));
 	dump("  You scared ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_disenchantamount, plur(u.cnd_disenchantamount));
+	sprintf(buf, "%ld time%s", u.cnd_disenchantamount, plur(u.cnd_disenchantamount));
 	dump("  You had your items disenchanted ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_permstatdamageamount, plur(u.cnd_permstatdamageamount));
+	sprintf(buf, "%ld time%s", u.cnd_permstatdamageamount, plur(u.cnd_permstatdamageamount));
 	dump("  You permanently lost stat points ", buf);
 
-	sprintf(buf, " %ld time%s", u.cnd_shoedamageamount, plur(u.cnd_shoedamageamount));
+	sprintf(buf, "%ld time%s", u.cnd_shoedamageamount, plur(u.cnd_shoedamageamount));
 	dump("  You got whacked or kicked by female shoes ", buf);
 
 	sprintf(buf, "%ld time%s", u.cnd_farmlandremoved, plur(u.cnd_farmlandremoved));
