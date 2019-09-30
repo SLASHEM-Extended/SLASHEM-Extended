@@ -4300,6 +4300,13 @@ static NEARDATA const char * const longinglines[] = {
 "You want to stroke %s's butt curves.",
 "Whoa, does %s have a long bundle!",
 "Whoa, are %s her heels sharp-edged!",
+"You want to be kicked by %s's platform boots.",
+"%s's treaded soles really look feminine.",
+"Don't you agree with me that %s's thick-soled sneakers are very cuuuuute?",
+"Think about how lovely it would feel to have your toes crushed underneath the thick soles of %s's female sneakers!",
+"If you are a man and not married yet, you'll find %s to be irresistible!",
+"%s has a very fleecy leather whip that you'd love to feel on your back!",
+"You want to buy pink clothing for the beautiful %s.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4871,6 +4878,10 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Why did you name yourself after your leader? I'd never do that, especially not if my leader was as incapable as that Walt guy.",
 "You should really ask yourself why you allowed that Walt guy to brainwash you. He just made you a part of his 'army' of cannon fodder and you'll fall just like all the other walscholars!",
 "We still have several gallons of perfume! If our attempts to stop you didn't succeed so far, wait until you smell what we've got up our sleeves!",
+"You'll constantly trigger the nasty traps we've set up anyway. Why would I lift a finger when you're soon going to be defeated anyway?",
+"Forget it, walscholar! Anna has never been defeated by anyone and you're so weak that watching you would be funny if it wasn't so pitiful.",
+"I really pity you for listening to that Walt fool who seriously thinks he and his 'walscholars' could defeat Anna.",
+"You will probably be knocked out if I kick you even once with my girl boots.",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4967,6 +4978,10 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "%s, you should defect to us Hussies because things will be much better for you, after all we're led by Anna who is a capable leader, unlike that Walt guy!",
 "%s, it seems that you're unlucky to be on the wrong team. You could have been a Hussy, but as it is, you're bound to become someone who was defeated by the Hussies.",
 "You have no chance, %s, because you're not wearing female clothing. That cheap noname backpack you're wearing there will be absolutely emptied of its contents by me.",
+"If you keep wasting so much time, %s, you'll just allow me and the other Hussies to grow even stronger!",
+"%s, I'll give you a hint. That strategy of yours, it's not working. Why don't you just give up?",
+"%s, Walt is only using you. You're just a pawn in his army of redshirts! Turn traitor on him and I'll allow you to live!",
+"So you're capable of erecting diamond barriers, %s. Well, you should know that my female butt is capable of destryoying them again and again, no matter how many you set up.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
