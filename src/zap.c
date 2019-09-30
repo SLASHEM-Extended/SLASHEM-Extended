@@ -9816,6 +9816,9 @@ register int osym, dmgtyp;
 		case AD_VENO:
 
 		    if(osym == POTION_CLASS) {
+
+			if (obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON || obj->otyp == POT_CYANIDE) skip++; /* idea by Andrio */
+
 			quan = obj->quan;
 			dindx = 7;
 			dmg = 0;
