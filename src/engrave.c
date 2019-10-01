@@ -1300,6 +1300,7 @@ boolean read_it; /* Read any sensed engraving */
 	    if (sensed && !read_it &&
 			    flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7)) {
 		pline("Use \"r.\" to read it.");
+		if(flags.run > 0) nomul(0, 0, FALSE);
 	    } else if (sensed && read_it) {
 	    	char *et;
 	    	unsigned len, maxelen = BUFSZ - sizeof("You feel the words: \"\". ");
@@ -1317,7 +1318,7 @@ boolean read_it; /* Read any sensed engraving */
 
 		You("%s: \"%s\".",
 		      (Blind) ? "feel the words" : "read",  et);
-		if(flags.run > 1) nomul(0, 0, FALSE);
+		if(flags.run > 0) nomul(0, 0, FALSE);
 		return TRUE;
 	    }
 	}
