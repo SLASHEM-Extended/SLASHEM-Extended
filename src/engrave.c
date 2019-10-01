@@ -5152,6 +5152,8 @@ static const char *epitaphs[] = {
 	"With so many NDEs it was clear that the mage baddies would get me eventually.",
 	"Sure that his static field takes off so much.",
 	"jesus kicking is broken", /* by Demo; kicking Jesus is really overpowered because he won't fight back */
+	"There is a strange bug in nethack. Sometimes it seems when you have the amulet and go upstairs in Gehennom, you instead go a level down again, and this happens randomly so you have to do it over and over and over and over and over and over again. Surely this cannot be intended??? I mean who would think of something that stupid?", /* by stenno */
+	"slex is for people who just hate themselves or feel they deserve punishment for something", /* by K2 */
 
 };
 

@@ -24241,6 +24241,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"You kick Jesus. Jesus turns the other cheek.",
 	"You kick Jesus. Jesus turns the other cheek. But actually he should turn the other shin, because that's where you kicked him :D",
 	"You get poisoned and dissolve! DYWYPI?",
+	"From the watery depths, a hand reaches up to confiscate your sword. You are hit by the blessed rustproof Excalibur!",
+	"Your disguise is disrupted!",
+	"But you can't stay hidden!",
+	"The monster puts on a grain scythe!",
+	"The prophecy will finally be fulfilled!",
+	"Here's the list of advantages you will have if you stop eating meat:                     (What? You were expecting to see actual advantages there, when they don't exist? Go eat a doener kebab now! :P)",
+	"You get the sense that may have been a bad idea...",
+	"It makes a curious noise.",
+	"Asmodeus demands 10000 zorkmids for decryption of your files!",
+	"You finally open the tin.  It smells like piranhas.  Eat it?  (y/n)  y  You feel feverish.",
 
 };
 
