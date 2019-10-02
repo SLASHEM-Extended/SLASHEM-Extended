@@ -5131,7 +5131,7 @@ register struct monst *mdef;
 
 		}
 
-		if (obj && (obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->otyp == SPE_BOOK_OF_THE_DEAD) && !u.uevent.invoked) {
+		if (obj && (obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->otyp == SPE_BOOK_OF_THE_DEAD) && !u.uevent.invoked && !u.freeplaymode) {
 			u.youaredead = 1;
 			pline("Oh no! One of the special items that were required to win the game has just been removed from the dungeon, and therefore your game is now over. Sorry.");
 			killer_format = NO_KILLER_PREFIX;

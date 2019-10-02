@@ -2116,7 +2116,7 @@ not_special:
 	gx = mtmp->mux;
 	gy = mtmp->muy;
 
-	if (isevilvariant && mon_has_amulet(mtmp) && Is_astralevel(&u.uz) ) {
+	if (isevilvariant && mon_has_amulet(mtmp) && !u.freeplaymode && Is_astralevel(&u.uz) ) {
 
 		int altarx = 0, altary = 0;
 		while (altarx++ < COLNO) {
