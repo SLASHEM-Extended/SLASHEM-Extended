@@ -1173,6 +1173,7 @@ int mode;
 		} else {
 			You("dig out the grave wall.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			u.cnd_gravewallamount++;
 
 			if (Role_if(PM_WALSCHOLAR)) {
 				You_feel("like a miserably hussy.");

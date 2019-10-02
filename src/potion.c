@@ -5712,6 +5712,7 @@ dodrink()
 	    }
 	    else if (IS_WELL(levl[u.ux][u.uy].typ)) {
 		You("draw water from a well.");
+		u.cnd_wellamount++;
 		if (u.ualign.type == A_NEUTRAL) adjalign(1);
 
 		if (level.flags.lethe) {
@@ -5736,6 +5737,7 @@ dodrink()
 	    }
 	    else if (IS_POISONEDWELL(levl[u.ux][u.uy].typ)) {
 		You("draw water from a well.");
+		u.cnd_poisonedwellamount++;
 		if (u.ualign.type == A_NEUTRAL) adjalign(1);
 
 		if (level.flags.lethe) {

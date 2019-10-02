@@ -395,6 +395,7 @@ register struct obj *obj;
 
 	You("drop %s down the drain.", doname(obj));
 	obj->in_use = TRUE;	/* block free identification via interrupt */
+	u.cnd_sinkamount++;
 
 	if (isfriday && !rn2(10)) goto fridaydone;
 
@@ -772,6 +773,8 @@ register struct obj *obj;
 
 	/* you can't drop the Amulet of Yendor anyway, but in case this function is somehow called with it... */
 	if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) return;
+
+	u.cnd_toiletamount++;
 
 	You("drop %s down the drain.", doname(obj));
 	obj->in_use = TRUE;	/* block free identification via interrupt */

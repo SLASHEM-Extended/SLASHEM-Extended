@@ -10984,6 +10984,110 @@ int final;
 		sprintf(buf, "%ld time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
 		enl_msg(You_, "have used the force against an enemy ", "used the force against an enemy ", buf);
 	}
+	if (u.cnd_kickmonstercount) {
+		sprintf(buf, "%ld time%s", u.cnd_kickmonstercount, plur(u.cnd_kickmonstercount));
+		enl_msg(You_, "have kicked monsters ", "kicked monsters ", buf);
+	}
+	if (u.cnd_kicklockcount) {
+		sprintf(buf, "%ld time%s", u.cnd_kicklockcount, plur(u.cnd_kicklockcount));
+		enl_msg(You_, "have kicked doors or locked containers ", "kicked doors or locked containers ", buf);
+	}
+	if (u.cnd_fumbled) {
+		sprintf(buf, "%ld time%s", u.cnd_fumbled, plur(u.cnd_fumbled));
+		enl_msg(You_, "have fumbled ", "fumbled ", buf);
+	}
+	if (u.cnd_wandwresting) {
+		sprintf(buf, "%ld time%s", u.cnd_wandwresting, plur(u.cnd_wandwresting));
+		enl_msg(You_, "have wrested wands ", "wrested wands ", buf);
+	}
+	if (u.cnd_firedestroy) {
+		sprintf(buf, "%ld items to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
+		enl_msg(You_, "lost ", "lost ", buf);
+	}
+	if (u.cnd_colddestroy) {
+		sprintf(buf, "%ld items to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
+		enl_msg(You_, "lost ", "lost ", buf);
+	}
+	if (u.cnd_shockdestroy) {
+		sprintf(buf, "%ld items to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
+		enl_msg(You_, "lost ", "lost ", buf);
+	}
+	if (u.cnd_poisondestroy) {
+		sprintf(buf, "%ld items to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
+		enl_msg(You_, "lost ", "lost ", buf);
+	}
+	if (u.cnd_diggingamount) {
+		sprintf(buf, "%ld time%s", u.cnd_diggingamount, plur(u.cnd_diggingamount));
+		enl_msg(You_, "dug with digging tools ", "dug with digging tools ", buf);
+	}
+	if (u.cnd_gravewallamount) {
+		sprintf(buf, "%ld time%s", u.cnd_gravewallamount, plur(u.cnd_gravewallamount));
+		enl_msg(You_, "dug out grave walls ", "dug out grave walls ", buf);
+	}
+	if (u.cnd_treechopamount) {
+		sprintf(buf, "%ld tree%s", u.cnd_treechopamount, plur(u.cnd_treechopamount));
+		enl_msg(You_, "chopped down ", "chopped down ", buf);
+	}
+	if (u.cnd_barbashamount) {
+		sprintf(buf, "%ld set%s of iron bars", u.cnd_barbashamount, plur(u.cnd_barbashamount));
+		enl_msg(You_, "bashed down ", "bashed down ", buf);
+	}
+	if (u.cnd_fountainamount) {
+		sprintf(buf, "%ld time%s", u.cnd_fountainamount, plur(u.cnd_fountainamount));
+		enl_msg(You_, "interacted with fountains ", "interacted with fountains ", buf);
+	}
+	if (u.cnd_throneamount) {
+		sprintf(buf, "%ld time%s", u.cnd_throneamount, plur(u.cnd_throneamount));
+		enl_msg(You_, "sat on a throne ", "sat on a throne ", buf);
+	}
+	if (u.cnd_sinkamount) {
+		sprintf(buf, "%ld time%s", u.cnd_sinkamount, plur(u.cnd_sinkamount));
+		enl_msg(You_, "interacted with a sink ", "interacted with a sink ", buf);
+	}
+	if (u.cnd_toiletamount) {
+		sprintf(buf, "%ld time%s", u.cnd_toiletamount, plur(u.cnd_toiletamount));
+		enl_msg(You_, "interacted with a toilet ", "interacted with a toilet ", buf);
+	}
+	if (u.cnd_pentagramamount) {
+		sprintf(buf, "%ld time%s", u.cnd_pentagramamount, plur(u.cnd_pentagramamount));
+		enl_msg(You_, "invoked a pentagram ", "invoked a pentagram ", buf);
+	}
+	if (u.cnd_wellamount) {
+		sprintf(buf, "%ld time%s", u.cnd_wellamount, plur(u.cnd_wellamount));
+		enl_msg(You_, "quaffed from a well ", "quaffed from a well ", buf);
+	}
+	if (u.cnd_poisonedwellamount) {
+		sprintf(buf, "%ld time%s", u.cnd_poisonedwellamount, plur(u.cnd_poisonedwellamount));
+		enl_msg(You_, "quaffed from a poisoned well ", "quaffed from a poisoned well ", buf);
+	}
+	if (u.cnd_bedamount) {
+		sprintf(buf, "%ld time%s", u.cnd_bedamount, plur(u.cnd_bedamount));
+		enl_msg(You_, "slept in a bed ", "slept in a bed ", buf);
+	}
+	if (u.cnd_mattressamount) {
+		sprintf(buf, "%ld time%s", u.cnd_mattressamount, plur(u.cnd_mattressamount));
+		enl_msg(You_, "slept on a mattress ", "slept on a mattress ", buf);
+	}
+	if (u.cnd_criticalcount) {
+		sprintf(buf, "%ld critical hit%s", u.cnd_criticalcount, plur(u.cnd_criticalcount));
+		enl_msg(You_, "landed ", "landed ", buf);
+	}
+	if (u.cnd_stealamount) {
+		sprintf(buf, "%ld zorkmid%s", u.cnd_stealamount, plur(u.cnd_stealamount));
+		enl_msg(You_, "have stolen goods worth ", "stole goods worth ", buf);
+	}
+	if (u.cnd_monsterdigamount && final) {
+		sprintf(buf, "%ld wall tile%s", u.cnd_monsterdigamount, plur(u.cnd_monsterdigamount));
+		enl_msg(You_, "let monsters dig out ", "let monsters dig out ", buf);
+	}
+	if (u.cnd_untrapamount) {
+		sprintf(buf, "%ld trap%s", u.cnd_untrapamount, plur(u.cnd_untrapamount));
+		enl_msg(You_, "have untrapped ", "untrapped ", buf);
+	}
+	if (u.cnd_longingamount) {
+		sprintf(buf, "%ld time%s", u.cnd_longingamount, plur(u.cnd_longingamount));
+		enl_msg(You_, "had to read longing messages ", "had to read longing messages ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -11306,6 +11410,84 @@ int final;
 
 	sprintf(buf, "%ld time%s", u.cnd_forcecount, plur(u.cnd_forcecount));
 	dump("  You used the force against an enemy ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_kickmonstercount, plur(u.cnd_kickmonstercount));
+	dump("  You kicked monsters ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_kicklockcount, plur(u.cnd_kicklockcount));
+	dump("  You kicked doors or locked containers ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_fumbled, plur(u.cnd_fumbled));
+	dump("  You fumbled ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_wandwresting, plur(u.cnd_wandwresting));
+	dump("  You wrested wands ", buf);
+
+	sprintf(buf, "%ld items to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
+	dump("  You lost ", buf);
+
+	sprintf(buf, "%ld items to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
+	dump("  You lost ", buf);
+
+	sprintf(buf, "%ld items to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
+	dump("  You lost ", buf);
+
+	sprintf(buf, "%ld items to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
+	dump("  You lost ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_diggingamount, plur(u.cnd_diggingamount));
+	dump("  You dug with digging tools ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_gravewallamount, plur(u.cnd_gravewallamount));
+	dump("  You dug out grave walls ", buf);
+
+	sprintf(buf, "%ld tree%s", u.cnd_treechopamount, plur(u.cnd_treechopamount));
+	dump("  You chopped down ", buf);
+
+	sprintf(buf, "%ld set%s of iron bars", u.cnd_barbashamount, plur(u.cnd_barbashamount));
+	dump("  You bashed down ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_fountainamount, plur(u.cnd_fountainamount));
+	dump("  You interacted with fountains ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_throneamount, plur(u.cnd_throneamount));
+	dump("  You sat on a throne ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_sinkamount, plur(u.cnd_sinkamount));
+	dump("  You interacted with a sink ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_toiletamount, plur(u.cnd_toiletamount));
+	dump("  You interacted with a toilet ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_pentagramamount, plur(u.cnd_pentagramamount));
+	dump("  You invoked a pentagram ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_wellamount, plur(u.cnd_wellamount));
+	dump("  You quaffed from a well ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_poisonedwellamount, plur(u.cnd_poisonedwellamount));
+	dump("  You quaffed from a poisoned well ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_bedamount, plur(u.cnd_bedamount));
+	dump("  You slept in a bed ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_mattressamount, plur(u.cnd_mattressamount));
+	dump("  You slept on a mattress ", buf);
+
+	sprintf(buf, "%ld critical hit%s", u.cnd_criticalcount, plur(u.cnd_criticalcount));
+	dump("  You landed ", buf);
+
+	sprintf(buf, "%ld zorkmid%s", u.cnd_stealamount, plur(u.cnd_stealamount));
+	dump("  You stole goods worth ", buf);
+
+	sprintf(buf, "%ld wall tile%s", u.cnd_monsterdigamount, plur(u.cnd_monsterdigamount));
+	dump("  You let monsters dig out ", buf);
+
+	sprintf(buf, "%ld trap%s", u.cnd_untrapamount, plur(u.cnd_untrapamount));
+	dump("  You untrapped ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_longingamount, plur(u.cnd_longingamount));
+	dump("  You had to read longing messages ", buf);
 
 	dump("", "");
 }

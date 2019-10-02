@@ -405,6 +405,7 @@ dig()
 			}
 			if (IS_TREE(lev->typ)) {
 			    digtxt = "You cut down the tree.";
+			    u.cnd_treechopamount++;
 			    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 			    lev->typ = ROOM;
 			    if (!rn2(5)) (void) rnd_treefruit_at(dpx, dpy);
@@ -413,6 +414,7 @@ dig()
 				}
 			} else if (IS_WATERTUNNEL(lev->typ)) {
 			    digtxt = "You smash the solid part of the tunnel apart.  Now it's a moat!";
+			    u.cnd_diggingamount++;
 			    lev->typ = MOAT;
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
@@ -420,6 +422,7 @@ dig()
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
 
 			    digtxt = "You smash the bars to the ground.";
+			    u.cnd_barbashamount++;
 
 			    if (In_sokoban(&u.uz))
 				{change_luck(-1);
@@ -454,6 +457,7 @@ dig()
 
 			} else {
 			    digtxt = "You succeed in cutting away some rock.";
+			    u.cnd_diggingamount++;
 			    lev->typ = CORR;
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
@@ -478,6 +482,7 @@ dig()
 			    lev->doormask = D_NODOOR;
 			}
 			digtxt = "You make an opening in the wall.";
+			u.cnd_diggingamount++;
 
 			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 				use_skill(P_WEDI, 1);
@@ -687,6 +692,7 @@ int ttyp;
 
 	    if(madeby_u) {
 		You("dig a pit in the %s.", surface_type);
+		u.cnd_diggingamount++;
 		if (shopdoor) pay_for_damage("ruin", FALSE);
 	    } else if (!madeby_obj && canseemon(madeby))
 		pline("%s digs a pit in the %s.", Monnam(madeby), surface_type);
@@ -714,9 +720,10 @@ int ttyp;
 	    }
 	} else {	/* was TRAPDOOR now a HOLE*/
 
-	    if(madeby_u)
+	    if(madeby_u) {
 		You("dig a hole through the %s.", surface_type);
-	    else if(!madeby_obj && canseemon(madeby))
+		u.cnd_diggingamount++;
+	    } else if(!madeby_obj && canseemon(madeby))
 		pline("%s digs a hole through the %s.",
 		      Monnam(madeby), surface_type);
 	    else if(cansee(x, y) && flags.verbose)
@@ -1370,6 +1377,9 @@ register struct monst *mtmp;
 	}
 
 	if (IS_WALL(here->typ)) {
+
+	    u.cnd_monsterdigamount++;
+
 	    /* KMH -- Okay on arboreal levels (room walls are still stone) */
 	    if (flags.soundok && flags.verbose && !rn2(5)) {
 	    /* KMH -- Okay on arboreal levels (room walls are still stone) */
@@ -1396,8 +1406,10 @@ register struct monst *mtmp;
 	    if (!rn2(50) && pile && pile < 5) /* it shouldn't be that easy to get tree fruits... --Amy */
 		(void) rnd_treefruit_at(mtmp->mx, mtmp->my);
 	} else if (IS_WATERTUNNEL(here->typ)) {
+	    u.cnd_monsterdigamount++;
 	    here->typ = MOAT;
 	} else {
+	    u.cnd_monsterdigamount++;
 	    here->typ = CORR;
 	    if (!rn2(7) && pile && pile < 5) /* if you dig out rock yourself, you don't get boulders or rock either! --Amy */
 	    (void) mksobj_at((pile == 1) ? BOULDER : ROCK,

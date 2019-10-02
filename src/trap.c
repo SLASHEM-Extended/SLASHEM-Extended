@@ -18535,15 +18535,18 @@ struct trap *ttmp;
 			(ttmp->ttyp == BEAR_TRAP) ? "bear trap" : "webbing",
 			mon_nam(mtmp));
 		reward_untrap(ttmp, mtmp);
+		u.cnd_untrapamount++;
 	} else {
 		if (ttmp->ttyp == BEAR_TRAP) {
 			You("disarm %s bear trap.", the_your[ttmp->madeby_u]);
 			if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
 			cnv_trap_obj(BEARTRAP, 1, ttmp);
+			u.cnd_untrapamount++;
 		} else /* if (ttmp->ttyp == WEB) */ {
 			You("succeed in removing %s web.", the_your[ttmp->madeby_u]);
 			if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
 			deltrap(ttmp);
+			u.cnd_untrapamount++;
 		}
 	}
 	newsym(u.ux + u.dx, u.uy + u.dy);
@@ -18560,6 +18563,7 @@ struct trap *ttmp;
 	You("disarm %s land mine.", the_your[ttmp->madeby_u]);
 	if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(LAND_MINE, 1, ttmp);
+	u.cnd_untrapamount++;
 	return 1;
 }
 
@@ -18572,6 +18576,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the water trap!");
+	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	levl[trapx][trapy].typ = FOUNTAIN;
@@ -18590,6 +18595,7 @@ int exper;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(exper,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18607,6 +18613,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(3,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18624,6 +18631,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(3,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18641,6 +18649,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(3,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18658,6 +18667,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(3,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18676,6 +18686,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(1,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18693,6 +18704,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("removed the superscroller!");
+	u.cnd_untrapamount++;
 	more_experienced(1,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18714,6 +18726,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(5,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18793,6 +18806,7 @@ struct trap *ttmp;
 			return 1;
 		default: /* 20 or higher = disarmed */
 			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
+			u.cnd_untrapamount++;
 			deltrap(ttmp);
 			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
@@ -18812,6 +18826,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(3,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18830,6 +18845,7 @@ struct trap *ttmp;
 
 	if (fails < 2) return fails;
 	You("disarm the trap!");
+	u.cnd_untrapamount++;
 	more_experienced(20,0);
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
@@ -18887,6 +18903,7 @@ struct trap *ttmp;
 	useup(obj);
 	makeknown(POT_WATER);
 	You("manage to extinguish the pilot light!");
+	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
 	/* Lower chance of getting oil. The deltrap function may NOT be called if cnv_trap_obj is also called
@@ -18928,6 +18945,7 @@ struct trap *ttmp;
 	    makeknown(POT_OIL);
 	}
 	You("repair the squeaky board.");	/* no madeby_u */
+	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -18946,6 +18964,7 @@ int otyp;
 
 	if (fails < 2) return fails;
 	You("disarm %s trap.", the_your[ttmp->madeby_u]);
+	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(otyp, 50-rnl(50), ttmp);
 	return 1;
@@ -19250,6 +19269,7 @@ boolean force;
 				(void) chest_trap(otmp, FINGER, TRUE);
 			    } else {
 				You("disarm it!");
+				u.cnd_untrapamount++;
 				if (u.ualign.type == A_LAWFUL) adjalign(1);
 				otmp->otrapped = 0;
 			    }
@@ -19317,6 +19337,7 @@ boolean force;
 			if (*in_rooms(x, y, SHOPBASE)) add_damage(x, y, 0L);
 		    } else {
 			You("disarm it!");
+			u.cnd_untrapamount++;
 			if (u.ualign.type == A_LAWFUL) adjalign(1);
 			levl[x][y].doormask &= ~D_TRAPPED;
 		    }

@@ -231,6 +231,7 @@ dosit()
 	    You(sit_message, defsyms[S_toilet].explanation);
 	    if ((!Sick || !issoviet) && (u.uhs > 0)) You("don't have to go...");
 	    else {
+			u.cnd_toiletamount++; /* doesn't count if you don't actually take a crap :P --Amy */
 			if (issoviet && u.uhs > 0) pline("Vy der'mo vedro, vy delayete svoye der'mo iz vozdukha? Nel'zya dazhe der'mo, kak i vy!");
 
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
@@ -321,6 +322,7 @@ dosit()
 
 		} else if (!Sleep_resistance && (moves >= u.bedsleeping)) {
 
+			u.cnd_bedamount++;
 			You("go to bed.");
 			if (FunnyHallu) pline("Sleep-bundle-wing!");
 			u.bedsleeping = moves + 100;
@@ -336,6 +338,7 @@ dosit()
 	} else if(IS_THRONE(typ)) {
 
 	    You(sit_message, defsyms[S_throne].explanation);
+	    u.cnd_throneamount++;
 	    if (!rn2(2))  {
 
 		if (uarmg && uarmg->oartifact == ART_FUMBLEFINGERS_QUEST) {

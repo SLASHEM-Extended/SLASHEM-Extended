@@ -1644,6 +1644,32 @@ struct you {
 	int cnd_chargingcount;	/* how often you recharged items */
 	int cnd_offercount;	/* how many corpses you offered to the gods */
 	int cnd_forcecount;	/* how many times you used #force on a monster */
+	int cnd_kickmonstercount;	/* how often you kicked a monster */
+	int cnd_kicklockcount;	/* how often you kicked doors, containers etc. */
+	int cnd_fumbled;	/* how many times you fumbled */
+	int cnd_wandwresting;	/* how many wands you wrested */
+	int cnd_firedestroy;	/* how many of your items were destroyed by fire */
+	int cnd_colddestroy;	/* how many of your items were destroyed by cold */
+	int cnd_shockdestroy;	/* how many of your items were destroyed by shock */
+	int cnd_poisondestroy;	/* how many of your items were destroyed by poison */
+	int cnd_diggingamount;	/* how many walls or holes you dug */
+	int cnd_gravewallamount;	/* how many grave walls you dug out */
+	int cnd_treechopamount;	/* how many trees you chopped down */
+	int cnd_barbashamount;	/* how many iron bars you bashed down */
+	int cnd_fountainamount;	/* how many times you quaffed or dipped a fountain */
+	int cnd_throneamount;	/* how many times you sat on a throne */
+	int cnd_sinkamount;	/* how many times you quaffed, dipped or dropped rings down a sink */
+	int cnd_toiletamount;	/* how many times you quaffed, sit, dipped or dropped amulets down a toilet */
+	int cnd_pentagramamount;	/* how many times you invoked a pentagram */
+	int cnd_wellamount;	/* how many times you quaffed from a well */
+	int cnd_poisonedwellamount;	/* how many times you quaffed from a poisoned well */
+	int cnd_bedamount;	/* how many times you slept in a bed */
+	int cnd_mattressamount;	/* how many times you slept on a mattress */
+	int cnd_criticalcount;	/* how many critical hits you landed */
+	int cnd_stealamount;	/* how many $ worth of items you stole */
+	int cnd_monsterdigamount;	/* how many tiles were dug out by monsters */
+	int cnd_untrapamount;	/* how many times you untrapped a trap successfully */
+	int cnd_longingamount;	/* how many longing messages you had to read */
 
 };	/* end of `struct you' */
 

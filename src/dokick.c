@@ -293,6 +293,8 @@ register boolean clumsy;
 		mon->mflee = 0;
 	}
 
+	u.cnd_kickmonstercount++;
+
 	if (dmg > 0) {
 		/* convert potential damage to actual damage */
 		dmg = rnd(dmg);
@@ -1136,6 +1138,7 @@ xchar x, y;
 		if (kickobj->olocked) {
 		    if (!rn2(5) || (martial() && !rn2(2))) {
 			You("break open the lock!");
+			u.cnd_kicklockcount++;
 			kickobj->olocked = 0;
 			kickobj->obroken = 1;
 			if (otrp) (void) chest_trap(kickobj, LEG, FALSE);
@@ -1662,6 +1665,9 @@ dokick()
 					PM_INCUBUS : PM_SUCCUBUS;
 
 		    if(Levitation) goto dumb;
+
+		    u.cnd_sinkamount++;
+
 		    if(rn2(5)) {
 			if(flags.soundok)
 			    pline("Klunk!  The pipes vibrate noisily.");
@@ -1777,6 +1783,7 @@ dumb:
 	if(rnl(35) < avrg_attrib + (!martial() ? 0 : ACURR(A_DEX))) {
 		boolean shopdoor = *in_rooms(x, y, SHOPBASE) ? TRUE : FALSE;
 		/* break the door */
+		u.cnd_kicklockcount++;
 		if(maploc->doormask & D_TRAPPED) {
 		    if (flags.verbose) You("kick the door.");
 		    exercise(A_STR, FALSE);

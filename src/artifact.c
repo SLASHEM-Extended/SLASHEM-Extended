@@ -2484,6 +2484,7 @@ doinvoke()
 		if (yn("Invoke the magical pentagram?") == 'y') {
 
 			You("attune yourself with the magical energy.");
+			u.cnd_pentagramamount++;
 
 			if (u.ualign.type == A_CHAOTIC) adjalign(1);
 

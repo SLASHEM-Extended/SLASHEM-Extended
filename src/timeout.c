@@ -3555,6 +3555,8 @@ slip_or_trip()
 	boolean on_foot = TRUE;
 	if (u.usteed) on_foot = FALSE;
 
+	u.cnd_fumbled++;
+
 	if (otmp && on_foot && !u.uinwater && is_waterypool(u.ux, u.uy)) otmp = 0;
 
 	if (otmp && on_foot) {		/* trip over something in particular */

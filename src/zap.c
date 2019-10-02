@@ -3770,8 +3770,10 @@ register struct obj *wand;
 	}
 	if(wand->spe < 0 || (wand->spe == 0 && rn2(20))) /* make wresting easier --Amy */
 		return 0;
-	if(wand->spe == 0)
+	if(wand->spe == 0) {
 		You("wrest one last charge from the worn-out wand.");
+		u.cnd_wandwresting++; /* wand may survive due to devices skill or being made of viva (not a bug) */
+	}
 	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == MT_VIVA) ) && !(uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !(wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
 
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
@@ -9807,25 +9809,31 @@ register int osym, dmgtyp;
 				break;
 			}
 
-		    if(osym == POTION_CLASS && obj->otyp != POT_OIL) {
+		    if(osym == POTION_CLASS && obj->otyp != POT_OIL && obj->otyp != POT_ICE) {
 			quan = obj->quan;
 			dindx = 0;
 			dmg = rnd(4);
+			if (!skip) u.cnd_colddestroy += quan;
 		    } else skip++;
 		    break;
 		case AD_VENO:
 
 		    if(osym == POTION_CLASS) {
 
-			if (obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON || obj->otyp == POT_CYANIDE) skip++; /* idea by Andrio */
+			if (obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON || obj->otyp == POT_CYANIDE) {
+				skip++; /* idea by Andrio */
+				break;
+			}
 
 			quan = obj->quan;
 			dindx = 7;
 			dmg = 0;
+			if (!skip) u.cnd_poisondestroy += quan;
 		    } else if(osym == FOOD_CLASS) {
 			quan = obj->quan;
 			dindx = 8;
 			dmg = 0;
+			if (!skip) u.cnd_poisondestroy += quan;
 		    } else skip++;
 		    break;
 		case AD_FIRE:
@@ -9838,7 +9846,7 @@ register int osym, dmgtyp;
 
 			if (osym==SCROLL_CLASS && obj->oartifact)
 			skip++;
-		    if (obj->otyp == SCR_FIRE || obj->otyp == SPE_FIREBALL)
+		    if (obj->otyp == SCR_FIRE || obj->otyp == POT_FIRE || obj->otyp == SPE_FIREBALL || obj->otyp == SPE_INFERNO || obj->otyp == SPE_FIRE_BOLT || obj->otyp == SPE_FIRE_GOLEM)
 			skip++;
 		    if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 			skip++;
@@ -9851,14 +9859,17 @@ register int osym, dmgtyp;
 			case POTION_CLASS:
 			    dindx = 1;
 			    dmg = rnd(6);
+			    if (!skip) u.cnd_firedestroy += quan;
 			    break;
 			case SCROLL_CLASS:
 			    dindx = 2;
 			    dmg = 1;
+			    if (!skip) u.cnd_firedestroy += quan;
 			    break;
 			case SPBOOK_CLASS:
 			    dindx = 3;
 			    dmg = 1;
+			    if (!skip) u.cnd_firedestroy += quan;
 			    break;
 			default:
 			    skip++;
@@ -9874,6 +9885,7 @@ register int osym, dmgtyp;
 				    { skip++; break; }
 			    dindx = 4;
 			    dmg = 0;
+			    if (!skip) u.cnd_shockdestroy += quan;
 			    break;
 			case WAND_CLASS:
 			    if(obj->otyp == WAN_LIGHTNING) { skip++; break; }
@@ -9882,10 +9894,12 @@ register int osym, dmgtyp;
 #endif
 			    dindx = 5;
 			    dmg = rnd(10);
+			    if (!skip) u.cnd_shockdestroy += quan;
 			    break;
 			case AMULET_CLASS:
 			    dindx = 6;
 			    dmg = 0;
+			    if (!skip) u.cnd_shockdestroy += quan;
 			    break;
 			default:
 			    skip++;

@@ -1867,6 +1867,7 @@ struct monst *mon;
 	if ((!rn2(100 - (Luck*2))) && !(uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT)) { /* nice patch - critical hits --Amy */
 
 		pline("Critical hit!");
+		u.cnd_criticalcount++;
 		tmp *= 2;
 
 	}

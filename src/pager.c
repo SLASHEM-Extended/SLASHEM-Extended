@@ -24331,6 +24331,7 @@ void
 longingtrapeffect()
 {
 	char buf[BUFSZ];
+	u.cnd_longingamount++;
 	pline(longingmessage(), longinggirls[rn2(SIZE(longinggirls))]);
 
 }

@@ -213,6 +213,8 @@ drinkfountain()
 		return;
 	}
 
+	u.cnd_fountainamount++;
+
 	if (uarmc && itemhasappearance(uarmc, APP_FOUNDRY_CLOAK)) {
 		u.uhunger += 100;
 		pline("The water is very nutritious!");
@@ -543,6 +545,8 @@ register struct obj *obj;
 		return;
 	}
 
+	u.cnd_fountainamount++;
+
 	/* Don't grant Excalibur when there's more than one object.  */
 	/* (quantity could be > 1 if merged daggers got polymorphed) */
 
@@ -802,6 +806,7 @@ register struct obj *obj;
 	    floating_above("toilet");
 	    return;
 	}
+	u.cnd_toiletamount++;
 
 	if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
 		remove_worn_item(obj, FALSE);
@@ -890,6 +895,8 @@ drinksink()
 		floating_above("sink");
 		return;
 	}
+
+	u.cnd_sinkamount++;
 	switch(rn2(25)) {
 		case 0:
 			You("take a sip of very cold water.");
@@ -1075,6 +1082,9 @@ drinktoilet()
 		floating_above("toilet");
 		return;
 	}
+
+	u.cnd_toiletamount++;
+
 	if ((youmonst.data->mlet == S_DOG) && (rn2(5)) ) {
 		pline("The toilet water is quite refreshing!");
 		u.uhunger += 10;

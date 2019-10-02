@@ -5341,6 +5341,7 @@ newbossX:
 
 			if (!rn2(StrongSleep_resistance ? 1000 : Sleep_resistance ? 200 : 20)) {
 
+				u.cnd_mattressamount++;
 				You("suddenly feel an immense need to lie down on the mattress and sleep for a bit.");
 				fall_asleep(-rnd(5), TRUE);
 
@@ -5348,6 +5349,7 @@ newbossX:
 
 			if (isfriday && (multi >= 0) && !rn2(StrongSleep_resistance ? 1000 : Sleep_resistance ? 200 : 20)) {
 
+				u.cnd_mattressamount++;
 				You("suddenly feel an immense need to lie down on the mattress and sleep for a bit.");
 				fall_asleep(-rnd(5), TRUE);
 
