@@ -789,7 +789,7 @@ tele()
 #ifdef WIZARD
         (
 #endif
-        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
+        ((u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
 	|| (u.usteed && mon_has_amulet(u.usteed))
 	)
 #ifdef WIZARD
@@ -845,7 +845,7 @@ teleX()
 	if (!Blinded) make_blinded(0L,FALSE);
 
 	if
-        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
+        ((u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
 	|| (u.usteed && mon_has_amulet(u.usteed))
 	)
 	{
@@ -867,7 +867,7 @@ boolean confused;
 	}
 
 	if
-        ((u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
+        ((u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz)
 	|| (u.usteed && mon_has_amulet(u.usteed))
 	)
 	{
@@ -998,7 +998,7 @@ level_tele()
 	char buf[BUFSZ];
 	boolean force_dest = FALSE;
 
-	if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || In_sokoban_real(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) )
+	if (((u.uhave.amulet && !u.freeplaymode) || CannotTeleport || In_endgame(&u.uz) || In_sokoban_real(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) )
 #ifdef WIZARD
 						&& !wizard
 #endif
@@ -1309,7 +1309,7 @@ register struct trap *ttmp;
 	 * the endgame, from accidently triggering the portal to the
 	 * next level, and thus losing the game
 	 */
-	if (In_endgame(&u.uz) && !u.uhave.amulet) {
+	if (In_endgame(&u.uz) && !u.uhave.amulet && !u.freeplaymode) {
 	    You_feel("dizzy for a moment, but nothing happens...");
 	    return;
 	}

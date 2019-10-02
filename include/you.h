@@ -1577,6 +1577,9 @@ struct you {
 	boolean zapem_mode;	/* decided at game start: true if you're a ZAPM role or used the ZAPM birth option */
 	boolean riderhack;	/* to prevent you from easily removing riders */
 
+	boolean freeplaymode;	/* set to 1 if you ascend and decide to go on playing */
+	boolean freeplaytransit;	/* set to 1 if you're supposed to be transported back to dlvl1 and hang up or so */
+
 	/* extra statistics: some of these display with #conduct, others only at the end of your game --Amy */
 	int cnd_applycount;	/* how often you applied items */
 	int cnd_unihorncount;	/* how often you benefitted from a unicorn horn effect */

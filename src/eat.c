@@ -6675,7 +6675,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 			  (uright->spe || !objects[uright->otyp].oc_charged) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500))
 			    u.uhunger--;
 		    break;
-	     case 16: if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	     case 16: if (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5)) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 		    break;
 	     default: break;
 	    }

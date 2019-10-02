@@ -246,7 +246,7 @@ moveloop()
 
 			monclock = 70;
 
-			if ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
+			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
 				monclock = 20;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
@@ -258,7 +258,7 @@ moveloop()
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (monclock < 30 && !(u.uevent.udemigod && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { monclock = 30; }
+			if (monclock < 30 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { monclock = 30; }
 			if (monclock < 20) { monclock = 20; }
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
@@ -281,7 +281,7 @@ moveloop()
 
 			/* TODO: adj difficulty in makemon */
 			if (!rn2(monclock) && !ishomicider ) {
-				if ( ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) && xupstair && rn2(10)) {
+				if ( ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) && xupstair && rn2(10)) {
 					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK);
 				} else {
 					(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
@@ -291,7 +291,7 @@ moveloop()
 			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
 			xtraclock = 100000;
-			if ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
+			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
 				xtraclock = 30000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
@@ -303,7 +303,7 @@ moveloop()
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (xtraclock < 50000 && !(u.uevent.udemigod && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 50000; }
+			if (xtraclock < 50000 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 50000; }
 			if (xtraclock < 30000) { xtraclock = 30000; }
 
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
@@ -766,23 +766,52 @@ moveloop()
 			}
 
 			if (moves == u.ascensionfirsthint) {
-				pline("Reminder: You have a limited amount of time for ascending. This is not a joke.");
-				pline("Currently you still have more than %d turns left though, so don't panic.", (u.ascensionfirsthint * 4) );
-				pline("However, keep in mind that you're not supposed to be farming forever. Okay?");
+
+				if (u.freeplaymode) {
+					pline("Reminder: there's a time limit, after which the game will start throwing random bad stuff at you.");
+					pline("Currently you still have more than %d turns left though, so don't panic.", (u.ascensionfirsthint * 4) );
+					pline("However, keep in mind that you're not supposed to be playing forever.");
+
+				} else {
+
+					pline("Reminder: You have a limited amount of time for ascending. This is not a joke.");
+					pline("Currently you still have more than %d turns left though, so don't panic.", (u.ascensionfirsthint * 4) );
+					pline("However, keep in mind that you're not supposed to be farming forever. Okay?");
+				}
 
 			}
 
 			if (moves == u.ascensionsecondhint) {
-				pline("Remember, you're not supposed to dilly-dally all the time! You're supposed to work towards ascending!");
-				pline("Currently you have less than %d turns left, so better move on!", u.ascensionsecondhint);
-				pline("If you don't ascend in time, the RNG will get angry, and you don't want that to happen!");
+
+				if (u.freeplaymode) {
+					pline("Remember, there's a time limit and bad things will happen periodically once you exceed it.");
+					pline("Currently you have less than %d turns left, so better get ready for the random bad effects.", u.ascensionsecondhint);
+					pline("But don't sweat it; you've already ascended, and are just on your victory lap now.");
+
+				} else {
+
+					pline("Remember, you're not supposed to dilly-dally all the time! You're supposed to work towards ascending!");
+					pline("Currently you have less than %d turns left, so better move on!", u.ascensionsecondhint);
+					pline("If you don't ascend in time, the RNG will get angry, and you don't want that to happen!");
+
+				}
 
 			}
 
 			if (moves == u.ascensiontimelimit) {
-				pline("You exceeded the maximum permissible amount of turns for winning the game!");
-				pline("Now, the RNG is fed up with your shenanigans, and decides to make the game much more difficult.");
-				pline("If you hurry up, you may still be able to ascend, but it will get harder the longer you procrastinate.");
+
+				if (u.freeplaymode) {
+					pline("Time up! The curtain falls.");
+					pline("Now, the RNG has decided that you've been playing enough, and will start throwing random bad stuff at you.");
+					pline("Try to survive for as long as possible! Good luck!");
+
+				} else {
+
+					pline("You exceeded the maximum permissible amount of turns for winning the game!");
+					pline("Now, the RNG is fed up with your shenanigans, and decides to make the game much more difficult.");
+					pline("If you hurry up, you may still be able to ascend, but it will get harder the longer you procrastinate.");
+
+				}
 			}
 
 			if (moves > u.ascensiontimelimit) {
@@ -982,7 +1011,7 @@ moveloop()
 				make_feared(HFeared + rnd(10 + (monster_difficulty()) ),TRUE);
 				}
 
-		    if(!rn2( ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 250 :
+		    if(!rn2( ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 250 :
 			    (depth(&u.uz) > depth(&stronghold_level)) ? 450 : 500)) {
 			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 			else makerandomtrap();
@@ -5434,6 +5463,12 @@ newbossX:
 			pline("Well done, you've reached the bottom of the Gamma Caves! The entrance to the Mainframe is now open.");
 		}
 
+		/* freeplay after ascension mode: re-enable passage to the planes once you went to Moloch's sanctum --Amy */
+		if (u.freeplaymode && !u.freeplayplanes && on_level(&sanctum_level, &u.uz)) {
+			u.freeplayplanes = TRUE;
+			pline("The stairs to the Elemental Planes have been permanently re-opened! Well done!");
+		}
+
 		/* Imbuing the Bell of Opening must be done before any of the invocation tools work
 		 * it will spawn a bunch of quest monsters around the entrance, forcing you to fight your way back out --Amy */
 
@@ -8322,7 +8357,7 @@ newboss:
 			}
 		}
 
-		if (( (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) && !rn2(5)) || Clairvoyant) &&
+		if (( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5)) && !rn2(5)) || Clairvoyant) &&
 		    !In_endgame(&u.uz) && !BClairvoyant && !rn2(StrongClairvoyant ? 15 : 40) && !rn2(2))
 			do_vicinity_map();
 
@@ -9285,7 +9320,7 @@ newboss:
 
 			if (Role_if(PM_CELLAR_CHILD) && !rn2(20000)) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					goto cellarnope;
 				}
 
@@ -9316,7 +9351,7 @@ newboss:
 cellarnope:
 			if (!rn2(10000) && uarmc && itemhasappearance(uarmc, APP_CHINESE_CLOAK) ) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					goto past1;
@@ -9344,7 +9379,7 @@ cellarnope:
 past1:
 			if (!rn2(10000) && RngeChina) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					goto past2;
@@ -9372,7 +9407,7 @@ past1:
 past2:
 			if (!rn2(10000) && uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD) {
 
-				if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella giggling.");
 					goto past3;
@@ -9508,7 +9543,7 @@ past3:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
-				if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
 				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -9533,7 +9568,7 @@ past3:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
-				if ((u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
 				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -9608,9 +9643,9 @@ past3:
 		    age_spells();
 		    exerchk();
 		    invault();
-		    if (u.uhave.amulet) amulet();
+		    if (u.uhave.amulet && !u.freeplaymode) amulet();
 		if (!rn2(40+(int)(ACURR(A_DEX)*3))) u_wipe_engr(rnd(3));
-		    if ((u.uevent.udemigod && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {
+		    if ((u.uevent.udemigod && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {
 			if (u.udg_cnt) u.udg_cnt--;
 			if (u.udg_cnt < 0) u.udg_cnt = 0; /* fail safe by Amy */
 			if (!u.udg_cnt) {
@@ -9965,7 +10000,7 @@ past3:
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
-		if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
 			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 
@@ -9986,7 +10021,7 @@ past3:
 
 	if (u.levelporting) { /* something attacked you with nexus or weeping */
 
-		if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+		if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			level_tele(); /* will take care of u.uhave.amulet and similar stuff --Amy */
 		}
@@ -12856,6 +12891,35 @@ boolean new_game;	/* false => restoring an old game */
 		u.hangupcheat = 0;
 		u.hangupparalysis = 0;
 #endif
+	}
+
+	if (!new_game && u.freeplaytransit) { /* ch3at0r! */
+		u.freeplaymode = TRUE;
+		u.freeplaytransit = TRUE;
+		u.freeplayplanes = FALSE;
+
+		if (u.uhave.amulet) { /* no longer need the amulet, now that you've won */
+			struct obj *otmpi, *otmpii;
+			if (invent) {
+				for (otmpi = invent; otmpi; otmpi = otmpii) {
+				      otmpii = otmpi->nobj;
+					if (otmpi->otyp == AMULET_OF_YENDOR) {							
+						if (otmpi->owornmask) {
+							setnotworn(otmpi);
+						}
+						dropx(otmpi);
+					}
+				}
+			}
+		}
+		goto_level(&medusa_level, TRUE, FALSE, FALSE);
+
+		register int newlevX = 1;
+		d_level newlevelX;
+		get_level(&newlevelX, newlevX);
+		goto_level(&newlevelX, TRUE, FALSE, FALSE);
+		u.freeplaytransit = FALSE;
+		pline("You find yourself back in the dungeon. Since you've officially won the game, you can freely explore now. If you want to go back to the Elemental Planes, you have to visit Moloch's Sanctum first. You can also retire (commit suicide) when you are ready.");
 	}
 
 	#ifdef LIVELOGFILE

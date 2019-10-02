@@ -1289,7 +1289,7 @@ boolean	at_stairs;
 		/* Taking an up dungeon branch. */
 		/* KMH -- Upwards branches are okay if not level 1 */
 		/* (Just make sure it doesn't go above depth 1) */
-		if(!u.uz.dnum && u.uz.dlevel == 1 && !u.uhave.amulet) done(ESCAPED);
+		if(!u.uz.dnum && u.uz.dlevel == 1 && !u.uhave.amulet && !(u.freeplaymode && u.freeplayplanes) ) done(ESCAPED);
 		else { 
 
 			goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
@@ -1968,14 +1968,14 @@ level_difficulty()
 
 	if (In_endgame(&u.uz))
 		retvalue = (110 + (u.ulevel/2) );
-	else if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)))
+	else if (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5)))
 		retvalue = 110;
 	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna)
 		retvalue = (depthuz + rn2(u.ulevel) + 2 );
 	else
 		retvalue = depthuz;
 
-	if (u.uhave.amulet && (retvalue < 50)) retvalue = 50;
+	if (u.uhave.amulet && !u.freeplaymode && (retvalue < 50)) retvalue = 50;
 
 	if (Race_if(PM_EXPERT)) retvalue += u.ulevel;
 

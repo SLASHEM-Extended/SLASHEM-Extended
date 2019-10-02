@@ -7030,7 +7030,7 @@ peffects(otmp)
 			}
 			unkn++;
 			/* they went up a level */
-			if((ledger_no(&u.uz) == 1 && u.uhave.amulet && u.amuletcompletelyimbued) ||
+			if((ledger_no(&u.uz) == 1 && ((u.uhave.amulet && u.amuletcompletelyimbued) || u.freeplaymode) ) ||
 				Can_rise_up(u.ux, u.uy, &u.uz)) {
 			    const char *riseup ="rise up, through the %s!";
 			    /* [ALI] Special handling for quaffing potions
@@ -7050,7 +7050,7 @@ peffects(otmp)
 				goto_level(&earth_level, FALSE, FALSE, FALSE);
 				} else {
 				/* Skipping levels during the ascension run is a cheap strategy. --Amy */
-			        register int newlev = (u.uhave.amulet || (u.uevent.udemigod && rn2(2)) ) ? depth(&u.uz)+1 : depth(&u.uz)-1;
+			        register int newlev = (u.freeplaymode) ? depth(&u.uz)-1 : (u.uhave.amulet || (u.uevent.udemigod && rn2(2)) ) ? depth(&u.uz)+1 : depth(&u.uz)-1;
 				d_level newlevel;
 
 				/* But using the new system to cheat the necessity to invoke would be even cheaper. */

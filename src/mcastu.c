@@ -2206,7 +2206,7 @@ int spellnum;
 	 * rarely unless you're carrying the amulet.
 	 */
 	if (((levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) /* lowered chance even with amulet --Amy */
-		|| (!u.uhave.amulet && rn2(10)) || rn2(3) ) && spellnum == MGC_CREATE_POOL)
+		|| ((!u.uhave.amulet || u.freeplaymode) && rn2(10)) || rn2(3) ) && spellnum == MGC_CREATE_POOL)
 	    return TRUE;
 	if ((!mtmp->iswiz || (flags.no_of_wizards > 1 && rn2(20)) )
 						&& spellnum == MGC_CLONE_WIZ)

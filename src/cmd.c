@@ -2665,6 +2665,7 @@ boolean guaranteed;
 	putstr(en_win, 0, final ? "Final Attributes:" : "Current Attributes:");
 	putstr(en_win, 0, "");
 
+	if (u.freeplaymode) you_are("a demigod");
 	if (flags.zapem) you_are("playing in ZAPM mode");
 	if (flags.wonderland) you_are("playing in wonderland mode");
 	if (flags.lostsoul && !flags.uberlostsoul) you_are("playing in lost soul mode");
@@ -6545,6 +6546,7 @@ int final;
 
 	dump("", "Final attributes");
 
+	if (u.freeplaymode) dump(youwere, "a demigod");
 	if (flags.zapem) dump(youwere, "playing in ZAPM mode");
 	if (flags.wonderland) dump(youwere, "playing in wonderland mode");
 	if (flags.lostsoul && !flags.uberlostsoul) dump(youwere, "playing in lost soul mode");

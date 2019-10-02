@@ -3358,7 +3358,7 @@ boolean atme;
 			 * casting anything else except detect food
 			 */
 
-	if (u.uhave.amulet && u.amuletcompletelyimbued) {
+	if (u.uhave.amulet && u.amuletcompletelyimbued && !u.freeplaymode) {
 		/* casting while you have the fully imbued amulet always causes extra hunger no matter what --Amy
 		 * but a non-imbued one doesn't increase hunger cost */
 		hungr += rnd(2*energy);
@@ -3585,7 +3585,7 @@ castanyway:
 	/* Players could cheat if they had just barely enough mana for casting a spell without the increased drain.
 	 * They'd just need to keep trying until the extra mana costs are randomly very low.
 	 * Prevent players from abusing this by calculating the extra drain _after_ the other checks. --Amy */
-	if (u.uhave.amulet && u.amuletcompletelyimbued) {
+	if (u.uhave.amulet && u.amuletcompletelyimbued && !u.freeplaymode) {
 		You_feel("the amulet draining your energy away.");
 		energy += rnd(2*energy);
 	}
@@ -3597,7 +3597,7 @@ castanyway:
 	if (SpellColorSilver) u.seesilverspell = 1;
 
 	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
-	if (u.uhave.amulet && u.amuletcompletelyimbued && u.uen < 0) {
+	if (u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued && u.uen < 0) {
 		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
 		u.cnd_spellfailcount++;
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -4747,7 +4747,7 @@ aulechoice:
 				break;
 			case 6:
 
-				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
+				if ((!u.uevent.udemigod || u.freeplaymode) && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {
@@ -7832,7 +7832,7 @@ secureidchoice:
 
 		break;
 	case SPE_WARPING:
-		if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
+		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 			pline("You're unable to warp!"); break;}
@@ -8840,7 +8840,7 @@ totemsummonchoice:
 				break;
 			}
 
-			if ( ( (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			if ( ( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(3))) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 				You_feel("disoriented for a moment.");
 				break;
 			}

@@ -7765,7 +7765,7 @@ retry:
 		break;
 	case SCR_WARPING:
 		known = TRUE;
-		if (u.uevent.udemigod || u.uhave.amulet || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+		if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
 		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
 			pline("You're unable to warp!"); break;}
@@ -8669,7 +8669,7 @@ newbossC:
 				}
 
 				mdrop_special_objs(offmon); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
-				if (u.uevent.udemigod) break;
+				if (u.uevent.udemigod && !u.freeplaymode) break;
 				else u_teleport_monB(offmon, TRUE);
 				pline("Some of your possessions have been stolen!");
 

@@ -1484,7 +1484,7 @@ dodown()
 		    (u.ux == sstairs.sx && u.uy == sstairs.sy && !sstairs.up)),
 		ladder_down = (u.ux == xdnladder && u.uy == ydnladder);
 
-	if (NoStaircase && u.uhave.amulet && (stairs_down || ladder_down) ) {
+	if (NoStaircase && u.uhave.amulet && !u.freeplaymode && (stairs_down || ladder_down) ) {
 
 		pline(FunnyHallu ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
 		return(0);
@@ -1650,6 +1650,33 @@ dodown()
 int
 doup()
 {
+	if (u.freeplaymode && on_level(&u.uz, &astral_level) && IS_ALTAR(levl[u.ux][u.uy].typ)) {
+		You("ascend back to the dungeon.");
+		u.freeplaytransit = TRUE;
+		if (u.uhave.amulet) { /* no longer need the amulet, now that you've won */
+			struct obj *otmpi, *otmpii;
+			if (invent) {
+				for (otmpi = invent; otmpi; otmpi = otmpii) {
+				      otmpii = otmpi->nobj;
+					if (otmpi->otyp == AMULET_OF_YENDOR) {							
+						if (otmpi->owornmask) {
+							setnotworn(otmpi);
+						}
+						dropx(otmpi);
+					}
+				}
+			}
+		}
+		goto_level(&medusa_level, TRUE, FALSE, FALSE);
+
+		register int newlevX = 1;
+		d_level newlevelX;
+		get_level(&newlevelX, newlevX);
+		goto_level(&newlevelX, TRUE, FALSE, FALSE);
+		u.freeplaytransit = FALSE;
+		return(0);
+	}
+
 	if( (u.ux != xupstair || u.uy != yupstair)
 	     && (!xupladder || u.ux != xupladder || u.uy != yupladder)
 	     && (!sstairs.sx || u.ux != sstairs.sx || u.uy != sstairs.sy
@@ -1659,7 +1686,7 @@ doup()
 		return(0);
 	}
 
-	if (NoStaircase && !u.uhave.amulet ) {
+	if (NoStaircase && (!u.uhave.amulet || u.freeplaymode)) {
 
 		pline(FunnyHallu ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
 		return(0);
@@ -1675,7 +1702,7 @@ doup()
 		u.youaredead = 0;
 	}
 
-	if (u.stairscumslowing && !u.uhave.amulet) {
+	if (u.stairscumslowing && (!u.uhave.amulet || u.freeplaymode)) {
 		pline("This stair is currently blocked and will reopen in %d turn%s.", u.stairscumslowing, u.stairscumslowing > 1 ? "s" : "");
 		return(0);
 	}
@@ -1711,13 +1738,18 @@ doup()
 	}
 	if(ledger_no(&u.uz) == 1) {
 
+		if (u.freeplaymode && !u.freeplayplanes) {
+			pline("Sorry. In order to re-visit the planes, you need to go to Moloch's Sanctum first.");
+			return 0;
+		}
+
 		if (u.uhave.amulet && !u.amuletcompletelyimbued) {
 			/* You were such a n00b and ignored all the messages telling you about the Yendorian Tower. */
 			com_pager(197);
 			return 0;
 		}
 
-		if (yn("Beware, there will be no return! Still climb?") != 'y')
+		if (!u.freeplaymode && yn("Beware, there will be no return! Still climb?") != 'y')
 			return(0);
 	}
 	if(!next_to_u()) {
@@ -1842,11 +1874,16 @@ boolean at_stairs, falling, portal;
 
 	if (dunlev(newlevel) > dunlevs_in_dungeon(newlevel))
 		newlevel->dlevel = dunlevs_in_dungeon(newlevel);
-	if (newdungeon && In_endgame(newlevel)) { /* 1st Endgame Level !!! */
+	if (newdungeon && In_endgame(newlevel) && !u.freeplaymode) { /* 1st Endgame Level !!! */
 		if (u.uhave.amulet)
 		    assign_level(newlevel, &earth_level);
 		else return;
 	}
+
+	if (!In_endgame(&u.uz) && In_endgame(newlevel) && u.freeplaymode && u.freeplayplanes) {
+		assign_level(newlevel, &earth_level);
+	}
+
 	new_ledger = ledger_no(newlevel);
 	if (new_ledger <= 0)
 		done(ESCAPED);	/* in fact < 0 is impossible */
@@ -1868,7 +1905,7 @@ boolean at_stairs, falling, portal;
 	 * comment by Amy: Yes, it definitely is. That's why I don't re-enable it...
 	 * except in evilvariant mode, because that one is deliberately designed to screw you over :P */
 
-	if ( ((Inhell && evilfriday && u.uhave.amulet) || (MysteriousForceActive || u.uprops[MYSTERIOUS_FORCE_EFFECT].extrinsic || have_forcestone())) && up && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
+	if ( ((Inhell && evilfriday && u.uhave.amulet && !u.freeplaymode) || (MysteriousForceActive || u.uprops[MYSTERIOUS_FORCE_EFFECT].extrinsic || have_forcestone())) && up && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
 		if (!rn2(4)) {
 			int odds = 3 + (int)u.ualign.type;          /* 2..4 */
 
@@ -1947,15 +1984,15 @@ boolean at_stairs, falling, portal;
 	 * for the level being left, to recover dynamic memory in use and
 	 * to avoid dangling timers and light sources.
 	 */
-	cant_go_back = (newdungeon && In_endgame(newlevel));
-	if (!cant_go_back) {
+	cant_go_back = /*(newdungeon && In_endgame(newlevel))*/FALSE;
+/*	if (!cant_go_back) {*/
 	    update_mlstmv();	/* current monsters are becoming inactive */
 	    bufon(fd);		/* use buffered output */
-	}
+/*	}*/
 	savelev(fd, ledger_no(&u.uz),
 		cant_go_back ? FREE_SAVE : (WRITE_SAVE | FREE_SAVE));
 	bclose(fd);
-	if (cant_go_back) {
+	if (/*cant_go_back*/0) { /* Amy edit: freeplay mode means we need to keep the levels around */
 	    /* discard unreachable levels; keep #0 */
 	    for (l_idx = maxledgerno(); l_idx > 0; --l_idx)
 		delete_levelfile(l_idx);
@@ -4300,7 +4337,7 @@ rerollchaloc:
 	    You("enter what seems to be an older, more primitive world.");
 #endif
 	/* Final confrontation */
-	if (In_endgame(&u.uz) && newdungeon && u.uhave.amulet)
+	if (In_endgame(&u.uz) && newdungeon && u.uhave.amulet && !u.freeplaymode)
 		resurrect();
 	if (newdungeon && In_V_tower(&u.uz) && In_hell(&u.uz0))
 		pline_The("heat and smoke are gone.");
@@ -4362,6 +4399,11 @@ final_level()
 	struct obj *otmp;
 	coord mm;
 	int i;
+
+	if (u.freeplaymode) {
+		pline("Welcome back to the Astral Plane. You have already ascended, so you no longer need the Amulet of Yendor. In order to go back to the regular dungeon, simply press < while standing on one of the high altars.");
+		return;
+	}
 
 	/* reset monster hostility relative to player */
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)

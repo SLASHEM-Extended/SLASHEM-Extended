@@ -2106,7 +2106,7 @@ nh_timeout()
 		u.legscratching++;
 	}
 
-	if (u.uluck != baseluck && !rn2(((u.uhave.amulet && u.amuletcompletelyimbued) || u.ugangr) ? 300 : 600) ) {
+	if (u.uluck != baseluck && !rn2(((u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued) || u.ugangr) ? 300 : 600) ) {
 	/* Cursed luckstones stop bad luck from timing out; blessed luckstones
 	 * stop good luck from timing out; normal luckstones stop both;
 	 * neither is stopped if you don't have a luckstone.

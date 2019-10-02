@@ -10110,6 +10110,7 @@ u_init()
 	u.contingencyturns = 0;
 	u.horsehopturns = 0;
 	u.ragnarokspelltimeout = 0;
+	u.freeplaymode = 0;
 
 	u.stoogedepth = 0;
 	if (!rn2(10)) {

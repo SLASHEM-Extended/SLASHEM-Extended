@@ -3439,7 +3439,7 @@ chargingchoice:
 		newlev.dlevel = dungeons[i].entry_lev;
 	    else
 		newlev.dlevel = dungeons[i].dunlev_ureached;
-	    if(u.uhave.amulet || CannotTeleport || In_endgame(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) || In_endgame(&newlev) ||
+	    if((u.uhave.amulet && !u.freeplaymode) || CannotTeleport || In_endgame(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) || In_endgame(&newlev) ||
 	       newlev.dnum == u.uz.dnum) {
 		You_feel("very disoriented for a moment.");
 	    } else {

@@ -10678,7 +10678,7 @@ skip0:
 		   avoided: maybe the player fell through a trap door
 		   while a monster was on the stairs. Conclusion:
 		   we have to check for monsters on the stairs anyway. */
-		if(u.uhave.amulet || !rn2(3)) {
+		if((u.uhave.amulet && !u.freeplaymode) || !rn2(3)) {
 		    x = somex(croom); y = somey(croom);
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
@@ -10687,7 +10687,7 @@ skip0:
 		    }
 		    if (ishomicider) (void) makerandomtrap_at(x, y);
 		}
-		if(ishaxor && (u.uhave.amulet || !rn2(3)) ) {
+		if(ishaxor && ((u.uhave.amulet && !u.freeplaymode) || !rn2(3)) ) {
 		    x = somex(croom); y = somey(croom);
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&

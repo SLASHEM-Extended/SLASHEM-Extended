@@ -18774,7 +18774,7 @@ register int	mmflags;
 
 	/* maybe generate a sleeping monster */
 
-	if (!rn2(Aggravate_monster ? 500 : 100) && (!u.uhave.amulet || (!u.amuletcompletelyimbued && rn2(3)))) mtmp->msleeping = 1;
+	if (!rn2(Aggravate_monster ? 500 : 100) && (!u.uhave.amulet || u.freeplaymode || (!u.amuletcompletelyimbued && rn2(3)))) mtmp->msleeping = 1;
 
 	if (ptr == &mons[PM_SLEEPING_GIANT]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_DEEP_SLEEPER]) mtmp->msleeping = 1;
@@ -20085,7 +20085,7 @@ register int	mmflags;
 			}
 		}
 
-	        if (rn2(2) && rn2(5) && (!u.uhave.amulet || (!u.amuletcompletelyimbued && rn2(3))) ) mtmp->msleeping = 1;
+	        if (rn2(2) && rn2(5) && (!u.uhave.amulet || u.freeplaymode || (!u.amuletcompletelyimbued && rn2(3))) ) mtmp->msleeping = 1;
 
 			break; /* fall through removed by Amy */
 
@@ -20103,7 +20103,7 @@ register int	mmflags;
 	        if (rn2(2))
 	          (void) mongets(mtmp, DAGGER);
 
-			if (rn2(5) && (!u.uhave.amulet || (!u.amuletcompletelyimbued && rn2(3)) )) mtmp->msleeping = 1;
+			if (rn2(5) && (!u.uhave.amulet || u.freeplaymode || (!u.amuletcompletelyimbued && rn2(3)) )) mtmp->msleeping = 1;
 
 			if (mndx == PM_PIXIE || mndx == PM_ELOPIXIE || mndx == PM_HIDING_PIXIE || mndx == PM_ARMPIXIE || mndx == PM_PIXIE_ARCHER) {        
   			    mtmp->perminvis = TRUE;
@@ -20297,7 +20297,7 @@ register int	mmflags;
 		if(((is_ndemon(ptr)) ||
 		    (mndx == PM_WUMPUS) ||
 		    (mndx == PM_LONG_WORM) ||
-		    (mndx == PM_GIANT_EEL)) && (!u.uhave.amulet || (!u.amuletcompletelyimbued && rn2(3)) ) && rn2(5))
+		    (mndx == PM_GIANT_EEL)) && (!u.uhave.amulet || u.freeplaymode || (!u.amuletcompletelyimbued && rn2(3)) ) && rn2(5))
 			mtmp->msleeping = 1;
 	} else {
 		if(byyou) {
@@ -24419,7 +24419,7 @@ register struct permonst *ptr;
 	if (sgn(mal) != sgn(ual)) return FALSE;
 
 	/* Negative monster hostile to player with Amulet. */
-	if (mal < A_NEUTRAL && u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) ) return FALSE;
+	if (mal < A_NEUTRAL && u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5)) ) return FALSE;
 
 	/* minions are hostile to players that have strayed at all */
 	/* and they can also be hostile to players with good alignment --Amy */

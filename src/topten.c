@@ -411,6 +411,8 @@ static long encodexlogflags(void) {
 		tmp |= 1L << 0;
 	if (discover)
 		tmp |= 1L << 1;
+	if (u.freeplaymode)
+		tmp |= 1L << 2;
 
 	return tmp;
 }
@@ -584,13 +586,13 @@ int how;
          }
 #endif /* XLOGFILE */
 
-	if (wizard || discover) {
+	if (wizard || discover || u.freeplaymode) {
 	    if (how != PANICKED) HUP {
 		char pbuf[BUFSZ];
 		topten_print("");
 		sprintf(pbuf,
 	      "Since you were in %s mode, the score list will not be checked.",
-		    wizard ? "wizard" : "discover");
+		    wizard ? "wizard" : u.freeplaymode ? "freeplay" : "discover");
 		topten_print(pbuf);
 #ifdef DUMP_LOG
 		if (dump_fn[0]) {

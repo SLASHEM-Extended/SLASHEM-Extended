@@ -826,6 +826,7 @@ int how;
 {
 	boolean taken;
 	boolean goexplore = FALSE;
+	boolean gofreeplay = FALSE;
 	char kilbuf[BUFSZ], pbuf[BUFSZ];
 #ifdef EPITAPH
 	char ebuf[BUFSZ];
@@ -836,6 +837,7 @@ int how;
 	long umoney;
 	struct obj *otmp, *otmp2;
 	int  n;
+	char buf[BUFSZ];
 
 	boolean wanttodie = 0;
 
@@ -1429,6 +1431,28 @@ rodneydone:
 	  }
 	}
 
+	if (how == ASCENDED) {
+		/* Amy edit: allow the player to keep their character and go on playing if they ascend! */
+freeplaycheck:
+		if (yn("CONGRATULATIONS!!! You've beaten the game. You can go on playing now if you want. Do you want to keep playing your character?") == 'y') {
+
+			getlin ("Please confirm your choice with yes [y/yes/no]",buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) { /* yes, do go on playing after ascending */
+
+				gofreeplay = TRUE;
+
+			} else goto freeplaycheck;
+
+		} else {
+			getlin ("Please confirm your choice with yes [y/yes/no]",buf);
+			(void) lcase (buf);
+			if (strcmp (buf, "yes") && strcmp (buf, "y")) goto freeplaycheck;
+			/* else the game ends here */
+		}
+
+	}
+
     /*
      *	The game is now over...
      */
@@ -1436,7 +1460,7 @@ rodneydone:
 die:
 	if(u.uhpmax <= 0) u.uhpmax = 1; /* fixing a VERY annoying dump_techniques SIGFPE */
 	u.hangupcheat = 0;
-	if (!goexplore) {
+	if (!goexplore && !gofreeplay) {
 	program_state.gameover = 1;
 	/* in case of a subsequent panic(), there's no point trying to save */
 	program_state.something_worth_saving = 0;
@@ -1513,7 +1537,7 @@ die:
 	/* I'll allow you to see this message if you die on your second turn, too. --Amy */
 
 	if (have_windows) wait_synch();	/* flush screen output */
-	if (!goexplore) {
+	if (!goexplore && !gofreeplay) {
 #ifndef NO_SIGNAL
 	(void) signal(SIGINT, (SIG_RET_TYPE) done_intr);
 # if defined(UNIX) || defined(VMS) || defined (__EMX__)
@@ -1587,7 +1611,7 @@ die:
 	    clearpriests();
 	} else	taken = FALSE;	/* lint; assert( !bones_ok ); */
 
-	if (!goexplore) {
+	if (!goexplore && !gofreeplay) {
 	clearlocks();
 
 	if (have_windows) display_nhwindow(WIN_MESSAGE, FALSE);
@@ -1621,7 +1645,52 @@ die:
 	    u.urexp += 50L * (long)(deepest - 1);
 	    if (deepest > 20)
 		u.urexp += 1000L * (long)((deepest > 30) ? 10 : deepest - 20);
-	    if (how == ASCENDED) u.urexp *= 2L;
+	    if (how == ASCENDED) {
+		u.urexp *= 2L;
+
+		if (gofreeplay) {
+
+			discover = FALSE; /* a kludge to fool the topten function.. */
+			topten(how);
+			umoney -= hidden_gold();
+			if (u.urexp > 1) u.urexp /= 2;
+			u.urexp -= tmp;
+			u.urexp -= 50L * (long)(deepest - 1);
+			vision_reset();
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			(void)doredraw();
+			u.freeplaymode = TRUE;
+			u.freeplaytransit = TRUE;
+			u.freeplayplanes = FALSE;
+
+			if (u.uhave.amulet) { /* no longer need the amulet, now that you've won */
+				struct obj *otmpi, *otmpii;
+				if (invent) {
+					for (otmpi = invent; otmpi; otmpi = otmpii) {
+					      otmpii = otmpi->nobj;
+						if (otmpi->otyp == AMULET_OF_YENDOR) {							
+							if (otmpi->owornmask) {
+								setnotworn(otmpi);
+							}
+							dropx(otmpi);
+						}
+					}
+				}
+			}
+			goto_level(&medusa_level, TRUE, FALSE, FALSE);
+
+			register int newlevX = 1;
+			d_level newlevelX;
+			get_level(&newlevelX, newlevX);
+			goto_level(&newlevelX, TRUE, FALSE, FALSE);
+			u.freeplaytransit = FALSE;
+			pline("You find yourself back in the dungeon. Since you've officially won the game, you can freely explore now. If you want to go back to the Elemental Planes, you have to visit Moloch's Sanctum first. You can also retire (commit suicide) when you are ready.");
+
+			return;
+
+		}
+
+	    }
 	    if (goexplore) {
 	      discover = FALSE; /* a kludge to fool the topten function.. */
 	      topten(how);
@@ -1637,9 +1706,9 @@ die:
 	      killer = 0;
 	      killer_format = 0;
 	      vision_reset();
-	      return;
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		(void)doredraw();
+	      return;
 	    }
 	}
 

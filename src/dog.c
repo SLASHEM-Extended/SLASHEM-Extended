@@ -904,8 +904,9 @@ boolean pets_only;	/* true for ascension or final escape */
 	    mtmp2 = mtmp->nmon;
 	    if (DEADMONSTER(mtmp)) continue;
 	    if (pets_only && !mtmp->mtame) continue;
+	    if (u.freeplaytransit && !mtmp->mtame) continue;
 
-	    if (mtmp && !program_state.gameover && isok(u.ux, u.uy) && extraradius && mtmp->mtame && levl_follower(mtmp) && (distu(mtmp->mx, mtmp->my) < (4 + extraradius))) {
+	    if (mtmp && !program_state.gameover && !u.freeplaytransit && isok(u.ux, u.uy) && extraradius && mtmp->mtame && levl_follower(mtmp) && (distu(mtmp->mx, mtmp->my) < (4 + extraradius))) {
 		sprintf(qbuf, "You can take %s with you. Do it?", noit_mon_nam(mtmp));
 		qbufdefined = 1;
 	    }
@@ -916,6 +917,7 @@ boolean pets_only;	/* true for ascension or final escape */
 			/* come on, if you ascend then all tame monsters should ascend with you. --Amy */
 			|| (mtmp->mtame && (achieve.ascended))
 #endif
+			|| (mtmp->mtame && u.freeplaytransit)
 
 			|| (mtmp && !(program_state.gameover) && qbufdefined && isok(u.ux, u.uy) && extraradius && mtmp->mtame && levl_follower(mtmp) && (distu(mtmp->mx, mtmp->my) < (4 + extraradius)) && (yn(qbuf) == 'y') ) ||
 			(mtmp == u.usteed) ||

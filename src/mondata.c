@@ -714,7 +714,7 @@ struct monst *mtmp;
 	/* stalking types follow, but won't when fleeing unless you hold
 	   the Amulet */
 	return (boolean)( ((mtmp->data->mflags2 & M2_STALK) || (!rn2(20) && !is_nonmoving(mtmp->data) && mtmp->data->msound != MS_LEADER) && !mtmp->isshk && !mtmp->ispriest) &&
-				(!mtmp->mflee || u.uhave.amulet)); /* non-stalking monsters occasionally follow too --Amy */
+				(!mtmp->mflee || (u.uhave.amulet && !u.freeplaymode))); /* non-stalking monsters occasionally follow too --Amy */
 }
 
 static const short grownups[][2] = {
