@@ -7833,6 +7833,26 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_MATURE_WEARER]) {
 			 (void) mongets(mtmp, SOFT_SNEAKERS);
 		}
+		if (mtmp->data == &mons[PM_ZOMBIE_GIRL]) {
+			 (void) mongets(mtmp, SHORT_SWORD);
+		}
+		if (mtmp->data == &mons[PM_GOTHIC]) {
+			 (void) mongets(mtmp, KATANA);
+			 (void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 50);
+		}
+		if (mtmp->data == &mons[PM_REAL_NECRO_LANCER]) {
+			 (void) mongets(mtmp, LANCE);
+		}
+		if (mtmp->data == &mons[PM_REQUIEM]) {
+			 (void) mongets(mtmp, LONG_SWORD);
+			 (void) mongets(mtmp, SNIPER_RIFLE);
+			 m_initthrow(mtmp, BULLET, 50);
+		}
+		if (mtmp->data == &mons[PM_ZOMBIE_QUEEN]) {
+			 (void) mongets(mtmp, BULLWHIP);
+			 m_initthrow(mtmp, FRAG_GRENADE, 20);
+		}
 		if (mtmp->data == &mons[PM_SKELETON_HERO]) {
 			 (void) mongets(mtmp, TWO_HANDED_SWORD);
 		}

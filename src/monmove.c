@@ -240,7 +240,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
