@@ -23851,6 +23851,7 @@ int type;
 		case PM_FANTASTIC_GOLEM: return 300;
 		case PM_BLUEBEAM_GOLEM: return 500;
 		case PM_MEGACLASH_GOLEM: return 800;
+		case PM_LIVING_DOLL: return 150;
 
 		case PM_BABY_SHOE: return 10;
 		case PM_KARAKASA: return 30;
