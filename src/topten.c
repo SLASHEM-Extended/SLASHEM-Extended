@@ -1576,6 +1576,7 @@ gamemode_strcode()
     static char string[BUFSZ];
     *string = '\0';
 
+	if (u.freeplaymode) sprintf(eos(string), "freeplay");
 	if (flags.gehenna) sprintf(eos(string), "gehenna");
 	if (flags.dudley) sprintf(eos(string), "dudley");
 	if (flags.iwbtg) sprintf(eos(string), "iwbtg");
@@ -1589,7 +1590,7 @@ gamemode_strcode()
 	if (flags.wonderland) sprintf(eos(string), "wonderland");
 	if (flags.zapem) sprintf(eos(string), "zapm");
 
-	if (!(flags.gehenna) && !(flags.dudley) && !(flags.gmmode) && !(flags.supergmmode) && !(flags.iwbtg) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
+	if (!u.freeplaymode && !(flags.gehenna) && !(flags.dudley) && !(flags.gmmode) && !(flags.supergmmode) && !(flags.iwbtg) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
 
     return (string);
 }
