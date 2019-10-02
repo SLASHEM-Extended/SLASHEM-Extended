@@ -261,11 +261,32 @@ getlock()
 			}
 			if (c == 'j' || c == 'J') {
 
-				if(eraseoldlocks())
-					goto gotlock;
-				else {
-					unlock_file_area(HLOCK_AREA, HLOCK);
-					error("Couldn't destroy old game.");
+				/* another layer of security because j and n are very close to each other --Amy
+				 * (no, y and n aren't close to each other, y is of course to the left of x, i.e. far away :P) */
+				if(iflags.window_inited) {
+					c = yn_function("ARE YOU *REALLY* SURE??? Press 'p' to delete your game", "np", 'n');
+				} else {
+				    (void) printf("\nARE YOU *REALLY* SURE??? Press 'p' to delete your game\n");
+				    (void) printf("\n  p - REALLY delete your game (THIS IS PERMANENT)");
+				    (void) printf("\n  n - Cancel");
+				    (void) printf("\n  ");
+				    (void) printf("\n\n  => ");
+				    (void) fflush(stdout);
+				    do {
+					c = getchar();
+				    } while (!index("jJnN", c) && c != -1);
+				    (void) printf("\e[7A"); /* cursor up 7 */
+				    (void) printf("\e[J"); /* clear from cursor down */
+				}
+
+				if (c == 'p' || c == 'P') {
+
+					if(eraseoldlocks())
+						goto gotlock;
+					else {
+						unlock_file_area(HLOCK_AREA, HLOCK);
+						error("Couldn't destroy old game.");
+					}
 				}
 			} else {
 			unlock_file_area(HLOCK_AREA, HLOCK);
