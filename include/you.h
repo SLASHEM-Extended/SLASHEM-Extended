@@ -1579,6 +1579,7 @@ struct you {
 
 	boolean freeplaymode;	/* set to 1 if you ascend and decide to go on playing */
 	boolean freeplaytransit;	/* set to 1 if you're supposed to be transported back to dlvl1 and hang up or so */
+	boolean freeplayplanes;	/* set to 1 once you visit the sanctum and thereby re-enable the ability to visit the planes */
 
 	/* extra statistics: some of these display with #conduct, others only at the end of your game --Amy */
 	int cnd_applycount;	/* how often you applied items */
