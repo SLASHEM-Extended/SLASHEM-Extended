@@ -5155,6 +5155,8 @@ static const char *epitaphs[] = {
 	"jesus kicking is broken", /* by Demo; kicking Jesus is really overpowered because he won't fight back */
 	"There is a strange bug in nethack. Sometimes it seems when you have the amulet and go upstairs in Gehennom, you instead go a level down again, and this happens randomly so you have to do it over and over and over and over and over and over again. Surely this cannot be intended??? I mean who would think of something that stupid?", /* by stenno */
 	"slex is for people who just hate themselves or feel they deserve punishment for something", /* by K2 */
+	"At last this character died, so I can finally roll a new one. Thanks RNG!",
+	"I got so bored with this character that I was hoping a monster would kill me, but it just didn't want to happen, so I threw my char away on purpose by eating Envy's corpse. Because I'm such a noob who would actually forfeit the chance to score a SLEX ascension for such a petty reason.",
 
 };
 

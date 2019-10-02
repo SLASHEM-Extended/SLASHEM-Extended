@@ -24251,6 +24251,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"It makes a curious noise.",
 	"Asmodeus demands 10000 zorkmids for decryption of your files!",
 	"You finally open the tin.  It smells like piranhas.  Eat it?  (y/n)  y  You feel feverish.",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Temizlik Allah'in guenue buetuen kafirler cezalandirmak ve ilk bu sapkin kadin olacak!'",
+	"The giant is squished to death by his hobbit-sized banded mail!",
+	"Above these fleecy hieroglyphics was a figure of evidently fleecy intent, though its fleecy execution forbade a very fleecy idea of its nature.",
+	"every 7th 'fleecy' has to be accompanied with 'bundles'", /* hahaha this one is also by K2 */
 
 };
 

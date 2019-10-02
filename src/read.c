@@ -809,6 +809,7 @@ doread()
 	"I'm not burdened by a too low carry capacity and I won't play any variant that doesn't have slex-level carry caps for the player character. Because I want to spend my time actually PLAYING the game, not doing a tedious inventory management chore that is more work than the work I'm getting PAID to do in real life.",
 	"My car has 400 HP and a filter gear shift!",
 	"I want to be hurt by the estellen zippers!",
+	"I am Connor MacLeod of the Clan MacLeod. I was born in 1518 in the village of Glenfinnan on the shores of Loch Shiel. And I am immortal.",
 
 	    };
 	    char buf[BUFSZ];
