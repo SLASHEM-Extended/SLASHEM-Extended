@@ -2039,7 +2039,10 @@ dosacrifice()
     } /* corpse */
 
     if (otmp->otyp == AMULET_OF_YENDOR) {
-	if (!Is_astralevel(&u.uz)) {
+	if (u.freeplaymode) {
+	    pline("You've ascended already. No need to offer the amulet again.");
+	    return 1;
+	} else if (!Is_astralevel(&u.uz)) {
 	    if (FunnyHallu)
 		    You_feel("homesick.");
 	    else
