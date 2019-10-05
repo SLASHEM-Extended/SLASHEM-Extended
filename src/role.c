@@ -4930,6 +4930,21 @@ const struct Race races[] = {
 	{  8, 0,  0, 3,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  3, 0 }		/* Energy */
 },
+{	"blait", "blait", "black and white", "Bla",
+	{0, 0},
+	PM_BLAIT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"borg", "borg", "borgship", "Bor",
 	{0, 0},
 	PM_BORG, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5370,6 +5385,21 @@ const struct Race races[] = {
 	{  4, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
 },
+{	"dynamo", "dynamo", "dynamo headquarters", "Dyn",
+	{0, 0},
+	PM_PLAYER_DYNAMO, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"egymid", "egymid", "egymides", "Egy",
 	{0, 0},
 	PM_EGYMID, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5607,6 +5637,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"gavil", "gavilish", "devil's gate", "Gav",
+	{0, 0},
+	PM_GAVIL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(22), 18, 20, 20, 21, 16 },
+	/* Init   Lower  Higher */
+	{  5, 0,  0, 5,  3, 0 },	/* Hit points */
+	{  3, 0,  5, 0,  5, 0 }		/* Energy */
 },
 {	"gelatinous cube", "gelatinous", "cubic gelatine", "Gel",
 	{0, 0},
@@ -5932,6 +5977,21 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"hypothermic", "hypothermic", "hypothermia", "Hyp",
+	{0, 0},
+	PM_HYPOTHERMIC, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 19, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"illithid", "illithid", "mindflayerhood", "Ill",
 	{0, 0},
 	PM_ILLITHID, NON_PM, PM_DWARF_MUMMY, PM_DWARF_ZOMBIE,
@@ -6079,6 +6139,21 @@ const struct Race races[] = {
 	{  STR18(100), 18, 18, 18, 20, 19 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 5,  5, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"irritator", "irritator", "irritation", "Irr",
+	{0, 0},
+	PM_IRRITATOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 18, 17 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"itaque", "itaque", "itaquely", "Ita",
@@ -6584,6 +6659,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  4, 0,  4, 0 }		/* Energy */
+},
+{	"nemesis", "nemesis", "quest nemesis land", "Nem",
+	{0, 0},
+	PM_NEMESIS, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  7, 0,  0, 7,  7, 0 },	/* Hit points */
+	{  7, 0,  7, 0,  7, 0 }		/* Energy */
 },
 {	"nord", "nordish", "nordhood", "Nor",
 	{0, 0},
@@ -7163,6 +7253,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"spammer", "spammer", "spam mail folder", "Spm",
+	{0, 0},
+	PM_SPAMMER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"spard", "spard", "spardin", "Spa",
 	{0, 0},
@@ -8254,7 +8359,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(34)) {
+			switch (rnd(35)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -8324,12 +8429,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybriddorian = 1; break;
 				case 34:
 					flags.hybridtechless = 1; break;
+				case 35:
+					flags.hybridblait = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(34)) {
+				switch (rnd(35)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -8432,6 +8539,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 34:
 						if (!(flags.hybridtechless)) {flags.hybridtechless = 1; flags.hybridization++; break;
+						}
+					case 35:
+						if (!(flags.hybridblait)) {flags.hybridblait = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -8589,7 +8699,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(34)) {
+			switch (rnd(35)) {
 
 			case 1:
 				if (flags.hybridangbander) {
@@ -8863,6 +8973,14 @@ int type;
 					pline("You no longer have the techless hybrid race.");
 				}
 				break;
+			case 35:
+				if (flags.hybridblait) {
+					tryct = 1000;
+					flags.hybridblait = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the blait hybrid race.");
+				}
+				break;
 
 			}
 
@@ -8872,7 +8990,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(34)) {
+			switch (rnd(35)) {
 
 			case 1:
 				if (!flags.hybridangbander) {
@@ -9144,6 +9262,14 @@ int type;
 					flags.hybridtechless = TRUE;
 					flags.hybridization++;
 					pline("You now have the techless hybrid race.");
+				}
+				break;
+			case 35:
+				if (!flags.hybridblait) {
+					tryct = 1000;
+					flags.hybridblait = TRUE;
+					flags.hybridization++;
+					pline("You now have the blait hybrid race.");
 				}
 				break;
 

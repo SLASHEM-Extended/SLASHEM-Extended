@@ -2838,6 +2838,11 @@ static struct trobj OgroItem[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj NemesisItem[] = {
+	{ TRIDENT, 7, WEAPON_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj BatmanItem[] = {
 	{ BOOMERANG, 0, WEAPON_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -17018,6 +17023,9 @@ u_init()
 	case PM_OGRO:
           ini_inv(OgroItem);
 		break;
+	case PM_NEMESIS:
+          ini_inv(NemesisItem);
+		break;
 	case PM_HERBALIST:	/* a racial version of the healer --Amy */
           ini_inv(HerbalistItem);
           ini_inv(HerbalistItemB);
@@ -17255,6 +17263,7 @@ u_init()
 	case PM_HC_ALIEN: racebounus = rnz(12); break;
 	case PM_MANSTER: racebounus = rnz(12); break;
 	case PM_RETICULAN: racebounus = rnz(15); break;
+	case PM_NEMESIS: racebounus = rnz(15); break;
 	case PM_OUTSIDER: racebounus = rnz(12); break;
 	case PM_WEAPON_BUG: racebounus = rnz(16); break;
 	case PM_BASTARD: racebounus = rnz(7); break;

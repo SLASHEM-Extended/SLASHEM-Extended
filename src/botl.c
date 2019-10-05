@@ -531,6 +531,7 @@ bot1()
 		if (flags.hybridbossrusher) sprintf(nb = eos(nb), "b");
 		if (flags.hybriddorian) sprintf(nb = eos(nb), "d");
 		if (flags.hybridtechless) sprintf(nb = eos(nb), "t");
+		if (flags.hybridblait) sprintf(nb = eos(nb), "l");
 	}
 
 	if (flags.showscore)

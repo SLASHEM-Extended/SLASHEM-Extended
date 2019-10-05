@@ -364,6 +364,7 @@ static struct Bool_Opt
 	{"hybridbossrusher", &flags.hybridbossrusher, FALSE, SET_IN_FILE}, 
 	{"hybriddorian", &flags.hybriddorian, FALSE, SET_IN_FILE}, 
 	{"hybridtechless", &flags.hybridtechless, FALSE, SET_IN_FILE}, 
+	{"hybridblait", &flags.hybridblait, FALSE, SET_IN_FILE}, 
 
 	{"randomhybrids", &flags.randomhybrids, TRUE, DISP_IN_GAME},
 
@@ -1675,6 +1676,9 @@ boolean tinitial, tfrom_file;
 		flags.hybridization++;
 	}
 	if (match_optname(opts, "hybridtechless", 14, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridblait", 11, FALSE)) {
 		flags.hybridization++;
 	}
 

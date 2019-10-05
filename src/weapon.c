@@ -707,41 +707,49 @@ struct monst *mon;
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    /* blunt weapons versus undead (Diablo 2) */
@@ -1426,41 +1434,49 @@ struct monst *mon;
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == DIFFICULT_TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
 		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
+		   if (Race_if(PM_NEMESIS)) bonus += 20;
 	    }
 
 		if (!(PlayerCannotUseSkills)) {
@@ -6794,6 +6810,19 @@ rerollthree:
 			else P_MAX_SKILL(P_JAVELIN) = P_SUPREME_MASTER;
 		}
 
+	}
+
+	if (Race_if(PM_NEMESIS)) {
+		if (P_RESTRICTED(P_TRIDENT)) {
+			P_SKILL(P_TRIDENT) = P_UNSKILLED;
+			P_ADVANCE(P_TRIDENT) = 0;
+			P_MAX_SKILL(P_TRIDENT) = P_EXPERT;
+		} else {
+			P_SKILL(P_TRIDENT) = P_BASIC;
+			if (P_MAX_SKILL(P_TRIDENT) == P_EXPERT) P_MAX_SKILL(P_TRIDENT) = P_MASTER;
+			else if (P_MAX_SKILL(P_TRIDENT) == P_MASTER) P_MAX_SKILL(P_TRIDENT) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_TRIDENT) = P_SUPREME_MASTER;
+		}
 	}
 
 	if (Race_if(PM_FRO)) {

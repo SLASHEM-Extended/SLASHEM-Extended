@@ -1913,7 +1913,7 @@ struct monst *victim;
     char buf[BUFSZ];
     int mat_idx;
 
-
+	if (victim == &youmonst && Race_if(PM_HYPOTHERMIC)) return 0;
 
 	if ((victim == &youmonst) && !rn2(2) ) make_burned(HBurned + rnd(20 + (monster_difficulty() * 5) ),TRUE);
     
@@ -7285,7 +7285,7 @@ newbossPENT:
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
@@ -7345,7 +7345,7 @@ newbossPENT:
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
@@ -7387,7 +7387,7 @@ newbossPENT:
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
@@ -7453,7 +7453,7 @@ newbossPENT:
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
@@ -7499,7 +7499,7 @@ newbossPENT:
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
@@ -7562,7 +7562,7 @@ newbossPENT:
 			case 3: /* ice */
 			if(Cold_resistance) dmg = 0;
 			if (!rn2(10)) make_frozen(HFrozen + (dmg * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */  destroy_item(POTION_CLASS, AD_COLD);
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
@@ -15342,7 +15342,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
                int num = d(2,4);
                if (thitm(0, mtmp, (struct obj *)0, num, FALSE))
                  trapkilled = TRUE;
-               else if (!rn2(33))
+               else if (!rn2(Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33))
                 (void) destroy_mitem(mtmp, POTION_CLASS, AD_COLD);
                }
            if (see_it) seetrap(trap);
@@ -16715,7 +16715,7 @@ struct obj *box;        /* at the moment only for floor traps */
         else
                 losehp(num, "freezing cloud", KILLED_BY_AN);
 			if (!rn2(10)) make_frozen(HFrozen + (num * 5), TRUE); /* randomly freeze the player --Amy */
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */        destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */        destroy_item(POTION_CLASS, AD_COLD);
 }
 
 STATIC_OVL void
@@ -19896,6 +19896,7 @@ lava_effects()
     if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
     if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) return FALSE;
     if (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) return FALSE;
+    if (Race_if(PM_HYPOTHERMIC)) return FALSE;
 
     if (!Fire_resistance) {
 

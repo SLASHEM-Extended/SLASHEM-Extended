@@ -603,6 +603,7 @@ draw_horizontal(int x, int y, int hp, int hpmax)
 		if (flags.hybridbossrusher) wprintw(win, "b");
 		if (flags.hybriddorian) wprintw(win, "d");
 		if (flags.hybridtechless) wprintw(win, "t");
+		if (flags.hybridblait) wprintw(win, "l");
 	}
 
     if (flags.showscore)

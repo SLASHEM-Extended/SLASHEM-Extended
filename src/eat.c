@@ -211,6 +211,7 @@ cannibal_allowed()
 		case PM_SHOE:
 		case PM_PLAYER_SALAMANDER:
 		case PM_VORTEX:
+		case PM_GAVIL:
 		case PM_CORTEX:
 		case PM_PLAYER_ANDROID:
 		case PM_RETICULAN:

@@ -5405,7 +5405,7 @@ const char *
 hcolor(colorpref)
 const char *colorpref;
 {
-	return (Hallucination || !colorpref) ?
+	return (Hallucination || isblait || !colorpref) ?
 		hcolors[rn2(SIZE(hcolors))] : colorpref;
 }
 

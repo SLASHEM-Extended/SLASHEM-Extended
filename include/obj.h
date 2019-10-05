@@ -76,6 +76,7 @@ struct obj {
 	Bitfield(bknown,1);	/* blessing or curse known */
 	Bitfield(rknown,1);	/* rustproof or not known */
 	Bitfield(petmarked,1);	/* pets will not drop this --Amy */
+	Bitfield(nemtrident,1);	/* nemesis race PC has wielded this --Amy */
 
 	Bitfield(oeroded,2);	/* rusted/burnt weapon/armor */
 	Bitfield(oeroded2,2);	/* corroded/rotted weapon/armor */

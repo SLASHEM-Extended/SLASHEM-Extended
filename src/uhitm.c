@@ -741,6 +741,8 @@ register struct monst *mtmp;
 	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
 	if (Race_if(PM_INHERITOR) && !rn2(100)) tmp -= 20;
 
+	if (Race_if(PM_NEMESIS) && !is_swimmer(mtmp->data) && !is_waterypool(mtmp->mx, mtmp->my) ) tmp -= rnd(10);
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
@@ -4418,9 +4420,14 @@ demonpet()
 	int i;
 	struct permonst *pm;
 	struct monst *dtmp;
+	int tries = 0;
 
 	pline("Some hell-p has arrived!");
 	i = !rn2(6) ? ndemon(u.ualign.type) : NON_PM;
+	if (Race_if(PM_GAVIL) && !Upolyd) {
+		i = ndemon(u.ualign.type);
+		while (tries++ < 50000 && i == NON_PM) i = ndemon(u.ualign.type);
+	}
 	pm = i != NON_PM ? &mons[i] : youmonst.data;
 	if ((dtmp = makemon(pm, u.ux, u.uy, MM_NOSPECIALS)) != 0)
 	    (void)tamedog(dtmp, (struct obj *)0, FALSE);
@@ -4576,10 +4583,11 @@ register struct attack *mattk;
 	if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 	if (need_four(mdef)  && enchantlvl < 4 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 
-	if (is_demon(youmonst.data) && !rn2(23) && !uwep && !(Race_if(PM_BORG) && !Upolyd)
+	if ((is_demon(youmonst.data) || (Race_if(PM_GAVIL) && !Upolyd) ) && !rn2(23) && !(Race_if(PM_BORG) && !Upolyd)
 		&& u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS
 		&& u.umonnum != PM_BALROG && u.umonnum != PM_NEWS_DAEMON
 		&& u.umonnum != PM_PRINTER_DAEMON) {
+
 	    demonpet();
 	    return(0);
 	}
@@ -10360,6 +10368,9 @@ boolean ranged;
 		}
 		break;
 	      case AD_COLD:		/* brown mold or blue jelly */
+
+		if (Race_if(PM_GAVIL)) tmp *= 2;
+		if (Race_if(PM_HYPOTHERMIC)) tmp *= 3;
 		if(monnear(mon, u.ux, u.uy)) {
 		    if(Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
@@ -10391,8 +10402,10 @@ boolean ranged;
 	      case AD_ICEB:
 			You("are hit by a barrage of ice blocks!");
 			if (issoviet) pline("BWAR KHAR (gryaznyy smekh) on on on kha kha kha!");
-		    make_frozen(HFrozen + (long)tmp, TRUE);
-			if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
+			if (Race_if(PM_GAVIL)) tmp *= 2;
+			if (Race_if(PM_HYPOTHERMIC)) tmp *= 3;
+			make_frozen(HFrozen + (long)tmp, TRUE);
+			if (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) {
 				destroy_item(POTION_CLASS, AD_COLD);
 			}
 			if (!rn2(StrongCold_resistance ? 20 : 5) || !Cold_resistance) mdamageu(mon, tmp);

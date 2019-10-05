@@ -1785,6 +1785,7 @@ int artif;
 	otmp->fakeartifact = 0;
 	otmp->enchantment = 0;
 	otmp->finalcancel = 0;
+	otmp->nemtrident = 0;
 
 	otmp->shirtmessage = rnd(1000000);
 	/* for use in read.c (shirts only) - since items can be polymorphed, set it for everything, including non-shirts */

@@ -765,6 +765,8 @@ moveloop()
 
 			}
 
+			if (Race_if(PM_PLAYER_DYNAMO) && u.copwantedlevel < 1000) u.copwantedlevel += 1000;
+
 			if (moves == u.ascensionfirsthint) {
 
 				if (u.freeplaymode) {
@@ -2097,6 +2099,15 @@ moveloop()
 		}
 
 		if (RngeLoudspeakers && !rn2(100)) {
+			pline("%s", fauxmessage());
+			u.cnd_plineamount++;
+			if (!rn2(3)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
+		}
+
+		if (Race_if(PM_SPAMMER) && !rn2(100)) {
 			pline("%s", fauxmessage());
 			u.cnd_plineamount++;
 			if (!rn2(3)) {
@@ -10382,6 +10393,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridbossrusher) sprintf(eos(xtrabuf), "bossrusher ");
 	if (flags.hybriddorian) sprintf(eos(xtrabuf), "dorian ");
 	if (flags.hybridtechless) sprintf(eos(xtrabuf), "techless ");
+	if (flags.hybridblait) sprintf(eos(xtrabuf), "blait ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;

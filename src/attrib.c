@@ -756,6 +756,16 @@ const struct innate {
 	azt_abil[] = { { 1, &(HFast), "", "" },
 			{   0, 0, 0, 0 } },
 
+	irr_abil[] = { { 1, &(HFree_action), "", "" },
+		     {	 1, &(HShock_resistance), "", "" },
+			{   0, 0, 0, 0 } },
+
+	hyp_abil[] = { { 1, &(HFire_resistance), "", "" },
+			{   0, 0, 0, 0 } },
+
+	dyn_abil[] = { { 1, &(HShock_resistance), "", "" },
+			{   0, 0, 0, 0 } },
+
 	jav_abil[] = { { 1, &(HFire_resistance), "", "" },
 		     {	 1, &(HPoison_resistance), "", "" },
 		     {	 1, &(HSick_resistance), "", "" },
@@ -2037,6 +2047,9 @@ int oldlevel, newlevel;
 
 	switch (Race_switch) {
 	case PM_AZTPOK:	rabil = azt_abil;	break;
+	case PM_IRRITATOR:	rabil = irr_abil;	break;
+	case PM_HYPOTHERMIC:	rabil = hyp_abil;	break;
+	case PM_PLAYER_DYNAMO:	rabil = dyn_abil;	break;
 	case PM_JAVA:	rabil = jav_abil;	break;
 	case PM_CHIQUAI:	rabil = chi_abil;	break;
 	case PM_GREURO:	rabil = gru_abil;	break;

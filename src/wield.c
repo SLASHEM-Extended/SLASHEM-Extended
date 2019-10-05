@@ -117,6 +117,13 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 
 	if (!cancurseshit) goto cursingdone;
 
+	if (uwep && objects[uwep->otyp].oc_skill == P_TRIDENT && Race_if(PM_NEMESIS) && !uwep->nemtrident && uwep->spe < 1) {
+		uwep->nemtrident = 1;
+		uwep->spe += rne(2);
+		pline_The("trident glows in your %s for a moment.", body_part(HAND));
+		if (uwep->spe > 120) uwep->spe = 120; /* fail safe */
+	}
+
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;

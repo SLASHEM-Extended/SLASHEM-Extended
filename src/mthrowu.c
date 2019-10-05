@@ -377,6 +377,13 @@ const char *name;	/* if null, then format `obj' */
 			else pline("Your force field causes %s to miss you.", onm);
 			return(0);
 
+	} else if (Race_if(PM_PLAYER_DYNAMO) && !rn2(3)) {
+
+			if(Blind || !flags.verbose) pline("You absorb a projectile.");
+			else pline("You absorb %s.", onm);
+			healup(rnd(u.ulevel), 0, FALSE, FALSE);
+			return(0);
+
 	} else if (!rn2(extrachance) && rnd(30) < (2 + (GushLevel / 2) ) ) {
 
 			/* depending on your character level, you may be able to dodge --Amy */

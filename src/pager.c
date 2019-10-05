@@ -24261,6 +24261,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are bound by a whip. And the person using it on you is a very fleeeeeeecy woman! <3",
 	"You do not give offerings to the god of the future.",
 	"You do not give offerings to the god of the future. And strangely enough, you can't give offerings to gods of the present, either.",
+	"The trident glows in your hand for a moment.",
+	"You can't pay because no one wants to accept payment by you, criminal.",
 
 };
 

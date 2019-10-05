@@ -2159,7 +2159,7 @@ mattacku(mtmp)
 		case AT_HUGS:	/* automatic if prev two attacks succeed */
 			/* Note: if displaced, prev attacks never succeeded */
 		/* Note by Amy: come on, allow it to hit sometimes even if there are no previous attacks (shambling horror)! */
-		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
+		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(Race_if(PM_IRRITATOR) ? 4 : 20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
 				if ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) sum[i]= hitmu(mtmp, mattk);
 				}
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
@@ -5996,11 +5996,13 @@ hitmu(mtmp, mattk)
 		if (statsavingthrow) break;
 		pline("You are hit by ice blocks!");
 		if (issoviet) pline("KHA KHA KHA!");
+		if (Race_if(PM_GAVIL)) dmg *= 2;
+		if (Race_if(PM_HYPOTHERMIC)) dmg *= 3;
 		if(!mtmp->mcan && !rn2(3)) {
 		    make_frozen(HFrozen + dmg, TRUE);
 		    dmg /= 2;
 		}
-		if (!mtmp->mcan && (isevilvariant || !rn2(issoviet ? 2 : 10)) ) {
+		if (!mtmp->mcan && (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) ) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 		if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {
@@ -6124,7 +6126,9 @@ hitmu(mtmp, mattk)
 			dmg = 0;
 		    }
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (Race_if(PM_GAVIL)) dmg *= 2;
+		    if (Race_if(PM_HYPOTHERMIC)) dmg *= 3;
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		} /*else dmg = 0;*/
 		break;
@@ -6615,7 +6619,9 @@ dopois:
 			pline_The("frost doesn't seem cold!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (Race_if(PM_GAVIL)) dmg *= 2;
+		    if (Race_if(PM_HYPOTHERMIC)) dmg *= 3;
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 		if (uncancelled) {
@@ -12274,8 +12280,10 @@ do_stone2:
 			}
 		    } else tmp = 0;
 
+		    if (Race_if(PM_GAVIL)) tmp *= 2;
+		    if (Race_if(PM_HYPOTHERMIC)) tmp *= 3;
 		    make_frozen(HFrozen + tmp, TRUE);
-		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
+		    if (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		    }
 
@@ -12676,8 +12684,10 @@ boolean ufound;
 	    case AD_ICEB:
 		if (issoviet) pline("KHA KHA KHA KHA KHA KHA KHA.");
 		not_affected |= Cold_resistance;
+		if (Race_if(PM_GAVIL)) tmp *= 2;
+		if (Race_if(PM_HYPOTHERMIC)) tmp *= 3;
 		make_frozen(HFrozen + tmp, TRUE);
-		if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
+		if (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 		goto common;
@@ -17211,7 +17221,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline_The("cold doesn't freeze you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 
 		    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
@@ -17248,8 +17258,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline_The("cold doesn't freeze you!");
 			dmg = 0;
 		    }
+		    if (Race_if(PM_GAVIL)) dmg *= 2;
+		    if (Race_if(PM_HYPOTHERMIC)) dmg *= 3;
 		    /*if ((int) mtmp->m_lev > rn2(20))*/
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
@@ -17316,10 +17328,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    int dmg = d(3,6);
 		    if (!rn2(10)) dmg += dmgplus;
 
+		    if (Race_if(PM_GAVIL)) dmg *= 2;
+		    if (Race_if(PM_HYPOTHERMIC)) dmg *= 3;
+
 		    if(!rn2(3)) {
 			    make_frozen(HFrozen + dmg, TRUE);
 		    }
-		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
+		    if (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10)) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		    }
 		    if (Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) {

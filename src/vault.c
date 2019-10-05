@@ -258,7 +258,7 @@ fnd:
 		return;
 	}
 
-    if((Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_ALBAE)) && !Upolyd) {
+    if((Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_ALBAE) || Race_if(PM_PLAYER_DYNAMO)) && !Upolyd) {
         setmangry(guard);
         verbalize("I saw your pic on the wanted poster!");
 		if (!MON_WEP(guard)) {

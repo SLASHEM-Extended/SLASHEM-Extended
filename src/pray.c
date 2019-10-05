@@ -262,6 +262,7 @@ canofferownrace()
 		case PM_METAL:
 		case PM_SHELL:
 		case PM_CORTEX:
+		case PM_GAVIL:
 		case PM_PLAYER_ANDROID:
 		case PM_RETICULAN:
 		case PM_OUTSIDER:
@@ -1257,6 +1258,11 @@ pleased(g_align)
 	int trouble = in_trouble();	/* what's your worst difficulty? */
 	int pat_on_head = 0, kick_on_butt;
 
+	if (Race_if(PM_NEMESIS) && !rn2(4)) { /* aww, you got unlucky... */
+		You_feel("that %s is noncommittal.", align_gname(g_align));
+		goto setprayertimeout;
+	}
+
 	You_feel("that %s is %s.", align_gname(g_align),
 	    u.ualign.record >= DEVOUT ?
 	    FunnyHallu ? "pleased as punch" : "well-pleased" :
@@ -1498,6 +1504,7 @@ pleased(g_align)
 	    break;
 	}
 
+setprayertimeout:
 	if (!((uarmc && itemhasappearance(uarmc, APP_STORM_COAT)) && !rn2(2))) u.ublesscnt = rnz(ishaxor ? 175 : 350);
 	kick_on_butt = (u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) ? 1 : 0;
 	if (u.uevent.uhand_of_elbereth) kick_on_butt++;

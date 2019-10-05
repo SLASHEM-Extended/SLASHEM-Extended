@@ -5972,8 +5972,10 @@ boolean ordinary;
 		    } else {
 			You("imitate a popsicle!");
 			damage = d(12,6);
+			if (Race_if(PM_GAVIL)) damage *= 2;
+			if (Race_if(PM_HYPOTHERMIC)) damage *= 3;
 		    }
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 			break;
 
@@ -6041,8 +6043,10 @@ boolean ordinary;
 		    } else {
 			You("imitate an ice block!");
 			damage = d(12,12);
+			if (Race_if(PM_GAVIL)) damage *= 2;
+			if (Race_if(PM_HYPOTHERMIC)) damage *= 3;
 		    }
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 			u_slow_down();
 
@@ -6059,8 +6063,10 @@ boolean ordinary;
 		    } else {
 			You("imitate a popsicle!");
 			damage = d(12,6);
+			if (Race_if(PM_GAVIL)) damage *= 2;
+			if (Race_if(PM_HYPOTHERMIC)) damage *= 3;
 		    }
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 		    break;
 
@@ -6074,8 +6080,10 @@ boolean ordinary;
 		    } else {
 			You("imitate an ice block!");
 			damage = d(24,6);
+			if (Race_if(PM_GAVIL)) damage *= 2;
+			if (Race_if(PM_HYPOTHERMIC)) damage *= 3;
 		    }
-		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 			u_slow_down();
 
@@ -8381,8 +8389,10 @@ xchar sx, sy;
 		ugolemeffects(AD_COLD, d(nd, 6));
 	    } else {
 		dam = d(nd, 6);
+		if (Race_if(PM_GAVIL)) dam *= 2;
+		if (Race_if(PM_HYPOTHERMIC)) dam *= 3;
 	    }
-	    if (isevilvariant || !rn2(issoviet ? 15 : 75)) destroy_item(POTION_CLASS, AD_COLD);
+	    if (isevilvariant || !rn2(issoviet ? 15 : Race_if(PM_GAVIL) ? 15 : Race_if(PM_HYPOTHERMIC) ? 15 : 75)) destroy_item(POTION_CLASS, AD_COLD);
 	    break;
 	case ZT_SLEEP:
 	    if (Sleep_resistance && rn2(StrongSleep_resistance ? 20 : 5)) {
@@ -9851,6 +9861,10 @@ register int osym, dmgtyp;
 				skip++;
 				break;
 			}
+			if (Race_if(PM_HYPOTHERMIC)) {
+				skip++;
+				break;
+			}
 
 			if (osym==SCROLL_CLASS && obj->oartifact)
 			skip++;
@@ -9886,6 +9900,12 @@ register int osym, dmgtyp;
 		    break;
 		case AD_ELEC:
 		    xresist = (Shock_resistance && obj->oclass != RING_CLASS);
+
+			if (Race_if(PM_PLAYER_DYNAMO)) {
+				skip++;
+				break;
+			}
+
 		    quan = obj->quan;
 		    switch(osym) {
 			case RING_CLASS:

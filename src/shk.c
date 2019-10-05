@@ -1289,6 +1289,10 @@ register struct monst *shkp;
 int
 dopay()
 {
+	if (Race_if(PM_PLAYER_DYNAMO)) {
+		You("can't pay because no one wants to accept payment by you, criminal.");
+		return 0;
+	}
 
 	if (MenuIsBugged) {
 	pline("The pay command is currently unavailable!");
@@ -2713,7 +2717,7 @@ speak:
 	    }
 	    strcpy(buf, "\"For you, ");
 	    if (ANGRY(shkp)) strcat(buf, "scum ");
-	    else if (Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_ALBAE) ) strcat(buf, "criminal ");
+	    else if (Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_ALBAE) || Race_if(PM_PLAYER_DYNAMO) ) strcat(buf, "criminal ");
 	    else {
 		static const char *honored[5] = {
 		  "good", "honored", "most gracious", "esteemed",

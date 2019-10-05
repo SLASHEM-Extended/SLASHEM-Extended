@@ -6861,6 +6861,10 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, LEAD_BULLET, 50);
 			 m_initthrow(mtmp, LEAD_BULLET, 50);
 		}
+		if (ptr == &mons[PM_PLAYER_DYNAMO]) {
+			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
 
 		if (ptr == &mons[PM_RESERVE_MARINE]) {
 			(void) mongets(mtmp, CHAIN_MAIL);
@@ -11347,6 +11351,11 @@ register struct	monst	*mtmp;
 			else 	(void) maketrap(mtmp->mx, mtmp->my, rn2(2) ? FART_TRAP : HEEL_TRAP, 0);
 		}
 		break;
+
+	    case S_NEMESE:
+		if (mtmp->data == &mons[PM_NEMESIS]) (void) mongets(mtmp, TRIDENT);
+		break;
+
 	    case S_FLYFISH:
 
 		if (mtmp->data == &mons[PM_FLYSH_EEL]) (void) mongets(mtmp, SCR_DIVING);
@@ -20692,7 +20701,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -21787,6 +21796,9 @@ loopback:
 		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_CHAO))) ct += 2;
 		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_ILLU) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_FEMI) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_PLAYER_DYNAMO) && (ptr->mlet == S_KOP) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_PLAYER_DYNAMO) && (ptr->msound == MS_ARREST) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_NEMESIS) && always_hostile(ptr) )) ct += 10;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -21959,7 +21971,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Race_if(PM_PLAYER_DYNAMO) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -22830,6 +22842,8 @@ int     spc;
 		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_CHAO))) num += 2;
 		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_ILLU) )) num += 2;
 		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_FEMI) )) num += 1;
+		if ((Race_if(PM_PLAYER_DYNAMO) && (mons[last].msound == MS_ARREST) )) num += 5;
+		if ((Race_if(PM_NEMESIS) && always_hostile(&mons[last]) )) num += 10;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -23589,6 +23603,8 @@ int     spc;
 		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_CHAO))) num -= 2;
 		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_ILLU) )) num -= 2;
 		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_FEMI) )) num -= 1;
+		if ((Race_if(PM_PLAYER_DYNAMO) && (mons[first].msound == MS_ARREST) )) num -= 5;
+		if ((Race_if(PM_NEMESIS) && always_hostile(&mons[first]) )) num -= 10;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 
@@ -24427,7 +24443,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 
-	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
+	if (Race_if(PM_ALBAE) || Race_if(PM_NEMESIS) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) return FALSE;
