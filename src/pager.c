@@ -24255,6 +24255,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"The giant is squished to death by his hobbit-sized banded mail!",
 	"Above these fleecy hieroglyphics was a figure of evidently fleecy intent, though its fleecy execution forbade a very fleecy idea of its nature.",
 	"every 7th 'fleecy' has to be accompanied with 'bundles'", /* hahaha this one is also by K2 */
+	"The slithering whip wraps you in its magic coils!",
+	"The whip cannot seem to keep a hold on you.",
+	"You are bound by a whip.",
+	"You are bound by a whip. And the person using it on you is a very fleeeeeeecy woman! <3",
 
 };
 
