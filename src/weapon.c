@@ -5452,7 +5452,7 @@ struct obj *weapon;
 
 	/* damage bonus for using racial equipment */
 
-	if ((Race_if(PM_ELF) || Role_if(PM_ELPH)) && weapon && (weapon->otyp == ELVEN_DAGGER || weapon->otyp == ELVEN_BOW || weapon->otyp == ELVEN_ARROW || weapon->otyp == ELVEN_SPEAR || weapon->otyp == ELVEN_SHORT_SWORD || weapon->otyp == HIGH_ELVEN_WARSWORD || weapon->otyp == ELVEN_BROADSWORD) ) bonus += 1;
+	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && weapon && (weapon->otyp == ELVEN_DAGGER || weapon->otyp == ELVEN_BOW || weapon->otyp == ELVEN_ARROW || weapon->otyp == ELVEN_SPEAR || weapon->otyp == ELVEN_SHORT_SWORD || weapon->otyp == HIGH_ELVEN_WARSWORD || weapon->otyp == ELVEN_BROADSWORD) ) bonus += 1;
 	if ((Race_if(PM_DROW) || Role_if(PM_TWELPH)) && weapon && (weapon->otyp == DARK_ELVEN_DAGGER || weapon->otyp == DROVEN_CROSSBOW || weapon->otyp == DROVEN_BOLT || weapon->otyp == DROVEN_BOW || weapon->otyp == DROVEN_ARROW || weapon->otyp == DARK_ELVEN_ARROW || weapon->otyp == DARK_ELVEN_BOW || weapon->otyp == DARK_ELVEN_SHORT_SWORD) ) bonus += 1;
 	if (Race_if(PM_ORC) && weapon && (weapon->otyp == ORCISH_DAGGER || weapon->otyp == ORCISH_BOW || weapon->otyp == ORCISH_ARROW || weapon->otyp == ORCISH_SPEAR || weapon->otyp == ORCISH_SHORT_SWORD ) ) bonus += 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && weapon && (weapon->otyp == DWARVISH_SHORT_SWORD || weapon->otyp == DWARVISH_SPEAR) ) bonus += 1;
@@ -6680,6 +6680,17 @@ rerollthree:
 			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_SKILLED;
 			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
 			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+
+		}
+	}
+
+	if (Race_if(PM_HERALD)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_SKILLED;
+			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
+			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
 
 		}
 	}

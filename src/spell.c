@@ -11121,6 +11121,7 @@ int spell;
 
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) chance -= 10;
 	if (RngeDnethack) chance -= 10;
+	if (Race_if(PM_INHERITOR)) chance -= 10;
 	if (RngeUnnethack) chance -= 33;
 
 	/* Clamp to percentile */
@@ -11136,6 +11137,7 @@ int spell;
 		chance *= 5;
 		chance /= 6;
 	}
+	if (Race_if(PM_INHERITOR)) chance--;
 
 	if (RememberanceEffect || u.uprops[REMEMBERANCE_EFFECT].extrinsic || have_rememberancestone()) {
 		if (chance > (spellknow(spell) / 100)) chance = (spellknow(spell) / 100);

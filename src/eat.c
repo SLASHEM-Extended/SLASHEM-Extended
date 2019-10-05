@@ -212,6 +212,9 @@ cannibal_allowed()
 		case PM_PLAYER_SALAMANDER:
 		case PM_VORTEX:
 		case PM_CORTEX:
+		case PM_PLAYER_ANDROID:
+		case PM_RETICULAN:
+		case PM_OUTSIDER:
 		case PM_HUMANOID_DEVIL:
 		case PM_MUMMY:
 		case PM_LICH_WARRIOR:
@@ -314,6 +317,9 @@ register struct obj *obj;
 
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
+
+	/* android can't either (anachrononononononist from dnethack who can only eat processed food) */
+	if (Race_if(PM_PLAYER_ANDROID) && obj->otyp == CORPSE && !Upolyd) return 0;
 
 	/* chewable potion randomized appearance is edible --Amy */
 	if (itemhasappearance(obj, APP_POTION_CHEWABLE)) return 1;

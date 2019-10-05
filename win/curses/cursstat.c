@@ -599,6 +599,10 @@ draw_horizontal(int x, int y, int hp, int hpmax)
 		if (flags.hybridaggravator) wprintw(win, "G");
 		if (flags.hybridevilvariant) wprintw(win, "T");
 		if (flags.hybridlevelscaler) wprintw(win, "s");
+		if (flags.hybridhallucinator) wprintw(win, "h");
+		if (flags.hybridbossrusher) wprintw(win, "b");
+		if (flags.hybriddorian) wprintw(win, "d");
+		if (flags.hybridtechless) wprintw(win, "t");
 	}
 
     if (flags.showscore)

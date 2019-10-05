@@ -656,6 +656,7 @@ register struct monst *mtmp;
 
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK) ) tmp -= 5;
 	if (RngeDnethack) tmp -= 5;
+	if (Race_if(PM_INHERITOR)) tmp -= 5;
 	if (RngeUnnethack) tmp -= 10;
 	if (u.twoweap && RngeNethackFourk) tmp -= rn1(10, 10);
 
@@ -737,6 +738,7 @@ register struct monst *mtmp;
 	if (u.tremblingamount) tmp -= rnd(u.tremblingamount);
 
 	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
+	if (Race_if(PM_INHERITOR) && !rn2(100)) tmp -= 20;
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
@@ -1938,7 +1940,7 @@ int dieroll;
 				    obj->otyp == YA && launcher->otyp == YUMI)
 				tmp++;
 
-				if (Race_if(PM_ELF)) {
+				if (Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR)) {
 				if (obj->otyp == ELVEN_ARROW &&
 					launcher->otyp == ELVEN_BOW) {
 				tmp++;
@@ -3005,6 +3007,8 @@ int dieroll;
 		tmp = 0;
 	    }
 	}
+
+	if (Race_if(PM_INHERITOR) && !rn2(100) && tmp > 1) tmp = 1;
 
 	if (mon->egotype_flickerer) {
 		pline("%s flickers and is impervious to melee and missile attacks!", Monnam(mon));

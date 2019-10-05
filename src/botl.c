@@ -527,6 +527,10 @@ bot1()
 		if (flags.hybriderosator) sprintf(nb = eos(nb), "e");
 		if (flags.hybridroommate) sprintf(nb = eos(nb), "r");
 		if (flags.hybridextravator) sprintf(nb = eos(nb), "g");
+		if (flags.hybridhallucinator) sprintf(nb = eos(nb), "h");
+		if (flags.hybridbossrusher) sprintf(nb = eos(nb), "b");
+		if (flags.hybriddorian) sprintf(nb = eos(nb), "d");
+		if (flags.hybridtechless) sprintf(nb = eos(nb), "t");
 	}
 
 	if (flags.showscore)

@@ -4556,6 +4556,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4575,6 +4577,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4594,6 +4598,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4612,6 +4618,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4630,6 +4638,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4648,6 +4658,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4666,6 +4678,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4684,6 +4698,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4702,6 +4718,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4720,6 +4738,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4738,6 +4758,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4756,6 +4778,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4774,6 +4798,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4792,6 +4818,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4810,6 +4838,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4831,6 +4861,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4851,6 +4883,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4871,6 +4905,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4891,6 +4927,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4911,6 +4949,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -4931,6 +4971,8 @@ register struct monst *mtmp;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;

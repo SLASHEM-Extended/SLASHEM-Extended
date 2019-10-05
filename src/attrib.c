@@ -827,6 +827,9 @@ const struct innate {
 	alc_abil[] = { {	 1, &(HAcid_resistance), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	and_abil[] = { {	 1, &(HDeath_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	ent_abil[] = { {	 1, &(HFull_nutrient), "", "" },
 		     {	 0, 0, 0, 0 } },
 
@@ -1048,6 +1051,21 @@ const struct innate {
 
 	ill_abil[] = { {  1, &(HTelepat), "", "" },
 		     {   0, 0, 0, 0 } },
+
+	ret_abil[] = { {	 1, &(HKeen_memory), "", "" },
+			{     10, &(HPsi_resist), "psionic", "less psionic"},
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
+		     {   0, 0, 0, 0 } },
+
+	out_abil[] = { {  1, &(HAcid_resistance), "", "" },
+		     {  1, &(HScentView), "", "" },
+		     {	10, &(HFear_resistance), "unafraid", "afraid" },
+		    { 15,  &(HInfravision), "perceptive", "half blind"},
+		     {   16, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
+		     {	18, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
+		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
+			{25, &(HMagical_breathing), "aquatic", "hydrophobic"  },
+		     {	 0, 0, 0, 0 } },  
 
 	spi_abil[] = { {  1, &(HPoison_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
@@ -2027,6 +2045,7 @@ int oldlevel, newlevel;
 	case PM_DWARF:		rabil = dwa_abil;	break;
 	case PM_PLAYER_SLIME:		rabil = slm_abil;	break;
 	case PM_DROW:
+	case PM_PLAYER_MYRKALFR:
 	case PM_ELF:            rabil = elf_abil;	break;
 	case PM_INCANTIFIER:            rabil = inc_abil;	break;
 	case PM_PLAYER_GREMLIN:            rabil = gre_abil;	break;
@@ -2041,6 +2060,8 @@ int oldlevel, newlevel;
 	case PM_TROLLOR:            rabil = tro_abil;	break;
 	case PM_SNAKEMAN:            rabil = sna_abil;	break;
 	case PM_ILLITHID:            rabil = ill_abil;	break;
+	case PM_RETICULAN:            rabil = ret_abil;	break;
+	case PM_OUTSIDER:            rabil = out_abil;	break;
 	case PM_SPIDERMAN:            rabil = spi_abil;	break;
 	case PM_WEAPON_CUBE:            rabil = gel_abil;	break;
 	case PM_INSECTOID:            rabil = ins_abil;	break;
@@ -2090,6 +2111,7 @@ int oldlevel, newlevel;
 	case PM_SYLPH:	rabil = syl_abil;	break;
 	case PM_SPRIGGAN:	rabil = spr_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
+	case PM_PLAYER_ANDROID:           rabil = and_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;
 	case PM_LOWER_ENT:	rabil = ent_abil;	break;

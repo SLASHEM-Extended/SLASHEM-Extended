@@ -8722,38 +8722,7 @@ newbossC:
 
 	case SCR_ARTIFACT_CREATION:
 		known = TRUE;
-
-		boolean havegiftsohgod = u.ugifts;
-
-		if (!havegiftsohgod) u.ugifts++;
-
-		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
-		if (acqo) {
-		    dropy(acqo);
-
-			if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
-			    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
-			} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
-				unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
-				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
-			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
-				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
-			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
-				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
-			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
-				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
-			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
-				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
-			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
-				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
-			}
-
-		    discover_artifact(acqo->oartifact);
-
-			if (!havegiftsohgod) u.ugifts--;
-			pline("An artifact appeared beneath you!");
-		}
-		else pline("Opportunity knocked, but nobody was home.  Bummer.");
+		giftartifact();
 
 		break;
 

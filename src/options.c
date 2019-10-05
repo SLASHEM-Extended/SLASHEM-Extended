@@ -330,36 +330,40 @@ static struct Bool_Opt
 
 	{"askforalias", &flags.askforalias, FALSE, DISP_IN_GAME}, 
 
-	{"hybridangbander", &flags.hybridangbander, FALSE, DISP_IN_GAME}, 
-	{"hybridaquarian", &flags.hybridaquarian, FALSE, DISP_IN_GAME}, 
-	{"hybridcurser", &flags.hybridcurser, FALSE, DISP_IN_GAME}, 
-	{"hybridhaxor", &flags.hybridhaxor, FALSE, DISP_IN_GAME}, 
-	{"hybridhomicider", &flags.hybridhomicider, FALSE, DISP_IN_GAME}, 
-	{"hybridsuxxor", &flags.hybridsuxxor, FALSE, DISP_IN_GAME}, 
-	{"hybridwarper", &flags.hybridwarper, FALSE, DISP_IN_GAME}, 
-	{"hybridrandomizer", &flags.hybridrandomizer, FALSE, DISP_IN_GAME}, 
-	{"hybridnullrace", &flags.hybridnullrace, FALSE, DISP_IN_GAME}, 
-	{"hybridmazewalker", &flags.hybridmazewalker, FALSE, DISP_IN_GAME}, 
-	{"hybridsoviet", &flags.hybridsoviet, FALSE, DISP_IN_GAME}, 
-	{"hybridxrace", &flags.hybridxrace, FALSE, DISP_IN_GAME}, 
-	{"hybridheretic", &flags.hybridheretic, FALSE, DISP_IN_GAME}, 
-	{"hybridsokosolver", &flags.hybridsokosolver, FALSE, DISP_IN_GAME}, 
-	{"hybridspecialist", &flags.hybridspecialist, FALSE, DISP_IN_GAME}, 
-	{"hybridamerican", &flags.hybridamerican, FALSE, DISP_IN_GAME}, 
-	{"hybridminimalist", &flags.hybridminimalist, FALSE, DISP_IN_GAME}, 
-	{"hybridnastinator", &flags.hybridnastinator, FALSE, DISP_IN_GAME}, 
-	{"hybridrougelike", &flags.hybridrougelike, FALSE, DISP_IN_GAME}, 
-	{"hybridsegfaulter", &flags.hybridsegfaulter, FALSE, DISP_IN_GAME}, 
-	{"hybridironman", &flags.hybridironman, FALSE, DISP_IN_GAME}, 
-	{"hybridamnesiac", &flags.hybridamnesiac, FALSE, DISP_IN_GAME}, 
-	{"hybridproblematic", &flags.hybridproblematic, FALSE, DISP_IN_GAME}, 
-	{"hybridwindinhabitant", &flags.hybridwindinhabitant, FALSE, DISP_IN_GAME}, 
-	{"hybridaggravator", &flags.hybridaggravator, FALSE, DISP_IN_GAME}, 
-	{"hybridevilvariant", &flags.hybridevilvariant, FALSE, DISP_IN_GAME}, 
-	{"hybridlevelscaler", &flags.hybridlevelscaler, FALSE, DISP_IN_GAME}, 
-	{"hybriderosator", &flags.hybriderosator, FALSE, DISP_IN_GAME}, 
-	{"hybridroommate", &flags.hybridroommate, FALSE, DISP_IN_GAME}, 
-	{"hybridextravator", &flags.hybridextravator, FALSE, DISP_IN_GAME}, 
+	{"hybridangbander", &flags.hybridangbander, FALSE, SET_IN_FILE}, 
+	{"hybridaquarian", &flags.hybridaquarian, FALSE, SET_IN_FILE}, 
+	{"hybridcurser", &flags.hybridcurser, FALSE, SET_IN_FILE}, 
+	{"hybridhaxor", &flags.hybridhaxor, FALSE, SET_IN_FILE}, 
+	{"hybridhomicider", &flags.hybridhomicider, FALSE, SET_IN_FILE}, 
+	{"hybridsuxxor", &flags.hybridsuxxor, FALSE, SET_IN_FILE}, 
+	{"hybridwarper", &flags.hybridwarper, FALSE, SET_IN_FILE}, 
+	{"hybridrandomizer", &flags.hybridrandomizer, FALSE, SET_IN_FILE}, 
+	{"hybridnullrace", &flags.hybridnullrace, FALSE, SET_IN_FILE}, 
+	{"hybridmazewalker", &flags.hybridmazewalker, FALSE, SET_IN_FILE}, 
+	{"hybridsoviet", &flags.hybridsoviet, FALSE, SET_IN_FILE}, 
+	{"hybridxrace", &flags.hybridxrace, FALSE, SET_IN_FILE}, 
+	{"hybridheretic", &flags.hybridheretic, FALSE, SET_IN_FILE}, 
+	{"hybridsokosolver", &flags.hybridsokosolver, FALSE, SET_IN_FILE}, 
+	{"hybridspecialist", &flags.hybridspecialist, FALSE, SET_IN_FILE}, 
+	{"hybridamerican", &flags.hybridamerican, FALSE, SET_IN_FILE}, 
+	{"hybridminimalist", &flags.hybridminimalist, FALSE, SET_IN_FILE}, 
+	{"hybridnastinator", &flags.hybridnastinator, FALSE, SET_IN_FILE}, 
+	{"hybridrougelike", &flags.hybridrougelike, FALSE, SET_IN_FILE}, 
+	{"hybridsegfaulter", &flags.hybridsegfaulter, FALSE, SET_IN_FILE}, 
+	{"hybridironman", &flags.hybridironman, FALSE, SET_IN_FILE}, 
+	{"hybridamnesiac", &flags.hybridamnesiac, FALSE, SET_IN_FILE}, 
+	{"hybridproblematic", &flags.hybridproblematic, FALSE, SET_IN_FILE}, 
+	{"hybridwindinhabitant", &flags.hybridwindinhabitant, FALSE, SET_IN_FILE}, 
+	{"hybridaggravator", &flags.hybridaggravator, FALSE, SET_IN_FILE}, 
+	{"hybridevilvariant", &flags.hybridevilvariant, FALSE, SET_IN_FILE}, 
+	{"hybridlevelscaler", &flags.hybridlevelscaler, FALSE, SET_IN_FILE}, 
+	{"hybriderosator", &flags.hybriderosator, FALSE, SET_IN_FILE}, 
+	{"hybridroommate", &flags.hybridroommate, FALSE, SET_IN_FILE}, 
+	{"hybridextravator", &flags.hybridextravator, FALSE, SET_IN_FILE}, 
+	{"hybridhallucinator", &flags.hybridhallucinator, FALSE, SET_IN_FILE}, 
+	{"hybridbossrusher", &flags.hybridbossrusher, FALSE, SET_IN_FILE}, 
+	{"hybriddorian", &flags.hybriddorian, FALSE, SET_IN_FILE}, 
+	{"hybridtechless", &flags.hybridtechless, FALSE, SET_IN_FILE}, 
 
 	{"randomhybrids", &flags.randomhybrids, TRUE, DISP_IN_GAME},
 
@@ -1659,6 +1663,18 @@ boolean tinitial, tfrom_file;
 		flags.hybridization++;
 	}
 	if (match_optname(opts, "hybridextravator", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridhallucinator", 18, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridbossrusher", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybriddorian", 12, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridtechless", 14, FALSE)) {
 		flags.hybridization++;
 	}
 

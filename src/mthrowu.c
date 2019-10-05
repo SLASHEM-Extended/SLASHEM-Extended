@@ -91,7 +91,7 @@ const char *name;	/* if null, then format `obj' */
 			break;
 		case ELVEN_SHIELD:
 			shieldblockrate = 20;
-			if (Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
+			if (Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
 			break;
 		case URUK_HAI_SHIELD:
 			shieldblockrate = 22;

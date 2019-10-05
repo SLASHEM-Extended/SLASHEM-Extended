@@ -9447,6 +9447,14 @@ u_init()
 	u.sjwL59E6 = rnd(235);
 	u.sjwL59E7 = rnd(235);
 
+	u.dorian4 = rnd(235);
+	u.dorian8 = rnd(235);
+	u.dorian12 = rnd(235);
+	u.dorian16 = rnd(235);
+	u.dorian20 = rnd(235);
+	u.dorian24 = rnd(235);
+	u.dorian28 = rnd(235);
+
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
 	u.adrunsattack = rnd(235); /* timerun etc. */
@@ -17246,6 +17254,8 @@ u_init()
 	case PM_LOWER_ENT: racebounus = rnz(12); break;
 	case PM_HC_ALIEN: racebounus = rnz(12); break;
 	case PM_MANSTER: racebounus = rnz(12); break;
+	case PM_RETICULAN: racebounus = rnz(15); break;
+	case PM_OUTSIDER: racebounus = rnz(12); break;
 	case PM_WEAPON_BUG: racebounus = rnz(16); break;
 	case PM_BASTARD: racebounus = rnz(7); break;
 	case PM_SOVIET: racebounus = rnd(5); break; /* note the rnd instead of rnz! */
@@ -30729,6 +30739,14 @@ int realityflag;
 	u.sjwL59E5 = rnd(235);
 	u.sjwL59E6 = rnd(235);
 	u.sjwL59E7 = rnd(235);
+
+	u.dorian4 = rnd(235);
+	u.dorian8 = rnd(235);
+	u.dorian12 = rnd(235);
+	u.dorian16 = rnd(235);
+	u.dorian20 = rnd(235);
+	u.dorian24 = rnd(235);
+	u.dorian28 = rnd(235);
 
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);

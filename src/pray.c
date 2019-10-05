@@ -262,6 +262,9 @@ canofferownrace()
 		case PM_METAL:
 		case PM_SHELL:
 		case PM_CORTEX:
+		case PM_PLAYER_ANDROID:
+		case PM_RETICULAN:
+		case PM_OUTSIDER:
 		case PM_HUMANOID_DEVIL:
 		case PM_MUMMY:
 		case PM_LICH_WARRIOR:
@@ -1795,6 +1798,11 @@ dosacrifice()
 	return 0;
     }
 
+    if (Race_if(PM_PLAYER_ANDROID)) {
+	You("do not give offerings to the god of the future.");
+	return 0;
+    }
+
     if (In_endgame(&u.uz)) {
 	if (!(otmp = getobj(sacrifice_types, "sacrifice"))) return 0;
     } else {
@@ -2076,6 +2084,8 @@ dosacrifice()
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -2507,6 +2517,13 @@ boolean praying;	/* false means no messages should be given */
 
     p_aligntyp = on_altar() ? a_align(u.ux,u.uy) : ( (Race_if(PM_HERETIC) || (Confusion && !rn2(StrongConf_resist ? 10000 : Conf_resist ? 1000 : 100) ) ) ? (!rn2(3) ? A_CHAOTIC : !rn2(2) ? A_NEUTRAL : A_LAWFUL ) : u.ualign.type);
     p_trouble = in_trouble();
+
+    if (Race_if(PM_PLAYER_ANDROID) && praying) { /* dnethack anachronononononononononononaut */
+	pline("There is but one god in the future, and to it you do not pray.");
+	if (FunnyHallu) pline("(The game is your dad, so if it tells you that you don't pray to this god, you really don't pray to it.)");
+	return FALSE;
+
+    }
 
     if (is_demon(youmonst.data) && (p_aligntyp != A_CHAOTIC) && !Race_if(PM_MAZKE) && !Race_if(PM_BORG) && !Race_if(PM_AUREAL) ) {
 	if (praying)

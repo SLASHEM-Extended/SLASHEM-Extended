@@ -5506,6 +5506,8 @@ newbossX:
 				achieve.imbued_bell = TRUE;
 				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 				if (RngeTeamSplat) pline("TROPHY GET!");
+				if (Race_if(PM_INHERITOR)) giftartifact();
+				if (Race_if(PM_HERALD)) heraldgift();
 
 				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 					u.uhpmax += 10;
@@ -5577,6 +5579,8 @@ newbossX:
 				achieve.imbued_amulet = TRUE;
 				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 				if (RngeTeamSplat) pline("TROPHY GET!");
+				if (Race_if(PM_INHERITOR)) giftartifact();
+				if (Race_if(PM_HERALD)) heraldgift();
 
 				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 					u.uhpmax += 10;
@@ -10310,7 +10314,7 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	/* prevent hangup cheating when special game modes haven't teleported you yet --Amy */
-	if ((flags.wonderland || iszapem || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game) u.youaredead = 1;
+	if ((flags.wonderland || iszapem || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) && new_game) u.youaredead = 1;
 
     if (!new_game) {
 
@@ -10362,6 +10366,10 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybriderosator) sprintf(eos(xtrabuf), "erosator ");
 	if (flags.hybridroommate) sprintf(eos(xtrabuf), "roommate ");
 	if (flags.hybridextravator) sprintf(eos(xtrabuf), "extravator ");
+	if (flags.hybridhallucinator) sprintf(eos(xtrabuf), "hallucinator ");
+	if (flags.hybridbossrusher) sprintf(eos(xtrabuf), "bossrusher ");
+	if (flags.hybriddorian) sprintf(eos(xtrabuf), "dorian ");
+	if (flags.hybridtechless) sprintf(eos(xtrabuf), "techless ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;
@@ -12632,7 +12640,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game && Race_if(PM_MAGYAR)) u.weapon_slots += 1000;
 
 	if (new_game) u.zapem_mode = 0;
-	if ((flags.zapem || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul) {
+	if ((flags.zapem || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul) {
 
 		if (!flags.zapem) u.zapem_mode = 1;
 

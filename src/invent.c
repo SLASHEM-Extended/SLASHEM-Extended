@@ -320,6 +320,8 @@ struct obj *obj;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -359,6 +361,8 @@ struct obj *obj;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -392,6 +396,8 @@ struct obj *obj;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -423,6 +429,8 @@ struct obj *obj;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -480,6 +488,8 @@ struct obj *obj;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -511,6 +521,8 @@ struct obj *obj;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -540,6 +552,8 @@ struct obj *obj;
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -1374,12 +1388,23 @@ sjwcheck(nastynumber)
 int nastynumber;
 {
 	int sjwlevel;
-	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) return FALSE;
+	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isdorian) return FALSE;
 
 	sjwlevel = u.ulevel + u.xtralevelmult - 1; /* because u.xtralevelmult starts at 1, not 0 */
 
 	while (sjwlevel > 59) sjwlevel -= 30; /* it goes from XL1 to 59 and then loops from 30 again */
 
+	if (isdorian) {
+		if (u.ulevel >= 4 && u.dorian4 == nastynumber) return TRUE;
+		if (u.ulevel >= 8 && u.dorian8 == nastynumber) return TRUE;
+		if (u.ulevel >= 12 && u.dorian12 == nastynumber) return TRUE;
+		if (u.ulevel >= 16 && u.dorian16 == nastynumber) return TRUE;
+		if (u.ulevel >= 20 && u.dorian20 == nastynumber) return TRUE;
+		if (u.ulevel >= 24 && u.dorian24 == nastynumber) return TRUE;
+		if (u.ulevel >= 28 && u.dorian28 == nastynumber) return TRUE;
+	}
+
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) {
 	switch (u.ulevel) {
 
 		case 1:
@@ -1815,7 +1840,8 @@ int nastynumber;
 			if (u.sjwL59E7 == nastynumber) return TRUE;
 			break;
 
-	}
+	} /* switch statement check */
+	} /* player is SJW check */
 
 	return FALSE;
 

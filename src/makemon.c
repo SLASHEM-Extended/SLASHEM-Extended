@@ -7194,8 +7194,24 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FRO]) {
 			(void)mongets(mtmp, AXE);
 		}
+		if (ptr == &mons[PM_BOSSRUSHER]) {
+			(void)mongets(mtmp, SCR_SUMMON_BOSS);
+		}
+		if (ptr == &mons[PM_DORIAN]) {
+			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		}
+		if (ptr == &mons[PM_INHERITOR]) {
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+		}
 		if (ptr == &mons[PM_FRANC]) {
 			(void)mongets(mtmp, SHARP_AXE);
+		}
+		if (ptr == &mons[PM_HERALD]) {
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 if (!rn2(2)) (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 if (!rn2(5)) (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
 		}
 		if (ptr == &mons[PM_BEGINNER]) {
 			(void)mongets(mtmp, SHORT_BLADE);
@@ -20137,6 +20153,7 @@ register int	mmflags;
 			}
 
 			if (Race_if(PM_ELF)) mtmp->mpeaceful = FALSE;
+			if (Race_if(PM_PLAYER_MYRKALFR)) mtmp->mpeaceful = FALSE;
 			break;
 		case S_UNICORN:
 
@@ -20668,7 +20685,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -21726,6 +21743,44 @@ loopback:
 		if (ct > 0 && (Race_if(PM_SHELL) && is_elonamonster(ptr) )) ct += 8;
 		if (ct > 0 && (Race_if(PM_SPIRIT) && dmgtype(ptr, AD_LEVI) )) ct += 2;
 
+		if (ct > 0 && (Race_if(PM_INHERITOR) && is_dnethackmonster(ptr) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_PLAYER_MYRKALFR) && is_dnethackmonster(ptr))) ct += 10;
+		if (ct > 0 && (Race_if(PM_PLAYER_MYRKALFR) && attacktype(ptr, AT_MAGC))) ct += 5;
+		if (ct > 0 && (Race_if(PM_PLAYER_ANDROID) && is_dnethackmonster(ptr))) ct += 15;
+		if (ct > 0 && (Race_if(PM_PLAYER_ANDROID) && dmgtype(ptr, AD_TERR) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_PLAYER_ANDROID) && (ptr->geno & G_NOCORPSE) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_RETICULAN) && is_evilpatchmonster(ptr))) ct += 7;
+		if (ct > 0 && (Race_if(PM_RETICULAN) && dmgtype(ptr, AD_DRIN))) ct += 2;
+		if (ct > 0 && (Race_if(PM_RETICULAN) && dmgtype(ptr, AD_NAST))) ct += 1;
+		if (ct > 0 && (Race_if(PM_RETICULAN) && dmgtype(ptr, AD_MINA))) ct += 1;
+		if (ct > 0 && (Race_if(PM_RETICULAN) && dmgtype(ptr, AD_RUNS))) ct += 1;
+		if (ct > 0 && (Race_if(PM_RETICULAN) && dmgtype(ptr, AD_INSA))) ct += 4;
+		if (ct > 0 && (Race_if(PM_RETICULAN) && dmgtype(ptr, AD_SANI))) ct += 6;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && is_evilpatchmonster(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && is_death_resistant(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && amorphous(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && thick_skinned(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && shapechanger(ptr))) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && always_hostile(ptr))) ct += 4;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && extra_nasty(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && strongmonst(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && cannot_be_tamed(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && is_mplayer(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && is_umplayer(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_DISN))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_LUCK))) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_INER))) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_NEXU))) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_LETH))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_UVUU))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_IDAM))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_TRAI))) ct += 1;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_SANI))) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_SAMU))) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_CHAO))) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_ILLU) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_FEMI) )) ct += 1;
+
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
@@ -21897,7 +21952,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -22731,6 +22786,44 @@ int     spc;
 		if ((Race_if(PM_SHELL) && is_elonamonster(&mons[last]) )) num += 8;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[last], AD_LEVI) )) num += 2;
 
+		if ((Race_if(PM_INHERITOR) && is_dnethackmonster(&mons[last]) )) num += 10;
+		if ((Race_if(PM_PLAYER_MYRKALFR) && is_dnethackmonster(&mons[last]))) num += 10;
+		if ((Race_if(PM_PLAYER_MYRKALFR) && attacktype(&mons[last], AT_MAGC))) num += 5;
+		if ((Race_if(PM_PLAYER_ANDROID) && is_dnethackmonster(&mons[last]))) num += 15;
+		if ((Race_if(PM_PLAYER_ANDROID) && dmgtype(&mons[last], AD_TERR) )) num += 1;
+		if ((Race_if(PM_PLAYER_ANDROID) && (mons[last].geno & G_NOCORPSE) )) num += 5;
+		if ((Race_if(PM_RETICULAN) && is_evilpatchmonster(&mons[last]))) num += 7;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[last], AD_DRIN))) num += 2;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[last], AD_NAST))) num += 1;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[last], AD_MINA))) num += 1;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[last], AD_RUNS))) num += 1;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[last], AD_INSA))) num += 4;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[last], AD_SANI))) num += 6;
+		if ((Race_if(PM_OUTSIDER) && is_evilpatchmonster(&mons[last]))) num += 5;
+		if ((Race_if(PM_OUTSIDER) && is_death_resistant(&mons[last]))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && amorphous(&mons[last]))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && thick_skinned(&mons[last]))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && shapechanger(&mons[last]))) num += 2;
+		if ((Race_if(PM_OUTSIDER) && always_hostile(&mons[last]))) num += 4;
+		if ((Race_if(PM_OUTSIDER) && extra_nasty(&mons[last]))) num += 5;
+		if ((Race_if(PM_OUTSIDER) && strongmonst(&mons[last]))) num += 3;
+		if ((Race_if(PM_OUTSIDER) && cannot_be_tamed(&mons[last]))) num += 3;
+		if ((Race_if(PM_OUTSIDER) && is_mplayer(&mons[last]))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && is_umplayer(&mons[last]))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_DISN))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_LUCK))) num += 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_INER))) num += 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_NEXU))) num += 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_LETH))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_UVUU))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_IDAM))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_TRAI))) num += 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_SANI))) num += 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_SAMU))) num += 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_CHAO))) num += 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_ILLU) )) num += 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[last], AD_FEMI) )) num += 1;
+
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
@@ -23451,6 +23544,44 @@ int     spc;
 		if ((Race_if(PM_SCURRIER) && dmgtype(&mons[first], AD_SHAN) )) num -= 2;
 		if ((Race_if(PM_SHELL) && is_elonamonster(&mons[first]) )) num -= 8;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[first], AD_LEVI) )) num -= 2;
+
+		if ((Race_if(PM_INHERITOR) && is_dnethackmonster(&mons[first]) )) num -= 10;
+		if ((Race_if(PM_PLAYER_MYRKALFR) && is_dnethackmonster(&mons[first]))) num -= 10;
+		if ((Race_if(PM_PLAYER_MYRKALFR) && attacktype(&mons[first], AT_MAGC))) num -= 5;
+		if ((Race_if(PM_PLAYER_ANDROID) && is_dnethackmonster(&mons[first]))) num -= 15;
+		if ((Race_if(PM_PLAYER_ANDROID) && dmgtype(&mons[first], AD_TERR) )) num -= 1;
+		if ((Race_if(PM_PLAYER_ANDROID) && (mons[first].geno & G_NOCORPSE) )) num -= 5;
+		if ((Race_if(PM_RETICULAN) && is_evilpatchmonster(&mons[first]))) num -= 7;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[first], AD_DRIN))) num -= 2;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[first], AD_NAST))) num -= 1;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[first], AD_MINA))) num -= 1;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[first], AD_RUNS))) num -= 1;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[first], AD_INSA))) num -= 4;
+		if ((Race_if(PM_RETICULAN) && dmgtype(&mons[first], AD_SANI))) num -= 6;
+		if ((Race_if(PM_OUTSIDER) && is_evilpatchmonster(&mons[first]))) num -= 5;
+		if ((Race_if(PM_OUTSIDER) && is_death_resistant(&mons[first]))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && amorphous(&mons[first]))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && thick_skinned(&mons[first]))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && shapechanger(&mons[first]))) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && always_hostile(&mons[first]))) num -= 4;
+		if ((Race_if(PM_OUTSIDER) && extra_nasty(&mons[first]))) num -= 5;
+		if ((Race_if(PM_OUTSIDER) && strongmonst(&mons[first]))) num -= 3;
+		if ((Race_if(PM_OUTSIDER) && cannot_be_tamed(&mons[first]))) num -= 3;
+		if ((Race_if(PM_OUTSIDER) && is_mplayer(&mons[first]))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && is_umplayer(&mons[first]))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_DISN))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_LUCK))) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_INER))) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_NEXU))) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_LETH))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_UVUU))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_IDAM))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_TRAI))) num -= 1;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_SANI))) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_SAMU))) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_CHAO))) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_ILLU) )) num -= 2;
+		if ((Race_if(PM_OUTSIDER) && dmgtype(&mons[first], AD_FEMI) )) num -= 1;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 

@@ -1195,6 +1195,14 @@ struct you {
 	int sjwL59E6;
 	int sjwL59E7;
 
+	int dorian4;
+	int dorian8;
+	int dorian12;
+	int dorian16;
+	int dorian20;
+	int dorian24;
+	int dorian28;
+
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];
 	char	starlit3[BUFSZ];

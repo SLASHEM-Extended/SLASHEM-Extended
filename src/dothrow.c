@@ -285,6 +285,7 @@ int thrown;
 	    /* ...or using their race's special bow */
 	    switch (Race_switch) {
 	    case PM_ELF:
+	    case PM_PLAYER_MYRKALFR:
 		if (obj->otyp == ELVEN_ARROW && launcher &&
 				launcher->otyp == ELVEN_BOW) multishot++;
 		break;
@@ -2000,6 +2001,7 @@ int thrown;
 	if (u.tremblingamount) tmp -= rnd(u.tremblingamount);
 
 	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
+	if (Race_if(PM_INHERITOR) && !rn2(100)) tmp -= 20;
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
@@ -2393,12 +2395,12 @@ int thrown;
 		     * especially their own special types of bow.
 		     * Polymorphing won't make you a bow expert.
 		     */
-		    if ((Race_if(PM_ELF) || Race_if(PM_DROW) ||
+		    if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Race_if(PM_DROW) ||
 		    		Role_if(PM_SAMURAI) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) &&
 				(!Upolyd || your_race(youmonst.data)) &&
 				objects[launcher->otyp].oc_skill == P_BOW) {
 			tmp++;
-			if (Race_if(PM_ELF) && launcher->otyp == ELVEN_BOW)
+			if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR)) && launcher->otyp == ELVEN_BOW)
 			tmp++;
 			/*else */if (Race_if(PM_DROW) && launcher->otyp == DARK_ELVEN_BOW)
 			    tmp++;

@@ -1609,6 +1609,8 @@ dodown()
 
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (Race_if(PM_INHERITOR)) giftartifact();
+			if (Race_if(PM_HERALD)) heraldgift();
 
 			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 				u.uhpmax += 10;
@@ -2072,6 +2074,8 @@ boolean at_stairs, falling, portal;
 				achieveX.swimmingpool_cleared = TRUE;
 				if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 				if (RngeTeamSplat) pline("TROPHY GET!");
+				if (Race_if(PM_INHERITOR)) giftartifact();
+				if (Race_if(PM_HERALD)) heraldgift();
 
 				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
 					u.uhpmax += 10;
@@ -2123,6 +2127,39 @@ boolean at_stairs, falling, portal;
 			angbandx = rn1(COLNO-3,2);
 			angbandy = rn2(ROWNO);
 			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE);
+		}
+
+		/* bossrusher race: spawn a boss at a random location whenever you enter a new level --Amy */
+		if (isbossrusher) {
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			{
+				int attempts = 0;
+				register struct permonst *ptrZ;
+newboss:
+				do {
+
+					ptrZ = rndmonst();
+					attempts++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+				} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+				if (ptrZ && ptrZ->geno & G_UNIQ) {
+					(void) makemon(ptrZ, 0, 0, MM_ANGRY);
+				}
+				else if (rn2(50)) {
+					attempts = 0;
+					goto newboss;
+				}
+
+			}
+
+			u.aggravation = 0;
+
 		}
 
 		if (uarmc && uarmc->oartifact == ART_T_O_M_E) {

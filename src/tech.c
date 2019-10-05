@@ -971,6 +971,15 @@ static const struct innate_tech
 			 {   10, T_BLOOD_RITUAL, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
+	and_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+			 {   10, T_CREATE_AMMO, 1},
+			 {   15, T_SKILLOMORPH, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+			 {   20, T_CHARGE_SABER, 1},
+		       {   0, 0, 0} },
 	dvp_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -1124,7 +1133,6 @@ static const struct innate_tech
 		       {   25, T_DRAW_ENERGY, 1},
 		       {   30, T_EGG_BOMB, 1},
 		       {   0, 0, 0} },
-
 	ung_tech[] = { {   1, T_WORLD_FALL, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
@@ -1212,6 +1220,20 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_BLINK, 1},
 		       {   25, T_JEDI_JUMP, 1},
+		       {   0, 0, 0} },
+
+	ret_tech[] = { {   1, T_REINFORCE, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_RESEARCH, 1},
+		       {   10, T_ZAP_EM, 1},
+		       {   10, T_CONCENTRATING, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_POWER_SURGE, 1},
+		       {   25, T_WONDERSPELL, 1},
+		       {   30, T_TELEKINESIS, 1},
 		       {   0, 0, 0} },
 
 	nor_tech[] = { {   1, T_BERSERK, 1},
@@ -1528,6 +1550,21 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
+	out_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+			 {   6, T_EVISCERATE, 1},
+			 {   10, T_ZAP_EM, 1},
+			 {   12, T_CRIT_STRIKE, 1},
+			 {   15, T_DASH, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+			 {   18, T_TELEKINESIS, 1},
+			 {   20, T_RESEARCH, 1},
+		       {   20, T_REINFORCE, 1},
+		       {   30, T_SKILLOMORPH, 1},
+		       {   0, 0, 0} },
+
 	trp_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -1721,6 +1758,8 @@ learntech(tech, mask, tlevel)
 	int i;
 	const struct innate_tech *tp;
 
+	if (istechless && tlevel >= 0) return; /* tough luck... --Amy */
+
 	i = get_tech_no(tech);
 	if (tlevel > 0) {
 	    if (i < 0) {
@@ -1805,10 +1844,12 @@ gettech(tech_no)
 
 	for (ntechs = i = 0; i < MAXTECH; i++)
 	    if (techid(i) != NO_TECH) ntechs++;
-	if (ntechs == 0)  {
+
+	/* display the menu anyway, because of vibrating square stuff --Amy */
+/*	if (ntechs == 0)  {
             You("don't know any techniques right now.");
 	    return FALSE;
-	}
+	}*/
 	if (flags.menu_style == MENU_TRADITIONAL) {
             if (ntechs == 1)  strcpy(lets, "a");
             else if (ntechs < 27)  sprintf(lets, "a-%c", 'a' + ntechs - 1);
@@ -7929,6 +7970,7 @@ race_tech()
 		case PM_DOPPELGANGER:	return (dop_tech);
 		case PM_DWARF:		return (dwa_tech);
 		case PM_ELF:
+		case PM_PLAYER_MYRKALFR:
 		case PM_DROW:		return (elf_tech);
 		case PM_CURSER:		return (cur_tech);
 		case PM_CLOCKWORK_AUTOMATON:		return (clk_tech);
@@ -7936,6 +7978,8 @@ race_tech()
 		case PM_FENEK:		return (fen_tech);
 		case PM_LOWER_ENT:		return (ent_tech);
 		case PM_NORD:		return (nor_tech);
+		case PM_RETICULAN:		return (ret_tech);
+		case PM_OUTSIDER:		return (out_tech);
 		case PM_LICH_WARRIOR:		return (lic_tech);
 		case PM_ALBAE:		return (alb_tech);
 		case PM_VORTEX:		return (vor_tech);
@@ -7944,6 +7988,7 @@ race_tech()
 		case PM_ANCIPITAL:		return (anc_tech);
 		case PM_DEEP_ELF:		return (dee_tech);
 		case PM_DEVELOPER:		return (dvp_tech);
+		case PM_PLAYER_ANDROID:		return (and_tech);
 		case PM_FAWN:		return (faw_tech);
 		case PM_PLAYER_GREMLIN:		return (gre_tech);
 		case PM_STICKER:		return (sti_tech);
