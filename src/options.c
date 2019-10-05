@@ -3078,6 +3078,12 @@ goodfruit:
 			    return;
 			}
 
+			if (iflags.debug_fuzzer && !initial) {
+                		/* don't randomly toggle this/these */
+                		if (boolopt[i].addr == &flags.silent) return TRUE;
+				if (boolopt[i].addr == &flags.ins_chkpt) return TRUE;
+			}
+
 			*(boolopt[i].addr) = !negated;
 
 			duplicate_opt_detection(boolopt[i].name, 0);

@@ -78,6 +78,8 @@ static const char *COMSPEC =
 int
 dosh()
 {
+	if (iflags.debug_fuzzer) return 0;
+
 	extern char orgdir[];
 	char *comspec;
 # ifndef __GO32__

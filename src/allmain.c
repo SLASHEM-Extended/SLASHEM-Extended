@@ -9927,10 +9927,10 @@ past3:
 	}
 
 #ifdef WIZARD
-	if (iflags.sanity_check)
+	if (iflags.sanity_check || iflags.debug_fuzzer)
 	    sanity_check();
 #elif defined(OBJ_SANITY)
-	if (iflags.sanity_check)
+	if (iflags.sanity_check || iflags.debug_fuzzer)
 	    obj_sanity_check();
 #endif
 

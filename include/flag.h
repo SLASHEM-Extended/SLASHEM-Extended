@@ -262,6 +262,7 @@ struct instance_flags {
     boolean  classic_status;    /* What kind of horizontal statusbar to use */
     boolean  cursesgraphics;    /* Use portable curses extended characters */
 #endif
+	boolean  debug_fuzzer;	/* fuzz testing */
 	boolean  DECgraphics;	/* use DEC VT-xxx extended character set */
 	boolean  echo;		/* 1 to echo characters */
 	boolean  IBMgraphics;	/* use IBM extended character set */

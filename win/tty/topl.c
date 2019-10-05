@@ -235,6 +235,8 @@ more()
     /* avoid recursion -- only happens from interrupts */
     if(ttyDisplay->inmore++)
 	return;
+    if (iflags.debug_fuzzer)
+	return;
 
 	if (youmonst.data && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
 

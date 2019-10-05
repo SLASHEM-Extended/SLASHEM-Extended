@@ -182,6 +182,7 @@ E const char * shorten_bot2(const char *, unsigned int);
 
 /* ### cmd.c ### */
 
+E char randomkey(void);
 #ifdef USE_TRAMPOLI
 E int doextcmd(void);
 E int domonability(void);

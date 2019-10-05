@@ -473,9 +473,11 @@ tgetch()
     DWORD count;
     if (!cmode) {
 	char c;
+	if (iflags.debug_fuzzer) return randomkey();
 	return ReadFile(hConIn,&c,1,&count,NULL) && count ? c : EOF;
     } else {
 	really_move_cursor();
+	if (iflags.debug_fuzzer) return randomkey();
 	return pCheckInput(hConIn, &ir, &count, iflags.num_pad, 0, &mod, &cc);
     }
 }
@@ -490,9 +492,11 @@ int *x, *y, *mod;
     if (!cmode) {
 	char ch;
 	*mod = 0;
+	if (iflags.debug_fuzzer) return randomkey();
 	return ReadFile(hConIn,&ch,1,&count,NULL) && count ? ch : '\032';
     } else {
 	really_move_cursor();
+	if (iflags.debug_fuzzer) return randomkey();
 	ch = pCheckInput(hConIn, &ir, &count, iflags.num_pad, 1, mod, &cc);
 	if (!ch) {
 	    *x = cc.x;
@@ -689,7 +693,7 @@ cl_eos()
 void
 tty_nhbell()
 {
-	if (flags.silent) return;
+	if (flags.silent || iflags.debug_fuzzer) return;
 	Beep(8000,500);
 }
 
@@ -701,6 +705,7 @@ tty_delay_output()
 	/* delay 50 ms - uses ANSI C clock() function now */
 	clock_t goal;
 	int k;
+	if (iflags.debug_fuzzer) return;
 
 	goal = 50 + clock();
 	while (goal > clock()) {

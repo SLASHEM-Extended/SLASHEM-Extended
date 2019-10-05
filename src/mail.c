@@ -469,6 +469,8 @@ struct obj *otmp;
 void
 ckmailstatus()
 {
+	if (iflags.debug_fuzzer) return;
+
 #ifdef SIMPLE_MAIL
 	if (mailckfreq == 0)
 	  mailckfreq = (iflags.simplemail ? 5 : 10);

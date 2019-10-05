@@ -291,6 +291,8 @@ extern const char * const killed_by_prefix[];	/* from topten.c */
 int
 done2()
 {
+	if (iflags.debug_fuzzer) return 0;
+
 	char buf[BUFSZ];
 	int really_quit = FALSE;
 
@@ -852,6 +854,15 @@ int how;
 		return;
 	    }
 #endif
+	}
+
+	if (iflags.debug_fuzzer) {
+		if (!(program_state.panicking || how == PANICKED)) {
+			savelife(how);
+			killer = '\0';
+			killer_format = 0;
+			return;
+		}
 	}
 
 	/* kilbuf: used to copy killer in case it comes from something like

@@ -1749,6 +1749,8 @@ doup()
 			return 0;
 		}
 
+		if (iflags.debug_fuzzer) return 0;
+
 		if (!u.freeplaymode && yn("Beware, there will be no return! Still climb?") != 'y')
 			return(0);
 	}
