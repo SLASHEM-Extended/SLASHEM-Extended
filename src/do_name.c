@@ -1010,6 +1010,7 @@ stupidsegfault:
 	    if (mtmp->egotype_levitator && (++egotypeamount < 21) ) sprintf(eos(buf), " Levitator");
 	    if (mtmp->egotype_illusionator && (++egotypeamount < 21) ) sprintf(eos(buf), " Illusionator");
 	    if (mtmp->egotype_stealer && (++egotypeamount < 21) ) sprintf(eos(buf), " Stealer");
+	    if (mtmp->egotype_stoner && (++egotypeamount < 21) ) sprintf(eos(buf), " Stoner");
 	    if (egotypeamount > 20) sprintf(eos(buf), " (%d egotypes)", egotypeamount);
 
 	}

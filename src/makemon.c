@@ -19227,6 +19227,10 @@ register int	mmflags;
 			mtmp->isegotype = 1;
 			mtmp->egotype_stealer = TRUE;
 		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_stoner = TRUE;
+		}
 
 	}
 
