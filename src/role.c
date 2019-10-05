@@ -8376,16 +8376,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					case 30:
 						if (!(flags.hybridextravator)) {flags.hybridextravator = 1; flags.hybridization++; break;
 						}
-					case 3:
+					case 31:
 						if (!(flags.hybridhallucinator)) {flags.hybridhallucinator = 1; flags.hybridization++; break;
 						}
-					case 3:
+					case 32:
 						if (!(flags.hybridbossrusher)) {flags.hybridbossrusher = 1; flags.hybridization++; break;
 						}
-					case 3:
+					case 33:
 						if (!(flags.hybriddorian)) {flags.hybriddorian = 1; flags.hybridization++; break;
 						}
-					case 3:
+					case 34:
 						if (!(flags.hybridtechless)) {flags.hybridtechless = 1; flags.hybridization++; break;
 						}
 	
