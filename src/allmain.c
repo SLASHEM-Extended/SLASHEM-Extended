@@ -6165,12 +6165,14 @@ newbossB:
 			if ((!Flying && !Levitation) || !rn2(5)) {
 				Norep("Continued exposure to the Styx River will cause contamination.");
 				contaminate(rnd(10 + level_difficulty()), TRUE);
+				stop_occupation();
 			}
 
 		}
 
 		if (is_burningwagon(u.ux, u.uy)) {
 			pline("The wagon burns you!");
+			stop_occupation();
 			make_burned(HBurned + rnd(10 + level_difficulty()), FALSE);
 			if (!Fire_resistance || !rn2(StrongFire_resistance ? 20 : 5)) losehp(rnd(5 + (level_difficulty() / 3)), "a burning wagon", KILLED_BY);
 
@@ -6188,12 +6190,14 @@ newbossB:
 		if (is_moorland(u.ux, u.uy) && !Flying && !Levitation) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
+			stop_occupation();
 		}
 
 		if (is_raincloud(u.ux, u.uy)) {
 
 			if (level.flags.lethe) pline("Sparkling rain washes over you.");
 			else pline("Rain washes over you.");
+			stop_occupation();
 
 			if (multi >= 0 && !rn2(8)) {
 
@@ -6213,6 +6217,7 @@ newbossB:
 
 		if (is_urinelake(u.ux, u.uy) && !Flying && !Levitation) {
 
+			stop_occupation();
 			if (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record > 0) {
 				pline("Ulch - your divine body is tainted by that filthy yellow liquid!");
 				u.ualign.record = -20;
@@ -6249,6 +6254,7 @@ newbossB:
 		if (is_stalactite(u.ux, u.uy) && (Flying || Levitation)) {
 			pline("The stalactite pierces you!");
 			losehp(rnd(10 + level_difficulty()), "being impaled on a stalactite", KILLED_BY);
+			stop_occupation();
 		}
 
 		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !Flying && !Levitation) {
