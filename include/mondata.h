@@ -390,14 +390,4 @@
 				   (ptr)->mlet != S_GOLEM && \
 				   (!is_undead(ptr) || is_vampire(ptr)))
 
-#define befriend_with_obj(ptr, obj) ((obj)->oclass == FOOD_CLASS && ( \
-		is_domestic(ptr) || (is_animal(ptr) && Race_if(PM_HUMANOID_CENTAUR) && !((ptr)->geno & G_UNIQ)) || (is_rat(ptr) && Role_if(PM_CONVICT)) || \
-		/* [Tom] Dorothy wants more pets... */ \
-		(obj)->otyp == CHEESE && is_rat(ptr) || \
-		((obj)->otyp == ORANGE && (ptr) == &mons[PM_MANDARUCK]) || \
-		( (ptr)->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON)) || \
-		( (ptr)->msound == MS_SHOE && Race_if(PM_SHOE)) || \
-		(obj)->otyp == KELP_FROND && ((ptr)->mflags3 & M3_PETTY) || \
-		(obj)->otyp == BANANA && herbivorous(ptr) && (ptr)->mlet == S_YETI))
-
 #endif /* MONDATA_H */

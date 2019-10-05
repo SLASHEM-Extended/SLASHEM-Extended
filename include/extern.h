@@ -533,6 +533,7 @@ E int make_pet_minion(int,ALIGNTYP_P);
 E void abuse_dog(struct monst *);
 E void wary_dog(struct monst *, BOOLEAN_P);
 E void makedoghungry(struct monst *, int);
+E boolean befriend_with_obj(struct permonst *, struct obj *);
 
 /* ### dogmove.c ### */
 

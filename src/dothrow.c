@@ -2381,6 +2381,8 @@ int thrown;
 	    return(0);
 	}
 
+	if (befriend_with_obj(mon->data, obj)) goto befriended;
+
 	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj) ||
 		obj->oclass == GEM_CLASS) {
 	    if (is_ammo(obj)) {
@@ -2626,17 +2628,16 @@ int thrown;
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
-	} else if (befriend_with_obj(mon->data, obj) || (obj->oclass == FOOD_CLASS && mon->egotype_domestic) ||
-		(otyp == KELP_FROND && mon->egotype_petty) ||
-		   (mon->mtame && dogfood(mon, obj) <= ACCFOOD)) {
-	    if (tamedog(mon, obj, FALSE))
-		return 1;           	/* obj is gone */
-	    else {
-		/* not tmiss(), which angers non-tame monsters */
-		miss(xname(obj), mon);
-		mon->msleeping = 0;
-		mon->mstrategy &= ~STRAT_WAITMASK;
-	    }
+	} else if (befriend_with_obj(mon->data, obj) || (obj->oclass == FOOD_CLASS && mon->egotype_domestic) || (otyp == KELP_FROND && mon->egotype_petty) || (mon->mtame && dogfood(mon, obj) <= ACCFOOD)) {
+befriended:
+
+		if (tamedog(mon, obj, FALSE)) return 1; /* obj is gone */
+		else {
+			/* not tmiss(), which angers non-tame monsters */
+			miss(xname(obj), mon);
+			mon->msleeping = 0;
+			mon->mstrategy &= ~STRAT_WAITMASK;
+		}
 	} else if (guaranteed_hit) {
 	    /* this assumes that guaranteed_hit is due to swallowing */
 	    wakeup(mon);

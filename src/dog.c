@@ -1487,6 +1487,31 @@ boolean was_dead;
     }
 }
 
+boolean
+befriend_with_obj(ptr, obj)
+struct permonst *ptr;
+struct obj *obj;
+{
+	if (obj->oclass == FOOD_CLASS) {
+		if (is_domestic(ptr)) return TRUE;
+		if (is_animal(ptr) && Race_if(PM_HUMANOID_CENTAUR) && !((ptr)->geno & G_UNIQ)) return TRUE;
+		if (is_rat(ptr) && Role_if(PM_CONVICT)) return TRUE;
+		/* [Tom] Dorothy wants more pets... */
+		if (obj->otyp == CHEESE && is_rat(ptr)) return TRUE;
+		if (obj->otyp == ORANGE && (ptr) == &mons[PM_MANDARUCK]) return TRUE;
+		if (ptr->msound == MS_SHOE && Race_if(PM_SHOE)) return TRUE;
+		if (obj->otyp == KELP_FROND && (ptr->mflags3 & M3_PETTY)) return TRUE;
+		if (obj->otyp == BANANA && herbivorous(ptr) && ptr->mlet == S_YETI) return TRUE;
+	}
+
+	/* Amy edit: metallivores etc. should also be capable of being domestic */
+	if (is_metallic(obj) && is_domestic(ptr) && metallivorous(ptr)) return TRUE;
+	if (is_lithic(obj) && is_domestic(ptr) && lithivorous(ptr)) return TRUE;
+	if (is_organic(obj) && is_domestic(ptr) && organivorous(ptr)) return TRUE;
+
+	return FALSE;
+}
+
 void
 abuse_dog(mtmp)
 struct monst *mtmp;
