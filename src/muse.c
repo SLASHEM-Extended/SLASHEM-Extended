@@ -3217,10 +3217,6 @@ mon_tele:
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		if (oseen) makeknown(SCR_WARPING);
 
-		if (u.uevent.udemigod && !u.freeplaymode) {
-			(void) rloc(mtmp, FALSE);
-			return 2;
-		}
 		u_teleport_monB(mtmp, TRUE);
 
 		return 2;
@@ -6869,8 +6865,7 @@ struct monst *mtmp;
 			}
 
 			mdrop_special_objs(mtmp); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
-			if (u.uevent.udemigod && !u.freeplaymode) break;
-			else u_teleport_monB(mtmp, TRUE);
+			u_teleport_monB(mtmp, TRUE);
 			pline("Some of your possessions have been stolen!");
 
 		}

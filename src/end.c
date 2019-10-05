@@ -1436,7 +1436,7 @@ rodneydone:
 freeplaycheck:
 		if (yn("CONGRATULATIONS!!! You've beaten the game. You can go on playing now if you want. Do you want to keep playing your character?") == 'y') {
 
-			getlin ("Please confirm your choice with yes [y/yes/no]",buf);
+			getlin ("You decided to keep playing your character. Please confirm your choice with yes [y/yes/no]",buf);
 			(void) lcase (buf);
 			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) { /* yes, do go on playing after ascending */
 
@@ -1445,7 +1445,7 @@ freeplaycheck:
 			} else goto freeplaycheck;
 
 		} else {
-			getlin ("Please confirm your choice with yes [y/yes/no]",buf);
+			getlin ("You decided to end the game here. Please confirm your choice with yes [y/yes/no]",buf);
 			(void) lcase (buf);
 			if (strcmp (buf, "yes") && strcmp (buf, "y")) goto freeplaycheck;
 			/* else the game ends here */
