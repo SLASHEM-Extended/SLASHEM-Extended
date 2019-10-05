@@ -9663,6 +9663,11 @@ register struct obj *obj;		   /* no texts here! */
 	obj->oxlth = 0;			/* no extra data */
 	obj->oattached = OATTACHED_NOTHING;
 
+	if (is_hazy(obj)) { /* fix the Banach-Tarski paradox, thanks blargdag --Amy */
+		stop_timer(UNPOLY_OBJ, (void *) obj);
+		obj->oldtyp = STRANGE_OBJECT;
+	}
+
 	if(!rn2(8)) {
 		obj->spe = rne(2);
 		if (rn2(2)) obj->blessed = rn2(2);
