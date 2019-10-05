@@ -2309,6 +2309,7 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	if (uarmh && !uarmh->oinvis && uarmh->otyp == DUNCE_CAP)
 		tmp += tmp / 3L;
 
+	if (Race_if(PM_DUTHOL)) tmp *= 2L;
 	if (Role_if(PM_OTAKU)) tmp += tmp / 3L; /* bad at making deals */
 
 	if (ACURR(A_CHA) > 18)		tmp /= 2L;
@@ -2463,7 +2464,8 @@ register struct monst *shkp;
 		tmp /= 2L;
 
 	if (Role_if(PM_OTAKU)) tmp /= 3L; /* bad at making deals */
-
+	if (Race_if(PM_DUTHOL)) tmp /= 2L;
+	
 	/* shopkeeper may notice if the player isn't very knowledgeable -
 	   especially when gem prices are concerned */
 	if (!obj->dknown || !objects[obj->otyp].oc_name_known) {

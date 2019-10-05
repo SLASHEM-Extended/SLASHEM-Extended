@@ -5166,6 +5166,7 @@ find_ac()
 	if (uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_INERT_GREAVES) uac -= 4;
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
+	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) uac -= 5;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -5317,6 +5318,14 @@ find_ac()
 		if (difference > 0) uac = 10 - difference;
 		else uac = 10;
 		
+	}
+
+	if (Race_if(PM_SERB)) {
+		int difference = (-(uac - 10));
+		difference *= 4;
+		difference /= 5;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
 	}
 
 	if (Dimmed) {

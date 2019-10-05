@@ -7191,6 +7191,9 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GERTEUT]) {
 			(void)mongets(mtmp, POT_RADIUM);
 		}
+		if (ptr == &mons[PM_CELTIC]) {
+			(void)mongets(mtmp, POT_SPEED);
+		}
 		if (ptr == &mons[PM_FRO]) {
 			(void)mongets(mtmp, AXE);
 		}
@@ -24421,6 +24424,8 @@ register struct permonst *ptr;
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
 	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone() || (uwep && uwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
+
+	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 
 	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */

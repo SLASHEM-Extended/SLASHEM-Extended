@@ -1251,6 +1251,8 @@ boolean hitsroof;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) dmg += rnd(5);
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) dmg += 1;
 	if (dmg > 0 && Race_if(PM_VIKING)) dmg += 1;
+	if (dmg > 0 && Race_if(PM_SERB)) dmg += 1;
+
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1888,6 +1890,7 @@ int thrown;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (Race_if(PM_SERB)) tmp += 1;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

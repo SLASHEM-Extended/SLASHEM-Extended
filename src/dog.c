@@ -1332,7 +1332,7 @@ boolean guaranteed;
 	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && (issoviet || rn2(10) ) ) ||
 	    /* Mik -- New flag to indicate which things cannot be tamed... */
 	    cannot_be_tamed(mtmp->data) || mtmp->mfrenzied ||
-	    (obj && dogfood(mtmp, obj) >= MANFOOD)) {
+	    (obj && dogfood(mtmp, obj) >= MANFOOD && !(Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) )) {
 
 	/* In Soviet Russia, people only know dogs, cats and maybe horses. Everything else cannot be tamed, and variety
 	 * is also something that absolutely no one likes. Communism means everyone gets the same, so you can't have an
@@ -1508,6 +1508,8 @@ struct obj *obj;
 	if (is_metallic(obj) && is_domestic(ptr) && metallivorous(ptr)) return TRUE;
 	if (is_lithic(obj) && is_domestic(ptr) && lithivorous(ptr)) return TRUE;
 	if (is_organic(obj) && is_domestic(ptr) && organivorous(ptr)) return TRUE;
+
+	if (Race_if(PM_CELTIC) && is_metallic(obj) && ptr->mlet == S_GOLEM) return TRUE;
 
 	return FALSE;
 }

@@ -8677,7 +8677,7 @@ madnesseffect:
 		 case SPEAR_TRAP:
 		seetrap(trap);
 		pline("A spear stabs up from a hole in the ground at you!");
-		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) {
+		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) || Race_if(PM_DUTHOL) ) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
 		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {

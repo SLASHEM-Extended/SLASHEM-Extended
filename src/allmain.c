@@ -1114,7 +1114,7 @@ moveloop()
 				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1374,7 +1374,7 @@ moveloop()
 			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1662,6 +1662,12 @@ moveloop()
 			if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_GREEK_CLOAK) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
 			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (speedbonus(moveamt * 5, NORMAL_SPEED * 5));
+
+			if (Race_if(PM_DUTHOL) && is_sand(u.ux, u.uy)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+
+			if (Race_if(PM_CELTIC) && (rn2(100) < u.ulevel)) moveamt += speedbonus(moveamt, NORMAL_SPEED);
+
+			if (Race_if(PM_SERB) && !rn2(10)) moveamt += speedbonus(moveamt, NORMAL_SPEED);
 
 			if (StrongPasses_walls && !rn2(3) && isok(u.ux, u.uy) && IS_STWALL(levl[u.ux][u.uy].typ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (StrongFast && !rn2(10) && (!Race_if(PM_FRO) || !rn2(2)) && !YouHaveTheSpeedBug) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -6125,7 +6131,7 @@ newbossB:
 			levl[u.ux][u.uy].typ = POOL;
 		}
 
-		if (is_sand(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
+		if (is_sand(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
 			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
 			make_blinded(Blinded + rnd(5),FALSE);
 		}

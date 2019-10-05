@@ -167,6 +167,8 @@ register boolean clumsy;
 
 	}
 
+	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) dmg += 2;
+
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1)
 		dmg += uarmf->spe;
 

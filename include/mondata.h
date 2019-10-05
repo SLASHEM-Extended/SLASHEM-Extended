@@ -169,7 +169,7 @@
 #define is_covetous(ptr)	((ptr)->mflags3 & M3_COVETOUS)
 #define infravision(ptr)	((ptr)->mflags3 & M3_INFRAVISION)
 #define infravisible(ptr)	((ptr)->mflags3 & M3_INFRAVISIBLE)
-#define can_betray(ptr)		((ptr)->mflags3 & M3_TRAITOR)
+#define can_betray(ptr)		(((ptr)->mflags3 & M3_TRAITOR) || (Race_if(PM_CELTIC) && ptr->mlet != S_GOLEM) )
 #define cannot_be_tamed(ptr)	((ptr)->mflags3 & M3_NOTAME)
 #define avoid_player(ptr)	((ptr)->mflags3 & M3_AVOIDER)
 #define lithivorous(ptr)	((ptr)->mflags3 & M3_LITHIVORE)

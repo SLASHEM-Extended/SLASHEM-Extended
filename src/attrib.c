@@ -1026,6 +1026,9 @@ const struct innate {
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	dut_abil[] = { {  1, &(HCold_resistance), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	yok_abil[] = { {  1, &(HSick_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HFire_resistance), "", "" },
@@ -2054,6 +2057,7 @@ int oldlevel, newlevel;
 	case PM_BRETON:            rabil = bre_abil;	break;
 	case PM_ELEMENTAL:            rabil = elm_abil;	break;
 	case PM_REDGUARD:            rabil = red_abil;	break;
+	case PM_DUTHOL:            rabil = dut_abil;	break;
 	case PM_YOKUDA:            rabil = yok_abil;	break;
 	case PM_SINNER:            rabil = sin_abil;	break;
 	case PM_REDDITOR:            rabil = rdt_abil;	break;

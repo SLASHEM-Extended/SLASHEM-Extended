@@ -6724,6 +6724,11 @@ register int num;
 		num /= 3;
 	}
 
+	if (Race_if(PM_SERB)) {
+		num *= 3;
+		num /= 2;
+	}
+
 	u.uhunger += num;
 	if(u.uhunger >= 5000) {
 	    if (!iseating || victual.canchoke) {

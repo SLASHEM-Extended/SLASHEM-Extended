@@ -187,7 +187,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_KICK:
 			pline("%s kicks you%c", Monnam(mtmp),
-				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
+				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
@@ -2109,7 +2109,7 @@ mattacku(mtmp)
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
-					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
+					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
 					sum[i] = hitmu(mtmp, mattk);
 				} else
 				    missmu(mtmp, tmp, j, mattk);
@@ -18964,6 +18964,39 @@ register int n;
 	if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() ) {
 		if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
+	}
+
+	if (Race_if(PM_CELTIC) && !rn2(100)) {
+		if (u.berserktime) {
+			if (!obsidianprotection()) switch (rn2(11)) {
+			case 0:
+				make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20), "celtic sickness", TRUE, SICK_NONVOMITABLE);
+				break;
+			case 1: make_blinded(Blinded + 25, TRUE);
+				break;
+			case 2: if (!Confusion)
+				You("suddenly feel %s.", FunnyHallu ? "trippy" : "confused");
+				make_confused(HConfusion + 25, TRUE);
+				break;
+			case 3: make_stunned(HStun + 25, TRUE);
+				break;
+			case 4: make_numbed(HNumbed + 25, TRUE);
+				break;
+			case 5: make_frozen(HFrozen + 25, TRUE);
+				break;
+			case 6: make_burned(HBurned + 25, TRUE);
+				break;
+			case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+				break;
+			case 8: (void) make_hallucinated(HHallucination + 25, TRUE, 0L);
+				break;
+			case 9: make_feared(HFeared + 25, TRUE);
+				break;
+			case 10: make_dimmed(HDimmed + 25, TRUE);
+				break;
+			}
+
+		} else u.berserktime = 25;
 	}
 
 }
