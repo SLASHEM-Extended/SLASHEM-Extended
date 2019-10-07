@@ -2765,6 +2765,7 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_TOLKIEN_MECHANIC:
 	    case PM_FORGER_MECHANIC:
 	    case PM_IMPORTANT_MECHANIC:
 	    case PM_UNSEEN_MECHANIC:

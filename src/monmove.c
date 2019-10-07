@@ -2161,6 +2161,10 @@ altarfound:
 	appr = mtmp->mflee ? -1 : 1;
 
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPY_GIRL && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPY_WOMAN && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPY_LADY && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_STUPIDITY_AUTIST) mtmp->mconf = 1;

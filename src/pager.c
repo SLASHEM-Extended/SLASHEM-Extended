@@ -24263,6 +24263,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"You do not give offerings to the god of the future. And strangely enough, you can't give offerings to gods of the present, either.",
 	"The trident glows in your hand for a moment.",
 	"You can't pay because no one wants to accept payment by you, criminal.",
+	"You turn into a lion! Your gloves are shredded by your claws!",
+	"You turn into a plains centaur! Unfortunately, your fat hooves blow your boots apart.",
+	"You turn into a minotaur! Your helmet is destroyed by your horns!",
+	"You turn into a fire vortex! Your leather hat smoulders!",
+	"Your icy breath causes your potion of full healing to shatter!",
+	"Your psionic abilities shield your brain.",
 
 };
 
