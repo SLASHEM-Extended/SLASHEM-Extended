@@ -664,43 +664,79 @@ boolean
 betrayed(mtmp)
 register struct monst *mtmp;
 {
-    boolean has_edog = !mtmp->isminion;
-    struct edog *edog = EDOG(mtmp);
-    int udist = distu(mtmp->mx, mtmp->my);
+	boolean has_edog = !mtmp->isminion;
+	struct edog *edog = EDOG(mtmp);
+	int udist = distu(mtmp->mx, mtmp->my);
+
+	int hasbeenbetrayed = 0;
 
 	if (Role_if(PM_SLAVE_MASTER) && rn2(10)) return FALSE; /* can keep monsters tame more easily --Amy */
-	if (Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) return FALSE;
+	if (Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) return FALSE; /* everything else betrays you more often */
 
-    if (udist < 4 && has_edog && (!mtmp->isspell || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) ) && !rn2(3)
-		    && (can_betray(mtmp->data) || (isfriday && !rn2(10)) || (is_jonadabmonster(mtmp->data)) || (mtmp->data->mlevel >= 50) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->m_lev >= 40) )
-		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
-		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) || Rebellions || have_rebelstone() || (is_jonadabmonster(mtmp->data)) || (isfriday && !rn2(10)) || (mtmp->data->mlevel >= 50) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
-		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
-		    && !((rnd(30 - ACURR(A_CHA))) < 4) /* Roll against charisma */
-		    && rn2(edog->abuse + rnd(2) )) {
-	/* Treason */
-	if (canseemon(mtmp))
-	    pline("%s turns on you!", Monnam(mtmp));
-	else
-	    You_feel("uneasy about %s.", y_monnam(mtmp));
-	mtmp->mpeaceful = 0;
-	mtmp->mtame = 0;
-	mtmp->mtraitor = TRUE;
-	mtmp->isspell = 0;
-	mtmp->uexp = 0;
+	/* changed the way this works: first see whether the monster can betray you at all, then whether it actually does
+	 * if the latter is the case, "hasbeenbetrayed" is set to 2 and the actual betrayal code runs where we roll against
+	 * tameness, charisma and abuse --Amy */
 
-	/* if the monster is a domestic animal, you could just re-tame it indefinitely... prevent that :P --Amy */
-	if (!rn2(5)) {
-		mtmp->mfrenzied = 1;
-		if (canseemon(mtmp))
-		    pline("In fact, %s apparently decides to stop at nothing until you're dead!", mon_nam(mtmp));
+	if (udist < 4 && has_edog && (!mtmp->isspell || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) ) && !rn2(3)) {
+		if (can_betray(mtmp->data)) hasbeenbetrayed = 1;
+		if (Race_if(PM_CELTIC)) hasbeenbetrayed = 1;
+		if (isfriday && !rn2(10)) hasbeenbetrayed = 1;
+		if (is_jonadabmonster(mtmp->data)) hasbeenbetrayed = 1;
+		if (mtmp->data->mlevel >= 50) hasbeenbetrayed = 1;
+		if (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) hasbeenbetrayed = 1;
+		if (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) hasbeenbetrayed = 1;
+		if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3)) hasbeenbetrayed = 1;
+		if (Role_if(PM_FAILED_EXISTENCE)) hasbeenbetrayed = 1;
+		if (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS)) hasbeenbetrayed = 1;
+		if (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) hasbeenbetrayed = 1;
+		if (mtmp->m_lev >= 40) hasbeenbetrayed = 1;
+	}
+	/* used to test for mindless here, but mindless creatures may still decide to attack randomly --Amy
+	 * this is so that you can't simply tame a mindless pet and have it forever be loyal, of course */
+
+	if (hasbeenbetrayed >= 1) { /* will it really betray you? */
+		if (mtmp->mhp >= u.uhp) hasbeenbetrayed = 2;
+		if (!rn2(5)) hasbeenbetrayed = 2;
+		if (Race_if(PM_CELTIC)) hasbeenbetrayed = 2;
+		if (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) hasbeenbetrayed = 2;
+		if (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS)) hasbeenbetrayed = 2;
+		if (is_jonadabmonster(mtmp->data)) hasbeenbetrayed = 2;
+		if (isfriday && !rn2(10)) hasbeenbetrayed = 2;
+		if (mtmp->data->mlevel >= 50) hasbeenbetrayed = 2;
+		if (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) hasbeenbetrayed = 2;
+		if (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) hasbeenbetrayed = 2;
+		if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY) hasbeenbetrayed = 2;
+		if (Role_if(PM_FAILED_EXISTENCE)) hasbeenbetrayed = 2;
 	}
 
-	/* Do we need to call newsym() here? */
-	newsym(mtmp->mx, mtmp->my);
-	return TRUE;
-    }
-    return FALSE;
+	if (hasbeenbetrayed >= 2 /* here the monster needs to pass a couple rolls to be allowed to betray you */
+		&& ( (rn2(22) > mtmp->mtame)	/* Roll against tameness */
+		&& (!((rnd(30 - ACURR(A_CHA))) < 4)) /* Roll against charisma */
+		&& rn2(edog->abuse + rnd(2)) ) ) { /* Roll against abuse */
+
+		/* Treason */
+		if (canseemon(mtmp))
+		    pline("%s turns on you!", Monnam(mtmp));
+		else
+		    You_feel("uneasy about %s.", y_monnam(mtmp));
+		mtmp->mpeaceful = 0;
+		mtmp->mtame = 0;
+		mtmp->mtraitor = TRUE;
+		mtmp->isspell = 0;
+		mtmp->uexp = 0;
+
+		/* if the monster is a domestic animal, you could just re-tame it indefinitely... prevent that :P --Amy */
+		if (!rn2(5)) {
+			mtmp->mfrenzied = 1;
+			if (canseemon(mtmp))
+				pline("In fact, %s apparently decides to stop at nothing until you're dead!", mon_nam(mtmp));
+		}
+
+		/* Do we need to call newsym() here? */
+		newsym(mtmp->mx, mtmp->my);
+		return TRUE;
+	}
+	return FALSE;
 }
 
 /* return 0 (no move), 1 (move) or 2 (dead) */
