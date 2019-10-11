@@ -3153,6 +3153,10 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ CANCEL_DRAGON_SCALES, "todo" },
+	{ CANCEL_DRAGON_SCALE_MAIL, "todo" },
+	{ CANCEL_DRAGON_SCALE_SHIELD, "todo" },
+
 	{0, "" }
 };
 
@@ -5752,6 +5756,10 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SLING_AMMO, "tasma g'ov o'qi" },
 
 	/* todo area */
+
+	{ CANCEL_DRAGON_SCALES, "todo" },
+	{ CANCEL_DRAGON_SCALE_MAIL, "todo" },
+	{ CANCEL_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };

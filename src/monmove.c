@@ -2834,7 +2834,7 @@ register struct monst *mtmp;
 		disp = 0;
 	    else
 		disp = 1;
-	} else if (Displaced && (StrongDisplaced || !rn2(3)) && !(dmgtype(mtmp->data, AD_DISP) ) && !(dmgtype(mtmp->data, AD_MAGM) ) && mtmp->data != &mons[PM_BABY_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_ADULT_GRAY_DRAGON] &&
+	} else if (Displaced && (StrongDisplaced || !rn2(3)) && !(dmgtype(mtmp->data, AD_DISP) ) && !(dmgtype(mtmp->data, AD_MAGM) ) && !(dmgtype(mtmp->data, AD_MCRE) ) && mtmp->data != &mons[PM_BABY_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_ADULT_GRAY_DRAGON] &&
 		!(dmgtype(mtmp->data, AD_RBRE)) && !(dmgtype(mtmp->data, AD_RNG)) ) {
 	    disp = couldsee(mx, my) ? 2 : 1;
 	} else disp = 0;

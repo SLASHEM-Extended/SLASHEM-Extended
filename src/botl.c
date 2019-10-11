@@ -723,6 +723,7 @@ struct monst *mon;
 	if (u.magicshield) armpro++;
 	if (Race_if(PM_GERTEUT)) armpro++;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
+	if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;

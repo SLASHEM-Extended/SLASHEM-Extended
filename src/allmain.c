@@ -928,7 +928,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(371);
+				monstercolor = rnd(372);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -991,7 +991,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(371);
+				monstercolor = rnd(372);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -3277,7 +3277,7 @@ fukrosionchoice:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(371);
+			monstercolor = rnd(372);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -4696,7 +4696,7 @@ fukrosionchoice:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(371);
+			monstercolor = rnd(372);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -9765,8 +9765,8 @@ past3:
 			u.pokeliegeneration = 0;
 			u.pokelieflags = 0;
 			u.pokeliespeed = rnd(50);
-			u.pokelieattacktype = rnd(21);
-			u.pokeliedamagetype = rnd(151);
+			u.pokelieattacktype = rnd(22);
+			u.pokeliedamagetype = rnd(154);
 		}
 	} else {
 		u.pokelieresistances = 0;
@@ -9780,7 +9780,7 @@ past3:
 
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
-		u.frequentationtrait = rnd(371); /* same as monstercolor function */
+		u.frequentationtrait = rnd(372); /* same as monstercolor function */
 	} else {
 		u.frequentationtrait = 0;
 	}
@@ -11497,6 +11497,8 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* todo area */
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -12560,6 +12562,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "standing footwear")) OBJ_DESCR(objects[i]) = "tik turgan poyafzal";
 
 		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

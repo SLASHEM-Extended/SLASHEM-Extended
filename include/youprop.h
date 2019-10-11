@@ -267,7 +267,7 @@
 #define HFear_resistance	u.uprops[FEAR_RES].intrinsic
 #define EFear_resistance	u.uprops[FEAR_RES].extrinsic
 #define IntFear_resistance	(HFear_resistance || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST))
-#define ExtFear_resistance	(EFear_resistance || (uwep && uwep->oartifact == ART_YVONNE_S_HONOR) || (uarmc && uarmc->oartifact == ART_TERRIFYING_LOSS) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == FEAR_RES) ) || (uarmf && uarmf->oartifact == ART_GRANDPA_S_BROGUES) || (uarmf && uarmf->oartifact == ART_PARANOIA_STRIDE) || (uwep && uwep->oartifact == ART_USELESSNESS_OF_PLENTY) )
+#define ExtFear_resistance	(EFear_resistance || (uarm && uarm->oartifact == ART_NICE_CYAN_COLOR) || (uwep && uwep->oartifact == ART_YVONNE_S_HONOR) || (uarmc && uarmc->oartifact == ART_TERRIFYING_LOSS) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == FEAR_RES) ) || (uarmf && uarmf->oartifact == ART_GRANDPA_S_BROGUES) || (uarmf && uarmf->oartifact == ART_PARANOIA_STRIDE) || (uwep && uwep->oartifact == ART_USELESSNESS_OF_PLENTY) )
 
 #define Fear_resistance		(((IntFear_resistance && u.nonintrinsicproperty != FEAR_RES) || (ExtFear_resistance && u.nonextrinsicproperty != FEAR_RES)) && !NoFear_resistance)
 #define StrongFear_resistance	(IntFear_resistance && ExtFear_resistance && Fear_resistance)

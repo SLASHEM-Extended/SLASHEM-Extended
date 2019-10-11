@@ -2690,7 +2690,7 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (ptr->msound == MS_NEMESIS) {
 		strcat(description, " Is a nemesis (immune to death rays).");
 	}
-	if (dmgtype(ptr, AD_MAGM) || ptr == &mons[PM_BABY_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_ADULT_GRAY_DRAGON] ||
+	if (dmgtype(ptr, AD_MAGM) || dmgtype(ptr, AD_MCRE) || ptr == &mons[PM_BABY_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_ADULT_GRAY_DRAGON] ||
 		dmgtype(ptr, AD_RBRE) || dmgtype(ptr, AD_RNG) ) {
 		strcat(description, " Magic resistant.");
 	}
@@ -3268,8 +3268,10 @@ get_description_of_damage_type(uchar id)
 			damageid = 152; break;
 		case AD_ILLU:
 			damageid = 153; break;
-		case AD_ENDS:
+		case AD_MCRE:
 			damageid = 154; break;
+		case AD_ENDS:
+			damageid = 155; break;
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -3279,7 +3281,7 @@ get_description_of_damage_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		damageid += u.pokeliedamagetype;
-		if (damageid > 154) damageid -= 154;
+		if (damageid > 155) damageid -= 155;
 	}
 
 	switch(damageid){
@@ -3444,8 +3446,9 @@ get_description_of_damage_type(uchar id)
 		case 151: return "feminism trap effect";
 		case 152: return "levitation";
 		case 153: return "illusion attack";
+		case 154: return "reduce magic cancellation";
 
-		case 154: return "placeholder attack";
+		case 155: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";

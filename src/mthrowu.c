@@ -166,6 +166,7 @@ const char *name;	/* if null, then format `obj' */
 		case GREEN_DRAGON_SCALE_SHIELD:
 		case GOLDEN_DRAGON_SCALE_SHIELD:
 		case FEMINISM_DRAGON_SCALE_SHIELD:
+		case CANCEL_DRAGON_SCALE_SHIELD:
 		case NEGATIVE_DRAGON_SCALE_SHIELD:
 		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
@@ -206,6 +207,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
@@ -941,6 +943,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case GREEN_DRAGON_SCALE_SHIELD:
 			case GOLDEN_DRAGON_SCALE_SHIELD:
 			case FEMINISM_DRAGON_SCALE_SHIELD:
+			case CANCEL_DRAGON_SCALE_SHIELD:
 			case NEGATIVE_DRAGON_SCALE_SHIELD:
 			case HEROIC_DRAGON_SCALE_SHIELD:
 			case STONE_DRAGON_SCALE_SHIELD:

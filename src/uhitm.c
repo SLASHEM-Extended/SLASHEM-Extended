@@ -7878,6 +7878,14 @@ boolean ranged;
 
 		break;
 
+	    case AD_MCRE:
+
+		MCReduction += (100 * tmp);
+		pline("The magic cancellation granted by your armor seems weaker now...");
+		mdamageu(mon, tmp);
+
+		break;
+
 	  case AD_FUMB:
 
 		pline("You stumble!");

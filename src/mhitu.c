@@ -4172,6 +4172,27 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_maecke) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_MCRE;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_contaminator) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -5481,6 +5502,7 @@ struct monst *mon;
 	if (u.magicshield) armpro += 1;
 	if (Race_if(PM_GERTEUT)) armpro++;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
+	if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
@@ -6232,6 +6254,14 @@ hitmu(mtmp, mattk)
 		You("float up!");
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, dmg);
+
+		break;
+
+	    case AD_MCRE:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		MCReduction += (100 * dmg);
+		pline("The magic cancellation granted by your armor seems weaker now...");
 
 		break;
 
@@ -10023,6 +10053,12 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			You("float up!");
 			HLevitation &= ~I_SPECIAL;
 			incr_itimeout(&HLevitation, tmp);
+
+		break;
+
+		case AD_MCRE:
+			MCReduction += (100 * tmp);
+			pline("The magic cancellation granted by your armor seems weaker now...");
 
 		break;
 
@@ -14006,6 +14042,12 @@ common:
 		You("float up!");
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, tmp);
+
+		break;
+
+	    case AD_MCRE:
+		MCReduction += (100 * tmp);
+		pline("The magic cancellation granted by your armor seems weaker now...");
 
 		break;
 
@@ -18365,6 +18407,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			You("float up!");
 			HLevitation &= ~I_SPECIAL;
 			incr_itimeout(&HLevitation, dmgplus);
+		}
+
+		break;
+
+	    case AD_MCRE:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+                pline("%s puts a hex on you!", Monnam(mtmp));
+			MCReduction += (100 * dmgplus);
+			pline("The magic cancellation granted by your armor seems weaker now...");
 		}
 
 		break;

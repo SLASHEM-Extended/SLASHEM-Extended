@@ -1995,6 +1995,25 @@ meleeattack:
 
 	}
 
+	if (magr->egotype_maecke) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_MCRE;
+		a->damn = 2;
+		a->damd = (1 + (magr->m_lev));
+
+		if(monnear(magr, mdef->mx, mdef->my)) {
+			dieroll = rnd(20 + i);
+			strike = (tmp > dieroll);
+			if (strike) res[i] = hitmm(magr, mdef, a);
+		}
+		if (res[i] & MM_AGR_DIED) return res[i];
+		if (res[i] & MM_DEF_DIED) return res[i];
+
+	}
+
 	if (magr->egotype_sanitizer) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4643,6 +4662,12 @@ physical:
 		break;
 
 	    case AD_LEVI:
+		if (mdef->mtame) {
+			badpeteffect(mdef);
+		}
+		break;
+
+	    case AD_MCRE:
 		if (mdef->mtame) {
 			badpeteffect(mdef);
 		}
@@ -7507,6 +7532,12 @@ int attnumber;
 		break;
 
 	    case AD_LEVI:
+		if (magr->mtame) {
+			badpeteffect(magr);
+		}
+		break;
+
+	    case AD_MCRE:
 		if (magr->mtame) {
 			badpeteffect(magr);
 		}

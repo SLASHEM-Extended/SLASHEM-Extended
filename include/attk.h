@@ -254,7 +254,9 @@ extern char *attk_dname(Attk);
 #define AD_FEMI		134	/* feminism trap effect */
 #define AD_LEVI		135	/* levitation (always uncontrolled) */
 
-#define AD_ENDS		136	/* placeholder */
+#define AD_MCRE		136	/* temporarily reduce magic cancellation (by K2) */
+
+#define AD_ENDS		137	/* placeholder */
 
 #define AD_ILLU		229	/* illusion attack - random effect also seen in illusion rooms */
 #define AD_PART		230	/* specific regular attack (rolled at game start) */

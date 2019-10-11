@@ -9998,6 +9998,8 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as sickness resistance."); break;
 			case FEMINISM_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as scent view."); break;
+			case CANCEL_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as 5 points of magic cancellation."); break;
 			case NEGATIVE_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as death resistance."); break;
 			case HEROIC_DRAGON_SCALE_MAIL: 
@@ -10064,6 +10066,8 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as sickness resistance."); break;
 			case FEMINISM_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as scent view."); break;
+			case CANCEL_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as 5 points of magic cancellation."); break;
 			case NEGATIVE_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as death resistance."); break;
 			case HEROIC_DRAGON_SCALES: 
@@ -10882,6 +10886,8 @@ boolean knoweverything;
 				pline("A shield made from dragon hide that provides sickness resistance as well as protection."); break;
 			case FEMINISM_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides scent view as well as protection."); break;
+			case CANCEL_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides 5 points of magic cancellation as well as protection."); break;
 			case NEGATIVE_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides death resistance as well as protection."); break;
 			case HEROIC_DRAGON_SCALE_SHIELD: 
@@ -18906,6 +18912,12 @@ boolean knoweverything;
 					pline("Artifact specs: regeneration, drain resistance and wereform effect when worn."); break;
 				case ART_UNFELLABLE_TREE:
 					pline("Artifact specs: if you're burrowed while wearing them, you have 20 extra points of AC and resist fire, cold, shock, sleep, confusion, stoning and disintegration."); break;
+				case ART_FREE_EXTRA_CANCEL:
+					pline("Artifact specs: improves your magic cancellation by 1 when worn."); break;
+				case ART_NICE_CYAN_COLOR:
+					pline("Artifact specs: fear resistance when worn."); break;
+				case ART_LOOK_HOW_IT_BLOCKS:
+					pline("Artifact specs: +20%% chance to block."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

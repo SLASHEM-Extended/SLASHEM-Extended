@@ -1081,6 +1081,8 @@ int traitno;
 			return "monsters with levitation attacks";
 		case 371:
 			return "monsters with illusion attacks";
+		case 372:
+			return "monsters whose attacks reduce your magic cancellation";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);
@@ -5997,6 +5999,7 @@ boolean guaranteed;
 		case GREEN_DRAGON_SCALE_SHIELD:
 		case GOLDEN_DRAGON_SCALE_SHIELD:
 		case FEMINISM_DRAGON_SCALE_SHIELD:
+		case CANCEL_DRAGON_SCALE_SHIELD:
 		case NEGATIVE_DRAGON_SCALE_SHIELD:
 		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
@@ -6037,6 +6040,7 @@ boolean guaranteed;
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
@@ -9701,6 +9705,7 @@ int final;
 		case GREEN_DRAGON_SCALE_SHIELD:
 		case GOLDEN_DRAGON_SCALE_SHIELD:
 		case FEMINISM_DRAGON_SCALE_SHIELD:
+		case CANCEL_DRAGON_SCALE_SHIELD:
 		case NEGATIVE_DRAGON_SCALE_SHIELD:
 		case HEROIC_DRAGON_SCALE_SHIELD:
 		case STONE_DRAGON_SCALE_SHIELD:
@@ -9741,6 +9746,7 @@ int final;
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;

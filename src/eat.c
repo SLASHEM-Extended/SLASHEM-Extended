@@ -3078,6 +3078,7 @@ register int pm;
 	    case PM_MASTER_BLASTER:
 	    case PM_SANITY_BLASTER:
 	    case PM_NECROMORB:
+	    case PM_HAMMER_ORB:
 	    case PM_STUPID_ORB:
 	    case PM_EVIL_ORB:
 	    case PM_NERF_ORB:
