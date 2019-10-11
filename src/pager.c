@@ -24269,6 +24269,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"You turn into a fire vortex! Your leather hat smoulders!",
 	"Your icy breath causes your potion of full healing to shatter!",
 	"Your psionic abilities shield your brain.",
+	"You hit the ankylosaurus, but your sword just bounces off its thick bony scales. The ankylosaurs looks at you with disdain. The ankylosaurs swings its tail. You die. Do you want your possessions identified?",
+	"If you give money to a beggar, you lose karma while if you slap him in that ugly face of his, you gain karma. Why? Because beggars are just disguised, organized criminals and funding them is a bad thing.",
+	"Inserting skeleton statues in Orcus Town won't make Amy mad, because they won't look like actual skeletons. Statues look like statues and have always done so, why would someone change it so that they look like alive monsters?",
+	"The floor turns into delicious banana custard!", /* by aosdict */
+	"There's probably a trap that means #ragequit tattoos 'I love SLEX' on your arm", /* by Pinkbeast */
+	"the mathematician disproves the magic of your wand! Your wand loses all its charges!",
+	"the mathematician gives you a lecture about incomprehensible theorems! You feel very confused.",
 
 };
 

@@ -252,6 +252,10 @@ static const char * const shklight[] = {
 	"Jasmine", "Zora", "Burner", "Dobrindt", "Bramfield", "Compton",
 	"Edgerton", "Fraidycat", "Hancock", "Jenner", "Lillyliver", "Moore",
 	"Poltroon", "Scroggs", "Thursby", "Withinghall",
+	"Dimaethor", "Hador", "Grond", "Hast", "Maeth",
+	"Rom", "Belegur", "Camaen", "Elvedui", "Gwaedh",
+	"Maen", "Maerphen", "Alagos", "Gaeralagos",
+	"Faimben", "Fain", "Loss", "Cugu",
     0
 };
 
@@ -323,6 +327,9 @@ static const char *shkpet[] = {
 	"Melody", "Moonbeam", "Whoopee", "Sanuuicula", "Brocksby",
 	"Cosworth", "Emerson", "Frye", "Harwood", "Kay", "Litchfield",
 	"Mouse", "Rampston", "Shawe", "Vernon", "Yellowbelly",
+	"Spiffy", "Bonko", "Binky", "Tubby", "Zippy", "Jumbo",
+	"Mittens", "Chuckles", "Bam Bam", "Larry", "Curly",
+	"Moe", "Zaff", "Punky",
     0
 };
 

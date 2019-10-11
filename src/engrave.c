@@ -965,6 +965,7 @@ static const char *random_mesg[] = {
 	"At the Shoeshop 69, 00420 Bundletown, Fleecyland",
 	"In the next was at the cover a schiessmaschine, which shot continuing, resounds.",
 	"Please brush your feet before entering the Dungeons of Doom. Sincerely, Moloch.",
+	"what's an anagram of Banach-Tarski? Banach-Tarski Banach-Tarski.",
 
 };
 

@@ -4958,7 +4958,7 @@ SCROLL((char *)0,               "ZESE PLASHCH",  P_NONE,     1,   0, 300, CLR_BR
 SCROLL((char *)0,               "SLASH UPOROTYH TO FUCK",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "HLY HLS",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 SCROLL((char *)0,               "AMYBSOD IS A HARLOT ACCORDING TO VAMPIRECONVICT",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
-SCROLL((char *)0,               "VEGETARIANISM IS AN EATING DISORDER",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "VEGETARIANISM IS AN EATING DISORDER IMHO",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "IF YOUR NAME IS LORSKEL YOU WILL PLAY V165E",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
 SCROLL((char *)0,               "GERMANY SCORED DEAD LAST IN THE EFC TWICE IN A ROW",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1), /* eurovision farce contest */
 SCROLL((char *)0,               "EUROVISION FARCE CONTEST",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
@@ -6253,6 +6253,8 @@ SCROLL((char *)0,               "THERE IS NO POSTGAME AFTER YOU KILLED BAAL IN H
 SCROLL((char *)0,               "NO ONE RUNS ACT 1 TO FIND A HARLEQUIN CREST",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "NO ONE RUNS THRESH SOCKET BECAUSE HES TOO HARD TO REACH",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 SCROLL((char *)0,               "SURPRISE INSIDE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "ICHE NIXE SPRECHE SPRACHE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "WE WANT TO SWOON OVER THE GIRL TURN SHOES",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 
 
 #ifdef MAIL
