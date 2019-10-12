@@ -35,7 +35,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,
+	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
@@ -81,6 +81,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "memorization",
     "gun control",
     "squeaking",
+    "symbiosis",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
@@ -501,165 +502,7 @@ dosit()
 			break;
 		    case 14:
 			You("are granted some new skills!"); /* new effect that unrestricts skills --Amy */
-
-			int acquiredskill;
-			acquiredskill = 0;
-
-			pline("Pick a skill to unrestrict. The prompt will loop until you actually make a choice.");
-
-			while (acquiredskill == 0) { /* ask the player what they want --Amy */
-
-			if (P_RESTRICTED(P_DAGGER) && yn("Do you want to learn the dagger skill?")=='y') {
-				    unrestrict_weapon_skill(P_DAGGER);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_KNIFE) && yn("Do you want to learn the knife skill?")=='y') {
-				    unrestrict_weapon_skill(P_KNIFE);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_AXE) && yn("Do you want to learn the axe skill?")=='y') {
-				    unrestrict_weapon_skill(P_AXE);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_PICK_AXE) && yn("Do you want to learn the pick-axe skill?")=='y') {
-				    unrestrict_weapon_skill(P_PICK_AXE);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SHORT_SWORD) && yn("Do you want to learn the short sword skill?")=='y') {
-				    unrestrict_weapon_skill(P_SHORT_SWORD);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_BROAD_SWORD) && yn("Do you want to learn the broad sword skill?")=='y') {
-				    unrestrict_weapon_skill(P_BROAD_SWORD);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_LONG_SWORD) && yn("Do you want to learn the long sword skill?")=='y') {
-				    unrestrict_weapon_skill(P_LONG_SWORD);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_TWO_HANDED_SWORD) && yn("Do you want to learn the two-handed sword skill?")=='y') {
-				    unrestrict_weapon_skill(P_TWO_HANDED_SWORD);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SCIMITAR) && yn("Do you want to learn the scimitar skill?")=='y') {
-				    unrestrict_weapon_skill(P_SCIMITAR);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SABER) && yn("Do you want to learn the saber skill?")=='y') {
-				    unrestrict_weapon_skill(P_SABER);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_CLUB) && yn("Do you want to learn the club skill?")=='y') {
-				    unrestrict_weapon_skill(P_CLUB);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_PADDLE) && yn("Do you want to learn the paddle skill?")=='y') {
-				    unrestrict_weapon_skill(P_PADDLE);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_MACE) && yn("Do you want to learn the mace skill?")=='y') {
-				    unrestrict_weapon_skill(P_MACE);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_MORNING_STAR) && yn("Do you want to learn the morning star skill?")=='y') {
-				    unrestrict_weapon_skill(P_MORNING_STAR);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_FLAIL) && yn("Do you want to learn the flail skill?")=='y') {
-				    unrestrict_weapon_skill(P_FLAIL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_HAMMER) && yn("Do you want to learn the hammer skill?")=='y') {
-				    unrestrict_weapon_skill(P_HAMMER);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_QUARTERSTAFF) && yn("Do you want to learn the quarterstaff skill?")=='y') {
-				    unrestrict_weapon_skill(P_QUARTERSTAFF);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_POLEARMS) && yn("Do you want to learn the polearms skill?")=='y') {
-				    unrestrict_weapon_skill(P_POLEARMS);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SPEAR) && yn("Do you want to learn the spear skill?")=='y') {
-				    unrestrict_weapon_skill(P_SPEAR);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_JAVELIN) && yn("Do you want to learn the javelin skill?")=='y') {
-				    unrestrict_weapon_skill(P_JAVELIN);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_TRIDENT) && yn("Do you want to learn the trident skill?")=='y') {
-				    unrestrict_weapon_skill(P_TRIDENT);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_LANCE) && yn("Do you want to learn the lance skill?")=='y') {
-				    unrestrict_weapon_skill(P_LANCE);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_BOW) && yn("Do you want to learn the bow skill?")=='y') {
-				    unrestrict_weapon_skill(P_BOW);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SLING) && yn("Do you want to learn the sling skill?")=='y') {
-				    unrestrict_weapon_skill(P_SLING);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_FIREARM) && yn("Do you want to learn the firearms skill?")=='y') {
-				    unrestrict_weapon_skill(P_FIREARM);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_CROSSBOW) && yn("Do you want to learn the crossbow skill?")=='y') {
-				    unrestrict_weapon_skill(P_CROSSBOW);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_DART) && yn("Do you want to learn the dart skill?")=='y') {
-				    unrestrict_weapon_skill(P_DART);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SHURIKEN) && yn("Do you want to learn the shuriken skill?")=='y') {
-				    unrestrict_weapon_skill(P_SHURIKEN);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_BOOMERANG) && yn("Do you want to learn the boomerang skill?")=='y') {
-				    unrestrict_weapon_skill(P_BOOMERANG);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_WHIP) && yn("Do you want to learn the whip skill?")=='y') {
-				    unrestrict_weapon_skill(P_WHIP);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_UNICORN_HORN) && yn("Do you want to learn the unicorn horn skill?")=='y') {
-				    unrestrict_weapon_skill(P_UNICORN_HORN);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_LIGHTSABER) && yn("Do you want to learn the lightsaber skill?")=='y') {
-				    unrestrict_weapon_skill(P_LIGHTSABER);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_ATTACK_SPELL) && yn("Do you want to learn the attack spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_ATTACK_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_HEALING_SPELL) && yn("Do you want to learn the healing spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_HEALING_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_DIVINATION_SPELL) && yn("Do you want to learn the divination spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_DIVINATION_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_ENCHANTMENT_SPELL) && yn("Do you want to learn the enchantment spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_ENCHANTMENT_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_PROTECTION_SPELL) && yn("Do you want to learn the protection spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_PROTECTION_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_BODY_SPELL) && yn("Do you want to learn the body spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_BODY_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_OCCULT_SPELL) && yn("Do you want to learn the occult spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_OCCULT_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_ELEMENTAL_SPELL) && yn("Do you want to learn the elemental spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_ELEMENTAL_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_CHAOS_SPELL) && yn("Do you want to learn the chaos spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_CHAOS_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_MATTER_SPELL) && yn("Do you want to learn the matter spell skill?")=='y') {
-				    unrestrict_weapon_skill(P_MATTER_SPELL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_RIDING) && yn("Do you want to learn the riding skill?")=='y') {
-				    unrestrict_weapon_skill(P_RIDING);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_HIGH_HEELS) && yn("Do you want to learn the high heels skill?")=='y') {
-				    unrestrict_weapon_skill(P_HIGH_HEELS);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_GENERAL_COMBAT) && yn("Do you want to learn the general combat skill?")=='y') {
-				    unrestrict_weapon_skill(P_GENERAL_COMBAT);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SHIELD) && yn("Do you want to learn the shield skill?")=='y') {
-				    unrestrict_weapon_skill(P_SHIELD);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_BODY_ARMOR) && yn("Do you want to learn the body armor skill?")=='y') {
-				    unrestrict_weapon_skill(P_BODY_ARMOR);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_TWO_HANDED_WEAPON) && yn("Do you want to learn the two-handed weapon skill?")=='y') {
-				    unrestrict_weapon_skill(P_TWO_HANDED_WEAPON);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_TWO_WEAPON_COMBAT) && yn("Do you want to learn the two-weapon combat skill?")=='y') {
-				    unrestrict_weapon_skill(P_TWO_WEAPON_COMBAT);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_POLYMORPHING) && yn("Do you want to learn the polymorphing skill?")=='y') {
-				    unrestrict_weapon_skill(P_POLYMORPHING);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_DEVICES) && yn("Do you want to learn the devices skill?")=='y') {
-				    unrestrict_weapon_skill(P_DEVICES);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SEARCHING) && yn("Do you want to learn the searching skill?")=='y') {
-				    unrestrict_weapon_skill(P_SEARCHING);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SPIRITUALITY) && yn("Do you want to learn the spirituality skill?")=='y') {
-				    unrestrict_weapon_skill(P_SPIRITUALITY);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_PETKEEPING) && yn("Do you want to learn the petkeeping skill?")=='y') {
-				    unrestrict_weapon_skill(P_PETKEEPING);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_MISSILE_WEAPONS) && yn("Do you want to learn the missile weapons skill?")=='y') {
-				    unrestrict_weapon_skill(P_MISSILE_WEAPONS);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_TECHNIQUES) && yn("Do you want to learn the techniques skill?")=='y') {
-				    unrestrict_weapon_skill(P_TECHNIQUES);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_IMPLANTS) && yn("Do you want to learn the implants skill?")=='y') {
-				    unrestrict_weapon_skill(P_IMPLANTS);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SEXY_FLATS) && yn("Do you want to learn the sexy flats skill?")=='y') {
-				    unrestrict_weapon_skill(P_SEXY_FLATS);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_MEMORIZATION) && yn("Do you want to learn the memorization skill?")=='y') {
-				    unrestrict_weapon_skill(P_MEMORIZATION);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_GUN_CONTROL) && yn("Do you want to learn the gun control skill?")=='y') {
-				    unrestrict_weapon_skill(P_GUN_CONTROL);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SQUEAKING) && yn("Do you want to learn the squeaking skill?")=='y') {
-				    unrestrict_weapon_skill(P_SQUEAKING);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SHII_CHO) && yn("Do you want to learn the form I (Shii-Cho) skill?")=='y') {
-				    unrestrict_weapon_skill(P_SHII_CHO);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_MAKASHI) && yn("Do you want to learn the form II (Makashi) skill?")=='y') {
-				    unrestrict_weapon_skill(P_MAKASHI);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SORESU) && yn("Do you want to learn the form III (Soresu) skill?")=='y') {
-				    unrestrict_weapon_skill(P_SORESU);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_ATARU) && yn("Do you want to learn the form IV (Ataru) skill?")=='y') {
-				    unrestrict_weapon_skill(P_ATARU);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_SHIEN) && yn("Do you want to learn the form V (Shien) skill?")=='y') {
-				    unrestrict_weapon_skill(P_SHIEN);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_DJEM_SO) && yn("Do you want to learn the form V (Djem So) skill?")=='y') {
-				    unrestrict_weapon_skill(P_DJEM_SO);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_NIMAN) && yn("Do you want to learn the form VI (Niman) skill?")=='y') {
-				    unrestrict_weapon_skill(P_NIMAN);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_JUYO) && yn("Do you want to learn the form VII (Juyo) skill?")=='y') {
-				    unrestrict_weapon_skill(P_JUYO);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_VAAPAD) && yn("Do you want to learn the form VII (Vaapad) skill?")=='y') {
-				    unrestrict_weapon_skill(P_VAAPAD);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_WEDI) && yn("Do you want to learn the form VIII (Wedi) skill?")=='y') {
-				    unrestrict_weapon_skill(P_WEDI);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_BARE_HANDED_COMBAT) && yn("Do you want to learn the bare-handed combat skill?")=='y') {
-				    unrestrict_weapon_skill(P_BARE_HANDED_COMBAT);	acquiredskill = 1; }
-			else if (P_RESTRICTED(P_MARTIAL_ARTS) && yn("Do you want to learn the martial arts skill?")=='y') {
-				    unrestrict_weapon_skill(P_MARTIAL_ARTS);	acquiredskill = 1; }
-			else if (yn("Do you want to learn no new skill at all?")=='y') {
-				    acquiredskill = 1; }
-			}
-			pline("Check out what you got!");
-
+			unrestrictskillchoice();
 			break;
 		    case 15:
 			pline("A voice echoes:");

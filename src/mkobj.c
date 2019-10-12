@@ -1190,7 +1190,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(169)) {
+	switch (rnd(170)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -1529,6 +1529,10 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return MATERIAL_KIT;
 		case 169:
 			return INTELLIGENCE_PACK;
+		case 170:
+			return SYMBIOTE;
+		default: /* fail safe */
+			return SCR_IDENTIFY;
 
 	}
 

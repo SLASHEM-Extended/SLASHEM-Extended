@@ -3156,6 +3156,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CANCEL_DRAGON_SCALES, "todo" },
 	{ CANCEL_DRAGON_SCALE_MAIL, "todo" },
 	{ CANCEL_DRAGON_SCALE_SHIELD, "todo" },
+	{ SYMBIOTE, "todo" },
 
 	{0, "" }
 };
@@ -5760,6 +5761,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CANCEL_DRAGON_SCALES, "todo" },
 	{ CANCEL_DRAGON_SCALE_MAIL, "todo" },
 	{ CANCEL_DRAGON_SCALE_SHIELD, "todo" },
+	{ SYMBIOTE, "todo" },
 
 	{0, "" }
 };

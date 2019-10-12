@@ -37,7 +37,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,
+	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
@@ -83,6 +83,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "memorization",
     "gun control",
     "squeaking",
+    "symbiosis",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
@@ -1464,7 +1465,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvl = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(177)) {
+		if (!rn2(3)) { switch (rnd(178)) {
 
 			case 1: 
 			case 2: 
@@ -1913,6 +1914,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 172: 
 				if (!tech_known(T_SKILLOMORPH)) {    	learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
 			    	You("learn how to perform skillomorph!");
+				}
+				break;
+			case 173: 
+				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
+			    	You("learn how to perform terrain cleanup!");
 				}
 				break;
 
@@ -2311,7 +2317,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlB = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(177)) {
+		if (!rn2(3)) { switch (rnd(178)) {
 
 			case 1: 
 			case 2: 
@@ -2760,6 +2766,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 172: 
 				if (!tech_known(T_SKILLOMORPH)) {    	learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
 			    	You("learn how to perform skillomorph!");
+				}
+				break;
+			case 173: 
+				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
+			    	You("learn how to perform terrain cleanup!");
 				}
 				break;
 
@@ -2813,7 +2824,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlH = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(177)) {
+		if (!rn2(3)) { switch (rnd(178)) {
 
 			case 1: 
 			case 2: 
@@ -3262,6 +3273,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 172: 
 				if (!tech_known(T_SKILLOMORPH)) {    	learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
 			    	You("learn how to perform skillomorph!");
+				}
+				break;
+			case 173: 
+				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
+			    	You("learn how to perform terrain cleanup!");
 				}
 				break;
 
@@ -3279,7 +3295,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlG = u.ulevel;
 
-		if (!rn2(5)) { switch (rnd(177)) {
+		if (!rn2(5)) { switch (rnd(178)) {
 
 			case 1: 
 			case 2: 
@@ -3728,6 +3744,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 172: 
 				if (!tech_known(T_SKILLOMORPH)) {    	learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
 			    	You("learn how to perform skillomorph!");
+				}
+				break;
+			case 173: 
+				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
+			    	You("learn how to perform terrain cleanup!");
 				}
 				break;
 
@@ -3753,7 +3774,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlE = u.ulevel;
 
-		if (!rn2(2)) { switch (rnd(177)) {
+		if (!rn2(2)) { switch (rnd(178)) {
 
 			case 1: 
 			case 2: 
@@ -4202,6 +4223,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 172: 
 				if (!tech_known(T_SKILLOMORPH)) {    	learntech(T_SKILLOMORPH, FROMOUTSIDE, 1);
 			    	You("learn how to perform skillomorph!");
+				}
+				break;
+			case 173: 
+				if (!tech_known(T_TERRAIN_CLEANUP)) {    	learntech(T_TERRAIN_CLEANUP, FROMOUTSIDE, 1);
+			    	You("learn how to perform terrain cleanup!");
 				}
 				break;
 

@@ -211,6 +211,14 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"squeaky repair",
 	"bulletreuse",
 	"extracharge",
+	"terrain cleanup",
+	"symbiosis",
+	"adjust symbiote",
+	"heal symbiote",
+	"boost symbiote",
+	"powerbiosis",
+	"implanted symbiosis",
+	"assume symbiote",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -2817,6 +2825,38 @@ dotech()
 
 		case T_USE_THE_FORCE_LUKE:
 			pline("This technique lasts for a period of time and increases the damage of the #force command while active.");
+			break;
+
+		case T_TERRAIN_CLEANUP:
+			pline("This powerful technique removes most annoying terrain from the eight squares surrounding you: water, trees, ice, farmland, nether mist and so on... It doesn't raze walls though, and furniture (e.g. wagons or fountains) is unaffected. The general rule of thumb is that if the terrain type can replace walls in maze levels, it will be affected.");
+			break;
+
+		case T_SYMBIOSIS:
+			pline("The basic symbiosis technique, using this will create a symbiote item out of thin air with which you can then perform symbiosis. It's probably a good idea to use this technique whenever you can, as it allows you to slowly but steadily build up a supply of symbiote items for later use.");
+			break;
+
+		case T_ADJUST_SYMBIOTE:
+			pline("Adjusts the aggressivity of your symbiotes, which is a global value that persists even if you switch to a different symbiote. Higher aggressivity means that your symbiote's attacks trigger more often, and damage that you would normally take is redirected to the symbiote more often.");
+			break;
+
+		case T_HEAL_SYMBIOTE:
+			pline("Damages you by half of your current HP and transfers that amount of hit points to your symbiote, but if that causes it to be overhealed, the extra points will just go to waste.");
+			break;
+
+		case T_BOOST_SYMBIOTE:
+			pline("Whenever you use this technique, your symbiote's maximum health will increase. However, there is a cap of 500 HP for the symbiote.");
+			break;
+
+		case T_POWERBIOSIS:
+			pline("Activating this technique temporarily allows your symbiote to deal double damage and take half damage.");
+			break;
+
+		case T_IMPLANTED_SYMBIOSIS:
+			pline("This technique lasts for quite a while when you use it. While active, you benefit from the more powerful implant effects as long as you're in symbiosis, and if your implant is positively enchanted, your symbiote will take less damage based on the exact enchantment value.");
+			break;
+
+		case T_ASSUME_SYMBIOTE:
+			pline("Polymorphs you into the base monster type of your current symbiote. Doing that causes your symbiote to persist, so don't worry about it dying from this tech - it just makes it so that both you and your symbiote are of the same species. What's more, you will be able to move around as long as you still have the symbiote, even though symbiotes are characterized by the fact that they're nonmoving monsters.");
 			break;
 
 		default:
@@ -7053,6 +7093,38 @@ repairitemchoice:
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your ammo can temporarily be reused.");
 			t_timeout = rnz(10000);
+			break;
+
+		case T_TERRAIN_CLEANUP:
+			pline("todo");
+			break;
+
+		case T_SYMBIOSIS:
+			pline("todo");
+			break;
+
+		case T_ADJUST_SYMBIOTE:
+			pline("todo");
+			break;
+
+		case T_HEAL_SYMBIOTE:
+			pline("todo");
+			break;
+
+		case T_BOOST_SYMBIOTE:
+			pline("todo");
+			break;
+
+		case T_POWERBIOSIS:
+			pline("todo");
+			break;
+
+		case T_IMPLANTED_SYMBIOSIS:
+			pline("todo");
+			break;
+
+		case T_ASSUME_SYMBIOTE:
+			pline("todo");
 			break;
 
 		case T_EXTRACHARGE:

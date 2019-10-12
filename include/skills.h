@@ -85,21 +85,22 @@
 #define P_MEMORIZATION	(P_LAST_SPELL + 16)
 #define P_GUN_CONTROL	(P_LAST_SPELL + 17)
 #define P_SQUEAKING	(P_LAST_SPELL + 18)
+#define P_SYMBIOSIS	(P_LAST_SPELL + 19)
 
-#define P_SHII_CHO	(P_LAST_SPELL + 19)
-#define P_MAKASHI	(P_LAST_SPELL + 20)
-#define P_SORESU	(P_LAST_SPELL + 21)
-#define P_ATARU	(P_LAST_SPELL + 22)
-#define P_SHIEN	(P_LAST_SPELL + 23)
-#define P_DJEM_SO	(P_LAST_SPELL + 24)
-#define P_NIMAN	(P_LAST_SPELL + 25)
-#define P_JUYO	(P_LAST_SPELL + 26)
-#define P_VAAPAD	(P_LAST_SPELL + 27)
-#define P_WEDI	(P_LAST_SPELL + 28)
+#define P_SHII_CHO	(P_LAST_SPELL + 20)
+#define P_MAKASHI	(P_LAST_SPELL + 21)
+#define P_SORESU	(P_LAST_SPELL + 22)
+#define P_ATARU	(P_LAST_SPELL + 23)
+#define P_SHIEN	(P_LAST_SPELL + 24)
+#define P_DJEM_SO	(P_LAST_SPELL + 25)
+#define P_NIMAN	(P_LAST_SPELL + 26)
+#define P_JUYO	(P_LAST_SPELL + 27)
+#define P_VAAPAD	(P_LAST_SPELL + 28)
+#define P_WEDI	(P_LAST_SPELL + 29)
 
-#define P_MARTIAL_ARTS		(P_LAST_SPELL + 29) /* WAC used to be role distinguishes */
-#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 30) /* Finally implemented */
-#define P_RIDING		(P_LAST_SPELL + 31) /* How well you control your steed */
+#define P_MARTIAL_ARTS		(P_LAST_SPELL + 30) /* WAC used to be role distinguishes */
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 31) /* Finally implemented */
+#define P_RIDING		(P_LAST_SPELL + 32) /* How well you control your steed */
 #define P_LAST_H_TO_H		P_RIDING
 #define P_FIRST_H_TO_H		P_BARE_HANDED_COMBAT
 
@@ -140,20 +141,21 @@
 #define PN_MEMORIZATION		(-32)
 #define PN_GUN_CONTROL		(-33)
 #define PN_SQUEAKING		(-34)
-#define PN_SHII_CHO		(-35)
-#define PN_MAKASHI		(-36)
-#define PN_SORESU		(-37)
-#define PN_ATARU		(-38)
-#define PN_SHIEN		(-39)
-#define PN_DJEM_SO		(-40)
-#define PN_NIMAN		(-41)
-#define PN_JUYO		(-42)
-#define PN_VAAPAD		(-43)
-#define PN_WEDI		(-44)
-#define PN_MARTIAL_ARTS		(-45)
-#define PN_RIDING		(-46)
-#define PN_TWO_WEAPONS		(-47)
-#define PN_LIGHTSABER		(-48)
+#define PN_SYMBIOSIS		(-35)
+#define PN_SHII_CHO		(-36)
+#define PN_MAKASHI		(-37)
+#define PN_SORESU		(-38)
+#define PN_ATARU		(-39)
+#define PN_SHIEN		(-40)
+#define PN_DJEM_SO		(-41)
+#define PN_NIMAN		(-42)
+#define PN_JUYO		(-43)
+#define PN_VAAPAD		(-44)
+#define PN_WEDI		(-45)
+#define PN_MARTIAL_ARTS		(-46)
+#define PN_RIDING		(-47)
+#define PN_TWO_WEAPONS		(-48)
+#define PN_LIGHTSABER		(-49)
 
 /*
  * These are the standard weapon skill levels.  It is important that

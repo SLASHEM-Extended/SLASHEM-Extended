@@ -5777,6 +5777,11 @@ materialchoice:
 
 		break;
 
+	case SYMBIOTE:
+
+		noartispeak = TRUE;
+		break;
+
 	case INTELLIGENCE_PACK:
 
 		if (obj->unpaid) {

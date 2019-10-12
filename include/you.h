@@ -28,6 +28,12 @@ struct RoleAdvance {
 	xchar hifix, hirnd;	/* gained per level >= urole.xlev */
 };
 
+struct symbiotemon {
+	boolean active;
+	long mnum;	/* permanent monster index number */
+	int mhp, mhpmax;
+	boolean cursed, hvycurse, prmcurse, bbcurse, morgcurse, evilcurse, stckcurse;
+};
 
 struct u_have {
 	Bitfield(amulet,1);	/* carrying Amulet	*/
@@ -1683,7 +1689,13 @@ struct you {
 	int cnd_untrapamount;	/* how many times you untrapped a trap successfully */
 	int cnd_longingamount;	/* how many longing messages you had to read */
 
+	struct symbiotemon usymbiote;	/* for the symbiosis skill */
+	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */
+
 };	/* end of `struct you' */
+
+/* is the player in symbiosis? make extra sure the monster is set up correctly --Amy */
+#define uinsymbiosis	(u.symbiotemon.active && u.symbiotemon.mnum > PM_PLAYERMON && u.symbiotemon.mnum < NUMMONS)
 
 #define Upolyd (u.umonnum != u.umonster)
 

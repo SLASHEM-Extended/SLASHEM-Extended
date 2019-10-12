@@ -12515,6 +12515,8 @@ boolean knoweverything;
 				pline("A marker that is useful for writing graffiti on the floor."); break;
 			case SWITCHER:
 				pline("This metal box has a switch that can be pulled. What may happen if you do so?"); break;
+			case SYMBIOTE:
+				pline("An item that allows you to go in symbiosis with a monster, which is done by applying it at a stationary monster. If successful, the monster in question will become your symbiote, allowing you to benefit from its attacks and abilities in a limited fashion. Using it while you already have a symbiote will replace your previous one (which will be removed permanently) with the new one. A successful use of this item will use it up, but if you fail, you can try again (unless the monster gets frenzied, which can happen sometimes)."); break;
 			case INTELLIGENCE_PACK:
 				pline("Using this tool will boost your intelligence by one point (make sure you're not wearing an item that gives sustain ability). If you're of the sustainer race, it boosts your wisdom instead."); break;
 			case MATERIAL_KIT:
