@@ -6830,6 +6830,10 @@ peffects(otmp)
 		make_hallucinated(HHallucination + time + d(10, 3), FALSE, 0L);
 		u.uhpmax += rnd(5);
 		u.uhp = u.uhpmax;
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax += 5;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
 		} break;
 	case POT_MEHOHO_BURUSASAN_G:
 		pline("%s", fauxmessage());
@@ -6883,6 +6887,10 @@ peffects(otmp)
 				} else {
 					u.uhp++;
 					u.uhpmax++;
+				}
+				if (uinsymbiosis) {
+					u.usymbiote.mhpmax++;
+					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
 				You_feel("vitalized.");
 				flags.botl = 1;
@@ -7450,6 +7458,10 @@ peffects(otmp)
 				u.uhpmax += ((u.uhp - u.uhpmax) / 2);
 				u.uhp = u.uhpmax;
 			}
+			if (uinsymbiosis && !otmp->cursed) {
+				u.usymbiote.mhpmax += num2;
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
 			flags.botl = 1;
 			exercise(A_WIS, TRUE);
 		}
@@ -7644,6 +7656,10 @@ peffects(otmp)
 			if (u.uhp < 1) u.uhp = 1;	/* can't kill you */
 		} else {
 			if (Hallucination) make_hallucinated(0L,FALSE,0L);
+			if (uinsymbiosis) {
+				u.usymbiote.mhpmax++;
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
 			if (otmp->blessed && !rn2(10)) {
 				pluslvl(FALSE);
 			} else {
@@ -7672,6 +7688,10 @@ peffects(otmp)
 		You_feel("%spowerful!",otmp->blessed ? "very " : "");
 		u.uhp += x;
 		u.uhpmax += x;
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax += x;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
 	} break;
 
 	case POT_RECOVERY: 
@@ -7681,7 +7701,13 @@ peffects(otmp)
 			pline("Nothing happens, however.");
 			break;
 		}	
-		if (otmp->blessed) u.uhpmax += rn2(5);
+		if (otmp->blessed) {
+			u.uhpmax += rn2(5);
+			if (uinsymbiosis) {
+				u.usymbiote.mhpmax += rn2(5);
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
+		}
 		u.uhp = u.uhpmax;
 		You_feel("much, much better.");
 		break;
@@ -7704,6 +7730,10 @@ peffects(otmp)
 		incr_itimeout(&HSee_invisible, time);
 		if (!rnl(3)) make_blinded(Blinded+time,TRUE);	
 		u.uhpmax += rn2(5);
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax += rn2(5);
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
 		u.uhp = u.uhpmax;
 		} break;
 
@@ -7867,6 +7897,10 @@ healup(nhp, nxtra, curesick, cureblind)
 			u.uhp += nhp;
 			if(u.uhp > u.uhpmax) u.uhp = (u.uhpmax += nxtra);
 			else if (!rn2(2)) u.uhpmax += nxtra;
+		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax += nxtra;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 
 		if (PlayerBleeds) {

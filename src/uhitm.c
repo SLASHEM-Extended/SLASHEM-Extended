@@ -837,7 +837,7 @@ register struct monst *mtmp;
 
 	if (Upolyd) {
 		/* certain "pacifist" monsters don't attack */
-		if(noattacks(youmonst.data)) {
+		if(noattacks(youmonst.data) && (!uinsymbiosis || noattacks(&mons[u.usymbiote.mnum])) ) {
 			You("have no way to attack monsters physically.");
 			mtmp->mstrategy &= ~STRAT_WAITMASK;
 			goto atk_done;
@@ -7156,6 +7156,11 @@ register int tmp;
 	static const int hit_touch[] = {0, HIT_BODY, HIT_BODY|HIT_FATAL};
 	static const int hit_notouch[] = {0, HIT_OTHER, HIT_OTHER|HIT_FATAL};
 
+	boolean willsymattack = FALSE;
+	if (symbiotemelee()) willsymattack = TRUE;
+	boolean symbioteprocess = FALSE;
+	boolean symbiotedouble = FALSE;
+
 	/* don't give the extra weapon attacks every time if your natural form has more than two --Amy */
 	int weaponiteration = 0;
 	int weaponamount = 1;
@@ -7167,11 +7172,16 @@ register int tmp;
 	/* Keeps track of which weapon hands have been used */
 	boolean used_uwep = FALSE;
 
+symbiotejump:
 	for(i = 0; i < NATTK; i++) {
 	    mhit = 0; /* Clear all previous attacks */
 
 	    sum[i] = 0;
-	    mattk = getmattk(youmonst.data, i, sum, &alt_attk);
+
+	    /* failsafe if your symbiote dies while doing attacks --Amy */
+	    if (symbioteprocess && !uinsymbiosis) continue;
+
+	    mattk = getmattk(symbioteprocess ? &mons[u.usymbiote.mnum] : youmonst.data, i, sum, &alt_attk);
 
 	    switch(mattk->aatyp) {
 		case AT_WEAP:
@@ -7675,6 +7685,24 @@ use_weapon:
 	    if (multi < 0)
 		break; /* If paralyzed while attacking, i.e. floating eye */
 	}
+	if (willsymattack && !symbioteprocess && uinsymbiosis) {
+		if (!noattacks(&mons[u.usymbiote.mnum])) {
+			Your("%s symbiote attacks!", mons[u.usymbiote.mnum].mname);
+			u.usymbiosisfastturns++;
+			if (u.usymbiosisfastturns >= 10) {
+				u.usymbiosisfastturns = 0;
+				use_skill(P_SYMBIOSIS, 1);
+			}
+		}
+		symbioteprocess = TRUE;
+		goto symbiotejump;
+	}
+	/* powerbiosis is supposed to double the damage, but that's so annoying to code... let it attack twice instead --Amy */
+	if (tech_inuse(T_POWERBIOSIS) && willsymattack && symbioteprocess && uinsymbiosis && !symbiotedouble) {
+		symbiotedouble = TRUE;
+		goto symbiotejump;
+	}
+
 	return((boolean)(nsum != 0));
 }
 

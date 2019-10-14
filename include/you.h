@@ -1330,6 +1330,8 @@ struct you {
 	int uwediturns;
 	int umemorizationturns;
 	int uguncontrolturns;
+	int usymbiosisslowturns;
+	int usymbiosisfastturns;
 	int	umortality;		/* how many times you died */
 	int ugrave_arise; /* you die and become something aside from a ghost */
 	time_t	ubirthday;		/* real world time when game began */

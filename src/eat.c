@@ -2032,6 +2032,10 @@ register int pm;
 			u.uhp++;
 			u.uhpmax++;
 		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
 		    You_feel("vitalized.");
 		    flags.botl = 1;
 		break;
@@ -2053,6 +2057,12 @@ register int pm;
 			u.uhpmax += rnd(2);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			u.usymbiote.mhpmax += rnd(2);
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
+
 		    You_feel("vitalized.");
 		    flags.botl = 1;
 		break;
@@ -2081,6 +2091,13 @@ register int pm;
 			u.uhpmax++;
 			u.uhpmax += rnd(10);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			u.usymbiote.mhpmax++;
+			u.usymbiote.mhpmax++;
+			u.usymbiote.mhpmax += rnd(10);
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		    You_feel("vitalized.");
 		    flags.botl = 1;
@@ -2123,6 +2140,13 @@ register int pm;
 			u.uhpmax++;
 			u.uhpmax += rnd(10);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			u.usymbiote.mhpmax++;
+			u.usymbiote.mhpmax++;
+			u.usymbiote.mhpmax += rnd(10);
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 		    You_feel("vitalized.");
 		    flags.botl = 1;
@@ -3358,6 +3382,10 @@ register int pm;
 				u.uhp++;
 				u.uhpmax++;
 			}
+			if (uinsymbiosis) {
+				u.usymbiote.mhpmax++;
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
 		    You_feel("vitalized.");
 		    flags.botl = 1;
 		}
@@ -3437,6 +3465,10 @@ register int pm;
 				} else {
 					u.uhp++;
 					u.uhpmax++;
+				}
+				if (uinsymbiosis) {
+					u.usymbiote.mhpmax++;
+					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
 				You_feel("vitalized.");
 				flags.botl = 1;
@@ -5169,6 +5201,10 @@ eatspecial() /* called after eating non-food */
 			u.uhp++;
 			u.uhpmax++;
 		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
 		You_feel("vitalized.");
 		flags.botl = 1;
 	}
@@ -5965,6 +6001,10 @@ register struct obj *otmp;
 			done(POISONING);
 			u.youaredead = 0;
 		    }
+			if (uinsymbiosis && !rn2(17)) {
+				u.usymbiote.mhpmax++;
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
 		}
 		if(!otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) heal_legs();
 		break;

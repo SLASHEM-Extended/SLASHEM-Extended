@@ -5183,6 +5183,14 @@ newbossO:
 			}
 		}
 
+		if (uinsymbiosis) {
+			u.usymbiosisslowturns++;
+			if (u.usymbiosisslowturns >= 100) {
+				u.usymbiosisslowturns = 0;
+				use_skill(P_SYMBIOSIS, 1);
+			}
+		}
+
 		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || (uwep && uwep->oartifact == ART_EGRID_BUG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG) || (uwep && uwep->oartifact == ART_WEAKITE_THRUST) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
@@ -12870,6 +12878,16 @@ boolean new_game;	/* false => restoring an old game */
 		discover = TRUE;
 		pline("Filthy hangup cheater! The ability to enter explore mode after death is not meant to be abused! Be glad that I'm lenient and allow you to play on in explore mode instead of simply killing you outright... --Amy");
 
+	}
+
+	if (!new_game && uinsymbiosis && u.usymbiote.mhp < 0) {
+		u.usymbiote.active = 0;
+		u.usymbiote.mnum = PM_PLAYERMON;
+		u.usymbiote.mhp = 0;
+		u.usymbiote.mhpmax = 0;
+		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+		u.cnd_symbiotesdied++;
+		You("filthy hangup cheater tried to cheat past the fact that your symbiote died, and therefore it gets declared dead now. I hope you're ashamed of yourself, cheater :P --Amy");
 	}
 
 	if (!new_game && u.hangupcheat) {

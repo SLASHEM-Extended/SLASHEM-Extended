@@ -1694,6 +1694,8 @@ E void turnmonintosymbiote(struct monst *);
 E void killsymbiote(void);
 E void uncursesymbiote(BOOLEAN_P);
 E void cursesymbiote(void);
+E boolean symbiotemelee(void);
+E boolean symbiotepassive(void);
 
 /* ### mondata.c ### */
 

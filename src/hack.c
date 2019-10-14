@@ -4700,7 +4700,30 @@ int k_format; /* WAC k_format is an int */
 		    Your("metal guard prevents the damage!");
 	}
 
-	if (u.disruptionshield && u.uen >= n) {
+	if (uinsymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
+		if (tech_inuse(T_POWERBIOSIS) && n > 1) n /= 2;
+		if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
+			int imbiophases = uimplant->spe;
+			while ((imbiophases > 0) && n > 1) {
+				imbiophases--;
+				n *= 10;
+				n /= 11;
+			}
+		}
+		u.usymbiote.mhp -= n;
+		Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
+		if (u.usymbiote.mhp < 0) {
+			u.usymbiote.active = 0;
+			u.usymbiote.mnum = PM_PLAYERMON;
+			u.usymbiote.mhp = 0;
+			u.usymbiote.mhpmax = 0;
+			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+			u.cnd_symbiotesdied++;
+			if (FunnyHallu) pline("Ack! You feel like you quaffed aqua pura by mistake, and feel like something inside you has been flushed away!");
+			else Your("symbiote dies from protecting you, and you feel very sad...");
+		}
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+	} else if (u.disruptionshield && u.uen >= n) {
 		u.uen -= n;
 		pline("Your mana shield takes the damage for you!");
 		flags.botl = 1;

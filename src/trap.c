@@ -4808,6 +4808,10 @@ newegomon:
 			}
 			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
 			u.uhp = u.uhpmax;
+			if (uinsymbiosis) {
+				u.usymbiote.mhpmax += 4;
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
 			make_blinded(0L,TRUE);
 			make_sick(0L, (char *) 0, FALSE, SICK_ALL);
 			heal_legs();
@@ -6571,6 +6575,10 @@ newbossPENT:
 			if (u.uhpmax < (u.ulevel * 10)) u.uhpmax += u.ulevel;
 			else u.uhpmax++;
 			u.uhp = u.uhpmax;
+		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
 
 		break;

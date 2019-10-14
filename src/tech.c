@@ -1742,6 +1742,33 @@ void * roomcnt;
 	newsym(x,y);
 }
 
+STATIC_PTR void
+terraincleanup(x, y, roomcnt)
+int x, y;
+void * roomcnt;
+{
+	if (Is_waterlevel(&u.uz)) return;
+
+	if (levl[x][y].typ < GRAVEWALL)
+		return;
+	if (levl[x][y].typ >= SDOOR && levl[x][y].typ <= SCORR)
+		return;
+	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+		return;
+	if (levl[x][y].typ == DRAWBRIDGE_UP || levl[x][y].typ == DRAWBRIDGE_DOWN)
+		return;
+	if (levl[x][y].typ >= DOOR && levl[x][y].typ <= STRAWMATTRESS)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of stone at x, y */
+	levl[x][y].typ = CORR;
+	unblock_point(x,y);
+	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+	newsym(x,y);
+}
+
 /* Called to prematurely stop a technique */
 void
 aborttech(tech)
@@ -7106,35 +7133,207 @@ repairitemchoice:
 			break;
 
 		case T_TERRAIN_CLEANUP:
-			pline("todo");
+
+			pline("You try to clean up annoying terrain.");
+			int maderoomX = 0;
+
+			do_clear_areaX(u.ux, u.uy, 1, terraincleanup, (void *)&maderoomX);
+
+			if (maderoomX) pline("Some annoying terrain was cleaned up!");
+			else pline("There was nothing to clean up...");
+
+			t_timeout = rnz(8000);
+
 			break;
 
 		case T_SYMBIOSIS:
-			pline("todo");
+
+			{
+				struct obj *usymbioteitem;
+
+				pline("A symbiote is created!");
+				usymbioteitem = mksobj(SYMBIOTE, TRUE, FALSE);
+				if (usymbioteitem) {
+					usymbioteitem->quan = 1;
+					usymbioteitem->known = usymbioteitem->dknown = usymbioteitem->bknown = usymbioteitem->rknown = 1;
+					usymbioteitem->owt = weight(usymbioteitem);
+					dropy(usymbioteitem);
+					stackobj(usymbioteitem);
+				}
+
+			}
+
+			t_timeout = rnz(20000);
 			break;
 
 		case T_ADJUST_SYMBIOTE:
-			pline("todo");
+
+			/* intentional that you can use this even while not having a symbiote --Amy */
+			if (P_SKILL(P_SYMBIOSIS) >= P_SKILLED) {
+
+				pline("Currently your symbiote's aggressiveness is %d%%.", u.symbioteaggressivity);
+
+				int lowerbound, higherbound;
+				lowerbound = 25;
+				higherbound = 25;
+
+				switch (P_SKILL(P_SYMBIOSIS)) {
+					case P_SKILLED:
+						lowerbound = 20;
+						higherbound = 33;
+						break;
+					case P_EXPERT:
+						lowerbound = 15;
+						higherbound = 40;
+						break;
+					case P_MASTER:
+						lowerbound = 12;
+						higherbound = 50;
+						break;
+					case P_GRAND_MASTER:
+						lowerbound = 10;
+						higherbound = 60;
+						break;
+					case P_SUPREME_MASTER:
+						lowerbound = 5;
+						higherbound = 75;
+						break;
+					default:
+						lowerbound = 25;
+						higherbound = 25;
+						break;
+				}
+
+				pline("You can set the aggressivity to values between %d%% and %d%% (inclusive).", lowerbound, higherbound);
+				if (lowerbound <= 5 && yn("Set the aggressivity to 5%%?") == 'y') {
+					u.symbioteaggressivity = 5;
+					pline("Your symbiote's aggressivity is 5%% now.");
+				} else if (lowerbound <= 10 && yn("Set the aggressivity to 10%%?") == 'y') {
+					u.symbioteaggressivity = 10;
+					pline("Your symbiote's aggressivity is 10%% now.");
+				} else if (lowerbound <= 12 && yn("Set the aggressivity to 12%%?") == 'y') {
+					u.symbioteaggressivity = 12;
+					pline("Your symbiote's aggressivity is 12%% now.");
+				} else if (lowerbound <= 15 && yn("Set the aggressivity to 15%%?") == 'y') {
+					u.symbioteaggressivity = 15;
+					pline("Your symbiote's aggressivity is 15%% now.");
+				} else if (lowerbound <= 20 && yn("Set the aggressivity to 20%%?") == 'y') {
+					u.symbioteaggressivity = 20;
+					pline("Your symbiote's aggressivity is 20%% now.");
+				} else if (yn("Set the aggressivity to 25%%?") == 'y') {
+					u.symbioteaggressivity = 25;
+					pline("Your symbiote's aggressivity is 25%% now.");
+				} else if (higherbound >= 33 && yn("Set the aggressivity to 33%%?") == 'y') {
+					u.symbioteaggressivity = 33;
+					pline("Your symbiote's aggressivity is 33%% now.");
+				} else if (higherbound >= 40 && yn("Set the aggressivity to 40%%?") == 'y') {
+					u.symbioteaggressivity = 40;
+					pline("Your symbiote's aggressivity is 40%% now.");
+				} else if (higherbound >= 50 && yn("Set the aggressivity to 50%%?") == 'y') {
+					u.symbioteaggressivity = 50;
+					pline("Your symbiote's aggressivity is 50%% now.");
+				} else if (higherbound >= 60 && yn("Set the aggressivity to 60%%?") == 'y') {
+					u.symbioteaggressivity = 60;
+					pline("Your symbiote's aggressivity is 60%% now.");
+				} else if (higherbound >= 75 && yn("Set the aggressivity to 75%%?") == 'y') {
+					u.symbioteaggressivity = 75;
+					pline("Your symbiote's aggressivity is 75%% now.");
+				} else pline("Your symbiote's aggressivity remains %d%%.", u.symbioteaggressivity);
+
+			} else pline("Unfortunately your symbiosis skill is too low to use this ability.");
+
+			t_timeout = rnz(500);
+
 			break;
 
 		case T_HEAL_SYMBIOTE:
-			pline("todo");
+
+			if (!uinsymbiosis) {
+				pline("You don't have a symbiote, so you can't heal it either!");
+				break;
+			}
+			if (u.uhp < ((u.uhpmax / 2) + 1)) {
+				pline("Your health is too low!");
+				break;
+			}
+			if (u.uhpmax < 5) { /* arbitrary */
+				pline("Your health is too low!");
+				break;
+			}
+			u.uhp -= (u.uhpmax / 2);
+			u.usymbiote.mhp += (u.uhpmax / 2);
+			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+			flags.botl = TRUE;
+			You("sap some of your health, and transfer it to your symbiote!");
+
+			t_timeout = rnz(2000);
 			break;
 
 		case T_BOOST_SYMBIOTE:
-			pline("todo");
+
+			if (!uinsymbiosis) {
+				pline("You can't boost a nonexistant symbiote!");
+				break;
+			}
+
+			u.usymbiote.mhpmax += rnd(8);
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+			Your("symbiote's health is improved!");
+
+			t_timeout = rnz(4000);
 			break;
 
 		case T_POWERBIOSIS:
-			pline("todo");
+
+			if (!uinsymbiosis) {
+				pline("Without a symbiote, this technique won't do anything.");
+				break;
+			}
+
+			num = 50 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your symbiote becomes super-powerful for a while!");
+
+			t_timeout = rnz(6000);
 			break;
 
 		case T_IMPLANTED_SYMBIOSIS:
-			pline("todo");
+
+			if (!uinsymbiosis && !uimplant) {
+				pline("You know that this technique requires both an implant and a symbiote. You currently have neither, and therefore very obviously nothing happens!");
+				break;
+			}
+			if (!uinsymbiosis) {
+				pline("While you do have an implant, you lack a symbiote! Get one first if you want to use this technique!");
+				break;
+			}
+			if (!uimplant) {
+				pline("No implant found! You must equip one if you want to use this technique!");
+				break;
+			}
+
+			num = 1000 + (techlevX(tech_no) * 50);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your implant boosts your symbiote!");
+
+			t_timeout = rnz(7500);
 			break;
 
 		case T_ASSUME_SYMBIOTE:
-			pline("todo");
+
+			if (!uinsymbiosis) {
+				pline("What are you trying to do, polymorph into your symbiote while not actually having one?");
+				if (FunnyHallu) pline("If you thought this would turn you into a missingno, bad luck - the dev team thinks of everything.");
+				break;
+			}
+
+			You_feel("one with your symbiote.");
+			u.wormpolymorph = u.usymbiote.mnum;
+
+			polyself(FALSE);
+
+		      t_timeout = rnz(10000);
 			break;
 
 		case T_EXTRACHARGE:
@@ -7791,6 +7990,12 @@ tech_timeout()
 			break;
 		    case T_ESCROBISM:
 			pline("Escrobism is no longer active.");
+			break;
+		    case T_POWERBIOSIS:
+			pline("Your symbiote's awesome power fades.");
+			break;
+		    case T_IMPLANTED_SYMBIOSIS:
+			pline("The boost granted to your symbiote by your implant has been used up.");
 			break;
 		    case T_PIRATE_BROTHERING:
 			pline("Your pirate brothering ability deactivates.");

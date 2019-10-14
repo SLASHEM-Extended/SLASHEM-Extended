@@ -892,6 +892,40 @@ int how;
 		} else wanttodie = 0;
 	}
 
+	/* symbiote can save you from being killed by something other than HP loss --Amy */
+	if (uinsymbiosis && (u.uhp > 0) && (u.uhpmax > 0) && (rn2(100) < u.symbioteaggressivity) && how < GENOCIDED) {
+		pline("But wait...");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto symbiotedone;
+		}
+
+		u.usymbiote.active = 0;
+		u.usymbiote.mnum = PM_PLAYERMON;
+		u.usymbiote.mhp = 0;
+		u.usymbiote.mhpmax = 0;
+		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+		u.cnd_symbiotesdied++;
+		Your("symbiote sacrifices itself to absorb the deadly hit, and saves your life!");
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 1;
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+
+		u.youaredead = 0;
+
+		return;
+	}
+symbiotedone:
+
 	if (how == STONING && uamul && uamul->otyp == AMULET_VERSUS_STONE) {
 		pline("But wait...");
 		makeknown(AMULET_VERSUS_STONE);
@@ -928,7 +962,7 @@ int how;
 	}
 stoningdone:
 
-	if (uarmg && uarmg->oartifact == ART_COME_BACK_TO_LIFE && rn2(2)) {
+	if (uarmg && uarmg->oartifact == ART_COME_BACK_TO_LIFE && how < GENOCIDED && rn2(2)) {
 		pline("But wait...");
 		pline("You come back to life!");
 
@@ -952,7 +986,7 @@ stoningdone:
 	}
 cbldone:
 
-	if (u.contingencyturns) {
+	if (u.contingencyturns && how < GENOCIDED) {
 
 		int contingencychance = 25;
 
@@ -994,7 +1028,7 @@ cbldone:
 	}
 contingencydone:
 
-	if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION && !rn2(10)) {
+	if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION && how < GENOCIDED && !rn2(10)) {
 		pline("But wait...");
 		pline("You come back to life!");
 
@@ -1018,7 +1052,7 @@ contingencydone:
 	}
 luxidone:
 
-	if (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE && !rn2(5)) {
+	if (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE && how < GENOCIDED && !rn2(5)) {
 		pline("But wait...");
 		pline("Eru Iluvatar saves your life!");
 

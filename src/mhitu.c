@@ -18996,7 +18996,30 @@ register int n;
 	 		 * updated correctly -- Kelly Bailey
 	 		 */
 
-	if (u.disruptionshield && u.uen >= n) {
+	if (uinsymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
+		if (tech_inuse(T_POWERBIOSIS) && n > 1) n /= 2;
+		if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
+			int imbiophases = uimplant->spe;
+			while ((imbiophases > 0) && n > 1) {
+				imbiophases--;
+				n *= 10;
+				n /= 11;
+			}
+		}
+		u.usymbiote.mhp -= n;
+		Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
+		if (u.usymbiote.mhp < 0) {
+			u.usymbiote.active = 0;
+			u.usymbiote.mnum = PM_PLAYERMON;
+			u.usymbiote.mhp = 0;
+			u.usymbiote.mhpmax = 0;
+			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+			u.cnd_symbiotesdied++;
+			if (FunnyHallu) pline("Ack! You feel like you quaffed aqua pura by mistake, and feel like something inside you has been flushed away!");
+			else Your("symbiote dies from protecting you, and you feel very sad...");
+		}
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+	} else if (u.disruptionshield && u.uen >= n) {
 		u.uen -= n;
 		pline("Your mana shield takes the damage for you!");
 		flags.botl = 1;
@@ -20364,6 +20387,7 @@ register struct monst *mtmp;
 register struct attack *mattk;
 {
 	int i, tmp;
+	boolean powerbiote = FALSE;
 
 	if (Slimed && Corrosivity && !resists_acid(mtmp)) {
 
@@ -20499,11 +20523,35 @@ register struct attack *mattk;
 		}
 	}
 
+	/* You only get one passive attack, so if your symbiote has one, it takes predecende because it doesn't
+	 * always trigger; we'll (ab)use the olduasmon structure for it --Amy */
+	if (symbiotepassive()) {
+		for(i = 0; ; i++) {
+			if(i >= NATTK) break; /* symbiote has no passives - use the youmonst ones */
+
+			if (mons[u.usymbiote.mnum].mattk[i].aatyp == AT_NONE || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_RATH || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_BOOM) {
+				olduasmon = &mons[u.usymbiote.mnum];
+				Your("%s symbiote retaliates!", mons[u.usymbiote.mnum].mname);
+				u.usymbiosisfastturns++;
+				if (u.usymbiosisfastturns >= 10) {
+					u.usymbiosisfastturns = 0;
+					use_skill(P_SYMBIOSIS, 1);
+				}
+				if (tech_inuse(T_POWERBIOSIS)) powerbiote = TRUE;
+				goto dothepassive; /* i and olduasmon set up */
+				break;
+			}
+
+		}
+
+	}
+
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return 1;
-	    if (olduasmon->mattk[i].aatyp == AT_NONE || olduasmon->mattk[i].aatyp == AT_RATH ||
-	    		olduasmon->mattk[i].aatyp == AT_BOOM) break;
+	    if (olduasmon->mattk[i].aatyp == AT_NONE || olduasmon->mattk[i].aatyp == AT_RATH || olduasmon->mattk[i].aatyp == AT_BOOM) break;
 	}
+
+dothepassive:
 	if (olduasmon->mattk[i].damn)
 	    tmp = d((int)olduasmon->mattk[i].damn,
 				    (int)olduasmon->mattk[i].damd);
@@ -20511,6 +20559,8 @@ register struct attack *mattk;
 	    tmp = d( ((int)olduasmon->mlevel / 5)+1, (int)olduasmon->mattk[i].damd); /* Players polymorphed into blue slimes or similar stuff aren't supposed to be OP. --Amy */
 	else
 	    tmp = 0;
+
+	if (powerbiote && tmp > 0) tmp *= 2;
 
 	/* These affect the enemy even if you were "killed" (rehumanized) */
 	switch(olduasmon->mattk[i].adtyp) {
@@ -20558,12 +20608,16 @@ register struct attack *mattk;
 	    default:
 		break;
 	}
-	if (!Upolyd) return 1;
+	/*if (!Upolyd) return 1;*/ /* what the hell??? --Amy */
 
-	/* These affect the enemy only if you are still a monster */
-	if (rn2(3)) switch(youmonst.data->mattk[i].adtyp) {
+	/* These affect the enemy only if you are still a monster
+	 * Amy edit: screw that :P */
+	if (rn2(3)) switch(olduasmon->mattk[i].adtyp) {
 	    case AD_PHYS:
-	    	if (youmonst.data->mattk[i].aatyp == AT_BOOM ) {
+
+		if (!Upolyd) break;
+
+	    	if (olduasmon->mattk[i].aatyp == AT_BOOM ) {
 	    	    You("explode!");
 	    	    /* KMH, balance patch -- this is okay with unchanging */
 	    	    if (!Race_if(PM_UNGENOMOLD)) rehumanize(); /* we don't want ungenomolds to die from being a graveler */
@@ -20581,11 +20635,9 @@ register struct attack *mattk;
 		    if (mtmp->mcansee && haseyes(mtmp->data) && rn2(3) &&
 				(perceives(mtmp->data) || !Invis)) {
 			if (Blind)
-			    pline("As a blind %s, you cannot defend yourself.",
-							youmonst.data->mname);
+			    pline("As a blind %s, you cannot defend yourself.", youmonst.data->mname);
 		        else {
-			    if (mon_reflects(mtmp,
-					    "Your gaze is reflected by %s %s."))
+			    if (mon_reflects(mtmp, "Your gaze is reflected by %s %s."))
 				return 1;
 			    pline("%s is frozen by your gaze!", Monnam(mtmp));
 			    mtmp->mcanmove = 0;
@@ -20609,10 +20661,12 @@ register struct attack *mattk;
 		    break;
 		}
 		pline("%s is suddenly very cold!", Monnam(mtmp));
-		u.mh += tmp / 2;
-		if (u.mhmax < u.mh) u.mhmax = u.mh;
-		if (u.mhmax > ((youmonst.data->mlevel+1) * 8) && !rn2(25) ) /* slow down farming --Amy */
-		    (void)split_mon(&youmonst, mtmp);
+		if (Upolyd) {
+			u.mh += tmp / 2;
+			if (u.mhmax < u.mh) u.mhmax = u.mh;
+			if (u.mhmax > ((youmonst.data->mlevel+1) * 8) && !rn2(25) ) /* slow down farming --Amy */
+			    (void)split_mon(&youmonst, mtmp);
+		}
 		break;
 	    case AD_STUN: /* Yellow mold */
 		tmp = 0; /* fall through */

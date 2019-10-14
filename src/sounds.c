@@ -2642,6 +2642,10 @@ register struct monst *mtmp;
 								u.cnd_nurseserviceamount++;
 								if (!Upolyd) u.uhpmax++;
 								else u.mhmax++;
+								if (uinsymbiosis) {
+									u.usymbiote.mhpmax++;
+									if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+								}
 								u.nurseextracost += 50;
 								if (u.nurseextracost < 1000) u.nurseextracost = 1000; /* fail safe */
 								break;

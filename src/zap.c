@@ -6430,6 +6430,10 @@ boolean ordinary;
 			You_feel("powered up!");
 				if (Upolyd) u.mhmax += rnd(5);
 				else u.uhpmax += rnd(5);
+				if (uinsymbiosis) {
+					u.usymbiote.mhpmax += rnd(5);
+					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+				}
 			break;
 		case WAN_MAKE_INVISIBLE: {
 		    /* have to test before changing HInvis but must change

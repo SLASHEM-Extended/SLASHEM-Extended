@@ -5424,6 +5424,10 @@ xkilled(mtmp, dest)
 	if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && !rn2(50)) {
 		u.uhpmax++;
 		if (Upolyd) u.mhmax++;
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
 	}
 
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) healup(mtmp->m_lev, 0, FALSE, FALSE);
@@ -8021,6 +8025,7 @@ struct monst *mtmp;
 
 	pline("%s becomes your new symbiote!", noit_Monnam(mtmp));
 	if (flags.showsymbiotehp) flags.botl = TRUE;
+	use_skill(P_SYMBIOSIS, 1);
 
 	mongone(mtmp);
 }
@@ -8094,6 +8099,106 @@ cursesymbiote()
 
 	if (flags.showsymbiotehp) flags.botl = TRUE;
 
+}
+
+/* will you get to use the melee attack of your symbiote? --Amy */
+boolean
+symbiotemelee()
+{
+	if (!uinsymbiosis) return FALSE;
+
+	int symchance = 0;
+
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_SYMBIOSIS)) {
+			default: symchance = 10; break;
+			case P_BASIC: symchance = 15; break;
+			case P_SKILLED: symchance = 20; break;
+			case P_EXPERT: symchance = 25; break;
+			case P_MASTER: symchance = 30; break;
+			case P_GRAND_MASTER: symchance = 35; break;
+			case P_SUPREME_MASTER: symchance = 40; break;
+		}
+	} else {
+		symchance = 10;
+	}
+	switch (u.symbioteaggressivity) {
+		case 5:
+			if (rn2(5)) return 0; break;
+		case 10:
+			if (rn2(3)) return 0; break;
+		case 12:
+			if (!rn2(2)) return 0; break;
+		case 15:
+			if (!rn2(3)) return 0; break;
+		case 20:
+			if (!rn2(5)) return 0; break;
+		default:
+		case 25:
+			break;
+		case 33:
+			symchance += 5; break;
+		case 40:
+			symchance += 10; break;
+		case 50:
+			symchance += 15; break;
+		case 60:
+			symchance += 20; break;
+		case 75:
+			symchance += 25; break;
+	}
+	if (rn2(100) < symchance) return TRUE;
+	return FALSE;
+}
+
+/* will your symbiote retaliate against something that tried to melee you? --Amy */
+boolean
+symbiotepassive()
+{
+	if (!uinsymbiosis) return FALSE;
+
+	int symchance = 0;
+
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_SYMBIOSIS)) {
+			default: symchance = 30; break;
+			case P_BASIC: symchance = 35; break;
+			case P_SKILLED: symchance = 40; break;
+			case P_EXPERT: symchance = 45; break;
+			case P_MASTER: symchance = 50; break;
+			case P_GRAND_MASTER: symchance = 55; break;
+			case P_SUPREME_MASTER: symchance = 60; break;
+		}
+	} else {
+		symchance = 10;
+	}
+	switch (u.symbioteaggressivity) {
+		case 5:
+			if (rn2(5)) return 0; break;
+		case 10:
+			if (rn2(3)) return 0; break;
+		case 12:
+			if (!rn2(2)) return 0; break;
+		case 15:
+			if (!rn2(3)) return 0; break;
+		case 20:
+			if (!rn2(5)) return 0; break;
+		default:
+		case 25:
+			break;
+		case 33:
+			symchance += 5; break;
+		case 40:
+			symchance += 10; break;
+		case 50:
+			symchance += 15; break;
+		case 60:
+			symchance += 20; break;
+		case 75:
+			symchance += 25; break;
+	}
+	if (rn2(100) < symchance) return TRUE;
+	return FALSE;
 }
 
 #endif /* OVLB */

@@ -4310,6 +4310,7 @@ static NEARDATA const char * const longinglines[] = {
 "If you are a man and not married yet, you'll find %s to be irresistible!",
 "%s has a very fleecy leather whip that you'd love to feel on your back!",
 "You want to buy pink clothing for the beautiful %s.",
+"%s's stilettos are so wonderfully sharp-edged and can scratch everything, even though they look really cuuuuute!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -24312,6 +24313,17 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your body feels like you were having an orgasm. This is because there actually is something inside you...",
 	"Your symbiote feels deathly cold!",
 	"You feel like you have a heart attack!"
+	"You sap some of your health, and transfer it to your symbiote!",
+	"You sap some of your health, and transfer it to your symbiote! However your symbiote has so little hit points that it'll probably die anyway.",
+	"You sap some of your health, and transfer it to your symbiote! But sadly you didn't watch out, and accidentally transferred more HP than you actually had. Do you want your possessions identified?",
+	"Your symbiote's health is improved!",
+	"Your symbiote's health is improved! Sadly it's still a woefully underpowered yellow mold, meaning that it'll still be rather crappy even if it has five times as much health.",
+	"You feel one with your symbiote.",
+	"You feel one with your symbiote. But what's this? OH CRAP! The symbiote has taken over, and is controlled by the fuzzer so you can no longer control your character! Instead, the stupid AI will cause your character to die!",
+	"Your symbiote dies from protecting you, and you feel very sad...",
+	"Ack! You feel like you quaffed aqua pura by mistake, and feel like something inside you has been flushed away!",
+	"Your symbiote sacrifices itself to absorb the deadly hit, and saves your life!",
+	"Your symbiote sacrifices itself to absorb the deadly hit, and saves your life! Now you no longer have a symbiote, even though you'd much rather have used up one of your copious amount of life saving amulets instead.",
 
 };
 

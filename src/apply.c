@@ -364,6 +364,7 @@ use_symbiote(obj)
 			if (resist(mtmp, TOOL_CLASS, 0, 0)) continue;
 			if (resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
 			if (resistrounds >= 3 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+			if (mtmp->m_lev > u.ulevel && (rn2(100) < (mtmp->m_lev - u.ulevel) ) ) continue;
 
 			/* we caught it! */
 			symchecks = 0;

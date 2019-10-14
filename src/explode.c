@@ -690,7 +690,30 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		ugolemeffects((int) adtyp, damu);
 
-		if (u.disruptionshield && u.uen >= damu) {
+		if (uinsymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
+			if (tech_inuse(T_POWERBIOSIS) && damu > 1) damu /= 2;
+			if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
+				int imbiophases = uimplant->spe;
+				while ((imbiophases > 0) && damu > 1) {
+					imbiophases--;
+					damu *= 10;
+					damu /= 11;
+				}
+			}
+			u.usymbiote.mhp -= damu;
+			Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
+			if (u.usymbiote.mhp < 0) {
+				u.usymbiote.active = 0;
+				u.usymbiote.mnum = PM_PLAYERMON;
+				u.usymbiote.mhp = 0;
+				u.usymbiote.mhpmax = 0;
+				u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+				u.cnd_symbiotesdied++;
+				if (FunnyHallu) pline("Ack! You feel like you quaffed aqua pura by mistake, and feel like something inside you has been flushed away!");
+				else Your("symbiote dies from protecting you, and you feel very sad...");
+			}
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+		} else if (u.disruptionshield && u.uen >= damu) {
 			u.uen -= damu;
 			pline("Your mana shield takes the damage for you!");
 			flags.botl = 1;
