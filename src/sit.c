@@ -908,6 +908,20 @@ rndcurse()			/* curse a few inventory items at random! */
 		}
 	}
 
+	if (uinsymbiosis) {
+		int symcurchance = 5;
+		if (Antimagic) symcurchance += 2;
+		if (StrongAntimagic) symcurchance += 2;
+		if (Half_spell_damage) symcurchance += 3;
+		if (StrongHalf_spell_damage) symcurchance += 3;
+		if (isfriday) symcurchance /= 2;
+
+		if (!rn2(symcurchance)) {
+			cursesymbiote();
+			pline(FunnyHallu ? "You feel like you have a heart attack!" : "Your symbiote feels deathly cold!");
+		}
+	}
+
 	if (isfriday) verymanyitems *= 2;
 	if (StrongAntimagic && verymanyitems > 1) verymanyitems /= 2;
 	if (StrongHalf_spell_damage && verymanyitems > 1) verymanyitems /= 2;

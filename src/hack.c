@@ -2225,7 +2225,7 @@ domove()
 		forcenomul(0, 0);
 		return;
 	} else
-	if( is_nonmoving(youmonst.data) && !Race_if(PM_MISSINGNO) ) {
+	if( is_nonmoving(youmonst.data) && !Race_if(PM_MISSINGNO) && !(uinsymbiosis && Upolyd && (u.umonnum == u.usymbiote.mnum)) ) {
 	/* This catches the moveamt code in hack.c, preventing you from moving as a red mold
 	 * even if you do get some movement points. It's mainly meant to prevent you from being unable to do anything
 	 * until you get knocked out of red mold form, so you can at least sit around and maybe throw some daggers. --Amy */

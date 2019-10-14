@@ -109,6 +109,7 @@ struct flag {
 #ifdef SHOW_WEIGHT
 	boolean  showweight;    /* show weight on status line */
 #endif
+	boolean  showsymbiotehp;	/* show symbiote's health on status line */
 	boolean  showmc;	/* shows MC on bottom status line */
 	boolean  showmovement;	/* shows movement speed on bottom status line */
 	boolean  showlongstats;	/* don't abbreviate status on bottom line */

@@ -872,6 +872,14 @@ bot2str(char *newbot2)
 	else
 		sprintf(nb = eos(nb), " Exp%u", u.ulevel);
 
+	if (flags.showsymbiotehp && uinsymbiosis) {
+		sprintf(nb = eos(nb), " SH%d(%d)", u.usymbiote.mhp, u.usymbiote.mhpmax);
+		if (u.usymbiote.cursed) {
+			sprintf(nb = eos(nb), "%s", u.usymbiote.stckcurse ? "S" : "C");
+			sprintf(nb = eos(nb), "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);
+		}
+	}
+
 #ifdef SHOW_WEIGHT
 	if (flags.showweight && !WeightDisplayIsArbitrary && bot2_abbrev < 3)
 		sprintf(nb = eos(nb), " Wt%ld/%ld", (long)(inv_weight()+weight_cap()),

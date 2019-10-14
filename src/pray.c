@@ -76,6 +76,7 @@ static int p_type; /* (-1)-3: (-1)=really naughty, 3=really good */
  * order to have the values be meaningful.
  */
 
+#define TROUBLE_CURSED_SYMBIOTE	15
 #define TROUBLE_STONED			14
 #define TROUBLE_SLIMED			13
 #define TROUBLE_STRANGLED		12
@@ -196,6 +197,8 @@ in_trouble()
 		return TROUBLE_UNUSEABLE_HANDS;
 	}
 	if(Blindfolded && ublindf->cursed) return(TROUBLE_CURSED_BLINDFOLD);
+
+	if (uinsymbiosis && u.usymbiote.cursed) return(TROUBLE_CURSED_SYMBIOTE);
 
 	/*
 	 * minor troubles
@@ -391,6 +394,10 @@ register int trouble;
 				   rightglow[] = "right ring softly glows";
 
 	switch (trouble) {
+	    case TROUBLE_CURSED_SYMBIOTE:
+		    Your(FunnyHallu ? "body feels like you were having an orgasm." : "symbiote feels better.");
+		    uncursesymbiote(FALSE);
+		    break;
 	    case TROUBLE_STONED:
 		    You_feel("more limber.");
 		    Stoned = 0;

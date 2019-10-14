@@ -283,6 +283,7 @@ static struct Bool_Opt
 	{"showmovement", &flags.showmovement, FALSE, SET_IN_GAME},
 	{"showlongstats", &flags.showlongstats, FALSE, SET_IN_GAME},
 	{"showsanity", &flags.showsanity, FALSE, SET_IN_GAME},
+	{"showsymbiotehp", &flags.showsymbiotehp, FALSE, SET_IN_GAME},
 
 	{"silent", &flags.silent, TRUE, SET_IN_GAME},
 	{"softkeyboard", &iflags.wc2_softkeyboard, FALSE, SET_IN_FILE},
@@ -3173,6 +3174,7 @@ goodfruit:
 			 || (boolopt[i].addr) == &flags.showmovement
 			 || (boolopt[i].addr) == &flags.showsanity
 			 || (boolopt[i].addr) == &flags.showlongstats
+			 || (boolopt[i].addr) == &flags.showsymbiotehp
 
 			    )
 			    bot_reconfig();

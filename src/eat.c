@@ -6645,6 +6645,12 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	/* ancipital's slow digestion is not supposed to be no digestion --Amy */
 	if (Race_if(PM_ANCIPITAL) && !rn2(20) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
+	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy */
+	if (uinsymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {
+		if (carnivorous(&mons[u.usymbiote.mnum]) || herbivorous(&mons[u.usymbiote.mnum]) || metallivorous(&mons[u.usymbiote.mnum]) || organivorous(&mons[u.usymbiote.mnum]) || lithivorous(&mons[u.usymbiote.mnum])) u.uhunger--;
+		if (regenerates(&mons[u.usymbiote.mnum])) u.uhunger -= 5;
+	}
+
 	if (!rn2(2)) {	/* used to be odd turns, but nasty traps that speed up turncount exist --Amy */
 	    /* Regeneration uses up food, unless due to an artifact */
 	    /*if (HRegeneration || ((ERegeneration & (~W_ART)) &&

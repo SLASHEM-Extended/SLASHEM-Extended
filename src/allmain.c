@@ -1316,6 +1316,11 @@ moveloop()
 				moveamt = 24 + speedreduction;
 			}
 
+			/* special case: if you're polymorphed into your symbiote's base monster, you can move around --Amy
+			 * This is mainly so that the "assume symbiote" technique works without needing to be active */
+			if (youmonst.data->mmove == 0 && uinsymbiosis && Upolyd && (u.umonnum == u.usymbiote.mnum)) {
+				moveamt += 12;
+			}
 
 			if (youmonst.data->mmove == 0 && !rn2(2)) moveamt += 1; /* be lenient if an ungenomold player is unlucky 		 * enough to poly into a red mold or something like that. Otherwise they would simply die with no chance.
 		 * see hack.c code that still prevents movement if polymorphed into something sessile.
@@ -6129,12 +6134,39 @@ newbossB:
 
 		}
 
-		if ( have_primecurse() && !rn2(1000) ) {
+		if ( (have_primecurse() || (uinsymbiosis && u.usymbiote.prmcurse)) && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
+
+		}
+
+		/* sticky curses on symbiotes cause periodic damage --Amy */
+		if (uinsymbiosis && u.usymbiote.stckcurse && !rn2(50)) {
+
+			u.symbiotedmghack = TRUE;
+
+			if (u.usymbiote.bbcurse || u.usymbiote.evilcurse || u.usymbiote.morgcurse) {
+				You("are severely hurt!");
+				losehp((u.uhpmax / 2) + 1, "an evil cursed symbiote", KILLED_BY);
+				stop_occupation();
+			} else if (u.usymbiote.prmcurse) {
+				You("writhe in pain.");
+				losehp((u.uhpmax / 5) + 1, "a prime cursed symbiote", KILLED_BY);
+				stop_occupation();
+			} else if (u.usymbiote.hvycurse) {
+				You("scream."); /* but not loud enough to actually wake monsters */
+				losehp((u.uhpmax / 10) + 1, "a heavily cursed symbiote", KILLED_BY);
+				stop_occupation();
+			} else {
+				You("stop current action."); /* sic from Elona */
+				losehp((u.uhpmax / 20) + 1, "a cursed symbiote", KILLED_BY);
+				stop_occupation();
+			}
+
+			u.symbiotedmghack = FALSE;
 
 		}
 
@@ -6699,7 +6731,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_morgothiancurse() || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(isfriday ? 200 : 500) ) { /* was 1 in 50 in ToME */
+		if ( (have_morgothiancurse() || (uinsymbiosis && u.usymbiote.morgcurse) || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(isfriday ? 200 : 500) ) { /* was 1 in 50 in ToME */
 			switch (rnd(30)) {
 
 				case 1:
@@ -6802,7 +6834,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_topiylinencurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(isfriday ? 300 : 1000) ) { /* was 1 in 100 in ToME */
+		if ( (have_topiylinencurse() || (uinsymbiosis && u.usymbiote.evilcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(isfriday ? 300 : 1000) ) { /* was 1 in 100 in ToME */
 			switch (rnd(27)) {
 				case 1:
 				case 2:
@@ -6903,7 +6935,7 @@ newboss:
 			}
 		}
 
-		if ( (have_blackbreathcurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
@@ -6914,7 +6946,7 @@ newboss:
 			}
 		}
 
-		if ( (have_blackbreathcurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
 				    losexp("black breath drainage", FALSE, TRUE);
@@ -8443,6 +8475,31 @@ newboss:
 		    if (flags.bypasses) clear_bypasses();
 		    if(IsGlib) glibr();
 
+		/* symbiote HP regeneration - rather slow, but depends on your symbiosis skill --Amy */
+		if (uinsymbiosis) {
+			int symregenrate = 50;
+
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_SYMBIOSIS)) {
+					default: break;
+					case P_BASIC: symregenrate = 30; break;
+					case P_SKILLED: symregenrate = 20; break;
+					case P_EXPERT: symregenrate = 15; break;
+					case P_MASTER: symregenrate = 10; break;
+					case P_GRAND_MASTER: symregenrate = 7; break;
+					case P_SUPREME_MASTER: symregenrate = 5; break;
+				}
+			}
+
+			if (regenerates(&mons[u.usymbiote.mnum]) || !rn2(symregenrate)) {
+				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
+					u.usymbiote.mhp++;
+					if (flags.showsymbiotehp) flags.botl = TRUE;
+				}
+			}
+
+		}
+
 		    if (!rn2(2) || !(uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) ) {
 
 			if (!rn2(2) || !((uleft && uleft->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV) || (uright && uright->oartifact == ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
@@ -9716,6 +9773,7 @@ past3:
 	u.roommatehack = 0;
 	u.mushroompoleused = 0;
 	u.explodewandhack = 0;
+	u.symbiotedmghack = FALSE;
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 

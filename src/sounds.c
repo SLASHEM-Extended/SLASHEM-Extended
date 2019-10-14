@@ -2623,6 +2623,8 @@ register struct monst *mtmp;
 			add_menu(tmpwin, NO_GLYPH, &any , 'm', 0, ATR_NONE, "Medical Supplies", MENU_UNSELECTED);
 			any.a_int = 8;
 			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Purchase Drugs", MENU_UNSELECTED);
+			any.a_int = 9;
+			add_menu(tmpwin, NO_GLYPH, &any , 'f', 0, ATR_NONE, "Fix Symbiote", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -2785,6 +2787,43 @@ register struct monst *mtmp;
 
 							}
 						} else verbalize("What? I'm not a dealer! But I might change my mind if you can bring at least 2000 dollars.");
+						break;
+					case 9:
+						if (!uinsymbiosis) {
+							verbalize("What? You don't have a symbiote! Sorry, but I can't fix something that doesn't exist!");
+							break;
+						}
+						if (!u.usymbiote.cursed && u.usymbiote.mhp == u.usymbiote.mhpmax) {
+							verbalize("Your symbiote is in perfect condition, so you don't need my services.");
+							break;
+						}
+						int symhealcost = 0;
+
+						/* The nurse will always remove all the curses. So in order to not make it too easy
+						 * to get rid of the nastier curses, we have to add to the cost of the service,
+						 * scaling with the severity of cursedness of your symbiote --Amy */
+						if (u.usymbiote.cursed) symhealcost += 2000;
+						if (u.usymbiote.hvycurse) symhealcost += 3000;
+						if (u.usymbiote.prmcurse) symhealcost += 15000;
+						if (u.usymbiote.evilcurse) symhealcost += 480000;
+						if (u.usymbiote.morgcurse) symhealcost += 480000;
+						if (u.usymbiote.bbcurse) symhealcost += 480000;
+						if (u.usymbiote.stckcurse) symhealcost += 10000;
+						if (u.usymbiote.mhp < u.usymbiote.mhpmax) symhealcost += ((u.usymbiote.mhpmax - u.usymbiote.mhp) * 100);
+						if (u.ugold >= symhealcost) {
+							verbalize("Sure thing, I can fully heal your symbiote and remove all curses from it for %d dollars.", symhealcost);
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Alright, hold still. Don't worry, this injection won't hurt your symbiote a bit.");
+								u.ugold -= symhealcost;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+								u.cnd_nurseserviceamount++;
+								uncursesymbiote(TRUE);
+								u.usymbiote.mhp = u.usymbiote.mhpmax;
+								if (flags.showsymbiotehp) flags.botl = TRUE;
+								break;
+							}
+						} else verbalize("Sorry, fixing your symbiote's current condition costs %d dollars.", symhealcost);
+
 						break;
 				} /* switch statement */
 			} /* n > 0 menu check */

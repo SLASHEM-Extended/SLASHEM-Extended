@@ -6471,6 +6471,7 @@ peffects(otmp)
 			    u.ulycn = NON_PM;	/* cure lycanthropy */
 			}
 			losehp(d(6,6), "potion of holy water", KILLED_BY_AN);
+			if (uinsymbiosis) uncursesymbiote(FALSE);
 		    } else if(otmp->cursed) {
 			You_feel("quite proud of yourself.");
 			healup(d(6,6),0,0,0);
@@ -6487,6 +6488,7 @@ peffects(otmp)
 			if (u.ulycn >= LOW_PM && !Race_if(PM_HUMAN_WEREWOLF) && !Role_if(PM_LUNATIC) && !Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 			    you_unwere(TRUE);	/* "Purified" */
 			}
+			if (uinsymbiosis) uncursesymbiote(FALSE);
 			/* make_confused(0L,TRUE); */
 		    } else {
 			if(u.ualign.type == A_LAWFUL) {

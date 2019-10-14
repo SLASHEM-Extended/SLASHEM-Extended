@@ -267,6 +267,7 @@ static const struct innate_tech
 	ana_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_DECONTAMINATE, 1},
 		       {   10, T_SKILLOMORPH, 1},
+			 {  20, T_TERRAIN_CLEANUP, 1},
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
 		       {   20, T_RECHARGE, 1},
@@ -291,6 +292,7 @@ static const struct innate_tech
 		       {   25, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
 	art_tech[] = { {   10, T_DIAMOND_BARRIER, 1},
+			 {   15, T_TERRAIN_CLEANUP, 1},
 		       {   18, T_POLYFORM, 1},
 		       {   20, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
@@ -379,6 +381,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	jan_tech[] = { {   1, T_IRON_SKIN, 1},
 		       {   1, T_CONCENTRATING, 1},
+			 {   1, T_TERRAIN_CLEANUP, 1},
 		       {   20, T_ZAP_EM, 1},
 		       {   0, 0, 0} },
 	sma_tech[] = { {   1, T_CREATE_AMMO, 1},
@@ -519,6 +522,8 @@ static const struct innate_tech
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
+	cel_tech[] = { {   10, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
 	ast_tech[] = { {   5, T_FLURRY, 1},
 			 {   6, T_SIGIL_CONTROL, 1},
 			 {   8, T_SHIELD_BASH, 1},
@@ -534,6 +539,7 @@ static const struct innate_tech
 		       {   24, T_DRAW_ENERGY, 1},
 			 {   25, T_SIGIL_DISCHARGE, 1},
 			 {   25, T_SKILLOMORPH, 1},
+			 {   28, T_TERRAIN_CLEANUP, 1},
 			 {   29, T_BLINK, 1},
 		       {   30, T_LIQUID_LEAP, 1},
 		       {   0, 0, 0} },
@@ -637,6 +643,7 @@ static const struct innate_tech
 			 {   5, T_WARD_COLD, 1},
 			 {   8, T_REINFORCE, 1},
 			 {   10, T_WARD_ELEC, 1},
+			 {   12, T_TERRAIN_CLEANUP, 1},
 			 {   15, T_WARD_FIRE, 1},
 			 {   20, T_ENT_S_POTION, 1},
 		       {   0, 0, 0} },
@@ -865,6 +872,7 @@ static const struct innate_tech
 	act_tech[] = { {   1, T_REINFORCE, 1},
 		       {  5, T_VANISH, 1},
 		       {  10, T_DAZZLE, 1},
+			 {  25, T_TERRAIN_CLEANUP, 1},
 		       {   0, 0, 0} },
 	top_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {  10, T_CREATE_AMMO, 1},
@@ -994,6 +1002,7 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_RESET_TECHNIQUE, 1},
 		       {   1, T_SKILLOMORPH, 1},
+			 {   1, T_TERRAIN_CLEANUP, 1},
 			 {   5, T_RESEARCH, 1},
 			 {   10, T_DIAMOND_BARRIER, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -1515,6 +1524,7 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_RECHARGE, 1},
+			 {   12, T_TERRAIN_CLEANUP, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
@@ -8002,6 +8012,7 @@ role_tech()
 		case PM_PSION: 		return (psi_tech);
 		case PM_SCIENTIST: 		return (sci_tech);
 		case PM_ASTRONAUT: 		return (ast_tech);
+		case PM_CELLAR_CHILD: 		return (cel_tech);
 		case PM_DEATH_EATER: 		return (dea_tech);
 		case PM_DIVER: 		return (div_tech);
 		case PM_POKEMON: 		return (pok_tech);

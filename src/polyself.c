@@ -1535,7 +1535,19 @@ dogaze()
 		    damageum(mtmp, mattk);
 		    break;
 		}
+
 	    }
+
+	    for(i = 0; i < NATTK; i++) {
+		if (uinsymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED) {
+			mattk = &(mons[u.usymbiote.mnum].mattk[i]);
+			if (mattk->aatyp == AT_GAZE) {
+			    damageum(mtmp, mattk);
+			    break;
+			}
+		}
+	    }
+
 	}
 	return(1);
 }
@@ -1566,8 +1578,11 @@ dobreathe()
 
 	/* and make instakill breath attacks even more expensive to tone down abuse potential */
 	mattk = attacktype_fordmg(youmonst.data, AT_BREA, AD_ANY);
-	if (!mattk)
-	    impossible("bad breath attack?");   /* mouthwash needed... */
+	if (!mattk && uinsymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_BREA, AD_ANY);
+	if (!mattk) {
+		impossible("bad breath attack?");   /* mouthwash needed... */
+		return(0); /* prevent you from using segfault breath --Amy */
+	}
 
 	if ((mattk->adtyp != AD_MAGM) && (mattk->adtyp != AD_RBRE) && (mattk->adtyp != AD_FIRE) && (mattk->adtyp != AD_COLD) && (mattk->adtyp != AD_SLEE) && (mattk->adtyp != AD_DISN) && (mattk->adtyp != AD_ELEC) && (mattk->adtyp != AD_DRST) && (mattk->adtyp != AD_ACID) && (mattk->adtyp != AD_LITE) && (mattk->adtyp != AD_SPC2)  ) energy = 30;
 
@@ -1657,6 +1672,7 @@ dospit()
 	u.uen -= spitcost;
 
 	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
+	if (!mattk && uinsymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_SPIT, AD_ANY);
 	if (!mattk)
 	    impossible("bad spit attack?");
 	else {

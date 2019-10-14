@@ -687,6 +687,14 @@ linetwo:
         print_statdiff("", &prevexp, u.uexp, STAT_OTHER);
     }
 
+    if (flags.showsymbiotehp && uinsymbiosis) {
+	  wprintw(win, " SH:%d(%d)", u.usymbiote.mhp, u.usymbiote.mhpmax);
+	  if (u.usymbiote.cursed) {
+		wprintw(win, "%s", u.usymbiote.stckcurse ? "S" : "C");
+		wprintw(win, "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);
+	  }
+    }
+
 #ifdef SHOW_WEIGHT
 	if (flags.showweight && youmonst.data && !WeightDisplayIsArbitrary)
 		wprintw(win, " Wt%ld/%ld", (long)(inv_weight()+weight_cap()), (long)weight_cap());

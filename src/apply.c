@@ -18,6 +18,7 @@ STATIC_DCL int use_camera(struct obj *);
 STATIC_DCL int use_towel(struct obj *);
 STATIC_DCL boolean its_dead(int,int,int *);
 STATIC_DCL int use_stethoscope(struct obj *);
+STATIC_DCL int use_symbiote(struct obj *);
 STATIC_DCL void use_whistle(struct obj *);
 STATIC_DCL void use_magic_whistle(struct obj *);
 STATIC_DCL void use_dark_magic_whistle(struct obj *);
@@ -283,6 +284,138 @@ int rx, ry, *resp;
 
 static const char hollow_str[] = "a hollow sound.  This must be a secret %s!";
 
+STATIC_OVL int
+use_symbiote(obj)
+	register struct obj *obj;
+{
+	struct monst *mtmp;
+	int rx, ry, res;
+	int symchecks = 1;
+	if (!getdir((char *)0)) return 0;
+
+	if (u.uswallow) {
+		if (FunnyHallu) pline("What? With all that slime around you? Forget it!");
+		else pline_The("monster that engulfs you is preventing the symbiosis from working.");
+		return 1;
+	}
+	if (u.usteed && u.dz > 0) {
+		pline(FunnyHallu ? "Trying to turn your car into a symbiote isn't very fruitful." : "Trying to turn your steed into a symbiote isn't very fruitful.");
+		return 1;
+	}
+	if (!u.dx && !u.dy && !u.dz) {
+		pline(FunnyHallu ? "Your body seems to turn inward on itself, but relaxes again." : "You can't turn yourself into a symbiote!");
+		return 1;
+	}
+	rx = u.ux + u.dx; ry = u.uy + u.dy;
+	if (!isok(rx,ry)) {
+		pline(FunnyHallu ? "A wild MISSINGNO appeared! Too bad you don't have a pokeball to catch it though..." : "Grabbing a glitched symbiote from out of bounds doesn't seem to work.");
+		return 1;
+	}
+	if ((mtmp = m_at(rx,ry)) != 0) {
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				default: break;
+				case P_BASIC: if (!rn2(3)) symchecks++; break;
+				case P_SKILLED: if (!rn2(3)) symchecks += rno(2); break;
+				case P_EXPERT: if (!rn2(3)) symchecks += rnd(2); break;
+				case P_MASTER: if (!rn2(2)) symchecks += rnd(2); break;
+				case P_GRAND_MASTER: if (!rn2(2)) symchecks += rnd(3); break;
+				case P_SUPREME_MASTER: symchecks += rnd(3); break;
+			}
+		}
+
+		if (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET)) {
+			pline(FunnyHallu ? "It moves around too much and you can't seem to catch it!" : "Only stationary monsters can be turned into symbiotes!");
+			return 1;
+
+		}
+		if (mtmp->mtame) {
+			pline(FunnyHallu ? "The monster keeps resisting for some reason!" : "Pets won't turn into symbiotes!");
+			return 1;
+
+		}
+		if (mtmp->mfrenzied) {
+			pline(FunnyHallu ? "Suddenly the monster rakes its claws over your skin and reveals that you're indeed noble because you're bleeding blue blood." : "Frenzied monsters will never turn into symbiotes.");
+			return 1;
+
+		}
+		if (cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data)) ) {
+			pline(FunnyHallu ? "This particular monster can't be turned into a symbiote for cookie reasons." : "This particular monster can't be turned into a symbiote.");
+			return 1;
+		/* Amy note: the oldmonnm part may be misleading, but I don't want the player to be able to scan monsters for
+		 * being a polymorph result just because they have a symbiote item. And I also don't want to allow you to
+		 * simply wait until that chameleon turns into a stationary level 90 ubermonster and get a free pass,
+		 * so I had to ban polymorphed monsters from being made into symbiotes. */
+		}
+
+		/* At this point we've established that the monster is a valid form for symbiosis. */
+
+		if (uinsymbiosis && u.usymbiote.cursed) {
+			pline(FunnyHallu ? "Apparently Morgoth himself decided to curse you with some ancient hex." : "Since your current symbiote is cursed, you cannot get a new one.");
+			return 1;
+		}
+
+		while (symchecks > 0) {
+			symchecks--;
+			int resistrounds = 1;
+			if (!mindless(mtmp->data)) resistrounds++;
+			if (humanoid(mtmp->data)) resistrounds++;
+
+			if (resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+			if (resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+			if (resistrounds >= 3 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+
+			/* we caught it! */
+			symchecks = 0;
+
+			turnmonintosymbiote(mtmp);
+
+			if (uinsymbiosis) {
+				if (obj->cursed) u.usymbiote.cursed = TRUE;
+				if (obj->hvycurse) u.usymbiote.hvycurse = TRUE;
+				if (obj->prmcurse) u.usymbiote.prmcurse = TRUE;
+				if (obj->bbrcurse) u.usymbiote.bbcurse = TRUE;
+				if (obj->morgcurse) u.usymbiote.morgcurse = TRUE;
+				if (obj->evilcurse) u.usymbiote.evilcurse = TRUE;
+				if (obj->stckcurse) u.usymbiote.stckcurse = TRUE;
+				if (obj->blessed) {
+					u.usymbiote.mhpmax *= 3;
+					u.usymbiote.mhpmax /= 2;
+					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
+				}
+			}
+			useup(obj);
+			return 1;
+		}
+
+		int frenzychance = 5;
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				default: break;
+				case P_BASIC: frenzychance = 6; break;
+				case P_SKILLED: frenzychance = 7; break;
+				case P_EXPERT: frenzychance = 8; break;
+				case P_MASTER: frenzychance = 9; break;
+				case P_GRAND_MASTER: frenzychance = 10; break;
+				case P_SUPREME_MASTER: frenzychance = 12; break;
+			}
+		}
+		if (!rn2(frenzychance)) {
+			mtmp->mpeaceful = FALSE;
+			mtmp->mfrenzied = TRUE;
+		}
+
+		pline(FunnyHallu ? "The stupid pokeball is apparently made of plastic because the monster easily broke out!" : "Your symbiosis attempt failed.");
+		if (mtmp->mfrenzied) pline(FunnyHallu ? "And in fact the monster now wants to EAT you! Quick, run back to Professor Oak so he can save you!" : "Now the monster is frenzied and you cannot use symbiosis on it anymore.");
+
+		return 1;
+
+	}
+	pline(FunnyHallu ? "Knock-knock - hmmmm, seems there's nobody home..." : "There is no monster at that location!");
+	return 1;
+}
+
 /* Strictly speaking it makes no sense for usage of a stethoscope to
    not take any time; however, unless it did, the stethoscope would be
    almost useless.  As a compromise, one use per turn is free, another
@@ -303,14 +436,14 @@ use_stethoscope(obj)
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		return 0;
+		return 2;
 		}
 
 	if (isfriday && !rn2((obj->oartifact == ART_FISSILITY) ? 10 : 100)) {
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		return 0;
+		return 2;
 		}
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {	/* should also check for no ears and/or deaf */
@@ -419,7 +552,7 @@ use_stethoscope(obj)
 	    pline("Your stethoscope breaks, and you scream in terror!");
 		wake_nearby();
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		return 0;
+		return 2;
 		}
 
 		if (evilfriday && dmgtype(mtmp->data, AD_RUST)) {
@@ -1048,6 +1181,7 @@ struct obj **optr;
 		if (!isok(u.ux + i, u.uy + j)) continue;
 		if ((bimmel = m_at(u.ux + i, u.uy + j)) != 0 && bimmel->data->mlet == S_XAN)
 			if (!rn2(5) && bimmel && !(bimmel->mtame)) {
+				bimmel->mpeaceful = FALSE;
 				bimmel->mfrenzied = TRUE;
 
 			} else if (bimmel && !(bimmel->mtame) && !(bimmel->mfrenzied)) {
@@ -4994,6 +5128,7 @@ doapply()
 	case STETHOSCOPE:
 	case UNSTABLE_STETHOSCOPE:
 		res = use_stethoscope(obj);
+		if (res >= 2) noartispeak = TRUE;
 		break;
 	case MIRROR:
 		res = use_mirror(obj);
@@ -5779,6 +5914,7 @@ materialchoice:
 
 	case SYMBIOTE:
 
+		res = use_symbiote(obj);
 		noartispeak = TRUE;
 		break;
 

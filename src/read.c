@@ -4794,6 +4794,7 @@ proofarmorchoice:
 
 			/* Scroll of remove curse will completely decontaminate you --Amy */
 			if (u.contamination && !(sobj->otyp == SPE_REMOVE_CURSE)) decontaminate(u.contamination);
+			if (uinsymbiosis && !(sobj->otyp == SPE_REMOVE_CURSE && rn2(5))) uncursesymbiote(FALSE);
 
 		    for (obj = invent; obj; obj = obj->nobj) {
 			long wornmask;

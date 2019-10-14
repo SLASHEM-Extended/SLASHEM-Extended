@@ -10139,6 +10139,7 @@ u_init()
 	u.cellargravate = 0;
 
 	u.walscholarpass = 0;
+	u.symbiotedmghack = FALSE;
 
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;

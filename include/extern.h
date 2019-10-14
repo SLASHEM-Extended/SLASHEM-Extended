@@ -1602,6 +1602,7 @@ E void obj_ice_effects(int, int, BOOLEAN_P);
 E long peek_at_iced_corpse_age(struct obj *);
 #if defined(OBJ_SANITY) || defined(WIZARD)
 E void obj_sanity_check(void);
+
 #endif
 
 /* ### mkroom.c ### */
@@ -1689,6 +1690,10 @@ E void golemeffects(struct monst *,int,int);
 E boolean angry_guards(BOOLEAN_P);
 E void pacify_guards(void);
 E boolean damage_mon(struct monst*,int,int); /* sporkhack */
+E void turnmonintosymbiote(struct monst *);
+E void killsymbiote(void);
+E void uncursesymbiote(BOOLEAN_P);
+E void cursesymbiote(void);
 
 /* ### mondata.c ### */
 

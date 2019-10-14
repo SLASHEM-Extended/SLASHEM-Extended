@@ -4785,6 +4785,7 @@ secureidchoice:
 
 			/* remove all contamination --Amy */
 			if (u.contamination) decontaminate(u.contamination);
+			if (uinsymbiosis) uncursesymbiote(FALSE);
 
 			register struct obj *obj;
 
@@ -4922,6 +4923,7 @@ chargingchoice:
 
 				/* remove all contamination --Amy */
 				if (u.contamination) decontaminate(u.contamination);
+				if (uinsymbiosis) uncursesymbiote(FALSE);
 
 				register struct obj *obj;
 	
@@ -7014,6 +7016,18 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 
 	/* now handle special cases */
 	if (youdefend) {
+
+		if (uinsymbiosis) {
+			u.usymbiote.mhp = 1;
+			u.usymbiote.mhpmax -= rnd(10);
+			if (u.usymbiote.mhpmax < 1) {
+				killsymbiote();
+				You("no longer have a symbiote.");
+			}
+			else uncursesymbiote(FALSE);
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+		}
+
 	    if (Upolyd) {
 		if ((u.umonnum == PM_CLAY_GOLEM) && !Blind)
 		    pline(writing_vanishes, your);

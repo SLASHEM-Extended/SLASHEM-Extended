@@ -1688,14 +1688,16 @@ struct you {
 	int cnd_monsterdigamount;	/* how many tiles were dug out by monsters */
 	int cnd_untrapamount;	/* how many times you untrapped a trap successfully */
 	int cnd_longingamount;	/* how many longing messages you had to read */
+	int cnd_symbiotesdied;	/* how many of your symbiotes died */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */
+	boolean symbiotedmghack;	/* make something damage you even if you have a symbiote */
 
 };	/* end of `struct you' */
 
 /* is the player in symbiosis? make extra sure the monster is set up correctly --Amy */
-#define uinsymbiosis	(u.symbiotemon.active && u.symbiotemon.mnum > PM_PLAYERMON && u.symbiotemon.mnum < NUMMONS)
+#define uinsymbiosis	(u.usymbiote.active && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
 
 #define Upolyd (u.umonnum != u.umonster)
 

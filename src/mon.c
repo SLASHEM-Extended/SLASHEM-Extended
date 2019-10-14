@@ -7977,6 +7977,125 @@ short otyp;
 		break;
 	}
 }
+
+/* symbiosis skill by Amy */
+void
+turnmonintosymbiote(mtmp)
+struct monst *mtmp;
+{
+	/* reset any existing symbiote structure first */
+
+	if (uinsymbiosis) {
+		if (u.usymbiote.cursed) {
+			pline(FunnyHallu ? "Apparently Morgoth himself decided to curse you with some ancient hex." : "Since your current symbiote is cursed, you cannot get a new one.");
+			return;
+		}
+
+		u.cnd_symbiotesdied++;
+		pline(FunnyHallu ? "Damn, you feel like you killed a part of yourself..." : "You discard your current symbiote to make room for the new one.");
+	}
+
+	u.usymbiote.active = 0;
+	u.usymbiote.mnum = PM_PLAYERMON;
+	u.usymbiote.mhp = 0;
+	u.usymbiote.mhpmax = 0;
+	u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+
+	/* now set the new symbiote's stats */
+
+	u.usymbiote.active = 1;
+	u.usymbiote.mnum = mtmp->mnum;
+	u.usymbiote.mhpmax = mtmp->mhpmax;
+	if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
+
+	/* symbiote HP start out lower (but can heal back up) if the monster wasn't wounded;
+	 * supposed to simulate catching a pokemon, but without it actually affecting catch rate */
+	u.usymbiote.mhp = (u.usymbiote.mhpmax / 2);
+	if (u.usymbiote.mhp < 1) u.usymbiote.mhp = 1;
+	while ((mtmp->mhp < mtmp->mhpmax) && (mtmp->mhp > 0) && (mtmp->mhpmax > 0)) {
+		mtmp->mhp++;
+		u.usymbiote.mhp++;
+	}
+	if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+	u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0; /* caller may override this */
+
+	pline("%s becomes your new symbiote!", noit_Monnam(mtmp));
+	if (flags.showsymbiotehp) flags.botl = TRUE;
+
+	mongone(mtmp);
+}
+
+void
+killsymbiote()
+{
+	u.usymbiote.active = 0;
+	u.usymbiote.mnum = PM_PLAYERMON;
+	u.usymbiote.mhp = 0;
+	u.usymbiote.mhpmax = 0;
+	u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+	if (flags.showsymbiotehp) flags.botl = TRUE;
+	u.cnd_symbiotesdied++;
+}
+
+void
+uncursesymbiote(guaranteed)
+boolean guaranteed;
+{
+	if (!uinsymbiosis) return;
+
+	if (guaranteed) {
+		u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.bbcurse = u.usymbiote.prmcurse = u.usymbiote.hvycurse = u.usymbiote.cursed = u.usymbiote.stckcurse = 0;
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+		return;
+	}
+
+	if ((u.usymbiote.morgcurse || u.usymbiote.evilcurse || u.usymbiote.bbcurse) && !rn2(100) ) {
+		u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.bbcurse = u.usymbiote.prmcurse = u.usymbiote.hvycurse = u.usymbiote.cursed = u.usymbiote.stckcurse = 0;
+	}
+	else if (u.usymbiote.prmcurse && !(u.usymbiote.morgcurse || u.usymbiote.evilcurse || u.usymbiote.bbcurse) && !rn2(10) ) {
+		u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.bbcurse = u.usymbiote.prmcurse = u.usymbiote.hvycurse = u.usymbiote.cursed = u.usymbiote.stckcurse = 0;
+	}
+	else if (!(u.usymbiote.prmcurse) && !(u.usymbiote.morgcurse || u.usymbiote.evilcurse || u.usymbiote.bbcurse) && u.usymbiote.hvycurse && !rn2(3) ) {
+		u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.bbcurse = u.usymbiote.prmcurse = u.usymbiote.hvycurse = u.usymbiote.cursed = u.usymbiote.stckcurse = 0;
+	}
+	else if (!(u.usymbiote.prmcurse) && !u.usymbiote.hvycurse && !(u.usymbiote.morgcurse || u.usymbiote.evilcurse || u.usymbiote.bbcurse) ) u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.bbcurse = u.usymbiote.prmcurse = u.usymbiote.hvycurse = u.usymbiote.cursed = u.usymbiote.stckcurse = 0;
+
+	if (flags.showsymbiotehp) flags.botl = TRUE;
+
+}
+
+void
+cursesymbiote()
+{
+	if (!uinsymbiosis) return;
+	if (!rn2(isfriday ? 50 : 100)) u.usymbiote.stckcurse = 1;
+
+	if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) u.usymbiote.stckcurse = 1;
+	if (Role_if(PM_CELLAR_CHILD) && !rn2(10)) u.usymbiote.stckcurse = 1;
+
+	if (u.usymbiote.cursed) {
+		if (!u.usymbiote.hvycurse && !rn2(5)) u.usymbiote.hvycurse = 1;
+		else if (u.usymbiote.hvycurse && !u.usymbiote.prmcurse && !rn2(25)) u.usymbiote.prmcurse = 1;
+		else if (u.usymbiote.prmcurse && !rn2(250)) {
+			if (!rn2(3)) u.usymbiote.morgcurse = 1;
+			else if (!rn2(2)) u.usymbiote.evilcurse = 1;
+			else u.usymbiote.bbcurse = 1;
+		}
+	} else {
+		u.usymbiote.cursed = 1;
+		if (!u.usymbiote.hvycurse && !u.usymbiote.prmcurse && !(u.usymbiote.morgcurse || u.usymbiote.evilcurse || u.usymbiote.bbcurse) && !rn2(isfriday ? 20 : 35)) u.usymbiote.hvycurse = 1;
+		if (u.usymbiote.hvycurse && !u.usymbiote.prmcurse && !(u.usymbiote.morgcurse || u.usymbiote.evilcurse || u.usymbiote.bbcurse) && !rn2(isfriday ? 100 : 225)) u.usymbiote.prmcurse = 1;
+		if (u.usymbiote.prmcurse && !rn2(isfriday ? 1000 : 6255)) {
+			if (!rn2(3)) u.usymbiote.morgcurse = 1;
+			else if (!rn2(2)) u.usymbiote.evilcurse = 1;
+			else u.usymbiote.bbcurse = 1;
+		}
+	}
+
+	if (flags.showsymbiotehp) flags.botl = TRUE;
+
+}
+
 #endif /* OVLB */
 
 /*mon.c*/
