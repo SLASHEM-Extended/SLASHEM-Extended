@@ -893,7 +893,7 @@ int how;
 	}
 
 	/* symbiote can save you from being killed by something other than HP loss --Amy */
-	if (uinsymbiosis && (u.uhp > 0) && (u.uhpmax > 0) && (rn2(100) < u.symbioteaggressivity) && how < GENOCIDED) {
+	if (uactivesymbiosis && (u.uhp > 0) && (u.uhpmax > 0) && (rn2(100) < u.symbioteaggressivity) && how < GENOCIDED) {
 		pline("But wait...");
 
 		if (wanttodie) {

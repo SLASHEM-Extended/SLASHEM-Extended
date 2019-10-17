@@ -219,6 +219,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"powerbiosis",
 	"implanted symbiosis",
 	"assume symbiote",
+	"generate offspring",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -2894,6 +2895,10 @@ dotech()
 
 		case T_ASSUME_SYMBIOTE:
 			pline("Polymorphs you into the base monster type of your current symbiote. Doing that causes your symbiote to persist, so don't worry about it dying from this tech - it just makes it so that both you and your symbiote are of the same species. What's more, you will be able to move around as long as you still have the symbiote, even though symbiotes are characterized by the fact that they're nonmoving monsters.");
+			break;
+
+		case T_GENERATE_OFFSPRING:
+			pline("If you use this technique while having a symbiote, you will lay an egg of the symbiote's monster type that will hatch tame after a while.");
 			break;
 
 		default:
@@ -7248,7 +7253,7 @@ repairitemchoice:
 
 		case T_HEAL_SYMBIOTE:
 
-			if (!uinsymbiosis) {
+			if (!uactivesymbiosis) {
 				pline("You don't have a symbiote, so you can't heal it either!");
 				break;
 			}
@@ -7271,7 +7276,7 @@ repairitemchoice:
 
 		case T_BOOST_SYMBIOTE:
 
-			if (!uinsymbiosis) {
+			if (!uactivesymbiosis) {
 				pline("You can't boost a nonexistant symbiote!");
 				break;
 			}
@@ -7286,7 +7291,7 @@ repairitemchoice:
 
 		case T_POWERBIOSIS:
 
-			if (!uinsymbiosis) {
+			if (!uactivesymbiosis) {
 				pline("Without a symbiote, this technique won't do anything.");
 				break;
 			}
@@ -7300,11 +7305,11 @@ repairitemchoice:
 
 		case T_IMPLANTED_SYMBIOSIS:
 
-			if (!uinsymbiosis && !uimplant) {
+			if (!uactivesymbiosis && !uimplant) {
 				pline("You know that this technique requires both an implant and a symbiote. You currently have neither, and therefore very obviously nothing happens!");
 				break;
 			}
-			if (!uinsymbiosis) {
+			if (!uactivesymbiosis) {
 				pline("While you do have an implant, you lack a symbiote! Get one first if you want to use this technique!");
 				break;
 			}
@@ -7322,7 +7327,7 @@ repairitemchoice:
 
 		case T_ASSUME_SYMBIOTE:
 
-			if (!uinsymbiosis) {
+			if (!uactivesymbiosis) {
 				pline("What are you trying to do, polymorph into your symbiote while not actually having one?");
 				if (FunnyHallu) pline("If you thought this would turn you into a missingno, bad luck - the dev team thinks of everything.");
 				break;
@@ -7334,6 +7339,34 @@ repairitemchoice:
 			polyself(FALSE);
 
 		      t_timeout = rnz(10000);
+			break;
+
+		case T_GENERATE_OFFSPRING:
+
+			if (!uactivesymbiosis) {
+				pline("This requires a symbiote.");
+				break;
+			}
+
+			{
+				struct obj *uegg;
+
+				You("lay a symbiote egg.");
+				uegg = mksobj(EGG, FALSE, FALSE);
+				if (uegg) {
+					uegg->spe = 1; /* "laid by you" */
+					uegg->quan = 1;
+					uegg->owt = weight(uegg);
+					uegg->corpsenm = egg_type_from_parent(u.usymbiote.mnum, FALSE);
+					uegg->known = uegg->dknown = 1;
+					attach_egg_hatch_timeout(uegg);
+					dropy(uegg);
+					stackobj(uegg);
+				}
+			}
+
+		      t_timeout = rnz(10000);
+
 			break;
 
 		case T_EXTRACHARGE:

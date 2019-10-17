@@ -998,7 +998,7 @@ Cloak_on()
 			Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 			flags.botl = 1;
 			killer_format = KILLED_BY_AN;
-			delayed_killer = "cloak of sliming";
+			delayed_killer = "slimed by a cloak of sliming";
 		}
 		break;
 	case CLOAK_OF_STARVING:

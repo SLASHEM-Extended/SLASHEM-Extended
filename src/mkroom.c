@@ -939,7 +939,7 @@ struct mkroom *sroom;
 				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100);
 
 			if(!rn2(20))
-			    (void) mksobj_at(CHARGER,sx,sy,TRUE,FALSE);
+			    (void) mksobj_at(rn2(10) ? CHARGER : SYMBIOTE,sx,sy,TRUE,FALSE);
 
 			break;
 
@@ -1052,6 +1052,8 @@ struct mkroom *sroom;
 		    case FUNGUSFARM:
 			if (!rn2(25)) /* lowered chance --Amy */
 			    (void) mksobj_at(SLIME_MOLD, sx, sy, TRUE, FALSE);
+			if (!rn2(100))
+			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE);
 			break;
 		    case MIGOHIVE:
 			switch (rn2(30)) { /* greatly lowered chance --Amy */
@@ -1098,6 +1100,8 @@ struct mkroom *sroom;
 		    case CLINIC:
 			if(!rn2(10))
 			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE);
+			if (!rn2(100))
+			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE);
 			break;
 		    case GOLEMHALL:
 			if(!rn2(ishaxor ? 10 : 20))
@@ -1297,9 +1301,19 @@ struct mkroom *sroom;
 		  level.flags.has_migohive = 1;
 		  break;
 	      case FUNGUSFARM:
+		  if (!rn2(5)) {
+			  if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SYMBIOTE, mm.x, mm.y, TRUE, FALSE);
+			  }
+		  }
 		  level.flags.has_fungusfarm = 1;
 		  break;
             case CLINIC:
+		  if (!rn2(10)) {
+			  if (somexy(sroom, &mm)) {
+				(void) mksobj_at(SYMBIOTE, mm.x, mm.y, TRUE, FALSE);
+			  }
+		  }
               level.flags.has_clinic = 1;
               break;
             case TERRORHALL:

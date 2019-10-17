@@ -878,6 +878,7 @@ bot2str(char *newbot2)
 			sprintf(nb = eos(nb), "%s", u.usymbiote.stckcurse ? "S" : "C");
 			sprintf(nb = eos(nb), "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);
 		}
+		if (u.shutdowntime) sprintf(nb = eos(nb), "sd");
 	}
 
 #ifdef SHOW_WEIGHT

@@ -9344,7 +9344,9 @@ dopois:
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mtmp->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 		break;
@@ -9362,7 +9364,9 @@ dopois:
 		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mtmp->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 
@@ -11992,7 +11996,9 @@ do_stone2:
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mtmp->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 		break;
@@ -12010,7 +12016,9 @@ do_stone2:
 		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mtmp->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 
@@ -15007,7 +15015,7 @@ common:
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimy explosion";
+		    delayed_killer = "slimed by a slimy explosion";
 		} else
 		    pline("Yuck!");
 
@@ -15024,7 +15032,7 @@ common:
 		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimy explosion";
+		    delayed_killer = "slimed by a slimy explosion";
 		} else
 		    pline("Yuck!");
 
@@ -16056,7 +16064,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mtmp->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 		}
@@ -16077,7 +16087,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mtmp->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 
@@ -18996,7 +19008,7 @@ register int n;
 	 		 * updated correctly -- Kelly Bailey
 	 		 */
 
-	if (uinsymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
+	if (uactivesymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
 		if (tech_inuse(T_POWERBIOSIS) && n > 1) n /= 2;
 		if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
 			int imbiophases = uimplant->spe;
@@ -19762,7 +19774,7 @@ enjoyable:
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY;
-		    delayed_killer = "the blackheart plague";
+		    delayed_killer = "slimed by the blackheart plague";
 		} else
 		    pline("Yuck!");
 

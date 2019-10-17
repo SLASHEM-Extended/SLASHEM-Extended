@@ -239,11 +239,12 @@ struct blitz_tab {
 #define T_POWERBIOSIS	173
 #define T_IMPLANTED_SYMBIOSIS	174
 #define T_ASSUME_SYMBIOTE	175
+#define T_GENERATE_OFFSPRING	176
 
-#define T_JEDI_JUMP	176
-#define T_CHARGE_SABER	177
-#define T_TELEKINESIS	178
+#define T_JEDI_JUMP	177
+#define T_CHARGE_SABER	178
+#define T_TELEKINESIS	179
  
-#define MAXTECH 179
+#define MAXTECH 180
 
 #endif /* TECH_H */

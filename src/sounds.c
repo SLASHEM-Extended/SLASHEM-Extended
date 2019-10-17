@@ -2597,6 +2597,11 @@ register struct monst *mtmp;
 		int nursedecontcost = u.nursedecontamcost; /* goes up every time you purchase it */
 
 		int nursehpcost = u.nurseextracost; /* goes up every time you purchase it */
+
+		int nursesymbiotecost = u.nursesymbiotecost; /* goes up every time you purchase it */
+
+		int nurseshutdowncost = u.nurseshutdowncost;
+
 		if (Upolyd) nursehpcost /= 5;
 
 			winid tmpwin;
@@ -2624,7 +2629,11 @@ register struct monst *mtmp;
 			any.a_int = 8;
 			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Purchase Drugs", MENU_UNSELECTED);
 			any.a_int = 9;
+			add_menu(tmpwin, NO_GLYPH, &any , 'o', 0, ATR_NONE, "Obtain Symbiote", MENU_UNSELECTED);
+			any.a_int = 10;
 			add_menu(tmpwin, NO_GLYPH, &any , 'f', 0, ATR_NONE, "Fix Symbiote", MENU_UNSELECTED);
+			any.a_int = 11;
+			add_menu(tmpwin, NO_GLYPH, &any , 's', 0, ATR_NONE, "Shutdown Symbiote", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -2642,7 +2651,8 @@ register struct monst *mtmp;
 								u.cnd_nurseserviceamount++;
 								if (!Upolyd) u.uhpmax++;
 								else u.mhmax++;
-								if (uinsymbiosis) {
+								use_skill(P_SQUEAKING, 1);
+								if (uactivesymbiosis) {
 									u.usymbiote.mhpmax++;
 									if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 								}
@@ -2761,6 +2771,7 @@ register struct monst *mtmp;
 								struct obj *medkit;
 								medkit = mksobj(MEDICAL_KIT, TRUE, FALSE);
 								verbalize(medkit ? "A pleasure doing business with you. The medical kit is waiting on the ground below you." : "Whoops. It seems that I don't have supplies for you right now, but for technical reasons I can't give you a refund. Sorry.");
+								use_skill(P_SQUEAKING, 2);
 								if (medkit) {
 									medkit->quan = 1;
 									medkit->known = medkit->dknown = medkit->bknown = medkit->rknown = 1;
@@ -2781,6 +2792,7 @@ register struct monst *mtmp;
 								struct obj *medkit;
 								medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE);
 								verbalize(medkit ? "Here, your stuff is on the ground. Have fun, but remember: if you call the cops, I'll send my assassins after you!" : "Oh, sorry, I don't have anything for you... but thanks for the money, sucker!");
+								use_skill(P_SQUEAKING, 1);
 								if (medkit) {
 									medkit->quan = 1;
 									medkit->known = medkit->dknown = medkit->bknown = medkit->rknown = 1;
@@ -2793,6 +2805,34 @@ register struct monst *mtmp;
 						} else verbalize("What? I'm not a dealer! But I might change my mind if you can bring at least 2000 dollars.");
 						break;
 					case 9:
+						if (uinsymbiosis && u.usymbiote.cursed) {
+							verbalize("Your current symbiote is cursed! I can't replace it with a new one unless you fix that problem first.");
+							break;
+						}
+
+						if (u.ugold < nursesymbiotecost) {
+							verbalize("Sorry, a symbiote costs %d dollars.", nursesymbiotecost);
+							break;
+						}
+						if (uinsymbiosis) verbalize("This will replace your current symbiote. By continuing, I assume that you agree to discard your symbiote for a random new one.");
+
+						if (u.ugold >= nursesymbiotecost) {
+							verbalize("A symbiote injection costs %d dollars. According to current Yendorian law, I'm forced to inform you that the symbiote you receive is random and may or may not be useful to you. By continuing, you confirm that you know of this risk and will not hold me responsible if you don't like the result.", nursesymbiotecost);
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Alright, here's your injection.");
+								u.ugold -= nursesymbiotecost;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+								u.cnd_nurseserviceamount++;
+								getrandomsymbiote();
+
+								u.nursesymbiotecost += 5000;
+								if (u.nursesymbiotecost < 10000) u.nursesymbiotecost = 10000; /* fail safe */
+								break;
+							}
+						}
+
+						break;
+					case 10:
 						if (!uinsymbiosis) {
 							verbalize("What? You don't have a symbiote! Sorry, but I can't fix something that doesn't exist!");
 							break;
@@ -2827,6 +2867,40 @@ register struct monst *mtmp;
 								break;
 							}
 						} else verbalize("Sorry, fixing your symbiote's current condition costs %d dollars.", symhealcost);
+
+						break;
+					case 11:
+
+						if (!uinsymbiosis) {
+							verbalize("Hey, I can shut down your symbiote only if you actually have one.");
+							break;
+						}
+						if (u.shutdowntime) {
+							verbalize("Your symbiote is already shut down. Trying to shut it down again would disturb the space-time continuum.");
+							break;
+						}
+
+						if (u.ugold < nurseshutdowncost) {
+							verbalize("Sorry, symbiote shutdown costs %d dollars.", nurseshutdowncost);
+							break;
+						}
+
+						if (u.ugold >= nurseshutdowncost) {
+							verbalize("Shutting down your symbiote will temporarily prevent it from attacking, defending or otherwise participating in combat. This will cost you %d dollars.", nurseshutdowncost);
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, here's a special injection for your symbiote. Please hold still.");
+								u.ugold -= nurseshutdowncost;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+								u.cnd_nurseserviceamount++;
+								use_skill(P_SQUEAKING, 3);
+								u.shutdowntime = 1000;
+
+								u.nurseshutdowncost += 500;
+								if (u.nurseshutdowncost < 1000) u.nurseshutdowncost = 1000; /* fail safe */
+								if (flags.showsymbiotehp) flags.botl = TRUE;
+								break;
+							}
+						}
 
 						break;
 				} /* switch statement */

@@ -837,7 +837,7 @@ register struct monst *mtmp;
 
 	if (Upolyd) {
 		/* certain "pacifist" monsters don't attack */
-		if(noattacks(youmonst.data) && (!uinsymbiosis || noattacks(&mons[u.usymbiote.mnum])) ) {
+		if(noattacks(youmonst.data) && (!uactivesymbiosis || noattacks(&mons[u.usymbiote.mnum])) ) {
 			You("have no way to attack monsters physically.");
 			mtmp->mstrategy &= ~STRAT_WAITMASK;
 			goto atk_done;
@@ -5273,6 +5273,8 @@ register struct attack *mattk;
 			if (!Slimed) {
 			    You("suck in some slime and don't feel very well.");
 			    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+			    killer_format = KILLED_BY_AN;
+			    delayed_killer = "slimed by sucking some slime through their nose";
 			}
 		    }
 		    break;
@@ -6397,6 +6399,8 @@ register struct attack *mattk;
 				if (!Unchanging) {
 					Slimed = Race_if(PM_EROSATOR) ? 10L : 50L;
 					flags.botl = 1;
+				    killer_format = KILLED_BY_AN;
+				    delayed_killer = "slimed by digesting a slimer";
 				}
 			    } else
 			    exercise(A_CON, TRUE);
@@ -7179,7 +7183,7 @@ symbiotejump:
 	    sum[i] = 0;
 
 	    /* failsafe if your symbiote dies while doing attacks --Amy */
-	    if (symbioteprocess && !uinsymbiosis) continue;
+	    if (symbioteprocess && !uactivesymbiosis) continue;
 
 	    mattk = getmattk(symbioteprocess ? &mons[u.usymbiote.mnum] : youmonst.data, i, sum, &alt_attk);
 
@@ -7685,7 +7689,7 @@ use_weapon:
 	    if (multi < 0)
 		break; /* If paralyzed while attacking, i.e. floating eye */
 	}
-	if (willsymattack && !symbioteprocess && uinsymbiosis) {
+	if (willsymattack && !symbioteprocess && uactivesymbiosis) {
 		if (!noattacks(&mons[u.usymbiote.mnum])) {
 			Your("%s symbiote attacks!", mons[u.usymbiote.mnum].mname);
 			u.usymbiosisfastturns++;
@@ -7698,7 +7702,7 @@ use_weapon:
 		goto symbiotejump;
 	}
 	/* powerbiosis is supposed to double the damage, but that's so annoying to code... let it attack twice instead --Amy */
-	if (tech_inuse(T_POWERBIOSIS) && willsymattack && symbioteprocess && uinsymbiosis && !symbiotedouble) {
+	if (tech_inuse(T_POWERBIOSIS) && willsymattack && symbioteprocess && uactivesymbiosis && !symbiotedouble) {
 		symbiotedouble = TRUE;
 		goto symbiotejump;
 	}
@@ -9590,7 +9594,9 @@ boolean ranged;
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mon->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mon->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 		}
@@ -9604,7 +9610,9 @@ boolean ranged;
 		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mon->data->mname;
+		    char kbuf[BUFSZ];
+		    sprintf(kbuf, "slimed by %s", mon->data->mname);
+		    delayed_killer = kbuf;
 		} else
 		    pline("Yuck!");
 		}

@@ -92,6 +92,7 @@ OBJECT:'/',random,random
 OBJECT:'/',random,random
 OBJECT:'+',random,random
 OBJECT:'+',random,random
+OBJECT: '(', "symbiote", random
 
 
 MAZE:"efrnk",random
@@ -181,6 +182,7 @@ OBJECT:'/',random,random
 OBJECT:'/',random,random
 OBJECT:'+',random,random
 OBJECT:'+',random,random
+OBJECT: '(', "symbiote", random
 
 
 
@@ -275,6 +277,7 @@ OBJECT:'/',random,random
 OBJECT:'/',random,random
 OBJECT:'+',random,random
 OBJECT:'+',random,random
+OBJECT: '(', "symbiote", random
 
 
 

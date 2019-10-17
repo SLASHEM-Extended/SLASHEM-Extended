@@ -1293,6 +1293,8 @@ struct you {
 
 	int nurseextracost;	/* for chat-to-nurses functionality */
 	int nursedecontamcost;	/* ditto */
+	int nursesymbiotecost;
+	int nurseshutdowncost;
 
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
@@ -1695,11 +1697,13 @@ struct you {
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */
 	boolean symbiotedmghack;	/* make something damage you even if you have a symbiote */
+	int shutdowntime;	/* for nurse's shutdown symbiote service */
 
 };	/* end of `struct you' */
 
 /* is the player in symbiosis? make extra sure the monster is set up correctly --Amy */
 #define uinsymbiosis	(u.usymbiote.active && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
+#define uactivesymbiosis	(u.usymbiote.active && !u.shutdowntime && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
 
 #define Upolyd (u.umonnum != u.umonster)
 

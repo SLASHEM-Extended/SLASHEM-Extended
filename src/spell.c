@@ -5554,7 +5554,7 @@ newbossPENT:
 			}
 			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
 			u.uhp = u.uhpmax;
-			if (uinsymbiosis) {
+			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax += 4;
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
@@ -7558,7 +7558,7 @@ secureidchoice:
 			pline("Click! You feel vitalized.");
 			u.uhpmax++;
 			if (Upolyd) u.mhmax++;
-			if (uinsymbiosis) {
+			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax++;
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}

@@ -9303,6 +9303,8 @@ newboss:
 			stop_occupation();
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimed by a wand of sliming";
 		}
 
 		if (oseen) makeknown(WAN_SLIMING);

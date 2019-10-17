@@ -8387,6 +8387,10 @@ u_init()
 
 	u.nurseextracost = 1000;	/* cost to buy max HP from nurses, goes up every time the player does so --Amy */
 	u.nursedecontamcost = 1000;	/* cost to buy decontamination from nurses */
+	u.nursesymbiotecost = 10000;	/* cost to buy a new symbiote from nurses */
+	u.nurseshutdowncost = 1000;	/* cost to buy shutdown service from nurses */
+
+	u.shutdowntime = 0;
 
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 

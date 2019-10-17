@@ -3556,6 +3556,14 @@ jediskip:
 	    	learntech(T_ASSUME_SYMBIOTE, FROMOUTSIDE, 1);
 	    	You("learn how to perform assume symbiote!");
 	}
+	if (skill == P_SYMBIOSIS && P_SKILL(skill) == P_MASTER && P_SKILL(P_PETKEEPING) >= P_MASTER && !tech_known(T_GENERATE_OFFSPRING)) {
+	    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
+	    	You("learn how to perform generate offspring!");
+	}
+	if (skill == P_PETKEEPING && P_SKILL(skill) == P_MASTER && P_SKILL(P_SYMBIOSIS) >= P_MASTER && !tech_known(T_GENERATE_OFFSPRING)) {
+	    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
+	    	You("learn how to perform generate offspring!");
+	}
 
 	if (skill == P_WEDI && P_SKILL(skill) == P_EXPERT && !tech_known(T_STAR_DIGGING)) {
 	    	learntech(T_STAR_DIGGING, FROMOUTSIDE, 1);
@@ -4956,6 +4964,14 @@ int degree;
 			if (skill == P_POLYMORPHING && P_ADVANCE(P_SYMBIOSIS) == 0 && !tech_known(T_ASSUME_SYMBIOTE)) {
 			    	learntech(T_ASSUME_SYMBIOTE, FROMOUTSIDE, 1);
 			    	You("learn how to perform assume symbiote!");
+			}
+			if (skill == P_SYMBIOSIS && P_ADVANCE(skill) == 0 && !tech_known(T_GENERATE_OFFSPRING)) {
+			    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
+			    	You("learn how to perform generate offspring!");
+			}
+			if (skill == P_PETKEEPING && P_ADVANCE(skill) == 0 && !tech_known(T_GENERATE_OFFSPRING)) {
+			    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
+			    	You("learn how to perform generate offspring!");
 			}
 
 		}
@@ -7725,6 +7741,9 @@ rerollthree:
 	}
 	if (P_SKILL(P_SYMBIOSIS) >= P_EXPERT && P_SKILL(P_POLYMORPHING) >= P_EXPERT && !tech_known(T_ASSUME_SYMBIOTE)) {
 	    	learntech(T_ASSUME_SYMBIOTE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SYMBIOSIS) >= P_MASTER && P_SKILL(P_PETKEEPING) >= P_MASTER && !tech_known(T_GENERATE_OFFSPRING)) {
+	    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
 	}
 
 	} /* demagogue check */

@@ -1739,7 +1739,7 @@ badeffect()
 		    flags.botl = 1;
 			stop_occupation();
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "summoned slime";
+		    delayed_killer = "slimed by summoned slime";
 		}
 		break;
 
@@ -2923,7 +2923,7 @@ reallybadeffect()
 		    flags.botl = 1;
 			stop_occupation();
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "summoned slime";
+		    delayed_killer = "slimed by summoned slime";
 		}
 		break;
 
@@ -6397,6 +6397,8 @@ peffects(otmp)
 		    You("don't feel very well.");
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimed by a potion of slime";
 		}
 		unkn++;
 
@@ -6830,7 +6832,7 @@ peffects(otmp)
 		make_hallucinated(HHallucination + time + d(10, 3), FALSE, 0L);
 		u.uhpmax += rnd(5);
 		u.uhp = u.uhpmax;
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += 5;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -6888,7 +6890,7 @@ peffects(otmp)
 					u.uhp++;
 					u.uhpmax++;
 				}
-				if (uinsymbiosis) {
+				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax++;
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
@@ -7458,7 +7460,7 @@ peffects(otmp)
 				u.uhpmax += ((u.uhp - u.uhpmax) / 2);
 				u.uhp = u.uhpmax;
 			}
-			if (uinsymbiosis && !otmp->cursed) {
+			if (uactivesymbiosis && !otmp->cursed) {
 				u.usymbiote.mhpmax += num2;
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
@@ -7656,7 +7658,7 @@ peffects(otmp)
 			if (u.uhp < 1) u.uhp = 1;	/* can't kill you */
 		} else {
 			if (Hallucination) make_hallucinated(0L,FALSE,0L);
-			if (uinsymbiosis) {
+			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax++;
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
@@ -7688,7 +7690,7 @@ peffects(otmp)
 		You_feel("%spowerful!",otmp->blessed ? "very " : "");
 		u.uhp += x;
 		u.uhpmax += x;
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += x;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -7703,7 +7705,7 @@ peffects(otmp)
 		}	
 		if (otmp->blessed) {
 			u.uhpmax += rn2(5);
-			if (uinsymbiosis) {
+			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax += rn2(5);
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
@@ -7730,7 +7732,7 @@ peffects(otmp)
 		incr_itimeout(&HSee_invisible, time);
 		if (!rnl(3)) make_blinded(Blinded+time,TRUE);	
 		u.uhpmax += rn2(5);
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += rn2(5);
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -7898,7 +7900,7 @@ healup(nhp, nxtra, curesick, cureblind)
 			if(u.uhp > u.uhpmax) u.uhp = (u.uhpmax += nxtra);
 			else if (!rn2(2)) u.uhpmax += nxtra;
 		}
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += nxtra;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -8602,6 +8604,8 @@ register struct obj *obj;
 			stop_occupation();
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimed by a potion of slime";
 		}
 		break;
 

@@ -4808,7 +4808,7 @@ newegomon:
 			}
 			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
 			u.uhp = u.uhpmax;
-			if (uinsymbiosis) {
+			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax += 4;
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
@@ -6576,7 +6576,7 @@ newbossPENT:
 			else u.uhpmax++;
 			u.uhp = u.uhpmax;
 		}
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -8034,7 +8034,7 @@ madnesseffect:
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slime trap";
+		    delayed_killer = "slimed by a slime trap";
 		}
 		break;
 
@@ -16268,7 +16268,7 @@ const char *str;
 			pline("Your status starts changing to statue.");
 			Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 			stop_occupation();
-			delayed_killer = "coming into contact with a petrifying object";
+			delayed_killer = (str[0] ? str : "coming into contact with a petrifying object");
 		}
 	}
 /* Damn you annoying programmers! At least give us a chance to save ourselves with our stock of lizard corpses! */

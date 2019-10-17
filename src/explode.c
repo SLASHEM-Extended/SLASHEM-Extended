@@ -690,7 +690,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		ugolemeffects((int) adtyp, damu);
 
-		if (uinsymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
+		if (uactivesymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
 			if (tech_inuse(T_POWERBIOSIS) && damu > 1) damu /= 2;
 			if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
 				int imbiophases = uimplant->spe;

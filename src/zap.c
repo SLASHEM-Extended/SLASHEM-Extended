@@ -4435,6 +4435,8 @@ secureidchoice:
 		    You("don't feel very well.");
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimed by zapping a wand of sliming";
 		}
 
 		break;
@@ -6430,7 +6432,7 @@ boolean ordinary;
 			You_feel("powered up!");
 				if (Upolyd) u.mhmax += rnd(5);
 				else u.uhpmax += rnd(5);
-				if (uinsymbiosis) {
+				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax += rnd(5);
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
@@ -7021,7 +7023,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	/* now handle special cases */
 	if (youdefend) {
 
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhp = 1;
 			u.usymbiote.mhpmax -= rnd(10);
 			if (u.usymbiote.mhpmax < 1) {

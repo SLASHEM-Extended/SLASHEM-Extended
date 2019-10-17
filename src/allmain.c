@@ -1318,7 +1318,7 @@ moveloop()
 
 			/* special case: if you're polymorphed into your symbiote's base monster, you can move around --Amy
 			 * This is mainly so that the "assume symbiote" technique works without needing to be active */
-			if (youmonst.data->mmove == 0 && uinsymbiosis && Upolyd && (u.umonnum == u.usymbiote.mnum)) {
+			if (youmonst.data->mmove == 0 && uactivesymbiosis && Upolyd && (u.umonnum == u.usymbiote.mnum)) {
 				moveamt += 12;
 			}
 
@@ -1849,6 +1849,13 @@ moveloop()
 		if (u.udrowning) {
 			if (isok(u.ux, u.uy) && is_crystalwater(u.ux, u.uy)) crystaldrown();
 			else drown();
+		}
+
+		if (u.shutdowntime) {
+			u.shutdowntime--;
+			if (!uinsymbiosis) u.shutdowntime = 0;
+			if (u.shutdowntime < 0) u.shutdowntime = 0; /* fail safe */
+			if (!u.shutdowntime) Your(uinsymbiosis ? "symbiote is no longer shut down." : "symbiote is no longer there and therefore its shutdown also ends.");
 		}
 
 		if (u.ualign.record > u.cnd_maxalignment) u.cnd_maxalignment = u.ualign.record;
@@ -5183,7 +5190,7 @@ newbossO:
 			}
 		}
 
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiosisslowturns++;
 			if (u.usymbiosisslowturns >= 100) {
 				u.usymbiosisslowturns = 0;
@@ -8484,7 +8491,7 @@ newboss:
 		    if(IsGlib) glibr();
 
 		/* symbiote HP regeneration - rather slow, but depends on your symbiosis skill --Amy */
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			int symregenrate = 50;
 
 			if (!(PlayerCannotUseSkills)) {

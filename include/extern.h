@@ -1696,6 +1696,7 @@ E void uncursesymbiote(BOOLEAN_P);
 E void cursesymbiote(void);
 E boolean symbiotemelee(void);
 E boolean symbiotepassive(void);
+E void getrandomsymbiote(void);
 
 /* ### mondata.c ### */
 

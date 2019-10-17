@@ -1431,6 +1431,7 @@ domonability()
 	if (uinsymbiosis && yn("Do you want to check your symbiote's stats?")=='y') {
 		pline("Current symbiote is %s. Health: %d(%d). BUC: %s%s%s%s%s. ", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
 #ifdef EXTENDED_INFO
+		if (u.shutdowntime) pline("Your symbiote has been shut down for %d turns.", u.shutdowntime);
 		corpsepager(u.usymbiote.mnum);
 #endif
 		return FALSE;
@@ -1556,28 +1557,28 @@ domonability()
 		if (undtrpcnt) pline("%d traps could not be disarmed.", undtrpcnt);
 		use_skill(P_SQUEAKING, rnd(30));
 		return TRUE;
-	} else if ((can_breathe(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uinsymbiosis && can_breathe(&mons[u.usymbiote.mnum]) )) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
-	else if ((attacktype(youmonst.data, AT_SPIT) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uinsymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_SPIT) )) && yn("Do you want to use your spit attack?")=='y' ) return dospit();
-	else if ((youmonst.data->mlet == S_NYMPH || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_MASTER && uinsymbiosis && ((mons[u.usymbiote.mnum].mlet) == S_NYMPH) )) && yn("Do you want to remove an iron ball?")=='y' ) return doremove();
-	else if ((attacktype(youmonst.data, AT_GAZE) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uinsymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_GAZE) )) && yn("Do you want to use your gaze attack?")=='y' ) return dogaze();
+	} else if ((can_breathe(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && can_breathe(&mons[u.usymbiote.mnum]) )) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
+	else if ((attacktype(youmonst.data, AT_SPIT) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_SPIT) )) && yn("Do you want to use your spit attack?")=='y' ) return dospit();
+	else if ((youmonst.data->mlet == S_NYMPH || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_MASTER && uactivesymbiosis && ((mons[u.usymbiote.mnum].mlet) == S_NYMPH) )) && yn("Do you want to remove an iron ball?")=='y' ) return doremove();
+	else if ((attacktype(youmonst.data, AT_GAZE) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_GAZE) )) && yn("Do you want to use your gaze attack?")=='y' ) return dogaze();
 	else if (is_were(youmonst.data) && yn("Do you want to summon help?")=='y' ) return dosummon();
-	else if ((webmaker(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uinsymbiosis && webmaker(&mons[u.usymbiote.mnum]) )) && yn("Do you want to spin webs?")=='y' ) return dospinweb();
-	else if ((is_hider(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uinsymbiosis && is_hider(&mons[u.usymbiote.mnum]) )) && yn("Do you want to hide?")=='y' ) return dohide();
-	else if ((is_mind_flayer(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uinsymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) )) && yn("Do you want to emit a mind blast?")=='y' ) return domindblast();
+	else if ((webmaker(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && webmaker(&mons[u.usymbiote.mnum]) )) && yn("Do you want to spin webs?")=='y' ) return dospinweb();
+	else if ((is_hider(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_hider(&mons[u.usymbiote.mnum]) )) && yn("Do you want to hide?")=='y' ) return dohide();
+	else if ((is_mind_flayer(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) )) && yn("Do you want to emit a mind blast?")=='y' ) return domindblast();
 	else if (u.umonnum == PM_GREMLIN && yn("Do you want to replicate in water?")=='y' ) {
 	    if(IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
 		if (split_mon(&youmonst, (struct monst *)0))
 		    dryup(u.ux, u.uy, TRUE);
 	    } else There("is no fountain here.");
-	} else if ( (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uinsymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
+	} else if ( (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) && yn("Do you want to cure yourself with your horn?")=='y' ) {
 	    use_unicorn_horn((struct obj *)0);
 	    return 1;
-	} else if ((youmonst.data->msound == MS_SHRIEK || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uinsymbiosis && mons[u.usymbiote.mnum].msound == MS_SHRIEK )) && yn("Do you want to shriek?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_SHRIEK || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SHRIEK )) && yn("Do you want to shriek?")=='y' ) {
 	    You("shriek.");
 	    if(u.uburied)
 		pline("Unfortunately sound does not carry well through rock.");
 	    else aggravate();
-	} else if ((youmonst.data->msound == MS_FART_QUIET || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_QUIET)) && yn("Do you want to fart?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_FART_QUIET || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_QUIET) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_QUIET)) && yn("Do you want to fart?")=='y' ) {
 		if (u.uhunger <= 10) {
 			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
 			return 0;
@@ -1624,7 +1625,7 @@ domonability()
 
 			return 1;
 		}
-	} else if ((youmonst.data->msound == MS_FART_NORMAL || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL)) && yn("Do you want to fart?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_FART_NORMAL || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_NORMAL) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL)) && yn("Do you want to fart?")=='y' ) {
 		if (u.uhunger <= 10) {
 			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
 			return 0;
@@ -1665,7 +1666,7 @@ domonability()
 
 			return 1;
 		}
-	} else if ((youmonst.data->msound == MS_FART_LOUD || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_LOUD)) && yn("Do you want to fart?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_FART_LOUD || (PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_LOUD) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_LOUD)) && yn("Do you want to fart?")=='y' ) {
 		if (u.uhunger <= 10) {
 			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
 			return 0;
@@ -6401,6 +6402,9 @@ boolean guaranteed;
 	}
 	if ((guaranteed || !rn2(10)) && uinsymbiosis) {
 		sprintf(buf, "in symbiosis with %s, symbiote health %d(%d), BUC %s%s%s%s%s", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
+		if (u.shutdowntime) {
+			sprintf(eos(buf), ", shutdown for %d turns", u.shutdowntime);
+		}
 		you_are(buf);
 	}
 
@@ -10074,6 +10078,9 @@ int final;
 	}
 	if (uinsymbiosis) {
 		sprintf(buf, "in symbiosis with %s, symbiote health %d(%d), BUC %s%s%s%s%s", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
+		if (u.shutdowntime) {
+			sprintf(eos(buf), ", shutdown for %d turns", u.shutdowntime);
+		}
 		dump(youwere, buf);
 	}
 

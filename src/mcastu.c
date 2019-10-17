@@ -1418,7 +1418,10 @@ int spellnum;
 			You("don't feel very well.");
 			stop_occupation();
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;}
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimed by a monster spell";
+		    }
 		dmg = 0;
 		break;
 

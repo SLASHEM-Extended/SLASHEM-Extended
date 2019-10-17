@@ -369,6 +369,27 @@ use_symbiote(obj)
 			/* we caught it! */
 			symchecks = 0;
 
+			if (touch_petrifies(mtmp->data) && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) ) {
+				if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+					display_nhwindow(WIN_MESSAGE, FALSE);
+				else {
+					char kbuf[BUFSZ];
+					pline("Incorporating a petrifying creature is a fatal mistake.");
+					sprintf(kbuf, "picking the wrong symbiote");
+					instapetrify(kbuf);
+				}
+
+			}
+
+			if (slime_on_touch(mtmp->data) && !Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data)) {
+				You("don't feel very well.");
+				Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+				flags.botl = 1;
+				killer_format = KILLED_BY_AN;
+				delayed_killer = "slimed by picking the wrong symbiote";
+
+			}
+
 			turnmonintosymbiote(mtmp);
 
 			if (uinsymbiosis) {

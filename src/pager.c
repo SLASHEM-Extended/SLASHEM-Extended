@@ -24337,7 +24337,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You see here, an evil idea (being considered)",
 	"You see here a todo.",
 	"You see here a todo. Which is not a japanese translation of an item, but rather an item that doesn't have a translation yet - it's on the to-do list!",
-
+	"An attempt to replace your symbiote was done, but failed. Maybe your current symbiote is cursed?",
+	"Did you just quaff FEV-spiked water?",
+	"Did you just quaff FEV-spiked water? No, but someone else did, and because of a bug that makes it act like YOU were the one that did!",
+	"Your current symbiote vanishes.",
 
 };
 

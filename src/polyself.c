@@ -1441,6 +1441,11 @@ dogaze()
 	int squeakamount = 0;
 	gazecost += (Upolyd ? (mons[u.umonnum].mlevel * 4) : (u.ulevel * 4));
 
+	if (!attacktype_fordmg(youmonst.data, AT_GAZE, AD_ANY)) {
+		gazecost = 24;
+		gazecost += (1 + mons[u.usymbiote.mnum].mlevel * 4);
+	}
+
 	squeakamount = gazecost;
 	/* we can now reduce the cost based on the player's squeaking skill --Amy */
 	if (!PlayerCannotUseSkills && gazecost > 2) {
@@ -1539,7 +1544,7 @@ dogaze()
 	    }
 
 	    for(i = 0; i < NATTK; i++) {
-		if (uinsymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED) {
+		if (uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED) {
 			mattk = &(mons[u.usymbiote.mnum].mattk[i]);
 			if (mattk->aatyp == AT_GAZE) {
 			    damageum(mtmp, mattk);
@@ -1578,7 +1583,7 @@ dobreathe()
 
 	/* and make instakill breath attacks even more expensive to tone down abuse potential */
 	mattk = attacktype_fordmg(youmonst.data, AT_BREA, AD_ANY);
-	if (!mattk && uinsymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_BREA, AD_ANY);
+	if (!mattk && uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_BREA, AD_ANY);
 	if (!mattk) {
 		impossible("bad breath attack?");   /* mouthwash needed... */
 		return(0); /* prevent you from using segfault breath --Amy */
@@ -1615,6 +1620,7 @@ dobreathe()
 	flags.botl = 1;
 
 	mattk = attacktype_fordmg(youmonst.data, AT_BREA, AD_ANY);
+	if (!mattk && uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_BREA, AD_ANY);
 	if (!mattk)
 	    impossible("bad breath attack?");   /* mouthwash needed... */
 	else {
@@ -1672,7 +1678,7 @@ dospit()
 	u.uen -= spitcost;
 
 	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
-	if (!mattk && uinsymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_SPIT, AD_ANY);
+	if (!mattk && uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_SPIT, AD_ANY);
 	if (!mattk)
 	    impossible("bad spit attack?");
 	else {
@@ -3255,7 +3261,7 @@ powerfulimplants()
 	if (Race_if(PM_SATRE) && !Upolyd) return TRUE; /* equipment restrictions */
 	if (Race_if(PM_ELONA_SNAIL) && !Upolyd) return TRUE; /* equipment restrictions */
 	if (Race_if(PM_HUMAN_WRAITH)) return TRUE; /* loses maxHP permanently when equipping stuff */
-	if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uinsymbiosis && uimplant) return TRUE;
+	if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uactivesymbiosis && uimplant) return TRUE;
 
 	return FALSE;
 }

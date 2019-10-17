@@ -621,7 +621,7 @@ register struct obj *food;
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimy meal";
+		    delayed_killer = "slimed by a slimy meal";
 	}
 
 	}
@@ -1181,6 +1181,8 @@ register int pm;
 		    You("don't feel very well.");
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimed by doing something stupid";
 		}
 		if (acidic(&mons[pm]) && Stoned)
 		    fix_petrification();
@@ -1272,6 +1274,8 @@ struct monst *mon;
 			    !slime_on_touch(youmonst.data) && slime_on_touch(mon->data) ) {
 		You("don't feel very well.");
 		Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+		killer_format = KILLED_BY_AN;
+		delayed_killer = "slimed by doing something stupid";
 	    }
 	    if (acidic(mon->data) && Stoned)
 		fix_petrification();
@@ -2032,7 +2036,7 @@ register int pm;
 			u.uhp++;
 			u.uhpmax++;
 		}
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -2057,7 +2061,7 @@ register int pm;
 			u.uhpmax += rnd(2);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax += rnd(2);
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -2092,7 +2096,7 @@ register int pm;
 			u.uhpmax += rnd(10);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
@@ -2141,7 +2145,7 @@ register int pm;
 			u.uhpmax += rnd(10);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
@@ -3382,7 +3386,7 @@ register int pm;
 				u.uhp++;
 				u.uhpmax++;
 			}
-			if (uinsymbiosis) {
+			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax++;
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
@@ -3466,7 +3470,7 @@ register int pm;
 					u.uhp++;
 					u.uhpmax++;
 				}
-				if (uinsymbiosis) {
+				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax++;
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 				}
@@ -3749,7 +3753,7 @@ gluttonous()
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimy meal";
+		    delayed_killer = "slimed by a slimy meal";
 	}
 
 	}
@@ -3837,7 +3841,7 @@ violated_vegetarian()
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimy meal";
+		    delayed_killer = "slimed by a slimy meal";
 	}
 
 	/* By the way, I'm certainly not a vegetarian myself. It's just a twist of the topmodel role. --Amy */
@@ -4348,7 +4352,7 @@ struct obj *obj;
 		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimy meal";
+		    delayed_killer = "slimed by a slimy meal";
 	}
 	return(0);
 }
@@ -5201,7 +5205,7 @@ eatspecial() /* called after eating non-food */
 			u.uhp++;
 			u.uhpmax++;
 		}
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -6001,7 +6005,7 @@ register struct obj *otmp;
 			done(POISONING);
 			u.youaredead = 0;
 		    }
-			if (uinsymbiosis && !rn2(17)) {
+			if (uactivesymbiosis && !rn2(17)) {
 				u.usymbiote.mhpmax++;
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
@@ -6686,7 +6690,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	if (Race_if(PM_ANCIPITAL) && !rn2(20) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
 	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy */
-	if (uinsymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {
+	if (uactivesymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {
 		if (carnivorous(&mons[u.usymbiote.mnum]) || herbivorous(&mons[u.usymbiote.mnum]) || metallivorous(&mons[u.usymbiote.mnum]) || organivorous(&mons[u.usymbiote.mnum]) || lithivorous(&mons[u.usymbiote.mnum])) u.uhunger--;
 		if (regenerates(&mons[u.usymbiote.mnum])) u.uhunger -= 5;
 	}

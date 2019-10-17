@@ -692,6 +692,7 @@ linetwo:
 	  if (u.usymbiote.cursed) {
 		wprintw(win, "%s", u.usymbiote.stckcurse ? "S" : "C");
 		wprintw(win, "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);
+		if (u.shutdowntime) wprintw(win, "sd");
 	  }
     }
 

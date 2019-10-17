@@ -2571,6 +2571,7 @@ mpickstuff(mtmp, str)
 		if (otmp->otyp == STATUE) continue;
 		if (otmp->otyp == SWITCHER) continue;
 		if (otmp->otyp == CHARGER) continue;
+		if (otmp->otyp == SYMBIOTE) continue;
 		if (otmp->otyp == UGH_MEMORY_TO_CREATE_INVENTORY) continue;
 		if (!touch_artifact(otmp,mtmp)) continue;
 		if (!can_carry(mtmp,otmp)) continue;
@@ -5424,7 +5425,7 @@ xkilled(mtmp, dest)
 	if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && !rn2(50)) {
 		u.uhpmax++;
 		if (Upolyd) u.mhmax++;
-		if (uinsymbiosis) {
+		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 		}
@@ -8007,6 +8008,7 @@ struct monst *mtmp;
 
 	/* now set the new symbiote's stats */
 
+	u.shutdowntime = 0;
 	u.usymbiote.active = 1;
 	u.usymbiote.mnum = mtmp->mnum;
 	u.usymbiote.mhpmax = mtmp->mhpmax;
@@ -8024,10 +8026,98 @@ struct monst *mtmp;
 	u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0; /* caller may override this */
 
 	pline("%s becomes your new symbiote!", noit_Monnam(mtmp));
+	pline("Use #monster to manage your symbiote.");
 	if (flags.showsymbiotehp) flags.botl = TRUE;
 	use_skill(P_SYMBIOSIS, 1);
 
 	mongone(mtmp);
+}
+
+void
+getrandomsymbiote()
+{
+	struct permonst *pm = 0;
+	int attempts = 0;
+	do {
+		pm = rndmonst();
+		attempts++;
+		if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+	} while ( (!pm || (pm && (!(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) && attempts < 500000);
+
+	if (!pm || (pm && (!(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) {
+		pline("For some reason, symbiote creation failed.");
+		return;
+	}
+
+	/* reset any existing symbiote structure first */
+
+	if (uinsymbiosis) {
+		if (u.usymbiote.cursed) {
+			pline("An attempt to replace your symbiote was done, but failed. Maybe your current symbiote is cursed?");
+			return;
+		}
+
+		u.cnd_symbiotesdied++;
+		pline(FunnyHallu ? "Did you just quaff FEV-spiked water?" : "Your current symbiote vanishes.");
+	}
+
+	u.usymbiote.active = 0;
+	u.usymbiote.mnum = PM_PLAYERMON;
+	u.usymbiote.mhp = 0;
+	u.usymbiote.mhpmax = 0;
+	u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+
+	/* now set the new symbiote's stats */
+
+	u.shutdowntime = 0;
+	u.usymbiote.active = 1;
+	u.usymbiote.mnum = monsndx(pm); /* permonst to number conversion */
+	u.usymbiote.mhpmax = (pm->mlevel * 8);
+	if (u.usymbiote.mhpmax < 4) u.usymbiote.mhpmax = 4;
+	if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
+
+	/* symbiote HP start out at half of the maximum if you get a random one */
+	u.usymbiote.mhp = (u.usymbiote.mhpmax / 2);
+	if (u.usymbiote.mhp < 1) u.usymbiote.mhp = 1;
+	if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+	u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+
+	/* now have a chance for it to be cursed */
+	if (!rn2(isfriday ? 3 : 6)) cursesymbiote();
+	if (Role_if(PM_CAMPERSTRIKER) && !rn2(isfriday ? 3 : 6)) cursesymbiote();
+	if (iscurser && rn2(5)) cursesymbiote();
+	if (u.genericcursechance && (u.genericcursechance >= rnd(100)) ) cursesymbiote();
+	if (uinsymbiosis && u.usymbiote.cursed) {
+		if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) u.usymbiote.stckcurse = 1;
+		if (u.heavycursechance && (u.heavycursechance >= rnd(100)) ) u.usymbiote.hvycurse = 1;
+		if (u.usymbiote.hvycurse && u.primecursechance && (u.primecursechance >= rnd(100)) ) u.usymbiote.prmcurse = 1;
+	}
+
+	if (touch_petrifies(pm) && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) ) {
+		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+			display_nhwindow(WIN_MESSAGE, FALSE);
+		else {
+			char kbuf[BUFSZ];
+			pline("Unfortunately the symbiote you got is of a petrifying kind.");
+			sprintf(kbuf, "symbiosis accident");
+			instapetrify(kbuf);
+		}
+	}
+
+	if (slime_on_touch(pm) && !Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data)) {
+		You("don't feel very well.");
+		Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+		flags.botl = 1;
+		killer_format = KILLED_BY_AN;
+		delayed_killer = "slimed by a symbiosis accident";
+	}
+
+	pline("%s becomes your new symbiote!", mons[u.usymbiote.mnum].mname);
+	pline("Use #monster to manage your symbiote.");
+	if (flags.showsymbiotehp) flags.botl = TRUE;
+	use_skill(P_SYMBIOSIS, 1);
+
 }
 
 void
@@ -8105,7 +8195,7 @@ cursesymbiote()
 boolean
 symbiotemelee()
 {
-	if (!uinsymbiosis) return FALSE;
+	if (!uactivesymbiosis) return FALSE;
 
 	int symchance = 0;
 
@@ -8155,7 +8245,7 @@ symbiotemelee()
 boolean
 symbiotepassive()
 {
-	if (!uinsymbiosis) return FALSE;
+	if (!uactivesymbiosis) return FALSE;
 
 	int symchance = 0;
 

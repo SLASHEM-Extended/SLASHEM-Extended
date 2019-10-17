@@ -23410,6 +23410,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 # dnethack grue challenge level, edited by Amy
 MAZE: "depen-2", ' '
@@ -23496,6 +23497,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 # dnethack grue challenge level, edited by Amy
 MAZE: "depen-3", ' '
@@ -23582,6 +23584,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 # "Dark Crypt" by Ozma777
 # Relies on some very specific behavior of MAZEWALK.
@@ -23677,6 +23680,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 MAZE: "depen-5",' '
 GEOMETRY: center,center
@@ -23780,6 +23784,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 MAZE: "depen-6",' '
 GEOMETRY: center,center
@@ -23887,6 +23892,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 MAZE: "deehfill" , ' '
 INIT_MAP: '.' , ' ' , true , true , random , true
@@ -28340,6 +28346,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -28491,6 +28498,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -28642,6 +28650,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -28801,6 +28810,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -28969,6 +28979,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -29171,6 +29182,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -29289,6 +29301,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 # dnethack grue challenge level, edited by Amy
 MAZE: "depeE-2", ' '
@@ -29376,6 +29389,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 # dnethack grue challenge level, edited by Amy
 MAZE: "depeE-3", ' '
@@ -29463,6 +29477,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 # "Dark Crypt" by Ozma777
 # Relies on some very specific behavior of MAZEWALK.
@@ -29558,6 +29573,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 MAZE: "depeE-5",' '
 GEOMETRY: center,center
@@ -29662,6 +29678,7 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 
 MAZE: "depeE-6",' '
 GEOMETRY: center,center
@@ -29770,4 +29787,5 @@ OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
+OBJECT: '(', "symbiote", random
 

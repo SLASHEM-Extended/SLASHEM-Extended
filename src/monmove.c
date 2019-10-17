@@ -2350,6 +2350,7 @@ altarfound:
 			if(can_carry(mtmp,otmp) &&
 				otmp->otyp != STATUE && 
 				otmp->otyp != CHARGER && 
+				otmp->otyp != SYMBIOTE && 
 				otmp->otyp != SWITCHER && 
 				otmp->otyp != UGH_MEMORY_TO_CREATE_INVENTORY && 
 			   (throws_rocks(ptr) ||

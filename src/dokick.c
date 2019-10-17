@@ -307,6 +307,7 @@ register boolean clumsy;
 			/* marital arts skill is supposed to improve this!!! --Amy */
 		    if (P_SKILL(P_MARTIAL_ARTS) > 0) dmg += (P_SKILL(P_MARTIAL_ARTS) * 3);
 		}
+		else if (dmg > 0) kick_skill = P_MARTIAL_ARTS; /* so that acu can unlock it if he wants to */
 		/* a good kick exercises your dex */
 		exercise(A_DEX, TRUE);
 	}
