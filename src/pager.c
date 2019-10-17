@@ -24341,6 +24341,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Did you just quaff FEV-spiked water?",
 	"Did you just quaff FEV-spiked water? No, but someone else did, and because of a bug that makes it act like YOU were the one that did!",
 	"Your current symbiote vanishes.",
+	"Something nonexistant would have been affected but couldn't.",
+	"The scroll of symbiosis fails to do anything.",
+	"The scroll of symbiosis fails to do anything because it was programmed incorrectly.",
+	"Your symbiote was shut down!",
+	"Your symbiote was shut down against your will! Ha-ha!",
 
 };
 

@@ -6216,6 +6216,7 @@ boolean extraskills;
 	if (obj->otyp >= SMALL_SHIELD && obj->otyp <= SHIELD_OF_REFLECTION) skill = P_SHIELD;
 	if (obj->otyp >= PLATE_MAIL && obj->otyp <= YELLOW_DRAGON_SCALES) skill = P_BODY_ARMOR;
 	if (obj->otyp >= WAN_LIGHT && obj->otyp <= WAN_PSYBEAM) skill = P_DEVICES;
+	if (obj->otyp == SCR_SYMBIOSIS) skill = P_SYMBIOSIS;
 	if (obj->otyp == SCR_CREATE_FAMILIAR) skill = P_PETKEEPING;
 	if (obj->otyp == SCR_TAMING) skill = P_PETKEEPING;
 	if (obj->otyp == TIN_WHISTLE) skill = P_PETKEEPING;

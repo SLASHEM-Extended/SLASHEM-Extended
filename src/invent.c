@@ -13164,6 +13164,8 @@ boolean knoweverything;
 				pline("Reading this scroll summons a boss monster. A tame one. Yes, you read that right. You'll get your personal boss monster that fights alongside you."); break;
 			case SCR_MESSAGE:
 				pline("A scroll that can trigger messages if you read it."); break;
+			case SCR_SYMBIOSIS:
+				pline("If you read this scroll, you may get a new symbiote. Be aware that you cannot have more than one symbiote at once; reading it while already having one will prompt you whether you want a new one. Also, the symbiote you get is random."); break;
 			case SCR_SIN:
 				pline("Don't read it. That is, unless you want to be hit by a 'deadly sin' effect which is likely to screw your character in some way or another."); break;
 			case SCR_CHARGING:
@@ -18920,6 +18922,14 @@ boolean knoweverything;
 					pline("Artifact specs: fear resistance when worn."); break;
 				case ART_LOOK_HOW_IT_BLOCKS:
 					pline("Artifact specs: +20%% chance to block."); break;
+				case ART_SCIENTIFIC_SYMBIONT_KIT:
+					pline("Artifact specs: can potentially be used multiple times."); break;
+				case ART_XOM_S_SCROLLINATOR:
+					pline("Artifact specs: unlike a regular symbiote item, it doesn't let you pick a monster but gives you a random one instead. Warning: there is no confirmation if you already have a symbiote - it will erase whichever symbiote you have at the time of using."); break;
+				case ART_HEALTHY_PARASITE:
+					pline("Artifact specs: adds a big health boost to the new symbiote."); break;
+				case ART_HOLDEN_MIDDLE_POST:
+					pline("Artifact specs: the monster that you've used it on will persist."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

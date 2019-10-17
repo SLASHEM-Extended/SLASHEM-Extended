@@ -3157,6 +3157,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ SCR_SYMBIOSIS, "todo" },
+
 	{0, "" }
 };
 
@@ -5761,6 +5763,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	/* todo area */
 
+	{ SCR_SYMBIOSIS, "todo" },
+
 	{0, "" }
 };
 
@@ -7783,6 +7787,7 @@ const char *oldstr;
 			   !BSTRCMP(bp, p-9, "gauntlets") ||
                            !BSTRCMPI(bp, p-6, "tricks") ||
                            !BSTRCMPI(bp, p-9, "paralysis") ||
+                           !BSTRCMPI(bp, p-9, "symbiosis") ||
                            !BSTRCMPI(bp, p-8, "geolysis") ||
                            !BSTRCMPI(bp, p-5, "glass") ||
                            !BSTRCMPI(bp, p-5, "dress") ||

@@ -20541,7 +20541,7 @@ register struct attack *mattk;
 		for(i = 0; ; i++) {
 			if(i >= NATTK) break; /* symbiote has no passives - use the youmonst ones */
 
-			if (mons[u.usymbiote.mnum].mattk[i].aatyp == AT_NONE || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_RATH || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_BOOM) {
+			if (haspassive(&mons[u.usymbiote.mnum]) || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_RATH || mons[u.usymbiote.mnum].mattk[i].aatyp == AT_BOOM) {
 				olduasmon = &mons[u.usymbiote.mnum];
 				Your("%s symbiote retaliates!", mons[u.usymbiote.mnum].mname);
 				u.usymbiosisfastturns++;

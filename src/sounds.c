@@ -2823,7 +2823,7 @@ register struct monst *mtmp;
 								u.ugold -= nursesymbiotecost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
-								getrandomsymbiote();
+								getrandomsymbiote(FALSE);
 
 								u.nursesymbiotecost += 5000;
 								if (u.nursesymbiotecost < 10000) u.nursesymbiotecost = 10000; /* fail safe */
@@ -3624,7 +3624,7 @@ dochat()
 			delayed_killer = "slimed by picking the wrong symbiote";
 		}
 
-		turnmonintosymbiote(mtmp); /* WARNING: mtmp is removed at this point */
+		turnmonintosymbiote(mtmp, FALSE); /* WARNING: mtmp is removed at this point */
 
 		return 1;
 	}

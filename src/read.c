@@ -8598,6 +8598,59 @@ rerollX:
 
 		break;
 
+	case SCR_SYMBIOSIS:
+		known = TRUE;
+
+		if (confused) {
+
+			if (!uactivesymbiosis) {
+				pline(FunnyHallu ? "Something nonexistant would have been affected but couldn't." : "The scroll of symbiosis fails to do anything.");
+				break;
+			}
+
+			if (sobj->cursed) {
+				u.shutdowntime += 1000;
+				Your("symbiote was shut down!");
+				if (flags.showsymbiotehp) flags.botl = TRUE;
+			} else {
+				if (sobj->blessed) {
+					u.usymbiote.mhpmax += rnd(8);
+					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+				}
+				u.usymbiote.mhp = u.usymbiote.mhpmax;
+				if (flags.showsymbiotehp) flags.botl = TRUE;
+				Your("symbiote was healed!");
+			}
+
+		} else {
+			if (sobj->cursed && uinsymbiosis) {
+				u.shutdowntime = 0;
+				u.usymbiote.active = 0;
+				u.usymbiote.mnum = PM_PLAYERMON;
+				u.usymbiote.mhp = 0;
+				u.usymbiote.mhpmax = 0;
+				u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+				if (flags.showsymbiotehp) flags.botl = TRUE;
+				u.cnd_symbiotesdied++;
+			}
+
+			if (uinsymbiosis) {
+				getlin("You have found a scroll of symbiosis! Do you want to replace your current symbiote with a random new one? [yes/no]", buf);
+				(void) lcase (buf);
+				if (!(strcmp (buf, "yes")) ) {
+					getrandomsymbiote(sobj->blessed);
+					break;
+				} else {
+					You("decided to not get a random new symbiote.");
+					break;
+				}
+			}
+
+			getrandomsymbiote(sobj->blessed);
+		}
+
+		break;
+
 	case SCR_BOSS_COMPANION:
 		known = TRUE;
 

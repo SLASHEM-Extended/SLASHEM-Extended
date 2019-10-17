@@ -291,6 +291,25 @@ use_symbiote(obj)
 	struct monst *mtmp;
 	int rx, ry, res;
 	int symchecks = 1;
+
+	if (obj->oartifact == ART_XOM_S_SCROLLINATOR) {
+
+		if (uinsymbiosis) {
+			u.shutdowntime = 0;
+			u.usymbiote.active = 0;
+			u.usymbiote.mnum = PM_PLAYERMON;
+			u.usymbiote.mhp = 0;
+			u.usymbiote.mhpmax = 0;
+			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+			u.cnd_symbiotesdied++;
+			Your("old symbiote was erased!");
+		}
+		getrandomsymbiote(FALSE);
+		useup(obj);
+		return 1;
+	}
+
 	if (!getdir((char *)0)) return 0;
 
 	if (u.uswallow) {
@@ -391,7 +410,7 @@ use_symbiote(obj)
 				use_skill(P_PETKEEPING,1);
 			}
 
-			turnmonintosymbiote(mtmp);
+			turnmonintosymbiote(mtmp, (obj->oartifact == ART_HOLDEN_MIDDLE_POST));
 
 			if (uinsymbiosis) {
 				if (obj->cursed) u.usymbiote.cursed = TRUE;
@@ -406,8 +425,16 @@ use_symbiote(obj)
 					u.usymbiote.mhpmax /= 2;
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
 				}
+				if (obj->oartifact == ART_HEALTHY_PARASITE) {
+					u.usymbiote.mhpmax *= 3;
+					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
+				}
 			}
-			useup(obj);
+			if (obj->oartifact == ART_SCIENTIFIC_SYMBIONT_KIT && rn2(5)) {
+				pline("You use some material from the kit.");
+			} else {
+				useup(obj);
+			}
 			return 1;
 		}
 

@@ -1690,13 +1690,13 @@ E void golemeffects(struct monst *,int,int);
 E boolean angry_guards(BOOLEAN_P);
 E void pacify_guards(void);
 E boolean damage_mon(struct monst*,int,int); /* sporkhack */
-E void turnmonintosymbiote(struct monst *);
+E void turnmonintosymbiote(struct monst *, BOOLEAN_P);
 E void killsymbiote(void);
 E void uncursesymbiote(BOOLEAN_P);
 E void cursesymbiote(void);
 E boolean symbiotemelee(void);
 E boolean symbiotepassive(void);
-E void getrandomsymbiote(void);
+E void getrandomsymbiote(BOOLEAN_P);
 
 /* ### mondata.c ### */
 

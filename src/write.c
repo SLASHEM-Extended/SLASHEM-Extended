@@ -124,6 +124,7 @@ register struct obj *otmp;
 	case SCR_EXTRA_HEALING:
 	case SCR_MOUNTAINS:
 	case SCR_HIGHWAY:
+	case SCR_SYMBIOSIS:
 		return(24);
 	case SCR_RESISTANCE:
 	case SCR_GENOCIDE:

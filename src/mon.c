@@ -7985,8 +7985,9 @@ short otyp;
 
 /* symbiosis skill by Amy */
 void
-turnmonintosymbiote(mtmp)
+turnmonintosymbiote(mtmp, holdeneffect)
 struct monst *mtmp;
+boolean holdeneffect;
 {
 	/* reset any existing symbiote structure first */
 
@@ -8030,11 +8031,12 @@ struct monst *mtmp;
 	if (flags.showsymbiotehp) flags.botl = TRUE;
 	use_skill(P_SYMBIOSIS, 1);
 
-	mongone(mtmp);
+	if (!holdeneffect) mongone(mtmp);
 }
 
 void
-getrandomsymbiote()
+getrandomsymbiote(extrahealth)
+boolean extrahealth;
 {
 	struct permonst *pm = 0;
 	int attempts = 0;
@@ -8075,6 +8077,10 @@ getrandomsymbiote()
 	u.usymbiote.mnum = monsndx(pm); /* permonst to number conversion */
 	u.usymbiote.mhpmax = (pm->mlevel * 8);
 	if (u.usymbiote.mhpmax < 4) u.usymbiote.mhpmax = 4;
+	if (extrahealth) {
+		u.usymbiote.mhpmax *= 3;
+		u.usymbiote.mhpmax /= 2;
+	}
 	if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
 
 	/* symbiote HP start out at half of the maximum if you get a random one */
