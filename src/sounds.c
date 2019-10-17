@@ -3574,6 +3574,63 @@ dochat()
 	return (0);
     }
 
+    if (mtmp->mtame && (stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) && !mtmp->mfrenzied && !(cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data))) ) {
+	
+	pline("You can attempt to turn this pet into a symbiote. Warning: if it's an intelligent monster, it may fail and result in a frenzied monster instead!");
+	getlin("Attempt to turn the pet into a symbiote? [yes/no]", buf);
+	(void) lcase (buf);
+	if (!(strcmp (buf, "yes")) ) {
+
+		int resistrounds = 0;
+		if (!mindless(mtmp->data)) resistrounds++;
+		if (humanoid(mtmp->data)) resistrounds++;
+		if (resistrounds >= 1 && resist(mtmp, TOOL_CLASS, 0, 0)) {
+			mtmp->mtame = FALSE;
+			mtmp->mpeaceful = FALSE;
+			mtmp->mfrenzied = TRUE;
+			pline("Oh no! %s is frenzied!", Monnam(mtmp));
+			return 1;
+		}
+		if (resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0)) {
+			mtmp->mtame = FALSE;
+			mtmp->mpeaceful = FALSE;
+			mtmp->mfrenzied = TRUE;
+			pline("Oh no! %s is frenzied!", Monnam(mtmp));
+			return 1;
+		}
+
+		if (uinsymbiosis && u.usymbiote.cursed) {
+			pline(FunnyHallu ? "Apparently Morgoth himself decided to curse you with some ancient hex." : "Since your current symbiote is cursed, you cannot get a new one.");
+			return 1;
+		}
+
+		/* it worked! */
+
+		if (touch_petrifies(mtmp->data) && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) ) {
+			if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+				display_nhwindow(WIN_MESSAGE, FALSE);
+			else {
+				char kbuf[BUFSZ];
+				pline("Incorporating a petrifying creature is a fatal mistake.");
+				sprintf(kbuf, "picking the wrong symbiote");
+				instapetrify(kbuf);
+			}
+		}
+		if (slime_on_touch(mtmp->data) && !Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data)) {
+			You("don't feel very well.");
+			Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+			flags.botl = 1;
+			killer_format = KILLED_BY_AN;
+			delayed_killer = "slimed by picking the wrong symbiote";
+		}
+
+		turnmonintosymbiote(mtmp); /* WARNING: mtmp is removed at this point */
+
+		return 1;
+	}
+
+    }
+
     if (Role_if(PM_CONVICT) && is_rat(mtmp->data) && !mtmp->mpeaceful &&
      !mtmp->mtame) {
         You("attempt to soothe the %s with chittering sounds.",
@@ -3584,12 +3641,12 @@ dochat()
             if (rnl(10) > 8) {
                 pline("%s unfortunately ignores your overtures.",
                  Monnam(mtmp));
-                return 0;
+                return 1;
             }
             if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
             set_malign(mtmp);
         }
-        return 0;
+        return 1;
     }
 
     if (u.ugold >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && mtmp->data->msound == MS_STENCH) {

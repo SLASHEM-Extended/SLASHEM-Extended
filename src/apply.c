@@ -329,11 +329,6 @@ use_symbiote(obj)
 			return 1;
 
 		}
-		if (mtmp->mtame) {
-			pline(FunnyHallu ? "The monster keeps resisting for some reason!" : "Pets won't turn into symbiotes!");
-			return 1;
-
-		}
 		if (mtmp->mfrenzied) {
 			pline(FunnyHallu ? "Suddenly the monster rakes its claws over your skin and reveals that you're indeed noble because you're bleeding blue blood." : "Frenzied monsters will never turn into symbiotes.");
 			return 1;
@@ -361,10 +356,11 @@ use_symbiote(obj)
 			if (!mindless(mtmp->data)) resistrounds++;
 			if (humanoid(mtmp->data)) resistrounds++;
 
-			if (resist(mtmp, TOOL_CLASS, 0, 0)) continue;
-			if (resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
-			if (resistrounds >= 3 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
-			if (mtmp->m_lev > u.ulevel && (rn2(100) < (mtmp->m_lev - u.ulevel) ) ) continue;
+			/* Amy note: for tame monsters it simply works, every time, and also gives a special boost */
+			if (!mtmp->mtame && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+			if (!mtmp->mtame && resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+			if (!mtmp->mtame && resistrounds >= 3 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+			if (!mtmp->mtame && mtmp->m_lev > u.ulevel && (rn2(100) < (mtmp->m_lev - u.ulevel) ) ) continue;
 
 			/* we caught it! */
 			symchecks = 0;
@@ -388,6 +384,11 @@ use_symbiote(obj)
 				killer_format = KILLED_BY_AN;
 				delayed_killer = "slimed by picking the wrong symbiote";
 
+			}
+
+			if (mtmp->mtame) {
+				use_skill(P_SQUEAKING,1);
+				use_skill(P_PETKEEPING,1);
 			}
 
 			turnmonintosymbiote(mtmp);
@@ -424,6 +425,7 @@ use_symbiote(obj)
 			}
 		}
 		if (!rn2(frenzychance)) {
+			mtmp->mtame = FALSE;
 			mtmp->mpeaceful = FALSE;
 			mtmp->mfrenzied = TRUE;
 		}
