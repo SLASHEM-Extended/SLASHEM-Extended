@@ -811,6 +811,7 @@ doread()
 	"My car has 400 HP and a filter gear shift!",
 	"I want to be hurt by the estellen zippers!",
 	"I am Connor MacLeod of the Clan MacLeod. I was born in 1518 in the village of Glenfinnan on the shores of Loch Shiel. And I am immortal.",
+	"hewy, you wanna come over to my place? we can netflix and smite",
 
 	    };
 	    char buf[BUFSZ];

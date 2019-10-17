@@ -3150,13 +3150,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ MYSTERY_PICK, "tayna vybora" },
 	{ MYSTERY_LIGHTSABER, "taynyy svetovoy mech" },
 	{ SLING_AMMO, "strop boyepripasy" },
+	{ CANCEL_DRAGON_SCALES, "otmenit' vesy drakona" },
+	{ CANCEL_DRAGON_SCALE_MAIL, "otmenit' pochtu masshtaba drakona" },
+	{ CANCEL_DRAGON_SCALE_SHIELD, "otmenit' shchit iz cheshui drakona" },
+	{ SYMBIOTE, "simbiont" },
 
 	/* todo area */
-
-	{ CANCEL_DRAGON_SCALES, "todo" },
-	{ CANCEL_DRAGON_SCALE_MAIL, "todo" },
-	{ CANCEL_DRAGON_SCALE_SHIELD, "todo" },
-	{ SYMBIOTE, "todo" },
 
 	{0, "" }
 };
@@ -5755,13 +5754,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ MYSTERY_PICK, "sir tanlovi" },
 	{ MYSTERY_LIGHTSABER, "sir chiroqlar" },
 	{ SLING_AMMO, "tasma g'ov o'qi" },
+	{ CANCEL_DRAGON_SCALES, "ajdaho shkalasini bekor qiling" },
+	{ CANCEL_DRAGON_SCALE_MAIL, "ajdaho miqyosidagi pochtani bekor qilish" },
+	{ CANCEL_DRAGON_SCALE_SHIELD, "ajdaho shkalasini qalqonni bekor qiling" },
+	{ SYMBIOTE, "simbiot" },
 
 	/* todo area */
-
-	{ CANCEL_DRAGON_SCALES, "todo" },
-	{ CANCEL_DRAGON_SCALE_MAIL, "todo" },
-	{ CANCEL_DRAGON_SCALE_SHIELD, "todo" },
-	{ SYMBIOTE, "todo" },
 
 	{0, "" }
 };

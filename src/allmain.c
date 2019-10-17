@@ -11560,10 +11560,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "3D-printed sandals")) OBJ_DESCR(objects[i]) = "trekhmernyye pechatnyye sandalii";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "3D-printed wedges")) OBJ_DESCR(objects[i]) = "trekhmernyye pechatnyye klin'ya";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "standing footwear")) OBJ_DESCR(objects[i]) = "stoyachaya obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "otmenit' shchit iz drakon'yey shkury";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -12626,10 +12625,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "3D-printed sandals")) OBJ_DESCR(objects[i]) = "uch o'lchamli bosma sandal";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "3D-printed wedges")) OBJ_DESCR(objects[i]) = "uch o'lchamli bosilgan takozlar";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "standing footwear")) OBJ_DESCR(objects[i]) = "tik turgan poyafzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "ajdarhid qalqonini bekor qiling";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

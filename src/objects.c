@@ -6260,6 +6260,9 @@ SCROLL((char *)0,               "NO ONE RUNS THRESH SOCKET BECAUSE HES TOO HARD 
 SCROLL((char *)0,               "SURPRISE INSIDE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "ICHE NIXE SPRECHE SPRACHE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "WE WANT TO SWOON OVER THE GIRL TURN SHOES",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "DAS EIS TUT SCHMILZEN",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "MY WOMAN IS NAMED BORYLL",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "BEGGAR IS AN EUPHEMISM FOR THIEF",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 
 
 #ifdef MAIL

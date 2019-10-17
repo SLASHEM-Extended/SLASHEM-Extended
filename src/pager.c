@@ -24324,6 +24324,20 @@ static NEARDATA const char * const fake_plines[] = {
 	"Ack! You feel like you quaffed aqua pura by mistake, and feel like something inside you has been flushed away!",
 	"Your symbiote sacrifices itself to absorb the deadly hit, and saves your life!",
 	"Your symbiote sacrifices itself to absorb the deadly hit, and saves your life! Now you no longer have a symbiote, even though you'd much rather have used up one of your copious amount of life saving amulets instead.",
+	"Pestilence is like the safari zone warden. 'Ding dong! Time's up!'",
+	"The altar cracks in two and is destroyed!",
+	"The altar cracks in two and is destroyed! (This should be the message when you drop too many stuff for BUC-testing.)",
+	"As you think about Maud, your mind releases itself from unneeded programming burdens.",
+	"you read a scroll of amnesia. You suddenly forget the German language!",
+	"You forget you have a need for oxygen. You suffocate. Would you like your possessions identified?",
+	"*zaps a wand of polymorph at LarienTelrunya's shoes *NCommander creates a shoe golem",
+	"You equip the platform shoes. You feel 10 feet (3m) tall.",
+	"YOu try to lie in fooburcus's hands but are dropped to the ground.", /* sic */
+	"Cthluhu ascends from a hole in the ground!",
+	"You see here, an evil idea (being considered)",
+	"You see here a todo.",
+	"You see here a todo. Which is not a japanese translation of an item, but rather an item that doesn't have a translation yet - it's on the to-do list!",
+
 
 };
 
