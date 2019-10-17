@@ -1212,7 +1212,7 @@ boolean	at_stairs;
 
 			pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
-			pushplayer();
+			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
 
 		}
@@ -1236,7 +1236,7 @@ boolean	at_stairs;
 			if (!rn2(256)) makerandomtrap();
 
 		}
-		if (!rn2(10)) pushplayer();
+		if (!rn2(10)) pushplayer(TRUE);
 
 	} else {
 		/* Going down a stairs or jump in a trap door. */
@@ -1252,7 +1252,7 @@ boolean	at_stairs;
 
 			pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
-			pushplayer();
+			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
 
 		}
@@ -1276,7 +1276,7 @@ boolean	at_stairs;
 			if (!rn2(256)) makerandomtrap();
 
 		}
-		if (!rn2(10)) pushplayer();
+		if (!rn2(10)) pushplayer(TRUE);
 	}
 }
 
@@ -1300,7 +1300,7 @@ boolean	at_stairs;
 
 				pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
 				NoStaircase = 10 + rnz(monster_difficulty() + 1);
-				pushplayer();
+				pushplayer(TRUE);
 				(void)nasty((struct monst *)0);
 
 			}
@@ -1326,7 +1326,7 @@ boolean	at_stairs;
 			}
 
 		}
-		if (!rn2(10)) pushplayer();
+		if (!rn2(10)) pushplayer(TRUE);
 	} else {
 		/* Going up a stairs or rising through the ceiling. */
 		d_level	newlevel;
@@ -1340,7 +1340,7 @@ boolean	at_stairs;
 
 			pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
-			pushplayer();
+			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
 		}
 
@@ -1363,7 +1363,7 @@ boolean	at_stairs;
 				if (!rn2(256)) makerandomtrap();
 	
 			}
-		if (!rn2(10)) pushplayer();
+		if (!rn2(10)) pushplayer(TRUE);
 	}
 }
 

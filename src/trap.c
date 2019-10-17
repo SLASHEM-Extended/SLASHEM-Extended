@@ -8519,7 +8519,7 @@ madnesseffect:
 
 		if (!rn2(10) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it malfunctions!");
-			pushplayer();
+			pushplayer(TRUE);
 		} else if (rn2(3) && !issoviet && (Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it doesn't seem to work!");
 		} else
@@ -8574,7 +8574,7 @@ madnesseffect:
 		} else {
 			pline("You are hit by a pendulum!");
 			losehp(rnd(6)+ rnd( (monster_difficulty() / 2) + 1),"pendulum",KILLED_BY_AN);
-			pushplayer();
+			pushplayer(TRUE);
 		}
 		break;
 
@@ -8621,7 +8621,7 @@ madnesseffect:
 			}
 			You("%s", message);
 			pline("%s", message2);
-			if (i < 6) pushplayer();
+			if (i < 6) pushplayer(TRUE);
 		    make_stunned(HStun + rn1(12, 5), FALSE);
 		}
 
@@ -12629,7 +12629,7 @@ madnesseffect:
 				pline("A stiletto boot suddenly kicks one of your sensitive body parts!" );
 
 				losehp(rnd(10)+ rnd( (monster_difficulty() * 4) + 1),"stiletto boot",KILLED_BY_AN);
-				if (!rn2(250)) pushplayer();
+				if (!rn2(250)) pushplayer(TRUE);
 
 				break;
 

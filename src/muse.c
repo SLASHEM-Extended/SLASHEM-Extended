@@ -5479,7 +5479,7 @@ register struct obj *otmp;
 			stop_occupation();
 			nomul(0, 0, FALSE);
 			phase_door(0);
-			pushplayer();
+			pushplayer(FALSE);
 		} else {
 			tmp = d(6,12);
 			hit("wand", mtmp, exclam(tmp));

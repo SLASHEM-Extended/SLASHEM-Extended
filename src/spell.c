@@ -3498,7 +3498,7 @@ castanyway:
 		u.cnd_plineamount++;
 	}
 
-	if (SpellColorViolet) pushplayer();
+	if (SpellColorViolet) pushplayer(TRUE);
 
 	if (SpellColorGreen) {
 		register int zx, zy;
@@ -3851,7 +3851,7 @@ magicalenergychoice:
 			if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void) doredraw();
 		}
 		if (pseudo->otyp == SPE_WIND) {
-			pushplayer();
+			pushplayer(TRUE);
 			pline("The winds hurt you!");
 			losehp(rnd(10), "winds", KILLED_BY);
 			if (In_sokoban(&u.uz)) {
@@ -7772,7 +7772,7 @@ secureidchoice:
 		else
 			You_hear("air current noises.");
 
-		pushplayer();
+		pushplayer(TRUE);
 		if (In_sokoban(&u.uz)) {
 			change_luck(-1);
 			pline("You cheater!");

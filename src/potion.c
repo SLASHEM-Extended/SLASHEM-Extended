@@ -2603,7 +2603,7 @@ badeffect()
 		case 371:
 		case 372:
 
-			pushplayer();
+			pushplayer(FALSE); /* since it could be part of a monster attack routine --Amy */
 
 		break;
 
@@ -3578,7 +3578,7 @@ reallybadeffect()
 
 		case 72:
 
-			pushplayer();
+			pushplayer(FALSE); /* since it could be part of a monster attack routine --Amy */
 
 		break;
 

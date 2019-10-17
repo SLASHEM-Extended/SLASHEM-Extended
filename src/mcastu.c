@@ -1659,7 +1659,7 @@ int spellnum;
 		break;
 	case 39:
 	case 40:
-		pushplayer(); /* use the force */
+		pushplayer(FALSE); /* use the force */
 		break;
 	default: /*failsafe*/
 		You_feel("that monsters are aware of your presence."); /* aggravate monster */

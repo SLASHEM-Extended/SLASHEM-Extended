@@ -1893,7 +1893,7 @@ register int pm;
 
 	    case PM_PORTBEAMTRICE:
 
-		pushplayer();
+		pushplayer(TRUE);
 		break;
 
 	    case PM_EVILISK:
@@ -3555,7 +3555,7 @@ register int pm;
 				make_hallucinated(HHallucination + rnz(200),FALSE,0L);
 			break;
 			case 19:
-				pushplayer();
+				pushplayer(TRUE);
 			break;
 			case 20:
 				You_feel("that was a bad idea.");

@@ -2284,7 +2284,7 @@ newbossS:
 
 			if (ttmp && ttmp->ttyp == VENTILATOR && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
 				if (!rn2(3)) pline("Air currents blow in your %s!", body_part(FACE));
-				pushplayer();
+				pushplayer(TRUE);
 			}
 
 			if (ttmp && ttmp->ttyp == MONSTER_CUBE && !rn2(500)) {
@@ -4356,8 +4356,8 @@ fukrosionchoice:
 
 		}
 
-		if (uwep && uwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING) pushplayersilently();
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING) pushplayersilently();
+		if (uwep && uwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING) pushplayersilently(TRUE);
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING) pushplayersilently(TRUE);
 
 		if (uarmh && uarmh->oartifact == ART_ALLURATION && !rn2(1000) ) {
 			curse(uarmh);
@@ -8215,7 +8215,7 @@ newboss:
 		if (!rn2(2000) && uarmc && itemhasappearance(uarmc, APP_GRAVITY_CLOAK) ) {
 			pline("Gravity warps around you...");
 			phase_door(0);
-			pushplayer();
+			pushplayer(TRUE);
 			u.uprops[DEAC_FAST].intrinsic += rnd(10);
 			make_stunned(HStun + rnd(10), TRUE);
 		}
@@ -8223,7 +8223,7 @@ newboss:
 		if (!rn2(1000) && RngeGravity) {
 			pline("Gravity warps around you...");
 			phase_door(0);
-			pushplayer();
+			pushplayer(TRUE);
 			u.uprops[DEAC_FAST].intrinsic += rnd(10);
 			make_stunned(HStun + rnd(10), TRUE);
 		}

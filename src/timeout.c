@@ -1120,7 +1120,7 @@ nh_timeout()
 				pline("Your stiletto heel suddenly kicks one of your sensitive body parts!" );
 
 				losehp(rnd(10)+ rnd( (monster_difficulty() * 4) + 1),"sentient stiletto footwear",KILLED_BY_AN);
-				if (!rn2(250)) pushplayer();
+				if (!rn2(250)) pushplayer(TRUE);
 
 				break;
 

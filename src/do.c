@@ -4575,7 +4575,7 @@ deferred_goto()
 	if (portaldeferring == TRUE && !program_state.gameover) {
 
 		pline(FunnyHallu ? "Things open up on the flipside!" : "The portal radiates strange energy, and monsters appear from nowhere!");
-		pushplayer();
+		pushplayer(TRUE);
 		(void)nasty((struct monst *)0);
 		u.stairscumslowing += rn1(5,5);
 		portaldeferring = FALSE;

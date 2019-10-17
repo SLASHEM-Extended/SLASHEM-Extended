@@ -1951,9 +1951,12 @@ boolean give_feedback;
 	return TRUE;
 }
 
-/* A function that pushes the player around, mainly to be used by ranged attackers so they can get a shot. --Amy */
+/* A function that pushes the player around, mainly to be used by ranged attackers so they can get a shot. --Amy
+ * "allowtrap" should be FALSE if it's the result of a monster attack, because otherwise we could get segfaults
+ * and bus errors when the trap moves you off the level before the monster's attack routine is finished! */
 void
-pushplayer()
+pushplayer(allowtrap)
+boolean allowtrap;
 {
 		coord ccc;
 		int direction, pushwidth, trycnt;
@@ -1985,7 +1988,7 @@ newtry:
 		}
 
 		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
-			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || t_at(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (t_at(ccc.x, ccc.y) && !allowtrap) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */
 		}
@@ -1994,14 +1997,15 @@ newtry:
 
 		pline("You're pushed back!");
 
-		teleds(ccc.x, ccc.y, FALSE);
+		teleds(ccc.x, ccc.y, allowtrap);
 
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 		return;
 }
 
 void
-pushplayersilently()
+pushplayersilently(allowtrap)
+boolean allowtrap;
 {
 		coord ccc;
 		int direction, pushwidth, trycnt;
@@ -2033,14 +2037,14 @@ newtry:
 		}
 
 		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
-			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || t_at(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (t_at(ccc.x, ccc.y) && !allowtrap) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */
 		}
 
 		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
 
-		teleds(ccc.x, ccc.y, FALSE);
+		teleds(ccc.x, ccc.y, allowtrap);
 
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 		return;

@@ -2831,8 +2831,8 @@ E int random_banish_level(void);
 E void teleX(void);
 E boolean u_teleport_mon(struct monst *,BOOLEAN_P);
 E boolean u_teleport_monB(struct monst *,BOOLEAN_P);
-E void pushplayer(void);
-E void pushplayersilently(void);
+E void pushplayer(BOOLEAN_P);
+E void pushplayersilently(BOOLEAN_P);
 E boolean pushmonster(struct monst *);
 E boolean teleok(int,int,BOOLEAN_P);
 

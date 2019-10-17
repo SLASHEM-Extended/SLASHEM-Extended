@@ -330,7 +330,7 @@ elena4:
 					if (!Blind) Your("%s", vision_clears);
 				}
 				if (!rn2(3) && !(Role_if(PM_COURIER)) ) make_stunned(HStun + monsterlev, TRUE);
-				if (!rn2(3) && !(Role_if(PM_COURIER)) ) pushplayer();
+				if (!rn2(3) && !(Role_if(PM_COURIER)) ) pushplayer(FALSE);
 				if (Role_if(PM_COURIER)) pline("But since you don't actually have a head, you're unharmed.");
 				else losehp(monsterlev, "sky-high heel", KILLED_BY_AN);
 				if (FemaleTrapElena && !rn2(3)) {
@@ -1144,7 +1144,7 @@ elena23:
 
 			}
 
-			if (!rn2(250)) pushplayer();
+			if (!rn2(250)) pushplayer(FALSE);
 
 			break;
 		case AT_STNG:
@@ -1202,7 +1202,7 @@ elena23:
 			    }
 			}
 
-			if (!rn2(50)) pushplayer();
+			if (!rn2(50)) pushplayer(FALSE);
 
 			break;
 		case AT_SCRA:
@@ -1280,7 +1280,7 @@ elena23:
 
 			}
 
-			if (!rn2(200)) pushplayer();
+			if (!rn2(200)) pushplayer(FALSE);
 			break;
 		case AT_TRAM:
 			pline("%s tramples over you!", Monnam(mtmp));
@@ -1291,7 +1291,7 @@ elena23:
 				pline("You can't think straight as your every muscle is aching!");
 			make_stunned(HStun + monsterlev, FALSE);
 			}
-			if (!rn2(25)) pushplayer();
+			if (!rn2(25)) pushplayer(FALSE);
 			break;
 		case AT_TUCH:
 			pline("%s touches you!", Monnam(mtmp));
@@ -2594,7 +2594,7 @@ elena37:
 				}
 				if((tmp > (j = dieroll = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    sum[i] = hitmu(mtmp, mattk);
-					if (!rn2(75)) pushplayer();
+					if (!rn2(75)) pushplayer(FALSE);
 				}
 				else
 				    missmu(mtmp, tmp , j, mattk);
@@ -7576,7 +7576,7 @@ dopois:
 	    case AD_DISP:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		pushplayer();
+		pushplayer(FALSE);
 		break;
 
 	    case AD_RUST:
@@ -8558,7 +8558,7 @@ dopois:
 		if (mtmp->mcan) break;
 		pline("Gravity warps around you...");
 		phase_door(0);
-		pushplayer();
+		pushplayer(FALSE);
 		u.uprops[DEAC_FAST].intrinsic += (dmg + 2);
 		make_stunned(HStun + dmg, TRUE);
 		break;
@@ -11459,7 +11459,7 @@ do_stone2:
 		break;
 	    case AD_DISP:
 		pline("You're shaken around!");
-		pushplayer();
+		pushplayer(FALSE);
 		break;
 
 	    case AD_SAMU:
@@ -11631,7 +11631,7 @@ do_stone2:
 
 		pline("You're turned upside down...");
 		phase_door(0);
-		pushplayer();
+		pushplayer(FALSE);
 		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
 		make_stunned(HStun + tmp, TRUE);
 		break;
@@ -13606,7 +13606,7 @@ common:
 
 	    case AD_DISP:
 		mdamageu(mtmp, tmp);
-		pushplayer();
+		pushplayer(FALSE);
 		break;
 
 	    case AD_MANA:
@@ -14519,7 +14519,7 @@ common:
 
 		pline("Gravity warps around you...");
 		phase_door(0);
-		pushplayer();
+		pushplayer(FALSE);
 		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
 		make_stunned(HStun + tmp, TRUE);
 	      mdamageu(mtmp, tmp);
@@ -17075,7 +17075,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmgplus *= 2;
 
 		phase_door(0);
-		pushplayer();
+		pushplayer(FALSE);
 		u.uprops[DEAC_FAST].intrinsic += (dmgplus + 2);
 		make_stunned(HStun + dmgplus, TRUE);
 	      if (dmgplus) mdamageu(mtmp, dmgplus);
@@ -18812,7 +18812,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s telepathically tries to move you around!", Monnam(mtmp));
 		    stop_occupation();
-		pushplayer();
+		pushplayer(FALSE);
             if (!rn2(5)) mdamageu(mtmp, (1 + dmgplus));
 		}
 		break;

@@ -8864,7 +8864,7 @@ boolean ranged;
 		pline("As you try to hit %s, you're hurled through the air and slam onto the floor with a crash.", mon_nam(mon) );
 		if (level.flags.noteleport || u.antitelespelltimeout || (u.uhave.amulet && !u.freeplaymode) || CannotTeleport || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= 2;
 		phase_door(0);
-		pushplayer();
+		pushplayer(FALSE);
 		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
 		make_stunned(HStun + tmp, TRUE);
 		mdamageu(mon, tmp);
@@ -9160,7 +9160,7 @@ boolean ranged;
 	  case AD_DISP:
 		You_feel("a strong force!");
 			mdamageu(mon, tmp);
-		pushplayer();
+		pushplayer(FALSE);
 		break;
 	  case AD_DRIN:
 	    if(!rn2(3)) {

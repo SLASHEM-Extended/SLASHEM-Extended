@@ -5481,7 +5481,7 @@ boolean ordinary;
 		      damage = d(6, 12);
 			exercise(A_STR, FALSE);
 			phase_door(0);
-			pushplayer();
+			pushplayer(TRUE);
 		    break;
 
 		/*WAC Add Spell Acid, Poison*/
