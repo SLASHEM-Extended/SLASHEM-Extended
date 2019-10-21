@@ -5909,6 +5909,7 @@ dodrink()
 		if (RngeLiquidDiet) {
 			morehungry(-10);
 		}
+		reducesanity(10);
 		healup(d(2,6) + rnz(u.ulevel), 0, FALSE, FALSE);
 		if (!rn2(isfriday ? 5 : 10)) {
 			levl[u.ux][u.uy].typ = POISONEDWELL;
