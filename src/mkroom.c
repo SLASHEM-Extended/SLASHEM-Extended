@@ -28,7 +28,6 @@ STATIC_DCL struct permonst * tenshallmon(void);
 STATIC_DCL struct permonst * tenshallmonB(void);
 STATIC_DCL struct permonst * squadmon(void);
 STATIC_DCL struct permonst * doomsquadmon(void);
-STATIC_DCL struct permonst * illusionmon(void);
 STATIC_DCL struct permonst * evilroommon(void);
 STATIC_DCL struct permonst * machineroommon(void);
 STATIC_DCL struct permonst * fungus(void);
@@ -2462,7 +2461,7 @@ doomsquadmon()
 	else return(&mons[PM_ZOMBIEMAN]);
 }
 
-STATIC_OVL struct permonst *
+struct permonst *
 illusionmon()
 {
 

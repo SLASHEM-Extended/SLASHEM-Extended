@@ -856,7 +856,7 @@ int
 nastymusableitem() /* select the ID number of an item that the monsters may use against you --Amy */
 {
 
-	switch (rnd(206)) {
+	switch (rnd(207)) {
 
 		case 1:
 		case 2:
@@ -1180,6 +1180,8 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 			return SCR_RAIN;
 		case 206:
 			return WAN_CHAOS_TERRAIN;
+		case 207:
+			return SCR_EVIL_VARIANT;
 		default: /* fail safe */
 			return WAN_CREATE_HORDE;
 	}
@@ -1190,7 +1192,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(170)) {
+	switch (rnd(171)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -1531,6 +1533,8 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return INTELLIGENCE_PACK;
 		case 170:
 			return SYMBIOTE;
+		case 171:
+			return SCR_SUPERIOR_MATERIAL;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 

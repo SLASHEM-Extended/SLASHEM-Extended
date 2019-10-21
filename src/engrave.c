@@ -1698,6 +1698,8 @@ doengrave()
 		    case WAN_CHARGING:
 		    case WAN_CURSE_ITEMS:
 		    case WAN_AMNESIA:
+		    case WAN_BLEEDING:
+		    case WAN_UNDRESSING:
 		    case WAN_DISENCHANTMENT:
 		    case WAN_CONTAMINATION:
 		    case WAN_TREMBLING:
@@ -5175,6 +5177,7 @@ static const char *epitaphs[] = {
 	"It's absolutely hell on wheels, and I feel there needs to be a sign up around Orcus that says HE LOOKS EASY BUT HE CAN SUMMON FRIENDS THAT WILL MAKE YOU WISH YOU WERE NEVER BORN!", /* dude just git gud at the game bro */
 	"well, who knows how moves the variants nowadays is, they are capable of making it so that zapping the bag with cancel will also blow it up",
 	"slex is the variant where you ask amy how to cure stuff and what to wish for and wtf just killed you?",
+	"argh far myaratmo snarg! Warrh! P = NP!",
 
 };
 

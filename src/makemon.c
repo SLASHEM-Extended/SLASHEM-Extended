@@ -6825,6 +6825,12 @@ register struct	monst	*mtmp;
 		else if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (ptr == &mons[PM_FEMALE_FEMMY]) {
+			(void) mongets(mtmp, SCR_FEMINISM);
+		}
+		if (ptr == &mons[PM_AMBIGUOUS_GIRL]) {
+			(void) mongets(mtmp, SCR_FEMINISM);
+		}
 		if (ptr == &mons[PM_BLADE_ELF]) {
 			(void) mongets(mtmp, SHORT_BLADE);
 		}
@@ -9509,6 +9515,9 @@ register struct	monst	*mtmp;
 		}
 		if (mtmp->data == &mons[PM_LANCEGOAT]) (void) mongets(mtmp, LANCE);
 
+		if (ptr == &mons[PM_EVIL_MAMMOTH]) {
+			(void) mongets(mtmp, SCR_EVIL_VARIANT);
+		}
 		if (ptr == &mons[PM_ESCAPEGOAT]) {
 			(void) mongets(mtmp, SNIPER_RIFLE);
 	  		m_initthrow(mtmp, BULLET, 50);
@@ -9915,6 +9924,9 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, SHARP_AXE);
 			(void) mongets(mtmp, HELMET);
 		}
+		if (ptr == &mons[PM_ACTUAL_EVIL_PATCH]) {
+			(void) mongets(mtmp, SCR_EVIL_VARIANT);
+		}
 
 		if (ptr == &mons[PM_BRAVITY_MODDED_PERSON]) {
 			(void) mongets(mtmp, SLING);
@@ -10212,6 +10224,9 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_TAWNY]) {
 			(void) mongets(mtmp, LADY_BOOTS);
+		}
+		if (ptr == &mons[PM_RAINBOW_DRESSER]) {
+			(void) mongets(mtmp, WAN_UNDRESSING);
 		}
 
 		if (mtmp->data == &mons[PM_FIRE_METROID]) (void) mongets(mtmp, SCR_FLOODING);
@@ -12143,6 +12158,13 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_GREEN_FEMMY) {
 			(void) mongets(mtmp, SOFT_SNEAKERS);
 		}
+		if (monsndx(ptr) == PM_VERY_ILLUSORY_MUMMY) {
+			(void) mongets(mtmp, SCR_ILLUSION);
+		}
+		if (monsndx(ptr) == PM_XTRALUSION_MUMMY) {
+			(void) mongets(mtmp, SCR_ILLUSION);
+			(void) mongets(mtmp, SCR_ILLUSION);
+		}
 
 		if (monsndx(ptr) == PM_EMMA_S_SEXY_WEDGE_SANDAL) {
 			(void) mongets(mtmp, WEDGE_SANDALS);
@@ -12424,6 +12446,9 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, CRYSTAL_PLATE_MAIL);
 			 m_initthrow(mtmp, VOLCANIC_GLASS_FRAGMENT, 50);
 		}
+		if (ptr == &mons[PM_SUCKBLOOD_VORTEX]) {
+			(void) mongets(mtmp, WAN_BLEEDING);
+		}
 
 		if (ptr == &mons[PM_BONE_VORTEX]) {
 			(void) mongets(mtmp, SLING);
@@ -12468,6 +12493,9 @@ register struct	monst	*mtmp;
 	      if (ptr == &mons[PM_FIRK]) {
 			m_initthrow(mtmp, SHURIKEN, 30);
 			m_initthrow(mtmp, SHURIKEN, 30);
+		}
+		if (ptr == &mons[PM_BYE_FELICIA]) {
+			(void) mongets(mtmp, SCR_EVIL_VARIANT);
 		}
 
 		if (ptr == &mons[PM_SALT_POEMER]) {

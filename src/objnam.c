@@ -3158,6 +3158,15 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	/* todo area */
 
 	{ SCR_SYMBIOSIS, "todo" },
+	{ SCR_TERRAFORMING, "todo" },
+	{ SCR_INFERIOR_MATERIAL, "todo" },
+	{ SCR_REGULAR_MATERIAL, "todo" },
+	{ SCR_SUPERIOR_MATERIAL, "todo" },
+	{ SCR_ILLUSION, "todo" },
+	{ SCR_EVIL_VARIANT, "todo" },
+	{ SCR_FEMINISM, "todo" },
+	{ WAN_BLEEDING, "todo" },
+	{ WAN_UNDRESSING, "todo" },
 
 	{0, "" }
 };
@@ -5764,6 +5773,15 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	/* todo area */
 
 	{ SCR_SYMBIOSIS, "todo" },
+	{ SCR_TERRAFORMING, "todo" },
+	{ SCR_INFERIOR_MATERIAL, "todo" },
+	{ SCR_REGULAR_MATERIAL, "todo" },
+	{ SCR_SUPERIOR_MATERIAL, "todo" },
+	{ SCR_ILLUSION, "todo" },
+	{ SCR_EVIL_VARIANT, "todo" },
+	{ SCR_FEMINISM, "todo" },
+	{ WAN_BLEEDING, "todo" },
+	{ WAN_UNDRESSING, "todo" },
 
 	{0, "" }
 };

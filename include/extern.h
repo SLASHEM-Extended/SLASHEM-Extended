@@ -1623,6 +1623,7 @@ E struct permonst *courtmon(void);
 E struct permonst *insidemon(void);
 E struct permonst *antholemon(void);
 E struct permonst *realzoomon(void);
+E struct permonst *illusionmon(void);
 E void save_rooms(int);
 E void rest_rooms(int);
 E struct mkroom *search_special(SCHAR_P);

@@ -1923,6 +1923,33 @@ void * roomcnt;
 }
 
 STATIC_PTR void
+terraincleanupA(x, y, roomcnt)
+int x, y;
+void * roomcnt;
+{
+	if (Is_waterlevel(&u.uz)) return;
+
+	if (levl[x][y].typ < GRAVEWALL)
+		return;
+	if (levl[x][y].typ >= SDOOR && levl[x][y].typ <= SCORR)
+		return;
+	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+		return;
+	if (levl[x][y].typ == DRAWBRIDGE_UP || levl[x][y].typ == DRAWBRIDGE_DOWN)
+		return;
+	if (levl[x][y].typ >= DOOR && levl[x][y].typ <= STRAWMATTRESS)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of stone at x, y */
+	levl[x][y].typ = CORR;
+	unblock_point(x,y);
+	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+	newsym(x,y);
+}
+
+STATIC_PTR void
 do_lavaflood(x, y, poolcnt)
 int x, y;
 void * poolcnt;
@@ -5006,6 +5033,230 @@ proofarmorchoice:
 		if (!rn2(3)) {
 			pline("%s", fauxmessage());
 			u.cnd_plineamount++;
+		}
+
+		break;
+
+	case SCR_ILLUSION:
+		known = TRUE;
+
+	    {
+		coord cc;
+		int cnt = rnd(6);
+		if (confused) cnt += rno(6);
+		if (sobj->cursed) cnt += rno(3);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while(cnt--) {
+
+			makemon(illusionmon(), u.ux, u.uy, NO_MM_FLAGS);
+
+		}
+	    }
+		pline("Some monsters from the Illusory Castle are summoned!");
+
+		u.aggravation = 0;
+
+		break;
+
+	case SCR_EVIL_VARIANT:
+		known = TRUE;
+
+	    {
+		coord cc;
+		int cnt = rnd(6);
+		if (confused) cnt += rno(6);
+		if (sobj->cursed) cnt += rno(3);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while(cnt--) {
+
+			makemon(specialtensmon(341), u.ux, u.uy, NO_MM_FLAGS); /* M5_EVIL */
+
+		}
+	    }
+		pline("Some monsters from the Evil Variant are summoned!");
+
+		u.aggravation = 0;
+
+		break;
+
+	case SCR_FEMINISM:
+		known = TRUE;
+
+	    {
+		coord cc;
+		int cnt = rnd(6);
+		if (confused) cnt += rno(6);
+		if (sobj->cursed) cnt += rno(3);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while(cnt--) {
+
+			makemon(specialtensmon(!rn2(50) ? 369 : !rn2(20) ? 333 : !rn2(3) ? 38 : !rn2(2) ? 39 : 40), u.ux, u.uy, NO_MM_FLAGS); /* AD_FEMI, MS_STENCH, and the three MS_FART_foo */
+
+		}
+	    }
+		pline("Several women appear from nowhere!");
+
+		u.aggravation = 0;
+
+		break;
+
+	case SCR_TERRAFORMING:
+		known = TRUE;
+
+		{
+			int maderoomX = 0;
+
+			do_clear_areaX(u.ux, u.uy, 1, terraincleanupA, (void *)&maderoomX);
+
+			if (maderoomX) pline("Some annoying terrain was cleaned up!");
+			else pline("There was nothing to clean up...");
+
+		}
+
+		break;
+
+	case SCR_INFERIOR_MATERIAL:
+		known = TRUE;
+
+		pline("You have found a scroll of inferior material!");
+
+materialchoice1:
+		{
+			struct obj *otmpC = getobj(all_count, "change the material of");
+			if (!otmpC) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to change an item's material.");
+				else goto materialchoice1;
+				break;
+			}
+			if ((otmpC->otyp == GOLD_PIECE) || (otmpC->otyp == STRANGE_OBJECT) || (otmpC->otyp == AMULET_OF_YENDOR) || (otmpC->otyp == CANDELABRUM_OF_INVOCATION) || (otmpC->otyp == BELL_OF_OPENING) || (otmpC->otyp == SPE_BOOK_OF_THE_DEAD) || (objects[otmpC->otyp].oc_prob < 1)) {
+				pline("The material of that item cannot be changed!");
+				break;
+			} else {
+				int changematerial;
+				switch (rnd(14)) {
+					case 1: changematerial = MT_LIQUID; break;
+					case 2: changematerial = MT_WAX; break;
+					case 3: changematerial = MT_VEGGY; break;
+					case 4: changematerial = MT_FLESH; break;
+					case 5: changematerial = MT_PAPER; break;
+					case 6: changematerial = MT_CLOTH; break;
+					case 7: changematerial = MT_LEATHER; break;
+					case 8: changematerial = MT_IRON; break;
+					case 9: changematerial = MT_PLASTIC; break;
+					case 10: changematerial = MT_TAR; break;
+					case 11: changematerial = MT_SECREE; break;
+					case 12: changematerial = MT_POURPOOR; break;
+					case 13: changematerial = MT_SAND; break;
+					case 14: changematerial = MT_CERAMIC; break;
+					default: changematerial = MT_PAPER; break;
+				}
+				objects[otmpC->otyp].oc_material = changematerial;
+				pline("Success! The item's material got changed.");
+
+			}
+		}
+
+		break;
+
+	case SCR_REGULAR_MATERIAL:
+		known = TRUE;
+
+		pline("You have found a scroll of regular material!");
+
+materialchoice2:
+		{
+			struct obj *otmpC = getobj(all_count, "change the material of");
+			if (!otmpC) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to change an item's material.");
+				else goto materialchoice2;
+				break;
+			}
+			if ((otmpC->otyp == GOLD_PIECE) || (otmpC->otyp == STRANGE_OBJECT) || (otmpC->otyp == AMULET_OF_YENDOR) || (otmpC->otyp == CANDELABRUM_OF_INVOCATION) || (otmpC->otyp == BELL_OF_OPENING) || (otmpC->otyp == SPE_BOOK_OF_THE_DEAD) || (objects[otmpC->otyp].oc_prob < 1)) {
+				pline("The material of that item cannot be changed!");
+				break;
+			} else {
+				int changematerial;
+				switch (rnd(15)) {
+					case 1: changematerial = MT_MYSTERIOUS; break;
+					case 2: changematerial = MT_WOOD; break;
+					case 3: changematerial = MT_BONE; break;
+					case 4: changematerial = MT_METAL; break;
+					case 5: changematerial = MT_COPPER; break;
+					case 6: changematerial = MT_GLASS; break;
+					case 7: changematerial = MT_GEMSTONE; break;
+					case 8: changematerial = MT_MINERAL; break;
+					case 9: changematerial = MT_SILK; break;
+					case 10: changematerial = MT_COMPOST; break;
+					case 11: changematerial = MT_BRICK; break;
+					case 12: changematerial = MT_SHADOWSTUFF; break;
+					case 13: changematerial = MT_OBSIDIAN; break;
+					case 14: changematerial = MT_LEAD; break;
+					case 15: changematerial = MT_CHROME; break;
+					default: changematerial = MT_METAL; break;
+				}
+				objects[otmpC->otyp].oc_material = changematerial;
+				pline("Success! The item's material got changed.");
+
+			}
+		}
+
+		break;
+
+	case SCR_SUPERIOR_MATERIAL:
+		known = TRUE;
+
+		pline("You have found a scroll of superior material!");
+
+materialchoice3:
+		{
+			struct obj *otmpC = getobj(all_count, "change the material of");
+			if (!otmpC) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to change an item's material.");
+				else goto materialchoice3;
+				break;
+			}
+			if ((otmpC->otyp == GOLD_PIECE) || (otmpC->otyp == STRANGE_OBJECT) || (otmpC->otyp == AMULET_OF_YENDOR) || (otmpC->otyp == CANDELABRUM_OF_INVOCATION) || (otmpC->otyp == BELL_OF_OPENING) || (otmpC->otyp == SPE_BOOK_OF_THE_DEAD) || (objects[otmpC->otyp].oc_prob < 1)) {
+				pline("The material of that item cannot be changed!");
+				break;
+			} else {
+				int changematerial;
+				switch (rnd(11)) {
+					case 1: changematerial = MT_DRAGON_HIDE; break;
+					case 2: changematerial = MT_SILVER; break;
+					case 3: changematerial = MT_GOLD; break;
+					case 4: changematerial = MT_PLATINUM; break;
+					case 5: changematerial = MT_MITHRIL; break;
+					case 6: changematerial = MT_VIVA; break;
+					case 7: changematerial = MT_INKA; break;
+					case 8: changematerial = MT_ARCANIUM; break;
+					case 9: changematerial = MT_ETERNIUM; break;
+					case 10: changematerial = MT_ETHER; break;
+					case 11: changematerial = MT_NANOMACHINE; break;
+					default: changematerial = MT_MITHRIL; break;
+				}
+				objects[otmpC->otyp].oc_material = changematerial;
+				pline("Success! The item's material got changed.");
+
+			}
+
 		}
 
 		break;

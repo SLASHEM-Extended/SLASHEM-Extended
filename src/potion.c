@@ -302,6 +302,8 @@ struct obj *otmp;
 		case WAN_PARALYSIS:
 		case WAN_CURSE_ITEMS:
 		case WAN_AMNESIA:
+		case WAN_BLEEDING:
+		case WAN_UNDRESSING:
 		case WAN_LEVITATION:
 		case WAN_PSYBEAM:
 		case WAN_HYPER_BEAM:
@@ -357,6 +359,9 @@ struct obj *otmp;
 		case WAN_EGOISM:
 		case SCR_RUMOR:
 		case SCR_MESSAGE:
+		case SCR_ILLUSION:
+		case SCR_EVIL_VARIANT:
+		case SCR_FEMINISM:
 		case SCR_SIN:
 		case WAN_SIN:
 		case WAN_INERTIA:
@@ -520,6 +525,8 @@ int number;
 		case WAN_PARALYSIS:
 		case WAN_CURSE_ITEMS:
 		case WAN_AMNESIA:
+		case WAN_BLEEDING:
+		case WAN_UNDRESSING:
 		case WAN_LEVITATION:
 		case WAN_PSYBEAM:
 		case WAN_HYPER_BEAM:
@@ -575,6 +582,9 @@ int number;
 		case WAN_EGOISM:
 		case SCR_RUMOR:
 		case SCR_MESSAGE:
+		case SCR_ILLUSION:
+		case SCR_EVIL_VARIANT:
+		case SCR_FEMINISM:
 		case SCR_SIN:
 		case WAN_SIN:
 		case WAN_INERTIA:

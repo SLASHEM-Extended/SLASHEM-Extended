@@ -24385,6 +24385,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"A plastic bag lands in the water. You kill the giant eel!",
 	"You hear a mumbled verse.",
 	"Your magic cancellation was cancelled!",
+	"Some monsters from the Illusory Castle are summoned!",
+	"Some monsters from the Evil Variant are summoned!",
+	"Several women appear from nowhere!",
+	"You hear conclusive ravings.",
+	"You hear conclusive ravings. Perhaps you should fire in the hole with a conclusion grenade.",
+	"Sir, we've gathered data from over 100 raving oracles. The results are... conclusive.",
 
 };
 

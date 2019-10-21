@@ -2794,6 +2794,7 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_MATHEMATICIAN:
 	    case PM_TOLKIEN_MECHANIC:
 	    case PM_FORGER_MECHANIC:
 	    case PM_IMPORTANT_MECHANIC:
@@ -2826,6 +2827,7 @@ register int pm;
 		break;
 
 	    case PM_RACEY_CHICKEN:
+	    case PM_QUADWANGLER:
 
 		if (!Very_fast)
 			You("are suddenly moving %sfaster.", Fast ? "" : "much ");

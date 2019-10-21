@@ -4273,7 +4273,7 @@ POTION("amnesia", "sparkling",          1, 0,          160, 300, CLR_CYAN, 1, 0)
 		SCROLL_CLASS, prob, 0, 0, cost, 0, 0, 0, 0, 6, color, minlvl, 0 )
 /* Attack */
 /* create monster must be first --Amy */
-SCROLL("create monster",        "LEP GEX VEN ZEA",      P_ATTACK_SPELL, 1, 220, 300, CLR_RED, 1),
+SCROLL("create monster",        "LEP GEX VEN ZEA",      P_ATTACK_SPELL, 1, 170, 300, CLR_RED, 1),
 SCROLL("create familiar", "THERE ARE NOT ENOUGH MONSTERS IN SLASHEM EXTENDED", P_OCCULT_SPELL, 1, 10, 300, CLR_BRIGHT_CYAN, 15),
 SCROLL("summon undead",        "NO SPACE",      P_ATTACK_SPELL, 1,   50, 300, CLR_WHITE, 10),
 /* Enchantment */
@@ -4282,7 +4282,7 @@ SCROLL("taming",                "PRIRUTSENIE",          P_ENCHANTMENT_SPELL, 1, 
 SCROLL("light",                 "VERR YED HORRE",       P_DIVINATION_SPELL, 1,  150, 300, CLR_BLACK, 1),
 SCROLL("food detection",        "YUM YUM",              P_DIVINATION_SPELL, 1,  130, 300, CLR_YELLOW, 1),
 SCROLL("gold detection",        "THARR",                P_DIVINATION_SPELL, 1, 220, 300, CLR_BROWN, 1),
-SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 1517, 300, CLR_GREEN, 3),
+SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 1417, 300, CLR_GREEN, 3),
 SCROLL("secure identify",       "LARGE ALARM ALL PERSONNEL EVACUATE THE AREA IMMEDIATELY", P_DIVINATION_SPELL, 1, 50, 300, CLR_RED, 25),
 SCROLL("inventory id",              "NOW YOU SEE IT",           P_DIVINATION_SPELL, 1,  50, 300, CLR_YELLOW, 30),
 SCROLL("magic mapping",         "ELAM EBOW",            P_DIVINATION_SPELL, 1,  330, 300, CLR_CYAN, 8),
@@ -4290,15 +4290,15 @@ SCROLL("flood",                 "AQUE BRAGH",           P_DIVINATION_SPELL, 1,  
 SCROLL("gain mana",         "DAMN IT",            P_DIVINATION_SPELL, 1,  50, 300, CLR_BRIGHT_MAGENTA, 10),
 /* Enchantment */
 SCROLL("confuse monster",       "NR 9",                 P_ENCHANTMENT_SPELL,  1,  160, 300, CLR_MAGENTA, 1),
-SCROLL("scare monster",         "XIXAXA XOXAXA XUXAXA", P_ENCHANTMENT_SPELL,  1,  279, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL("scare monster",         "XIXAXA XOXAXA XUXAXA", P_ENCHANTMENT_SPELL,  1,  229, 300, CLR_BRIGHT_BLUE, 1),
 SCROLL("enchant weapon",        "DAIYEN FOOELS",        P_ENCHANTMENT_SPELL,  1,  850, 300, CLR_RED, 5),
 SCROLL("enchant armor",         "ZELGO MER",            P_ENCHANTMENT_SPELL,  1,  580, 300, CLR_GREEN, 5),
 SCROLL("armor specialization",  "YOU HAVE TO TAKE A CRAP AND THERE IS NO TOILET NEARBY", P_ENCHANTMENT_SPELL,  1,  10, 300, CLR_BROWN, 20),
 SCROLL("random enchantment",         "GODFATHER OF ALL ROGUELIKES",            P_ENCHANTMENT_SPELL,  1,  50, 300, CLR_RED, 20),
 /* Protection */
-SCROLL("remove curse",          "PRATYAVAYAH",          P_PROTECTION_SPELL, 1, 554, 300, CLR_BRIGHT_MAGENTA, 8),
+SCROLL("remove curse",          "PRATYAVAYAH",          P_PROTECTION_SPELL, 1, 504, 300, CLR_BRIGHT_MAGENTA, 8),
 /* Body */
-SCROLL("teleportation",         "VENZAR BORGAVVE",      P_BODY_SPELL, 1,  555, 300, CLR_BROWN, 4),
+SCROLL("teleportation",         "VENZAR BORGAVVE",      P_BODY_SPELL, 1,  505, 300, CLR_BROWN, 4),
 SCROLL("tele level",         "GON GET YA",      P_BODY_SPELL, 1,  50, 300, CLR_BRIGHT_CYAN, 25),
 SCROLL("warping",         "MY SPUTA WILL FLOW DOWN",      P_BODY_SPELL, 1,  50, 300, CLR_BRIGHT_CYAN, 35),
 /* Matter */
@@ -4307,6 +4307,14 @@ SCROLL("earth",                 "KIRJE",                P_MATTER_SPELL, 1,  200,
 
 SCROLL("artifact creation",        "LOOKIE WHAT I FOUND",                P_OCCULT_SPELL, 1, 1, 300, CLR_BRIGHT_BLUE, 75),
 SCROLL("missing code",         "PLZ RETURN TO DEVTEAM",      P_NONE, 1,  5, 300, CLR_BRIGHT_BLUE, 100),
+
+SCROLL("terraforming",         "MARIYA IS NOT A TERRAFORMER",      P_NONE, 1,  50, 300, CLR_BLACK, 25),
+SCROLL("illusion",         "YOUR HEAD WILL EXPLODE",      P_NONE, 1,  10, 300, CLR_CYAN, 20),
+SCROLL("evil variant",         "EVILHACK WITH EXTRA EVIL ADDED",      P_NONE, 1,  10, 300, CLR_RED, 50),
+SCROLL("feminism",         "PINK IS A MANLY COLOR",      P_NONE, 1,  10, 300, CLR_BRIGHT_MAGENTA, 10),
+SCROLL("inferior material",         "EATING RAW SHOES SPEEDS YOU UP",      P_NONE, 1,  150, 300, CLR_WHITE, 1),
+SCROLL("regular material",         "NEED TONS OF SCROLLS TO GET CRAPPY SILVER OR CHAIN",      P_NONE, 1,  100, 300, CLR_GRAY, 10),
+SCROLL("superior material",         "EVEN RUBYNUS AND ADAMANTIUM ARENT THAT GOOD",      P_NONE, 1,  50, 300, CLR_ORANGE, 25),
 
 SCROLL("destroy armor",         "JUYED AWK YACC",       P_NONE, 1,  199, 300, CLR_YELLOW, 10),
 SCROLL("offlevel item",         "READ IDENTIFY AT YOUR OWN PERIL",       P_NONE, 1,  1, 300, CLR_MAGENTA, 60),
@@ -4323,8 +4331,8 @@ SCROLL("cure",               "SPARKLING EDWARD CULLEN",           P_NONE, 1,   1
 SCROLL("phase door",               "LESBIANISM FOR EVERYONE",           P_NONE, 1,   10, 300, CLR_CYAN, 1),
 SCROLL("trap disarming",               "CHRISTIAN GREY KILLED ALL HIS SUBS",    P_NONE, 1,   50, 300, CLR_BRIGHT_MAGENTA, 20),
 SCROLL("standard id",               "WHAT THE FUCK IS THIS",           P_NONE, 1,   10, 300, CLR_ORANGE, 1),
-SCROLL("charging",              "HACKEM MUCHE",         P_NONE, 1,  280, 300, CLR_GREEN, 6),
-SCROLL("genocide",              "ELBIB YLOH",           P_NONE, 1,  150, 300, CLR_MAGENTA, 20),
+SCROLL("charging",              "HACKEM MUCHE",         P_NONE, 1,  250, 300, CLR_GREEN, 6),
+SCROLL("genocide",              "ELBIB YLOH",           P_NONE, 1,  100, 300, CLR_MAGENTA, 20),
 SCROLL("punishment",            "VE FORBRYDERNE",       P_NONE, 1,  149, 300, CLR_GRAY, 10),
 SCROLL("astralcension",            "TEEEE TSUUUU OOOOO",       P_NONE, 1,  1, 300, CLR_WHITE, 100),
 SCROLL("stinking cloud",	"VELOX NEB",            P_OCCULT_SPELL, 1,  144, 300, CLR_GRAY, 5),
@@ -6816,7 +6824,7 @@ WAND("darkness",   "obscure", 50, 500, 1, NODIR,     MT_SILVER,  CLR_BLACK, 1),
 WAND("magic mapping",   "shapeless", 50, 500, 1, NODIR,     MT_DRAGON_HIDE,  CLR_BRIGHT_GREEN, 30),
 WAND("detect monsters", "exploding", 50, 500, 1, NODIR,     MT_WOOD,     CLR_GREEN, 1),
 WAND("objection", "cinnabar", 50, 500, 1, NODIR,     MT_SILVER,   CLR_ORANGE, 1),
-WAND("slow monster",   "tin",     430, 500, 1, IMMEDIATE, MT_METAL,    HI_METAL, 6),
+WAND("slow monster",   "tin",     420, 500, 1, IMMEDIATE, MT_METAL,    HI_METAL, 6),
 WAND("speed monster",  "brass",   350, 500, 1, IMMEDIATE, MT_COPPER,   HI_COPPER, 6),
 WAND("haste monster",  "royal",    50, 500, 1, IMMEDIATE, MT_GOLD,   CLR_ORANGE, 6),
 WAND("striking",       "ebony",   520, 500, 1, IMMEDIATE, MT_WOOD,     HI_WOOD, 1),
@@ -6888,6 +6896,9 @@ WAND("acquirement",   "important",  50, 500, 1, NODIR,     MT_SILVER,     CLR_CY
 WAND("summon sexy girl",   "girly",  10, 500, 1, NODIR,     MT_PLASTIC,     CLR_BRIGHT_MAGENTA, 1),
 WAND("clone monster",  "radiating", 50, 500, 1, IMMEDIATE, MT_GOLD,    CLR_BRIGHT_GREEN, 12),
 WAND("charging", "buzzing",     50, 500, 1, NODIR,     MT_METAL,     CLR_BRIGHT_CYAN, 10),
+
+WAND("bleeding", "dripdrop",     5, 500, 1, NODIR,     MT_LIQUID,     CLR_RED, 5),
+WAND("undressing", "nekkid",     5, 500, 1, NODIR,     MT_FLESH,     CLR_BROWN, 7),
 
 WAND("spellbinder", "bound",     5, 500, 1, NODIR,     MT_PAPER,     CLR_CYAN, 1),
 WAND("inertia control", "contro",     5, 500, 1, NODIR,     MT_VEGGY,     CLR_GREEN, 1),

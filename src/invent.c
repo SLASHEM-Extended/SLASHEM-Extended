@@ -13164,6 +13164,20 @@ boolean knoweverything;
 				pline("Reading this scroll summons a boss monster. A tame one. Yes, you read that right. You'll get your personal boss monster that fights alongside you."); break;
 			case SCR_MESSAGE:
 				pline("A scroll that can trigger messages if you read it."); break;
+			case SCR_TERRAFORMING:
+				pline("This scroll is very useful: it will remove many annoying terrain types that are adjacent to you. How do you know what will be affected? It works on water, trees, ice, farmland, nether mist and so on... It doesn't raze walls though, and furniture (e.g. wagons or fountains) is unaffected. The general rule of thumb is that if the terrain type can replace walls in maze levels, it will be affected."); break;
+			case SCR_INFERIOR_MATERIAL:
+				pline("Allows you to select an item in your open inventory, and changes the material of that base item type to an inferior one (randomly chosen from a pool of available materials). Caveat: It will change the material of ALL instances of that particular base item."); break;
+			case SCR_REGULAR_MATERIAL:
+				pline("Allows you to select an item in your open inventory, and changes the material of that base item type to a regular-quality one, i.e. one that is neither inferior nor superior (randomly chosen from a pool of available materials). Caveat: It will change the material of ALL instances of that particular base item."); break;
+			case SCR_SUPERIOR_MATERIAL:
+				pline("Allows you to select an item in your open inventory, and changes the material of that base item type to a superior one (randomly chosen from a pool of available materials). Caveat: It will change the material of ALL instances of that particular base item."); break;
+			case SCR_ILLUSION:
+				pline("Summons illusory monsters, which are actually quite real."); break;
+			case SCR_EVIL_VARIANT:
+				pline("This scroll will summon monsters from the Evil Variant(TM) for you to fight."); break;
+			case SCR_FEMINISM:
+				pline("Yay, feminism! You absolutely want to read this scroll because then you're afflicted with a temporary feminism trap effect! :D"); break;
 			case SCR_SYMBIOSIS:
 				pline("If you read this scroll, you may get a new symbiote. Be aware that you cannot have more than one symbiote at once; reading it while already having one will prompt you whether you want a new one. Also, the symbiote you get is random."); break;
 			case SCR_SIN:
@@ -14030,6 +14044,10 @@ boolean knoweverything;
 
 			case WAN_LIGHT: 
 				pline("Zapping this wand will illuminate your surroundings."); break;
+			case WAN_BLEEDING:
+				pline("If anyone zaps this wand, you will bleed. No, you cannot use it on hostile monsters."); break;
+			case WAN_UNDRESSING:
+				pline("Zapping this wand will remove one of your worn pieces of equipment, chosen randomly, but it will never pick a cursed one. If a monster zaps the wand, it will also remove your equipment. There is no way to use it against monsters."); break;
 			case WAN_NOTHING: 
 				pline("A wand that does nothing at all."); break;
 			case WAN_SHARE_PAIN: 

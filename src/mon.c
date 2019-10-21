@@ -3778,6 +3778,33 @@ struct monst *mtmp;
 		} else
 			return;
 
+	} else if (mtmp->data == &mons[PM_IMMORTAL_MYSTIC_SCARAB] && rn2(5) ) {
+		visible = u.uswallow && u.ustuck == mtmp ||
+			cansee(mtmp->mx, mtmp->my);
+		if (visible) {
+			pline("But wait...");
+			pline("%s lifesaves!", Monnam(mtmp));
+			if (attacktype(mtmp->data, AT_EXPL)
+			    || attacktype(mtmp->data, AT_BOOM))
+				pline("%s reconstitutes!", Monnam(mtmp));
+			else
+				pline("%s looks much better!", Monnam(mtmp));
+		}
+		mtmp->mcanmove = 1;
+		mtmp->masleep = 0;
+		mtmp->mfrozen = 0;
+		if (mtmp->mtame && !mtmp->isminion) {
+			wary_dog(mtmp, FALSE);
+		}
+		if (mtmp->mhpmax <= 0) mtmp->mhpmax = 10;
+		mtmp->mhp = mtmp->mhpmax;
+		if (mvitals[monsndx(mtmp->data)].mvflags & G_GENOD) {
+			if (visible)
+			    pline("Unfortunately %s is still genocided...",
+				mon_nam(mtmp));
+		} else
+			return;
+
 	} else if (!rn2(5) && !mtmp->mpeaceful && (LifeSavingBug || u.uprops[LIFE_SAVING_BUG].extrinsic || have_lifesavingstone()) ) {
 		visible = u.uswallow && u.ustuck == mtmp ||
 			cansee(mtmp->mx, mtmp->my);

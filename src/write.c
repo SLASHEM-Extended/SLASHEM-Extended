@@ -55,6 +55,7 @@ register struct obj *otmp;
 	case SCR_PROOF_WEAPON:
 	case SCR_CRYPT:
 	case SCR_PAVING:
+	case SCR_INFERIOR_MATERIAL:
 		return(10);
 	case SCR_CONFUSE_MONSTER:
 	case SCR_PHASE_DOOR:
@@ -88,6 +89,9 @@ register struct obj *otmp;
 	case SCR_STALACTITE:
 	case SCR_GROWTH:
 	case SCR_ICE:
+	case SCR_ILLUSION:
+	case SCR_FEMINISM:
+	case SCR_EVIL_VARIANT:
 	case SCR_ENRAGE:
 	case SCR_FROST:
 	case SCR_CLOUDS:
@@ -103,6 +107,7 @@ register struct obj *otmp;
 	case SCR_UNDO_GENOCIDE:
 	case SCR_RANDOM_ENCHANTMENT:
 	case SCR_BAD_EQUIPMENT:
+	case SCR_REGULAR_MATERIAL:
 		return(20);
 	/* KMH, balance patch -- more useful scrolls cost more */
 	case SCR_STINKING_CLOUD:
@@ -143,6 +148,7 @@ register struct obj *otmp;
 	case SCR_SUMMON_GHOST:
 	case SCR_GREATER_MANA_RESTORATION:
 	case SCR_NASTY_CURSE:
+	case SCR_TERRAFORMING:
 		return(30);
 	case SCR_GAIN_MANA:
 	case SCR_LOCKOUT:
@@ -154,6 +160,7 @@ register struct obj *otmp;
 	case SCR_CREATE_FAMILIAR:
 	case SCR_ITEM_GENOCIDE:
 	case SCR_POWER_HEALING:
+	case SCR_SUPERIOR_MATERIAL:
 		return(40);
 	case SCR_CONSECRATION:
 	case SCR_BOSS_COMPANION:

@@ -3897,6 +3897,20 @@ newboss:
 
 		break;
 
+		case WAN_BLEEDING:
+
+			playerbleed(rnd(2 + (level_difficulty() * 10)));
+			known = TRUE;
+
+		break;
+
+		case WAN_UNDRESSING:
+
+			shank_player();
+			known = TRUE;
+
+		break;
+
 		case WAN_CURSE_ITEMS:
 
 			pline("A black glow surrounds you...");

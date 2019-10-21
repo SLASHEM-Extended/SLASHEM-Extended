@@ -4575,6 +4575,11 @@ struct monst *mtmp;
 #define MUSE_ETHER_HORN 154
 #define MUSE_SHADOW_HORN 155
 #define MUSE_CHROME_HORN 156
+#define MUSE_SCR_ILLUSION 157
+#define MUSE_SCR_EVIL_VARIANT 158
+#define MUSE_SCR_FEMINISM 159
+#define MUSE_WAN_BLEEDING 160
+#define MUSE_WAN_UNDRESSING 161
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -5220,6 +5225,21 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_MESSAGE;
 		}
+		nomore(MUSE_SCR_ILLUSION);
+		if(obj->otyp == SCR_ILLUSION) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_ILLUSION;
+		}
+		nomore(MUSE_SCR_FEMINISM);
+		if(obj->otyp == SCR_FEMINISM) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_FEMINISM;
+		}
+		nomore(MUSE_SCR_EVIL_VARIANT);
+		if(obj->otyp == SCR_EVIL_VARIANT) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_EVIL_VARIANT;
+		}
 		nomore(MUSE_SCR_SIN);
 		if(obj->otyp == SCR_SIN) {
 			m.offensive = obj;
@@ -5329,6 +5349,16 @@ struct monst *mtmp;
 		if(obj->otyp == WAN_LEVITATION && obj->spe > 0 && !Levitation ) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_LEVITATION;
+		}
+		nomore(MUSE_WAN_BLEEDING);
+		if(obj->otyp == WAN_BLEEDING && obj->spe > 0 && !Levitation ) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_BLEEDING;
+		}
+		nomore(MUSE_WAN_UNDRESSING);
+		if(obj->otyp == WAN_UNDRESSING && obj->spe > 0 && !Levitation ) {
+			m.offensive = obj;
+			m.has_offense = MUSE_WAN_UNDRESSING;
 		}
 		nomore(MUSE_WAN_BAD_LUCK);
 		if(obj->otyp == WAN_BAD_LUCK && obj->spe > 0) {
@@ -6925,6 +6955,105 @@ struct monst *mtmp;
 			pline("%s", fauxmessage());
 			u.cnd_plineamount++;
 		}
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_ILLUSION:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+	    {
+		coord cc;
+		int cnt = rnd(6);
+		if (mtmp->mconf) cnt += rno(6);
+		if (otmp->cursed) cnt += rno(3);
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while(cnt--) {
+			if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+			(void) makemon(illusionmon(), cc.x, cc.y, NO_MM_FLAGS);
+
+		}
+	    }
+		pline("Some monsters from the Illusory Castle are summoned!");
+
+		u.aggravation = 0;
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_EVIL_VARIANT:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+	    {
+		coord cc;
+		int cnt = rnd(6);
+		if (mtmp->mconf) cnt += rno(6);
+		if (otmp->cursed) cnt += rno(3);
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while(cnt--) {
+			if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+			(void) makemon(specialtensmon(341), cc.x, cc.y, NO_MM_FLAGS); /* M5_EVIL */
+
+		}
+	    }
+		pline("Some monsters from the Evil Variant are summoned!");
+
+		u.aggravation = 0;
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_FEMINISM:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+	    {
+		coord cc;
+		int cnt = rnd(6);
+		if (mtmp->mconf) cnt += rno(6);
+		if (otmp->cursed) cnt += rno(3);
+
+		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while(cnt--) {
+			if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
+
+			(void) makemon(specialtensmon(!rn2(50) ? 369 : !rn2(20) ? 333 : !rn2(3) ? 38 : !rn2(2) ? 39 : 40), cc.x, cc.y, NO_MM_FLAGS); /* AD_FEMI, MS_STENCH, and the three MS_FART_foo */
+
+		}
+	    }
+		pline("Several women appear from nowhere!");
+
+		u.aggravation = 0;
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -8601,6 +8730,28 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_BLEEDING:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		playerbleed(rnd(2 + (level_difficulty() * 10)));
+		if (oseen) makeknown(WAN_BLEEDING);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
+	case MUSE_WAN_UNDRESSING:
+
+		mzapmsg(mtmp, otmp, FALSE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		shank_player();
+		if (oseen) makeknown(WAN_UNDRESSING);
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_WAN_CURSE_ITEMS:
 
 		mzapmsg(mtmp, otmp, FALSE);
@@ -9640,7 +9791,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(261)) {
+	switch (rn2(266)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -9903,6 +10054,11 @@ struct monst *mtmp;
 		case 258: return ETHER_HORN;
 		case 259: return SHADOW_HORN;
 		case 260: return CHROME_HORN;
+		case 261: return SCR_ILLUSION;
+		case 262: return SCR_EVIL_VARIANT;
+		case 263: return SCR_FEMINISM;
+		case 264: return WAN_BLEEDING;
+		case 265: return WAN_UNDRESSING;
 
 	}
 	/*NOTREACHED*/
@@ -11237,6 +11393,8 @@ struct obj *obj;
 		    typ == WAN_MAKE_VISIBLE ||
 		    typ == WAN_CURSE_ITEMS ||
 		    typ == WAN_AMNESIA ||
+		    typ == WAN_BLEEDING ||
+		    typ == WAN_UNDRESSING ||
 		    typ == WAN_LEVITATION ||
 		    typ == WAN_IMMOBILITY ||
 		    typ == WAN_INSANITY ||
@@ -11335,6 +11493,9 @@ struct obj *obj;
 		 typ == SCR_ANTIMATTER ||
 		 typ == SCR_RUMOR ||
 		 typ == SCR_MESSAGE ||
+		 typ == SCR_ILLUSION ||
+		 typ == SCR_EVIL_VARIANT ||
+		 typ == SCR_FEMINISM ||
 		 typ == SCR_SIN ||
 		 typ == SCR_IMMOBILITY ||
 		 typ == SCR_EGOISM ||
