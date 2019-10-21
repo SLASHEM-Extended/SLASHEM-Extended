@@ -696,24 +696,94 @@ register struct monst *mtmp;
 	/* heal block will time out --Amy */
 	if (mtmp->healblock) {
 		mtmp->healblock--;
+
+		if (!PlayerCannotUseSkills && mtmp->mtame) {
+
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: break;
+				case P_BASIC: if (!rn2(10)) mtmp->healblock--; break;
+				case P_SKILLED: if (!rn2(5)) mtmp->healblock--; break;
+				case P_EXPERT: if (rnd(10) > 7) mtmp->healblock--; break;
+				case P_MASTER: if (rnd(10) > 6) mtmp->healblock--; break;
+				case P_GRAND_MASTER: if (!rn2(2)) mtmp->healblock--; break;
+				case P_SUPREME_MASTER: if (rnd(10) > 4) mtmp->healblock--; break;
+			}
+
+		}
+
 		if (mtmp->healblock < 0) mtmp->healblock = 0; /* fail safe */
 	}
 
 	/* inertia will also time out, and slows down the monster --Amy */
 	if (mtmp->inertia) {
 		mtmp->inertia--;
+
+		if (!PlayerCannotUseSkills && mtmp->mtame) {
+
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: break;
+				case P_BASIC: if (!rn2(5)) mtmp->inertia--; break;
+				case P_SKILLED: if (rnd(5) > 3) mtmp->inertia--; break;
+				case P_EXPERT: if (rnd(5) > 2) mtmp->inertia--; break;
+				case P_MASTER: if (rn2(5)) mtmp->inertia--; break;
+				case P_GRAND_MASTER: mtmp->inertia--; break;
+				case P_SUPREME_MASTER: if (!rn2(5)) mtmp->inertia--; mtmp->inertia--; break;
+			}
+
+		}
+
 		if (mtmp->inertia < 0) mtmp->inertia = 0; /* fail safe */
 		if (!rn2(2)) return 0; /* because I'm lazy :P monster loses a turn with 50% chance, instead of every other turn */
 	}
 
 	/* confused monsters get unconfused with small probability */
-	if (mtmp->mconf && !rn2(50)) mtmp->mconf = 0;
+	if (mtmp->mconf) {
+		int unconfusechance = 50;
+
+		if (!PlayerCannotUseSkills && mtmp->mtame) {
+
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: break;
+				case P_BASIC: unconfusechance = 45; break;
+				case P_SKILLED: unconfusechance = 40; break;
+				case P_EXPERT: unconfusechance = 35; break;
+				case P_MASTER: unconfusechance = 30; break;
+				case P_GRAND_MASTER: unconfusechance = 25; break;
+				case P_SUPREME_MASTER: unconfusechance = 20; break;
+			}
+
+		}
+
+		if (!rn2(unconfusechance)) mtmp->mconf = 0;
+	}
 
 	/* stunned monsters get un-stunned with larger probability */
-	if (mtmp->mstun && !rn2(10)) mtmp->mstun = 0;
+	if (mtmp->mstun) {
+		int unstunchance = 10;
+
+		if (!PlayerCannotUseSkills && mtmp->mtame) {
+
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: break;
+				case P_BASIC: unstunchance = 9; break;
+				case P_SKILLED: unstunchance = 8; break;
+				case P_EXPERT: unstunchance = 7; break;
+				case P_MASTER: unstunchance = 6; break;
+				case P_GRAND_MASTER: unstunchance = 5; break;
+				case P_SUPREME_MASTER: unstunchance = 4; break;
+			}
+
+		}
+
+		if (!rn2(unstunchance)) mtmp->mstun = 0;
+
+	}
 
 	/* cancelled monsters get un-cancelled with a VERY low probability --Amy */
 	if (mtmp->mcan && !rn2(10000)) mtmp->mcan = 0;
+
+	/* slowed monsters get un-slowed with a low probability --Amy */
+	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && !mtmp->inertia && !rn2(2000)) mon_adjust_speed(mtmp, 1, (struct obj *)0);
 
 	/* is the monster charging a special laser cannon? */
 	if (mtmp->hominglazer) {
@@ -2547,9 +2617,10 @@ altarfound:
 		if (mstatus & MM_AGR_DIED)		/* aggressor died */
 		    return 2;
 
-		if ((mstatus & MM_HIT) && !(mstatus & MM_DEF_DIED)  &&
-		    rn2(4) && mtmp2->movement >= NORMAL_SPEED) {
+		if ( ((mstatus & MM_HIT) || (mtmp2->mtame && !mtmp->mtame && !rn2(4))) && !(mstatus & MM_DEF_DIED) &&
+		    ((rn2(4) && mtmp2->movement >= NORMAL_SPEED) || (mtmp2->mtame && !mtmp->mtame)) ) {
 		    mtmp2->movement -= NORMAL_SPEED;
+		    if (mtmp2->movement < 0) mtmp2->movement = 0; /* fail safe */
 		    notonhead = 0;
 		    mstatus = mattackm(mtmp2, mtmp);	/* return attack */
 		    if (mstatus & MM_DEF_DIED)

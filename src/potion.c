@@ -4615,7 +4615,7 @@ register struct monst *mtmp;
 		case 18:
 			{
 				int rnd_tmp;
-				rnd_tmp = rnd(1 + (level_difficulty() * 3));
+				rnd_tmp = rnd(1 + (level_difficulty() * 2));
 				if ((rnd_tmp += mtmp->mblinded) > 127) rnd_tmp = 127;
 				mtmp->mblinded = rnd_tmp;
 				mtmp->mcansee = 0;
@@ -4628,6 +4628,7 @@ register struct monst *mtmp;
 			{
 				int rnd_tmp;
 				rnd_tmp = rnd(1 + level_difficulty());
+				if (rnd_tmp > 1) rnd_tmp = rnd(rnd_tmp);
 				if (rnd_tmp > 127) rnd_tmp = 127;
 				mtmp->mcanmove = 0;
 				mtmp->mfrozen = rnd_tmp;
@@ -4672,7 +4673,7 @@ register struct monst *mtmp;
 		case 39:
 		case 40:
 		case 41:
-			mtmp->healblock += rnd(1 + (level_difficulty() * 20));
+			mtmp->healblock += rnd(1 + (level_difficulty() * 5));
 			if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
 			break;
 
@@ -4681,12 +4682,12 @@ register struct monst *mtmp;
 		case 44:
 		case 45:
 		case 46:
-			makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
+			makedoghungry(mtmp, (1 + level_difficulty()) * rnd(50));
 			if (vis) pline("%s looks hungry.", Monnam(mtmp));
 			break;
 		case 47:
 		case 48:
-			mtmp->inertia += rnd(1 + (level_difficulty() * 50));
+			mtmp->inertia += rnd(1 + (level_difficulty() * rnd(50)));
 			if (vis) pline("%s slows to a crawl.", Monnam(mtmp));
 			break;
 
@@ -4734,7 +4735,7 @@ register struct monst *mtmp;
 
 	{
 		int rnd_tmp;
-		rnd_tmp = rnd(1 + (level_difficulty() * 3));
+		rnd_tmp = rnd(1 + (level_difficulty() * 2));
 		if ((rnd_tmp += mtmp->mblinded) > 127) rnd_tmp = 127;
 		mtmp->mblinded = rnd_tmp;
 		mtmp->mcansee = 0;
@@ -4744,6 +4745,7 @@ register struct monst *mtmp;
 	{
 		int rnd_tmp;
 		rnd_tmp = rnd(1 + level_difficulty());
+		if (rnd_tmp > 1) rnd_tmp = rnd(rnd_tmp);
 		if (rnd_tmp > 127) rnd_tmp = 127;
 		mtmp->mcanmove = 0;
 		mtmp->mfrozen = rnd_tmp;
@@ -4761,13 +4763,13 @@ register struct monst *mtmp;
 	}
 	mtmp->bleedout += rnd(1 + (level_difficulty() * 5));
 
-	mtmp->healblock += rnd(1 + (level_difficulty() * 20));
+	mtmp->healblock += rnd(1 + (level_difficulty() * 5));
 	if (vis) pline("%s's healing is blocked.", Monnam(mtmp));
 
-	mtmp->inertia += rnd(1 + (level_difficulty() * 50));
+	mtmp->inertia += rnd(1 + (level_difficulty() * rnd(50)));
 	if (vis) pline("%s slows to a crawl.", Monnam(mtmp));
 
-	makedoghungry(mtmp, (1 + level_difficulty()) * rnd(200));
+	makedoghungry(mtmp, (1 + level_difficulty()) * rnd(50));
 	if (vis) pline("%s looks hungry.", Monnam(mtmp));
 
 }

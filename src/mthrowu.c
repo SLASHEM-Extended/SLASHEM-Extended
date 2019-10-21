@@ -1982,6 +1982,7 @@ boolean force_linedup;
 
 	for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 		if(mtmp == mtmp2) continue;
+		if (mtmp2 && u.usteed && mtmp2 == u.usteed) continue; /* steeds are fragile enough already... --Amy */
 		if (mtmp2->mtame && (mlined_up(mtmp, mtmp2, FALSE) || attacktype(mtmp->data, AT_GAZE) || attacktype(mtmp->data, AT_WEAP)) &&
 		((attacktype(mtmp->data, AT_GAZE) && !mtmp->mcan)
 		|| (attacktype(mtmp->data, AT_MAGC) && !mtmp->mcan && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)

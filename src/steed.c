@@ -75,6 +75,25 @@ mayfalloffsteed()
 
 }
 
+/* it was SOOOOOOO annoying that a confused steed would always walk randomly, when a confused player would only be
+ * subjected to random-direction walking some of the time. Change that, and make it use riding skill. --Amy
+ * Returns TRUE if you will walk randomly, FALSE otherwise */
+boolean
+confsteeddir()
+{
+	if (PlayerCannotUseSkills) return rn2(4);
+	switch (P_SKILL(P_RIDING)) {
+		default: return rn2(4);
+		case P_BASIC: return rn2(2);
+		case P_SKILLED: return !rn2(3);
+		case P_EXPERT: return !rn2(4);
+		case P_MASTER: return !rn2(5);
+		case P_GRAND_MASTER: return !rn2(7);
+		case P_SUPREME_MASTER: return !rn2(10);
+	}
+
+}
+
 int
 use_saddle(otmp)
 	struct obj *otmp;

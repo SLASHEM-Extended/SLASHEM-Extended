@@ -1925,7 +1925,7 @@ domove()
 	    forcenomul(0, 0);
 	    return;
 	}
-	if (Race_if(PM_ELONA_SNAIL) && uarmf && !PlayerInHighHeels) {
+	if (Race_if(PM_ELONA_SNAIL) && !flags.forcefight && uarmf && !PlayerInHighHeels) {
 	    pline("In order to move, snails need to be bare-footed or wearing high heels!");
 	    forcenomul(0, 0);
 	    return;
@@ -1937,7 +1937,7 @@ domove()
 		u.uy = y = u.ustuck->my;
 		mtmp = u.ustuck;
 	} else {
-		if (Is_airlevel(&u.uz) && rn2(2) && /* was rn2(4) - let's make it a bit easier --Amy */
+		if (Is_airlevel(&u.uz) && !flags.forcefight && rn2(2) && /* was rn2(4) - let's make it a bit easier --Amy */
 			!Levitation && !Flying) {
 		    switch(rn2(3)) {
 		    case 0:
@@ -1996,7 +1996,7 @@ domove()
 		x = u.ux + u.dx;
 		y = u.uy + u.dy;
 		/* Check if your steed can move */
-		if (u.usteed && (!u.usteed->mcanmove || u.usteed->msleeping)) {
+		if (u.usteed && !flags.forcefight && (!u.usteed->mcanmove || u.usteed->msleeping)) {
 		    Your("steed doesn't respond!");
 		    forcenomul(0, 0);
 		    return;
@@ -2008,7 +2008,7 @@ domove()
 		if ((Stunned && !rn2(issoviet ? 1 : StrongStun_resist ? 20 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : StrongConf_resist ? 200 : Conf_resist ? 40 : 8) || ((uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) && !rn2(8) ) )
 			/* toned down so it's less crippling --Amy
 			 * nerf for extremely fast steeds: they cause you to sometimes walk randomly */
-			|| (u.usteed && (u.usteed->mconf || (u.usteed->data->mmove > 36 && rnd(u.usteed->data->mmove) > 36) ) )
+			|| (u.usteed && ((u.usteed->mconf && confsteeddir()) || (u.usteed->data->mmove > 36 && rnd(u.usteed->data->mmove) > 36) ) )
 		   ) {
 			register int tries = 0;
 

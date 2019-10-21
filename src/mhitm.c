@@ -3845,7 +3845,7 @@ mdamagem(magr, mdef, mattk)
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(4)) {
 			mon_adjust_speed(mdef, -1, (struct obj *)0);
 			mdef->mstrategy &= ~STRAT_WAITFORU;
 			if (!rn2(4)) mdef->inertia += (2 + (tmp * 2));
@@ -3889,7 +3889,7 @@ mdamagem(magr, mdef, mattk)
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(7)) {
 			mon_adjust_speed(mdef, -1, (struct obj *)0);
 			mdef->mstrategy &= ~STRAT_WAITFORU;
 			if (tmp > 0) mdef->bleedout += rnd(tmp);
@@ -4526,7 +4526,7 @@ physical:
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
-		if (mdef->mtame && !rn2(8)) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(15)) badpeteffect(mdef);
 		break;
 	    case AD_DARK:
 		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
@@ -4587,19 +4587,19 @@ physical:
 		break;
 
 	    case AD_CAST:
-		if (mdef->mtame) tmp *= 3;
+		if (mdef->mtame && !rn2(2)) tmp *= 3;
 		break;
 
 	    case AD_CLRC:
-		if (mdef->mtame) tmp *= 2;
+		if (mdef->mtame && !rn2(2)) tmp *= 2;
 		break;
 
 	    case AD_SPEL:
-		if (mdef->mtame) tmp *= 2;
+		if (mdef->mtame && !rn2(2)) tmp *= 2;
 		break;
 
 	    case AD_SAMU:
-		if (mdef->mtame) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(3)) badpeteffect(mdef);
 		break;
 
 	    case AD_RUNS:
@@ -4643,7 +4643,7 @@ physical:
 		break;
 
 	    case AD_SCOR:
-		if (mdef->mtame && !rn2(8)) {
+		if (mdef->mtame && !rn2(40)) {
 			if (mdef->mhpmax > 1) mdef->mhpmax--;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 		}
@@ -4656,19 +4656,17 @@ physical:
 	    case AD_FEMI:
 		if (mdef->mtame) {
 			badpeteffect(mdef);
-			badpeteffect(mdef);
-			badpeteffect(mdef);
 		}
 		break;
 
 	    case AD_LEVI:
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(5)) {
 			badpeteffect(mdef);
 		}
 		break;
 
 	    case AD_MCRE:
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(3)) {
 			badpeteffect(mdef);
 		}
 		break;
@@ -4783,7 +4781,7 @@ physical:
 			tmp *= 2;
 			if (vis) pline("%s is hit with ice blocks!", Monnam(mdef));
 		}
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(2)) {
 			pline("%s seems to be moving slower.", Monnam(mdef));
 			if (!rn2(3)) mon_adjust_speed(mdef, -1, (struct obj *)0);
 			if (!rn2(3)) mdef->inertia += tmp;
@@ -4827,7 +4825,7 @@ physical:
 			if (vis) pline("%s is slammed into the ground!", Monnam(mdef));
 		}
 
-		if (mdef->mtame && !mdef->mfrozen) {
+		if (mdef->mtame && !rn2(2) && !mdef->mfrozen) {
 			mdef->mcanmove = 0;
 			mdef->mfrozen = rnd(10);
 			mdef->mstrategy &= ~STRAT_WAITFORU;
@@ -4949,7 +4947,7 @@ physical:
 			cancelmonsterlite(mdef);
 			if (vis) pline("%s is covered in sparkling lights!", Monnam(mdef));
 		}
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(2)) {
 			if (mdef->mhpmax > 1) mdef->mhpmax--;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			badpeteffect(mdef);
@@ -4988,7 +4986,7 @@ physical:
 			}
 
 		}
-		if (mdef->mtame) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(5)) badpeteffect(mdef);
 
 		break;
 
@@ -5010,7 +5008,7 @@ physical:
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
-		if (mdef->mtame) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(2)) badpeteffect(mdef);
 
 		break;
 
@@ -5054,7 +5052,7 @@ physical:
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
-		if (mdef->mtame) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(2)) badpeteffect(mdef);
 		break;
 
 	    case AD_FAMN:
@@ -5081,7 +5079,7 @@ physical:
 
 	    case AD_TECH:
 		mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
-		if (mdef->mtame && !rn2(3)) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(7)) badpeteffect(mdef);
 		break;
 
 	    case AD_MEMO:
@@ -5175,7 +5173,7 @@ physical:
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
-		if (mdef->mtame) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(3)) badpeteffect(mdef);
 		break;
 	    case AD_DEPR:
 		if (!magr->mcan && haseyes(pd) && mdef->mcansee) {
@@ -5688,7 +5686,7 @@ physical:
 		if (mdef->mtame) tmp *= rnd(4);
 		break;
 	    case AD_SKIL:
-		if (mdef->mtame) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(20)) badpeteffect(mdef);
 		break;
 	    case AD_SUCK:
 		if (mdef->mtame) {
@@ -5733,7 +5731,7 @@ physical:
 		}
 		break;
 	    case AD_VOMT:
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(4)) {
 			if (vis) pline("%s looks sick.", Monnam(mdef));
 			if (!rn2(3)) {
 				if (mdef->mhpmax > 1) mdef->mhpmax--;
@@ -5761,7 +5759,7 @@ physical:
 		}
 		break;
 	    case AD_LUCK:
-		if (mdef->mtame && !rn2(3)) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(5)) badpeteffect(mdef);
 		break;
 	    case AD_LETH:
 		if (mdef->mtame) {
@@ -5786,7 +5784,7 @@ physical:
 		}
 		break;
 	    case AD_DISP:
-		if (mdef->mtame && mdef->mcanmove) {
+		if (mdef->mtame && !rn2(3) && mdef->mcanmove) {
 			mdef->mcanmove = 0;
 			mdef->mfrozen = 2;
 			mdef->mstrategy &= ~STRAT_WAITFORU;
@@ -5813,7 +5811,7 @@ physical:
 	    case AD_ENCH:
 		/* There's no msomearmor() function, so just do damage */
 	     /* if (cancelled) break; */
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(3)) {
 			if (mdef->mhpmax > 1) mdef->mhpmax--;
 			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 			badpeteffect(mdef);
@@ -5823,7 +5821,7 @@ physical:
 		if (mdef->mtame) tmp *= 10;
 		break;
 	    case AD_SIN:
-		if (mdef->mtame) {
+		if (mdef->mtame && !rn2(3)) {
 			badpeteffect(mdef);
 			if (mdef->mhpmax > 1) mdef->mhpmax -= 8;
 			if (mdef->mhpmax < 1) mdef->mhpmax = 1;
@@ -5854,7 +5852,7 @@ physical:
 		}
 		break;
 	    case AD_ALIN:
-		if (mdef->mtame && !rn2(5)) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(10)) badpeteffect(mdef);
 		break;
 	    case AD_NGEN:
 		if (mdef->mtame) {
@@ -6268,7 +6266,7 @@ int attnumber;
 			drain_item(otmp);
 		    /* No message */
 		}
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(3)) {
 			if (magr->mhpmax > 1) magr->mhpmax--;
 			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 			badpeteffect(magr);
@@ -6453,7 +6451,7 @@ int attnumber;
 		    if (canseemon(magr))
 			pline("%s %s...", Monnam(magr), makeplural(stagger(magr->data, "stagger")));
 		}
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(4)) {
 			mon_adjust_speed(magr, -1, (struct obj *)0);
 			magr->mstrategy &= ~STRAT_WAITFORU;
 			if (!rn2(4)) magr->inertia += (2 + (tmp * 2));
@@ -6626,7 +6624,7 @@ int attnumber;
 		    if (magr->mspeed != oldspeed && canseemon(magr))
 			pline("%s is numbed.", Monnam(magr));
 		}
-		if (magr->mtame && !rn2(8)) badpeteffect(magr);
+		if (magr->mtame && !rn2(15)) badpeteffect(magr);
 		break;
 
 	    case AD_STAT:
@@ -6789,7 +6787,7 @@ int attnumber;
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is suddenly shockfrosted!", Monnam(magr));
 		}
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(2)) {
 			pline("%s seems to be moving slower.", Monnam(magr));
 			if (!rn2(3)) mon_adjust_speed(magr, -1, (struct obj *)0);
 			if (!rn2(3)) magr->inertia += tmp;
@@ -6824,7 +6822,7 @@ int attnumber;
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s slams into the ground!", Monnam(magr));
 		}
-		if (magr->mtame && !magr->mfrozen) {
+		if (magr->mtame && !rn2(2) && !magr->mfrozen) {
 			magr->mcanmove = 0;
 			magr->mfrozen = rnd(10);
 			magr->mstrategy &= ~STRAT_WAITFORU;
@@ -6927,7 +6925,7 @@ int attnumber;
 			cancelmonsterlite(magr);
 			if (canseemon(magr)) pline("%s is covered in sparkling lights!", Monnam(magr));
 		}
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(2)) {
 			if (magr->mhpmax > 1) magr->mhpmax--;
 			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 			badpeteffect(magr);
@@ -6957,7 +6955,7 @@ int attnumber;
 		}
 		break;
 	    case AD_LEGS:
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(7)) {
 			mon_adjust_speed(magr, -1, (struct obj *)0);
 			magr->mstrategy &= ~STRAT_WAITFORU;
 			if (tmp > 0) magr->bleedout += rnd(tmp);
@@ -6986,7 +6984,7 @@ int attnumber;
 		    magr->mconf = 1;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
-		if (magr->mtame) badpeteffect(magr);
+		if (magr->mtame && !rn2(2)) badpeteffect(magr);
 		break;
 	    case AD_SANI:
 		if (!rn2(10)) {
@@ -7005,7 +7003,7 @@ int attnumber;
 			}
 
 		}
-		if (magr->mtame) badpeteffect(magr);
+		if (magr->mtame && !rn2(5)) badpeteffect(magr);
 
 		break;
 	    case AD_DREA:
@@ -7028,7 +7026,7 @@ int attnumber;
 		    magr->mconf = 1;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
-		if (magr->mtame) badpeteffect(magr);
+		if (magr->mtame && !rn2(3)) badpeteffect(magr);
 		break;
 
 	    case AD_DEPR:
@@ -7051,7 +7049,7 @@ int attnumber;
 		    magr->mconf = 1;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
-		if (magr->mtame) badpeteffect(magr);
+		if (magr->mtame && !rn2(2)) badpeteffect(magr);
 		break;
 
 	    case AD_AMNE:
@@ -7085,7 +7083,7 @@ int attnumber;
 		break;
 	    case AD_TECH:
 		mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
-		if (magr->mtame && !rn2(3)) badpeteffect(magr);
+		if (magr->mtame && !rn2(7)) badpeteffect(magr);
 		break;
 	    case AD_MEMO:
 		mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
@@ -7158,7 +7156,7 @@ int attnumber;
 		if (magr->mtame) tmp *= 10;
 		break;
 	    case AD_SIN:
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(3)) {
 			badpeteffect(magr);
 			if (magr->mhpmax > 1) magr->mhpmax -= 8;
 			if (magr->mhpmax < 1) magr->mhpmax = 1;
@@ -7189,7 +7187,7 @@ int attnumber;
 		}
 		break;
 	    case AD_ALIN:
-		if (magr->mtame && !rn2(5)) badpeteffect(magr);
+		if (magr->mtame && !rn2(10)) badpeteffect(magr);
 		break;
 	    case AD_NGEN:
 		if (magr->mtame) {
@@ -7227,7 +7225,7 @@ int attnumber;
 		}
 		break;
 	    case AD_SKIL:
-		if (magr->mtame) badpeteffect(magr);
+		if (magr->mtame && !rn2(20)) badpeteffect(magr);
 		break;
 	    case AD_SUCK:
 		if (magr->mtame) {
@@ -7272,7 +7270,7 @@ int attnumber;
 		}
 		break;
 	    case AD_VOMT:
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(4)) {
 			if (canseemon(magr)) pline("%s looks sick.", Monnam(magr));
 			if (!rn2(3)) {
 				if (magr->mhpmax > 1) magr->mhpmax--;
@@ -7300,7 +7298,7 @@ int attnumber;
 		}
 		break;
 	    case AD_LUCK:
-		if (magr->mtame && !rn2(3)) badpeteffect(magr);
+		if (magr->mtame && !rn2(5)) badpeteffect(magr);
 		break;
 	    case AD_LETH:
 		if (magr->mtame) {
@@ -7325,7 +7323,7 @@ int attnumber;
 		}
 		break;
 	    case AD_DISP:
-		if (magr->mtame && magr->mcanmove) {
+		if (magr->mtame && !rn2(3) && magr->mcanmove) {
 			magr->mcanmove = 0;
 			magr->mfrozen = 2;
 			magr->mstrategy &= ~STRAT_WAITFORU;
@@ -7367,19 +7365,19 @@ int attnumber;
 		break;
 
 	    case AD_CAST:
-		if (magr->mtame) tmp *= 3;
+		if (magr->mtame && !rn2(2)) tmp *= 3;
 		break;
 
 	    case AD_CLRC:
-		if (magr->mtame) tmp *= 2;
+		if (magr->mtame && !rn2(2)) tmp *= 2;
 		break;
 
 	    case AD_SPEL:
-		if (magr->mtame) tmp *= 2;
+		if (magr->mtame && !rn2(2)) tmp *= 2;
 		break;
 
 	    case AD_SAMU:
-		if (magr->mtame) badpeteffect(magr);
+		if (magr->mtame && !rn2(3)) badpeteffect(magr);
 		break;
 
 	    case AD_SLIM:
@@ -7513,7 +7511,7 @@ int attnumber;
 		break;
 
 	    case AD_SCOR:
-		if (magr->mtame && !rn2(8)) {
+		if (magr->mtame && !rn2(40)) {
 			if (magr->mhpmax > 1) magr->mhpmax--;
 			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 		}
@@ -7526,19 +7524,17 @@ int attnumber;
 	    case AD_FEMI:
 		if (magr->mtame) {
 			badpeteffect(magr);
-			badpeteffect(magr);
-			badpeteffect(magr);
 		}
 		break;
 
 	    case AD_LEVI:
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(5)) {
 			badpeteffect(magr);
 		}
 		break;
 
 	    case AD_MCRE:
-		if (magr->mtame) {
+		if (magr->mtame && !rn2(3)) {
 			badpeteffect(magr);
 		}
 		break;

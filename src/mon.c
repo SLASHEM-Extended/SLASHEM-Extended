@@ -2753,8 +2753,29 @@ mfndpos(mon, poss, info, flag)
 nexttry:	/* eels prefer the water, but if there is no water nearby,
 		   they will crawl over land */
 	if(mon->mconf) {
-		flag |= ALLOW_ALL;
-		flag &= ~NOTONL;
+
+		/* Amy edit: petkeeping will now make it less likely for your confused pet to lash out at other pets */
+
+		if (mon->mtame && !PlayerCannotUseSkills) {
+			boolean willbeconfused = TRUE;
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: willbeconfused = TRUE;
+				case P_BASIC: if (!rn2(5)) willbeconfused = FALSE; break;
+				case P_SKILLED: if (rnd(5) > 3) willbeconfused = FALSE; break;
+				case P_EXPERT: if (rnd(5) > 2) willbeconfused = FALSE; break;
+				case P_MASTER: if (rn2(5)) willbeconfused = FALSE; break;
+				case P_GRAND_MASTER: if (rn2(10)) willbeconfused = FALSE; break;
+				case P_SUPREME_MASTER: if (rn2(10)) willbeconfused = FALSE; break;
+			}
+
+			if (willbeconfused) {
+				flag |= ALLOW_ALL;
+				flag &= ~NOTONL;
+			}
+		} else {
+			flag |= ALLOW_ALL;
+			flag &= ~NOTONL;
+		}
 	}
 	if(!mon->mcansee)
 		flag |= ALLOW_SSM;
@@ -3460,8 +3481,8 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 
 	/* Amy edit: if pets are ignored by everything, it can result in them being way too unkillable because they often
 	 * won't attack things that would kill them... */
-	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2(20)) return ALLOW_M|ALLOW_TM;
-	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && ((attacktype(mdef->data, AT_EXPL)) || (mindless(magr->data) && evilfriday) || magr->mfrenzied ) ) return ALLOW_M|ALLOW_TM;
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2(20)) return ALLOW_M|ALLOW_TM;
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && ((attacktype(mdef->data, AT_EXPL)) || (mindless(magr->data) && evilfriday) || magr->mfrenzied ) ) return ALLOW_M|ALLOW_TM;
 
 	if (Race_if(PM_ALBAE)) return 0L; /* if you're an albae, everything hates you more than anything else --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstatf(killed_nemesis) ) return 0L; /* or if you killed the abuser nemesis */
