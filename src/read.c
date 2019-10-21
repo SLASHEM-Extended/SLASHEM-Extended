@@ -812,6 +812,7 @@ doread()
 	"I want to be hurt by the estellen zippers!",
 	"I am Connor MacLeod of the Clan MacLeod. I was born in 1518 in the village of Glenfinnan on the shores of Loch Shiel. And I am immortal.",
 	"hewy, you wanna come over to my place? we can netflix and smite",
+	"slip-on ass mummy rapping and we will be good to go", /* by someone who watched Tone's stream with subtitles */
 
 	    };
 	    char buf[BUFSZ];

@@ -3180,7 +3180,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(401)) {
+			switch (rnd(410)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3583,6 +3583,15 @@ int dieroll;
 			case 399: pline("You might in fact be capable of surviving at %s, seeing how you're mixing up %s right now.", urole.intermed, mon_nam(mon)); break;
 			case 400: pline("You make it darker for %s!", mon_nam(mon)); break;
 			case 401: pline("You miss but some guy comes and helps you."); break;
+			case 402: pline("Since you ate from the hellfire devil fruit, you sling some bolts of fire at %s and hit.", mon_nam(mon)); break;
+			case 403: pline("You body-check %s.", mon_nam(mon)); break;
+			case 404: pline("You hit %s with a full-speed head-on collision, taking about three quarters of %s health off.", mon_nam(mon), mhim(mon)); break;
+			case 405: pline("You throw a coconut at %s, hitting %s in the belly.", mon_nam(mon), mhim(mon)); break;
+			case 406: pline("Your extreme body odor causes %s to choke.", mon_nam(mon)); break;
+			case 407: pline("You shoot %s with a football.", mon_nam(mon)); break;
+			case 408: pline("%s tries to burn you with a cigarette, but you slap %s in the %s for that.", Monnam(mon), mhim(mon), mbodypart(mon, FACE)); break;
+			case 409: pline("Your purple heel sandals clear %s one.", mon_nam(mon)); break;
+			case 410: pline("You ring %s's %s to punish %s for always making bad jokes.", mon_nam(mon), mbodypart(mon, HEAD), mhim(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -3696,7 +3705,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(574)) {
+				switch (rnd(592)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4272,6 +4281,24 @@ int dieroll;
 				case 572: pline("%s gets a hell travel command!", Monnam(mon)); break;
 				case 573: pline("Client %s sent a bogus command packet and is removed from the game.", m_monnam(mon)); break;
 				case 574: pline("Client %s sent an unreadable command packet and can no longer participate in this game.", m_monnam(mon)); break;
+				case 575: pline("You've learned how to use conqueror's haki, even though one has to be born with that, and make %s fall down unconscious.", mon_nam(mon)); break;
+				case 576: pline("%s is someone from the revolutinos army, who don't like marine guys like you at all, but the reverse is also true and therefore you shoot down %s now.", Monnam(mon), mon_nam(mon)); break;
+				case 577: pline("Your cannonball hits %s fully in the %s.", mon_nam(mon), mbodypart(mon, STOMACH)); break;
+				case 578: pline("Since you know that a guillotine trap is nearby, you lure %s to it, who is so stupid and actually triggers the trap, losing %s %s.", mon_nam(mon), mhis(mon), mbodypart(mon, HEAD));
+				case 579: pline("As %s tries to push you into a bottomless pit, you dodge and thereby cause %s to fall in %sself.", m_monnam(mon), mhim(mon), mhim(mon)); break;
+				case 580: pline("%s clicked on a cursed called and sees a game over screen!", Monnam(mon)); break;
+				case 581: pline("%s has a level bug.", Monnam(mon)); break;
+				case 582: pline("%s isn't resistant to your elemental breath and therefore succumbs to your continued breathing!", Monnam(mon)); break;
+				case 583: pline("You tie %s to the railroad tracks and wait until the train comes.", m_monnam(mon)); break;
+				case 584: pline("You've constructed an electric trap with a lot of money as a bait, and %s is so greedy and actually touches the metal bars you set up. %s receives an electric shock and dies instantly.", m_monnam(mon), mhe(mon)); break;
+				case 585: pline("Suddenly %s is crushed by the collapsing ceiling.", m_monnam(mon)); break;
+				case 586: pline("You catch %s in a revolving spiked door.", m_monnam(mon)); break;
+				case 587: pline("You managed to throw %s out of the ring, thereby defeating %s!", m_monnam(mon), mhim(mon)); break;
+				case 588: pline("Bang, your gunboat sinks %s's ship.", m_monnam(mon)); break;
+				case 589: pline("You pull %s underwater and wait for %s to drown.", m_monnam(mon), mhim(mon)); break;
+				case 590: pline("%s has overdosed on drugs, and suddenly falls over dead.", Monnam(mon)); break;
+				case 591: pline("You tell %s to 'kys yourself', and %s is actually stupid enough to comply.", m_monnam(mon), mhe(mon)); break;
+				case 592: pline("You smash %s's %s with your wedding ring because you're such a cowardly cunt.", m_monnam(mon), mbodypart(mon, FACE)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -6547,7 +6574,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(551)) {
+		switch (rnd(565)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -7100,6 +7127,20 @@ register int roll;
 		case 549: pline("You feel the voice of your worst enemy penetrate your mind from %s. It says: 'Ha ha ha, you tin can are no match for me.'", urole.intermed); break;
 		case 550: pline("Some guy comes and diverts you, so you forget to attack."); break;
 		case 551: pline("%s clamps your %s with %s lovely pink pumps.", Monnam(mdef), makeplural(body_part(FINGER)), mhis(mdef)); break;
+		case 552: pline("%s is a master of observation haki and thereby predicted your attack, allowing %s to evade easily!", Monnam(mdef), mhim(mdef)); break;
+		case 553: pline("You fail to penetrate %s's armament haki!", mon_nam(mdef)); break;
+		case 554: pline("%s ate from the vindication devil fruit, and immobilizes you.", Monnam(mdef)); break;
+		case 555: pline("%s places a bounty on your head.", Monnam(mdef)); break;
+		case 556: pline("Well you're obviously unable to get past %s's haki. You have to figure out yourself how to hit %s!", mon_nam(mdef), mhim(mdef)); break;
+		case 557: pline("As you try to fight %s, you find out to your shock that %s is controlling two devil fruits, which is actually impossible but somehow %s managed to do it. As a result, your attack completely fails.", mon_nam(mdef), mhe(mdef), mon_nam(mdef)); break;
+		case 558: pline("%s is encased in some sort of cocoon and your sword fails to penetrate it!", Monnam(mdef)); break;
+		case 559: pline("You're chasing %s and are about to kill %s, when suddenly some weird light envelopes %s and saves %s in front of your %s!", mon_nam(mdef), mhim(mdef), mhim(mdef), mon_nam(mdef), makeplural(body_part(EYE))); break;
+		case 560: pline("You set fire to %s's house with %s inside, and wait for it to burn down... but then %s starts praying to %s god, and gets teleported out unharmed. You call bullshit.", mon_nam(mdef), mhim(mdef), mon_nam(mdef), mhis(mdef)); break;
+		case 561: pline("%s stole all of your attacks and therefore owns you.", Monnam(mdef)); break;
+		case 562: pline("%s blew the whistle a third time, which means that you ran out of time and lose the game!", Monnam(mdef)); break;
+		case 563: pline("%s tramples all over your body with %s thick block-heeled boots.", Monnam(mdef), mhis(mdef)); break;
+		case 564: pline("%s suddenly dresses up as Pocahontas and points a %s in a specific direction. You're actually stupid enough to start walking in that direction.", Monnam(mdef), mbodypart(mdef, FINGER)); break;
+		case 565: pline("Suddenly %s sinks your ship!", mon_nam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 

@@ -5174,6 +5174,7 @@ static const char *epitaphs[] = {
 	"Okay I failed at the thunderdome challenge. Endless shame is mine. But I've gotten down to 1381 words to the current article's 992. There is no more concise left to be had.",
 	"It's absolutely hell on wheels, and I feel there needs to be a sign up around Orcus that says HE LOOKS EASY BUT HE CAN SUMMON FRIENDS THAT WILL MAKE YOU WISH YOU WERE NEVER BORN!", /* dude just git gud at the game bro */
 	"well, who knows how moves the variants nowadays is, they are capable of making it so that zapping the bag with cancel will also blow it up",
+	"slex is the variant where you ask amy how to cure stuff and what to wish for and wtf just killed you?",
 
 };
 
