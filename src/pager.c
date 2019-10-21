@@ -24384,6 +24384,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"f - a cheap plastic imitation of a paper bag. You feel guilty about using single-use plastics!",
 	"A plastic bag lands in the water. You kill the giant eel!",
 	"You hear a mumbled verse.",
+	"Your magic cancellation was cancelled!",
 
 };
 

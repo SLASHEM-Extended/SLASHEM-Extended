@@ -4641,6 +4641,25 @@ elena37:
 
 	}
 
+	if (evilfriday && mtmp->data->mlet == S_GIANT) { /* evil patch idea by jonadab */
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_HUGS;
+		a->adtyp = AD_PHYS;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+	}
+
 	if (evilfriday && mtmp->data->mlet == S_ZOMBIE) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];

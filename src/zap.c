@@ -7020,6 +7020,11 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    if (youdefend) attrcurse(); /* remove some random intrinsic as well --Amy */
 	}
 
+	if (youdefend && evilfriday) { /* idea by K2 */
+		MCReduction += 5000;
+		Your("magic cancellation was cancelled!");
+	}
+
 	/* now handle special cases */
 	if (youdefend) {
 
