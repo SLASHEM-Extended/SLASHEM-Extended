@@ -1282,19 +1282,19 @@ armorsmashdone:
 	    if (mtmp->data != &mons[PM_PESTILENCE]) {
 		wake = FALSE;		/* wakeup() makes the target angry */
 
-		int healamount;
+		int healamount = 0;
 
 		healamount +=
 		  /* [ALI] FIXME: Makes no sense that cursed wands are more
 		   * effective than uncursed wands. This behaviour dates
 		   * right back to Slash v3 (and probably to v1).
 		   */
-		  otyp == WAN_HEALING ?  d(5,2) + rnz(u.ulevel) + 5 * !!bcsign(otmp) :
-		  otyp == WAN_EXTRA_HEALING ?  d(5,4) + rnz(u.ulevel) + rnz(u.ulevel) + 10 * !!bcsign(otmp) :
-		  otyp == WAN_FULL_HEALING ?  d(5,8) + rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel) + 20 * !!bcsign(otmp) :
-		  otyp == SPE_HEALING ? rnd(10) + 4 + rnd(rnz(u.ulevel)) : 
-		  otyp == SPE_EXTRA_HEALING ? rnd(20) + 6 + rnd(rnz(u.ulevel) + rnz(u.ulevel)) : 
-		  rnd(40) + 8 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel)) ;
+		  (otyp == WAN_HEALING ? (d(5,2) + rnz(u.ulevel) + 5 * !!bcsign(otmp)) :
+		  otyp == WAN_EXTRA_HEALING ? (d(5,4) + rnz(u.ulevel) + rnz(u.ulevel) + 10 * !!bcsign(otmp)) :
+		  otyp == WAN_FULL_HEALING ? (d(5,8) + rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel) + 20 * !!bcsign(otmp)) :
+		  otyp == SPE_HEALING ? (rnd(10) + 4 + rnd(rnz(u.ulevel))): 
+		  otyp == SPE_EXTRA_HEALING ? (rnd(20) + 6 + rnd(rnz(u.ulevel) + rnz(u.ulevel))) : 
+		  (rnd(40) + 8 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel))) ) ;
 
 		mtmp->mhp += healamount;
 		if (mtmp->bleedout && mtmp->bleedout <= healamount) {
