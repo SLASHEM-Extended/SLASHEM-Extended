@@ -1357,6 +1357,10 @@ struct mkroom *sroom;
               level.flags.has_cursedmummyroom = 1;
               break;
             case ARDUOUSMOUNTAIN:
+		  if (!rn2(3)) {
+			  if (somexy(sroom, &mm))
+				  (void) (void) mkobj_at(IMPLANT_CLASS, mm.x, mm.y, FALSE);
+		  }
               level.flags.has_arduousmountain = 1;
               break;
             case LEVELFFROOM:
@@ -1369,6 +1373,10 @@ struct mkroom *sroom;
               level.flags.has_miraspa = 1;
               break;
             case MACHINEROOM:
+		  if (!rn2(5)) {
+			  if (somexy(sroom, &mm))
+				  (void) (void) mkobj_at(IMPLANT_CLASS, mm.x, mm.y, FALSE);
+		  }
               level.flags.has_machineroom = 1;
               break;
             case SHOWERROOM:
