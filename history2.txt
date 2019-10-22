@@ -1,6 +1,45 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.5.7 - October 2019
+- Quaffing from a well slightly reduces sanity.
+- The arduous mountain and machinery special rooms may sometimes spawn with an implant.
+- Being cancelled in evilvariant mode will temporarily reduce the player's magic cancellation.
+- In evilvariant mode, giants can try to crush the player.
+- Fixed the oversight that caused metal race player characters to have no weapon attack.
+- Toned down some of the bad effects that could affect the player's pets, and also made them a bit more capable of surviving. Petkeeping and riding skills will help.
+- Fixed an error introduced earlier which made healing wands and spells not work correctly on monsters.
+- If the player is pushed back, the target square can now once again also be one that has a trap, but the trap in question will not trigger.
+- The player can now enter symbiosis with stationary monsters, and there is also a new symbiosis skill.
+
+2.5.6 - October 2019
+- Some dangerous terrain types will now interrupt multi-turn commands.
+- Domestic metallivores, lithivores and organivores can now be tamed by throwing an appropriate object at them.
+- Added a fuzzer, which can be used for debugging the game.
+- Fracturing a hazy object into individual rocks will no longer result in a hazy stack of rocks that could be split to have each of them individually polymorph back into a copy of the original item.
+- If the player ascends, there is now an option to continue playing.
+
 2.5.5 - August 2019
+- Added another layer of security for the autorecover prompt.
+- Engravings on the floor now stop travel.
+- Item destruction by poison can no longer destroy potions of poison or sickness.
+- The automatic teleportation effect when reaching certain goals in the ZAPM branch can no longer be controlled if the player happens to have teleport control.
+- Flicker strip and fleecescript trap effects will now make every single letter fleecy-colored when the player character is hallucinating.
+- Fixed error messages caused by the different way of how armor class works for soviet race characters.
+- Fixed the possibility for undefined player race characters to start with large amounts of powerful items.
+- Player characters with expert riding skill can now ride cockatrices and other petrifying monsters without the danger of being petrified.
+- The player's conduct now displays a lot more statistics.
+- Wands of starvation used by monsters against the player are less powerful now.
+- Slightly improved the diamond barrier technique for the Mason role.
+- Hopefully fixed a savegame error that would occur when the game was checking for the player's implant during saving.
+- When the game asks the player which hybrid races they want to pick, they are now presented in alphabetical order.
+- Fixed the oversight that allowed certain spellbooks to still be price-identified.
+- Added some ways in which the player character can gain alignment points.
+- Fixed segfaults that could happen when changing dungeon levels while the game was displaying certain glyphs from the old level, as well as ones caused by the game trying to access item appearances during bones file creation.
+- Added more services when chatting to nurses.
+- Trying to do alchemy involving finalized potions is more dangerous now.
+- If a monster is generated with wearable equipment, it will be wearing it even if it normally wouldn't be able to (e.g. because it has no hands or is the wrong monster size).
+- Bad luck makes bleeding time out slower.
+- HC aliens may occasionally spawn with a shemagh.
 - Fixed the exploits and obj_is_local panic errors associated with reverse identify effects.
 - If the player bumps into a peaceful or tame monster that is hiding and has passive attacks, the passive attack should no longer trigger. It still triggers when bumping into a hostile monster though.
 - Changed the method for saving randomized stats monsters into the savegame file. This new method makes savegame files slightly bigger but should cut down on the potential of "forgetting" monsters when new ones are added.
