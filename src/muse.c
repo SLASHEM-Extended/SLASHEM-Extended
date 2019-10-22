@@ -5690,7 +5690,7 @@ register struct obj *otmp;
 			struct obj *otmpX, *otmpX2, *m_amulet = mlifesaver(mtmp);
 
 #define oresist_disintegration(obj) \
-		(objects[obj->otyp].oc_oprop == DISINT_RES || \
+		(objects[obj->otyp].oc_oprop == DISINT_RES || (obj->oartifact == ART_ROCK_SOLID_SEAT) || \
 		 obj_resists(obj, 5, 50) || is_quest_artifact(obj) || \
 		 obj == m_amulet)
 
@@ -7030,6 +7030,12 @@ struct monst *mtmp;
 
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
+
+		if (!rn2(2)) {
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+			if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+			return 2;
+		}
 
 	    {
 		coord cc;

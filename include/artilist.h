@@ -6883,6 +6883,10 @@ A("Holden Middle Post",				SYMBIOTE, /* doesn't remove the monster */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("Rock Solid Seat",				LEATHER_SADDLE, /* cannot be disintegrated */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

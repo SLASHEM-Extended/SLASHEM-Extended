@@ -13177,7 +13177,7 @@ boolean knoweverything;
 			case SCR_EVIL_VARIANT:
 				pline("This scroll will summon monsters from the Evil Variant(TM) for you to fight."); break;
 			case SCR_FEMINISM:
-				pline("Yay, feminism! You absolutely want to read this scroll because then you're afflicted with a temporary feminism trap effect! :D"); break;
+				pline("Yay, feminism! You absolutely want to read this scroll because then you're either afflicted with a temporary feminism trap effect or summon a bunch of lovely fleecy women! :D"); break;
 			case SCR_SYMBIOSIS:
 				pline("If you read this scroll, you may get a new symbiote. Be aware that you cannot have more than one symbiote at once; reading it while already having one will prompt you whether you want a new one. Also, the symbiote you get is random."); break;
 			case SCR_SIN:
@@ -18392,6 +18392,8 @@ boolean knoweverything;
 					pline("Artifact specs: +50 damage to elder priests. Sever that asshole's tentacles with the pretty high heel!"); break;
 				case ART_CURE_HASSIA_COURSE:
 					pline("Artifact specs: riding a steed that is equipped with this saddle will increase both your own and the steed's HP regeneration rate."); break;
+				case ART_ROCK_SOLID_SEAT:
+					pline("Artifact specs: cannot be disintegrated."); break;
 				case ART_WESTERN_FRANKISH_COURSE:
 					pline("Artifact specs: riding a steed that is equipped with this saddle gives teleportitis and levelteleportitis, plus teleport control for both."); break;
 				case ART_AMY_S_SEX_TOY:

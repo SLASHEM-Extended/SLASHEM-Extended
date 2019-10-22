@@ -1104,7 +1104,7 @@ armorsmashdone:
 			struct obj *otmpX, *otmpX2, *m_amulet = mlifesaver(mtmp);
 
 #define oresist_disintegration(obj) \
-		(objects[obj->otyp].oc_oprop == DISINT_RES || \
+		(objects[obj->otyp].oc_oprop == DISINT_RES || (obj->oartifact == ART_ROCK_SOLID_SEAT) || \
 		 obj_resists(obj, 5, 50) || is_quest_artifact(obj) || \
 		 obj == m_amulet)
 
@@ -3580,7 +3580,7 @@ struct obj *obj, *otmp;
 	case WAN_DISINTEGRATION:
 
 #define oresist_disintegrationX(obj) \
-		(objects[obj->otyp].oc_oprop == DISINT_RES || \
+		(objects[obj->otyp].oc_oprop == DISINT_RES || (obj->oartifact == ART_ROCK_SOLID_SEAT) || \
 		 obj_resists(obj, 5, 50) || is_quest_artifact(obj) )
 
 		    if (!oresist_disintegrationX(obj) && !stack_too_big(obj) ) {
@@ -9009,7 +9009,7 @@ sigilcontroldirection:
 
 /* note: worn amulet of life saving must be preserved in order to operate */
 #define oresist_disintegration(obj) \
-		(objects[obj->otyp].oc_oprop == DISINT_RES || \
+		(objects[obj->otyp].oc_oprop == DISINT_RES || (obj->oartifact == ART_ROCK_SOLID_SEAT) || \
 		 obj_resists(obj, 5, 50) || is_quest_artifact(obj) || \
 		 obj == m_amulet)
 

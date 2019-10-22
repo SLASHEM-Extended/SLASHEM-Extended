@@ -5092,6 +5092,11 @@ proofarmorchoice:
 	case SCR_FEMINISM:
 		known = TRUE;
 
+		if (!rn2(2)) {
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+			break;
+		}
+
 	    {
 		coord cc;
 		int cnt = rnd(6);
