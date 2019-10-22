@@ -3529,6 +3529,21 @@ boolean guaranteed;
 		enl_msg("The RNG hath decreed that this trap ", "is ", "was ", buf );
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias1 != -1) {
+		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias1), u.spellbookchance1);
+		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias2 != -1) {
+		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias2), u.spellbookchance2);
+		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias3 != -1) {
+		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias3), u.spellbookchance3);
+		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "for 1 in %d traps", u.traprandomizing);
 		enl_msg("Trap randomization ", "happens ", "happened ", buf );
@@ -7272,6 +7287,21 @@ int final;
 
 	sprintf(buf, "generated more often: %s (freq bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
 	dump("  The RNG hath decreed that this trap was ", buf );
+
+	if (u.spellbookbias1 != -1) {
+		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias1), u.spellbookchance1);
+		dump("  The spell school whose books are more common was ", buf );
+	}
+
+	if (u.spellbookbias2 != -1) {
+		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias2), u.spellbookchance2);
+		dump("  The spell school whose books are more common was ", buf );
+	}
+
+	if (u.spellbookbias3 != -1) {
+		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias3), u.spellbookchance3);
+		dump("  The spell school whose books are more common was ", buf );
+	}
 
 	sprintf(buf, "for 1 in %d traps", u.traprandomizing);
 	dump("  Trap randomization happened ", buf );

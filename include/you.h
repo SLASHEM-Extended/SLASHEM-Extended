@@ -590,6 +590,13 @@ struct you {
 	int alwayscurseditem9;
 	int alwayscurseditem10;
 
+	int spellbookbias1;	/* spell school that is slightly more common */
+	int spellbookbias2;
+	int spellbookbias3;
+	int spellbookchance1;
+	int spellbookchance2;
+	int spellbookchance3;
+
 	int menoraget;
 	int bookofthedeadget;
 	int silverbellget;

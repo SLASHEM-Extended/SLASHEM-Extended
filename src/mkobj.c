@@ -322,6 +322,52 @@ levscalereroll:
 	}
 levscalerollpast:
 
+	if (oclass == SPBOOK_CLASS) {
+
+		if (u.spellbookbias1 >= 0 && (rnd(100) <= u.spellbookchance1) && (spell_skilltype(i) != u.spellbookbias1)) {
+
+			int spattempts = 0;
+			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias1)) {
+				prob = rnd(10000);
+				i = bases[(int)oclass];
+				while((prob -= objects[i].oc_prob) > 0) i++;
+
+				if(objects[i].oc_class != oclass)
+					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+				if(!OBJ_NAME(objects[i]))
+					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+			}
+
+		} else if (u.spellbookbias2 >= 0 && (rnd(100) <= u.spellbookchance2) && (spell_skilltype(i) != u.spellbookbias2)) {
+			int spattempts = 0;
+			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias2)) {
+				prob = rnd(10000);
+				i = bases[(int)oclass];
+				while((prob -= objects[i].oc_prob) > 0) i++;
+
+				if(objects[i].oc_class != oclass)
+					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+				if(!OBJ_NAME(objects[i]))
+					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+			}
+
+		} else if (u.spellbookbias3 >= 0 && (rnd(100) <= u.spellbookchance3) && (spell_skilltype(i) != u.spellbookbias3)) {
+			int spattempts = 0;
+			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias3)) {
+				prob = rnd(10000);
+				i = bases[(int)oclass];
+				while((prob -= objects[i].oc_prob) > 0) i++;
+
+				if(objects[i].oc_class != oclass)
+					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+				if(!OBJ_NAME(objects[i]))
+					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+			}
+
+		}
+
+	}
+
 	if (ismusablenumber(i) && (u.antimusablebias > rn2(100) ) ) {
 
 		prob = rnd(10000);

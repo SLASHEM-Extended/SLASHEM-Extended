@@ -9778,6 +9778,23 @@ u_init()
 		u.veryobtainclass3boost = rnd(100);
 	}
 
+	u.spellbookbias1 = -1;
+	u.spellbookbias2 = -1;
+	u.spellbookbias3 = -1;
+
+	if (!rn2(5)) {
+		u.spellbookbias1 = P_FIRST_SPELL + rn2(10);
+		u.spellbookchance1 = rnd(20);
+		if (!rn2(4)) {
+			u.spellbookbias2 = P_FIRST_SPELL + rn2(10);
+			u.spellbookchance2 = rnd(20);
+			if (!rn2(5)) {
+				u.spellbookbias3 = P_FIRST_SPELL + rn2(10);
+				u.spellbookchance3 = rnd(20);
+			}
+		}
+	}
+
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
@@ -31080,6 +31097,23 @@ int realityflag;
 			case 11: u.veryobtainclass3 = GEM_CLASS; break;
 		}
 		u.veryobtainclass3boost = rnd(100);
+	}
+
+	u.spellbookbias1 = -1;
+	u.spellbookbias2 = -1;
+	u.spellbookbias3 = -1;
+
+	if (!rn2(5)) {
+		u.spellbookbias1 = P_FIRST_SPELL + rn2(10);
+		u.spellbookchance1 = rnd(20);
+		if (!rn2(4)) {
+			u.spellbookbias2 = P_FIRST_SPELL + rn2(10);
+			u.spellbookchance2 = rnd(20);
+			if (!rn2(5)) {
+				u.spellbookbias3 = P_FIRST_SPELL + rn2(10);
+				u.spellbookchance3 = rnd(20);
+			}
+		}
 	}
 
 	u.invisotrap = rnd(TRAPNUM-1);
