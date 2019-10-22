@@ -7916,6 +7916,27 @@ healup(nhp, nxtra, curesick, cureblind)
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax += nxtra;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			if (nhp > 1) {
+				int healsymamount = 110;
+				if (!PlayerCannotUseSkills) {
+					switch (P_SKILL(P_SYMBIOSIS)) {
+						default: healsymamount = 110; break;
+						case P_BASIC: healsymamount = 112; break;
+						case P_SKILLED: healsymamount = 114; break;
+						case P_EXPERT: healsymamount = 116; break;
+						case P_MASTER: healsymamount = 118; break;
+						case P_GRAND_MASTER: healsymamount = 120; break;
+						case P_SUPREME_MASTER: healsymamount = 122; break;
+					}
+				} else {
+					healsymamount = 110;
+				}
+
+				u.usymbiote.mhp *= healsymamount;
+				u.usymbiote.mhp /= 100;
+				if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+			}
+			if (flags.showsymbiotehp) flags.botl = TRUE;
 		}
 
 		if (PlayerBleeds) {
