@@ -4886,6 +4886,7 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Forget it, walscholar! Anna has never been defeated by anyone and you're so weak that watching you would be funny if it wasn't so pitiful.",
 "I really pity you for listening to that Walt fool who seriously thinks he and his 'walscholars' could defeat Anna.",
 "You will probably be knocked out if I kick you even once with my girl boots.",
+"That walscholar is an obese couch potato! They certainly can't even hope to defeat a Hussy in combat.",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -4986,6 +4987,7 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "%s, I'll give you a hint. That strategy of yours, it's not working. Why don't you just give up?",
 "%s, Walt is only using you. You're just a pawn in his army of redshirts! Turn traitor on him and I'll allow you to live!",
 "So you're capable of erecting diamond barriers, %s. Well, you should know that my female butt is capable of destryoying them again and again, no matter how many you set up.",
+"%s, you smoke too much and are also overweight!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -24391,6 +24393,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear conclusive ravings.",
 	"You hear conclusive ravings. Perhaps you should fire in the hole with a conclusion grenade.",
 	"Sir, we've gathered data from over 100 raving oracles. The results are... conclusive.",
+	"Can't you get through, you obese woman picture?",
+	"With a flourish, you exchange your first card for one from beyond!",
+	"You shout the incantation on the card, and know with all your heart that this card is the one!",
 
 };
 
