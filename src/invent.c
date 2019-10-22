@@ -18950,6 +18950,12 @@ boolean knoweverything;
 					pline("Artifact specs: adds a big health boost to the new symbiote."); break;
 				case ART_HOLDEN_MIDDLE_POST:
 					pline("Artifact specs: the monster that you've used it on will persist."); break;
+				case ART_TASTY_TAME_NASTY:
+					pline("Artifact specs: conflict and aggravate monster when worn."); break;
+				case ART_LAUGHTERSNEE:
+					pline("Artifact specs: +8 damage, resist confusion and stun, displacement, lawful."); break;
+				case ART_NENYA:
+					pline("Artifact specs: unchanging and warning when worn, causes elves to generate peaceful, lawful."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

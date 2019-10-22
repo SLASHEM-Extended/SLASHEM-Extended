@@ -45,6 +45,14 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
  * 2.  By weapon class (skill).
  */
 
+/* Amy test entry for easier copy-n-pasting */
+/*
+A("",				itemname,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, ---L ),
+
+*/
+
 /*  dummy element #0, so that all interesting indices are non-zero */
 A("",				STRANGE_OBJECT,
 	0, 0, 0, NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 0L ),
@@ -6886,6 +6894,19 @@ A("Holden Middle Post",				SYMBIOTE, /* doesn't remove the monster */
 A("Rock Solid Seat",				LEATHER_SADDLE, /* cannot be disintegrated */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tasty Tame Nasty",				RIN_INCREASE_DAMAGE, /* conflict and aggravate monster when worn; by jonadab */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Laughtersnee",				ETHER_SAW, /* resist confusion and stun, displacement; by jonadab */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,8), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("Nenya",				RIN_PROTECTION, /* unchanging, causes elves to generate peaceful; by aosdict */
+	(SPFX_RESTR|SPFX_WARN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

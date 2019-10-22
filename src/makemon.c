@@ -25091,6 +25091,8 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_QUADRUPED && Race_if(PM_ENGCHIP) && !Role_if(PM_CONVICT) && !rn2(10)) return TRUE;
 
+	if (uleft && uleft->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;
+	if (uright && uright->oartifact == ART_NENYA && is_elf(ptr)) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && ptr->msound == MS_STENCH && rn2(100)) return TRUE;
 
 	if (ptr->mlet == S_UNICORN && uarmc && uarmc->oartifact == ART_KYS_YOURSELF && !rn2(4)) return TRUE;
