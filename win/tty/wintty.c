@@ -3660,23 +3660,27 @@ tty_print_glyph(window, x, y, glyph)
     if (!reverse_on && (special & (MG_ENGRAVING))) { 
 	    term_end_bgcolor(); 
 	    term_end_color(); 
+	    ttyDisplay->color = NO_COLOR;
     } 
 
 #ifdef TEXTCOLOR 
     if (!reverse_on && (special & (MG_STAIRS|MG_OBJPILE))) { 
 	    term_end_bgcolor(); 
 	    term_end_color(); 
+	    ttyDisplay->color = NO_COLOR;
     } 
 #endif 
 
     if (!reverse_on && (special & (MG_EGOTYPE))) { 
 	    term_end_bgcolor(); 
 	    term_end_color(); 
+	    ttyDisplay->color = NO_COLOR;
     } 
 
     if (!reverse_on && (special & (MG_PEACEFUL))) { 
 	    term_end_bgcolor(); 
 	    term_end_color(); 
+	    ttyDisplay->color = NO_COLOR;
     } 
 
     wins[window]->curx++;	/* one character over */

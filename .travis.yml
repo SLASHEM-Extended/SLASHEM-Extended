@@ -4,8 +4,10 @@ script: make -f sys/unix/GNUmakefile install
 notifications:
   irc:
     channels:
-        - "irc.freenode.net#slashemextended"
-        - "irc.freenode.net#em.slashem.me"
+        - "chat.freenode.net#slashemextended"
+        - "chat.freenode.net#em.slashem.me"
+    on_success: always
+    on_failure: always
     skip_join: true
 matrix:
   include:
