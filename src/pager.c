@@ -4606,6 +4606,7 @@ static NEARDATA const char * const bangganglines[] = {
 "Hey! You! The last guy who tried to mess with the Bang Gang is pushing up the daisies now! Surrender now or you'll suffer the same fate!",
 "I'm surprised they're just sending one single gang scholar to try to defeat Anna. Deluded fools.",
 "Caesar's Legion will punish you, you mean bastard!",
+"Player 1, soon you'll see what your god looks like - because I'm going to send you to him!",
 };
 
 static NEARDATA const char * const hussylines_specific[] = {
@@ -24426,6 +24427,15 @@ static NEARDATA const char * const fake_plines[] = {
 	"Secret hint: if you wear gray Nike sneakers, you can cast the Impedimenta spell.",
 	"The dead end suddenly feels really bad and it needs to buy a new pair of shoes quickly.",
 	"You drop the lump of plutonium. Falling, it hits another lump of plutonium. Suddenly, the dungeon explodes. DYWYPI?",
+	"You begin praying to the Connectivity Gods... Unfortunately, your connection is too poor to reach them. You die.",
+	"Pets won't turn into symbiotes! ...except they will, because why not. In fact, that gives stationary pets a purpose, especially ones that have only passive attacks.",
+	"Incoming message for Player 1. The message is from 'Toad'. It reads: 'Hiarwigo!'",
+	"Incoming message for Player 1. The message is from 'Toad'. It reads: 'Oh-dey!'",
+	"Incoming message for Player 1. The message is from 'Toad'. It reads: 'Rueue!'",
+	"Incoming message for Player 1. The message is from 'Toad'. It reads: 'Bo!'",
+	"The fading monster explodes into multicolored polygons!",
+	"According to Satan, TSX is effectively a variant already. I've always known it, but now it has been officially confirmed! Yaaaaaaay!",
+	"NCommander is certain that LarienTelrunya's bundles are really a brain parasite that took over an innocent German girl and then created SLEX.",
 
 };
 
