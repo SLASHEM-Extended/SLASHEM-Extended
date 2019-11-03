@@ -6893,6 +6893,7 @@ cardtrickchoice:
 			}
 			/* launch_otyp is set in trap.c and controls the trap's strength --Amy */
 			You("laid a trap.");
+			u.uhunger -= 500; /* not "morehungry", not affected by full nutrients */
 
 			{
 				register struct monst *nexusmon, *nextmon;

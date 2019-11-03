@@ -6290,6 +6290,10 @@ boolean extraskills;
 		if (obj->otyp == SWITCHER) skill = P_VAAPAD;
 		if (obj->otyp == PACK_OF_FLOPPIES) skill = P_WEDI;
 		if (obj->otyp == INTELLIGENCE_PACK) skill = P_JUYO;
+
+		if (skill == P_NONE) { /* gifts should always be able to unlock a skill; random if none is associated --Amy */
+			skill = randomgoodskill();
+		}
 	}
 	/* yeah I know they make no sense, but who cares? I want god gifts to be able to unlock every skill --Amy
 	 * since some of those are part of various roles' starting inventories and I don't actually want those roles to
