@@ -2381,6 +2381,9 @@ dosacrifice()
 
 	}
 
+	/* Amy edit: curing sanity is way too difficult! so here's one way of reducing it a bit */
+	reducesanity(rnd(20));
+
 	/* OK, you get brownie points. */
 	if(u.ugangr) {
 

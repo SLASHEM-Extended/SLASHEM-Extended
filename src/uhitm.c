@@ -9399,6 +9399,7 @@ boolean ranged;
 		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("You are healed!");
+		    reducesanity(1);
 		    if (Upolyd) {
 			u.mh += rnd(7);
 			if (!rn2(7)) {

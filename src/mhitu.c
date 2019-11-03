@@ -8839,6 +8839,7 @@ dopois:
 		   && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("%s hits!  (I hope you don't mind.)", Monnam(mtmp));
+		    reducesanity(1);
 		    if (Upolyd) {
 			u.mh += rnd(7);
 /* STEPHEN WHITE'S NEW CODE */                                            
@@ -9857,6 +9858,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("It hits!  (I hope you don't mind.)");
+		    reducesanity(1);
 		    if (Upolyd) {
 			u.mh += rnd(7);
 			if (!rn2(7)) {
@@ -13766,6 +13768,7 @@ common:
 		if(!uwep
 		   && !uarmu
 		   && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
+		    reducesanity(1);
 		    if (Upolyd) {
 			u.mh += rnd(7);
 			    /* no upper limit necessary; effect is temporary */
@@ -15445,6 +15448,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!uwep && !uarmu && !uarm && !uarmh && !uarms && !uarmg && !uarmc && !uarmf) {
 		    boolean goaway = FALSE;
 		    pline("You are healed.");
+		    reducesanity(1);
 		    if (Upolyd) {
 			u.mh += rnd(7);
 			if (!rn2(7)) {
