@@ -6272,6 +6272,9 @@ SCROLL((char *)0,               "WE WANT TO SWOON OVER THE GIRL TURN SHOES",  P_
 SCROLL((char *)0,               "DAS EIS TUT SCHMILZEN",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
 SCROLL((char *)0,               "MY WOMAN IS NAMED BORYLL",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "BEGGAR IS AN EUPHEMISM FOR THIEF",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "SAVE YOUR NIGHT DO",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
+SCROLL((char *)0,               "K4  LC GJ E YF  H Y P A",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "PRAISE THE SUN",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 
 
 #ifdef MAIL

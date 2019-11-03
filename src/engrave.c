@@ -966,6 +966,11 @@ static const char *random_mesg[] = {
 	"In the next was at the cover a schiessmaschine, which shot continuing, resounds.",
 	"Please brush your feet before entering the Dungeons of Doom. Sincerely, Moloch.",
 	"what's an anagram of Banach-Tarski? Banach-Tarski Banach-Tarski.",
+	"Well you are sometimes really stupid! And sometimes very! And sometimes small! And sometimes very!",
+	"that girl is called hole-girl-ass with me and is sow-super shit. and above all, i and my friend simply threw her about 18 found eggs next to the tree! har-har!",
+	"the most humans create super mario land 5 up to the end boss of the last world 8-4, but that is completely fast and (almost) only with fireballs defeatable. that is the all-heaviest end boss of the mario-luigi-games. har-har!",
+	"nobody except me has super mario land 5 completely finished, but i have in 8-4 always fireballs when i'm at the end boss. so somehow the game is sow easy. har-har!",
+	"i have the game 'super mario land 5' completely finished until world 8-4, and that i finished too, and even the sow-heavy end boss on which you have to jump 10 times. har-har!",
 
 };
 
