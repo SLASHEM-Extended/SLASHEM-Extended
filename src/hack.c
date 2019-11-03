@@ -4927,6 +4927,13 @@ inv_weight()
 	if (uarmf && itemhasappearance(uarmf, APP_LEAD_BOOTS)) wt += 100;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
 
+	if (uinsymbiosis) {
+		if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) wt += 1000;
+		else if (mons[u.usymbiote.mnum].msize >= MZ_HUGE) wt += 300;
+		else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) wt += 100;
+		if ((int) mons[u.usymbiote.mnum].cwt > 9) wt += ((int) mons[u.usymbiote.mnum].cwt / 10);
+	}
+
 	wc = weight_cap();
 	return (wt - wc);
 }
