@@ -10223,7 +10223,7 @@ u_init()
 	u.steedhitchance = 25;
 	u.symbioteaggressivity = 25;
 
-	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
+	u.urmaxlvl = 1; /* will go up if an rodneyan race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */
 	u.urmaxlvlD = 1; /* will go up if a bard role player levels up */
@@ -10234,6 +10234,8 @@ u_init()
 	u.urmaxlvlI = 1; /* will go up if a DQ Slime with green slime race levels up */
 	u.urmaxlvlJ = 1; /* will go up if an anachronounbinder role player levels up */
 	u.urmaxlvlK = 1; /* will go up if a SJW role player levels up */
+	u.urmaxlvlL = 1; /* will go up if an asgardian race player levels up */
+	u.urmaxlvlM = 1; /* will go up if an missingno race player levels up */
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 	u.xtralevelmult = 1; /* will go up if you level up from EXP points while already XL30 */
 

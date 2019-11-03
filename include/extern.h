@@ -765,6 +765,7 @@ E void losexp(const char *, BOOLEAN_P, BOOLEAN_P);
 E void newexplevel(void);
 E void pluslvl(BOOLEAN_P);
 E long rndexp(BOOLEAN_P);
+E void exprecalc(void);
 
 /* ### explode.c ### */
 

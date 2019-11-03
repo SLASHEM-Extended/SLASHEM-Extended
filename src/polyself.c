@@ -291,6 +291,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 	vision_full_recalc = 1;
 	(void) encumber_msg();
 	see_monsters();
+	exprecalc();
 }
 
 void

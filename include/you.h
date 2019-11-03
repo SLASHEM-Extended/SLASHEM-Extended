@@ -389,7 +389,7 @@ struct you {
 	struct permonst *tensionmonsterspecB; 	/* for mixed tension rooms */
 	int next_check; 	/* attrib.c check */
 
-	int urmaxlvl;		/* for asgardian race */
+	int urmaxlvl;		/* for rodneyan race */
 	int urmaxlvlB;		/* for cyborg role */
 	int urmaxlvlC;		/* for binder role */
 	int urmaxlvlD;		/* for bard role */
@@ -400,6 +400,8 @@ struct you {
 	int urmaxlvlI;		/* for DQ slime combined with green slime race */
 	int urmaxlvlJ;		/* for anachronounbinder role */
 	int urmaxlvlK;		/* for SJW role */
+	int urmaxlvlL;		/* for asgardian race */
+	int urmaxlvlM;		/* for missingno race */
 	int urmaxlvlUP;		/* for determining whether levelups refill your HP and Pw */
 	int xtralevelmult;	/* multiplier that determines how much EXP you need to advance again if at XL30 */
 	int uhereticgodinit;
