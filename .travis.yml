@@ -8,7 +8,7 @@ notifications:
         - "chat.freenode.net#em.slashem.me"
     on_success: always
     on_failure: always
-    skip_join: true
+    skip_join: false
 matrix:
   include:
     - os: linux
