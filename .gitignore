@@ -36,6 +36,7 @@ dat/quest.dat
 dat/quest_levs
 dat/rumors
 dat/spec_levs
+include/date.h
 include/dgn_comp.h
 include/filename.h
 include/lev_comp.h
