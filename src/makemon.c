@@ -109,9 +109,6 @@ register int x, y, n;
 	coord mm;
 	register int cnt = rno(n);
 	int kindred = rn2(20) ? 0 : 1;
-	if (!(u.monstertimefinish % 137) ) kindred = rn2(5) ? 0 : 1;
-	if (!(u.monstertimefinish % 837) ) kindred = rn2(2) ? 0 : 1;
-	if (!(u.monstertimefinish % 4337) ) kindred = rn2(20) ? 1 : 0;
 
 	if (mtmp->data->geno & G_PLATOON) kindred = 1;
 	if (mtmp->data->geno & G_UNIQ) kindred = 1; /* uniques are created with others of their kin, instead of clones of themselves */
@@ -19465,7 +19462,7 @@ register int	mmflags;
 		mtmp->egotype_incrementor = 1;
 	}
 
-	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
+	if (!rn2(isxrace ? 30 : 100) || always_egotype(mtmp->data) ) {
 
 		add_monster_egotype(mtmp);
 
@@ -19475,7 +19472,7 @@ register int	mmflags;
 
 	}
 
-	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
+	if (ptr->mlet == S_FUNGUS && (!rn2(isxrace ? 20 : 66)) ) {
 
 		add_monster_egotype(mtmp);
 
@@ -20884,11 +20881,11 @@ register int	mmflags;
 	if (mtmp->data->mlet == u.alwaysinvisible) mtmp->minvis = mtmp->perminvis = 1;
 	if (mtmp->data->mlet == u.alwayshidden) mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 
-	if (!rn2(!(u.monstertimefinish % 13334) ? 3 : !(u.monstertimefinish % 1334) ? 10 : !(u.monstertimefinish % 134) ? 30 : 100) && mtmp->minvis) mtmp->minvisreal = TRUE;
+	if (!rn2(100) && mtmp->minvis) mtmp->minvisreal = TRUE;
 
-	if (!rn2(!(u.monstertimefinish % 13239) ? 3 : !(u.monstertimefinish % 1329) ? 10 : !(u.monstertimefinish % 129) ? 30 : 100) ) mtmp->noegodesc = TRUE;
+	if (!rn2(100) ) mtmp->noegodesc = TRUE;
 
-	if (!rn2(!(u.monstertimefinish % 13239) ? 3 : !(u.monstertimefinish % 1329) ? 10 : !(u.monstertimefinish % 129) ? 30 : 100) ) mtmp->noegodisplay = TRUE;
+	if (!rn2(100) ) mtmp->noegodisplay = TRUE;
 
 	if (issoviet && rn2(3)) {
 		mtmp->noegodesc = TRUE;
@@ -21347,7 +21344,7 @@ rndmonst()
 		}
 	}
 	
-	if (!rn2(100)) { /* all monster "teams" have at least some chance of being selected --Amy */
+	if (!rn2(500)) { /* all monster "teams" have at least some chance of being selected --Amy */
 		randmnst = (rn2(187) + 1);
 		randmnsx = (rn2(100) + 1);
 
@@ -21508,10 +21505,10 @@ rndmonst()
 	if (Is_oracle_level(&u.uz) && (!!flags.groundhogday ^ !rn2(20)))
 		return (&mons[PM_WOODCHUCK]);
 
-      if (u.uz.dnum == quest_dnum && (!rn2(7)) && (ptr = qt_montype()) != 0)
+      if (u.uz.dnum == quest_dnum && (!rn2(20)) && (ptr = qt_montype()) != 0)
 	    return ptr; 
 
-      if (u.uz.dnum == subquest_dnum && (!rn2(7)) && (ptr = qt_montype()) != 0)
+      if (u.uz.dnum == subquest_dnum && (!rn2(20)) && (ptr = qt_montype()) != 0)
 	    return ptr; 
 
 	if (rndmonst_state.choice_count < 0) {	/* need to recalculate */

@@ -363,7 +363,7 @@ trap_of_walls:
 	 * Relax! There's a simple reason - after a while, umber hulks and similar monsters might dig out entire levels,
 	 * and in vanilla there's absolutely no way to restore them to their previous condition. Not so here,
 	 * where the dungeon will gradually "repair" itself, so to speak. Scrolls of lockout can further that repair.*/
-   if (!rn2(iswarper ? 5 : 10) || (!(u.monstertimefinish % 517) && !rn2(iswarper ? 5 : 10) ) || (!(u.monstertimefinish % 3517) && !rn2(iswarper ? 2 : 5) ) || !(u.monstertimefinish % 23517) ) {
+   if (!rn2(iswarper ? 5 : 10) ) {
 	randomx = rn1(COLNO-3,2);
 	randomy = rn2(ROWNO);
 

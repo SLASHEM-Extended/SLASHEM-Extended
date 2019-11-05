@@ -109,7 +109,7 @@ register int x, y;
 	register struct obj *otmp;
 
 	if (occupied(x, y)) return;
-	if (rn2( !((moves + u.monstertimefinish) % 3357 ) ? 5 : !((moves + u.monstertimefinish) % 357 ) ? 10 : 20)) return;
+	if (rn2(20)) return;
 
 	whatisit = rnd(330);
 
@@ -2399,34 +2399,6 @@ boolean anywhere;
 
 	/* Allow rooms to be closer together. For warper race characters this will be the case even more often. --Amy */
 
-	if (!((moves + u.monstertimefinish) % (iswarper ? 7 : 19) )) {
-
-		xlim = xlim - 1;
-		ylim = ylim - 1;
-
-	}
-
-	if (!((moves + u.monstertimefinish) % (iswarper ? 13 : 91) )) {
-
-		xlim = xlim - 2;
-		ylim = ylim - 2;
-
-	}
-
-	if (!((moves + u.monstertimefinish) % (iswarper ? 19 : 464) )) {
-
-		xlim = xlim - 5;
-		ylim = ylim - 5;
-
-	}
-
-	if (!((moves + u.monstertimefinish) % (iswarper ? 29 : 2209) )) {
-
-		xlim = xlim - 10;
-		ylim = ylim - 10;
-
-	}
-
 	if (anywhere) {
 
 		xlim = xlim - rnd(10);
@@ -2507,34 +2479,6 @@ boolean anywhere;
 	int	xlim = XLIM, ylim = YLIM;
 
 	/*if (anywhere) pline("anywhere!");*/
-
-	if (!((moves + u.monstertimefinish) % (iswarper ? 7 : 19) )) {
-
-		xlim = xlim - 1;
-		ylim = ylim - 1;
-
-	}
-
-	if (!((moves + u.monstertimefinish) % (iswarper ? 13 : 91) )) {
-
-		xlim = xlim - 2;
-		ylim = ylim - 2;
-
-	}
-
-	if (!((moves + u.monstertimefinish) % (iswarper ? 19 : 464) )) {
-
-		xlim = xlim - 5;
-		ylim = ylim - 5;
-
-	}
-
-	if (!((moves + u.monstertimefinish) % (iswarper ? 29 : 2209) )) {
-
-		xlim = xlim - 10;
-		ylim = ylim - 10;
-
-	}
 
 	if (anywhere) {
 
@@ -3769,10 +3713,6 @@ corridor	*c;
 
 	boolean specialcorridor = 0;
 	if (!rn2(iswarper ? 50 : 500)) specialcorridor = 1;
-
-	if (!(u.monstertimefinish % 327) && !rn2(iswarper ? 10 : 50)) specialcorridor = 1;
-
-	if (!((moves + u.monstertimefinish) % 5337 )) specialcorridor = 1;
 
 	if (c->src.room == -1) {
 		sort_rooms();
@@ -5402,7 +5342,7 @@ dlb *fd;
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
-	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {
@@ -5487,8 +5427,6 @@ dlb *fd;
 
     int specialcorridor;
     if (!rn2(iswarper ? 50 : 500)) specialcorridor = rnd(2);
-    if (!(u.monstertimefinish % 347) && !rn2(iswarper ? 10 : 50)) specialcorridor = rnd(2);
-    if (!((moves + u.monstertimefinish) % 4257 )) specialcorridor = rnd(2);
 
     (void) memset((void *)&Map[0][0], 0, sizeof Map);
     load_common_data(fd, SP_LEV_MAZE);
@@ -6196,7 +6134,7 @@ dlb *fd;
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
-	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
 
 		mkroommateroom(0);
 		if (!rn2(5)) {

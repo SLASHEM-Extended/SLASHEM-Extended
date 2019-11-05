@@ -203,54 +203,31 @@ ENGRAVING:(2,2),burn,"Danger! Cursed Items! Do Not Touch!"
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
   
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
 MONSTER: random, random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 RANDOM_CORRIDORS
@@ -280,32 +257,12 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
   
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
 MONSTER: random, random, random, hostile
 OBJECT: random,random,random
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
@@ -316,14 +273,6 @@ MONSTER: random, random, random, hostile
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
@@ -331,8 +280,6 @@ OBJECT: random, random, random
 MONSTER: random, random, random, hostile
 OBJECT: random, random, random
 OBJECT: random, random, random
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
@@ -342,14 +289,6 @@ MONSTER: random, random, random, hostile
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
@@ -358,14 +297,6 @@ MONSTER: random, random, random, hostile
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 
 RANDOM_CORRIDORS
 
@@ -393,57 +324,11 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
   
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
@@ -457,41 +342,12 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
@@ -504,25 +360,6 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
@@ -533,25 +370,6 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 RANDOM_CORRIDORS

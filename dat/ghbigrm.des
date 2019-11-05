@@ -53,40 +53,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -94,53 +60,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -226,39 +146,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -266,53 +153,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -390,39 +231,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -430,53 +238,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,(01,01)
-MONSTER:random,random,(13,01)
-MONSTER:random,random,(25,01)
-MONSTER:random,random,(37,01)
-MONSTER:random,random,(49,01)
-MONSTER:random,random,(61,01)
-MONSTER:random,random,(73,01)
-MONSTER:random,random,(07,07)
-MONSTER:random,random,(13,07)
-MONSTER:random,random,(25,07)
-MONSTER:random,random,(37,07)
-MONSTER:random,random,(49,07)
-MONSTER:random,random,(61,07)
-MONSTER:random,random,(67,07)
-MONSTER:random,random,(07,09)
-MONSTER:random,random,(13,09)
-MONSTER:random,random,(25,09)
-MONSTER:random,random,(37,09)
-MONSTER:random,random,(49,09)
-MONSTER:random,random,(61,09)
-MONSTER:random,random,(67,09)
-MONSTER:random,random,(01,16)
-MONSTER:random,random,(13,16)
-MONSTER:random,random,(25,16)
-MONSTER:random,random,(37,16)
-MONSTER:random,random,(49,16)
-MONSTER:random,random,(61,16)
-MONSTER:random,random,(73,16)
 MONSTER:random,random,(01,01)
 MONSTER:random,random,(13,01)
 MONSTER:random,random,(25,01)
@@ -556,39 +318,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -596,53 +325,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -721,39 +404,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -761,53 +411,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -889,39 +493,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -929,53 +500,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -1055,39 +580,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -1095,53 +587,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -1222,39 +668,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -1262,53 +675,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -1387,39 +754,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -1427,53 +761,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -1554,39 +842,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -1594,53 +849,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -1722,39 +931,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -1762,53 +938,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -1886,39 +1016,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -1926,53 +1023,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -2052,39 +1103,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -2092,53 +1110,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -2214,39 +1186,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -2254,53 +1193,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -2376,39 +1269,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -2416,53 +1276,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -2568,39 +1382,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -2608,53 +1389,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -2731,39 +1466,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -2771,53 +1473,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -2899,39 +1555,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -2939,53 +1562,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -3074,58 +1651,7 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
@@ -3161,34 +1687,7 @@ MONSTER:random,random,(37,16)
 MONSTER:random,random,(49,16)
 MONSTER:random,random,(61,16)
 MONSTER:random,random,(73,16)
-MONSTER:random,random,(01,01)
-MONSTER:random,random,(13,01)
-MONSTER:random,random,(25,01)
-MONSTER:random,random,(37,01)
-MONSTER:random,random,(49,01)
-MONSTER:random,random,(61,01)
-MONSTER:random,random,(73,01)
-MONSTER:random,random,(07,07)
-MONSTER:random,random,(13,07)
-MONSTER:random,random,(25,07)
-MONSTER:random,random,(37,07)
-MONSTER:random,random,(49,07)
-MONSTER:random,random,(61,07)
-MONSTER:random,random,(67,07)
-MONSTER:random,random,(07,09)
-MONSTER:random,random,(13,09)
-MONSTER:random,random,(25,09)
-MONSTER:random,random,(37,09)
-MONSTER:random,random,(49,09)
-MONSTER:random,random,(61,09)
-MONSTER:random,random,(67,09)
-MONSTER:random,random,(01,16)
-MONSTER:random,random,(13,16)
-MONSTER:random,random,(25,16)
-MONSTER:random,random,(37,16)
-MONSTER:random,random,(49,16)
-MONSTER:random,random,(61,16)
-MONSTER:random,random,(73,16)
+
 MAZE:"ghbgr-20",' '
 GEOMETRY:center,center
 MAP
@@ -3240,39 +1739,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -3280,53 +1746,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -3405,39 +1825,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -3445,53 +1832,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -3569,58 +1910,7 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
@@ -3673,34 +1963,6 @@ MONSTER:'t',random,(47,11),hostile
 OBJECT:'.',random,(48,11)
 
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -3785,39 +2047,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -3825,53 +2054,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -3947,39 +2130,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -3987,53 +2137,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -4109,39 +2213,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -4149,53 +2220,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -4271,39 +2296,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -4311,53 +2303,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -4433,39 +2379,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -4473,53 +2386,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -4595,39 +2462,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -4635,53 +2469,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -4757,39 +2545,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -4797,53 +2552,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -4919,39 +2628,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -4959,53 +2635,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -5081,39 +2711,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -5121,53 +2718,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -5248,39 +2799,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -5288,53 +2806,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -5412,39 +2884,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -5452,53 +2891,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -5579,39 +2972,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -5619,53 +2979,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -5742,39 +3056,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -5782,53 +3063,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -5906,58 +3141,7 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
@@ -6044,34 +3228,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 
 LEVEL: "ghbgr-37"
 ROOM: "ordinary" , lit, random, random, (50,12)
@@ -6094,58 +3250,7 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
@@ -6181,64 +3286,26 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 RANDOM_CORRIDORS
@@ -6258,30 +3325,7 @@ OBJECT:random,random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -6307,49 +3351,7 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
@@ -6368,51 +3370,27 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 
 ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 STAIR:random,down
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
+ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
 MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
 ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
-MONSTER: random, random, random, hostile
-ROOM: "ordinary" , random, random, random, (3,3)
-MONSTER: random, random, random, hostile
 MONSTER: random, random, random, hostile
 
 RANDOM_CORRIDORS
@@ -6432,30 +3410,7 @@ OBJECT:random,random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -6482,67 +3437,11 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -6571,30 +3470,7 @@ OBJECT:random,random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -6623,30 +3499,7 @@ OBJECT:random,random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -6675,30 +3528,7 @@ OBJECT:random,random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -6767,59 +3597,7 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 # Random traps
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
@@ -6855,34 +3633,7 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
+
 
 MAZE:"ghbgr-41",' '
 GEOMETRY:center,center
@@ -6933,40 +3684,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -6974,53 +3691,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -7103,39 +3774,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -7143,53 +3781,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -7271,39 +3863,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -7311,53 +3870,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -7436,39 +3949,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -7476,53 +3956,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -7576,39 +4010,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -7616,53 +4017,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -7718,39 +4073,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -7758,53 +4080,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -7887,39 +4163,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -7927,53 +4170,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -8029,39 +4226,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -8069,53 +4233,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -8220,39 +4338,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -8260,53 +4345,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -8382,40 +4421,6 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:random,random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -8423,53 +4428,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -8562,24 +4521,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,(01,01)
 MONSTER:random,random,(01,03)
@@ -8613,40 +4554,6 @@ MONSTER:random,random,(15,04)
 MONSTER:random,random,(57,04)
 MONSTER:random,random,(15,16)
 MONSTER:random,random,(57,16)
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 #
 # The Ruins of the Dwarrowdelf
@@ -8711,24 +4618,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -8758,68 +4647,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 #The Bridge of Khazad-dûm
 #(Why lava? Because holes look ugly.)
@@ -8890,24 +4717,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -8937,68 +4746,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 #The Halls of Moria
 
@@ -9055,24 +4802,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -9102,34 +4831,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
@@ -9148,40 +4849,6 @@ MONSTER:'o',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 MAZE: "ghbgr-55",' '
 FLAGS:hardfloor
@@ -9236,24 +4903,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -9283,34 +4932,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
@@ -9329,40 +4950,6 @@ MONSTER:'o',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 MAZE: "ghbgr-56",' '
 FLAGS:hardfloor
@@ -9417,24 +5004,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -9464,34 +5033,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
@@ -9510,40 +5051,6 @@ MONSTER:'o',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 MAZE: "ghbgr-57",' '
 FLAGS:hardfloor
@@ -9618,18 +5125,55 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
+# Random traps
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
@@ -9665,86 +5209,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'o',random,random
-MONSTER:'T',random,random
-MONSTER:'T',random,random
-MONSTER:'T',random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 #The Forest of BlastHardcheese
 
@@ -9800,24 +5264,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -9847,34 +5293,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
@@ -9893,40 +5311,6 @@ MONSTER:'o',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 #The Doors of Durin, abandoned, w/altar
 #Strictly speaking, this is the West-gate, but
@@ -10006,53 +5390,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -10194,24 +5532,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 # Random monsters.
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -10241,34 +5561,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
 MONSTER:'o',random,random
@@ -10287,38 +5579,4 @@ MONSTER:'o',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
 MONSTER:'T',random,random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 

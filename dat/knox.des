@@ -885,41 +885,6 @@ OBJECT:'*',"amethyst",(46,13)
 OBJECT:'*',"amethyst",(47,13)
 OBJECT:'*',"amethyst",(48,13)
 
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 #
 # "Winterly Fort Ludios" by Patric Mueller <bhaak@gmx.net>
 #
@@ -1026,40 +991,6 @@ OBJECT:'*',"ruby",(68,04)
 OBJECT:'*',"amethyst",(66,11)
 OBJECT:'*',"amethyst",(67,11)
 OBJECT:'*',"amethyst",(68,11)
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 #
 # "Minas Tirith?" by Patric Mueller <bhaak@gmx.net>
@@ -1245,38 +1176,4 @@ OBJECT:'*',"ruby",(62,03)
 OBJECT:'*',"amethyst",(74,01)
 OBJECT:'*',"amethyst",(74,02)
 OBJECT:'*',"amethyst",(74,03)
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 

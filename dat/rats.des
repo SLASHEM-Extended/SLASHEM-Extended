@@ -630,37 +630,6 @@ MONSTER: 'r', "rabid rat", random, hostile
 MONSTER: 'r', random, (8,8), hostile
 OBJECT:'?',"root password detection",(8,8)
   
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
@@ -672,9 +641,6 @@ ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 MONSTER: 'r', "rabid rat", random, hostile
 MONSTER: 'r', "rabid rat", random, hostile
 
@@ -688,18 +654,12 @@ MONSTER: 'r', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
@@ -755,37 +715,6 @@ MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, (8,8), hostile
 OBJECT:'?',"root password detection",(8,8)
   
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
@@ -797,9 +726,6 @@ ROOM: "ordinary" , random, random, random, random
 STAIR: random, down
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 
@@ -813,18 +739,12 @@ MONSTER: 'r', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
@@ -880,37 +800,6 @@ MONSTER: 'r', "rabid rat", random, hostile
 MONSTER: 'r', random, (8,8), hostile
 OBJECT:'?',"root password detection",(8,8)
   
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-
 ROOM: "ordinary" , random, random, random, random
 STAIR: random, up
 OBJECT: random,random,random
@@ -935,8 +824,12 @@ MONSTER: 'r', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
@@ -945,8 +838,12 @@ MONSTER: 'r', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+MONSTER: 'r', random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
@@ -955,9 +852,6 @@ MONSTER: 'r', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
@@ -965,38 +859,12 @@ MONSTER: 'r', random, random, hostile
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile
 
 ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: 'r', random, random, hostile
-MONSTER: 'r', random, random, hostile
-MONSTER: 'r', random, random, hostile
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
-MONSTER: 'r', random, random, hostile
-MONSTER: 'r', random, random, hostile
-MONSTER: 'r', random, random, hostile
-
-ROOM: "ordinary" , random, random, random, random
-OBJECT: random, random, random
-TRAP: random, random
-TRAP: random, random
-TRAP: random, random
 TRAP: random, random
 MONSTER: 'r', random, random, hostile
 MONSTER: 'r', random, random, hostile

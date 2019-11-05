@@ -618,41 +618,6 @@ MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'d', "little dog", random, hostile
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
-
 #
 #       The Shops
 #
@@ -726,41 +691,6 @@ MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'f', "kitten", random, hostile
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
-
 #
 #       The Shops
 #
@@ -831,41 +761,6 @@ MONSTER:'@', "smirking sneak thief", random, hostile
 MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'f', "kitten", random, hostile
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 
 #
 #       The Shops
@@ -939,41 +834,6 @@ MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'r', "sewer rat", random, hostile
 MONSTER:'d', "little dog", random, hostile
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
-
 #
 #       The Shops
 #
@@ -1007,5 +867,4 @@ DOOR: false, locked, random, random
 SUBROOM: "tin shop", random, (65,13), (10,4), "town"
 CHANCE: 66
 DOOR: false, locked, random, random
-
 

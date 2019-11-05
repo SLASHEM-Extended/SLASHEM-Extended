@@ -7556,40 +7556,6 @@ REGION:(39,08,55,08),unlit,"ordinary",filled,true
 REGION:(47,05,47,06),unlit,"ordinary",filled,true
 REGION:(47,10,47,11),unlit,"ordinary",filled,true
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 MAZE:"hcstl-2",random
 FLAGS: noteleport, lethe
 GEOMETRY:center,center
@@ -7810,41 +7776,6 @@ MONSTER:'C',random,(36,04)
 MONSTER:'C',random,(35,11)
 MONSTER:'C',random,(36,12)
 MONSTER:'C',random,(37,13)
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 
 MAZE:"hcstl-3",random
 FLAGS: noteleport, lethe
@@ -8076,41 +8007,6 @@ OBJECT:')',"partisan",(09,03)
 OBJECT:')',"ranseur",(11,03)
 OBJECT:')',"spetum",(08,07)
 OBJECT:')',"bill-guisarme",(12,07)
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 
 ##
 ##Castle 2
@@ -8367,42 +8263,6 @@ REGION:(56,14,60,16),lit,"ordinary",filled,true
 #   Barracks
 REGION:(16,06,25,07),lit,"barracks"
 REGION:(16,11,25,12),lit,"barracks"
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
-
 
 #
 #	Pleaseant Valley.
@@ -8691,41 +8551,6 @@ TRAP:"anti magic",random
 TRAP:"anti magic",random
 TRAP:"board",(18,03)
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
-
 ##
 ##Castle 4
 ##
@@ -8976,41 +8801,6 @@ REGION:(34,16,55,16),unlit,"ordinary",filled,true
 REGION:(43,09,57,09),unlit,"ordinary",filled,true
 REGION:(57,08,57,10),unlit,"ordinary",filled,true
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
-
 ##
 ##Castle 5
 ##
@@ -9238,41 +9028,6 @@ REGION:(47,05,47,06),unlit,"ordinary",filled,true
 REGION:(47,10,47,11),unlit,"ordinary",filled,true
 #	Bloody Hallway hack/patch
 REGION:(06,06,12,06),lit,"ordinary",filled,true
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 
 MAZE:"hcstl-8",random
 FLAGS: noteleport, lethe
@@ -9519,40 +9274,6 @@ REGION:(13,03,55,03),random,"randomroom"
 REGION:(34,16,55,16),random,"randomroom"
 REGION:(43,09,57,09),unlit,"ordinary",filled,true
 REGION:(57,08,57,10),unlit,"ordinary",filled,true
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 # idea by Khor - castle with a grid bug invasion. I'll make it spawn random x instead though. --Amy
 
@@ -9828,40 +9549,6 @@ MONSTER:'x',random,random
 MONSTER:'x',random,random
 MONSTER:'x',random,random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 # Aladdin's Palace
 MAZE:"hcstl-10",' '
 FLAGS: noteleport, lethe
@@ -10095,15 +9782,6 @@ TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
@@ -10113,44 +9791,8 @@ TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 # Aladdin's Palace with fixes by Amy
 MAZE:"hcstl-11",' '
@@ -10389,15 +10031,6 @@ TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
@@ -10407,43 +10040,8 @@ TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
 
 # The Kenneth Arnold Memorial Library:
 MAZE:"hcstl-12",' '
@@ -10681,24 +10279,6 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
-TRAP:random,random
 
 # Monsters:
 MONSTER:'D',random,(06,01)
@@ -10740,11 +10320,6 @@ OBJECT:'?',random,contained
 
 REGION:(00,00,74,19),lit,"ordinary"
 NON_DIGGABLE:(00,00,62,16)
-
-OBJECT:'?',"bad effect",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
 
 # Doctor Jeckyl's Laboratory:
 MAZE:"hcstl-13",' '
@@ -11101,20 +10676,6 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-MONSTER:random,random,random
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
 
 MAZEWALK:(60,01),east
 MAZEWALK:(60,18),east
@@ -11260,41 +10821,6 @@ OBJECT:'=',"adornment",random
 OBJECT:'=',"adornment",random
 OBJECT:'=',"adornment",random
 
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
-
 MAZE: "hcstl-15", 'T'
 FLAGS: noteleport,lethe
 GEOMETRY:center,center
@@ -11431,39 +10957,4 @@ OBJECT:'=',random,random
 OBJECT:'=',"adornment",random
 OBJECT:'=',"adornment",random
 OBJECT:'=',"adornment",random
-
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'`',"boulder",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'%',"egg",random
-OBJECT:'(',"figurine",random,cursed,0
-
-OBJECT:'?',"bad effect",random
-OBJECT:'?',"root password detection",random
-OBJECT:'?',"flood",random
-OBJECT:'?',"lava",random
-OBJECT:'?',"trap creation",random
-OBJECT:'"',"amulet of data storage",random
-OBJECT:'=',"timely backup",random
-MONSTER:';',random,random
-MONSTER:';',random,random
-MONSTER:'I',random,random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT:'%',"corpse",random
-OBJECT[10%]:'/',"trap creation",random
-OBJECT[10%]:'/',"bad effect",random
-OBJECT[10%]:'/',"clone monster",random
-
 

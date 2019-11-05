@@ -1970,7 +1970,7 @@ level_difficulty()
 		retvalue = (110 + (u.ulevel/2) );
 	else if (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5)))
 		retvalue = 110;
-	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna)
+	else if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(3))
 		retvalue = (depthuz + rn2(u.ulevel) + 2 );
 	else
 		retvalue = depthuz;
@@ -2087,6 +2087,16 @@ level_difficulty()
 	if (u.cellargravate) retvalue *= 2;
 
 	if (uarmg && uarmg->oartifact == ART_DIFFICULT_) retvalue *= 2;
+
+	/* skew generation to make very high-level monsters much more unlikely --Amy */
+
+	if (retvalue > 20) retvalue = (19 + rnd(retvalue - 19));
+
+	/* now skew it even more towards low-level stuff */
+
+	if (retvalue > 1 && retvalue <= 6) retvalue = rnd(retvalue);
+	else if (retvalue > 6 && retvalue <= 11) retvalue = ((retvalue - 5) + rnd(5));
+	else if (retvalue > 11) retvalue = (5 + rnd(retvalue - 5));
 
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;

@@ -2810,7 +2810,7 @@ register int x, y, typ, replacechance;
 		break;
 	}
 	ttmp->hiddentrap = 0;
-	if (!rn2(!(u.monstertimefinish % 13336) ? 3 : !(u.monstertimefinish % 1336) ? 10 : !(u.monstertimefinish % 136) ? 30 : 100)) ttmp->hiddentrap = 1;
+	if (!rn2(100)) ttmp->hiddentrap = 1;
 	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == u.invisotrap) ttmp->hiddentrap = 1;

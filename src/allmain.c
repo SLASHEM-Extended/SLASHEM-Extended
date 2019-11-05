@@ -244,13 +244,13 @@ moveloop()
 			  * dropping newbies off the edge of the planet.  -- DSR 12/2/07
 			  */
 
-			monclock = 70;
+			monclock = 90;
 
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
-				monclock = 20;
+				monclock = 30;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					monclock = 60;
+					monclock = 80;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
@@ -258,8 +258,8 @@ moveloop()
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (monclock < 30 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { monclock = 30; }
-			if (monclock < 20) { monclock = 20; }
+			if (monclock < 40 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { monclock = 40; }
+			if (monclock < 30) { monclock = 30; }
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
@@ -290,21 +290,21 @@ moveloop()
 
 			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
-			xtraclock = 100000;
+			xtraclock = 200000;
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
-				xtraclock = 30000;
+				xtraclock = 60000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					xtraclock = 80000;
+					xtraclock = 160000;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					xtraclock -= past_clock*50000/clock_base;
+					xtraclock -= past_clock*100000/clock_base;
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (xtraclock < 50000 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 50000; }
-			if (xtraclock < 30000) { xtraclock = 30000; }
+			if (xtraclock < 100000 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 100000; }
+			if (xtraclock < 60000) { xtraclock = 60000; }
 
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
@@ -827,25 +827,25 @@ moveloop()
 
 			}
 
-			nastyitemchance = 250000;
+			nastyitemchance = 500000;
 
-			if (moves > 5000) nastyitemchance = 225000;
-			if (moves > 10000) nastyitemchance = 200000;
-			if (moves > 20000) nastyitemchance = 175000;
-			if (moves > 40000) nastyitemchance = 150000;
-			if (moves > 80000) nastyitemchance = 135000;
-			if (moves > 120000) nastyitemchance = 125000;
-			if (moves > 160000) nastyitemchance = 110000;
-			if (moves > 240000) nastyitemchance = 100000;
-			if (moves > 320000) nastyitemchance = 87500;
-			if (moves > 400000) nastyitemchance = 75000;
-			if (moves > 600000) nastyitemchance = 62500;
-			if (moves > 800000) nastyitemchance = 50000;
-			if (moves > 1000000) nastyitemchance = 37500;
-			if (moves > 2000000) nastyitemchance = 25000;
-			if (moves > 3000000) nastyitemchance = 10000;
-			if (moves > 4000000) nastyitemchance = 7500;
-			if (moves > 5000000) nastyitemchance = 5000;
+			if (moves > 5000) nastyitemchance = 450000;
+			if (moves > 10000) nastyitemchance = 400000;
+			if (moves > 20000) nastyitemchance = 350000;
+			if (moves > 40000) nastyitemchance = 300000;
+			if (moves > 80000) nastyitemchance = 270000;
+			if (moves > 120000) nastyitemchance = 250000;
+			if (moves > 160000) nastyitemchance = 220000;
+			if (moves > 240000) nastyitemchance = 200000;
+			if (moves > 320000) nastyitemchance = 175000;
+			if (moves > 400000) nastyitemchance = 150000;
+			if (moves > 600000) nastyitemchance = 125000;
+			if (moves > 800000) nastyitemchance = 100000;
+			if (moves > 1000000) nastyitemchance = 75000;
+			if (moves > 2000000) nastyitemchance = 50000;
+			if (moves > 3000000) nastyitemchance = 40000;
+			if (moves > 4000000) nastyitemchance = 30000;
+			if (moves > 5000000) nastyitemchance = 20000;
 
 			if (ishaxor) nastyitemchance /= 2;
 
