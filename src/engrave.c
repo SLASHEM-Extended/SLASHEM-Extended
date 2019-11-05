@@ -5183,6 +5183,7 @@ static const char *epitaphs[] = {
 	"well, who knows how moves the variants nowadays is, they are capable of making it so that zapping the bag with cancel will also blow it up",
 	"slex is the variant where you ask amy how to cure stuff and what to wish for and wtf just killed you?",
 	"argh far myaratmo snarg! Warrh! P = NP!",
+	"Sigh, yet another pointless death that could have been avoided if these adventurers just read up on OSHA compliance before entering. They all claim they've been heralded from birth, you'd think they could spare a couple days to gear up properly.",
 
 };
 
