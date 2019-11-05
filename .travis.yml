@@ -9,6 +9,9 @@ notifications:
     on_success: always
     on_failure: always
     skip_join: false
+    template:
+        - "%{commit_subject} (%{result} %{branch} #%{build_number}) %{build_url} Diff: %{compare_url}"
+
 matrix:
   include:
     - os: linux
