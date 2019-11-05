@@ -2592,7 +2592,7 @@ register struct monst *mtmp;
 	case MS_NURSE: /* services added by Amy - maybe we should make this into a menu instead of y/n prompts? */
 
 	    {
-		int nursesanitycost = (u.usanity * 100); /* fixed cost */
+		int nursesanitycost = (u.usanity * 10); /* fixed cost */
 
 		int nursedecontcost = u.nursedecontamcost; /* goes up every time you purchase it */
 
