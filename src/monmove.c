@@ -2617,8 +2617,8 @@ altarfound:
 		if (mstatus & MM_AGR_DIED)		/* aggressor died */
 		    return 2;
 
-		if ( ((mstatus & MM_HIT) || (mtmp2->mtame && !mtmp->mtame && !rn2(4))) && !(mstatus & MM_DEF_DIED) &&
-		    ((rn2(4) && mtmp2->movement >= NORMAL_SPEED) || (mtmp2->mtame && !mtmp->mtame)) ) {
+		if ( ((mstatus & MM_HIT) || (mtmp2 && mtmp2->mtame && mtmp && !mtmp->mtame && !rn2(4))) && !(mstatus & MM_DEF_DIED) &&
+		    ((rn2(4) && mtmp2 && mtmp2->movement >= NORMAL_SPEED) || (mtmp2 && mtmp2->mtame && mtmp && !mtmp->mtame)) ) {
 		    mtmp2->movement -= NORMAL_SPEED;
 		    if (mtmp2->movement < 0) mtmp2->movement = 0; /* fail safe */
 		    notonhead = 0;
