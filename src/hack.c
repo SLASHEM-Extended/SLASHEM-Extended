@@ -1205,6 +1205,11 @@ int mode;
 				}
 			}
 
+			if (!Role_if(PM_WALSCHOLAR)) {
+				more_experienced(Role_if(PM_HUSSY) ? 50 : 5, 0);
+				newexplevel();
+			}
+
 		}
 
 walscholardone:

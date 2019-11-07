@@ -18400,6 +18400,12 @@ struct trap *ttmp;
 			deltrap(ttmp);
 			u.cnd_untrapamount++;
 		}
+
+		if (!ttmp->madeby_u) {
+			more_experienced(5,0);
+			newexplevel();
+		}
+
 	}
 	newsym(u.ux + u.dx, u.uy + u.dy);
 	return 1;
@@ -18414,6 +18420,10 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm %s land mine.", the_your[ttmp->madeby_u]);
 	if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
+	if (!ttmp->madeby_u) {
+		more_experienced(20,0);
+		newexplevel();
+	}
 	cnv_trap_obj(LAND_MINE, 1, ttmp);
 	u.cnd_untrapamount++;
 	return 1;
@@ -18430,6 +18440,8 @@ struct trap *ttmp;
 	You("disarm the water trap!");
 	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	more_experienced(10,0);
+	newexplevel();
 	deltrap(ttmp);
 	levl[trapx][trapy].typ = FOUNTAIN;
 	newsym(trapx, trapy);
@@ -18659,6 +18671,8 @@ struct trap *ttmp;
 		default: /* 20 or higher = disarmed */
 			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
 			u.cnd_untrapamount++;
+			more_experienced(500,0);
+			newexplevel();
 			deltrap(ttmp);
 			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
@@ -18817,6 +18831,8 @@ int otyp;
 	if (fails < 2) return fails;
 	You("disarm %s trap.", the_your[ttmp->madeby_u]);
 	u.cnd_untrapamount++;
+	more_experienced(10, 0);
+	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(otyp, 50-rnl(50), ttmp);
 	return 1;

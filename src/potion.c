@@ -5919,6 +5919,8 @@ dodrink()
 			levl[u.ux][u.uy].typ = CORR;
 			pline("The well dries up!");
 		}
+		more_experienced(1, 0);
+		newexplevel();
 		return 1;
 	    }
 	    else if (IS_POISONEDWELL(levl[u.ux][u.uy].typ)) {
@@ -5952,6 +5954,8 @@ dodrink()
 			levl[u.ux][u.uy].typ = CORR;
 			pline("The well dries up!");
 		}
+		more_experienced(5, 0);
+		newexplevel();
 		return 1;
 
 	    }

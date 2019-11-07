@@ -1004,6 +1004,8 @@ doforce()		/* try to force a chest with your weapon */
 					u.cnd_farmlandremoved++;
 					levl[x][y].typ = CORR;
 					newsym(x,y);
+					more_experienced(25, 0);
+					newexplevel();
 				}
 				return(1);
 			}

@@ -324,9 +324,11 @@ dosit()
 		} else if (!Sleep_resistance && (moves >= u.bedsleeping)) {
 
 			u.cnd_bedamount++;
+			u.bedsleeping = moves + 100;
 			You("go to bed.");
 			if (FunnyHallu) pline("Sleep-bundle-wing!");
-			u.bedsleeping = moves + 100;
+			more_experienced(u.ulevel * 5, 0);
+			newexplevel();
 			fall_asleep(-rnd(20), TRUE);
 
 			if (uarmf && uarmf->oartifact == ART_LARISSA_S_GENTLE_SLEEP) {
