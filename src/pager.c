@@ -4324,6 +4324,8 @@ static NEARDATA const char * const longinglines[] = {
 "You hope that %s kicks your butt, because that would feel very fleecy-soft.",
 "Whenever you see %s's high heels, you immediately think about how they could scratch your legs.",
 "Did you know that your fingers can turn into a very erogenous zone when you let %s place her stiletto heels on them? Just think about how wonderful the pain would feel!",
+"Being trampled by %s's extra thick block heels is really lewd!",
+"Even if you're not normally into ballbusting, you'd certainly make an exception for %s's godlike women's feet.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -24451,6 +24453,29 @@ static NEARDATA const char * const fake_plines[] = {
 	"NCommander is certain that LarienTelrunya's bundles are really a brain parasite that took over an innocent German girl and then created SLEX.",
 	"You produce a kaleidoscopic display of floating butterfiles.",
 	"The Amy found out thanks to a segfault that her landlady isn't blocking port 22 any longer. Praise the segfault!",
+	"It's time for our super-special commercial announcement: New NetHack variant dubhack, the windowport that uses a poor text-to-speech translator on every game message.",
+	"It's time for our super-special commercial announcement: New NetHack variant pubhack, for playing with beer.",
+	"It's time for our super-special commercial announcement: New NetHack variant stubhack. Ouch! That hurts! Your right leg is in no shape for kicking.",
+	"It's time for our super-special commercial announcement: New NetHack variant cubhack. The baby owlbear bites!",
+	"It's time for our super-special commercial announcement: New NetHack variant rubhack. Djinni pop out of a magic lamp 100%% of the time rather thean 33%%.",
+	"It's time for our super-special commercial announcement: New NetHack variant grubhack. This food is delicious!",
+	"It's time for our super-special commercial announcement: New NetHack variant hubhack, interactive hardfought irc.",
+	"It's time for our super-special commercial announcement: New NetHack variant clubhack, you are hallucinating all the time and have to dance.",
+	"It's time for our super-special commercial announcement: New NetHack variant clubhack, with improved aklyses.",
+	"It's time for our super-special commercial announcement: New NetHack variant chubhack, you have to eat 5x the amount of food.",
+	"It's time for our super-special commercial announcement: New NetHack variant yub-nubhack. introducing the fearsome ewok monster.",
+	"It's time for our super-special commercial announcement: New NetHack variant stubhack, nothing is implemented, it just gives an error message.",
+	"It's time for our super-special commercial announcement: New NetHack variant shubhack, with everyone's favorite lovecraftian god.",
+	"It's time for our super-special commercial announcement: New NetHack variant glubhack, with improved drowning mechanics.",
+	"glub glub you die!",
+	"It's time for our super-special commercial announcement: New NetHack variant tubhack, now with baths in addition to sinks.",
+	"It's time for our super-special commercial announcement: New NetHack variant scrubhack. You can take baths in pools of water to restore Charisma reduction.",
+	"It's time for our super-special commercial announcement: New NetHack variant subhack, you can explore underwater with a submarine.",
+	"It's time for our super-special commercial announcement: New NetHack variant snubhack, for those who won't play any of those _inferior_ variants.",
+	"It's time for our super-special commercial announcement: New NetHack variant blubhack, for when you just want to cry.",
+	"It's time for our super-special commercial announcement: New NetHack variant shrubhack, introducing hedge terrain.",
+	"It's time for our super-special commercial announcement: New NetHack variant nubhack, with controller support.",
+	"It's time for our super-special commercial announcement: New NetHack variant wubhack, the epic dubstep version.",
 
 };
 
