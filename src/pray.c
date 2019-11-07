@@ -1283,6 +1283,12 @@ pleased(g_align)
 		return;
 	} else if (u.ualign.record < 2 && trouble <= 0) adjalign(1);
 
+	/* p_aligntyp == u.ualign.type at this point; reduce sanity --Amy */
+
+	if (u.ualign.record >= DEVOUT) reducesanity(rnd(100));
+	else if (u.ualign.record >= STRIDENT) reducesanity(rnd(10));
+	else reducesanity(1);
+
 	/* depending on your luck & align level, the god you prayed to will:
 	   - fix your worst problem if it's major.
 	   - fix all your major problems.
