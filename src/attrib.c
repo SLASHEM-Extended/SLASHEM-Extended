@@ -102,6 +102,15 @@ const struct innate {
 		     {  20, &(HSearching), "perceptive", "unaware" },
 		     {	 0, 0, 0, 0 } },
 
+	dem_abil[] = { {	 5, &(MysteriousForceActive), "", "" },
+		     {  9, &(UnfairAttackBug), "", "" },
+		     {  13, &(HighlevelStatus), "", "" },
+		     {  17, &(TrapCreationProblem), "", "" },
+		     {  21, &(UndressingEffect), "", "" },
+		     {  25, &(OrangeSpells), "", "" },
+		     {  30, &(SatanEffect), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	sma_abil[] = { {	 12, &(HFast), "quick", "slow" },
 		     {  15, &(HExtra_wpn_practice), "skillful", "unskilled" },
 		     {  20, &(HJumping), "able to jump around", "unable to jump around" },
@@ -1929,6 +1938,7 @@ int oldlevel, newlevel;
 	case PM_ARCHEOLOGIST:   abil = arc_abil;	break;
 	case PM_SOFTWARE_ENGINEER:   abil = sof_abil;	break;
 	case PM_CRACKER:   abil = cra_abil;	break;
+	case PM_DEMAGOGUE:   abil = dem_abil;	break;
 	case PM_YAUTJA:   abil = yau_abil;	break;
 	case PM_STORMBOY:   abil = sto_abil;	break;
 	case PM_SPACE_MARINE:   abil = sma_abil;	break;
