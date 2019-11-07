@@ -4311,6 +4311,19 @@ static NEARDATA const char * const longinglines[] = {
 "%s has a very fleecy leather whip that you'd love to feel on your back!",
 "You want to buy pink clothing for the beautiful %s.",
 "%s's stilettos are so wonderfully sharp-edged and can scratch everything, even though they look really cuuuuute!",
+"%s's toenails can dig into your skin very beautifully, because they're so sharp-edged and feminine.",
+"%s is such a wonderful swoon bundle woman!",
+"%s's hairstyle can be described as 'fleecy beauty brush', which is a name that makes Amy's roommate put up a very funny facial expression! :-)",
+"Did you see %s's cute lovenails? Actually they're just regular fingernails but they look extra lovely, that's why they're called 'lovenails'.",
+"There is such a pretty %s who you absolutely want to have fun with!",
+"Your bed becomes a very romantic place if %s lies on top of you at night.",
+"The more tender a girl is, the more fun it is to be hurt by her physically. %s is such a girl, and you'd die for having your delicate nuts squashed by her sweet feet.",
+"If you get a wish, you need to absolutely wish for a blessed figurine of %s, bring her to life, and marry her.",
+"Why waste your time exploring hallowed dungeons when you could just settle down somewhere, marry a lovely woman like %s, and have a nice life?",
+"You think it's great that the beautiful %s also exists as a boss monster in this game, and if you encounter her, you will intentionally let her defeat you while admiring her sexiness.",
+"You hope that %s kicks your butt, because that would feel very fleecy-soft.",
+"Whenever you see %s's high heels, you immediately think about how they could scratch your legs.",
+"Did you know that your fingers can turn into a very erogenous zone when you let %s place her stiletto heels on them? Just think about how wonderful the pain would feel!",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -24436,6 +24449,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The fading monster explodes into multicolored polygons!",
 	"According to Satan, TSX is effectively a variant already. I've always known it, but now it has been officially confirmed! Yaaaaaaay!",
 	"NCommander is certain that LarienTelrunya's bundles are really a brain parasite that took over an innocent German girl and then created SLEX.",
+	"You produce a kaleidoscopic display of floating butterfiles.",
+	"The Amy found out thanks to a segfault that her landlady isn't blocking port 22 any longer. Praise the segfault!",
 
 };
 

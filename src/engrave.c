@@ -5166,7 +5166,7 @@ static const char *epitaphs[] = {
 	"At last this character died, so I can finally roll a new one. Thanks RNG!",
 	"I got so bored with this character that I was hoping a monster would kill me, but it just didn't want to happen, so I threw my char away on purpose by eating Envy's corpse. Because I'm such a noob who would actually forfeit the chance to score a SLEX ascension for such a petty reason.",
 
-	/* here we have a bunch of hilarious quotes, I don't know of a good place to put them so for now they're gravestone isncriptions --Amy */
+	/* here we have a bunch of hilarious quotes, I don't know of a good place to put them so for now they're gravestone inscriptions --Amy */
 	"This is markedly different from the most popular RPG series of all time like Final Fantasy, Diablolo, The Legend of Zelda, where players regularly fight against monsters with resistances or immunities regularly.",
 	"Claim that it's obvious that weapons that affect 'most' monsters are as good as weapons that affect 'all' monsters: Claim rejected. I've coached multiple people in playing nethack and they are all confused by this.", /* "I've coached multiple people in playing nethack and they are all confused by the fact that I don't know how to coach people." :P */
 	"Further it is not typical of an RPG to have a energy type weapon and have so few monsters resistant to that type of energy. Nethack is an outlier in that. You are wrong.",
@@ -5180,6 +5180,9 @@ static const char *epitaphs[] = {
 	"DO YOU WANT TO DO THIS BRO? BECAUSE IT'S THUNDERDOME TIME! I'M GOING TO MAKE IT SHORTER THAN YOUR ARTICLE AND CONTAIN MORE INFORMATION. CAN YOU HANDLE THAT? WHAT WILL YOUR EXCUSE BE THEN?", /* SHUT UP MR SHOUTY :P */
 	"Okay I failed at the thunderdome challenge. Endless shame is mine. But I've gotten down to 1381 words to the current article's 992. There is no more concise left to be had.",
 	"It's absolutely hell on wheels, and I feel there needs to be a sign up around Orcus that says HE LOOKS EASY BUT HE CAN SUMMON FRIENDS THAT WILL MAKE YOU WISH YOU WERE NEVER BORN!", /* dude just git gud at the game bro */
+	"First of all the need for consensus is not listed in your rules. I'll say that again in all caps so you don't miss it. THE NEED FOR CONSENSUS IS NOT IN YOUR RULES. One more time. THE NEED FOR CONSENSUS, THAT IS, HAVING ADMINS AGREE TO AN EDIT, IS NOT IN YOUR RULES.", /* The need to ban trolls is also not in the rules. */
+	"The Administrators will not permit any substantial edit (one that goes beyond grammar, punctuation etc) without full consensus from the group of editors whether regardless of the truth value contained in the edit.", /* well don't behave like an idiot and don't do stupid edits I guess? would probably help things */
+
 	"well, who knows how moves the variants nowadays is, they are capable of making it so that zapping the bag with cancel will also blow it up",
 	"slex is the variant where you ask amy how to cure stuff and what to wish for and wtf just killed you?",
 	"argh far myaratmo snarg! Warrh! P = NP!",
