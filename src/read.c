@@ -815,6 +815,7 @@ doread()
 	"slip-on ass mummy rapping and we will be good to go", /* by someone who watched Tone's stream with subtitles */
 	"Women are goddesses that have been created to drive men insane.", /* I (Amy) saw an actual RL t-shirt that said this */
 	"I haven't watched One Piece, and therefore I'm controlling two devil fruits because I don't know that that's impossible.",
+	"I petition that the gender star be renamed to gender snowflake",
 
 	    };
 	    char buf[BUFSZ];
