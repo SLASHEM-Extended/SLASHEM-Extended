@@ -889,7 +889,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                         }  
                     }  
                 }  
-                if ((hcorrmax - hcorrmin) > 1 && rn2(3)) {  
+                if ((hcorrmax - hcorrmin) > 1 && rn2(3)) {
                     y = hcorrmin + rn2(hcorrmax - hcorrmin);  
                     for (x = xcenter - xradius; x <= xcenter + xradius + xparity; x++) {  
                         levl[x][y].typ =  
@@ -900,7 +900,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 		}
           }  
 	    if (!is_room) {	/* a subroom */
-		wallification(lowx-1, lowy-1, hix+1, hiy+1, rn2(!(iswarper ? 10 : 200)) ? FALSE : TRUE);
+		wallification(lowx-1, lowy-1, hix+1, hiy+1, rn2(iswarper ? 10 : 200) ? FALSE : TRUE);
 	    }
 	}
 }
