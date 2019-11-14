@@ -5187,6 +5187,11 @@ static const char *epitaphs[] = {
 	"slex is the variant where you ask amy how to cure stuff and what to wish for and wtf just killed you?",
 	"argh far myaratmo snarg! Warrh! P = NP!",
 	"Sigh, yet another pointless death that could have been avoided if these adventurers just read up on OSHA compliance before entering. They all claim they've been heralded from birth, you'd think they could spare a couple days to gear up properly.",
+	"SLEX is what you would get if playing vanilla NetHack while high." /* supposedly by FIQ */
+	"SUCH A SHITTE!",
+	"Around to shorten helps only full processor power lay.",
+	"upper shitty lay!",
+	"ziratha: Finder of stupid way to die #2014", /* trying to quicktravel while sinking in lava */
 
 };
 

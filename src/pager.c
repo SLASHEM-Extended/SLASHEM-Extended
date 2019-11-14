@@ -3934,6 +3934,13 @@ static NEARDATA const char * const demagoguelines[] = {
 "God shall protect our people! God shall protect our country!",
 "Our courageous soldiers have one mission: bringing back peace and prosperity to our country.",
 "In their arrogance, our political enemies have seized control of the water supply! They want to steal our country's water and all the work we've put in! We have to punish them for that crime by sending our military forces to reclaim what is ours!",
+"What the hell is WRONG with the politicians?",
+"The confidence of our people in the current political system has reached a new low! Vote for ME and I'll fix things!",
+"I think the current government needs to be abolished.",
+"We need a radical reformation of the system, because otherwise the unemployment rate will never go down!",
+"The democratic system turned out to be a failure, what we need now is a dictatorship with me as the dictator!",
+"Fully one in three jobs in this country is suffering from severe underpayment, insecurity and a host of other issues! My party will correct that by creating new, well-paid, safe jobs and then we'll finally prosper again!",
+"As soon as I'm elected the new head of state, there will be the beginning of a new era. Where other countries are merely surviving, we will PROSPER!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4326,6 +4333,24 @@ static NEARDATA const char * const longinglines[] = {
 "Did you know that your fingers can turn into a very erogenous zone when you let %s place her stiletto heels on them? Just think about how wonderful the pain would feel!",
 "Being trampled by %s's extra thick block heels is really lewd!",
 "Even if you're not normally into ballbusting, you'd certainly make an exception for %s's godlike women's feet.",
+"It's really annoying that you have to get up and leave for work each day, because you'd much rather just spend the entire day in bed together with %d.",
+"%s is a goddess that has been created to drive you insane, and make you think about her all day and night because she's incredibly beautiful.",
+"You want %s to wear lady boots with extra thick block heels, because she can certainly crush your fingers and toes underneath the lovely heels very well.",
+"After a long day of work, you just want to spend the evening together with %s, the woman of your dreams.",
+"You could never hurt %s's beautiful female butt cheeks, but you'd gladly allow her to hurt yours.",
+"When %s continuously scratches her heels over your legs and then watches the blood dripping down, you get a strangely arousing feeling.",
+"It's incredible that with just a single pair of high heels, %s can cause soooooooooo much damage!",
+"You want to regrow your shredded skin as quickly as possible so that %s has the chance to shred it again with her stiletto heels.",
+"%s's cute little-girl sandals can actually rip a lot of your skin to shreds with their cuuuuuute buckles <3",
+"You love it when %s's painted fingernails draw your blood, because they look soooooo gorgeous and feminine.",
+"%s has such cute little women's feet, yet she can completely stop you in your tracks by placing them into your soft, delicate nuts!",
+"You want %s to kick you in the belly and shoulder, because she looks so athletic when she does that.",
+"Hopefully %s will allow you to paint her nails, since then you could give each of her nails a different fleecy color!",
+"Did you see %s's new purse? She can use that to slide the zippers along your skin, which will feel very lovely and metallic!",
+"When %s has been wearing her sneakers for an entire day during summer, you absolutely want to take them off of her feet and smell her worn socks, because you get aroused by that.",
+"Your head wants to disappear in %s's lap, with her hanging her long bundle over your body.",
+"Everyone absolutely wants to be bundled by %s!",
+"Being physically hurt by %s is actually a sign that she loves you, and so you should enjoy the pain :-)",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
