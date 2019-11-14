@@ -532,9 +532,15 @@ hornchoice:
 
 	    if (instr && instr->oartifact == ART_MESSAGE_MEGAPHONE) {
 			pline_The("message is broadcast all over the dungeon!");
-			awaken_monsters(GushLevel * 30);
-			adjalign(-5);
-			u.alignlim--;
+			if (Role_if(PM_DEMAGOGUE)) {
+				awaken_monsters(GushLevel * 30);
+				adjalign(-5);
+				u.alignlim--;
+			} else {
+				awaken_monsters(GushLevel * 5);
+				adjalign(-200);
+				u.alignlim -= 10;
+			}
 	    }
 
 	    break;

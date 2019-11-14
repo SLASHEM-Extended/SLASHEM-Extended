@@ -1095,7 +1095,7 @@ int curse_bless;
 	    n = (int)obj->recharged;
 	    if (n > 0 && (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT || obj->otyp == WAN_GAIN_LEVEL || obj->otyp == WAN_INCREASE_MAX_HITPOINTS ||
 		/* no unlimited recharging of wands of charging --Amy */
-		    ((n * n * n > rn2(7*7*7) && !(obj->oartifact == ART_EXTRA_CONTROL) ) && !rn2( Role_if(PM_WANDKEEPER) ? 10 : 2) ))) {	/* recharge_limit */
+		    ((n * n * n > rn2(7*7*7) && !(obj->oartifact == ART_EXTRA_CONTROL && Role_if(PM_FORM_CHANGER)) ) && !rn2( Role_if(PM_WANDKEEPER) ? 10 : 2) ))) {	/* recharge_limit */
 		Your("%s vibrates violently, and explodes!",xname(obj));
 		wand_explode(obj, FALSE);
 		return;
@@ -1264,7 +1264,7 @@ int curse_bless;
 		}
 
 		if (is_cursed) stripspe(obj);
-		else if (rechrg && obj->otyp == MAGIC_MARKER && !(obj->oartifact == ART_MARKER_OF_SAFE_SPEECH) ) {	/* previously recharged */
+		else if (rechrg && obj->otyp == MAGIC_MARKER && !(obj->oartifact == ART_MARKER_OF_SAFE_SPEECH && Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) ) {	/* previously recharged */
 		    obj->recharged = 1;	/* override increment done above */
 		    if (obj->spe < 3)
 			Your("marker seems permanently dried out.");
