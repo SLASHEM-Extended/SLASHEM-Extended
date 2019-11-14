@@ -24620,6 +24620,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Some variants of Amy's 'ueueuep' board game include giving the defender player one special piece that can shoot a rifle at the attacker's pieces, making the game much harder for the attacker.",
 	"In a game of 'ueueuep', if the defender eliminates one of the attacker's pieces, he is supposed to say 'Ueueueueueuep!' while simulating the eliminated piece 'falling' out of the playfield. That's where the game's name originates :-)",
 	"If you spray Amy with a water bottle, she turns into a wet Amy. If she wears her platform boots she also turns into a wet Amy, but that's a different kind of wetness ;)",
+	"The damn monster is fighting back!",
+	"This monster's level is too high for symbiosis!",
+	"Well, it's your choice if you insist on keeping autodig on... just be aware that hitting > on a non-staircase tile while next to harmful liquids can cause your hole to fill (that's what she said)",
 
 };
 

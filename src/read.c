@@ -10190,7 +10190,7 @@ int how;
 	    if (!(mons[mndx].geno & G_UNIQ) &&
 		    !(mvitals[mndx].mvflags & (G_GENOD | G_EXTINCT)))
 		for (i = rn1(3, 4); i > 0; i--) {
-		    if (!makemon(ptr, u.ux, u.uy, NO_MINVENT))
+		    if (!makemon(ptr, u.ux, u.uy, NO_MINVENT|MM_ANGRY|MM_FRENZIED))
 			break;	/* couldn't make one */
 		    ++cnt;
 		    if (mvitals[mndx].mvflags & G_EXTINCT)

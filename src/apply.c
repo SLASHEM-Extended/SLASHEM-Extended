@@ -356,6 +356,12 @@ use_symbiote(obj)
 		if (cannot_be_tamed(mtmp->data) || (mtmp->cham == CHAM_ZRUTINATOR) || mtmp->isshk || mtmp->isgd || mtmp->ispriest || mtmp->isminion || mtmp->isgyp || (mtmp->oldmonnm != monsndx(mtmp->data)) ) {
 			pline(FunnyHallu ? "This particular monster can't be turned into a symbiote for cookie reasons." : "This particular monster can't be turned into a symbiote.");
 			return 1;
+
+		if (mtmp->data->mlevel > 29 || (mtmp->data->mlevel > (u.ulevel + 10))) {
+			pline(FunnyHallu ? "The damn monster is fighting back!" : "This monster's level is too high for symbiosis!");
+			return 1;
+		}
+
 		/* Amy note: the oldmonnm part may be misleading, but I don't want the player to be able to scan monsters for
 		 * being a polymorph result just because they have a symbiote item. And I also don't want to allow you to
 		 * simply wait until that chameleon turns into a stationary level 90 ubermonster and get a free pass,

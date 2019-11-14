@@ -4717,7 +4717,7 @@ int k_format; /* WAC k_format is an int */
 		}
 		u.usymbiote.mhp -= n;
 		Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
-		if (u.usymbiote.mhp < 0) {
+		if (u.usymbiote.mhp <= 0) {
 			u.usymbiote.active = 0;
 			u.usymbiote.mnum = PM_PLAYERMON;
 			u.usymbiote.mhp = 0;

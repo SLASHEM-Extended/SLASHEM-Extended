@@ -873,7 +873,16 @@ bot2str(char *newbot2)
 		sprintf(nb = eos(nb), " Exp%u", u.ulevel);
 
 	if (flags.showsymbiotehp && uinsymbiosis) {
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+		strcat(nb = eos(nb), " SH");
+		curs(WIN_STATUS, 1, 1);
+		putstr(WIN_STATUS, 0, newbot2);
+
+		sprintf(nb = eos(nb), "%d(%d)", u.usymbiote.mhp, u.usymbiote.mhpmax);
+		apply_color_option(percentage_color_of(u.usymbiote.mhp, u.usymbiote.mhpmax, hp_colors), newbot2, 2);
+#else
 		sprintf(nb = eos(nb), " SH%d(%d)", u.usymbiote.mhp, u.usymbiote.mhpmax);
+#endif
 		if (u.usymbiote.cursed) {
 			sprintf(nb = eos(nb), "%s", u.usymbiote.stckcurse ? "S" : "C");
 			sprintf(nb = eos(nb), "%d", (u.usymbiote.evilcurse || u.usymbiote.bbcurse || u.usymbiote.morgcurse) ? 4 : u.usymbiote.prmcurse ? 3 : u.usymbiote.hvycurse ? 2 : 1);

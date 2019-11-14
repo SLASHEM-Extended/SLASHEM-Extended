@@ -8256,40 +8256,40 @@ symbiotemelee()
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_SYMBIOSIS)) {
 			default: symchance = 10; break;
-			case P_BASIC: symchance = 15; break;
-			case P_SKILLED: symchance = 20; break;
-			case P_EXPERT: symchance = 25; break;
-			case P_MASTER: symchance = 30; break;
-			case P_GRAND_MASTER: symchance = 35; break;
-			case P_SUPREME_MASTER: symchance = 40; break;
+			case P_BASIC: symchance = 12; break;
+			case P_SKILLED: symchance = 14; break;
+			case P_EXPERT: symchance = 16; break;
+			case P_MASTER: symchance = 18; break;
+			case P_GRAND_MASTER: symchance = 20; break;
+			case P_SUPREME_MASTER: symchance = 22; break;
 		}
 	} else {
 		symchance = 10;
 	}
 	switch (u.symbioteaggressivity) {
 		case 5:
-			if (rn2(5)) return 0; break;
+			if (rn2(10)) return 0; break;
 		case 10:
-			if (rn2(3)) return 0; break;
+			if (rn2(5)) return 0; break;
 		case 12:
-			if (!rn2(2)) return 0; break;
+			if (rn2(3)) return 0; break;
 		case 15:
-			if (!rn2(3)) return 0; break;
+			if (!rn2(2)) return 0; break;
 		case 20:
-			if (!rn2(5)) return 0; break;
+			if (!rn2(4)) return 0; break;
 		default:
 		case 25:
 			break;
 		case 33:
-			symchance += 5; break;
+			symchance += 3; break;
 		case 40:
-			symchance += 10; break;
+			symchance += 6; break;
 		case 50:
-			symchance += 15; break;
+			symchance += 9; break;
 		case 60:
-			symchance += 20; break;
+			symchance += 12; break;
 		case 75:
-			symchance += 25; break;
+			symchance += 15; break;
 	}
 	if (rn2(100) < symchance) return TRUE;
 	return FALSE;
@@ -8305,41 +8305,41 @@ symbiotepassive()
 
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_SYMBIOSIS)) {
-			default: symchance = 30; break;
-			case P_BASIC: symchance = 35; break;
-			case P_SKILLED: symchance = 40; break;
-			case P_EXPERT: symchance = 45; break;
-			case P_MASTER: symchance = 50; break;
-			case P_GRAND_MASTER: symchance = 55; break;
-			case P_SUPREME_MASTER: symchance = 60; break;
+			default: symchance = 20; break;
+			case P_BASIC: symchance = 22; break;
+			case P_SKILLED: symchance = 24; break;
+			case P_EXPERT: symchance = 26; break;
+			case P_MASTER: symchance = 28; break;
+			case P_GRAND_MASTER: symchance = 30; break;
+			case P_SUPREME_MASTER: symchance = 32; break;
 		}
 	} else {
-		symchance = 10;
+		symchance = 20;
 	}
 	switch (u.symbioteaggressivity) {
 		case 5:
-			if (rn2(5)) return 0; break;
+			if (rn2(10)) return 0; break;
 		case 10:
-			if (rn2(3)) return 0; break;
+			if (rn2(5)) return 0; break;
 		case 12:
-			if (!rn2(2)) return 0; break;
+			if (rn2(3)) return 0; break;
 		case 15:
-			if (!rn2(3)) return 0; break;
+			if (!rn2(2)) return 0; break;
 		case 20:
-			if (!rn2(5)) return 0; break;
+			if (!rn2(4)) return 0; break;
 		default:
 		case 25:
 			break;
 		case 33:
-			symchance += 5; break;
+			symchance += 3; break;
 		case 40:
-			symchance += 10; break;
+			symchance += 6; break;
 		case 50:
-			symchance += 15; break;
+			symchance += 9; break;
 		case 60:
-			symchance += 20; break;
+			symchance += 12; break;
 		case 75:
-			symchance += 25; break;
+			symchance += 15; break;
 	}
 	if (rn2(100) < symchance) return TRUE;
 	return FALSE;
