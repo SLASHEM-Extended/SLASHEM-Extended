@@ -1063,8 +1063,8 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob("Bleed",    PlayerBleeds);
     statprob("Vomit",    Vomiting);
     statprob("Elbereth",    sengr_at("Elbereth", u.ux, u.uy));
-    statprob("Fear",    Feared && !Race_if(PM_TUMBLRER));
-    statprob("Triggered",    Feared && Race_if(PM_TUMBLRER));
+    statprob("Fear",    Feared && !Race_if(PM_TUMBLRER) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR));
+    statprob("Triggered",    Feared && (Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)));
     statprob("Numb",    Numbed);
     statprob("Paralyzed",    multi < 0);
     statprob("Vibration",    (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)));

@@ -1587,6 +1587,7 @@ domonability()
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "tender" : "soft", flags.female ? "sexy" : "ugly");
 			use_skill(P_SQUEAKING, 1);
 			u.cnd_fartingcount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 			if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
 				healup((level_difficulty() + 5), 0, FALSE, FALSE);
@@ -1634,6 +1635,7 @@ domonability()
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "beautiful" : "squeaky", flags.female ? "sexy" : "ugly");
 			use_skill(P_SQUEAKING, 1);
 			u.cnd_fartingcount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
@@ -1675,6 +1677,7 @@ domonability()
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "disgusting" : "loud", flags.female ? "sexy" : "ugly");
 			use_skill(P_SQUEAKING, 1);
 			u.cnd_fartingcount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");

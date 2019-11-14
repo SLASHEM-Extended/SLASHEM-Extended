@@ -1112,6 +1112,15 @@ playerwearshighheels()
 
 }
 
+void
+sjwtrigger()
+{
+	int fearduration = rnz(30 + (monster_difficulty() * 3));
+	make_feared(HFeared + fearduration, TRUE);
+	u.uprops[DEAC_FEAR_RES].intrinsic += fearduration;
+	pline("omg sexism");
+}
+
 boolean
 automore_active()
 {

@@ -2066,6 +2066,7 @@ register struct monst *mtmp;
 			if (yn("Do you obey the command that the wuxtina uttered with her bitchy voice?") != 'y') {
 				pline("%s suddenly sprays her scentful perfume right into your %s.", Monnam(mtmp), body_part(FACE));
 				u.cnd_perfumecount++;
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 				if (Role_if(PM_HUSSY)) {
 					You("joyously inhale %s's scentful perfume. It's very soothing.", mon_nam(mtmp));
 				} else {
@@ -2102,6 +2103,7 @@ register struct monst *mtmp;
 		}
 
 		u.cnd_perfumecount++;
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		if (Role_if(PM_HUSSY)) {
 			You("joyously inhale %s's scentful perfume. It's very soothing.", mon_nam(mtmp));
 		} else {
@@ -2262,6 +2264,7 @@ register struct monst *mtmp;
 			};
 			verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 			u.cnd_conversioncount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 		}
 
@@ -2328,6 +2331,7 @@ register struct monst *mtmp;
 		};
 		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
 		u.cnd_wouwoucount;
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 		badeffect();
 
@@ -3413,6 +3417,7 @@ dotalk()
 		};
 		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
 		u.cnd_wouwoucount;
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 		wake_nearby();
 
 		return 1;

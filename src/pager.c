@@ -24705,7 +24705,7 @@ longingtrapeffect()
 	char buf[BUFSZ];
 	u.cnd_longingamount++;
 	pline(longingmessage(), longinggirls[rn2(SIZE(longinggirls))]);
-
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 }
 
 void

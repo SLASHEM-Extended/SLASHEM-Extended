@@ -1877,6 +1877,11 @@ moveloop()
 
 		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone()) stop_occupation();
  
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && Feared && !rn2(100)) {
+			pline("holy shit this is offensive");
+			badeffect();
+		}
+
 		if (PlayerInBlockHeels) {
 
 			if (HConfusion > 10 && !rn2(10)) HConfusion--;
@@ -2971,6 +2976,7 @@ trapsdone:
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
 			u.cnd_fartingcount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
@@ -2980,6 +2986,7 @@ trapsdone:
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
 			u.cnd_fartingcount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (!extralongsqueak()) badeffect();
 			stop_occupation();
 
@@ -3042,6 +3049,7 @@ trapsdone:
 				case 2:
 					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
 					u.cnd_fartingcount++;
+					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) healup((level_difficulty() + 5), 0, FALSE, FALSE);
 					else if (!extralongsqueak()) badeffect();
 					break;

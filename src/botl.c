@@ -1048,15 +1048,15 @@ bot2str(char *newbot2)
 
 	if(Feared && !HeavyFeared)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text(Race_if(PM_TUMBLRER) ? (flags.showlongstats ? "Triggered" : "Trg") : (flags.showlongstats ? "Fear" : "Fea"), newbot2);
+	     	add_colored_text((Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) ? (flags.showlongstats ? "Triggered" : "Trg") : (flags.showlongstats ? "Fear" : "Fea"), newbot2);
 #else
-		strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " Triggered" : " Trg") : (flags.showlongstats ? " Fear" : " Fea") );
+		strcat(nb = eos(nb), (Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) ? (flags.showlongstats ? " Triggered" : " Trg") : (flags.showlongstats ? " Fear" : " Fea") );
 #endif
 	if(Feared && HeavyFeared)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	     	add_colored_text(Race_if(PM_TUMBLRER) ? (flags.showlongstats ? "XTriggered" : "XTrg") : (flags.showlongstats ? "XFear" : "XFea"), newbot2);
+	     	add_colored_text((Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) ? (flags.showlongstats ? "XTriggered" : "XTrg") : (flags.showlongstats ? "XFear" : "XFea"), newbot2);
 #else
-		strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " XTriggered" : " XTrg") : (flags.showlongstats ? " XFear" : " XFea"));
+		strcat(nb = eos(nb), (Race_if(PM_TUMBLRER) || Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) ? (flags.showlongstats ? " XTriggered" : " XTrg") : (flags.showlongstats ? " XFear" : " XFea"));
 #endif
 	if(Numbed && !HeavyNumbed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)

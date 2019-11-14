@@ -2291,6 +2291,7 @@ E void shank_player(void);
 E void terrainterror(void);
 E void giftartifact(void);
 E void heraldgift(void);
+E void sjwtrigger(void);
 
 E boolean sandprotection(void);
 E boolean shadowprotection(void);
