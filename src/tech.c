@@ -1831,7 +1831,7 @@ learntech(tech, mask, tlevel)
 		tech_list[i].t_intrinsic = 0;
 	    }
 	    else if (tech_list[i].t_intrinsic & mask) {
-		impossible("Tech already known.");
+		pline("Tech already known."); /* can happen with recursion --Amy */
 		return;
 	    }
 	    if (mask == FROMOUTSIDE) {
@@ -1847,39 +1847,42 @@ learntech(tech, mask, tlevel)
 	     * would certainly find out that you can use secure identify indefinitely that way... --Amy */
 	}
 	else if (tlevel < 0) {
+
 	    if (i < 0 || !(tech_list[i].t_intrinsic & mask)) {
-		impossible("Tech not known.");
+		pline("Tech not known."); /* can happen with recursion --Amy */
 		return;
 	    }
-	    tech_list[i].t_intrinsic &= ~mask;
-	    if (!(tech_list[i].t_intrinsic & INTRINSIC)) {
-		if (tech_list[i].t_inuse)
-		    aborttech(tech);
-		tech_list[i].t_id = NO_TECH;
-		return;
-	    }
-	    /* Re-calculate lowest t_lev */
-	    if (tech_list[i].t_intrinsic & FROMOUTSIDE)
-		tlevel = tech_list[i].t_intrinsic & OUTSIDE_LEVEL;
-	    if (tech_list[i].t_intrinsic & FROMEXPER) {
-		for(tp = role_tech(); tp->tech_id; tp++)
-		    if (tp->tech_id == tech)
-			break;
-		if (!tp->tech_id)
-		    impossible("No inate technique for role?");
-		else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
-		    tlevel = tp->ulevel - tp->tech_lev;
-	    }
-	    if (tech_list[i].t_intrinsic & FROMRACE) {
-		for(tp = race_tech(); tp->tech_id; tp++)
-		    if (tp->tech_id == tech)
-			break;
-		if (!tp->tech_id)
-		    impossible("No inate technique for race?");
-		else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
-		    tlevel = tp->ulevel - tp->tech_lev;
-	    }
-	    tech_list[i].t_lev = tlevel;
+	    if (techlev(i) < 1) {
+			tech_list[i].t_intrinsic &= ~mask;
+			if (!(tech_list[i].t_intrinsic & INTRINSIC)) {
+				if (tech_list[i].t_inuse)
+					aborttech(tech);
+				tech_list[i].t_id = NO_TECH;
+				return;
+			}
+			/* Re-calculate lowest t_lev */
+			if (tech_list[i].t_intrinsic & FROMOUTSIDE)
+				tlevel = tech_list[i].t_intrinsic & OUTSIDE_LEVEL;
+			if (tech_list[i].t_intrinsic & FROMEXPER) {
+				for(tp = role_tech(); tp->tech_id; tp++)
+					if (tp->tech_id == tech)
+						break;
+				if (!tp->tech_id)
+					impossible("No inate technique for role?");
+				else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
+					tlevel = tp->ulevel - tp->tech_lev;
+			}
+			if (tech_list[i].t_intrinsic & FROMRACE) {
+				for(tp = race_tech(); tp->tech_id; tp++)
+					if (tp->tech_id == tech)
+						break;
+				if (!tp->tech_id)
+					impossible("No inate technique for race?");
+				else if (tlevel < 0 || tp->ulevel - tp->tech_lev < tlevel)
+					tlevel = tp->ulevel - tp->tech_lev;
+			}
+			tech_list[i].t_lev = tlevel;
+		}
 	}
 	else
 	    impossible("Invalid Tech Level!");
