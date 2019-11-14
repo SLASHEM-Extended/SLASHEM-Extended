@@ -1849,6 +1849,7 @@ moveloop()
 		if (u.udrowning) {
 			if (isok(u.ux, u.uy) && is_crystalwater(u.ux, u.uy)) crystaldrown();
 			else drown();
+			stop_occupation();
 		}
 
 		if (u.shutdowntime) {
@@ -8482,6 +8483,7 @@ newboss:
 			    /*Norep*/pline(FunnyHallu ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    u.utrap += rnd(4);
+			    stop_occupation(); /* BULLSHIT! why doesn't such a thing stop you */
 			}
 		    }
 		}
