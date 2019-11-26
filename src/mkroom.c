@@ -31,7 +31,6 @@ STATIC_DCL struct permonst * doomsquadmon(void);
 STATIC_DCL struct permonst * evilroommon(void);
 STATIC_DCL struct permonst * machineroommon(void);
 STATIC_DCL struct permonst * fungus(void);
-STATIC_DCL struct permonst * beehivemon(void);
 STATIC_DCL struct permonst * migohivemon(void);
 
 /*STATIC_DCL struct permonst * colormon(int);*/

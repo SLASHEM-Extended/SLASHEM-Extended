@@ -1556,7 +1556,7 @@ dokick()
 		    struct obj *treefruit;
 		    /* nothing, fruit or trouble? 75:23.5:1.5% */
 		    if (rn2(3)) {
-			if ( !rn2(6) && !(mvitals[PM_KILLER_BEE].mvflags & G_GONE) )
+			if ( !rn2(6))
 			    You_hear("a low buzzing."); /* a warning */
 		    if (uarmf && itemhasappearance(uarmf, APP_JUNGLE_BOOTS) ) {
 			pline("You kick the tree. Nothing happens.");
@@ -1623,7 +1623,7 @@ dokick()
 
 				while (cnt--) {
 					if (enexto(&mm, mm.x, mm.y, &mons[PM_WOOD_NYMPH]) &&
-					makemon(&mons[PM_WOOD_NYMPH], mm.x, mm.y, MM_ANGRY))
+					makemon(mkclass(S_NYMPH,0), mm.x, mm.y, MM_ANGRY))
 					made++;
 				}
 				wake_nearby(); /* make sure they're awake --Amy */
@@ -1632,7 +1632,7 @@ dokick()
 
 				while (cnt--) {
 					if (enexto(&mm, mm.x, mm.y, &mons[PM_KILLER_BEE]) &&
-					makemon(&mons[PM_KILLER_BEE], mm.x, mm.y, MM_ANGRY))
+					makemon(beehivemon(), mm.x, mm.y, MM_ANGRY))
 					made++;
 				}
 			}
