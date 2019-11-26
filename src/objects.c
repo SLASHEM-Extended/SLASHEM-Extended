@@ -4258,6 +4258,7 @@ POTION((char *)0, "chewable", 0, 0,           0,   0, CLR_WHITE, 1, APP_POTION_C
 POTION((char *)0, "glossy white", 0, 0,           0,   0, CLR_WHITE, 1, 0),
 POTION((char *)0, "caustic", 0, 0,           0,   0, CLR_GREEN, 1, 0),
 POTION((char *)0, "acai berry", 0, 0,           0,   0, CLR_RED, 1, 0), /* by jonadab */
+POTION((char *)0, "soupy", 0, 0,           0,   0, CLR_RED, 1, 0),
 
 POTION("water", "clear",                0, 0,          550, 300, CLR_CYAN, 1, 0),
 POTION("blood", "blood-red",            0, 0,          50, 300, CLR_RED, 1, 0),
@@ -6275,6 +6276,9 @@ SCROLL((char *)0,               "BEGGAR IS AN EUPHEMISM FOR THIEF",  P_NONE,    
 SCROLL((char *)0,               "SAVE YOUR NIGHT DO",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 SCROLL((char *)0,               "K4  LC GJ E YF  H Y P A",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "PRAISE THE SUN",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "LET AMY JUMP IN A TRIANGLE",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "GEB MIR MAL DEN STUEFT",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "THERAPEUTIC PUSHES WITH THE BLOCK HEEL",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 
 
 #ifdef MAIL
@@ -6786,6 +6790,10 @@ SPELL((char *)0,         "cadmium",     P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_CYAN, 
 SPELL((char *)0,         "chromium",    P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_GREEN, 1),
 SPELL((char *)0,         "polaravian",  P_NONE, 0, 0, 0, 1, 0, CLR_GRAY, 1),
 SPELL((char *)0,         "microfiche",  P_NONE, 0, 0, 0, 1, 0, CLR_WHITE, 1),
+SPELL((char *)0,         "ghostly",  P_NONE, 0, 0, 0, 1, 0, CLR_BLACK, 1),
+SPELL((char *)0,         "worn out",  P_NONE, 0, 0, 0, 1, 0, CLR_WHITE, 1),
+SPELL((char *)0,         "sonicboom",  P_NONE, 0, 0, 0, 1, 0, CLR_GRAY, 1),
+SPELL((char *)0,         "psystryke",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_MAGENTA, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 150,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),

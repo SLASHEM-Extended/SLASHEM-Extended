@@ -9602,6 +9602,10 @@ register struct	monst	*mtmp;
 		  	(void) mongets(mtmp, SNIPER_RIFLE);
 		  	m_initthrow(mtmp, BULLET, 20);
 		}
+		if (ptr == &mons[PM_RIFLE_BULLET_ANT]) {
+		  	(void) mongets(mtmp, RIFLE);
+		  	m_initthrow(mtmp, BULLET, 30);
+		}
 		if (ptr == &mons[PM_JANE_SANDRA]) {
 		  	(void) mongets(mtmp, LADY_BOOTS);
 		  	(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
