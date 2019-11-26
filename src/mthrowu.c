@@ -1327,6 +1327,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				else {
 					You("start turning to stone!");
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = "thrown petrifying egg";
 				}
 			}

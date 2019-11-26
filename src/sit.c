@@ -235,6 +235,7 @@ dosit()
 			u.cnd_toiletamount++; /* doesn't count if you don't actually take a crap :P --Amy */
 			if (issoviet && u.uhs > 0) pline("Vy der'mo vedro, vy delayete svoye der'mo iz vozdukha? Nel'zya dazhe der'mo, kak i vy!");
 
+			use_skill(P_SQUEAKING, 2);
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 				You("produce very erotic noises.");
 				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);

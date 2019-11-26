@@ -4447,8 +4447,7 @@ secureidchoice:
 		case WAN_SLIMING:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by zapping a wand of sliming";
 		}
@@ -6322,6 +6321,7 @@ boolean ordinary;
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					pline("You start turning to stone!");
 					sprintf(killer_buf, "their own wand of stoning");
 					delayed_killer = killer_buf;
@@ -9870,7 +9870,6 @@ register int osym, dmgtyp;
 			quan = obj->quan;
 			dindx = 0;
 			dmg = rnd(4);
-			if (!skip) u.cnd_colddestroy += quan;
 		    } else skip++;
 		    break;
 		case AD_VENO:
@@ -9885,12 +9884,10 @@ register int osym, dmgtyp;
 			quan = obj->quan;
 			dindx = 7;
 			dmg = 0;
-			if (!skip) u.cnd_poisondestroy += quan;
 		    } else if(osym == FOOD_CLASS) {
 			quan = obj->quan;
 			dindx = 8;
 			dmg = 0;
-			if (!skip) u.cnd_poisondestroy += quan;
 		    } else skip++;
 		    break;
 		case AD_FIRE:
@@ -9920,17 +9917,14 @@ register int osym, dmgtyp;
 			case POTION_CLASS:
 			    dindx = 1;
 			    dmg = rnd(6);
-			    if (!skip) u.cnd_firedestroy += quan;
 			    break;
 			case SCROLL_CLASS:
 			    dindx = 2;
 			    dmg = 1;
-			    if (!skip) u.cnd_firedestroy += quan;
 			    break;
 			case SPBOOK_CLASS:
 			    dindx = 3;
 			    dmg = 1;
-			    if (!skip) u.cnd_firedestroy += quan;
 			    break;
 			default:
 			    skip++;
@@ -9952,7 +9946,6 @@ register int osym, dmgtyp;
 				    { skip++; break; }
 			    dindx = 4;
 			    dmg = 0;
-			    if (!skip) u.cnd_shockdestroy += quan;
 			    break;
 			case WAND_CLASS:
 			    if(obj->otyp == WAN_LIGHTNING) { skip++; break; }
@@ -9961,12 +9954,10 @@ register int osym, dmgtyp;
 #endif
 			    dindx = 5;
 			    dmg = rnd(10);
-			    if (!skip) u.cnd_shockdestroy += quan;
 			    break;
 			case AMULET_CLASS:
 			    dindx = 6;
 			    dmg = 0;
-			    if (!skip) u.cnd_shockdestroy += quan;
 			    break;
 			default:
 			    skip++;
@@ -10016,8 +10007,24 @@ register int osym, dmgtyp;
                     continue;
 		}
 		/* Use up the object */
-		for (i = 0; i < cnt; i++)
-		    useup(obj);
+		for (i = 0; i < cnt; i++) {
+			useup(obj);
+			
+			switch (dmgtyp) {
+				case AD_COLD:
+					u.cnd_colddestroy++;
+					break;
+				case AD_FIRE:
+					u.cnd_firedestroy++;
+					break;
+				case AD_ELEC:
+					u.cnd_shockdestroy++;
+					break;
+				case AD_VENO:
+					u.cnd_poisondestroy++;
+					break;
+			}
+		}
 		/* Do the damage if not resisted */
 		if(dmg) {
 		    if(xresist)	You("aren't hurt!");

@@ -1285,6 +1285,7 @@ boolean hitsroof;
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				delayed_killer = "elementary physics";
 			}
 		}

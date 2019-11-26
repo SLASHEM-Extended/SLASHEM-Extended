@@ -2258,6 +2258,7 @@ E void make_burned(long,BOOLEAN_P);
 E void make_dimmed(long,BOOLEAN_P);
 E void make_blinded(long,BOOLEAN_P);
 E void make_sick(long, const char *, BOOLEAN_P,int);
+E void make_slimed(long);
 E void make_vomiting(long,BOOLEAN_P);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
 E int dodrink(void);

@@ -1400,6 +1400,7 @@ int spellnum;
 			else {
 				You("start turning to stone!");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "petrify spell";
 			}
@@ -1417,8 +1418,7 @@ int spellnum;
 		    if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 			You("don't feel very well.");
 			stop_occupation();
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a monster spell";
 		    }

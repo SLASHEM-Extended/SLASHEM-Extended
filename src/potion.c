@@ -937,6 +937,8 @@ int type;
 
 	    set_itimeout(&Sick, xtime);
 	    if (Sickopathy) pline("You have %d turns to live.", Sick);
+	    if (type == SICK_VOMITABLE) u.cnd_sickfoodpois++;
+	    else u.cnd_sickillness++;
 	    u.usick_type |= type;
 	    flags.botl = TRUE;
 		stop_occupation();
@@ -963,6 +965,22 @@ int type;
 		u.usick_cause[0] = 0;
 	} else
 	    u.usick_cause[0] = 0;
+}
+
+void
+make_slimed(xtime)
+long xtime;
+{
+	if (Race_if(PM_EROSATOR)) {
+		xtime /= 4;
+	}
+	if (Slimed > 0 && Slimed < xtime) {
+		impossible("make_slimed called with too long time!");
+		return; /* don't prolong slimed time! --Amy */
+	}
+	u.cnd_slimingcount++;
+	Slimed = xtime;
+	flags.botl = 1;
 }
 
 void
@@ -1755,8 +1773,7 @@ badeffect()
 		case 102:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 			You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 			stop_occupation();
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by summoned slime";
@@ -1921,6 +1938,7 @@ badeffect()
 			else {
 				You("start turning to stone!");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "bad petrification effect";
 			}
@@ -2939,8 +2957,7 @@ reallybadeffect()
 		case 11:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 			You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 			stop_occupation();
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by summoned slime";
@@ -3075,6 +3092,7 @@ reallybadeffect()
 			else {
 				You("start turning to stone!");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "bad petrification effect";
 			}
@@ -6422,8 +6440,7 @@ peffects(otmp)
 
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a potion of slime";
 		}
@@ -8650,8 +8667,7 @@ register struct obj *obj;
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
 			stop_occupation();
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a potion of slime";
 		}

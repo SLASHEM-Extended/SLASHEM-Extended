@@ -2923,6 +2923,7 @@ trapsdone:
 			}
 
 			pline("But you were such a bitch and crapped on the lid!");
+			use_skill(P_SQUEAKING, 10);
 			adjalign(-20);
 			u.ualign.sins++;
 			u.alignlim--;
@@ -2941,6 +2942,7 @@ trapsdone:
 				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
 			}
 
+			use_skill(P_SQUEAKING, 10);
 			pline("But in your haste, you forgot to open the lid!");
 			adjalign(-20);
 
@@ -2949,6 +2951,7 @@ trapsdone:
 		if (FemaleTrapYvonne && (multi >= 0) && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
 			pline("A toilet! You feel that you have to take a shit, and so you do.");
 
+			use_skill(P_SQUEAKING, 10);
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {
 				pline("Taking off your armor is going to take a while...");
@@ -8412,6 +8415,7 @@ newboss:
 
 		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || have_shitstone() || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
 			You("suddenly have to take a shit!");
+			use_skill(P_SQUEAKING, 5);
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {
 				pline("Taking off your armor is going to take a while...");

@@ -913,6 +913,8 @@ register struct monst *mtmp;
 		u.ucreamed += rnd(20);
 		make_blinded(Blinded + (long)u.ucreamed, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
+		u.cnd_crappingcount++;
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
 	if (mdat->msound == MS_FART_NORMAL && mtmp->crapbonus && (rn2(1000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
@@ -921,6 +923,8 @@ register struct monst *mtmp;
 		u.ucreamed += rnd(50);
 		make_blinded(Blinded + (long)u.ucreamed, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
+		u.cnd_crappingcount++;
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
 	if (mdat->msound == MS_FART_LOUD && mtmp->crapbonus && (rn2(400) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
@@ -929,6 +933,8 @@ register struct monst *mtmp;
 		u.ucreamed += rnd(100);
 		make_blinded(Blinded + (long)u.ucreamed, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
+		u.cnd_crappingcount++;
+		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
 

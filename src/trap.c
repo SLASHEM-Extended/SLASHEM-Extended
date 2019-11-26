@@ -8009,6 +8009,7 @@ madnesseffect:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					pline("You start turning to stone!");
 				}
 			}
@@ -8036,8 +8037,7 @@ madnesseffect:
 		seetrap(trap);
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 			You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a slime trap";
 		}
@@ -16290,6 +16290,7 @@ const char *str;
 		else {
 			pline("Your status starts changing to statue.");
 			Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+			u.cnd_stoningcount++;
 			stop_occupation();
 			delayed_killer = (str[0] ? str : "coming into contact with a petrifying object");
 		}

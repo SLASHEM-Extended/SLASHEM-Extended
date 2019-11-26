@@ -10928,6 +10928,10 @@ int final;
 		sprintf(buf, "%ld time%s", u.cnd_fartingcount, plur(u.cnd_fartingcount));
 		enl_msg(You_, "heard farting noises ", "heard farting noises ", buf);
 	}
+	if (u.cnd_crappingcount) {
+		sprintf(buf, "%ld time%s", u.cnd_crappingcount, plur(u.cnd_crappingcount));
+		enl_msg(You_, "heard crapping noises ", "heard crapping noises ", buf);
+	}
 	if (u.cnd_conversioncount) {
 		sprintf(buf, "%ld time%s", u.cnd_conversioncount, plur(u.cnd_conversioncount));
 		enl_msg(You_, "listened to conversion sermon ", "listened to conversion sermon ", buf);
@@ -11199,6 +11203,26 @@ int final;
 		sprintf(buf, "%ld symbiote%s", u.cnd_symbiotesdied, plur(u.cnd_symbiotesdied));
 		enl_msg(You_, "had to mourn the death of ", "had to mourn the death of ", buf);
 	}
+	if (u.cnd_sickfoodpois) {
+		sprintf(buf, "%ld time%s", u.cnd_sickfoodpois, plur(u.cnd_sickfoodpois));
+		enl_msg(You_, "got sick from food poisoning ", "got sick from food poisoning ", buf);
+	}
+	if (u.cnd_sickillness) {
+		sprintf(buf, "%ld time%s", u.cnd_sickillness, plur(u.cnd_sickillness));
+		enl_msg(You_, "got sick from illness ", "got sick from illness ", buf);
+	}
+	if (u.cnd_slimingcount) {
+		sprintf(buf, "%ld time%s", u.cnd_slimingcount, plur(u.cnd_slimingcount));
+		enl_msg(You_, "got slimed ", "got slimed ", buf);
+	}
+	if (u.cnd_stoningcount) {
+		sprintf(buf, "%ld time%s", u.cnd_stoningcount, plur(u.cnd_stoningcount));
+		enl_msg(You_, "got stoned ", "got stoned ", buf);
+	}
+	if (u.cnd_polybreak) {
+		sprintf(buf, "%ld item%s due to polymorphing into bad monsters", u.cnd_polybreak, plur(u.cnd_polybreak));
+		enl_msg(You_, "have broken ", "broke ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -11408,6 +11432,9 @@ int final;
 	sprintf(buf, "%ld time%s", u.cnd_fartingcount, plur(u.cnd_fartingcount));
 	dump("  You heard farting noises ", buf);
 
+	sprintf(buf, "%ld time%s", u.cnd_crappingcount, plur(u.cnd_crappingcount));
+	dump("  You heard crapping noises ", buf);
+
 	sprintf(buf, "%ld time%s", u.cnd_conversioncount, plur(u.cnd_conversioncount));
 	dump("  You listened to conversion sermon ", buf);
 
@@ -11602,6 +11629,21 @@ int final;
 
 	sprintf(buf, "%ld symbiote%s", u.cnd_symbiotesdied, plur(u.cnd_symbiotesdied));
 	dump("  You had to mourn the death of ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_sickfoodpois, plur(u.cnd_sickfoodpois));
+	dump("  You got sick from food poisoning ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_sickillness, plur(u.cnd_sickillness));
+	dump("  You got sick from illness ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_slimingcount, plur(u.cnd_slimingcount));
+	dump("  You got slimed ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_stoningcount, plur(u.cnd_stoningcount));
+	dump("  You got stoned ", buf);
+
+	sprintf(buf, "%ld item%s due to polymorphing into bad monsters", u.cnd_polybreak, plur(u.cnd_polybreak));
+	dump("  You broke ", buf);
 
 	dump("", "");
 }

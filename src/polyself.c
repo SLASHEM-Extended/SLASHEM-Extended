@@ -285,7 +285,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 	if (!Upolyd) u.polyformed = 0;
 	if (Slimed) {
 		Your("body transforms, but there is still slime on you.");
-		Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+		make_slimed(100);
 	}
 	flags.botl = 1;
 	vision_full_recalc = 1;
@@ -1136,6 +1136,7 @@ break_armor()
 		else pline("I yeshche odin glupyy veshch' kusayet pyl'! Sovetskaya khochet etu igru, chtoby sosat' kak mozhno bol'she!");
 		exercise(A_STR, FALSE);
 		(void) Armor_gone();
+		u.cnd_polybreak++;
 		useup(otmp);
 	}
 	}
@@ -1158,6 +1159,7 @@ break_armor()
 		if (!issoviet) Your("%s tears apart!", cloak_simple_name(otmp));
 		else pline("I yeshche odin glupyy veshch' kusayet pyl'! Sovetskaya khochet etu igru, chtoby sosat' kak mozhno bol'she!");
 		(void) Cloak_off();
+		u.cnd_polybreak++;
 		useup(otmp);
 	    }
 	}
@@ -1179,6 +1181,7 @@ break_armor()
 	    } else {                
 		if (!issoviet) Your("shirt rips to shreds!");
 		else pline("I yeshche odin glupyy veshch' kusayet pyl'! Sovetskaya khochet etu igru, chtoby sosat' kak mozhno bol'she!");
+		u.cnd_polybreak++;
 		useup(uarmu);
 	    }
 	}
@@ -1228,6 +1231,7 @@ break_armor()
 	    } else if (!(uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS)) {
 	      Your("tentacles break through %s.", the(xname(otmp)));
 	      useup(uarmh);
+		u.cnd_polybreak++;
 	    }
     }
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data))) {
@@ -1522,6 +1526,7 @@ dogaze()
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				delayed_killer = "gazing at Medusa";
 			}
 		}
@@ -2581,6 +2586,7 @@ dogaze()
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = "deliberately meeting Medusa's gaze";
 				}
 			}

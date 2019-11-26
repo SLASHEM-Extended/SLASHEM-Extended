@@ -7080,6 +7080,7 @@ dopois:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -7129,6 +7130,7 @@ dopois:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -9408,8 +9410,7 @@ dopois:
 		    dmg = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
@@ -9428,8 +9429,7 @@ dopois:
 		    dmg = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
-		    flags.botl = 1;
+			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
@@ -11342,6 +11342,7 @@ do_stone2:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -11382,6 +11383,7 @@ do_stone2:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -12061,8 +12063,7 @@ do_stone2:
 		    tmp = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
@@ -12081,8 +12082,7 @@ do_stone2:
 		    tmp = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
-		    flags.botl = 1;
+			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
@@ -14392,6 +14392,7 @@ common:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -14421,6 +14422,7 @@ common:
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -14636,6 +14638,7 @@ common:
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
 					    Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						u.cnd_stoningcount++;
 					    killer_format = KILLED_BY;
 					    delayed_killer = "their own petrifying corpse";
 					}
@@ -15081,8 +15084,7 @@ common:
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a slimy explosion";
 		} else
@@ -15098,8 +15100,7 @@ common:
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
-		    flags.botl = 1;
+			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a slimy explosion";
 		} else
@@ -15423,6 +15424,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = "petrifying gaze";
 				}
 			}
@@ -15478,6 +15480,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					delayed_killer = "petrifying gaze";
 				}
 			}
@@ -16131,8 +16134,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
@@ -16154,8 +16156,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
-		    flags.botl = 1;
+			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
 		    char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by %s", mtmp->data->mname);
@@ -18379,6 +18380,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
 						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+						u.cnd_stoningcount++;
 						sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
 						delayed_killer = killer_buf;
 					}
@@ -19844,8 +19846,7 @@ enjoyable:
 
 		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) && !Slimed) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY;
 		    delayed_killer = "slimed by the blackheart plague";
 		} else

@@ -1724,6 +1724,8 @@ register struct monst *mtmp;
 	} else {
 		You_hear("%s crapping noises.", mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting");
 	}
+	u.cnd_crappingcount++;
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 	if (mtmp->data->msound == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
 	else if (mtmp->data->msound == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
 	else pline("This is really disgusting. You resist the urge to vomit, but fail to pay attention to your surroundings for a moment...");
@@ -1742,6 +1744,8 @@ register struct monst *mtmp;
 	} else {
 		You_hear("crapping noises.");
 	}
+	u.cnd_crappingcount++;
+	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	pline("Because you are stupid, you stop to listen.");
 	nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
@@ -8165,8 +8169,7 @@ boolean extrahealth;
 
 	if (slime_on_touch(pm) && !Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data)) {
 		You("don't feel very well.");
-		Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		flags.botl = 1;
+		make_slimed(100);
 		killer_format = KILLED_BY_AN;
 		delayed_killer = "slimed by a symbiosis accident";
 	}

@@ -7531,6 +7531,7 @@ newboss:
 				if (Hallucination && rn2(10)) pline("You are already stoned.");
 				else {
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					pline("You start turning to stone!");
 				}
 			}

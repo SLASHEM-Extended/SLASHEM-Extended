@@ -1637,6 +1637,7 @@ struct you {
 	int cnd_searchtrapcount;	/* how many traps you found via searching */
 	int cnd_searchsecretcount;	/* how many secret doors and corridors you found via searching */
 	int cnd_fartingcount;	/* how many times you heard farting noises */
+	int cnd_crappingcount;	/* how many times you heard crapping noises */
 	int cnd_conversioncount;	/* how many times you were subjected to converting taunts */
 	int cnd_wouwoucount;	/* how many times you heard wouwou taunts */
 	int cnd_perfumecount;	/* how many times you inhaled perfume */
@@ -1702,6 +1703,11 @@ struct you {
 	int cnd_untrapamount;	/* how many times you untrapped a trap successfully */
 	int cnd_longingamount;	/* how many longing messages you had to read */
 	int cnd_symbiotesdied;	/* how many of your symbiotes died */
+	int cnd_sickfoodpois;	/* how many times you got sick from food poisoning */
+	int cnd_sickillness;	/* how many times you got sick from illness */
+	int cnd_slimingcount;	/* how many times you got slimed */
+	int cnd_stoningcount;	/* how many times you got stoned */
+	int cnd_polybreak;	/* how many of your armor pieces broke due to bad polymorphs */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

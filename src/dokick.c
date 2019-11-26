@@ -1063,6 +1063,7 @@ xchar x, y;
 			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
 			else {
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				delayed_killer = killer_cxname(kickobj,TRUE);
 			}
 		}

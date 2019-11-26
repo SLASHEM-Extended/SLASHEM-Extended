@@ -618,8 +618,7 @@ register struct obj *food;
 
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
 			You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a slimy meal";
 	}
@@ -985,6 +984,7 @@ register int pm;
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
 				delayed_killer = killer_buf;
 			}
@@ -1179,8 +1179,7 @@ register int pm;
 		if (!Slimed && !Unchanging && !flaming(youmonst.data) && slime_on_touch(&mons[pm]) &&
 			!slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by doing something stupid";
 		}
@@ -1273,7 +1272,7 @@ struct monst *mon;
 			    youmonst.data != &mons[PM_FIRE_ELEMENTAL] &&
 			    !slime_on_touch(youmonst.data) && slime_on_touch(mon->data) ) {
 		You("don't feel very well.");
-		Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
+		make_slimed(100);
 		killer_format = KILLED_BY_AN;
 		delayed_killer = "slimed by doing something stupid";
 	    }
@@ -3753,8 +3752,7 @@ gluttonous()
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
 			You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a slimy meal";
 	}
@@ -3841,8 +3839,7 @@ violated_vegetarian()
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
 			You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a slimy meal";
 	}
@@ -4352,8 +4349,7 @@ struct obj *obj;
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
 			You("don't feel very well.");
-		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-		    flags.botl = 1;
+			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimed by a slimy meal";
 	}
@@ -5065,6 +5061,7 @@ struct obj *otmp;
 			else {
 				You("start turning to stone.");
 				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
 				stop_occupation();
 				delayed_killer = "eating a petrifying amulet";
 			}
@@ -6031,6 +6028,7 @@ register struct obj *otmp;
 				else {
 					You("start turning to stone.");
 					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+					u.cnd_stoningcount++;
 					killer_format = KILLED_BY_AN;
 					sprintf(killer_buf, "petrifying egg (%s)", mons[otmp->corpsenm].mname);
 					delayed_killer = killer_buf;

@@ -404,8 +404,7 @@ use_symbiote(obj)
 
 			if (slime_on_touch(mtmp->data) && !Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data)) {
 				You("don't feel very well.");
-				Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
-				flags.botl = 1;
+				make_slimed(100);
 				killer_format = KILLED_BY_AN;
 				delayed_killer = "slimed by picking the wrong symbiote";
 
