@@ -1430,7 +1430,7 @@ walscholardone:
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;
@@ -4875,6 +4875,7 @@ weight_cap()
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
 	if (Race_if(PM_CHIROPTERAN)) carrcap += 2000;
+	if (Race_if(PM_PLAYER_SHEEP) && u.ulevel >= 20) carrcap += 2000;
 
 	if (carrcap < 500) carrcap = 500;
 

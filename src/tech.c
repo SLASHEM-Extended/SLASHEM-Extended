@@ -1658,6 +1658,32 @@ static const struct innate_tech
 		       {   20, T_WORLD_FALL, 1},
 		       {   0, 0, 0} },
 
+	cup_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_ATTIRE_CHARM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	bac_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   15, T_WORLD_FALL, 1},
+		       {   20, T_POKE_BALL, 1},
+		       {   25, T_DECONTAMINATE, 1},
+		       {   0, 0, 0} },
+
+	cer_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   5, T_PRIMAL_ROAR, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -8386,6 +8412,9 @@ race_tech()
 		case PM_WARPER:	return (wrp_tech);
 		case PM_EGYMID:	return (egy_tech);
 		case PM_NEMESIS:	return (nem_tech);
+		case PM_CUPID:	return (cup_tech);
+		case PM_PLAYER_CERBERUS:	return (cer_tech);
+		case PM_BACTERIA:	return (bac_tech);
 		case PM_UNALIGNMENT_THING:	return (una_tech);
 		default: 		/*return ((struct innate_tech *) 0)*/return (def_tech);
 	}

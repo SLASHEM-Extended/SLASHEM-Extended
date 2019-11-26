@@ -22225,6 +22225,11 @@ loopback:
 		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && dmgtype(ptr, AD_MCRE) )) ct += 4;
 		if (ct > 0 && (Role_if(PM_TRACER) && dmgtype(ptr, AD_MCRE) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_UNBELIEVER) && dmgtype(ptr, AD_MCRE) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_CUPID) && is_elonamonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_BACTERIA) && is_elonamonster(ptr) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_PLAYER_SHEEP) && is_elonamonster(ptr) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_PLAYER_HOUND) && is_elonamonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(ptr) )) ct += 5;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -23285,6 +23290,11 @@ int     spc;
 		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[last], AD_MCRE) )) num += 4;
 		if ((Role_if(PM_TRACER) && dmgtype(&mons[last], AD_MCRE) )) num += 1;
 		if ((Role_if(PM_UNBELIEVER) && dmgtype(&mons[last], AD_MCRE) )) num += 5;
+		if ((Race_if(PM_CUPID) && is_elonamonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_BACTERIA) && is_elonamonster(&mons[last]) )) num += 10;
+		if ((Race_if(PM_PLAYER_SHEEP) && is_elonamonster(&mons[last]) )) num += 1;
+		if ((Race_if(PM_PLAYER_HOUND) && is_elonamonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(&mons[last]) )) num += 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -24061,6 +24071,11 @@ int     spc;
 		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[first], AD_MCRE) )) num -= 4;
 		if ((Role_if(PM_TRACER) && dmgtype(&mons[first], AD_MCRE) )) num -= 1;
 		if ((Role_if(PM_UNBELIEVER) && dmgtype(&mons[first], AD_MCRE) )) num -= 5;
+		if ((Race_if(PM_CUPID) && is_elonamonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_BACTERIA) && is_elonamonster(&mons[first]) )) num -= 10;
+		if ((Race_if(PM_PLAYER_SHEEP) && is_elonamonster(&mons[first]) )) num -= 1;
+		if ((Race_if(PM_PLAYER_HOUND) && is_elonamonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(&mons[first]) )) num -= 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 

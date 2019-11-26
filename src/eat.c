@@ -1521,7 +1521,7 @@ register struct permonst *ptr;
 			chance = 1;
 			break; */
 		default:
-			chance = (Race_if(PM_ILLITHID) ? 105 : 35); /*much lower chance now --Amy */
+			chance = (Race_if(PM_ILLITHID) ? 105 : Race_if(PM_BACTERIA) ? 12 : 35); /*much lower chance now --Amy */
 			break;
 	}
 	} else {
@@ -1545,7 +1545,7 @@ register struct permonst *ptr;
 			chance = 1;
 			break;
 		default:
-			chance = (Race_if(PM_ILLITHID) ? 35 : 15);
+			chance = (Race_if(PM_ILLITHID) ? 35 : Race_if(PM_BACTERIA) ? 12 : 15);
 			break;
 	}
 

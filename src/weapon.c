@@ -6577,6 +6577,7 @@ rerollthree:
 		case PM_MISSINGNO: implantbonus = 6; break;
 		case PM_MOULD: implantbonus = 5; break;
 		case PM_OCTOPODE: implantbonus = 6; break;
+		case PM_BACTERIA: implantbonus = 6; break;
 		case PM_POLYINITOR: implantbonus = 5; break;
 		case PM_SATRE: implantbonus = 5; break;
 		case PM_SHOE: implantbonus = 4; break;
@@ -6585,6 +6586,9 @@ rerollthree:
 		case PM_TURTLE: implantbonus = 2; break;
 		case PM_UNALIGNMENT_THING: implantbonus = 5; break;
 		case PM_UNGENOMOLD: implantbonus = 3; break;
+		case PM_PLAYER_SHEEP: implantbonus = 3; break;
+		case PM_PLAYER_HOUND: implantbonus = 3; break;
+		case PM_PLAYER_CERBERUS: implantbonus = 3; break;
 		case PM_PLAYER_UNICORN: implantbonus = 1; break;
 		case PM_VORTEX: implantbonus = 5; break;
 		case PM_WISP: implantbonus = 4; break;
@@ -7012,6 +7016,20 @@ rerollthree:
 			if (P_MAX_SKILL(P_LANCE) == P_EXPERT) P_MAX_SKILL(P_LANCE) = P_MASTER;
 			else if (P_MAX_SKILL(P_LANCE) == P_MASTER) P_MAX_SKILL(P_LANCE) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_LANCE) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_BACTERIA)) {
+		if (P_RESTRICTED(P_SYMBIOSIS)) {
+			P_SKILL(P_SYMBIOSIS) = P_UNSKILLED;
+			P_ADVANCE(P_SYMBIOSIS) = 0;
+			P_MAX_SKILL(P_SYMBIOSIS) = P_EXPERT;
+		} else {
+			P_SKILL(P_SYMBIOSIS) = P_BASIC;
+			if (P_MAX_SKILL(P_SYMBIOSIS) == P_EXPERT) P_MAX_SKILL(P_SYMBIOSIS) = P_MASTER;
+			else if (P_MAX_SKILL(P_SYMBIOSIS) == P_MASTER) P_MAX_SKILL(P_SYMBIOSIS) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_SYMBIOSIS) = P_SUPREME_MASTER;
 		}
 
 	}

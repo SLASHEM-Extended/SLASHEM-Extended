@@ -123,9 +123,9 @@ struct blitz_tab {
 #define T_PANIC_DIGGING	66
 
 #define T_DECONTAMINATE	67
-
 #define T_WONDERSPELL	68
 #define T_RESET_TECHNIQUE	69
+
 #define T_SILENT_OCEAN	70
 #define T_GLOWHORN	71
 #define T_INTRINSIC_ROULETTE	72
@@ -179,6 +179,7 @@ struct blitz_tab {
 #define T_KICK_IN_THE_NUTS	120
 #define T_DISARMING_KICK	121
 #define T_INLAY_WARFARE	122
+
 #define T_DIAMOND_BARRIER	123
 
 #define T_STEADY_HAND	124

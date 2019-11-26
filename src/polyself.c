@@ -1600,6 +1600,8 @@ dobreathe()
 	if (mattk->adtyp == AD_DISN) energy = u.breathenhancetimer ? 66 : 100;
 	else if (mattk->adtyp == AD_RBRE) energy = u.breathenhancetimer ? 20 : 30; /* can randomly be a disintegration beam */
 
+	if (Race_if(PM_PLAYER_CERBERUS) && !Upolyd) energy *= 3;
+
 	squeakamount = energy;
 	/* squeaking skill can reduce the required amount; reduce it after setting up the variable for skill training */
 	if (!PlayerCannotUseSkills && energy > 2) {
@@ -1643,6 +1645,20 @@ dobreathe()
 		} else {
 			buzz((int) (20 + adtyp - 1), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ), u.ux, u.uy, u.dx, u.dy);
 
+		}
+
+		if (Race_if(PM_PLAYER_CERBERUS) && !Upolyd) { /* breath three times for 3x the cost --Amy */
+			if (u.breathenhancetimer) {
+				buzz((int) (20 + adtyp - 1), (rn2(2) ? ((int)mattk->damn * 3 / 2) : ((int)mattk->damd * 3 / 2) ), u.ux, u.uy, u.dx, u.dy);
+			} else {
+				buzz((int) (20 + adtyp - 1), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ), u.ux, u.uy, u.dx, u.dy);
+			}
+
+			if (u.breathenhancetimer) {
+				buzz((int) (20 + adtyp - 1), (rn2(2) ? ((int)mattk->damn * 3 / 2) : ((int)mattk->damd * 3 / 2) ), u.ux, u.uy, u.dx, u.dy);
+			} else {
+				buzz((int) (20 + adtyp - 1), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ), u.ux, u.uy, u.dx, u.dy);
+			}
 		}
 
 	}

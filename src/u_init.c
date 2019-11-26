@@ -1864,6 +1864,11 @@ static struct trobj HerbalistItemJ[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj CupidItem[] = {
+	{ RIN_LEVITATION, 0, RING_CLASS, 1, UNDEF_BLESS },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj AlchemistItem[] = {
 	{ SCALPEL, 1, WEAPON_CLASS, 1, 1},
 	{ 0, 0, 0, 0, 0 }
@@ -16597,6 +16602,11 @@ u_init()
 
 	   break;
 
+	case PM_CUPID:
+
+          ini_inv(CupidItem);		
+		break;
+
 	case PM_ALCHEMIST:	/* a racial version of the scientist --Amy */
 
 		knows_classX(POTION_CLASS);
@@ -17347,6 +17357,8 @@ u_init()
 	case PM_HUMANOID_DRYAD: racebounus = rnz(8); break;
 	case PM_PLAYER_ZRUTY: racebounus = rnz(15); break;
 	case PM_METAL: racebounus = rnz(6); break;
+	case PM_BACTERIA: racebounus = rnz(16); break;
+	case PM_PLAYER_CERBERUS: racebounus = rnz(16); break;
 	case PM_PLAYER_GOLEM: racebounus = rnz(11); break;
 	case PM_PLAYER_MECHANIC: racebounus = rnz(12); break;
 	default:	racebounus = rnz(10); break;

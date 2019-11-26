@@ -8720,6 +8720,14 @@ newboss:
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
 			}
+
+			if (Race_if(PM_BACTERIA) && u.uhpmax > 4 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
+				pline("*Super Regene*");
+				u.uhp += 5;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = 1;
+			}
+
 		    }
 
 			if (!Burned && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {

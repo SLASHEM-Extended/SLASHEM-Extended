@@ -8767,6 +8767,7 @@ int type;
     if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {
 	return FALSE;
     }
+    if (Race_if(PM_CUPID) && !rn2(5)) return FALSE;
     if (Race_if(PM_PLAYER_ATLANTEAN) && rn2(2)) {
 	return FALSE;
     }

@@ -4451,7 +4451,7 @@ demonpet()
 
 	pline("Some hell-p has arrived!");
 	i = !rn2(6) ? ndemon(u.ualign.type) : NON_PM;
-	if (Race_if(PM_GAVIL) && !Upolyd) {
+	if ((Race_if(PM_GAVIL) && !Upolyd) || (Race_if(PM_PLAYER_SHEEP) && !Upolyd && u.ulevel >= 20)) {
 		i = ndemon(u.ualign.type);
 		while (tries++ < 50000 && i == NON_PM) i = ndemon(u.ualign.type);
 	}
@@ -4610,7 +4610,7 @@ register struct attack *mattk;
 	if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 	if (need_four(mdef)  && enchantlvl < 4 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 
-	if ((is_demon(youmonst.data) || (Race_if(PM_GAVIL) && !Upolyd) ) && !rn2(23) && !(Race_if(PM_BORG) && !Upolyd)
+	if ((is_demon(youmonst.data) || (Race_if(PM_PLAYER_SHEEP) && !Upolyd && u.ulevel >= 20) || (Race_if(PM_GAVIL) && !Upolyd) ) && !rn2(23) && !(Race_if(PM_BORG) && !Upolyd)
 		&& u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS
 		&& u.umonnum != PM_BALROG && u.umonnum != PM_NEWS_DAEMON
 		&& u.umonnum != PM_PRINTER_DAEMON) {

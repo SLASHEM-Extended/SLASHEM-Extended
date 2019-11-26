@@ -361,6 +361,12 @@ const char *name;	/* if null, then format `obj' */
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (Race_if(PM_CUPID) && !rn2(5)) {
+
+			if(Blind || !flags.verbose) You("sidestep a projectile.");
+			else You("sidestep %s.", onm);
+			return(0);
+
 	} else if (uwep && uwep->oartifact == ART_SYLVIE_S_INVENTION && rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");

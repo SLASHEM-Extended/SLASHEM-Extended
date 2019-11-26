@@ -3230,6 +3230,12 @@ boolean atme;
 		energy /= 5;
 	}
 
+	if (Race_if(PM_BACTERIA)) {
+		if (rn2(10)) energy += 1;
+		energy *= 4;
+		energy /= 5;
+	}
+
 	if (Upolyd && dmgtype(youmonst.data, AD_SPEL) ) {
 		if (rn2(10)) energy += 1;
 		energy *= 19;
@@ -3257,7 +3263,11 @@ boolean atme;
 		energy *= 4;
 		energy /= 5;
 	}
-	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {if (rn2(10)) energy += 1; energy *= 3; energy /= 4;}
+	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {
+		if (rn2(10)) energy += 1;
+		energy *= 3;
+		energy /= 4;
+	}
 
 	if ((uarmg && itemhasappearance(uarmg, APP_OCCULTISM_GLOVES)) && skill == P_OCCULT_SPELL) {
 		if (rn2(10)) energy += 1;
@@ -3373,21 +3383,30 @@ boolean atme;
 			goto castanyway;
 		}
 
-		if (role_skill >= P_SKILLED) You("don't have enough energy to cast that spell.");
+		if (role_skill >= P_SKILLED || Race_if(PM_BACTERIA)) You("don't have enough energy to cast that spell.");
 		else You("don't have enough energy to cast that spell. The required amount was %d.",energy);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* WAC/ALI Experts can override with HP/hunger loss */
-		if ((role_skill >= P_SKILLED) && (u.uhpmax > (energy / 5)) && (yn("Continue? Doing so may damage your maximum health.") == 'y')) {
+		if ((role_skill >= P_SKILLED || Race_if(PM_BACTERIA)) && (u.uhpmax > (energy / 5)) && (yn("Continue? Doing so may damage your maximum health.") == 'y')) {
 			energy -= u.uen;
 			hungr += energy * 2;
 			if (hungr > u.uhunger - 1)
 				hungr = u.uhunger - 1;
 
-			if (energy > 4) {
+			if (energy > 4 && (!Race_if(PM_BACTERIA) || !rn2(2))) {
 			/* otherwise, skilled godmode at 0% fail equals instawin. --Amy */
 				pline("Your maximum health was reduced by %d.", energy / 5);
 				u.uhpmax -= (energy / 5);
 				u.uhp -= (energy / 5);
+				if (u.uhp < 1) {
+					u.youaredead = 1;
+					done(DIED);
+					u.youaredead = 0;
+				}
+			} else if (energy < 5 && (!Race_if(PM_BACTERIA) || !rn2(2))) {
+				pline("Your maximum health was reduced by 1.");
+				u.uhpmax -= 1;
+				u.uhp -= 1;
 				if (u.uhp < 1) {
 					u.youaredead = 1;
 					done(DIED);
@@ -3399,7 +3418,7 @@ boolean atme;
 			if (role_skill < P_EXPERT) exercise(A_WIS, FALSE);
 			energy = u.uen;
 		} else {
-			if (role_skill >= P_SKILLED) pline("The required amount was %d.",energy);
+			if (role_skill >= P_SKILLED || Race_if(PM_BACTERIA)) pline("The required amount was %d.",energy);
 			return 0;
 		}
 	}

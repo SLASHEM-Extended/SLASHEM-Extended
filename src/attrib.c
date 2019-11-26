@@ -1195,6 +1195,28 @@ const struct innate {
 	trn_abil[] = { {	 1, &(HExtra_wpn_practice), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	cup_abil[] = { { 20, &(HFlying), "weightless", "grounded" },
+		     {   0, 0, 0, 0 } },
+
+	bac_abil[] = { {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
+		     {	20, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
+		     {   0, 0, 0, 0 } },
+
+	she_abil[] = { { 20, &(HFire_resistance), "cool", "warmer" },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
+		     {   20, &(HAcid_resistance), "warded", "endangered" },
+		     {  20, &(HSwimming), "ready to swim","afraid of the water" },
+			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
+		    { 20,  &(HInfravision), "perceptive", "half blind"},
+		     {   0, 0, 0, 0 } },
+
+	cer_abil[] = { { 1, &(HFire_resistance), "", "" },
+		     {  1, &(HScentView), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	hou_abil[] = { {  1, &(HScentView), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	exp_abil[] = { {	 1, &(HPsi_resist), "", "" },
 		     {	 0, 0, 0, 0 } },
 
@@ -2109,6 +2131,11 @@ int oldlevel, newlevel;
 	case PM_JELLY:            rabil = jel_abil;	break;
 	case PM_WEAPON_IMP:            rabil = wim_abil;	break;
 	case PM_TRAINER:            rabil = trn_abil;	break;
+	case PM_CUPID:            rabil = cup_abil;	break;
+	case PM_BACTERIA:            rabil = bac_abil;	break;
+	case PM_PLAYER_SHEEP:            rabil = she_abil;	break;
+	case PM_PLAYER_CERBERUS:            rabil = cer_abil;	break;
+	case PM_PLAYER_HOUND:            rabil = hou_abil;	break;
 	case PM_EXPERT:            rabil = exp_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
@@ -2417,6 +2444,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_VERENA_S_DUELING_SANDALS) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) tmp += 10;
 		if (uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE) tmp += 5;
+		if (Race_if(PM_CUPID)) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemaleTrapSolvejg) tmp += 5;
