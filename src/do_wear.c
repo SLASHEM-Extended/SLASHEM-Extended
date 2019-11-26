@@ -2081,6 +2081,8 @@ Helmet_off()
 		    u.ublessed = 0;
 		    flags.botl = 1;
 	    }
+	    u.ualign.type = u.ualignbase[A_CURRENT];
+	    flags.botl = 1;
 
 	    break;
 
