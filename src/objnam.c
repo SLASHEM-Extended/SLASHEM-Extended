@@ -6108,11 +6108,11 @@ register struct obj *obj;
 			strcat(buf, dn ? dn : actualn);
 		/* If we use an() here we'd have to remember never to use */
 		/* it whenever calling doname() or xname(). */
-		if (typ == FIGURINE && !PlayerUninformation)
+		if (typ == FIGURINE && obj->corpsenm > PM_PLAYERMON && obj->corpsenm < NUMMONS && !PlayerUninformation)
 		    sprintf(eos(buf), " of a%s %s",
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
-		if (typ == ENERGY_SAP && !PlayerUninformation)
+		if (typ == ENERGY_SAP && obj->corpsenm > PM_PLAYERMON && obj->corpsenm < NUMMONS && !PlayerUninformation)
 		    sprintf(eos(buf), " of a%s %s",
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
@@ -6216,7 +6216,7 @@ register struct obj *obj;
 		strcpy(buf, actualn);
 		break;
 	    case ROCK_CLASS:
-		if (typ == STATUE && !PlayerUninformation)
+		if (typ == STATUE && obj->corpsenm > PM_PLAYERMON && obj->corpsenm < NUMMONS && !PlayerUninformation)
 		    sprintf(buf, "%s%s of %s%s",
 			(Role_if(PM_ARCHEOLOGIST) && (obj->spe & STATUE_HISTORIC)) ? "historic " : "" ,
 			actualn,
@@ -6806,7 +6806,7 @@ ring:
 		else
 		    tmpbuf[0] = '\0';
 		strcat(prefix, tmpbuf);
-		if (obj->otyp == CORPSE && !Hallucination && !PlayerUninformation) {
+		if (obj->otyp == CORPSE && obj->corpsenm > PM_PLAYERMON && obj->corpsenm < NUMMONS && !Hallucination && !PlayerUninformation) {
 		    if (mons[obj->corpsenm].geno & G_UNIQ) {
 			sprintf(prefix, "%s%s ",
 				(type_is_pname(&mons[obj->corpsenm]) ?
