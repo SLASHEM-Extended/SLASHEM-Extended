@@ -143,6 +143,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define MM_NOSPECIALS     0x0200 /* no cockatrice corpses etc. */
 #define MM_CRYSTALORNOT   0x0400 /* for if the player falls into water, to see whether they can crawl out */
 #define MM_FRENZIED	0x0800	/* monster has 1 in 3 chance of spawning frenzied */
+#define MM_XFRENZIED	0x1000	/* monster always spawns frenzied */
 
 /* special mhpmax value when loading bones monster to flag as extinct or genocided */
 #define DEFUNCT_MONSTER	(-100)

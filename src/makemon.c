@@ -19129,6 +19129,10 @@ register int	mmflags;
 	mtmp->mcansee = mtmp->mcanmove = TRUE;
 	mtmp->mpeaceful = (mmflags & MM_ANGRY) ? FALSE : peace_minded(ptr);
 	if (!mtmp->mpeaceful && (mmflags & MM_FRENZIED) && !rn2(3)) mtmp->mfrenzied = TRUE;
+	if (mmflags & MM_XFRENZIED) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
 	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN]) mtmp->mfrenzied = TRUE;
 	mtmp->mtraitor  = FALSE;
 	mtmp->masleep = 0;
