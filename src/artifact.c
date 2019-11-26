@@ -1862,6 +1862,8 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
 	 * into a golem, and the "cancel" effect acts as if some magical
 	 * energy remains in spellcasting defenders to be absorbed later.
 	 */
+	boolean alreadycancel = (youattack && mdef && mdef->mcan);
+
 	if (!cancel_monst(mdef, mb, youattack, FALSE, FALSE)) {
 	    resisted = TRUE;
 	} else {
@@ -1878,7 +1880,7 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
 	    } else {
 		if (mdef->data == &mons[PM_CLAY_GOLEM])
 		    mdef->mhp = 1;	/* cancelled clay golems will die */
-		if (youattack && attacktype(mdef->data, AT_MAGC)) {
+		if (youattack && !alreadycancel && attacktype(mdef->data, AT_MAGC)) {
 		    You("absorb magical energy!");
 		    u.uenmax++;
 		    u.uen++;
