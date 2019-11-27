@@ -332,6 +332,10 @@ found:
 	/* see if there's enough ink */
 	basecost = writecost(new_obj);
 
+	if (basecost >= 1000) { /* impossible! */
+		return(0);
+	}
+
 	if (!(objects[new_obj->otyp].oc_name_known)) {
 		pline("That item isn't type-identified. If it also isn't type-named, writing it may fail depending on your luck.");
 		if (yn("Try anyway?") != 'y') {
