@@ -146,6 +146,7 @@ E void drag_down(void);
 E boolean can_make_bones(void);
 E void savebones(struct obj *);
 E int getbones(void);
+E char *bonedunlvl(XCHAR_P);
 
 /* ### borg.c ### */
 

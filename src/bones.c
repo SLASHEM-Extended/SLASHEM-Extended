@@ -248,6 +248,90 @@ can_make_bones()
 	return TRUE;
 }
 
+char *
+bonedunlvl(dnum)
+xchar dnum;
+{
+	static char buf[BUFSZ];
+
+	strcpy(buf, "XXX"); /* placeholder */
+
+	if (!strcmp(dungeons[u.uz.dnum].dname, "Angmar"))
+		strcpy(buf, "ANG");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Hell's Bathroom"))
+		strcpy(buf, "BAT");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Bell Caves"))
+		strcpy(buf, "BEL");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds"))
+		strcpy(buf, "DEA");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Deep Mines"))
+		strcpy(buf, "DEE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Dungeons of Doom"))
+		strcpy(buf, "DOO");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber"))
+		strcpy(buf, "FOR");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gamma Caves"))
+		strcpy(buf, "GAM");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gehennom"))
+		strcpy(buf, "GEH");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns"))
+		strcpy(buf, "GIA");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
+		strcpy(buf, "GNO");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
+		strcpy(buf, "GRU");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Illusory Castle"))
+		strcpy(buf, "ILL");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios"))
+		strcpy(buf, "KNX");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab"))
+		strcpy(buf, "LAB");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Mainframe"))
+		strcpy(buf, "MAI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
+		strcpy(buf, "MOL");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Nether Realm"))
+		strcpy(buf, "NET");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos"))
+		strcpy(buf, "ORD");
+	else if (In_quest(&u.uz))
+		strcpy(buf, "QUE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market"))
+		strcpy(buf, "SAM");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Subquest"))
+		strcpy(buf, "SBQ");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea"))
+		strcpy(buf, "SEA");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sewer Plant"))
+		strcpy(buf, "SEW");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sheol"))
+		strcpy(buf, "SHL");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sokoban"))
+		strcpy(buf, "SOK");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Space Base"))
+		strcpy(buf, "SPC");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves"))
+		strcpy(buf, "SPI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Swimming Pool"))
+		strcpy(buf, "SWI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb"))
+		strcpy(buf, "TOM");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Town"))
+		strcpy(buf, "TOW");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Vlad's Tower"))
+		strcpy(buf, "VLA");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Void"))
+		strcpy(buf, "VOI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves"))
+		strcpy(buf, "WYR");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower"))
+		strcpy(buf, "YEN");
+	else impossible("Error! No bones level identifier found. Please notify Amy about this bug and tell her on which level it occurred.");
+
+	return buf;
+
+}
+
 /* save bones and possessions of a deceased adventurer */
 void
 savebones(corpse)
