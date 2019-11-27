@@ -22,47 +22,55 @@ const char *what;
 STATIC_OVL void
 dowatersnakes() /* Fountain of snakes! */
 {
-    register int num = rn1(5,2);
-    struct monst *mtmp;
+	register int num = rn1(5,2);
+	struct monst *mtmp;
 
-    if (!(mvitals[PM_RIVER_MOCCASIN].mvflags & G_GONE)) { /* changed to a non-concealing species --Amy */
-	if (!Blind)
-	    pline("An endless stream of %s pours forth!",
-		  Hallucination ? makeplural(rndmonnam()) : "snakes");
-	else
-	    You_hear("%s hissing!", something);
-	while(num-- > 0)
-	    if((mtmp = makemon(&mons[PM_RIVER_MOCCASIN],
-			u.ux, u.uy, NO_MM_FLAGS)) && t_at(mtmp->mx, mtmp->my))
-		(void) mintrap(mtmp);
-    } else
-	pline_The("fountain bubbles furiously for a moment, then calms.");
+	int snakenum = PM_RIVER_MOCCASIN;
+	int snaketype = rn2(3) ? 1 : rn2(2) ? 2 : 3;
+	if (snaketype == 2) {
+		snakenum = pm_mkclass(S_SNAKE, 0);
+		if (snakenum <= PM_PLAYERMON || snakenum >= NUMMONS) { /* error! */
+			snakenum = PM_RIVER_MOCCASIN;
+		}
+	}
+
+	if (!((snaketype == 1) && (mvitals[PM_RIVER_MOCCASIN].mvflags & G_GONE))) { /* changed to a non-concealing species --Amy */
+		if (!Blind)
+			pline("An endless stream of %s pours forth!", Hallucination ? makeplural(rndmonnam()) : "snakes");
+		else
+			You_hear("%s hissing!", something);
+		while(num-- > 0)
+			if((mtmp = makemon((snaketype == 3) ? mkclass(S_SNAKE,0) : &mons[snakenum], u.ux, u.uy, NO_MM_FLAGS)) && t_at(mtmp->mx, mtmp->my))
+				(void) mintrap(mtmp);
+	} else
+		pline_The("fountain bubbles furiously for a moment, then calms.");
 }
 
 STATIC_OVL
 void
 dowaterdemon() /* Water demon */
 {
-    register struct monst *mtmp;
+	register struct monst *mtmp;
 	register int wishchance = issoviet ? (60 + 5*level_difficulty()) : 97;
 	/* In Soviet Russia, deep fountains may not give wishes. After all, digging too deep into the ground in such a cold country would endanger the groundwater supplies and is therefore strictly forbidden. --Amy */
 
-    if(!(mvitals[PM_WATER_DEMON].mvflags & G_GONE)) {
-	if((mtmp = makemon(&mons[PM_WATER_DEMON],u.ux,u.uy, NO_MM_FLAGS))) {
-	    if (!Blind)
-		You("unleash %s!", a_monnam(mtmp));
-	    else
-		You_feel("the presence of evil.");
+	boolean demontype = rn2(2) ? 0 : 1;
+
+	if(!((demontype == 1) && (mvitals[PM_WATER_DEMON].mvflags & G_GONE))) {
+		if((mtmp = makemon((demontype == 1) ? &mons[PM_WATER_DEMON] : mkclass(S_DEMON, 0), u.ux,u.uy, NO_MM_FLAGS))) {
+			if (!Blind)
+				You("unleash %s!", a_monnam(mtmp));
+			else
+				You_feel("the presence of evil.");
 /* ------------===========STEPHEN WHITE'S NEW CODE============------------ */
 	/* Give those on low levels a (slightly) better chance of survival */
 	/* 35% at level 1, 30% at level 2, 25% at level 3, etc... */            
 	if (rnd(100) > wishchance) {
-		pline("Grateful for %s release, %s grants you a boon!",
-		      mhis(mtmp), mhe(mtmp));
+		pline("Grateful for %s release, %s grants you a boon!", mhis(mtmp), mhe(mtmp));
 		if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 		else othergreateffect();
 		mongone(mtmp);
-	    } else if (t_at(mtmp->mx, mtmp->my))
+	} else if (t_at(mtmp->mx, mtmp->my))
 		(void) mintrap(mtmp);
 	} else if (issoviet) {
 		pline("Kha-kha-kha, tip bloka l'da ne khochet, chtoby vy, chtoby imet' krasivyy slavyanskiy zhenshchinu. Vmesto etogo, vy poluchayete vrazhdebnogo demona.");
@@ -76,20 +84,21 @@ dowaternymph() /* Water Nymph */
 {
 	register struct monst *mtmp;
 
-	if(!(mvitals[PM_WATER_NYMPH].mvflags & G_GONE) &&
-	   (mtmp = makemon(&mons[PM_WATER_NYMPH],u.ux,u.uy, NO_MM_FLAGS))) {
+	boolean nymphtype = rn2(2) ? 0 : 1;
+
+	if(!((nymphtype == 1) && (mvitals[PM_WATER_NYMPH].mvflags & G_GONE)) && (mtmp = makemon((nymphtype == 1) ? &mons[PM_WATER_NYMPH] : mkclass(S_NYMPH,0), u.ux,u.uy, NO_MM_FLAGS))) {
 		if (!Blind)
-		   You("attract %s!", a_monnam(mtmp));
+			You("attract %s!", a_monnam(mtmp));
 		else
-		   You_hear("a seductive voice.");
+			You_hear("a seductive voice.");
 		mtmp->msleeping = 0;
-		if (t_at(mtmp->mx, mtmp->my))
-		    (void) mintrap(mtmp);
+		if (t_at(mtmp->mx, mtmp->my)) 
+			(void) mintrap(mtmp);
 	} else
 		if (!Blind)
-		   pline("A large bubble rises to the surface and pops.");
+			pline("A large bubble rises to the surface and pops.");
 		else
-		   You_hear("a loud pop.");
+			You_hear("a loud pop.");
 }
 
 void
@@ -859,27 +868,28 @@ void
 breaktoilet(x,y)
 int x, y;
 {
-    register int num = rn1(5,2);
-    struct monst *mtmp;
-    pline("The toilet suddenly shatters!");
-    level.flags.nsinks--;
-    levl[x][y].typ = FOUNTAIN;
-    level.flags.nfountains++;
-    newsym(x,y);
-    if (!rn2(3)) {
-      if (!(mvitals[PM_BABY_CROCODILE].mvflags & G_GONE)) {
-	if (!Blind) {
-	    if (!FunnyHallu) pline("Oh no! Crocodiles come out from the pipes!");
-	    else pline("Oh no! Tons of poopies!");
-	} else
-	    You("hear something scuttling around you!");
-	while(num-- > 0)
-	    if((mtmp = makemon(&mons[PM_BABY_CROCODILE],u.ux,u.uy, NO_MM_FLAGS)) &&
-	       t_at(mtmp->mx, mtmp->my))
-		(void) mintrap(mtmp);
+	register int num = rn1(5,2);
+	struct monst *mtmp;
+	pline("The toilet suddenly shatters!");
+	level.flags.nsinks--;
+	levl[x][y].typ = FOUNTAIN;
+	level.flags.nfountains++;
+	newsym(x,y);
+	if (!rn2(3)) {
+		boolean croctype = rn2(2) ? 0 : 1;
+
+		if (!((croctype == 1) && (mvitals[PM_BABY_CROCODILE].mvflags & G_GONE))) {
+			if (!Blind) {
+				if (!FunnyHallu) pline("Oh no! %s come out from the pipes!", croctype == 1 ? "Crocodiles" : "Slithy things");
+				else pline("Oh no! Tons of poopies!");
+			} else
+				You("hear something scuttling around you!");
+			while(num-- > 0)
+			if((mtmp = makemon((croctype == 1) ? &mons[PM_BABY_CROCODILE] : mkclass(S_LIZARD,0), u.ux,u.uy, NO_MM_FLAGS)) && t_at(mtmp->mx, mtmp->my))
+				(void) mintrap(mtmp);
       } else
-	pline("The sewers seem strangely quiet.");
-    }
+		pline("The sewers seem strangely quiet.");
+	}
 }
 
 void
@@ -908,7 +918,8 @@ drinksink()
 			u.uhunger += rnd(50); /* don't choke on water */
 			newuhs(FALSE);
 			break;
-		case 2: You("take a sip of scalding hot water.");
+		case 2:
+			You("take a sip of scalding hot water.");
 			if (Fire_resistance) {
 				pline("It seems quite tasty.");
 				u.uhunger += rnd(50); /* don't choke on water */
@@ -919,15 +930,15 @@ drinksink()
 			newuhs(FALSE);
 
 			break;
-		case 3: if (mvitals[PM_SEWER_RAT].mvflags & G_GONE)
-				pline_The("sink seems quite dirty.");
-			else {
-				mtmp = makemon(&mons[PM_SEWER_RAT],
-						u.ux, u.uy, NO_MM_FLAGS);
-				if (mtmp) pline("Eek!  There's %s in the sink!",
-					(Blind || !canspotmon(mtmp)) ?
-					"something squirmy" :
-					a_monnam(mtmp));
+		case 3:
+			{
+				boolean rattype = rn2(5) ? 0 : 1;
+				if ((rattype == 1) && (mvitals[PM_SEWER_RAT].mvflags & G_GONE))
+					pline_The("sink seems quite dirty.");
+				else {
+					mtmp = makemon((rattype == 1) ? &mons[PM_SEWER_RAT] : mkclass(S_RODENT, 0), u.ux, u.uy, NO_MM_FLAGS);
+					if (mtmp) pline("Eek!  There's %s in the sink!", (Blind || !canspotmon(mtmp)) ? "something squirmy" : a_monnam(mtmp));
+				}
 			}
 			break;
 		case 4: do {
@@ -1062,12 +1073,15 @@ newwere:
 				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 			}
                   break;
-            case 17: if (FunnyHallu)
+            case 17:
+			if (FunnyHallu)
                   pline_The("water flies out of the plughole and into the faucet!");
+			break;
 		case 19: if (FunnyHallu) {
-		   pline("From the murky drain, a hand reaches up... --oops--");
+				pline("From the murky drain, a hand reaches up... --oops--");
 				break;
 			}
+			break;
 		default: You("take a sip of %s water.",
 			rn2(3) ? (rn2(2) ? "cold" : "warm") : "hot");
 			u.uhunger += rnd(40); /* don't choke on water */
@@ -1094,37 +1108,42 @@ drinktoilet()
 /*
 		static NEARDATA struct obj *otmp;
  */
-		case 0: if (mvitals[PM_SEWER_RAT].mvflags & G_GONE)
-				pline("The toilet seems quite dirty.");
-			else {
-				static NEARDATA struct monst *mtmp;
-
-				mtmp = makemon(&mons[PM_SEWER_RAT], u.ux, u.uy,
-					NO_MM_FLAGS);
-				pline("Eek!  There's %s in the toilet!",
-					Blind ? "something squirmy" :
-					a_monnam(mtmp));
+		case 0:
+			{
+				boolean rattype = rn2(5) ? 0 : 1;
+				if ((rattype == 1) && (mvitals[PM_SEWER_RAT].mvflags & G_GONE))
+					pline("The toilet seems quite dirty.");
+				else {
+					static NEARDATA struct monst *mtmp;
+	
+					mtmp = makemon((rattype == 1) ? &mons[PM_SEWER_RAT] : mkclass(S_RODENT, 0), u.ux, u.uy, NO_MM_FLAGS);
+					pline("Eek!  There's %s in the toilet!", Blind ? "something squirmy" : a_monnam(mtmp));
+				}
 			}
 			break;
-		case 1: breaktoilet(u.ux,u.uy);
+		case 1:
+			breaktoilet(u.ux,u.uy);
 			break;
-		case 2: pline("Something begins to crawl out of the toilet!");
-			if (mvitals[PM_BROWN_PUDDING].mvflags & G_GONE
-			    || !makemon(&mons[PM_BROWN_PUDDING], u.ux, u.uy,
-					NO_MM_FLAGS))
-				pline("But it slithers back out of sight.");
-			break;
+		case 2:
+			{
+				boolean puddtype = rn2(2) ? 0 : 1;
+				pline("Something begins to crawl out of the toilet!");
+				if (((puddtype == 1) && (mvitals[PM_BROWN_PUDDING].mvflags & G_GONE)) || !makemon((puddtype == 1) ? &mons[PM_BROWN_PUDDING] : mkclass(S_PUDDING, 0), u.ux, u.uy, NO_MM_FLAGS))
+					pline("But it slithers back out of sight.");
+				break;
+			}
 		case 3:
-		case 4: if (mvitals[PM_BABY_CROCODILE].mvflags & G_GONE)
-				pline("The toilet smells fishy.");
-			else {
-				static NEARDATA struct monst *mtmp;
+		case 4:
+			{
+				boolean croctype = rn2(2) ? 0 : 1;
+				if ((croctype == 1) && (mvitals[PM_BABY_CROCODILE].mvflags & G_GONE))
+					pline("The toilet smells fishy.");
+				else {
+					static NEARDATA struct monst *mtmp;
 
-				mtmp = makemon(&mons[PM_BABY_CROCODILE], u.ux,
-					 u.uy, NO_MM_FLAGS);
-				pline("Egad!  There's %s in the toilet!",
-					Blind ? "something squirmy" :
-					a_monnam(mtmp));
+					mtmp = makemon((croctype == 1) ? &mons[PM_BABY_CROCODILE] : mkclass(S_LIZARD, 0), u.ux, u.uy, NO_MM_FLAGS);
+					pline("Egad!  There's %s in the toilet!", Blind ? "something squirmy" : a_monnam(mtmp));
+				}
 			}
 			break;
 		default: pline("Gaggg... this tastes like sewage!  You vomit.");
@@ -1268,17 +1287,19 @@ register struct obj *obj;
 		return;
 	}
 	switch(rn2(20)) {
-		case 0: if (mvitals[PM_SEWER_RAT].mvflags & G_GONE)
-				pline_The("sink seems quite dirty.");
-			else {
-				mtmp = makemon(&mons[PM_SEWER_RAT],
-						u.ux, u.uy, NO_MM_FLAGS);
-				pline("Eek!  There's %s in the sink!",
-					Blind ? "something squirmy" :
-					a_monnam(mtmp));
+		case 0:
+			{
+				boolean rattype = rn2(5) ? 0 : 1;
+				if ((rattype == 1) && (mvitals[PM_SEWER_RAT].mvflags & G_GONE))
+					pline_The("sink seems quite dirty.");
+				else {
+					mtmp = makemon((rattype == 1) ? &mons[PM_SEWER_RAT] : mkclass(S_RODENT, 0), u.ux, u.uy, NO_MM_FLAGS);
+					if (mtmp) pline("Eek!  There's %s in the sink!", (Blind || !canspotmon(mtmp)) ? "something squirmy" : a_monnam(mtmp));
+				}
 			}
 			break;
-		case 1: if (!(levl[u.ux][u.uy].looted & S_LRING)) {
+		case 1:
+			if (!(levl[u.ux][u.uy].looted & S_LRING)) {
 			    You("find a ring in the sink!");
 			    (void) mkobj_at(RING_CLASS, u.ux, u.uy, TRUE);
 			    levl[u.ux][u.uy].looted |= S_LRING;
@@ -1286,12 +1307,12 @@ register struct obj *obj;
 			    newsym(u.ux,u.uy);
 			} else pline("Some dirty water backs up in the drain.");
 			break;
-		case 2: breaksink(u.ux,u.uy);
+		case 2:
+			breaksink(u.ux,u.uy);
 			break;
-		case 3: pline_The("water moves as though of its own will!");
-			if ((mvitals[PM_WATER_ELEMENTAL].mvflags & G_GONE)
-			    || !makemon(&mons[PM_WATER_ELEMENTAL],
-					u.ux, u.uy, NO_MM_FLAGS))
+		case 3:
+			pline_The("water moves as though of its own will!");
+			if ((mvitals[PM_WATER_ELEMENTAL].mvflags & G_GONE) || !makemon(&mons[PM_WATER_ELEMENTAL], u.ux, u.uy, NO_MM_FLAGS))
 				pline("But it quiets down.");
 			break;
 		case 4:
@@ -1299,14 +1320,18 @@ register struct obj *obj;
 			obj = poly_obj(obj, STRANGE_OBJECT, FALSE);
 			u.uconduct.polypiles++;
 			break;
-		case 5: You_hear("clanking from the pipes...");
+		case 5:
+			You_hear("clanking from the pipes...");
 			break;
-		case 6: You_hear("snatches of song from among the sewers...");
+		case 6:
+			You_hear("snatches of song from among the sewers...");
 			break;
-		case 19: if (FunnyHallu) {
-		   pline("From the murky drain, a hand reaches up... --oops--");
+		case 19:
+			if (FunnyHallu) {
+				pline("From the murky drain, a hand reaches up... --oops--");
 				break;
 			}
+			break;
 		default:
 			break;
 	}

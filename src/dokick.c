@@ -1664,59 +1664,60 @@ dokick()
 		   goto ouch;
 		}
 		if(IS_SINK(maploc->typ)) {
-		    int gend = poly_gender();
-		    short washerndx = (gend == 1 || (gend == 2 && rn2(2))) ?
+			int gend = poly_gender();
+			short washerndx = (gend == 1 || (gend == 2 && rn2(2))) ?
 					PM_INCUBUS : PM_SUCCUBUS;
+			boolean specwasher = rn2(2) ? 0 : 1;
+			boolean specpudding = rn2(2) ? 0 : 1;
 
-		    if(Levitation) goto dumb;
+			if(Levitation) goto dumb;
 
-		    u.cnd_sinkamount++;
+			u.cnd_sinkamount++;
 
-		    if(rn2(5)) {
-			if(flags.soundok)
-			    pline("Klunk!  The pipes vibrate noisily.");
-			else pline("Klunk!");
-			exercise(A_DEX, TRUE);
-			return(1);
-		    } else if(!(maploc->looted & S_LPUDDING) && !rn2(3) &&
-			  !(mvitals[PM_BLACK_PUDDING].mvflags & G_GONE)) {
-			if (Blind)
-			    You_hear("a gushing sound.");
-			else
-			    pline("A %s ooze gushes up from the drain!",
-					 hcolor(NH_BLACK));
-			(void) makemon(&mons[PM_BLACK_PUDDING],
-					 x, y, NO_MM_FLAGS);
-			exercise(A_DEX, TRUE);
-			newsym(x,y);
-			maploc->looted |= S_LPUDDING;
-			return(1);
-		    } else if(!(maploc->looted & S_LDWASHER) && !rn2(3) &&
-			      !(mvitals[washerndx].mvflags & G_GONE)) {
-			/* can't resist... */
-			pline("%s returns!", (Blind ? Something :
-							"The dish washer"));
-			if (makemon(&mons[washerndx], x, y, NO_MM_FLAGS))
-			    newsym(x,y);
-			maploc->looted |= S_LDWASHER;
-			exercise(A_DEX, TRUE);
-			return(1);
-		    } else if(!rn2(3)) {
-			pline("Flupp!  %s.", (Blind ?
-				      "You hear a sloshing sound" :
-				      "Muddy waste pops up from the drain"));
-			if(!(maploc->looted & S_LRING)) { /* once per sink */
-			    if (!Blind)
-				You("see a ring shining in its midst.");
-			    (void) mkobj_at(RING_CLASS, x, y, TRUE);
-			    newsym(x, y);
-			    exercise(A_DEX, TRUE);
-			    exercise(A_WIS, TRUE);	/* a discovery! */
-			    maploc->looted |= S_LRING;
+			if(rn2(5)) {
+				if(flags.soundok)
+					pline("Klunk!  The pipes vibrate noisily.");
+				else pline("Klunk!");
+				exercise(A_DEX, TRUE);
+				return(1);
+			} else if(!(maploc->looted & S_LPUDDING) && !rn2(3) && !((specpudding == 1) && (mvitals[PM_BLACK_PUDDING].mvflags & G_GONE))) {
+				if (Blind)
+					You_hear("a gushing sound.");
+				else
+					pline("A %s ooze gushes up from the drain!", specpudding == 1 ? hcolor(NH_BLACK) : "strange");
+				(void) makemon((specpudding == 1) ? &mons[PM_BLACK_PUDDING] : mkclass(S_PUDDING, 0), x, y, NO_MM_FLAGS);
+				exercise(A_DEX, TRUE);
+				newsym(x,y);
+				maploc->looted |= S_LPUDDING;
+				return(1);
+			} else if(!(maploc->looted & S_LDWASHER) && !rn2(3) && !((specwasher == 1) && (mvitals[washerndx].mvflags & G_GONE))) {
+				/* can't resist... */
+				pline("%s returns!", (Blind ? Something : "The dish washer"));
+				if (makemon((specwasher == 1) ? &mons[washerndx] : specialtensmon(226), x, y, NO_MM_FLAGS)) newsym(x,y); /* AD_SSEX */
+				maploc->looted |= S_LDWASHER;
+				exercise(A_DEX, TRUE);
+				return(1);
+			} else if(!rn2(3)) {
+				pline("Flupp!  %s.", (Blind ? "You hear a sloshing sound" : "Muddy waste pops up from the drain"));
+				if(!(maploc->looted & S_LRING)) { /* once per sink */
+
+					if (rn2(5)) { /* nerf nerf NEEEEEERF! :D --Amy */
+						pline("But it contains nothing useful.");
+						maploc->looted |= S_LRING;
+					} else {
+
+						if (!Blind)
+							You("see a ring shining in its midst.");
+						(void) mkobj_at(RING_CLASS, x, y, TRUE);
+						newsym(x, y);
+						exercise(A_DEX, TRUE);
+						exercise(A_WIS, TRUE);	/* a discovery! */
+						maploc->looted |= S_LRING;
+					}
+				}
+				return(1);
 			}
-			return(1);
-		    }
-		    goto ouch;
+			goto ouch;
 		}
 		if (maploc->typ == STAIRS || maploc->typ == WATERTUNNEL || maploc->typ == LADDER ||
 						    IS_STWALL(maploc->typ)) {
