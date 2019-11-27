@@ -13516,9 +13516,9 @@ boolean knoweverything;
 				pline("A very powerful spell that tries to tame adjacent monsters. Their magic resistance prevents this from working sometimes, and since the spell used to be totally unbalanced, it can also fail if the monster isn't resistant at all. But even that's not enough, and therefore Amy added another failure effect: if you're unlucky, the monster will be frenzied, which means it cannot be tamed at all anymore."); break;
 #endif
 			case SPE_ENCHANT_WEAPON:
-				pline("This spell rarely works, but if it does, it tries to enchant your wielded weapon. Beware, if the weapon in question already has a very high enchantment, it might blow up."); break;
+				pline("This spell rarely works, but if it does, it tries to enchant your wielded weapon. Beware, if the weapon in question already has a very high enchantment, it might blow up. Also, successfully enchanting something reduces your maximum mana by one point."); break;
 			case SPE_ENCHANT_ARMOR:
-				pline("This spell rarely works, but if it does, it tries to enchant a user-selected worn piece of armor. Beware, if the armor in question already has a very high enchantment, it might blow up."); break;
+				pline("This spell rarely works, but if it does, it tries to enchant a user-selected worn piece of armor. Beware, if the armor in question already has a very high enchantment, it might blow up. Also, successfully enchanting something reduces your maximum mana by one point."); break;
 			case SPE_CHARGING:
 				pline("Cast this spell if you want to recharge your objects. Beware, though; occasionally, doing so can have nasty side effects, because otherwise this spell would be too overpowered."); break;
 			case SPE_PROTECTION:
