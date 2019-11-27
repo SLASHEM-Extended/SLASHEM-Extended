@@ -4163,6 +4163,7 @@ rerollchaloc:
 		    if (newdungeon) {
 			if (Is_stronghold(&u.uz)) {
 			    register xchar x, y;
+			    int attempts = 0;
 
 			    do {
 #ifdef BIGSLEX
@@ -4171,8 +4172,8 @@ rerollchaloc:
 				x = (COLNO - 2 - rnd(5));
 #endif
 				y = rn1(ROWNO - 4, 3);
-			    } while(occupied(x, y) ||
-				    IS_WALL(levl[x][y].typ) || IS_WATERTUNNEL(levl[x][y].typ));
+				attempts++;
+			    } while ((occupied(x, y) || IS_STWALL(levl[x][y].typ) || IS_WATERTUNNEL(levl[x][y].typ)) && attempts < 999999);
 			    u_on_newpos(x, y);
 			} else u_on_sstairs();
 		    } else u_on_dnstairs();
