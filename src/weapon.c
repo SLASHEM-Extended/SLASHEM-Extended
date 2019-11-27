@@ -575,14 +575,15 @@ struct monst *mon;
 		tmp = 0;
 
 	/* "very heavy iron ball"; weight increase is in increments of 300 */
-	if (otyp == HEAVY_IRON_BALL && tmp > 0) {
-	    int wt = (int)objects[HEAVY_IRON_BALL].oc_weight;
+	if (otmp->oclass == BALL_CLASS && tmp > 0) {
 
-	    if ((int)otmp->owt > wt) {
-		wt = ((int)otmp->owt - wt) / 300;
-		tmp += rnd(4 * wt);
-		if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
-	    }
+		int wt = (int)objects[otmp->otyp].oc_weight;
+
+		if ((int)otmp->owt > wt) {
+			wt = ((int)otmp->owt - wt) / 300;
+			tmp += rnd(4 * wt);
+			if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
+		}
 	}
 
 /*	Put weapon vs. monster type damage bonuses in below:	*/
@@ -991,14 +992,15 @@ struct monst *mon;
 		tmp = 0;
 
 	/* "very heavy iron ball"; weight increase is in increments of 300 */
-	if (otyp == HEAVY_IRON_BALL && tmp > 0) {
-	    int wt = (int)objects[HEAVY_IRON_BALL].oc_weight;
+	if (otmp->oclass == BALL_CLASS && tmp > 0) {
 
-	    if ((int)otmp->owt > wt) {
-		wt = ((int)otmp->owt - wt) / 300;
-		tmp += rnd(4 * wt);
-		if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
-	    }
+		int wt = (int)objects[otmp->otyp].oc_weight;
+
+		if ((int)otmp->owt > wt) {
+			wt = ((int)otmp->owt - wt) / 300;
+			tmp += rnd(4 * wt);
+			if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
+		}
 	}
 
 /*	Put weapon vs. monster type damage bonuses in below:	*/

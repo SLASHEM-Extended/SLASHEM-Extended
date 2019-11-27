@@ -6228,11 +6228,11 @@ register struct obj *obj;
 		else strcpy(buf, actualn);
 		break;
 	    case BALL_CLASS:
-		if (typ == HEAVY_IRON_BALL && !issoviet) { sprintf(buf, "%sheavy iron ball",
-			(obj->owt > ocl->oc_weight) ? "very " : "");
+		if (typ == HEAVY_IRON_BALL && !issoviet) {
+			sprintf(buf, "%sheavy iron ball", (obj->owt > ocl->oc_weight) ? "very " : "");
 		}
-		if (typ == HEAVY_IRON_BALL && issoviet) { sprintf(buf, "%styazhelyy shar zheleza",
-			(obj->owt > ocl->oc_weight) ? "ochen' " : "");
+		if (typ == HEAVY_IRON_BALL && issoviet) {
+			sprintf(buf, "%styazhelyy shar zheleza", (obj->owt > ocl->oc_weight) ? "ochen' " : "");
 		}
 		else strcpy(buf, actualn);
 		break;
