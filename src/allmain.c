@@ -12886,6 +12886,14 @@ boolean new_game;	/* false => restoring an old game */
 	u.stethocheat = moves;
 	init_uasmon();
 
+	/* Amy switch to invalidate older versions */
+#if 0
+	if (moves < 100) {
+		pline("Sorry, but this version of SLASH'EM Extended is outdated. Your current game ends now. Please start a new game on the up-to-date version, because this old version exists only to allow players to finish old runs and you don't seem to have an old savegame. If you feel that this is in error, get on the #em.slashem.me IRC channel on Freenode and complain to Amy.");
+		done(QUIT);
+	}
+#endif
+
 	if (!new_game && issoviet) {
 
 		/* In Soviet Russia, modders simply assume that everything the Amy does is bullshit. They do not actually
