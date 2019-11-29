@@ -4990,6 +4990,7 @@ int degree;
 
 	if (Race_if(PM_ELONA_SNAIL)) degree *= (1 + rnd(2)); /* snail trains skills 2.5 times as fast --Amy */
 
+	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
@@ -5016,6 +5017,16 @@ int degree;
 		else if (P_ADVANCE(skill) >= 540) advchance = 5;
 		else if (P_ADVANCE(skill) >= 160) advchance = 3;
 		else if (P_ADVANCE(skill) >= 20) advchance = 2;
+		if (advchance > 1 && rn2(advchance)) return;
+	}
+
+	if (Race_if(PM_CARTHAGE) && skill != P_LANCE && skill != P_RIDING) {
+		int advchance = 1;
+		if (P_ADVANCE(skill) >= 4320) advchance = 6;
+		else if (P_ADVANCE(skill) >= 2560) advchance = 5;
+		else if (P_ADVANCE(skill) >= 1280) advchance = 4;
+		else if (P_ADVANCE(skill) >= 540) advchance = 3;
+		else if (P_ADVANCE(skill) >= 160) advchance = 2;
 		if (advchance > 1 && rn2(advchance)) return;
 	}
 
@@ -5070,6 +5081,8 @@ screwupsdone:
 	if (Race_if(PM_MAGYAR) && !rn2(2)) return;
 	if (Race_if(PM_DUNADAN) && !rn2(2)) return;
 	if (Race_if(PM_PLAYER_SKELETON) && rn2(3)) return;
+
+	if (Race_if(PM_KORONST) && rn2(3) && (skill <= P_LAST_WEAPON && skill != P_SLING && skill != P_FIREARM)) return;
 
 	if (!PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone()) P_ADVANCE(skill) += degree;
 	if (!advance_before && can_advance(skill, FALSE)) {
@@ -6800,6 +6813,75 @@ rerollthree:
 
 	}
 
+	if (Race_if(PM_MACTHEIST)) {
+
+		if (P_RESTRICTED(P_RIDING)) {
+			P_SKILL(P_RIDING) = P_UNSKILLED;
+			P_ADVANCE(P_RIDING) = 0;
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+		} else {
+			if (P_MAX_SKILL(P_RIDING) == P_EXPERT) P_MAX_SKILL(P_RIDING) = P_MASTER;
+			else if (P_MAX_SKILL(P_RIDING) == P_MASTER) P_MAX_SKILL(P_RIDING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_RIDING) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_LANCE)) {
+			P_SKILL(P_LANCE) = P_UNSKILLED;
+			P_ADVANCE(P_LANCE) = 0;
+			P_MAX_SKILL(P_LANCE) = P_BASIC;
+		} else {
+			if (P_MAX_SKILL(P_LANCE) == P_EXPERT) P_MAX_SKILL(P_LANCE) = P_MASTER;
+			else if (P_MAX_SKILL(P_LANCE) == P_MASTER) P_MAX_SKILL(P_LANCE) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_LANCE) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_CARTHAGE)) {
+
+		if (P_RESTRICTED(P_LANCE)) {
+			P_SKILL(P_LANCE) = P_UNSKILLED;
+			P_ADVANCE(P_LANCE) = 0;
+			P_MAX_SKILL(P_LANCE) = P_BASIC;
+		}
+		if (P_RESTRICTED(P_RIDING)) {
+			P_SKILL(P_RIDING) = P_UNSKILLED;
+			P_ADVANCE(P_RIDING) = 0;
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+		}
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (skill == P_RIDING || skill == P_LANCE) continue;
+			if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+
+		}
+
+	}
+
+	if (Race_if(PM_PERVERT)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (P_MAX_SKILL(skill) == P_EXPERT && (skill == P_RIDING || skill <= P_LAST_WEAPON)) P_MAX_SKILL(skill) = P_MASTER;
+
+		}
+
+		if (P_RESTRICTED(P_RIDING)) {
+			P_SKILL(P_RIDING) = P_UNSKILLED;
+			P_ADVANCE(P_RIDING) = 0;
+			P_MAX_SKILL(P_RIDING) = P_EXPERT;
+		}
+
+	}
+
+	if (Race_if(PM_BOVER)) {
+
+		if (P_RESTRICTED(P_RIDING)) {
+			P_SKILL(P_RIDING) = P_UNSKILLED;
+			P_ADVANCE(P_RIDING) = 0;
+			P_MAX_SKILL(P_RIDING) = P_BASIC;
+		}
+
+	}
+
 	if (Race_if(PM_MANSTER)) {
 
 		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
@@ -6807,6 +6889,38 @@ rerollthree:
 			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_SKILLED;
 			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
 			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+
+		}
+	}
+
+	if (Race_if(PM_MONGUNG)) {
+
+		P_SKILL(P_RIDING) = P_ISRESTRICTED;
+		P_MAX_SKILL(P_RIDING) = P_ISRESTRICTED;
+		P_ADVANCE(P_RIDING) = 0;
+	}
+
+	if (Race_if(PM_KORONST)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (skill > P_LAST_WEAPON || skill == P_SLING || skill == P_FIREARM) continue;
+			if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_SKILLED;
+			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
+			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
+
+		}
+	}
+
+	if (Race_if(PM_YUGGER)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (P_MAX_SKILL(skill) >= P_EXPERT) P_MAX_SKILL(skill) = P_EXPERT;
+			if (P_RESTRICTED(skill)) {
+				P_SKILL(skill) = P_UNSKILLED;
+				P_ADVANCE(skill) = 0;
+				P_MAX_SKILL(skill) = P_BASIC;
+			}
 
 		}
 	}
@@ -6933,6 +7047,18 @@ rerollthree:
 			if (P_MAX_SKILL(P_TRIDENT) == P_EXPERT) P_MAX_SKILL(P_TRIDENT) = P_MASTER;
 			else if (P_MAX_SKILL(P_TRIDENT) == P_MASTER) P_MAX_SKILL(P_TRIDENT) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_TRIDENT) = P_SUPREME_MASTER;
+		}
+	}
+
+	if (Race_if(PM_KORONST)) {
+		if (P_RESTRICTED(P_SLING)) {
+			P_SKILL(P_SLING) = P_BASIC;
+			P_ADVANCE(P_SLING) = 20;
+			P_MAX_SKILL(P_SLING) = P_MASTER;
+		} else {
+			P_SKILL(P_SLING) = P_BASIC;
+			if (P_MAX_SKILL(P_SLING) == P_EXPERT) P_MAX_SKILL(P_SLING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_SLING) = P_SUPREME_MASTER;
 		}
 	}
 

@@ -413,7 +413,7 @@ disturb(mtmp)
 	 *	Aggravate or mon is (dog or human) or
 	 *	    (1/7 and mon is not mimicing furniture or object)
 	 */
-	if(couldsee(mtmp->mx,mtmp->my) &&
+	if(couldsee(mtmp->mx,mtmp->my) && !(Race_if(PM_VIETIS) && rn2(3)) &&
 		distu(mtmp->mx,mtmp->my) <= 100 &&
 		(!Stealth || (Stealth && !StrongStealth && !rn2(5)) || (Aggravate_monster && !rn2(3) ) || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
 		(!(mtmp->data->mlet == S_NYMPH
@@ -1364,7 +1364,7 @@ register struct monst *mtmp;
 
 			You_feel("less faithful!");
 
-			if (u.ualign.record < -20 && !rn2(100) && (sgn(mtmp->data->maligntyp) != u.ualign.type) ) { /* You have been converted! */
+			if (u.ualign.record < -20 && !rn2(Race_if(PM_KORONST) ? 10 : 100) && (sgn(mtmp->data->maligntyp) != u.ualign.type) ) { /* You have been converted! */
 
 				if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && mtmp->data->maligntyp != A_NONE) {
 					You("have a strong feeling that %s is angry...", u_gname());

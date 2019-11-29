@@ -230,7 +230,7 @@ in_trouble()
 	if(HDimmed) return (TROUBLE_DIMMED);
 	if(PlayerBleeds) return (TROUBLE_BLEEDING);
 	if(HFeared) return (TROUBLE_FEARED);
-        if((u.uen <= 5 || u.uen*7 <= u.uenmax) && (u.uen < u.uenmax)) 
+        if((u.uen <= 5 || u.uen*7 <= u.uenmax) && (u.uen < u.uenmax))
         	return(TROUBLE_LOW_ENERGY);
 	return(0);
 }
@@ -683,7 +683,7 @@ aligntyp resp_god;
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
-		summon_minion(resp_god, FALSE);                
+		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
@@ -710,7 +710,7 @@ aligntyp resp_god;
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
-		summon_minion(resp_god, FALSE);                
+		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
 		summon_minion(resp_god, FALSE);
@@ -861,12 +861,12 @@ aligntyp resp_god;
 			    punishx();
 			    punishx();
 			    break;
-	    case 11:	
-	    case 12:	
+	    case 11:
+	    case 12:
 			gods_angry(resp_god);
 			god_summons_minions(resp_god);
 			break;
-	    case 13:	
+	    case 13:
 			godvoice(resp_god,(char *)0);
 			verbalize("Apres moi, le deluge!");
 			if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
@@ -875,12 +875,12 @@ aligntyp resp_god;
 			}
 			if (Burned) make_burned(0L, TRUE);
 			break;
-	    case 14:	
+	    case 14:
 			gods_angry(resp_god);
 			verbalize("Sayeth goodbye to thine belongings!");
 			withering_damage(invent, FALSE, FALSE);
 			break;
-	    case 15:	
+	    case 15:
 			gods_angry(resp_god);
 			verbalize("I curse thee for thine offense!");
 		    attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
@@ -964,9 +964,9 @@ gcrownu()
     }
 	}
 
-    if (rn2(3) && (!issoviet || !rn2(3))) { 
+    if (rn2(3) && (!issoviet || !rn2(3))) {
 	/* It's boring if the crowning gift is always the same, because it means the player is likely to use the same
-	 * artifacts each game. Yes, random crowning gifts may suck, but this is SLASH'EM Extended, where you're never 
+	 * artifacts each game. Yes, random crowning gifts may suck, but this is SLASH'EM Extended, where you're never
 	 * supposed to be guaranteed an awesome item! Randomness and variety ftw! --Amy */
 	/* In Soviet Russia, communism dictates that everyone gets the Stormbringer because the type of ice block said so. */
 
@@ -1006,6 +1006,25 @@ gcrownu()
 				P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_GRAND_MASTER;
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_SUPREME_MASTER;
+			}
+
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_ISRESTRICTED) {
+				    unrestrict_weapon_skill(get_obj_skill(obj, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(obj, TRUE));
+					P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_SUPREME_MASTER;
+				}
 			}
 
 		    discover_artifact(obj->oartifact);
@@ -1068,7 +1087,7 @@ gcrownu()
 				u.ugifts++;
 			}
 		}
-		/* acquire Reaver's skill regardless of weapon or gift, 
+		/* acquire Reaver's skill regardless of weapon or gift,
 			although pirates are already good at using scimitars */
 		if (P_MAX_SKILL(P_SCIMITAR) == P_ISRESTRICTED) {
 		    unrestrict_weapon_skill(P_SCIMITAR);
@@ -1085,6 +1104,24 @@ gcrownu()
 			P_MAX_SKILL(P_SCIMITAR) = P_GRAND_MASTER;
 		} else if (!rn2(200) && P_MAX_SKILL(P_SCIMITAR) == P_GRAND_MASTER) {
 			P_MAX_SKILL(P_SCIMITAR) = P_SUPREME_MASTER;
+		}
+		if (Race_if(PM_RUSMOT)) {
+			if (P_MAX_SKILL(P_SCIMITAR) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(P_SCIMITAR);
+			} else if (P_MAX_SKILL(P_SCIMITAR) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_SCIMITAR);
+				P_MAX_SKILL(P_SCIMITAR) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(P_SCIMITAR) == P_BASIC) {
+				P_MAX_SKILL(P_SCIMITAR) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(P_SCIMITAR) == P_SKILLED) {
+				P_MAX_SKILL(P_SCIMITAR) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(P_SCIMITAR) == P_EXPERT) {
+				P_MAX_SKILL(P_SCIMITAR) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(P_SCIMITAR) == P_MASTER) {
+				P_MAX_SKILL(P_SCIMITAR) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(P_SCIMITAR) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_SCIMITAR) = P_SUPREME_MASTER;
+			}
 		}
 
 		if (obj && obj->oartifact == ART_REAVER)
@@ -1117,6 +1154,24 @@ gcrownu()
 		P_MAX_SKILL(P_LONG_SWORD) = P_GRAND_MASTER;
 	} else if (!rn2(200) && P_MAX_SKILL(P_LONG_SWORD) == P_GRAND_MASTER) {
 		P_MAX_SKILL(P_LONG_SWORD) = P_SUPREME_MASTER;
+	}
+	if (Race_if(PM_RUSMOT)) {
+		if (P_MAX_SKILL(P_LONG_SWORD) == P_ISRESTRICTED) {
+		    unrestrict_weapon_skill(P_LONG_SWORD);
+		} else if (P_MAX_SKILL(P_LONG_SWORD) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_LONG_SWORD);
+			P_MAX_SKILL(P_LONG_SWORD) = P_BASIC;
+		} else if (rn2(2) && P_MAX_SKILL(P_LONG_SWORD) == P_BASIC) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_SKILLED;
+		} else if (!rn2(4) && P_MAX_SKILL(P_LONG_SWORD) == P_SKILLED) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_EXPERT;
+		} else if (!rn2(10) && P_MAX_SKILL(P_LONG_SWORD) == P_EXPERT) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_MASTER;
+		} else if (!rn2(100) && P_MAX_SKILL(P_LONG_SWORD) == P_MASTER) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_GRAND_MASTER;
+		} else if (!rn2(200) && P_MAX_SKILL(P_LONG_SWORD) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_SUPREME_MASTER;
+		}
 	}
 
 	if (obj && obj->oartifact == ART_EXCALIBUR)
@@ -1160,6 +1215,24 @@ gcrownu()
 		P_MAX_SKILL(P_LONG_SWORD) = P_GRAND_MASTER;
 	} else if (!rn2(200) && P_MAX_SKILL(P_LONG_SWORD) == P_GRAND_MASTER) {
 		P_MAX_SKILL(P_LONG_SWORD) = P_SUPREME_MASTER;
+	}
+	if (Race_if(PM_RUSMOT)) {
+		if (P_MAX_SKILL(P_LONG_SWORD) == P_ISRESTRICTED) {
+		    unrestrict_weapon_skill(P_LONG_SWORD);
+		} else if (P_MAX_SKILL(P_LONG_SWORD) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_LONG_SWORD);
+			P_MAX_SKILL(P_LONG_SWORD) = P_BASIC;
+		} else if (rn2(2) && P_MAX_SKILL(P_LONG_SWORD) == P_BASIC) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_SKILLED;
+		} else if (!rn2(4) && P_MAX_SKILL(P_LONG_SWORD) == P_SKILLED) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_EXPERT;
+		} else if (!rn2(10) && P_MAX_SKILL(P_LONG_SWORD) == P_EXPERT) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_MASTER;
+		} else if (!rn2(100) && P_MAX_SKILL(P_LONG_SWORD) == P_MASTER) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_GRAND_MASTER;
+		} else if (!rn2(200) && P_MAX_SKILL(P_LONG_SWORD) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_LONG_SWORD) = P_SUPREME_MASTER;
+		}
 	}
 
 	if (obj && obj->oartifact == ART_VORPAL_BLADE)
@@ -1208,6 +1281,24 @@ gcrownu()
 	} else if (!rn2(200) && P_MAX_SKILL(P_BROAD_SWORD) == P_GRAND_MASTER) {
 		P_MAX_SKILL(P_BROAD_SWORD) = P_SUPREME_MASTER;
 	}
+	if (Race_if(PM_RUSMOT)) {
+		if (P_MAX_SKILL(P_BROAD_SWORD) == P_ISRESTRICTED) {
+		    unrestrict_weapon_skill(P_BROAD_SWORD);
+		} else if (P_MAX_SKILL(P_BROAD_SWORD) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_BROAD_SWORD);
+			P_MAX_SKILL(P_BROAD_SWORD) = P_BASIC;
+		} else if (rn2(2) && P_MAX_SKILL(P_BROAD_SWORD) == P_BASIC) {
+			P_MAX_SKILL(P_BROAD_SWORD) = P_SKILLED;
+		} else if (!rn2(4) && P_MAX_SKILL(P_BROAD_SWORD) == P_SKILLED) {
+			P_MAX_SKILL(P_BROAD_SWORD) = P_EXPERT;
+		} else if (!rn2(10) && P_MAX_SKILL(P_BROAD_SWORD) == P_EXPERT) {
+			P_MAX_SKILL(P_BROAD_SWORD) = P_MASTER;
+		} else if (!rn2(100) && P_MAX_SKILL(P_BROAD_SWORD) == P_MASTER) {
+			P_MAX_SKILL(P_BROAD_SWORD) = P_GRAND_MASTER;
+		} else if (!rn2(200) && P_MAX_SKILL(P_BROAD_SWORD) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_BROAD_SWORD) = P_SUPREME_MASTER;
+		}
+	}
 
 	if (obj && obj->oartifact == ART_STORMBRINGER)
 	    discover_artifact(ART_STORMBRINGER);
@@ -1247,6 +1338,24 @@ gcrownu()
 		P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_GRAND_MASTER;
 	} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_GRAND_MASTER) {
 		P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_SUPREME_MASTER;
+	}
+	if (Race_if(PM_RUSMOT)) {
+		if (P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_ISRESTRICTED) {
+		    unrestrict_weapon_skill(get_obj_skill(obj, TRUE));
+		} else if (P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_UNSKILLED) {
+			unrestrict_weapon_skill(get_obj_skill(obj, TRUE));
+			P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_BASIC;
+		} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_BASIC) {
+			P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_SKILLED;
+		} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_SKILLED) {
+			P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_EXPERT;
+		} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_EXPERT) {
+			P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_MASTER;
+		} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_MASTER) {
+			P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_GRAND_MASTER;
+		} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(obj, TRUE)) == P_GRAND_MASTER) {
+			P_MAX_SKILL(get_obj_skill(obj, TRUE)) = P_SUPREME_MASTER;
+		}
 	}
 
     } else if (class_gift == STRANGE_OBJECT) {
@@ -1314,7 +1423,7 @@ pleased(g_align)
 	    /* pleased Lawful gods often send you a helpful angel if you're
 	       getting the crap beat out of you */
 	    if ((u.uhp < 5 || (u.uhp*7 < u.uhpmax)) &&
-		 u.ualign.type == A_LAWFUL && !rn2(4)) lawful_god_gives_angel(); /* lower chance --Amy */
+		 (u.ualign.type == A_LAWFUL || Race_if(PM_BOVER)) && !rn2(4)) lawful_god_gives_angel(); /* lower chance --Amy */
 
 	/* To prevent infinite loops and also to make prayer less of a cure-all, only try up to 5 times. --Amy */
 
@@ -1738,16 +1847,22 @@ static void
 lawful_god_gives_angel()
 {
 /*
-    register struct monst *mtmp2;
-    register struct permonst *pm;
+	register struct monst *mtmp2;
+	register struct permonst *pm;
 */
-    int mnum;
-    int mon;
+	int mnum;
+	int mon;
 
-    mnum = lawful_minion(u.ulevel);
-    mon = make_pet_minion(mnum,A_LAWFUL);
-    pline("%s", Blind ? "You feel the presence of goodness." :
-	 "There is a puff of white fog!");
+	mnum = lawful_minion(u.ulevel);
+	if (Race_if(PM_BOVER)) {
+		if (u.ualign.type == A_NEUTRAL) mnum = neutral_minion(u.ulevel);
+		else if (u.ualign.type == A_CHAOTIC) mnum = chaotic_minion(u.ulevel);
+	}
+	mon = make_pet_minion(mnum, Race_if(PM_BOVER) ? u.ualign.type : A_LAWFUL);
+
+	if (Race_if(PM_BOVER)) pline("%s", Blind ? "You feel the presence of a savior." : "There is a puff of colorful fog!");
+	else pline("%s", Blind ? "You feel the presence of goodness." : "There is a puff of white fog!");
+
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Vy, veroyatno, blizok k smerti v lyubom sluchaye. Kak tol'ko vy natknulis' v eto novoye domashneye zhivotnoye, v to vremya kak zaputalsya, i glup, kak vy, veroyatno, vy budete delat' eto, igra zakonchitsya v vashem porazhenii." : "Chaeaeaeaet!");
     if (u.uhp > (u.uhpmax / 10)) godvoice(u.ualign.type, "My minion shall serve thee!");
     else godvoice(u.ualign.type, "My minion shall save thee!");
@@ -1820,6 +1935,11 @@ dosacrifice()
 
     if (Race_if(PM_PLAYER_ANDROID)) {
 	You("do not give offerings to the god of the future.");
+	return 0;
+    }
+
+    if (Race_if(PM_MACTHEIST)) {
+	You("are an atheist! You cannot make offerings!");
 	return 0;
     }
 
@@ -1960,19 +2080,19 @@ dosacrifice()
 			       for(octmp = invent; octmp ; octmp = octmp->nobj)
 				 if (!rn2(6) && !stack_too_big(octmp) ) curse(octmp);
 			       break;
-			  case 2: 
+			  case 2:
 			  case 3:
 			       You("are terrified, and unable to move.");
 			       nomul(-3, "being terrified of a demon", TRUE);
 			       nomovemsg = 0;
 				 if (dmon && !rn2(500) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
-			       break;                
+			       break;
 			  case 11:
 			       dmon->mpeaceful = FALSE;
 			       You("are terrified, and unable to move.");
 			       nomul(-3, "being terrified of a hostile demon", TRUE);
 			       nomovemsg = 0;
-			       break;                
+			       break;
 			  case 4:
 			       pline("Amused, he grants you a boon!");
 				 if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
@@ -2203,7 +2323,7 @@ dosacrifice()
 	    /* Is this a conversion ? */
 	    /* An unaligned altar in Gehennom will always elicit rejection. */
 	    if (ugod_is_angry() || (altaralign == A_NONE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) )) {
-		if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && !(Race_if(PM_CHIQUAI) && rn2(5)) &&
+		if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && !(Race_if(PM_CHIQUAI) && rn2(5)) && !(Race_if(PM_MACTHEIST) && rn2(4)) && !(Race_if(PM_GERTEUT) && rn2(4)) &&
 		   altaralign != A_NONE) {
 		    You("have a strong feeling that %s is angry...", u_gname());
 		    consume_offering(otmp);
@@ -2249,7 +2369,7 @@ dosacrifice()
 		    u.cnd_altarconvertamount++;
 		    if (!rn2(2) || rnl(u.ulevel) > 3) { /* higher chance of conversion creating minions --Amy */
 		    	/* KMH -- Only a chance of this happening */
-				You_feel("%s is very angry at you!", a_gname());                    
+				You_feel("%s is very angry at you!", a_gname());
 				summon_minion(altaralign, FALSE);
 				summon_minion(altaralign, FALSE);
 				if (rn2(u.ulevel)) summon_minion(altaralign, FALSE); /* summon more --Amy */
@@ -2489,6 +2609,24 @@ dosacrifice()
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SUPREME_MASTER;
 			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_ISRESTRICTED) {
+				    unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
+					P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
 
 		    discover_artifact(otmp->oartifact);
 		    return(1);
@@ -2622,6 +2760,11 @@ dopray()
 		else pline("You can not safely pray.");
     }
 
+	if (Race_if(PM_MACTHEIST)) {
+		You("are an atheist! You cannot pray!");
+		return 0;
+	}
+
     if (flags.prayconfirm)
 	if (yn("Are you sure you want to pray?") == 'n')
 	    return 0;
@@ -2689,6 +2832,8 @@ dopray()
     nomul(-3, "praying unsuccessfully", TRUE); /* note by Amy: if successfully, you're invulnerable... */
     nomovemsg = "You finish your prayer.";
     afternmv = prayer_done;
+
+	u.pervertpray = 0;
 
 	/* if you've been true to your god you can't die while you pray */
     if(p_type == 3 && !Inhell) {
@@ -2785,7 +2930,7 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
 
 int
 doturn()
-{	
+{
 	/* WAC doturn is now a technique */
 	/* Try to use turn undead spell if you don't know the tech. */
 /*	if (!Role_if(PM_PRIEST) && !Role_if(PM_KNIGHT) && !Role_if(PM_UNDEAD_SLAYER)) {*/
@@ -2816,6 +2961,11 @@ turn_undead()
 {
 	struct monst *mtmp, *mtmp2;
 	int once, range, xlev;
+
+	if (Race_if(PM_MACTHEIST)) {
+		pline("Your attempt to turn undead fails because you're an atheist.");
+		return 0;
+	}
 
 	u.uconduct.gnostic++;
 	if (Race_if(PM_MAGYAR)) {
@@ -3127,7 +3277,11 @@ aligntyp alignment;
 {
 	register struct obj *otmp;
 	const char *what = (const char *)0;
-	
+
+	if (Race_if(PM_BOVER) && (!rnl(30 + u.ulevel))) { /* in addition to the random chance below */
+		god_gives_pet(alignment);
+	}
+
 	if (!rnl(30 + u.ulevel)) god_gives_pet(alignment);
 	else {
 		switch (rnl(4)) {

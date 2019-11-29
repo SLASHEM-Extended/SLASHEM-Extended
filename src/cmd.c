@@ -5337,6 +5337,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
+		sprintf(buf, "had sex the last time this many turns ago:");
+		sprintf(eos(buf), " %d", u.pervertsex);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
+		sprintf(buf, "prayed the last time this many turns ago:");
+		sprintf(eos(buf), " %d", u.pervertpray);
+		you_have(buf);
+	}
+
 	if (u.hangupamount) {
 		sprintf(buf, "used the hangup function, which means you're either a FILTHY CHEAT0R or you have a shaky internet connection. Hopefully it's the latter so Amy doesn't have to reinstate the hangup penalty.");
 	    	sprintf(eos(buf), " (%d)", u.hangupamount);
@@ -6104,6 +6116,7 @@ boolean guaranteed;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
+		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
 
@@ -9071,6 +9084,18 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (Race_if(PM_PERVERT)) {
+		sprintf(buf, "had sex the last time this many turns ago:");
+		sprintf(eos(buf), " %d", u.pervertsex);
+		dump(youhad, buf);
+	}
+
+	if (Race_if(PM_PERVERT)) {
+		sprintf(buf, "prayed the last time this many turns ago:");
+		sprintf(eos(buf), " %d", u.pervertpray);
+		dump(youhad, buf);
+	}
+
 	if (u.hangupamount) {
 		sprintf(buf, "used the hangup function, which means you're either a FILTHY CHEAT0R or you have a shaky internet connection. Hopefully it's the latter so Amy doesn't have to reinstate the hangup penalty.");
 	    	sprintf(eos(buf), " (%d)", u.hangupamount);
@@ -9833,6 +9858,7 @@ int final;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
+		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
 
@@ -10254,7 +10280,7 @@ minimal_enlightenment()
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 
-		sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", playeraliasname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), (flags.hybridsegfaulter ? "segfaulter " : ""), (flags.hybridironman ? "ironman " : ""), (flags.hybridamnesiac ? "amnesiac " : ""), (flags.hybridproblematic ? "problematic " : ""), (flags.hybridwindinhabitant ? "windinhabitant " : ""), (flags.hybridaggravator ? "aggravator " : ""), (flags.hybridevilvariant ? "evilvariant " : ""), (flags.hybridlevelscaler ? "levelscaler " : ""), (flags.hybriderosator ? "erosator " : ""), (flags.hybridroommate ? "roommate " : ""), (flags.hybridextravator ? "extravator " : ""), (flags.hybridhallucinator ? "hallucinator " : ""), (flags.hybridbossrusher ? "bossrusher " : ""), (flags.hybriddorian ? "dorian " : ""), (flags.hybridtechless ? "techless " : ""), (flags.hybridblait ? "blait " : "") ,urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+		sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", playeraliasname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), (flags.hybridsegfaulter ? "segfaulter " : ""), (flags.hybridironman ? "ironman " : ""), (flags.hybridamnesiac ? "amnesiac " : ""), (flags.hybridproblematic ? "problematic " : ""), (flags.hybridwindinhabitant ? "windinhabitant " : ""), (flags.hybridaggravator ? "aggravator " : ""), (flags.hybridevilvariant ? "evilvariant " : ""), (flags.hybridlevelscaler ? "levelscaler " : ""), (flags.hybriderosator ? "erosator " : ""), (flags.hybridroommate ? "roommate " : ""), (flags.hybridextravator ? "extravator " : ""), (flags.hybridhallucinator ? "hallucinator " : ""), (flags.hybridbossrusher ? "bossrusher " : ""), (flags.hybriddorian ? "dorian " : ""), (flags.hybridtechless ? "techless " : ""), (flags.hybridblait ? "blait " : ""), (flags.hybridgrouper ? "grouper " : ""), (flags.hybridscriptor ? "scriptor " : ""), (flags.hybridunbalancor ? "unbalancor " : "") ,urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 		if (!Upolyd) sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
 		else sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);

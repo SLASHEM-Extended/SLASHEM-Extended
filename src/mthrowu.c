@@ -211,6 +211,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
+		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
 
@@ -625,6 +626,7 @@ int x,y;
 		chance = 3 + obj->spe - greatest_erosionX(obj);
 		if (chance > 3) chance = 2 + rno(chance - 2);
 		if (chance < 1) chance = 1; /* fail safe */
+		if (Race_if(PM_MONGUNG)) chance *= 2;
 
 		create = rn2(chance);
 		}
@@ -666,6 +668,10 @@ int x,y;
 	    if (objects[obj->otyp].oc_material == MT_MINERAL && uarm && uarm->oartifact == ART_QUARRY && !create && !rn2(2))
 		create = 1;
 	    if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !create && !rn2(2))
+		create = 1;
+	    if (Race_if(PM_MACTHEIST) && objects[obj->otyp].oc_skill == P_SLING && !create && !rn2(2))
+		create = 1;
+	    if (Race_if(PM_MACTHEIST) && objects[obj->otyp].oc_skill == -P_SLING && !create && !rn2(2))
 		create = 1;
 
 	    if (objects[obj->otyp].oc_material == MT_LEAD && !create && !rn2(4)) create = 1;

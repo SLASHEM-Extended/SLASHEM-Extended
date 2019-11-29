@@ -49,12 +49,24 @@ mayfalloffsteed()
 	int ridesavingthrow = 0;
 	char buf[BUFSZ];
 
-	switch (P_SKILL(P_RIDING)) {
-		case P_SKILLED: ridesavingthrow = 11; break;
-		case P_EXPERT: ridesavingthrow = 34; break;
-		case P_MASTER: ridesavingthrow = 76; break;
-		case P_GRAND_MASTER: ridesavingthrow = 91; break;
-		case P_SUPREME_MASTER: ridesavingthrow = 101; break;
+	if (Race_if(PM_PERVERT)) {
+		switch (P_SKILL(P_RIDING)) {
+
+			case P_SKILLED: ridesavingthrow = 56; break;
+			case P_EXPERT: ridesavingthrow = 67; break;
+			case P_MASTER: ridesavingthrow = 89; break;
+			case P_GRAND_MASTER: ridesavingthrow = 96; break;
+			case P_SUPREME_MASTER: ridesavingthrow = 101; break;
+		}
+	} else {
+		switch (P_SKILL(P_RIDING)) {
+
+			case P_SKILLED: ridesavingthrow = 11; break;
+			case P_EXPERT: ridesavingthrow = 34; break;
+			case P_MASTER: ridesavingthrow = 76; break;
+			case P_GRAND_MASTER: ridesavingthrow = 91; break;
+			case P_SUPREME_MASTER: ridesavingthrow = 101; break;
+		}
 	}
 
 	if (ridesavingthrow > 0) {
@@ -81,15 +93,28 @@ mayfalloffsteed()
 boolean
 confsteeddir()
 {
-	if (PlayerCannotUseSkills) return rn2(4);
-	switch (P_SKILL(P_RIDING)) {
-		default: return rn2(4);
-		case P_BASIC: return rn2(2);
-		case P_SKILLED: return !rn2(3);
-		case P_EXPERT: return !rn2(4);
-		case P_MASTER: return !rn2(5);
-		case P_GRAND_MASTER: return !rn2(7);
-		case P_SUPREME_MASTER: return !rn2(10);
+	if (PlayerCannotUseSkills) return rn2(Race_if(PM_PERVERT) ? 2 : 4);
+	if (!Race_if(PM_PERVERT)) {
+		switch (P_SKILL(P_RIDING)) {
+
+			default: return rn2(4);
+			case P_BASIC: return rn2(2);
+			case P_SKILLED: return !rn2(3);
+			case P_EXPERT: return !rn2(4);
+			case P_MASTER: return !rn2(5);
+			case P_GRAND_MASTER: return !rn2(7);
+			case P_SUPREME_MASTER: return !rn2(10);
+		}
+	} else {
+		switch (P_SKILL(P_RIDING)) {
+			default: return rn2(2);
+			case P_BASIC: return !rn2(4);
+			case P_SKILLED: return !rn2(6);
+			case P_EXPERT: return !rn2(10);
+			case P_MASTER: return !rn2(15);
+			case P_GRAND_MASTER: return !rn2(25);
+			case P_SUPREME_MASTER: return !rn2(50);
+		}
 	}
 
 }

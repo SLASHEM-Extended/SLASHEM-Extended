@@ -130,11 +130,11 @@ missmm(magr, mdef, target, roll, mattk)
 	long mwflags = mdef->misc_worn_check;
 
 		/* 3 values for blocker
-		 *	No blocker:  (struct obj *) 0  
+		 *	No blocker:  (struct obj *) 0
 		 * 	Piece of armour:  object
 		 */
 
-	/* This is a hack,  since there is no fast equivalent for uarm, uarms, etc.  
+	/* This is a hack,  since there is no fast equivalent for uarm, uarms, etc.
 	 * Technically, we really should check from the inside out...
 	 */
 	if (target < roll) {
@@ -155,13 +155,13 @@ missmm(magr, mdef, target, roll, mattk)
 		if (magr->m_ap_type) seemimic(magr);
 		if (flags.verbose && !nearmiss && blocker) {
 			fmt = "%s %s blocks";
-			sprintf(buf,fmt, s_suffix(Monnam(mdef)), 
+			sprintf(buf,fmt, s_suffix(Monnam(mdef)),
 				aobjnam(blocker, (char *)0));
 	                pline("%s %s.", buf, mon_nam_too(mon_name, magr, mdef));
 		} else {
 		fmt = (could_seduce(magr,mdef,mattk) && !magr->mcan) ?
-				"%s pretends to be friendly to" : 
-				((flags.verbose && nearmiss) ? "%s just misses" : 
+				"%s pretends to be friendly to" :
+				((flags.verbose && nearmiss) ? "%s just misses" :
 				  "%s misses");
 		sprintf(buf, fmt, Monnam(magr));
 	                pline("%s %s.", buf, mon_nam_too(mon_name, mdef, magr));
@@ -581,7 +581,7 @@ meleeattack:
 		}
 		/* Monsters won't attack cockatrices physically if they
 		 * have a weapon instead.  This instinct doesn't work for
-		 * players, or under conflict or confusion. 
+		 * players, or under conflict or confusion.
 		 */
 		if (!magr->mconf && !Conflict && otmp &&
 		    mattk->aatyp != AT_WEAP && touch_petrifies(mdef->data)) {
@@ -657,7 +657,7 @@ meleeattack:
 		if (u.usteed && (mdef == u.usteed)) {
 		    strike = 0;
 		    break;
-		} 
+		}
 		/* Engulfing attacks are directed at the hero if
 		 * possible. -dlc
 		 */
@@ -3406,7 +3406,7 @@ hitmm(magr, mdef, mattk)
 			if (mdef->mblinded <= 0) mdef->mblinded = 127;
 		} else if (vis) {
 			switch (rn2(100)) {
-			case 0 : pline("%s is shoved!", Monnam(mdef)); 
+			case 0 : pline("%s is shoved!", Monnam(mdef));
 				break;
 			case 1 : pline("%s is kicked!", Monnam(mdef));
 				break;
@@ -3605,7 +3605,7 @@ mdamagem(magr, mdef, mattk)
 	struct permonst *pa = magr->data, *pd = mdef->data;
 	int armpro, num, tmp = d((int)mattk->damn, (int)mattk->damd);
 	boolean cancelled;
-	int canhitmon, objenchant;        
+	int canhitmon, objenchant;
         boolean nohit = FALSE;
 
 	int petdamagebonus;
@@ -3681,7 +3681,7 @@ mdamagem(magr, mdef, mattk)
 	      	case P_GRAND_MASTER:	petdamagebonus += 100; break;
 	      	case P_SUPREME_MASTER:	petdamagebonus += 150; break;
 			default: break;
-		
+
 		}
 
 	}
@@ -3714,7 +3714,21 @@ mdamagem(magr, mdef, mattk)
 	      	case P_GRAND_MASTER:	petdamagebonus += 100; break;
 	      	case P_SUPREME_MASTER:	petdamagebonus += 150; break;
 			default: break;
-		
+
+		}
+
+	}
+	if (u.usteed && magr == u.usteed && !mdef->mtame && !PlayerCannotUseSkills && Race_if(PM_PERVERT)) {
+		switch (P_SKILL(P_RIDING)) {
+
+	      	case P_BASIC:	petdamagebonus += 8; break;
+	      	case P_SKILLED:	petdamagebonus += 16; break;
+	      	case P_EXPERT:	petdamagebonus += 25; break;
+	      	case P_MASTER:	petdamagebonus += 37; break;
+	      	case P_GRAND_MASTER:	petdamagebonus += 50; break;
+	      	case P_SUPREME_MASTER:	petdamagebonus += 75; break;
+			default: break;
+
 		}
 
 	}
@@ -3794,7 +3808,7 @@ mdamagem(magr, mdef, mattk)
 	    case AD_DGST:
 
           if (!rnd(25)) { /* since this is an instakill, greatly lower the chance of it connecting --Amy */
-		if (nohit) nohit = FALSE;                
+		if (nohit) nohit = FALSE;
 		/* eating a Rider or its corpse is fatal */
 		if (is_rider(mdef->data) || is_deadlysin(mdef->data) ) {
 		    if (vis)
@@ -3954,7 +3968,7 @@ physical:
 		    if (otmp->otyp == CORPSE &&
 			    touch_petrifies(&mons[otmp->corpsenm]) && nohit)
 			nohit = FALSE;
-		} else if(nohit) break;                
+		} else if(nohit) break;
 		if (mattk->aatyp == AT_KICK && thick_skinned(pd) && tmp) {
 		    tmp = 1;
 		} else if(mattk->aatyp == AT_WEAP) {
@@ -3990,7 +4004,7 @@ physical:
 				if (!is_shade(pd) && !(mdef && mdef->egotype_shader) )
 				    tmp++;
 		    	    }
-#endif			
+#endif
 			} else tmp += dmgval(otmp, mdef);
 
 			/* MRKR: Handling damage when hitting with */
@@ -4032,11 +4046,11 @@ physical:
                                 tmp += 8;
                                 if (vis) pline("The silver sears %s!", mon_nam(mdef));
                         }
-                        if(otmp && objects[otmp->otyp].oc_material == MT_COPPER && (hates_copper(pd))) { 
+                        if(otmp && objects[otmp->otyp].oc_material == MT_COPPER && (hates_copper(pd))) {
                                 tmp += 20;
                                 if (vis) pline("The copper decomposes %s!", mon_nam(mdef));
                         }
-                        if(otmp && otmp->cursed && (hates_cursed(pd))) { 
+                        if(otmp && otmp->cursed && (hates_cursed(pd))) {
                                 tmp += 4;
 					  if (otmp->hvycurse) tmp += 4;
 					  if (otmp->prmcurse) tmp += 7;
@@ -4045,15 +4059,15 @@ physical:
 					  if (otmp->morgcurse) tmp += 15;
                                 if (vis) pline("The unholy aura blasts %s!", mon_nam(mdef));
                         }
-                        if(otmp && objects[otmp->otyp].oc_material == MT_VIVA && (hates_viva(pd))) { 
+                        if(otmp && objects[otmp->otyp].oc_material == MT_VIVA && (hates_viva(pd))) {
                                 tmp += 20;
                                 if (vis) pline("The radiation damages %s!", mon_nam(mdef));
                         }
-                        if(otmp && objects[otmp->otyp].oc_material == MT_INKA && (hates_inka(pd))) { 
+                        if(otmp && objects[otmp->otyp].oc_material == MT_INKA && (hates_inka(pd))) {
                                 tmp += 5;
                                 if (vis) pline("The inka string damages %s!", mon_nam(mdef));
                         }
-                        if(otmp && otmp->otyp == ODOR_SHOT && (hates_odor(pd))) { 
+                        if(otmp && otmp->otyp == ODOR_SHOT && (hates_odor(pd))) {
                                 tmp += rnd(10);
                                 if (vis) pline("The odor beguils %s!", mon_nam(mdef));
                         }
@@ -4069,7 +4083,7 @@ physical:
                                                 }
                                                 mondead(mdef); /* no corpse */
                                                 if (mdef->mhp < 0) return (MM_DEF_DIED |
-                                                        (grow_up(magr,mdef) ? 0 : MM_AGR_DIED));                                                
+                                                        (grow_up(magr,mdef) ? 0 : MM_AGR_DIED));
                                         } else {
                                                 if (vis) {
                                                         strcpy(buf, Monnam(magr));
@@ -4116,7 +4130,7 @@ physical:
 		break;
 	    case AD_FIRE:
 		if (nohit) break;
-		
+
 		if (cancelled) {
 		    tmp = 0;
 		    break;
@@ -4150,7 +4164,7 @@ physical:
 		break;
 	    case AD_COLD:
 		if (nohit) break;
-		
+
 		if (cancelled) {
 		    tmp = 0;
 		    break;
@@ -4168,7 +4182,7 @@ physical:
 		break;
 	    case AD_ELEC:
 		if (nohit) break;
-		
+
 		if (cancelled) {
 		    tmp = 0;
 		    break;
@@ -4186,7 +4200,7 @@ physical:
 		break;
 	    case AD_ACID:
 		if (nohit) break;
-		
+
 		if (magr->mcan) {
 		    tmp = 0;
 		    break;
@@ -4380,8 +4394,8 @@ physical:
 		if (mdef->mtame) badpeteffect(mdef);
 		break;
 	    case AD_SLEE:
-		if (nohit) break;                
-		
+		if (nohit) break;
+
 		if (cancelled) break;
 		if (mattk->aatyp == AT_GAZE && mon_reflects(mdef, (char *)0)) {
 		    tmp = 0;
@@ -4406,12 +4420,12 @@ physical:
 		if (rn2(16)) {
 		    /* No death, but still cause damage */
 		    break;
-		} 
-		if (vis && mattk->aatyp == AT_GAZE) 
+		}
+		if (vis && mattk->aatyp == AT_GAZE)
 		    pline("%s gazes intently!", Monnam(magr));
 		if (mattk->aatyp == AT_GAZE && mon_reflects(mdef, (char *)0)) {
-		    /* WAC reflected gaze 
-		     * Oooh boy...that was a bad move :B 
+		    /* WAC reflected gaze
+		     * Oooh boy...that was a bad move :B
 		     */
 		    tmp = 0;
 		    if (vis) {
@@ -4439,7 +4453,7 @@ physical:
 		}
 		break;
 	    case AD_PLYS:
-		if (nohit) break;                
+		if (nohit) break;
 		if(!cancelled && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
 		    if (vis) {
 			strcpy(buf, Monnam(mdef));
@@ -5152,17 +5166,17 @@ physical:
 			pline("%s is unaffected.", Monnam(mdef));
 		    }
 	    	} else {
-	    	    mon_drain_en(mdef, 
+	    	    mon_drain_en(mdef,
 				((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1);
-	    	}	    
+	    	}
 		if (mattk->aatyp == AT_EXPL && tmp > 1) {
 			tmp /= 5;
 			if (tmp < 1) tmp = 1;
 		}
 		break;
 	    case AD_BLND:
-		if (nohit) break;                
-	       
+		if (nohit) break;
+
 		if (can_blnd(magr, mdef, mattk->aatyp, (struct obj*)0)) {
 		    register unsigned rnd_tmp;
 
@@ -5215,7 +5229,7 @@ physical:
 		break;
 	    case AD_CURS:
 		if (nohit) break;
-		
+
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
 		    cancelmonsterlite(mdef); /* cancelled regardless of lifesave */
@@ -5244,7 +5258,7 @@ physical:
 		break;
 	    case AD_ICUR:
 		if (nohit) break;
-		
+
 		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
 		    cancelmonsterlite(mdef);	/* cancelled regardless of lifesave */
@@ -5353,7 +5367,7 @@ physical:
 			is_vampire(pa) && mattk->aatyp == AT_BITE &&
 			has_blood(pd))
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
-		
+
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
@@ -5370,7 +5384,7 @@ physical:
 			is_vampire(pa) && mattk->aatyp == AT_BITE &&
 			has_blood(pd))
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
-		
+
 		if (!cancelled && rn2(2) && (!resists_drli(mdef) || mdef->mtame) ) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
@@ -5388,7 +5402,7 @@ physical:
 			is_vampire(pa) && mattk->aatyp == AT_BITE &&
 			has_blood(pd))
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
-		
+
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
@@ -5411,7 +5425,7 @@ physical:
 			is_vampire(pa) && mattk->aatyp == AT_BITE &&
 			has_blood(pd))
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
-		
+
 		if (!cancelled && rn2(2) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
@@ -5429,7 +5443,7 @@ physical:
 			is_vampire(pa) && mattk->aatyp == AT_BITE &&
 			has_blood(pd))
 		    EDOG(magr)->hungrytime += ((int)((mdef->data)->cnutrit / 20) + 1);
-		
+
 		if ((!cancelled || mdef->mtame) && (rn2(2) || mdef->mtame) && !resists_drli(mdef)) {
 			if (vis) pline("%s suddenly seems weaker!", Monnam(mdef));
 			mdef->mhpmax -= d(2,6);
@@ -5513,7 +5527,7 @@ physical:
 	    case AD_WISD:
 	    case AD_DRCH:
 		if (nohit) break;
-		
+
 		if (!cancelled && !rn2(8)) {
 		    if (vis)
 			pline("%s %s was poisoned!", s_suffix(Monnam(magr)),
@@ -5533,7 +5547,7 @@ physical:
 		break;
 	    case AD_STAT:
 		if (nohit) break;
-		
+
 		if (!cancelled && !rn2(8)) {
 		    if (vis)
 			pline("%s %s was poisoned!", s_suffix(Monnam(magr)),
@@ -5559,7 +5573,7 @@ physical:
 
 	    case AD_VENO:
 		if (nohit) break;
-		
+
 		if (!cancelled && !rn2(3)) {
 		    if (resists_poison(mdef)) {
 			if (vis)
@@ -5917,7 +5931,7 @@ physical:
 			    pline("%s shudders!", Monnam(mdef));
 			/* no corpse after system shock */
 			tmp = rnd(30);
-		    } else 
+		    } else
 #endif
 		    (void) mon_poly(mdef, FALSE,
 			    "%s undergoes a freakish metamorphosis!");
@@ -6003,7 +6017,7 @@ physical:
 		}
 
 		break;
-	    default:	/*tmp = 0;*/ 
+	    default:	/*tmp = 0;*/
 		if (mattk->aatyp == AT_EXPL && tmp > 1) {
 			tmp /= 20;
 			if (tmp < 1) tmp = 1;
@@ -6023,6 +6037,10 @@ physical:
 	if (magr->mtame != 0 && tech_inuse(T_PRIMAL_ROAR)) {
 		tmp *= 2; /* Double Damage! */
 	}
+
+	if (Race_if(PM_BOVER) && u.usteed && (mdef == u.usteed) && tmp > 1) tmp /= 2;
+	if (Race_if(PM_CARTHAGE) && u.usteed && (mdef == u.usteed) && (mcalcmove(u.usteed) < 12) && tmp > 1) tmp /= 2;
+
 	if((mdef->mhp -= tmp) < 1) {
 	    if (m_at(mdef->mx, mdef->my) == magr) {  /* see gulpmm() */
 		remove_monster(mdef->mx, mdef->my);
@@ -6038,7 +6056,7 @@ physical:
 
 	    if (magr->mhp > 0 && magr->mtame) use_skill(P_PETKEEPING,1);
 
-	    if (mattk->adtyp == AD_DGST) { 
+	    if (mattk->adtyp == AD_DGST) {
 		/* various checks similar to dog_eat and meatobj.
 		 * after monkilled() to provide better message ordering */
 		if (mdef->cham != CHAM_ORDINARY) {
@@ -6275,7 +6293,7 @@ int attnumber;
 		}
 	    } else {
 		if(canseemon(magr))
-			pline(magr->data == &mons[PM_WOODCHUCK] ? "ZOT!" : 
+			pline(magr->data == &mons[PM_WOODCHUCK] ? "ZOT!" :
 			"%s is hit by magic missiles appearing from thin air!",Monnam(magr));
 		break;
 	    }
@@ -6690,7 +6708,7 @@ int attnumber;
 
 		break;
 
-	    case AD_RAGN:		
+	    case AD_RAGN:
 		ragnarok(FALSE);
 		if (evilfriday && mdef->m_lev > 1) evilragnarok(FALSE,mdef->m_lev);
 		break;
@@ -7148,7 +7166,7 @@ int attnumber;
 	    case AD_DREN:
 	    	if (!resists_magm(magr)) {
 	    	    mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1);
-	    	}	    
+	    	}
 		break;
 	    case AD_BLND:
 		    if (canseemon(magr) && magr->mcansee)
@@ -7657,6 +7675,10 @@ int attnumber;
 	else tmp = 0;
 
     assess_dmg:
+
+	if (Race_if(PM_BOVER) && u.usteed && (magr == u.usteed) && tmp > 1) tmp /= 2;
+	if (Race_if(PM_CARTHAGE) && u.usteed && (mdef == u.usteed) && (mcalcmove(u.usteed) < 12) && tmp > 1) tmp /= 2;
+
 	if((magr->mhp -= tmp) <= 0) {
 		/* get experience from spell creatures */
 		if (mdef->uexp) mon_xkilled(magr, "", (int)mddat->mattk[i].adtyp);
@@ -7738,4 +7760,3 @@ stoogejoke()
 #endif /* OVLB */
 
 /*mhitm.c*/
-

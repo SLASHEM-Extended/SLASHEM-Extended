@@ -287,6 +287,8 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 	 * but also to make sure that you can't indefinitely identify BUC on the astral plane --Amy */
 	if (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) return;
 
+	if (Race_if(PM_MACTHEIST)) return;
+
 	if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
 
 		if (Aggravate_monster) {

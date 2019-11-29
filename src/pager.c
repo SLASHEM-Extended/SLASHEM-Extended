@@ -24714,6 +24714,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"The pumpkin instantly rots away!",
 	"Horrible biting things fall from the rotting pumpkin!",
 	"According to some 4chan user, I'm 'either an annoying attention whore, or a troll pretending to be one, which is really the same thing.'.",
+	"UGH - you inhaled too much of your own repulsive body odor, and can no longer think straight!",
+	"You are an atheist! You cannot make offerings!",
+	"You are an atheist! You cannot pray!",
 
 };
 

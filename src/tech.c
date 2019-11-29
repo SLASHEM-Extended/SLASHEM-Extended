@@ -1139,6 +1139,14 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_CRIT_STRIKE, 1},
 		       {   0, 0, 0} },
+	fay_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_BLINK, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_DRAW_ENERGY, 1},
+		       {   0, 0, 0} },
 	alc_tech[] = { {   1, T_RESEARCH, 1},
 		       {   1, T_TINKER, 1},
 		       {   1, T_APPRAISAL, 1},
@@ -1682,6 +1690,83 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   5, T_PRIMAL_ROAR, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	kst_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   6, T_FLURRY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   16, T_TERRAIN_CLEANUP, 1},
+		       {   22, T_DIAMOND_BARRIER, 1},
+		       {   0, 0, 0} },
+
+	vie_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_CREATE_AMMO, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_SPIRIT_BOMB, 1},
+		       {   0, 0, 0} },
+
+	mog_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_BERSERK, 1},
+		       {   5, T_DOUBLE_THROWNAGE, 1},
+		       {   10, T_FLURRY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_EDDY_WIND, 1},
+		       {   25, T_BLOOD_RITUAL, 1},
+		       {   0, 0, 0} },
+
+	per_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_CALM_STEED, 1},
+		       {   5, T_WARD_FIRE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_SPIRITUALITY_CHECK, 1},
+		       {   0, 0, 0} },
+
+	bov_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   14, T_SUMMON_PET, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   28, T_BLOOD_RITUAL, 1},
+		       {   0, 0, 0} },
+
+	mac_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   12, T_CALM_STEED, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	crt_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_CALM_STEED, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
+
+	rus_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_SKILLOMORPH, 1},
+		       {   10, T_CONCENTRATING, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   18, T_BOOZE, 1},
 		       {   0, 0, 0} },
 
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
@@ -3103,6 +3188,11 @@ int tech_no;
 		break;
             case T_INVOKE_DEITY: /* ask for healing if your alignment record is positive --Amy */
 
+			if (Race_if(PM_MACTHEIST)) {
+				pline("As an atheist, you cannot use such a technique.");
+				return 0;
+			}
+
 			if (u.ualign.record < 0) {
 
 				if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
@@ -3150,6 +3240,7 @@ int tech_no;
 				You_feel("bad about breaking the atheist conduct.");
 				badeffect();
 			}
+			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 10 : 2);
                 t_timeout = rnz(3000);
 		break;
             case T_APPRAISAL:
@@ -4524,6 +4615,7 @@ secureidchoice:
 		healup(Role_if(PM_DRUNK) ? rnz(20 + u.ulevel) : 1, 0, FALSE, FALSE);
 		u.uhunger += 20;
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 200;
+		if (Race_if(PM_RUSMOT)) u.uhunger += 100;
 		if (Role_if(PM_DRUNK)) u.uhunger += 100;
 		newuhs(FALSE);
 		exercise(A_WIS, FALSE);
@@ -4621,6 +4713,12 @@ chargingchoice:
 		}
 
 	    case T_SPIRITUALITY_CHECK:
+
+		if (Race_if(PM_MACTHEIST)) {
+			pline("As an atheist, you cannot use such a technique.");
+			return 0;
+		}
+
 		if (can_pray(FALSE) && !u.ugangr) pline("You can safely pray!");
 		else {
 			pline("You can not safely pray.");
@@ -4634,6 +4732,7 @@ chargingchoice:
 			You_feel("bad about breaking the atheist conduct.");
 			badeffect();
 		}
+		use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 25 : 5);
 
 	      t_timeout = rnz(2000);
 	      break;
@@ -8201,6 +8300,8 @@ int tmp;
 static const struct 	innate_tech *
 role_tech()
 {
+	if (Race_if(PM_YUGGER)) return ((struct innate_tech *) 0); /* none */
+
 	switch (Role_switch) {
 		case PM_ARCHEOLOGIST:	return (arc_tech);
 		case PM_GOFF:	return (gof_tech);
@@ -8362,10 +8463,19 @@ race_tech()
 		case PM_ROHIRRIM:		return (roh_tech);
 		case PM_PLAYER_SALAMANDER:		return (sal_tech);
 		case PM_SATRE:		return (sat_tech);
+		case PM_KORONST:		return (kst_tech);
+		case PM_RUSMOT:		return (rus_tech);
+		case PM_CARTHAGE:		return (crt_tech);
+		case PM_MACTHEIST:		return (mac_tech);
+		case PM_BOVER:		return (bov_tech);
+		case PM_PERVERT:		return (per_tech);
+		case PM_MONGUNG:		return (mog_tech);
+		case PM_VIETIS:		return (vie_tech);
 		case PM_WEAPONIZED_DINOSAUR:		return (din_tech);
 		case PM_BURNINATOR:		return (bur_tech);
 		case PM_KOBOLT:		return (kob_tech);
 		case PM_OGRO:		return (ogr_tech);
+		case PM_PLAYER_FAIRY:		return (fay_tech);
 		case PM_BATMAN:		return (bat_tech);
 		case PM_HUMANOID_CENTAUR:		return (cen_tech);
 		case PM_BORG:		return (bor_tech);

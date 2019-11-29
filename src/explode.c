@@ -619,6 +619,13 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (damu < 1) damu = 1;
 		}
 
+		if (Race_if(PM_CARTHAGE) && u.usteed && (mcalcmove(u.usteed) < 12) && damu > 0) {
+			damu++;
+			damu *= 4;
+			damu /= 5;
+			if (damu < 1) damu = 1;
+		}
+
 		if (StrongDetect_monsters && damu > 0) {
 			damu++;
 			damu *= 9;

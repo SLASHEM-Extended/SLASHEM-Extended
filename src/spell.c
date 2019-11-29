@@ -5010,6 +5010,24 @@ aulechoice:
 						} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
 							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
 						}
+						if (Race_if(PM_RUSMOT)) {
+							if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+							    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+							} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+								unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+							} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+							} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+							} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+							} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+							} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+							}
+						}
 
 					    discover_artifact(acqo->oartifact);
 
@@ -5706,6 +5724,32 @@ newbossPENT:
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pluslvl(FALSE);
+
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(skillimprove);
+					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+					unrestrict_weapon_skill(skillimprove);
+					P_MAX_SKILL(skillimprove) = P_BASIC;
+					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+					P_MAX_SKILL(skillimprove) = P_SKILLED;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+					P_MAX_SKILL(skillimprove) = P_EXPERT;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+					P_MAX_SKILL(skillimprove) = P_MASTER;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				}
+			}
 
 			pluslvl(FALSE);
 
@@ -10462,6 +10506,7 @@ int spell;
 			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
 			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
+		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
@@ -10499,6 +10544,7 @@ int spell;
 			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
 			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
+		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
@@ -10537,6 +10583,7 @@ int spell;
 			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
 			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
+		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
@@ -10576,6 +10623,7 @@ int spell;
 			case MT_LEAD: shieldpenalties *= 25; shieldpenalties /= 15; break;
 			case MT_CHROME: shieldpenalties *= 11; shieldpenalties /= 15; break;
 		}
+		if (Race_if(PM_BOVER)) shieldpenalties *= 3;
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			shieldpenalties *= 4;
@@ -10614,6 +10662,7 @@ int spell;
 			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
 			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
+		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
@@ -10652,6 +10701,7 @@ int spell;
 			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
 			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
+		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
@@ -10690,6 +10740,7 @@ int spell;
 			case MT_LEAD: armorpenalties *= 25; armorpenalties /= 15; break;
 			case MT_CHROME: armorpenalties *= 11; armorpenalties /= 15; break;
 		}
+		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
 		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
 			armorpenalties *= 4;
@@ -10950,6 +11001,248 @@ int spell;
 	if (uarmh && itemhasappearance(uarmh, APP_KNOWLEDGEABLE_HELMET) ) chance += 10;
 	if (uarmc && itemhasappearance(uarmc, APP_SCIENCE_CLOAK) ) chance += 10;
 	if (u.tiksrvzllatdown) chance += 10;
+	if (Race_if(PM_PLAYER_FAIRY)) {
+		chance += 33;
+
+		if (uwep && is_metallic(uwep) && !is_etheritem(uwep)) {
+
+			switch (objects[(uwep)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (u.twoweap && uswapwep && is_metallic(uswapwep) && !is_etheritem(uswapwep)) {
+
+			switch (objects[(uswapwep)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uarm && is_metallic(uarm) && !is_etheritem(uarm)) {
+
+			switch (objects[(uarm)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uarmc && is_metallic(uarmc) && !is_etheritem(uarmc)) {
+
+			switch (objects[(uarmc)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) {
+
+			switch (objects[(uarmh)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uarms && is_metallic(uarms) && !is_etheritem(uarms)) {
+
+			switch (objects[(uarms)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uarmg && is_metallic(uarmg) && !is_etheritem(uarmg)) {
+
+			switch (objects[(uarmg)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uarmf && is_metallic(uarmf) && !is_etheritem(uarmf)) {
+
+			switch (objects[(uarmf)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uarmu && is_metallic(uarmu) && !is_etheritem(uarmu)) {
+
+			switch (objects[(uarmu)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uamul && is_metallic(uamul) && !is_etheritem(uamul)) {
+
+			switch (objects[(uamul)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uimplant && is_metallic(uimplant) && !is_etheritem(uimplant)) {
+
+			switch (objects[(uimplant)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uleft && is_metallic(uleft) && !is_etheritem(uleft)) {
+
+			switch (objects[(uleft)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (uright && is_metallic(uright) && !is_etheritem(uright)) {
+
+			switch (objects[(uright)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+		if (ublindf && is_metallic(ublindf) && !is_etheritem(ublindf)) {
+
+			switch (objects[(ublindf)->otyp].oc_material) {
+				default: chance -= 20; break;
+				case MT_METAL: chance -= 22; break;
+				case MT_COPPER: chance -= 28; break;
+				case MT_SILVER: chance -= 24; break;
+				case MT_GOLD: chance -= 10; break;
+				case MT_PLATINUM: chance -= 26; break;
+				case MT_MITHRIL: chance -= 18; break;
+				case MT_VIVA: chance -= 16; break;
+				case MT_POURPOOR: chance -= 30; break;
+				case MT_LEAD: chance -= 40; break;
+				case MT_CHROME: chance -= 14; break;
+			}
+		}
+
+	}
 
 	if (Upolyd && dmgtype(youmonst.data, AD_SPEL) ) {
 		chance += 5;
@@ -10989,6 +11282,8 @@ int spell;
 
 	if (Race_if(PM_INKA) && spellid(spell) == SPE_NATURE_BEAM)
 		chance += 100;
+
+	if (Race_if(PM_VIETIS)) chance -= 20;
 
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) chance -= 10;
 	if (RngeDnethack) chance -= 10;

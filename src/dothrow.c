@@ -76,7 +76,7 @@ int thrown;
 {
 	struct obj *otmp;
 	struct obj *launcher;
-	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? rnd(3) : Race_if(PM_MANSTER) ? rnd(2) : Race_if(PM_HAXOR) ? rno(2) : 1;
+	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? rnd(3) : Race_if(PM_MANSTER) ? rnd(2) : Race_if(PM_MONGUNG) ? rnd(2) : Race_if(PM_HAXOR) ? rno(2) : 1;
 	boolean fullmultishot; /* depends on missile weapons skill --Amy */
 	int angeramount; /* for blade anger technique */
 
@@ -1252,6 +1252,7 @@ boolean hitsroof;
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) dmg += 1;
 	if (dmg > 0 && Race_if(PM_VIKING)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_SERB)) dmg += 1;
+	if (dmg > 0 && Race_if(PM_RUSMOT)) dmg += 2;
 
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1439,7 +1440,7 @@ int thrown;
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
+		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -1509,6 +1510,7 @@ int thrown;
 
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 2;
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 2;
+		if (Race_if(PM_KORONST) && launcher && objects[launcher->otyp].oc_skill == P_SLING) range += 2;
 
 		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 5;
 		if (uwep && uwep->oartifact == ART_SNIPER_CROSSHAIR && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 30;
@@ -1516,6 +1518,7 @@ int thrown;
 		if (obj && obj->oartifact == ART_RACER_PROJECTILE) range *= 2;
 
 		if (Race_if(PM_GERTEUT) && range > 5) range = 5;
+		if (Race_if(PM_PERVERT) && range > 2) range = 2;
 
 		if (Is_airlevel(&u.uz) || Levitation) {
 		    /* action, reaction... */
@@ -1535,6 +1538,7 @@ int thrown;
 		if (Underwater) range = 1;
 
 		if (Race_if(PM_GERTEUT) && range > 5) range = 5;
+		if (Race_if(PM_PERVERT) && range > 2) range = 2;
 
 		mon = bhit(u.dx,u.dy,range,THROWN_WEAPON,
 			   (int (*)(MONST_P,OBJ_P))0,
@@ -1588,7 +1592,7 @@ int thrown;
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) && !is_grenade(obj))) {
 		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
+		if ((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -1912,6 +1916,18 @@ int thrown;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == -P_BOW) tmp -= 5;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == P_CROSSBOW) tmp -= 5;
 	if (Race_if(PM_ENGCHIP) && objects[obj->otyp].oc_skill == -P_BOW) tmp -= 5;
+
+	if (Race_if(PM_VIETIS) && objects[obj->otyp].oc_skill != -P_FIREARM && objects[obj->otyp].oc_skill != P_FIREARM) tmp -= rnd(10);
+
+	if (Race_if(PM_BOVER)) {
+		if (uarm && is_metallic(uarm)) tmp -= rnd(3);
+		if (uarmu && is_metallic(uarmu)) tmp -= rnd(3);
+		if (uarmc && is_metallic(uarmc)) tmp -= rnd(3);
+		if (uarms && is_metallic(uarms)) tmp -= rnd(3);
+		if (uarmh && is_metallic(uarmh)) tmp -= rnd(3);
+		if (uarmg && is_metallic(uarmg)) tmp -= rnd(3);
+		if (uarmf && is_metallic(uarmf)) tmp -= rnd(3);
+	}
 
 	/* quarterback is highly skilled at shooting small round objects --Amy */
 	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == -P_SLING) tmp += rn1(5, 5);
@@ -2487,16 +2503,17 @@ int thrown;
 			chance = 3 + obj->spe - greatest_erosionX(obj);
 			if (chance > 3) chance = 2 + rno(chance - 2);
 			if (chance < 1) chance = 1; /* fail safe */
+			if (Race_if(PM_MONGUNG)) chance *= 2;
 			broken = !rn2(chance);
 		    }
 		    if ( objects[otyp].oc_skill == P_DAGGER )
-			broken = !rn2(40);
+			broken = !rn2(Race_if(PM_MONGUNG) ? 80 : 40);
 		    if ( objects[otyp].oc_skill == P_SPEAR )
-			broken = !rn2(75);
+			broken = !rn2(Race_if(PM_MONGUNG) ? 150 : 75);
 		    if ( objects[otyp].oc_skill == P_KNIFE )
-			broken = !rn2(80);
+			broken = !rn2(Race_if(PM_MONGUNG) ? 160 : 80);
 		    if ( objects[otyp].oc_skill == P_JAVELIN )
-			broken = !rn2(1200);
+			broken = !rn2(Race_if(PM_MONGUNG) ? 2400 : 1200);
 		    if (obj->blessed && !rnl(6))
 			broken = 0;
 			/* also save uncursed ones sometimes --Amy */
@@ -2545,6 +2562,10 @@ int thrown;
 		    if (objects[otyp].oc_material == MT_MINERAL && uarm && uarm->oartifact == ART_QUARRY && broken && !rn2(2))
 			broken = 0;
 		    if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && broken && !rn2(2))
+			broken = 0;
+		    if (Race_if(PM_MACTHEIST) && objects[otyp].oc_skill == P_SLING && broken && !rn2(2))
+			broken = 0;
+		    if (Race_if(PM_MACTHEIST) && objects[otyp].oc_skill == -P_SLING && broken && !rn2(2))
 			broken = 0;
 
 		    if (objects[otyp].oc_material == MT_LEAD && broken && !rn2(4)) broken = 0;

@@ -698,6 +698,17 @@ register struct monst *mtmp;
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
+	if (Race_if(PM_MONGUNG)) tmp += 10;
+
+	if (Race_if(PM_BOVER)) {
+		if (uarm && is_metallic(uarm)) tmp -= rnd(3);
+		if (uarmu && is_metallic(uarmu)) tmp -= rnd(3);
+		if (uarmc && is_metallic(uarmc)) tmp -= rnd(3);
+		if (uarms && is_metallic(uarms)) tmp -= rnd(3);
+		if (uarmh && is_metallic(uarmh)) tmp -= rnd(3);
+		if (uarmg && is_metallic(uarmg)) tmp -= rnd(3);
+		if (uarmf && is_metallic(uarmf)) tmp -= rnd(3);
+	}
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
 
@@ -706,6 +717,7 @@ register struct monst *mtmp;
 	if (is_table(u.ux, u.uy)) tmp += 3;
 
 	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
+	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp -= rnd(20);
 
@@ -1711,7 +1723,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -2574,6 +2586,8 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (!thrown && Race_if(PM_TURMENE) && tmp > 0) tmp -= 2;
 		if (Race_if(PM_SERB)) tmp += 1;
+		if (Race_if(PM_MONGUNG)) tmp += 3;
+		if (Race_if(PM_RUSMOT)) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -2937,7 +2951,7 @@ int dieroll;
 	    }
 	    You("joust %s%s",
 			 mon_nam(mon), canseemon(mon) ? exclam(tmp) : ".");
-	    if (jousting < 0) {
+	    if (jousting < 0 && !(Race_if(PM_CARTHAGE) && rn2(100)) ) {
 		Your("%s shatters on impact!", xname(obj));
 
 		if (obj->oartifact == ART_LUCKY_SHARDS) {
@@ -7192,6 +7206,10 @@ register int tmp;
 {
 	struct attack *mattk, alt_attk;
 	int	i, sum[NATTK];
+
+	struct permonst *mdat2;
+      struct attack *carthageattk;
+
 #if 0
 	int	hittmp = 0;
 #endif
@@ -7208,6 +7226,10 @@ register int tmp;
 	if (symbiotemelee()) willsymattack = TRUE;
 	boolean symbioteprocess = FALSE;
 	boolean symbiotedouble = FALSE;
+	boolean symbiotenomore = FALSE;
+	boolean carthageattack = FALSE;
+	if (Race_if(PM_CARTHAGE) && u.usteed) carthageattack = TRUE;
+	boolean carthageprocess = FALSE;
 
 	/* don't give the extra weapon attacks every time if your natural form has more than two --Amy */
 	int weaponiteration = 0;
@@ -7221,15 +7243,17 @@ register int tmp;
 	boolean used_uwep = FALSE;
 
 symbiotejump:
+carthagejump:
 	for(i = 0; i < NATTK; i++) {
 	    mhit = 0; /* Clear all previous attacks */
 
 	    sum[i] = 0;
 
 	    /* failsafe if your symbiote dies while doing attacks --Amy */
-	    if (symbioteprocess && !uactivesymbiosis) continue;
+	    if (symbioteprocess && !symbiotenomore && !uactivesymbiosis) continue;
+	    if (carthageprocess && !(Race_if(PM_CARTHAGE) && u.usteed)) continue;
 
-	    mattk = getmattk(symbioteprocess ? &mons[u.usymbiote.mnum] : youmonst.data, i, sum, &alt_attk);
+	    mattk = getmattk(carthageprocess ? &mons[PM_CARTHAGE_DUMMY] : (symbioteprocess && !symbiotenomore) ? &mons[u.usymbiote.mnum] : youmonst.data, i, sum, &alt_attk);
 
 	    switch(mattk->aatyp) {
 		case AT_WEAP:
@@ -7746,10 +7770,22 @@ use_weapon:
 		symbioteprocess = TRUE;
 		goto symbiotejump;
 	}
+
 	/* powerbiosis is supposed to double the damage, but that's so annoying to code... let it attack twice instead --Amy */
 	if (tech_inuse(T_POWERBIOSIS) && willsymattack && symbioteprocess && uactivesymbiosis && !symbiotedouble) {
 		symbiotedouble = TRUE;
 		goto symbiotejump;
+	}
+
+	if (carthageattack && !carthageprocess && Race_if(PM_CARTHAGE) && u.usteed) {
+		carthageprocess = TRUE;
+		symbiotenomore = TRUE;
+
+		mdat2 = &mons[PM_CARTHAGE_DUMMY];
+		carthageattk = &mdat2->mattk[0];
+		carthageattk->damd = u.ulevel;
+
+		goto carthagejump;
 	}
 
 	return((boolean)(nsum != 0));

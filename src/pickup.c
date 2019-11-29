@@ -2002,7 +2002,7 @@ boolean silent;
 		    if (x == u.ux && y == u.uy) {
 			if (underwater && (Flying || Levitation))
 			    pline_The("water boils beneath you.");
-			else if (underwater && Wwalking)
+			else if (underwater && (Wwalking || Race_if(PM_KORONST)))
 			    pline_The("water erupts around you.");
 			else pline("A bag explodes under your %s!",
 			  makeplural(body_part(FOOT)));
@@ -2011,8 +2011,8 @@ boolean silent;
 			    "see a plume of water shoot up." :
 			    "see a bag explode.");
 		}
-		if (underwater && (Flying || Levitation || Wwalking)) {
-		    if (Wwalking && x == u.ux && y == u.uy) {
+		if (underwater && (Flying || Levitation || Wwalking || Race_if(PM_KORONST))) {
+		    if ((Wwalking || Race_if(PM_KORONST)) && x == u.ux && y == u.uy) {
 			struct trap trap;
 			trap.ntrap = NULL;
 			trap.tx = x;

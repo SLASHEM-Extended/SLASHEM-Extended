@@ -453,6 +453,11 @@ register struct monst *priest;
 	boolean coaligned = p_coaligned(priest);
 	boolean strayed = (u.ualign.record < 0);
 
+	if (Race_if(PM_MACTHEIST)) {
+		pline("Did you forget by any chance that you're an atheist? You cannot talk to priests!");
+		return;
+	}
+
 	/* KMH, conduct */
 	u.uconduct.gnostic++;
 	if (Race_if(PM_MAGYAR)) {

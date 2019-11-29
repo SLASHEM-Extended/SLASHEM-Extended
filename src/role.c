@@ -4624,7 +4624,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
@@ -4639,7 +4639,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
@@ -4653,7 +4653,7 @@ const struct Race races[] = {
 	MH_WERE, 0, MH_ELF|MH_GNOME|MH_DWARF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 19, 22, 14 },
 	/* Init   Lower  Higher */
@@ -4668,7 +4668,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 20, 14, 20, 12, 25 },
 	/* Init   Lower  Higher */
@@ -4683,7 +4683,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 18, 16, 18, 12, 10 },
 	/* Init   Lower  Higher */
@@ -4698,7 +4698,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(60), 16, 16, 16, 16, 12 },
 	/* Init   Lower  Higher */
@@ -4713,7 +4713,7 @@ const struct Race races[] = {
 	MH_HUMAN, MH_ELF, MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 16 },
 	/* Init   Lower  Higher */
@@ -4728,7 +4728,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 20, 18, 18, 19 },
 	/* Init   Lower  Higher */
@@ -4743,7 +4743,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 19, 20, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -4758,7 +4758,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 15 },
 	/* Init   Lower  Higher */
@@ -4773,7 +4773,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{ STR19(20), 18, 16, 22, 22, 18 },
 	/* Init   Lower  Higher */
@@ -4788,7 +4788,7 @@ const struct Race races[] = {
 	MH_HUMAN, MH_ELF, MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 20, 20, 20, 20, 20 },
 	/* Init   Lower  Higher */
@@ -4803,7 +4803,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 18, 18, 18, 14, 25 },
 	/* Init   Lower  Higher */
@@ -4818,7 +4818,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 20 },
 	/* Init   Lower  Higher */
@@ -4833,7 +4833,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 18, 16, 20, 18, 10 },
 	/* Init   Lower  Higher */
@@ -4848,7 +4848,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -4863,7 +4863,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 16, 16, 19, 18, 18 },
 	/* Init   Lower  Higher */
@@ -4878,7 +4878,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 19, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -4893,7 +4893,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -4908,7 +4908,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 16, 25, 18 },
 	/* Init   Lower  Higher */
@@ -4923,7 +4923,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -4938,7 +4938,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 22, 18, 20 },
 	/* Init   Lower  Higher */
@@ -4953,7 +4953,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -4968,7 +4968,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 14, 14, 15, 18, 12 },
 	/* Init   Lower  Higher */
@@ -4983,12 +4983,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"bover", "bover", "bovinedia", "Bov",
+	{0, 0},
+	PM_BOVER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HOBBIT,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 22, 18 },
+	/* Init   Lower  Higher */
+	{  6, 0,  0, 4,  3, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  1, 0 }		/* Energy */
 },
 {	"breton", "bretonian", "bretonhood", "Bre",
 	{0, 0},
@@ -4998,7 +5013,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     18,     25, 25, 18, 12, 18 },
 	/* Init   Lower  Higher */
@@ -5013,12 +5028,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 16, 16, 15, 22, 15 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"carthage", "carthage", "carthago", "Car",
+	{0, 0},
+	PM_CARTHAGE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_WERE|MH_VAMPIRE,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{        16, 16, 16, 16, 16, 16 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 10,  10, 0 },	/* Hit points */
+	{  2, 0,  1, 0,  1, 0 }		/* Energy */
 },
 {	"celtic", "celtic", "celtic empire", "Cel",
 	{0, 0},
@@ -5028,7 +5058,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(50), 16, 15, 19, 21, 18 },
 	/* Init   Lower  Higher */
@@ -5043,7 +5073,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(21), 16, 18, 20, 18, 16 },
 	/* Init   Lower  Higher */
@@ -5058,7 +5088,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 18, 18, 20, 24, 12 },
 	/* Init   Lower  Higher */
@@ -5073,7 +5103,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5087,7 +5117,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_DWARF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20),  16, 16, 20, 14, 16 },
 	/* Init   Lower  Higher */
@@ -5101,7 +5131,7 @@ const struct Race races[] = {
 	MH_HUMAN, MH_DWARF, MH_GNOME,
 	/*    Str     Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5116,7 +5146,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{      18,    18, 18, 18, 16, 10 },
 	/* Init   Lower  Higher */
@@ -5131,7 +5161,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5146,7 +5176,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 18, 18, 18, 18, 12 },
 	/* Init   Lower  Higher */
@@ -5161,7 +5191,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     12,     12, 12, 21, 12, 25 },
 	/* Init   Lower  Higher */
@@ -5176,7 +5206,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 19, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5191,7 +5221,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 20, 18, 16, 20 },
 	/* Init   Lower  Higher */
@@ -5205,7 +5235,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 19, 14, 18, 18,  3 },
 	/* Init   Lower  Higher */
@@ -5219,7 +5249,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
@@ -5233,7 +5263,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(21), 18, 18, 18, 20, 14 },
 	/* Init   Lower  Higher */
@@ -5248,7 +5278,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
@@ -5263,7 +5293,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(22), 18, 20, 20, 21, 16 },
 	/* Init   Lower  Higher */
@@ -5278,7 +5308,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 14, 14, 15, 25, 12 },
 	/* Init   Lower  Higher */
@@ -5292,7 +5322,7 @@ const struct Race races[] = {
 	MH_HOBBIT, MH_HOBBIT, MH_GNOME|MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 20, 18, 8, 14 },
 	/* Init   Lower  Higher */
@@ -5306,7 +5336,7 @@ const struct Race races[] = {
 	MH_HUMAN, MH_WERE, MH_ELF|MH_GNOME|MH_DWARF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 20, 20, 20, 15 },
 	/* Init   Lower  Higher */
@@ -5321,7 +5351,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5336,7 +5366,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(23), 18, 20, 16, 22, 18 },
 	/* Init   Lower  Higher */
@@ -5350,7 +5380,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
@@ -5365,7 +5395,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     16,     18, 18, 22, 14, 18 },
 	/* Init   Lower  Higher */
@@ -5379,7 +5409,7 @@ const struct Race races[] = {
 	MH_DWARF, 0, MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 10, 18, 13 },
 	/* Init   Lower  Higher */
@@ -5394,7 +5424,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5409,7 +5439,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5423,7 +5453,7 @@ const struct Race races[] = {
 	MH_DWARF, MH_DWARF|MH_GNOME, MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 16, 16, 20, 20, 16 },
 	/* Init   Lower  Higher */
@@ -5438,7 +5468,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5453,7 +5483,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(20), 21, 21, 16, 12, 18 },
 	/* Init   Lower  Higher */
@@ -5468,7 +5498,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_DWARF|MH_HUMAN|MH_ELF|MH_HOBBIT,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 15 },
 	/* Init   Lower  Higher */
@@ -5482,7 +5512,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
@@ -5497,7 +5527,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 16, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5512,7 +5542,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 16, 18, 14, 24,  6 },
 	/* Init   Lower  Higher */
@@ -5527,7 +5557,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 25 },
 	/* Init   Lower  Higher */
@@ -5542,7 +5572,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5557,7 +5587,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5572,12 +5602,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"fairy", "fairy", "fairy castle", "Fai",
+	{0, 0},
+	PM_PLAYER_FAIRY, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{     16,    22, 22, 20,  6, 22 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  4, 0,  6, 0,  5, 0 }		/* Energy */
 },
 {	"fawn", "fawn", "fawning", "Faw",
 	{0, 0},
@@ -5587,7 +5632,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(20), 20, 20, 24, 12, 22 },
 	/* Init   Lower  Higher */
@@ -5602,7 +5647,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 18, 16, 25, 18, 16 },
 	/* Init   Lower  Higher */
@@ -5617,7 +5662,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(60), 18, 18, 19, 18, 15 },
 	/* Init   Lower  Higher */
@@ -5631,7 +5676,7 @@ const struct Race races[] = {
 	MH_VAMPIRE, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 18, 18, 18, 16, 10 },
 	/* Init   Lower  Higher */
@@ -5646,7 +5691,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5661,7 +5706,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5676,7 +5721,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 16, 18, 18, 18, 12 },
 	/* Init   Lower  Higher */
@@ -5691,7 +5736,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(22), 18, 20, 20, 21, 16 },
 	/* Init   Lower  Higher */
@@ -5705,7 +5750,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 6 },
 	/* Init   Lower  Higher */
@@ -5720,7 +5765,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5735,7 +5780,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 15, 15, 14, 24, 18 },
 	/* Init   Lower  Higher */
@@ -5749,7 +5794,7 @@ const struct Race races[] = {
 	MH_GNOME, MH_DWARF|MH_GNOME, MH_HUMAN|MH_HOBBIT,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50),19, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5764,7 +5809,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 20, 18, 16, 20 },
 	/* Init   Lower  Higher */
@@ -5779,7 +5824,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 14, 14, 18, 20, 16 },
 	/* Init   Lower  Higher */
@@ -5793,7 +5838,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{      18,    16, 12, 18, 15,  5 },
 	/* Init   Lower  Higher */
@@ -5808,7 +5853,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 18, 20, 18, 16 },
 	/* Init   Lower  Higher */
@@ -5823,7 +5868,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5838,12 +5883,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_DWARF|MH_HUMAN|MH_ELF|MH_HOBBIT,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  5, 0,  0, 7,  9, 0 },	/* Hit points */
 	{  5, 0,  7, 0,  9, 0 }		/* Energy */
+},
+{	"grouper", "grouper", "group spawn", "Gro",
+	{0, 0},
+	PM_GROUPER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"hallucinator", "hallucinator", "acid trip", "Hal",
 	{0, 0},
@@ -5853,7 +5913,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5868,7 +5928,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -5883,7 +5943,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 25, 18, 18, 3 },
 	/* Init   Lower  Higher */
@@ -5897,7 +5957,7 @@ const struct Race races[] = {
 	MH_HUMAN, MH_WERE, MH_ELF|MH_GNOME|MH_DWARF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 19, 19, 19, 19, 16 },
 	/* Init   Lower  Higher */
@@ -5912,7 +5972,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 20 },
 	/* Init   Lower  Higher */
@@ -5927,7 +5987,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 16, 16, 16, 20, 16 },
 	/* Init   Lower  Higher */
@@ -5942,7 +6002,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{      15,    18, 18, 18, 14, 18 },
 	/* Init   Lower  Higher */
@@ -5957,7 +6017,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 17 },
 	/* Init   Lower  Higher */
@@ -5971,7 +6031,7 @@ const struct Race races[] = {
 	MH_HOBBIT, MH_HOBBIT, MH_GNOME|MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  18,     16, 18, 18, 20, 20 },
 	/* Init   Lower  Higher */
@@ -5986,7 +6046,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 20, 18 },
 	/* Init   Lower  Higher */
@@ -6001,7 +6061,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_HUMAN,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 19, 17 },
 	/* Init   Lower  Higher */
@@ -6015,7 +6075,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{    18,    20, 20, 20, 15, 18 },
 	/* Init   Lower  Higher */
@@ -6030,7 +6090,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6045,7 +6105,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 19, 18 },
 	/* Init   Lower  Higher */
@@ -6060,7 +6120,7 @@ const struct Race races[] = {
 	MH_DWARF, MH_DWARF, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 25, 20, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6075,7 +6135,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(80), 15, 15, 18, 20, 16 },
 	/* Init   Lower  Higher */
@@ -6090,7 +6150,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     16,     16, 16, 18, 12, 14 },
 	/* Init   Lower  Higher */
@@ -6105,7 +6165,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(90), 18, 18, 18, 17, 20 },
 	/* Init   Lower  Higher */
@@ -6120,7 +6180,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6135,7 +6195,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6150,7 +6210,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6164,7 +6224,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, 0,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 22, 18, 20, 24 },
 	/* Init   Lower  Higher */
@@ -6179,7 +6239,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 16, 18 },
 	/* Init   Lower  Higher */
@@ -6194,7 +6254,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 19 },
 	/* Init   Lower  Higher */
@@ -6209,7 +6269,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 18, 17 },
 	/* Init   Lower  Higher */
@@ -6224,7 +6284,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 25, 18 },
 	/* Init   Lower  Higher */
@@ -6239,7 +6299,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(24), 16, 18, 19, 24, 16 },
 	/* Init   Lower  Higher */
@@ -6254,7 +6314,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6269,7 +6329,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6283,7 +6343,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     18,     20, 21, 18, 16, 12 },
 	/* Init   Lower  Higher */
@@ -6298,7 +6358,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 22, 18, 17 },
 	/* Init   Lower  Higher */
@@ -6313,7 +6373,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 17, 17, 18, 19, 16 },
 	/* Init   Lower  Higher */
@@ -6328,12 +6388,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 19, 20, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"koronst", "koronst", "koronster cave", "Kor",
+	{0, 0},
+	PM_KORONST, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"leprechaun", "leprechaun", "leprechaunism", "Lep",
 	{0, 0},
@@ -6343,7 +6418,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     18,     18, 18, 25, 16, 18 },
 	/* Init   Lower  Higher */
@@ -6358,7 +6433,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6373,7 +6448,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 20, 20, 24, 18, 20 },
 	/* Init   Lower  Higher */
@@ -6388,7 +6463,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(22), 20, 20, 14, 18, 10 },
 	/* Init   Lower  Higher */
@@ -6403,7 +6478,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 19, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6418,7 +6493,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 19, 20, 16 },
 	/* Init   Lower  Higher */
@@ -6433,7 +6508,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 18, 18, 18, 14, 22 },
 	/* Init   Lower  Higher */
@@ -6447,12 +6522,27 @@ const struct Race races[] = {
 	MH_WERE, 0, MH_ELF|MH_GNOME|MH_DWARF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 15, 15, 20, 19, 15 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  5, 0,  4, 0,  4, 0 }		/* Energy */
+},
+{	"mactheist", "mactheist", "atheistonia", "Mac",
+	{0, 0},
+	PM_MACTHEIST, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"magyar", "magyar", "non gladly", "Mag",
 	{0, 0},
@@ -6462,7 +6552,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6477,7 +6567,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 19, 18, 20, 18 },
 	/* Init   Lower  Higher */
@@ -6492,7 +6582,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 19, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6507,7 +6597,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6522,7 +6612,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  18, 16, 18, 16, 16, 25 },
 	/* Init   Lower  Higher */
@@ -6537,7 +6627,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 18, 18, 20, 14, 16 },
 	/* Init   Lower  Higher */
@@ -6552,7 +6642,7 @@ const struct Race races[] = {
 	MH_HUMAN, MH_ELF, MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
@@ -6566,12 +6656,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(23), 17, 23,  9, 11,  4 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 6,  7, 0 },	/* Hit points */
 	{  6, 0,  6, 0,  6, 0 }		/* Energy */
+},
+{	"mongung", "mongung", "mongoss", "Mog",
+	{0, 0},
+	PM_MONGUNG, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 6, 6, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"monkey", "monkey", "monkeydom", "Mon",
 	{0, 0},
@@ -6581,7 +6686,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 10, 10, 20, 19, 13 },
 	/* Init   Lower  Higher */
@@ -6596,7 +6701,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 16, 16, 16, 20, 16 },
 	/* Init   Lower  Higher */
@@ -6610,7 +6715,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{       17, 21, 21, 19, 14, 19 },
 	/* Init   Lower  Higher */
@@ -6624,7 +6729,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 16, 16, 12 },
 	/* Init   Lower  Higher */
@@ -6639,7 +6744,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 16, 16, 18, 18, 11 },
 	/* Init   Lower  Higher */
@@ -6654,7 +6759,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 6, 18 },
 	/* Init   Lower  Higher */
@@ -6668,7 +6773,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
@@ -6683,7 +6788,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 20, 20, 19, 20, 14 },
 	/* Init   Lower  Higher */
@@ -6698,7 +6803,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6713,7 +6818,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 22, 18, 20 },
 	/* Init   Lower  Higher */
@@ -6728,7 +6833,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6743,7 +6848,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 17, 17, 17, 19, 17 },
 	/* Init   Lower  Higher */
@@ -6758,7 +6863,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6773,7 +6878,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 25, 14, 25 },
 	/* Init   Lower  Higher */
@@ -6788,7 +6893,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 14, 10 },
 	/* Init   Lower  Higher */
@@ -6803,7 +6908,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 12, 12, 16, 24,  8 },
 	/* Init   Lower  Higher */
@@ -6817,7 +6922,7 @@ const struct Race races[] = {
 	MH_ORC, 0, MH_HUMAN|MH_ELF|MH_DWARF|MH_HOBBIT,
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50),16, 16, 18, 18, 16 },
 	/* Init   Lower  Higher */
@@ -6832,7 +6937,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 20, 20, 20, 20, 20 },
 	/* Init   Lower  Higher */
@@ -6846,12 +6951,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 12, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"pervert", "pervert", "perversion", "Per",
+	{0, 0},
+	PM_PERVERT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"phantom", "phantom", "phantomhood", "Pha",
 	{0, 0},
@@ -6861,7 +6981,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 14 },
 	/* Init   Lower  Higher */
@@ -6876,7 +6996,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 22, 19, 20, 14 },
 	/* Init   Lower  Higher */
@@ -6891,7 +7011,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 16 },
 	/* Init   Lower  Higher */
@@ -6905,7 +7025,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(21), 19, 19, 19, 21, 14 },
 	/* Init   Lower  Higher */
@@ -6920,7 +7040,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6935,7 +7055,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(70), 19, 17, 17, 17, 15 },
 	/* Init   Lower  Higher */
@@ -6950,7 +7070,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 16, 18, 16, 21, 14 },
 	/* Init   Lower  Higher */
@@ -6965,7 +7085,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6980,7 +7100,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 18, 18 },
 	/* Init   Lower  Higher */
@@ -6995,7 +7115,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 14, 12, 18, 22, 18 },
 	/* Init   Lower  Higher */
@@ -7010,7 +7130,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 24, 24, 18, 20, 10 },
 	/* Init   Lower  Higher */
@@ -7024,7 +7144,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(21), 25, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
@@ -7039,7 +7159,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 16, 16, 18, 20, 19 },
 	/* Init   Lower  Higher */
@@ -7054,7 +7174,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 20 },
 	/* Init   Lower  Higher */
@@ -7069,9 +7189,24 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 17, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"rusmot", "rusmot", "motherus", "Rus",
+	{0, 0},
+	PM_RUSMOT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -7084,7 +7219,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 16, 19, 16 },
 	/* Init   Lower  Higher */
@@ -7099,12 +7234,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(20), 22, 22, 25, 12, 25 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  6, 0 },	/* Hit points */
 	{  4, 0,  6, 0,  9, 0 }		/* Energy */
+},
+{	"scriptor", "scriptor", "jonadab's perlscript", "Scr",
+	{0, 0},
+	PM_SCRIPTOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"scurrier", "scurrier", "scurriership", "Scu",  /* by jonadab */
 	{0, 0},
@@ -7113,7 +7263,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     15,     18, 18, 20, 14, 18 },
 	/* Init   Lower  Higher */
@@ -7127,7 +7277,7 @@ const struct Race races[] = {
 	MH_ELF, MH_ELF, MH_ORC,
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{   18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
@@ -7142,7 +7292,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7157,7 +7307,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 19, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7172,7 +7322,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7187,7 +7337,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(80), 15, 16, 16, 18, 16 },
 	/* Init   Lower  Higher */
@@ -7202,7 +7352,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 19, 18, 24, 16 },
 	/* Init   Lower  Higher */
@@ -7217,7 +7367,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 19, 18, 25 },
 	/* Init   Lower  Higher */
@@ -7232,7 +7382,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 24, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7247,7 +7397,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 16, 16, 18, 21, 10 },
 	/* Init   Lower  Higher */
@@ -7262,7 +7412,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7277,7 +7427,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{     18,     18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
@@ -7292,7 +7442,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 18, 18, 20, 18, 14 },
 	/* Init   Lower  Higher */
@@ -7307,7 +7457,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 19, 18 },
 	/* Init   Lower  Higher */
@@ -7337,7 +7487,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7352,7 +7502,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7367,7 +7517,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7382,7 +7532,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 16, 19 },
 	/* Init   Lower  Higher */
@@ -7397,7 +7547,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(30), 18, 18, 18, 12, 16 },
 	/* Init   Lower  Higher */
@@ -7412,7 +7562,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{      18,    18, 20, 20, 12, 19 },
 	/* Init   Lower  Higher */
@@ -7427,7 +7577,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 19, 19, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7442,7 +7592,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
@@ -7457,7 +7607,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7472,7 +7622,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*   Str    Int Wis Dex Con Cha */
 	{    3,      3,  3,  3,  3,  3},
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 20, 20, 18, 24 },
 	/* Init   Lower  Higher */
@@ -7487,7 +7637,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7502,7 +7652,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 19, 19, 18, 20, 18 },
 	/* Init   Lower  Higher */
@@ -7517,7 +7667,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 18, 18, 18, 19, 18 },
 	/* Init   Lower  Higher */
@@ -7531,7 +7681,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 20, 17, 18 },
 	/* Init   Lower  Higher */
@@ -7546,7 +7696,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 22, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7561,7 +7711,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(22), 12, 12, 15, 24,  8 },
 	/* Init   Lower  Higher */
@@ -7576,7 +7726,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7591,7 +7741,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 17, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7606,7 +7756,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 25, 18 },
 	/* Init   Lower  Higher */
@@ -7621,7 +7771,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 20, 16 },
 	/* Init   Lower  Higher */
@@ -7635,12 +7785,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 20, 20, 18, 20, 14 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  7, 0,  7, 0,  7, 0 }		/* Energy */
+},
+{	"unbalancor", "unbalancor", "unbalanced game", "Unb",
+	{0, 0},
+	PM_UNBALANCOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"undefined", "undefined", "undefinement", "Und",
 	{0, 0},
@@ -7650,7 +7815,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7664,7 +7829,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 18, 20, 13 },
 	/* Init   Lower  Higher */
@@ -7679,7 +7844,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 16, 16, 20, 15, 24 },
 	/* Init   Lower  Higher */
@@ -7694,7 +7859,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 16, 16, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7709,7 +7874,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7723,7 +7888,7 @@ const struct Race races[] = {
 	MH_VAMPIRE, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 16 },
 	/* Init   Lower  Higher */
@@ -7737,7 +7902,7 @@ const struct Race races[] = {
 	MH_VAMPIRE, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 18, 18, 20, 20, 20 },
 	/* Init   Lower  Higher */
@@ -7752,7 +7917,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 19, 16, 19, 18, 24 },
 	/* Init   Lower  Higher */
@@ -7767,12 +7932,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HOBBIT|MH_DWARF|MH_HUMAN,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"vietis", "vietis", "vietem", "Vie",
+	{0, 0},
+	PM_VIETIS, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  3, 0 }		/* Energy */
 },
 {	"viking", "viking", "greenland", "Vik",
 	{0, 0},
@@ -7782,7 +7962,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 17, 17, 18, 20, 16 },
 	/* Init   Lower  Higher */
@@ -7797,7 +7977,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 19, 19, 17 },
 	/* Init   Lower  Higher */
@@ -7811,7 +7991,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7826,7 +8006,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
@@ -7841,7 +8021,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(50), 20, 20, 18, 16, 15 },
 	/* Init   Lower  Higher */
@@ -7855,7 +8035,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 18, 18, 18, 18, 12 },
 	/* Init   Lower  Higher */
@@ -7870,7 +8050,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(20), 20, 20, 18, 20, 18 },
 	/* Init   Lower  Higher */
@@ -7885,7 +8065,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(19), 17, 17, 17, 19, 18 },
 	/* Init   Lower  Higher */
@@ -7899,7 +8079,7 @@ const struct Race races[] = {
 	MH_ORC, 0, MH_HUMAN|MH_ELF|MH_DWARF|MH_HOBBIT,
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  16,     16, 16, 16, 16, 14 },
 	/* Init   Lower  Higher */
@@ -7914,12 +8094,27 @@ const struct Race races[] = {
 	MH_HUMAN, 0, 0,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR18(100), 15, 14, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 4,  3, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"yugger", "yugger", "yugavia", "Yug",
+	{0, 0},
+	PM_YUGGER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{     18,     18, 18, 18, 18, 18 }, /* hard cap! */
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"yuki-onna", "yuki-onnic", "feyhood", "Yuk",
 	{0, 0},
@@ -7929,7 +8124,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_ELF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  16,     18, 18, 20, 14, 20 },
 	/* Init   Lower  Higher */
@@ -7944,7 +8139,7 @@ const struct Race races[] = {
 	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF,
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
-	{ STR19(25), 25, 25, 25, 25, 25 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
 	{  STR19(22), 12, 15, 17, 20, 14 },
 	/* Init   Lower  Higher */
@@ -8434,7 +8629,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(35)) {
+			switch (rnd(38)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -8506,12 +8701,18 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridtechless = 1; break;
 				case 35:
 					flags.hybridblait = 1; break;
+				case 36:
+					flags.hybridgrouper = 1; break;
+				case 37:
+					flags.hybridscriptor = 1; break;
+				case 38:
+					flags.hybridunbalancor = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(35)) {
+				switch (rnd(38)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -8617,6 +8818,15 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 35:
 						if (!(flags.hybridblait)) {flags.hybridblait = 1; flags.hybridization++; break;
+						}
+					case 36:
+						if (!(flags.hybridgrouper)) {flags.hybridgrouper = 1; flags.hybridization++; break;
+						}
+					case 37:
+						if (!(flags.hybridscriptor)) {flags.hybridscriptor = 1; flags.hybridization++; break;
+						}
+					case 38:
+						if (!(flags.hybridunbalancor)) {flags.hybridunbalancor = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -8774,7 +8984,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(35)) {
+			switch (rnd(38)) {
 
 			case 1:
 				if (flags.hybridangbander) {
@@ -9056,6 +9266,30 @@ int type;
 					pline("You no longer have the blait hybrid race.");
 				}
 				break;
+			case 36:
+				if (flags.hybridgrouper) {
+					tryct = 1000;
+					flags.hybridgrouper = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the grouper hybrid race.");
+				}
+				break;
+			case 37:
+				if (flags.hybridscriptor) {
+					tryct = 1000;
+					flags.hybridscriptor = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the scriptor hybrid race.");
+				}
+				break;
+			case 38:
+				if (flags.hybridunbalancor) {
+					tryct = 1000;
+					flags.hybridunbalancor = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the unbalancor hybrid race.");
+				}
+				break;
 
 			}
 
@@ -9065,7 +9299,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(35)) {
+			switch (rnd(38)) {
 
 			case 1:
 				if (!flags.hybridangbander) {
@@ -9345,6 +9579,30 @@ int type;
 					flags.hybridblait = TRUE;
 					flags.hybridization++;
 					pline("You now have the blait hybrid race.");
+				}
+				break;
+			case 36:
+				if (!flags.hybridgrouper) {
+					tryct = 1000;
+					flags.hybridgrouper = TRUE;
+					flags.hybridization++;
+					pline("You now have the grouper hybrid race.");
+				}
+				break;
+			case 37:
+				if (!flags.hybridscriptor) {
+					tryct = 1000;
+					flags.hybridscriptor = TRUE;
+					flags.hybridization++;
+					pline("You now have the scriptor hybrid race.");
+				}
+				break;
+			case 38:
+				if (!flags.hybridunbalancor) {
+					tryct = 1000;
+					flags.hybridunbalancor = TRUE;
+					flags.hybridization++;
+					pline("You now have the unbalancor hybrid race.");
 				}
 				break;
 

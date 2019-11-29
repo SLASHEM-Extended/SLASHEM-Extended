@@ -7267,6 +7267,14 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FRO]) {
 			(void)mongets(mtmp, AXE);
 		}
+		if (ptr == &mons[PM_KORONST]) {
+			(void)mongets(mtmp, SLING);
+			m_initthrow(mtmp, GRAPHITE, 50);
+		}
+		if (ptr == &mons[PM_VIETIS]) {
+			(void)mongets(mtmp, PISTOL);
+			m_initthrow(mtmp, LEAD_BULLET, 50);
+		}
 		if (ptr == &mons[PM_BOSSRUSHER]) {
 			(void)mongets(mtmp, SCR_SUMMON_BOSS);
 		}
@@ -20790,25 +20798,25 @@ register int	mmflags;
 	}
 	set_malign(mtmp);		/* having finished peaceful changes */
 	if(anymon || (ptr->geno & G_UNIQ) || !rn2((ptr->geno & G_VLGROUP) ? 500 : (ptr->geno & G_LGROUP) ? 200 : (ptr->geno & G_RGROUP) ? 100 : (ptr->geno & G_SGROUP) ? 50 : 5) ) { /* everything that spawns in groups can spawn in bigger groups --Amy */
-	    if ((ptr->geno & G_SGROUP) && allow_special && rn2(2)) {
+	    if ((ptr->geno & G_SGROUP) && allow_special && rn2(isgrouper ? 5 : 2)) {
 		if (!rn2(5000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(800))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(160))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(30))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))    m_initsgrp(mtmp, mtmp->mx, mtmp->my);
-	    } else if (ptr->geno & G_LGROUP && allow_special && rn2(3) ) {
+	    } else if (ptr->geno & G_LGROUP && allow_special && rn2(isgrouper ? 10 : 3) ) {
 		if (!rn2(1000))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(200))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(40))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))	    m_initsgrp(mtmp, mtmp->mx, mtmp->my);
-	    } else if(ptr->geno & G_VLGROUP && allow_special && rn2(5) ) {
+	    } else if(ptr->geno & G_VLGROUP && allow_special && rn2(isgrouper ? 15 : 5) ) {
 		if (!rn2(200))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(20))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(rn2(3))  m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
-	    } else if(ptr->geno & G_RGROUP && allow_special && rn2(5) ) {
+	    } else if(ptr->geno & G_RGROUP && allow_special && rn2(isgrouper ? 15 : 5) ) {
 		if (!rn2(100))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(10))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(5))  m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
@@ -20816,11 +20824,11 @@ register int	mmflags;
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
-	    else if (!rn2(500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
-		if (!rn2(500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
-		else if(!rn2(100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
-		else if (!rn2(20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
-		else if (!rn2(4)) m_initlgrp(mtmp, mtmp->mx, mtmp->my);
+	    else if (!rn2(isgrouper ? 10 : 500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
+		if (!rn2(isgrouper ? 100 : 500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if(!rn2(isgrouper ?  10 : 100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if (!rn2(isgrouper ? 5 : 20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);
+		else if (!rn2(isgrouper ? 2 : 4)) m_initlgrp(mtmp, mtmp->mx, mtmp->my);
 		else m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 	}
@@ -21117,11 +21125,14 @@ int mndx;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
 
-	if (uncommon2(&mons[mndx]) && (issoviet ? !rn2(3) : rn2(2)) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon3(&mons[mndx]) && rn2(issoviet ? 2 : 3) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon5(&mons[mndx]) && rn2(issoviet ? 3 : 5) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon7(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon10(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	/* Amy reminder to self: converting a monster index number to permonst is &mons[NUMBER]
+	 * keywords: int to permonst */
+
+	if (uncommon2(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && (issoviet ? !rn2(3) : rn2(2)) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon3(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 2 : 3) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon5(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 3 : 5) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon7(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon10(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
 	if (monstr[mndx] >= 9 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
 	if (monstr[mndx] >= 14 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
@@ -22154,6 +22165,7 @@ loopback:
 		if (ct > 0 && (Race_if(PM_ALBAE) && dmgtype(ptr, AD_RBAD) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_HUMANOID_ANGEL) && dmgtype(ptr, AD_LEVI) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_ASURA) && is_elonamonster(ptr) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_PLAYER_FAIRY) && is_elonamonster(ptr) )) ct += 3;
 		if (ct > 0 && (Race_if(PM_BASTARD) && dmgtype(ptr, AD_SHAN) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_BATMAN) && dmgtype(ptr, AD_FEMI) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_BATMAN) && dmgtype(ptr, AD_TERR) )) ct += 1;
@@ -22539,11 +22551,11 @@ int     spc;
 		last < SPECIAL_PM && mons[last].mlet == class; last++)
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
 					&& !is_placeholder(&mons[last])
-					&& !(uncommontwo && uncommon2(&mons[last]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonthree && uncommon3(&mons[last]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonfive && uncommon5(&mons[last]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonseven && uncommon7(&mons[last]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonten && uncommon10(&mons[last]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommontwo && uncommon2(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonthree && uncommon3(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonfive && uncommon5(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonseven && uncommon7(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonten && uncommon10(&mons[last]) && !(isscriptor && is_jonadabmonster(&mons[last]) ) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonnewten && monstr[last] >= 10 && monstr[last] < 15 )
 					&& !(uncommonnewfifteen && monstr[last] >= 15 && monstr[last] < 20 )
 					&& !(uncommonnewtwenty && monstr[last] >= 20 && monstr[last] < 25 )
@@ -23220,6 +23232,7 @@ int     spc;
 		if ((Race_if(PM_ALBAE) && dmgtype(&mons[last], AD_RBAD) )) num += 1;
 		if ((Race_if(PM_HUMANOID_ANGEL) && dmgtype(&mons[last], AD_LEVI) )) num += 5;
 		if ((Race_if(PM_ASURA) && is_elonamonster(&mons[last]) )) num += 1;
+		if ((Race_if(PM_PLAYER_FAIRY) && is_elonamonster(&mons[last]) )) num += 3;
 		if ((Race_if(PM_BASTARD) && dmgtype(&mons[last], AD_SHAN) )) num += 1;
 		if ((Race_if(PM_BATMAN) && dmgtype(&mons[last], AD_FEMI) )) num += 2;
 		if ((Race_if(PM_BATMAN) && dmgtype(&mons[last], AD_TERR) )) num += 1;
@@ -23328,11 +23341,11 @@ int     spc;
 	for(num = rnd(num); num > 0; first++)
 	    if (!(mvitals[first].mvflags & G_GONE) && !(mons[first].geno & mask)
 					&& !is_placeholder(&mons[first])
-					&& !(uncommontwo && uncommon2(&mons[first]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonthree && uncommon3(&mons[first]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonfive && uncommon5(&mons[first]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonseven && uncommon7(&mons[first]) && !Race_if(PM_RODNEYAN) )
-					&& !(uncommonten && uncommon10(&mons[first]) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommontwo && uncommon2(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonthree && uncommon3(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonfive && uncommon5(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonseven && uncommon7(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
+					&& !(uncommonten && uncommon10(&mons[first]) && !(isscriptor && is_jonadabmonster(&mons[first]) ) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonnewten && monstr[first] >= 10 && monstr[first] < 15 )
 					&& !(uncommonnewfifteen && monstr[first] >= 15 && monstr[first] < 20 )
 					&& !(uncommonnewtwenty && monstr[first] >= 20 && monstr[first] < 25 )
@@ -24001,6 +24014,7 @@ int     spc;
 		if ((Race_if(PM_ALBAE) && dmgtype(&mons[first], AD_RBAD) )) num -= 1;
 		if ((Race_if(PM_HUMANOID_ANGEL) && dmgtype(&mons[first], AD_LEVI) )) num -= 5;
 		if ((Race_if(PM_ASURA) && is_elonamonster(&mons[first]) )) num -= 1;
+		if ((Race_if(PM_PLAYER_FAIRY) && is_elonamonster(&mons[first]) )) num -= 3;
 		if ((Race_if(PM_BASTARD) && dmgtype(&mons[first], AD_SHAN) )) num -= 1;
 		if ((Race_if(PM_BATMAN) && dmgtype(&mons[first], AD_FEMI) )) num -= 2;
 		if ((Race_if(PM_BATMAN) && dmgtype(&mons[first], AD_TERR) )) num -= 1;

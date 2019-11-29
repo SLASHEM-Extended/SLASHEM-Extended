@@ -26,1244 +26,1292 @@ const struct innate {
 	schar	ulevel;
 	long	*ability;
 	const char *gainstr, *losestr;
-}	arc_abil[] = { {	 1, &(HStealth), "", "" },
-		     {   1, &(HFast), "", "" },
-		     {  10, &(HSearching), "perceptive", "unaware" },
-		     {	 0, 0, 0, 0 } },
-
-	ana_abil[] = { {	 1, &(HFull_nutrient), "", "" },
-		     {   7, &(HFast), "quick", "slow" },  
-		     {	15, &(HWarning), "precognitive", "noncognitive" },  
-		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
-		     {	 0, 0, 0, 0 } },  
-
-	xel_abil[] = { {	 1, &(HSwimming), "", "" },
-		     {  1, &(HAcid_resistance), "", "" },
-		     {  1, &(HScentView), "", "" },
-		     {  6, &(HStealth), "stealthy", "noisy" },
-		     {  6, &(HJumping), "able to jump around", "unable to jump around" },
-		     {	10, &(HFear_resistance), "unafraid", "afraid" },
-			{	12, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
-		       {   12, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
-		     {  14, &(HCold_resistance), "warm", "cooler" },
-		    { 15,  &(HInfravision), "perceptive", "half blind"},
-			{   16, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   16, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
-		     {   18, &(HRegeneration), "regenerative", "your healing rate slowing down" },
-		     {	18, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
-		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
-			{     22, &(HPsi_resist), "psionic", "less psionic"},
-		     {	24, &(HDisplaced), "displaced", "easy to spot" },
-			{	25, &(HStone_resistance), "rock solid", "breakable" },
-			{25, &(HMagical_breathing), "aquatic", "hydrophobic"  },
-		     {  26, &(HShock_resistance), "insulated", "conductive" },
-		     {	 28, &(HHalf_physical_damage), "resistant to normal damage", "less resistant to damage" },
-		     {	 0, 0, 0, 0 } },  
-
-	ast_abil[] = { {	 1, &(HSwimming), "", "" },
-		     {   4, &(HFast), "quick", "slow" },  
-		     {   8, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
-		     {  10, &(HFire_resistance), "cool", "warmer" },
-		     {   14, &(HSleep_resistance), "awake", "tired" },
-		     {  15, &(HTeleport_control), "controlled", "helpless" },
-		     {  18, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
-		     {   19, &(HUseTheForce), "like a jedi", "a loss of your jedi powers" },
-		     {  20, &(HShock_resistance), "insulated", "conductive" },
-		     {	20, &(HFear_resistance), "unafraid", "afraid" },
-			{	24, &(HDisint_resistance), "stable", "brittle" },
-			{	25, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
-			{28, &(HMagical_breathing), "aquatic", "hydrophobic"  },
-		     {  28, &(HFlying), "weightless", "grounded" },
-		     {  30, &(HCold_resistance), "warm", "cooler" },
-		     {	 0, 0, 0, 0 } },  
-
-	pic_abil[] = { {	 1, &(HStealth), "", "" },
-		     {   6, &(HFast), "quick", "slow" },
-		     {  8, &(HSearching), "perceptive", "unaware" },
-		     {	 0, 0, 0, 0 } },
-
-	sto_abil[] = { {	 1, &(HShock_resistance), "", "" },
-		     {   4, &(HFast), "quick", "slow" },
-		     {   10, &(HSleep_resistance), "awake", "tired" },
-		     {   15, &(HFast), "quick", "slow" },
-		     {   19, &(HRegeneration), "regenerative", "your healing rate slowing down" },
-			{	25, &(HDisint_resistance), "stable", "brittle" },
-		     {   28, &(HFast), "quick", "slow" },
-		     {	 0, 0, 0, 0 } },
-
-	sof_abil[] = { {	 7, &(HSleep_resistance), "awake", "tired" },
-			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		     {	28, &(HWarning), "precognitive", "noncognitive" },  
-		     {	 0, 0, 0, 0 } },
-
-	cra_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {  12, &(HStealth), "stealthy", "noisy" },
-		     {  14, &(HTeleport_control), "controlled", "helpless" },
-		     {  20, &(HSearching), "perceptive", "unaware" },
-		     {	 0, 0, 0, 0 } },
-
-	dem_abil[] = { {	 5, &(MysteriousForceActive), "", "" },
-		     {  9, &(UnfairAttackBug), "", "" },
-		     {  13, &(HighlevelStatus), "", "" },
-		     {  17, &(TrapCreationProblem), "", "" },
-		     {  21, &(UndressingEffect), "", "" },
-		     {  25, &(OrangeSpells), "", "" },
-		     {  30, &(SatanEffect), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	sma_abil[] = { {	 12, &(HFast), "quick", "slow" },
-		     {  15, &(HExtra_wpn_practice), "skillful", "unskilled" },
-		     {  20, &(HJumping), "able to jump around", "unable to jump around" },
-		     {	 0, 0, 0, 0 } },
-
-	bar_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {  15, &(HStealth), "stealthy", "noisy" },
-		     {	 0, 0, 0, 0 } },
-
-	hus_abil[] = { {	 1, &(HScentView), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	pro_abil[] = { { 10, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
-		     {	 0, 0, 0, 0 } },
-
-	ass_abil[] = { {	 1, &(HStealth), "", "" },
-		     {   10, &(HFast), "quick", "slow" },
-		     {	15, &(HWarning), "sensitive", "careless" },
-		     {	 0, 0, 0, 0 } },
-
-	ama_abil[] = { {	 1, &(HStealth), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {  10, &(HSwimming), "ready to swim","afraid of the water" },
-		     {	 0, 0, 0, 0 } },
-
-	mas_abil[] = { {	 1, &(HSee_invisible), "", "" },
-			{	 1, &(HKeen_memory), "", "" },
-			{     10, &(HPsi_resist), "psionic", "less psionic"},
-			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {  16, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
-		     {   24, &(HInvis), "hidden", "more visible" },
-		     {	 0, 0, 0, 0 } },
-
-	sup_abil[] = { {	 1, &(HTeleportation), "", "" },
-			{	3, &(HSleep_resistance), "awake", "tired" },
-		     {	8, &(HWarning), "sensitive", "careless" },
-		     {   22, &(HTeleport_control), "controlled", "helpless" },
-		     {	 0, 0, 0, 0 } },
-
-	cou_abil[] = { {	 1, &(HHunger), "", "" },
-		     {   1, &(HAggravate_monster), "", "" },
-		     {  1, &(HConflict), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	wei_abil[] = { {   1, &(HPsi_resist), "", "" },
-			 {   6, &(HTeleportation), "very jumpy", "less jumpy" },
-			{	8, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
-			 {	 10, &(HDeath_resistance), "un-dead", "dead" },
-			 {	 12, &(HHunger), "very hungry", "less hungry" },
-		     {   14, &(HAcid_resistance), "warded", "endangered" },
-		     {   16, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life" },
-		    { 22,  &(HInfravision), "perceptive", "half blind"},
-		       {   25, &(HPolymorph), "polymorphic", "form-stable" },
-		     {  26, &(HCold_resistance), "warm", "cooler" },
-		     {	 28, &(HSlow_digestion), "a certain satiation", "the need to eat more" },
-		     {   30, &(HFast), "quick", "slow" },  
-		     {	 0, 0, 0, 0 } },
-
-	brd_abil[] = { {	5, &(HSleep_resistance), "awake", "tired" },
-		     {	 10, &(HStealth), "stealthy", "noisy" },
-		     {	 0, 0, 0, 0 } },
-
-	gam_abil[] = { {	3, &(HSleep_resistance), "awake", "tired" },
-		     {	 13, &(HSlow_digestion), "a certain satiation", "the need to eat more" },
-			{   23, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {	 0, 0, 0, 0 } },
-
-	cav_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {  10, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-		     {	15, &(HWarning), "sensitive", "careless" },
-		     {	 0, 0, 0, 0 } },
-
-	jan_abil[] = { {  10, &(HSearching), "perceptive", "unaware" },
-		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
-		     {	25, &(HFear_resistance), "unafraid", "afraid" },
-		     {	 0, 0, 0, 0 } },
-
-	con_abil[] = { {   1, &(HSick_resistance), "", "" },
-	         {	 7, &(HPoison_resistance), "healthy", "less healthy" },
-		     {  20, &(HSearching), "perceptive", "unaware" },
-		     {	 0, 0, 0, 0 } },
-	mur_abil[] = { {   1, &(HAggravate_monster), "", "" },
-	           {	 2, &(HSearching), "perceptive", "unaware" },
-	           {	 3, &(HSearching), "perceptive", "unaware" },
-	           {	 4, &(HSearching), "perceptive", "unaware" },
-	           {	 5, &(HSearching), "perceptive", "unaware" },
-	           {	 6, &(HSearching), "perceptive", "unaware" },
-	           {	 7, &(HSearching), "perceptive", "unaware" },
-	           {	 8, &(HSearching), "perceptive", "unaware" },
-	           {	 9, &(HSearching), "perceptive", "unaware" },
-	           {	 10, &(HSearching), "perceptive", "unaware" },
-	           {	 11, &(HSearching), "perceptive", "unaware" },
-	           {	 12, &(HSearching), "perceptive", "unaware" },
-	           {	 13, &(HSearching), "perceptive", "unaware" },
-	           {	 14, &(HSearching), "perceptive", "unaware" },
-	           {	 15, &(HSearching), "perceptive", "unaware" },
-	           {	 16, &(HSearching), "perceptive", "unaware" },
-	           {	 17, &(HSearching), "perceptive", "unaware" },
-	           {	 18, &(HSearching), "perceptive", "unaware" },
-	           {	 19, &(HSearching), "perceptive", "unaware" },
-	           {	 20, &(HSearching), "perceptive", "unaware" },
-	           {	 20, &(HSearching), "perceptive", "unaware" },
-	           {	 21, &(HSearching), "perceptive", "unaware" },
-	           {	 22, &(HSearching), "perceptive", "unaware" },
-	           {	 23, &(HSearching), "perceptive", "unaware" },
-	           {	 24, &(HSearching), "perceptive", "unaware" },
-	           {	 25, &(HSearching), "perceptive", "unaware" },
-	           {	 26, &(HSearching), "perceptive", "unaware" },
-	           {	 27, &(HSearching), "perceptive", "unaware" },
-	           {	 28, &(HSearching), "perceptive", "unaware" },
-	           {	 29, &(HSearching), "perceptive", "unaware" },
-	           {	 30, &(HSearching), "perceptive", "unaware" },
-		     {	 0, 0, 0, 0 } },
-
-	bul_abil[] = { {   1, &(HAggravate_monster), "", "" },
-	         {	 7, &(HPoison_resistance), "healthy", "less healthy" },
-		     {	 0, 0, 0, 0 } },
-
-	fai_abil[] = { {   1, &(HAggravate_monster), "", "" },
-			{	1, &(BadEffectProblem), "", "" },
-			{	1, &(AutomaticVulnerabilitiy), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	sta_abil[] = { {   1, &(HTechnicality), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	trs_abil[] = { {   5, &(LevelTrapEffect), "", "" },
-			{	10, &(CaptchaProblem), "", "" },
-			{	15, &(ChaosTerrain), "", "" },
-			{	20, &(PlayerCannotTrainSkills), "", "" },
-			{	25, &(FoodIsAlwaysRotten), "", "" },
-			{	30, &(InventoryLoss), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	kur_abil[] = { {   4, &(NotSeenBug), "", "" },
-			{	8, &(GrayoutBug), "", "" },
-			{     10, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
-			{	12, &(DifficultyIncreased), "", "" },
-			{	16, &(UnfairAttackBug), "", "" },
-			{	20, &(EnmityBug), "", "" },
-			{	25, &(ElongationBug), "", "" },
-			{	30, &(Antileveling), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	gro_abil[] = { {	 1, &(HFast), "", "" },
-			{   4, &(Unidentify), "", "" },
-			{	8, &(MojibakeEffect), "", "" },
-			{	12, &(Dropcurses), "", "" },
-		     {  15, &(HStealth), "stealthy", "noisy" },
-			{	16, &(RecurringDisenchant), "", "" },
-			{	20, &(TimerunBug), "", "" },
-			{	25, &(FastMetabolismEffect), "", "" },
-			{	30, &(Goldspells), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	mah_abil[] = { {   1, &(HAggravate_monster), "", "" },
-			{	1, &(HAntimagic), "", "" },
-			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-			{  15, &(HTeleport_control), "controlled","uncontrolled" },
-		       {   15, &(HPolymorph_control), "your choices improve", "choiceless" },
-		     {	 0, 0, 0, 0 } },
-
-	sla_abil[] = { {   1, &(HAggravate_monster), "", "" },
-		     {  1, &(HCold_resistance), "", "" },
-			{	5, &(HSleep_resistance), "awake", "tired" },
-		     {   15, &(HTeleport_control), "controlled", "helpless" },
-			{   25, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {	 0, 0, 0, 0 } },
-
-	fla_abil[] = { {   1, &(HFire_resistance), "", "" },
-		     {  13, &(HCold_resistance), "warm", "cooler" },
-		     {   0, 0, 0, 0 } },
-
-	sli_abil[] = { {   1, &(HAcid_resistance), "", "" },
-			{	1, &(MenuBug), "", "" },
-			{	5, &(AutoDestruct), "", "" },
-			{   6, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-			{	7, &(DSTWProblem), "", "" },
-			{     9, &(HManaleech), "magically attuned", "no longer magically attuned" },
-			{	10, &(HCorrosivity), "corrosive", "less acidic" },
-			{	12, &(FreeHandLoss), "", "" },
-		     {  14, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
-			{	15, &(HSleep_resistance), "awake", "tired" },
-			{	17, &(DifficultyIncreased), "", "" },
-		       {   18, &(HPolymorph_control), "your choices improve", "choiceless" },
-			{	20, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
-			{	22, &(Deafness), "", "" },
-			{	25, &(HDisint_resistance), "stable", "brittle" },
-			{	26, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
-			{	28, &(ShadesOfGrey), "", "" },
-			{	30, &(HStone_resistance), "rock solid", "breakable" },
-		     {   0, 0, 0, 0 } },
-
-	erd_abil[] = { {   1, &(HFree_action), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	cel_abil[] = { {   1, &(BlueSpells), "", "" },
-			{	5, &(DamageMeterBug), "", "" },
-			{	9, &(RangCallEffect), "", "" },
-			{	14, &(CrapEffect), "", "" },
-			{	18, &(PokelieEffect), "", "" },
-			{	22, &(ExplodingDiceEffect), "", "" },
-			{	26, &(AutopilotEffect), "", "" },
-			{	30, &(InterfaceScrewed), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	blo_abil[] = { {   1, &(HWarning), "", "" },
-			{  8, &(HSearching), "perceptive", "unaware" },
-		     {	 12, &(HStealth), "stealthy", "noisy" },
-		     {  15, &(HFire_resistance), "cool", "warmer" },
-		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-		     {   0, 0, 0, 0 } },
-
-	yau_abil[] = { {   1, &(HInfravision), "", "" },
-			{	10, &(HFast), "quick", "slow" },
-			{  15, &(HFire_resistance), "cool", "warmer" },
-		     {   16, &(HClairvoyant), "clairvoyant", "mentally poor" },
-		     {	18, &(HPoison_resistance), "healthy", "less healthy" },
-		       {   20, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
-		     {  20, &(HKeen_memory), "able to memorize everything", "unable to memorize anything" },
-		     {  22, &(HCold_resistance), "warm", "cooler" },
-		     {  26, &(HShock_resistance), "insulated", "conductive" },
-		     {   0, 0, 0, 0 } },
-
-	scr_abil[] = { {   1, &(HFire_resistance), "", "" },
-			{	5, &(HSleep_resistance), "awake", "tired" },
-		     {   14, &(HTeleport_control), "controlled", "helpless" },
-		     {  16, &(HCold_resistance), "warm", "cooler" },
-		     {   0, 0, 0, 0 } },
-
-	coo_abil[] = { {   1, &(HFire_resistance), "", "" },
-		     {  1, &(HFull_nutrient), "", "" },
-		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-		     {   0, 0, 0, 0 } },
-
-	psy_abil[] = { {   1, &(HSee_invisible), "", "" },
-			{	5, &(HSleep_resistance), "awake", "tired" },
-			{     7, &(HPsi_resist), "psionic", "less psionic"},
-			{     10, &(HPeacevision), "able to recognize peaceful creatures", "unable to tell friend from enemy"},
-		     {	12, &(HWarning), "precognitive", "noncognitive" },  
-		     {	 15, &(HEnergy_regeneration), "charged with mana", "a loss of mana" },
-		     {  16, &(HTeleport_control), "controlled", "helpless" },
-			{	 17, &(HStealth), "stealthy", "noisy" },
-			{	 18, &(HConf_resist), "more resistant to confusion", "less resistant to confusion" },
-			{	 24, &(HVersus_curses), "curse resistant", "vulnerable to curses" },
-			{	 27, &(HStun_resist), "steady", "less steady" },
-		     {	 30, &(HHalf_spell_damage), "resistant to spells", "less resistant to spells" },
-		     {   0, 0, 0, 0 } },
-
-	qub_abil[] = { {   1, &(HFire_resistance), "", "" },
-		     {   9, &(HSwimming), "ready to swim","afraid of the water" },
-		     {   10, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
-		     {	20, &(HFear_resistance), "unafraid", "afraid" },
-		     {   0, 0, 0, 0 } },
-
-	fnc_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {   0, 0, 0, 0 } },
-
-	emp_abil[] = { {	 1, &(HTelepat), "", "" },
-		       {	1, &(HStealth), "", "" },
-		       {	1, &(HPeacevision), "", "" },
-		     {	4, &(HWarning), "sensitive", "careless" },
-		     {  6, &(HSearching), "perceptive", "unaware" },
-			{	7, &(HSleep_resistance), "awake", "tired" },
-			{	12, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
-			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		       {   18, &(HPolymorph_control), "your choices improve", "choiceless" },
-		     {   24, &(HClairvoyant), "clairvoyant", "mentally poor" },
-		     {  25, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
-		     {   0, 0, 0, 0 } },
-
-	fig_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {   0, 0, 0, 0 } },
-
-	med_abil[] = { {	1, &(HStealth), "", "" },
-		       {	7, &(HSearching), "perceptive", "unaware" },
-		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
-			{   14, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
-
-	lad_abil[] = { {   1, &(HSleep_resistance), "", "" },
-			{  4, &(HSearching), "perceptive", "unaware" },
-			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		     {   0, 0, 0, 0 } },
-
-	jes_abil[] = { {	 5, &(HStealth), "stealthy", "noisy" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {	10, &(HWarning), "sensitive", "careless" },
-			{  12, &(HSearching), "perceptive", "unaware" },
-		     {   0, 0, 0, 0 } },
-
-	art_abil[] = { {   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		       {   20, &(HPolymorph_control), "your choices improve", "choiceless" },
-		     {   0, 0, 0, 0 } },
-
-	gun_abil[] = { {   1, &(HPoison_resistance), "", "" },
-		     {  1, &(HStealth), "", "" },
-		     {  5, &(HFire_resistance), "cool", "warmer" },
-		       {   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		     {  10, &(HCold_resistance), "warm", "cooler" },
-		     {   0, 0, 0, 0 } },
-
-	mar_abil[] = { {   1, &(HFast), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	stu_abil[] = { {  2, &(HSleep_resistance), "awake", "tired" },
-		     {   5, &(HFast), "quick", "slow" },
-		     {   14, &(HFree_action), "freed", "a loss of freedom" },
-		     {   0, 0, 0, 0 } },
-
-	dol_abil[] = { {   1, &(HPoison_resistance), "", "" },
-		     {	3, &(HWarning), "sensitive", "careless" },
-			{   9, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
-
-	sag_abil[] = { {   1, &(HFull_nutrient), "", "" },
-		     {   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {  10, &(HSearching), "perceptive", "unaware" },
-		     {	17, &(HWarning), "sensitive", "careless" },
-		     {	20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
-		     {	 0, 0, 0, 0 } },
-
-	ota_abil[] = { {	8, &(HWarning), "sensitive", "careless" },
-			{  16, &(HSearching), "perceptive", "unaware" },
-		     {	 0, 0, 0, 0 } },
-
-	aug_abil[] = { {   1, &(HTelepat), "", "" },
-		     {   1, &(HStealth), "", "" },
-		     {   1, &(HTechnicality), "", "" },
-			{   3, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {	12, &(HWarning), "sensitive", "careless" },
-		     {   0, 0, 0, 0 } },
-
-	fir_abil[] = { {   1, &(HFire_resistance), "", "" },
-		     {  10, &(HSearching), "perceptive", "unaware" },
-		     {   0, 0, 0, 0 } },
-
-	nin_abil[] = { {   1, &(HStealth), "", ""  },
-		     {   3, &(HInvis), "hidden", "more visible" },
-		     {   0, 0, 0, 0 } },
-
-	off_abil[] = { {   1, &(HSearching), "", "" },
-		     {  10, &(HWarning), "sensitive", "careless" },
-		     {   0, 0, 0, 0 } },
-
-	aci_abil[] = { {   1, &(HAcid_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	loc_abil[] = { {   1, &(HSearching), "", "" },
-		     {   0, 0, 0, 0 } },
-	sha_abil[] = {/* {   1, &(HPolymorph), "", "" },*/
-		       {   9, &(HPolymorph_control), "your choices improve", "choiceless" },
-		       {   0, 0, 0, 0 } },
-
-	unt_abil[] = { {   1, &(HPoison_resistance), "", "" },
-		     {   7, &(HCold_resistance), "warm", "cooler" },
-			{     18, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
-		     {   0, 0, 0, 0 } },
-
-	gee_abil[] = { {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HShock_resistance), "", "" },
-		     {   8, &(HTeleport_control), "controlled", "helpless" },
-		     {  15, &(HWarning), "sensitive", "careless" },
-		     {   0, 0, 0, 0, } },
-
-	gra_abil[] = { {   1, &(HAggravate_monster), "", "" },
-		     {   1, &(HFast), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	hea_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-		     {	15, &(HWarning), "sensitive", "careless" },
-			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {	 0, 0, 0, 0 } },
-
-	dru_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-			{   24, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {	 0, 0, 0, 0 } },
-
-	sci_abil[] = { {	 1, &(HAcid_resistance), "", "" },
-		     {   1, &(HTechnicality), "", "" },
-		     {	25, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
-		     {	 0, 0, 0, 0 } },
-
-	mus_abil[] = { {	 7, &(HStealth), "stealthy", "noisy" },
-		     {	 0, 0, 0, 0 } },
-
-	ice_abil[] = { {   1, &(HCold_resistance), "", "" },
-		     {  13, &(HFire_resistance), "cool", "warmer" },
-		     {   0, 0, 0, 0 } },
-
-	ele_abil[] = { {   1, &(HShock_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	psn_abil[] = { {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HFull_nutrient), "", "" },
-			{   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
-
-	occ_abil[] = { {   10, &(HInfravision), "perceptive", "half blind"},
-		     {   0, 0, 0, 0 } },
-
-	emn_abil[] = { {   15, &(HPsi_resist), "psionic", "less psionic"},
-		     {   0, 0, 0, 0 } },
-
-	cha_abil[] = { {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana"},
-		     {   0, 0, 0, 0 } },
-
-	zoo_abil[] = { {   1, &(HWarning), "", "" },
-			{   1, &(HScentView), "", "" },
-		     {  10, &(HPoison_resistance), "hardy", "less healthy" },
-		     {   0, 0, 0, 0 } },
-
-	jed_abil[] = { {   1, &(HStealth), "", ""},
-		       {   3, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
-		       {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		       {   7, &(HFast), "quick", "slow" },
-		       { 0, 0, 0, 0 } },
+	boolean goodone;
+}	arc_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {   1, &(HFast), "", "", TRUE },
+		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	ana_abil[] = { {	 1, &(HFull_nutrient), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },  
+		     {	15, &(HWarning), "precognitive", "noncognitive", TRUE },  
+		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
+		     {	 0, 0, 0, 0, 0 } },  
+
+	xel_abil[] = { {	 1, &(HSwimming), "", "", TRUE },
+		     {  1, &(HAcid_resistance), "", "", TRUE },
+		     {  1, &(HScentView), "", "", TRUE },
+		     {  6, &(HStealth), "stealthy", "noisy", TRUE },
+		     {  6, &(HJumping), "able to jump around", "unable to jump around", TRUE },
+		     {	10, &(HFear_resistance), "unafraid", "afraid", TRUE },
+			{	12, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+		       {   12, &(HTelepat), "disturbances in the force", "your grip on the force lessen", TRUE },
+		     {  14, &(HCold_resistance), "warm", "cooler", TRUE },
+		    { 15,  &(HInfravision), "perceptive", "half blind", TRUE },
+			{   16, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   16, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+		     {   18, &(HRegeneration), "regenerative", "your healing rate slowing down", TRUE },
+		     {	18, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+			{     22, &(HPsi_resist), "psionic", "less psionic", TRUE },
+		     {	24, &(HDisplaced), "displaced", "easy to spot", TRUE },
+			{	25, &(HStone_resistance), "rock solid", "breakable", TRUE },
+			{25, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+		     {  26, &(HShock_resistance), "insulated", "conductive", TRUE },
+		     {	 28, &(HHalf_physical_damage), "resistant to normal damage", "less resistant to damage", TRUE },
+		     {	 0, 0, 0, 0, 0 } },  
+
+	ast_abil[] = { {	 1, &(HSwimming), "", "", TRUE },
+		     {   4, &(HFast), "quick", "slow", TRUE },
+		     {   8, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+		     {  10, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {   14, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {  15, &(HTeleport_control), "controlled", "helpless", TRUE },
+		     {  18, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
+		     {   19, &(HUseTheForce), "like a jedi", "a loss of your jedi powers", TRUE },
+		     {  20, &(HShock_resistance), "insulated", "conductive", TRUE },
+		     {	20, &(HFear_resistance), "unafraid", "afraid", TRUE },
+			{	24, &(HDisint_resistance), "stable", "brittle", TRUE },
+			{	25, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+			{28, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+		     {  28, &(HFlying), "weightless", "grounded", TRUE },
+		     {  30, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {	 0, 0, 0, 0, 0 } },  
+
+	pic_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {   6, &(HFast), "quick", "slow", TRUE },
+		     {  8, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	sto_abil[] = { {	 1, &(HShock_resistance), "", "", TRUE },
+		     {   4, &(HFast), "quick", "slow", TRUE },
+		     {   10, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   15, &(HFast), "quick", "slow", TRUE },
+		     {   19, &(HRegeneration), "regenerative", "your healing rate slowing down", TRUE },
+			{	25, &(HDisint_resistance), "stable", "brittle", TRUE },
+		     {   28, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	sof_abil[] = { {	 7, &(HSleep_resistance), "awake", "tired", TRUE },
+			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		     {	28, &(HWarning), "precognitive", "noncognitive", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	cra_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
+		     {  12, &(HStealth), "stealthy", "noisy", TRUE },
+		     {  14, &(HTeleport_control), "controlled", "helpless", TRUE },
+		     {  20, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	dem_abil[] = { {	 5, &(MysteriousForceActive), "", "", FALSE },
+		     {  9, &(UnfairAttackBug), "", "", FALSE },
+		     {  13, &(HighlevelStatus), "", "", FALSE },
+		     {  17, &(TrapCreationProblem), "", "", FALSE },
+		     {  21, &(UndressingEffect), "", "", FALSE },
+		     {  25, &(OrangeSpells), "", "", FALSE },
+		     {  30, &(SatanEffect), "", "", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	sma_abil[] = { {	 12, &(HFast), "quick", "slow", TRUE },
+		     {  15, &(HExtra_wpn_practice), "skillful", "unskilled", TRUE },
+		     {  20, &(HJumping), "able to jump around", "unable to jump around", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	bar_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	hus_abil[] = { {	 1, &(HScentView), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	pro_abil[] = { { 10, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	ass_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {   10, &(HFast), "quick", "slow", TRUE },
+		     {	15, &(HWarning), "sensitive", "careless", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	ama_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {  10, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	mas_abil[] = { {	 1, &(HSee_invisible), "", "", TRUE },
+			{	 1, &(HKeen_memory), "", "", TRUE },
+			{     10, &(HPsi_resist), "psionic", "less psionic", TRUE },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {  16, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
+		     {   24, &(HInvis), "hidden", "more visible", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	sup_abil[] = { {	 1, &(HTeleportation), "", "", FALSE },
+			{	3, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	8, &(HWarning), "sensitive", "careless", TRUE },
+		     {   22, &(HTeleport_control), "controlled", "helpless", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	cou_abil[] = { {	 1, &(HHunger), "", "", FALSE },
+		     {   1, &(HAggravate_monster), "", "", FALSE },
+		     {  1, &(HConflict), "", "", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	wei_abil[] = { {   1, &(HPsi_resist), "", "", TRUE },
+			 {   6, &(HTeleportation), "very jumpy", "less jumpy", FALSE },
+			{	8, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+			 {	 10, &(HDeath_resistance), "un-dead", "dead", TRUE },
+			 {	 12, &(HHunger), "very hungry", "less hungry", FALSE },
+		     {   14, &(HAcid_resistance), "warded", "endangered", TRUE },
+		     {   16, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life", TRUE },
+		    { 22,  &(HInfravision), "perceptive", "half blind", TRUE },
+		       {   25, &(HPolymorph), "polymorphic", "form-stable", FALSE },
+		     {  26, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {	 28, &(HSlow_digestion), "a certain satiation", "the need to eat more", TRUE },
+		     {   30, &(HFast), "quick", "slow", TRUE },  
+		     {	 0, 0, 0, 0, 0 } },
+
+	brd_abil[] = { {	5, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	 10, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	gam_abil[] = { {	3, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	 13, &(HSlow_digestion), "a certain satiation", "the need to eat more", TRUE },
+			{   23, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	cav_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
+		     {  10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {	15, &(HWarning), "sensitive", "careless", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	jan_abil[] = { {  10, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {	25, &(HFear_resistance), "unafraid", "afraid", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	con_abil[] = { {   1, &(HSick_resistance), "", "", TRUE },
+	         {	 7, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {  20, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	mur_abil[] = { {   1, &(HAggravate_monster), "", "", FALSE },
+	           {	 2, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 3, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 4, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 5, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 6, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 7, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 8, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 9, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 10, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 11, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 12, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 13, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 14, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 15, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 16, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 17, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 18, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 19, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 20, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 20, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 21, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 22, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 23, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 24, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 25, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 26, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 27, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 28, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 29, &(HSearching), "perceptive", "unaware", TRUE },
+	           {	 30, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	bul_abil[] = { {   1, &(HAggravate_monster), "", "", FALSE },
+	         {	 7, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	fai_abil[] = { {   1, &(HAggravate_monster), "", "", FALSE },
+			{	1, &(BadEffectProblem), "", "", FALSE },
+			{	1, &(AutomaticVulnerabilitiy), "", "", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	sta_abil[] = { {   1, &(HTechnicality), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	trs_abil[] = { {   5, &(LevelTrapEffect), "", "", FALSE },
+			{	10, &(CaptchaProblem), "", "", FALSE },
+			{	15, &(ChaosTerrain), "", "", FALSE },
+			{	20, &(PlayerCannotTrainSkills), "", "", FALSE },
+			{	25, &(FoodIsAlwaysRotten), "", "", FALSE },
+			{	30, &(InventoryLoss), "", "", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	kur_abil[] = { {   4, &(NotSeenBug), "", "", FALSE },
+			{	8, &(GrayoutBug), "", "", FALSE },
+			{     10, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
+			{	12, &(DifficultyIncreased), "", "", FALSE },
+			{	16, &(UnfairAttackBug), "", "", FALSE },
+			{	20, &(EnmityBug), "", "", FALSE },
+			{	25, &(ElongationBug), "", "", FALSE },
+			{	30, &(Antileveling), "", "", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	gro_abil[] = { {	 1, &(HFast), "", "", TRUE },
+			{   4, &(Unidentify), "", "", FALSE },
+			{	8, &(MojibakeEffect), "", "", FALSE },
+			{	12, &(Dropcurses), "", "", FALSE },
+		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
+			{	16, &(RecurringDisenchant), "", "", FALSE },
+			{	20, &(TimerunBug), "", "", FALSE },
+			{	25, &(FastMetabolismEffect), "", "", FALSE },
+			{	30, &(Goldspells), "", "", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	mah_abil[] = { {   1, &(HAggravate_monster), "", "", FALSE },
+			{	1, &(HAntimagic), "", "", TRUE },
+			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+			{  15, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+		       {   15, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	sla_abil[] = { {   1, &(HAggravate_monster), "", "", FALSE },
+		     {  1, &(HCold_resistance), "", "", TRUE },
+			{	5, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   15, &(HTeleport_control), "controlled", "helpless", TRUE },
+			{   25, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	fla_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {  13, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sli_abil[] = { {   1, &(HAcid_resistance), "", "", TRUE },
+			{	1, &(MenuBug), "", "", FALSE },
+			{	5, &(AutoDestruct), "", "", FALSE },
+			{   6, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+			{	7, &(DSTWProblem), "", "", FALSE },
+			{     9, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+			{	10, &(HCorrosivity), "corrosive", "less acidic", TRUE },
+			{	12, &(FreeHandLoss), "", "", FALSE },
+		     {  14, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
+			{	15, &(HSleep_resistance), "awake", "tired", TRUE },
+			{	17, &(DifficultyIncreased), "", "", FALSE },
+		       {   18, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+			{	20, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+			{	22, &(Deafness), "", "", FALSE },
+			{	25, &(HDisint_resistance), "stable", "brittle", TRUE },
+			{	26, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+			{	28, &(ShadesOfGrey), "", "", FALSE },
+			{	30, &(HStone_resistance), "rock solid", "breakable", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	erd_abil[] = { {   1, &(HFree_action), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	cel_abil[] = { {   1, &(BlueSpells), "", "", FALSE },
+			{	5, &(DamageMeterBug), "", "", FALSE },
+			{	9, &(RangCallEffect), "", "", FALSE },
+			{	14, &(CrapEffect), "", "", FALSE },
+			{	18, &(PokelieEffect), "", "", FALSE },
+			{	22, &(ExplodingDiceEffect), "", "", FALSE },
+			{	26, &(AutopilotEffect), "", "", FALSE },
+			{	30, &(InterfaceScrewed), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	blo_abil[] = { {   1, &(HWarning), "", "", TRUE },
+			{  8, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 12, &(HStealth), "stealthy", "noisy", TRUE },
+		     {  15, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	yau_abil[] = { {   1, &(HInfravision), "", "", TRUE },
+			{	10, &(HFast), "quick", "slow", TRUE },
+			{  15, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {   16, &(HClairvoyant), "clairvoyant", "mentally poor", TRUE },
+		     {	18, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		       {   20, &(HTelepat), "disturbances in the force", "your grip on the force lessen", TRUE },
+		     {  20, &(HKeen_memory), "able to memorize everything", "unable to memorize anything", TRUE },
+		     {  22, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {  26, &(HShock_resistance), "insulated", "conductive", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	scr_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+			{	5, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   14, &(HTeleport_control), "controlled", "helpless", TRUE },
+		     {  16, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	coo_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {  1, &(HFull_nutrient), "", "", TRUE },
+		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	psy_abil[] = { {   1, &(HSee_invisible), "", "", TRUE },
+			{	5, &(HSleep_resistance), "awake", "tired", TRUE },
+			{     7, &(HPsi_resist), "psionic", "less psionic", TRUE },
+			{     10, &(HPeacevision), "able to recognize peaceful creatures", "unable to tell friend from enemy", TRUE },
+		     {	12, &(HWarning), "precognitive", "noncognitive", TRUE },  
+		     {	 15, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
+		     {  16, &(HTeleport_control), "controlled", "helpless", TRUE },
+			{	 17, &(HStealth), "stealthy", "noisy", TRUE },
+			{	 18, &(HConf_resist), "more resistant to confusion", "less resistant to confusion", TRUE },
+			{	 24, &(HVersus_curses), "curse resistant", "vulnerable to curses", TRUE },
+			{	 27, &(HStun_resist), "steady", "less steady", TRUE },
+		     {	 30, &(HHalf_spell_damage), "resistant to spells", "less resistant to spells", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	qub_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {   9, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+		     {   10, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+		     {	20, &(HFear_resistance), "unafraid", "afraid", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	fnc_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	emp_abil[] = { {	 1, &(HTelepat), "", "", TRUE },
+		       {	1, &(HStealth), "", "", TRUE },
+		       {	1, &(HPeacevision), "", "", TRUE },
+		     {	4, &(HWarning), "sensitive", "careless", TRUE },
+		     {  6, &(HSearching), "perceptive", "unaware", TRUE },
+			{	7, &(HSleep_resistance), "awake", "tired", TRUE },
+			{	12, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		       {   18, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		     {   24, &(HClairvoyant), "clairvoyant", "mentally poor", TRUE },
+		     {  25, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	fig_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	med_abil[] = { {	1, &(HStealth), "", "", TRUE },
+		       {	7, &(HSearching), "perceptive", "unaware", TRUE },
+		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
+			{   14, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+			{   20, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	lad_abil[] = { {   1, &(HSleep_resistance), "", "", TRUE },
+			{  4, &(HSearching), "perceptive", "unaware", TRUE },
+			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	jes_abil[] = { {	 5, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {	10, &(HWarning), "sensitive", "careless", TRUE },
+			{  12, &(HSearching), "perceptive", "unaware", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	art_abil[] = { {   7, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		       {   20, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	gun_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {  1, &(HStealth), "", "", TRUE },
+		     {  5, &(HFire_resistance), "cool", "warmer", TRUE },
+		       {   7, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		     {  10, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	mar_abil[] = { {   1, &(HFast), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	stu_abil[] = { {  2, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   5, &(HFast), "quick", "slow", TRUE },
+		     {   14, &(HFree_action), "freed", "a loss of freedom", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dol_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {	3, &(HWarning), "sensitive", "careless", TRUE },
+			{   9, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sag_abil[] = { {   1, &(HFull_nutrient), "", "", TRUE },
+		     {   5, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	17, &(HWarning), "sensitive", "careless", TRUE },
+		     {	20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	ota_abil[] = { {	8, &(HWarning), "sensitive", "careless", TRUE },
+			{  16, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	aug_abil[] = { {   1, &(HTelepat), "", "", TRUE },
+		     {   1, &(HStealth), "", "", TRUE },
+		     {   1, &(HTechnicality), "", "", TRUE },
+			{   3, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	12, &(HWarning), "sensitive", "careless", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	fir_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	nin_abil[] = { {   1, &(HStealth), "", "", TRUE },
+		     {   3, &(HInvis), "hidden", "more visible", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	off_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {  10, &(HWarning), "sensitive", "careless", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	aci_abil[] = { {   1, &(HAcid_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	loc_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sha_abil[] = { {   9, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		       {   0, 0, 0, 0, 0 } },
+
+	unt_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   7, &(HCold_resistance), "warm", "cooler", TRUE },
+			{     18, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	gee_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HShock_resistance), "", "", TRUE },
+		     {   8, &(HTeleport_control), "controlled", "helpless", TRUE },
+		     {  15, &(HWarning), "sensitive", "careless", TRUE },
+		     {   0, 0, 0, 0, 0, } },
+
+	gra_abil[] = { {   1, &(HAggravate_monster), "", "", FALSE },
+		     {   1, &(HFast), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	hea_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	15, &(HWarning), "sensitive", "careless", TRUE },
+			{   20, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	dru_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+			{   24, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	sci_abil[] = { {	 1, &(HAcid_resistance), "", "", TRUE },
+		     {   1, &(HTechnicality), "", "", TRUE },
+		     {	25, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	mus_abil[] = { {	 7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	ice_abil[] = { {   1, &(HCold_resistance), "", "", TRUE },
+		     {  13, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ele_abil[] = { {   1, &(HShock_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	psn_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HFull_nutrient), "", "", TRUE },
+			{   5, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	occ_abil[] = { {   10, &(HInfravision), "perceptive", "half blind", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	emn_abil[] = { {   15, &(HPsi_resist), "psionic", "less psionic", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	cha_abil[] = { {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	zoo_abil[] = { {   1, &(HWarning), "", "", TRUE },
+			{   1, &(HScentView), "", "", TRUE },
+		     {  10, &(HPoison_resistance), "hardy", "less healthy", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	jed_abil[] = { {   1, &(HStealth), "", "", TRUE },
+		       {   3, &(HTelepat), "disturbances in the force", "your grip on the force lessen", TRUE },
+		       {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		       {   7, &(HFast), "quick", "slow", TRUE },
+		       { 0, 0, 0, 0, 0 } },
 			
-	kni_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {	 0, 0, 0, 0 } },
+	kni_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	nuc_abil[] = { {	 1, &(HCont_resist), "", "" },
-		     {   1, &(HTechnicality), "", "" },
-		     {	 0, 0, 0, 0 } },
+	nuc_abil[] = { {	 1, &(HCont_resist), "", "", TRUE },
+		     {   1, &(HTechnicality), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	for_abil[] = { {	 1, &(HPolymorph_control), "", "" },
-		       {   5, &(HPolymorph), "polymorphic", "form-stable" },
-		     {	 0, 0, 0, 0 } },
+	for_abil[] = { {	 1, &(HPolymorph_control), "", "", TRUE },
+		       {   5, &(HPolymorph), "polymorphic", "form-stable", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	war_abil[] = { {	 7, &(HFast), "quick", "slow" },
-		     {	 0, 0, 0, 0 } },
+	war_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	mon_abil[] = { {   1, &(HFast), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HSee_invisible), "", "" },
-		     {   3, &(HPoison_resistance), "healthy", "less healthy" },
-		     {   5, &(HStealth), "stealthy", "noisy" },
-		     {   7, &(HWarning), "sensitive", "careless" },
-		     {   9, &(HSearching), "perceptive", "unaware" },
+	mon_abil[] = { {   1, &(HFast), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HSee_invisible), "", "", TRUE },
+		     {   3, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {   5, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   7, &(HWarning), "sensitive", "careless", TRUE },
+		     {   9, &(HSearching), "perceptive", "unaware", TRUE },
 #if 0
-		     {  11, &(HFire_resistance), "cool", "warmer" },
-		     {  13, &(HCold_resistance), "warm", "cooler" },
-		     {  15, &(HShock_resistance), "insulated", "conductive" },
+		     {  11, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {  13, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {  15, &(HShock_resistance), "insulated", "conductive", TRUE },
 		     /* WAC -- made the above three attribs techs */
 #endif
-		     {  17, &(HTeleport_control), "controlled","uncontrolled" },
-		     {   0, 0, 0, 0 } },
+		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	psi_abil[] = { {   1, &(HTelepat), "", "" },
-		     {   1, &(HClairvoyant), "","" },
-		     {   3, &(HSee_invisible), "your vision sharpen", "your vision blur" },
-		     {   5, &(ETelepat), "aware", "unaware" },
-		     {   7, &(HAggravate_monster), "noisy", "quiet" },
-		     {  10, &(HDetect_monsters), "connected","detached" },
-		     {  15, &(HFlying), "weightless", "grounded" },
-		     {  20, &(HPasses_walls), "ethereal","mundane" },
-			{   25, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
+	psi_abil[] = { {   1, &(HTelepat), "", "", TRUE },
+		     {   1, &(HClairvoyant), "","", TRUE },
+		     {   3, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
+		     {   5, &(ETelepat), "aware", "unaware", TRUE },
+		     {   7, &(HAggravate_monster), "noisy", "quiet", FALSE },
+		     {  10, &(HDetect_monsters), "connected","detached", TRUE },
+		     {  15, &(HFlying), "weightless", "grounded", TRUE },
+		     {  20, &(HPasses_walls), "ethereal","mundane", TRUE },
+			{   25, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	fox_abil[] = { {   1, &(ETelepat), "", "" },
-		     {   1, &(HClairvoyant), "","" },
-		     {   1, &(HStealth), "","" },
-		     {   5, &(HSearching), "perceptive", "unaware" },
-		     {   10, &(HFast), "quick", "slow" },
-		     {   15, &(HWarning), "sensitive", "careless" },
-		     {   0, 0, 0, 0 } },
+	fox_abil[] = { {   1, &(ETelepat), "", "", TRUE },
+		     {   1, &(HClairvoyant), "","", TRUE },
+		     {   1, &(HStealth), "","", TRUE },
+		     {   5, &(HSearching), "perceptive", "unaware", TRUE },
+		     {   10, &(HFast), "quick", "slow", TRUE },
+		     {   15, &(HWarning), "sensitive", "careless", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	nec_abil[] = { {   1, &(HDrain_resistance), "", "" },
-		     {   1, &(HSick_resistance), "", "" },
-		     {   3, &(HUndead_warning), "sensitive", "careless" },
-			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
+	nec_abil[] = { {   1, &(HDrain_resistance), "", "", TRUE },
+		     {   1, &(HSick_resistance), "", "", TRUE },
+		     {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	pok_abil[] = { {   1, &(HDisint_resistance), "", "" },
-		     {   4, &(HWarning), "sensitive", "careless" },
-		     {   7, &(HSearching), "perceptive", "unaware" },
-		     {   10, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life" },
-		     {   12, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-		     {   13, &(HFast), "quick", "slow" },
-		     {   16, &(HSleep_resistance), "awake", "tired" },
-		     {   19, &(HAcid_resistance), "warded", "endangered" },
-		     {   22, &(HTelepat), "telepathic", "nontelepathic" },
-		     {   24, &(HTechnicality), "evolved", "a loss of PP" },
-		     {   25, &(HSick_resistance), "resistant", "non-resistant" },
-		     {   26, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
-		     {   28, &(HTeleport_control), "controlled", "uncontrolled" },
-		     {   30, &(HFlying), "airborne", "stalled" },
-		     {   0, 0, 0, 0 } },
+	pok_abil[] = { {   1, &(HDisint_resistance), "", "", TRUE },
+		     {   4, &(HWarning), "sensitive", "careless", TRUE },
+		     {   7, &(HSearching), "perceptive", "unaware", TRUE },
+		     {   10, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life", TRUE },
+		     {   12, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {   13, &(HFast), "quick", "slow", TRUE },
+		     {   16, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   19, &(HAcid_resistance), "warded", "endangered", TRUE },
+		     {   22, &(HTelepat), "telepathic", "nontelepathic", TRUE },
+		     {   24, &(HTechnicality), "evolved", "a loss of PP", TRUE },
+		     {   25, &(HSick_resistance), "resistant", "non-resistant", TRUE },
+		     {   26, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },
+		     {   28, &(HTeleport_control), "controlled", "uncontrolled", TRUE },
+		     {   30, &(HFlying), "airborne", "stalled", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	pir_abil[] = {	{1, &(HSwimming), "", ""  },
-			 {	7, &(HStealth), "stealthy", "noisy"  },	/* with cat-like tread ... */
-		     {  11, &(HFast), "quick", "slow" },
-		     {	 0, 0, 0, 0 } },
+	pir_abil[] = {	{1, &(HSwimming), "", "", TRUE },
+			 {	7, &(HStealth), "stealthy", "noisy", TRUE },	/* with cat-like tread ... */
+		     {  11, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	gof_abil[] = {	{1, &(HDrain_resistance), "", ""  },
-		     {   1, &(HInfravision), "", "" },
-		     {  10, &(HReflecting), "reflexive", "nonreflexive" },
-		     {  20, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping" },
-		     {	 0, 0, 0, 0 } },
-	gol_abil[] = { {   5, &(HStealth), "stealthy", "noisy" },
-		     {   9, &(HFast), "quick", "slow" },
-		     {   11, &(HSearching), "perceptive", "unaware" },
-		     {   0, 0, 0, 0 } },
+	gof_abil[] = {	{1, &(HDrain_resistance), "", "", TRUE },
+		     {   1, &(HInfravision), "", "", TRUE },
+		     {  10, &(HReflecting), "reflexive", "nonreflexive", TRUE },
+		     {  20, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	gla_abil[] = {	{3, &(HFast), "quick", "slow"  },
-			 {	6, &(HStealth), "stealthy", "noisy"  },	/* with cat-like tread ... */
-		     {  10, &(HAggravate_monster), "noisy", "quiet" },
-		     {  15, &(HWarning), "sensitive", "careless" },
-		     {	 0, 0, 0, 0 } },
-	kor_abil[] = {	{2, &(HSearching), "perceptive", "unaware"  },
-			 {	7, &(HStealth), "stealthy", "noisy"  },	/* with cat-like tread ... */
-		     {	 0, 0, 0, 0 } },
-	div_abil[] = {	{15, &(HMagical_breathing), "aquatic", "hydrophobic"  },
-		     {	 0, 0, 0, 0 } },
+	gol_abil[] = { {   5, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   9, &(HFast), "quick", "slow", TRUE },
+		     {   11, &(HSearching), "perceptive", "unaware", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
+	gla_abil[] = {	{3, &(HFast), "quick", "slow", TRUE },
+			 {	6, &(HStealth), "stealthy", "noisy", TRUE },	/* with cat-like tread ... */
+		     {  10, &(HAggravate_monster), "noisy", "quiet", FALSE },
+		     {  15, &(HWarning), "sensitive", "careless", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	lun_abil[] = { {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HRegeneration), "", "" },
-		     {   1, &(HScentView), "", "" },
-		     {   7, &(HStealth), "stealthy", "noisy" },
-		     {   0, 0, 0, 0 } },
+	kor_abil[] = {	{2, &(HSearching), "perceptive", "unaware", TRUE },
+			 {	7, &(HStealth), "stealthy", "noisy", TRUE },	/* with cat-like tread ... */
+		     {	 0, 0, 0, 0, 0 } },
 
+	div_abil[] = {	{15, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	lun_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HRegeneration), "", "", TRUE },
+		     {   1, &(HScentView), "", "", TRUE },
+		     {   7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 			 
-	pri_abil[] = { {	15, &(HWarning), "sensitive", "careless" },
-		     {  20, &(HFire_resistance), "cool", "warmer" },
-		     {	 0, 0, 0, 0 } },
+	pri_abil[] = { {	15, &(HWarning), "sensitive", "careless", TRUE },
+		     {  20, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	ran_abil[] = { {   1, &(HSearching), "", "" },
-		     {	 7, &(HStealth), "stealthy", "noisy" },
-		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur" },
-		     {	 0, 0, 0, 0 } },
+	ran_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {	 7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	elp_abil[] = { {   1, &(HSearching), "", "" },
-		     {	4, &(HSleep_resistance), "awake", "tired" },
-		     {	 7, &(HStealth), "stealthy", "noisy" },
-		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur" },
-		     {	 0, 0, 0, 0 } },
-	rog_abil[] = { {	 1, &(HStealth), "", ""  },
-		     {  10, &(HSearching), "perceptive", "unaware" },
-		     {	 0, 0, 0, 0 } },
+	elp_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {	4, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	 7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	15, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	sam_abil[] = { {	 1, &(HFast), "", "" },
-		     {  15, &(HStealth), "stealthy", "noisy" },
-		     {	 0, 0, 0, 0 } },
+	rog_abil[] = { {	 1, &(HStealth), "", "", TRUE },
+		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	cyb_abil[] = { {	 1, &(HFast), "", "" },
-		     {   1, &(HUseTheForce), "", "" },
-		     {  15, &(HStealth), "stealthy", "noisy" },
-		     {	 0, 0, 0, 0 } },
+	sam_abil[] = { {	 1, &(HFast), "", "", TRUE },
+		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	tou_abil[] = { {	10, &(HSearching), "perceptive", "unaware" },
-		     {	20, &(HPoison_resistance), "hardy", "less healthy" },
-		     {	 0, 0, 0, 0 } },
-	rin_abil[] = { {  1, &(HStealth), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {   0, 0, 0, 0 } },
+	cyb_abil[] = { {	 1, &(HFast), "", "", TRUE },
+		     {   1, &(HUseTheForce), "", "", TRUE },
+		     {  15, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	und_abil[] = { {   1, &(HStealth), "", "" },
-		     {   1, &(HDrain_resistance), "", "" },
-		     {   1, &(HSick_resistance), "", "" },
-		     {   1, &(HUndead_warning), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {   9, &(HPoison_resistance), "hardy", "less healthy" },
-		     {   0, 0, 0, 0 } },
+	tou_abil[] = { {	10, &(HSearching), "perceptive", "unaware", TRUE },
+		     {	20, &(HPoison_resistance), "hardy", "less healthy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	pal_abil[] = { {   1, &(HFast), "", "" },
-		     {   1, &(HUndead_warning), "", "" },
-		     {   5, &(HPoison_resistance), "hardy", "less healthy" },
-		     {	10, &(HSleep_resistance), "awake", "tired" },
-			{   24, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
+	rin_abil[] = { {  1, &(HStealth), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	act_abil[] = { {   1, &(HPeacevision), "", "" },
-		     {   0, 0, 0, 0 } },
+	und_abil[] = { {   1, &(HStealth), "", "", TRUE },
+		     {   1, &(HDrain_resistance), "", "", TRUE },
+		     {   1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HUndead_warning), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {   9, &(HPoison_resistance), "hardy", "less healthy", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	jus_abil[] = { {   1, &(HPeacevision), "", "" },
-		     {   0, 0, 0, 0 } },
+	pal_abil[] = { {   1, &(HFast), "", "", TRUE },
+		     {   1, &(HUndead_warning), "", "", TRUE },
+		     {   5, &(HPoison_resistance), "hardy", "less healthy", TRUE },
+		     {	10, &(HSleep_resistance), "awake", "tired", TRUE },
+			{   24, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	val_abil[] = { {	 1, &(HCold_resistance), "", "" },
-		     {	 1, &(HStealth), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {	 0, 0, 0, 0 } },
+	act_abil[] = { {   1, &(HPeacevision), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	wan_abil[] = { {	 1, &(HCold_resistance), "", "" },
-		     {   1, &(HFire_resistance), "", "" },
-		     {   1, &(HShock_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-			{	10, &(HWarning), "sensitive", "careless" },
-			{   10, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
-			{  20, &(HTeleport_control), "controlled","uncontrolled" },
-		       {   20, &(HPolymorph_control), "your choices improve", "choiceless" },
-		     {	 0, 0, 0, 0 } },
-	mid_abil[] = { { 1, &(HSearching), "", "" },
-			{  10, &(HFire_resistance), "cool", "warmer" },
-			{   0, 0, 0, 0 } },
+	jus_abil[] = { {   1, &(HPeacevision), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	val_abil[] = { {	 1, &(HCold_resistance), "", "", TRUE },
+		     {	 1, &(HStealth), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	wan_abil[] = { {	 1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HShock_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+			{	10, &(HWarning), "sensitive", "careless", TRUE },
+			{   10, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+			{  20, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+		       {   20, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	mid_abil[] = { { 1, &(HSearching), "", "", TRUE },
+			{  10, &(HFire_resistance), "cool", "warmer", TRUE },
+			{   0, 0, 0, 0, 0 } },
 
 	yeo_abil[] = {
-		     {   7, &(HFast), "quick", "slow" },
-		     {  15, &(HSwimming), "ready to swim","afraid of the water" },
-		     {   0, 0, 0, 0 } },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {  15, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+		     {   0, 0, 0, 0, 0 } },
 
-	wiz_abil[] = { {   1, &(HManaleech), "", "" },
-			 {	15, &(HWarning), "sensitive", "careless" },
-		     {  17, &(HTeleport_control), "controlled","uncontrolled" },
-		     {	 0, 0, 0, 0 } },
+	wiz_abil[] = { {   1, &(HManaleech), "", "", TRUE },
+			 {	15, &(HWarning), "sensitive", "careless", TRUE },
+		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	alt_abil[] = { {   3, &(HUndead_warning), "sensitive", "careless" },
-			{	7, &(HWarning), "sensitive", "careless" },
-			{  15, &(HTeleport_control), "controlled","uncontrolled" },
-		       {   25, &(HPolymorph_control), "your choices improve", "choiceless" },
-		     {  30, &(HReflecting), "reflexive", "nonreflexive" },
-		     {	 0, 0, 0, 0 } },
+	alt_abil[] = { {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+			{	7, &(HWarning), "sensitive", "careless", TRUE },
+			{  15, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+		       {   25, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		     {  30, &(HReflecting), "reflexive", "nonreflexive", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	dun_abil[] = { {	1, &(HFire_resistance), "", "" },
-		     {	 0, 0, 0, 0 } },
+	dun_abil[] = { {	1, &(HFire_resistance), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	bos_abil[] = { {	1, &(HPoison_resistance), "", "" },
-		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-		     {  7, &(HStealth), "stealthy", "noisy" },
-		     {	 0, 0, 0, 0 } },
+	bos_abil[] = { {	1, &(HPoison_resistance), "", "", TRUE },
+		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {  7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	tha_abil[] = { {	4, &(HSleep_resistance), "awake", "tired" },
-		     {   10, &(HAggravate_monster), "intolerable", "more acceptable" },
-		     {	 0, 0, 0, 0 } },
+	tha_abil[] = { {	4, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {   10, &(HAggravate_monster), "intolerable", "more acceptable", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
 
-	ord_abil[] = { {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		     {   10, &(HUndead_warning), "sensitive", "careless" },
-		       { 0, 0, 0, 0 } },
+	ord_abil[] = { {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		     {   10, &(HUndead_warning), "sensitive", "careless", TRUE },
+		       { 0, 0, 0, 0, 0 } },
 
 	/* Intrinsics conferred by race */
-	dop_abil[] = {/* {   1, &(HPolymorph), "", "" },*/
-		       {   9, &(HPolymorph_control), "your choices improve", "choiceless" },
-		       {   0, 0, 0, 0 } },
-
-	dwa_abil[] = { { 1, &(HSearching), "", "" },
-			{  10, &(HFire_resistance), "cool", "warmer" },
-			{   0, 0, 0, 0 } },
-
-	dra_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-			{   0, 0, 0, 0 } },
-
-	fel_abil[] = { { 20, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-			{   0, 0, 0, 0 } },
-
-	kha_abil[] = { { 5, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-			{   0, 0, 0, 0 } },
-
-	azt_abil[] = { { 1, &(HFast), "", "" },
-			{   0, 0, 0, 0 } },
-
-	irr_abil[] = { { 1, &(HFree_action), "", "" },
-		     {	 1, &(HShock_resistance), "", "" },
-			{   0, 0, 0, 0 } },
-
-	hyp_abil[] = { { 1, &(HFire_resistance), "", "" },
-			{   0, 0, 0, 0 } },
-
-	dyn_abil[] = { { 1, &(HShock_resistance), "", "" },
-			{   0, 0, 0, 0 } },
-
-	jav_abil[] = { { 1, &(HFire_resistance), "", "" },
-		     {	 1, &(HPoison_resistance), "", "" },
-		     {	 1, &(HSick_resistance), "", "" },
-		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-			{   0, 0, 0, 0 } },
-
-	chi_abil[] = { { 1, &(HFull_nutrient), "", "" },
-			{   0, 0, 0, 0 } },
-
-	gru_abil[] = { { 1, &(HFast), "", "" },
-			{   0, 0, 0, 0 } },
-
-	vik_abil[] = { { 1, &(HSwimming), "", "" },
-			{   0, 0, 0, 0 } },
-
-	slm_abil[] = { { 1, &(HCold_resistance), "", "" },
-		     {	 1, &(HStone_resistance), "", "" },
-		     {	 1, &(HShock_resistance), "", "" },
-		     {	 1, &(HPoison_resistance), "", "" },
-		     {	 1, &(HAcid_resistance), "", "" },
-			{   0, 0, 0, 0 } },
-
-	elf_abil[] = { {	4, &(HSleep_resistance), "awake", "tired" },
-		     {	 0, 0, 0, 0 } },
-
-	inc_abil[] = { {	1, &(HAntimagic), "", "" },
-			{   1, &(HManaleech), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	gre_abil[] = { {	1, &(HFire_resistance), "", "" },
-			{   15, &(HFast), "quick", "slow" },
-		     {	 0, 0, 0, 0 } },
-
-	clk_abil[] = { {	1, &(HPoison_resistance), "", "" },
-		     {	 1, &(HSick_resistance), "", "" },
-		     {	 1, &(HStone_resistance), "", "" },
-		     {	 5, &(HShock_resistance), "shock resistant", "less shock resistant" },
-		     {	 10, &(HCold_resistance), "cold resistant", "less cold resistant" },
-		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
-		     {	 15, &(HFire_resistance), "heat resistant", "less heat resistant" },
-		     {   20, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
-			{	25, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
-		     {	 0, 0, 0, 0 } },
-
-	vor_abil[] = { {	1, &(HFlying), "", "" },
-			{1, &(HMagical_breathing), "", ""  },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HStone_resistance), "", "" },
-			{   1, &(HManaleech), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	cor_abil[] = { {	1, &(HFlying), "", "" },
-			{1, &(HMagical_breathing), "", ""  },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HStone_resistance), "", "" },
-			{   1, &(HManaleech), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	alb_abil[] = { {   1, &(HAntimagic), "", "" },
-		     {   3, &(HUndead_warning), "sensitive", "careless" },
-		     {   10, &(HSee_invisible), "your vision sharpen", "your vision blur" },
-			{  12, &(HStealth), "stealthy", "noisy" },
-			{15, &(HMagical_breathing), "aquatic", "hydrophobic"  },
-		     {	 25, &(HEnergy_regeneration), "charged with mana", "a loss of mana" },
-		     {   0, 0, 0, 0 } },
-
-	alc_abil[] = { {	 1, &(HAcid_resistance), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	and_abil[] = { {	 1, &(HDeath_resistance), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	ent_abil[] = { {	 1, &(HFull_nutrient), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	ang_abil[] = { {   1, &(HAntimagic), "", "" },
-		     {   1, &(HFlying), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HShock_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HSee_invisible), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	dev_abil[] = { {   1, &(HFire_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	anc_abil[] = { {   1, &(HCold_resistance), "", "" },
-		     {	 1, &(HSlow_digestion), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	fen_abil[] = { {   1, &(HSearching), "", "" },
-		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-			{   5, &(HStealth), "stealthy", "noisy" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {	 10, &(HFire_resistance), "heat resistant", "less heat resistant" },
-		     {  15, &(HSwimming), "ready to swim","afraid of the water" },
-		     {   0, 0, 0, 0 } },
-
-	fre_abil[] = { {   2, &(DifficultyIncreased), "", "" },
-		     {	 5, &(Dehydration), "", "" },
-		     {	 9, &(BlackNgWalls), "", "" },
-		     {	 14, &(FeelerGauges), "", "" },
-		     {	 18, &(AutocursingEquipment), "", "" },
-		     {	 22, &(DischargeBug), "", "" },
-		     {	 25, &(HardModeEffect), "", "" },
-		     {	 29, &(Superscroller), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	uri_abil[] = { {   3, &(BigscriptEffect), "", "" },
-		     {	 6, &(TurnLimitation), "", "" },
-		     {	 8, &(TimerunBug), "", "" },
-		     {	 12, &(PlayerCannotTrainSkills), "", "" },
-		     {	 13, &(MonnoiseEffect), "", "" },
-		     {	 17, &(SanityTrebleEffect), "", "" },
-		     {	 20, &(PermacurseEffect), "", "" },
-		     {	 24, &(CovetousnessBug), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	ind_abil[] = { {   4, &(Dropcurses), "", "" },
-		     {	 7, &(verisiertEffect), "", "" },
-		     {	 10, &(DangerousTerrains), "", "" },
-		     {	 15, &(GushlushEffect), "", "" },
-		     {	 19, &(SimeoutBug), "", "" },
-		     {	 23, &(WingYellowChange), "", "" },
-		     {	 27, &(LowEffects), "", "" },
-		     {	 30, &(EngravingDoesntWork), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	col_abil[] = { {   2, &(YellowSpells), "", "" },
-		     {	 4, &(VioletSpells), "", "" },
-		     {	 6, &(WhiteSpells), "", "" },
-		     {	 8, &(BrownSpells), "", "" },
-		     {	 10, &(CompleteGraySpells), "", "" },
-		     {	 11, &(BlueSpells), "", "" },
-		     {	 13, &(GreenSpells), "", "" },
-		     {	 15, &(MetalSpells), "", "" },
-		     {	 17, &(SilverSpells), "", "" },
-		     {	 19, &(PlatinumSpells), "", "" },
-		     {	 20, &(RedSpells), "", "" },
-		     {	 22, &(OrangeSpells), "", "" },
-		     {	 24, &(BlackSpells), "", "" },
-		     {	 26, &(CyanSpells), "", "" },
-		     {	 28, &(BrightCyanSpells), "", "" },
-		     {	 30, &(PinkSpells), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	glm_abil[] = { {   1, &(HDiminishedBleeding), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	nor_abil[] = { {   1, &(HCold_resistance), "", "" },
-		     {	 15, &(HShock_resistance), "shock resistant", "less shock resistant" },
-		     {   0, 0, 0, 0 } },
-
-	dee_abil[] = { {   1, &(HFire_resistance), "", "" },
-		     {	 1, &(HShock_resistance), "", "" },
-		       {   10, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		     {   0, 0, 0, 0 } },
-
-	sea_abil[] = { {   1, &(HCold_resistance), "", "" },
-		     {	 1, &(HMagical_breathing), "", "" },
-		     {	 1, &(HSwimming), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	spr_abil[] = { {   1, &(HFast), "", "" },
-		     {	 1, &(HRegeneration), "", "" },
-		     {	 1, &(HHalf_spell_damage), "", "" },
-		     {	 1, &(HHalf_physical_damage), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	syl_abil[] = { {1,  &(HHunger), "", ""},
-		    {	1,  &(HSee_invisible), "", ""},
-		    { 4,  &(HStealth), "stealthy", "obvious"},
-		    { 6,  &(HInfravision), "perceptive", "half blind"},
-		    {18, &(HDetect_monsters), "perceptive", "dull"},
-		    {18, &(HAggravate_monster), "noisy", "quiet" },
-		    {0, 0, 0, 0} },
-
-	gno_abil[] = { {   5, &(HStealth), "stealthy", "noisy" },
-		     {   9, &(HFast), "quick", "slow" },
-		     {   11, &(HSearching), "perceptive", "unaware" },
-		     {   0, 0, 0, 0 } },
-
-	hob_abil[] = { {  1, &(HStealth), "", "" },
-		     {   7, &(HFast), "quick", "slow" },
-		     {   0, 0, 0, 0 } },
-
-	liz_abil[] = { {  1, &(HStone_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	hrb_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-		     {	15, &(HWarning), "sensitive", "careless" },
-		     {	 0, 0, 0, 0 } },
-
-	bor_abil[] = { {   3, &(HTelepat), "disturbances in the force", "your grip on the force lessen" },
-		       {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		       { 0, 0, 0, 0 } },
-
-	grd_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-		     {	 1, &(HShock_resistance), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	bat_abil[] = { {  1, &(HFlying), "", "" },
-		     {  1, &(HDrain_resistance), "", "" },
-		     {  1, &(HFear_resistance), "", "" },
-		     {  1, &(HTechnicality), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	nym_abil[] = { {  1, &(HTeleportation), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	met_abil[] = { {  1, &(HFire_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {  1, &(HShock_resistance), "", "" },
-		     {  1, &(HSleep_resistance), "", "" },
-		     {  1, &(HDisint_resistance), "", "" },
-		     {  1, &(HPoison_resistance), "", "" },
-		     {  1, &(HDrain_resistance), "", "" },
-		     {  1, &(HSick_resistance), "", "" },
-		     {  1, &(HAntimagic), "", "" },
-		     {  1, &(HAcid_resistance), "", "" },
-		     {  1, &(HStone_resistance), "", "" },
-		     {  1, &(HDeath_resistance), "", "" },
-		     {  1, &(HPsi_resist), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	umb_abil[] = { {  1, &(HConf_resist), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	qua_abil[] = { {  1, &(HTeleportation), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	dvp_abil[] = { {  1, &(HTechnicality), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	tur_abil[] = { {  1, &(HFull_nutrient), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	roh_abil[] = { {  1, &(HFast), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	thu_abil[] = { {  1, &(HFire_resistance), "", "" },
-		     {   1, &(HFlying), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	dlg_abil[] = { {  1, &(HDrain_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	gig_abil[] = { {  10, &(HFire_resistance), "cool", "warmer" },
-		     {   15, &(HCold_resistance), "warm", "cooler" },
-		     {  20, &(HShock_resistance), "insulated", "conductive" },
-		     {   0, 0, 0, 0 } },
-
-	bre_abil[] = { {  1, &(HFire_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {  1, &(HShock_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	elm_abil[] = { {  1, &(HFire_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {  1, &(HShock_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	red_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	dut_abil[] = { {  1, &(HCold_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	yok_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HFire_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	sin_abil[] = { {  1, &(HConf_resist), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	rdt_abil[] = { {  1, &(HStun_resist), "", "" },
-		     {   10, &(HStun), "slightly stunned", "less stunned" },
-		     {   10, &(HStunnopathy), "", "" }, /* previous one already gives message --Amy */
-		     {   0, 0, 0, 0 } },
-
-	kob_abil[] = { {  1, &(HPoison_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	coc_abil[] = { {  1, &(HPoison_resistance), "", "" },
-		     {   1, &(HStone_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	sna_abil[] = { {  1, &(HPoison_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	ill_abil[] = { {  1, &(HTelepat), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	ret_abil[] = { {	 1, &(HKeen_memory), "", "" },
-			{     10, &(HPsi_resist), "psionic", "less psionic"},
-			{   15, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
-
-	out_abil[] = { {  1, &(HAcid_resistance), "", "" },
-		     {  1, &(HScentView), "", "" },
-		     {	10, &(HFear_resistance), "unafraid", "afraid" },
-		    { 15,  &(HInfravision), "perceptive", "half blind"},
-		     {   16, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
-		     {	18, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
-		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
-			{25, &(HMagical_breathing), "aquatic", "hydrophobic"  },
-		     {	 0, 0, 0, 0 } },  
-
-	spi_abil[] = { {  1, &(HPoison_resistance), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	gel_abil[] = { {  1, &(HPoison_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HFire_resistance), "", "" },
-		     {   1, &(HShock_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HAcid_resistance), "", "" },
-		     {   1, &(HStone_resistance), "", "" },
-		     {   1, &(HFull_nutrient), "", "" },
-		     {   1, &(HDiscount_action), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	ins_abil[] = { {  1, &(HPoison_resistance), "", "" },
-		     {   1, &(HFull_nutrient), "", "" },
-		     {   1, &(HScentView), "", "" },
-			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
-		     {   0, 0, 0, 0 } },
-
-	tro_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HRegeneration), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	ung_abil[] = { {  1, &(HSearching), "", "" },
-		     {   1, &(HWarning), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	gas_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HDiminishedBleeding), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	mum_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HUndead_warning), "", "" },
-		     {   1, &(HDiminishedBleeding), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	din_abil[] = { {  1, &(HDiscount_action), "", "" },
-		     {   1, &(HScentView), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	ske_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HStone_resistance), "", "" },
-		     {   1, &(HMagical_breathing), "", "" },
-		     {   1, &(HDiminishedBleeding), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	lev_abil[] = { {  1, &(HTelepat), "", "" },
-		     {   1, &(HHallu_party), "", "" },
-		     {   1, &(HDrunken_boxing), "", "" },
-		     {   1, &(HStunnopathy), "", "" },
-		     {   1, &(HNumbopathy), "", "" },
-		     {   1, &(HDimmopathy), "", "" },
-		     {   1, &(HFreezopathy), "", "" },
-		     {   1, &(HStoned_chiller), "", "" },
-		     {   1, &(HCorrosivity), "", "" },
-		     {   1, &(HFear_factor), "", "" },
-		     {   1, &(HBurnopathy), "", "" },
-		     {   1, &(HSickopathy), "", "" },
-		     {   1, &(HWonderlegs), "", "" },
-		     {   1, &(HGlib_combat), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	wra_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HStone_resistance), "", "" },
-		     {   1, &(HUndead_warning), "", "" },
-		     {   1, &(HFlying), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	lic_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HUndead_warning), "", "" },
-		     {   1, &(HRegeneration), "", "" },
-		     {   1, &(HTeleportation), "", "" },
-		     {   1, &(HTeleport_control), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	jel_abil[] = { {	 1, &(HPoison_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-			{   1, &(HManaleech), "", "" },
-			{   1, &(HDiscount_action), "", "" },
-		     {  8, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
-		     {	 0, 0, 0, 0 } },
-
-	wim_abil[] = { {	 1, &(HFire_resistance), "", "" },
-		     {   1, &(HRegeneration), "", "" },
-		     {   1, &(HTeleportation), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	trn_abil[] = { {	 1, &(HExtra_wpn_practice), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	cup_abil[] = { { 20, &(HFlying), "weightless", "grounded" },
-		     {   0, 0, 0, 0 } },
-
-	bac_abil[] = { {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
-		     {	20, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
-		     {   0, 0, 0, 0 } },
-
-	she_abil[] = { { 20, &(HFire_resistance), "cool", "warmer" },
-		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
-		     {   20, &(HAcid_resistance), "warded", "endangered" },
-		     {  20, &(HSwimming), "ready to swim","afraid of the water" },
-			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
-		    { 20,  &(HInfravision), "perceptive", "half blind"},
-		     {   0, 0, 0, 0 } },
-
-	cer_abil[] = { { 1, &(HFire_resistance), "", "" },
-		     {  1, &(HScentView), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	hou_abil[] = { {  1, &(HScentView), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	exp_abil[] = { {	 1, &(HPsi_resist), "", "" },
-		     {	 0, 0, 0, 0 } },
-
-	rod_abil[] = { {   1, &(HFire_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HMagical_breathing), "", "" },
-		     {   1, &(HRegeneration), "", "" },
-		     {   1, &(HTeleportation), "", "" },
-		     {   1, &(HTeleport_control), "", "" },
-		     {   1, &(HSee_invisible), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	esp_abil[] = { {  1, &(HSick_resistance), "", "" },
-		     {   1, &(HCold_resistance), "", "" },
-		     {   1, &(HSleep_resistance), "", "" },
-		     {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HDisint_resistance), "", "" },
-		     {   1, &(HStone_resistance), "", "" },
-		     {   1, &(HUndead_warning), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	lyc_abil[] = { {   1, &(HPoison_resistance), "", "" },
-		     {   1, &(HRegeneration), "", "" },
-		     {   1, &(HScentView), "", "" },
-		     {   7, &(HStealth), "stealthy", "noisy" },
-		     {   0, 0, 0, 0 } },
-
-	aur_abil[] = { {   1, &(HReflecting), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	sat_abil[] = { {   1, &(HTechnicality), "", "" },
-		     {   1, &(HScentView), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	sho_abil[] = { {   1, &(HDiscount_action), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	ink_abil[] = { {   1, &(HPeacevision), "", "" },
-		     {   1, &(HTechnicality), "", "" },
-		     {   1, &(HScentView), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	sed_abil[] = { {   1, &(HAntimagic), "", "" },
-		     {   0, 0, 0, 0 } },
-
-	orc_abil[] = { {	1, &(HPoison_resistance), "", "" },
-		     {	 0, 0, 0, 0 } };
+	dop_abil[] = { {   9, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		       {   0, 0, 0, 0, 0 } },
+
+	dwa_abil[] = { { 1, &(HSearching), "", "", TRUE },
+			{  10, &(HFire_resistance), "cool", "warmer", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	dra_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	fel_abil[] = { { 20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	kha_abil[] = { { 5, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	azt_abil[] = { { 1, &(HFast), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	irr_abil[] = { { 1, &(HFree_action), "", "", TRUE },
+		     {	 1, &(HShock_resistance), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	hyp_abil[] = { { 1, &(HFire_resistance), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	dyn_abil[] = { { 1, &(HShock_resistance), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	jav_abil[] = { { 1, &(HFire_resistance), "", "", TRUE },
+		     {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	 1, &(HSick_resistance), "", "", TRUE },
+		     {  20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	chi_abil[] = { { 1, &(HFull_nutrient), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	bov_abil[] = { { 1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HFull_nutrient), "", "", TRUE },
+			{  12, &(HVersus_curses), "curse resistant", "vulnerable to curses", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	per_abil[] = { { 1, &(HHunger), "", "", FALSE },
+		     {  15, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
+		     {  20, &(HFire_resistance), "cool", "warmer", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	mog_abil[] = { { 7, &(HShock_resistance), "insulated", "conductive", TRUE },
+		     {  10, &(HDouble_attack), "able to attack faster", "no longer able to attack faster", TRUE },
+		     {  20, &(HQuad_attack), "able to attack ultra fast", "no longer able to attack ultra fast", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	kst_abil[] = { { 8, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+			{	20, &(HDisint_resistance), "stable", "brittle", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	vie_abil[] = { {	7, &(HWarning), "precognitive", "noncognitive", TRUE },
+			 {     10, &(HPsi_resist), "psionic", "less psionic", TRUE },
+		     {  10, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	gru_abil[] = { { 1, &(HFast), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	rus_abil[] = { { 1, &(HCold_resistance), "", "", TRUE },
+		     {   10, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {  20, &(HExtra_wpn_practice), "skillful", "unskilled", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	mac_abil[] = { { 1, &(HSight_bonus), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	vik_abil[] = { { 1, &(HSwimming), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	slm_abil[] = { { 1, &(HCold_resistance), "", "", TRUE },
+		     {	 1, &(HStone_resistance), "", "", TRUE },
+		     {	 1, &(HShock_resistance), "", "", TRUE },
+		     {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	 1, &(HAcid_resistance), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	elf_abil[] = { {	4, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	inc_abil[] = { {	1, &(HAntimagic), "", "", TRUE },
+			{   1, &(HManaleech), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	gre_abil[] = { {	1, &(HFire_resistance), "", "", TRUE },
+			{   15, &(HFast), "quick", "slow", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	clk_abil[] = { {	1, &(HPoison_resistance), "", "", TRUE },
+		     {	 1, &(HSick_resistance), "", "", TRUE },
+		     {	 1, &(HStone_resistance), "", "", TRUE },
+		     {	 5, &(HShock_resistance), "shock resistant", "less shock resistant", TRUE },
+		     {	 10, &(HCold_resistance), "cold resistant", "less cold resistant", TRUE },
+		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
+		     {	 15, &(HFire_resistance), "heat resistant", "less heat resistant", TRUE },
+		     {   20, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+			{	25, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	vor_abil[] = { {	1, &(HFlying), "", "", TRUE },
+			{1, &(HMagical_breathing), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HStone_resistance), "", "", TRUE },
+			{   1, &(HManaleech), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	cor_abil[] = { {	1, &(HFlying), "", "", TRUE },
+			{1, &(HMagical_breathing), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HStone_resistance), "", "", TRUE },
+			{   1, &(HManaleech), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	alb_abil[] = { {   1, &(HAntimagic), "", "", TRUE },
+		     {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+		     {   10, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
+			{  12, &(HStealth), "stealthy", "noisy", TRUE },
+			{15, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+		     {	 25, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	alc_abil[] = { {	 1, &(HAcid_resistance), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	and_abil[] = { {	 1, &(HDeath_resistance), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	ent_abil[] = { {	 1, &(HFull_nutrient), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	ang_abil[] = { {   1, &(HAntimagic), "", "", TRUE },
+		     {   1, &(HFlying), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HShock_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HSee_invisible), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dev_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	anc_abil[] = { {   1, &(HCold_resistance), "", "", TRUE },
+		     {	 1, &(HSlow_digestion), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	fen_abil[] = { {   1, &(HSearching), "", "", TRUE },
+		     {  5, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+			{   5, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {	 10, &(HFire_resistance), "heat resistant", "less heat resistant", TRUE },
+		     {  15, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	fre_abil[] = { {   2, &(DifficultyIncreased), "", "", FALSE },
+		     {	 5, &(Dehydration), "", "", FALSE },
+		     {	 9, &(BlackNgWalls), "", "", FALSE },
+		     {	 14, &(FeelerGauges), "", "", FALSE },
+		     {	 18, &(AutocursingEquipment), "", "", FALSE },
+		     {	 22, &(DischargeBug), "", "", FALSE },
+		     {	 25, &(HardModeEffect), "", "", FALSE },
+		     {	 29, &(Superscroller), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	uri_abil[] = { {   3, &(BigscriptEffect), "", "", FALSE },
+		     {	 6, &(TurnLimitation), "", "", FALSE },
+		     {	 8, &(TimerunBug), "", "", FALSE },
+		     {	 12, &(PlayerCannotTrainSkills), "", "", FALSE },
+		     {	 13, &(MonnoiseEffect), "", "", FALSE },
+		     {	 17, &(SanityTrebleEffect), "", "", FALSE },
+		     {	 20, &(PermacurseEffect), "", "", FALSE },
+		     {	 24, &(CovetousnessBug), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ind_abil[] = { {   4, &(Dropcurses), "", "", FALSE },
+		     {	 7, &(verisiertEffect), "", "", FALSE },
+		     {	 10, &(DangerousTerrains), "", "", FALSE },
+		     {	 15, &(GushlushEffect), "", "", FALSE },
+		     {	 19, &(SimeoutBug), "", "", FALSE },
+		     {	 23, &(WingYellowChange), "", "", FALSE },
+		     {	 27, &(LowEffects), "", "", FALSE },
+		     {	 30, &(EngravingDoesntWork), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	col_abil[] = { {   2, &(YellowSpells), "", "", FALSE },
+		     {	 4, &(VioletSpells), "", "", FALSE },
+		     {	 6, &(WhiteSpells), "", "", FALSE },
+		     {	 8, &(BrownSpells), "", "", FALSE },
+		     {	 10, &(CompleteGraySpells), "", "", FALSE },
+		     {	 11, &(BlueSpells), "", "", FALSE },
+		     {	 13, &(GreenSpells), "", "", FALSE },
+		     {	 15, &(MetalSpells), "", "", FALSE },
+		     {	 17, &(SilverSpells), "", "", FALSE },
+		     {	 19, &(PlatinumSpells), "", "", FALSE },
+		     {	 20, &(RedSpells), "", "", FALSE },
+		     {	 22, &(OrangeSpells), "", "", FALSE },
+		     {	 24, &(BlackSpells), "", "", FALSE },
+		     {	 26, &(CyanSpells), "", "", FALSE },
+		     {	 28, &(BrightCyanSpells), "", "", FALSE },
+		     {	 30, &(PinkSpells), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	glm_abil[] = { {   1, &(HDiminishedBleeding), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	nor_abil[] = { {   1, &(HCold_resistance), "", "", TRUE },
+		     {	 15, &(HShock_resistance), "shock resistant", "less shock resistant", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dee_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {	 1, &(HShock_resistance), "", "", TRUE },
+		       {   10, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sea_abil[] = { {   1, &(HCold_resistance), "", "", TRUE },
+		     {	 1, &(HMagical_breathing), "", "", TRUE },
+		     {	 1, &(HSwimming), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	spr_abil[] = { {   1, &(HFast), "", "", TRUE },
+		     {	 1, &(HRegeneration), "", "", TRUE },
+		     {	 1, &(HHalf_spell_damage), "", "", TRUE },
+		     {	 1, &(HHalf_physical_damage), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	fay_abil[] = { {   1, &(HAntimagic), "", "", TRUE },
+		     {	 1, &(HDrain_resistance), "", "", TRUE },
+		     {	 1, &(Deafness), "", "", FALSE },
+		     {	 1, &(HShock_resistance), "", "", TRUE },
+		     {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	 1, &(HAcid_resistance), "", "", TRUE },
+		     {	 1, &(HFree_action), "", "", TRUE },
+		     {	 1, &(HFlying), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	syl_abil[] = { {1,  &(HHunger), "", "", FALSE },
+		    {	1,  &(HSee_invisible), "", "", TRUE },
+		    { 4,  &(HStealth), "stealthy", "obvious", TRUE },
+		    { 6,  &(HInfravision), "perceptive", "half blind", TRUE },
+		    {18, &(HDetect_monsters), "perceptive", "dull", TRUE },
+		    {18, &(HAggravate_monster), "noisy", "quiet", FALSE },
+		    {0, 0, 0, 0, 0} },
+
+	gno_abil[] = { {   5, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   9, &(HFast), "quick", "slow", TRUE },
+		     {   11, &(HSearching), "perceptive", "unaware", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	hob_abil[] = { {  1, &(HStealth), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	liz_abil[] = { {  1, &(HStone_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	hrb_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	15, &(HWarning), "sensitive", "careless", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	bor_abil[] = { {   3, &(HTelepat), "disturbances in the force", "your grip on the force lessen", TRUE },
+		       {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		       { 0, 0, 0, 0, 0 } },
+
+	grd_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	 1, &(HShock_resistance), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	bat_abil[] = { {  1, &(HFlying), "", "", TRUE },
+		     {  1, &(HDrain_resistance), "", "", TRUE },
+		     {  1, &(HFear_resistance), "", "", TRUE },
+		     {  1, &(HTechnicality), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	nym_abil[] = { {  1, &(HTeleportation), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	met_abil[] = { {  1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {  1, &(HShock_resistance), "", "", TRUE },
+		     {  1, &(HSleep_resistance), "", "", TRUE },
+		     {  1, &(HDisint_resistance), "", "", TRUE },
+		     {  1, &(HPoison_resistance), "", "", TRUE },
+		     {  1, &(HDrain_resistance), "", "", TRUE },
+		     {  1, &(HSick_resistance), "", "", TRUE },
+		     {  1, &(HAntimagic), "", "", TRUE },
+		     {  1, &(HAcid_resistance), "", "", TRUE },
+		     {  1, &(HStone_resistance), "", "", TRUE },
+		     {  1, &(HDeath_resistance), "", "", TRUE },
+		     {  1, &(HPsi_resist), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	umb_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	qua_abil[] = { {  1, &(HTeleportation), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dvp_abil[] = { {  1, &(HTechnicality), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	tur_abil[] = { {  1, &(HFull_nutrient), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	roh_abil[] = { {  1, &(HFast), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	thu_abil[] = { {  1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HFlying), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dlg_abil[] = { {  1, &(HDrain_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	gig_abil[] = { {  10, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {   15, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {  20, &(HShock_resistance), "insulated", "conductive", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	bre_abil[] = { {  1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {  1, &(HShock_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	elm_abil[] = { {  1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {  1, &(HShock_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	red_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dut_abil[] = { {  1, &(HCold_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	yok_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HFire_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sin_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	rdt_abil[] = { {  1, &(HStun_resist), "", "", TRUE },
+		     {   10, &(HStun), "slightly stunned", "less stunned", FALSE },
+		     {   10, &(HStunnopathy), "", "", TRUE }, /* previous one already gives message --Amy */
+		     {   0, 0, 0, 0, 0 } },
+
+	kob_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	coc_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HStone_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sna_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ill_abil[] = { {  1, &(HTelepat), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ret_abil[] = { {	 1, &(HKeen_memory), "", "", TRUE },
+			{     10, &(HPsi_resist), "psionic", "less psionic", TRUE },
+			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	out_abil[] = { {  1, &(HAcid_resistance), "", "", TRUE },
+		     {  1, &(HScentView), "", "", TRUE },
+		     {	10, &(HFear_resistance), "unafraid", "afraid", TRUE },
+		    { 15,  &(HInfravision), "perceptive", "half blind", TRUE },
+		     {   16, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+		     {	18, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+			{25, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
+		     {	 0, 0, 0, 0, 0 } },  
+
+	spi_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	gel_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HShock_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HAcid_resistance), "", "", TRUE },
+		     {   1, &(HStone_resistance), "", "", TRUE },
+		     {   1, &(HFull_nutrient), "", "", TRUE },
+		     {   1, &(HDiscount_action), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ins_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HFull_nutrient), "", "", TRUE },
+		     {   1, &(HScentView), "", "", TRUE },
+			{   20, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	tro_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HRegeneration), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ung_abil[] = { {  1, &(HSearching), "", "", TRUE },
+		     {   1, &(HWarning), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	gas_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HDiminishedBleeding), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	mum_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HUndead_warning), "", "", TRUE },
+		     {   1, &(HDiminishedBleeding), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	din_abil[] = { {  1, &(HDiscount_action), "", "", TRUE },
+		     {   1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ske_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HStone_resistance), "", "", TRUE },
+		     {   1, &(HMagical_breathing), "", "", TRUE },
+		     {   1, &(HDiminishedBleeding), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	lev_abil[] = { {  1, &(HTelepat), "", "", TRUE },
+		     {   1, &(HHallu_party), "", "", TRUE },
+		     {   1, &(HDrunken_boxing), "", "", TRUE },
+		     {   1, &(HStunnopathy), "", "", TRUE },
+		     {   1, &(HNumbopathy), "", "", TRUE },
+		     {   1, &(HDimmopathy), "", "", TRUE },
+		     {   1, &(HFreezopathy), "", "", TRUE },
+		     {   1, &(HStoned_chiller), "", "", TRUE },
+		     {   1, &(HCorrosivity), "", "", TRUE },
+		     {   1, &(HFear_factor), "", "", TRUE },
+		     {   1, &(HBurnopathy), "", "", TRUE },
+		     {   1, &(HSickopathy), "", "", TRUE },
+		     {   1, &(HWonderlegs), "", "", TRUE },
+		     {   1, &(HGlib_combat), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	wra_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HStone_resistance), "", "", TRUE },
+		     {   1, &(HUndead_warning), "", "", TRUE },
+		     {   1, &(HFlying), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	lic_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HUndead_warning), "", "", TRUE },
+		     {   1, &(HRegeneration), "", "", TRUE },
+		     {   1, &(HTeleportation), "", "", FALSE },
+		     {   1, &(HTeleport_control), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	jel_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+			{   1, &(HManaleech), "", "", TRUE },
+			{   1, &(HDiscount_action), "", "", TRUE },
+		     {  8, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	wim_abil[] = { {	 1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HRegeneration), "", "", TRUE },
+		     {   1, &(HTeleportation), "", "", FALSE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	trn_abil[] = { {	 1, &(HExtra_wpn_practice), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	cup_abil[] = { { 20, &(HFlying), "weightless", "grounded", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	bac_abil[] = { {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+		     {	20, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
+		     {   0, 0, 0, 0, 0 } },
+
+	she_abil[] = { { 20, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy", TRUE },
+		     {   20, &(HAcid_resistance), "warded", "endangered", TRUE },
+		     {  20, &(HSwimming), "ready to swim","afraid of the water", TRUE },
+			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
+		    { 20,  &(HInfravision), "perceptive", "half blind", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	cer_abil[] = { { 1, &(HFire_resistance), "", "", TRUE },
+		     {  1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	hou_abil[] = { {  1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	exp_abil[] = { {	 1, &(HPsi_resist), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
+	rod_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HMagical_breathing), "", "", TRUE },
+		     {   1, &(HRegeneration), "", "", TRUE },
+		     {   1, &(HTeleportation), "", "", FALSE },
+		     {   1, &(HTeleport_control), "", "", TRUE },
+		     {   1, &(HSee_invisible), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	esp_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
+		     {   1, &(HCold_resistance), "", "", TRUE },
+		     {   1, &(HSleep_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HDisint_resistance), "", "", TRUE },
+		     {   1, &(HStone_resistance), "", "", TRUE },
+		     {   1, &(HUndead_warning), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	lyc_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   1, &(HRegeneration), "", "", TRUE },
+		     {   1, &(HScentView), "", "", TRUE },
+		     {   7, &(HStealth), "stealthy", "noisy", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	aur_abil[] = { {   1, &(HReflecting), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sat_abil[] = { {   1, &(HTechnicality), "", "", TRUE },
+		     {   1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sho_abil[] = { {   1, &(HDiscount_action), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ink_abil[] = { {   1, &(HPeacevision), "", "", TRUE },
+		     {   1, &(HTechnicality), "", "", TRUE },
+		     {   1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	sed_abil[] = { {   1, &(HAntimagic), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	orc_abil[] = { {	1, &(HPoison_resistance), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } };
 
 /*static long next_check = 600L;*/	/* arbitrary first setting */
 STATIC_DCL void exerper(void);
@@ -2084,6 +2132,13 @@ int oldlevel, newlevel;
 	case PM_PLAYER_DYNAMO:	rabil = dyn_abil;	break;
 	case PM_JAVA:	rabil = jav_abil;	break;
 	case PM_CHIQUAI:	rabil = chi_abil;	break;
+	case PM_PERVERT:	rabil = per_abil;	break;
+	case PM_BOVER:	rabil = bov_abil;	break;
+	case PM_MONGUNG:	rabil = mog_abil;	break;
+	case PM_VIETIS:	rabil = vie_abil;	break;
+	case PM_KORONST:	rabil = kst_abil;	break;
+	case PM_RUSMOT:	rabil = rus_abil;	break;
+	case PM_MACTHEIST:	rabil = mac_abil;	break;
 	case PM_GREURO:	rabil = gru_abil;	break;
 	case PM_VIKING:	rabil = vik_abil;	break;
 	case PM_DOPPELGANGER:	rabil = dop_abil;	break;
@@ -2164,6 +2219,7 @@ int oldlevel, newlevel;
 	case PM_DEEP_ELF:	rabil = dee_abil;	break;
 	case PM_SYLPH:	rabil = syl_abil;	break;
 	case PM_SPRIGGAN:	rabil = spr_abil;	break;
+	case PM_PLAYER_FAIRY:	rabil = fay_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
 	case PM_PLAYER_ANDROID:           rabil = and_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
@@ -2202,13 +2258,23 @@ int oldlevel, newlevel;
 			 * an outside source is devoid of meaning, so we set
 			 * FROMOUTSIDE to avoid such gains.
 			 */
-			if (abil->ulevel == 1)
-				*(abil->ability) |= (mask|FROMOUTSIDE);
-			else
-				*(abil->ability) |= mask;
-			if(!(*(abil->ability) & INTRINSIC & ~mask)) {
-			    if(*(abil->gainstr))
-				You_feel("%s!", abil->gainstr);
+
+			boolean willget = TRUE;
+
+			if (Race_if(PM_YUGGER)) { /* doesn't get positive ones --Amy */
+
+				if (abil->goodone) willget = FALSE;
+			}
+
+			if (willget) {
+				if (abil->ulevel == 1)
+					*(abil->ability) |= (mask|FROMOUTSIDE);
+				else
+					*(abil->ability) |= mask;
+				if(!(*(abil->ability) & INTRINSIC & ~mask)) {
+				    if(*(abil->gainstr))
+					You_feel("%s!", abil->gainstr);
+				}
 			}
 		} else if (oldlevel >= abil->ulevel && newlevel < abil->ulevel) {
 			*(abil->ability) &= ~mask;
@@ -2608,6 +2674,20 @@ int x;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 
 	}
+
+	if (Race_if(PM_PERVERT)) { /* debuff when not praying or having sex every once in a while --Amy */
+		int reductorval = u.pervertsex;
+		while (reductorval >= 5000) {
+			reductorval -= 5000;
+			tmp--;
+		}
+		reductorval = u.pervertpray;
+		while (reductorval >= 5000) {
+			reductorval -= 5000;
+			tmp--;
+		}
+	}
+
 #ifdef WIN32_BUG
 	return(x=((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp));
 #else
@@ -2642,6 +2722,7 @@ register int n;
 		u.ualign.sins += 1; 
 		u.alignlim -= 1;
 	}
+	if (Race_if(PM_KORONST) && n < 0) n *= 3;
 
 	if (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER && n > 0) {
 		if (powerfulimplants()) n *= 5;
@@ -2720,6 +2801,11 @@ int targetattr; /* the attribute that wants to increase */
 boolean displaymessage;
 {
 	int theminimum, themaximum, rolemaximum, racemaximum, actuallimit, yourbasestat, finalchance;
+
+	/* mongung race trains mental attributes very slowly --Amy */
+	if (Race_if(PM_MONGUNG) && rn2(3) && (targetattr == A_INT || targetattr == A_WIS) ) {
+		goto attrdevelop;
+	}
 
 	/* The actual limit is calculated based on both the role and race limit. */
 	rolemaximum = urole.attrlimt[targetattr];
@@ -2859,6 +2945,7 @@ boolean displaymessage;
 	if (finalchance == 1) return TRUE;
 	else if (!rn2(finalchance)) return TRUE;
 	else {
+attrdevelop:
 		if (displaymessage) {
 			switch (targetattr) {
 

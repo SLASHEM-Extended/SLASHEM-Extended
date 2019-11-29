@@ -67,10 +67,10 @@ unsigned gpflags;
 
 		if ((mtmp == &youmonst) && (Flying || Levitation) && crystalpool) return -1;
 
-	    if (pool && !ignorewater && !(crystalornot && (Flying || Levitation || Wwalking) ) ) {
+	    if (pool && !ignorewater && !(crystalornot && (Flying || Levitation || Wwalking || Race_if(PM_KORONST)) ) ) {
 
 		if (mtmp == &youmonst)
-			return (HLevitation || Flying || Wwalking ||
+			return (HLevitation || Flying || Wwalking || Race_if(PM_KORONST) ||
 				    Swimming || Amphibious) ? is_badpos : -1;
 		else	return (is_flyer(mdat) || is_swimmer(mdat) ||
 				    is_clinger(mdat)) ? is_badpos : -1;
@@ -497,7 +497,7 @@ boolean trapok;
 
 	/* In Soviet Russia, water is considered safe as long as you can swim, because hehehe. --Amy */
 
-	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || (issoviet && (Swimming || Amphibious) ) )) return FALSE;
+	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || Race_if(PM_KORONST) || (issoviet && (Swimming || Amphibious) ) )) return FALSE;
 	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
 	if (is_watertunnel(x,y) && !(Levitation || Flying || (issoviet && (Swimming || Amphibious) ))) return FALSE;
 
@@ -516,7 +516,7 @@ boolean trapok;
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
 
-	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || Race_if(PM_KORONST))) return FALSE;
 	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
 	if (is_watertunnel(x,y) && !(Levitation || Flying)) return FALSE;
 
@@ -538,7 +538,7 @@ boolean trapok;
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
 
-	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || Race_if(PM_KORONST))) return FALSE;
 	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
 	if (is_watertunnel(x,y) && !(Levitation || Flying)) return FALSE;
 

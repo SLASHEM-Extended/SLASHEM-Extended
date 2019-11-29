@@ -1593,6 +1593,9 @@ struct you {
 	int lightsabermax9;
 	int lightsabermax10;
 
+	int pervertsex;	/* pervert needs to have sex often enough or get debuffs */
+	int pervertpray;	/* same for praying (and yes, the gods can still get angry :P) */
+
 	boolean fungalsandals;
 
 	int stoogedepth;	/* occasionally the three stooges will spawn */

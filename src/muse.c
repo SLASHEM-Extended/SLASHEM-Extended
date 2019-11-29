@@ -6760,7 +6760,7 @@ struct monst *mtmp;
 				pline(FunnyHallu ?
 						"A totally gnarly wave comes in!" :
 						"A flood surges through the area!" );
-			if (!stilldry && !Wwalking && !Flying && !Levitation)
+			if (!stilldry && !Wwalking && !Race_if(PM_KORONST) && !Flying && !Levitation)
 				drown();
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */

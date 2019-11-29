@@ -1462,6 +1462,37 @@ register struct attack *mattk;
 			use_skill(P_BODY_ARMOR, 1);
 		}
 
+		if (Race_if(PM_VIETIS) && blocker && !rn2(1000)) {
+			if (blocker == uarm && blocker->spe < 7) {
+				blocker->spe++;
+				pline("Your armor becomes harder!");
+			}
+			else if (blocker == uarmc && blocker->spe < 7) {
+				blocker->spe++;
+				pline("Your cloak becomes harder!");
+			}
+			else if (blocker == uarmu && blocker->spe < 7) {
+				blocker->spe++;
+				pline("Your shirt becomes harder!");
+			}
+			else if (blocker == uarms && blocker->spe < 7) {
+				blocker->spe++;
+				pline("Your shield becomes harder!");
+			}
+			else if (blocker == uarmg && blocker->spe < 7) {
+				blocker->spe++;
+				pline("Your pair of gloves becomes harder!");
+			}
+			else if (blocker == uarmf && blocker->spe < 7) {
+				blocker->spe++;
+				pline("Your pair of shoes becomes harder!");
+			}
+			else if (blocker == uarmh && blocker->spe < 7) {
+				blocker->spe++;
+				pline("Your helmet becomes harder!");
+			}
+		}
+
 		int savechance = 0;
 
 		if (!(PlayerCannotUseSkills)) {
@@ -1478,15 +1509,29 @@ register struct attack *mattk;
 		}
 
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
-		if (!rn2((objects[blocker->otyp].oc_material == MT_CERAMIC) ? 100 : (objects[blocker->otyp].oc_material == MT_LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[blocker->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
-			if (blocker->greased) {
-				blocker->greased--;
-				pline("Your %s loses its grease.", simple_typename(blocker->otyp));
-			} else {
-				blocker->spe--;
-				pline("Your %s dulls.", simple_typename(blocker->otyp));
+
+		if (Race_if(PM_RUSMOT)) {
+			if (!rn2((objects[blocker->otyp].oc_material == MT_CERAMIC) ? 20 : (objects[blocker->otyp].oc_material == MT_LIQUID) ? 25 : 200) && (blocker->spe > (rn2(8) - 5)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? -4 : (objects[blocker->otyp].oc_material == MT_CERAMIC) ? -15 : -5) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
+				if (blocker->greased) {
+					blocker->greased--;
+					pline("Your %s loses its grease.", simple_typename(blocker->otyp));
+				} else {
+					blocker->spe--;
+					pline("Your %s dulls.", simple_typename(blocker->otyp));
+				}
+			}
+		} else {
+			if (!rn2((objects[blocker->otyp].oc_material == MT_CERAMIC) ? 100 : (objects[blocker->otyp].oc_material == MT_LIQUID) ? 125 : 1000) && (blocker->spe > rn2(8)) && blocker->spe > ((objects[blocker->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[blocker->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (rnd(7) > savechance) && (!(blocker->blessed && !rnl(6))) && (!rn2(3) || !(objects[blocker->otyp].oc_material == MT_GOLD) ) && !(objects[blocker->otyp].oc_material == MT_SECREE || objects[blocker->otyp].oc_material == MT_ARCANIUM) && !issoviet && (!(blocker->oartifact) || !rn2(4))) {
+				if (blocker->greased) {
+					blocker->greased--;
+					pline("Your %s loses its grease.", simple_typename(blocker->otyp));
+				} else {
+					blocker->spe--;
+					pline("Your %s dulls.", simple_typename(blocker->otyp));
+				}
 			}
 		}
+
 
 	    }
 
@@ -5564,16 +5609,20 @@ struct monst *mon;
 	armor = (mon == &youmonst) ? 0 : which_armor(mon, W_SADDLE);
 	if (armor && armpro < objects[armor->otyp].a_can)
 	    armpro = objects[armor->otyp].a_can;
-	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
-	if (u.magicshield) armpro += 1;
-	if (Race_if(PM_GERTEUT)) armpro++;
-	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
-	if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
-	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
-	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
-	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
-	if (Race_if(PM_INKA)) armpro++;
-	if (ACURR(A_CHA) >= 18) armpro++;
+
+	if (mon == &youmonst) {
+		if (MCReduction) armpro -= (1 + (MCReduction / 5000));
+		if (u.magicshield) armpro += 1;
+		if (Race_if(PM_GERTEUT)) armpro++;
+		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
+		if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
+		if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
+		if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
+		if (Race_if(PM_INKA)) armpro++;
+		if (ACURR(A_CHA) >= 18) armpro++;
+		if (isunbalancor) armpro = 0;
+	}
 	if (armpro < 0) armpro = 0;
 
 	return armpro;
@@ -7183,7 +7232,7 @@ dopois:
 			}
 		    } else if(u.ustuck == mtmp) {
 
-			if (is_drowningpool(mtmp->mx,mtmp->my)) {
+			if (is_drowningpool(mtmp->mx,mtmp->my) && !Race_if(PM_KORONST)) {
 
 		/* Being drowned should ALWAYS involve your stuff getting wet. 
 		 * Even if you're unbreathing, swimming or whatever. Your stuff isn't immune just because you are.  --Amy	*/
@@ -7325,7 +7374,7 @@ dopois:
 
 			}
 
-			if (is_drowningpool(mtmp->mx,mtmp->my) && !Swimming
+			if (is_drowningpool(mtmp->mx,mtmp->my) && !Race_if(PM_KORONST) && !Swimming
 			    && !Amphibious && !Breathless && !rn2(StrongFlying ? 5 : 3) && !(uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS)  ) ) { /* greatly lowered chance of getting drowned --Amy */
 			    boolean moat =
 				(levl[mtmp->mx][mtmp->my].typ != POOL) &&
@@ -18967,6 +19016,13 @@ register int n;
 		if (n < 1) n = 1;
 	}
 
+	if (Race_if(PM_CARTHAGE) && u.usteed && (mcalcmove(u.usteed) < 12) && n > 0) {
+		n++;
+		n *= 4;
+		n /= 5;
+		if (n < 1) n = 1;
+	}
+
 	if (is_sand(u.ux,u.uy) && n > 0) {
 		n++;
 		n *= 4;
@@ -19517,6 +19573,7 @@ skiptreason:
 		noit_mon_nam(mon));
 	/* Well,  IT happened ... */
 	u.uconduct.celibacy++;
+	u.pervertsex = 0;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	if (Role_if(PM_GRENADONIN) && mon->data->mcolor == CLR_BLACK) {
@@ -19530,7 +19587,7 @@ skiptreason:
 	if (u.homosexual == 2 && (flags.female && mon->female) && rn2(3)) goto enjoyable;
 	if (u.homosexual == 2 && (!flags.female && !(mon->female)) && rn2(3)) goto enjoyable;
 
-	if (((rn2(135) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) && (mon->data != &mons[PM_FEMME] || !rn2(2) ) ) /*much higher chance of negative outcome now --Amy */ {
+	if (((rn2(Race_if(PM_BOVER) ? 300 : 135) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) && (mon->data != &mons[PM_FEMME] || !rn2(2) ) ) /*much higher chance of negative outcome now --Amy */ {
 		/* Don't bother with mspec_used here... it didn't get tired! */
 		pline("%s seems to have enjoyed it more than you...",
 			noit_Monnam(mon));
@@ -19738,7 +19795,7 @@ enjoyable:
 
 	/* maybe contract a disease? --Amy */
 	if (protect_test) {
-#define slextest(a, b) if (!rn2(RngeSlexuality ? a : b))
+#define slextest(a, b) if (!rn2(RngeSlexuality ? a : Race_if(PM_BOVER) ? a : b))
 #define stdmsg(s) pline("Ulch - you contracted %s from having unprotected intercourse with your lover!", s)
 
 		 slextest(5, 25) {
@@ -20437,7 +20494,7 @@ const char *str;
 
 	if (!obj || !obj->owornmask) return;
 
-	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
+	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
 
 		sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
 			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));

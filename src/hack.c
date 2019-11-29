@@ -3059,7 +3059,7 @@ boolean pick;
 			You("fly out of the water.");
 		else if (uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK) && !is_crystalwater(u.ux,u.uy))
 			You("fly out of the water.");
-		else if (Wwalking && !is_crystalwater(u.ux,u.uy))
+		else if ((Wwalking || Race_if(PM_KORONST)) && !is_crystalwater(u.ux,u.uy))
 			You("slowly rise above the surface.");
 /*              else if (Swimming)
 			You("paddle up to the surface.");*/
@@ -3087,7 +3087,7 @@ stillinwater:;
 		} else
 		if (is_lava(u.ux, u.uy)) {
 		    if (lava_effects()) return;
-		} else if (!Wwalking && drown())
+		} else if (!Wwalking && !Race_if(PM_KORONST) && drown())
 		    return;
 	    }
 	}
@@ -3998,7 +3998,7 @@ dopickup()
 	    }
 	}
 	if((is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_moorland(u.ux, u.uy) || is_urinelake(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) ) {
-	    if (Wwalking || is_floater(youmonst.data) || is_clinger(youmonst.data)
+	    if (Wwalking || Race_if(PM_KORONST) || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			|| (Flying && !StrongFlying && !Breathless && !Swimming)) {
 		You("cannot dive into the water to pick things up.");
 		return(0);
@@ -4009,7 +4009,7 @@ dopickup()
 	    }
 	}
 	if (is_lava(u.ux, u.uy)) {
-	    if (Wwalking || is_floater(youmonst.data) || is_clinger(youmonst.data)
+	    if (Wwalking || Race_if(PM_KORONST) || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			|| (Flying && !StrongFlying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
@@ -4639,6 +4639,13 @@ int k_format; /* WAC k_format is an int */
 		n++;
 		n *= (100 - u.ulevel);
 		n /= 100;
+		if (n < 1) n = 1;
+	}
+
+	if (Race_if(PM_CARTHAGE) && u.usteed && (mcalcmove(u.usteed) < 12) && n > 0) {
+		n++;
+		n *= 4;
+		n /= 5;
 		if (n < 1) n = 1;
 	}
 

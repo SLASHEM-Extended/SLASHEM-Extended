@@ -1025,6 +1025,9 @@ moveloop()
 		    if (u.usteed && u.umoved) {
 			/* your speed doesn't augment steed's speed */
 			moveamt = mcalcmove(u.usteed);
+
+			if (Race_if(PM_CARTHAGE) && (mcalcmove(u.usteed) > 12)) moveamt = 12;
+
 			register int steedmultiplier = 5;
 			register int speedreduction;
 
@@ -1042,6 +1045,7 @@ moveloop()
 				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) steedmultiplier = 15;
 
 			}
+			if (Race_if(PM_PERVERT)) steedmultiplier = 15; /* can always ride at max speed */
 
 			if (uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
 				moveamt *= 6;
@@ -1067,7 +1071,30 @@ moveloop()
 				if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1)
 					moveamt /= 2;
 
+				if (Race_if(PM_PLAYER_FAIRY)) {
+					if (uwep && uwep->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (u.twoweap && uswapwep && uswapwep->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uarm && uarm->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uarmc && uarmc->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uarmh && uarmh->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uarms && uarms->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uarmg && uarmg->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uarmf && uarmf->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uarmu && uarmu->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uamul && uamul->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uimplant && uimplant->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uleft && uleft->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (uright && uright->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+					if (ublindf && ublindf->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				}
+
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (Race_if(PM_CARTHAGE) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (Race_if(PM_MONGUNG) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON && !rn2(8) && moveamt > 1)
@@ -1329,7 +1356,42 @@ moveloop()
 			if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1) /* Asgardians are slower sometimes, this is intentional. --Amy */
 				moveamt /= 2;
 
-			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
+			/* fairy is slowed by heavy gear; many slots don't actually have items with enough weight,
+			 * but I'm coding it for every slot anyway just to make sure --Amy */
+			if (Race_if(PM_PLAYER_FAIRY)) {
+				if (uwep && uwep->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (u.twoweap && uswapwep && uswapwep->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uarm && uarm->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uarmc && uarmc->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uarmh && uarmh->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uarms && uarms->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uarmg && uarmg->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uarmf && uarmf->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uarmu && uarmu->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uamul && uamul->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uimplant && uimplant->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uleft && uleft->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (uright && uright->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+				if (ublindf && ublindf->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
+			}
+
+			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (Race_if(PM_CARTHAGE) && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (Race_if(PM_BOVER)) { /* is slowed by lithic armor unless riding */
+				if (uarm && is_lithic(uarm) && !rn2(8) && moveamt > 1) moveamt /= 2;
+				if (uarmu && is_lithic(uarmu) && !rn2(8) && moveamt > 1) moveamt /= 2;
+				if (uarmc && is_lithic(uarmc) && !rn2(8) && moveamt > 1) moveamt /= 2;
+				if (uarmg && is_lithic(uarmg) && !rn2(8) && moveamt > 1) moveamt /= 2;
+				if (uarmh && is_lithic(uarmh) && !rn2(8) && moveamt > 1) moveamt /= 2;
+				if (uarmf && is_lithic(uarmf) && !rn2(8) && moveamt > 1) moveamt /= 2;
+				if (uarms && is_lithic(uarms) && !rn2(8) && moveamt > 1) moveamt /= 2;
+			}
+
+			if (Race_if(PM_MONGUNG) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON && !rn2(8) && moveamt > 1)
@@ -1590,11 +1652,11 @@ moveloop()
 
 			if (Very_fast && !YouHaveTheSpeedBug) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
-			    if ((StrongFast || rn2(3)) && (!Race_if(PM_FRO) || !rn2(2)) ) {
+			    if ((StrongFast || rn2(3)) && (!Race_if(PM_FRO) || !rn2(2)) && (!Race_if(PM_MACTHEIST) || !rn2(2)) ) {
 				    moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 				    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			    }
-			} else if (Fast && !YouHaveTheSpeedBug && (!Race_if(PM_FRO) || !rn2(2))) {
+			} else if (Fast && !YouHaveTheSpeedBug && (!Race_if(PM_FRO) || !rn2(2)) && (!Race_if(PM_MACTHEIST) || !rn2(2)) ) {
 			    /* average movement is 1.33 times normal */
 			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
@@ -1677,7 +1739,7 @@ moveloop()
 			if (Race_if(PM_SERB) && !rn2(10)) moveamt += speedbonus(moveamt, NORMAL_SPEED);
 
 			if (StrongPasses_walls && !rn2(3) && isok(u.ux, u.uy) && IS_STWALL(levl[u.ux][u.uy].typ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
-			if (StrongFast && !rn2(10) && (!Race_if(PM_FRO) || !rn2(2)) && !YouHaveTheSpeedBug) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (StrongFast && !rn2(10) && (!Race_if(PM_FRO) || !rn2(2)) && (!Race_if(PM_MACTHEIST) || !rn2(2)) && !YouHaveTheSpeedBug) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
@@ -1844,6 +1906,27 @@ moveloop()
 		    /********************************/
 		    /* once-per-turn things go here */
 		    /********************************/
+
+		if (Race_if(PM_PERVERT)) {
+			u.pervertsex++;
+			u.pervertpray++;
+			if (!(u.pervertsex % 5000)) {
+				You("didn't have sex in 5000 turns and thereby suffer from withdrawal!");
+			} else if (!(u.pervertsex % 1000)) {
+				pline("Remember that you need to have sex once every 5000 turns or you'll suffer from withdrawal!");
+			}
+			if (!(u.pervertpray % 5000)) {
+				You("didn't pray in 5000 turns and therefore the gods decide to debuff you!");
+			} else if (!(u.pervertpray % 1000)) {
+				pline("Remember that you need to pray once every 5000 turns or the gods will debuff you!");
+			}
+		}
+
+		if (Race_if(PM_BOVER) && !rn2(2000)) {
+			pline("UGH - you inhaled too much of your own repulsive body odor, and can no longer think straight!");
+			make_confused(HConfusion + d(10,10), TRUE);
+			turn_allmonsters();
+		}
 
 		if (!u.uinwater) u.udrowning = FALSE;
 		if (u.udrowning) {
@@ -5037,6 +5120,25 @@ newbossO:
 					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
 				}
 
+				if (Race_if(PM_RUSMOT)) {
+					if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+						unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+					} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+						unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+						P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+					} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+						P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+					} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+						P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+					} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+						P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+					} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+						P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+					} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+						P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+					}
+				}
+
 			    discover_artifact(acqo->oartifact);
 
 				if (!havegifts) u.ugifts--;
@@ -6257,10 +6359,21 @@ newbossB:
 
 		}
 
-		if (is_moorland(u.ux, u.uy) && !Flying && !Levitation) {
+		if (is_moorland(u.ux, u.uy) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
 			stop_occupation();
+		}
+
+		if (Underwater && Race_if(PM_BOVER)) {
+			if (Upolyd) {
+				u.mh++;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			} else {
+				u.uhp++;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			}
+			flags.botl = TRUE;
 		}
 
 		if (is_raincloud(u.ux, u.uy)) {
@@ -8554,6 +8667,8 @@ newboss:
 
 		if (u.ublesscnt && RngePrayer) u.ublesscnt--;
 
+		if (u.ublesscnt && Race_if(PM_BOVER)) u.ublesscnt--;
+
 		if (u.ublesscnt && !(PlayerCannotUseSkills)) {
 
 			if ((P_SKILL(P_SPIRITUALITY) >= P_BASIC) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
@@ -10489,6 +10604,9 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybriddorian) sprintf(eos(xtrabuf), "dorian ");
 	if (flags.hybridtechless) sprintf(eos(xtrabuf), "techless ");
 	if (flags.hybridblait) sprintf(eos(xtrabuf), "blait ");
+	if (flags.hybridgrouper) sprintf(eos(xtrabuf), "grouper ");
+	if (flags.hybridscriptor) sprintf(eos(xtrabuf), "scriptor ");
+	if (flags.hybridunbalancor) sprintf(eos(xtrabuf), "unbalancor ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;
@@ -12759,6 +12877,8 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	if (new_game && Race_if(PM_MAGYAR)) u.weapon_slots += 1000;
+	if (new_game && Race_if(PM_YUGGER)) u.weapon_slots += 15;
+	if (new_game && Race_if(PM_RUSMOT)) u.weapon_slots += 5;
 
 	if (new_game) u.zapem_mode = 0;
 	if ((flags.zapem || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Role_if(PM_XELNAGA)) && new_game && !flags.wonderland && !flags.lostsoul && !flags.uberlostsoul) {

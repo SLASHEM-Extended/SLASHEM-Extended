@@ -1869,6 +1869,11 @@ static struct trobj CupidItem[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj KoronstItem[] = {
+	{ CATAPULT, 0, WEAPON_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj AlchemistItem[] = {
 	{ SCALPEL, 1, WEAPON_CLASS, 1, 1},
 	{ 0, 0, 0, 0, 0 }
@@ -10167,6 +10172,8 @@ u_init()
 	u.walscholarpass = 0;
 	u.symbiotedmghack = FALSE;
 
+	u.pervertsex = 0;
+	u.pervertpray = 0;
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
@@ -16605,6 +16612,11 @@ u_init()
 	case PM_CUPID:
 
           ini_inv(CupidItem);		
+		break;
+
+	case PM_KORONST:
+
+          ini_inv(KoronstItem);		
 		break;
 
 	case PM_ALCHEMIST:	/* a racial version of the scientist --Amy */

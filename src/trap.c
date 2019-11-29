@@ -4078,7 +4078,7 @@ unsigned trflags;
 				pline("You fly over a deep pool of water.");
 				break;
 			}
-			if (Wwalking) {
+			if (Wwalking || Race_if(PM_KORONST)) {
 				pline("There is a deep pool of water right below your feet.");
 				break;
 			}
@@ -4943,6 +4943,32 @@ newegomon:
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pluslvl(FALSE);
 
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(skillimprove);
+					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+					unrestrict_weapon_skill(skillimprove);
+					P_MAX_SKILL(skillimprove) = P_BASIC;
+					pline("You can now learn the %s skill.", P_NAME(skillimprove));
+				} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+					P_MAX_SKILL(skillimprove) = P_SKILLED;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+					P_MAX_SKILL(skillimprove) = P_EXPERT;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+					P_MAX_SKILL(skillimprove) = P_MASTER;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+					P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+					pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+				}
+			}
+
 			pluslvl(FALSE);
 
 			break;
@@ -5118,6 +5144,24 @@ rerollX:
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
 			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+				    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
 
 		    discover_artifact(acqo->oartifact);
 
@@ -5163,6 +5207,24 @@ rerollX:
 				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+				    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+				}
 			}
 
 		    discover_artifact(acqo->oartifact);
@@ -5349,7 +5411,7 @@ rerollX:
 
 		if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR || levl[u.ux][u.uy].typ == ICE) {
 			levl[u.ux][u.uy].typ = POOL;
-			if (!Wwalking && !Flying && !Levitation && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) drown();
+			if (!Wwalking && !Race_if(PM_KORONST) && !Flying && !Levitation && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) drown();
 		}
 		break;
 
@@ -5543,6 +5605,25 @@ rerollX:
 							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
 						} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
 							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+						}
+
+						if (Race_if(PM_RUSMOT)) {
+							if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+							    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+							} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+								unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+							} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+							} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+							} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+							} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+							} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+							}
 						}
 
 					    discover_artifact(acqo->oartifact);
@@ -16493,7 +16574,7 @@ long hmask, emask;     /* might cancel timeout */
 		 * Use knowledge of the two routines as a hack -- this
 		 * should really be handled differently -dlc
 		 */
-		if(is_drowningpool(u.ux,u.uy) && !(is_crystalwater(u.ux,u.uy)) && !Wwalking && !Swimming && !u.uinwater)
+		if(is_drowningpool(u.ux,u.uy) && !(is_crystalwater(u.ux,u.uy)) && !Wwalking && !Race_if(PM_KORONST) && !Swimming && !u.uinwater)
 			no_msg = drown();
 
 		if(is_lava(u.ux,u.uy)) {
@@ -19793,7 +19874,7 @@ lava_effects()
 
     if (!Fire_resistance) {
 
-	if(Wwalking) {
+	if(Wwalking || Race_if(PM_KORONST)) {
 	    dmg = d(6,6);
 	    pline_The("lava here burns you!");
 	    if(dmg < u.uhp) {
@@ -19899,7 +19980,7 @@ lava_effects()
 
     }
 
-    if (!Wwalking) {
+    if (!Wwalking && !Race_if(PM_KORONST)) {
 	u.utrap = rn1(4, 4) + (rn1(4, 12) << 8);
 	u.utraptype = TT_LAVA;
 	if (Fire_resistance) You("sink into the lava, but it only burns slightly!");

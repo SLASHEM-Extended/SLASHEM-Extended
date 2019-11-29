@@ -2270,7 +2270,7 @@ register struct monst *mtmp;
 
 		if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) break;
 
-		if (u.ualign.record < -20 && !rn2(100) && (sgn(mtmp->data->maligntyp) != u.ualign.type) ) { /* You have been converted! */
+		if (u.ualign.record < -20 && !rn2(Race_if(PM_KORONST) ? 10 : 100) && (sgn(mtmp->data->maligntyp) != u.ualign.type) ) { /* You have been converted! */
 
 			if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && mtmp->data->maligntyp != A_NONE) {
 				You("have a strong feeling that %s is angry...", u_gname());
@@ -3259,6 +3259,24 @@ register struct monst *mtmp;
 					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_GRAND_MASTER;
 				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_GRAND_MASTER) {
 					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
+				}
+				if (Race_if(PM_RUSMOT)) {
+					if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_ISRESTRICTED) {
+					    unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+					} else if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_UNSKILLED) {
+						unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+						P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_BASIC;
+					} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_BASIC) {
+						P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SKILLED;
+					} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_SKILLED) {
+						P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_EXPERT;
+					} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_EXPERT) {
+						P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_MASTER;
+					} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_MASTER) {
+						P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_GRAND_MASTER;
+					} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_GRAND_MASTER) {
+						P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
+					}
 				}
 
 				dropy(durifact);

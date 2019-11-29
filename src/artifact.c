@@ -960,6 +960,25 @@ bad_artifact_xtra()
 			P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SUPREME_MASTER;
 		}
 
+		if (Race_if(PM_RUSMOT)) {
+			if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(otmp, TRUE));
+				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(otmp, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(otmp, TRUE)) = P_SUPREME_MASTER;
+			}
+		}
+
 		(void) pickup_object(otmp, otmp->quan, TRUE, TRUE);
 
 	}
@@ -2549,6 +2568,25 @@ doinvoke()
 							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
 						} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
 							P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+						}
+
+						if (Race_if(PM_RUSMOT)) {
+							if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+							    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+							} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+								unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+							} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+							} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+							} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+							} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+							} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+								P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+							}
 						}
 
 					    discover_artifact(acqo->oartifact);

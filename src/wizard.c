@@ -390,7 +390,7 @@ aggravate()
 	/* gotta make sure aggravate monster actually does something after all! --Amy */
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
-	    if (!DEADMONSTER(mtmp)) {
+	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && !rn2(3))) {
 		mtmp->msleeping = 0;
 		if(!mtmp->mcanmove && !rn2(5)) {
 			mtmp->mfrozen = 0;

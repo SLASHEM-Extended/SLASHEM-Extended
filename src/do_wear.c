@@ -1661,6 +1661,12 @@ Helmet_on()
 		if (Race_if(PM_CHIQUAI) && rn2(5)) { /* do nothing, not even autocurse */
 			break;
 		}
+		if (Race_if(PM_MACTHEIST) && rn2(4)) {
+			break;
+		}
+		if (Race_if(PM_GERTEUT) && rn2(4)) {
+			break;
+		}
 
 		if (uarmh->otyp == HELM_OF_OPPOSITE_ALIGNMENT) {
 			if (u.ualign.type == A_NEUTRAL)
@@ -3361,6 +3367,25 @@ Implant_on()
 				P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
 			}
 
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_ISRESTRICTED) {
+				    unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(durifact, TRUE));
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(durifact, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(durifact, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+
 			dropy(durifact);
 			discover_artifact(durifact->oartifact);
 			pline("An object appeared at your %s!", makeplural(body_part(FOOT)));
@@ -4960,6 +4985,24 @@ find_ac()
 	if (Race_if(PM_MAYMES) && uright && uright->otyp == RIN_PROTECTION) uac -= 2;
 	if (Race_if(PM_FRO)) uac -= 2;
 
+	if (Race_if(PM_BOVER)) {
+		if (uarm && is_metallic(uarm)) uac += 2;
+		if (uarmu && is_metallic(uarmu)) uac += 2;
+		if (uarmc && is_metallic(uarmc)) uac += 2;
+		if (uarmf && is_metallic(uarmf)) uac += 2;
+		if (uarmg && is_metallic(uarmg)) uac += 2;
+		if (uarmh && is_metallic(uarmh)) uac += 2;
+		if (uarms && is_metallic(uarms)) uac += 2;
+
+		if (uarm && is_lithic(uarm)) uac -= 1;
+		if (uarmu && is_lithic(uarmu)) uac -= 1;
+		if (uarmc && is_lithic(uarmc)) uac -= 1;
+		if (uarmf && is_lithic(uarmf)) uac -= 1;
+		if (uarmg && is_lithic(uarmg)) uac -= 1;
+		if (uarmh && is_lithic(uarmh)) uac -= 1;
+		if (uarms && is_lithic(uarms)) uac -= 1;
+	}
+
 	if (uarmc && itemhasappearance(uarmc, APP_SLOWING_GOWN)) uac -= 3;
 
 	if (u.artifactprotection) uac -= 2;
@@ -5058,13 +5101,13 @@ find_ac()
 				case P_SUPREME_MASTER: uac -= 6; break;
 
 			}
-			if (!uarms) uac++;
-			if (!uarm) uac++;
-			if (!uarmc) uac++;
-			if (!uarmu) uac++;
-			if (!uarmh) uac++;
-			if (!uarmg) uac++;
-			if (!uarmf) uac++;
+			if (!uarms) uac--;
+			if (!uarm) uac--;
+			if (!uarmc) uac--;
+			if (!uarmu) uac--;
+			if (!uarmh) uac--;
+			if (!uarmg) uac--;
+			if (!uarmf) uac--;
 
 		}
 
@@ -5327,6 +5370,14 @@ find_ac()
 	}
 
 	if (Race_if(PM_SERB)) {
+		int difference = (-(uac - 10));
+		difference *= 4;
+		difference /= 5;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
+	}
+
+	if (Race_if(PM_RUSMOT)) {
 		int difference = (-(uac - 10));
 		difference *= 4;
 		difference /= 5;

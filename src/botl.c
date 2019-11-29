@@ -532,6 +532,9 @@ bot1()
 		if (flags.hybriddorian) sprintf(nb = eos(nb), "d");
 		if (flags.hybridtechless) sprintf(nb = eos(nb), "t");
 		if (flags.hybridblait) sprintf(nb = eos(nb), "l");
+		if (flags.hybridgrouper) sprintf(nb = eos(nb), "o");
+		if (flags.hybridscriptor) sprintf(nb = eos(nb), "c");
+		if (flags.hybridunbalancor) sprintf(nb = eos(nb), "u");
 	}
 
 	if (flags.showscore)
@@ -730,6 +733,7 @@ struct monst *mon;
 	if (Race_if(PM_INKA)) armpro++;
 	if (ACURR(A_CHA) >= 18) armpro++;
 	if (armpro < 0) armpro = 0;
+	if (isunbalancor) armpro = 0;
 
 	return armpro;
 }

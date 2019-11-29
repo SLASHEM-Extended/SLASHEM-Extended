@@ -428,11 +428,11 @@ give_up:	/* Quit */
 
 			} else if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
 
-				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = 0;
+				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = 0;
 
 			    if (!rn2(10)) {
 
-				switch (rnd(35)) {
+				switch (rnd(38)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {flags.hybridangbander = 1; flags.hybridization++;
@@ -574,11 +574,23 @@ give_up:	/* Quit */
 						if (!(flags.hybridblait)) {flags.hybridblait = 1; flags.hybridization++;
 						}
 						break;
+					case 36:
+						if (!(flags.hybridgrouper)) {flags.hybridgrouper = 1; flags.hybridization++;
+						}
+						break;
+					case 37:
+						if (!(flags.hybridscriptor)) {flags.hybridscriptor = 1; flags.hybridization++;
+						}
+						break;
+					case 38:
+						if (!(flags.hybridunbalancor)) {flags.hybridunbalancor = 1; flags.hybridization++;
+						}
+						break;
 				}
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(35)) {
+					switch (rnd(38)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -755,6 +767,21 @@ give_up:	/* Quit */
 							flags.hybridblait = 1; flags.hybridization++; break;
 							}
 							break;
+						case 36:
+							if (!(flags.hybridgrouper)) {
+							flags.hybridgrouper = 1; flags.hybridization++; break;
+							}
+							break;
+						case 37:
+							if (!(flags.hybridscriptor)) {
+							flags.hybridscriptor = 1; flags.hybridization++; break;
+							}
+							break;
+						case 38:
+							if (!(flags.hybridunbalancor)) {
+							flags.hybridunbalancor = 1; flags.hybridization++; break;
+							}
+							break;
 					}
 				}
 
@@ -764,9 +791,9 @@ give_up:	/* Quit */
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
-				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = 0;
+				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = 0;
 
-				switch (rnd(35)) {
+				switch (rnd(38)) {
 
 					case 1:
 						if (!Race_if(PM_ANGBANDER)) {
@@ -911,23 +938,35 @@ give_up:	/* Quit */
 						}
 						break;
 					case 31:
-						if (!(flags.hybridhallucinator)) {flags.hybridhallucinator = 1; flags.hybridization++; 
+						if (!Race_if(PM_HALLUCINATOR)) {flags.hybridhallucinator = 1; flags.hybridization++; 
 						}
 						break;
 					case 32:
-						if (!(flags.hybridbossrusher)) {flags.hybridbossrusher = 1; flags.hybridization++; 
+						if (!Race_if(PM_BOSSRUSHER)) {flags.hybridbossrusher = 1; flags.hybridization++; 
 						}
 						break;
 					case 33:
-						if (!(flags.hybriddorian)) {flags.hybriddorian = 1; flags.hybridization++;
+						if (!Race_if(PM_DORIAN)) {flags.hybriddorian = 1; flags.hybridization++;
 						}
 						break;
 					case 34:
-						if (!(flags.hybridtechless)) {flags.hybridtechless = 1; flags.hybridization++;
+						if (!Race_if(PM_TECHLESS)) {flags.hybridtechless = 1; flags.hybridization++;
 						}
 						break;
 					case 35:
-						if (!(flags.hybridblait)) {flags.hybridblait = 1; flags.hybridization++;
+						if (!Race_if(PM_BLAIT)) {flags.hybridblait = 1; flags.hybridization++;
+						}
+						break;
+					case 36:
+						if (!Race_if(PM_GROUPER)) {flags.hybridgrouper = 1; flags.hybridization++;
+						}
+						break;
+					case 37:
+						if (!Race_if(PM_SCRIPTOR)) {flags.hybridscriptor = 1; flags.hybridization++;
+						}
+						break;
+					case 38:
+						if (!Race_if(PM_UNBALANCOR)) {flags.hybridunbalancor = 1; flags.hybridization++;
 						}
 						break;
 
@@ -935,7 +974,7 @@ give_up:	/* Quit */
 
 				while ((rnd(7)) < 3) {
 
-					switch (rnd(35)) {
+					switch (rnd(38)) {
 	
 						case 1:
 							if (!(flags.hybridangbander)) {
@@ -1094,22 +1133,37 @@ give_up:	/* Quit */
 							break;
 						case 32:
 							if (!(flags.hybridbossrusher)) {
-							flags.hybridbossrusher = 1; flags.hybridization++; break;
+								flags.hybridbossrusher = 1; flags.hybridization++; break;
 							}
 							break;
 						case 33:
 							if (!(flags.hybriddorian)) {
-							flags.hybriddorian = 1; flags.hybridization++; break;
+								flags.hybriddorian = 1; flags.hybridization++; break;
 							}
 							break;
 						case 34:
 							if (!(flags.hybridtechless)) {
-							flags.hybridtechless = 1; flags.hybridization++; break;
+								flags.hybridtechless = 1; flags.hybridization++; break;
 							}
 							break;
 						case 35:
 							if (!(flags.hybridblait)) {
-							flags.hybridblait = 1; flags.hybridization++; break;
+								flags.hybridblait = 1; flags.hybridization++; break;
+							}
+							break;
+						case 36:
+							if (!(flags.hybridgrouper)) {
+								flags.hybridgrouper = 1; flags.hybridization++; break;
+							}
+							break;
+						case 37:
+							if (!(flags.hybridscriptor)) {
+								flags.hybridscriptor = 1; flags.hybridization++; break;
+							}
+							break;
+						case 38:
+							if (!(flags.hybridunbalancor)) {
+								flags.hybridunbalancor = 1; flags.hybridization++; break;
 							}
 							break;
 
@@ -1120,7 +1174,7 @@ give_up:	/* Quit */
 
 			} else {
 
-				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = 0;
+				flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = 0;
 
 				if (!Race_if(PM_AGGRAVATOR)) {if (yn("Add the aggravator hybrid race to your character?") == 'y')
 					{flags.hybridaggravator = 1; flags.hybridization++;}
@@ -1157,6 +1211,9 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_EXTRAVATOR)) {if (yn("Add the extravator hybrid race to your character?") == 'y')
 					{flags.hybridextravator = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_GROUPER)) {if (yn("Add the grouper hybrid race to your character?") == 'y')
+					{flags.hybridgrouper = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_HALLUCINATOR)) {if (yn("Add the hallucinator hybrid race to your character?") == 'y')
 					{flags.hybridhallucinator = 1; flags.hybridization++;}
@@ -1200,6 +1257,9 @@ give_up:	/* Quit */
 				if (!Race_if(PM_ROUGELIKE)) {if (yn("Add the rougelike hybrid race to your character?") == 'y')
 					{flags.hybridrougelike = 1; flags.hybridization++;}
 				}
+				if (!Race_if(PM_SCRIPTOR)) {if (yn("Add the scriptor hybrid race to your character?") == 'y')
+					{flags.hybridscriptor = 1; flags.hybridization++;}
+				}
 				if (!Race_if(PM_SOKOSOLVER)) {if (yn("Add the sokosolver hybrid race to your character?") == 'y')
 					{flags.hybridsokosolver = 1; flags.hybridization++;}
 				}
@@ -1214,6 +1274,9 @@ give_up:	/* Quit */
 				}
 				if (!Race_if(PM_TECHLESS)) {if (yn("Add the techless hybrid race to your character?") == 'y')
 					{flags.hybridtechless = 1; flags.hybridization++;}
+				}
+				if (!Race_if(PM_UNBALANCOR)) {if (yn("Add the unbalancor hybrid race to your character?") == 'y')
+					{flags.hybridunbalancor = 1; flags.hybridization++;}
 				}
 				if (!Race_if(PM_WARPER)) {if (yn("Add the warper hybrid race to your character?") == 'y')
 					{flags.hybridwarper = 1; flags.hybridization++;}
@@ -1237,7 +1300,7 @@ give_up:	/* Quit */
 
 		else {
 
-			flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = 0;
+			flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = 0;
 
 			flags.hybridcancel = 1; /* player answered no to the "do you want hybridization" prompt */
 		}

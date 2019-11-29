@@ -899,7 +899,7 @@ boolean pit_only;
 		if (!Levitation && !Flying && typ != STYXRIVER && typ != URINELAKE && typ != SHIFTINGSAND) {
 		    if (typ == LAVAPOOL)
 			(void) lava_effects();
-		    else if (!Wwalking && !Swimming)
+		    else if (!Wwalking && !Race_if(PM_KORONST) && !Swimming)
 			(void) drown();
 		}
 		return TRUE;

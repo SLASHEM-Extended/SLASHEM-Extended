@@ -12,7 +12,7 @@
 #include "edog.h"
 #include "artifact.h"
 #include "display.h"
-#include "global.h" 
+#include "global.h"
 #include "quest.h"
 #include "qtext.h"
 
@@ -52,7 +52,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
+	PN_MARTIAL_ARTS,
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -118,7 +118,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
 			odd_skill_names[-skill_names_indices[type]])
 
 void display_monster(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P);
- 
+
 STATIC_DCL boolean restrap(struct monst *);
 STATIC_DCL long mm_aggression(struct monst *,struct monst *);
 #ifdef OVL2
@@ -699,10 +699,10 @@ register struct monst *mtmp;
 	    case PM_GIANT_MUMMY:
 	    case PM_ETTIN_MUMMY:
 	    case PM_CALLS_ITSELF_ETTIN_MUMMY:
-	    case PM_TROLL_MUMMY:            
-	    case PM_EGO_TROLL_MUMMY:            
+	    case PM_TROLL_MUMMY:
+	    case PM_EGO_TROLL_MUMMY:
 	    case PM_TROLL_PERMAMIMIC_MUMMY:
-	    case PM_TROLL_ZOMBIE:            
+	    case PM_TROLL_ZOMBIE:
 	    case PM_KOBOLD_ZOMBIE:
 	    case PM_GHEY_KOBOLD_ZOMBIE:
 	    case PM_OGRE_ZOMBIE:
@@ -1079,7 +1079,7 @@ register struct monst *mtmp;
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_DIAMOND_GOLEM:
-		num = d(2,4);   
+		num = d(2,4);
 		while (num--)
 			obj = mksobj_at(DIAMOND, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
@@ -1139,12 +1139,12 @@ register struct monst *mtmp;
 				 else	blessorcurse(obj, 3);
 				obj->spe = -rne(2);
 			} else	blessorcurse(obj, 10);
-	
+
 			obj->quan = (long)(rn2(20) + 50);
 			obj->owt = weight(obj);
 		}
 		mtmp->mnamelth = 0;
-		
+
 		break;
 	    case PM_STONE_GOLEM:
 		obj = mkcorpstat(STATUE, (struct monst *)0,
@@ -1627,7 +1627,7 @@ register struct monst *mtmp;
 	if (mtmp->mnamelth)
 	    obj = oname(obj, NAME(mtmp));
 
-	/* Avoid "It was hidden under a green mold corpse!" 
+	/* Avoid "It was hidden under a green mold corpse!"
 	 *  during Blind combat. An unseen monster referred to as "it"
 	 *  could be killed and leave a corpse.  If a hider then hid
 	 *  underneath it, you could be told the corpse type of a
@@ -1654,7 +1654,7 @@ register struct monst *mtmp;
 STATIC_OVL void
 warn_effects()
 {
-	register struct monst *mtmp;    
+	register struct monst *mtmp;
 	int num_mon;
 	int warned_of;
 
@@ -2183,7 +2183,7 @@ meatlithic(mtmp)
 
 	/* Eats topmost lithic object if it is there */
 	for (otmp = level.objects[mtmp->mx][mtmp->my];
-						otmp; otmp = otmp->nexthere) { 
+						otmp; otmp = otmp->nexthere) {
 
 	    if (otmp->oerodeproof) continue; /* change by Amy - erosionproof items can't be eaten */
 	    if (is_lithic(otmp) && !obj_resists(otmp, 5, 95) &&
@@ -2328,10 +2328,10 @@ meatcorpse(mtmp)
 	register struct monst *mtmp;
 {
 	register struct obj *otmp, *otmpB;
- 
+
 	/* If a pet, eating is handled separately, in dog.c */
 	if (mtmp->mtame) return;
-  
+
 	/* Eats topmost corpse if it is there */
 	for (otmp = level.objects[mtmp->mx][mtmp->my];
 						    otmp; otmp = otmp->nexthere)
@@ -2374,7 +2374,7 @@ meatcorpse(mtmp)
 		  }
       newsym(mtmp->mx, mtmp->my);
 }
- 
+
 int
 meatobj(mtmp)		/* for gelatinous cubes */
 	register struct monst *mtmp;
@@ -2686,7 +2686,7 @@ struct obj *otmp;
 	if (curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return FALSE;
 
 	/* if the monster hates silver,  don't pick it up */
-	if (objects[otmp->otyp].oc_material == MT_SILVER && hates_silver(mtmp->data)) 
+	if (objects[otmp->otyp].oc_material == MT_SILVER && hates_silver(mtmp->data))
 		return(FALSE);
 
 	if(curr_mon_load(mtmp) + newload > max_mon_load(mtmp)) return(FALSE);
@@ -2735,9 +2735,9 @@ mfndpos(mon, poss, info, flag)
 	    } else {
 		rockok = (m_carrying(mon, PICK_AXE) || m_carrying(mon, CONGLOMERATE_PICK) || m_carrying(mon, MYSTERY_PICK) || m_carrying(mon, BRONZE_PICK) || m_carrying(mon, BRICK_PICK) || m_carrying(mon, NANO_PICK) ||
 			  (m_carrying(mon, DWARVISH_MATTOCK) &&
-			   !which_armor(mon, W_ARMS)) || 
+			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, SOFT_MATTOCK) &&
-			   !which_armor(mon, W_ARMS)) || 
+			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, ETERNIUM_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) );
 		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, SHARP_AXE) || m_carrying(mon, NANO_AXE) || m_carrying(mon, TUBING_PLIERS) ||
@@ -3394,7 +3394,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    && ttmp->ttyp != SHAFT_TRAP
 				    && ttmp->ttyp != TRAPDOOR
 				    && ttmp->ttyp != HOLE)
-				      || (!is_flyer(mdat) && (!mon->egotype_flying) 
+				      || (!is_flyer(mdat) && (!mon->egotype_flying)
 				    && !is_floater(mdat)
 				    && !is_clinger(mdat))
 				      || In_sokoban(&u.uz))
@@ -4279,7 +4279,7 @@ register struct monst *mtmp;
 	if(tmp == PM_ANASTASIA_STEELE) { /* very bad! */
 
 		change_luck(-10);
-		u.ualign.sins += 20; 
+		u.ualign.sins += 20;
 		u.alignlim -= 20;
 		adjalign(-200);
 		u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++;
@@ -4404,6 +4404,24 @@ register struct monst *mtmp;
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
 			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
 			discover_artifact(trophy->oartifact);
 			if (!havegifts) u.ugifts--;
 		}
@@ -4486,6 +4504,87 @@ register struct monst *mtmp;
 			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 		}
 
+		if (Race_if(PM_RUSMOT)) {
+			skillimprove = randomgoodskill();
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			}
+
+			skillimprove = randomgoodskill();
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			}
+
+			skillimprove = randomgoodskill();
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			}
+
+		}
+
 	}
 
       if(mtmp->data == &mons[PM_TIKSRVZLLAT] && !u.tiksrvzllatdown) {
@@ -4515,26 +4614,23 @@ register struct monst *mtmp;
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
 			}
-			discover_artifact(trophy->oartifact);
-		}
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
-		if (trophy) {
-			dropy(trophy);
-			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
-				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
-			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
-				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
-			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
-			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
-			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
-			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
-			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
 			}
 			discover_artifact(trophy->oartifact);
 		}
@@ -4557,26 +4653,23 @@ register struct monst *mtmp;
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
 			}
-			discover_artifact(trophy->oartifact);
-		}
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
-		if (trophy) {
-			dropy(trophy);
-			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
-				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
-			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
-				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
-			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
-			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
-			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
-			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
-			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
-				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
 			}
 			discover_artifact(trophy->oartifact);
 		}
@@ -4598,6 +4691,102 @@ register struct monst *mtmp;
 				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
 			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
 				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+		}
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
+			}
+			discover_artifact(trophy->oartifact);
+		}
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+			}
+			if (Race_if(PM_RUSMOT)) {
+				if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+				} else if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(trophy, TRUE));
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(trophy, TRUE)) = P_SUPREME_MASTER;
+				}
 			}
 			discover_artifact(trophy->oartifact);
 			if (!havegifts) u.ugifts--;
@@ -5107,7 +5296,7 @@ boolean was_swallowed;			/* digestion */
 	    	sprintf(killer_buf, "%s explosion", s_suffix(mdat->mname));
 	    	killer = killer_buf;
 	    	killer_format = KILLED_BY_AN;
-	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS); 
+	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS);
 	    	if (!trolling) return (FALSE);
 	    } else if (mon->egotype_exploder) {
 		tmp = d(2, 1 + (mon->m_lev * 5) );
@@ -5139,7 +5328,7 @@ boolean was_swallowed;			/* digestion */
 	    	sprintf(killer_buf, "%s explosion", s_suffix(mdat->mname));
 	    	killer = killer_buf;
 	    	killer_format = KILLED_BY_AN;
-	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS); 
+	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS);
 	    	if (!trolling) return (FALSE);
 	    }
   	}
@@ -5401,7 +5590,7 @@ mon_xkilled(mdef, fltxt, how)
 				*fltxt ? " by the " : "",
 				fltxt);
 	else
-		be_sad = (mdef->mtame != 0 && !mdef->isspell); 
+		be_sad = (mdef->mtame != 0 && !mdef->isspell);
 
 	if (mdef->mtame != 0 && !mdef->isspell) u.cnd_petdeathcount++;
 
@@ -5953,7 +6142,7 @@ xkilled(mtmp, dest)
 
 			/* Don't create large objects from small monsters */
 			/*if (otmp) typ = otmp->otyp;*/
-			/*if (mdat->msize < MZ_HUMAN && typ != FOOD_RATION 
+			/*if (mdat->msize < MZ_HUMAN && typ != FOOD_RATION
 			    && typ != LEATHER_LEASH
 			    && typ != INKA_LEASH
 			    && typ != FIGURINE
@@ -5984,7 +6173,7 @@ cleanup:
 
 	    You(FunnyHallu ? "feel very bad for killing your future wife." : "feel very bad for killing a defenseless woman.");
 	    adjalign(-25);
-		u.ualign.sins++; 
+		u.ualign.sins++;
 		u.alignlim--;
 		change_luck(-1);
 
@@ -5995,7 +6184,7 @@ cleanup:
 
 	    FunnyHallu ? You_feel("very bad for killing your future %s.", flags.female ? "husband" : "wife") : You_feel("very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
 	    adjalign(-25);
-		u.ualign.sins++; 
+		u.ualign.sins++;
 		u.alignlim--;
 		change_luck(-1);
 
@@ -6017,14 +6206,14 @@ cleanup:
 		}
 
 		if (Role_if(PM_PALADIN)) { /* more severe murderer penalties */
-			u.ualign.sins += 5; 
+			u.ualign.sins += 5;
 			u.alignlim -= 5;
 			change_luck(-1);
 			adjalign(-50);
 		}
 
 		if(u.ualign.type == A_LAWFUL) { u.ualign.sins += 3; u.alignlim -= 3;} /*fall through*/
-		u.ualign.sins += 2; 
+		u.ualign.sins += 2;
 		u.alignlim -= 2;
 		if (Blind && !Blind_telepat)
 		    see_monsters(); /* Can't sense monsters any more. */
@@ -6042,7 +6231,7 @@ cleanup:
 	if ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER)) && mdat == &mons[PM_TOPMODEL]) { /* very bad idea! --Amy */
 		You_feel("guilty for killing an innocent girl.");
 		change_luck(-5);
-		u.ualign.sins += 10; 
+		u.ualign.sins += 10;
 		u.alignlim -= 10;
 		adjalign(-50);
 		u.ugangr++; u.ugangr++; u.ugangr++;
@@ -6138,9 +6327,9 @@ newbossA:
 		u.acutraining += rnz(200 + (mtmp->m_lev * 20));
 	}
 
-#ifdef LIVELOG_BONES_KILLER 
-	livelog_bones_killed(mtmp); 
-#endif 
+#ifdef LIVELOG_BONES_KILLER
+	livelog_bones_killed(mtmp);
+#endif
 }
 
 /* changes the monster into a stone monster of the same type */
@@ -6274,17 +6463,32 @@ int  typ, fatal;
 			string, plural ? "were" : "was");
 	}
 
-	if(Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) {
-		if(!strcmp(string, "blast")) shieldeff(u.ux, u.uy);
-		pline_The("poison doesn't seem to affect you.");
+	if (Race_if(PM_VIETIS)) {
+		if(Poison_resistance && rn2(StrongPoison_resistance ? 5 : 2) ) {
+			if(!strcmp(string, "blast")) shieldeff(u.ux, u.uy);
+			pline_The("poison doesn't seem to affect you.");
 
-		if(!rn2(StrongPoison_resistance ? 100 : 20)) {
-		/* Check that a stat change was made */
-		if (adjattrib(typ, -1, 1, TRUE)) {
-		    pline("You%s!", poiseff[typ]);
-			pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");			 } 
-			}
-		return;
+			if(!rn2(StrongPoison_resistance ? 20 : 4)) {
+			/* Check that a stat change was made */
+			if (adjattrib(typ, -1, 1, TRUE)) {
+			    pline("You%s!", poiseff[typ]);
+				pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");			 }
+				}
+			return;
+		}
+	} else {
+		if(Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) {
+			if(!strcmp(string, "blast")) shieldeff(u.ux, u.uy);
+			pline_The("poison doesn't seem to affect you.");
+
+			if(!rn2(StrongPoison_resistance ? 100 : 20)) {
+			/* Check that a stat change was made */
+			if (adjattrib(typ, -1, 1, TRUE)) {
+			    pline("You%s!", poiseff[typ]);
+				pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");			 }
+				}
+			return;
+		}
 	}
 	/* suppress killer prefix if it already has one */
 	if ((i = name_to_mon(pname)) >= LOW_PM && mons[i].geno & G_UNIQ) {
@@ -6297,7 +6501,7 @@ int  typ, fatal;
 	    kprefix = KILLED_BY;
 	}
 	i = rn2(fatal + 20*thrown_weapon);
-	if(i == 0 && !Poison_resistance && !(uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) && typ != A_CHA && !rn2(100)) {
+	if(i == 0 && (!Poison_resistance || (Race_if(PM_VIETIS) && !StrongPoison_resistance)) && !(uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) && typ != A_CHA && !rn2((Race_if(PM_VIETIS) && !Poison_resistance) ? 10 : 100)) {
 		if (Invulnerable || (Stoned_chiller && Stoned))
 		   pline("You are unharmed!");
 		else {
@@ -6351,7 +6555,7 @@ register struct monst *mtmp;
 		reset_rndmonst(NON_PM);
 	}
 
-	/* [Tom] took out the weird purple worm thing and lowered prob from 10 */        
+	/* [Tom] took out the weird purple worm thing and lowered prob from 10 */
 	if (!rn2(8)) {
 /*          if (!rn2(13))
 		(void) makemon(&mons[PM_PURPLE_WORM], 0, 0, NO_MM_FLAGS);
@@ -6711,7 +6915,7 @@ wake_nearby()
 	register struct monst *mtmp;
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
+	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -6719,7 +6923,7 @@ wake_nearby()
 	}
 
 	if (!rn2(250)) for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp)) {
+	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3))) {
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -6736,7 +6940,7 @@ register int x, y, distance;
 	register struct monst *mtmp;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && mtmp->msleeping && (distance == 0 ||
+	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
 				 dist2(mtmp->mx, mtmp->my, x, y) < distance))
 		mtmp->msleeping = 0;
 	}
@@ -8025,7 +8229,7 @@ short otyp;
 	short ap = mtmp->mappearance;
 
 	switch(mtmp->m_ap_type) {
-	    case M_AP_NOTHING:			
+	    case M_AP_NOTHING:
 	    case M_AP_FURNITURE:
 	    case M_AP_MONSTER:
 		break;

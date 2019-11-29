@@ -5625,6 +5625,24 @@ giftartifact()
 		} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
 			P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
 		}
+		if (Race_if(PM_RUSMOT)) {
+			if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+			} else if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(acqo, TRUE));
+				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo, TRUE)) = P_SUPREME_MASTER;
+			}
+		}
 
 		discover_artifact(acqo->oartifact);
 
@@ -5665,6 +5683,32 @@ heraldgift()
 		P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 		pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 	} else pline("Unfortunately, you feel no different than before.");
+
+	if (Race_if(PM_RUSMOT)) {
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(2) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(3) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(5) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else pline("Unfortunately, you feel no different than before.");
+	}
 
 }
 
@@ -5743,6 +5787,7 @@ int snamount;
 	if (Upolyd && dmgtype(youmonst.data, AD_SPC2) && rn2(5)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_SANI) && rn2(100)) return;
+	if (Race_if(PM_PLAYER_FAIRY) && rn2(2)) return;
 
 	if (!(PlayerCannotUseSkills)) {
 		int sanityprotection = 0;
@@ -6574,10 +6619,11 @@ peffects(otmp)
 		if (!otmp->odiluted) healup(Role_if(PM_DRUNK) ? rnz(20 + u.ulevel) : 1, 0, FALSE, FALSE);
 		u.uhunger += 10 * (2 + bcsign(otmp));
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 200;
+		if (Race_if(PM_RUSMOT)) u.uhunger += 100;
 		if (Role_if(PM_DRUNK)) u.uhunger += 100;
 		newuhs(FALSE);
 		exercise(A_WIS, FALSE);
-		if(otmp->cursed) {
+		if(otmp->cursed && !Race_if(PM_RUSMOT)) {
 			You((Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "are loaded to the gunwhales." : "pass out.");
 			multi = -rnd(15);
 			nomovemsg = "You awake with a headache.";
