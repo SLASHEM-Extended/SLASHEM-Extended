@@ -4170,12 +4170,13 @@ rerollchaloc:
 			    do {
 #ifdef BIGSLEX
 				x = (COLNO - 25 - rnd(5));
+				y = rn1(ROWNO - 11, 12);
 #else
 				x = (COLNO - 2 - rnd(5));
-#endif
 				y = rn1(ROWNO - 4, 3);
+#endif
 				attempts++;
-			    } while ((occupied(x, y) || IS_STWALL(levl[x][y].typ) || IS_WATERTUNNEL(levl[x][y].typ)) && attempts < 999999);
+			    } while ((occupied(x, y) || IS_STWALL(levl[x][y].typ) || IS_WATERTUNNEL(levl[x][y].typ) || !goodpos(x, y, &youmonst, 0)) && attempts < 999999);
 			    u_on_newpos(x, y);
 			} else u_on_sstairs();
 		    } else u_on_dnstairs();
