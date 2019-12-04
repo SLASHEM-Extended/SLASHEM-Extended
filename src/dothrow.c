@@ -311,19 +311,19 @@ int thrown;
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
 					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
-				case P_SKILLED:
-					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
-				case P_EXPERT:
-					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
-			    	case P_MASTER:
-					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
-					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
-					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
 				case P_GRAND_MASTER:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+				case P_MASTER:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+			    	case P_EXPERT:
+					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
+					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
+					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
+				case P_SKILLED:
 					if ((skill == P_DAGGER || skill == P_KNIFE || skill == P_SPEAR ) && !rn2(5)) multishot++;
 					if (skill == P_JAVELIN && (rnd(10) > 4)) multishot++;
 					if ((skill == P_DART || skill == P_SHURIKEN || skill == P_BOOMERANG || skill == -P_DART || skill == -P_SHURIKEN || skill == -P_BOOMERANG ) && (rnd(10) > 3)) multishot++;
