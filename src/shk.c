@@ -3345,8 +3345,8 @@ boolean shk_buying;
 		/*if (obj->spe == -1) tmp = 0L;*/ /* he'll try to sell them to you anyway --Amy */
 		break;
 	case POTION_CLASS:
-		if (obj->otyp == POT_WATER && !obj->blessed && !obj->cursed)
-			tmp = 0L;
+		/*if (obj->otyp == POT_WATER && !obj->blessed && !obj->cursed)
+			tmp = 0L;*/ /* no, you can't price-ID :P --Amy */
 		break;
 	case ARMOR_CLASS:
 	case WEAPON_CLASS:
