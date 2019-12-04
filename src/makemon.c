@@ -22242,6 +22242,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_PLAYER_SHEEP) && is_elonamonster(ptr) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_PLAYER_HOUND) && is_elonamonster(ptr) )) ct += 3;
 		if (ct > 0 && (Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_BOVER) && dmgtype(ptr, AD_DISE) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_BOVER) && dmgtype(ptr, AD_POIS) )) ct += 5;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -23308,6 +23310,8 @@ int     spc;
 		if ((Race_if(PM_PLAYER_SHEEP) && is_elonamonster(&mons[last]) )) num += 1;
 		if ((Race_if(PM_PLAYER_HOUND) && is_elonamonster(&mons[last]) )) num += 3;
 		if ((Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_BOVER) && dmgtype(&mons[last], AD_DISE) )) num += 5;
+		if ((Race_if(PM_BOVER) && dmgtype(&mons[last], AD_POIS) )) num += 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -24090,6 +24094,8 @@ int     spc;
 		if ((Race_if(PM_PLAYER_SHEEP) && is_elonamonster(&mons[first]) )) num -= 1;
 		if ((Race_if(PM_PLAYER_HOUND) && is_elonamonster(&mons[first]) )) num -= 3;
 		if ((Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_BOVER) && dmgtype(&mons[first], AD_DISE) )) num -= 5;
+		if ((Race_if(PM_BOVER) && dmgtype(&mons[first], AD_POIS) )) num -= 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 
