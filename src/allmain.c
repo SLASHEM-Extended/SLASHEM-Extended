@@ -8613,23 +8613,23 @@ newboss:
 		    }
 		}
 
-
 		    if (flags.bypasses) clear_bypasses();
 		    if(IsGlib) glibr();
 
 		/* symbiote HP regeneration - rather slow, but depends on your symbiosis skill --Amy */
 		if (uactivesymbiosis) {
 			int symregenrate = 50;
+			int symmuchregrate = 500;
 
 			if (!(PlayerCannotUseSkills)) {
 				switch (P_SKILL(P_SYMBIOSIS)) {
 					default: break;
-					case P_BASIC: symregenrate = 30; break;
-					case P_SKILLED: symregenrate = 20; break;
-					case P_EXPERT: symregenrate = 15; break;
-					case P_MASTER: symregenrate = 10; break;
-					case P_GRAND_MASTER: symregenrate = 7; break;
-					case P_SUPREME_MASTER: symregenrate = 5; break;
+					case P_BASIC: symregenrate = 30; symmuchregrate = 450; break;
+					case P_SKILLED: symregenrate = 20; symmuchregrate = 400; break;
+					case P_EXPERT: symregenrate = 15; symmuchregrate = 350; break;
+					case P_MASTER: symregenrate = 10; symmuchregrate = 300; break;
+					case P_GRAND_MASTER: symregenrate = 7; symmuchregrate = 250; break;
+					case P_SUPREME_MASTER: symregenrate = 5; symmuchregrate = 200; break;
 				}
 			}
 
@@ -8638,6 +8638,14 @@ newboss:
 					u.usymbiote.mhp++;
 					if (flags.showsymbiotehp) flags.botl = TRUE;
 				}
+			}
+
+			/* occasionally regenerate more */
+			if (!rn2(symmuchregrate)) {
+				if (rn2(10)) u.usymbiote.mhp += rnd(20 + GushLevel);
+				else u.usymbiote.mhp += rnz(20 + GushLevel);
+				if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+				if (flags.showsymbiotehp) flags.botl = TRUE;
 			}
 
 		}
