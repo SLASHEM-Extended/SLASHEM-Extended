@@ -4417,27 +4417,30 @@ secureidchoice:
 
 		t_timeout = rnz(2000);
 		break;
+
 	    case T_WORLD_FALL:
 
 		You("scream \"EYGOORTS-TOGAAL, JEZEHH!\"");
-/* Actually, it's "To win the game you must kill me, John Romero" recorded backwards.
-   When I was little, I always thought it said "Eygoorts-togaal, jezehh". --Amy */
-				{
-			    register struct monst *mtmp, *mtmp2;
+		/* Actually, it's "To win the game you must kill me, John Romero" recorded backwards.
+		 * When I was little, I always thought it said "Eygoorts-togaal, jezehh". --Amy */
+		{
+			register struct monst *mtmp, *mtmp2;
 
-				num = 0;
+			num = 0;
 
-			    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+			for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 				mtmp2 = mtmp->nmon;
-				if ( ((mtmp->m_lev < techlevX(tech_no)) || (!rn2(4) && mtmp->m_lev < (2 * techlevX(tech_no)))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) { mondead(mtmp);
-						num++;
-						}
-			    }
-	pline("Eliminated %d monster%s.", num, plur(num));
+				if ( ((mtmp->m_lev < techlevX(tech_no)) || (!rn2(4) && mtmp->m_lev < (2 * techlevX(tech_no)))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+					mondead(mtmp);
+					num++;
+					}
 			}
+			pline("Eliminated %d monster%s.", num, plur(num));
+		}
 
-		t_timeout = rnz(10000);
+		t_timeout = rnz(25000);
 		break;
+
 	    case T_CREATE_AMMO:
 
 	    {
