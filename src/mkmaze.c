@@ -2035,21 +2035,24 @@ register int fd;
 	mread(fd,(void *)&ymin,sizeof(int));
 	mread(fd,(void *)&xmax,sizeof(int));
 	mread(fd,(void *)&ymax,sizeof(int));
-	for (i = 0; i < n; i++) {
-		btmp = b;
-		b = (struct bubble *)alloc(sizeof(struct bubble));
-		mread(fd,(void *)b,sizeof(struct bubble));
-		if (bbubbles) {
-			btmp->next = b;
-			b->prev = btmp;
-		} else {
-			bbubbles = b;
-			b->prev = (struct bubble *)0;
+
+	if (n > 0) {
+		for (i = 0; i < n; i++) {
+			btmp = b;
+			b = (struct bubble *)alloc(sizeof(struct bubble));
+			mread(fd,(void *)b,sizeof(struct bubble));
+			if (bbubbles) {
+				btmp->next = b;
+				b->prev = btmp;
+			} else {
+				bbubbles = b;
+				b->prev = (struct bubble *)0;
+			}
+			mv_bubble(b,0,0,TRUE);
 		}
-		mv_bubble(b,0,0,TRUE);
+		ebubbles = b;
+		b->next = (struct bubble *)0;
 	}
-	ebubbles = b;
-	b->next = (struct bubble *)0;
 	was_waterlevel = TRUE;
 }
 
@@ -2104,10 +2107,17 @@ setup_waterlevel()
 
 	/* ouch, hardcoded... */
 
+#ifdef BIGSLEX
+	xmin = 26;
+	ymin = 13;
+	xmax = 101;
+	ymax = 32;
+#else
 	xmin = 3;
 	ymin = 1;
 	xmax = 78;
 	ymax = 20;
+#endif
 
 	/* set hero's memory to water */
 

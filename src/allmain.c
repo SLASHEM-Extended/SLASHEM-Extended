@@ -2469,20 +2469,6 @@ trapsdone:
 		/* I don't want to ban wishing for quest artifacts like some variants do, because that's too arbitrary.
 		 * But some of them are really very powerful, and you shouldn't be able to easily become OP if you get a wish */
 
-#ifdef BIGSLEX
-
-		/* ugh ugly hack because plane of air is weird with the bigger dungeon */
-		if (Is_airlevel(&u.uz) && u.ux <= 6 && u.uy <= 5) {
-			int telehackx, telehacky;
-			telehackx = 26 + rn2(11);
-			telehacky = 21 + rn2(11);
-
-			if (teleok(telehackx, telehacky, FALSE)) {
-			teleds(telehackx, telehacky, FALSE);
-			}
-		}
-#endif
-
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");

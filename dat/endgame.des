@@ -147,6 +147,8 @@ GEOMETRY:center,center
 # portal to the next level is randomly chosen.
 # This map has no visible outer boundary, and
 # is all "air".
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
 MAP
 AAAAAAAAAAAAAAAAAAAAAAAACCCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAACCCCCCAAAAAAAACCCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -173,9 +175,9 @@ ENDMAP
 # teleportation can't cross from one part into another.
 # The up region is where you'll arrive after activating the portal from
 # the preceding level; the exit portal is placed inside the down region.
-TELEPORT_REGION:levregion(01,00,24,20),levregion(25,00,79,20),up
-TELEPORT_REGION:levregion(56,00,79,20),levregion(01,00,55,20),down
-PORTAL:levregion(57,01,78,19),(0,0,0,0),"fire"
+TELEPORT_REGION:(01,00,24,19),(25,00,75,19),up
+TELEPORT_REGION:(56,00,75,19),(01,00,55,19),down
+PORTAL:(57,01,75,19),(0,0,0,0),"fire"
 REGION:(00,00,75,19),lit,"ordinary"
 MONSTER:'E',"air elemental",random,hostile
 MONSTER:'E',"air elemental",random,hostile
