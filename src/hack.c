@@ -323,13 +323,13 @@ xchar x,y;
 }
 
 void
-dgn_growths(showmsg, update)
+dgn_growths(showmsg, update, treesnstuff)
 boolean showmsg; /* show messages */
 boolean update;  /* do newsym() */
 {
-   int herbnum = rn2(SIZE(herb_info));
-   int randomx, randomy;
-   int i, j, count, randchance=0;
+	int herbnum = rn2(SIZE(herb_info));
+	int randomx, randomy;
+	int i, j, count, randchance=0;
 	/*register struct monst *mtmp;*/
 
 	/* note by Amy: disabled herb growth and water currents. GDB says that the dreaded savegame error is happening
@@ -338,19 +338,21 @@ boolean update;  /* do newsym() */
 	 * function is being called during saving for every single level that exists, I wouldn't be at all surprised if
 	 * that's somehow related. At the very least I'm taking out the minliquid() call below, and that means we don't need
 	 * the mtmp anymore either. If it's still somehow crashing then we'll need to look into the GDB output which will
-	 * hopefully tell us where exactly in newsym() it's choking... */
+	 * hopefully tell us where exactly in newsym() it's choking...
+	 * another note: on levels that the character isn't currently on, only regrow walls, don't drop fruit */
 
 	/* update: *sigh* apparently the newsym() is really the culprit and I could just have used the update variable! */
 
-   if (!rn2(100)) (void) seed_tree(-1,-1);
-   /*if (herb_info[herbnum].in_water)
-     (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
-   else
-     (void) grow_herbs(herb_info[herbnum].herb, -1,-1, showmsg, update);*/
-   if (!rn2(isfriday ? 100 : 30))
-     (void) drop_ripe_treefruit(-1,-1, showmsg, update);
-   /*(void) water_current(-1,-1, rn2(8), 
-			Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);*/
+	if (!rn2(100)) (void) seed_tree(-1,-1);
+	/*if (herb_info[herbnum].in_water)
+		(void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
+		else
+		(void) grow_herbs(herb_info[herbnum].herb, -1,-1, showmsg, update);*/
+
+	if (treesnstuff && !rn2(isfriday ? 100 : 30)) (void) drop_ripe_treefruit(-1,-1, showmsg, update);
+
+	/*(void) water_current(-1,-1, rn2(8), Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);*/
+
 trap_of_walls:
 
 	/* evil patch idea by Amy: occasionally, corridors and room squares will "grow" back into solid rock or walls.
@@ -448,11 +450,12 @@ trap_of_walls:
 	 * but it is. Apparently, calling this function during saving fucks up the "uwep" or "uswapwep" structures,
 	 * even though the safety checks should make sure that it works right. Oh well, have to make the function get called
 	 * only during regular play then, even though that is really stupid. */
-   if (update) {
 
-	   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
+	if (update) {
 
-   }
+		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
+
+	}
 
 }
 
@@ -464,7 +467,7 @@ int mvs;
    if (mvs < 0) mvs = 0;
    else if (mvs > LARGEST_INT) mvs = LARGEST_INT;
    while (mvs-- > 0)
-     dgn_growths(FALSE, FALSE);
+     dgn_growths(FALSE, FALSE, FALSE);
 }
 #endif /* DUNGEON_GROWTH */
 

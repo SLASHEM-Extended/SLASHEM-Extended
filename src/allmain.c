@@ -8662,7 +8662,7 @@ newboss:
 		    run_regions();
 
 #ifdef DUNGEON_GROWTH
-		    dgn_growths(TRUE, TRUE);
+		    dgn_growths(TRUE, TRUE, TRUE);
 #endif
 
 		    if (u.ublesscnt) {
