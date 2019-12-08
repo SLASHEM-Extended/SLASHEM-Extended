@@ -2411,6 +2411,35 @@ register struct obj *obj;
 		u.alignlim += 1;
 		pline("Your alignment has increased, and is now %d. Your current maximum alignment is %d.", u.ualign.record, u.alignlim);
 	    }
+	    if (obj && obj->oartifact == ART_FERTILIZATOR && Role_if(PM_MILL_SWALLOWER)) {
+			struct obj *uammo;
+			int fertilammotyp = FLINT;
+			switch (rnd(10)) {
+				case 1: fertilammotyp = SALT_CHUNK; break;
+				case 2: fertilammotyp = SILVER_SLINGSTONE; break;
+				case 3: fertilammotyp = SMALL_PIECE_OF_UNREFINED_MITHR; break;
+				case 4: fertilammotyp = TALC; break;
+				case 5: fertilammotyp = GRAPHITE; break;
+				case 6: fertilammotyp = VOLCANIC_GLASS_FRAGMENT; break;
+				case 7: fertilammotyp = FLINT; break;
+				case 8: fertilammotyp = LEAD_CLUMP; break;
+				case 9: fertilammotyp = BONE_FRAGMENT; break;
+				case 10: fertilammotyp = SLING_AMMO; break;
+				default : fertilammotyp = FLINT; break;
+			}
+
+			uammo = mksobj(fertilammotyp, TRUE, FALSE);
+			if (uammo) {
+				uammo->quan = rn1(15, 15);
+				if (uammo->quan < 1) uammo->quan = 1;
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+				You("created some sling ammo.");
+			}
+
+	    }
 
 	} else impossible("Tinning failed.");
 }
@@ -3956,7 +3985,11 @@ use_pole (obj)
 		}
 
 	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
-		if (obj->spe < 1) {
+		if (obj->oartifact == ART_NOBREAK && obj->spe < 1) {
+			if (obj->spe > -20) obj->spe--;
+			pline(FunnyHallu ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		} else if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
 			pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
@@ -3971,7 +4004,11 @@ use_pole (obj)
 
 	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 
-		if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
+		if (obj->oartifact == ART_NOBREAK && (obj->oeroded >= 3 || obj->oeroded2 >= 3)) {
+			if (obj->spe > -20) obj->spe--;
+			pline(FunnyHallu ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		} else if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
 			uwepgone();              /* set unweapon */
 			pline(FunnyHallu ? "You lost your stick!" : "Your weapon shatters into pieces!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");

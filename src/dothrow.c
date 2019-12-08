@@ -1253,6 +1253,7 @@ boolean hitsroof;
 	if (dmg > 0 && Race_if(PM_VIKING)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_SERB)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_RUSMOT)) dmg += 2;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) dmg += 2;
 
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1897,6 +1898,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (Race_if(PM_SERB)) tmp += 1;
+	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

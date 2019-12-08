@@ -689,6 +689,7 @@ register struct monst *mtmp;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -1530,6 +1531,7 @@ int dieroll;
 		if (obj->otyp == ASBESTOS_JAVELIN) ispoisoned = TRUE;
 
 	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(isfriday ? 5 : 3) );
+	    if (obj && obj->oartifact == ART_CLEAN_MAULER) noeffect = FALSE;
 
 	    strcpy(saved_oname, cxname(obj));
 	    if(obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
@@ -2588,6 +2590,7 @@ int dieroll;
 		if (Race_if(PM_SERB)) tmp += 1;
 		if (Race_if(PM_MONGUNG)) tmp += 3;
 		if (Race_if(PM_RUSMOT)) tmp += 2;
+		if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -7382,7 +7385,7 @@ use_weapon:
 				}
 
 				/* evil patch idea: if a weapon is used very often, it eventually degrades --Amy */
-				if (uwep && uwep->spe > ((objects[uwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uwep->spe > rn2(8)) && !rn2((objects[uwep->otyp].oc_material == MT_CERAMIC) ? 100 : (objects[uwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uwep->otyp].oc_material == MT_SECREE || objects[uwep->otyp].oc_material == MT_ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
+				if (uwep && uwep->spe > ((uwep->oartifact == ART_CLEAN_MAULER) ? -10 : (objects[uwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uwep->spe > rn2(8)) && !rn2((objects[uwep->otyp].oc_material == MT_CERAMIC) ? 100 : (uwep->oartifact == ART_CLEAN_MAULER) ? 100 : (objects[uwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uwep->otyp].oc_material == MT_SECREE || objects[uwep->otyp].oc_material == MT_ARCANIUM) && (!(uwep->oartifact) || !rn2(4)) ) {
 					if (uwep->greased) {
 						uwep->greased--;
 						pline("Your weapon loses its grease.");
@@ -7472,7 +7475,7 @@ use_weapon:
 					return FALSE;
 				}
 
-				if (u.twoweap && uswapwep && uswapwep->spe > ((objects[uswapwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uswapwep->spe > rn2(8)) && !rn2((objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? 100 : (objects[uswapwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == MT_SECREE || objects[uswapwep->otyp].oc_material == MT_ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
+				if (u.twoweap && uswapwep && uswapwep->spe > ((uswapwep->oartifact == ART_CLEAN_MAULER) ? -10 : (objects[uswapwep->otyp].oc_material == MT_PLATINUM) ? 1 : (objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? -10 : 0) && (uswapwep->spe > rn2(8)) && !rn2((objects[uswapwep->otyp].oc_material == MT_CERAMIC) ? 100 : (uswapwep->oartifact == ART_CLEAN_MAULER) ? 100 : (objects[uswapwep->otyp].oc_material == MT_LIQUID) ? 250 : 1000) && (rnd(7) > savechance) && (!(uswapwep->blessed && !rnl(6))) && (!rn2(3) || !(objects[uswapwep->otyp].oc_material == MT_GOLD)) && !issoviet && !(objects[uswapwep->otyp].oc_material == MT_SECREE || objects[uswapwep->otyp].oc_material == MT_ARCANIUM) && (!(uswapwep->oartifact) || !rn2(4)) ) {
 					if (uswapwep->greased) {
 						uswapwep->greased--;
 						pline("Your weapon loses its grease.");

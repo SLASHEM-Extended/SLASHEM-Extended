@@ -17377,6 +17377,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarmh && itemhasappearance(uarmh, APP_SCUBA_HELMET) ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_TRIDENT_OF_POSEIDON) continue;		
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_PLAYER_ATLANTEAN)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN) continue;
@@ -19870,6 +19871,7 @@ lava_effects()
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
     if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
     if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
+    if (uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) return FALSE;
     if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) return FALSE;
     if (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) return FALSE;
     if (Race_if(PM_HYPOTHERMIC)) return FALSE;

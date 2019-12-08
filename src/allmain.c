@@ -4882,6 +4882,46 @@ newbossF:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_FLAGELLATOR && !rn2(5000)) {
+			int attempts = 0;
+			register struct permonst *ptrZ;
+
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !is_neuter(ptrZ))) && attempts < 50000);
+
+			if (is_neuter(ptrZ)) {
+				u.wormpolymorph = monsndx(ptrZ);
+				You_feel("neuter!");
+				polyself(FALSE);
+			}
+
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FLAGELLATOR && !rn2(5000)) {
+			int attempts = 0;
+			register struct permonst *ptrZ;
+
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !is_neuter(ptrZ))) && attempts < 50000);
+
+			if (is_neuter(ptrZ)) {
+				u.wormpolymorph = monsndx(ptrZ);
+				You_feel("neuter!");
+				polyself(FALSE);
+			}
+
+		}
+
 		if (uarmf && itemhasappearance(uarmf, APP_FUNGAL_SANDALS) && !rn2(50000)) {
 			u.fungalsandals = TRUE;
 			polyself(FALSE);
@@ -8410,6 +8450,16 @@ newboss:
 		if (uarmc && !rn2(2000) && itemhasappearance(uarmc, APP_HUNGRY_CLOAK) ) {
 			pline("Suddenly you notice the smell of food...");
 			morehungry(rnd(1000));
+		}
+
+		if (have_hungerhealer()) {
+			morehungry(1);
+			if (uactivesymbiosis && Role_if(PM_SYMBIANT)) {
+				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
+					u.usymbiote.mhp++;
+					if (flags.showsymbiotehp) flags.botl = TRUE;
+				}
+			}
 		}
 
 		if (RngeVoltage) {

@@ -269,7 +269,7 @@ dosit()
 	    /* must be WWalking */
 	    You(sit_message, "lava");
 	    burn_away_slime();
-	    if (likes_lava(youmonst.data) || (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) || Race_if(PM_HYPOTHERMIC) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) || Race_if(PM_PLAYER_SALAMANDER) || (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) || (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) || (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) ) {
+	    if (likes_lava(youmonst.data) || (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) || (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) || Race_if(PM_HYPOTHERMIC) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) || Race_if(PM_PLAYER_SALAMANDER) || (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) || (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) || (uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) || (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) ) {
 		pline_The("lava feels warm.");
 		return 1;
 	    }

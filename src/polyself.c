@@ -1347,7 +1347,7 @@ int alone;
 	 * future it might not be so if there are monsters which cannot
 	 * wear gloves but can wield weapons
 	 */
-	if (!Race_if(PM_TRANSFORMER) && (!alone || cantwield(youmonst.data))) {
+	if (!Race_if(PM_TRANSFORMER) && !(uwep && uwep->oartifact == ART_FLAGELLATOR) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_FLAGELLATOR) && (!alone || cantwield(youmonst.data))) {
 	    struct obj *wep = uwep;
 
 	    if (alone) You("find you must drop your weapon%s!",

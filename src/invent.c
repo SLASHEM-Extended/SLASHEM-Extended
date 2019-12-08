@@ -1253,6 +1253,18 @@ have_pokeloadstone()
 }
 
 boolean
+have_hungerhealer()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == HITCHHIKER_S_GUIDE_TO_THE_GALA && otmp->oartifact == ART_HUNGERHEALER)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_invisoloadstone()
 {
 	register struct obj *otmp;
@@ -18956,6 +18968,28 @@ boolean knoweverything;
 					pline("Artifact specs: +8 damage, resist confusion and stun, displacement, lawful."); break;
 				case ART_NENYA:
 					pline("Artifact specs: unchanging and warning when worn, causes elves to generate peaceful, lawful."); break;
+				case ART_HOLOGRAPHIC_VOID_LILY:
+					pline("Artifact specs: energy regeneration, half spell damage and reflection when carried, can be invoked for summon undead, chaotic, cartomancer quest artifact."); break;
+				case ART_SHARUR:
+					pline("Artifact specs: +5 to-hit and +10 damage, warning and magic resistance when wielded, lawful, dragonmaster quest artifact. Unlike Splicehack this thing doesn't have an invocation, because what's the point of a quest artifact that is destroyed when you invoke it???"); break;
+				case ART_SCOOBA_COOBA:
+					pline("Artifact specs: protects your items from getting wet and allows you to swim in lava unharmed when worn, neutral, fjorde quest artifact."); break;
+				case ART_TOO_LATE_PRIZE:
+					pline("Artifact specs: can be invoked for summon water elemental, lawful, practicant quest artifact. It's too late for this prize to be useful, but hey, at least you have it now."); break;
+				case ART_MEANCANE:
+					pline("Artifact specs: +8 to-hit and +14 damage, disintegration resistance and free action when wielded, chaotic, emera quest artifact."); break;
+				case ART_CLEAN_MAULER:
+					pline("Artifact specs: +10 to-hit and +20 damage, can always hit things that require a +4 weapon to hit, dulls quickly, neutral, tosser quest artifact."); break;
+				case ART_NOBREAK:
+					pline("Artifact specs: +20 to-hit and +10 damage, will lose enchantment when it would have broken from applying it at range, lawful, aklyst quest artifact."); break;
+				case ART_FERTILIZATOR:
+					pline("Artifact specs: creates random sling ammo whenever it trashes a corpse, lawful, mill swallower quest artifact."); break;
+				case ART_HUNGERHEALER:
+					pline("Artifact specs: passively increases your hunger and heals your symbiote while being in your inventory, lawful, symbiant quest artifact."); break;
+				case ART_FLAGELLATOR:
+					pline("Artifact specs: +10 damage, 1 in 5000 chance to polymorph you into a neuter monster when wielded, doesn't drop when you polymorph into something without hands, neutral, genderstarist quest artifact."); break;
+				case ART_MAJOR_PRESENCE:
+					pline("Artifact specs: +2 to-hit and damage when worn, neutral, combatant quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

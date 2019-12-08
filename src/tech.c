@@ -627,6 +627,39 @@ static const struct innate_tech
 		       {   1, T_SHIELD_BASH, 1},
 		       {   0, 0, 0} },
 
+	car_tech[] = { {   1, T_CARD_TRICK, 1},
+		       {   15, T_LUCKY_GAMBLE, 1},
+		       {   0, 0, 0} },
+
+	dra_tech[] = { {   10, T_PRIMAL_ROAR, 1},
+		       {   20, T_CALM_STEED, 1},
+		       {   30, T_SUMMON_PET, 1},
+		       {   0, 0, 0} },
+
+	com_tech[] = { {   2, T_SHIELD_BASH, 1},
+			 {   11, T_KIII, 1},
+		       {   15, T_CONCENTRATING, 1},
+		       {   20, T_G_SLAM, 1},
+		       {   25, T_SPIRIT_BOMB, 1},
+		       {   0, 0, 0} },
+
+	fjo_tech[] = { {   5, T_SURGERY, 1},
+		       {   10, T_LIQUID_LEAP, 1},
+		       {   20, T_REINFORCE, 1},
+		       {   25, T_BOOZE, 1},
+		       {   0, 0, 0} },
+
+	pra_tech[] = { {   1, T_RESEARCH, 1},
+		       {   15, T_VANISH, 1},
+		       {   25, T_RECHARGE, 1},
+		       {   0, 0, 0} },
+
+	eme_tech[] = { {   10, T_RAGE, 1},
+		       {   0, 0, 0} },
+
+	sym_tech[] = { {   12, T_TERRAIN_CLEANUP, 1},
+		       {   0, 0, 0} },
+
 	kor_tech[] = { {   1, T_DOUBLE_THROWNAGE, 1},
 		       {   0, 0, 0} },
 
@@ -8427,6 +8460,13 @@ role_tech()
 		case PM_VALKYRIE:	return (val_tech);
 		case PM_WIZARD:		return (wiz_tech);
 		case PM_YEOMAN:		return (yeo_tech);
+		case PM_CARTOMANCER:		return (car_tech);
+		case PM_DRAGONMASTER:		return (dra_tech);
+		case PM_COMBATANT:		return (com_tech);
+		case PM_FJORDE:		return (fjo_tech);
+		case PM_PRACTICANT:		return (pra_tech);
+		case PM_EMERA:		return (eme_tech);
+		case PM_SYMBIANT:		return (sym_tech);
 		default: 		return ((struct innate_tech *) 0);
 	}
 }

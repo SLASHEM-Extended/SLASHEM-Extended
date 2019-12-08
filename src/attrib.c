@@ -420,6 +420,27 @@ const struct innate {
 	mar_abil[] = { {   1, &(HFast), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	car_abil[] = { { 1, &(HSearching), "", "" },
+			{ 7, &(HWarning), "sensitive", "insensitive" },
+			{ 0, 0, 0, 0 } },
+
+	drm_abil[] = { { 7, &(HFast), "quick", "slow" },
+			{ 0, 0, 0, 0 } },
+
+	fjo_abil[] = { { 10, &(HCold_resistance), "warm", "cooler" },
+			{ 0, 0, 0, 0 } },
+
+	akl_abil[] = { { 20, &(HSight_bonus), "your surroundings lighting up", "shrouded in darkness" },
+			{ 0, 0, 0, 0 } },
+
+	mil_abil[] = { { 10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
+		     {	20, &(HPoison_resistance), "healthy", "less healthy" },
+			{ 0, 0, 0, 0 } },
+
+	sym_abil[] = { { 1, &(HPeacevision), "", "" },
+		     {  15, &(HScentView), "your sense of smell expanding", "less capable of smelling things" },
+			{ 0, 0, 0, 0 } },
+
 	stu_abil[] = { {  2, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {   5, &(HFast), "quick", "slow", TRUE },
 		     {   14, &(HFree_action), "freed", "a loss of freedom", TRUE },
@@ -2123,6 +2144,12 @@ int oldlevel, newlevel;
 	case PM_ZOOKEEPER:         abil = zoo_abil;	break;
 	case PM_YEOMAN:		abil = yeo_abil;	break;
 	case PM_JUSTICE_KEEPER:		abil = jus_abil;	break;
+	case PM_CARTOMANCER:		abil = car_abil;	break;
+	case PM_DRAGONMASTER:		abil = drm_abil;	break;
+	case PM_FJORDE:		abil = fjo_abil;	break;
+	case PM_AKLYST:		abil = akl_abil;	break;
+	case PM_MILL_SWALLOWER:		abil = mil_abil;	break;
+	case PM_SYMBIANT:		abil = sym_abil;	break;
 	default:                abil = 0;		break;
 	}
 

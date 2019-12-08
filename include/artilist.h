@@ -7804,6 +7804,50 @@ A("Snakelash", SECRET_WHIP, /* always poisoned, poison and sickness res while wi
 	PHYS(2, 14),	NO_DFNS, NO_CARY,
 	HEALING,	A_CHAOTIC, PM_XELNAGA, NON_PM, 5000L ),
 
+A("The Holographic Void Lily",				CREDIT_CARD,
+      (SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), (SPFX_EREGEN|SPFX_HSPDAM|SPFX_REFLECT), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SUMMON_UNDEAD, A_CHAOTIC, PM_CARTOMANCER, NON_PM, 7000L),
+
+A("Sharur",				ORNATE_MACE,
+      (SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_SPEAK|SPFX_WARN|SPFX_DEFN), 0, 0,
+	PHYS(5, 10), DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, PM_DRAGONMASTER, NON_PM, 4000L),
+
+A("Scooba Cooba",				CLOAK_OF_MAGIC_RESISTANCE, /* protects items from water and lets you swim in lava */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_FJORDE, NON_PM, 10000L ),
+
+A("Too Late Prize",				CHEMISTRY_SET,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SUMMON_WATER_ELEMENTAL, A_LAWFUL, PM_PRACTICANT, NON_PM, 2000L ),
+
+A("Meancane",				WALKING_STICK, /* disintegration resistance and free action */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	PHYS(8, 14), NO_DFNS, NO_CARY, 0, A_CHAOTIC, PM_EMERA, NON_PM, 3000L ),
+
+A("Clean Mauler",				DWARVISH_SPEAR, /* always hits as a +4 weapon but dulls quickly like ceramic */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_TOSSER, NON_PM, 2500L ),
+
+A("Nobreak",				AKLYS, /* instead of breaking, it loses enchantment */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	PHYS(20, 10), NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_AKLYST, NON_PM, 2000L ),
+
+A("Fertilizator",				BINNING_KIT, /* creates random sling ammo whenever it trashes a corpse */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_MILL_SWALLOWER, NON_PM, 1000L ),
+
+A("Hungerhealer",				HITCHHIKER_S_GUIDE_TO_THE_GALA, /* passively increases hunger and heals symbiote while it's in your inventory */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_SYMBIANT, NON_PM, 4242L ),
+
+A("Flagellator",				SEXPLAY_WHIP, /* 1 in 5000 chance to polymorph you into a M2_NEUTER, doesn't drop upon poly */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_GENDERSTARIST, NON_PM, 2000L ),
+
+A("Major Presence",				GAUNTLETS, /* +2 to-hit and damage */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_COMBATANT, NON_PM, 4000L ),
+
 /* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */
 
 /*
