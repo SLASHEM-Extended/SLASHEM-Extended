@@ -2961,6 +2961,7 @@ RING((char *)0, 0,  "artificial", 0, 0, 0, 0, 9, MT_NANOMACHINE, CLR_BRIGHT_BLUE
 RING((char *)0, 0,  "futuristic", 0, 0, 0, 0, 8, MT_NANOMACHINE, CLR_YELLOW, 1),
 RING((char *)0, 0,  "light-catching", 0, 0, 0, 0, 6, MT_CHROME, CLR_GRAY, 1),
 RING((char *)0, 0,  "rhinestone", 0, 0, 0, 0, 7, MT_MINERAL, CLR_MAGENTA, 1),
+RING((char *)0, 0,  "bore", 0, 0, 0, 0, 6, MT_METAL, CLR_GRAY, 1), /* by klintos */
 /* More descriptions: cameo, intaglio */
 #undef RING
 

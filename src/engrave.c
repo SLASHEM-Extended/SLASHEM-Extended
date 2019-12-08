@@ -972,6 +972,7 @@ static const char *random_mesg[] = {
 	"nobody except me has super mario land 5 completely finished, but i have in 8-4 always fireballs when i'm at the end boss. so somehow the game is sow easy. har-har!",
 	"i have the game 'super mario land 5' completely finished until world 8-4, and that i finished too, and even the sow-heavy end boss on which you have to jump 10 times. har-har!",
 	"crapshoot noun, North American - The chance of finding a secret door or corridor in NetHack with a new character.",
+	"DEMO casts SEGFAULT! It's super effective! THRONE-POOFING CODE fainted! DNETHACK was defeated!",
 
 };
 

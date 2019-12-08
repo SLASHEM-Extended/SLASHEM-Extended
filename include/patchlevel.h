@@ -10,11 +10,11 @@
 
 /* Version */
 #define VERSION_MAJOR   2
-#define VERSION_MINOR   5
+#define VERSION_MINOR   6
 /*
  * PATCHLEVEL is updated for each release.
  */
-#define PATCHLEVEL      9
+#define PATCHLEVEL      0
 /*
 #define EDITLEVEL	0
 #define FIXLEVEL        0
