@@ -1701,6 +1701,8 @@ register struct monst *mtmp;
 	     !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
     infountain = IS_FOUNTAIN(levl[mtmp->mx][mtmp->my].typ);
 
+	int crapcnt = 1;
+
 	/* Flying and levitation keeps our steed out of the liquid */
 	/* (but not water-walking or swimming) */
 	if (mtmp == u.usteed && (Flying || Levitation))
@@ -1718,7 +1720,7 @@ register struct monst *mtmp;
 		if (cansee(mtmp->mx, mtmp->my)) pline("%s cures the well of its poison!", Monnam(mtmp));
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemaleTrapThai ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && !rn2(10) && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemaleTrapThai ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
@@ -1729,9 +1731,13 @@ register struct monst *mtmp;
 	if (mtmp->data->msound == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
 	else if (mtmp->data->msound == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
 	else pline("This is really disgusting. You resist the urge to vomit, but fail to pay attention to your surroundings for a moment...");
-      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(4 + mtmp->crapbonus), "listening to tender crapping noises", TRUE);
-      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(5 + mtmp->crapbonus), "listening to beautiful crapping noises", TRUE);
-      else nomul(-rnz(3 + mtmp->crapbonus), "listening to disgusting crapping noises", TRUE);
+
+	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
+	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
+
+      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(3 + crapcnt), "listening to tender crapping noises", TRUE);
+      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
+      else nomul(-rnz(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 
 	if (!rn2(10)) increasesanity(1);
