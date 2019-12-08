@@ -566,7 +566,7 @@ E void hurtle(int,int,int,BOOLEAN_P);
 E void mhurtle(struct monst *,int,int,int);
 E void throwit(struct obj *,long,BOOLEAN_P,int);
 E int omon_adj(struct monst *,struct obj *,BOOLEAN_P);
-E int thitmonst(struct monst *,struct obj *, int);
+E int thitmonst(struct monst *,struct obj *, int, BOOLEAN_P);
 E int hero_breaks(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
 E int breaks(struct obj *,XCHAR_P,XCHAR_P);
 E boolean breaktest(struct obj *);

@@ -4023,7 +4023,7 @@ use_pole (obj)
 
 	    bhitpos = cc;
 	    check_caitiff(mtmp);
-	    (void) thitmonst(mtmp, uwep, 1);
+	    (void) thitmonst(mtmp, uwep, 1, TRUE);
 	    /* check the monster's HP because thitmonst() doesn't return
 	     * an indication of whether it hit.  Not perfect (what if it's a
 	     * non-silver weapon on a shade?)
@@ -4227,7 +4227,7 @@ use_grapple (obj)
 		return (1);
 	    } else if ((!bigmonst(mtmp->data) && !strongmonst(mtmp->data)) ||
 		       rn2(4)) {
-		(void) thitmonst(mtmp, uwep, 1);
+		(void) thitmonst(mtmp, uwep, 1, TRUE);
 		return (1);
 	    }
 	    /* FALL THROUGH */

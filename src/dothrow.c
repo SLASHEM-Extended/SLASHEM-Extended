@@ -1565,7 +1565,7 @@ int thrown;
 		}
 		(void) snuff_candle(obj);
 		notonhead = (bhitpos.x != mon->mx || bhitpos.y != mon->my);
-		obj_gone = thitmonst(mon, obj, thrown);
+		obj_gone = thitmonst(mon, obj, thrown, FALSE);
 		/* Monster may have been tamed; this frees old mon */
 		mon = m_at(bhitpos.x, bhitpos.y);
 
@@ -1800,10 +1800,11 @@ struct monst *mon;
  * 0 if caller must take care of it.
  */
 int
-thitmonst(mon, obj, thrown)
+thitmonst(mon, obj, thrown, polearming)
 register struct monst *mon;
 register struct obj   *obj;
 int thrown;
+boolean polearming;
 {
 	register int	tmp; /* Base chance to hit */
 	register int	disttmp; /* distance modifier */
@@ -2402,7 +2403,7 @@ int thrown;
 	    return(0);
 	}
 
-	if (befriend_with_obj(mon->data, obj)) goto befriended;
+	if (!polearming && befriend_with_obj(mon->data, obj)) goto befriended;
 
 	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || is_weptool(obj) ||
 		obj->oclass == GEM_CLASS) {
@@ -2654,7 +2655,7 @@ int thrown;
 	    potionhit(mon, obj, TRUE);
 	    return 1;
 
-	} else if (befriend_with_obj(mon->data, obj) || (obj->oclass == FOOD_CLASS && mon->egotype_domestic) || (otyp == KELP_FROND && mon->egotype_petty) || (mon->mtame && dogfood(mon, obj) <= ACCFOOD)) {
+	} else if (!polearming && (befriend_with_obj(mon->data, obj) || (obj->oclass == FOOD_CLASS && mon->egotype_domestic) || (otyp == KELP_FROND && mon->egotype_petty) || (mon->mtame && dogfood(mon, obj) <= ACCFOOD)) ) {
 befriended:
 
 		if (tamedog(mon, obj, FALSE)) return 1; /* obj is gone */
