@@ -2362,6 +2362,8 @@ boolean self;
 		pline("%s zaps %s!", Monnam(mtmp), an(xname(otmp)));
 		stop_occupation();
 	}
+
+	u.cnd_monwandcount++;
 }
 
 STATIC_OVL void
@@ -2373,6 +2375,8 @@ struct obj *otmp;
 	char onambuf[BUFSZ];
 	short saverole;
 	unsigned savebknown;
+
+	u.cnd_monscrollcount++;
 
 	if (!vismon && !flags.soundok)
 	    return;		/* no feedback */
@@ -2416,6 +2420,8 @@ struct obj *otmp;
 			You_hear("a chugging sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Odin men'she zel'ya, kotoryye vy mozhete ispol'zovat', i yest' bol'shaya veroyatnost' togo, chto eto bylo chto-to ochen' polezno. Potomu chto vy byli slishkom medlennymi, kha-kha!" : "Gluckgluckgluckgluck!");
 		}
+
+	u.cnd_monpotioncount++;
 }
 
 /* Defines for various types of stuff.  The order in which monsters prefer
@@ -7207,6 +7213,7 @@ struct monst *mtmp;
 
 						dropx(otmpi);
 					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+						u.cnd_itemportcount++;
 					}
 
 				    }
@@ -9176,6 +9183,7 @@ newboss:
 
 						dropx(otmpi);
 					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+						u.cnd_itemportcount++;
 					}
 
 				    }

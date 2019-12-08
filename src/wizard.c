@@ -1597,6 +1597,7 @@ register struct monst	*mtmp;
 	    if (!rn2(5)) { /* typical bad guy action */
 		pline("%s laughs fiendishly.", Monnam(mtmp));
 		verbalize("%s", random_your_mother[rn2(SIZE(random_your_mother))]);
+		u.cnd_mommacount++;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -1688,6 +1689,7 @@ register struct monst	*mtmp;
 	    if (!rn2(5)) {
 		pline("%s casts aspersions on your ancestry.", Monnam(mtmp));
 		verbalize("%s", random_your_mother[rn2(SIZE(random_your_mother))]);
+		u.cnd_mommacount++;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -1743,6 +1745,7 @@ void
 randomcuss()
 {
 	verbalize("%s", random_your_mother[rn2(SIZE(random_your_mother))]);
+	u.cnd_mommacount++;
 }
 
 #endif /* OVLB */

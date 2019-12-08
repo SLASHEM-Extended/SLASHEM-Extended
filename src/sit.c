@@ -1031,10 +1031,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 10 : if (HFire_resistance & INTRINSIC) {
 			HFire_resistance &= ~INTRINSIC;
 			You_feel("warmer.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFire_resistance & TIMEOUT) {
 			HFire_resistance &= ~TIMEOUT;
 			You_feel("warmer.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 11 : 
@@ -1045,10 +1047,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 16 : if (HTeleportation & INTRINSIC) {
 			HTeleportation &= ~INTRINSIC;
 			You_feel("less jumpy.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HTeleportation & TIMEOUT) {
 			HTeleportation &= ~TIMEOUT;
 			You_feel("less jumpy.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 17 : 
@@ -1063,10 +1067,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 26 : if (HPoison_resistance & INTRINSIC) {
 			HPoison_resistance &= ~INTRINSIC;
 			You_feel("a little sick!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HPoison_resistance & TIMEOUT) {
 			HPoison_resistance &= ~TIMEOUT;
 			You_feel("a little sick!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 27 : 
@@ -1083,12 +1089,14 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			if (Blind && !Blind_telepat)
 			    see_monsters();	/* Can't sense mons anymore! */
 			Your("senses fail!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HTelepat & TIMEOUT) {
 			HTelepat &= ~TIMEOUT;
 			if (Blind && !Blind_telepat)
 			    see_monsters();	/* Can't sense mons anymore! */
 			Your("senses fail!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 37 : 
@@ -1103,10 +1111,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 46 : if (HCold_resistance & INTRINSIC) {
 			HCold_resistance &= ~INTRINSIC;
 			You_feel("cooler.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HCold_resistance & TIMEOUT) {
 			HCold_resistance &= ~TIMEOUT;
 			You_feel("cooler.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 47 : 
@@ -1121,10 +1131,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 56 : if (HInvis & INTRINSIC) {
 			HInvis &= ~INTRINSIC;
 			You_feel("paranoid.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HInvis & TIMEOUT) {
 			HInvis &= ~TIMEOUT;
 			You_feel("paranoid.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 57 : 
@@ -1138,13 +1150,13 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 65 : 
 	case 66 : if (HSee_invisible & INTRINSIC) {
 			HSee_invisible &= ~INTRINSIC;
-			You("%s!", FunnyHallu ? "tawt you taw a puttie tat"
-						: "thought you saw something");
+			You("%s!", FunnyHallu ? "tawt you taw a puttie tat" : "thought you saw something");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSee_invisible & TIMEOUT) {
 			HSee_invisible &= ~TIMEOUT;
-			You("%s!", FunnyHallu ? "tawt you taw a puttie tat"
-						: "thought you saw something");
+			You("%s!", FunnyHallu ? "tawt you taw a puttie tat" : "thought you saw something");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 67 : 
@@ -1159,10 +1171,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 76 : if (HFast & INTRINSIC) {
 			HFast &= ~INTRINSIC;
 			You_feel("slower.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFast & TIMEOUT) {
 			HFast &= ~TIMEOUT;
 			You_feel("slower.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 77 : 
@@ -1177,19 +1191,23 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 86 : if (HStealth & INTRINSIC) {
 			HStealth &= ~INTRINSIC;
 			You_feel("clumsy.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HStealth & TIMEOUT) {
 			HStealth &= ~TIMEOUT;
 			You_feel("clumsy.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 87: if (HProtection & INTRINSIC) {
 			HProtection &= ~INTRINSIC;
 			You_feel("vulnerable.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HProtection & TIMEOUT) {
 			HProtection &= ~TIMEOUT;
 			You_feel("vulnerable.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 88 : 
@@ -1199,10 +1217,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 92: if (HAggravate_monster & INTRINSIC) {
 			HAggravate_monster &= ~INTRINSIC;
 			You_feel("less attractive.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HAggravate_monster & TIMEOUT) {
 			HAggravate_monster &= ~TIMEOUT;
 			You_feel("less attractive.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 93 : 
@@ -1217,10 +1237,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 102: if (HSleep_resistance & INTRINSIC) {
 			HSleep_resistance &= ~INTRINSIC;
 			You_feel("tired all of a sudden.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSleep_resistance & TIMEOUT) {
 			HSleep_resistance &= ~TIMEOUT;
 			You_feel("tired all of a sudden.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 103 : 
@@ -1235,10 +1257,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 112: if (HDisint_resistance & INTRINSIC) {
 			HDisint_resistance &= ~INTRINSIC;
 			You_feel("like you're going to break apart.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDisint_resistance & TIMEOUT) {
 			HDisint_resistance &= ~TIMEOUT;
 			You_feel("like you're going to break apart.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 113 : 
@@ -1253,28 +1277,34 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 122: if (HShock_resistance & INTRINSIC) {
 			HShock_resistance &= ~INTRINSIC;
 			You_feel("like someone has zapped you.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HShock_resistance & TIMEOUT) {
 			HShock_resistance &= ~TIMEOUT;
 			You_feel("like someone has zapped you.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 123: if (HDrain_resistance & INTRINSIC) {
 			HDrain_resistance &= ~INTRINSIC;
 			You_feel("like someone is sucking out your life-force.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDrain_resistance & TIMEOUT) {
 			HDrain_resistance &= ~TIMEOUT;
 			You_feel("like someone is sucking out your life-force.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 124: if (HSick_resistance & INTRINSIC) {
 			HSick_resistance &= ~INTRINSIC;
 			You_feel("no longer immune to diseases!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSick_resistance & TIMEOUT) {
 			HSick_resistance &= ~TIMEOUT;
 			You_feel("no longer immune to diseases!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 125 : 
@@ -1282,10 +1312,12 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 127: if (HWarning & INTRINSIC) {
 			HWarning &= ~INTRINSIC;
 			You_feel("that your radar has just stopped working!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HWarning & TIMEOUT) {
 			HWarning &= ~TIMEOUT;
 			You_feel("that your radar has just stopped working!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 128 : 
@@ -1297,46 +1329,56 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 134: if (HSearching & INTRINSIC) {
 			HSearching &= ~INTRINSIC;
 			You_feel("unable to find something you lost!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSearching & TIMEOUT) {
 			HSearching &= ~TIMEOUT;
 			You_feel("unable to find something you lost!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 135: if (HClairvoyant & INTRINSIC) {
 			HClairvoyant &= ~INTRINSIC;
 			You_feel("a loss of mental capabilities!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HClairvoyant & TIMEOUT) {
 			HClairvoyant &= ~TIMEOUT;
 			You_feel("a loss of mental capabilities!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 136: if (HInfravision & INTRINSIC) {
 			HInfravision &= ~INTRINSIC;
 			You_feel("shrouded in darkness.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HInfravision & TIMEOUT) {
 			HInfravision &= ~TIMEOUT;
 			You_feel("shrouded in darkness.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 137: if (HDetect_monsters & INTRINSIC) {
 			HDetect_monsters &= ~INTRINSIC;
 			You_feel("that you can no longer sense monsters.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDetect_monsters & TIMEOUT) {
 			HDetect_monsters &= ~TIMEOUT;
 			You_feel("that you can no longer sense monsters.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 138: if (HJumping & INTRINSIC) {
 			HJumping &= ~INTRINSIC;
 			You_feel("your legs shrinking.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HJumping & TIMEOUT) {
 			HJumping &= ~TIMEOUT;
 			You_feel("your legs shrinking.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 139 : 
@@ -1351,55 +1393,67 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 148: if (HTeleport_control & INTRINSIC) {
 			HTeleport_control &= ~INTRINSIC;
 			You_feel("unable to control where you're going.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HTeleport_control & TIMEOUT) {
 			HTeleport_control &= ~TIMEOUT;
 			You_feel("unable to control where you're going.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 149: if (HMagical_breathing & INTRINSIC) {
 			HMagical_breathing &= ~INTRINSIC;
 			You_feel("you suddenly need to breathe!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HMagical_breathing & TIMEOUT) {
 			HMagical_breathing &= ~TIMEOUT;
 			You_feel("you suddenly need to breathe!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 150: if (HRegeneration & INTRINSIC) {
 			HRegeneration &= ~INTRINSIC;
 			You_feel("your wounds are healing slower!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HRegeneration & TIMEOUT) {
 			HRegeneration &= ~TIMEOUT;
 			You_feel("your wounds are healing slower!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 151: if (HEnergy_regeneration & INTRINSIC) {
 			HEnergy_regeneration &= ~INTRINSIC;
 			You_feel("a loss of mystic power!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HEnergy_regeneration & TIMEOUT) {
 			HEnergy_regeneration &= ~TIMEOUT;
 			You_feel("a loss of mystic power!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 152: if (HPolymorph & INTRINSIC) {
 			HPolymorph &= ~INTRINSIC;
 			You_feel("unable to change form!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HPolymorph & TIMEOUT) {
 			HPolymorph &= ~TIMEOUT;
 			You_feel("unable to change form!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 153: if (HPolymorph_control & INTRINSIC) {
 			HPolymorph_control &= ~INTRINSIC;
 			You_feel("less control over your own body.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HPolymorph_control & TIMEOUT) {
 			HPolymorph_control &= ~TIMEOUT;
 			You_feel("less control over your own body.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 154 : 
@@ -1408,410 +1462,500 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 157: if (HAcid_resistance & INTRINSIC) {
 			HAcid_resistance &= ~INTRINSIC;
 			You_feel("worried about corrosion!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HAcid_resistance & TIMEOUT) {
 			HAcid_resistance &= ~TIMEOUT;
 			You_feel("worried about corrosion!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 158: if (HFumbling & INTRINSIC) {
 			HFumbling &= ~INTRINSIC;
 			You_feel("less clumsy.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFumbling & TIMEOUT) {
 			HFumbling &= ~TIMEOUT;
 			You_feel("less clumsy.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 159: if (HSleeping & INTRINSIC) {
 			HSleeping &= ~INTRINSIC;
 			You_feel("like you just had some coffee.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSleeping & TIMEOUT) {
 			HSleeping &= ~TIMEOUT;
 			You_feel("like you just had some coffee.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 160: if (HHunger & INTRINSIC) {
 			HHunger &= ~INTRINSIC;
 			You_feel("like you just ate a chunk of meat.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HHunger & TIMEOUT) {
 			HHunger &= ~TIMEOUT;
 			You_feel("like you just ate a chunk of meat.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 161: if (HConflict & INTRINSIC) {
 			HConflict &= ~INTRINSIC;
 			You_feel("more acceptable.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HConflict & TIMEOUT) {
 			HConflict &= ~TIMEOUT;
 			You_feel("more acceptable.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 162: if (HSlow_digestion & INTRINSIC) {
 			HSlow_digestion &= ~INTRINSIC;
 			You_feel("like you're burning calories faster.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSlow_digestion & TIMEOUT) {
 			HSlow_digestion &= ~TIMEOUT;
 			You_feel("like you're burning calories faster.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 163: if (HFlying & INTRINSIC) {
 			HFlying &= ~INTRINSIC;
 			You_feel("like you just lost your wings!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFlying & TIMEOUT) {
 			HFlying &= ~TIMEOUT;
 			You_feel("like you just lost your wings!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 164: if (HPasses_walls & INTRINSIC) {
 			HPasses_walls &= ~INTRINSIC;
 			You_feel("less ethereal!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HPasses_walls & TIMEOUT) {
 			HPasses_walls &= ~TIMEOUT;
 			You_feel("less ethereal!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 165: if (HAntimagic & INTRINSIC) {
 			HAntimagic &= ~INTRINSIC;
 			You_feel("less protected from magic!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HAntimagic & TIMEOUT) {
 			HAntimagic &= ~TIMEOUT;
 			You_feel("less protected from magic!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 166: if (HReflecting & INTRINSIC) {
 			HReflecting &= ~INTRINSIC;
 			You_feel("less reflexive!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HReflecting & TIMEOUT) {
 			HReflecting &= ~TIMEOUT;
 			You_feel("less reflexive!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 167: if (Blinded & INTRINSIC) {
 			Blinded &= ~INTRINSIC;
 			You_feel("visually clear!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (Blinded & TIMEOUT) {
 			Blinded &= ~TIMEOUT;
 			You_feel("visually clear!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 168: if (Glib & INTRINSIC) {
 			Glib &= ~INTRINSIC;
 			You_feel("heavy-handed!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (Glib & TIMEOUT) {
 			Glib &= ~TIMEOUT;
 			You_feel("heavy-handed!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 169: if (HSwimming & INTRINSIC) {
 			HSwimming &= ~INTRINSIC;
 			You_feel("less aquatic!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSwimming & TIMEOUT) {
 			HSwimming &= ~TIMEOUT;
 			You_feel("less aquatic!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 170: if (HNumbed & INTRINSIC) {
 			HNumbed &= ~INTRINSIC;
 			You_feel("your body parts relax.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HNumbed & TIMEOUT) {
 			HNumbed &= ~TIMEOUT;
 			You_feel("your body parts relax.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 171: if (HFree_action & INTRINSIC) {
 			HFree_action &= ~INTRINSIC;
 			You_feel("a loss of freedom!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFree_action & TIMEOUT) {
 			HFree_action &= ~TIMEOUT;
 			You_feel("a loss of freedom!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 172: if (HFeared & INTRINSIC) {
 			HFeared &= ~INTRINSIC;
 			You_feel("less afraid.");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFeared & TIMEOUT) {
 			HFeared &= ~TIMEOUT;
 			You_feel("less afraid.");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 173: if (HFear_resistance & INTRINSIC) {
 			HFear_resistance &= ~INTRINSIC;
 			You_feel("a little anxious!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFear_resistance & TIMEOUT) {
 			HFear_resistance &= ~TIMEOUT;
 			You_feel("a little anxious!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 174: if (u.uhitincxtra != 0) {
 			u.uhitinc -= u.uhitincxtra;
 			u.uhitincxtra = 0;
 			You_feel("your to-hit rating changing!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 175: if (u.udamincxtra != 0) {
 			u.udaminc -= u.udamincxtra;
 			u.udamincxtra = 0;
 			You_feel("your damage rating changing!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 176: if (HKeen_memory & INTRINSIC) {
 			HKeen_memory &= ~INTRINSIC;
 			You_feel("a case of selective amnesia...");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HKeen_memory & TIMEOUT) {
 			HKeen_memory &= ~TIMEOUT;
 			You_feel("a case of selective amnesia...");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 177: if (HVersus_curses & INTRINSIC) {
 			HVersus_curses &= ~INTRINSIC;
 			You_feel("cursed!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HVersus_curses & TIMEOUT) {
 			HVersus_curses &= ~TIMEOUT;
 			You_feel("cursed!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 178: if (HStun_resist & INTRINSIC) {
 			HStun_resist &= ~INTRINSIC;
 			You_feel("a little stunned!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HStun_resist & TIMEOUT) {
 			HStun_resist &= ~TIMEOUT;
 			You_feel("a little stunned!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 179: if (HConf_resist & INTRINSIC) {
 			HConf_resist &= ~INTRINSIC;
 			You_feel("a little confused!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HConf_resist & TIMEOUT) {
 			HConf_resist &= ~TIMEOUT;
 			You_feel("a little confused!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 180: if (HDouble_attack & INTRINSIC) {
 			HDouble_attack &= ~INTRINSIC;
 			You_feel("your attacks becoming slower!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDouble_attack & TIMEOUT) {
 			HDouble_attack &= ~TIMEOUT;
 			You_feel("your attacks becoming slower!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 181: if (HQuad_attack & INTRINSIC) {
 			HQuad_attack &= ~INTRINSIC;
 			You_feel("your attacks becoming a lot slower!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HQuad_attack & TIMEOUT) {
 			HQuad_attack &= ~TIMEOUT;
 			You_feel("your attacks becoming a lot slower!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 182: if (HExtra_wpn_practice & INTRINSIC) {
 			HExtra_wpn_practice &= ~INTRINSIC;
 			You_feel("less able to learn new stuff!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HExtra_wpn_practice & TIMEOUT) {
 			HExtra_wpn_practice &= ~TIMEOUT;
 			You_feel("less able to learn new stuff!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 183: if (HDeath_resistance & INTRINSIC) {
 			HDeath_resistance &= ~INTRINSIC;
 			You_feel("a little dead!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDeath_resistance & TIMEOUT) {
 			HDeath_resistance &= ~TIMEOUT;
 			You_feel("a little dead!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 184: if (HDisplaced & INTRINSIC) {
 			HDisplaced &= ~INTRINSIC;
 			You_feel("a little exposed!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDisplaced & TIMEOUT) {
 			HDisplaced &= ~TIMEOUT;
 			You_feel("a little exposed!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 185: if (HPsi_resist & INTRINSIC) {
 			HPsi_resist &= ~INTRINSIC;
 			You_feel("empty-minded!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HPsi_resist & TIMEOUT) {
 			HPsi_resist &= ~TIMEOUT;
 			You_feel("empty-minded!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 186: if (HSight_bonus & INTRINSIC) {
 			HSight_bonus &= ~INTRINSIC;
 			You_feel("less perceptive!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSight_bonus & TIMEOUT) {
 			HSight_bonus &= ~TIMEOUT;
 			You_feel("less perceptive!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 187:
 	case 188: if (HManaleech & INTRINSIC) {
 			HManaleech &= ~INTRINSIC;
 			You_feel("less magically attuned!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HManaleech & TIMEOUT) {
 			HManaleech &= ~TIMEOUT;
 			You_feel("less magically attuned!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 189: if (HMap_amnesia & INTRINSIC) {
 			HMap_amnesia &= ~INTRINSIC;
 			You_feel("less forgetful!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HMap_amnesia & TIMEOUT) {
 			HMap_amnesia &= ~TIMEOUT;
 			You_feel("less forgetful!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 190: if (HPeacevision & INTRINSIC) {
 			HPeacevision &= ~INTRINSIC;
 			You_feel("less peaceful!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HPeacevision & TIMEOUT) {
 			HPeacevision &= ~TIMEOUT;
 			You_feel("less peaceful!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 191: if (HHallu_party & INTRINSIC) {
 			HHallu_party &= ~INTRINSIC;
 			You_feel("that the party is over!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HHallu_party & TIMEOUT) {
 			HHallu_party &= ~TIMEOUT;
 			You_feel("that the party is over!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 192: if (HDrunken_boxing & INTRINSIC) {
 			HDrunken_boxing &= ~INTRINSIC;
 			You_feel("a little drunk!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDrunken_boxing & TIMEOUT) {
 			HDrunken_boxing &= ~TIMEOUT;
 			You_feel("a little drunk!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 193: if (HStunnopathy & INTRINSIC) {
 			HStunnopathy &= ~INTRINSIC;
 			You_feel("an uncontrolled stunning!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HStunnopathy & TIMEOUT) {
 			HStunnopathy &= ~TIMEOUT;
 			You_feel("an uncontrolled stunning!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 194: if (HNumbopathy & INTRINSIC) {
 			HNumbopathy &= ~INTRINSIC;
 			You_feel("numbness spreading through your body!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HNumbopathy & TIMEOUT) {
 			HNumbopathy &= ~TIMEOUT;
 			You_feel("numbness spreading through your body!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 195: if (HDimmopathy & INTRINSIC) {
 			HDimmopathy &= ~INTRINSIC;
 			You_feel(FunnyHallu ? "that your marriage is no longer safe..." : "worried about the future!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDimmopathy & TIMEOUT) {
 			HDimmopathy &= ~TIMEOUT;
 			You_feel(FunnyHallu ? "that your marriage is no longer safe..." : "worried about the future!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 196: if (HFreezopathy & INTRINSIC) {
 			HFreezopathy &= ~INTRINSIC;
 			You_feel("ice-cold!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFreezopathy & TIMEOUT) {
 			HFreezopathy &= ~TIMEOUT;
 			You_feel("ice-cold!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 197: if (HStoned_chiller & INTRINSIC) {
 			HStoned_chiller &= ~INTRINSIC;
 			You_feel("that you ain't gonna get time for relaxing anymore!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HStoned_chiller & TIMEOUT) {
 			HStoned_chiller &= ~TIMEOUT;
 			You_feel("that you ain't gonna get time for relaxing anymore!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 198: if (HCorrosivity & INTRINSIC) {
 			HCorrosivity &= ~INTRINSIC;
 			You_feel("the protective layer on your skin disappearing!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HCorrosivity & TIMEOUT) {
 			HCorrosivity &= ~TIMEOUT;
 			You_feel("the protective layer on your skin disappearing!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 199: if (HFear_factor & INTRINSIC) {
 			HFear_factor &= ~INTRINSIC;
 			You_feel("fearful!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFear_factor & TIMEOUT) {
 			HFear_factor &= ~TIMEOUT;
 			You_feel("fearful!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 200: if (HBurnopathy & INTRINSIC) {
 			HBurnopathy &= ~INTRINSIC;
 			You_feel("red-hot!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HBurnopathy & TIMEOUT) {
 			HBurnopathy &= ~TIMEOUT;
 			You_feel("red-hot!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 201: if (HSickopathy & INTRINSIC) {
 			HSickopathy &= ~INTRINSIC;
 			You_feel("a loss of medical knowledge!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HSickopathy & TIMEOUT) {
 			HSickopathy &= ~TIMEOUT;
 			You_feel("a loss of medical knowledge!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 202: if (HWonderlegs & INTRINSIC) {
 			HWonderlegs &= ~INTRINSIC;
 			You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HWonderlegs & TIMEOUT) {
 			HWonderlegs &= ~TIMEOUT;
 			You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 203: if (HGlib_combat & INTRINSIC) {
 			HGlib_combat &= ~INTRINSIC;
 			You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HGlib_combat & TIMEOUT) {
 			HGlib_combat &= ~TIMEOUT;
 			You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 204:
@@ -1819,91 +1963,111 @@ attrcurse()			/* remove a random INTRINSIC ability */
 	case 206: if (HStone_resistance & INTRINSIC) {
 			HStone_resistance &= ~INTRINSIC;
 			You_feel("less solid!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HStone_resistance & TIMEOUT) {
 			HStone_resistance &= ~TIMEOUT;
 			You_feel("less solid!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 207: if (HCont_resist & INTRINSIC) {
 			HCont_resist &= ~INTRINSIC;
 			You_feel("less resistant to contamination!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HCont_resist & TIMEOUT) {
 			HCont_resist &= ~TIMEOUT;
 			You_feel("less resistant to contamination!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 208: if (HDiscount_action & INTRINSIC) {
 			HDiscount_action &= ~INTRINSIC;
 			You_feel("less resistant to paralysis!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDiscount_action & TIMEOUT) {
 			HDiscount_action &= ~TIMEOUT;
 			You_feel("less resistant to paralysis!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 209: if (HFull_nutrient & INTRINSIC) {
 			HFull_nutrient &= ~INTRINSIC;
 			You_feel("a hole in your %s!", body_part(STOMACH));
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HFull_nutrient & TIMEOUT) {
 			HFull_nutrient &= ~TIMEOUT;
 			You_feel("a hole in your %s!", body_part(STOMACH));
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 210: if (HTechnicality & INTRINSIC) {
 			HTechnicality &= ~INTRINSIC;
 			You_feel("less capable of using your techniques...");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HTechnicality & TIMEOUT) {
 			HTechnicality &= ~TIMEOUT;
 			You_feel("less capable of using your techniques...");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 211: if (HHalf_spell_damage & INTRINSIC) {
 			HHalf_spell_damage &= ~INTRINSIC;
 			You_feel("vulnerable to spells!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HHalf_spell_damage & TIMEOUT) {
 			HHalf_spell_damage &= ~TIMEOUT;
 			You_feel("vulnerable to spells!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 212: if (HHalf_physical_damage & INTRINSIC) {
 			HHalf_physical_damage &= ~INTRINSIC;
 			You_feel("vulnerable to damage!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HHalf_physical_damage & TIMEOUT) {
 			HHalf_physical_damage &= ~TIMEOUT;
 			You_feel("vulnerable to damage!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 213: if (HUseTheForce & INTRINSIC) {
 			HUseTheForce &= ~INTRINSIC;
 			You_feel("that you lost your jedi powers!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HUseTheForce & TIMEOUT) {
 			HUseTheForce &= ~TIMEOUT;
 			You_feel("that you lost your jedi powers!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 214: if (HScentView & INTRINSIC) {
 			HScentView &= ~INTRINSIC;
 			You_feel("unable to smell things!");
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HScentView & TIMEOUT) {
 			HScentView &= ~TIMEOUT;
 			You_feel("unable to smell things!");
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	case 215: if (HDiminishedBleeding & INTRINSIC) {
 			HDiminishedBleeding &= ~INTRINSIC;
 			You_feel("your %s coagulants failing!", body_part(BLOOD));
+			u.cnd_intrinsiclosscount++;
 		}
 		if (HDiminishedBleeding & TIMEOUT) {
 			HDiminishedBleeding &= ~TIMEOUT;
 			You_feel("your %s coagulants failing!", body_part(BLOOD));
+			u.cnd_intrinsiclosscount++;
 		}
 		break;
 	default: break;

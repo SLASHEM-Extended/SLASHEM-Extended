@@ -597,6 +597,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -610,6 +611,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -623,6 +625,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -636,6 +639,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -649,6 +653,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -662,6 +667,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -1315,6 +1321,7 @@ nh_timeout()
 
 				dropx(otmpi);
 			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 		    }
 		}
@@ -1368,6 +1375,7 @@ nh_timeout()
 
 				dropx(otmpi);
 			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 		    }
 		}
@@ -1421,6 +1429,7 @@ nh_timeout()
 
 				dropx(otmpi);
 			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 		    }
 		}
@@ -1474,6 +1483,7 @@ nh_timeout()
 
 				dropx(otmpi);
 			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 		    }
 		}
@@ -1527,6 +1537,7 @@ nh_timeout()
 
 				dropx(otmpi);
 			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 		    }
 		}
@@ -1580,6 +1591,7 @@ nh_timeout()
 
 				dropx(otmpi);
 			      if (otmpi && otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 		    }
 		}
@@ -1593,6 +1605,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -1606,6 +1619,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -1619,6 +1633,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }
@@ -1632,6 +1647,7 @@ nh_timeout()
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
+			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
 		}
 	    }

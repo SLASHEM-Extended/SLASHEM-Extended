@@ -904,6 +904,7 @@ doread()
 	    else
 		pline("Being confused, you mis%s the magic words...",
 			is_silent(youmonst.data) ? "understand" : "pronounce");
+	    u.cnd_confusedscrollread++;
 	  }
 	}
 
@@ -5434,6 +5435,7 @@ materialchoice3:
 
 						dropx(otmpi);
 					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+						u.cnd_itemportcount++;
 					}
 
 				    }

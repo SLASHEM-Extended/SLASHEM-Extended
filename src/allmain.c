@@ -2588,6 +2588,7 @@ trapsdone:
 		if (ManlerIsChasing && (u.manlerx >= 0 && u.manlery >= 0) ) {
 			if (u.manlerx == u.ux && u.manlery == u.uy) {
 				pline("Daedeldidaet! The manler caught you...");
+				u.cnd_manlergetcount++;
 				badeffect();
 				badeffect();
 				badeffect();
@@ -2647,6 +2648,7 @@ trapsdone:
 
 			if (u.manlerx == u.ux && u.manlery == u.uy) {
 				pline("Daedeldidaet! The manler caught you...");
+				u.cnd_manlergetcount++;
 				badeffect();
 				badeffect();
 				badeffect();
@@ -7860,15 +7862,19 @@ newboss:
 	
 				if (!rn2(4000)) {
 					otmpi->bknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->dknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->rknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->known = FALSE;
+					u.cnd_unidentifycount++;
 				}
 			    }
 			}
@@ -7883,15 +7889,19 @@ newboss:
 	
 				if (!rn2(4000)) {
 					otmpi->bknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->dknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->rknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->known = FALSE;
+					u.cnd_unidentifycount++;
 				}
 			    }
 			}
@@ -7906,15 +7916,19 @@ newboss:
 	
 				if (!rn2(4000)) {
 					otmpi->bknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->dknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->rknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->known = FALSE;
+					u.cnd_unidentifycount++;
 				}
 			    }
 			}
@@ -8266,15 +8280,19 @@ newboss:
 	
 				if (!rn2(4000)) {
 					otmpi->bknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->dknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->rknown = FALSE;
+					u.cnd_unidentifycount++;
 				}
 				if (!rn2(4000)) {
 					otmpi->known = FALSE;
+					u.cnd_unidentifycount++;
 				}
 			    }
 			}
@@ -8284,7 +8302,10 @@ newboss:
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			if (u.dehydrationtime < 1) u.dehydrationtime = moves + 1001;
 			if ((u.dehydrationtime - moves) == 100) You("are beginning to feel thirsty.");
-			if ((u.dehydrationtime - moves) == 0) You("are dehydrated, your vision begins to blur...");
+			if ((u.dehydrationtime - moves) == 0) {
+				You("are dehydrated, your vision begins to blur...");
+				u.cnd_dehydratedcount++;
+			}
 		} else {
 			u.dehydrationtime = 0;
 		}

@@ -82,6 +82,10 @@ boolean ownloc; /* TRUE = summon wherever I am, FALSE = summon at player's locat
 		EPRI(mtmp)->shralign = atyp;
 	    }
 	    cnt--;
+
+	    u.cnd_demongates++;
+	    if (dtype >= PM_JUIBLEX && dtype <= PM_YEENOGHU) u.cnd_demonlordgates++;
+	    if (dtype >= PM_ORCUS && dtype <= PM_DEMOGORGON) u.cnd_demonprincegates++;
 	}
 }
 

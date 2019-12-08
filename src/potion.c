@@ -1616,6 +1616,8 @@ badeffect()
 		}
 	}
 
+	u.cnd_badeffectcount++;
+
 	switch (rnd(451)) {
 
 		case 1:
@@ -2890,6 +2892,8 @@ reallybadeffect()
 			return;
 		}
 	}
+
+	u.cnd_reallybadeffectcount++;
 
 	switch (rnd(92)) {
 
@@ -5098,6 +5102,7 @@ newbadtry:
 
 	if (otmp) {
 
+		u.cnd_badequipcount++;
 		if (otmp->oclass == WEAPON_CLASS || is_weptool(otmp)) {
 			if (uwep) setnotworn(uwep);
 			if (bimanual(otmp)) {
@@ -5236,6 +5241,8 @@ newbadheeltry:
 	/* try to equip it! */
 
 	if (otmp) {
+
+		u.cnd_badheelcount++;
 
 		if (is_boots(otmp)) {
 			if (uarmf) remove_worn_item(uarmf, TRUE);
@@ -6281,6 +6288,7 @@ peffects(otmp)
 	if ( (DSTWProblem || u.uprops[DSTW_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_UNIMPLEMENTED_FEATURE) || have_dstwstone() ) && !rn2(5)) {
 
 		pline("The potion doesn't seem to work!"); /* DSTW = abbreviation for "doesn't seem to work" --Amy */
+		u.cnd_nonworkpotioncount++;
 		return(-1);
 
 	}

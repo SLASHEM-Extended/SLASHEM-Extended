@@ -4178,6 +4178,7 @@ secureidchoice:
 
 						dropx(otmpi);
 					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+						u.cnd_itemportcount++;
 					}
 
 				    }

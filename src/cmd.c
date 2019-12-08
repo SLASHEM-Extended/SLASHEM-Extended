@@ -10966,6 +10966,10 @@ int final;
 		sprintf(buf, "%ld time%s", u.cnd_wouwoucount, plur(u.cnd_wouwoucount));
 		enl_msg(You_, "heard the frightening wouwou taunts ", "heard the frightening wouwou taunts ", buf);
 	}
+	if (u.cnd_supermancount) {
+		sprintf(buf, "%ld time%s", u.cnd_supermancount, plur(u.cnd_supermancount));
+		enl_msg(You_, "heard superman taunts ", "heard superman taunts ", buf);
+	}
 	if (u.cnd_perfumecount) {
 		sprintf(buf, "%ld time%s", u.cnd_perfumecount, plur(u.cnd_perfumecount));
 		enl_msg(You_, "inhaled scentful feminine perfume ", "inhaled scentful feminine perfume ", buf);
@@ -11249,6 +11253,126 @@ int final;
 		sprintf(buf, "%ld item%s due to polymorphing into bad monsters", u.cnd_polybreak, plur(u.cnd_polybreak));
 		enl_msg(You_, "have broken ", "broke ", buf);
 	}
+	if (u.cnd_monpotioncount && final) {
+		sprintf(buf, "%ld potion%s", u.cnd_monpotioncount, plur(u.cnd_monpotioncount));
+		enl_msg(You_, "allowed monsters to quaff ", "allowed monsters to quaff ", buf);
+	}
+	if (u.cnd_monscrollcount && final) {
+		sprintf(buf, "%ld scroll%s", u.cnd_monscrollcount, plur(u.cnd_monscrollcount));
+		enl_msg(You_, "allowed monsters to read ", "allowed monsters to read ", buf);
+	}
+	if (u.cnd_monwandcount && final) {
+		sprintf(buf, "%ld wand%s", u.cnd_monwandcount, plur(u.cnd_monwandcount));
+		enl_msg(You_, "allowed monsters to zap ", "allowed monsters to zap ", buf);
+	}
+	if (u.cnd_demongates && final) {
+		sprintf(buf, "%ld time%s", u.cnd_demongates, plur(u.cnd_demongates));
+		enl_msg(You_, "saw demons being gated in ", "saw demons being gated in ", buf);
+	}
+	if (u.cnd_demonlordgates && final) {
+		sprintf(buf, "%ld time%s", u.cnd_demonlordgates, plur(u.cnd_demonlordgates));
+		enl_msg(You_, "saw demon lords being gated in ", "saw demon lords being gated in ", buf);
+	}
+	if (u.cnd_demonprincegates && final) {
+		sprintf(buf, "%ld time%s", u.cnd_demonprincegates, plur(u.cnd_demonprincegates));
+		enl_msg(You_, "saw demon princes being gated in ", "saw demon princes being gated in ", buf);
+	}
+	if (u.cnd_artiblastcount) {
+		sprintf(buf, "%ld time%s", u.cnd_artiblastcount, plur(u.cnd_artiblastcount));
+		enl_msg(You_, "were blasted by artifacts ", "were blasted by artifacts ", buf);
+	}
+	if (u.cnd_moneatmetal && final) {
+		sprintf(buf, "%ld time%s", u.cnd_moneatmetal, plur(u.cnd_moneatmetal));
+		enl_msg(You_, "allowed monsters to eat metallic items ", "allowed monsters to eat metallic items ", buf);
+	}
+	if (u.cnd_moneatstone && final) {
+		sprintf(buf, "%ld time%s", u.cnd_moneatstone, plur(u.cnd_moneatstone));
+		enl_msg(You_, "allowed monsters to eat lithic items ", "allowed monsters to eat lithic items ", buf);
+	}
+	if (u.cnd_moneatorganic && final) {
+		sprintf(buf, "%ld time%s", u.cnd_moneatorganic, plur(u.cnd_moneatorganic));
+		enl_msg(You_, "allowed monsters to eat organic items ", "allowed monsters to eat organic items ", buf);
+	}
+	if (u.cnd_moneatall && final) {
+		sprintf(buf, "%ld time%s", u.cnd_moneatall, plur(u.cnd_moneatall));
+		enl_msg(You_, "allowed allivores to eat items ", "allowed allivores to eat items ", buf);
+	}
+	if (u.cnd_unidentifycount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_unidentifycount, plur(u.cnd_unidentifycount));
+		enl_msg(You_, "had your possessions unidentify themselves ", "had your possessions unidentify themselves ", buf);
+	}
+	if (u.cnd_dehydratedcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_dehydratedcount, plur(u.cnd_dehydratedcount));
+		enl_msg(You_, "became dehydrated ", "became dehydrated ", buf);
+	}
+	if (u.cnd_luckrollovercount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_luckrollovercount, plur(u.cnd_luckrollovercount));
+		enl_msg(You_, "had your luck roll over ", "had your luck roll over ", buf);
+	}
+	if (u.cnd_confusedscrollread && final) {
+		sprintf(buf, "%ld time%s", u.cnd_confusedscrollread, plur(u.cnd_confusedscrollread));
+		enl_msg(You_, "experienced confused scroll effects ", "experienced confused scroll effects ", buf);
+	}
+	if (u.cnd_nonworkpotioncount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_nonworkpotioncount, plur(u.cnd_nonworkpotioncount));
+		enl_msg(You_, "quaffed non-working potions ", "quaffed non-working potions ", buf);
+	}
+	if (u.cnd_stairstrapcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_stairstrapcount, plur(u.cnd_stairstrapcount));
+		enl_msg(You_, "encountered stairs traps ", "encountered stairs traps ", buf);
+	}
+	if (u.cnd_intrinsiclosscount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_intrinsiclosscount, plur(u.cnd_intrinsiclosscount));
+		enl_msg(You_, "lost intrinsics ", "lost intrinsics ", buf);
+	}
+	if (u.cnd_traprevealcount && final) {
+		sprintf(buf, "%ld trap%s", u.cnd_traprevealcount, plur(u.cnd_traprevealcount));
+		enl_msg(You_, "randomly revealed ", "randomly revealed ", buf);
+	}
+	if (u.cnd_badeffectcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_badeffectcount, plur(u.cnd_badeffectcount));
+		enl_msg(You_, "got hit by bad effects ", "got hit by bad effects ", buf);
+	}
+	if (u.cnd_reallybadeffectcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_reallybadeffectcount, plur(u.cnd_reallybadeffectcount));
+		enl_msg(You_, "got hit by really bad effects ", "got hit by really bad effects ", buf);
+	}
+	if (u.cnd_itemportcount && final) {
+		sprintf(buf, "%ld item%s teleported out of your inventory", u.cnd_itemportcount, plur(u.cnd_itemportcount));
+		enl_msg(You_, "had ", "had ", buf);
+	}
+	if (u.cnd_bonescount && final) {
+		sprintf(buf, "%ld bones level%s", u.cnd_bonescount, plur(u.cnd_bonescount));
+		enl_msg(You_, "encountered ", "encountered ", buf);
+	}
+	if (u.cnd_mommacount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_mommacount, plur(u.cnd_mommacount));
+		enl_msg(You_, "had to read insults against your momma ", "had to read insults against your momma ", buf);
+	}
+	if (u.cnd_badequipcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_badequipcount, plur(u.cnd_badequipcount));
+		enl_msg(You_, "were forced to equip bad items ", "were forced to equip bad items ", buf);
+	}
+	if (u.cnd_badarticount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_badarticount, plur(u.cnd_badarticount));
+		enl_msg(You_, "were forced to equip bad artifacts ", "were forced to equip bad artifacts ", buf);
+	}
+	if (u.cnd_badheelcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_badheelcount, plur(u.cnd_badheelcount));
+		enl_msg(You_, "were forced to equip bad high heels ", "were forced to equip bad high heels ", buf);
+	}
+	if (u.cnd_appearanceshufflingcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_appearanceshufflingcount, plur(u.cnd_appearanceshufflingcount));
+		enl_msg(You_, "encountered appearance shuffling ", "encountered appearance shuffling ", buf);
+	}
+	if (u.cnd_mysteriousforcecount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_mysteriousforcecount, plur(u.cnd_mysteriousforcecount));
+		enl_msg(You_, "got affected by the dirty mysterious dirt force full of dirt ", "got affected by the dirty mysterious dirt force full of dirt ", buf);
+	}
+	if (u.cnd_manlergetcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_manlergetcount, plur(u.cnd_manlergetcount));
+		enl_msg(You_, "were caught by the manler ", "were caught by the manler ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -11467,6 +11591,9 @@ int final;
 	sprintf(buf, "%ld time%s", u.cnd_wouwoucount, plur(u.cnd_wouwoucount));
 	dump("  You heard the frightening wouwou taunts ", buf);
 
+	sprintf(buf, "%ld time%s", u.cnd_supermancount, plur(u.cnd_supermancount));
+	dump("  You heard superman taunts ", buf);
+
 	sprintf(buf, "%ld time%s", u.cnd_perfumecount, plur(u.cnd_perfumecount));
 	dump("  You inhaled scentful feminine perfume ", buf);
 
@@ -11670,6 +11797,96 @@ int final;
 
 	sprintf(buf, "%ld item%s due to polymorphing into bad monsters", u.cnd_polybreak, plur(u.cnd_polybreak));
 	dump("  You broke ", buf);
+
+	sprintf(buf, "%ld potion%s", u.cnd_monpotioncount, plur(u.cnd_monpotioncount));
+	dump("  You allowed monsters to quaff ", buf);
+
+	sprintf(buf, "%ld scroll%s", u.cnd_monscrollcount, plur(u.cnd_monscrollcount));
+	dump("  You allowed monsters to read ", buf);
+
+	sprintf(buf, "%ld wand%s", u.cnd_monwandcount, plur(u.cnd_monwandcount));
+	dump("  You allowed monsters to zap ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_demongates, plur(u.cnd_demongates));
+	dump("  You saw demons being gated in ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_demonlordgates, plur(u.cnd_demonlordgates));
+	dump("  You saw demon lords being gated in ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_demonprincegates, plur(u.cnd_demonprincegates));
+	dump("  You saw demon princes being gated in ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_artiblastcount, plur(u.cnd_artiblastcount));
+	dump("  You were blasted by artifacts ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_moneatmetal, plur(u.cnd_moneatmetal));
+	dump("  You allowed monsters to eat metallic items ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_moneatstone, plur(u.cnd_moneatstone));
+	dump("  You allowed monsters to eat lithic items ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_moneatorganic, plur(u.cnd_moneatorganic));
+	dump("  You allowed monsters to eat organic items ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_moneatall, plur(u.cnd_moneatall));
+	dump("  You allowed allivores to eat items ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_unidentifycount, plur(u.cnd_unidentifycount));
+	dump("  You had your possessions unidentify themselves ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_dehydratedcount, plur(u.cnd_dehydratedcount));
+	dump("  You became dehydrated ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_luckrollovercount, plur(u.cnd_luckrollovercount));
+	dump("  You had your luck roll over ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_confusedscrollread, plur(u.cnd_confusedscrollread));
+	dump("  You experienced confused scroll effects ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_nonworkpotioncount, plur(u.cnd_nonworkpotioncount));
+	dump("  You quaffed non-working potions ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_stairstrapcount, plur(u.cnd_stairstrapcount));
+	dump("  You encountered stairs traps ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_intrinsiclosscount, plur(u.cnd_intrinsiclosscount));
+	dump("  You lost intrinsics ", buf);
+
+	sprintf(buf, "%ld trap%s", u.cnd_traprevealcount, plur(u.cnd_traprevealcount));
+	dump("  You randomly revealed ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_badeffectcount, plur(u.cnd_badeffectcount));
+	dump("  You got hit by bad effects ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_reallybadeffectcount, plur(u.cnd_reallybadeffectcount));
+	dump("  You got hit by really bad effects ", buf);
+
+	sprintf(buf, "%ld item%s teleported out of your inventory", u.cnd_itemportcount, plur(u.cnd_itemportcount));
+	dump("  You had ", buf);
+
+	sprintf(buf, "%ld bones level%s", u.cnd_bonescount, plur(u.cnd_bonescount));
+	dump("  You encountered ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_mommacount, plur(u.cnd_mommacount));
+	dump("  You had to read insults against your momma ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_badequipcount, plur(u.cnd_badequipcount));
+	dump("  You were forced to equip bad items ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_badarticount, plur(u.cnd_badarticount));
+	dump("  You were forced to equip bad artifacts ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_badheelcount, plur(u.cnd_badheelcount));
+	dump("  You were forced to equip bad high heels ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_appearanceshufflingcount, plur(u.cnd_appearanceshufflingcount));
+	dump("  You encountered appearance shuffling ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_mysteriousforcecount, plur(u.cnd_mysteriousforcecount));
+	dump("  You got affected by the dirty mysterious dirt force full of dirt ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_manlergetcount, plur(u.cnd_manlergetcount));
+	dump("  You were caught by the manler ", buf);
 
 	dump("", "");
 }

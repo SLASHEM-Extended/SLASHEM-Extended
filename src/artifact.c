@@ -807,6 +807,8 @@ bad_artifact()
 
 	if (otmp) {
 
+		u.cnd_badarticount++;
+
 		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp)) {
 			if (uwep) setnotworn(uwep);
 			if (bimanual(otmp)) {
@@ -986,6 +988,8 @@ bad_artifact_xtra()
 	/* try to equip it! */
 
 	if (otmp) {
+
+		u.cnd_badarticount++;
 
 		if (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || is_weptool(otmp)) {
 			if (uwep) setnotworn(uwep);
@@ -1512,6 +1516,7 @@ touch_artifact(obj,mon)
 
 	if (!yours) return 0;
 	You("are blasted by %s power!", s_suffix(the(xname(obj))));
+	u.cnd_artiblastcount++;
 	dmg = d((StrongAntimagic ? 3 : Antimagic ? 6 : 8), (self_willed ? 10 : 6));
 	if (!issoviet && (u.ulevel < 10)) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
 		dmg *= u.ulevel;

@@ -2116,6 +2116,8 @@ meatmetal(mtmp)
 			You_hear("a crunching sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
 			}
+
+		    u.cnd_moneatmetal++;
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
 		    /* Heal up to the object's weight in hp */
@@ -2203,6 +2205,7 @@ meatlithic(mtmp)
 			You_hear("a grating sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Luchshe nadeyat'sya, chto etot punkt kamennyy ne bylo chem-to vazhnym, potomu chto teper' poteryana navsegda." : "Wuoeing!");
 			}
+		    u.cnd_moneatstone++;
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
 		    /* Heal up to the object's weight in hp */
@@ -2279,6 +2282,7 @@ meatanything(mtmp)
 			You_hear("a chewing sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
 			}
+		    u.cnd_moneatall++;
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
 		    /* Heal up to the object's weight in hp */
@@ -2415,6 +2419,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		    You_hear("a slurping sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Skoreye vsego, eto bylo chto-to, chto vy, vozmozhno, khoteli ispol'zovat', ili, mozhet byt', dazhe vash taynik! Razve eto ne veselo?" : "Chllp!");
 		}
+		u.cnd_moneatorganic++;
 		/* Heal up to the object's weight in hp */
 		if (mtmp->mhp < mtmp->mhpmax) {
 		    mtmp->mhp += objects[otmp->otyp].oc_weight;

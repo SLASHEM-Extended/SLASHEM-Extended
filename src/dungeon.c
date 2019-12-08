@@ -1211,6 +1211,7 @@ boolean	at_stairs;
 		if ((!rn2(ishaxor ? 250 : 500)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) {
 
 			pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
+			u.cnd_stairstrapcount++;
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
@@ -1251,6 +1252,7 @@ boolean	at_stairs;
 		if (at_stairs && (!rn2(ishaxor ? 250 : 500) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) ) {
 
 			pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
+			u.cnd_stairstrapcount++;
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);
@@ -1299,6 +1301,7 @@ boolean	at_stairs;
 			if ((!rn2(ishaxor ? 50 : 100)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) {
 
 				pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
+				u.cnd_stairstrapcount++;
 				NoStaircase = 10 + rnz(monster_difficulty() + 1);
 				pushplayer(TRUE);
 				(void)nasty((struct monst *)0);
@@ -1339,6 +1342,7 @@ boolean	at_stairs;
 		if (at_stairs && (!rn2(ishaxor ? 50 : 100) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) ) {
 
 			pline(FunnyHallu ? "Wow! A welcoming committee!" : "Stairs trap!");
+			u.cnd_stairstrapcount++;
 			NoStaircase = 10 + rnz(monster_difficulty() + 1);
 			pushplayer(TRUE);
 			(void)nasty((struct monst *)0);

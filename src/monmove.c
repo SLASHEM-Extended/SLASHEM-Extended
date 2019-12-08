@@ -1953,6 +1953,7 @@ toofar:
 		verbalize("%s", superman_msgs[rn2(SIZE(superman_msgs))]);
 		badeffect();
 		increasesanity(rnz(50 + (mtmp->m_lev * 5) ));
+		u.cnd_supermancount++;
 		stop_occupation();
 		}
 

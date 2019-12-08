@@ -210,6 +210,8 @@ initobjectsamnesia()
 	register struct obj *otmp, *otmp2, *otmp3, *otmp4, *otmp5, *otmp6, *otmp7, *otmp8, *otmp9, *otmp10, *otmp11;
 	boolean hasamulet, hasleftring, hasrightring, hasshirt, hascloak, hasarmor, hasboots, hasgloves, hashelmet, hasshield, hasimplant;
 
+	u.cnd_appearanceshufflingcount++;
+
 	if (uamul) {
 		hasamulet = TRUE;
 		otmp = uamul;

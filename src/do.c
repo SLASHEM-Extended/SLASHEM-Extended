@@ -1940,6 +1940,7 @@ boolean at_stairs, falling, portal;
 		new_ledger = ledger_no(newlevel);
 
 		pline("A dirty mysterious dirt force full of dirt momentarily surrounds you...");
+		u.cnd_mysteriousforcecount++;
 		if (on_level(newlevel, &u.uz)) {
 			(void) safe_teleds(FALSE);
 			(void) next_to_u();
@@ -2104,6 +2105,8 @@ boolean at_stairs, falling, portal;
 		}
 
 		if (u.gottenbones) { /* evil patch idea by jonadab - spawn monsters if a bones file loads */
+
+			u.cnd_bonescount++;
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;

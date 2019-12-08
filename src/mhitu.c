@@ -6887,6 +6887,7 @@ dopois:
 
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 
 		    }
@@ -11563,6 +11564,7 @@ do_stone2:
 
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 
 		    }
@@ -13660,6 +13662,7 @@ common:
 
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 
 		    }
@@ -16102,6 +16105,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 				dropx(otmpi);
 			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+				u.cnd_itemportcount++;
 			}
 		    }
 		}

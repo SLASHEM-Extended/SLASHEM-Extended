@@ -1644,6 +1644,7 @@ struct you {
 	int cnd_conversioncount;	/* how many times you were subjected to converting taunts */
 	int cnd_wouwoucount;	/* how many times you heard wouwou taunts */
 	int cnd_perfumecount;	/* how many times you inhaled perfume */
+	int cnd_supermancount;	/* how many times you heard superman taunts */
 	int cnd_nutkickamount;	/* how many times you were kicked in the nuts */
 	int cnd_breastripamount;	/* how many times your breasts were violated */
 	int cnd_saveamount;	/* how many times you saved the game */
@@ -1711,6 +1712,36 @@ struct you {
 	int cnd_slimingcount;	/* how many times you got slimed */
 	int cnd_stoningcount;	/* how many times you got stoned */
 	int cnd_polybreak;	/* how many of your armor pieces broke due to bad polymorphs */
+	int cnd_monpotioncount;	/* how many potions were quaffed by monsters */
+	int cnd_monscrollcount;	/* how many scrolls were read by monsters */
+	int cnd_monwandcount;	/* how many wands were zapped by monsters */
+	int cnd_demongates;	/* how often monsters gated in demons */
+	int cnd_demonlordgates;	/* how many demon lords got gated in */
+	int cnd_demonprincegates;	/* how many demon princes got gated in */
+	int cnd_artiblastcount;	/* how often you were blasted by an artifact */
+	int cnd_moneatmetal;	/* how many items were eaten by metallivorous monsters */
+	int cnd_moneatstone;	/* how many items were eaten by lithivorous monsters */
+	int cnd_moneatorganic;	/* how many items were eaten by organivorous monsters */
+	int cnd_moneatall;	/* how many items were eaten by allivorous monsters */
+	int cnd_unidentifycount;	/* how many times your items unidentified themselves */
+	int cnd_dehydratedcount;	/* how many times you were dehydrated */
+	int cnd_luckrollovercount;	/* how many times your luck rolled over */
+	int cnd_confusedscrollread;	/* how many times you got the confused scroll effect */
+	int cnd_nonworkpotioncount;	/* how many times your potions didn't work */
+	int cnd_stairstrapcount;	/* how many stairs traps you encountered */
+	int cnd_intrinsiclosscount;	/* how many intrinsics you lost */
+	int cnd_traprevealcount;	/* how many traps you revealed magically */
+	int cnd_badeffectcount;	/* how often you got bad effects */
+	int cnd_reallybadeffectcount;	/* how often you got really bad effects */
+	int cnd_itemportcount;	/* how many of your items were teleported away */
+	int cnd_bonescount;	/* how many bones levels you found */
+	int cnd_mommacount;	/* how often your momma was insulted */
+	int cnd_badequipcount;	/* how often you were forced to wear bad equipment */
+	int cnd_badarticount;	/* how often you were forced to wear bad artifacts */
+	int cnd_badheelcount;	/* how often you were forced to wear bad high heels */
+	int cnd_appearanceshufflingcount;	/* how often the randomized item appearances got shuffled */
+	int cnd_mysteriousforcecount;	/* how often you got hit by the mysterious force */
+	int cnd_manlergetcount;	/* now often the manler caught you */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */
