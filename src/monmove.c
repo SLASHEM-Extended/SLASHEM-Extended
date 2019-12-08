@@ -2062,12 +2062,28 @@ register int after;
 	if (mtmp->mfrenzied && mtmp->mpeaceful) mtmp->mpeaceful = 0;
 	if (mtmp->mfrenzied && mtmp->mtame) mtmp->mtame = 0;
 
-	if (mtmp->data->mlet == S_TURRET || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) return(0); /* stationary turrets --Amy */
+	if (mtmp->data->mlet == S_TURRET || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) {
+
+		if (mtmp->meating) { /* special case here by Amy, otherwise they'd never finish eating! */
+			mtmp->meating--;
+			return 3;			/* still eating */
+		}
+
+		return(0); /* stationary turrets --Amy */
+	}
 
 	if (uwep && uwep->oartifact == ART_FLOWERBANE && !rn2(2) && mtmp->data->mlet == S_BAD_FOOD) return 0;
 
 	/* mcalcmove() in mon.c allows sessile monsters to get turns. We still don't want them to move around though. --Amy */
-	if (!mtmp->data->mmove && (!mtmp->egotype_speedster) && (!mtmp->egotype_racer) ) return(0);
+	if (!mtmp->data->mmove && (!mtmp->egotype_speedster) && (!mtmp->egotype_racer) ) {
+
+		if (mtmp->meating) { /* special case here by Amy, otherwise they'd never finish eating! */
+			mtmp->meating--;
+			return 3;			/* still eating */
+		}
+
+		return(0);
+	}
 
 	if(mtmp->mtrapped) {
 	    int i = mintrap(mtmp);
