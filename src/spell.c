@@ -6549,6 +6549,15 @@ secureidchoice:
 
 		break;
 
+	case SPE_SYMHEAL:
+		if (uactivesymbiosis) {
+			Your("symbiote seems healthier!");
+			u.usymbiote.mhp += (rnd(10) + 4 + (spell_damage_bonus(spellid(spell)) * 2) + rnd(rnz(u.ulevel)));
+			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+		}
+
+		break;
+
 	case SPE_PHASE_DOOR:
 		phase_door(0);
 		if (!rn2(20)) {

@@ -13784,6 +13784,8 @@ boolean knoweverything;
 				pline("Turns you into a zorkmid or an orange."); break;
 			case SPE_HORRIFY:
 				pline("This spell fires beams that cause monsters to run away from you."); break;
+			case SPE_SYMHEAL:
+				pline("If you're in symbiosis, this spell will heal your symbiote a bit."); break;
 			case SPE_TERROR:
 				pline("Attempts to make all monsters on the level flee from you for a while. However, this spell may rarely cause backlash."); break;
 			case SPE_PHASE_DOOR:

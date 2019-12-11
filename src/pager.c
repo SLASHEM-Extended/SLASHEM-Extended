@@ -24717,6 +24717,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"UGH - you inhaled too much of your own repulsive body odor, and can no longer think straight!",
 	"You are an atheist! You cannot make offerings!",
 	"You are an atheist! You cannot pray!",
+	"Your symbiote seems healthier!",
 
 };
 
