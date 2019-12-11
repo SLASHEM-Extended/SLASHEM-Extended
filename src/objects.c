@@ -6501,6 +6501,7 @@ SPELL("mana battery",    "gloaming",     P_OCCULT_SPELL, 10,   7, 3, 1, NODIR,  
 SPELL("resist paralysis",    "ongoing",  P_OCCULT_SPELL, 10,   6, 3, 1, NODIR,     CLR_BRIGHT_CYAN, 9),
 SPELL("BUC knowledge",    "priestly",    P_OCCULT_SPELL, 30,  10, 3, 1, NODIR,     CLR_CYAN, 9),
 SPELL("magic whistling",    "raised",    P_OCCULT_SPELL, 10,   5, 3, 1, NODIR,     CLR_ORANGE, 9),
+SPELL("symheal",    "todo",              P_OCCULT_SPELL,  0,   4, 3, 1, NODIR,     CLR_BRIGHT_CYAN, 9), /* TODO --Amy */
 SPELL("horrify",    "horrible",          P_OCCULT_SPELL, 30,   5, 4, 1, IMMEDIATE, CLR_BLACK, 15),
 SPELL("phase door",    "ethereal",       P_OCCULT_SPELL, 30,   7, 4, 1, NODIR,     CLR_GRAY, 15),
 SPELL("code editing",    "sourcecode",   P_OCCULT_SPELL, 20,   9, 4, 1, NODIR,     CLR_WHITE, 15),

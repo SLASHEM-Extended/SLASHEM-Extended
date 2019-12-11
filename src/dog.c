@@ -86,6 +86,20 @@ pet_type()
 		case 10: return (PM_BABY_SILVER_DRAGON);
 		case 11: return (PM_BABY_GRAY_DRAGON);
 		}
+	else if (Role_if(PM_DRAGONMASTER))
+		switch (rnd(11)) {   
+		case 1: return (PM_BABY_YELLOW_DRAGON);
+		case 2: return (PM_BABY_GREEN_DRAGON);
+		case 3: return (PM_BABY_BLUE_DRAGON);
+		case 4: return (PM_BABY_BLACK_DRAGON);
+		case 5: return (PM_BABY_ORANGE_DRAGON);
+		case 6: return (PM_BABY_WHITE_DRAGON);
+		case 7: return (PM_BABY_RED_DRAGON);
+		case 8: return (PM_BABY_DEEP_DRAGON);
+		case 9: return (PM_BABY_SHIMMERING_DRAGON);
+		case 10: return (PM_BABY_SILVER_DRAGON);
+		case 11: return (PM_BABY_GRAY_DRAGON);
+		}
 	else if (Role_if(PM_MEDIUM)) {
 		switch (u.ualign.type) {
 			case A_LAWFUL: return (PM_WHITE_UNICORN_FOAL);
@@ -113,6 +127,11 @@ pet_type()
 		case 1: return (PM_DARK_GIRL);
 		case 2: return (PM_REDGUARD_GIRL);
 		case 3: return (PM_THIEVING_GIRL);
+		}
+	else if (Role_if(PM_PRACTICANT))
+		switch (rnd(2)) {   
+		case 1: return (PM_OXYGEN_GOLEM);
+		case 2: return (PM_SULFUR_GOLEM);
 		}
 	else
 	    return (rn2(2) ? PM_KITTEN : PM_LITTLE_DOG);
@@ -248,7 +267,8 @@ makedog()
 	int   pettype, petsym;
 	static int petname_used = 0;
 
-	if (!Role_if(PM_KURWA) && (preferred_pet == 'n')) return((struct monst *) 0);
+	/* some roles should be forced to start with a pet because they get a detrimental one :P --Amy */
+	if (!Role_if(PM_KURWA) && !Role_if(PM_JANITOR) && !Role_if(PM_YAUTJA) && !Role_if(PM_GRENADONIN) && !Role_if(PM_PSYKER) && !Role_if(PM_MILL_SWALLOWER) && !Role_if(PM_CHAOS_SORCEROR) && (preferred_pet == 'n')) return((struct monst *) 0);
 
 	/* Gang scholars are supposed to start without a pet. However, every once in a blue moon they do get one --Amy */
 	if (Role_if(PM_GANG_SCHOLAR) && rn2(100)) return((struct monst *) 0);
@@ -420,6 +440,14 @@ maeney:
 	if (pettype == PM_THIEVING_GIRL) petname = "Esruth"; /* taken from a fanfic */
 
 	if (pettype == PM_SEXY_GIRL) petname = "Natalje";
+
+	if (pettype == PM_FLYING_BLOODFISH) petname = "Kiri";
+	if (pettype == PM_OXYGEN_GOLEM) petname = "Scheele";
+	if (pettype == PM_SULFUR_GOLEM) petname = "Lavoisier";
+	if (pettype == PM_EMERA) petname = "Doctor Faust";
+	if (pettype == PM_TASMANIAN_DEVIL) petname = "Taz";
+	if (pettype == PM_SPIKE_MOLD) petname = "Improv";
+	if (pettype == PM_GENDERSTARIST) petname = "Bariwun";
 
 	if (pettype == PM_ACTIVISTOR) petname = "Helen"; /* yet another common first name */
 

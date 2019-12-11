@@ -4348,7 +4348,7 @@ static const struct def_skill Skill_Tos[] = {
 static const struct def_skill Skill_Akl[] = {
     { P_CLUB, P_GRAND_MASTER },		{ P_DAGGER, P_EXPERT },
     { P_KNIFE, P_EXPERT },		{ P_PICK_AXE, P_EXPERT },
-    { P_SHORT_SWORD, P_EXPERT },		{ P_BROADSWORD, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },		{ P_BROAD_SWORD, P_EXPERT },
     { P_SCIMITAR, P_EXPERT },		{ P_PADDLE, P_MASTER },
     { P_MACE, P_EXPERT },		{ P_MORNING_STAR, P_MASTER },
     { P_FLAIL, P_EXPERT },		{ P_HAMMER, P_EXPERT },

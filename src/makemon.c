@@ -2487,6 +2487,216 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_CARTOMANCER:
+		   case PM_UNDEAD_CARTOMANCER:
+
+			(void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_GIRLINESS) );
+			(void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_GIRLINESS) );
+			(void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_GIRLINESS) );
+			(void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_GIRLINESS) );
+			(void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_GIRLINESS) );
+			(void)mongets(mtmp, DAGGER);
+			(void)mongets(mtmp, SCR_CREATE_MONSTER);
+			(void)mongets(mtmp, SCR_CREATE_MONSTER);
+			 m_initthrow(mtmp, SHURIKEN, 25);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+			break;
+
+		   case PM_DRAGONMASTER:
+		   case PM_UNDEAD_DRAGONMASTER:
+			(void)mongets(mtmp, BROADSWORD);
+			(void)mongets(mtmp, SCALE_MAIL);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+
+			break;
+
+		   case PM_COMBATANT:
+		   case PM_UNDEAD_COMBATANT:
+			(void)mongets(mtmp, RING_MAIL);
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+
+			break;
+
+		   case PM_FJORDE:
+		   case PM_UNDEAD_FJORDE:
+			(void)mongets(mtmp, rn2(2) ? FISHING_POLE : GRAPPLING_HOOK);
+			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+			break;
+
+		   case PM_PRACTICANT:
+		   case PM_UNDEAD_PRACTICANT:
+			(void)mongets(mtmp, STEEL_CAPPED_SANDAL);
+			(void)mongets(mtmp, BLACK_DRESS);
+			(void)mongets(mtmp, LADY_BOOTS);
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+			break;
+
+		   case PM_EMERA:
+		   case PM_UNDEAD_EMERA:
+			(void)mongets(mtmp, SLING);
+			 m_initthrow(mtmp, FLINT, 50);
+			(void)mongets(mtmp, RAZOR_WHIP);
+			(void)mongets(mtmp, FUTON_SWATTER);
+			(void)mongets(mtmp, BUNNY_UNIFORM);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+
+			break;
+
+		   case PM_TOSSER:
+		   case PM_UNDEAD_TOSSER:
+			 m_initthrow(mtmp, JAVELIN, 10);
+			(void)mongets(mtmp, WAR_HAMMER);
+			(void)mongets(mtmp, RING_MAIL);
+			(void)mongets(mtmp, LOW_BOOTS);
+			(void)mongets(mtmp, PAPER_SHIELD);
+			(void)mongets(mtmp, LEATHER_CLOAK);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+			break;
+
+		   case PM_AKLYST:
+		   case PM_UNDEAD_AKLYST:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void)mongets(mtmp, AKLYS);
+			(void)mongets(mtmp, AKLYS);
+			(void)mongets(mtmp, BLOW_AKLYS);
+			(void)mongets(mtmp, LEATHER_ARMOR);
+			(void)mongets(mtmp, ELVEN_HELM);
+			(void)mongets(mtmp, LEATHER_SHOES);
+
+			break;
+
+		   case PM_MILL_SWALLOWER:
+		   case PM_UNDEAD_MILL_SWALLOWER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			(void)mongets(mtmp, AXE);
+			(void)mongets(mtmp, CROSSBOW);
+			 m_initthrow(mtmp, MINERAL_BOLT, 40);
+			(void)mongets(mtmp, CHAIN_MAIL);
+			(void)mongets(mtmp, DWARVISH_IRON_HELM);
+			(void)mongets(mtmp, ROCKET_GAUNTLETS);
+
+			break;
+
+		   case PM_SYMBIANT:
+		   case PM_UNDEAD_SYMBIANT:
+			(void)mongets(mtmp, MACE);
+			(void)mongets(mtmp, DRAGON_HORNED_HEADPIECE);
+			(void)mongets(mtmp, SYMBIOTE);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+			break;
+
+		   case PM_GENDERSTARIST:
+		   case PM_UNDEAD_GENDERSTARIST:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+			if (!rn2(10)) (void)mongets(mtmp, WAN_POLYMORPH);
+
+			break;
+
 		   case PM_COURIER:
 		   case PM_UNDEAD_COURIER:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -6916,6 +7126,13 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_SHARPWOODSMAN]) {
 			(void) mongets(mtmp, STRAW_HAT);
 			(void) mongets(mtmp, SHARP_AXE);
+		}
+		if (ptr == &mons[PM_FATHER_ELIJAH]) {
+			(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
+			 m_initthrow(mtmp, BULLET, 50);
 		}
 
 		if (ptr == &mons[PM_IRON_TROOPER]) {
@@ -22245,6 +22462,36 @@ loopback:
 		if (ct > 0 && (Race_if(PM_BOVER) && dmgtype(ptr, AD_DISE) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_BOVER) && dmgtype(ptr, AD_POIS) )) ct += 5;
 
+		if (ct > 0 && (Role_if(PM_FJORDE) && (ptr->mlet == S_EEL) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_DRAGONMASTER) && attacktype(ptr, AT_BREA) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_FJORDE) && amphibious(ptr) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && is_lord(ptr) )) ct += 4;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && is_prince(ptr) )) ct += 12;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && attacktype(ptr, AT_LASH) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_DEPR) )) ct += 4;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_WRAT) )) ct += 10;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_DFOO) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_SLUD) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_DEST) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_PAIN) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && always_hostile(ptr) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_EMERA) && is_female(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_EMERA) && (ptr->msound == MS_STENCH))) ct += 10;
+		if (ct > 0 && (Role_if(PM_EMERA) && (ptr->msound == MS_SHOE))) ct += 10;
+		if (ct > 0 && (Role_if(PM_EMERA) && (ptr->msound == MS_FART_NORMAL))) ct += 10;
+		if (ct > 0 && (Role_if(PM_EMERA) && (ptr->msound == MS_FART_LOUD))) ct += 10;
+		if (ct > 0 && (Role_if(PM_EMERA) && (ptr->msound == MS_FART_QUIET))) ct += 10;
+		if (ct > 0 && (Role_if(PM_EMERA) && always_hostile(ptr) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_MILL_SWALLOWER) && always_peaceful(ptr) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_MILL_SWALLOWER) && is_nonmoving(ptr) )) ct += 4;
+		if (ct > 0 && (Role_if(PM_MILL_SWALLOWER) && nocorpsedecay(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_SYMBIANT) && is_angbandmonster(ptr) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_SYMBIANT) && is_animemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_SYMBIANT) && is_steammonster(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && is_neuter(ptr) )) ct += 10;
+		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && dmgtype(ptr, AD_SSEX) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && (ptr->msound == MS_CUSS))) ct += 5;
+
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
@@ -23313,6 +23560,35 @@ int     spc;
 		if ((Race_if(PM_BOVER) && dmgtype(&mons[last], AD_DISE) )) num += 5;
 		if ((Race_if(PM_BOVER) && dmgtype(&mons[last], AD_POIS) )) num += 5;
 
+		if ((Role_if(PM_DRAGONMASTER) && attacktype(&mons[last], AT_BREA) )) num += 2;
+		if ((Role_if(PM_FJORDE) && amphibious(&mons[last]) )) num += 5;
+		if ((Role_if(PM_PRACTICANT) && is_lord(&mons[last]) )) num += 4;
+		if ((Role_if(PM_PRACTICANT) && is_prince(&mons[last]) )) num += 12;
+		if ((Role_if(PM_PRACTICANT) && attacktype(&mons[last], AT_LASH) )) num += 2;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_DEPR) )) num += 4;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_WRAT) )) num += 10;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_DFOO) )) num += 5;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_SLUD) )) num += 1;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_DEST) )) num += 1;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_PAIN) )) num += 5;
+		if ((Role_if(PM_PRACTICANT) && always_hostile(&mons[last]) )) num += 3;
+		if ((Role_if(PM_EMERA) && is_female(&mons[last]) )) num += 2;
+		if ((Role_if(PM_EMERA) && (mons[last].msound == MS_STENCH))) num += 10;
+		if ((Role_if(PM_EMERA) && (mons[last].msound == MS_SHOE))) num += 10;
+		if ((Role_if(PM_EMERA) && (mons[last].msound == MS_FART_NORMAL))) num += 10;
+		if ((Role_if(PM_EMERA) && (mons[last].msound == MS_FART_LOUD))) num += 10;
+		if ((Role_if(PM_EMERA) && (mons[last].msound == MS_FART_QUIET))) num += 10;
+		if ((Role_if(PM_EMERA) && always_hostile(&mons[last]) )) num += 1;
+		if ((Role_if(PM_MILL_SWALLOWER) && always_peaceful(&mons[last]) )) num += 3;
+		if ((Role_if(PM_MILL_SWALLOWER) && is_nonmoving(&mons[last]) )) num += 4;
+		if ((Role_if(PM_MILL_SWALLOWER) && nocorpsedecay(&mons[last]) )) num += 2;
+		if ((Role_if(PM_SYMBIANT) && is_angbandmonster(&mons[last]) )) num += 5;
+		if ((Role_if(PM_SYMBIANT) && is_animemonster(&mons[last]) )) num += 2;
+		if ((Role_if(PM_SYMBIANT) && is_steammonster(&mons[last]) )) num += 2;
+		if ((Role_if(PM_GENDERSTARIST) && is_neuter(&mons[last]) )) num += 10;
+		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[last], AD_SSEX) )) num += 3;
+		if ((Role_if(PM_GENDERSTARIST) && (mons[last].msound == MS_CUSS))) num += 5;
+
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
@@ -24096,6 +24372,35 @@ int     spc;
 		if ((Race_if(PM_PLAYER_CERBERUS) && is_elonamonster(&mons[first]) )) num -= 5;
 		if ((Race_if(PM_BOVER) && dmgtype(&mons[first], AD_DISE) )) num -= 5;
 		if ((Race_if(PM_BOVER) && dmgtype(&mons[first], AD_POIS) )) num -= 5;
+
+		if ((Role_if(PM_DRAGONMASTER) && attacktype(&mons[first], AT_BREA) )) num -= 2;
+		if ((Role_if(PM_FJORDE) && amphibious(&mons[first]) )) num -= 5;
+		if ((Role_if(PM_PRACTICANT) && is_lord(&mons[first]) )) num -= 4;
+		if ((Role_if(PM_PRACTICANT) && is_prince(&mons[first]) )) num -= 12;
+		if ((Role_if(PM_PRACTICANT) && attacktype(&mons[first], AT_LASH) )) num -= 2;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_DEPR) )) num -= 4;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_WRAT) )) num -= 10;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_DFOO) )) num -= 5;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_SLUD) )) num -= 1;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_DEST) )) num -= 1;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_PAIN) )) num -= 5;
+		if ((Role_if(PM_PRACTICANT) && always_hostile(&mons[first]) )) num -= 3;
+		if ((Role_if(PM_EMERA) && is_female(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_EMERA) && (mons[first].msound == MS_STENCH))) num -= 10;
+		if ((Role_if(PM_EMERA) && (mons[first].msound == MS_SHOE))) num -= 10;
+		if ((Role_if(PM_EMERA) && (mons[first].msound == MS_FART_NORMAL))) num -= 10;
+		if ((Role_if(PM_EMERA) && (mons[first].msound == MS_FART_LOUD))) num -= 10;
+		if ((Role_if(PM_EMERA) && (mons[first].msound == MS_FART_QUIET))) num -= 10;
+		if ((Role_if(PM_EMERA) && always_hostile(&mons[first]) )) num -= 1;
+		if ((Role_if(PM_MILL_SWALLOWER) && always_peaceful(&mons[first]) )) num -= 3;
+		if ((Role_if(PM_MILL_SWALLOWER) && is_nonmoving(&mons[first]) )) num -= 4;
+		if ((Role_if(PM_MILL_SWALLOWER) && nocorpsedecay(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_SYMBIANT) && is_angbandmonster(&mons[first]) )) num -= 5;
+		if ((Role_if(PM_SYMBIANT) && is_animemonster(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_SYMBIANT) && is_steammonster(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_GENDERSTARIST) && is_neuter(&mons[first]) )) num -= 10;
+		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[first], AD_SSEX) )) num -= 3;
+		if ((Role_if(PM_GENDERSTARIST) && (mons[first].msound == MS_CUSS))) num -= 5;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 

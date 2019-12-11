@@ -1655,6 +1655,9 @@ register struct monst *mtmp;
 
     /* presumably nearness and sleep checks have already been made */
     if (!flags.soundok) return(0);
+
+	if (ptr == &mons[PM_FJORDE]) verbalize("I can't help it, I really consider fish to be the most beautiful creatures in existence."); /* must do that here because they're "silent" */
+
     if (is_silent(ptr)) return(0);
 
     /* Make sure its your role's quest quardian; adjust if not */
@@ -1674,6 +1677,8 @@ register struct monst *mtmp;
 		if (issoviet) verbalize("Of course Russia was not involved in the presidential election in any way. That's just fake news.");
 		else pline("Make America GREAT again!");
 	}
+
+	if (ptr == &mons[PM_EMERA]) verbalize("HATE! HATE! HATE!");
 
     switch (ptr->msound) {
 	case MS_ORACLE:
@@ -2437,6 +2442,18 @@ register struct monst *mtmp;
 		    break;
 		case PM_TOURIST:
 		    verbl_msg = "Aloha.";
+		    break;
+		case PM_EMERA:
+		    verbl_msg = "HATE! HATE! HATE!";
+		    break;
+		case PM_FJORDE:
+		    verbl_msg = "I can't help it, I really consider fish to be the most beautiful creatures in existence.";
+		    break;
+		case PM_PRACTICANT:
+		    verbl_msg = "I'm gonna introduce all those bastard assistants to my battering ram.";
+		    break;
+		case PM_GENDERSTARIST:
+		    verbl_msg = !rn2(3) ? "Sehr geehrte Buergerinnen und Buerger, die Schuelerinnen und Schueler sind unter dem gesetzlich geforderten Niveau..." : !rn2(2) ? "Sehr geehrte Buergerlnnen, die Schuelerlnnen fallen beim Pisa-Test zu oft durch..." : "Sehr geehrte Buerger*innen, die Schueler*innen weigern sich, den Gender*stern* zu* benutz*en*/*in*...*";
 		    break;
 		case PM_DEATH_EATER:
 	    pline_msg = "talks about hunting muggles.";

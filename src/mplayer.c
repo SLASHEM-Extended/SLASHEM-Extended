@@ -717,6 +717,49 @@ register boolean special;
 		case PM_UNDEAD_CAMPERSTRIKER:
 		    weapon = GREEN_LIGHTSABER;
 		    break;
+		case PM_CARTOMANCER:
+		case PM_UNDEAD_CARTOMANCER:
+		    weapon = GREAT_DAGGER;
+		    break;
+		case PM_DRAGONMASTER:
+		case PM_UNDEAD_DRAGONMASTER:
+		    weapon = ELVEN_BROADSWORD;
+		    break;
+		case PM_COMBATANT:
+		case PM_UNDEAD_COMBATANT:
+		    break;
+		case PM_FJORDE:
+		case PM_UNDEAD_FJORDE:
+		    weapon = TRIDENT;
+		    break;
+		case PM_PRACTICANT:
+		case PM_UNDEAD_PRACTICANT:
+		    weapon = STEEL_CAPPED_SANDAL;
+		    break;
+		case PM_EMERA:
+		case PM_UNDEAD_EMERA:
+		    weapon = BULLETPROOF_CHAINWHIP;
+		    break;
+		case PM_TOSSER:
+		case PM_UNDEAD_TOSSER:
+		    weapon = TORPEDO;
+		    break;
+		case PM_AKLYST:
+		case PM_UNDEAD_AKLYST:
+		    weapon = AKLYS;
+		    break;
+		case PM_MILL_SWALLOWER:
+		case PM_UNDEAD_MILL_SWALLOWER:
+		    weapon = CHEMISTRY_SPACE_AXE;
+		    break;
+		case PM_SYMBIANT:
+		case PM_UNDEAD_SYMBIANT:
+		    weapon = ORNATE_MACE;
+		    break;
+		case PM_GENDERSTARIST:
+		case PM_UNDEAD_GENDERSTARIST:
+		    weapon = TELEPHONE;
+		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:
 		case PM_UNDEAD_PRIEST:
@@ -927,8 +970,7 @@ register boolean special;
 
 		/* These are supposed to be ascension kits. Why were the shirts missing??? --Amy */
 		if (rn2(15))
-		    mk_mplayer_armor(mtmp, rnd_class(HAWAIIAN_SHIRT,
-					       VICTORIAN_UNDERWEAR));
+		    mk_mplayer_armor(mtmp, rnd_class(HAWAIIAN_SHIRT, VICTORIAN_UNDERWEAR));
 		m_dowear(mtmp, TRUE);
 
 		quan = rn2(3) ? rn2(3) : rn2(16);

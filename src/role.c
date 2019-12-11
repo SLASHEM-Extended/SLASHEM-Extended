@@ -3394,7 +3394,7 @@ const struct Role roles[] = {
 	"Divert", "Oat Camper", "_Jeannine", /* assistants */
 	"Pra", "Joy Mountain Hall", "Assistant's Office",
 	PM_PRACTICANT, NON_PM, PM_UNDEAD_PRACTICANT, NON_PM, PM_OXYGEN_GOLEM, /* 50% chance of a sulfur golem instead */
-	PM_LITTLE_BIA, PM_STUDENT, PM_NOROELA, PM_CRUEL_FEMALE_DICTATOR,
+	PM_LITTLE_BIA, PM_STUDENT, PM_ASSISTANT_NOROELA, PM_CRUEL_FEMALE_DICTATOR,
 	PM_STUDENT_ASSISTANT, PM_UNDEAD_GRADUATE, S_SNAKE, S_UMBER,
 	ART_TOO_LATE_PRIZE, /* chemistry set, invoke for summon water elemental and does nothing else */
 	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
