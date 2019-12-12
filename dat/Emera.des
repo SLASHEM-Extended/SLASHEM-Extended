@@ -1,0 +1,379 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+### The quest "start" level ###
+#
+MAZE: "Eme-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------......................................................
+|....................|......................................................
+|....................|......................................................
+|....................S......................................................
+|....................|......................................................
+|....................|......................................................
+----------------------......................................................
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+BRANCH:(70,00,75,06),(0,0,0,0)
+
+# Stairs
+STAIR:(10,03),down
+
+MONSTER:'@',"Vernon Dursley",(05,03)
+MONSTER:'@',"fellow death eater",(04,02)
+MONSTER:'@',"fellow death eater",(04,03)
+MONSTER:'@',"fellow death eater",(04,04)
+MONSTER:'@',"fellow death eater",(05,02)
+MONSTER:'@',"fellow death eater",(05,04)
+MONSTER:'@',"fellow death eater",(06,02)
+MONSTER:'@',"fellow death eater",(06,03)
+MONSTER:'@',"fellow death eater",(06,04)
+
+MONSTER:'@',"young woman",random,hostile
+MONSTER:'@',"young woman",random,hostile
+MONSTER:'@',"farting young woman",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"farting queen",random,hostile
+
+# no starting monsters
+
+MAZE: "Eme-fila", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+.......................................................................
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+     .           .           .           .           .           .     
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+.......................................................................
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+     .           .           .           .           .           .     
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+.......................................................................
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:random,up
+STAIR:random,down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MAZE: "Eme-loca",' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|...........................--------------------------.....................|
+|...........................|........................|.....................|
+|...........................|........................|.....................|
+|...........................S........................|.....................|
+|...........................|........................S.....................|
+|...........................|........................|.....................|
+|...........................|........................|.....................|
+|...........................--------------------------.....................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+----------------------------------------------------------------------------
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:(03,03),up
+STAIR:(40,10),down
+
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(28,07,53,14),unlit,"randomroom"
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"farting queen",random,hostile
+MONSTER:'@',"farting queen",random,hostile
+MONSTER:'@',"girly girl",random,hostile
+MONSTER:'@',"female girl",random,hostile
+
+MAZE: "Eme-filb", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+.......................................................................
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+     .           .           .           .           .           .     
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+.......................................................................
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+     .           .           .           .           .           .     
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+.......................................................................
+........... ........... ........... ........... ........... ...........
+........... ........... ........... ........... ........... ...........
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:random,up
+STAIR:random,down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MAZE: "Eme-goal", ' '
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+RANDOM_PLACES:(02,11),(42,09),(53,16),(19,11),(70,02),(60,04),(10,01)
+
+STAIR:random,up
+
+OBJECT:')',"walking stick",place[0],blessed,0,"Meancane"
+MONSTER:'t',"Sanita Ekerenze",place[0],hostile
+MONSTER:'R',random,place[1],hostile
+MONSTER:'R',random,place[2],hostile
+MONSTER:'R',random,place[3],hostile
+MONSTER:'R',random,place[4],hostile
+MONSTER:'R',random,place[5],hostile
+MONSTER:'R',random,place[6],hostile
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"adult lady",random,hostile
+MONSTER:'@',"girly girl",random,hostile
+MONSTER:'@',"girly girl",random,hostile
+MONSTER:'@',"female girl",random,hostile
+MONSTER:'@',"female girl",random,hostile
+MONSTER:'@',"farting queen",random,hostile
+MONSTER:'@',"farting queen",random,hostile
+MONSTER:'@',"farting queen",random,hostile
+MONSTER:'@',"farting queen",random,hostile
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+

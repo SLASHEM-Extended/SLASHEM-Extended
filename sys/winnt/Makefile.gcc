@@ -1500,6 +1500,9 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\slime.des $(DAT)\erdrick.des $(DAT)\druid.des  $(DAT)\marine.des  $(DAT)\medium.des \
 		$(DAT)\demago.des $(DAT)\cellar.des $(DAT)\grenad.des  $(DAT)\social.des  $(DAT)\walsch.des \
 		$(DAT)\cyber.des $(DAT)\dissi.des $(DAT)\astro.des  $(DAT)\crack.des  $(DAT)\janit.des \
+		$(DAT)\tosser.des $(DAT)\symbia.des $(DAT)\pract.des  $(DAT)\millsw.des  $(DAT)\gender.des \
+		$(DAT)\fjorde.des $(DAT)\emera.des $(DAT)\combat.des  $(DAT)\aklyst.des  $(DAT)\drag.des \
+		$(DAT)\carto.des \
 		$(DAT)\smarin.des $(DAT)\yautja.des $(DAT)\xelnaga.des  $(DAT)\weirdboy.des  $(DAT)\stormboy.des \
 		$(DAT)\empath.des $(DAT)\psyker.des $(DAT)\software.des  $(DAT)\quarter.des  $(DAT)\mastermi.des
 
@@ -1560,6 +1563,18 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/software.des
 	lev_comp $(DDAT)/quarter.des
 	lev_comp $(DDAT)/mastermi.des
+
+	lev_comp $(DDAT)/tosser.des
+	lev_comp $(DDAT)/symbia.des
+	lev_comp $(DDAT)/pract.des
+	lev_comp $(DDAT)/millsw.des
+	lev_comp $(DDAT)/gender.des
+	lev_comp $(DDAT)/fjorde.des
+	lev_comp $(DDAT)/emera.des
+	lev_comp $(DDAT)/combat.des
+	lev_comp $(DDAT)/aklyst.des
+	lev_comp $(DDAT)/drag.des
+	lev_comp $(DDAT)/carto.des
 
 	lev_comp $(DDAT)/tracer.des
 	lev_comp $(DDAT)/feminist.des

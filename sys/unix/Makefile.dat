@@ -349,7 +349,9 @@ spec_levs: ../util/lev_comp \
 	Social.des Walsch.des Cyber.des Dissi.des Astro.des Crack.des \
 	Janit.des Smarin.des Yautja.des Xelnaga.des Weirdboy.des \
 	Stormboy.des Empath.des Psyker.des Software.des Quarter.des \
-	Mastermi.des
+	Mastermi.des Tosser.des Symbia.des Pract.des Millsw.des \
+	Gender.des Fjorde.des Emera.des Combat.des Aklyst.des \
+	Drag.des Carto.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -483,6 +485,17 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Software.des
 	../util/lev_comp Quarter.des
 	../util/lev_comp Mastermi.des
+	../util/lev_comp Tosser.des
+	../util/lev_comp Symbia.des
+	../util/lev_comp Pract.des
+	../util/lev_comp Millsw.des
+	../util/lev_comp Gender.des
+	../util/lev_comp Fjorde.des
+	../util/lev_comp Emera.des
+	../util/lev_comp Combat.des
+	../util/lev_comp Aklyst.des
+	../util/lev_comp Drag.des
+	../util/lev_comp Carto.des
 	../util/lev_comp Supermar.des
 	../util/lev_comp Thalmor.des
 	../util/lev_comp Top.des

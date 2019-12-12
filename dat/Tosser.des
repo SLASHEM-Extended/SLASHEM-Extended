@@ -1,0 +1,474 @@
+#	SCCS Id: @(#)Priest.des	3.4	2002/04/08
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, High Priest
+#	and receive your quest assignment.
+#
+#     Amy note: originally drow quest from dnethack, adjusted for tosser role in SLEX
+#
+MAZE: "Tos-strt",' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:center,center
+#0         1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0-------------------------FFF....      ......            ......              
+1|.....|.|...|...|.|...|.+..F.....    .......           ........             
+2|.....|.|...|...|.|...|.|..F....... .......           ....  ....            
+3|.....|.|...|...|.|...|.|FFF....... .......           ...    .....          
+4|.....|.--+---+--.--+--.|...........  ......          ..      .......       
+5|.....|.+.........+.....+......... ..  .....         ....     ...........   
+6---+---.--+---+--.--+--.|......... ..  .....         .....   }............. 
+7|.......|...|...|.|...|.|FFF......... .......        .....  }}..............
+8--+---+-|...|...|.|...|.|..F........ ........        .......}}.FFFF...FFFF..
+9|...|...|...|...|.|...|.+..F.....     .......       ......  }}.F..-----..F. 
+0|...|...|--------+-----.|FFF......    .......       .......}}..F.........F. 
+1|...|...|.........|...|.| ........   .........     ....... }}..F|.-----.|F. 
+2---------..F+--F..|...+.|  ......... .........    ... ..... }}..|.|...|.|}..
+3|.......+..|.|.+..|...|.|  ...   ..............  ..     ....}}..|.+...|.|}..
+4--+---+--..|---|..-----.|   ...   .....  .........       .. }}..|.|...|.|}. 
+5|...|...|..+.|.|..|...|.|    ...  ...... ........  ...   ..}}..F|.-----.|F. 
+6|...|...|..F--+F..|...+.|  ...............   .... .....     }}.F.........F..
+7|...|...|.........|...|.|  . ....  ....     ............  ..}}.F..-----..F. 
+8-----------------------.|   ....     ......         .. .     }}FFFF...FFFF. 
+9-------------------------                          ....    }}}............  
+ENDMAP
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+#0         1         2         3         4         5         6         7
+# Dungeon Description
+
+# Portal arrival point
+BRANCH:(40,01,40,01),(0,0,0,0)
+# Stairs
+STAIR:(68,13),down
+# Doors
+DOOR:closed,(02,08)
+DOOR:closed,(02,14)
+DOOR:closed,(03,06)
+DOOR:closed,(06,08)
+DOOR:closed,(06,14)
+DOOR:closed,(08,05)
+DOOR:closed,(08,13)
+DOOR:closed,(10,04)
+DOOR:closed,(10,06)
+DOOR:locked,(11,15)
+DOOR:locked,(12,12)
+DOOR:locked,(14,16)
+DOOR:closed,(14,04)
+DOOR:closed,(14,06)
+DOOR:locked,(15,13)
+DOOR:closed,(17,10)
+DOOR:closed,(18,05)
+DOOR:closed,(20,04)
+DOOR:closed,(20,06)
+DOOR:closed,(22,12)
+DOOR:closed,(22,16)
+DOOR:closed,(24,01)
+DOOR:closed,(24,05)
+DOOR:closed,(24,09)
+
+DOOR:closed,(66,13)
+
+# The drawbridge
+DRAWBRIDGE:(73,13),west,closed
+
+# Altar
+ALTAR:(03,02),chaos,altar
+# High Priestess of Lolth
+MONSTER:'@',"Mute Christine",(03,01)
+# The treasure of Eclavdra
+CONTAINER:'(',"chest",(03,01)
+# guards for the audience chamber
+MONSTER:'@',"hunter",(01,02)
+MONSTER:'@',"hunter",(01,03)
+MONSTER:'@',"hunter",(01,04)
+MONSTER:'@',"hunter",(01,05)
+MONSTER:'@',"hunter",(05,02)
+MONSTER:'@',"hunter",(05,03)
+MONSTER:'@',"hunter",(05,04)
+MONSTER:'@',"hunter",(05,05)
+
+# Monsters on siege duty.
+MONSTER:'@',"drow matron",(10,13)
+MONSTER:'@',"hedrow warrior",(10,12)
+MONSTER:'@',"hedrow warrior",(10,14)
+
+MONSTER:'C',"sprow",(12,13)
+MONSTER:'C',"sprow",(14,13)
+MONSTER:'C',"sprow",(12,15)
+MONSTER:'C',"sprow",(14,15)
+
+MONSTER:'@',"drow matron",random
+MONSTER:'@',"drow matron",random
+MONSTER:'@',"drow matron",random
+
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+MONSTER:'@',"hedrow warrior",random
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to venture through the Drider caves
+#	to go further towards your assigned quest.
+#
+
+MAZE: "Tos-loca",' '
+FLAGS: hardfloor,shortsighted
+GEOMETRY:center,center
+#0         1         2         3         4         5         6         7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0                                                                            
+1 ..       ....            ......            ...        .......         ..   
+2  ..     ......H...     ..........         .....       ........       ....  
+3   ..    .. ...   .    ......... ..          .           .....       ....   
+4    ..  ..        .      .....    ..         .             ..       .....   
+5     ....         .         ..     ..        H              ....       ..   
+6    ....          H        ..       ..      ....               ..      ..   
+7    .....        ...      ..         ..    ........             ...    ..   
+8   ......      ......   ...           ..  ............           ...  ...   
+9    ....      .. ....   ....       ........................H....H......     
+0       ..    ..   ..     ...     ........................         ..        
+1        ..  ..          ..       ........................          ..       
+2  ....   ....          ..         ........................         ..       
+3 ......   ..          ..    ...    ....................           ..        
+4  ....   ....        ..    .....    ............                 ..         
+5   ..   ..  ..      ..       ...  .H.   ............          ....     ...  
+6   .. ..     ..............    ....      ............      ....  ..   ..... 
+7    ...                   ..            ..     ....    .....      ..   .... 
+8                           ..............         ......           .....    
+9
+ENDMAP
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+#0         1         2         3         4         5         6         7
+# Dungeon Description
+REGION:(00,00,75,19),unlit,"ordinary"
+# Doors
+
+# Stairs
+STAIR:(01,13),up
+STAIR:(73,02),down
+
+# Magic Chest
+OBJECT:'(',"chest",random
+
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+OBJECT: random,random,random
+
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+GOLD: random, random
+#
+MONSTER: 'C', "drider", random, hostile
+MONSTER: 'C', "drider", random, hostile
+MONSTER: 'C', "drider", random, hostile
+MONSTER: 'C', "drider", random, hostile
+
+MONSTER: 'C', "drider", random, hostile
+MONSTER: 'C', "drider", random, hostile
+MONSTER: 'C', "drider", random, hostile
+MONSTER: 'C', "drider", random, hostile
+
+
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', random, random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+MONSTER: 's', "giant spider", random, hostile
+
+MONSTER: 's', "mirkwood spider", random, hostile
+MONSTER: 's', "mirkwood spider", random, hostile
+MONSTER: 's', "mirkwood spider", random, hostile
+MONSTER: 's', "mirkwood spider", random, hostile
+
+MONSTER: 's', "mirkwood spider", random, hostile
+MONSTER: 's', "mirkwood spider", random, hostile
+MONSTER: 's', "mirkwood spider", random, hostile
+
+MONSTER: 's', "darkwood elder", random, hostile
+MONSTER: 's', "darkwood elder", random, hostile
+MONSTER: 's', "darkwood elder", random, hostile
+#
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+TRAP: "web", random
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Nalzok your nemesis monster.  You have to
+#	defeat Nalzok in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Tos-goal", ' '
+FLAGS: noteleport,hardfloor,shortsighted
+GEOMETRY:center,center
+#0         1         2   	   3	     4	       5		 6	       7
+#0123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+1TTTTTTT.....T...TTTT...TTT....TTTTTTTTT...TTTT.TT...TTTT......TTTTT.T......T
+2TT........TT......TT..TT.........................T...TTTT......TT...T..T...T
+3TT...TT....T...T............TTTTTTTTTTTTTTTTTTT.......TTT...T..T...T...TT..T
+4T..TTT.......T..T...TT....TTT.................TTT..T.TTTT..TT..T..........TT
+5T...T.....TTT...TTT..T...TT...}}}}}}}.}}}}}}}...TT..TTTTT..TTT.....TTT...TTT
+6TT...TT..TTTTT...TT......T..}}}|----T.T----|}}}..T...TTT...TTT...TTTTTTTTTTT
+7TTT...TT.TTTTTT....T.....T.}}|--T.........T--|}}.T....T...TTTT..TTT....TTTTT
+8TT.T...T..TTT..T.....T...T.}|-T..T.......T..T-|}.T........TTTTT...........TT
+9TT..T.T....T.......TT....T.}|T...............T|}.T..T.....TTTTT............T
+0T...T......T.......T.....T.......................T..TT...TTTTT.............T
+1T..TTT.TT...T....TTT.T...T.}|T...............T|}.T.TTT...TTTTTT............T
+2T.TT.....T........T..T...T.}|-T..T.......T..T-|}.T.T.....TTTT.TTT.........TT
+3TTT.......T..T........T..T.}}|--T.........T--|}}.T......TTT.T...TTTT....TTTT
+4TTT.......T..TT..........T..}}}|----T.T----|}}}..T.....TTTT......T..TTT...TT
+5TT.........T...TT....T...TT...}}}}}}}.}}}}}}}...TT....TTTT..TT...T........TT
+6TTT.......TT...T....TTT...TTT.................TTT....TTTTTT.TT..T..........T
+7TTTTT...TTTT.T...T.TTTTT....TTTTTTTTTTTTTTTTTTT.....TTTTTTT.TTT.T...TT....TT
+8TTTTTTTTTTTTT.TTTTTTTTT.TT.......................TT.TTTTTTTT......TTTTTT.TTT
+9TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+
+# Stairs
+STAIR:(00,00,75,19),(25,03,49,17),up
+
+# Objects
+OBJECT:')',"dwarvish spear",(37,10),blessed,0,"Clean Mauler"
+OBJECT:'(',"chest",(37,10)
+
+# Monsters.
+MONSTER:'@',"Father Elijah", (37,10)
+# elf guards for the audience chamber
+MONSTER:'y',"stjarna-alfr",(38,09), hostile
+MONSTER:'y',"stjarna-alfr",(38,10), hostile
+MONSTER:'y',"stjarna-alfr",(38,11), hostile
+MONSTER:'y',"stjarna-alfr",(36,09), hostile
+MONSTER:'y',"stjarna-alfr",(36,10), hostile
+MONSTER:'y',"stjarna-alfr",(36,11), hostile
+MONSTER:'y',"stjarna-alfr",(37,09), hostile
+MONSTER:'y',"stjarna-alfr",(37,11), hostile
+
+# traps
+# One pit at each cardinal point.
+TRAP:"pit",(37,05)
+TRAP:"pit",(37,06)
+TRAP:"pit",(46,10)
+TRAP:"pit",(45,10)
+TRAP:"pit",(37,15)
+TRAP:"pit",(37,14)
+TRAP:"pit",(28,10)
+TRAP:"pit",(29,10)
+TRAP:random,random
+TRAP:random,random
+
+MONSTER:'@',"Elvenking",random
+MONSTER:'@',"elf-lord",random
+MONSTER:'@',"elf-lord",random
+MONSTER:'@',"elf-lord",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+MONSTER:'@',"Grey-elf",random
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Tos-fila", ' '
+FLAGS: hardfloor,shortsighted
+#
+INIT_MAP: '.' , ' ' , true , true , unlit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: '(', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+#
+
+
+MAZE: "Tos-filb", ' '
+FLAGS: hardfloor,shortsighted
+#
+INIT_MAP: '.' , 'T', true, true, lit, true
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+#
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Green-elf", random, hostile
+MONSTER: '@', "Grey-elf", random, hostile
+MONSTER: '@', "Grey-elf", random, hostile
+MONSTER: '@', "Grey-elf", random, hostile
+MONSTER: '@', "Grey-elf", random, hostile
+MONSTER: '@', "Grey-elf", random, hostile
+MONSTER: '@', "Grey-elf", random, hostile
+MONSTER: '@', "Grey-elf", random, hostile
+MONSTER: '@', "elf-lord", random, hostile
+

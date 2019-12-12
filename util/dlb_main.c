@@ -55,7 +55,7 @@ static char origdir[255]="";
 
 /* comment by Amy - due to the immense number of playable roles, this file count limit needs to be increased. */
 
-#define MAX_DLB_FILES 10000	/* max # of files we'll handle */
+#define MAX_DLB_FILES 50000	/* max # of files we'll handle */
 #define DLB_VERS 1		/* version of dlb file we will write */
 
 /*

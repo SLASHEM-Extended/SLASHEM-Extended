@@ -56270,7 +56270,8 @@ useful talisman that can protect you from harm?
 
 #
 #       Fjorde
-#       note by Amy: this guy is meant to have a fish fetish. Since I myself have a shoe fetish instead, I'm probably not
+#       note by Amy: this guy is meant to have a fish fetish.
+#       Since I myself have a shoe fetish instead, I'm probably not
 #       capable of portraying this with the same accuracy, but I'll try :-)
 #
 %Cc Fjo 00001
@@ -57276,7 +57277,7 @@ to %l quickly.
 %E
 %Cp Eme 00080
 You landed the killing blow on %n, who gasps:
-"Curse you, %n... You dirty asshole of a man..."
+"Curse you, %p... You dirty asshole of a man..."
 Then %n stops moving.
 %E
 %Cc Eme 00081

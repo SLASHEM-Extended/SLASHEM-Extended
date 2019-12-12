@@ -1,0 +1,352 @@
+MAZE: "Mil-strt" , random
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012
+MAP
+-----+-------------+---------+-------------+---------+-------------+-----
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
++...........+...........+...........+...........+...........+...........+
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+-----+-------------+---------+-------------+---------+-------------+-----
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
++...........+...........+...........+...........+...........+...........+
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+|...........|...........|...........|...........|...........|...........|
+-----+-------------+---------+-------------+---------+-------------+-----
+ENDMAP
+#
+BRANCH:levregion(01,00,79,20),(0,0,0,0)
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+MAZEWALK:(00,04),west
+MAZEWALK:(48,04),east
+MAZEWALK:(00,14),west
+MAZEWALK:(48,14),east
+
+MONSTER:'@',"Waste Deputy",(20,14)
+
+MONSTER:'@',"servant",(18,14)
+MONSTER:'@',"servant",(17,14)
+MONSTER:'@',"servant",(16,14)
+MONSTER:'@',"servant",(15,14)
+MONSTER:'@',"servant",(14,14)
+MONSTER:'@',"servant",(18,15)
+MONSTER:'@',"servant",(17,15)
+MONSTER:'@',"servant",(16,15)
+MONSTER:'@',"servant",(15,15)
+MONSTER:'@',"servant",(14,15)
+
+DOOR:closed,(00,04)
+DOOR:closed,(12,04)
+DOOR:closed,(24,04)
+DOOR:closed,(00,14)
+DOOR:closed,(12,14)
+DOOR:closed,(24,14)
+DOOR:closed,(05,00)
+DOOR:closed,(05,09)
+DOOR:closed,(05,18)
+DOOR:closed,(19,00)
+DOOR:closed,(19,09)
+DOOR:closed,(19,18)
+
+DOOR:closed,(36,04)
+DOOR:closed,(48,04)
+DOOR:closed,(36,14)
+DOOR:closed,(48,14)
+DOOR:closed,(29,00)
+DOOR:closed,(29,09)
+DOOR:closed,(29,18)
+DOOR:closed,(43,00)
+DOOR:closed,(43,09)
+DOOR:closed,(43,18)
+
+DOOR:closed,(60,04)
+DOOR:closed,(72,04)
+DOOR:closed,(60,14)
+DOOR:closed,(72,14)
+DOOR:closed,(53,00)
+DOOR:closed,(53,09)
+DOOR:closed,(53,18)
+DOOR:closed,(67,00)
+DOOR:closed,(67,09)
+DOOR:closed,(67,18)
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MAZE: "Mil-fila" , random
+GEOMETRY:center,center
+MAP
+BBBB                        BBBB
+B..BB                      BB..B
+B...BB                    BB...B
+BB...BBB                BBB...BB
+ BB....BB              BB....BB
+  BB....BB            BB....BB
+   BB....BBBBBBBBBBBBBB....BB
+    BB....................BB
+     BB..................BB
+      BBBB............BBBB
+     BB..................BB
+    BB....................BB
+   BB....BBBBBBBBBBBBBB....BB
+  BB....BB            BB....BB
+ BB....BB              BB....BB
+BB...BBB                BBB...BB
+B...BB                    BB...B
+B..BB                      BB..B
+BBBB                        BBBB
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+MAZEWALK:(05,09),west
+MAZEWALK:(26,09),east
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE: "Mil-loca" , random
+GEOMETRY:center,center
+MAP
+      -------
+   ----.....----
+ |--...........--|
+|-...............-|
++.................+
+|-...............-|
+ |--...........--|
+   ----.....----
+      -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+DOOR:closed,(00,04)
+DOOR:closed,(18,04)
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZEWALK:(00,04),west
+MAZEWALK:(18,04),east
+
+MAZE: "Mil-filb" , random
+GEOMETRY:center,center
+MAP
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+
+
+
+
+
+-------                  -------
+|.....|                  |.....|
+|.....|                  |.....|
++.....|                  |.....+
+|.....|                  |.....|
+|.....|                  |.....|
+-------                  -------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+#
+
+DOOR:closed,(00,03)
+DOOR:closed,(31,03)
+DOOR:closed,(00,15)
+DOOR:closed,(31,15)
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZEWALK:(00,03),west
+MAZEWALK:(31,03),east
+MAZEWALK:(00,15),west
+MAZEWALK:(31,15),east
+
+MAZE: "Mil-goal" , random
+GEOMETRY:center,center
+MAP
+-------
+|.....|
+|.....|
+B.....B
+|.....|
+|.....|
+-------
+ENDMAP
+#
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+#
+
+OBJECT:'(',"binning kit",(03,03),blessed,50,"Fertilizator"
+MONSTER:'@',"Environment Pollution Overlord",(03,03),hostile
+
+MAZEWALK:(00,03),west
+MAZEWALK:(06,03),east
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random

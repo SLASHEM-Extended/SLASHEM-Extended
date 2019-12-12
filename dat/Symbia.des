@@ -1,0 +1,355 @@
+#	SCCS Id: @(#)Elf.des	3.2	91/12/24
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Earendil/Elwing
+#	and receive your quest assignment.
+#
+MAZE: "Sym-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+  ..........................
+  .     .     .         .  .
+                          ...
+                         .....
+    ... ... ... ...     .......
+    ... ... ... ...     .......
+    ... ... ... ...     ......
+     +   +   +   +       .....
+... ...............       ...
+... .. ......... ..        .
+...+..... ... .....+........
+... .. ......... ..
+... ...............
+...  +   +   +   +
+... ... ... ... ...
+... ... ... ... ...
+... ... ... ... ...
+ENDMAP
+# Dungeon Description
+
+BRANCH:(02,01,02,01),(0,0,0,0)
+
+# Stairs
+STAIR:(01,15),down
+
+DOOR:closed,(05,07)
+DOOR:closed,(09,07)
+DOOR:closed,(13,07)
+DOOR:closed,(17,07)
+DOOR:closed,(05,13)
+DOOR:closed,(09,13)
+DOOR:closed,(13,13)
+DOOR:closed,(17,13)
+DOOR:closed,(03,10)
+DOOR:closed,(19,10)
+
+# Portal arrival point
+
+# Earendil/Elwing
+MONSTER:'@',"Turgon",(27,05)
+
+# elf guards for the audience chamber
+MONSTER:'@',"Highest elf",(28,04)
+MONSTER:'@',"Highest elf",(28,05)
+MONSTER:'@',"Highest elf",(28,06)
+MONSTER:'@',"Highest elf",(26,04)
+MONSTER:'@',"Highest elf",(26,05)
+MONSTER:'@',"Highest elf",(26,06)
+MONSTER:'@',"Highest elf",(27,04)
+MONSTER:'@',"Highest elf",(27,06)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to infiltrate the Goblins' Cave to go
+#	further towards your assigned quest.
+#
+
+MAZE: "Sym-loca",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+ -.. ..-......-.....--......T... 
+ ...T.--.TT ..T  T .. T .... ... 
+ .-.T.... .--... ...-.. .--.T... 
+  .  .... ......T---...T.... T+  
+ ....---.T......T..-... ........ 
+ ...--.-. ...... .--...T........ 
+   T -.-.     .. ..  TT .... T T 
+ ..-T.--.T....-.T...--. .---T... 
+ .--T---.T...... ..--.- ---- -.. 
+ ...+.... .--....---.--T--.-.--. 
+ ... .... ........---.. --.. .-. 
+  T T....T..-...T-.-...T.... TT  
+ ..-..... -..-.. ...... .....--. 
+ ...-.--. .. TTT  T  +. .....--. 
+  +T .... -..... ...... ....  T  
+ ... ...-T----.. ......T...-T.-- 
+ ...T...- --.-..T...... .--- -.. 
+ .--T.--- -..--. ......T--...-.. 
+ --- ....   .. TT  ..   --..T... 
+ ..-T..-...-....-..-.--..... ... 
+ENDMAP
+# Dungeon Description
+REGION:(00,00,32,19),lit,"ordinary"
+
+# Stairs
+STAIR:random,up
+STAIR:random,down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet The Goblin King your nemesis monster.  You have to
+#	defeat The Goblin King in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Sym-goal", ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+-------------------------------
+|..+...+..........+...........|
+|..|...|..........|...........|
+|.-----------------...........|
+|+|...............|...........|
+|.................|..-------..|
+|..---............|..-------..|
+|.|-.|............|...........|
+|.|..|............|...........|
+|+|.-|............|...........|
+|...--+----+---+--------+------
+|..|-....|...|...|............|
+|..|.....|...|...|--........--|
+|..|.....|...|...|............|
+-------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,29,14),lit,"ordinary"
+
+# Stairs
+STAIR:(01,13),up
+
+DOOR:locked,(03,01)
+DOOR:locked,(07,01)
+DOOR:locked,(18,01)
+DOOR:locked,(01,04)
+DOOR:locked,(01,09)
+DOOR:locked,(06,10)
+DOOR:locked,(11,10)
+DOOR:locked,(15,10)
+DOOR:locked,(24,10)
+
+# Objects and quest artifact
+OBJECT:'(',"Hitchhiker's Guide To The Galaxy",(24,12),blessed,0,"Hungerhealer"
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+# Random monsters and the nemesis
+
+MONSTER:'\'',"illusory reflector golem",(24,12)
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Sym-fila" , ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+........................................................................TT..
+........................................................................TT..
+.....................T......................................................
+....................TTT...............TT....................................
+....................TTT...............TT............TTTTTT..................
+..........TTT.......................................TTTTTT..................
+..........TTT...............................................................
+...........TT...............................................................
+............................................................................
+..........................................................................TT
+...................................TTT...................................TTT
+...................................TTT......................................
+......TT..........................................TT..........TTT...........
+......TTT.........................................TT..........TTT...........
+.......TT..........................................T........................
+..........................TTTT.....................T........................
+..........................TTTT..............................................
+..........................TTTT..............................................
+ENDMAP
+#
+
+REGION:(00,00,75,17),lit,"ordinary"
+
+STAIR: random, up
+STAIR: random, down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+MAZE: "Sym-filb" , ' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+          ......
+        ..........
+      ..............
+    ..................
+  ......................
+ ........................
+..........................
+..........................
+..........................
+..........................
+..........................
+..........................
+ ........................
+  ......................
+    ..................
+      ..............
+        ..........
+          ......
+ENDMAP
+#
+REGION:(00,00,25,17),lit,"ordinary"
+
+STAIR: random, up
+STAIR: random, down
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random

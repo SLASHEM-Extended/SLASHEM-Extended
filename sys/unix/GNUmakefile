@@ -210,7 +210,11 @@ QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Walsch.des Social.des Cyber.des Dissi.des Astro.des Crack.des \
  Janit.des Smarin.des Yautja.des Xelnaga.des Weirdboy.des \
  Stormboy.des Empath.des Psyker.des Software.des Quarter.des \
- Mastermi.des
+ Mastermi.des Tosser.des Symbia.des Pract.des Millsw.des \
+ Gender.des Fjorde.des Emera.des Combat.des Aklyst.des Drag.des \
+ Carto.des
+
+
 
 
 SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\

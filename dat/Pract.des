@@ -1,0 +1,313 @@
+# Geek.des
+# The Geek quest
+# 03/19/94 by Sebastian Klein
+
+# --- start level ---
+
+MAZE: "Pra-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+............................................................................
+............................................................................
+..........................|-------------------------|.......................
+..........................|.........................|.......................
+..........................|-------------+-----------|.......................
+............................................................................
+............................................................................
+............................................................................
+..........................|-------------------------|-|.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|.........................+.+.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|.........................|.|.....................
+..........................|-------------------------|-|.....................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+BRANCH:(60,18,60,18),(0,0,0,0)
+
+STAIR:(27,03),down
+
+DOOR:locked,(40,04)
+DOOR:locked,(54,12)
+DOOR:locked,(52,12)
+
+MONSTER:'@',"Little Bia",(38,12)
+
+MONSTER:'@',"student",(37,11)
+MONSTER:'@',"student",(38,11)
+MONSTER:'@',"student",(39,11)
+MONSTER:'@',"student",(37,12)
+MONSTER:'@',"student",(39,12)
+MONSTER:'@',"student",(37,13)
+MONSTER:'@',"student",(38,13)
+MONSTER:'@',"student",(39,13)
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- locate level ---
+
+# looks harmless but *IS* tough!!!
+
+MAZE: "Pra-loca",' '
+FLAGS: hardfloor
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+.....--------------------------|............|--------------------------.....
+...............................|............|...............................
+...-------------------------|..|............|..|-------------------------...
+............................|..|............|..|............................
+.---------------------|--|..|..|............|..|..|--|---------------------.
+......................|..|..|..|............|..|..|..|......................
+.---------------------|--|..|..|............|..|..|--|---------------------.
+............................|..|............|..|............................
+...-------------------------|..|............|..|-------------------------...
+...............................|............|...............................
+.....--------------------------|............|--------------------------.....
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+............................................................................
+ENDMAP
+
+RANDOM_PLACES: (24,09), (27,09), (30,09), (45,09), (48,09), (51,09)
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+# the niches 
+STAIR:place[0],down
+MONSTER:'m',"giant mimic",place[3], m_feature "staircase down"
+MONSTER:'m',"giant mimic",place[4], m_feature "staircase down"
+TRAP:"polymorph",place[5]
+
+STAIR:random,up
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- the goal level ---
+
+MAZE: "Pra-goal", ' '
+GEOMETRY:center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+............................................................................
+.-------------------------------------------------------------------------|.
+..........................................................................|.
+....|-----------------------------------------------------------------|...|.
+....|.................................................................|...|.
+....|...|---------------------------------------------------------|...|...|.
+....|...|...+.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|........................\............................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|.....................................................|...|...|.
+....|...|...|-----------------------------------------------------|...|...|.
+....|...|.............................................................|...|.
+....|...|-------------------------------------------------------------|...|.
+....|.....................................................................|.
+....|---------------------------------------------------------------------|.
+............................................................................
+............................................................................
+ENDMAP
+
+REGION:(0,0,75,19),lit,"ordinary"
+
+STAIR:(75,19),up
+
+DOOR:locked,(12,06)
+
+# that's what's this all about :-)
+OBJECT:'(',"chemistry set",(37,09),blessed,30,"Too Late Prize"
+MONSTER:'8',"Assistant Noroela",(37,09),hostile
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- fill a ---
+
+LEVEL: "Pra-fila"
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,up
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,down
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+RANDOM_CORRIDORS
+
+
+# --- fill b ---
+
+LEVEL: "Pra-filb"
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,up
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,down
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+RANDOM_CORRIDORS
+
