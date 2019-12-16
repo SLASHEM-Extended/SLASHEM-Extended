@@ -1544,7 +1544,8 @@ set_moreluck()
 }
 
 
-/* KMH, balance patch -- new function for healthstones */
+/* KMH, balance patch -- new function for healthstones
+ * Amy balance "nerf": make the boost increase more slowly if you have several stones */
 void
 recalc_health()
 {
@@ -1557,6 +1558,9 @@ recalc_health()
 	    if (otmp->otyp == HEALTHSTONE)
 	    	u.uhealbonus += otmp->quan *
 	    			(otmp->blessed ? 2 : otmp->cursed ? -2 : 1);
+
+	if (u.uhealbonus > 1) u.uhealbonus = rno(u.uhealbonus);
+
 	return;
 }
 
@@ -1571,6 +1575,9 @@ recalc_mana()
 	    if (otmp->otyp == MANASTONE)
 	    	manabonus += otmp->quan *
 	    			(otmp->blessed ? 2 : otmp->cursed ? -2 : 1);
+
+	if (manabonus > 1) manabonus = rno(manabonus);
+
 	return manabonus;
 }
 
