@@ -24718,6 +24718,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are an atheist! You cannot make offerings!",
 	"You are an atheist! You cannot pray!",
 	"Your symbiote seems healthier!",
+	"You must really like it down here. Stay a while.",
+	"You must really like it down here. Stay a while. Signed, The Mysterious Force Inventor Who Wants His Or Her Penis Caught In A Gear.",
 
 };
 

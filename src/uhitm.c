@@ -749,6 +749,15 @@ register struct monst *mtmp;
 		tmp -= 2;
 	}
 
+	/* heavy weapons are inaccurate versus tiny monsters (e.g. rats or insects) --Amy */
+	if (uwep && is_heavyweapon(uwep) && verysmall(mtmp->data) && tmp > 1) {
+		tmp /= 2;
+	}
+	/* but they're particularly good at hitting huge monsters */
+	if (uwep && is_heavyweapon(uwep) && hugemonst(mtmp->data)) {
+		tmp += rnd(5);
+	}
+
 	if (u.tremblingamount) tmp -= rnd(u.tremblingamount);
 
 	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
@@ -3121,7 +3130,13 @@ int dieroll;
 
 	if (RngeWeakness && tmp > 1) tmp /= 2;
 
+	/* javelin is meant to be thrown, and therefore less effective in melee --Amy */
 	if (!thrown && obj && obj->oclass == WEAPON_CLASS && (objects[obj->otyp].oc_skill == P_JAVELIN) && tmp > 1) {
+		tmp /= 2;
+	}
+
+	/* heavy two-handed weapons are bad versus tiny enemies (hard to effectively hit a tiny monster with a huge weapon) */
+	if (!thrown && obj && is_heavyweapon(obj) && verysmall(mon->data)) {
 		tmp /= 2;
 	}
 

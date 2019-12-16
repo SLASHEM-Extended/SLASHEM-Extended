@@ -24723,6 +24723,9 @@ register int otyp;
 	    if (is_musable(otmp)) otmp->mstartinvent = 1;
 	    if (otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) otmp->mstartinventB = 1;
 	    if (otmp->otyp == MUMMY_WRAPPING && mtmp->data->mlet == S_MUMMY) otmp->mstartinventC = 1;
+	    if (otmp->otyp == LONG_SWORD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
+	    if (otmp->otyp == LARGE_SHIELD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
+	    if (otmp->otyp == SHIELD_OF_REFLECTION && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 	    if (otmp->otyp == ROBE && mtmp->data->mlet == S_WRAITH) otmp->mstartinventC = 1;
 	    (void) mpickobj(mtmp, otmp, TRUE);	/* might free otmp */
 	    return(spe);

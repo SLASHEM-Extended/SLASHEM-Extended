@@ -5393,6 +5393,37 @@ find_ac()
 		
 	}
 
+	/* heavy two-handed weapons should have a disadvantage to make up for the fact that they deal great damage and
+	 * don't suffer from low to-hit like dual-wielded one-handed weapons do. These are basically all two-handers that
+	 * are meant to be used in melee, so e.g. bows are unaffected but also polearms because those are already balanced
+	 * by the fact that their damage is only mediocre and they're not effective without riding.
+	 * Additionally, quarterstaff and unicorn horn are exempt because they don't get big damage bonuses and shouldn't
+	 * be made completely pointless just because I'm trying to balance the heavy hitters.
+	 * And double lightsabers are exempt because it's already enough of a hassle to manage power for them. --Amy */
+	if (uwep && is_heavyweapon(uwep)) {
+
+		int heavyreduction = 80;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
+				case P_BASIC: heavyreduction = 81; break;
+				case P_SKILLED: heavyreduction = 82; break;
+				case P_EXPERT: heavyreduction = 83; break;
+				case P_MASTER: heavyreduction = 84; break;
+				case P_GRAND_MASTER: heavyreduction = 85; break;
+				case P_SUPREME_MASTER: heavyreduction = 86; break;
+				default: heavyreduction = 80; break;
+			}
+		}
+
+		int difference = (-(uac - 10));
+		difference *= heavyreduction;
+		difference /= 100;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
+
+	}
+
 	if (Race_if(PM_PLAYER_ASURA)) {
 
 		int worncount = 0;
