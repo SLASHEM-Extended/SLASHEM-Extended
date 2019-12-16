@@ -3171,7 +3171,7 @@ int tech_no;
 		    return(0);
 		} else if((ACURR(A_INT) + ACURR(A_WIS)) < rnd(60)) {
 			pline("Nothing in your pack looks familiar.");
-                    t_timeout = rnz(1000);
+                    t_timeout = rnz(2000);
 		    break;
 		} else if(invent) {
 			You("examine your possessions.");
@@ -3181,7 +3181,7 @@ int tech_no;
 		    You("are already quite familiar with the contents of your pack.");
 		    break;
 		}
-                t_timeout = rnz(2000);
+                t_timeout = rnz(5000);
 		break;
             case T_EVISCERATE:
 		/* only when empty handed, in human form */
@@ -3346,8 +3346,8 @@ secureidchoice:
 
 			}
 
-			if (u.glassgolemdown) t_timeout = rnz(5000);
-			else t_timeout = rnz(10000);
+			if (u.glassgolemdown) t_timeout = rnz(10000);
+			else t_timeout = rnz(20000);
 		break;
 
             case T_PRACTICE:
@@ -3602,7 +3602,7 @@ secureidchoice:
 			obj->bknown=1;
 			pline("The aura fades.");
 		}
-		t_timeout = rnz(5000);
+		t_timeout = rnz(7500);
 		break;
 	    case T_E_FIST: 
 	    	blitz_e_fist();
@@ -3864,7 +3864,7 @@ secureidchoice:
 		}
             	if (Upolyd) u.mh -= num;
             	else u.uhp -= num;
-		t_timeout = rnz(1500);
+		t_timeout = rnz(5000);
             	break;
 	    case T_WARD_FIRE:
 		/* Already have it intrinsically? */
@@ -3936,7 +3936,7 @@ secureidchoice:
 		}
 		u.uhpmax += num;
 		u.uhp += num;
-		t_timeout = rnz(1500);
+		t_timeout = rnz(5000);
 		break;	    
 	    case T_BLINK:
 	    	You_feel("the flow of time slow down.");
@@ -4155,7 +4155,7 @@ secureidchoice:
 	    	if (!doblitz()) return (0);		
 		u.combostrike = 0;
 		u.comboactive = FALSE;
-                t_timeout = rnz(1500);
+                t_timeout = rnz(5000);
 	    	break;
             case T_PUMMEL:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
@@ -4171,7 +4171,7 @@ secureidchoice:
 			return(0);
 		}
             	if (!blitz_pummel()) return(0);
-                t_timeout = rnz(1500);
+                t_timeout = rnz(2000);
 		break;
             case T_G_SLAM:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
@@ -4196,7 +4196,7 @@ secureidchoice:
 			return(0);
 		}
             	if (!blitz_dash()) return(0);
-                t_timeout = rnz(75);
+                t_timeout = rnz(500);
 		break;
             case T_POWER_SURGE:
             	if (!blitz_power_surge()) return(0);
@@ -4278,7 +4278,7 @@ secureidchoice:
 		}
 		if (!jump((techlevX(tech_no)/5)+1)) return 0;
 		u.uen -= 25;
-		t_timeout = rnz(50);
+		t_timeout = rnz(500);
 		break;
 	    case T_POKE_BALL:
 
@@ -4309,7 +4309,7 @@ secureidchoice:
 				pline("Gotcha! %s was caught!", mon_nam(mtmp));
 				(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 				caught++;
-				t_timeout = rnz(1000);
+				t_timeout = rnz(3000);
 				}
 
 			else if ( (mtmp->m_lev > (2 * techlevX(tech_no)) || rn2(4) ) && mtmp->m_lev > techlevX(tech_no) && caught == 0 && ( (!is_pokemon(mtmp->data) && (!mtmp->egotype_pokemon) ) || rn2(2) ) )
@@ -4336,7 +4336,7 @@ secureidchoice:
 					pline("Gotcha! %s was caught!", mon_nam(mtmp));
 					(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 					caught++;
-					t_timeout = rnz(1000);
+					t_timeout = rnz(3000);
 
 					}
 				}
@@ -4347,7 +4347,7 @@ secureidchoice:
 		if (caught == 0) pline("The ball expodes in midair!");
 /* This is an intentional typo, derived from another roguelike. Do you know which one it is? --Amy*/
 
-		t_timeout = rnz(1000);
+		t_timeout = rnz(3000);
 		break;
 	    case T_SUMMON_TEAM_ANT:
 
@@ -4373,7 +4373,7 @@ secureidchoice:
 
 		}
 
-		t_timeout = rnz(1000);
+		t_timeout = rnz(5000);
 		break;
 
 	    case T_DOUBLE_TROUBLE:	/* inspired by Khor */
@@ -4405,7 +4405,7 @@ secureidchoice:
 
 		}
 
-		t_timeout = rnz(5000);
+		t_timeout = rnz(10000);
 		break;
 
 	    case T_ATTIRE_CHARM:
@@ -4440,7 +4440,7 @@ secureidchoice:
 				pline("%s is charmed, and wants to be your friend!", mon_nam(mtmp3));
 				(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 				if (techlevX(tech_no) < rnd(100)) caughtX++;
-				t_timeout = rnz(2000);
+				t_timeout = rnz(5000);
 				}
 
 			else pline("%s is too stupid to fully appreciate you!", mon_nam(mtmp3));
@@ -4448,7 +4448,7 @@ secureidchoice:
 			} /* monster is catchable loop */
 		    } /* for loop */
 
-		t_timeout = rnz(2000);
+		t_timeout = rnz(5000);
 		break;
 
 	    case T_WORLD_FALL:
@@ -4471,7 +4471,7 @@ secureidchoice:
 			pline("Eliminated %d monster%s.", num, plur(num));
 		}
 
-		t_timeout = rnz(25000);
+		t_timeout = rnz(100000);
 		break;
 
 	    case T_CREATE_AMMO:
@@ -4605,7 +4605,7 @@ secureidchoice:
 
 		}
 
-	      t_timeout = rnz(500);
+	      t_timeout = rnz(1000);
 	      break;
 
 	    }
@@ -4636,7 +4636,7 @@ secureidchoice:
 
 		}
 
-	      t_timeout = rnz(2000);
+	      t_timeout = rnz(10000);
 	      break;
 
 	    case T_BOOZE:
@@ -4708,7 +4708,7 @@ secureidchoice:
 		pline("You summon a pet.");
 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
 
-	      t_timeout = rnz(5000);
+	      t_timeout = rnz(10000);
 	      break;
 
 	    case T_DOUBLE_THROWNAGE:
@@ -4744,7 +4744,7 @@ chargingchoice:
 		}
 		recharge(otmpC, 0);
 
-	      t_timeout = rnz(7500);
+	      t_timeout = rnz(15000);
 	      break;
 		}
 
@@ -4886,7 +4886,7 @@ chargingchoice:
 
 	    case T_WONDERSPELL:
 		wonderspell();
-	      t_timeout = rnz(5000);
+	      t_timeout = rnz(10000);
 		break;
 
 	    case T_SWAP_WEAPON:
@@ -4910,7 +4910,7 @@ resetretrying:
 					if (yn("Make this technique usable again?") == 'y') {
 						techtout(numtechs) = 0;
 						pline("The timeout on your %s technique has been set to zero.", techname(numtechs));
-						t_timeout = rnz(50000);
+						t_timeout = rnz(Race_if(PM_DEVELOPER) ? 50000 : 200000);
 						goto resettechdone;
 					}
 				}
@@ -4944,7 +4944,7 @@ resettechdone:
 
 		num = 10 + (techlevX(tech_no) * 5);
 	    	techt_inuse(tech_no) = num + 1;
-		t_timeout = rnz(2000);
+		t_timeout = rnz(5000);
 
 		}
 
@@ -5064,7 +5064,7 @@ resettechdone:
 				pline("Your stick seems very sharp now.");
 			} else pline("Your stick seems as sharp as it was before.");
 
-			t_timeout = rnz(4000);
+			t_timeout = rnz(7500);
 			break;
 
 		case T_BUG_SPRAY:
@@ -5121,14 +5121,14 @@ resettechdone:
 
 			if (stack_too_big(obj)) {
 				pline("The stack was too big! Nothing happens.");
-				t_timeout = rnz(1500);
+				t_timeout = rnz(5000);
 				break;
 			}
 
 			curse(obj);
 			pline("Okay, that object is cursed now.");
 
-			t_timeout = rnz(1500);
+			t_timeout = rnz(5000);
 			break;
 
 		case T_ACQUIRE_STEED:
@@ -5158,12 +5158,12 @@ resettechdone:
 							pline("%s is successfully tamed!", mon_nam(mtmp3));
 							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 							if (techlevX(tech_no) < rnd(100)) caughtX++;
-							t_timeout = rnz(3000);
+							t_timeout = rnz(5000);
 						} else if ( ((rnd(30 - ACURR(A_CHA))) < 4) && (!resist(mtmp3, RING_CLASS, 0, NOTELL) || !resist(mtmp3, RING_CLASS, 0, NOTELL) || !resist(mtmp3, RING_CLASS, 0, NOTELL)) ) {
 							pline("%s is successfully tamed!", mon_nam(mtmp3));
 							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 							if (techlevX(tech_no) < rnd(100)) caughtX++;
-							t_timeout = rnz(3000);
+							t_timeout = rnz(5000);
 						} else {
 							pline("%s resists the taming attempt!", mon_nam(mtmp3));
 						}
@@ -5173,7 +5173,7 @@ resettechdone:
 			    } /* for loop */
 
 			}
-			t_timeout = rnz(3000);
+			t_timeout = rnz(5000);
 
 			break;
 
@@ -5566,7 +5566,7 @@ heelschoice:
 			}
 heelschosen:
 			pline("There might be something waiting for you on the %s...", surface(u.ux, u.uy));
-			t_timeout = rnz(3000);
+			t_timeout = rnz(7500);
 			break;
 
 		case T_BEAUTY_CHARM:
@@ -5692,7 +5692,7 @@ heelschosen:
 				pline("Your boomerang is well-enchanted.");
 			} else pline("Your boomerang is moderately enchanted.");
 
-			t_timeout = rnz(4000);
+			t_timeout = rnz(10000);
 			break;
 
 		case T_BATMAN_ARSENAL:
@@ -5712,7 +5712,7 @@ heelschosen:
 
 			}
 
-			t_timeout = rnz(2500);
+			t_timeout = rnz(5000);
 			break;
 
 		case T_JOKERBANE:
@@ -5742,7 +5742,7 @@ heelschosen:
 
 			}
 
-			t_timeout = rnz(5000);
+			t_timeout = rnz(10000);
 			break;
 
 		case T_DOMINATE:
@@ -5771,7 +5771,7 @@ heelschosen:
 					pline("%s is dominated!", mon_nam(mtmp3));
 					(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 					if (techlevX(tech_no) < rnd(100)) caughtX++;
-					t_timeout = rnz(2000);
+					t_timeout = rnz(10000);
 				}
 
 				else pline("%s can't be dominated with this method!", mon_nam(mtmp3));
@@ -5779,7 +5779,7 @@ heelschosen:
 			} /* monster is catchable loop */
 		    } /* for loop */
 
-			t_timeout = rnz(2000);
+			t_timeout = rnz(10000);
 
 			}
 
@@ -5956,13 +5956,13 @@ revid_end:
 			makeknown(j);
 			pline("%s (%s).", obj_descr[j].oc_name, obj_descr[j].oc_descr);
 		}
-		t_timeout = rnz(10000);
+		t_timeout = rnz(20000);
 
 		break;
 
 	    case T_DETECT_TRAPS:
 		trap_detect((struct obj *)0);
-		t_timeout = rnz(5000);
+		t_timeout = rnz(20000);
 		break;
 
 	    case T_DIRECTIVE:
@@ -6162,14 +6162,14 @@ revid_end:
 			pline("All done - your implant got re-initialized! Its base AC value got rerolled, and if it was a type that had a random enchantment, that was re-randomized as well. The bonus you'll get from wearing it while in a form without hands has also been changed.");
 		}
 
-		t_timeout = rnz(5000);
+		t_timeout = rnz(10000);
 		break;
 
 	    case T_TIME_STOP:
 
 		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 		TimeStopped += (5 + rnd(6));
-		t_timeout = rnz(15000);
+		t_timeout = rnz(25000);
 		break;
 
 	    case T_STAT_RESIST:
@@ -6190,10 +6190,10 @@ revid_end:
 		if (uwep && !(uwep->cursed)) {
 			uwep->bknown = TRUE;
 			pline("Your lightsaber wasn't cursed to begin with, and therefore nothing happens.");
-			t_timeout = rnz(500);
+			t_timeout = rnz(5000);
 			break;
 		}
-		t_timeout = rnz(500);
+		t_timeout = rnz(5000);
 		if (uwep) {
 			pline("Your lightsaber is surrounded by a holy aura.");
 			uncurse(uwep, TRUE);
@@ -6231,7 +6231,7 @@ revid_end:
 			}
 			savewornmask = wearrobe->owornmask;
 			setworn((struct obj *)0, wearrobe->owornmask);
-			t_timeout = rnz(5000);
+			t_timeout = rnz(10000);
 
 			wearrobe->enchantment = randenchantment();
 			pline("Your robe's special enchantment was randomized.");
@@ -6259,7 +6259,7 @@ revid_end:
 		}
 		num = 20 + (techlevX(tech_no) * 3);
 	    	techt_inuse(tech_no) = num + 1;
-		t_timeout = rnz(2000);
+		t_timeout = rnz(3000);
 		pline("Your lightsabers start attacking rapidly at the cost of accuracy.");
 		break;
 
@@ -6414,7 +6414,7 @@ revid_end:
 			hurtmon(mtmp, tmp);
 		}
 
-	      t_timeout = rnz(1500);
+	      t_timeout = rnz(2500);
 
 	      break;
 
@@ -6642,7 +6642,7 @@ revid_end:
 
 			}
 
-			t_timeout = rnz(7500);
+			t_timeout = rnz(15000);
 			break;
 
 		case T_INTRINSIC_SACRIFICE:
@@ -6728,7 +6728,7 @@ revid_end:
 			uwep->rknown = 1;
 			pline("Alright - your weapon is erosionproof now.");
 
-			t_timeout = rnz(5000);
+			t_timeout = rnz(10000);
 			break;
 
 		case T_POWERFUL_AURA:
@@ -6753,7 +6753,7 @@ revid_end:
 				uwep->spe++;
 			}
 
-			t_timeout = rnz(3000);
+			t_timeout = rnz(6000);
 			break;
 
 		case T_CLONE_JAVELIN:
@@ -6873,7 +6873,7 @@ revid_end:
 
 			}
 			wonderspell();
-			t_timeout = rnz(10000);
+			t_timeout = rnz(15000);
 			break;
 
 		case T_CARD_TRICK:
@@ -7032,7 +7032,7 @@ cardtrickchoice:
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your firearms can temporarily shut up bitches upon hitting them.");
 
-			t_timeout = rnz(7500);
+			t_timeout = rnz(15000);
 			break;
 
 		case T_S_PRESSING:
@@ -7232,7 +7232,7 @@ cardtrickchoice:
 			}
 			You("try to clone yourself!");
 			cloneu();
-			t_timeout = rnz(10000);
+			t_timeout = rnz(20000);
 			break;
 
 		case T_POLYFIX:
