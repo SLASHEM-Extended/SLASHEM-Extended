@@ -3154,19 +3154,19 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CANCEL_DRAGON_SCALE_MAIL, "otmenit' pochtu masshtaba drakona" },
 	{ CANCEL_DRAGON_SCALE_SHIELD, "otmenit' shchit iz cheshui drakona" },
 	{ SYMBIOTE, "simbiont" },
+	{ SPE_SYMHEAL, "sim lechit'" },
+	{ SCR_SYMBIOSIS, "simbioz" },
+	{ SCR_TERRAFORMING, "terraformirovaniye" },
+	{ SCR_INFERIOR_MATERIAL, "khudshiy material" },
+	{ SCR_REGULAR_MATERIAL, "obychnyy material" },
+	{ SCR_SUPERIOR_MATERIAL, "prevoskhodnyy material" },
+	{ SCR_ILLUSION, "illyuziya" },
+	{ SCR_EVIL_VARIANT, "zloy variant" },
+	{ SCR_FEMINISM, "feminizm" },
+	{ WAN_BLEEDING, "krovotecheniye" },
+	{ WAN_UNDRESSING, "razdevaniya" },
 
 	/* todo area */
-
-	{ SCR_SYMBIOSIS, "todo" },
-	{ SCR_TERRAFORMING, "todo" },
-	{ SCR_INFERIOR_MATERIAL, "todo" },
-	{ SCR_REGULAR_MATERIAL, "todo" },
-	{ SCR_SUPERIOR_MATERIAL, "todo" },
-	{ SCR_ILLUSION, "todo" },
-	{ SCR_EVIL_VARIANT, "todo" },
-	{ SCR_FEMINISM, "todo" },
-	{ WAN_BLEEDING, "todo" },
-	{ WAN_UNDRESSING, "todo" },
 
 	{0, "" }
 };
@@ -5769,19 +5769,19 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CANCEL_DRAGON_SCALE_MAIL, "ajdaho miqyosidagi pochtani bekor qilish" },
 	{ CANCEL_DRAGON_SCALE_SHIELD, "ajdaho shkalasini qalqonni bekor qiling" },
 	{ SYMBIOTE, "simbiot" },
+	{ SPE_SYMHEAL, "simbiot shifo" },
+	{ SCR_SYMBIOSIS, "simbioz" },
+	{ SCR_TERRAFORMING, "yerga aylantiring" },
+	{ SCR_INFERIOR_MATERIAL, "past material" },
+	{ SCR_REGULAR_MATERIAL, "muntazam material" },
+	{ SCR_SUPERIOR_MATERIAL, "ustun material" },
+	{ SCR_ILLUSION, "xayol" },
+	{ SCR_EVIL_VARIANT, "yomon variant" },
+	{ SCR_FEMINISM, "feminizm" },
+	{ WAN_BLEEDING, "qon ketishi" },
+	{ WAN_UNDRESSING, "yechintirish" },
 
 	/* todo area */
-
-	{ SCR_SYMBIOSIS, "todo" },
-	{ SCR_TERRAFORMING, "todo" },
-	{ SCR_INFERIOR_MATERIAL, "todo" },
-	{ SCR_REGULAR_MATERIAL, "todo" },
-	{ SCR_SUPERIOR_MATERIAL, "todo" },
-	{ SCR_ILLUSION, "todo" },
-	{ SCR_EVIL_VARIANT, "todo" },
-	{ SCR_FEMINISM, "todo" },
-	{ WAN_BLEEDING, "todo" },
-	{ WAN_UNDRESSING, "todo" },
 
 	{0, "" }
 };
@@ -9437,7 +9437,7 @@ typfnd:
 		consume_oeaten(otmp, -amt);
 	}
 	otmp->owt = weight(otmp);
-	if (very && otmp->otyp == HEAVY_IRON_BALL) otmp->owt += 300;
+	if (very && otmp->otyp == HEAVY_IRON_BALL) otmp->owt += 600;
 
 	return(otmp);
 }

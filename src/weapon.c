@@ -574,13 +574,13 @@ struct monst *mon;
 	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != MT_SILVER && objects[otyp].oc_material != MT_ARCANIUM)
 		tmp = 0;
 
-	/* "very heavy iron ball"; weight increase is in increments of 300 */
+	/* "very heavy iron ball"; weight increase is in increments of 600 */
 	if (otmp->oclass == BALL_CLASS && tmp > 0) {
 
 		int wt = (int)objects[otmp->otyp].oc_weight;
 
 		if ((int)otmp->owt > wt) {
-			wt = ((int)otmp->owt - wt) / 300;
+			wt = ((int)otmp->owt - wt) / 600;
 			tmp += rnd(4 * wt);
 			if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
 		}
@@ -991,13 +991,13 @@ struct monst *mon;
 	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != MT_SILVER && objects[otyp].oc_material != MT_ARCANIUM)
 		tmp = 0;
 
-	/* "very heavy iron ball"; weight increase is in increments of 300 */
+	/* "very heavy iron ball"; weight increase is in increments of 600 */
 	if (otmp->oclass == BALL_CLASS && tmp > 0) {
 
 		int wt = (int)objects[otmp->otyp].oc_weight;
 
 		if ((int)otmp->owt > wt) {
-			wt = ((int)otmp->owt - wt) / 300;
+			wt = ((int)otmp->owt - wt) / 600;
 			tmp += rnd(4 * wt);
 			if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
 		}
@@ -5627,10 +5627,10 @@ struct obj *weapon;
 		switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
 
 	    case P_SKILLED:	bonus +=  1; break;
-	    case P_EXPERT:	bonus +=  2; break;
-	    case P_MASTER:	bonus +=  3; break;
-	    case P_GRAND_MASTER:bonus +=  4; break;
-	    case P_SUPREME_MASTER:bonus +=  5; break;
+	    case P_EXPERT:	bonus +=  rnd(2); break;
+	    case P_MASTER:	bonus +=  rnd(3); break;
+	    case P_GRAND_MASTER:bonus +=  rnd(4); break;
+	    case P_SUPREME_MASTER:bonus +=  rnd(5); break;
 	    default: bonus += 0; break;
 		}
 	}
@@ -5719,12 +5719,12 @@ struct obj *weapon;
 	if (weapon && bimanual(weapon) && !is_missile(weapon) && !is_ammo(weapon) && !is_launcher(weapon) && !(is_pole(weapon) && !u.usteed) && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
 
-			case P_BASIC:	bonus +=  2; break;
-			case P_SKILLED:	bonus +=  4; break;
-			case P_EXPERT:	bonus +=  6; break;
-			case P_MASTER:	bonus +=  8; break;
-			case P_GRAND_MASTER:	bonus +=  10; break;
-			case P_SUPREME_MASTER:	bonus +=  12; break;
+			case P_BASIC:	bonus +=  rn2(3); break;
+			case P_SKILLED:	bonus +=  rn2(5); break;
+			case P_EXPERT:	bonus +=  rn2(7); break;
+			case P_MASTER:	bonus +=  rn2(9); break;
+			case P_GRAND_MASTER:	bonus +=  rn2(11); break;
+			case P_SUPREME_MASTER:	bonus +=  rn2(13); break;
 			default: bonus += 0; break;
 		}
 

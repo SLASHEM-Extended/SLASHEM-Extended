@@ -10296,16 +10296,15 @@ register struct obj	*sobj;
 
     struct obj *otmp;
 	/* KMH -- Punishment is still okay when you are riding */
-	/* KMH -- Punishment is still okay when you are riding */
 	You("are being punished for your misbehavior!");
 	u.cnd_punishmentcount++;
 
 	/*if (Is_waterlevel(&u.uz)) return;*/ /* otherwise it crashes for some weird reason --Amy */
 
 
-	if(Punished){
+	if(Punished){ /* very heavy iron ball */
 		Your("iron ball gets heavier.");
-		uball->owt += 300 * (1 + sobj->cursed); /*ball weight increases by 300 now --Amy*/
+		uball->owt += 600 * (1 + sobj->cursed); /*ball weight increases by 600 now --Amy*/
 		return;
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
@@ -10345,9 +10344,9 @@ punishx()
 	/*if (Is_waterlevel(&u.uz)) return;*/ /* otherwise it crashes for some weird reason --Amy */
 	u.cnd_punishmentcount++;
 
-	if(Punished){
+	if(Punished){ /* very heavy iron ball */
 		Your("iron ball gets heavier.");
-		uball->owt += 300;
+		uball->owt += 600;
 		return;
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
