@@ -716,6 +716,12 @@ stupidsegfault:
 	    return buf;
 	}
 
+	if (Role_if(PM_GENDERSTARIST)) {
+		if (is_neuter(mtmp->data)) strcat(buf, "male or female or neuter ");
+		else if (mtmp->female) strcat(buf, "female ");
+		else strcat(buf, "male ");
+	}
+
 	/* priests and minions: don't even use this function */
 	if (mtmp->ispriest || mtmp->isminion) {
 

@@ -6814,7 +6814,7 @@ register struct monst *mtmp;
 							}
 						}
 
-						if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
+						if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 							mtmp2->mtame = mtmp2->mpeaceful = 0;
 							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
@@ -8493,19 +8493,38 @@ symbiotemelee()
 
 	int symchance = 0;
 
-	if (!PlayerCannotUseSkills) {
-		switch (P_SKILL(P_SYMBIOSIS)) {
-			default: symchance = 10; break;
-			case P_BASIC: symchance = 12; break;
-			case P_SKILLED: symchance = 14; break;
-			case P_EXPERT: symchance = 16; break;
-			case P_MASTER: symchance = 18; break;
-			case P_GRAND_MASTER: symchance = 20; break;
-			case P_SUPREME_MASTER: symchance = 22; break;
+	if (Role_if(PM_SYMBIANT)) {
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				default: symchance = 20; break;
+				case P_BASIC: symchance = 22; break;
+				case P_SKILLED: symchance = 24; break;
+				case P_EXPERT: symchance = 26; break;
+				case P_MASTER: symchance = 28; break;
+				case P_GRAND_MASTER: symchance = 30; break;
+				case P_SUPREME_MASTER: symchance = 32; break;
+			}
+		} else {
+			symchance = 20;
 		}
+
 	} else {
-		symchance = 10;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				default: symchance = 10; break;
+				case P_BASIC: symchance = 12; break;
+				case P_SKILLED: symchance = 14; break;
+				case P_EXPERT: symchance = 16; break;
+				case P_MASTER: symchance = 18; break;
+				case P_GRAND_MASTER: symchance = 20; break;
+				case P_SUPREME_MASTER: symchance = 22; break;
+			}
+		} else {
+			symchance = 10;
+		}
 	}
+
 	switch (u.symbioteaggressivity) {
 		case 5:
 			if (rn2(10)) return 0; break;
@@ -8543,19 +8562,38 @@ symbiotepassive()
 
 	int symchance = 0;
 
-	if (!PlayerCannotUseSkills) {
-		switch (P_SKILL(P_SYMBIOSIS)) {
-			default: symchance = 20; break;
-			case P_BASIC: symchance = 22; break;
-			case P_SKILLED: symchance = 24; break;
-			case P_EXPERT: symchance = 26; break;
-			case P_MASTER: symchance = 28; break;
-			case P_GRAND_MASTER: symchance = 30; break;
-			case P_SUPREME_MASTER: symchance = 32; break;
+	if (Role_if(PM_SYMBIANT)) {
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				default: symchance = 30; break;
+				case P_BASIC: symchance = 32; break;
+				case P_SKILLED: symchance = 34; break;
+				case P_EXPERT: symchance = 36; break;
+				case P_MASTER: symchance = 38; break;
+				case P_GRAND_MASTER: symchance = 40; break;
+				case P_SUPREME_MASTER: symchance = 42; break;
+			}
+		} else {
+			symchance = 30;
 		}
+
 	} else {
-		symchance = 20;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				default: symchance = 20; break;
+				case P_BASIC: symchance = 22; break;
+				case P_SKILLED: symchance = 24; break;
+				case P_EXPERT: symchance = 26; break;
+				case P_MASTER: symchance = 28; break;
+				case P_GRAND_MASTER: symchance = 30; break;
+				case P_SUPREME_MASTER: symchance = 32; break;
+			}
+		} else {
+			symchance = 20;
+		}
 	}
+
 	switch (u.symbioteaggressivity) {
 		case 5:
 			if (rn2(10)) return 0; break;

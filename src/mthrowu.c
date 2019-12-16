@@ -1575,6 +1575,9 @@ struct monst *mtmp;
 	    case PM_ROGUE:
 		    if (skill == P_DAGGER) multishot++;
 		    break;
+	    case PM_TOSSER:
+		    if (skill == P_JAVELIN) multishot++;
+		    break;
 	    case PM_NINJA:
 	    case PM_NINJA_GAIDEN:
 	    case PM_SAMURAI:

@@ -368,6 +368,24 @@ levscalerollpast:
 
 	}
 
+	if (Role_if(PM_TOSSER) && oclass == WEAPON_CLASS) {
+
+		if (!rn2(100) && objects[i].oc_skill != P_JAVELIN) {
+			int spattempts = 0;
+			while (spattempts++ < 50000 && (objects[i].oc_skill != P_JAVELIN)) {
+				prob = rnd(10000);
+				i = bases[(int)oclass];
+				while((prob -= objects[i].oc_prob) > 0) i++;
+
+				if(objects[i].oc_class != oclass)
+					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+				if(!OBJ_NAME(objects[i]))
+					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+			}
+		}
+
+	}
+
 	if (ismusablenumber(i) && (u.antimusablebias > rn2(100) ) ) {
 
 		prob = rnd(10000);
@@ -1902,6 +1920,9 @@ int artif;
 		}
 
 		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
+			otmp->quan += rnd(5);
+		}
+		if (Role_if(PM_TOSSER) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
 			otmp->quan += rnd(5);
 		}
 

@@ -673,6 +673,9 @@ register struct monst *mtmp;
 	if (Role_if(PM_SLAVE_MASTER) && rn2(10)) return FALSE; /* can keep monsters tame more easily --Amy */
 	if (Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) return FALSE; /* everything else betrays you more often */
 
+	/* dragonmaster can of course wear DSM (sorry AntiGulp) and it prevents dragons from rebelling --Amy */
+	if (Role_if(PM_DRAGONMASTER) && mtmp->data->mlet == S_DRAGON && uarm && Is_dragon_armor(uarm) ) return FALSE;
+
 	/* changed the way this works: first see whether the monster can betray you at all, then whether it actually does
 	 * if the latter is the case, "hasbeenbetrayed" is set to 2 and the actual betrayal code runs where we roll against
 	 * tameness, charisma and abuse --Amy */

@@ -366,6 +366,9 @@ struct obj {
 				      - GRAY_DRAGON_SCALE_MAIL]
 #define Dragon_to_scales(pm)	(GRAY_DRAGON_SCALES + (pm - mons))
 
+#define Is_dragon_shield(obj)	((obj)->otyp >= GRAY_DRAGON_SCALE_SHIELD && \
+				 (obj)->otyp <= YELLOW_DRAGON_SCALE_SHIELD)
+
 /* Elven gear */
 #define is_elven_weapon(otmp)	((otmp)->otyp == ELVEN_ARROW\
 				|| (otmp)->otyp == ELVEN_SPEAR\

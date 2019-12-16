@@ -24720,6 +24720,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your symbiote seems healthier!",
 	"You must really like it down here. Stay a while.",
 	"You must really like it down here. Stay a while. Signed, The Mysterious Force Inventor Who Wants His Or Her Penis Caught In A Gear.",
+	"You're getting angry!",
+	"You're getting angry! Seems that a louse has walked over your liver.",
+	"Oh great, there's a flooding on this sub level!",
+	"Oh damn, there's another flooding on this sub level!",
+	"The ichthyosaur nibbles you in a sexually arousing way!",
 
 };
 

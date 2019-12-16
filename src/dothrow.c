@@ -233,6 +233,9 @@ int thrown;
 
 	    if (launcher && launcher->oartifact == ART_FOEOEOEOEOEOEOE) multishot += rnd(3);
 
+	    if (Role_if(PM_TOSSER) && obj && objects[obj->otyp].oc_skill == P_JAVELIN) multishot += 1;
+	    if (Role_if(PM_MILL_SWALLOWER) && obj && (objects[obj->otyp].oc_skill == P_CROSSBOW || objects[obj->otyp].oc_skill == -P_CROSSBOW)) multishot += 1;
+
 	    if (uarmg && uarmg->oartifact == ART_PEEPING_GROOVE && launcher && (launcher->otyp == SHOTGUN || launcher->otyp == PAPER_SHOTGUN || launcher->otyp == SAWED_OFF_SHOTGUN || launcher->otyp == AUTO_SHOTGUN)) multishot += rnd(7);
 
 	    if (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 5;

@@ -344,6 +344,19 @@ struct monst *mon;
 	if (otmp->oinvis && !perceives(ptr)) tmp += 3;
 	if (otmp->oinvisreal) tmp += 7;
 
+	if (Role_if(PM_AKLYST) && (otmp->otyp == AKLYS || otmp->otyp == BLOW_AKLYS) && !(PlayerCannotUseSkills) ) {
+		switch (P_SKILL(P_CLUB)) {
+
+			case P_BASIC:	tmp +=  rnd(2); break;
+			case P_SKILLED:	tmp +=  rnd(4); break;
+			case P_EXPERT:	tmp +=  rnd(6); break;
+			case P_MASTER:	tmp +=  rnd(8); break;
+			case P_GRAND_MASTER:	tmp +=  rnd(10); break;
+			case P_SUPREME_MASTER:	tmp +=  rnd(12); break;
+			default: tmp += 0; break;
+		}
+	}
+
 	if (bimanual(otmp) && !is_missile(otmp) && !is_ammo(otmp) && !is_launcher(otmp) && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
 
@@ -5396,6 +5409,19 @@ struct obj *weapon;
 		}
 	}
 
+	if (Role_if(PM_AKLYST) && weapon && (weapon->otyp == AKLYS || weapon->otyp == BLOW_AKLYS) && !(PlayerCannotUseSkills) ) {
+		switch (P_SKILL(P_CLUB)) {
+
+			case P_BASIC:	bonus += rnd(2); break;
+			case P_SKILLED:	bonus += rnd(4); break;
+			case P_EXPERT:	bonus += rnd(6); break;
+			case P_MASTER:	bonus += rnd(8); break;
+			case P_GRAND_MASTER:	bonus += rnd(10); break;
+			case P_SUPREME_MASTER:	bonus += rnd(12); break;
+			default: bonus += 0; break;
+		}
+	}
+
 	/* Jedi are simply better... but not as much as they used to --Amy */
 	if (Role_if(PM_JEDI) && !rn2(2) && weapon && !(PlayerCannotUseSkills) && is_lightsaber(weapon)){
 		switch (P_SKILL(type)){
@@ -6362,9 +6388,10 @@ const struct def_skill *class_skill;
 	    skill = class_skill->skill;
 	    skmax = class_skill->skmax;
 
-	    /* Amy note: gun control and squeaking are gender-specific at game start (but you can unlock the other later) */
-	    if (flags.female && skill == P_GUN_CONTROL) continue;
-	    if (!flags.female && skill == P_SQUEAKING) continue;
+	    /* Amy note: gun control and squeaking are gender-specific at game start (but you can unlock the other later)
+	     * except if you're a genderstarist, then you'll start with both */
+	    if (!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) continue;
+	    if (!Role_if(PM_GENDERSTARIST) && !flags.female && skill == P_SQUEAKING) continue;
 
 	    P_MAX_SKILL(skill) = skmax;
 	    if (P_SKILL(skill) == P_ISRESTRICTED)       /* skill pre-set */

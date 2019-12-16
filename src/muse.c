@@ -7474,7 +7474,7 @@ struct monst *mtmp;
 							}
 						}
 
-						if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
+						if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 							mtmp2->mtame = mtmp2->mpeaceful = 0;
 							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }

@@ -1517,7 +1517,7 @@ convertdone:
 		} else {
 
 			badeffect();
-			if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
+			if (rn2(2) || Role_if(PM_EMERA)) increasesanity(rnz(20 + mtmp->m_lev));
 			stop_occupation();
 		}
 	}

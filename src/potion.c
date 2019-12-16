@@ -1139,6 +1139,44 @@ sjwtrigger()
 	pline("omg sexism");
 }
 
+void
+emerafrenzy()
+{
+	pline("You're getting angry!");
+
+	if (u.berserktime) {
+	    if (!obsidianprotection()) switch (rn2(11)) {
+	    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20), "emera sickness", TRUE, SICK_NONVOMITABLE);
+		    break;
+	    case 1: make_blinded(Blinded + 25, TRUE);
+		    break;
+	    case 2: if (!Confusion)
+			You("suddenly feel %s.",
+			    FunnyHallu ? "trippy" : "confused");
+		    make_confused(HConfusion + 25, TRUE);
+		    break;
+	    case 3: make_stunned(HStun + 25, TRUE);
+		    break;
+	    case 4: make_numbed(HNumbed + 25, TRUE);
+		    break;
+	    case 5: make_frozen(HFrozen + 25, TRUE);
+		    break;
+	    case 6: make_burned(HBurned + 25, TRUE);
+		    break;
+	    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+		    break;
+	    case 8: (void) make_hallucinated(HHallucination + 25, TRUE, 0L);
+		    break;
+	    case 9: make_feared(HFeared + 25, TRUE);
+		    break;
+	    case 10: make_dimmed(HDimmed + 25, TRUE);
+		    break;
+	    }
+
+	} else u.berserktime = 25;
+
+}
+
 boolean
 automore_active()
 {
@@ -8016,6 +8054,7 @@ healup(nhp, nxtra, curesick, cureblind)
 				} else {
 					healsymamount = 110;
 				}
+				if (Role_if(PM_SYMBIANT)) healsymamount += 10;
 
 				u.usymbiote.mhp *= healsymamount;
 				u.usymbiote.mhp /= 100;

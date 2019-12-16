@@ -6382,6 +6382,7 @@ newbossPENT:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapSarah = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapSarah += 100;
@@ -6397,6 +6398,7 @@ newbossPENT:
 			pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapClaudia = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapClaudia += 100;
@@ -6412,6 +6414,7 @@ newbossPENT:
 			pline("You'll certainly like to listen to the disgusting toilet noises.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapLudgera = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapLudgera += 100;
@@ -6427,6 +6430,7 @@ newbossPENT:
 			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapKati = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapKati += 100;
@@ -8205,7 +8209,7 @@ madnesseffect:
 					}
 				}
 
-				if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
+				if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 					mtmp2->mtame = mtmp2->mpeaceful = 0;
 
@@ -11411,6 +11415,7 @@ madnesseffect:
 			pline("All the girls want to use their sexy butt cheeks as weapons now!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapMeltem = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMeltem += 100;
@@ -11739,6 +11744,7 @@ madnesseffect:
 			pline("Now, the dungeon will be more feminine for a while!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapFemmy = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapFemmy += 100;
@@ -11755,6 +11761,7 @@ madnesseffect:
 			pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapMadeleine = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMadeleine += 100;
@@ -11771,6 +11778,7 @@ madnesseffect:
 			pline("Green is the new favorite color, it seems!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapMarlena = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMarlena += 100;
@@ -11787,6 +11795,7 @@ madnesseffect:
 			pline("Suddenly, you feel that you're going to step into a heap of shit.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapAnastasia = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapAnastasia += 100;
@@ -11803,6 +11812,7 @@ madnesseffect:
 			pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapJessica = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapJessica += 100;
@@ -11819,6 +11829,7 @@ madnesseffect:
 			pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapSolvejg = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapSolvejg += 100;
@@ -11835,6 +11846,7 @@ madnesseffect:
 			pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapWendy = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapWendy += 100;
@@ -11851,6 +11863,7 @@ madnesseffect:
 			pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapKatharina = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapKatharina += 100;
@@ -11867,6 +11880,7 @@ madnesseffect:
 			pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapElena = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapElena += 100;
@@ -11883,6 +11897,7 @@ madnesseffect:
 			pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapThai = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapThai += 100;
@@ -11899,6 +11914,7 @@ madnesseffect:
 			pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapElif = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapElif += 100;
@@ -11915,6 +11931,7 @@ madnesseffect:
 			pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapNadja = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapNadja += 100;
@@ -11931,6 +11948,7 @@ madnesseffect:
 			pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapSandra = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapSandra += 100;
@@ -11947,6 +11965,7 @@ madnesseffect:
 			pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapNatalje = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapNatalje += 100;
@@ -11966,6 +11985,7 @@ madnesseffect:
 			pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapJeanetta = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapJeanetta += 100;
@@ -11982,6 +12002,7 @@ madnesseffect:
 			pline("You feel that people are building toilets for you to use.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapYvonne = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapYvonne += 100;
@@ -11998,6 +12019,7 @@ madnesseffect:
 			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
 
 			FemaleTrapMaurah = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMaurah += 100;

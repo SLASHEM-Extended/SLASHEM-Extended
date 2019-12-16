@@ -7338,7 +7338,7 @@ repairitemchoice:
 
 			}
 
-			t_timeout = rnz(20000);
+			t_timeout = rnz(Role_if(PM_SYMBIANT) ? 4000 : 20000);
 			break;
 
 		case T_ADJUST_SYMBIOTE:

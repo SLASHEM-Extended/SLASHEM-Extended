@@ -853,6 +853,10 @@ doforce()		/* try to force a chest with your weapon */
 				if (Role_if(PM_JEDI) && StrongUseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && StrongUseTheForce) dmg += rnd(u.ulevel);
 
+				if (Role_if(PM_EMERA) && mtmp->data->msound == MS_SHOE) {
+					dmg += rnd(2 * u.ulevel);
+				}
+
 				if (!PlayerCannotUseSkills) {
 					switch (P_SKILL(P_WEDI)) {
 
@@ -933,7 +937,7 @@ doforce()		/* try to force a chest with your weapon */
 
 				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_QUIET || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
-					if (mtmp->butthurt < 20 && !rn2(3)) {
+					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						mtmp->butthurt += rnd(5);
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
 						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
@@ -948,7 +952,7 @@ doforce()		/* try to force a chest with your weapon */
 				}
 				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_NORMAL || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
-					if (mtmp->butthurt < 20 && !rn2(3)) {
+					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						mtmp->butthurt += rnd(3);
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
 						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
@@ -965,7 +969,7 @@ doforce()		/* try to force a chest with your weapon */
 				}
 				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_LOUD || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
-					if (mtmp->butthurt < 20 && !rn2(3)) {
+					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						mtmp->butthurt += 1;
 						if (mtmp->butthurt < 5) pline("%s's %s butt is getting %s red bruises.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly", mtmp->female ? "beautiful" : "intense");
 						else if (mtmp->butthurt < 9) pline("%s's %s butt is getting sore from your beating.", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");

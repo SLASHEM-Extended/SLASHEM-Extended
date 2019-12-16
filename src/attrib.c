@@ -38,6 +38,14 @@ const struct innate {
 		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
 		     {	 0, 0, 0, 0, 0 } },  
 
+	eme_abil[] = { {	 5, &(SanityTrebleEffect), "", "", FALSE },
+		     {   10, &(CompletelyBadPartBug), "", "", FALSE },  
+		     {   15, &(SatanEffect), "", "", FALSE },  
+		     {   20, &(MonnoiseEffect), "", "", FALSE },  
+		     {   25, &(BrownSpells), "", "", FALSE },  
+		     {   28, &(LongingEffect), "", "", FALSE },  
+		     {	 0, 0, 0, 0, 0 } },  
+
 	xel_abil[] = { {	 1, &(HSwimming), "", "", TRUE },
 		     {  1, &(HAcid_resistance), "", "", TRUE },
 		     {  1, &(HScentView), "", "", TRUE },
@@ -427,7 +435,8 @@ const struct innate {
 	drm_abil[] = { { 7, &(HFast), "quick", "slow" },
 			{ 0, 0, 0, 0 } },
 
-	fjo_abil[] = { { 10, &(HCold_resistance), "warm", "cooler" },
+	fjo_abil[] = { { 1, &(HSwimming), "", "" },
+			{ 10, &(HCold_resistance), "warm", "cooler" },
 			{ 0, 0, 0, 0 } },
 
 	akl_abil[] = { { 20, &(HSight_bonus), "your surroundings lighting up", "shrouded in darkness" },
@@ -2043,6 +2052,7 @@ int oldlevel, newlevel;
 	case PM_SPACE_MARINE:   abil = sma_abil;	break;
 	case PM_JANITOR:   abil = jan_abil;	break;
 	case PM_ANACHRONIST:    abil = ana_abil;	break;  
+	case PM_EMERA:    abil = eme_abil;	break;  
 	case PM_XELNAGA:    abil = xel_abil;	break;  
 	case PM_BARBARIAN:      abil = bar_abil;	break;
 	case PM_COURIER:      abil = cou_abil;	break;

@@ -4823,6 +4823,15 @@ elena37:
 		}
 	}
 
+	if (Role_if(PM_FJORDE) && mtmp->data->mlet == S_EEL) {
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
+			if (foundyou && !rn2(5) && tmp > (j = rnd(20+i))) {
+				pline("%s nibbles you in a sexually arousing way!", Monnam(mtmp));
+				u.tremblingamount++;
+			}
+		}
+	}
+
 	if (uimplant && uimplant->oartifact == ART_POTATOROK && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok(FALSE);
 		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);

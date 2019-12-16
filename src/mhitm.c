@@ -3948,7 +3948,7 @@ mdamagem(magr, mdef, mattk)
 
 		/* Certain monsters aren't even made peaceful. */
 		if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
-			!(mdef->data->mflags3 & M3_COVETOUS) && !(mdef->data->geno & G_UNIQ) &&
+			!(mdef->data->mflags3 & M3_COVETOUS) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mdef->data->mlet == S_DRAGON) && !(mdef->data->geno & G_UNIQ) &&
 			((magr->mtame && !rn2(10)) || (mdef->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 		    if (vis) pline("%s looks calmer.", Monnam(mdef));
 		    if (mdef == u.usteed && !mayfalloffsteed())
@@ -4772,7 +4772,7 @@ physical:
 
 				/* Certain monsters aren't even made peaceful. */
 				if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
-					!(mdef->data->mflags3 & M3_COVETOUS) && !(mdef->data->geno & G_UNIQ) &&
+					!(mdef->data->mflags3 & M3_COVETOUS) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mdef->data->mlet == S_DRAGON) && !(mdef->data->geno & G_UNIQ) &&
 					((magr->mtame && !rn2(10)) || (mdef->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 				    if (vis) pline("%s looks calmer.", Monnam(mdef));
 				    if (mdef == u.usteed && !mayfalloffsteed())
@@ -5134,7 +5134,7 @@ physical:
 
 			/* Certain monsters aren't even made peaceful. */
 			if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
-				!(mdef->data->mflags3 & M3_COVETOUS) && !(mdef->data->geno & G_UNIQ) &&
+				!(mdef->data->mflags3 & M3_COVETOUS) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mdef->data->mlet == S_DRAGON) && !(mdef->data->geno & G_UNIQ) &&
 				((magr->mtame && !rn2(10)) || (mdef->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 			    if (vis) pline("%s looks calmer.", Monnam(mdef));
 			    if (mdef == u.usteed && !mayfalloffsteed())
@@ -5875,7 +5875,7 @@ physical:
 					}
 				}
 
-				if (!mdef->mfrenzied && (!mdef->mtame || (mdef->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
+				if (!mdef->mfrenzied && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mdef->data->mlet == S_DRAGON) && (!mdef->mtame || (mdef->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
 					mdef->mpeaceful = mdef->mtame = 0;
 					mdef->mfrenzied = 1;
 					if (vis) pline("%s enters a state of frenzy!", Monnam(mdef));
@@ -5978,7 +5978,7 @@ physical:
 		/* Certain monsters aren't even made peaceful. */
 		if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
 			!(mdef->data->mflags3 & M3_COVETOUS) &&
-			!(mdef->data->geno & G_UNIQ) &&
+			!(mdef->data->geno & G_UNIQ) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mdef->data->mlet == S_DRAGON) &&
 			((magr->mtame && !rn2(10)) || (mdef->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 		    if (vis) pline("%s looks calmer.", Monnam(mdef));
 		    if (mdef == u.usteed && !mayfalloffsteed())
@@ -6008,7 +6008,7 @@ physical:
 			}
 		}
 
-		if (!mdef->mfrenzied && (!mdef->mtame || (mdef->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
+		if (!mdef->mfrenzied && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mdef->data->mlet == S_DRAGON) && (!mdef->mtame || (mdef->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
 			mdef->mpeaceful = mdef->mtame = 0;
 			mdef->mfrenzied = 1;
 		    if (vis) pline("%s enters a state of frenzy!", Monnam(mdef));
@@ -6398,7 +6398,7 @@ int attnumber;
 
 		/* Certain monsters aren't even made peaceful. */
 		if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
-			!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+			!(magr->data->mflags3 & M3_COVETOUS) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && magr->data->mlet == S_DRAGON) && !(magr->data->geno & G_UNIQ) &&
 			((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 		    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
 		    if (magr == u.usteed && !mayfalloffsteed())
@@ -6430,7 +6430,7 @@ int attnumber;
 
 		/* Certain monsters aren't even made peaceful. */
 		if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
-			!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+			!(magr->data->mflags3 & M3_COVETOUS) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && magr->data->mlet == S_DRAGON) && !(magr->data->geno & G_UNIQ) &&
 			((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 		    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
 		    if (magr == u.usteed && !mayfalloffsteed())
@@ -6460,7 +6460,7 @@ int attnumber;
 			}
 		}
 
-		if (!magr->mfrenzied && (!magr->mtame || (magr->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
+		if (!magr->mfrenzied && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && magr->data->mlet == S_DRAGON) && (!magr->mtame || (magr->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
 			magr->mpeaceful = magr->mtame = 0;
 			magr->mfrenzied = 1;
 		    if (canseemon(magr)) pline("%s enters a state of frenzy!", Monnam(magr));
@@ -6762,7 +6762,7 @@ int attnumber;
 
 				/* Certain monsters aren't even made peaceful. */
 				if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
-					!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+					!(magr->data->mflags3 & M3_COVETOUS) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && magr->data->mlet == S_DRAGON) && !(magr->data->geno & G_UNIQ) &&
 					((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 				    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
 				    if (magr == u.usteed && !mayfalloffsteed())
@@ -7141,7 +7141,7 @@ int attnumber;
 
 			/* Certain monsters aren't even made peaceful. */
 			if (!magr->iswiz && magr->data != &mons[PM_MEDUSA] &&
-				!(magr->data->mflags3 & M3_COVETOUS) && !(magr->data->geno & G_UNIQ) &&
+				!(magr->data->mflags3 & M3_COVETOUS) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && magr->data->mlet == S_DRAGON) && !(magr->data->geno & G_UNIQ) &&
 				((mdef->mtame && !rn2(10)) || (magr->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 			    if (canseemon(magr)) pline("%s looks calmer.", Monnam(magr));
 			    if (magr == u.usteed && !mayfalloffsteed())
@@ -7214,7 +7214,7 @@ int attnumber;
 					}
 				}
 
-				if (!magr->mfrenzied && (!magr->mtame || (magr->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
+				if (!magr->mfrenzied && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && magr->data->mlet == S_DRAGON) && (!magr->mtame || (magr->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
 					magr->mpeaceful = magr->mtame = 0;
 					magr->mfrenzied = 1;
 					if (canseemon(magr)) pline("%s enters a state of frenzy!", Monnam(magr));

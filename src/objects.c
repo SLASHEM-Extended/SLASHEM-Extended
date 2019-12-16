@@ -1279,6 +1279,7 @@ ARMOR("robe of weakness", "green robe",
  *	(1) The dragon scale mails and the dragon scales are together.
  *	(2) That the order of the dragon scale mail and dragon scales is the
  *	    the same defined in monst.c.
+ *    Amy note: gray is first and yellow is last.
  */
 #define DRGN_ARMR(name,mgc,power,cost,ac,can,color,minlvl) \
 	ARMOR(name,(char *)0,1,mgc,1,power,1,5,20,cost,ac,can,ARM_SUIT,MT_DRAGON_HIDE,color,minlvl,0)
@@ -2337,6 +2338,7 @@ SHIELD("RapiRapi", (char *)0,
 SHIELD("hide shield", (char *)0,
 		1, 0, 1, 0, 	   2, 0, 25,  8,  8, 0, MT_LEATHER, CLR_ORANGE, 1, 0),
 
+/* dragon scale shields - they MUST!!! be in the correct order, with gray being first and yellow being last! --Amy */
 SHIELD("gray dragon scale shield", "gray dragonhide shield",
 		0, 1, 0, ANTIMAGIC,  1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_GRAY, 30, 0),
 SHIELD("silver dragon scale shield", "silver dragonhide shield",
@@ -2393,8 +2395,6 @@ SHIELD("cyan dragon scale shield", "cyan dragonhide shield",
 		0, 1, 0, FEAR_RES,  1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_CYAN, 30, 0),
 SHIELD("psychic dragon scale shield", "psychic dragonhide shield",
 		0, 1, 0, TELEPAT,  1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_MAGENTA, 30, 0),
-SHIELD("yellow dragon scale shield", "yellow dragonhide shield",
-		0, 1, 0, ACID_RES,  1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_YELLOW, 30, 0),
 SHIELD("rainbow dragon scale shield", "rainbow dragonhide shield",
 		0, 1, 0, HALF_SPDAM, 1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_BRIGHT_MAGENTA, 30, 0),
 SHIELD("blood dragon scale shield", "blood dragonhide shield",
@@ -2409,6 +2409,8 @@ SHIELD("evil dragon scale shield", "evil dragonhide shield",
 		0, 1, 0, 0,   1, 0, 20, 1200, -1, 0, MT_DRAGON_HIDE, CLR_MAGENTA, 30, 0),
 SHIELD("magic dragon scale shield", "magic dragonhide shield",
 		0, 1, 0, 0,   1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_BRIGHT_CYAN, 30, 0),
+SHIELD("yellow dragon scale shield", "yellow dragonhide shield",
+		0, 1, 0, ACID_RES,  1, 0, 20, 1200, 7, 0, MT_DRAGON_HIDE, CLR_YELLOW, 30, 0),
 SHIELD("shield of reflection", "polished silver shield",
 		0, 1, 0, REFLECTING, 30, 0, 20, 50,  6, 0, MT_SILVER, HI_SILVER, 10, 0),
 

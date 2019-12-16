@@ -388,7 +388,7 @@ struct monst *mtmp;
 		 * by having only 1 in (legscratching squared) chance for an increase --Amy */
 		if (!u.legscratching) u.legscratching++;
 		else if (u.legscratching > 60000) {
-			if (!rn2(3600000000)) u.legscratching++;
+			if (!rn2(60000) && !rn2(60000)) u.legscratching++;
 		} else if (!rn2(u.legscratching * u.legscratching)) u.legscratching++;
 		losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
 		if (u.legscratching > 20) {
@@ -697,6 +697,8 @@ register struct monst *mtmp;
 	if (Race_if(PM_SERB)) tmp += 1;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
+
+	if (Role_if(PM_EMERA) && mtmp->female && humanoid(mtmp->data)) tmp += rnd(u.ulevel);
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 	if (Race_if(PM_MONGUNG)) tmp += 10;
@@ -2665,6 +2667,9 @@ int dieroll;
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
 		}
+
+		if (Role_if(PM_EMERA) && !thrown && mon->female && humanoid(mon->data)) tmp += rnd(u.ulevel);
+
 		if (thrown && obj && obj->oartifact == ART_NEZ_SPECIAL_OFFER) {
 			mon->bleedout += rnd(10);
 			pline("%s gets a cut.", Monnam(mon));
@@ -3131,7 +3136,7 @@ int dieroll;
 	if (RngeWeakness && tmp > 1) tmp /= 2;
 
 	/* javelin is meant to be thrown, and therefore less effective in melee --Amy */
-	if (!thrown && obj && obj->oclass == WEAPON_CLASS && (objects[obj->otyp].oc_skill == P_JAVELIN) && tmp > 1) {
+	if (!thrown && !Role_if(PM_TOSSER) && obj && obj->oclass == WEAPON_CLASS && (objects[obj->otyp].oc_skill == P_JAVELIN) && tmp > 1) {
 		tmp /= 2;
 	}
 

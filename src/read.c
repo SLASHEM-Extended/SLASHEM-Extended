@@ -158,6 +158,10 @@ doread()
 	boolean cant_see = Blind;
 	struct obj otemp;
 
+	/* cartomancer can sometimes keep a scroll after reading it --Amy */
+	boolean cartokeep = FALSE;
+	int cartochance = 0;
+
 	*cp++ = ALL_CLASSES;
 	*cp++ = ALLOW_FLOOROBJ;
 	if (!u.uswallow && ep && ep->engr_txt[0])
@@ -886,6 +890,292 @@ doread()
 	    return(study_book(scroll));
 	}
 	scroll->in_use = TRUE;	/* scroll, not spellbook, now being read */
+
+	if (Role_if(PM_CARTOMANCER) && scroll) {
+		cartochance = 0;
+
+		switch (scroll->otyp) { /* values depend on how much they cost to write, see write.c --Amy */
+
+			case SCR_STANDARD_ID:
+			case SCR_WOUNDS:
+			case SCR_RUMOR:
+			case SCR_MESSAGE:
+				cartochance = 40;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 42; break;
+					case P_SKILLED: cartochance = 44; break;
+					case P_EXPERT: cartochance = 46; break;
+					case P_MASTER: cartochance = 48; break;
+					case P_GRAND_MASTER: cartochance = 50; break;
+					case P_SUPREME_MASTER: cartochance = 52; break;
+					default: break;
+				}
+				break;
+			case SCR_HEALING:
+			case SCR_LIGHT:
+			case SCR_GOLD_DETECTION:
+			case SCR_FOOD_DETECTION:
+			case SCR_TRAP_DETECTION:
+			case SCR_MAGIC_MAPPING:
+			case SCR_AMNESIA:
+			case SCR_INSTANT_AMNESIA:
+			case SCR_FIRE:
+			case SCR_SLEEP:
+			case SCR_EARTH:
+			case SCR_CURE_BLINDNESS:
+			case SCR_ROOT_PASSWORD_DETECTION:
+			case SCR_GRASSLAND:
+				cartochance = 35;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 37; break;
+					case P_SKILLED: cartochance = 39; break;
+					case P_EXPERT: cartochance = 41; break;
+					case P_MASTER: cartochance = 43; break;
+					case P_GRAND_MASTER: cartochance = 45; break;
+					case P_SUPREME_MASTER: cartochance = 47; break;
+					default: break;
+				}
+				break;
+			case SCR_MANA:
+			case SCR_DESTROY_ARMOR:
+			case SCR_DESTROY_WEAPON:
+			case SCR_BAD_EFFECT:
+			case SCR_CREATE_MONSTER:
+			case SCR_CREATE_VICTIM:
+			case SCR_SUMMON_UNDEAD:
+			case SCR_PUNISHMENT:
+			case SCR_NASTINESS:
+			case SCR_SYMMETRY:
+			case SCR_CREATE_CREATE_SCROLL:
+			case SCR_PROOF_ARMOR:
+			case SCR_PROOF_WEAPON:
+			case SCR_CRYPT:
+			case SCR_PAVING:
+			case SCR_INFERIOR_MATERIAL:
+			case SCR_CONFUSE_MONSTER:
+			case SCR_PHASE_DOOR:
+				cartochance = 30;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 32; break;
+					case P_SKILLED: cartochance = 33; break;
+					case P_EXPERT: cartochance = 35; break;
+					case P_MASTER: cartochance = 36; break;
+					case P_GRAND_MASTER: cartochance = 38; break;
+					case P_SUPREME_MASTER: cartochance = 40; break;
+					default: break;
+				}
+				break;
+			case SCR_IDENTIFY:
+			case SCR_STONING:
+			case SCR_BULLSHIT:
+			case SCR_REVERSE_IDENTIFY:
+			case SCR_SCARE_MONSTER:
+			case SCR_SNOW:
+			case SCR_SAND:
+			case SCR_NETHER:
+				cartochance = 28;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 30; break;
+					case P_SKILLED: cartochance = 31; break;
+					case P_EXPERT: cartochance = 33; break;
+					case P_MASTER: cartochance = 34; break;
+					case P_GRAND_MASTER: cartochance = 36; break;
+					case P_SUPREME_MASTER: cartochance = 37; break;
+					default: break;
+				}
+				break;
+			case SCR_ASH:
+			case SCR_BUBBLE_BOBBLE:
+			case SCR_RAIN:
+			case SCR_TAMING:
+			case SCR_TELEPORTATION:
+			case SCR_FLOOD:
+			case SCR_LAVA:
+			case SCR_GRAVE:
+			case SCR_DIVING:
+			case SCR_CRYSTALLIZATION:
+			case SCR_QUICKSAND:
+			case SCR_STYX:
+			case SCR_URINE:
+			case SCR_MOORLAND:
+			case SCR_TUNNELS:
+			case SCR_FARMING:
+			case SCR_BARRHING:
+			case SCR_STALACTITE:
+			case SCR_GROWTH:
+			case SCR_ICE:
+			case SCR_ILLUSION:
+			case SCR_FEMINISM:
+			case SCR_EVIL_VARIANT:
+			case SCR_ENRAGE:
+			case SCR_FROST:
+			case SCR_CLOUDS:
+			case SCR_DETECT_WATER:
+			case SCR_CHAOS_TERRAIN:
+			case SCR_TELE_LEVEL:
+			case SCR_WARPING:
+			case SCR_IMMOBILITY:
+			case SCR_MASS_MURDER:
+			case SCR_TRAP_CREATION:
+			case SCR_CREATE_TRAP:
+			case SCR_GROUP_SUMMONING:
+			case SCR_UNDO_GENOCIDE:
+			case SCR_RANDOM_ENCHANTMENT:
+			case SCR_BAD_EQUIPMENT:
+			case SCR_REGULAR_MATERIAL:
+				cartochance = 25;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 27; break;
+					case P_SKILLED: cartochance = 28; break;
+					case P_EXPERT: cartochance = 30; break;
+					case P_MASTER: cartochance = 31; break;
+					case P_GRAND_MASTER: cartochance = 33; break;
+					case P_SUPREME_MASTER: cartochance = 35; break;
+					default: break;
+				}
+				break;
+			case SCR_STINKING_CLOUD:
+			case SCR_ENCHANT_ARMOR:
+			case SCR_REMOVE_CURSE:
+			case SCR_ENCHANT_WEAPON:
+			case SCR_CHARGING:
+			case SCR_GIRLINESS:
+			case SCR_FLOODING:
+			case SCR_EGOISM:
+			case SCR_ERASURE:
+			case SCR_ANTIMATTER:
+			case SCR_MEGALOAD:
+			case SCR_WONDER:
+			case SCR_GEOLYSIS:
+			case SCR_OFFLEVEL_ITEM:
+			case SCR_SECURE_IDENTIFY:
+			case SCR_REPAIR_ITEM:
+			case SCR_EXTRA_HEALING:
+			case SCR_MOUNTAINS:
+			case SCR_HIGHWAY:
+			case SCR_SYMBIOSIS:
+				cartochance = 20;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 21; break;
+					case P_SKILLED: cartochance = 22; break;
+					case P_EXPERT: cartochance = 23; break;
+					case P_MASTER: cartochance = 24; break;
+					case P_GRAND_MASTER: cartochance = 25; break;
+					case P_SUPREME_MASTER: cartochance = 26; break;
+					default: break;
+				}
+				break;
+			case SCR_RESISTANCE:
+			case SCR_GENOCIDE:
+			case SCR_CURE:
+			case SCR_SIN:
+			case SCR_ARMOR_SPECIALIZATION:
+			case SCR_SUMMON_BOSS:
+			case SCR_SUMMON_ELM:
+			case SCR_DEMONOLOGY:
+			case SCR_ELEMENTALISM:
+			case SCR_TRAP_DISARMING:
+			case SCR_FLOOD_TIDE:
+			case SCR_EBB_TIDE:
+			case SCR_MATERIAL_CHANGE:
+			case SCR_CREATE_FACILITY:
+			case SCR_SUMMON_GHOST:
+			case SCR_GREATER_MANA_RESTORATION:
+			case SCR_NASTY_CURSE:
+			case SCR_TERRAFORMING:
+				cartochance = 15;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 16; break;
+					case P_SKILLED: cartochance = 17; break;
+					case P_EXPERT: cartochance = 18; break;
+					case P_MASTER: cartochance = 19; break;
+					case P_GRAND_MASTER: cartochance = 20; break;
+					case P_SUPREME_MASTER: cartochance = 21; break;
+					default: break;
+				}
+				break;
+			case SCR_GAIN_MANA:
+			case SCR_LOCKOUT:
+			case SCR_WARD:
+			case SCR_CREATE_ALTAR:
+			case SCR_WARDING:
+			case SCR_RELOCATION:
+			case SCR_VILENESS:
+			case SCR_CREATE_FAMILIAR:
+			case SCR_ITEM_GENOCIDE:
+			case SCR_POWER_HEALING:
+			case SCR_SUPERIOR_MATERIAL:
+				cartochance = 10;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 11; break;
+					case P_SKILLED: cartochance = 12; break;
+					case P_EXPERT: cartochance = 13; break;
+					case P_MASTER: cartochance = 14; break;
+					case P_GRAND_MASTER: cartochance = 15; break;
+					case P_SUPREME_MASTER: cartochance = 16; break;
+					default: break;
+				}
+				break;
+			case SCR_CONSECRATION:
+			case SCR_BOSS_COMPANION:
+			case SCR_ANTIMAGIC:
+			case SCR_SECURE_CURSE_REMOVAL:
+			case SCR_INVENTORY_ID:
+			case SCR_SKILL_UP:
+			case SCR_ALTER_REALITY:
+			case SCR_HYBRIDIZATION:
+			case SCR_RAGNAROK:
+				cartochance = 5;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 6; break;
+					case P_SKILLED: cartochance = 7; break;
+					case P_EXPERT: cartochance = 8; break;
+					case P_MASTER: cartochance = 9; break;
+					case P_GRAND_MASTER: cartochance = 10; break;
+					case P_SUPREME_MASTER: cartochance = 11; break;
+					default: break;
+				}
+				break;
+			case SCR_WORLD_FALL:
+				cartochance = 1;
+				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
+					case P_BASIC: cartochance = 1; break;
+					case P_SKILLED: cartochance = 1; break;
+					case P_EXPERT: cartochance = 2; break;
+					case P_MASTER: cartochance = 2; break;
+					case P_GRAND_MASTER: cartochance = 3; break;
+					case P_SUPREME_MASTER: cartochance = 4; break;
+					default: break;
+				}
+				break;
+			case SCR_ASTRALCENSION:
+			case SCR_ARTIFACT_CREATION:
+			case SCR_MISSING_CODE:
+			case SCR_ARTIFACT_JACKPOT:
+			case SCR_RESURRECTION:
+			case SCR_ENTHRONIZATION:
+			case SCR_WELL_BUILDING:
+			case SCR_DRIVING:
+			case SCR_TABLE_FURNITURE:
+			case SCR_EMBEDDING:
+			case SCR_MATTRESS_SLEEPING:
+			case SCR_MAKE_PENTAGRAM:
+			case SCR_FOUNTAIN_BUILDING:
+			case SCR_SINKING:
+			case SCR_CREATE_SINK:
+			case SCR_WC:
+				cartochance = 1;
+				break;
+			default:
+				cartochance = 0;
+				break;
+
+		}
+
+		if (cartochance > 0 && (rn2(100) < cartochance) ) cartokeep = TRUE;
+
+	} /* cartomancer dupe chance check */
+
 	if(scroll->oartifact == ART_MARAUDER_S_MAP) {
 		if(Blind) {
 			pline("Being blind, you cannot see the %s.", the(xname(scroll)));
@@ -893,19 +1183,31 @@ doread()
 		}
 		pline("You examine %s.", the(xname(scroll)));
 	} else if(scroll->otyp != SCR_BLANK_PAPER) {
-	  if(Blind)
-	    pline("As you %s the formula on it, the scroll disappears.",
-			is_silent(youmonst.data) ? "cogitate" : "pronounce");
-	  else
-	    pline("As you read the scroll, it disappears.");
-	  if(confused) {
-	    if (FunnyHallu)
-		pline("Being so trippy, you screw up...");
-	    else
-		pline("Being confused, you mis%s the magic words...",
-			is_silent(youmonst.data) ? "understand" : "pronounce");
-	    u.cnd_confusedscrollread++;
-	  }
+
+	  if (cartokeep) {
+		  You("manage to duplicate the scroll!");
+		  if(confused) {
+		    if (FunnyHallu)
+			pline("Being so trippy, you screw up...");
+		    else
+			pline("Being confused, you mis%s the magic words...",
+				is_silent(youmonst.data) ? "understand" : "pronounce");
+		    u.cnd_confusedscrollread++;
+		} /* confused reading */
+	  } else {
+		  if(Blind)
+		    pline("As you %s the formula on it, the scroll disappears.", is_silent(youmonst.data) ? "cogitate" : "pronounce");
+		  else
+		    pline("As you read the scroll, it disappears.");
+		  if(confused) {
+		    if (FunnyHallu)
+			pline("Being so trippy, you screw up...");
+		    else
+			pline("Being confused, you mis%s the magic words...",
+				is_silent(youmonst.data) ? "understand" : "pronounce");
+		    u.cnd_confusedscrollread++;
+		} /* confused reading */
+	   } /* cartokeep check */
 	}
 
 	if (CurseAsYouUse && scroll && scroll->otyp != CANDELABRUM_OF_INVOCATION && scroll->otyp != SPE_BOOK_OF_THE_DEAD && scroll->otyp != BELL_OF_OPENING) curse(scroll);
@@ -968,7 +1270,7 @@ doread()
 			use_skill(spell_skilltype(scroll->otyp), 
 				(scroll->blessed ? 2 : 1));
 		}
-		if(scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_MARAUDER_S_MAP &&
+		if(!cartokeep && scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_MARAUDER_S_MAP &&
 		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
@@ -5802,7 +6104,7 @@ materialchoice3:
 							}
 						}
 
-						if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
+						if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 							mtmp2->mtame = mtmp2->mpeaceful = 0;
 							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }

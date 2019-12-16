@@ -382,9 +382,9 @@ use_symbiote(obj)
 			if (humanoid(mtmp->data)) resistrounds++;
 
 			/* Amy note: for tame monsters it simply works, every time, and also gives a special boost */
-			if (!mtmp->mtame && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
-			if (!mtmp->mtame && resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
-			if (!mtmp->mtame && resistrounds >= 3 && resist(mtmp, TOOL_CLASS, 0, 0)) continue;
+			if (!mtmp->mtame && resist(mtmp, TOOL_CLASS, 0, 0) && (!Role_if(PM_SYMBIANT) || resist(mtmp, TOOL_CLASS, 0, 0) ) ) continue;
+			if (!mtmp->mtame && resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0) && ((!Role_if(PM_SYMBIANT) || resist(mtmp, TOOL_CLASS, 0, 0) ) ) ) continue;
+			if (!mtmp->mtame && resistrounds >= 3 && resist(mtmp, TOOL_CLASS, 0, 0) && ((!Role_if(PM_SYMBIANT) || resist(mtmp, TOOL_CLASS, 0, 0) ) ) )  continue;
 			if (!mtmp->mtame && mtmp->m_lev > u.ulevel && (rn2(100) < (mtmp->m_lev - u.ulevel) ) ) continue;
 
 			/* we caught it! */
@@ -3823,7 +3823,7 @@ use_pole (obj)
 #endif
 
 	typ = weapon_type(obj);
-	if (typ == P_FLAIL || typ == P_CLUB || typ == P_MORNING_STAR) {
+	if (typ == P_FLAIL || (typ == P_CLUB && !Role_if(PM_AKLYST)) || typ == P_MORNING_STAR) {
 		if (PlayerCannotUseSkills || P_SKILL(typ) <= P_BASIC) max_range = 4;
 		else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
 		else max_range = 8;

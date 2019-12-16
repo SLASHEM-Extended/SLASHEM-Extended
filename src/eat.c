@@ -1549,6 +1549,12 @@ register struct permonst *ptr;
 			break;
 	}
 
+	} /* issoviet check */
+
+	/* dragonmaster is much better at gaining dragon powers --Amy */
+	if (Role_if(PM_DRAGONMASTER) && ptr->mlet == S_DRAGON && chance > 1) {
+		chance /= 3;
+		if (chance < 1) chance = 1;
 	}
 
 	if ( (ptr->mlevel <= rn2(chance) ) || !rn2(4) )

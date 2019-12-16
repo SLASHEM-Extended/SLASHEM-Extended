@@ -20,6 +20,7 @@ STATIC_PTR int unfaintX(void);
 STATIC_DCL void pumpsminigame(void);
 
 STATIC_PTR void do_megafloodingf(int, int, void *);
+STATIC_PTR void do_fjordefloodingf(int, int, void *);
 
 #define decrnknow(spell)	spl_book[spell].sp_know--
 #define spellid(spell)		spl_book[spell].sp_id
@@ -4882,6 +4883,16 @@ newbossF:
 
 		}
 
+		if (Role_if(PM_FJORDE) && !rn2(1000)) {
+			int madepoolQ = 0;
+
+			do_clear_areaX(u.ux, u.uy, rnd(10), do_fjordefloodingf, (void *)&madepoolQ);
+			if (madepoolQ)
+				pline("Oh %s, there's %s flooding on this sub level!", rn2(2) ? "damn" : "great", rn2(2) ? "a" : "another");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
 		if (uwep && uwep->oartifact == ART_FLAGELLATOR && !rn2(5000)) {
 			int attempts = 0;
 			register struct permonst *ptrZ;
@@ -8690,10 +8701,21 @@ newboss:
 				}
 			}
 
+			if (Role_if(PM_SYMBIANT)) {
+				if (symregenrate > 1) symregenrate /= 2;
+				if (symmuchregrate > 1) symmuchregrate /= 2;
+			}
+
 			if (regenerates(&mons[u.usymbiote.mnum]) || !rn2(symregenrate)) {
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 					u.usymbiote.mhp++;
 					if (flags.showsymbiotehp) flags.botl = TRUE;
+				}
+				if (Role_if(PM_SYMBIANT)) {
+					if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
+						u.usymbiote.mhp++;
+						if (flags.showsymbiotehp) flags.botl = TRUE;
+					}
 				}
 			}
 
@@ -11047,6 +11069,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_NEXUSPORT].oc_name = "port svyazi";
 	obj_descr[SPE_GIANT_FOOT].oc_name = "gigantskaya noga";
 	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "anti-teleportatsiya";
+	obj_descr[SPE_SYMHEAL].oc_name = "sim lechit'";
 
 	/* todo area */
 
@@ -12112,6 +12135,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_NEXUSPORT].oc_name = "teleportatsiya elementining porti";
 	obj_descr[SPE_GIANT_FOOT].oc_name = "ulkan oyoq";
 	obj_descr[SPE_ANTI_TELEPORTATION].oc_name = "qarshi teleportatsiya";
+	obj_descr[SPE_SYMHEAL].oc_name = "simbiot shifo";
 
 	/* todo area */
 
@@ -13027,6 +13051,14 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
+	if (Role_if(PM_EMERA) && !Race_if(PM_HC_ALIEN) && new_game && flags.female) {
+		makeknown(AMULET_OF_CHANGE);
+		You("don't feel like being female!");
+		change_sex();
+		flags.botl = 1;
+
+	}
+
 	if (Role_if(PM_LADIESMAN) && !Race_if(PM_HC_ALIEN) && new_game && flags.female) {
 		makeknown(AMULET_OF_CHANGE);
 		You("don't feel like being female!");
@@ -13577,6 +13609,80 @@ void * poolcnt;
 			levl[x][y].typ = LAVAPOOL;
 			makemon(mkclass(S_FLYFISH,0), x, y, NO_MM_FLAGS);
 		}
+
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+	u.aggravation = 0;
+
+}
+
+STATIC_PTR void
+do_fjordefloodingf(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			levl[randomx][randomy].typ = MOAT;
+			if (!rn2(3)) makemon(mkclass(S_EEL,0), randomx, randomy, NO_MM_FLAGS);
+
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+
+		levl[x][y].typ = MOAT;
+		if (!rn2(3)) makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
 
 		del_engr_at(x, y);
 
