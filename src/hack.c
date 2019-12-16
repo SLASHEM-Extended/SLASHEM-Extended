@@ -1187,6 +1187,7 @@ int mode;
 			}
 
 			tmpr->typ = CORR;
+			unblock_point(ux+dx,uy+dy);
 			if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				maketrap(ux+dx, uy+dy, randomtrap(), 100 );
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {

@@ -9417,6 +9417,7 @@ boolean *shopdamage;
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
 		    lev->typ = rn2(10) ? CORR : ASH;
+		    unblock_point(x,y);
 		    if (cansee(x,y)) msgtxt = "The farmland burns up!";
 		    /* yeah I know, this doesn't check whether YOU burned the farmland... but allowing monsters with fire
 			* to burn the farmland is also a chaotic act, so there! :P --Amy */
