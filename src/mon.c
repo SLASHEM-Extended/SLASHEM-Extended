@@ -5355,6 +5355,13 @@ boolean was_swallowed;			/* digestion */
 	    }
   	}
 
+	/* freeplay mode isn't supposed to devolve into the player farming reviving bosses... --Amy */
+	if (u.freeplaymode) {
+		if (mdat == &mons[PM_CTHULHU]) return FALSE;
+		if (is_rider(mdat)) return FALSE;
+		if (is_deadlysin(mdat)) return FALSE;
+	}
+
 	/* Cthulhu Deliquesces... */
 	if (mdat == &mons[PM_CTHULHU]) {
 	    if (cansee(mon->mx, mon->my))
