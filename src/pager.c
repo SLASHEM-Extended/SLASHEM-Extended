@@ -24725,6 +24725,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Oh great, there's a flooding on this sub level!",
 	"Oh damn, there's another flooding on this sub level!",
 	"The ichthyosaur nibbles you in a sexually arousing way!",
+	"Throw what? g - a fireball. The fireball hits the spiny cockatrice! The spiny cockatrice jumps out of the picture!",
+	"j Jump where? | - a pipe. You land on the pipe. Whoops - there was a piranha plant in this pipe! The piranha plant touches you! Schloeggschloeggschloegg - you lose your fire flower and are now small!",
+	"Your hands furiously rip into Anastasia's dancing shoe. You evil bastard.",
 
 };
 

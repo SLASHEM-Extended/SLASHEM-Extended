@@ -6408,7 +6408,7 @@ const struct def_skill *class_skill;
 	/* Set skill for all objects in inventory to be basic */
 	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
-	    if (skill != P_NONE && !(flags.female && skill == P_GUN_CONTROL) && !(!flags.female && skill == P_SQUEAKING) ) {
+	    if (skill != P_NONE && !(!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) && !(!Role_if(PM_GENDERSTARIST) && !flags.female && skill == P_SQUEAKING) ) {
 		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
@@ -7281,7 +7281,7 @@ rerollthree:
 			if (P_MAX_SKILL(P_MEMORIZATION) == P_EXPERT) P_MAX_SKILL(P_MEMORIZATION) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_MEMORIZATION) = P_SUPREME_MASTER;
 		}
-		if (flags.female) {
+		if (flags.female || Role_if(PM_GENDERSTARIST)) {
 			if (P_RESTRICTED(P_SQUEAKING)) {
 				P_SKILL(P_SQUEAKING) = P_BASIC;
 				P_ADVANCE(P_SQUEAKING) = 20;
@@ -7292,7 +7292,7 @@ rerollthree:
 				else P_MAX_SKILL(P_SQUEAKING) = P_SUPREME_MASTER;
 			}
 		}
-		if (!flags.female) {
+		if (!flags.female || Role_if(PM_GENDERSTARIST)) {
 			if (P_RESTRICTED(P_GUN_CONTROL)) {
 				P_SKILL(P_GUN_CONTROL) = P_BASIC;
 				P_ADVANCE(P_GUN_CONTROL) = 20;
@@ -7561,12 +7561,12 @@ rerollthree:
 	}
 
 	/* if you somehow got the other gender's skill, deactivate it now --Amy */
-	if (flags.female && P_MAX_SKILL(P_GUN_CONTROL) >= P_BASIC) {
+	if (!Role_if(PM_GENDERSTARIST) && flags.female && P_MAX_SKILL(P_GUN_CONTROL) >= P_BASIC) {
 		P_MAX_SKILL(P_GUN_CONTROL) = P_ISRESTRICTED;
 		P_SKILL(P_GUN_CONTROL) = P_ISRESTRICTED;
 		P_ADVANCE(P_GUN_CONTROL) = 0;
 	}
-	if (!flags.female && P_MAX_SKILL(P_SQUEAKING) >= P_BASIC) {
+	if (!Role_if(PM_GENDERSTARIST) && !flags.female && P_MAX_SKILL(P_SQUEAKING) >= P_BASIC) {
 		P_MAX_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_ADVANCE(P_SQUEAKING) = 0;

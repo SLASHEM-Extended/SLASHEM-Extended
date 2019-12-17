@@ -370,7 +370,7 @@ levscalerollpast:
 
 	if (Role_if(PM_TOSSER) && oclass == WEAPON_CLASS) {
 
-		if (!rn2(100) && objects[i].oc_skill != P_JAVELIN) {
+		if (!rn2(20) && objects[i].oc_skill != P_JAVELIN) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (objects[i].oc_skill != P_JAVELIN)) {
 				prob = rnd(10000);

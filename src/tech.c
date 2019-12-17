@@ -4605,8 +4605,9 @@ secureidchoice:
 
 		}
 
-	      t_timeout = rnz(1000);
-	      break;
+		if (Role_if(PM_DOOM_MARINE) || Role_if(PM_GUNNER)) t_timeout = rnz(500);
+		else t_timeout = rnz(1000);
+	 	break;
 
 	    }
 

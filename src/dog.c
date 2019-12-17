@@ -1522,6 +1522,8 @@ struct obj *obj;
 {
 	if (obj->oclass == FOOD_CLASS) {
 		if (is_domestic(ptr)) return TRUE;
+		if (Race_if(PM_HUMANLIKE_DRAGON) && ptr->mlet == S_DRAGON) return TRUE;
+		if (Role_if(PM_DRAGONMASTER) && ptr->mlet == S_DRAGON) return TRUE;
 		if (is_animal(ptr) && Race_if(PM_HUMANOID_CENTAUR) && !((ptr)->geno & G_UNIQ)) return TRUE;
 		if (is_rat(ptr) && Role_if(PM_CONVICT)) return TRUE;
 		/* [Tom] Dorothy wants more pets... */
