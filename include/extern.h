@@ -2324,6 +2324,9 @@ E boolean automore_active(void);
 E boolean itemhasappearance(struct obj *, int);
 E boolean itemnumwithappearance(int, int);
 
+E void fineforpracticant(int, int, int);
+E void practicant_payup(void);
+
 /* ### pray.c ### */
 
 /*#ifdef USE_TRAMPOLI*/

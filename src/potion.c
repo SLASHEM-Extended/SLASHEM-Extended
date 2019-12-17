@@ -615,6 +615,180 @@ int number;
 
 }
 
+/* Practicant role gets a fine by Noroela --Amy */
+void
+fineforpracticant(fineamount, stonefine, arrowfine)
+int fineamount, stonefine, arrowfine;
+{
+	/* do you already have a fine? if not, we want to start the timer that ticks down the time until you must have paid */
+	boolean newfine = !u.practicantpenalty;
+	if (newfine) u.practicanttime = 1000; /* always have 1000 turns to pay */
+
+	u.practicantpenalty += fineamount;
+	u.pract_finetimer = 0; /* reset timer for "how long did you get no fines at all?" */
+
+	/* occasionally you have to pay in rocks or arrows */
+	if (stonefine) u.practicantstones += stonefine;
+	if (arrowfine) u.practicantarrows += arrowfine;
+}
+
+/* Practicant decides to pay, or waited until the timer ran out and pays automatically --Amy */
+void
+practicant_payup()
+{
+	int amountpaid = 0; /* the amount that you actually fork over */
+	int stonespaid = 0;
+	int arrowspaid = 0;
+
+	if (u.practicantstones) { /* do rocks actually exist? note: if you genocide them it's your own damn fault */
+		if (u.unobtainable == ROCK || u.unobtainable2 == ROCK || u.unobtainable3 == ROCK || u.unobtainable4 == ROCK || u.unobtainable5 == ROCK || u.unobtainable6 == ROCK || u.unobtainable7 == ROCK || u.unobtainable8 == ROCK || u.unobtainable9 == ROCK || u.unobtainable10 == ROCK) {
+			u.practicantpenalty += u.practicantstones;
+			u.practicantstones = 0;
+
+			pline("Noroela booms: 'Since you can't pay in stones due to their nonexistence, pay in zorkmids instead!'");
+		}
+	}
+	/* there are more than 10 kinds of arrows, so it's always possible in theory to pay an arrow fine */
+
+	if (u.practicantpenalty) { /* do you actually have a fine in zorkmids? */
+
+		/* do you have cash? */
+		if (u.ugold > 0) {
+			if (u.practicantpenalty > u.ugold) amountpaid = u.ugold;
+			else amountpaid = u.practicantpenalty;
+
+			You("pay %d zorkmids to Noroela.", amountpaid);
+
+			u.ugold -= amountpaid;
+			u.practicantcash += amountpaid;
+			u.practicantpenalty -= amountpaid;
+		}
+
+		/* do you have gold in the bank? if yes, can use that to pay */
+		if (u.practicantpenalty && u.bankcashamount) {
+			if (u.practicantpenalty > u.bankcashamount) amountpaid = u.practicantpenalty;
+			else amountpaid = u.bankcashamount;
+
+			pline("Your bank account is used to pay %d zorkmids to Noroela.", amountpaid);
+
+			u.bankcashamount -= amountpaid;
+			u.practicantcash += amountpaid;
+			u.practicantpenalty -= amountpaid;
+
+		}
+
+		if (u.ugold < 0) {
+			impossible("your gold went below zero???");
+			u.ugold = 0; /* fail safe */
+		}
+
+		if (u.bankcashamount < 0) {
+			impossible("your bank cash amount went below zero???");
+			u.bankcashamount = 0; /* fail safe */
+		}
+
+		if (u.practicantpenalty < 0) {
+			impossible("practicant penalty went below zero???");
+			u.practicantpenalty = 0; /* fail safe */
+		}
+
+		if (!u.practicantpenalty) {
+			if (!u.practicantstones && !u.practicantarrows && !u.practicantpenalty) {
+				u.practicanttime = 0;
+				u.practicantseverity = 0;
+				You("no longer have a fine to pay.");
+			}
+		} else {
+			You("still need to pay %d more zorkmids to Noroela in %d turns.", u.practicantpenalty, u.practicanttime);
+		}
+	}
+
+	if (u.practicantstones) {
+		register struct obj *prcstone;
+findmorestones:
+		prcstone = carrying(ROCK);
+		if (prcstone) {
+			if (prcstone->quan > u.practicantstones) {
+
+				stonespaid += u.practicantstones;
+				prcstone->quan -= u.practicantstones;
+				prcstone->owt = weight(prcstone);
+				u.practicantstones = 0;
+				if (!u.practicantstones && !u.practicantarrows && !u.practicantpenalty) {
+					u.practicanttime = 0;
+					u.practicantseverity = 0;
+					You("no longer have a fine to pay.");
+				}
+			} else {
+
+				stonespaid += prcstone->quan;
+				u.practicantstones -= prcstone->quan;
+				useupall(prcstone);
+				if (!u.practicantstones && !u.practicantarrows && !u.practicantpenalty) {
+					u.practicanttime = 0;
+					u.practicantseverity = 0;
+					You("no longer have a fine to pay.");
+				}
+
+			}
+			/* do you still have a stone penalty? let's check whether you have another stack */
+			if (u.practicantstones) goto findmorestones;
+		}
+		if (stonespaid) {
+			You("paid %d stones.", stonespaid);
+		}
+		if (u.practicantstones) You("still need to pay %d more stones to Noroela in %d turns.", u.practicantstones, u.practicanttime);
+	}
+
+	if (u.practicantarrows) {
+		register struct obj *prcarrow;
+findmorearrows:
+		prcarrow = carrying(ORCISH_ARROW);
+		if (!prcarrow) prcarrow = carrying(ARROW);
+		if (!prcarrow) prcarrow = carrying(PAPER_ARROW);
+		if (!prcarrow) prcarrow = carrying(ODOR_SHOT);
+		if (!prcarrow) prcarrow = carrying(FORBIDDEN_ARROW);
+		if (!prcarrow) prcarrow = carrying(SILVER_ARROW);
+		if (!prcarrow) prcarrow = carrying(ELVEN_ARROW);
+		if (!prcarrow) prcarrow = carrying(DARK_ELVEN_ARROW);
+		if (!prcarrow) prcarrow = carrying(YA);
+		if (!prcarrow) prcarrow = carrying(DROVEN_ARROW);
+		if (!prcarrow) prcarrow = carrying(GOLDEN_ARROW);
+		if (!prcarrow) prcarrow = carrying(ANCIENT_ARROW);
+		if (!prcarrow) prcarrow = carrying(BRONZE_ARROW);
+		if (!prcarrow) prcarrow = carrying(WONDER_ARROW);
+		if (prcarrow) {
+			if (prcarrow->quan > u.practicantarrows) {
+				arrowspaid += u.practicantarrows;
+				prcarrow->quan -= u.practicantarrows;
+				prcarrow->owt = weight(prcarrow);
+				u.practicantarrows = 0;
+				if (!u.practicantstones && !u.practicantarrows && !u.practicantpenalty) {
+					u.practicanttime = 0;
+					u.practicantseverity = 0;
+					You("no longer have a fine to pay.");
+				}
+			} else {
+				arrowspaid += prcarrow->quan;
+				u.practicantarrows -= prcarrow->quan;
+				useupall(prcarrow);
+				if (!u.practicantstones && !u.practicantarrows && !u.practicantpenalty) {
+					u.practicanttime = 0;
+					u.practicantseverity = 0;
+					You("no longer have a fine to pay.");
+				}
+
+			}
+			/* do you still have an arrow penalty? let's check whether you have another stack */
+			if (u.practicantarrows) goto findmorearrows;
+		}
+		if (arrowspaid) {
+			You("paid %d arrows.", arrowspaid);
+		}
+		if (u.practicantarrows) You("still need to pay %d more arrows to Noroela in %d turns.", u.practicantarrows, u.practicanttime);
+	}
+}
+
 void
 playerbleed(xtime)
 long xtime;

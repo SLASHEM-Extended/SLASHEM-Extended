@@ -550,6 +550,12 @@ struct obj *obj;
 
 		if (!achieveX.get_magresstone) {
 
+			if (practicantterror && !u.pract_mrstone) {
+				pline("Noroela rings out: 'Well, let's just say that you have to pay 6000 zorkmids, that thing certainly wasn't worth that much but who cares.'");
+				fineforpracticant(6000, 0, 0);
+				u.pract_mrstone = TRUE;
+			}
+
 			if (uarmc && itemhasappearance(uarmc, APP_TEAM_SPLAT_CLOAK)) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 			if (Race_if(PM_INHERITOR)) giftartifact();

@@ -4530,6 +4530,15 @@ secureidchoice:
 			break;
 		case WAN_WISHING:
 			known = TRUE;
+
+			if (practicantterror && !u.pract_wow) {
+				pline("Noroela booms: 'Oh yeah, I forgot to tell you that there's also this rule: Wands of wishing are forbidden! Well, you can't tell me anything, so you also can't prevent me from deleting it.'");
+				if (obj->spe > -1) obj->spe = -1;
+				if (obj->recharged < 1) obj->recharged = 1;
+				u.pract_wow = TRUE;
+				break;
+			}
+
 			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && itemhasappearance(uarmc, APP_WISHFUL_CLOAK)) ) {
 				makenonworkingwish();
 				break;
@@ -9557,6 +9566,16 @@ boolean *shopdamage;
 			    lev->icedpool =
 				    (lev->typ == POOL ? ICED_POOL : ICED_MOAT);
 			lev->typ = (lava ? ASH : ICE);
+
+			if (practicantterror && (type >= 0) && lev->typ == ICE && !u.pract_waterfreeze) {
+				u.pract_frozentiles++;
+				if (u.pract_frozentiles >= 5) {
+					pline("Noroela thunders: 'You destroyed all of my watery pools, which is fully against the rules. For me to be able to rebuild my ships, you pay 20 arrows to me, and for making sure that you learn from your mistakes it additionally costs 1000 zorkmids.'");
+					fineforpracticant(1000, 0, 20);
+					u.pract_waterfreeze = TRUE;
+				}
+			}
+
 		    }
 		    bury_objs(x,y);
 		    if(cansee(x,y)) {

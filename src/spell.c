@@ -4014,6 +4014,13 @@ magicalenergychoice:
 						else mksobj_at(rnd_class(DILITHIUM_CRYSTAL, JADE), u.ux + i, u.uy + j, TRUE, FALSE);
 						pline("A stalactite turns into gems!");
 						alreadydone = TRUE;
+
+						if (practicantterror && !u.pract_oremining) {
+							pline("Noroela booms: 'Didn't you hear? Mining my ore is forbidden! That's 1000 zorkmids, and you still have one minute to get away from my ore, got it?'");
+							fineforpracticant(1000, 0, 0);
+							u.pract_oremining = TRUE;
+						}
+
 						break;
 					} else {
 						pline("A stalactite shatters!");

@@ -4736,6 +4736,13 @@ enchantarmorchoice:
 			Your("%s suddenly %s %s.",
 				xname(otmp), otense(otmp, "vibrate"),
 				Blind ? "again" : "unexpectedly");
+
+		if (practicantterror && otmp && otmp->spe >= 5 && !u.pract_enchantarmor) {
+			pline("Noroela rings out: 'I told you that you may not disguise as a tank! Just for that it costs 1000 zorkmids and 1000 stones now.'");
+			fineforpracticant(1000, 1000, 0);
+			u.pract_enchantarmor = TRUE;
+		}
+
 		break;
 	    }
 	case SCR_REPAIR_ITEM:

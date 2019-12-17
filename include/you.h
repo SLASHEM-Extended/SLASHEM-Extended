@@ -1774,13 +1774,18 @@ struct you {
 	boolean pract_mrstone;	/* obtained stone of magic resistance = 6000 zorkmids */
 	boolean pract_wow;	/* tried to zap a wand of wishing = nothing happens and the wand is set to 1:-1 */
 	boolean pract_altartest;	/* tested 10 items on altars = amnesia */
+	int pract_altartestamount;	/* so we can count those 10 items */
 	boolean pract_fastform;	/* ride or be polyd into speed 25 or faster monster = frenzied trebuchet dragon spawns */
 	boolean pract_fastregen;	/* have both intrinsic and extrinsic regen at the same time = intrinsic blood loss */
 	boolean pract_toomuchrange;	/* wield a sniper rifle = pay all money you have out in the open or in containers */
 	boolean pract_enhancing;	/* enhanced at least 30 times = lose 10 random intrinsics */
+	int pract_enhanceamount;	/* so we can count those 30 times */
 	boolean pract_shopkeepers;	/* killed at least 5 shopkeepers = 8000 zorkmids */
+	int pract_shopkeepercount;	/* so we can count them */
 	boolean pract_peacedisturb;	/* killed at least 20 shopkeepers, watchmen, temple priests or guards = pay 2000 zorkmids once every 5000 turns */
+	int pract_disturbcount;	/* so we can count them */
 	int pract_conv3timer;	/* timer for the above */
+	/* any shoplifting also gives 2x the value of stolen goods as fine */
 	boolean pract_gottoonear;	/* spent at least 500 turns on the quest goal level = 50 zorkmids */
 	int pract_tooneartimer;	/* timer for the above */
 	boolean pract_gottoonear2;	/* spent at least 1000 turns on the quest goal level = 100 zorkmids */
@@ -1789,6 +1794,7 @@ struct you {
 	boolean pract_idling;	/* issued a wait command that takes at least 50 turns = 400 zorkmids */
 	int pract_idlingtimer;	/* the above can happen again after 1k turns have passed */
 	boolean pract_waterfreeze;	/* froze at least 5 water tiles = 20 arrows and 1000 zorkmids */
+	int pract_frozentiles;	/* so we can count them */
 	boolean pract_oremining;	/* used the ore mining spell to raze a stalactite = 1000 zorkmids */
 	boolean pract_forbiddenskill;	/* be at least basic in two-handed sword or pick-axe = 2000 zorkmids, and reduce player's nutrition by 2000 */
 	boolean pract_espionage;	/* have in/extrinsic detect monsters = 20000 zorkmids */
@@ -1809,7 +1815,7 @@ struct you {
 #define uactivesymbiosis	(u.usymbiote.active && !u.shutdowntime && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
 
 /* is the player a practicant who has to pay fines? (only the case when nemesis is still alive) */
-#define practicantterror	(Role_if(PM_PRACTICANT) && quest_status.killed_nemesis)
+#define practicantterror	(Role_if(PM_PRACTICANT) && !quest_status.killed_nemesis)
 
 #define Upolyd (u.umonnum != u.umonster)
 

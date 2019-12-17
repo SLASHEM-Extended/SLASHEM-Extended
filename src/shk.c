@@ -579,6 +579,12 @@ struct monst *shkp;
 	}
 
 	hot_pursuit(shkp);
+
+	if (practicantterror && total > 0) { /* can happen several times --Amy */
+		pline("Noroela thunders: 'That's theft! You have to pay twice the amount that the stolen goods cost, you hear? Be glad that I'm not giving you hall exclusion!'");
+		fineforpracticant(total * 2, 0, 0);
+	}
+
 	return TRUE;
 }
 
@@ -1289,6 +1295,12 @@ register struct monst *shkp;
 int
 dopay()
 {
+	/* are you a practicant that currently has a fine? if so, you can only pay that and nothing else */
+	if (practicantterror && u.practicantpenalty) {
+		practicant_payup();
+		return 0;
+	}
+
 	if (Race_if(PM_PLAYER_DYNAMO)) {
 		You("can't pay because no one wants to accept payment by you, criminal.");
 		return 0;

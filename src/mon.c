@@ -5679,6 +5679,25 @@ xkilled(mtmp, dest)
 	boolean redisp = FALSE;
 	boolean wasinside = u.uswallow && (u.ustuck == mtmp);
 
+	mdat = mtmp->data; /* mondead can change that, see below */
+
+	if (practicantterror && !u.pract_shopkeepers) {
+		if (mdat == &mons[PM_SHOPKEEPER]) u.pract_shopkeepercount++;
+		if (u.pract_shopkeepercount >= 5) {
+			pline("Noroela rings out: '8000 zorkmids, payable right away to my account. Last warning. Kill any more shopkeepers and I'm enormously cracking your cardboard boxes.'");
+			fineforpracticant(8000, 0, 0);
+			u.pract_shopkeepers = TRUE;
+		}
+	}
+	if (practicantterror && !u.pract_peacedisturb) {
+		if (mdat == &mons[PM_SHOPKEEPER] || mdat == &mons[PM_GUARD] || mdat == &mons[PM_ALIGNED_PRIEST] || mdat == &mons[PM_HIGH_PRIEST] || mdat == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN] || mdat == &mons[PM_WATCH_LIEUTENANT] || mdat == &mons[PM_WATCH_LEADER]) u.pract_disturbcount++;
+
+		if (u.pract_disturbcount >= 20) {
+			pline("Noroela thunders: 'That was the last straw for you! From now on you pay the conventional penalty for too many murders without permission, for the rest of your life!'");
+			u.pract_conv3timer = 5000;
+			u.pract_peacedisturb = TRUE;
+		}
+	}
 
 	/* KMH, conduct */
 	u.uconduct.killer++;
@@ -6350,6 +6369,12 @@ newbossA:
 
 	/* malign was already adjusted for u.ualign.type and randomization */
 	adjalign(mtmp->malign);
+
+	if (practicantterror && (mtmp->data->geno & G_UNIQ) && mtmp->data->msound != MS_NEMESIS && !u.pract_bosskill) {
+		pline("Noroela thunders: 'You destroyed the guardian that had cost 5000 zorkmids and have to pay twice that amount, because I'm Dictator Noroela and therefore can define the amount of your fine myself.'");
+		fineforpracticant(10000, 0, 0);
+		u.pract_bosskill = TRUE;
+	}
 
 	if (Role_if(PM_ANACHRONOUNBINDER) && (mtmp->data->geno & G_UNIQ)) {
 		pline("As a reward for killing a boss monster, your skill training is temporarily doubled!");

@@ -78,6 +78,15 @@ nemdead()
 	if(!Qstat(killed_nemesis)) {
 	    Qstat(killed_nemesis) = TRUE;
 	    qt_pager(QT_KILLEDNEM);
+
+	    if (Role_if(PM_PRACTICANT)) {
+		You("managed to overthrow Noroela's reign of terror!!!");
+		if (u.practicantcash) {
+			You("rummage through Noroela's possessions and find the box in which she kept the money she stole from you. The bitch spent some of it, but you take the remaining %d zorkmids and pocket them.", u.practicantcash);
+			u.ugold += u.practicantcash;
+			u.practicantcash = 0;
+		}
+	    }
 	}
 }
 

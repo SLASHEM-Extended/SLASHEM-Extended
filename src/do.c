@@ -289,6 +289,15 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 
 	if (Race_if(PM_MACTHEIST)) return;
 
+	if (practicantterror && !u.pract_altartest) {
+		u.pract_altartestamount++;
+		if (u.pract_altartestamount >= 10) {
+			pline("Noroela booms: 'Well, now your memory simply belongs to me. Why do you try to test your equipment on an altar anyway?'");
+			forget(1 + rn2(5));
+			u.pract_altartest = TRUE;
+		}
+	}
+
 	if (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) {
 
 		if (Aggravate_monster) {

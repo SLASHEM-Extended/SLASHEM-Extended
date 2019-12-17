@@ -420,6 +420,23 @@ int	msgnum;
 	if (qt_msg->delivery == 'p' && strcmp(windowprocs.name, "X11"))
 		deliver_by_pline(qt_msg);
 	else	deliver_by_window(qt_msg, NHW_TEXT);
+
+	if (practicantterror && msgnum == QT_FIRSTNEMESIS && !u.pract_trespassing) {
+		fineforpracticant(2000, 0, 0);
+		u.pract_trespassing = TRUE;
+	}
+	if (practicantterror && msgnum == QT_NEXTNEMESIS && !u.pract_trespassing2) {
+		fineforpracticant(4000, 0, 0);
+		u.pract_trespassing2 = TRUE;
+	}
+	if (practicantterror && msgnum == QT_OTHERNEMESIS) { /* can be repeated an arbitrary amount of times */
+		fineforpracticant(5000, 0, 0);
+	}
+	if (practicantterror && msgnum == QT_NEMWANTSIT && !u.pract_artitheft) {
+		fineforpracticant(50000, 0, 0);
+		u.pract_artitheft = TRUE;
+	}
+
 	return;
 }
 

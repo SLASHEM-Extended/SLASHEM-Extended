@@ -3029,6 +3029,15 @@ jediskip:
 	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more",
 	P_NAME(skill));
 
+	if (practicantterror && !u.pract_enhancing) {
+		u.pract_enhanceamount++;
+		if (u.pract_enhanceamount >= 30) {
+			pline("Noroela booms: 'You now lose 10 intrinsics because you violated a holy rule.'");
+			attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
+			u.pract_enhancing = TRUE;
+		}
+	}
+
 	if (!isdemagogue) {
 
 	if (!tech_known(T_DISARM) && (P_SKILL(skill) == P_SKILLED) && 

@@ -2192,11 +2192,114 @@ moveloop()
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(1000)) {
 			gangscholarmessage();
 		}
-		if (Role_if(PM_PRACTICANT) && !rn2(1000)) {
+		if (practicantterror && !rn2(1000)) {
 			practicantmessage();
 		}
 		if (Role_if(PM_WALSCHOLAR) && !rn2(1000)) {
 			walscholarmessage();
+		}
+
+		if (practicantterror && u.pract_toomanykills4) {
+			if (u.pract_conv1timer > 0) u.pract_conv1timer--;
+			if (u.pract_conv1timer < 1) {
+				u.pract_conv1timer = 5000;
+				fineforpracticant(1000, 0, 0);
+				pline("Noroela booms: 'You have to pay 1000 zorkmids again for your past offense of killing too many monsters.'");
+			}
+		}
+
+		if (practicantterror && u.pract_toomanysacs3) {
+			if (u.pract_conv2timer > 0) u.pract_conv2timer--;
+			if (u.pract_conv2timer < 1) {
+				u.pract_conv2timer = 5000;
+				fineforpracticant(1000, 0, 0);
+				pline("Noroela booms: 'You have to pay 1000 zorkmids again for your past offense of sacrificing too many corpses.'");
+			}
+		}
+
+		if (practicantterror && u.pract_peacedisturb) {
+			if (u.pract_conv3timer > 0) u.pract_conv3timer--;
+			if (u.pract_conv3timer < 1) {
+				u.pract_conv3timer = 5000;
+				fineforpracticant(2000, 0, 0);
+				pline("Noroela booms: 'You have to pay 2000 zorkmids again for your past offense of murdering too many innocent townspeople.'");
+			}
+		}
+
+		if (practicantterror && u.pract_magicresistance) {
+			if (u.pract_conv4timer > 0) u.pract_conv4timer--;
+			if (u.pract_conv4timer < 1) {
+				u.pract_conv4timer = 5000;
+				fineforpracticant(2000, 0, 0);
+				pline("Noroela booms: 'You have to pay 2000 zorkmids again for your past offense of gaining an impossible intrinsic.'");
+			}
+
+		}
+
+		if (practicantterror && u.pract_idlingtimer) {
+			u.pract_idlingtimer--;
+			if (u.pract_idlingtimer < 0) {
+				u.pract_idlingtimer = 0; /* fail safe */
+				u.pract_idling = FALSE;
+			}
+		}
+
+		if (practicantterror && u.practicantcash) { /* Noroela, the bitch, spends your hard-earned cash */
+			u.practicantcash--;
+			if (u.practicantcash > 500 && !rn2(5000)) {
+				u.practicantcash -= min(5000, (u.practicantcash / 2));
+				/* insert witty saying here (TODO) */
+			}
+		}
+
+		if (practicantterror) {
+			u.pract_finetimer++;
+			if (u.pract_finetimer >= 10000) {
+				fineforpracticant(1000, 0, 0); /* sets the finetimer var back to 0 */
+				pline("Noroela thunders: 'You now have to pay a fine of 1000 zorkmds as a penalty for not having to pay a fine in such a long time!'");
+			}
+		}
+
+		if (practicantterror && u.practicantpenalty) {
+			if (u.practicanttime > 0) u.practicanttime--;
+			if (u.practicanttime == 500) You("have 500 turns left to pay %d zorkmids to Noroela!", u.practicantpenalty);
+			if (u.practicanttime == 100) You("only have 100 turns left to pay %d zorkmids to Noroela! Better pay up!", u.practicantpenalty);
+			if (u.practicanttime == 10) You("only have 10 turns left to pay %d zorkmids to Noroela!!! Pay up now, or at least make sure that you have the required amount of zorkmids out in the open!", u.practicantpenalty);
+
+			if (u.practicanttime < 1) { /* payday! */
+				practicant_payup(); /* if you e.g. have the menu bug and therefore can't pay manually... */
+
+				if (u.practicantpenalty) { /* still have a penalty - now suffer, maggot! */
+					pline("Noroela booms: 'You didn't pay your fine of %d zorkmids in time! Now, you shall be punished.'", u.practicantpenalty);
+					badeffect();
+					u.practicantseverity++;
+					/* the longer you refuse to pay, the harsher the extra penalties become */
+					if (u.practicantseverity < 2) {
+						u.practicanttime = 500;
+						pline("Noroela rings out: 'I give you 500 more turns to pay up!'");
+					} else if (u.practicantseverity < 5) {
+						u.practicanttime = 200;
+						pline("Noroela booms: 'Pay up in 200 turns, or else!'");
+					} else if (u.practicantseverity < 10) {
+						u.practicanttime = 100;
+						u.practicantpenalty += 10;
+						pline("Noroela thunders: 'Since you keep not paying your fine, it is now increased by 10 zorkmids and you only have 100 more turns to finally pay up, maggot!'");
+					} else if (u.practicantseverity < 20) {
+						u.practicanttime = 50;
+						u.practicantpenalty += 20;
+						pline("Noroela thunders: 'You don't get it, huh? Your fine increases by 20 zorkmids now and if you don't pay in 50 turns I'll increase it even more!'");
+					} else {
+						u.practicanttime = 20;
+						u.practicantpenalty += 20;
+						pline("Noroela thunders: 'Hereby I increase your fine by another 20 zorkmids. If you don't pay in 20 turns I'll increase it again. I warn you, maggot, don't test my patience even more.'");
+					}
+
+
+
+
+
+				}
+			}
 		}
 
 		if ((LongingEffect || u.uprops[LONGING_EFFECT].extrinsic || have_longingstone()) && !rn2(50)) {
@@ -10018,6 +10121,129 @@ past3:
 	u.symbiotedmghack = FALSE;
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
+
+	if (practicantterror) {
+		if (u.uconduct.killer >= 1000 && !u.pract_toomanykills) {
+			pline("Noroela booms: 'You killed too many monsters, you maggot. That's a fine of 1000 zorkmids.'");
+			fineforpracticant(1000, 0, 0);
+			u.pract_toomanykills = TRUE;
+		}
+		if (u.uconduct.killer >= 2000 && !u.pract_toomanykills2) {
+			pline("Noroela booms: 'You maggot again killed too many monsters, and since you did that once already, it costs 2000 zorkmids now.'");
+			fineforpracticant(2000, 0, 0);
+			u.pract_toomanykills2 = TRUE;
+		}
+		if (u.uconduct.killer >= 3000 && !u.pract_toomanykills3) {
+			pline("Noroela thunders: 'You don't get it, huh? Well, no matter, now it costs 4000 zorkmids. Soon I can afford a Porsche.'");
+			fineforpracticant(4000, 0, 0);
+			u.pract_toomanykills3 = TRUE;
+		}
+		if (u.uconduct.killer >= 4000 && !u.pract_toomanykills4) {
+			pline("Noroela thunders: 'Now there's a conventional penalty for you!'");
+			u.pract_conv1timer = 5000;
+			u.pract_toomanykills4 = TRUE;
+		}
+		if (u.ugold >= 10000 && !u.pract_toomuchmoney) {
+			pline("Noroela rings out: 'You didn't obey the rule that you may not enter here with more than 10000 zorkmids! Now you have to pay half of them!'");
+			fineforpracticant(5000, 0, 0);
+			u.pract_toomuchmoney = TRUE;
+		}
+		if (u.cnd_offercount >= 10 && !u.pract_toomanysacs) {
+			pline("Noroela booms: 'You sacrificed a corpse without permission for the tenth time in a row and therefore have to pay a fine of 1000 zorkmids to me immediately.'");
+			fineforpracticant(1000, 0, 0);
+			u.pract_toomanysacs = TRUE;
+		}
+		if (u.cnd_offercount >= 20 && !u.pract_toomanysacs2) {
+			pline("Noroela thunders: 'Since you still don't obey the rule that you may not sacrifice corpses, you now pay 2000 zorkmids to me!'");
+			fineforpracticant(2000, 0, 0);
+			u.pract_toomanysacs2 = TRUE;
+		}
+		if (u.cnd_offercount >= 30 && !u.pract_toomanysacs3) {
+			pline("Noroela thunders: 'That's enough! Now there's the conventional penalty for you!'");
+			u.pract_conv2timer = 5000;
+			u.pract_toomanysacs3 = TRUE;
+		}
+		if (u.cnd_altarconvertamount && !u.pract_altarconvert) {
+			pline("Noroela rings out: 'I just caught you converting an altar without permission, and therefore you have to pay 2000 zorkmids now.'");
+			fineforpracticant(2000, 0, 0);
+			u.pract_altarconvert = TRUE;
+
+		}
+		if (!u.pract_toomucharmor && uarm && uarm->spe >= 2 && uarmu && uarmu->spe >= 2 && uarmc && uarmc->spe >= 2 && uarms && uarms->spe >= 2 && uarmh && uarmh->spe >= 2 && uarmf && uarmf->spe >= 2 && uarmg && uarmg->spe >= 2 ) {
+			pline("Noroela thunders: 'You may not wear that much armor, and therefore all of it is disenchanted now and additionally you have to pay 3000 zorkmids to me as a penalty!'");
+			fineforpracticant(3000, 0, 0);
+			uarm->spe--; /* we made sure that these exist */
+			uarmu->spe--;
+			uarmc->spe--;
+			uarms->spe--;
+			uarmh->spe--;
+			uarmf->spe--;
+			uarmg->spe--;
+			u.pract_toomucharmor = TRUE;
+		}
+		if (!u.pract_fastform && ((Upolyd && moveamt > 24) || (u.usteed && (mcalcmove(u.usteed) > 24) )) ) {
+			pline("Noroela rings out: 'Such fast forms aren't allowed because they constantly exceed the maximum permissible speed! Therefore I'm getting a trebuchet now!'");
+			makemon(&mons[PM_TREBUCHET_DRAGON], 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED);
+			u.pract_fastform = TRUE;
+		}
+		if (StrongRegeneration && !u.pract_fastregen) {
+			pline("Noroela thunders: 'There may be no practicant who regenerates more than one hit point per turn! You violated this rule and therefore you have hemophilia now.'");
+			BloodLossProblem |= FROMOUTSIDE;
+			u.pract_fastregen = TRUE;
+		}
+		if (uwep && uwep->otyp == SNIPER_RIFLE && !u.pract_toomuchrange) {
+			pline("Noroela thunders: 'This weapon has too much range, and therefore you have to pay all your money to me now.'");
+			if (u.ugold || hidden_gold()) fineforpracticant(u.ugold + hidden_gold(), 0, 0);
+			else fineforpracticant(10000, 0, 0); /* wise guy, eh? */
+			u.pract_toomuchrange = TRUE;
+		}
+		if (Is_nemesis(&u.uz) && !u.pract_gottoonear4) {
+			u.pract_tooneartimer++;
+			if (u.pract_tooneartimer >= 500 && !u.pract_gottoonear) {
+				pline("Noroela rings out: 'You pay 50 zorkmids to me, reason: obtrusive assistant decomposition!'");
+				fineforpracticant(50, 0, 0);
+				u.pract_gottoonear = TRUE;
+			}
+			if (u.pract_tooneartimer >= 1000 && !u.pract_gottoonear2) {
+				pline("Noroela rings out: 'Since you're still pestering me, I take off 100 zorkmids from you now. Every additional such offense will cost twice as much.'");
+				fineforpracticant(100, 0, 0);
+				u.pract_gottoonear2 = TRUE;
+			}
+			if (u.pract_tooneartimer >= 1500 && !u.pract_gottoonear3) {
+				pline("Noroela booms: 'You're still coming too close to me: 200 zorkmids are to be paid as a penalty, immediately. I'll think of some other penalty that I can hit you with.'");
+				fineforpracticant(200, 0, 0);
+				u.pract_gottoonear3 = TRUE;
+			}
+			if (u.pract_tooneartimer >= 2000 && !u.pract_gottoonear4) {
+				pline("Noroela thunders: 'That's a big crime, called obtrusive assistant decomposition! That makes 1000 zorkmids - many thanks for the money!'");
+				fineforpracticant(1000, 0, 0);
+				u.pract_gottoonear4 = TRUE;
+			}
+		}
+		if (!u.pract_idling && !u.pract_idlingtimer && occupation && occtxt && (!strcmp(occtxt, "waiting") || !strcmp(occtxt, "searching")) && ((multi > 50) || (multi < -50))) {
+			pline("Noroela thunders: 'Sitting idly is harshly penalized - now 400 of your zorkmids are collected for safe keeping!'");
+			fineforpracticant(400, 0, 0);
+			u.pract_idlingtimer = 1000;
+			u.pract_idling = TRUE;
+		}
+		if (((P_SKILL(P_TWO_HANDED_SWORD) >= P_BASIC) || (P_SKILL(P_PICK_AXE) >= P_BASIC)) && !u.pract_forbiddenskill) {
+			pline("Noroela thunders: 'You trained skills that your role can't even have, and therefore it costs 2000 zorkmids and 2000 nutrition now, because I can't be arsed.'");
+			fineforpracticant(2000, 0, 0);
+			morehungry(2000);
+			u.pract_forbiddenskill = TRUE;
+		}
+		if (Detect_monsters && !u.pract_espionage) {
+			pline("Noroela thunders: 'You've committed a huge crime: Industrial espionage is strictly forbidden! That costs 20000 zorkmids!'");
+			fineforpracticant(20000, 0, 0);
+			u.pract_espionage = TRUE;
+		}
+		if (HAntimagic && !u.pract_magicresistance) {
+			pline("Noroela thunders: 'You got a intrinsic that you don't even have! That's fraud! The fine for that is a nice juicy conventional penalty, you maggot.'");
+			u.pract_conv4timer = 5000;
+			u.pract_magicresistance = TRUE;
+		}
+
+	} /* practicant terror check */
 
 	if ((Race_if(PM_MAYMES) || Race_if(PM_AZTPOK) || Race_if(PM_PLAYER_ATLANTEAN)) && P_MAX_SKILL(P_RIDING) >= P_BASIC) {
 		skillcaploss_specific(P_RIDING);
