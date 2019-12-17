@@ -4539,6 +4539,49 @@ static NEARDATA const char * const soviettaunts[] = {
 "YA razvratnaya pizda, kotoraya sozdala etu igru, i u menya yest' vse zabolevaniya, peredayushchiyesya polovym putem, potomu chto ya nechist i gryazen.",
 };
 
+static NEARDATA const char * const practicantlines[] = {
+"Listen up, you maggot! I don't care what you're planning, I run things here! Do exactly what I tell you to do, and when I'm done with you you'll be sitting in the wheelchair!",
+"You may not train too many of your evil warriors and not kill too many of my men! And you're not allowed to touch my buildings at all!",
+"You may not kill too many monsters, nor sacrifice too many of their corpses! And you're not allowed to lay a hand on shopkeepers or watchmen at all!",
+"You'd better obey my rules, okay? You're not allowed to convert either, and don't get near my important buildings!",
+"You'd better obey my rules, okay? You're not allowed to convert any altars either, and stay away from my personal office!",
+"Remember, you maggot, I own you! If you don't obey the rules it'll get expensive!",
+"Actually you maggot should be working your ass off while I'm relaxing. That is currently not the case. Why am I not demanding a fine from you for that?",
+"You maggot better listen to the commands that Noroela gives you! From now on you address me with 'Your Majesty', got it?",
+"You have absolutely no right to doubt my reign or otherwise revolt! I'm the boss with sharp ss!",
+"If you get too cocky I'll swing my whip, you know that!",
+"A little reminder for you: Never get the idea to damage my buildings or there'll be a hail of hard fines!",
+"A little reminder for you: Never get the idea to sacrifice corpses or you'll pay an expensive fine!",
+"Don't forget that you may not train too many warriors! If you don't obey this rule you'll pay dearly!",
+"Don't forget that you may not enhance too many skills! If you don't obey this rule you'll pay dearly!",
+"A reminder: You may not kill too many of my men and neither convert nor raze my buildings!",
+"A reminder: You may not kill too many monsters and neither convert altars nor sacrifice corpses!",
+"You maggot may not harm my soldiers - if they come to you, you have to let them pass without shooting! If you disobey this rule you'll have to pay a fine to me!",
+"Remember, you maggot: You may not train too many men! If you do it anyway I'll rake in your cash, and not just a little!",
+"Remember, you maggot: You may not enhance too many skills! If you do it anyway I'll rake in your cash, and not just a little!",
+"You continue working right now and stop sitting idly, or there'll be another fine!",
+"Don't even think about stealing the relics - they're all mine and may never be touched!",
+"Don't even think about converting my altars - they're all mine and may never be touched!",
+"So that you don't forget it: Nobody may harm my buildings, and those who don't obey this rule will be punished hard!",
+"So that you don't forget it: Nobody may sacrifice corpses, and those who don't obey this rule will be punished hard!",
+"Take care, there's a reason that I built my buildings in this area! Don't dare breaking any of them or I'll properly kick you in the ass!",
+"Never forget that my energy fields are buildings too and thereby are protected as well - woe to you if you break even one of them, then you are due!",
+"Be very careful, you maggot. My private office is in some odd corner, and you'll pay plenty of money if you trespass.",
+"Yeah, you maggot, there's my ore mines, but they're none of your business. Don't even think about mining them.",
+"Don't get any stupid ideas unless you like fines.",
+"Always stay in your assigned area and everything will be alright. But don't get the idea to invade my labs because you need to be wearing a lab coat for those!",
+"Woe to you. If you do anything forbidden in my zone, you will regret it bitterly.",
+"You may never get the idea to steal any relics, or it'll become very expensive. Additionally you may never try to convert my men because there's no freedom of religion here!",
+"You may never get the idea to sacrifice corpses, or it'll become very expensive. Additionally you may never try to convert my altars because there's no freedom of religion here!",
+"The construction of too many bunker facilities is likewise forbidden, and woe to you if you get the idea to steal my relics! Sitting idly is penalized too so better make sure you're working!",
+"The construction of too many bunker facilities is likewise forbidden, and woe to you if you get the idea to convert my altars! Sitting idly is penalized too so better make sure you're working!",
+"Always obey my rules faithfully, and don't overthink things! Hard work is good work, rebels are set straight with drastic penalties! And I decide what the rules are, got it?",
+"You maggot hopefully also always obey the rule that you may never have more money than me?",
+"Don't be a coward that disguises as a tank - if you wear too much thick armor, you'll pay a fine!",
+"If you dare disrupting my economy, I'll have your ass! Don't harm any shopkeepers or watchmen, capito?",
+"Remember that any and all bodies of water are my property because I need them for my ships! You'd better not dare freezing my ponds!",
+};
+
 static NEARDATA const char * const hussylines[] = {
 "I've set up a mean trap for that silly gang scholar to step into.",
 "I placed a heap of dog shit in a corridor that Player 1 will absolutely have to traverse, so they'll step into it at least once.",
@@ -24763,6 +24806,12 @@ demagoguemessage()
 }
 
 const char *
+practicanttaunt()
+{
+	return (practicantlines[rn2(SIZE(practicantlines))]);
+}
+
+const char *
 gangscholartaunt()
 {
 	return (hussylines[rn2(SIZE(hussylines))]);
@@ -24818,6 +24867,14 @@ demagogueparole()
 {
 	char buf[BUFSZ];
 	verbalize(demagoguemessage());
+
+}
+
+void
+practicantmessage()
+{
+	char buf[BUFSZ];
+	pline("Noroela %s: \"%s\"", !rn2(3) ? "thunders" : !rn2(2) ? "rings out" : "booms", practicanttaunt());
 
 }
 

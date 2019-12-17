@@ -2192,6 +2192,9 @@ moveloop()
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(1000)) {
 			gangscholarmessage();
 		}
+		if (Role_if(PM_PRACTICANT) && !rn2(1000)) {
+			practicantmessage();
+		}
 		if (Role_if(PM_WALSCHOLAR) && !rn2(1000)) {
 			walscholarmessage();
 		}
@@ -10734,7 +10737,7 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: Remember to try out the #monster extended command - there are some roles and races that can use it to activate special abilities even while in their normal form!");
+	if (new_game) pline("Message of the day: This is a bleeding-edge development version of SLEX. Playtesters are welcome. You can help me in particular by playing the new roles and races that have been added lately. If you encounter any bugs or weirdness while playing, please notify me, the best way of contacting me is via the #em.slashem.me IRC channel (Freenode). --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
@@ -13099,6 +13102,8 @@ boolean new_game;	/* false => restoring an old game */
  		You_feel("dead inside.");
 
 	}
+
+	if (new_game && Role_if(PM_PRACTICANT)) pline("Noroela thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", playeraliasname);
 
 	u.stethocheat = moves;
 	init_uasmon();

@@ -1748,11 +1748,68 @@ struct you {
 	boolean symbiotedmghack;	/* make something damage you even if you have a symbiote */
 	int shutdowntime;	/* for nurse's shutdown symbiote service */
 
+	/* practicant role: has to pay a fine sometimes */
+	int practicantpenalty;	/* how many zorkmids you have to pay */
+	int practicanttime;	/* how much time you have until you need to have paid */
+	int practicantseverity;	/* gets higher the more often you refuse to pay */
+	int practicantstones;	/* do you have to pay in rocks? if so, set this variable */
+	int practicantarrows;	/* do you have to pay in arrows? if so, set this variable */
+	int practicantcash;	/* how many zorkmids your nemesis has collected - this decreases over time because she spends the money on clothing, perfume and expensive crap, the bitch :P when you kill her, you get back the amount she didn't spend yet */
+
+	/* individual fines for practicant: <crime> = <amount to pay> */
+	boolean pract_toomanykills;	/* killed 1000 monsters = 1000 zorkmids */
+	boolean pract_toomanykills2;	/* killed 2000 monsters = 2000 zorkmids */
+	boolean pract_toomanykills3;	/* killed 3000 monsters = 4000 zorkmids */
+	boolean pract_toomanykills4;	/* killed 4000 monsters = pay 1000 zorkmids once every 5000 turns */
+	int pract_conv1timer;	/* timer for the above */
+	boolean pract_toomuchmoney;	/* carried 10k zorkmids out in the open = 5000 zorkmids */
+	boolean pract_toomanysacs;	/* sacrificed 10 corpses = 1000 zorkmids */
+	boolean pract_toomanysacs2;	/* sacrificed 20 corpses = 2000 zorkmids */
+	boolean pract_toomanysacs3;	/* sacrificed 30 corpses = pay 1000 zorkmids once every 5000 turns */
+	int pract_conv2timer;	/* timer for the above */
+	boolean pract_altarconvert;	/* converted an altar = 2000 zorkmids */
+	boolean pract_enchantarmor;	/* enchant an armor piece to +5 or higher = 1000 zorkmids and 1000 stones */
+	boolean pract_toomucharmor;	/* wear armor pieces in all seven slots with all of them at least +2 = 3000 zorkmids, and disenchant all those armor pieces by one point each */
+	boolean pract_bosskill;	/* killed a boss monster (other than the nemesis) = 10000 zorkmids */
+	boolean pract_mrstone;	/* obtained stone of magic resistance = 6000 zorkmids */
+	boolean pract_wow;	/* tried to zap a wand of wishing = nothing happens and the wand is set to 1:-1 */
+	boolean pract_altartest;	/* tested 10 items on altars = amnesia */
+	boolean pract_fastform;	/* ride or be polyd into speed 25 or faster monster = frenzied trebuchet dragon spawns */
+	boolean pract_fastregen;	/* have both intrinsic and extrinsic regen at the same time = intrinsic blood loss */
+	boolean pract_toomuchrange;	/* wield a sniper rifle = pay all money you have out in the open or in containers */
+	boolean pract_enhancing;	/* enhanced at least 30 times = lose 10 random intrinsics */
+	boolean pract_shopkeepers;	/* killed at least 5 shopkeepers = 8000 zorkmids */
+	boolean pract_peacedisturb;	/* killed at least 20 shopkeepers, watchmen, temple priests or guards = pay 2000 zorkmids once every 5000 turns */
+	int pract_conv3timer;	/* timer for the above */
+	boolean pract_gottoonear;	/* spent at least 500 turns on the quest goal level = 50 zorkmids */
+	int pract_tooneartimer;	/* timer for the above */
+	boolean pract_gottoonear2;	/* spent at least 1000 turns on the quest goal level = 100 zorkmids */
+	boolean pract_gottoonear3;	/* spent at least 1500 turns on the quest goal level = 200 zorkmids */
+	boolean pract_gottoonear4;	/* spent at least 2000 turns on the quest goal level = 1000 zorkmids */
+	boolean pract_idling;	/* issued a wait command that takes at least 50 turns = 400 zorkmids */
+	int pract_idlingtimer;	/* the above can happen again after 1k turns have passed */
+	boolean pract_waterfreeze;	/* froze at least 5 water tiles = 20 arrows and 1000 zorkmids */
+	boolean pract_oremining;	/* used the ore mining spell to raze a stalactite = 1000 zorkmids */
+	boolean pract_forbiddenskill;	/* be at least basic in two-handed sword or pick-axe = 2000 zorkmids, and reduce player's nutrition by 2000 */
+	boolean pract_espionage;	/* have in/extrinsic detect monsters = 20000 zorkmids */
+	boolean pract_magicresistance;	/* have intrinsic magic resistance = 2000 zorkmids every 5000 turns */
+	int pract_conv4timer;	/* timer for the above */
+	boolean pract_trespassing;	/* be met by the nemesis (see quest.txt) = 2000 zorkmids */
+	boolean pract_trespassing2;	/* be met by the nemesis again (see quest.txt) = 4000 zorkmids; every future occurrence of the relevant quest text is another 5000 */
+	boolean pract_artitheft;	/* nemesis finds out that you stole the quest artifact = 50000 zorkmids */
+	boolean pract_nofines;	/* didn't get any fine in 10000 turns = 1000 zorkmids */
+	int pract_finetimer;	/* timer for the above */
+
+	/* killing the nemesis would result in another fine but she's dead at that point so you no longer care :P */
+
 };	/* end of `struct you' */
 
 /* is the player in symbiosis? make extra sure the monster is set up correctly --Amy */
 #define uinsymbiosis	(u.usymbiote.active && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
 #define uactivesymbiosis	(u.usymbiote.active && !u.shutdowntime && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
+
+/* is the player a practicant who has to pay fines? (only the case when nemesis is still alive) */
+#define practicantterror	(Role_if(PM_PRACTICANT) && quest_status.killed_nemesis)
 
 #define Upolyd (u.umonnum != u.umonster)
 

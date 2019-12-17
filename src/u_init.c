@@ -13032,6 +13032,11 @@ u_init()
 	case PM_PRACTICANT:
 		skill_init(Skill_Pra);
 		ini_inv(Practicant);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case PM_EMERA:
@@ -15405,9 +15410,15 @@ u_init()
 
 	case 151:
 		ini_inv(Practicant);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case 152:
+		Emera[EMERA_FLINT].trquan = 50 + rnd(50);
 		ini_inv(Emera);
 		break;
 
@@ -15420,6 +15431,7 @@ u_init()
 		break;
 
 	case 155:
+		MillSwallower[MS_BOLTS].trquan = 20 + rnd(40);
 		ini_inv(MillSwallower);
 		break;
 
@@ -17025,9 +17037,15 @@ u_init()
 
 	case 151:
 		ini_inv(Practicant);
+#ifndef GOLDOBJ
+		u.ugold = u.ugold0 = rnd(100);
+#else
+		u.umoney0 = rnd(100);
+#endif
 		break;
 
 	case 152:
+		Emera[EMERA_FLINT].trquan = 50 + rnd(50);
 		ini_inv(Emera);
 		break;
 
@@ -17040,6 +17058,7 @@ u_init()
 		break;
 
 	case 155:
+		MillSwallower[MS_BOLTS].trquan = 20 + rnd(40);
 		ini_inv(MillSwallower);
 		break;
 
