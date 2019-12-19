@@ -1,5 +1,28 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.6.0 - December 2019
+- Stacks of health/manastones are less effective.
+- Riders and sins no longer revive when killed in freeplay mode.
+- Rebalanced the damage output of certain weapons.
+- Slightly reduced the amount of mana required for casting fireball.
+- When grave walls or farmland tiles are removed, the player's sight is now properly updated.
+- Several techniques have had their average timeouts increased.
+- Heavy two-handed weapons give an AC penalty for the player and are less effective versus tiny monsters but more effective versus gigantic ones.
+- Angelic beings are less likely to drop long swords and shields.
+
+2.5.9 - November 2019
+- Rebalanced the effect that farting monsters have in combination with toilets.
+- Tame nonmoving monsters were sometimes unable to finish eating food (so they would be eating forever and be unable to follow the player up/down a staircase), this has been corrected.
+- The player no longer automatically fails to ride a monster when confused or fumbling.
+- Fixed a crash when trying to apply a polearm at certain domestic monsters.
+- Fixed some issues with the elemental planes in bigslex, as well as a segfault on the plane of water in freeplay mode.
+- Trees no longer continue to drop ripe fruit while the player is on another dungeon level.
+- Symbiotes will occasionally be healed by a higher amount.
+- Increased the average timeout for the world fall technique.
+- Fixed a bug that caused missile weapons skill to sometimes be more effective at lower skill levels than it would be at higher ones.
+- The player can no longer price identify the BUC status of potions of water.
+- Fixed more bugs associated with the bigslex castle that would dump the player in unwalkable terrain when coming up from the valley of the dead.
+
 2.5.8 - November 2019
 - Fixed a bug in bigslex that could cause the player to be surrounded by solid undiggable rock when coming up to the castle from the valley of the dead.
 - Altered the bones file generation method which now allows every dungeon branch to have its own bones file pool, even when there are more than 26 bones-eligible branches.
