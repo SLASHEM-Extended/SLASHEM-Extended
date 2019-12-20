@@ -7954,7 +7954,9 @@ boolean msg;
 					You("break out of %s%s!", mon_nam(mtmp),
 					    (is_animal(mdat)?
 					    "'s stomach" : ""));
-					mtmp->mhp = 1;  /* almost dead */
+					mtmp->mhp *= 4;
+					mtmp->mhp /= 5; /* prevent easy Jubilex killing --Amy */
+					if (mtmp->mhp < 1) mtmp->mhp = 1; /* fail safe */
 				}
 				expels(mtmp, olddata, FALSE);
 			} else {
