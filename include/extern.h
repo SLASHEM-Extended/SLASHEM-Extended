@@ -2111,6 +2111,7 @@ E void walscholarmessage(void);
 E void longingtrapeffect(void);
 E void demagogueparole(void);
 E void practicantmessage(void);
+E void noroelataunt(void);
 
 /* ### pcmain.c ### */
 

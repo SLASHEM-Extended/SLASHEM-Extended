@@ -2248,8 +2248,9 @@ moveloop()
 			u.practicantcash--;
 			if (u.practicantcash > 500 && !rn2(5000)) {
 				u.practicantcash -= min(5000, (u.practicantcash / 2));
-				/* insert witty saying here (TODO) */
+				noroelataunt();
 			}
+			if (u.practicantcash < 0) u.practicantcash = 0; /* fail safe */
 		}
 
 		if (practicantterror) {

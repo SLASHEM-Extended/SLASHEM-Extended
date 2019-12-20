@@ -3857,6 +3857,10 @@ static const char * const gangscholarverbs[] = {
 "laughs: ", "sneers: ", "bickers: ", "chortles: ", "giggles: ", "hisses: ", "shouts: ", "screams: ", "says: ", "grins: ", "bellows: ", "thunders: ", "booms: ", "snickers: ", "announces: ", "whispers: ", "barks: ", "snarls: ", "mutters: ", "threatens: ", "tells: ", "boasts: ", "messages: ", "grumbles: ", "states: ", "yells: ", "speaks: ", "gloats: ", "growls: ", "remarks: ",
 };
 
+static const char * const noroelacommodity[] = {
+"a Porsche", "a designer handbag", "a pair of louboutins", "a pair of stilettos", "a pair of combat boots", "lipstick and perfume", "some deodorant", "wickedly expensive eau de cologne", "a shiny ring", "a diadem with diamonds", "a leather whip", "a pack of boot-shaped christmas cakes", "a bigger ego", "expensive lipgloss", "some glamorous makeup", "a new car", "a shiny new purse", "golden earrings", "a wedding ring", "a bridal dress", "a new haircut", "a lipoplasticator and a micro dermal graftilizer", "a mansion", "a luxury yacht", "a private helicopter", "a ticket for 2 weeks of vacation in the Carribean Sea", "a PhD title from www.BuyRespect.com", "the new Counter-Strike: Special Ops Duty video game", "a pincushion", "an electric guitar", "a night with a sexy female prostitute", "a new husband", "a house slave", "a butler named James", "a fivefold garage", "a car with a filter gear shift", "a Diablo Vipera motorcycle", "some expensive trash", "an expensive golden imitation of the Amulet of Yendor", "a golden statue modeled after myself", "the SLASH'EM Extended source code archive", "a cameo appearance in a GladJonas speedrun video", "this week's winning lottery ticket", "a housecat", "a horse", "a submarine", "a new girlfriend", "a cuddly bed", "a huggable heart pillow", "a long-hair wig", "a carnival costume", "an advent calendar", "a box of chocolate truffles", "christmas presents", "a birthday cake", "a couple pants", "a pair of fleecy woolen socks", "some souvenir postcards", "an ET-425 train", "a tour bus", "a ticket for a Michael Jackson concert", "a new flatscreen TV", "a renewal of my monthly World of Warcraft subscription", "some unique items in Diablo 3's auction house", "a vibrator", "a sex toy", "breast implants", "new earphones", "a pair of designer specs", "a massive throne", "an underground mountain", "a spoiler sheet", "a device that can trigger Ragnarok", "premium-quality toothpaste", "a Doenerteller Versace", "a romantic dinner in a 5-star hotel", "100 000 roulette jetons", "a deck of cards", "a Magic the Gathering Booster Pack", "some voters that will elect me during the next US Presidential Election", "some paid assassins that are going to bomb your house", "a health insurance", "some counterfeit cash", "a glorkum 13 23 1337", "the one-in-a-kind legendary sword Excalibur", "all seven Harry Potter books", "the Eiffel Tower", "a farting noise generator", "a device for autoerotic asphyxiation", "a 44-caliber Anaconda revolver", "ammo for my AK-47 assault rifle", "a cure for brain cancer", "a third leg", "a bunch of Fridays for Future activists that are going to demonstrate for the nonexistant climate protection", "the decryption key for the encrypted files on my PC", "a tuxedo", "some butt-ugly gentleman's shoes", "the pink belly-dancing costume that originally belonged to Valensina", "an appointment with Doctor Marc Selvig, who evolved Linda into Evolet and then into Evolte", "a rainbow-colored bikini", "a first class one-way ticket to Albuquerque", "a tight spandex suit", "the file containing the missing evidence in the Kelner case", "a disk with the earliest versions of Hack and NetHack", "a way to control the RNG", "5 pokeballs", "a Death Star", "the One Ring", "an Elder Scroll", "the top-secret Thalmor dossier", "a decoded Voynich Manuscript", "the Mysterium Xarxes", "the handbook for the Tomb of Horrors module", "a guillotine", "a pair of leather peep-toes", "Amy's high heels that she used to race 10 km in 84 minutes", "a wand of wishing (0:3)", "a newspaper", "a bunch of spam emails from lonely Russian women looking for a relationship",
+};
+
 static NEARDATA const char * const demagoguelines[] = {
 "This country is going down the tubes, I tell you!",
 "We gotta take a tally of those agitators!",
@@ -5078,6 +5082,44 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "%s, Walt is only using you. You're just a pawn in his army of redshirts! Turn traitor on him and I'll allow you to live!",
 "So you're capable of erecting diamond barriers, %s. Well, you should know that my female butt is capable of destryoying them again and again, no matter how many you set up.",
 "%s, you smoke too much and are also overweight!",
+};
+
+static NEARDATA const char * const noroelabuying[] = {
+"From the money I collected, I bought %s.",
+"Thanks for all the money! I was finally able to afford %s!",
+"I was shopping today, and got %s from the money you paid to me!",
+"It's nice that you're funding my shopping needs. I just bought %s!",
+"Bought %s at last! I'm really good at using practicant money!",
+"Hey, practicant, don't think your money is being wasted! I used it to purchase %s, which is a valuable and useful commodity!",
+"You're not supposed to have money anyway. I can use it much better than you, for example to buy %s, which I did just now.",
+"Ah, it's nice to sit back and relax, and marvel at %s which I bought with the money I collected from the practicants.",
+"Today I took the day off to shop for %s. Good thing those practicants are delivering so much money to my bank.",
+"The last hall punishment paid off - I now have %s to show!",
+"I absolutely need to indicate with the other girls, and therefore I got %s from my many money!",
+"Bad for you that you've been born poor! I was able to acquire %s!",
+"Whoa, %s was really expensive! But I bought it anyway because I have a lot of money now!",
+"I'm rich and fabulous! I can buy %s and still have lots of money left!",
+"As a lady, I always want the best and most expensive commodities available. That's why I shopped %s today.",
+"I've posted a selfie on Facebook that shows me buy %s!",
+"Just bought %s. Shopping is fun!",
+"While you're busy in your laboratory and *ahem* hopefully don't step out of line again, I'm gonna use some money to buy %s.",
+"Maybe I should demand you pay another hall punishment because I used up almost all the cash from that last one - %s is just so damn expensive!",
+"You know, I could have worked for a month to be able to afford %s - but thanks to you paying so many fines to me, I could already afford it, and now it's mine!",
+"Your contribution to my funds is greatly appreciated, I used some of the money to get %s.",
+"You certainly want to be informed about where your money is going when you pay it as a fine? Well, some of your last fine got me %s.",
+"Time to go buy %s, now that I have enough cash.",
+"There was a big sale in the department store today! I could afford %s from the fines you paid to me!",
+"Black market prices are high, but it's the only place where I could find %s - I had to pay almost all the money that you had paid to me in fines. Sorry!",
+"When bragging about the fact that your past payments to me made me buy %s, I almost feel sorry for you... but only almost. Hahaha!",
+"I'm much higher on the ladder of hierarchy than you! As a proof I just got %s as a new status symbol, which is something that your little purse couldn't even dream of being able to afford!",
+"In order to make sure that you can't steal the money I rightfully collected from you, I paid it all in the store for %s.",
+"The newest addition to my trophy case is %s! I'll put it in a golden frame that reads: 'Bought from practicant money'!",
+"You will forever be a little practicant, and your sorry wallet will never have enough cash to buy %s. By the way, that's also what I bought from the money I got from you.",
+"I needed to buy %s to satisfy my vanity. Good thing there's this bumbling practicant who keeps stepping out of line and paying money to me.",
+"Be glad I relieved you of your money, for you would have wasted it on stinking cigarettes anyway! I, on the other hand, bought something that's actually useful: %s!",
+"No lunch money for you today! Instead, I bought %s from your zorkmids!",
+"Ah, nothing beats shopping with practicant zorkmids. Here, I'm the proud owner of %s now!",
+"Your zorkmids never failed to satisfy my shopping needs. Today I obtained %s and I'm very happy.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -24842,6 +24884,12 @@ gangscholartaunt_specific2()
 }
 
 const char *
+noroelatauntmessage()
+{
+	return (noroelabuying[rn2(SIZE(noroelabuying))]);
+}
+
+const char *
 walscholartaunt()
 {
 	return (hussylines_wal[rn2(SIZE(hussylines_wal))]);
@@ -24876,6 +24924,17 @@ practicantmessage()
 	char buf[BUFSZ];
 	pline("Noroela %s: \"%s\"", !rn2(3) ? "thunders" : !rn2(2) ? "rings out" : "booms", practicanttaunt());
 
+}
+
+void
+noroelataunt()
+{
+	char buf[BUFSZ];
+	sprintf(buf, "Noroela %s: ", !rn2(3) ? "thunders" : !rn2(2) ? "rings out" : "booms");
+	sprintf(eos(buf), "'");
+	sprintf(eos(buf), noroelatauntmessage(), noroelacommodity[rn2(SIZE(noroelacommodity))]);
+	sprintf(eos(buf), "'");
+	pline("%s", buf);
 }
 
 void
