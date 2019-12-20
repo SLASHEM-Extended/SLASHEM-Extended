@@ -767,7 +767,7 @@ register const char *s;
 		return;	/* no mazification right now */
 	    }
 	    /* impossible("Couldn't load \"%s\" - making a maze.", protofile); */
-	    pline("Couldn't load \"%s\" - making a maze.", protofile);
+	    if (strncmpi(protofile, "makemase.lev", 13) && strncmpi(protofile, "makemais.lev", 13) ) pline("Couldn't load \"%s\" - making a maze.", protofile);
 	}
 
 	if (rn2(2)) level.flags.is_maze_lev = TRUE;
