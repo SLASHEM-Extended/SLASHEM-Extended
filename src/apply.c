@@ -1746,7 +1746,7 @@ struct obj *obj;
 		    if (!Blind) makeknown(obj->otyp);
 		    You("ignite %s.", yname(obj));
 
-			if (vaapadcheck) {
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && vaapadcheck) {
 				if (yn("Use only one of the two blades? (If you say no, you ignite both)") != 'n') {
 					; /* do nothing */
 				} else {
