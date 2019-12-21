@@ -5709,12 +5709,12 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit) {
 		switch (P_SKILL(P_SHII_CHO)) {
 
-			case P_BASIC:	bonus +=  1; break;
-			case P_SKILLED:	bonus +=  2; break;
-			case P_EXPERT:	bonus +=  3; break;
-			case P_MASTER:	bonus +=  4; break;
-			case P_GRAND_MASTER:	bonus +=  5; break;
-			case P_SUPREME_MASTER:	bonus +=  6; break;
+			case P_BASIC:	bonus +=  rn2(2); break;
+			case P_SKILLED:	bonus +=  rn2(3); break;
+			case P_EXPERT:	bonus +=  rn2(4); break;
+			case P_MASTER:	bonus +=  rn2(5); break;
+			case P_GRAND_MASTER:	bonus +=  rn2(6); break;
+			case P_SUPREME_MASTER:	bonus +=  rn2(7); break;
 			default: bonus += 0; break;
 		}
 	}
@@ -5722,12 +5722,12 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit && !uarms && !u.twoweap) {
 		switch (P_SKILL(P_MAKASHI)) {
 
-			case P_BASIC:	bonus +=  rnd(3); break;
-			case P_SKILLED:	bonus +=  rnd(5); break;
-			case P_EXPERT:	bonus +=  rnd(7); break;
-			case P_MASTER:	bonus +=  rnd(10); break;
-			case P_GRAND_MASTER:	bonus +=  rnd(12); break;
-			case P_SUPREME_MASTER:	bonus +=  rnd(15); break;
+			case P_BASIC:	bonus +=  rn2(3); break;
+			case P_SKILLED:	bonus +=  rn2(5); break;
+			case P_EXPERT:	bonus +=  rn2(7); break;
+			case P_MASTER:	bonus +=  rn2(9); break;
+			case P_GRAND_MASTER:	bonus +=  rn2(11); break;
+			case P_SUPREME_MASTER:	bonus +=  rn2(13); break;
 			default: bonus += 0; break;
 		}
 	}
@@ -5768,12 +5768,12 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit && bimanual(weapon) && weapon->altmode) {
 		switch (P_SKILL(P_VAAPAD)) {
 
-			case P_BASIC:	bonus +=  rnd(5); break;
-			case P_SKILLED:	bonus +=  rnd(8); break;
-			case P_EXPERT:	bonus +=  rnd(12); break;
-			case P_MASTER:	bonus +=  rnd(16); break;
-			case P_GRAND_MASTER:	bonus +=  rnd(20); break;
-			case P_SUPREME_MASTER:	bonus +=  rnd(25); break;
+			case P_BASIC:	bonus +=  rn2(4); break;
+			case P_SKILLED:	bonus +=  rn2(7); break;
+			case P_EXPERT:	bonus +=  rn2(10); break;
+			case P_MASTER:	bonus +=  rn2(13); break;
+			case P_GRAND_MASTER:	bonus +=  rn2(16); break;
+			case P_SUPREME_MASTER:	bonus +=  rn2(19); break;
 			default: bonus += 0; break;
 		}
 
