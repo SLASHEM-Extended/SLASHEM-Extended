@@ -728,6 +728,9 @@ doforce()		/* try to force a chest with your weapon */
 	    return(0);
 	}
 
+	/* so we're trying to force something now, which means you touch your weapon; artifact can blast now --Amy */
+	if (!touch_artifact(uwep, &youmonst)) return 0;
+
 	if (is_lightsaber(uwep))
 	    picktyp = 2;
 	else
