@@ -2130,6 +2130,16 @@ int magic; /* 0=Physical, otherwise skill level */
 	    (void) walk_path(&uc, &cc, hurtle_step, (void *)&range);
 
 	    /* This used to give sokoban penalties but you can't actually bypass anything so the penalty is removed --Amy */
+	    /* In Soviet Russia, you're even penalized for cheating if you didn't actually cheat at all. Communism dictates
+	     * that we have to make extra sure, so we check for certain arbitrary actions that may have been considered
+	     * cheating decades ago and reduce luck for those who perform them. Why modernize anything when you can continue
+	     * using the ancient methods? */
+
+		if (issoviet && In_sokoban(&u.uz)) {
+			change_luck(-1);
+			pline("Teper' vy teryayete ochko udachi KHAR KHAR. Eto deystviye ne pomoglo vam reshit' golovolomki, no my takiye elitnyye.");
+			if (evilfriday) u.ugangr++;
+		}
 
 	    teleds(cc.x, cc.y, TRUE);
 

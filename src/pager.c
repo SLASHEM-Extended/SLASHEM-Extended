@@ -4542,6 +4542,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Glupyy variant 'davay otmenim vse, chto izmenila Emi', dolzhen pogibnut' v ogne.",
 "YA razvratnaya pizda, kotoraya sozdala etu igru, i u menya yest' vse zabolevaniya, peredayushchiyesya polovym putem, potomu chto ya nechist i gryazen.",
 "Yesli vy dvigayetes' vo vremya yezdy, i loshad' podvergayetsya napadeniyu posle togo, kak vy dvinulis', ona ne smozhet dat' otpor, potomu chto vanil' KHAR KHAR KHAR - LUCHSHIY variant, i tam vse chertovski KHOROSHO! Pochemu lyuboy antikhrist kogda-libo menyayet vanil'? Razrezat' ikh dolzhen byl prosto vtoroy vanil', potomu chto vanil'nyye kamni!",
+"Yesli vy brosayete zheleznyye shary ili prygayete v Sokobane, vy poteryayete udachu, dazhe yesli eti deystviya nikogda ne prob'yut vas cherez dyry. Potomu chto glupyy kod dolzhen ostavat'sya tupym s tipom ledyanogo bloka. On prosto vladelets!",
 };
 
 static NEARDATA const char * const practicantlines[] = {

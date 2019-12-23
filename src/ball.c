@@ -738,6 +738,13 @@ xchar x, y;
 	if (u.ux0 != u.ux || u.uy0 != u.uy) {
 	    spoteffects(TRUE);
 	    /* This used to give sokoban penalties but you can't actually bypass anything so the penalty is removed --Amy */
+	    /* Soviet Russia comment is in apply.c */
+
+		if (issoviet && In_sokoban(&u.uz)) {
+			change_luck(-1);
+			pline("Teper' vy teryayete ochko udachi KHAR KHAR. Eto deystviye ne pomoglo vam reshit' golovolomki, no my takiye elitnyye.");
+			if (evilfriday) u.ugangr++;
+		}
 
 	}
     }
