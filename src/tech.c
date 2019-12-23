@@ -1882,7 +1882,7 @@ void * roomcnt;
 
 	/* Get rid of stone at x, y */
 	levl[x][y].typ = CORR;
-	unblock_point(x,y);
+	blockorunblock_point(x,y);
 	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
 	newsym(x,y);
 }
@@ -1909,7 +1909,7 @@ void * roomcnt;
 
 	/* Get rid of stone at x, y */
 	levl[x][y].typ = CORR;
-	unblock_point(x,y);
+	blockorunblock_point(x,y);
 	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
 	newsym(x,y);
 }
@@ -6588,7 +6588,7 @@ revid_end:
 
 					if (levl[u.ux + k][u.uy + l].typ != DOOR) levl[u.ux + k][u.uy + l].typ = GRAVEWALL;
 					else doorlockX(u.ux + k, u.uy + l, TRUE);
-					block_point(u.ux + k, u.uy + l);
+					blockorunblock_point(u.ux + k, u.uy + l);
 					newsym(u.ux + k, u.uy + l);
 
 				}

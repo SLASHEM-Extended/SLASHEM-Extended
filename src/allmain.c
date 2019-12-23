@@ -3195,7 +3195,7 @@ trapsdone:
 			if (isok(x,y)) {
 				if ( (levl[x][y].typ == ROOM || levl[x][y].typ == CORR || (IS_STWALL(levl[x][y].typ) && !rn2(10) && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0)) ) && !(*in_rooms(x,y,SHOPBASE)) ) {
 					levl[x][y].typ = CLOUD;
-					unblock_point(x,y);
+					blockorunblock_point(x,y);
 					if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
 					newsym(x, y);
 
@@ -7394,7 +7394,7 @@ newboss:
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
 				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
-				block_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
 			}
@@ -7421,7 +7421,7 @@ newboss:
 					levl[chaosx][chaosy].typ = randomwalltype();
 					del_engr_at(chaosx,chaosy);
 					newsym(chaosx,chaosy);
-					unblock_point(chaosx,chaosy);
+					blockorunblock_point(chaosx,chaosy);
 
 					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
 				}
@@ -7450,7 +7450,7 @@ newboss:
 					levl[chaosx][chaosy].typ = randomwalltype();
 					del_engr_at(chaosx,chaosy);
 					newsym(chaosx,chaosy);
-					unblock_point(chaosx,chaosy);
+					blockorunblock_point(chaosx,chaosy);
 
 					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
 				}
@@ -7479,7 +7479,7 @@ newboss:
 					levl[chaosx][chaosy].typ = randomwalltype();
 					del_engr_at(chaosx,chaosy);
 					newsym(chaosx,chaosy);
-					unblock_point(chaosx,chaosy);
+					blockorunblock_point(chaosx,chaosy);
 
 					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
 				}
@@ -7498,7 +7498,7 @@ newboss:
 				levl[chaosx][chaosy].typ = randomwalltype();
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
-				unblock_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 
 				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
 
@@ -7516,7 +7516,7 @@ newboss:
 				levl[chaosx][chaosy].typ = randomwalltype();
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
-				unblock_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 
 				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
 
@@ -7534,7 +7534,7 @@ newboss:
 				levl[chaosx][chaosy].typ = randomwalltype();
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
-				unblock_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 
 				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
 
@@ -7598,7 +7598,7 @@ newboss:
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
 				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
-				block_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
 			}
@@ -7613,7 +7613,7 @@ newboss:
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
 				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
-				block_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
 			}
@@ -7628,7 +7628,7 @@ newboss:
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
 				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
-				block_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
 			}
@@ -7643,7 +7643,7 @@ newboss:
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
 				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
-				block_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
 			}
@@ -7658,7 +7658,7 @@ newboss:
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = randomwalltype();
 				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
-				block_point(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
 			}

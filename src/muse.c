@@ -207,7 +207,7 @@ void * poolcnt;
 
 			levl[randomx][randomy].typ = GRAVEWALL;
 			del_engr_at(randomx, randomy);
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
 				(void) minliquid(mtmp);
@@ -228,7 +228,7 @@ void * poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = GRAVEWALL;
 		del_engr_at(x, y);
-		block_point(x,y);
+		blockorunblock_point(x,y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
 			(void) minliquid(mtmp);
@@ -271,7 +271,7 @@ void * poolcnt;
 
 			levl[randomx][randomy].typ = TUNNELWALL;
 			del_engr_at(randomx, randomy);
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
 				(void) minliquid(mtmp);
@@ -292,7 +292,7 @@ void * poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = TUNNELWALL;
 		del_engr_at(x, y);
-		block_point(x,y);
+		blockorunblock_point(x,y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
 			(void) minliquid(mtmp);
@@ -335,7 +335,7 @@ void * poolcnt;
 
 			levl[randomx][randomy].typ = FARMLAND;
 			del_engr_at(randomx, randomy);
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
 				(void) minliquid(mtmp);
@@ -356,7 +356,7 @@ void * poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = FARMLAND;
 		del_engr_at(x, y);
-		block_point(x,y);
+		blockorunblock_point(x,y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
 			(void) minliquid(mtmp);
@@ -399,7 +399,7 @@ void * poolcnt;
 
 			levl[randomx][randomy].typ = MOUNTAIN;
 			del_engr_at(randomx, randomy);
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
 				(void) minliquid(mtmp);
@@ -420,7 +420,7 @@ void * poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = MOUNTAIN;
 		del_engr_at(x, y);
-		block_point(x,y);
+		blockorunblock_point(x,y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
 			(void) minliquid(mtmp);
@@ -463,7 +463,7 @@ void * poolcnt;
 
 			levl[randomx][randomy].typ = WATERTUNNEL;
 			del_engr_at(randomx, randomy);
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
 				(void) minliquid(mtmp);
@@ -484,7 +484,7 @@ void * poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = WATERTUNNEL;
 		del_engr_at(x, y);
-		block_point(x,y);
+		blockorunblock_point(x,y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
 			(void) minliquid(mtmp);
@@ -1395,7 +1395,7 @@ void * poolcnt;
 
 			levl[randomx][randomy].typ = BUBBLES;
 			del_engr_at(randomx, randomy);
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
 				(void) minliquid(mtmp);
@@ -1416,7 +1416,7 @@ void * poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = BUBBLES;
 		del_engr_at(x, y);
-		block_point(x,y);
+		blockorunblock_point(x,y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
 			(void) minliquid(mtmp);
@@ -1459,7 +1459,7 @@ void * poolcnt;
 
 			levl[randomx][randomy].typ = RAINCLOUD;
 			del_engr_at(randomx, randomy);
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
 				(void) minliquid(mtmp);
@@ -1480,7 +1480,7 @@ void * poolcnt;
 		/* Put a pool at x, y */
 		levl[x][y].typ = RAINCLOUD;
 		del_engr_at(x, y);
-		block_point(x,y);
+		blockorunblock_point(x,y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
 			(void) minliquid(mtmp);
@@ -1609,7 +1609,7 @@ void * poolcnt;
 			else {
 				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
 				else levl[randomx][randomy].typ = CROSSWALL;
-				block_point(randomx,randomy);
+				blockorunblock_point(randomx,randomy);
 				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 				del_engr_at(randomx, randomy);
 
@@ -1634,7 +1634,7 @@ void * poolcnt;
 		/* Put a wall at x, y */
 		if (levl[x][y].typ != DOOR) levl[x][y].typ = STONE;
 		else levl[x][y].typ = CROSSWALL;
-		block_point(x,y);
+		blockorunblock_point(x,y);
 		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
 		del_engr_at(x, y);
 
@@ -1677,7 +1677,7 @@ void * poolcnt;
 		randomy = rn2(ROWNO);
 		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = TREE;
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			del_engr_at(randomx, randomy);
 	
@@ -1698,7 +1698,7 @@ void * poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = TREE;
-		block_point(x,y);
+		blockorunblock_point(x,y);
 		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
 		del_engr_at(x, y);
 
@@ -1797,7 +1797,7 @@ void * poolcnt;
 		randomy = rn2(ROWNO);
 		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = CLOUD;
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 			del_engr_at(randomx, randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
@@ -1817,7 +1817,7 @@ void * poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = CLOUD;
-		block_point(x,y);
+		blockorunblock_point(x,y);
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -1859,7 +1859,7 @@ void * poolcnt;
 		randomy = rn2(ROWNO);
 		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = IRONBARS;
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 			del_engr_at(randomx, randomy);
 	
 			if ((mtmp = m_at(randomx, randomy)) != 0) {
@@ -1879,7 +1879,7 @@ void * poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = IRONBARS;
-		block_point(x,y);
+		blockorunblock_point(x,y);
 		del_engr_at(x, y);
 
 		if ((mtmp = m_at(x, y)) != 0) {
@@ -1921,7 +1921,7 @@ void * poolcnt;
 		randomy = rn2(ROWNO);
 		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = randomwalltype();
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			del_engr_at(randomx, randomy);
 	
@@ -1942,7 +1942,7 @@ void * poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = randomwalltype();
-		block_point(x,y);
+		blockorunblock_point(x,y);
 		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
 		del_engr_at(x, y);
 
@@ -8490,7 +8490,7 @@ struct monst *mtmp;
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
 				levl[u.ux + i][u.uy + j].typ = TREE;
-				block_point(u.ux + i,u.uy + j);
+				blockorunblock_point(u.ux + i,u.uy + j);
 				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
 				del_engr_at(u.ux + i, u.uy + j);
 	

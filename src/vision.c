@@ -860,6 +860,16 @@ unblock_point(x,y)
     if (viz_array[y][x]) vision_full_recalc = 1;
 }
 
+/* blockorunblock_point() by Amy: test whether the location should be blocked or not, then set it accordingly
+ * used for e.g. terrain-altering effects that put random terrain at locations, because we can't know in advance whether
+ * the terrain it created is blocking vision or not... */
+void
+blockorunblock_point(x,y)
+int x, y;
+{
+	if (does_block(x, y, &levl[x][y])) block_point(x, y);
+	else unblock_point(x, y);
+}
 
 /*===========================================================================*\
  |									     |

@@ -3107,6 +3107,7 @@ E void unblock_point(int,int);
 E boolean clear_path(int,int,int,int);
 E void do_clear_area(int,int,int, void (*)(int,int,void *),void *);
 E void do_clear_areaX(int,int,int, void (*)(int,int,void *),void *);
+E void blockorunblock_point(int,int);
 
 #ifdef VMS
 

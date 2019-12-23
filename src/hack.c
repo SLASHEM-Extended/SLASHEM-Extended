@@ -429,7 +429,7 @@ trap_of_walls:
 				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
 				else levl[randomx][randomy].typ = CROSSWALL;
 				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
-				block_point(randomx,randomy);
+				blockorunblock_point(randomx,randomy);
 				del_engr_at(randomx, randomy);
 
 				/*if ((mtmp = m_at(randomx, randomy)) != 0) {
@@ -1187,7 +1187,7 @@ int mode;
 			}
 
 			tmpr->typ = CORR;
-			unblock_point(ux+dx,uy+dy);
+			blockorunblock_point(ux+dx,uy+dy);
 			if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				maketrap(ux+dx, uy+dy, randomtrap(), 100 );
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {

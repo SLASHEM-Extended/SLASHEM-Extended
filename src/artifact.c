@@ -183,7 +183,7 @@ void * poolcnt;
 		randomy = rn2(ROWNO);
 		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
 			levl[randomx][randomy].typ = randomwalltype();
-			block_point(randomx,randomy);
+			blockorunblock_point(randomx,randomy);
 			if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			del_engr_at(randomx, randomy);
 	
@@ -205,7 +205,7 @@ void * poolcnt;
 	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
 		/* Put a pool at x, y */
 		levl[x][y].typ = randomwalltype();
-		block_point(x,y);
+		blockorunblock_point(x,y);
 		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
 		del_engr_at(x, y);
 
