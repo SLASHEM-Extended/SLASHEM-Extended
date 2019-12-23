@@ -10162,7 +10162,7 @@ u_init()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == S_PRESSING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == PENTAGRAM_TRAP || u.frequenttrap == THRONE_TRAP || u.frequenttrap == S_PRESSING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.traprandomizing = rnd(1000);
@@ -31721,7 +31721,7 @@ int realityflag;
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == S_PRESSING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == PENTAGRAM_TRAP || u.frequenttrap == THRONE_TRAP || u.frequenttrap == S_PRESSING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.traprandomizing = rnd(1000);
