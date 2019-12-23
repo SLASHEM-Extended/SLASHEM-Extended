@@ -8329,6 +8329,12 @@ register struct obj *obj;
 	int n;
 	menu_item *selected = 0;
 
+	if (InventoryDoesNotGo && !program_state.gameover) {
+		pline("Not enough memory to create inventory window");
+ 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return (struct obj *) 0;
+	}	
+
 	sprintf(tmp,"Contents of %s:", doname(obj));
 
 	if (obj->cobj) {

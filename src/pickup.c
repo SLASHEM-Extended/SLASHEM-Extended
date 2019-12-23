@@ -77,6 +77,13 @@ boolean here;		/* flag for type of obj list linkage */
 	 * we're only called after multiple classes of objects have been
 	 * detected, hence multiple objects must be present.
 	 */
+
+	if (InventoryDoesNotGo && !program_state.gameover) {
+		pline("Not enough memory to create inventory window");
+ 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return;
+	}	
+
 	if (!otmp) {
 	    impossible("simple_look(null)");
 	} else if (!(here ? otmp->nexthere : otmp->nobj)) {
