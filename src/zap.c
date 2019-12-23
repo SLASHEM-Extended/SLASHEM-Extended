@@ -3758,6 +3758,9 @@ int
 zappable(wand)
 register struct obj *wand;
 {
+	boolean willusecharge = TRUE;
+	boolean onlychargeonce = (wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS);
+
 	int nochargechange = 10;
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
@@ -3777,7 +3780,13 @@ register struct obj *wand;
 		You("wrest one last charge from the worn-out wand.");
 		u.cnd_wandwresting++; /* wand may survive due to devices skill or being made of viva (not a bug) */
 	}
-	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == MT_VIVA) ) && !(uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !(wand->otyp == WAN_WISHING || wand->otyp == WAN_CHARGING || wand->otyp == WAN_BAD_EQUIPMENT || wand->otyp == WAN_ACQUIREMENT || wand->otyp == WAN_GAIN_LEVEL || wand->otyp == WAN_INCREASE_MAX_HITPOINTS) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
+
+	if (wand->oartifact && !rn2(2)) willusecharge = FALSE; /* even works for ones that can only be charged once */
+	if (objects[(wand)->otyp].oc_material == MT_VIVA && !rn2(2) && !onlychargeonce) willusecharge = FALSE;
+	if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !onlychargeonce) willusecharge = FALSE;
+	if (nochargechange < rnd(10) && !onlychargeonce) willusecharge = FALSE;
+
+	if (willusecharge) wand->spe--;
 
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 
