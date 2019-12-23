@@ -19268,6 +19268,7 @@ boolean force;
 			    } else {
 				You("disarm it!");
 				u.cnd_untrapamount++;
+				use_skill(P_SEARCHING,1);
 				if (u.ualign.type == A_LAWFUL) adjalign(1);
 				otmp->otrapped = 0;
 			    }
@@ -19336,6 +19337,7 @@ boolean force;
 		    } else {
 			You("disarm it!");
 			u.cnd_untrapamount++;
+			use_skill(P_SEARCHING,1);
 			if (u.ualign.type == A_LAWFUL) adjalign(1);
 			levl[x][y].doormask &= ~D_TRAPPED;
 		    }

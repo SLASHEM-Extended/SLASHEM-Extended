@@ -4360,6 +4360,9 @@ wand_explode(obj, hero_broke)
     int expltype = EXPL_MAGICAL;
     char buf[BUFSZ];
 
+    int devicetrain = 0;
+    if (hero_broke && obj && obj->spe > 0) devicetrain = obj->spe;
+
     /* [ALI] Do this first so that wand is removed from bill. Otherwise,
      * the freeinv() below also hides it from setpaid() which causes problems.
      */
@@ -4642,6 +4645,9 @@ wand_explode(obj, hero_broke)
     if (obj)
 	delobj(obj);
     nomul(0, 0, FALSE);
+
+    /* did the player break it? if so, train devices skill depending on the # of charges */
+    if (devicetrain) use_skill(P_DEVICES, devicetrain);
     return 1;
 }
 
