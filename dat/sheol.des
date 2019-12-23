@@ -11,8 +11,8 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -66,8 +66,8 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -121,8 +121,8 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -201,8 +201,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -243,8 +243,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -285,8 +285,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -331,9 +331,9 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
@@ -445,8 +445,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -515,8 +515,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -631,7 +631,7 @@ MONSTER: monster[7], random,(1, 9)
 OBJECT:'/',"fire",random
 OBJECT:'/',"fire",random
 
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 
 # Make the island area lit
@@ -710,7 +710,7 @@ STAIR:levregion(59,00,75,18), levregion(13,13,13,13), down
 DOOR:closed,(33,09)
 REGION:(34,08,46,10),lit,"tin shop"
 
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 TRAP: random, random
 TRAP: random, random
@@ -782,11 +782,11 @@ NON_DIGGABLE:(00,00,76,19)
 
 REGION:(59,00,76,07),random,"randomroom"
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
@@ -940,11 +940,11 @@ STAIR:(49,12),down
 NON_DIGGABLE:(00,00,75,19)
 NON_PASSWALL:(00,00,75,19)
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 
 OBJECT:'+', random, random
 OBJECT:'+', random, random
@@ -1010,11 +1010,11 @@ DOOR:locked,(51,04)
 # This is slex, I added a possibility to get there... but the engraving is preserved just for the heck of it --Amy
 ENGRAVING:(16,11),burn,"If you got out here in a normal game without abusing magic whistle pet engulf or enexto I wanna hear about it."
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:random, random, random
 MONSTER:random, random, random
 MONSTER:random, random, random
@@ -1025,7 +1025,7 @@ MONSTER:random, random, random
 MONSTER:random, random, random
 MONSTER:random, random, random
 MONSTER:random, random, random
-MONSTER:''', "finnish explorer", place[1]
+MONSTER:''', "ice golem", place[1]
 
 TRAP: "ice", random
 TRAP: "ice", random
@@ -1111,15 +1111,15 @@ MAZEWALK:(00,15),west
 
 MAZEWALK:(49,15),east
 
-MONSTER:''', "crystal ice golem", (24,07)
-MONSTER:''', "crystal ice golem", (24,09)
-MONSTER:''', "crystal ice golem", (24,11)
-MONSTER:''', "crystal ice golem", (25,07)
-MONSTER:''', "crystal ice golem", (25,09)
-MONSTER:''', "crystal ice golem", (25,11)
-MONSTER:''', "crystal ice golem", (26,07)
-MONSTER:''', "crystal ice golem", (26,09)
-MONSTER:''', "crystal ice golem", (26,11)
+MONSTER:''', "chill golem", (24,07)
+MONSTER:''', "chill golem", (24,09)
+MONSTER:''', "chill golem", (24,11)
+MONSTER:''', "chill golem", (25,07)
+MONSTER:''', "chill golem", (25,09)
+MONSTER:''', "chill golem", (25,11)
+MONSTER:''', "chill golem", (26,07)
+MONSTER:''', "chill golem", (26,09)
+MONSTER:''', "chill golem", (26,11)
 MONSTER:random,random, (24,08)
 MONSTER:random,random, (24,10)
 MONSTER:random,random, (25,08)
@@ -1189,16 +1189,16 @@ REGION:(38,12,42,15),lit,"randomroom"
 REGION:(46,13,47,15),lit,"randomroom"
 REGION:(49,13,52,15),lit,"randomroom"
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'&', "ice devil", random
 MONSTER:'&', "ice devil", random
 MONSTER:'&', "ice devil", random
@@ -1277,20 +1277,9 @@ STAIR:(75,06),down
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "red dragon", random
 MONSTER:'D', "red dragon", random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
-MONSTER:'H', "frost giant", random
-MONSTER:'Z', "cryo archer", random
-MONSTER:'Z', "cryo archer", random
 MONSTER:'Z', "cryo archer", random
 TRAP: "ice", random
 TRAP: "ice", random
@@ -1385,21 +1374,14 @@ MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
-MONSTER:'Z', "cryo archer", random
-MONSTER:'Z', "cryo archer", random
 MONSTER:'Z', "cryo archer", random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -1516,8 +1498,8 @@ STAIR: (7,2,60,7), (10,2,56,7),down
 TELEPORT_REGION:(00,14,63,18),(0,0,0,0)
 
 # Golems in loot rooms
-MONSTER: ''', "crystal ice golem", (34,2)
-MONSTER: ''', "crystal ice golem", (40,2)
+MONSTER: ''', "chill golem", (34,2)
+MONSTER: ''', "chill golem", (40,2)
 
 # Freezers!
 MONSTER: 'P', "blue slime", random
@@ -1711,8 +1693,8 @@ MONSTER: 'N', "white naga", random
 MONSTER: 'N', "white naga", random
 MONSTER: 'N', "white naga", random
 MONSTER: 'N', "white naga", random
-MONSTER: ''', "crystal ice golem", random
-MONSTER: ''', "crystal ice golem", random
+MONSTER: ''', "chill golem", random
+MONSTER: ''', "chill golem", random
 MONSTER: ''', "ice golem", random
 MONSTER: ''', "ice golem", random
 MONSTER: 'A', "black Angel", random
@@ -3271,19 +3253,8 @@ MONSTER:'D', random, random
 MONSTER:'D', random, random
 MONSTER:'D', random, random
 MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
-MONSTER:'H', "frost giant", random
-MONSTER:'Z', random, random
-MONSTER:'Z', random, random
 MONSTER:'Z', random, random
 TRAP: "ice", random
 TRAP: "ice", random
@@ -3378,11 +3349,6 @@ MONSTER:'D', random, random
 MONSTER:'D', random, random
 MONSTER:'D', random, random
 MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
-MONSTER:'D', random, random
 MONSTER:''', random, random
 MONSTER:''', random, random
 MONSTER:''', random, random
@@ -3391,8 +3357,6 @@ MONSTER:''', random, random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
-MONSTER:'Z', random, random
-MONSTER:'Z', random, random
 MONSTER:'Z', random, random
 MONSTER:random,random,random
 MONSTER:random,random,random
@@ -3476,8 +3440,8 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -3573,7 +3537,7 @@ MONSTER: monster[7], random,(1, 9)
 OBJECT:'/',"fire",random
 OBJECT:'/',"fire",random
 
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 
 # Make the island area lit
@@ -3667,8 +3631,8 @@ STAIR: (7,2,60,7), (10,2,56,7),down
 TELEPORT_REGION:(00,14,63,18),(0,0,0,0)
 
 # Golems in loot rooms
-MONSTER: ''', "crystal ice golem", (34,2)
-MONSTER: ''', "crystal ice golem", (40,2)
+MONSTER: ''', "chill golem", (34,2)
+MONSTER: ''', "chill golem", (40,2)
 
 # Freezers!
 MONSTER: 'P', "blue slime", random
@@ -3861,8 +3825,8 @@ MONSTER: 'N', "white naga", random
 MONSTER: 'N', "white naga", random
 MONSTER: 'N', "white naga", random
 MONSTER: 'N', "white naga", random
-MONSTER: ''', "crystal ice golem", random
-MONSTER: ''', "crystal ice golem", random
+MONSTER: ''', "chill golem", random
+MONSTER: ''', "chill golem", random
 MONSTER: ''', "ice golem", random
 MONSTER: ''', "ice golem", random
 MONSTER: 'A', "black Angel", random
@@ -3892,8 +3856,8 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -3947,8 +3911,8 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -4027,8 +3991,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -4069,8 +4033,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -4110,8 +4074,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -4156,9 +4120,9 @@ STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
 STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
@@ -4269,8 +4233,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -4338,8 +4302,8 @@ STAIR: random, up
 STAIR: random, down
 
 # Golems and random monsters
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER: random, random, random
 MONSTER: random, random, random
@@ -4430,7 +4394,7 @@ STAIR:levregion(59,00,75,18), levregion(13,13,13,13), down
 DOOR:closed,(33,09)
 REGION:(34,08,46,10),lit,"tin shop"
 
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 TRAP: random, random
 TRAP: random, random
@@ -4502,11 +4466,11 @@ NON_DIGGABLE:(00,00,76,19)
 
 REGION:(59,00,76,07),random,"randomroom"
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
 MONSTER:'P', "blue slime", random
@@ -4660,11 +4624,11 @@ STAIR:(49,12),down
 NON_DIGGABLE:(00,00,75,19)
 NON_PASSWALL:(00,00,75,19)
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 
 OBJECT:'+', random, random
 OBJECT:'+', random, random
@@ -4730,11 +4694,11 @@ DOOR:locked,(51,04)
 # This is slex, I added a possibility to get there... but the engraving is preserved just for the heck of it --Amy
 ENGRAVING:(16,11),burn,"If you got out here in a normal game without abusing magic whistle pet engulf or enexto I wanna hear about it."
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:random, random, random
 MONSTER:random, random, random
 MONSTER:random, random, random
@@ -4745,7 +4709,7 @@ MONSTER:random, random, random
 MONSTER:random, random, random
 MONSTER:random, random, random
 MONSTER:random, random, random
-MONSTER:''', "finnish explorer", place[1]
+MONSTER:''', "ice golem", place[1]
 
 TRAP: "ice", random
 TRAP: "ice", random
@@ -4831,15 +4795,15 @@ MAZEWALK:(00,15),west
 
 MAZEWALK:(49,15),east
 
-MONSTER:''', "crystal ice golem", (24,07)
-MONSTER:''', "crystal ice golem", (24,09)
-MONSTER:''', "crystal ice golem", (24,11)
-MONSTER:''', "crystal ice golem", (25,07)
-MONSTER:''', "crystal ice golem", (25,09)
-MONSTER:''', "crystal ice golem", (25,11)
-MONSTER:''', "crystal ice golem", (26,07)
-MONSTER:''', "crystal ice golem", (26,09)
-MONSTER:''', "crystal ice golem", (26,11)
+MONSTER:''', "chill golem", (24,07)
+MONSTER:''', "chill golem", (24,09)
+MONSTER:''', "chill golem", (24,11)
+MONSTER:''', "chill golem", (25,07)
+MONSTER:''', "chill golem", (25,09)
+MONSTER:''', "chill golem", (25,11)
+MONSTER:''', "chill golem", (26,07)
+MONSTER:''', "chill golem", (26,09)
+MONSTER:''', "chill golem", (26,11)
 MONSTER:random,random, (24,08)
 MONSTER:random,random, (24,10)
 MONSTER:random,random, (25,08)
@@ -4909,16 +4873,16 @@ REGION:(38,12,42,15),lit,"randomroom"
 REGION:(46,13,47,15),lit,"randomroom"
 REGION:(49,13,52,15),lit,"randomroom"
 
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'&', "ice devil", random
 MONSTER:'&', "ice devil", random
 MONSTER:'&', "ice devil", random
@@ -4997,20 +4961,9 @@ STAIR:(75,06),down
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "red dragon", random
 MONSTER:'D', "red dragon", random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
-MONSTER:'H', "frost giant", random
-MONSTER:'Z', "cryo archer", random
-MONSTER:'Z', "cryo archer", random
 MONSTER:'Z', "cryo archer", random
 TRAP: "ice", random
 TRAP: "ice", random
@@ -5105,21 +5058,14 @@ MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
 MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:'D', "white dragon", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
-MONSTER:''', "crystal ice golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
+MONSTER:''', "chill golem", random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
 MONSTER:'H', "frost giant", random
-MONSTER:'Z', "cryo archer", random
-MONSTER:'Z', "cryo archer", random
 MONSTER:'Z', "cryo archer", random
 MONSTER:random,random,random
 MONSTER:random,random,random
