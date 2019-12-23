@@ -2216,7 +2216,7 @@ learn()
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
 
-	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !Conf_resist && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 100 : 10) ) {		/* became confused while learning */
+	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 100 : 10) ) {		/* became confused while learning */
 
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
@@ -2396,7 +2396,7 @@ study_book(spellbook)
 register struct obj *spellbook;
 {
 	register int	 booktype = spellbook->otyp;
-	register boolean confused = ((Confusion != 0) && !Conf_resist);
+	register boolean confused = ((Confusion != 0) && !(Conf_resist && (StrongConf_resist ? rn2(3) : !rn2(3)) ));
 	boolean too_hard = FALSE;
 
 	if (delay && !confused && spellbook == book &&
@@ -2550,7 +2550,7 @@ register struct obj *spellbook;
 		    } else
 			spellbook->in_use = FALSE;
 		    return(1);
-		} else if (confused && !Conf_resist && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 50 : 5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+		} else if (confused && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 50 : 5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 		    if (!confused_book(spellbook)) {
 			spellbook->in_use = FALSE;
 		    }
@@ -3126,7 +3126,7 @@ boolean atme;
 	int energy, damage, chance, n, intell;
 	int hungr;
 	int skill, role_skill;
-	boolean confused = ((Confusion != 0) && !Conf_resist);
+	boolean confused = ((Confusion != 0) && !(Conf_resist && (StrongConf_resist ? rn2(3) : !rn2(3)) ) );
 	struct obj *pseudo;
 	struct obj *otmp;
 	int confusionchance = 0;
@@ -3548,7 +3548,7 @@ castanyway:
 		}
 	}
 
-	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && (!StrongConf_resist || !rn2(3)) && rn2(Conf_resist ? 2 : 10) ) || (rnd(100) > chance)) {
+	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && (!StrongConf_resist || !rn2(3)) && rn2(Conf_resist ? 5 : 10) ) || (rnd(100) > chance)) {
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
 		u.cnd_spellfailcount++;
