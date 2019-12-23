@@ -24813,6 +24813,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Throw what? g - a fireball. The fireball hits the spiny cockatrice! The spiny cockatrice jumps out of the picture!",
 	"j Jump where? | - a pipe. You land on the pipe. Whoops - there was a piranha plant in this pipe! The piranha plant touches you! Schloeggschloeggschloegg - you lose your fire flower and are now small!",
 	"Your hands furiously rip into Anastasia's dancing shoe. You evil bastard.",
+	"You have a strange feeling of victory.",
+	"You have a strange feeling of victory. Well, you just quaffed the Amulet of Yendor, which means that it's gone now. Do you think you can still win the game?",
+	"The magic of the scroll forces your mouth to move against the tape.",
 
 };
 
