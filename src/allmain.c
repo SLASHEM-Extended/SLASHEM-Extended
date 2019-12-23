@@ -13630,7 +13630,7 @@ get_realtime(void)
 boolean
 timebasedlowerchance()
 {
-	if (isfriday && !rn2(5)) return FALSE; /* unconditional failure on the unlucky day */
+	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
 
 	int chance = 115;
 	chance -= (moves * 100 / u.monstertimefinish);
@@ -13638,76 +13638,79 @@ timebasedlowerchance()
 	if (chance < 15) chance = 15;
 
 	if (moves > 20000 && !rn2(2)) {
-		chance *= 9;
-		chance /= 10;
+		chance *= 19;
+		chance /= 20;
 	}
 
 	if (moves > 40000 && !rn2(2)) {
-		chance *= 9;
-		chance /= 10;
+		chance *= 19;
+		chance /= 20;
 	}
 
 	if (moves > 60000 && !rn2(2)) {
-		chance *= 9;
-		chance /= 10;
+		chance *= 19;
+		chance /= 20;
 	}
 
 	if (moves > 80000 && !rn2(2)) {
-		chance *= 9;
-		chance /= 10;
+		chance *= 19;
+		chance /= 20;
 	}
 
 	if (moves > 100000 && !rn2(2)) {
-		chance *= 9;
-		chance /= 10;
+		chance *= 19;
+		chance /= 20;
 	}
 
-	if (moves > 120000) {
-		chance *= 9;
-		chance /= 10;
+	if (moves > 120000 && !rn2(2)) {
+		chance *= 19;
+		chance /= 20;
 	}
 
-	if (moves > 140000) {
-		chance *= 9;
-		chance /= 10;
+	if (moves > 140000 && !rn2(2)) {
+		chance *= 19;
+		chance /= 20;
 	}
 
-	if (moves > 160000) {
-		chance *= 9;
-		chance /= 10;
+	if (moves > 160000 && !rn2(2)) {
+		chance *= 19;
+		chance /= 20;
 	}
 
-	if (moves > 180000) {
-		chance *= 9;
-		chance /= 10;
+	if (moves > 180000 && !rn2(2)) {
+		chance *= 19;
+		chance /= 20;
 	}
 
-	if (moves > 200000) {
-		chance *= 9;
-		chance /= 10;
+	if (moves > 200000 && !rn2(2)) {
+		chance *= 19;
+		chance /= 20;
 	}
 
 	if (In_quest(&u.uz)) {
-		chance /= 2;
-	}
-
-	if (In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) {
 		chance /= rnd(2);
 	}
 
-	if (In_yendorian(&u.uz) && !(flags.wonderland && !(u.wonderlandescape)) ) {
-		chance /= rnd(3);
+	if ((In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) && !rn2(2)) {
+		chance *= 2;
+		chance /= rn1(2,2);
 	}
 
-	if (In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) ) {
-		chance /= rnd(3);
+	if (In_yendorian(&u.uz) && !(flags.wonderland && !(u.wonderlandescape)) && !rn2(2) ) {
+		chance *= 3;
+		chance /= rn1(3,3);
+	}
+
+	if ((In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) && !rn2(2) ) {
+		chance *= 3;
+		chance /= rn1(3,3);
 	}
 
 	if (In_subquest(&u.uz) || In_bellcaves(&u.uz)) {
-		chance /= 5;
+		chance /= rnd(5);
 	}
 
-	if (chance < 5) chance = 5;
+	if (chance < 5) chance = 5; /* always at least a 5% chance of getting it --Amy */
 
 	if (chance > rnd(100)) return(TRUE); /* the effect will happen despite the lower chance */
 	else return(FALSE);
