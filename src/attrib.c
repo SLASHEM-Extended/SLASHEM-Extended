@@ -2475,6 +2475,7 @@ int x;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
+		if (uarm && uarm->otyp == ROBE_OF_WEAKNESS) tmp -= 3;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
