@@ -1827,9 +1827,15 @@ mattacku(mtmp)
 			i = mattackm(mtmp, u.usteed);
 			if ((i & MM_AGR_DIED))
 				return (1);
-			if (i & MM_DEF_DIED || u.umoved)
+			if (i & MM_DEF_DIED || (u.umoved && issoviet)) {
+				if (u.umoved && issoviet) pline("Vasha loshad' ne soprotivlyayetsya. Potomu chto ty igrayesh' v der'movom variante.");
 				return (0);
-			/* Let your steed retaliate */
+			}
+			/* Let your steed retaliate, Amy edit: of course also if you've moved */
+
+			/* In Soviet Russia, no horse may ever fight back when attacked unless it stands perfectly still.
+			 * After all, horses aren't meant to be used in combat much, for cookie reasons. */
+
 			return (!!(mattackm(u.usteed, mtmp) & MM_DEF_DIED));
 		}
 	}
