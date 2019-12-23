@@ -292,7 +292,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 	if (practicantterror && !u.pract_altartest) {
 		u.pract_altartestamount++;
 		if (u.pract_altartestamount >= 10) {
-			pline("Noroela booms: 'Well, now your memory simply belongs to me. Why do you try to test your equipment on an altar anyway?'");
+			pline("%s booms: 'Well, now your memory simply belongs to me. Why do you try to test your equipment on an altar anyway?'", noroelaname());
 			forget(1 + rn2(5));
 			u.pract_altartest = TRUE;
 		}

@@ -1815,7 +1815,7 @@ struct you {
 #define uactivesymbiosis	(u.usymbiote.active && !u.shutdowntime && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
 
 /* is the player a practicant who has to pay fines? (only the case when nemesis is still alive) */
-#define practicantterror	(Role_if(PM_PRACTICANT) && !quest_status.killed_nemesis)
+#define practicantterror	((Role_if(PM_PRACTICANT) || isbeacher) && !quest_status.killed_nemesis)
 
 #define Upolyd (u.umonnum != u.umonster)
 

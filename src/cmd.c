@@ -10270,17 +10270,63 @@ minimal_enlightenment()
 	char statline[BUFSZ];
 
 	*statline = '\0';
+	char xtrabuf[BUFSZ];
 
 	if (TheInfoIsFucked) {
 		pline("Somehow the information is fucked up and won't display.");
 		return 0;
 	}
 
+	*xtrabuf = '\0';
+
+	int hybridcount = 0;
+
+	if (flags.hybridangbander && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "angbander ");
+	if (flags.hybridaquarian && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "aquarian ");
+	if (flags.hybridcurser && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "curser ");
+	if (flags.hybridhaxor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "haxor ");
+	if (flags.hybridhomicider && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "homicider ");
+	if (flags.hybridsuxxor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "suxxor ");
+	if (flags.hybridwarper && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "warper ");
+	if (flags.hybridrandomizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "randomizer ");
+	if (flags.hybridnullrace && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "null ");
+	if (flags.hybridmazewalker && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "mazewalker ");
+	if (flags.hybridsoviet && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "soviet ");
+	if (flags.hybridxrace && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "x-race ");
+	if (flags.hybridheretic && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "heretic ");
+	if (flags.hybridsokosolver && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "sokosolver ");
+	if (flags.hybridspecialist && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "specialist ");
+	if (flags.hybridamerican && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "american ");
+	if (flags.hybridminimalist && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "minimalist ");
+	if (flags.hybridnastinator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "nastinator ");
+	if (flags.hybridrougelike && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "rougelike ");
+	if (flags.hybridsegfaulter && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "segfaulter ");
+	if (flags.hybridironman && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "ironman ");
+	if (flags.hybridamnesiac && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "amnesiac ");
+	if (flags.hybridproblematic && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "problematic ");
+	if (flags.hybridwindinhabitant && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "windinhabitant ");
+	if (flags.hybridaggravator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "aggravator ");
+	if (flags.hybridevilvariant && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "evilvariant ");
+	if (flags.hybridlevelscaler && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "levelscaler ");
+	if (flags.hybriderosator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "erosator ");
+	if (flags.hybridroommate && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "roommate ");
+	if (flags.hybridextravator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "extravator ");
+	if (flags.hybridhallucinator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "hallucinator ");
+	if (flags.hybridbossrusher && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "bossrusher ");
+	if (flags.hybriddorian && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "dorian ");
+	if (flags.hybridtechless && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "techless ");
+	if (flags.hybridblait && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "blait ");
+	if (flags.hybridgrouper && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "grouper ");
+	if (flags.hybridscriptor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "scriptor ");
+	if (flags.hybridunbalancor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "unbalancor ");
+	if (flags.hybridbeacher && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "beacher ");
+	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
+
 	if (!DisplayDoesNotGo) {
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 
-		sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", playeraliasname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), (flags.hybridsegfaulter ? "segfaulter " : ""), (flags.hybridironman ? "ironman " : ""), (flags.hybridamnesiac ? "amnesiac " : ""), (flags.hybridproblematic ? "problematic " : ""), (flags.hybridwindinhabitant ? "windinhabitant " : ""), (flags.hybridaggravator ? "aggravator " : ""), (flags.hybridevilvariant ? "evilvariant " : ""), (flags.hybridlevelscaler ? "levelscaler " : ""), (flags.hybriderosator ? "erosator " : ""), (flags.hybridroommate ? "roommate " : ""), (flags.hybridextravator ? "extravator " : ""), (flags.hybridhallucinator ? "hallucinator " : ""), (flags.hybridbossrusher ? "bossrusher " : ""), (flags.hybriddorian ? "dorian " : ""), (flags.hybridtechless ? "techless " : ""), (flags.hybridblait ? "blait " : ""), (flags.hybridgrouper ? "grouper " : ""), (flags.hybridscriptor ? "scriptor " : ""), (flags.hybridunbalancor ? "unbalancor " : "") ,urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+		sprintf(eos(statline), "You are %s, a %s %s %s%s %s.", playeraliasname, align_str(u.ualign.type), (flags.female ? "female" : "male"), xtrabuf, urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 		if (!Upolyd) sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
 		else sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);

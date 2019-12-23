@@ -4541,7 +4541,7 @@ secureidchoice:
 			known = TRUE;
 
 			if (practicantterror && !u.pract_wow) {
-				pline("Noroela booms: 'Oh yeah, I forgot to tell you that there's also this rule: Wands of wishing are forbidden! Well, you can't tell me anything, so you also can't prevent me from deleting it.'");
+				pline("%s booms: 'Oh yeah, I forgot to tell you that there's also this rule: Wands of wishing are forbidden! Well, you can't tell me anything, so you also can't prevent me from deleting it.'", noroelaname());
 				if (obj->spe > -1) obj->spe = -1;
 				if (obj->recharged < 1) obj->recharged = 1;
 				u.pract_wow = TRUE;
@@ -9579,7 +9579,7 @@ boolean *shopdamage;
 			if (practicantterror && (type >= 0) && lev->typ == ICE && !u.pract_waterfreeze) {
 				u.pract_frozentiles++;
 				if (u.pract_frozentiles >= 5) {
-					pline("Noroela thunders: 'You destroyed all of my watery pools, which is fully against the rules. For me to be able to rebuild my ships, you pay 20 arrows to me, and for making sure that you learn from your mistakes it additionally costs 1000 zorkmids.'");
+					pline("%s thunders: 'You destroyed all of my watery pools, which is fully against the rules. For me to be able to rebuild my ships, you pay 20 arrows to me, and for making sure that you learn from your mistakes it additionally costs 1000 zorkmids.'", noroelaname());
 					fineforpracticant(1000, 0, 20);
 					u.pract_waterfreeze = TRUE;
 				}

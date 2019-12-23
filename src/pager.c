@@ -3858,7 +3858,7 @@ static const char * const gangscholarverbs[] = {
 };
 
 static const char * const noroelacommodity[] = {
-"a Porsche", "a designer handbag", "a pair of louboutins", "a pair of stilettos", "a pair of combat boots", "lipstick and perfume", "some deodorant", "wickedly expensive eau de cologne", "a shiny ring", "a diadem with diamonds", "a leather whip", "a pack of boot-shaped christmas cakes", "a bigger ego", "expensive lipgloss", "some glamorous makeup", "a new car", "a shiny new purse", "golden earrings", "a wedding ring", "a bridal dress", "a new haircut", "a lipoplasticator and a micro dermal graftilizer", "a mansion", "a luxury yacht", "a private helicopter", "a ticket for 2 weeks of vacation in the Carribean Sea", "a PhD title from www.BuyRespect.com", "the new Counter-Strike: Special Ops Duty video game", "a pincushion", "an electric guitar", "a night with a sexy female prostitute", "a new husband", "a house slave", "a butler named James", "a fivefold garage", "a car with a filter gear shift", "a Diablo Vipera motorcycle", "some expensive trash", "an expensive golden imitation of the Amulet of Yendor", "a golden statue modeled after myself", "the SLASH'EM Extended source code archive", "a cameo appearance in a GladJonas speedrun video", "this week's winning lottery ticket", "a housecat", "a horse", "a submarine", "a new girlfriend", "a cuddly bed", "a huggable heart pillow", "a long-hair wig", "a carnival costume", "an advent calendar", "a box of chocolate truffles", "christmas presents", "a birthday cake", "a couple pants", "a pair of fleecy woolen socks", "some souvenir postcards", "an ET-425 train", "a tour bus", "a ticket for a Michael Jackson concert", "a new flatscreen TV", "a renewal of my monthly World of Warcraft subscription", "some unique items in Diablo 3's auction house", "a vibrator", "a sex toy", "breast implants", "new earphones", "a pair of designer specs", "a massive throne", "an underground mountain", "a spoiler sheet", "a device that can trigger Ragnarok", "premium-quality toothpaste", "a Doenerteller Versace", "a romantic dinner in a 5-star hotel", "100 000 roulette jetons", "a deck of cards", "a Magic the Gathering Booster Pack", "some voters that will elect me during the next US Presidential Election", "some paid assassins that are going to bomb your house", "a health insurance", "some counterfeit cash", "a glorkum 13 23 1337", "the one-in-a-kind legendary sword Excalibur", "all seven Harry Potter books", "the Eiffel Tower", "a farting noise generator", "a device for autoerotic asphyxiation", "a 44-caliber Anaconda revolver", "ammo for my AK-47 assault rifle", "a cure for brain cancer", "a third leg", "a bunch of Fridays for Future activists that are going to demonstrate for the nonexistant climate protection", "the decryption key for the encrypted files on my PC", "a tuxedo", "some butt-ugly gentleman's shoes", "the pink belly-dancing costume that originally belonged to Valensina", "an appointment with Doctor Marc Selvig, who evolved Linda into Evolet and then into Evolte", "a rainbow-colored bikini", "a first class one-way ticket to Albuquerque", "a tight spandex suit", "the file containing the missing evidence in the Kelner case", "a disk with the earliest versions of Hack and NetHack", "a way to control the RNG", "5 pokeballs", "a Death Star", "the One Ring", "an Elder Scroll", "the top-secret Thalmor dossier", "a decoded Voynich Manuscript", "the Mysterium Xarxes", "the handbook for the Tomb of Horrors module", "a guillotine", "a pair of leather peep-toes", "Amy's high heels that she used to race 10 km in 84 minutes", "a wand of wishing (0:3)", "a newspaper", "a bunch of spam emails from lonely Russian women looking for a relationship",
+"a Porsche", "a designer handbag", "a pair of louboutins", "a pair of stilettos", "a pair of combat boots", "lipstick and perfume", "some deodorant", "wickedly expensive eau de cologne", "a shiny ring", "a diadem with diamonds", "a leather whip", "a pack of boot-shaped christmas cakes", "a bigger ego", "expensive lipgloss", "some glamorous makeup", "a new car", "a shiny new purse", "golden earrings", "a wedding ring", "a bridal dress", "a new haircut", "a lipoplasticator and a micro dermal graftilizer", "a mansion", "a luxury yacht", "a private helicopter", "a ticket for 2 weeks of vacation in the Carribean Sea", "a PhD title from www.BuyRespect.com", "the new Counter-Strike: Special Ops Duty video game", "a pincushion", "an electric guitar", "a night with a sexy female prostitute", "a new husband", "a house slave", "a butler named James", "a fivefold garage", "a car with a filter gear shift", "a Diablo Vipera motorcycle", "some expensive trash", "an expensive golden imitation of the Amulet of Yendor", "a golden statue modeled after myself", "the SLASH'EM Extended source code archive", "a cameo appearance in a GladJonas speedrun video", "this week's winning lottery ticket", "a housecat", "a horse", "a submarine", "a new girlfriend", "a cuddly bed", "a huggable heart pillow", "a long-hair wig", "a carnival costume", "an advent calendar", "a box of chocolate truffles", "christmas presents", "a birthday cake", "a couple pants", "a pair of fleecy woolen socks", "some souvenir postcards", "an ET-425 train", "a tour bus", "a ticket for a Michael Jackson concert", "a new flatscreen TV", "a renewal of my monthly World of Warcraft subscription", "some unique items in Diablo 3's auction house", "a vibrator", "a sex toy", "breast implants", "new earphones", "a pair of designer specs", "a massive throne", "an underground mountain", "a spoiler sheet", "a device that can trigger Ragnarok", "premium-quality toothpaste", "a Doenerteller Versace", "a romantic dinner in a 5-star hotel", "100 000 roulette jetons", "a deck of cards", "a Magic the Gathering Booster Pack", "some voters that will elect me during the next US Presidential Election", "some paid assassins that are going to bomb your house", "a health insurance", "some counterfeit cash", "a glorkum 13 23 1337", "the one-in-a-kind legendary sword Excalibur", "all seven Harry Potter books", "the Eiffel Tower", "a farting noise generator", "a device for autoerotic asphyxiation", "a 44-caliber Anaconda revolver", "ammo for my AK-47 assault rifle", "a cure for brain cancer", "a third leg", "a bunch of Fridays for Future activists that are going to demonstrate for the nonexistant climate protection", "the decryption key for the encrypted files on my PC", "a tuxedo", "some butt-ugly gentleman's shoes", "the pink belly-dancing costume that originally belonged to Valensina", "an appointment with Doctor Marc Selvig, who evolved Linda into Evolet and then into Evolte", "a rainbow-colored bikini", "a first class one-way ticket to Albuquerque", "a tight spandex suit", "the file containing the missing evidence in the Kelner case", "a disk with the earliest versions of Hack and NetHack", "a way to control the RNG", "5 pokeballs", "a Death Star", "the One Ring", "an Elder Scroll", "the top-secret Thalmor dossier", "a decoded Voynich Manuscript", "the Mysterium Xarxes", "the handbook for the Tomb of Horrors module", "a guillotine", "a pair of leather peep-toes", "Amy's high heels that she used to race 10 km in 84 minutes", "a wand of wishing (0:3)", "a newspaper", "a bunch of spam emails from lonely Russian women looking for a relationship", "a huge Pizza Pommo", "shower gel named after a famous celebrity", "the original Mona Lisa painting", "a pair of hippie heels with extra thick block heels", "a can of lube", "the complete Twilight book saga", "a powered combat vest", "a Garden Eden Creation Kit", "the Helm of Storms", "an ancient PC with Windows 3.1", "a Commodore 64", "a K&R C handbook", "sleeping pills", "a caramel of termination", "a dimensional portal to Cthulhu's realm", "a kryptonite stick", "a police bribe", "an enchanted volume armament that can summon hydra aurora bombers", "a VTOL aircraft", "a spanner that can build sentry turrets and dispensers", "therapy sessions that help me overcome my anorexia", "a spellchecker",
 };
 
 static NEARDATA const char * const demagoguelines[] = {
@@ -5122,6 +5122,33 @@ static NEARDATA const char * const noroelabuying[] = {
 "No lunch money for you today! Instead, I bought %s from your zorkmids!",
 "Ah, nothing beats shopping with practicant zorkmids. Here, I'm the proud owner of %s now!",
 "Your zorkmids never failed to satisfy my shopping needs. Today I obtained %s and I'm very happy.",
+"Yes, I used your fines to buy %s! Serves you right!",
+"Right now I have a lot of money and therefore I bought %s!",
+"You'll never see your money again because I spent it all on %s.",
+"Don't think you're ever gonna get your zorkmids back! The vendor who sold me %s was very pleased that I was paying in cash!",
+"That special offer of %s was just too good to pass up. Oh by the way, thank you for all the zorkmids!",
+"Nothing cheers me up more than zorkmids ringing in my purse. To celebrate this day, I spent most of them on %s.",
+"There's only two things that make me happy: moving cash from your purse into mine, and using that cash to buy %s. I did both of those things now, in exactly that order.",
+"You're really good at breaking the rules! The last practicant didn't have to pay as much as you, and as a consequence, I could finally afford %s now!",
+"Wow, this time I really have a practicant that causes me to rake in the big cash. The annual assistants' party will be opened with a bang when I show my newest acquisition: %s!",
+"It seems there's really nothing that practicant money can't buy. Look here, your money financed my needs for %s!",
+"Another commodity for my trophy case: %s, bought from practicant money!",
+"I just bought %s again, I already got one but what else am I supposed to do with all the cash?",
+"Man, I'm wondering, are you running out of cash by now? You brought me so much that I could buy %s, which cost a fortune!",
+"Something's not right, where did you even get all that money from that you paid to me? Oh well, no matter, I converted it into %s.",
+"Yet another purchase I could make thanks to a certain practicant constantly breaking the rules and paying fines: %s!",
+"And now I got %s! Only cost a couple thousand zorkmids! Are you glad that I'm putting your fines to good use?",
+"You have to absolutely adore me, for I'm the nicest assistant in existence. Instead of throwing the zorkmids away for stinking cigarettes, I used your fines to shop for %s!",
+"My colleague told me that I absolutely need %s, so I purchased one from the cash you've paid to me.",
+"Today I managed to get %s for half the price! And since the money came from you, it actually was free for me - thanks a lot!",
+"Look at all the wonderful things I can buy without even needing to empty my own wallet! Your last fine was enough to afford %s!",
+"Are you getting envious that I could buy %s from your money, which is a commodity you could never afford?",
+"You may still have enough cash left to buy %s, but you shouldn't do it, because soon you'll have to pay another fine. Oh by the way, that commodity is also what I bought from the money you gave me.",
+"I think I'll just aggravate you by telling you that your last penalty was already used up. After all, I'm a lady, and as such I absolutely needed to get %s!",
+"For me, only the best goods are ever worth buying. Second-grade trash doesn't tickle my fancy. So I used the money from your last penalty on %s.",
+"I'm the shopping queen! I got all the money in the world! Praise the practicants who financed my needs for %s!",
+"You've paid quite a bunch of fines to me already. I decided to celebrate a little, and spent a bunch of money on %s.",
+"Look at all the work you've put in only to pay your last monthly wage to me as a fine. And what did I do with it, you ask? Why, I've bought %s, of course!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -24822,6 +24849,14 @@ static NEARDATA const char * const fake_plines[] = {
 };
 
 const char *
+noroelaname()
+{
+	if (Role_if(PM_PRACTICANT)) return "Noroela";
+	else return neminame();
+
+}
+
+const char *
 fauxmessage()
 {
 	if (!rn2(20)) return (generate_garbage_string());
@@ -24927,7 +24962,7 @@ void
 practicantmessage()
 {
 	char buf[BUFSZ];
-	pline("Noroela %s: \"%s\"", !rn2(3) ? "thunders" : !rn2(2) ? "rings out" : "booms", practicanttaunt());
+	pline("%s %s: \"%s\"", noroelaname(), !rn2(3) ? "thunders" : !rn2(2) ? "rings out" : "booms", practicanttaunt());
 
 }
 
@@ -24935,7 +24970,7 @@ void
 noroelataunt()
 {
 	char buf[BUFSZ];
-	sprintf(buf, "Noroela %s: ", !rn2(3) ? "thunders" : !rn2(2) ? "rings out" : "booms");
+	sprintf(buf, "%s %s: ", noroelaname(), !rn2(3) ? "thunders" : !rn2(2) ? "rings out" : "booms");
 	sprintf(eos(buf), "'");
 	sprintf(eos(buf), noroelatauntmessage(), noroelacommodity[rn2(SIZE(noroelacommodity))]);
 	sprintf(eos(buf), "'");

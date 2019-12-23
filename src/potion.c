@@ -621,7 +621,7 @@ fineforpracticant(fineamount, stonefine, arrowfine)
 int fineamount, stonefine, arrowfine;
 {
 	/* do you already have a fine? if not, we want to start the timer that ticks down the time until you must have paid */
-	boolean newfine = !u.practicantpenalty;
+	boolean newfine = !(u.practicantpenalty || u.practicantstones || u.practicantarrows);
 	if (newfine) u.practicanttime = 1000; /* always have 1000 turns to pay */
 
 	u.practicantpenalty += fineamount;
@@ -645,7 +645,7 @@ practicant_payup()
 			u.practicantpenalty += u.practicantstones;
 			u.practicantstones = 0;
 
-			pline("Noroela booms: 'Since you can't pay in stones due to their nonexistence, pay in zorkmids instead!'");
+			pline("%s booms: 'Since you can't pay in stones due to their nonexistence, pay in zorkmids instead!'", noroelaname());
 		}
 	}
 	/* there are more than 10 kinds of arrows, so it's always possible in theory to pay an arrow fine */
@@ -657,7 +657,7 @@ practicant_payup()
 			if (u.practicantpenalty > u.ugold) amountpaid = u.ugold;
 			else amountpaid = u.practicantpenalty;
 
-			You("pay %d zorkmids to Noroela.", amountpaid);
+			You("pay %d zorkmids to %s.", amountpaid, noroelaname());
 
 			u.ugold -= amountpaid;
 			u.practicantcash += amountpaid;
@@ -669,7 +669,7 @@ practicant_payup()
 			if (u.practicantpenalty > u.bankcashamount) amountpaid = u.practicantpenalty;
 			else amountpaid = u.bankcashamount;
 
-			pline("Your bank account is used to pay %d zorkmids to Noroela.", amountpaid);
+			pline("Your bank account is used to pay %d zorkmids to %s.", amountpaid, noroelaname());
 
 			u.bankcashamount -= amountpaid;
 			u.practicantcash += amountpaid;
@@ -699,7 +699,7 @@ practicant_payup()
 				You("no longer have a fine to pay.");
 			}
 		} else {
-			You("still need to pay %d more zorkmids to Noroela in %d turns.", u.practicantpenalty, u.practicanttime);
+			You("still need to pay %d more zorkmids to %s in %d turns.", u.practicantpenalty, noroelaname(), u.practicanttime);
 		}
 	}
 
@@ -737,7 +737,7 @@ findmorestones:
 		if (stonespaid) {
 			You("paid %d stones.", stonespaid);
 		}
-		if (u.practicantstones) You("still need to pay %d more stones to Noroela in %d turns.", u.practicantstones, u.practicanttime);
+		if (u.practicantstones) You("still need to pay %d more stones to %s in %d turns.", u.practicantstones, noroelaname(), u.practicanttime);
 	}
 
 	if (u.practicantarrows) {
@@ -785,7 +785,7 @@ findmorearrows:
 		if (arrowspaid) {
 			You("paid %d arrows.", arrowspaid);
 		}
-		if (u.practicantarrows) You("still need to pay %d more arrows to Noroela in %d turns.", u.practicantarrows, u.practicanttime);
+		if (u.practicantarrows) You("still need to pay %d more arrows to %s in %d turns.", u.practicantarrows, noroelaname(), u.practicanttime);
 	}
 }
 

@@ -3032,7 +3032,7 @@ jediskip:
 	if (practicantterror && !u.pract_enhancing) {
 		u.pract_enhanceamount++;
 		if (u.pract_enhanceamount >= 30) {
-			pline("Noroela booms: 'You now lose 10 intrinsics because you violated a holy rule.'");
+			pline("%s booms: 'You now lose 10 intrinsics because you violated a holy rule.'", noroelaname());
 			attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
 			u.pract_enhancing = TRUE;
 		}

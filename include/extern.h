@@ -2094,6 +2094,8 @@ E int dohistory(void);
 E void corpsepager(int);
 #endif
 
+E const char *noroelaname(void);
+
 E const char *fauxmessage(void);
 E const char *bosstaunt(void);
 E const char *soviettaunt(void);
@@ -2394,6 +2396,7 @@ E boolean is_quest_artifact(struct obj*);
 E void com_pager(int);
 E void qt_pager(int);
 E struct permonst *qt_montype(void);
+E const char *neminame(void);
 
 /* ### random.c ### */
 

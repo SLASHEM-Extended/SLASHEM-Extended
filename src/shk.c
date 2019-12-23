@@ -581,7 +581,7 @@ struct monst *shkp;
 	hot_pursuit(shkp);
 
 	if (practicantterror && total > 0) { /* can happen several times --Amy */
-		pline("Noroela thunders: 'That's theft! You have to pay twice the amount that the stolen goods cost, you hear? Be glad that I'm not giving you hall exclusion!'");
+		pline("%s thunders: 'That's theft! You have to pay twice the amount that the stolen goods cost, you hear? Be glad that I'm not giving you hall exclusion!'", noroelaname());
 		fineforpracticant(total * 2, 0, 0);
 	}
 
@@ -1296,7 +1296,7 @@ int
 dopay()
 {
 	/* are you a practicant that currently has a fine? if so, you can only pay that and nothing else */
-	if (practicantterror && u.practicantpenalty) {
+	if (practicantterror && (u.practicantpenalty || u.practicantstones || u.practicantarrows)) {
 		practicant_payup();
 		return 0;
 	}

@@ -555,46 +555,51 @@ hybrid_str()
 {
     static char string[BUFSZ];
     *string = '\0';
-	if (flags.hybridangbander) sprintf(eos(string), "angbander ");
-	if (flags.hybridaquarian) sprintf(eos(string), "aquarian ");
-	if (flags.hybridcurser) sprintf(eos(string), "curser ");
-	if (flags.hybridhaxor) sprintf(eos(string), "haxor ");
-	if (flags.hybridhomicider) sprintf(eos(string), "homicider ");
-	if (flags.hybridsuxxor) sprintf(eos(string), "suxxor ");
-	if (flags.hybridwarper) sprintf(eos(string), "warper ");
-	if (flags.hybridrandomizer) sprintf(eos(string), "randomizer ");
-	if (flags.hybridnullrace) sprintf(eos(string), "null ");
-	if (flags.hybridmazewalker) sprintf(eos(string), "mazewalker ");
-	if (flags.hybridsoviet) sprintf(eos(string), "soviet ");
-	if (flags.hybridxrace) sprintf(eos(string), "x-race ");
-	if (flags.hybridheretic) sprintf(eos(string), "heretic ");
-	if (flags.hybridsokosolver) sprintf(eos(string), "sokosolver ");
-	if (flags.hybridspecialist) sprintf(eos(string), "specialist ");
-	if (flags.hybridamerican) sprintf(eos(string), "american ");
-	if (flags.hybridminimalist) sprintf(eos(string), "minimalist ");
-	if (flags.hybridnastinator) sprintf(eos(string), "nastinator ");
-	if (flags.hybridrougelike) sprintf(eos(string), "rougelike ");
-	if (flags.hybridsegfaulter) sprintf(eos(string), "segfaulter ");
-	if (flags.hybridironman) sprintf(eos(string), "ironman ");
-	if (flags.hybridamnesiac) sprintf(eos(string), "amnesiac ");
-	if (flags.hybridproblematic) sprintf(eos(string), "problematic ");
-	if (flags.hybridwindinhabitant) sprintf(eos(string), "windinhabitant ");
-	if (flags.hybridaggravator) sprintf(eos(string), "aggravator ");
-	if (flags.hybridevilvariant) sprintf(eos(string), "evilvariant ");
-	if (flags.hybridlevelscaler) sprintf(eos(string), "levelscaler ");
-	if (flags.hybriderosator) sprintf(eos(string), "erosator ");
-	if (flags.hybridroommate) sprintf(eos(string), "roommate ");
-	if (flags.hybridextravator) sprintf(eos(string), "extravator ");
-	if (flags.hybridhallucinator) sprintf(eos(string), "hallucinator ");
-	if (flags.hybridbossrusher) sprintf(eos(string), "bossrusher ");
-	if (flags.hybriddorian) sprintf(eos(string), "dorian ");
-	if (flags.hybridtechless) sprintf(eos(string), "techless ");
-	if (flags.hybridblait) sprintf(eos(string), "blait ");
-	if (flags.hybridgrouper) sprintf(eos(string), "grouper ");
-	if (flags.hybridscriptor) sprintf(eos(string), "scriptor ");
-	if (flags.hybridunbalancor) sprintf(eos(string), "unbalancor ");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate) && !(flags.hybridextravator) && !(flags.hybridhallucinator) && !(flags.hybridbossrusher) && !(flags.hybriddorian) && !(flags.hybridtechless) && !(flags.hybridblait) && !(flags.hybridgrouper) && !(flags.hybridscriptor) && !(flags.hybridunbalancor)) sprintf(eos(string), "none ");
+	int hybridcount = 0;
+
+	if (flags.hybridangbander && (hybridcount++ < 20)) sprintf(eos(string), "angbander ");
+	if (flags.hybridaquarian && (hybridcount++ < 20)) sprintf(eos(string), "aquarian ");
+	if (flags.hybridcurser && (hybridcount++ < 20)) sprintf(eos(string), "curser ");
+	if (flags.hybridhaxor && (hybridcount++ < 20)) sprintf(eos(string), "haxor ");
+	if (flags.hybridhomicider && (hybridcount++ < 20)) sprintf(eos(string), "homicider ");
+	if (flags.hybridsuxxor && (hybridcount++ < 20)) sprintf(eos(string), "suxxor ");
+	if (flags.hybridwarper && (hybridcount++ < 20)) sprintf(eos(string), "warper ");
+	if (flags.hybridrandomizer && (hybridcount++ < 20)) sprintf(eos(string), "randomizer ");
+	if (flags.hybridnullrace && (hybridcount++ < 20)) sprintf(eos(string), "null ");
+	if (flags.hybridmazewalker && (hybridcount++ < 20)) sprintf(eos(string), "mazewalker ");
+	if (flags.hybridsoviet && (hybridcount++ < 20)) sprintf(eos(string), "soviet ");
+	if (flags.hybridxrace && (hybridcount++ < 20)) sprintf(eos(string), "x-race ");
+	if (flags.hybridheretic && (hybridcount++ < 20)) sprintf(eos(string), "heretic ");
+	if (flags.hybridsokosolver && (hybridcount++ < 20)) sprintf(eos(string), "sokosolver ");
+	if (flags.hybridspecialist && (hybridcount++ < 20)) sprintf(eos(string), "specialist ");
+	if (flags.hybridamerican && (hybridcount++ < 20)) sprintf(eos(string), "american ");
+	if (flags.hybridminimalist && (hybridcount++ < 20)) sprintf(eos(string), "minimalist ");
+	if (flags.hybridnastinator && (hybridcount++ < 20)) sprintf(eos(string), "nastinator ");
+	if (flags.hybridrougelike && (hybridcount++ < 20)) sprintf(eos(string), "rougelike ");
+	if (flags.hybridsegfaulter && (hybridcount++ < 20)) sprintf(eos(string), "segfaulter ");
+	if (flags.hybridironman && (hybridcount++ < 20)) sprintf(eos(string), "ironman ");
+	if (flags.hybridamnesiac && (hybridcount++ < 20)) sprintf(eos(string), "amnesiac ");
+	if (flags.hybridproblematic && (hybridcount++ < 20)) sprintf(eos(string), "problematic ");
+	if (flags.hybridwindinhabitant && (hybridcount++ < 20)) sprintf(eos(string), "windinhabitant ");
+	if (flags.hybridaggravator && (hybridcount++ < 20)) sprintf(eos(string), "aggravator ");
+	if (flags.hybridevilvariant && (hybridcount++ < 20)) sprintf(eos(string), "evilvariant ");
+	if (flags.hybridlevelscaler && (hybridcount++ < 20)) sprintf(eos(string), "levelscaler ");
+	if (flags.hybriderosator && (hybridcount++ < 20)) sprintf(eos(string), "erosator ");
+	if (flags.hybridroommate && (hybridcount++ < 20)) sprintf(eos(string), "roommate ");
+	if (flags.hybridextravator && (hybridcount++ < 20)) sprintf(eos(string), "extravator ");
+	if (flags.hybridhallucinator && (hybridcount++ < 20)) sprintf(eos(string), "hallucinator ");
+	if (flags.hybridbossrusher && (hybridcount++ < 20)) sprintf(eos(string), "bossrusher ");
+	if (flags.hybriddorian && (hybridcount++ < 20)) sprintf(eos(string), "dorian ");
+	if (flags.hybridtechless && (hybridcount++ < 20)) sprintf(eos(string), "techless ");
+	if (flags.hybridblait && (hybridcount++ < 20)) sprintf(eos(string), "blait ");
+	if (flags.hybridgrouper && (hybridcount++ < 20)) sprintf(eos(string), "grouper ");
+	if (flags.hybridscriptor && (hybridcount++ < 20)) sprintf(eos(string), "scriptor ");
+	if (flags.hybridunbalancor && (hybridcount++ < 20)) sprintf(eos(string), "unbalancor ");
+	if (flags.hybridbeacher && (hybridcount++ < 20)) sprintf(eos(string), "beacher ");
+	if (hybridcount >= 20) sprintf(eos(string), "(%d hybrids) ", hybridcount);
+
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate) && !(flags.hybridextravator) && !(flags.hybridhallucinator) && !(flags.hybridbossrusher) && !(flags.hybriddorian) && !(flags.hybridtechless) && !(flags.hybridblait) && !(flags.hybridgrouper) && !(flags.hybridscriptor) && !(flags.hybridunbalancor) && !(flags.hybridbeacher)) sprintf(eos(string), "none ");
 
     return (string);
 }
@@ -634,16 +639,17 @@ hybrid_strcode()
 	if (flags.hybriderosator) sprintf(eos(string), "Ero");
 	if (flags.hybridroommate) sprintf(eos(string), "Roo");
 	if (flags.hybridextravator) sprintf(eos(string), "Ext");
-	if (flags.hybridhallucinator) sprintf(eos(string), "Hal ");
-	if (flags.hybridbossrusher) sprintf(eos(string), "Bos ");
-	if (flags.hybriddorian) sprintf(eos(string), "Dor ");
-	if (flags.hybridtechless) sprintf(eos(string), "Tec ");
-	if (flags.hybridblait) sprintf(eos(string), "Bla ");
-	if (flags.hybridgrouper) sprintf(eos(string), "Gro ");
-	if (flags.hybridscriptor) sprintf(eos(string), "Scr ");
-	if (flags.hybridunbalancor) sprintf(eos(string), "Unb ");
+	if (flags.hybridhallucinator) sprintf(eos(string), "Hal");
+	if (flags.hybridbossrusher) sprintf(eos(string), "Bos");
+	if (flags.hybriddorian) sprintf(eos(string), "Dor");
+	if (flags.hybridtechless) sprintf(eos(string), "Tec");
+	if (flags.hybridblait) sprintf(eos(string), "Bla");
+	if (flags.hybridgrouper) sprintf(eos(string), "Gro");
+	if (flags.hybridscriptor) sprintf(eos(string), "Scr");
+	if (flags.hybridunbalancor) sprintf(eos(string), "Unb");
+	if (flags.hybridbeacher) sprintf(eos(string), "Bea");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate) && !(flags.hybridextravator) && !(flags.hybridhallucinator) && !(flags.hybridbossrusher) && !(flags.hybriddorian) && !(flags.hybridtechless) && !(flags.hybridblait) && !(flags.hybridgrouper) && !(flags.hybridscriptor) && !(flags.hybridunbalancor)) sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate) && !(flags.hybridextravator) && !(flags.hybridhallucinator) && !(flags.hybridbossrusher) && !(flags.hybriddorian) && !(flags.hybridtechless) && !(flags.hybridblait) && !(flags.hybridgrouper) && !(flags.hybridscriptor) && !(flags.hybridunbalancor) && !(flags.hybridbeacher)) sprintf(eos(string), "none");
 
     return (string);
 }

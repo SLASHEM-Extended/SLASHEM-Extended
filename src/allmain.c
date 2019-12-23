@@ -2204,7 +2204,7 @@ moveloop()
 			if (u.pract_conv1timer < 1) {
 				u.pract_conv1timer = 5000;
 				fineforpracticant(1000, 0, 0);
-				pline("Noroela booms: 'You have to pay 1000 zorkmids again for your past offense of killing too many monsters.'");
+				pline("%s booms: 'You have to pay 1000 zorkmids again for your past offense of killing too many monsters.', noroelaname()");
 			}
 		}
 
@@ -2213,7 +2213,7 @@ moveloop()
 			if (u.pract_conv2timer < 1) {
 				u.pract_conv2timer = 5000;
 				fineforpracticant(1000, 0, 0);
-				pline("Noroela booms: 'You have to pay 1000 zorkmids again for your past offense of sacrificing too many corpses.'");
+				pline("%s booms: 'You have to pay 1000 zorkmids again for your past offense of sacrificing too many corpses.', noroelaname()");
 			}
 		}
 
@@ -2222,7 +2222,7 @@ moveloop()
 			if (u.pract_conv3timer < 1) {
 				u.pract_conv3timer = 5000;
 				fineforpracticant(2000, 0, 0);
-				pline("Noroela booms: 'You have to pay 2000 zorkmids again for your past offense of murdering too many innocent townspeople.'");
+				pline("%s booms: 'You have to pay 2000 zorkmids again for your past offense of murdering too many innocent townspeople.', noroelaname()");
 			}
 		}
 
@@ -2231,7 +2231,7 @@ moveloop()
 			if (u.pract_conv4timer < 1) {
 				u.pract_conv4timer = 5000;
 				fineforpracticant(2000, 0, 0);
-				pline("Noroela booms: 'You have to pay 2000 zorkmids again for your past offense of gaining an impossible intrinsic.'");
+				pline("%s booms: 'You have to pay 2000 zorkmids again for your past offense of gaining an impossible intrinsic.', noroelaname()");
 			}
 
 		}
@@ -2257,42 +2257,56 @@ moveloop()
 			u.pract_finetimer++;
 			if (u.pract_finetimer >= 10000) {
 				fineforpracticant(1000, 0, 0); /* sets the finetimer var back to 0 */
-				pline("Noroela thunders: 'You now have to pay a fine of 1000 zorkmds as a penalty for not having to pay a fine in such a long time!'");
+				pline("%s thunders: 'You now have to pay a fine of 1000 zorkmds as a penalty for not having to pay a fine in such a long time!', noroelaname()");
 			}
 		}
 
-		if (practicantterror && u.practicantpenalty) {
+		if (practicantterror && (u.practicantpenalty || u.practicantstones || u.practicantarrows)) {
 			if (u.practicanttime > 0) u.practicanttime--;
-			if (u.practicanttime == 500) You("have 500 turns left to pay %d zorkmids to Noroela!", u.practicantpenalty);
-			if (u.practicanttime == 100) You("only have 100 turns left to pay %d zorkmids to Noroela! Better pay up!", u.practicantpenalty);
-			if (u.practicanttime == 10) You("only have 10 turns left to pay %d zorkmids to Noroela!!! Pay up now, or at least make sure that you have the required amount of zorkmids out in the open!", u.practicantpenalty);
+			if (u.practicanttime == 500) {
+				You("have 500 turns left to pay %d zorkmids to %s!", u.practicantpenalty, noroelaname());
+				if (u.practicantstones) You("also still have %d rocks to pay!", u.practicantstones);
+				if (u.practicantarrows) You("also still have %d arrows to pay!", u.practicantarrows);
+			}
+			if (u.practicanttime == 100) {
+				You("only have 100 turns left to pay %d zorkmids to %s! Better pay up!", u.practicantpenalty, noroelaname());
+				if (u.practicantstones) You("also still have %d rocks to pay!", u.practicantstones);
+				if (u.practicantarrows) You("also still have %d arrows to pay!", u.practicantarrows);
+			}
+			if (u.practicanttime == 10) {
+				You("only have 10 turns left to pay %d zorkmids to %s!!! Pay up now, or at least make sure that you have the required amount of zorkmids out in the open!", u.practicantpenalty, noroelaname());
+				if (u.practicantstones) You("also still have %d rocks to pay!", u.practicantstones);
+				if (u.practicantarrows) You("also still have %d arrows to pay!", u.practicantarrows);
+			}
 
 			if (u.practicanttime < 1) { /* payday! */
 				practicant_payup(); /* if you e.g. have the menu bug and therefore can't pay manually... */
 
-				if (u.practicantpenalty) { /* still have a penalty - now suffer, maggot! */
-					pline("Noroela booms: 'You didn't pay your fine of %d zorkmids in time! Now, you shall be punished.'", u.practicantpenalty);
+				if (u.practicantpenalty || u.practicantstones || u.practicantarrows) { /* still have a penalty - now suffer, maggot! */
+					pline("%s booms: 'You didn't pay your fine of %d zorkmids in time! Now, you shall be punished.'", noroelaname(), u.practicantpenalty);
+					if (u.practicantstones) verbalize("You also didn't pay the %d stones I requested!", u.practicantstones);
+					if (u.practicantarrows) verbalize("You also didn't pay the %d arrows I requested!", u.practicantarrows);
 					badeffect();
 					u.practicantseverity++;
 					/* the longer you refuse to pay, the harsher the extra penalties become */
 					if (u.practicantseverity < 2) {
 						u.practicanttime = 500;
-						pline("Noroela rings out: 'I give you 500 more turns to pay up!'");
+						pline("%s rings out: 'I give you 500 more turns to pay up!'", noroelaname());
 					} else if (u.practicantseverity < 5) {
 						u.practicanttime = 200;
-						pline("Noroela booms: 'Pay up in 200 turns, or else!'");
+						pline("%s booms: 'Pay up in 200 turns, or else!'", noroelaname());
 					} else if (u.practicantseverity < 10) {
 						u.practicanttime = 100;
 						u.practicantpenalty += 10;
-						pline("Noroela thunders: 'Since you keep not paying your fine, it is now increased by 10 zorkmids and you only have 100 more turns to finally pay up, maggot!'");
+						pline("%s thunders: 'Since you keep not paying your fine, it is now increased by 10 zorkmids and you only have 100 more turns to finally pay up, maggot!'", noroelaname());
 					} else if (u.practicantseverity < 20) {
 						u.practicanttime = 50;
 						u.practicantpenalty += 20;
-						pline("Noroela thunders: 'You don't get it, huh? Your fine increases by 20 zorkmids now and if you don't pay in 50 turns I'll increase it even more!'");
+						pline("%s thunders: 'You don't get it, huh? Your fine increases by 20 zorkmids now and if you don't pay in 50 turns I'll increase it even more!'", noroelaname());
 					} else {
 						u.practicanttime = 20;
 						u.practicantpenalty += 20;
-						pline("Noroela thunders: 'Hereby I increase your fine by another 20 zorkmids. If you don't pay in 20 turns I'll increase it again. I warn you, maggot, don't test my patience even more.'");
+						pline("%s thunders: 'Hereby I increase your fine by another 20 zorkmids. If you don't pay in 20 turns I'll increase it again. I warn you, maggot, don't test my patience even more.'", noroelaname());
 					}
 
 
@@ -10125,53 +10139,53 @@ past3:
 
 	if (practicantterror) {
 		if (u.uconduct.killer >= 1000 && !u.pract_toomanykills) {
-			pline("Noroela booms: 'You killed too many monsters, you maggot. That's a fine of 1000 zorkmids.'");
+			pline("%s booms: 'You killed too many monsters, you maggot. That's a fine of 1000 zorkmids.'", noroelaname());
 			fineforpracticant(1000, 0, 0);
 			u.pract_toomanykills = TRUE;
 		}
 		if (u.uconduct.killer >= 2000 && !u.pract_toomanykills2) {
-			pline("Noroela booms: 'You maggot again killed too many monsters, and since you did that once already, it costs 2000 zorkmids now.'");
+			pline("%s booms: 'You maggot again killed too many monsters, and since you did that once already, it costs 2000 zorkmids now.'", noroelaname());
 			fineforpracticant(2000, 0, 0);
 			u.pract_toomanykills2 = TRUE;
 		}
 		if (u.uconduct.killer >= 3000 && !u.pract_toomanykills3) {
-			pline("Noroela thunders: 'You don't get it, huh? Well, no matter, now it costs 4000 zorkmids. Soon I can afford a Porsche.'");
+			pline("%s thunders: 'You don't get it, huh? Well, no matter, now it costs 4000 zorkmids. Soon I can afford a Porsche.'", noroelaname());
 			fineforpracticant(4000, 0, 0);
 			u.pract_toomanykills3 = TRUE;
 		}
 		if (u.uconduct.killer >= 4000 && !u.pract_toomanykills4) {
-			pline("Noroela thunders: 'Now there's a conventional penalty for you!'");
+			pline("%s thunders: 'Now there's a conventional penalty for you!'", noroelaname());
 			u.pract_conv1timer = 5000;
 			u.pract_toomanykills4 = TRUE;
 		}
 		if (u.ugold >= 10000 && !u.pract_toomuchmoney) {
-			pline("Noroela rings out: 'You didn't obey the rule that you may not enter here with more than 10000 zorkmids! Now you have to pay half of them!'");
+			pline("%s rings out: 'You didn't obey the rule that you may not enter here with more than 10000 zorkmids! Now you have to pay half of them!'", noroelaname());
 			fineforpracticant(5000, 0, 0);
 			u.pract_toomuchmoney = TRUE;
 		}
 		if (u.cnd_offercount >= 10 && !u.pract_toomanysacs) {
-			pline("Noroela booms: 'You sacrificed a corpse without permission for the tenth time in a row and therefore have to pay a fine of 1000 zorkmids to me immediately.'");
+			pline("%s booms: 'You sacrificed a corpse without permission for the tenth time in a row and therefore have to pay a fine of 1000 zorkmids to me immediately.'", noroelaname());
 			fineforpracticant(1000, 0, 0);
 			u.pract_toomanysacs = TRUE;
 		}
 		if (u.cnd_offercount >= 20 && !u.pract_toomanysacs2) {
-			pline("Noroela thunders: 'Since you still don't obey the rule that you may not sacrifice corpses, you now pay 2000 zorkmids to me!'");
+			pline("%s thunders: 'Since you still don't obey the rule that you may not sacrifice corpses, you now pay 2000 zorkmids to me!'", noroelaname());
 			fineforpracticant(2000, 0, 0);
 			u.pract_toomanysacs2 = TRUE;
 		}
 		if (u.cnd_offercount >= 30 && !u.pract_toomanysacs3) {
-			pline("Noroela thunders: 'That's enough! Now there's the conventional penalty for you!'");
+			pline("%s thunders: 'That's enough! Now there's the conventional penalty for you!'", noroelaname());
 			u.pract_conv2timer = 5000;
 			u.pract_toomanysacs3 = TRUE;
 		}
 		if (u.cnd_altarconvertamount && !u.pract_altarconvert) {
-			pline("Noroela rings out: 'I just caught you converting an altar without permission, and therefore you have to pay 2000 zorkmids now.'");
+			pline("%s rings out: 'I just caught you converting an altar without permission, and therefore you have to pay 2000 zorkmids now.'", noroelaname());
 			fineforpracticant(2000, 0, 0);
 			u.pract_altarconvert = TRUE;
 
 		}
 		if (!u.pract_toomucharmor && uarm && uarm->spe >= 2 && uarmu && uarmu->spe >= 2 && uarmc && uarmc->spe >= 2 && uarms && uarms->spe >= 2 && uarmh && uarmh->spe >= 2 && uarmf && uarmf->spe >= 2 && uarmg && uarmg->spe >= 2 ) {
-			pline("Noroela thunders: 'You may not wear that much armor, and therefore all of it is disenchanted now and additionally you have to pay 3000 zorkmids to me as a penalty!'");
+			pline("%s thunders: 'You may not wear that much armor, and therefore all of it is disenchanted now and additionally you have to pay 3000 zorkmids to me as a penalty!'", noroelaname());
 			fineforpracticant(3000, 0, 0);
 			uarm->spe--; /* we made sure that these exist */
 			uarmu->spe--;
@@ -10183,17 +10197,17 @@ past3:
 			u.pract_toomucharmor = TRUE;
 		}
 		if (!u.pract_fastform && ((Upolyd && moveamt > 24) || (u.usteed && (mcalcmove(u.usteed) > 24) )) ) {
-			pline("Noroela rings out: 'Such fast forms aren't allowed because they constantly exceed the maximum permissible speed! Therefore I'm getting a trebuchet now!'");
+			pline("%s rings out: 'Such fast forms aren't allowed because they constantly exceed the maximum permissible speed! Therefore I'm getting a trebuchet now!'", noroelaname());
 			makemon(&mons[PM_TREBUCHET_DRAGON], 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED);
 			u.pract_fastform = TRUE;
 		}
 		if (StrongRegeneration && !u.pract_fastregen) {
-			pline("Noroela thunders: 'There may be no practicant who regenerates more than one hit point per turn! You violated this rule and therefore you have hemophilia now.'");
+			pline("%s thunders: 'There may be no practicant who regenerates more than one hit point per turn! You violated this rule and therefore you have hemophilia now.'", noroelaname());
 			BloodLossProblem |= FROMOUTSIDE;
 			u.pract_fastregen = TRUE;
 		}
 		if (uwep && uwep->otyp == SNIPER_RIFLE && !u.pract_toomuchrange) {
-			pline("Noroela thunders: 'This weapon has too much range, and therefore you have to pay all your money to me now.'");
+			pline("%s thunders: 'This weapon has too much range, and therefore you have to pay all your money to me now.'", noroelaname());
 			if (u.ugold || hidden_gold()) fineforpracticant(u.ugold + hidden_gold(), 0, 0);
 			else fineforpracticant(10000, 0, 0); /* wise guy, eh? */
 			u.pract_toomuchrange = TRUE;
@@ -10201,45 +10215,45 @@ past3:
 		if (Is_nemesis(&u.uz) && !u.pract_gottoonear4) {
 			u.pract_tooneartimer++;
 			if (u.pract_tooneartimer >= 500 && !u.pract_gottoonear) {
-				pline("Noroela rings out: 'You pay 50 zorkmids to me, reason: obtrusive assistant decomposition!'");
+				pline("%s rings out: 'You pay 50 zorkmids to me, reason: obtrusive assistant decomposition!'", noroelaname());
 				fineforpracticant(50, 0, 0);
 				u.pract_gottoonear = TRUE;
 			}
 			if (u.pract_tooneartimer >= 1000 && !u.pract_gottoonear2) {
-				pline("Noroela rings out: 'Since you're still pestering me, I take off 100 zorkmids from you now. Every additional such offense will cost twice as much.'");
+				pline("%s rings out: 'Since you're still pestering me, I take off 100 zorkmids from you now. Every additional such offense will cost twice as much.'", noroelaname());
 				fineforpracticant(100, 0, 0);
 				u.pract_gottoonear2 = TRUE;
 			}
 			if (u.pract_tooneartimer >= 1500 && !u.pract_gottoonear3) {
-				pline("Noroela booms: 'You're still coming too close to me: 200 zorkmids are to be paid as a penalty, immediately. I'll think of some other penalty that I can hit you with.'");
+				pline("%s booms: 'You're still coming too close to me: 200 zorkmids are to be paid as a penalty, immediately. I'll think of some other penalty that I can hit you with.'", noroelaname());
 				fineforpracticant(200, 0, 0);
 				u.pract_gottoonear3 = TRUE;
 			}
 			if (u.pract_tooneartimer >= 2000 && !u.pract_gottoonear4) {
-				pline("Noroela thunders: 'That's a big crime, called obtrusive assistant decomposition! That makes 1000 zorkmids - many thanks for the money!'");
+				pline("%s thunders: 'That's a big crime, called obtrusive assistant decomposition! That makes 1000 zorkmids - many thanks for the money!'", noroelaname());
 				fineforpracticant(1000, 0, 0);
 				u.pract_gottoonear4 = TRUE;
 			}
 		}
 		if (!u.pract_idling && !u.pract_idlingtimer && occupation && occtxt && (!strcmp(occtxt, "waiting") || !strcmp(occtxt, "searching")) && ((multi > 50) || (multi < -50))) {
-			pline("Noroela thunders: 'Sitting idly is harshly penalized - now 400 of your zorkmids are collected for safe keeping!'");
+			pline("%s thunders: 'Sitting idly is harshly penalized - now 400 of your zorkmids are collected for safe keeping!'", noroelaname());
 			fineforpracticant(400, 0, 0);
 			u.pract_idlingtimer = 1000;
 			u.pract_idling = TRUE;
 		}
 		if (((P_SKILL(P_TWO_HANDED_SWORD) >= P_BASIC) || (P_SKILL(P_PICK_AXE) >= P_BASIC)) && !u.pract_forbiddenskill) {
-			pline("Noroela thunders: 'You trained skills that your role can't even have, and therefore it costs 2000 zorkmids and 2000 nutrition now, because I can't be arsed.'");
+			pline("%s thunders: 'You trained skills that your role can't even have, and therefore it costs 2000 zorkmids and 2000 nutrition now, because I can't be arsed.'", noroelaname());
 			fineforpracticant(2000, 0, 0);
 			morehungry(2000);
 			u.pract_forbiddenskill = TRUE;
 		}
 		if (Detect_monsters && !u.pract_espionage) {
-			pline("Noroela thunders: 'You've committed a huge crime: Industrial espionage is strictly forbidden! That costs 20000 zorkmids!'");
+			pline("%s thunders: 'You've committed a huge crime: Industrial espionage is strictly forbidden! That costs 20000 zorkmids!'", noroelaname());
 			fineforpracticant(20000, 0, 0);
 			u.pract_espionage = TRUE;
 		}
 		if (HAntimagic && !u.pract_magicresistance) {
-			pline("Noroela thunders: 'You got a intrinsic that you don't even have! That's fraud! The fine for that is a nice juicy conventional penalty, you maggot.'");
+			pline("%s thunders: 'You got a intrinsic that you don't even have! That's fraud! The fine for that is a nice juicy conventional penalty, you maggot.'", noroelaname());
 			u.pract_conv4timer = 5000;
 			u.pract_magicresistance = TRUE;
 		}
@@ -10886,44 +10900,49 @@ boolean new_game;	/* false => restoring an old game */
 	sprintf(eos(buf), " %s", genders[currentgend].adj);
 
     *xtrabuf = '\0';
-	if (flags.hybridangbander) sprintf(eos(xtrabuf), "angbander ");
-	if (flags.hybridaquarian) sprintf(eos(xtrabuf), "aquarian ");
-	if (flags.hybridcurser) sprintf(eos(xtrabuf), "curser ");
-	if (flags.hybridhaxor) sprintf(eos(xtrabuf), "haxor ");
-	if (flags.hybridhomicider) sprintf(eos(xtrabuf), "homicider ");
-	if (flags.hybridsuxxor) sprintf(eos(xtrabuf), "suxxor ");
-	if (flags.hybridwarper) sprintf(eos(xtrabuf), "warper ");
-	if (flags.hybridrandomizer) sprintf(eos(xtrabuf), "randomizer ");
-	if (flags.hybridnullrace) sprintf(eos(xtrabuf), "null ");
-	if (flags.hybridmazewalker) sprintf(eos(xtrabuf), "mazewalker ");
-	if (flags.hybridsoviet) sprintf(eos(xtrabuf), "soviet ");
-	if (flags.hybridxrace) sprintf(eos(xtrabuf), "x-race ");
-	if (flags.hybridheretic) sprintf(eos(xtrabuf), "heretic ");
-	if (flags.hybridsokosolver) sprintf(eos(xtrabuf), "sokosolver ");
-	if (flags.hybridspecialist) sprintf(eos(xtrabuf), "specialist ");
-	if (flags.hybridamerican) sprintf(eos(xtrabuf), "american ");
-	if (flags.hybridminimalist) sprintf(eos(xtrabuf), "minimalist ");
-	if (flags.hybridnastinator) sprintf(eos(xtrabuf), "nastinator ");
-	if (flags.hybridrougelike) sprintf(eos(xtrabuf), "rougelike ");
-	if (flags.hybridsegfaulter) sprintf(eos(xtrabuf), "segfaulter ");
-	if (flags.hybridironman) sprintf(eos(xtrabuf), "ironman ");
-	if (flags.hybridamnesiac) sprintf(eos(xtrabuf), "amnesiac ");
-	if (flags.hybridproblematic) sprintf(eos(xtrabuf), "problematic ");
-	if (flags.hybridwindinhabitant) sprintf(eos(xtrabuf), "windinhabitant ");
-	if (flags.hybridaggravator) sprintf(eos(xtrabuf), "aggravator ");
-	if (flags.hybridevilvariant) sprintf(eos(xtrabuf), "evilvariant ");
-	if (flags.hybridlevelscaler) sprintf(eos(xtrabuf), "levelscaler ");
-	if (flags.hybriderosator) sprintf(eos(xtrabuf), "erosator ");
-	if (flags.hybridroommate) sprintf(eos(xtrabuf), "roommate ");
-	if (flags.hybridextravator) sprintf(eos(xtrabuf), "extravator ");
-	if (flags.hybridhallucinator) sprintf(eos(xtrabuf), "hallucinator ");
-	if (flags.hybridbossrusher) sprintf(eos(xtrabuf), "bossrusher ");
-	if (flags.hybriddorian) sprintf(eos(xtrabuf), "dorian ");
-	if (flags.hybridtechless) sprintf(eos(xtrabuf), "techless ");
-	if (flags.hybridblait) sprintf(eos(xtrabuf), "blait ");
-	if (flags.hybridgrouper) sprintf(eos(xtrabuf), "grouper ");
-	if (flags.hybridscriptor) sprintf(eos(xtrabuf), "scriptor ");
-	if (flags.hybridunbalancor) sprintf(eos(xtrabuf), "unbalancor ");
+
+	int hybridcount = 0;
+
+	if (flags.hybridangbander && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "angbander ");
+	if (flags.hybridaquarian && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "aquarian ");
+	if (flags.hybridcurser && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "curser ");
+	if (flags.hybridhaxor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "haxor ");
+	if (flags.hybridhomicider && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "homicider ");
+	if (flags.hybridsuxxor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "suxxor ");
+	if (flags.hybridwarper && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "warper ");
+	if (flags.hybridrandomizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "randomizer ");
+	if (flags.hybridnullrace && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "null ");
+	if (flags.hybridmazewalker && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "mazewalker ");
+	if (flags.hybridsoviet && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "soviet ");
+	if (flags.hybridxrace && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "x-race ");
+	if (flags.hybridheretic && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "heretic ");
+	if (flags.hybridsokosolver && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "sokosolver ");
+	if (flags.hybridspecialist && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "specialist ");
+	if (flags.hybridamerican && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "american ");
+	if (flags.hybridminimalist && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "minimalist ");
+	if (flags.hybridnastinator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "nastinator ");
+	if (flags.hybridrougelike && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "rougelike ");
+	if (flags.hybridsegfaulter && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "segfaulter ");
+	if (flags.hybridironman && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "ironman ");
+	if (flags.hybridamnesiac && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "amnesiac ");
+	if (flags.hybridproblematic && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "problematic ");
+	if (flags.hybridwindinhabitant && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "windinhabitant ");
+	if (flags.hybridaggravator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "aggravator ");
+	if (flags.hybridevilvariant && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "evilvariant ");
+	if (flags.hybridlevelscaler && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "levelscaler ");
+	if (flags.hybriderosator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "erosator ");
+	if (flags.hybridroommate && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "roommate ");
+	if (flags.hybridextravator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "extravator ");
+	if (flags.hybridhallucinator && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "hallucinator ");
+	if (flags.hybridbossrusher && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "bossrusher ");
+	if (flags.hybriddorian && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "dorian ");
+	if (flags.hybridtechless && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "techless ");
+	if (flags.hybridblait && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "blait ");
+	if (flags.hybridgrouper && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "grouper ");
+	if (flags.hybridscriptor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "scriptor ");
+	if (flags.hybridunbalancor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "unbalancor ");
+	if (flags.hybridbeacher && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "beacher ");
+	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;
@@ -13330,7 +13349,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (new_game && Role_if(PM_PRACTICANT)) pline("Noroela thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", playeraliasname);
+	if (new_game && (Role_if(PM_PRACTICANT) || isbeacher)) pline("%s thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", noroelaname(), playeraliasname);
 
 	u.stethocheat = moves;
 	init_uasmon();

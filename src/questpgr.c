@@ -17,7 +17,6 @@
 static void Fread(void *,int,int,dlb *);
 STATIC_DCL struct qtmsg * construct_qtlist(long);
 STATIC_DCL const char * intermed(void);
-STATIC_DCL const char * neminame(void);
 STATIC_DCL const char * guardname(void);
 STATIC_DCL const char * homebase(void);
 STATIC_DCL struct qtmsg * msg_in(struct qtmsg *,int);
@@ -185,7 +184,7 @@ struct obj *otmp;
 	return((boolean)( (unsigned int) otmp->oartifact == (unsigned int) urole.questarti));
 }
 
-STATIC_OVL const char *
+const char *
 neminame()	/* return your role nemesis' name */
 {
 	int i = urole.neminum;

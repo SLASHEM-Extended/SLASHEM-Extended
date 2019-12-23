@@ -5275,6 +5275,21 @@ const struct Race races[] = {
 	{  8, 0,  0, 3,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  3, 0 }		/* Energy */
 },
+{	"beacher", "beacher", "beach drama", "Bea",
+	{0, 0},
+	PM_BEACHER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"blait", "blait", "black and white", "Bla",
 	{0, 0},
 	PM_BLAIT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -8959,7 +8974,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(38)) {
+			switch (rnd(39)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -9037,12 +9052,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridscriptor = 1; break;
 				case 38:
 					flags.hybridunbalancor = 1; break;
+				case 39:
+					flags.hybridbeacher = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(38)) {
+				switch (rnd(39)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -9157,6 +9174,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 38:
 						if (!(flags.hybridunbalancor)) {flags.hybridunbalancor = 1; flags.hybridization++; break;
+						}
+					case 39:
+						if (!(flags.hybridbeacher)) {flags.hybridbeacher = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -9314,7 +9334,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(38)) {
+			switch (rnd(39)) {
 
 			case 1:
 				if (flags.hybridangbander) {
@@ -9620,6 +9640,14 @@ int type;
 					pline("You no longer have the unbalancor hybrid race.");
 				}
 				break;
+			case 39:
+				if (flags.hybridbeacher) {
+					tryct = 1000;
+					flags.hybridbeacher = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the beacher hybrid race.");
+				}
+				break;
 
 			}
 
@@ -9629,7 +9657,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(38)) {
+			switch (rnd(39)) {
 
 			case 1:
 				if (!flags.hybridangbander) {
@@ -9933,6 +9961,14 @@ int type;
 					flags.hybridunbalancor = TRUE;
 					flags.hybridization++;
 					pline("You now have the unbalancor hybrid race.");
+				}
+				break;
+			case 39:
+				if (!flags.hybridbeacher) {
+					tryct = 1000;
+					flags.hybridbeacher = TRUE;
+					flags.hybridization++;
+					pline("You now have the beacher hybrid race.");
 				}
 				break;
 

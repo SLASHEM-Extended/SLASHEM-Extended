@@ -551,7 +551,7 @@ struct obj *obj;
 		if (!achieveX.get_magresstone) {
 
 			if (practicantterror && !u.pract_mrstone) {
-				pline("Noroela rings out: 'Well, let's just say that you have to pay 6000 zorkmids, that thing certainly wasn't worth that much but who cares.'");
+				pline("%s rings out: 'Well, let's just say that you have to pay 6000 zorkmids, that thing certainly wasn't worth that much but who cares.'", noroelaname());
 				fineforpracticant(6000, 0, 0);
 				u.pract_mrstone = TRUE;
 			}

@@ -4016,7 +4016,7 @@ magicalenergychoice:
 						alreadydone = TRUE;
 
 						if (practicantterror && !u.pract_oremining) {
-							pline("Noroela booms: 'Didn't you hear? Mining my ore is forbidden! That's 1000 zorkmids, and you still have one minute to get away from my ore, got it?'");
+							pline("%s booms: 'Didn't you hear? Mining my ore is forbidden! That's 1000 zorkmids, and you still have one minute to get away from my ore, got it?'", noroelaname());
 							fineforpracticant(1000, 0, 0);
 							u.pract_oremining = TRUE;
 						}

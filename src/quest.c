@@ -79,10 +79,10 @@ nemdead()
 	    Qstat(killed_nemesis) = TRUE;
 	    qt_pager(QT_KILLEDNEM);
 
-	    if (Role_if(PM_PRACTICANT)) {
-		You("managed to overthrow Noroela's reign of terror!!!");
+	    if (Role_if(PM_PRACTICANT) || isbeacher) {
+		You("managed to overthrow %s's reign of terror!!!", noroelaname());
 		if (u.practicantcash) {
-			You("rummage through Noroela's possessions and find the box in which she kept the money she stole from you. The bitch spent some of it, but you take the remaining %d zorkmids and pocket them.", u.practicantcash);
+			You("rummage through %s's possessions and find the box in which she kept the money she stole from you. The bitch spent some of it, but you take the remaining %d zorkmids and pocket them.", noroelaname(), u.practicantcash);
 			u.ugold += u.practicantcash;
 			u.practicantcash = 0;
 		}

@@ -535,6 +535,7 @@ bot1()
 		if (flags.hybridgrouper) sprintf(nb = eos(nb), "o");
 		if (flags.hybridscriptor) sprintf(nb = eos(nb), "c");
 		if (flags.hybridunbalancor) sprintf(nb = eos(nb), "u");
+		if (flags.hybridbeacher) sprintf(nb = eos(nb), "a");
 	}
 
 	if (flags.showscore)
