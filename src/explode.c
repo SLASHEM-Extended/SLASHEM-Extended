@@ -1255,7 +1255,10 @@ int dest;
 
     grenadedamage = d(3,6);
 
-    if (isyou) u.cnd_gunpowderused++;
+    if (isyou) {
+	u.cnd_gunpowderused++;
+	use_skill(P_FIREARM, (obj && obj->otyp == STICK_OF_DYNAMITE) ? 5 : 1);
+    }
 
     if (Role_if(PM_GRENADONIN)) {
 
