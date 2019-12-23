@@ -5030,8 +5030,8 @@ int degree;
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
 
-	/* squeaking and gun control train slower the higher they already are --Amy */
-	if (skill == P_SQUEAKING || skill == P_GUN_CONTROL) {
+	/* squeaking and gun control are hard to train for the wrong gender --Amy */
+	if (((skill == P_SQUEAKING && !flags.female) || (skill == P_GUN_CONTROL && flags.female)) && !Role_if(PM_GENDERSTARIST)) {
 		int advchance = 1;
 		if (P_ADVANCE(skill) >= 4320) advchance = 21;
 		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
