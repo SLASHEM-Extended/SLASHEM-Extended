@@ -195,6 +195,8 @@ int otyp,oquan;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXY]) otmp->opoisoned = TRUE;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXANNE]) otmp->opoisoned = TRUE;
 	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
+	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
+	if (is_weptool(otmp)) otmp->mstartinventB = 1;
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
 
@@ -24722,6 +24724,8 @@ register int otyp;
 	    spe = otmp->spe;
 	    if (is_musable(otmp)) otmp->mstartinvent = 1;
 	    if (otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) otmp->mstartinventB = 1;
+	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
+	    if (is_weptool(otmp)) otmp->mstartinventB = 1;
 	    if (otmp->otyp == MUMMY_WRAPPING && mtmp->data->mlet == S_MUMMY) otmp->mstartinventC = 1;
 	    if (otmp->otyp == LONG_SWORD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 	    if (otmp->otyp == LARGE_SHIELD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
