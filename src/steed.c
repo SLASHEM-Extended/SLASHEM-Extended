@@ -206,9 +206,16 @@ use_saddle(otmp)
 	/* Calculate your chance */
 	chance = ACURR(A_DEX) + ACURR(A_CHA)/2 + 2*mtmp->mtame;
 	chance += GushLevel * (mtmp->mtame ? 20 : 5);
-	if (!mtmp->mtame) {
-		if (mtmp->mpeaceful) chance -= 5*mtmp->m_lev;
-		else chance -= 10*mtmp->m_lev;
+	if (!mtmp->mtame) { /* humpers and steed egotypes should be easier... --Amy */
+
+		if (mtmp->egotype_steed || canalwaysride(mtmp->data)) {
+			if (mtmp->mpeaceful) chance -= mtmp->m_lev;
+			else chance -= 2*mtmp->m_lev;
+		} else {
+			if (mtmp->mpeaceful) chance -= 5*mtmp->m_lev;
+			else chance -= 10*mtmp->m_lev;
+		}
+
 	}
 	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER))
 	    chance += 20;
