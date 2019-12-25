@@ -4982,6 +4982,17 @@ doapply()
 		res = use_cream_pie(obj);
 		break;
 	case BULLWHIP:
+	case INKA_SHACKLE:
+	case BULLETPROOF_CHAINWHIP:
+	case STEEL_WHIP:
+	case ETHER_WHIP:
+	case SEXPLAY_WHIP:
+	case CHAINWHIP:
+	case MITHRIL_WHIP:
+	case FLAME_WHIP:
+	case ROSE_WHIP:
+	case RAZOR_WHIP:
+	case SECRET_WHIP:
 		if (uwep && uwep == obj) res = use_whip(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

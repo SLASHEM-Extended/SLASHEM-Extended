@@ -10198,8 +10198,8 @@ struct monst *mtmp;
 		}
 		nomore(MUSE_BULLWHIP);
 /*  WAC kludge here so monsters don't attempt to grab cursed weapon */
-		if(obj->otyp == BULLWHIP && (MON_WEP(mtmp) == obj) &&
-		   distu(mtmp->mx,mtmp->my)==1 && uwep && !uwep->cursed &&
+		if((objects[obj->otyp].oc_skill == P_WHIP) && (obj->otyp != RUBBER_HOSE) && (MON_WEP(mtmp) == obj) &&
+		   distu(mtmp->mx,mtmp->my) == 1 && uwep && !uwep->cursed &&
 		   !mtmp->mpeaceful) {
 			m.misc = obj;
 			m.has_misc = MUSE_BULLWHIP;

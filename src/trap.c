@@ -2877,10 +2877,10 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
 	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
 	   || Flying || is_clinger(youmonst.data)
-	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)
+	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
 		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
-		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)            
+		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)            
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
 	} else if (youmonst.data->msize >= MZ_HUGE) {
@@ -2949,10 +2949,10 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
 	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
 	   || Flying || is_clinger(youmonst.data)
-	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)
+	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
 		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
-		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)            
+		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
 	} else if (youmonst.data->msize >= MZ_HUGE) {
@@ -3018,10 +3018,10 @@ boolean td;	/* td == TRUE : trap door or hole */
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
 	else if(u.ustuck || !Can_fall_thru(&u.uz)
-	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)
+	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz))
 		) {
-		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)            
+		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
 	} else if (youmonst.data->msize >= MZ_HUGE) {

@@ -5566,7 +5566,7 @@ struct obj *otmp;
 		      otyp != FRAG_GRENADE &&
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&
-		      !is_axe(otmp) && !is_antibar(otmp) && !is_applypole(otmp) && otyp != BULLWHIP) ||
+		      !is_axe(otmp) && !is_antibar(otmp) && !is_applypole(otmp) && !(objects[otyp].oc_skill == P_WHIP && otyp != RUBBER_HOSE) ) ||
 		    (otmp->oclass == POTION_CLASS &&
 		     /* only applicable potion is oil, and it will only
 			be offered as a choice when already discovered */
