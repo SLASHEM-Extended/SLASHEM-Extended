@@ -7196,9 +7196,11 @@ peffects(otmp)
 				if (Upolyd) {
 					u.mh++;
 					u.mhmax++;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
 				} else {
 					u.uhp++;
 					u.uhpmax++;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
 				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax++;

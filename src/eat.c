@@ -1969,6 +1969,7 @@ register int pm;
 			if (!rn2(3)) u.uenmax++;
 			/*u.uen = u.uenmax;
 		    } */
+		    if (u.uen > u.uenmax) u.uen = u.uenmax;
 		    if (old_uen != u.uen) {
 			    You_feel("a mild buzz.");
 			    flags.botl = 1;
@@ -1995,6 +1996,7 @@ register int pm;
 		    u.uen += rnd(3);
 		    if (!rn2(3)) u.uenmax++;
 		}
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		if (old_uen != u.uen) {
 		    You_feel("a mild buzz.");
 		    flags.botl = 1;
@@ -2014,6 +2016,7 @@ register int pm;
 		    u.uen += rnd(4);
 		    if (rn2(3)) u.uenmax++;
 			u.uenmax++; u.uenmax++; u.uenmax++;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		if (old_uen != u.uen) {
 		    You_feel("a mild buzz.");
 		    flags.botl = 1;
@@ -2038,9 +2041,11 @@ register int pm;
 		if (Upolyd) {
 			u.mh++;
 			u.mhmax++;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		} else {
 			u.uhp++;
 			u.uhpmax++;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
@@ -2124,6 +2129,7 @@ register int pm;
 		    u.uen += rnd(4);
 		    if (rn2(3)) u.uenmax++;
 			u.uenmax++; u.uenmax++; u.uenmax++;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		if (old_uen != u.uen) {
 		    You_feel("a mild buzz.");
 		    flags.botl = 1;
@@ -3417,9 +3423,11 @@ register int pm;
 			if (Upolyd) {
 				u.mh++;
 				u.mhmax++;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
 			} else {
 				u.uhp++;
 				u.uhpmax++;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			}
 			if (uactivesymbiosis) {
 				u.usymbiote.mhpmax++;
@@ -3491,6 +3499,7 @@ register int pm;
 				    int old_uen = u.uen; /* Some slight changes to this code. --Amy */
 				    u.uen += rnd(3);
 					if (!rn2(3)) u.uenmax++;
+				    if (u.uen > u.uenmax) u.uen = u.uenmax;
 				    if (old_uen != u.uen) {
 					    You_feel("a mild buzz.");
 					    flags.botl = 1;
@@ -3501,9 +3510,11 @@ register int pm;
 				if (Upolyd) {
 					u.mh++;
 					u.mhmax++;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
 				} else {
 					u.uhp++;
 					u.uhpmax++;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
 				if (uactivesymbiosis) {
 					u.usymbiote.mhpmax++;
@@ -5234,9 +5245,11 @@ eatspecial() /* called after eating non-food */
 		if (Upolyd) {
 			u.mh++;
 			u.mhmax++;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		} else {
 			u.uhp++;
 			u.uhpmax++;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
 		if (uactivesymbiosis) {
 			u.usymbiote.mhpmax++;
@@ -6815,6 +6828,16 @@ register int num;
 	if (Race_if(PM_SERB)) {
 		num *= 3;
 		num /= 2;
+	}
+
+	/* eating heals symbiote a bit --Amy */
+	if (num >= 100 && uactivesymbiosis) {
+		if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
+			u.usymbiote.mhp += (num / 100);
+			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+		}
+
 	}
 
 	u.uhunger += num;

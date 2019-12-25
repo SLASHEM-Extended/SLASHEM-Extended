@@ -5664,6 +5664,17 @@ newbossX:
 			flags.botl = 1;
 		}
 
+		/* sleeping heals your symbiote... --Amy */
+		if (u.usleep && u.usleep < monstermoves && uactivesymbiosis) {
+			if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
+				u.usymbiote.mhp++;
+				if (is_carvedbed(u.ux, u.uy)) u.usymbiote.mhp += rn2(4);
+				if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+				if (flags.showsymbiotehp) flags.botl = TRUE;
+			}
+
+		}
+
 		if (is_carvedbed(u.ux, u.uy) && (multi < 0)) {
 			if (!Upolyd) {
 				u.uhp += rnd(10);
@@ -8590,6 +8601,7 @@ newboss:
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 					u.usymbiote.mhp++;
 					if (flags.showsymbiotehp) flags.botl = TRUE;
+					if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
 				}
 			}
 		}
@@ -8830,11 +8842,13 @@ newboss:
 			if (regenerates(&mons[u.usymbiote.mnum]) || !rn2(symregenrate)) {
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 					u.usymbiote.mhp++;
+					if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
 					if (flags.showsymbiotehp) flags.botl = TRUE;
 				}
 				if (Role_if(PM_SYMBIANT)) {
 					if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 						u.usymbiote.mhp++;
+						if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
 						if (flags.showsymbiotehp) flags.botl = TRUE;
 					}
 				}
@@ -8945,10 +8959,12 @@ newboss:
 				if (!Burned && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
 				}
 				if (StrongRegeneration && !Burned && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
 				}
 			}
 
