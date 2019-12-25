@@ -11419,6 +11419,23 @@ int final;
 		sprintf(buf, "%ld time%s", u.cnd_manlergetcount, plur(u.cnd_manlergetcount));
 		enl_msg(You_, "were caught by the manler ", "were caught by the manler ", buf);
 	}
+	if (u.cnd_wandbreakcount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_wandbreakcount, plur(u.cnd_wandbreakcount));
+		enl_msg(You_, "broke wands ", "broke wands ", buf);
+	}
+	if (u.cnd_alchemycount) {
+		sprintf(buf, "%ld time%s", u.cnd_alchemycount, plur(u.cnd_alchemycount));
+		enl_msg(You_, "performed alchemy ", "performed alchemy ", buf);
+	}
+	if (u.cnd_weaponbreakcount) {
+		sprintf(buf, "%ld hostile weapon%s", u.cnd_weaponbreakcount, plur(u.cnd_weaponbreakcount));
+		enl_msg(You_, "have destroyed ", "destroyed ", buf);
+	}
+	if (u.cnd_newmancount) {
+		sprintf(buf, "%s %ld time%s", ((flags.female && urace.individual.f) ? urace.individual.f :
+		(urace.individual.m) ? urace.individual.m : urace.noun), u.cnd_newmancount, plur(u.cnd_newmancount));
+		enl_msg(You_, "felt like a new ", "felt like a new ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -11933,6 +11950,19 @@ int final;
 
 	sprintf(buf, "%ld time%s", u.cnd_manlergetcount, plur(u.cnd_manlergetcount));
 	dump("  You were caught by the manler ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_wandbreakcount, plur(u.cnd_wandbreakcount));
+	dump("  You broke wands ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_alchemycount, plur(u.cnd_alchemycount));
+	dump("  You performed alchemy ", buf);
+
+	sprintf(buf, "%ld hostile weapon%s", u.cnd_weaponbreakcount, plur(u.cnd_weaponbreakcount));
+	dump("  You destroyed ", buf);
+
+	sprintf(buf, "%s %ld time%s", ((flags.female && urace.individual.f) ? urace.individual.f :
+	(urace.individual.m) ? urace.individual.m : urace.noun), u.cnd_newmancount, plur(u.cnd_newmancount));
+	dump("  You felt like a new ", buf);
 
 	dump("", "");
 }

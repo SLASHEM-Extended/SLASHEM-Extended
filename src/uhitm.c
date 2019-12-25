@@ -1770,6 +1770,7 @@ int dieroll;
 				      s_suffix(Monnam(mon)), xname(monwep),
 				      otense(monwep, "shatter"));
 				m_useup(mon, monwep);
+				u.cnd_weaponbreakcount++;
 				/* If someone just shattered MY weapon, I'd flee! */
 				if (rn2(4)) {
 				    monflee(mon, d(2,3), TRUE, TRUE);
@@ -1822,6 +1823,7 @@ int dieroll;
 						mon->weapon_check = NEED_WEAPON;
 						Your("%s cuts %s %s in half!", xname(obj), s_suffix(mon_nam(mon)), xname(monwep));
 						m_useup(mon, monwep);
+						u.cnd_weaponbreakcount++;
 						/* If someone just shattered MY weapon, I'd flee! */
 						if (rn2(4)) {
 						    monflee(mon, d(2,3), TRUE, TRUE);

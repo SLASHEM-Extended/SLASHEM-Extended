@@ -10435,6 +10435,7 @@ dodip()
 				   !(objects[potion->otyp].oc_uname))
 					docall(potion);
 				useup(potion);
+				u.cnd_alchemycount++;
 				return(1);
 			} else if(!obj->blessed) {
 				if (useeit) {
@@ -10514,6 +10515,7 @@ dodip()
 		useup(potion);
 		update_inventory();
 		exercise(A_WIS, TRUE);
+		u.cnd_alchemycount++;
 		return(1);
 	    }
 	    /* no return here, go for Interesting... message */
@@ -10556,6 +10558,7 @@ dodip()
 			if (potion->otyp == POT_MUTATION) makeknown(POT_MUTATION);
 			useup(potion);
 			prinv((char *)0, obj, 0L);
+			u.cnd_alchemycount++;
 			return 1;
 		} else {
 			pline("Nothing seems to happen.");
@@ -10573,6 +10576,7 @@ dodip()
 		}
 		if (!objects[potion->otyp].oc_name_known && !objects[potion->otyp].oc_uname) docall(potion);
 		useup(potion);
+		u.cnd_alchemycount++;
 		return (1);
 	} else if(obj->oclass == POTION_CLASS && obj->otyp != potion->otyp) {
 		/* Mixing potions is dangerous... */
@@ -10590,6 +10594,7 @@ dodip()
 			/* some protection against this: */
 			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10),
 			       "alchemic blast", KILLED_BY_AN);
+			u.cnd_alchemycount++;
 			return(1);
 		}
 
@@ -10601,12 +10606,14 @@ dodip()
 			if (!Blind) pline_The("mixture glows brightly and evaporates.");
 			useup(obj);
 			useup(potion);
+			u.cnd_alchemycount++;
 			return(1);
 		}
 		if (potion->finalcancel && !rn2(3)) {
 			if (!Blind) pline_The("mixture glows brightly and evaporates.");
 			useup(obj);
 			useup(potion);
+			u.cnd_alchemycount++;
 			return(1);
 		}
 
@@ -10634,6 +10641,7 @@ dodip()
 			  pline_The("mixture glows brightly and evaporates.");
 				useup(obj);
 				useup(potion);
+				u.cnd_alchemycount++;
 				return(1);
 		    }
 		}
@@ -10649,6 +10657,7 @@ dodip()
 		}
 
 		useup(potion);
+		u.cnd_alchemycount++;
 		return(1);
 	}
 	if (!always_visible(obj)) {
@@ -10756,6 +10765,7 @@ dodip()
 	    exercise(A_WIS, wisx);
 	    makeknown(potion->otyp);
 	    useup(potion);
+		u.cnd_alchemycount++;
 	    return 1;
 	} else if (potion->otyp == POT_GAIN_LEVEL) {
 	    res = upgrade_obj(obj);
@@ -10771,6 +10781,7 @@ dodip()
 		useup(potion);
 		update_inventory();
 		exercise(A_WIS, TRUE);
+		u.cnd_alchemycount++;
 		return 1;
 	    }
 	    /* no return here, go for Interesting... message */
@@ -10792,6 +10803,7 @@ dodip()
 	    }
 	    exercise(A_WIS, FALSE);
   	    useup(potion);
+	    u.cnd_alchemycount++;
 	    return 1;
 	}
     more_dips:
@@ -10805,6 +10817,7 @@ dodip()
 		useup(potion);
 		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), d(6,6), 0, EXPL_FIERY);
 		exercise(A_WIS, FALSE);
+		u.cnd_alchemycount++;
 		return 1;
 	    }
 	    /* Adding oil to an empty magic lamp renders it into an oil lamp */
@@ -10822,6 +10835,7 @@ dodip()
 		if (issoviet && obj->age > 1500L) obj->age = 1500L;
 		useup(potion);
 		exercise(A_WIS, TRUE);
+		u.cnd_alchemycount++;
 	    }
 	    makeknown(POT_OIL);
 	    obj->spe = 1;
@@ -10845,6 +10859,7 @@ dodip()
 			useup(potion);
 			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10), "a cursed explosion", KILLED_BY);
 			return(1);
+			u.cnd_alchemycount++;
 		}
 
 		oldbuf[0] = '\0';
@@ -10886,6 +10901,7 @@ dodip()
 			/* some protection against this: */
 			losehp(StrongAcid_resistance ? 1 : Acid_resistance ? rnd(5) : rnd(10), 
 			       "alchemic blast", KILLED_BY_AN);
+			u.cnd_alchemycount++;
 			return(1);	  
 		    }
 
@@ -10956,6 +10972,7 @@ dodip()
 
 		}
 
+		u.cnd_alchemycount++;
 		return(1);
 	}
 

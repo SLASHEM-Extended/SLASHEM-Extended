@@ -1742,6 +1742,10 @@ struct you {
 	int cnd_appearanceshufflingcount;	/* how often the randomized item appearances got shuffled */
 	int cnd_mysteriousforcecount;	/* how often you got hit by the mysterious force */
 	int cnd_manlergetcount;	/* now often the manler caught you */
+	int cnd_wandbreakcount;	/* how many wands you broke */
+	int cnd_alchemycount;	/* how often you did alchemy */
+	int cnd_weaponbreakcount;	/* how many opponents' weapons you broke/cut */
+	int cnd_newmancount;	/* how often you felt like a new man */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

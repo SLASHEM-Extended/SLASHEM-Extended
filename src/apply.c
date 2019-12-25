@@ -4344,6 +4344,7 @@ do_break_wand(obj)
     }
     pline("Raising %s high above your %s, you break it in two!",
 	  the_wand, body_part(HEAD));
+    u.cnd_wandbreakcount++;
     return wand_explode(obj, TRUE);
 }
 
