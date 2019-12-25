@@ -1022,6 +1022,7 @@ doread()
 			case SCR_UNDO_GENOCIDE:
 			case SCR_RANDOM_ENCHANTMENT:
 			case SCR_BAD_EQUIPMENT:
+			case SCR_HEAL_OTHER:
 			case SCR_REGULAR_MATERIAL:
 				cartochance = 25;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
@@ -8493,6 +8494,76 @@ retry:
 		You_feel("fully healed!");
 			u.uhp = u.uhpmax;
 			if (Upolyd) u.mh = u.mhmax;
+		break;
+	case SCR_HEAL_OTHER:
+		makeknown(SCR_HEAL_OTHER);
+		pline("A healing aura surrounds you...");
+
+		int healamount = (rnd(50) + 30 + rnz(u.ulevel * 3));
+		if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) healamount *= 2;
+		if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
+			healamount *= 2;
+			if (Role_if(PM_HEALER)) healamount *= 2;
+		}
+		if (uwep && uwep->oartifact == ART_HEALHEALHEALHEAL) {
+			healamount *= 2;
+			if (Role_if(PM_HEALER)) healamount *= 2;
+		}
+		if (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) {
+			healamount *= 2;
+			if (Role_if(PM_HEALER)) healamount *= 2;
+		}
+		if (RngeNursery) healamount *= 2;
+
+		if (uactivesymbiosis) {
+			Your("symbiote seems healthier!");
+			u.usymbiote.mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
+			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+			if (u.ualign.type == A_LAWFUL) adjalign(1);
+		}
+		{
+
+			int i, j, bd = confused ? 6 : 4;
+			struct monst *frostmon;
+
+			for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((frostmon = m_at(u.ux + i, u.uy + j)) != 0) {
+					if (frostmon->mtame) {
+						frostmon->mfrozen = 0;
+						frostmon->msleeping = 0;
+						frostmon->masleep = 0;
+						frostmon->mcanmove = 1;
+						frostmon->mflee = 0;
+						frostmon->mcansee = 1;
+						frostmon->mblinded = 0;
+						frostmon->mstun = 0;
+						frostmon->mconf = 0;
+						pline("%s is cured.", Monnam(frostmon));
+						frostmon->mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
+						if (frostmon->mhp > frostmon->mhpmax) frostmon->mhp = frostmon->mhpmax;
+						if (u.ualign.type == A_LAWFUL) adjalign(1);
+					}
+					if (u.usteed && frostmon == u.usteed) { /* double healing! */
+						frostmon->mfrozen = 0;
+						frostmon->msleeping = 0;
+						frostmon->masleep = 0;
+						frostmon->mcanmove = 1;
+						frostmon->mflee = 0;
+						frostmon->mcansee = 1;
+						frostmon->mblinded = 0;
+						frostmon->mstun = 0;
+						frostmon->mconf = 0;
+						pline("%s is cured.", Monnam(frostmon));
+						frostmon->mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
+						if (frostmon->mhp > frostmon->mhpmax) frostmon->mhp = frostmon->mhpmax;
+						if (u.ualign.type == A_LAWFUL) adjalign(1);
+					}
+				}
+			}
+
+		}
+
 		break;
 	case SCR_WOUNDS:
 		makeknown(SCR_WOUNDS);

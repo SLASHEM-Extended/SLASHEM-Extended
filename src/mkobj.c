@@ -2541,7 +2541,7 @@ int artif;
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
 		}
-		if (!rn2(3) && !(otmp->otyp == SCR_HEALING || otmp->otyp == SCR_EXTRA_HEALING || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_GREATER_MANA_RESTORATION
+		if (!rn2(3) && !(otmp->otyp == SCR_HEALING || otmp->otyp == SCR_EXTRA_HEALING || otmp->otyp == SCR_HEAL_OTHER || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_GREATER_MANA_RESTORATION
 #ifdef MAIL
 		|| otmp->otyp == SCR_MAIL
 #endif

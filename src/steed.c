@@ -835,6 +835,9 @@ int x, y;
 boolean
 will_hit_steed()
 {
+	/* if your steed is low on health, attacks should be redirected to it much less often, otherwise they die constantly */
+	if (u.usteed && (u.usteed->mhp < 5 || (u.usteed->mhp <= (u.usteed->mhpmax / 5) ) ) && rn2(5)) return FALSE;
+
 	if (rn2(100) < u.steedhitchance) return TRUE;
 	else return FALSE;
 }

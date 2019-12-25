@@ -24847,6 +24847,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The magic of the scroll forces your mouth to move against the tape.",
 	"It doesn't move at all and so doesn't want to enter you!",
 	"Only non-stationary monsters can be turned into symbiotes!",
+	"A healing aura surrounds you...",
 
 };
 

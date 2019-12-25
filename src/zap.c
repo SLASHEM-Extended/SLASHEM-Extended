@@ -2133,7 +2133,7 @@ boolean weakeffect;
 	    }
 	    switch (obj->oclass) {
 	      case SCROLL_CLASS:
-		if (obj->otyp == SCR_HEALING || obj->otyp == SCR_EXTRA_HEALING ||
+		if (obj->otyp == SCR_HEALING || obj->otyp == SCR_EXTRA_HEALING || obj->otyp == SCR_HEAL_OTHER ||
 #ifdef MAIL
 obj->otyp == SCR_MAIL || 
 #endif
@@ -2535,7 +2535,7 @@ polyuse(objhdr, mat, minwt)
 #ifdef MAIL
 	if (otmp->otyp == SCR_MAIL) continue;
 #endif
-	if (otmp->otyp == SCR_HEALING || otmp->otyp == SCR_EXTRA_HEALING || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_GREATER_MANA_RESTORATION || otmp->otyp == SCR_CURE || otmp->otyp == SCR_PHASE_DOOR) continue;
+	if (otmp->otyp == SCR_HEALING || otmp->otyp == SCR_EXTRA_HEALING || otmp->otyp == SCR_HEAL_OTHER || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_GREATER_MANA_RESTORATION || otmp->otyp == SCR_CURE || otmp->otyp == SCR_PHASE_DOOR) continue;
 
 	if (((int) objects[otmp->otyp].oc_material == mat) ==
 		(rn2(minwt + 1) != 0)) {
@@ -2755,7 +2755,7 @@ struct obj *obj;
 #ifdef MAIL
 	if (obj->otyp == SCR_MAIL) return;
 #endif
-	if (obj->otyp == SCR_HEALING || obj->otyp == SCR_EXTRA_HEALING || obj->otyp == SCR_STANDARD_ID || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_RESTORATION || obj->otyp == SCR_CURE || obj->otyp == SCR_PHASE_DOOR) return;
+	if (obj->otyp == SCR_HEALING || obj->otyp == SCR_EXTRA_HEALING || obj->otyp == SCR_HEAL_OTHER || obj->otyp == SCR_STANDARD_ID || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_RESTORATION || obj->otyp == SCR_CURE || obj->otyp == SCR_PHASE_DOOR) return;
 
 	obj_zapped = TRUE;
 
@@ -2933,6 +2933,11 @@ poly_obj(obj, id, degradation)
 
 	if (obj->otyp == SCR_EXTRA_HEALING) {
 		otmp->otyp = SCR_EXTRA_HEALING;
+		unpoly = FALSE;	/* WAC -- no change! */
+	}
+
+	if (obj->otyp == SCR_HEAL_OTHER) {
+		otmp->otyp = SCR_HEAL_OTHER;
 		unpoly = FALSE;	/* WAC -- no change! */
 	}
 

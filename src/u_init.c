@@ -2331,6 +2331,11 @@ static struct trobj AlwaysStartItemE[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj AlwaysStartItemF[] = {
+	{ SCR_HEAL_OTHER, 0, SCROLL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj AngbandItem[] = {
 	{ SCR_IDENTIFY, 0, SCROLL_CLASS, 2, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -17779,6 +17784,7 @@ u_init()
           ini_inv(AlwaysStartItemE); /* phase door for emergency escapes */
           ini_inv(AlwaysStartItemB); /* standard id to facilitate the identification game */
           ini_inv(AlwaysStartItemD); /* and a curing scroll for those pesky delayed instadeaths */
+          ini_inv(AlwaysStartItemF); /* plus a heal other scroll to heal pets and symbiotes */
 
 	if (flags.lostsoul && !flags.uberlostsoul) { 
           ini_inv(LostSoulItem);  /* In Angband or TOME these would be scrolls of cure hunger instead of food rations. */
@@ -29186,7 +29192,7 @@ register struct trobj *trop;
 	int otyp, i;
 
 	while (trop->trclass) {
-		if (trop->trotyp != UNDEF_TYP && ((trop->trotyp == SCR_PHASE_DOOR || trop->trotyp == SCR_HEALING || trop->trotyp == SCR_EXTRA_HEALING || trop->trotyp == SCR_MANA || trop->trotyp == SCR_GREATER_MANA_RESTORATION || trop->trotyp == SCR_STANDARD_ID || trop->trotyp == SCR_CURE || (trop->trotyp == SCR_IDENTIFY && flags.lostsoul) || (trop->trotyp == TORCH && flags.lostsoul) || (trop->trotyp == FOOD_RATION && flags.lostsoul) || (trop->trotyp == SCR_IDENTIFY && flags.uberlostsoul) || (trop->trotyp == TORCH && flags.uberlostsoul) || (trop->trotyp == FOOD_RATION && flags.uberlostsoul) || (trop->trotyp == POT_FRUIT_JUICE && flags.uberlostsoul) || (trop->trotyp == TALLOW_CANDLE && flags.uberlostsoul) ) || !Race_if(PM_UNDEFINED_CREATURE) ) ) {
+		if (trop->trotyp != UNDEF_TYP && ((trop->trotyp == SCR_PHASE_DOOR || trop->trotyp == SCR_HEALING || trop->trotyp == SCR_EXTRA_HEALING || trop->trotyp == SCR_HEAL_OTHER || trop->trotyp == SCR_MANA || trop->trotyp == SCR_GREATER_MANA_RESTORATION || trop->trotyp == SCR_STANDARD_ID || trop->trotyp == SCR_CURE || (trop->trotyp == SCR_IDENTIFY && flags.lostsoul) || (trop->trotyp == TORCH && flags.lostsoul) || (trop->trotyp == FOOD_RATION && flags.lostsoul) || (trop->trotyp == SCR_IDENTIFY && flags.uberlostsoul) || (trop->trotyp == TORCH && flags.uberlostsoul) || (trop->trotyp == FOOD_RATION && flags.uberlostsoul) || (trop->trotyp == POT_FRUIT_JUICE && flags.uberlostsoul) || (trop->trotyp == TALLOW_CANDLE && flags.uberlostsoul) ) || !Race_if(PM_UNDEFINED_CREATURE) ) ) {
 			otyp = (int)trop->trotyp;
 			if (urace.malenum != PM_HUMAN) {
 			    /* substitute specific items for generic ones */

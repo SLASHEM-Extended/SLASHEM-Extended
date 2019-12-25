@@ -3506,8 +3506,9 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	if (DEADMONSTER(magr) || DEADMONSTER(mdef)) return 0L; /* bugfix */
 
 	/* Amy edit: if pets are ignored by everything, it can result in them being way too unkillable because they often
-	 * won't attack things that would kill them... */
-	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2(20)) return ALLOW_M|ALLOW_TM;
+	 * won't attack things that would kill them...
+	 * keyword: dnethack */
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2(20) && (!rn2(5) || mdef->mcanmove) && (!rn2(5) || (mdef->mhpmax > 5 && mdef->mhp > (mdef->mhpmax / 5))) ) return ALLOW_M|ALLOW_TM;
 	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && ((attacktype(mdef->data, AT_EXPL)) || (mindless(magr->data) && evilfriday) || magr->mfrenzied ) ) return ALLOW_M|ALLOW_TM;
 
 	if (Race_if(PM_ALBAE)) return 0L; /* if you're an albae, everything hates you more than anything else --Amy */
@@ -6091,6 +6092,7 @@ xkilled(mtmp, dest)
 		if (!rn2(Race_if(PM_ROHIRRIM) ? 100 : 250) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
 		if (!rn2(100) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_MANA : SCR_GREATER_MANA_RESTORATION, x, y, TRUE, FALSE);
 		if (!rn2(120) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
+		if (!rn2(100) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEAL_OTHER, x, y, TRUE, FALSE);
 		if (!rn2(40) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_HEALING : SCR_EXTRA_HEALING, x, y, TRUE, FALSE);
 
 		if (uarmg && uarmg->oartifact == ART_SCROLLSCROLLSCROLL) {
@@ -6098,6 +6100,7 @@ xkilled(mtmp, dest)
 			if (!rn2(250) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE);
 			if (!rn2(100) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_MANA : SCR_GREATER_MANA_RESTORATION, x, y, TRUE, FALSE);
 			if (!rn2(120) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE);
+			if (!rn2(100) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEAL_OTHER, x, y, TRUE, FALSE);
 			if (!rn2(40) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_HEALING : SCR_EXTRA_HEALING, x, y, TRUE, FALSE);
 		}
 
@@ -8533,6 +8536,8 @@ symbiotemelee()
 {
 	if (!uactivesymbiosis) return FALSE;
 
+	if (u.usymbiote.mhpmax >= 5 && u.usymbiote.mhp <= (u.usymbiote.mhpmax / 5) && rn2(5)) return FALSE;
+
 	int symchance = 0;
 
 	if (Role_if(PM_SYMBIANT)) {
@@ -8601,6 +8606,8 @@ boolean
 symbiotepassive()
 {
 	if (!uactivesymbiosis) return FALSE;
+
+	if (u.usymbiote.mhpmax >= 5 && u.usymbiote.mhp <= (u.usymbiote.mhpmax / 5) && rn2(5)) return FALSE;
 
 	int symchance = 0;
 

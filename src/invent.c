@@ -13134,6 +13134,8 @@ boolean knoweverything;
 				pline("A standard healing scroll that behaves similar to healing potions in other role-playing games by restoring some lost hit points. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
 			case SCR_EXTRA_HEALING:
 				pline("A powerful healing scroll that restores a large amount of lost hit points. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+			case SCR_HEAL_OTHER:
+				pline("Reading this scroll heals pets and steeds in a 7x7 area centered on you. If you have a symbiote, it will also be healed. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
 			case SCR_POWER_HEALING:
 				pline("This scroll completely restores hit points."); break;
 			case SCR_MANA:

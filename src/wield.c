@@ -1127,7 +1127,7 @@ boolean fade_scrolls;
 	if (target->greased && (!issoviet || !rn2(2)) ) {
 	    grease_protect(target,(char *)0,victim);
 	} else if (target->oclass == SCROLL_CLASS) {
-	    if(fade_scrolls && target->otyp != SCR_BLANK_PAPER && !target->oartifact && target->otyp != SCR_HEALING && target->otyp != SCR_EXTRA_HEALING && target->otyp != SCR_STANDARD_ID && target->otyp != SCR_MANA && target->otyp != SCR_GREATER_MANA_RESTORATION && target->otyp != SCR_CURE && target->otyp != SCR_PHASE_DOOR
+	    if(fade_scrolls && target->otyp != SCR_BLANK_PAPER && !target->oartifact && target->otyp != SCR_HEALING && target->otyp != SCR_EXTRA_HEALING && target->otyp != SCR_STANDARD_ID && target->otyp != SCR_HEAL_OTHER && target->otyp != SCR_MANA && target->otyp != SCR_GREATER_MANA_RESTORATION && target->otyp != SCR_CURE && target->otyp != SCR_PHASE_DOOR
 #ifdef MAIL
 	    && target->otyp != SCR_MAIL
 #endif

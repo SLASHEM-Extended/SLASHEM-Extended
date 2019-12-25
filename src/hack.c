@@ -4716,7 +4716,7 @@ int k_format; /* WAC k_format is an int */
 		    Your("metal guard prevents the damage!");
 	}
 
-	if (uactivesymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity)) {
+	if (uactivesymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity) && !(u.usymbiote.mhpmax >= 5 && u.usymbiote.mhp <= (u.usymbiote.mhpmax / 5) && rn2(5))) {
 		if (tech_inuse(T_POWERBIOSIS) && n > 1) n /= 2;
 		if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
 			int imbiophases = uimplant->spe;

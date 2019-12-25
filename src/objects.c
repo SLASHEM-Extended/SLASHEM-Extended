@@ -4307,7 +4307,7 @@ SCROLL("teleportation",         "VENZAR BORGAVVE",      P_BODY_SPELL, 1,  505, 3
 SCROLL("tele level",         "GON GET YA",      P_BODY_SPELL, 1,  50, 300, CLR_BRIGHT_CYAN, 25),
 SCROLL("warping",         "MY SPUTA WILL FLOW DOWN",      P_BODY_SPELL, 1,  50, 300, CLR_BRIGHT_CYAN, 35),
 /* Matter */
-SCROLL("fire",                  "ANDOVA BEGARIN",       P_MATTER_SPELL, 1,  200, 300, CLR_WHITE, 5),
+SCROLL("fire",                  "ANDOVA BEGARIN",       P_MATTER_SPELL, 1,  195, 300, CLR_WHITE, 5),
 SCROLL("earth",                 "KIRJE",                P_MATTER_SPELL, 1,  200, 300, CLR_CYAN, 5),
 
 SCROLL("artifact creation",        "LOOKIE WHAT I FOUND",                P_OCCULT_SPELL, 1, 1, 300, CLR_BRIGHT_BLUE, 75),
@@ -4330,6 +4330,7 @@ SCROLL("instant amnesia",       "HAKUNA MATATA",           P_NONE, 1,  10, 300, 
 SCROLL("bad effect",               "LITTLE STRAWBERRY ME BABY",           P_NONE, 1,  50, 300, CLR_ORANGE, 1),
 SCROLL("healing",               "LIFE RESTORATION",           P_NONE, 1,   9, 300, CLR_BRIGHT_CYAN, 1),
 SCROLL("extra healing",               "HEALHEALHEALHEAL",           P_NONE, 1,   1, 300, CLR_BRIGHT_GREEN, 1),
+SCROLL("heal other",               "SYMBIOTIC STEED",           P_NONE, 1,   5, 300, CLR_MAGENTA, 1),
 SCROLL("mana",               "I WANT TO SEE URANUS TOO",           P_NONE, 1,   9, 300, CLR_BRIGHT_BLUE, 1),
 SCROLL("greater mana restoration",       "DIT DEDIDET DAET",           P_NONE, 1,   1, 300, CLR_BRIGHT_GREEN, 1),
 SCROLL("cure",               "SPARKLING EDWARD CULLEN",           P_NONE, 1,   10, 300, CLR_BRIGHT_BLUE, 1),

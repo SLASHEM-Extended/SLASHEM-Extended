@@ -3168,6 +3168,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ SCR_HEAL_OTHER, "todo" },
+
 	{0, "" }
 };
 
@@ -5782,6 +5784,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ WAN_UNDRESSING, "yechintirish" },
 
 	/* todo area */
+
+	{ SCR_HEAL_OTHER, "todo" },
 
 	{0, "" }
 };
