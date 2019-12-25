@@ -22493,6 +22493,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && is_neuter(ptr) )) ct += 10;
 		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && dmgtype(ptr, AD_SSEX) )) ct += 3;
 		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && (ptr->msound == MS_CUSS))) ct += 5;
+		if (ct > 0 && (Race_if(PM_GOAULD) && is_dnethackmonster(ptr))) ct += 10;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -23590,6 +23591,7 @@ int     spc;
 		if ((Role_if(PM_GENDERSTARIST) && is_neuter(&mons[last]) )) num += 10;
 		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[last], AD_SSEX) )) num += 3;
 		if ((Role_if(PM_GENDERSTARIST) && (mons[last].msound == MS_CUSS))) num += 5;
+		if ((Race_if(PM_GOAULD) && is_dnethackmonster(&mons[last]))) num += 10;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -24403,6 +24405,7 @@ int     spc;
 		if ((Role_if(PM_GENDERSTARIST) && is_neuter(&mons[first]) )) num -= 10;
 		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[first], AD_SSEX) )) num -= 3;
 		if ((Role_if(PM_GENDERSTARIST) && (mons[first].msound == MS_CUSS))) num -= 5;
+		if ((Race_if(PM_GOAULD) && is_dnethackmonster(&mons[first]))) num -= 10;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 

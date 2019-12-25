@@ -268,6 +268,7 @@ canofferownrace()
 		case PM_GAVIL:
 		case PM_PLAYER_ANDROID:
 		case PM_RETICULAN:
+		case PM_GOAULD:
 		case PM_OUTSIDER:
 		case PM_HUMANOID_DEVIL:
 		case PM_MUMMY:

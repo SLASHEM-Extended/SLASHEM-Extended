@@ -6627,6 +6627,7 @@ rerollthree:
 		case PM_LEVITATOR: implantbonus = 3; break;
 		case PM_MISSINGNO: implantbonus = 6; break;
 		case PM_MOULD: implantbonus = 5; break;
+		case PM_GOAULD: implantbonus = 5; break;
 		case PM_OCTOPODE: implantbonus = 6; break;
 		case PM_BACTERIA: implantbonus = 6; break;
 		case PM_POLYINITOR: implantbonus = 5; break;
@@ -7193,6 +7194,19 @@ rerollthree:
 			P_SKILL(P_SYMBIOSIS) = P_BASIC;
 			if (P_MAX_SKILL(P_SYMBIOSIS) == P_EXPERT) P_MAX_SKILL(P_SYMBIOSIS) = P_MASTER;
 			else if (P_MAX_SKILL(P_SYMBIOSIS) == P_MASTER) P_MAX_SKILL(P_SYMBIOSIS) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_SYMBIOSIS) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_GOAULD)) {
+		if (P_RESTRICTED(P_SYMBIOSIS)) {
+			P_SKILL(P_SYMBIOSIS) = P_BASIC;
+			P_ADVANCE(P_SYMBIOSIS) = 20;
+			P_MAX_SKILL(P_SYMBIOSIS) = P_MASTER;
+		} else {
+			P_SKILL(P_SYMBIOSIS) = P_BASIC;
+			if (P_MAX_SKILL(P_SYMBIOSIS) == P_EXPERT) P_MAX_SKILL(P_SYMBIOSIS) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_SYMBIOSIS) = P_SUPREME_MASTER;
 		}
 

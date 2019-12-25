@@ -343,8 +343,14 @@ use_symbiote(obj)
 			}
 		}
 
-		if (!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET)) {
+		/* normally the monster must be nonmoving, but for goauld (invented by Demo) it's the other way around --Amy */
+		if ((!(stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET)) && !Race_if(PM_GOAULD)) {
 			pline(FunnyHallu ? "It moves around too much and you can't seem to catch it!" : "Only stationary monsters can be turned into symbiotes!");
+			return 1;
+
+		}
+		if (((stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET)) && Race_if(PM_GOAULD)) {
+			pline(FunnyHallu ? "It doesn't move at all and so doesn't want to enter you!" : "Only non-stationary monsters can be turned into symbiotes!");
 			return 1;
 
 		}

@@ -214,6 +214,7 @@ cannibal_allowed()
 		case PM_VORTEX:
 		case PM_GAVIL:
 		case PM_CORTEX:
+		case PM_GOAULD:
 		case PM_PLAYER_ANDROID:
 		case PM_RETICULAN:
 		case PM_OUTSIDER:

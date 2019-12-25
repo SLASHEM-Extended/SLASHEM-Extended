@@ -2032,6 +2032,11 @@ static struct trobj KoronstItem[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj GoauldItem[] = {
+	{ SYMBIOTE, 0, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj AlchemistItem[] = {
 	{ SCALPEL, 1, WEAPON_CLASS, 1, 1},
 	{ 0, 0, 0, 0, 0 }
@@ -17175,6 +17180,11 @@ u_init()
 	case PM_CUPID:
 
           ini_inv(CupidItem);		
+		break;
+
+	case PM_GOAULD:
+
+          ini_inv(GoauldItem);		
 		break;
 
 	case PM_KORONST:

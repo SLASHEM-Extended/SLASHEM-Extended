@@ -8356,16 +8356,31 @@ boolean extrahealth;
 {
 	struct permonst *pm = 0;
 	int attempts = 0;
-	do {
-		pm = rndmonst();
-		attempts++;
-		if (!rn2(2000)) reset_rndmonst(NON_PM);
 
-	} while ( (!pm || (pm && (!(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) && attempts < 500000);
+	if (!Race_if(PM_GOAULD)) {
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
-	if (!pm || (pm && (!(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) {
-		pline("For some reason, symbiote creation failed.");
-		return;
+		} while ( (!pm || (pm && (!(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) && attempts < 500000);
+
+		if (!pm || (pm && (!(stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) {
+			pline("For some reason, symbiote creation failed.");
+			return;
+		}
+	} else { /* player is goauld */
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && ((stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) && attempts < 500000);
+
+		if (!pm || (pm && ((stationary(pm) || pm->mmove == 0 || pm->mlet == S_TURRET) || cannot_be_tamed(pm) ) )) {
+			pline("For some reason, symbiote creation failed.");
+			return;
+		}
 	}
 
 	/* reset any existing symbiote structure first */

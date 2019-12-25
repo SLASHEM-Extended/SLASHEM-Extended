@@ -24845,6 +24845,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have a strange feeling of victory.",
 	"You have a strange feeling of victory. Well, you just quaffed the Amulet of Yendor, which means that it's gone now. Do you think you can still win the game?",
 	"The magic of the scroll forces your mouth to move against the tape.",
+	"It doesn't move at all and so doesn't want to enter you!",
+	"Only non-stationary monsters can be turned into symbiotes!",
 
 };
 

@@ -917,6 +917,9 @@ const struct innate {
 	and_abil[] = { {	 1, &(HDeath_resistance), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	goa_abil[] = { {	 1, &(HScentView), "", "", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
 	ent_abil[] = { {	 1, &(HFull_nutrient), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
@@ -2267,6 +2270,7 @@ int oldlevel, newlevel;
 	case PM_PLAYER_FAIRY:	rabil = fay_abil;	break;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
 	case PM_PLAYER_ANDROID:           rabil = and_abil;	break;
+	case PM_GOAULD:           rabil = goa_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;
 	case PM_LOWER_ENT:	rabil = ent_abil;	break;

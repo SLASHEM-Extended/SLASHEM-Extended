@@ -7339,7 +7339,9 @@ repairitemchoice:
 
 			}
 
-			t_timeout = rnz(Role_if(PM_SYMBIANT) ? 4000 : 20000);
+			/* symbiant and goauld can use it more often... but they're too different, and therefore
+			 * being a goauld symbiant doesn't reduce the timeout by more :P --Amy */
+			t_timeout = rnz(Role_if(PM_SYMBIANT) ? 4000 : Race_if(PM_GOAULD) ? 4000 : 20000);
 			break;
 
 		case T_ADJUST_SYMBIOTE:
