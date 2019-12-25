@@ -6912,8 +6912,10 @@ newkopcube:
 	}
 
 	if (couldsee(mtmp->mx, mtmp->my)) {
-		if (humanoid(mtmp->data) || mtmp->isshk || mtmp->isgd)
-		    pline("%s gets angry!", Monnam(mtmp));
+		if (humanoid(mtmp->data) || mtmp->isshk || mtmp->isgd) {
+			pline("%s gets angry!", Monnam(mtmp));
+			if (flags.verbose && flags.soundok) growl(mtmp);
+		}
 		else if (flags.verbose && flags.soundok) growl(mtmp);
 	}
 

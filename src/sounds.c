@@ -1436,17 +1436,17 @@ dosounds()
 #ifdef OVLB
 
 static const char * const h_sounds[] = {
-    "beep", "boing", "sing", "belche", "creak", "cough", "rattle",
-    "ululate", "pop", "jingle", "sniffle", "tinkle", "eep",
-	"clatter", "hum", "sizzle", "twitter", "wheeze", "rustle",
-	"honk", "lisp", "yodel", "coo", "burp", "moo", "boom",
-	"murmur", "oink", "quack", "rumble", "twang", "bellow",
-	"toot", "gargle", "hoot", "warble", "crackle", "hiss",
-	"growl", "roar", "buzz", "squeal", "screech", "neigh",
-	"wail", "commotion", "squaark", "scream", "yowl", "yelp",
-	"snarl", "squeal", "screak", "whimper", "whine", "howl",
-	"yip", "bark", "purr", "meow", "mew", "drone", "whinnie",
-	"whicker", "gurgle", "burble", "shriek", "baaaa", "cluck"
+    "beeps", "boings", "sings", "belches", "creaks", "coughs", "rattles",
+    "ululates", "pops", "jingles", "sniffles", "tinkles", "eeps",
+	"clatters", "hums", "sizzles", "twitters", "wheezes", "rustles",
+	"honks", "lisps", "yodels", "coos", "burps", "moos", "booms",
+	"murmurs", "oinks", "quacks", "rumbles", "twangs", "bellows",
+	"toots", "gargles", "hoots", "warbles", "crackles", "hisses",
+	"growls", "roars", "buzzes", "squeals", "screeches", "neighs",
+	"wails", "commotions", "squaarks", "screams", "yowls", "yelps",
+	"snarls", "squeals", "screaks", "whimpers", "whines", "howls",
+	"yips", "barks", "purrs", "meows", "mews", "drones", "whinnies",
+	"whickers", "gurgles", "burbles", "shrieks", "baaaas", "clucks",
 
 };
 
@@ -1474,8 +1474,7 @@ int lev;
 	panic("strange level of distress");
 
     if (verb) {
-	pline("%s %s%c", Monnam(mtmp), vtense((char *)0, verb),
-		lev>1?'!':'.');
+	pline("%s %s%c", Monnam(mtmp), verb, lev>1?'!':'.');
 	if (flags.run) nomul(0, 0, FALSE);
 	wake_nearto(mtmp->mx,mtmp->my,mtmp->data->mlevel*6*lev);
     }
@@ -1493,38 +1492,99 @@ register struct monst *mtmp;
 	switch (mtmp->data->msound) {
 	case MS_MEW:
 	case MS_HISS:
-	    ret = "hiss";
+	    ret = "hisses";
 	    break;
 	case MS_BARK:
 	case MS_GROWL:
-	    ret = "growl";
+	    ret = "growls";
 	    break;
 	case MS_ROAR:
-	    ret = "roar";
+	    ret = "roars";
 	    break;
 	case MS_BUZZ:
-	    ret = "buzz";
+	    ret = "buzzes";
 	    break;
 	case MS_SQEEK:
-	    ret = "squeal";
+	    ret = "squeals";
 	    break;
 	case MS_SQAWK:
-	    ret = "screech";
+	    ret = "screeches";
 	    break;
 	case MS_NEIGH:
-	    ret = "neigh";
+	    ret = "neighs";
 	    break;
 	case MS_WAIL:
-	    ret = "wail";
+	    ret = "wails";
 	    break;
 	case MS_SILENT:
-		ret = "commotion";
+		ret = "commotions";
 		break;
 	case MS_PARROT:
-	    ret = "squaark";
+	    ret = "squaarks";
 	    break;
+	case MS_GURGLE:
+		ret = "gurgles threateningly";
+		break;
+	case MS_SHRIEK:
+		ret = "shrieks aggravatingly";
+		aggravate();
+		break;
+	case MS_BONES:
+		ret = "rattles frighteningly";
+		You("freeze for a moment.");
+		nomul(-2, "scared by rattling", TRUE);
+		nomovemsg = 0;
+		break;
+	case MS_LAUGH:
+		ret = "laughs fiendishly";
+		break;
+	case MS_MUMBLE:
+		ret = "mumbles loudly";
+		break;
+	case MS_ARREST:
+		ret = "shouts 'I am an officer of the law!'";
+		break;
+	case MS_SOLDIER:
+		ret = "shouts 'I'm gonna report you to your superior!";
+		break;
+	case MS_VAMPIRE:
+		ret = "shouts 'Don't make me bite your the neck!'";
+		break;
+	case MS_CUSS:
+		ret = "screams 'Fucking cunt!'";
+		break;
+	case MS_WHORE:
+		ret = "shouts 'My pimp is the only one who may lay a hand on me!'";
+		break;
+	case MS_SUPERMAN:
+		ret = "shouts 'YOU SHALL BE EXTERMINATED!'";
+		aggravate();
+		break;
+	case MS_FART_QUIET:
+	case MS_FART_NORMAL:
+	case MS_FART_LOUD:
+		ret = "screams 'Stop slapping my butt! That's painful!'";
+		break;
+	case MS_BOSS:
+		ret = "shouts 'Hey! *I* am the boss here, not you!'";
+		break;
+	case MS_SHOE:
+		ret = "screams 'Don't treat us like that! We don't like that at all!'";
+		break;
+	case MS_STENCH:
+		ret = "screams 'You ruined my makeup!'";
+		break;
+	case MS_CONVERT:
+		ret = "shouts 'Siz Allah'in sadik bir takipcisi degilsiniz, kafir!'";
+		break;
+	case MS_HCALIEN:
+		ret = "looks at you with a gaze that is capable of killing";
+		if (!rn2(20)) losehp(d(10,8), "the HC alien's gaze", KILLED_BY);
+		else if (!rn2(5)) losehp(d(6,8), "the HC alien's gaze", KILLED_BY);
+		else losehp(d(4,6), "the HC alien's gaze", KILLED_BY);
+		break;
 	default:
-		ret = "scream";
+		ret = "screams";
 	}
 	return ret;
 }
@@ -1541,24 +1601,84 @@ register struct monst *mtmp;
 
     switch(mtmp->data->msound) {
 	case MS_MEW:
-	ret = "yowl";
+	ret = "yowls";
 	    break;
 	case MS_BARK:
 	case MS_GROWL:
-	ret = "yelp";
+	ret = "yelps";
 	    break;
 	case MS_ROAR:
-	ret = "snarl";
+	ret = "snarls";
 	    break;
 	case MS_SQEEK:
-	ret = "squeal";
+	ret = "squeals";
 	    break;
 	case MS_SQAWK:
-	ret = "screak";
+	ret = "screaks";
 	    break;
 	case MS_WAIL:
-	ret = "wail";
+	ret = "wails";
 	    break;
+	case MS_GURGLE:
+		ret = "gurgles hissingly";
+		break;
+	case MS_SHRIEK:
+		ret = "shrieks in pain";
+		aggravate();
+		break;
+	case MS_BONES:
+		ret = "rattles";
+		You("freeze for a moment.");
+		nomul(-2, "scared by rattling", TRUE);
+		nomovemsg = 0;
+		break;
+	case MS_LAUGH:
+		ret = "stops laughing";
+		break;
+	case MS_MUMBLE:
+		ret = "mumbles a bit";
+		break;
+	case MS_ARREST:
+		ret = "blows a whistle";
+		aggravate();
+		break;
+	case MS_SOLDIER:
+		ret = "shouts 'Medic!'";
+		break;
+	case MS_VAMPIRE:
+		ret = "groans";
+		break;
+	case MS_CUSS:
+		ret = "grumbles 'If you do that again I'm gonna open a can of whoopass on you...'";
+		break;
+	case MS_WHORE:
+		ret = "exclaims 'Hey! I ain't a slut!'";
+		break;
+	case MS_SUPERMAN:
+		ret = "shouts 'NO! FUCK YOU!!!'";
+		aggravate();
+		break;
+	case MS_FART_QUIET:
+	case MS_FART_NORMAL:
+	case MS_FART_LOUD:
+		ret = "sobs 'This is humiliating...'";
+		break;
+	case MS_BOSS:
+		ret = "shouts 'That's twice you hit me now! One more time and I'll kill you!'";
+		break;
+	case MS_SHOE:
+		ret = "threatens 'If you keep doing that, we'll scratch your legs full length!'";
+		break;
+	case MS_STENCH:
+		ret = "shouts 'That's no way to treat a woman!'";
+		break;
+	case MS_CONVERT:
+		ret = "shouts 'Peygamber bunu hatirlayacak!'";
+		break;
+	case MS_HCALIEN:
+		ret = "strikes fear into your heart with a gaze";
+		make_feared(HFeared + rnd(10 + (monster_difficulty()) ),TRUE);
+		break;
     default:
 	ret = (const char*) 0;
     }
@@ -1578,14 +1698,59 @@ register struct monst *mtmp;
     switch (mtmp->data->msound) {
 	case MS_MEW:
 	case MS_GROWL:
-	ret = "whimper";
+	ret = "whimpers";
 	    break;
 	case MS_BARK:
-	ret = "whine";
+	ret = "whines";
 	    break;
 	case MS_SQEEK:
-	ret = "squeal";
+	ret = "squeals";
 	    break;
+	case MS_SHRIEK:
+		ret = "shrieks fearfully";
+		aggravate();
+		break;
+	case MS_BONES:
+		ret = "claps";
+		break;
+	case MS_LAUGH:
+		ret = "laughs quietly";
+		break;
+	case MS_MUMBLE:
+		ret = "mumbles in anticipation of danger";
+		break;
+	case MS_ARREST:
+		ret = "calls for reinforcements";
+		break;
+	case MS_SOLDIER:
+		ret = "whispers 'Careful! It's an ambush!'";
+		break;
+	case MS_CUSS:
+		ret = "shouts 'Shit! Danger!'";
+		break;
+	case MS_WHORE:
+		ret = "moans 'Those filthy customers keep trying to beat me up!'";
+		break;
+	case MS_FART_QUIET:
+	case MS_FART_NORMAL:
+	case MS_FART_LOUD:
+		ret = "advises you to be careful";
+		break;
+	case MS_BOSS:
+		ret = "whispers 'Careful, I know there's traps here. Let's try to avoid them.'";
+		break;
+	case MS_SHOE:
+		ret = "shouts 'Stop! There's a heap of shit over there! Make sure we don't step into it!'";
+		break;
+	case MS_STENCH:
+		ret = "asks you to be careful";
+		break;
+	case MS_CONVERT:
+		ret = "whispers 'Kafirler goelgede saklaniyor, ama Allah onlan yok edecek.'";
+		break;
+	case MS_HCALIEN:
+		ret = "makes a pointing gesture";
+		break;
     default:
 	ret = (const char *)0;
     }
@@ -1622,6 +1787,10 @@ register struct monst *mtmp;
 	char buf[BUFSZ];
 
 	int armpro, armprolimit;
+
+	/* monster should make hungry noises only if it actually has to eat --Amy */
+	boolean hastoeat = TRUE;
+	if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !mtmp->egotype_lithivore && !mtmp->egotype_metallivore && !mtmp->egotype_allivore && !lithivorous(mtmp->data)) hastoeat = FALSE;
 
     if (mtmp->egotype_farter) {
 
@@ -1712,7 +1881,9 @@ register struct monst *mtmp;
 					urace.individual.m : urace.noun;
 
 		if (mtmp->mtame) {
-			if (kindred) {
+			if (mtmp->mhp < mtmp->mhpmax/3) {
+				verbl_msg = "I didn't get a drink in a long time...";
+			} else if (kindred) {
 				sprintf(verbuf, "Good %s to you Master%s",
 					isnight ? "evening" : "day",
 					isnight ? "!" : ".  Why do we not rest?");
@@ -1784,11 +1955,9 @@ register struct monst *mtmp;
 	    if (flags.moonphase == FULL_MOON && night()) {
 		pline_msg = "howls.";
 	    } else if (mtmp->mpeaceful) {
-		if (mtmp->mtame &&
-			(mtmp->mconf || mtmp->mflee || mtmp->mtrapped ||
-			 moves > EDOG(mtmp)->hungrytime || mtmp->mtame < 5))
+		if (mtmp->mtame && (mtmp->mconf || mtmp->mflee || mtmp->mtrapped || (moves > EDOG(mtmp)->hungrytime && hastoeat) || mtmp->mtame < 5))
 		    pline_msg = "whines.";
-		else if (mtmp->mtame && EDOG(mtmp)->hungrytime > moves + 1000)
+		else if (mtmp->mtame && hastoeat && (EDOG(mtmp)->hungrytime > (moves + 1000)))
 		    pline_msg = "yips.";
 		else {
 		    if (mtmp->data != &mons[PM_DINGO])	/* dingos do not actually bark */
@@ -1803,90 +1972,212 @@ register struct monst *mtmp;
 		if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped ||
 			mtmp->mtame < 5)
 		    pline_msg = "yowls.";
-		else if (moves > EDOG(mtmp)->hungrytime)
+		else if (moves > EDOG(mtmp)->hungrytime && hastoeat)
 		    pline_msg = "meows.";
-		else if (EDOG(mtmp)->hungrytime > moves + 1000)
+		else if ((EDOG(mtmp)->hungrytime > (moves + 1000)) && hastoeat)
 		    pline_msg = "purrs.";
 		else
 		    pline_msg = "mews.";
 		break;
 	    } /* else FALLTHRU */
 	case MS_GROWL:
-	    pline_msg = mtmp->mpeaceful ? "snarls." : "growls!";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "lets out a tormented snarl.";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "growls hungrily.";
+			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+				pline_msg = "whines.";
+			else if (mtmp->mtame && hastoeat && (EDOG(mtmp)->hungrytime > (moves + 1000)))
+				pline_msg = "yips.";
+			else
+				pline_msg = "snarls.";
+		}
+		else pline_msg = mtmp->mpeaceful ? "snarls." : "growls!";
+		break;
 	case MS_ROAR:
-	    pline_msg = (ptr == &mons[PM_SYSTEM_FAILURE]) ? "says in a monotone voice: 'Pieteikumu kluda.'" : mtmp->mpeaceful ? "snarls." : "roars!";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "lets out a tormented snarl.";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "emits a faint roar.";
+			else
+				pline_msg = (ptr == &mons[PM_SYSTEM_FAILURE]) ? "says in a monotone voice: 'Pieteikumu kluda.'" : "snarls.";
+		}
+		else pline_msg = (ptr == &mons[PM_SYSTEM_FAILURE]) ? "says in a monotone voice: 'Pieteikumu kluda.'" : mtmp->mpeaceful ? "snarls." : "roars!";
+		break;
 	case MS_SQEEK:
-	    pline_msg = "squeaks.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "squeaks in agony.";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "emits a high squeak.";
+			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+				pline_msg = "emits a terrified squeak.";
+			else if (mtmp->mtame && EDOG(mtmp)->hungrytime > moves + 1000)
+				pline_msg = "squeaks joyfully.";
+			else
+				pline_msg = "squeaks.";
+		}
+		else pline_msg = "squeaks.";
+		break;
 	case MS_PARROT:
-	    switch (rn2(8)) {
-		default:
-		case 0:
-		    pline_msg = "squaarks louldly!";
-		    break;
-		case 1:
-		    pline_msg = "says 'Polly want a lembas wafer!'";
-		    break;
-		case 2:
-		    pline_msg = "says 'Nobody expects the Spanish Inquisition!'";
-		    break;
-		case 3:
-		    pline_msg = "says 'Who's a good boy, then?'";
-		    break;
-		case 4:
-		    pline_msg = "says 'Show us yer knickers!'";
-		    break;
-		case 5:
-		    pline_msg = "says 'You'll never make it!'";
-		    break;
-		case 6:
-		    pline_msg = "whistles suggestively!";
-		    break;
-		case 7:
-		    pline_msg = "says 'What sort of a sword do you call that!'";
-		    break;
-	    }
-	    break;
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "says 'Help! Police!'";
+		} else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			pline_msg = "says 'Pass me the damn food already!'";
+		} else switch (rn2(8)) {
+			default:
+			case 0:
+			    pline_msg = "squaarks louldly!";
+			    break;
+			case 1:
+			    pline_msg = "says 'Polly want a lembas wafer!'";
+			    break;
+			case 2:
+			    pline_msg = "says 'Nobody expects the Spanish Inquisition!'";
+			    break;
+			case 3:
+			    pline_msg = "says 'Who's a good boy, then?'";
+			    break;
+			case 4:
+			    pline_msg = "says 'Show us yer knickers!'";
+			    break;
+			case 5:
+			    pline_msg = "says 'You'll never make it!'";
+			    break;
+			case 6:
+			    pline_msg = "whistles suggestively!";
+			    break;
+			case 7:
+			    pline_msg = "says 'What sort of a sword do you call that!'";
+			    break;
+		}
+		break;
 	case MS_SQAWK:
-	    if (ptr == &mons[PM_RAVEN] && !mtmp->mpeaceful)
-	    	verbl_msg = "Nevermore!";
-	    else
-	    	pline_msg = "squawks.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "squawks in agony.";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "makes a distressed squawk.";
+			else if (ptr == &mons[PM_RAVEN] && !mtmp->mpeaceful)
+				verbl_msg = "Nevermore!";
+			else
+				pline_msg = "squawks.";
+		}
+		else if (ptr == &mons[PM_RAVEN] && !mtmp->mpeaceful)
+			verbl_msg = "Nevermore!";
+		else
+			pline_msg = "squawks.";
+		break;
 	case MS_HISS:
-	    if (!mtmp->mpeaceful)
-		pline_msg = "hisses!";
-	    else return 0;	/* no sound */
-	    break;
+		if (!mtmp->mpeaceful)
+			pline_msg = "hisses!";
+		else if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "hisses angrily.";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "tries to snap at your finger.";
+			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+				pline_msg = "makes a confused hiss.";
+			else if (mtmp->mtame && hastoeat && (EDOG(mtmp)->hungrytime > (moves + 1000)))
+				pline_msg = "hums.";
+			else
+				pline_msg = "hisses peacefully.";
+		}
+		else return 0;	/* no sound */
+		break;
 	case MS_BUZZ:
-	    pline_msg = mtmp->mpeaceful ? "drones." : "buzzes angrily.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/5)
+				pline_msg = "displays a blue screen of death!";
+			else if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "displays an error message: 'General protection fault'...";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "is waiting for data input...";
+			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+				pline_msg = "makes a confused droning sound.";
+			else
+				pline_msg = "drones.";
+		}
+		else pline_msg = mtmp->mpeaceful ? "drones." : "buzzes angrily.";
+		break;
 	case MS_GRUNT: /* YANI by ShivanHunter */
-	    pline_msg = (mtmp->data->mlet == S_TROLL) ? "shouts: 'VI > EMACS!!!!!'" : "grunts.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->data->mlet == S_TROLL) {
+				if (mtmp->mhp < mtmp->mhpmax/3)
+					pline_msg = "shouts: 'Curse those right-wing extremists!'";
+				else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+					pline_msg = "shouts: 'Does this stinking hole not have a restaurant??? '";
+				else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+					pline_msg = "shouts: 'rn2(P = NP) can't be false because we didn't see any rn2(0) impossibles, which proves that P = NP!'";
+				else
+					pline_msg = "shouts: 'VI > EMACS!!!!!'";
+
+			} else {
+				if (mtmp->mhp < mtmp->mhpmax/3)
+					pline_msg = "seems to be wounded.";
+				else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+					pline_msg = "is hungry.";
+				else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+					pline_msg = "grovels.";
+				else
+					pline_msg = "grunts.";
+			}
+		}
+		else pline_msg = (mtmp->data->mlet == S_TROLL) ? "shouts: 'VI > EMACS!!!!!'" : "grunts.";
+		break;
 	case MS_NEIGH:
-	    if (mtmp->mtame < 5)
-		pline_msg = "neighs.";
-	    else if (moves > EDOG(mtmp)->hungrytime)
-		pline_msg = "whinnies.";
-	    else
-		pline_msg = "whickers.";
-	    break;
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3)
+			pline_msg = "whines.";
+		else if (mtmp->mtame < 5)
+			pline_msg = "neighs.";
+		else if (hastoeat && moves > EDOG(mtmp)->hungrytime)
+			pline_msg = "whinnies.";
+		else
+			pline_msg = "whickers.";
+		break;
 	case MS_WAIL:
-	    pline_msg = "wails mournfully.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "seems about to faint.";
+			else
+				pline_msg = "wails mournfully.";
+		}
+		else pline_msg = "wails mournfully.";
+		break;
 	case MS_GURGLE:
-	    pline_msg = "gurgles.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "gurgles loudly.";
+			else
+				pline_msg = "gurgles.";
+		}
+		else pline_msg = "gurgles.";
+		break;
 	case MS_BURBLE:
-	    pline_msg = "burbles.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/4)
+				pline_msg = "makes a frightened burble.";
+			else
+				pline_msg = "burbles.";
+		}
+		else pline_msg = "burbles.";
+		break;
 	case MS_SHRIEK:
-	    pline_msg = "shrieks.";
-	    aggravate();
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "emits a faint shriek.";
+			else
+				pline_msg = "shrieks.";
+				aggravate();
+		}
+		else {
+			pline_msg = "shrieks.";
+			aggravate();
+		}
+		break;
 	case MS_FART_QUIET:
 	case MS_FART_NORMAL:
 	case MS_FART_LOUD:
@@ -1907,8 +2198,17 @@ register struct monst *mtmp;
 		}
 
 		if (mtmp->mtame) {
-			pline("%s seems to love you even more than before.", Monnam(mtmp) );
-			if (mtmp->mtame < 30) mtmp->mtame++;
+
+			if (mtmp->mhp < mtmp->mhpmax/3) {
+				verbl_msg = "Please don't let me die!";
+				break;
+			} else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+				pline_msg = "I haven't eaten in a while. Please bring me some chicken meat garnished with pepperoni.";
+				break;
+			} else {
+				pline("%s seems to love you even more than before.", Monnam(mtmp) );
+				if (mtmp->mtame < 30) mtmp->mtame++;
+			}
 		}
 		else if (mtmp->mpeaceful) {
 			pline("%s seems to like being felt up by you.", Monnam(mtmp) );
@@ -1920,7 +2220,7 @@ register struct monst *mtmp;
 		else {
 			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
 		}
-	    m_respond(mtmp);
+		m_respond(mtmp);
 
 		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_SEX_GAME && mtmp->mpeaceful && !mtmp->mfrenzied && !mtmp->mtame && (mtmp->m_lev < 1 || (u.ugold >= (mtmp->m_lev * 100))) ) {
 			pline("%s offers to join you for %d zorkmids.", Monnam(mtmp), (mtmp->m_lev < 1) ? 0 : (mtmp->m_lev * 100));
@@ -1937,24 +2237,73 @@ register struct monst *mtmp;
 
 	    break;
 	case MS_IMITATE:
-	    pline_msg = "imitates you.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "unsuccessfully tries to imitate you.";
+			else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "imitates a starving person.";
+			else
+				pline_msg = "imitates you.";
+		}
+		else pline_msg = "imitates you.";
+		break;
 	case MS_SHEEP:
-	    pline_msg = "baaaas.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "makes a sound that reminds you of a moan.";
+			else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "baaaas hungrily.";
+			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+				pline_msg = "is scared.";
+			else
+				pline_msg = "baaaas.";
+		}
+		else pline_msg = "baaaas.";
+		break;
 	case MS_CHICKEN:
-	    pline_msg = "clucks.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3) {
+				pline_msg = "makes an anguished shriek.";
+				aggravate();
+			} else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "looks hungry.";
+			else if (mtmp->mconf || mtmp->mflee)
+				pline_msg = "runs wildly in fear.";
+			else if (mtmp->mtrapped)
+				pline_msg = "is mortally scared.";
+			else
+				pline_msg = "clucks.";
+		}
+		else pline_msg = "clucks.";
+		break;
 	case MS_COW:
-	    pline_msg = "bellows.";
-	    break;
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline_msg = "breathes heavily.";
+			else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				pline_msg = "makes a distressed bellow.";
+			else
+				pline_msg = "bellows.";
+		}
+		else pline_msg = "bellows.";
+		break;
 	case MS_BONES:
-	    pline(FunnyHallu ? "%s plays the xylophone!" : "%s rattles noisily.", Monnam(mtmp));
-	    You("freeze for a moment.");
-	    nomul(-2, "scared by rattling", TRUE);
-	    nomovemsg = 0;
-	    break;
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			pline("%s's bones seem about to break!", Monnam(mtmp));
+		} else {
+			pline(FunnyHallu ? "%s plays the xylophone!" : "%s rattles noisily.", Monnam(mtmp));
+			You("freeze for a moment.");
+			nomul(-2, "scared by rattling", TRUE);
+			nomovemsg = 0;
+		}
+		break;
 	case MS_LAUGH:
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/4) {
+			verbl_msg = "Hahahahahahahaaaaaaaaaa!"; /* Super Mario 64 :P */
+			break;
+		}
+
 	    {
 		static const char * const laugh_msg[4] = {
 		    "giggles.", "chuckles.", "snickers.", "laughs.",
@@ -1963,8 +2312,10 @@ register struct monst *mtmp;
 	    }
 	    break;
 	case MS_MUMBLE:
-	    pline_msg = "mumbles incomprehensibly.";
-	    break;
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "mumbles faintly.";
+		} else pline_msg = "mumbles incomprehensibly.";
+		break;
 	case MS_DJINNI:
 	    if (mtmp->mtame) {
 		verbl_msg = "Sorry, I'm all out of wishes.";
@@ -1976,29 +2327,44 @@ register struct monst *mtmp;
 	    } else verbl_msg = "This will teach you not to disturb me!";
 	    break;
 	case MS_SHOE:
-	    if (mtmp->mfrenzied) {
-		if (u.usteed == mtmp)
-			verbl_msg = "Wear us if you want, but take us off and we'll scratch you to death and make your blood squirt in all directions.";
-		else
-			verbl_msg = "We'll scratch very bloody wounds on your legs and kill you.";
-	    } else if (mtmp->mtame) {
-		if (u.usteed == mtmp)
-			verbl_msg = "Yes! Please! Keep wearing us and we'll take you to the end of the world and beyond!";
-		else
-			verbl_msg = "Come on my dear, find someone whom we can kick to death!";
-	    } else if (mtmp->mpeaceful) {
-		if (u.usteed == mtmp)
-			verbl_msg = "You're not our owner, but we allow you to wear us for a while because we like you.";
-		else
-			verbl_msg = "We are beautiful, in every single way!";
-	    } else {
-		if (u.usteed == mtmp)
-			verbl_msg = "Okay, you may wear us. But as soon as you take us off, we'll teach you a lesson in pain.";
-		else
-			verbl_msg = "You don't need to fight. Just stand there and we'll cause soothing pain to you.";
-	    }
-	    break;
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			if (u.usteed == mtmp)
+				verbl_msg = "Why do you wear us out like that? Can't you, like, try to avoid the mud and dogshit?";
+			else
+				verbl_msg = "Nooooo! We're nearing the end of our lifetime! Can you please take us to a shoe repair shop?";
+		} else if (mtmp->mfrenzied) {
+			if (u.usteed == mtmp)
+				verbl_msg = "Wear us if you want, but take us off and we'll scratch you to death and make your blood squirt in all directions.";
+			else
+				verbl_msg = "We'll scratch very bloody wounds on your legs and kill you.";
+		} else if (mtmp->mtame) {
+			if (u.usteed == mtmp)
+				verbl_msg = "Yes! Please! Keep wearing us and we'll take you to the end of the world and beyond!";
+			else
+				verbl_msg = "Come on my dear, find someone whom we can kick to death!";
+		} else if (mtmp->mpeaceful) {
+			if (u.usteed == mtmp)
+				verbl_msg = "You're not our owner, but we allow you to wear us for a while because we like you.";
+			else
+				verbl_msg = "We are beautiful, in every single way!";
+		} else {
+			if (u.usteed == mtmp)
+				verbl_msg = "Okay, you may wear us. But as soon as you take us off, we'll teach you a lesson in pain.";
+			else
+				verbl_msg = "You don't need to fight. Just stand there and we'll cause soothing pain to you.";
+		}
+		break;
 	case MS_STENCH:
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I sure hope you'll protect me with your life.";
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Dinner time! Can you take me to a noble restaurant please?";
+			break;
+		}
 
 		if (mtmp->data == &mons[PM_MANDARUCK] && !mtmp->mfrenzied) {
 
@@ -2126,7 +2492,19 @@ register struct monst *mtmp;
 
 	case MS_CONVERT:
 
-		if (mtmp->mpeaceful) {
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				verbl_msg = "Allah bana bunu yapan kafirleri cezalandiracak!";
+			else if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime)
+				verbl_msg = "Baska bir doener kebap yemem gerek!";
+			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+				verbl_msg = "Simdi kime dua etmem gerekiyor? Jahwe? Hayir, hatirliyorum, bu Buda!";
+			else {
+				if (flags.female) verbl_msg = "Selamlar, kiz kardes.";
+				else verbl_msg = "Selamlar, erkek kardes.";
+			}
+			break;
+		} else if (mtmp->mpeaceful) {
 			if (flags.female) verbl_msg = "Selamlar, kiz kardes.";
 			else verbl_msg = "Selamlar, erkek kardes.";
 
@@ -2313,11 +2691,24 @@ register struct monst *mtmp;
 
 	case MS_HCALIEN:
 
+		if (mtmp->mtame) {
+			if (mtmp->mhp < mtmp->mhpmax/3)
+				pline("%s points a %s at %s heart.", Monnam(mtmp), mbodypart(mtmp, FINGER), mhis(mtmp));
+			else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
+				pline("%s grunts long and deeply.", Monnam(mtmp));
+			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
+				pline("%s spins %s %s wildly.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, HEAD));
+			else if (Race_if(PM_TURMENE) || Race_if(PM_EGYMID) || Race_if(PM_PERVERT) || Race_if(PM_HC_ALIEN))
+				pline("%s nods approvingly.", Monnam(mtmp));
+			else
+				pline("%s makes an approving gesture, but doesn't deign to talk to you.", Monnam(mtmp));
+			break;
+		}
+
 		if (mtmp->mpeaceful) {
 
-			if (mtmp->mtame) pline("%s makes an approving gesture, but doesn't deign to talk to you.", Monnam(mtmp));
+			if (Race_if(PM_TURMENE) || Race_if(PM_EGYMID) || Race_if(PM_PERVERT) || Race_if(PM_HC_ALIEN)) pline("%s looks at you for a moment.", Monnam(mtmp));
 			else pline("%s does not deign to look at you, let alone talk to you.", Monnam(mtmp));
-
 			break;
 
 		}
@@ -2414,8 +2805,7 @@ register struct monst *mtmp;
 		verbl_msg = "I'm trapped!";
 	    } else if (mtmp->mhp < mtmp->mhpmax/2)
 		pline_msg = "asks for a potion of healing.";
-	    else if (mtmp->mtame && !mtmp->isminion &&
-						moves > EDOG(mtmp)->hungrytime)
+	    else if (mtmp->mtame && hastoeat && !mtmp->isminion && moves > EDOG(mtmp)->hungrytime)
 		verbl_msg = "I'm hungry.";
 	    /* Specific monsters' interests */
 	    else if (is_elf(ptr))
@@ -2542,18 +2932,21 @@ register struct monst *mtmp;
 	    }
 	    break;
 	case MS_ARREST:
-	    if (mtmp->mpeaceful)
-		verbalize("Just the facts, %s.",
-		      flags.female ? "Ma'am" : "Sir");
-	    else {
-		static const char * const arrest_msg[3] = {
-		    "Anything you say can be used against you.",
-		    "You're under arrest!",
-		    "Stop in the name of the Law!",
-		};
-		verbl_msg = arrest_msg[rn2(3)];
-	    }
-	    break;
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/10) {
+			verbalize("This is unit %d to headquarters. Send reinforcements! Repeat! Send reinforcements!", mtmp->m_id); /* inspired by the anachronononononononononononononaut NPCs in dnethack, thanks Chris --Amy */
+		} else if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbalize("Officer in need of a medic!");
+		} else if (mtmp->mpeaceful)
+			verbalize("Just the facts, %s.", flags.female ? "Ma'am" : "Sir");
+		else {
+			static const char * const arrest_msg[3] = {
+				"Anything you say can be used against you.",
+				"You're under arrest!",
+				"Stop in the name of the Law!",
+			};
+			verbl_msg = arrest_msg[rn2(3)];
+		}
+		break;
 	case MS_BRIBE:
         if (monsndx(ptr) == PM_PRISON_GUARD) {
             long gdemand = 500 * u.ulevel;
@@ -2582,10 +2975,10 @@ register struct monst *mtmp;
 	    }
 	    /* fall through */
 	case MS_CUSS:
-	    if (!mtmp->mpeaceful)
-		cuss(mtmp);
+		if (!mtmp->mpeaceful)
+			cuss(mtmp);
 
-	    if (mtmp->mpeaceful && monsndx(ptr) == PM_WIZARD_OF_YENDOR && Race_if(PM_RODNEYAN) )	{
+		if (mtmp->mpeaceful && monsndx(ptr) == PM_WIZARD_OF_YENDOR && Race_if(PM_RODNEYAN) )	{
 
 			if (mon_has_amulet(mtmp) )	{
 				verbalize("Here, take the amulet and use it well, %s!", flags.female ? "sister" : "brother");
@@ -2599,6 +2992,8 @@ register struct monst *mtmp;
 
 		}
 
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) verbalize("Doggone it!");
+
 	    break;
 	case MS_GYPSY:	/* KMH */
 		if (mtmp->mpeaceful) {
@@ -2607,9 +3002,15 @@ register struct monst *mtmp;
 		}
 		/* fall through */
 	case MS_SPELL:
-	    /* deliberately vague, since it's not actually casting any spell */
-	    pline_msg = "seems to mutter a cantrip.";
-	    break;
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "is trying to cast a healing spell.";
+			break;
+		}
+
+		/* deliberately vague, since it's not actually casting any spell */
+		pline_msg = "seems to mutter a cantrip.";
+		break;
 	case MS_NURSE: /* services added by Amy - maybe we should make this into a menu instead of y/n prompts? */
 
 	    {
@@ -2954,9 +3355,14 @@ register struct monst *mtmp;
 	    break;
 	case MS_SOLDIER:
 
-	    if (mtmp->mtame && moves > EDOG(mtmp)->hungrytime) {
-		verbl_msg = "We gotta stop by the next canteen.";
-		break;
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Medic!!!";
+			break;
+		}
+
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "We gotta stop by the next canteen.";
+			break;
 		}
 
 	    {
@@ -3042,6 +3448,15 @@ register struct monst *mtmp;
 	    break;
 	case MS_PUPIL:
 
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbalize("%s! Those bullies beat me up! Help!", flags.female ? "Mom" : "Dad");
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Man, how much longer does this lesson last? I need a break so I can eat some peanuts!";
+			break;
+		}
+
 		{
 		static const char *pupil_msgs[] = {
 			"Today no homework ... *please*",
@@ -3059,6 +3474,15 @@ register struct monst *mtmp;
 		break;
 
 	case MS_WHORE:
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Why did you allow those rude customers to treat me like that? Some sort of pimp you are!";
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Can we get something to eat, honey? I promise that I'll pay for my meal with my own money!";
+			break;
+		}
 
 		if (mtmp->data == &mons[PM_ROXY] && !mtmp->mtame && mtmp->wastame && u.ugold >= 1000) {
 			verbalize("For 1000 zorkmids I'll join your team again.");
@@ -3142,6 +3566,34 @@ register struct monst *mtmp;
 
 	case MS_SUPERMAN:
 
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I WILL COME BACK...";
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "HUNGRY! NEED FOOD!";
+			break;
+		}
+		if (mtmp->mtame) { /* tame and no distress */
+			static const char *superman_tame[] = {
+				"GO!",
+				"LETS! GO!",
+				"GO! SQUAD!",
+				"WE WILL KICK THEM IN THE GOD DAMN ASS!",
+				"MOVE IN!",
+				"ENEMY SPOTTED!",
+				"FIRE IN THE ASS HOLE!",
+				"SQUAD STAY ALERT FOUR HOSTILES!",
+				"SIR I HERE SOMETHING!", /* too lazy to check for female PC --Amy */
+				"MY PRIVATE IS FIVEMETERS TANGO ALL!",
+				"MY PRIVATE IS TENMETERS ALERT CREEPS HOT ASS!",
+				"ECHO MISSION IS GO!",
+			};
+
+			verbalize("%s", superman_tame[rn2(SIZE(superman_tame))]);
+			break;
+		}
+
 		if (!mtmp->mpeaceful) {
 		static const char *superman_msgs[] = {
 			"FRONTAL ATTACK!!!",
@@ -3172,6 +3624,16 @@ register struct monst *mtmp;
 		break;
 
 	case MS_TEACHER:
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Those kids these days ain't got no respect, I tell you...";
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Why did I forget to bring along any food?";
+			break;
+		}
+
 		{
 	   	 static const char *teacher_msgs[] = {
 			"No chance! Every day you'll get homework!",
@@ -3217,6 +3679,15 @@ register struct monst *mtmp;
 		break;
 
 	case MS_PRINCIPAL:
+
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "No! I can't faint! I'm the only one who can lead this school!";
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Wait, I need a pit stop! Be back in a minute!";
+			break;
+		}
 
 		{
 		static const char *principal_msgs[] = {
