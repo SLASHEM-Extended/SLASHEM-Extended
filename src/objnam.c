@@ -6559,46 +6559,49 @@ register struct obj *obj;
 
 	/* warn player if items are made of glass or ether --Amy */
 	/* Amy grepping target: "materialeffect" */
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_GLASS && ((obj->oclass != POTION_CLASS && obj->oclass != GEM_CLASS) || flags.materialglyph) ) strcat(prefix,"* ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_ETHER) strcat(prefix,"! ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_OBSIDIAN) strcat(prefix,"^ ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MYSTERIOUS) strcat(prefix,"0 ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_LIQUID) strcat(prefix,"} ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_WAX) strcat(prefix,") ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_VEGGY) strcat(prefix,"v-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_FLESH) strcat(prefix,"% ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PAPER) strcat(prefix,"? ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CLOTH) strcat(prefix,"c-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_LEATHER) strcat(prefix,"l-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_WOOD) strcat(prefix,"w-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_BONE) strcat(prefix,"b-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_DRAGON_HIDE) strcat(prefix,"D-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_IRON) strcat(prefix,"i-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_METAL) strcat(prefix,"m-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_COPPER) strcat(prefix,"C-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SILVER) strcat(prefix,"S-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GOLD) strcat(prefix,"g-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLATINUM) strcat(prefix,"P-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MITHRIL) strcat(prefix,"M-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLASTIC) strcat(prefix,"p-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GEMSTONE) strcat(prefix,"$ ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MINERAL) strcat(prefix,"` ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_VIVA) strcat(prefix,"V-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_INKA) strcat(prefix,"I-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_TAR) strcat(prefix,"t-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SILK) strcat(prefix,"s-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ARCANIUM) strcat(prefix,"a-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SECREE) strcat(prefix,"= ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_POURPOOR) strcat(prefix,"] ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_COMPOST) strcat(prefix,"o-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ETERNIUM) strcat(prefix,"E-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_BRICK) strcat(prefix,"B-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SAND) strcat(prefix,". ");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SHADOWSTUFF) strcat(prefix,"d-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_LEAD) strcat(prefix,"L-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CHROME) strcat(prefix,"8-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CERAMIC) strcat(prefix,"7-");
-	if (obj->dknown && !PlayerUninformation && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_NANOMACHINE) strcat(prefix,"N-");
+
+	if (!PlayerUninformation && obj->otyp != FAKE_AMULET_OF_YENDOR && obj->otyp != AMULET_OF_YENDOR && !Hallucination) {
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_GLASS && ((obj->oclass != POTION_CLASS && obj->oclass != GEM_CLASS) || flags.materialglyph) ) strcat(prefix,"* ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_ETHER) strcat(prefix,"! ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && objects[obj->otyp].oc_material == MT_OBSIDIAN) strcat(prefix,"^ ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MYSTERIOUS) strcat(prefix,"0 ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_LIQUID) strcat(prefix,"} ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_WAX) strcat(prefix,") ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_VEGGY) strcat(prefix,"v-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_FLESH) strcat(prefix,"% ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PAPER) strcat(prefix,"? ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CLOTH) strcat(prefix,"c-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_LEATHER) strcat(prefix,"l-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_WOOD) strcat(prefix,"w-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_BONE) strcat(prefix,"b-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_DRAGON_HIDE) strcat(prefix,"D-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_IRON) strcat(prefix,"i-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_METAL) strcat(prefix,"m-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_COPPER) strcat(prefix,"C-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SILVER) strcat(prefix,"S-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GOLD) strcat(prefix,"g-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLATINUM) strcat(prefix,"P-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MITHRIL) strcat(prefix,"M-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLASTIC) strcat(prefix,"p-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GEMSTONE) strcat(prefix,"$ ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MINERAL) strcat(prefix,"` ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_VIVA) strcat(prefix,"V-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_INKA) strcat(prefix,"I-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_TAR) strcat(prefix,"t-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SILK) strcat(prefix,"s-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ARCANIUM) strcat(prefix,"a-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SECREE) strcat(prefix,"= ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_POURPOOR) strcat(prefix,"] ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_COMPOST) strcat(prefix,"o-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ETERNIUM) strcat(prefix,"E-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_BRICK) strcat(prefix,"B-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SAND) strcat(prefix,". ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SHADOWSTUFF) strcat(prefix,"d-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_LEAD) strcat(prefix,"L-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CHROME) strcat(prefix,"8-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CERAMIC) strcat(prefix,"7-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_NANOMACHINE) strcat(prefix,"N-");
+	}
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_NECROMANCER)) &&
 	    obj->bknown && !PlayerUninformation &&
