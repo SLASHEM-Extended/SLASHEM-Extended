@@ -227,7 +227,8 @@ static const char * const shktools[] = {
 	"Ledanagan", "Yoreel", "Garena", "Tsitonpyh", "Esoreci",
 	"Ikustodam", "Elomacaug Gnimalf", "Qretep", "Blevap", "Tnepocard",
 	"Plug Itna", "Oirdna", "Etinatem", "Lyrebyerg", "Nossllep",
-	"Esulcer", "Anelam", "Tsaebknip", "Enamkcim",
+	"Esulcer", "Anelam", "Tsaebknip", "Enamkcim", "Namkrop",
+	"Goomorcim", "Rolam", "Kelrem",
 
     0
 };

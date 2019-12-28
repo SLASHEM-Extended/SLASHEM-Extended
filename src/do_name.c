@@ -600,7 +600,7 @@ static const char * const ghostnames[] = {
 	"Leeroy", "Hypnotist", "Anerag", "Icerose", "Madotsuki",
 	"PeterQ", "PavelB", "FlamingGuacamole", "Dracopent", "AntiGulp",
 	"Metanite", "Andrio", "Greyberyl", "Pellsson", "Recluse", "Malena",
-	"Pinkbeast", "Mickmane", 
+	"Pinkbeast", "Mickmane", "Porkman", "Micromoog", "Malor", "Merlek",
 
 };
 
