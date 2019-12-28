@@ -1,10 +1,41 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.6.1 - December 2019
+- The player now gains extra skill slots upon reaching experience levels divisible by 10, and also when showing the quest artifact to their quest leader.
+- Fixed the oversight that allowed players to tell the real Amulet of Yendor apart from fakes via the materialglyph option.
+- The natalje trap effect now stops the player's occupation after a few turns, to ensure that multi-turn actions no longer automatically lead to losing stats and health.
+- Rodney's intervention happens less often in general now and the Zrutinator isn't guaranteed to spawn.
+- Implants are more likely to generate in containers.
+- Reduced the chance that an item in a shop is replaced with a mimic.
+- Many types of monsters now have additional "sounds" that they can make when they're a pet, which allows players to check their status via chatting, among other things.
+- A monster that has the steed egotype can now be saddled more easily.
+- Pets, steeds and symbiotes now have a reduced risk of getting attacked when low on health, but also a reduced chance of actively attacking monsters. This is done to increase their survivability.
+- If the player eats or sleeps while having a symbiote, the symbiote will be healed now.
+- Whip tricks can now be performed with all whip-type weapons except rubber hoses.
+- Certain sokoban penalties that were removed earlier will now be in effect again when playing soviet mode.
+- If a riding player moves, the steed can now retaliate upon getting hit.
+- Toned down monster swarms on some Sheol levels, and replaced guaranteed crystal ice golems with a weaker monster type.
+- Many terrain-altering effects now use a better algorithm to determine whether a tile should block sight or not.
+- Fixed some loopholes that would allow players to still get a full view of their inventory or containers while the inventorylessness effect was active.
+- The gun control and squeaking skills can now be trained at the normal rate if the player character is of the correct gender.
+- Confusion resistance only reduces the player's spellcasting failure chance when confused now, instead of removing it outright.
+- Successfully untrapping chest/door traps trains searching now, and breaking a wand that had charges trains devices by the amount of charges.
+- Pentagram and throne traps can no longer be more common.
+- Wands made of vivadoradorium no longer lose charges only 50% of the time if the type of wand can only be recharged once.
+- Toned down the reduction of loot that the player gets, so the player will now get more stuff than before (but there is still a gradual reduction). Also, weapon tools and sling ammo are now affected by the loot reduction.
+- If the player ignites a grenade or stick of dynamite, it now trains firearms skill.
+- Robes of weakness now reduce the player's strength when worn.
+
 2.6.0 - December 2019
+- Fixed a loophole that allowed the player to dig with artifacts without getting blasted.
+- Reduced the damage bonuses of Shii-Cho, Makashi and Vaapad forms.
+- Polymorphing a monster that has engulfed the player no longer unconditionally sets the monster's HP to 1.
+- Using the force on a farmland tile now properly updates the player's vision.
+- Fixed an error introduced in an earlier commit that would allow the player to turn on the second blade of lightsabers that don't actually have a second blade.
+- Removed the "couldn't load makemase.lev - making a maze" warning that appeared when we used our hacky way of forcing maze generation.
 - Stacks of health/manastones are less effective.
 - Riders and sins no longer revive when killed in freeplay mode.
 - Rebalanced the damage output of certain weapons.
-- Slightly reduced the amount of mana required for casting fireball.
 - When grave walls or farmland tiles are removed, the player's sight is now properly updated.
 - Several techniques have had their average timeouts increased.
 - Heavy two-handed weapons give an AC penalty for the player and are less effective versus tiny monsters but more effective versus gigantic ones.
