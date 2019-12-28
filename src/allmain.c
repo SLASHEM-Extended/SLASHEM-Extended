@@ -13670,10 +13670,10 @@ timebasedlowerchance()
 {
 	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
 
-	int chance = 115;
+	int chance = 133;
 	chance -= (moves * 100 / u.monstertimefinish);
 	/* make sure we don't fall off the bottom */
-	if (chance < 15) chance = 15;
+	if (chance < 33) chance = 33;
 
 	if (moves > 20000 && !rn2(2)) {
 		chance *= 19;
@@ -13748,7 +13748,7 @@ timebasedlowerchance()
 		chance /= rnd(5);
 	}
 
-	if (chance < 5) chance = 5; /* always at least a 5% chance of getting it --Amy */
+	if (chance < 10) chance = 10; /* always at least a 10% chance of getting it --Amy */
 
 	if (chance > rnd(100)) return(TRUE); /* the effect will happen despite the lower chance */
 	else return(FALSE);
