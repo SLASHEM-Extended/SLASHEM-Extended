@@ -3325,6 +3325,7 @@ trapsdone:
 				} else {
 					You("gotta keep dancing...");
 				}
+				stop_occupation();
 			}
 
 			if (moves > (u.nataljetrapturns + 5)) {
@@ -3333,6 +3334,7 @@ trapsdone:
 				} else {
 					You("missed the beat! Continue dancing or suffer!");
 				}
+				stop_occupation();
 			}
 
 		}
