@@ -70,7 +70,7 @@ const struct icp boxiprobs[] = {
 {140, POTION_CLASS},
 {140, SCROLL_CLASS},
 { 60, SPBOOK_CLASS},
-{ 97, COIN_CLASS},
+{ 93, COIN_CLASS},
 { 65, WAND_CLASS},
 { 50, RING_CLASS},
 { 30, AMULET_CLASS},
@@ -78,7 +78,7 @@ const struct icp boxiprobs[] = {
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
 {  1, CHAIN_CLASS},
-{  1, IMPLANT_CLASS}
+{  5, IMPLANT_CLASS}
 };
 
 const struct icp tchestprobs[] = {
@@ -90,7 +90,7 @@ const struct icp tchestprobs[] = {
 { 90, POTION_CLASS},
 { 90, SCROLL_CLASS},
 { 60, SPBOOK_CLASS},
-{ 57, COIN_CLASS},
+{ 53, COIN_CLASS},
 { 45, WAND_CLASS},
 { 55, RING_CLASS},
 { 45, AMULET_CLASS},
@@ -98,7 +98,7 @@ const struct icp tchestprobs[] = {
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
 {  1, CHAIN_CLASS},
-{  1, IMPLANT_CLASS}
+{  5, IMPLANT_CLASS}
 };
 
 #ifdef REINCARNATION
