@@ -545,11 +545,14 @@ resurrect()
 		else verbalize("Hi there again, %s", flags.female ? "sister" : "brother");
 	}
 
-	zruti = makemon(&mons[PM_THE_ZRUTINATOR], u.ux, u.uy, MM_NOWAIT);
-	if (zruti) {
-		zruti->msleeping = zruti->mtame = zruti->mpeaceful = 0;
-		if (Race_if(PM_RODNEYAN)) zruti->mpeaceful = 1;
-		set_malign(zruti);
+	/* occasionally spawn the zrutinator as well --Amy */
+	if (!rn2(3)) {
+		zruti = makemon(&mons[PM_THE_ZRUTINATOR], u.ux, u.uy, MM_NOWAIT);
+		if (zruti) {
+			zruti->msleeping = zruti->mtame = zruti->mpeaceful = 0;
+			if (Race_if(PM_RODNEYAN)) zruti->mpeaceful = 1;
+			set_malign(zruti);
+		}
 	}
 
 }

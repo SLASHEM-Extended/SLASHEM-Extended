@@ -10108,7 +10108,7 @@ past3:
 		    invault();
 		    if (u.uhave.amulet && !u.freeplaymode) amulet();
 		if (!rn2(40+(int)(ACURR(A_DEX)*3))) u_wipe_engr(rnd(3));
-		    if ((u.uevent.udemigod && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {
+		    if ((u.uevent.udemigod && !u.freeplaymode && !rn2(5) && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {
 			if (u.udg_cnt) u.udg_cnt--;
 			if (u.udg_cnt < 0) u.udg_cnt = 0; /* fail safe by Amy */
 			if (!u.udg_cnt) {
