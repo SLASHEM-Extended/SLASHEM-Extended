@@ -402,6 +402,7 @@ struct you {
 	int urmaxlvlK;		/* for SJW role */
 	int urmaxlvlL;		/* for asgardian race */
 	int urmaxlvlM;		/* for missingno race */
+	int urmaxlvlN;		/* for extra skill slots */
 	int urmaxlvlUP;		/* for determining whether levelups refill your HP and Pw */
 	int xtralevelmult;	/* multiplier that determines how much EXP you need to advance again if at XL30 */
 	int uhereticgodinit;

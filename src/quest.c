@@ -201,6 +201,13 @@ struct obj *obj;	/* quest artifact; possibly null if carrying Amulet */
 	    if ((otmp = carrying(BELL_OF_OPENING)) == 0)
 		/*com_pager(5)*/qt_pager(QT_SILVERBELL); /* have individual messages for certain classes --Amy */
 	}
+
+	if (!Qstat(got_thanks)) {
+		Qstat(got_thanks) = TRUE; /* filthy hangup cheater */
+		u.weapon_slots += 2;
+		pline("As a reward, you gain 2 extra skill slots!");
+	}
+
 	Qstat(got_thanks) = TRUE;
 
 	if (obj) {

@@ -10612,6 +10612,7 @@ u_init()
 	u.urmaxlvlK = 1; /* will go up if a SJW role player levels up */
 	u.urmaxlvlL = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlM = 1; /* will go up if an missingno race player levels up */
+	u.urmaxlvlN = 1; /* will go up whenever any player levels up */
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 	u.xtralevelmult = 1; /* will go up if you level up from EXP points while already XL30 */
 
