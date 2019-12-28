@@ -2245,9 +2245,12 @@ moveloop()
 		}
 
 		if (practicantterror && u.practicantcash) { /* Noroela, the bitch, spends your hard-earned cash */
-			u.practicantcash--;
+			if ((u.practicantcash || !rn2(10)) && !rn2(5)) u.practicantcash--;
 			if (u.practicantcash > 500 && !rn2(5000)) {
-				u.practicantcash -= min(5000, (u.practicantcash / 2));
+				int comcost = (u.practicantcash / 2);
+				if (comcost > 5000) comcost = 5000;
+				comcost = rnd(comcost);
+				u.practicantcash -= comcost;
 				noroelataunt();
 			}
 			if (u.practicantcash < 0) u.practicantcash = 0; /* fail safe */
