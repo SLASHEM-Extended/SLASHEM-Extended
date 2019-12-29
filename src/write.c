@@ -458,19 +458,17 @@ found:
 
 			if (Race_if(PM_SUSTAINER) && rn2(50)) {
 				pline("The stat drain doesn't seem to affect you.");
-				return;
-			}
-			if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+			} else if (Role_if(PM_ASTRONAUT) && rn2(2)) {
 				pline("Your steeled body prevents the stat loss!");
-				return;
+			} else {
+
+				u.cnd_permstatdamageamount++;
+
+				pline("Your intelligence seeps into the thing you wrote, and you feel stupid!");
+				ABASE(A_INT) -= 1;
+				AMAX(A_INT) -= 1;
+				flags.botl = 1;
 			}
-
-			u.cnd_permstatdamageamount++;
-
-			pline("Your intelligence seeps into the thing you wrote, and you feel stupid!");
-			ABASE(A_INT) -= 1;
-			AMAX(A_INT) -= 1;
-			flags.botl = 1;
 
 		} else {
 			pline("Your act of writing transfers some of your intelligence to the paper...");
