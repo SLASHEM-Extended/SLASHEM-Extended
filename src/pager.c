@@ -24850,6 +24850,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"A healing aura surrounds you...",
 	"Your intelligence seeps into the thing you wrote, and you feel stupid!",
 	"Your act of writing transfers some of your intelligence to the paper...",
+	"Wow, you found an easter egg!",
+	"*ding*",
 
 };
 

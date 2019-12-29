@@ -2037,6 +2037,7 @@ register int pm;
 	    case PM_SENSEI_TWEN:
 	    case PM_YELDUD_TWEN:
 	    case PM_PORTER_RUBBER_CHICKEN:
+	    case PM_CHALKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		if (Upolyd) {
 			u.mh++;
@@ -3092,6 +3093,37 @@ register int pm;
 			decontaminate(100);
 		}
 
+		break;
+
+	    case PM_CHOOKATRICE:
+
+		switch (rnd(16)) {
+
+			case 1:	/* blueberry (cure blind) */
+				/* They're good for your eyes, too. [Sakusha]*/
+				pline("It was blueberry-flavored!");
+				make_blinded((long)u.ucreamed,TRUE);
+				break;
+			case 2:	/* bitter (cure stun) */
+				pline("It tasted bitter!");
+				make_stunned(0L,TRUE);
+				break;
+			case 3:	/* wasabi (cure confuse) */
+				pline("It contained all-natural wasabi extract!");
+				make_confused(0L,TRUE);
+				break;
+			case 4:	/* mattya (cure slow and totter) */
+				pline("There was some weird japanese food extras in there...");
+				make_frozen(0L, TRUE);
+				u.totter = 0;
+				break;
+			case 5:	/* ginger (cure hallucinate) */
+				pline("Ginger! Who puts that in a chocolate???");
+				(void) make_hallucinated(0L, TRUE, 0L);
+				break;
+			default: break;
+
+		}
 		break;
 
 	    case PM_CUCKATRICE:
@@ -4917,7 +4949,7 @@ struct obj *otmp;
 			pline("This Macintosh is wonderful!");
 		} else
 #endif
-		if (otmp->otyp == EGG && stale_egg(otmp)) {
+		if (otmp->otyp == EGG && otmp->corpsenm != PM_EASTER && stale_egg(otmp)) {
 		    pline(FunnyHallu ? "Uaaah! That tasted like hydrogen sulfide!" : "Ugh.  Rotten egg.");	/* perhaps others like it */
 		if (Role_if(PM_CONVICT) && (rn2(8) > u.ulevel)) {
 		    You_feel("a slight stomach ache.");	/* prisoners are used to bad food */
@@ -6059,6 +6091,11 @@ register struct obj *otmp;
 		if(!otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) heal_legs();
 		break;
 	    case EGG:
+
+		if (otmp->corpsenm == PM_EASTER) {
+			pline("Wow, you found an easter egg!");
+			if (getmonth() == 3) pline("Happy Easter!");
+		}
 
 		/* eating your own eggs is bad luck --Amy */
 		if (otmp->spe && otmp->corpsenm >= LOW_PM) {

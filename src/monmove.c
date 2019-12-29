@@ -2185,7 +2185,7 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_SUDDEN_TENGU] || ptr == &mons[PM_LASTING_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_POLITICAL_TENGU] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_CHEATY_SILVER_COIN] || ptr == &mons[PM_SPACEWARP_JELLY] || ptr == &mons[PM_NIGHTMARE_SHEEP] || ptr == &mons[PM_HELL_SHEEP] || ptr == &mons[PM_LOVECRAFT_SHEEP] || ptr == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP] || ptr == &mons[PM_TELEHOBBIT] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
 	    if(mtmp->mhp < 7 || (ptr == &mons[PM_SPOOPY_GHOST]) || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);
@@ -2202,6 +2202,12 @@ register int after;
 	}
 
 	if (ptr == &mons[PM_ROW_PERCENTD_COL_PERCENTD] && rn2(3)) {
+		(void) rloc(mtmp, FALSE);
+	      mmoved = 1;
+	      goto postmov;
+	}
+
+	if (ptr == &mons[PM_CHEATY_SILVER_COIN] && rn2(3)) {
 		(void) rloc(mtmp, FALSE);
 	      mmoved = 1;
 	      goto postmov;
@@ -2264,6 +2270,7 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPY_LADY && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_STUPIDITY_AUTIST) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SEIZURE_FOOBACUS) mtmp->mconf = 1;

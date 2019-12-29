@@ -268,7 +268,7 @@ elenaWDG:
 			}
 
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ATSUZOKO_BOOTS) || mtmp->data == &mons[PM_ANIMATED_ATSUZOKO_BOOT] || mtmp->data == &mons[PM_PLATEAU_GIRL] || mtmp->data == &mons[PM_KATI_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_VERENA_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_SUE_LYN_S_PLATEAU_BOOT]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == ATSUZOKO_BOOTS) || mtmp->data == &mons[PM_ANIMATED_ATSUZOKO_BOOT] || mtmp->data == &mons[PM_PLATEAU_GIRL] || mtmp->data == &mons[PM_KATI_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_VERENA_S_PLATEAU_BOOT] || mtmp->data == &mons[PM_BUFFALO_HC_GIRL] || mtmp->data == &mons[PM_SUE_LYN_S_PLATEAU_BOOT]) ) {
 elena1:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -2103,6 +2103,12 @@ mattacku(mtmp)
 		wake_nearby();
 		pline("%s makes an ultra-annoying whistling sound!",Monnam(mtmp) ); 
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kakoy-to ublyudok - nadoyedlivyy mudak." : "Pfiepfiepfie pfiiiie pfiePFIEpfie");
+	}
+
+	if (mtmp->data == &mons[PM_DINGBAT] && !rn2(25) ) {
+
+		wake_nearby();
+		pline("*ding*"); 
 	}
 
 /*	Special lycanthrope handling code */
@@ -19401,7 +19407,7 @@ struct attack *mattk;
 		return 1;
 	else
 		/* Not everyone is straight... --Amy */
-		return (!rn2(25)) ? 1 : (pagr == &mons[PM_FEMME]) ? 1 : (u.homosexual == 2) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
+		return (!rn2(25)) ? 1 : (pagr == &mons[PM_FEMME]) ? 1 : (pagr == &mons[PM_FAGA]) ? 1 : (pagr == &mons[PM_GAY_NAGA]) ? 1 : (pagr == &mons[PM_EMERGENCY_HORNY_TEENAGER]) ? 1 : (u.homosexual == 2) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
 }
 
 #endif /* OVL1 */
