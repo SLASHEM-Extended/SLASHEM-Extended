@@ -1494,7 +1494,7 @@ int thrown;
 		 * actually possible
 		 */
 		if (obj->oclass == BALL_CLASS)
-			range = urange - (int)(obj->owt/300); /* thanks to the ball's weight being 1200 now */
+			range = urange - (int)(obj->owt/600); /* thanks to the ball's weight being 2400 now */
 		else
 			range = urange - (int)(obj->owt/40);
 		if (obj == uball) {
