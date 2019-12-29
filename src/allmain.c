@@ -2245,7 +2245,7 @@ moveloop()
 		}
 
 		if (practicantterror && u.practicantcash) { /* Noroela, the bitch, spends your hard-earned cash */
-			if ((u.practicantcash || !rn2(10)) && !rn2(5)) u.practicantcash--;
+			if (((u.practicantcash > 100) || !rn2(10)) && !rn2(5)) u.practicantcash--;
 			if (u.practicantcash > 500 && !rn2(5000)) {
 				int comcost = (u.practicantcash / 2);
 				if (comcost > 5000) comcost = 5000;
