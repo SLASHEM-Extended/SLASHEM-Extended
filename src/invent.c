@@ -12144,7 +12144,7 @@ boolean knoweverything;
 			case AMULET_OF_BLINDNESS:
 				pline("Wearing this amulet prevents you from seeing. It is usually generated cursed."); break;
 			case AMULET_OF_STRANGULATION:
-				pline("If you wear this amulet, you only have 5 turns to live before it kills you. It is usually generated cursed."); break;
+				pline("If you wear this amulet, you only have 10 turns to live before it kills you. It is usually generated cursed."); break;
 			case AMULET_OF_PREMATURE_DEATH:
 				pline("Wanna die? Wear this! :-P"); break;
 			case AMULET_VERSUS_CURSES:

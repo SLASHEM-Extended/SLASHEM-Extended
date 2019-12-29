@@ -3138,7 +3138,7 @@ Amulet_on()
 		}
 
 		pline("It constricts your throat!");
-		Strangled = 6;
+		Strangled = 11;
 		break;
 
 	case AMULET_OF_STONE:

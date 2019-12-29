@@ -102,17 +102,27 @@ vomiting_dialogue()
 
 static NEARDATA const char * const choke_texts[] = {
 	"You find it hard to breathe.",
+	"You find it hard to breathe.",
+	"You're gasping for air.",
 	"You're gasping for air.",
 	"You can no longer breathe.",
+	"You can no longer breathe.",
 	"You're turning %s.",
+	"You're turning %s.",
+	"You're about to suffocate.",
 	"You suffocate."
 };
 
 static NEARDATA const char * const choke_texts2[] = {
 	"Your %s is becoming constricted.",
+	"Your %s is becoming constricted.",
+	"Your blood is having trouble reaching your brain.",
 	"Your blood is having trouble reaching your brain.",
 	"The pressure on your %s increases.",
+	"The pressure on your %s increases.",
 	"Your consciousness is fading.",
+	"Your consciousness is fading.",
+	"You're about to suffocate.",
 	"You suffocate."
 };
 

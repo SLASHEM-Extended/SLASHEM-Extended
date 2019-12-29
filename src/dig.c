@@ -2095,7 +2095,7 @@ bury_you()
 		  surface(u.ux, u.uy));
 
 	u.uburied = TRUE;
-	if(!Strangled && !Breathless) Strangled = 6;
+	if(!Strangled && !Breathless) Strangled = 11;
 	under_ground(1);
     }
 }
