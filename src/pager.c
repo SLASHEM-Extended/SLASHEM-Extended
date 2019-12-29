@@ -24848,6 +24848,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"It doesn't move at all and so doesn't want to enter you!",
 	"Only non-stationary monsters can be turned into symbiotes!",
 	"A healing aura surrounds you...",
+	"Your intelligence seeps into the thing you wrote, and you feel stupid!",
+	"Your act of writing transfers some of your intelligence to the paper...",
 
 };
 

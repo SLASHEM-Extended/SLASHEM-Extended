@@ -437,6 +437,46 @@ found:
 		use_skill(P_DEVICES,10);
 	}
 	u.cnd_markercount++;
+	if (evilfriday && !rn2(3)) { /* EPI that was talked about in #hardfought by several people */
+		if (!rn2(10)) {
+			if (ABASE(A_INT) < 4) {
+				u.youaredead = 1;
+				pline("Your last thought fades away.");
+				killer = "being too stupid to write";
+				killer_format = KILLED_BY;
+				done(DIED);
+				/* lifesaved */
+				pline("Unfortunately, your brain is still gone.");
+				killer = "being too stupid to write";
+				killer_format = KILLED_BY;
+				done(DIED);
+				/* lifesaved again */
+				You_feel("like a scarecrow.");
+				u.youaredead = 0;
+
+			}
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				return;
+			}
+			if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+				pline("Your steeled body prevents the stat loss!");
+				return;
+			}
+
+			u.cnd_permstatdamageamount++;
+
+			pline("Your intelligence seeps into the thing you wrote, and you feel stupid!");
+			ABASE(A_INT) -= 1;
+			AMAX(A_INT) -= 1;
+			flags.botl = 1;
+
+		} else {
+			pline("Your act of writing transfers some of your intelligence to the paper...");
+			adjattrib(A_INT, -1, FALSE, TRUE);
+		}
+	}
 
 	/* success */
 	if (new_obj->oclass == SPBOOK_CLASS) {
