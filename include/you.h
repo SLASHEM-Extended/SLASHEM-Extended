@@ -1612,6 +1612,11 @@ struct you {
 	boolean freeplaytransit;	/* set to 1 if you're supposed to be transported back to dlvl1 and hang up or so */
 	boolean freeplayplanes;	/* set to 1 once you visit the sanctum and thereby re-enable the ability to visit the planes */
 
+	boolean keythief;	/* did the player use certain keys on Vlad's? if yes, give a reward once */
+	boolean keynocturn;
+	boolean keyaccess;
+	boolean keygauntlet;
+
 	/* extra statistics: some of these display with #conduct, others only at the end of your game --Amy */
 	int cnd_applycount;	/* how often you applied items */
 	int cnd_unihorncount;	/* how often you benefitted from a unicorn horn effect */

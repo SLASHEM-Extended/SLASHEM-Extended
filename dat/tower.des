@@ -44,12 +44,10 @@ DOOR:locked,(14,03),"The Master Key of Thievery"
 DOOR:locked,(14,07),"Nocturnal Key"
 
 CONTAINER:'(',"treasure chest",(15,03)
-OBJECT:'*',"stone of magic resistance",contained
 
 OBJECT:'`',"boulder",(15,03)
 
 CONTAINER:'(',"treasure chest",(15,07)
-OBJECT:'+',"passwall",contained
 
 OBJECT:'`',"boulder",(15,07)
 
@@ -150,13 +148,11 @@ DOOR:locked,(14,05)
 
 DOOR:locked,(18,07),"The Key Of Access"
 CONTAINER:'(',"treasure chest",(19,07)
-OBJECT:'+',"godmode",contained
 
 OBJECT:'`',"boulder",(19,07)
 
 DOOR:locked,(18,09),"The Gauntlet Key"
 CONTAINER:'(',"treasure chest",(19,09)
-OBJECT:'?',"wishing",contained
 
 OBJECT:'`',"boulder",(19,09)
 

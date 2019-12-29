@@ -820,6 +820,7 @@ doread()
 	"Women are goddesses that have been created to drive men insane.", /* I (Amy) saw an actual RL t-shirt that said this */
 	"I haven't watched One Piece, and therefore I'm controlling two devil fruits because I don't know that that's impossible.",
 	"I petition that the gender star be renamed to gender snowflake",
+	"the game is an acid trip where weapons become shoes and monsters become glitchymissingnos", /* by bug_sniper */
 
 	    };
 	    char buf[BUFSZ];

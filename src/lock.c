@@ -80,6 +80,7 @@ STATIC_PTR
 int
 picklock()	/* try to open/close a lock */
 {
+	register struct obj *trophy;
 
 	if (xlock.box) {
 	    if((xlock.box->ox != u.ux) || (xlock.box->oy != u.uy)) {
@@ -124,6 +125,59 @@ picklock()	/* try to open/close a lock */
 		xlock.door->doormask = D_CLOSED;
 		u.cnd_unlockamount++;
 	    } else xlock.door->doormask = D_LOCKED;
+
+		/* better handling for special doors in Vlad's: only give the rewards if you actually unlock them --Amy */
+	    if (artifact_door(u.ux+u.dx, u.uy+u.dy) && !strcmp(dungeons[u.uz.dnum].dname, "Vlad's Tower")) {
+
+		switch (artifact_door(u.ux+u.dx, u.uy+u.dy)) {
+
+			case ART_MASTER_KEY_OF_THIEVERY:
+				if (!u.keythief) {
+					u.keythief = TRUE;
+					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
+					trophy = mksobj(STONE_OF_MAGIC_RESISTANCE, TRUE, FALSE);
+					if (trophy) {
+					    dropy(trophy);
+					}
+				}
+				break;
+			case ART_NOCTURNAL_KEY:
+				if (!u.keynocturn) {
+					u.keynocturn = TRUE;
+					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
+					trophy = mksobj(SPE_PASSWALL, TRUE, FALSE);
+					if (trophy) {
+					    dropy(trophy);
+					}
+				}
+				break;
+			case ART_KEY_OF_ACCESS:
+				if (!u.keyaccess) {
+					u.keyaccess = TRUE;
+					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
+					trophy = mksobj(SPE_GODMODE, TRUE, FALSE);
+					if (trophy) {
+					    dropy(trophy);
+					}
+				}
+				break;
+			case ART_GAUNTLET_KEY:
+				if (!u.keygauntlet) {
+					u.keygauntlet = TRUE;
+					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
+					trophy = mksobj(SCR_WISHING, TRUE, FALSE);
+					if (trophy) {
+					    dropy(trophy);
+					}
+				}
+				break;
+			default:
+				break;
+
+		}
+
+	    }
+
 	} else {
 	    xlock.box->olocked = !xlock.box->olocked;
 	    if (!xlock.box->olocked) u.cnd_unlockamount++;
