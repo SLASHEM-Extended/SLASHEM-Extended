@@ -2280,6 +2280,7 @@ E void destroyarmorattack(void);
 E int dopotion(struct obj *);
 E int peffects(struct obj *);
 E void healup(int,int,BOOLEAN_P,BOOLEAN_P);
+E void healup_mon(struct monst *, int,int,BOOLEAN_P,BOOLEAN_P);
 E void strange_feeling(struct obj *,const char *);
 E void potionhit(struct monst *,struct obj *,BOOLEAN_P);
 E void potionbreathe(struct obj *);

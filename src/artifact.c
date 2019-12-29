@@ -2448,7 +2448,8 @@ beheadingdone:
 			    mdef->mhpmax -= drain;
 			    mdef->m_lev--;
 			    drain /= 2;
-			    if (drain) healup(drain, 0, FALSE, FALSE);
+			    if (drain && youattack) healup(drain, 0, FALSE, FALSE);
+			    else if (drain && magr) healup_mon(magr, drain, 0, FALSE, FALSE);
 			}
 			if (vis) willreturntrue = 1;
 		    }

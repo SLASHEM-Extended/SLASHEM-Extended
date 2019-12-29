@@ -24,9 +24,6 @@ STATIC_DCL void ghost_from_bottle(void);
 STATIC_DCL short mixtype(struct obj *,struct obj *);
 STATIC_PTR void set_litI(int,int,void *);
 
-STATIC_DCL void healup_mon(struct monst *, int,int,BOOLEAN_P,BOOLEAN_P);
-	/* For healing monsters - analogous to healup for players */
-
 #ifndef OVLB
 
 STATIC_DCL NEARDATA const short skill_names_indices[];
@@ -8253,6 +8250,7 @@ healup(nhp, nxtra, curesick, cureblind)
 	return;
 }
 
+	/* For healing monsters - analogous to healup for players */
 void
 healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	struct monst *mtmp;
