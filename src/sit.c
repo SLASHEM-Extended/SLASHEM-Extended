@@ -463,7 +463,7 @@ dosit()
 			break;
 		    case 9:
 			pline("A voice echoes:");
-	verbalize("A curse upon thee for sitting upon this most holy throne!");
+			verbalize("A curse upon thee for sitting upon this most holy throne!");
 			if (Luck > 0)  {
 			    make_blinded(Blinded + rn1(100,250),TRUE);
 			} else	    rndcurse();
@@ -512,6 +512,12 @@ dosit()
 			unrestrictskillchoice();
 			break;
 		    case 15:
+			/* occasionally get extremely lucky --Amy */
+			if (!rn2(50)) {
+				u.weapon_slots++;
+				You("feel very skillful, and gain an extra skill slot!");
+				break;
+			}
 			pline("A voice echoes:");
 			verbalize("Thou be cursed!");
 			attrcurse();

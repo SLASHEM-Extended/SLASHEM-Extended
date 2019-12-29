@@ -2926,6 +2926,13 @@ doinvoke()
 				case 16:
 					{
 
+					/* occasionally get extremely lucky --Amy */
+					if (!rn2(50)) {
+						u.weapon_slots++;
+						You("feel very skillful, and gain an extra skill slot!");
+						break;
+					}
+
 					int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 					if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
 					int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
