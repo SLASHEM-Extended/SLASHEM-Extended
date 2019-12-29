@@ -2317,6 +2317,44 @@ register struct monst *mtmp;
 		} else pline_msg = "mumbles incomprehensibly.";
 		break;
 	case MS_DJINNI:
+
+		if (mtmp->data == &mons[PM_POEZ_PRESIDENT] && u.ualign.type == A_CHAOTIC && !mtmp->mtame && !mtmp->mfrenzied) {
+
+			mtmp->mpeaceful = TRUE;
+			verbalize("Hey %s! I see you're a POEZ member! I'm gonna join your team!", playeraliasname);
+
+			struct monst *ppresident;
+			ppresident = tamedog(mtmp, (struct obj *) 0, TRUE);
+			if (ppresident) mtmp = ppresident;
+			if (!mtmp) impossible("poez president was tamed but doesn't exist now??");
+			break;
+
+		}
+		if (mtmp->data == &mons[PM_GIRL_OUTSIDE_GANG] && u.ualign.type == A_LAWFUL && !mtmp->mtame && !mtmp->mfrenzied) {
+
+			mtmp->mpeaceful = TRUE;
+			verbalize("%s! It is good that you have come! You see, I'm one of the few girls that resisted joining those filthy youth gangs. Since you despise them as much as I do, I decide to join your cause.", playeraliasname);
+
+			struct monst *ppresident;
+			ppresident = tamedog(mtmp, (struct obj *) 0, TRUE);
+			if (ppresident) mtmp = ppresident;
+			if (!mtmp) impossible("girl outside gang was tamed but doesn't exist now??");
+			break;
+
+		}
+		if (mtmp->data == &mons[PM_OCCASIONAL_FRIEND] && u.ualign.type == A_NEUTRAL && !mtmp->mtame && !mtmp->mfrenzied) {
+
+			mtmp->mpeaceful = TRUE;
+			verbalize("Yeeeeah! %s, let's mow down all our opponents! I'll gladly join your team, and then we'll be unstoppable!", playeraliasname);
+
+			struct monst *ppresident;
+			ppresident = tamedog(mtmp, (struct obj *) 0, TRUE);
+			if (ppresident) mtmp = ppresident;
+			if (!mtmp) impossible("girl outside gang was tamed but doesn't exist now??");
+			break;
+
+		}
+
 	    if (mtmp->mtame) {
 		verbl_msg = "Sorry, I'm all out of wishes.";
 	    } else if (mtmp->mpeaceful) {
@@ -2325,6 +2363,7 @@ register struct monst *mtmp;
 		else
 		    verbl_msg = "I'm free!";
 	    } else verbl_msg = "This will teach you not to disturb me!";
+
 	    break;
 	case MS_SHOE:
 

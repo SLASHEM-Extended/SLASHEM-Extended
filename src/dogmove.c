@@ -1069,6 +1069,8 @@ register int after;	/* this is extra fast monster movement */
 			 (u.petattackenemies == 1 && mtmp2->mpeaceful) ||
 	/* Moldoux is special-cased */
 			 (mtmp2->data == &mons[PM_MOLDOUX__THE_DEFENCELESS_MOLD]) ||
+	/* your one-way girlfriend is never attacked by pets */
+			 (mtmp2->data == &mons[PM_YOUR_ONE_WAY_GIRLFRIEND]) ||
 	/* if Izchak dies, the player gets disintegrated, so stop pets from killing them
 	   well screw it, just completely prevent them from attacking shopkeepers, priests and vault guards --Amy */
 	/* In Soviet Russia, pets are totally stupid (in fact, even more so than modders). They simply attack everything,

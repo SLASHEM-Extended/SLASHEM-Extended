@@ -240,7 +240,7 @@ boolean digest_meal;
 	}
 
 	/* super regene */
-	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
+	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_RENAI_OVER_MESHERA]) {
 		mon->mhp += 20;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
@@ -963,7 +963,7 @@ register struct monst *mtmp;
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */
-	if( (is_covetous(mdat) || mtmp->egotype_covetous) && (!rn2(10) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
+	if( (is_covetous(mdat) || mtmp->egotype_covetous) && (!rn2(10) || (mdat == &mons[PM_AT_RAINKID] && !rn2(3)) || (mdat == &mons[PM_TEA_HUSSY] && !rn2(3)) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
 
 	/* check distance and scariness of attacks */
 	distfleeck(mtmp,&inrange,&nearby,&scared);
@@ -1477,7 +1477,7 @@ convertdone:
 		nomul(-(rnd(5) + (mtmp->m_lev / 4) ), "smelling sweaty inlays", TRUE);
 	}
 
-	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
 		switch (rnd(9)) {
 
 			case 1:
@@ -2271,13 +2271,16 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_LOONIE_BOSS) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_ERR_BOSS) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_ERR) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_STUPIDITY_AUTIST) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SEIZURE_FOOBACUS) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HIGHEST_PRIESTEST) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
-	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
+	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_ERR_BOSS) || (monsndx(ptr) == PM_ERR) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else if ((monsndx(ptr) == PM_WIMPDAG_BANGER) || (monsndx(ptr) == PM_SLING_BANGER) || (monsndx(ptr) == PM_FLINT_BANGER) || (monsndx(ptr) == PM_DAT_BANGER) || (monsndx(ptr) == PM_BOW_BANGER) || (monsndx(ptr) == PM_PISTOL_BANGER) || (monsndx(ptr) == PM_SPEA_BANGER) || (monsndx(ptr) == PM_XBOW_BANGER) || (monsndx(ptr) == PM_SHOTTY_BANGER) || (monsndx(ptr) == PM_SHURI_BANGER) || (monsndx(ptr) == PM_SMG_BANGER) || (monsndx(ptr) == PM_LASER_BANGER) || (monsndx(ptr) == PM_ASSAULT_BANGER) || (monsndx(ptr) == PM_JAV_BANGER) || (monsndx(ptr) == PM_AUTOSHOT_BANGER) || (monsndx(ptr) == PM_ARMSTREAM_BANGER) || (monsndx(ptr) == PM_BIG_FUCKING_BANGER) )
 		appr = 0;

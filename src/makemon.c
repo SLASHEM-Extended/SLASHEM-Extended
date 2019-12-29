@@ -7034,6 +7034,13 @@ register struct	monst	*mtmp;
 		else if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (ptr == &mons[PM_GIRL_OUTSIDE_GANG]) (void) mongets(mtmp, LADY_BOOTS);
+		if (ptr == &mons[PM_YOUR_SISTER]) (void) mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_GRAVITY_STRIKER]) {
+			(void) mongets(mtmp, HAND_BLASTER);
+			 m_initthrow(mtmp, BLASTER_BOLT, 30);
+		}
+
 		if (ptr == &mons[PM_FEMALE_FEMMY]) {
 			(void) mongets(mtmp, SCR_FEMINISM);
 		}
@@ -11258,7 +11265,72 @@ loveheelover:
 		    }
 		}
 
+		if (ptr == &mons[PM_LION_S_GIRLFRIEND]) {
+			(void)mongets(mtmp, ITALIAN_HEELS);
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+		}
 		if (ptr == &mons[PM_MINOTAUR_BALLERINA]) (void)mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_SWEET_LARVA_LINE]) (void)mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_DARK_STARWARS_MASTER]) {
+			(void)mongets(mtmp, RED_DOUBLE_LIGHTSABER);
+			(void)mongets(mtmp, ARM_BLASTER);
+		  	m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : HEAVY_BLASTER_BOLT, 50);
+		  	m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : HEAVY_BLASTER_BOLT, 50);
+		}
+		if (ptr == &mons[PM_LOONIE_BOSS]) {
+			(void)mongets(mtmp, PISTOL);
+		  	m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_VIET_BOSS]) {
+			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		}
+		if (ptr == &mons[PM_LERA_CUDDLE_BUNDLE]) (void)mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_SMITHS_HUSSY]) (void)mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_NICE_EVIL_GIRL]) (void)mongets(mtmp, SWEET_MOCASSINS);
+		if (ptr == &mons[PM_TAPIA]) {
+			(void)mongets(mtmp, LADY_BOOTS);
+			(void)mongets(mtmp, KNIFE);
+		}
+		if (ptr == &mons[PM_INDIAN_QUEEN]) (void)mongets(mtmp, HUGGING_BOOT);
+		if (ptr == &mons[PM_MERRY_GIRL]) (void)mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_VERY_THICK_GIRL]) (void)mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+		if (ptr == &mons[PM_YOUR_ONE_WAY_GIRLFRIEND]) (void)mongets(mtmp, SOFT_LADY_SHOE);
+		if (ptr == &mons[PM_ABSOLUTELY_CUDDLY_GIRL]) (void)mongets(mtmp, HUGGING_BOOT);
+		if (ptr == &mons[PM_KING_OF_ROCK__N_ROLL]) (void)mongets(mtmp, ELVIS_SHOES);
+		if (ptr == &mons[PM_NOBLE_GIRL_FROM_BEING_MOUNTAIN]) (void)mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_FREAKY_GANG_GIRL]) (void)mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_NICE_AUNTIE_HILDA]) (void)mongets(mtmp, FEMININE_PUMPS);
+		if (ptr == &mons[PM_TURKISH_GIRL_THAT_LIKES_THE_COLOR_LILAC]) (void)mongets(mtmp, STILETTO_SANDALS);
+		if (ptr == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD]) (void)mongets(mtmp, SOFT_SNEAKERS);
+		if (ptr == &mons[PM_FINGERSMASHING_WATERGIRL]) {
+			(void)mongets(mtmp, SOFT_SNEAKERS);
+			(void)mongets(mtmp, SCR_FLOOD);
+		}
+		if (ptr == &mons[PM_WONDERBLONDE]) {
+			(void)mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
+			(void)mongets(mtmp, LADY_BOOTS);
+		}
+		if (ptr == &mons[PM_AUNT_NINA]) {
+			(void)mongets(mtmp, SILK_MAIL);
+			(void)mongets(mtmp, LADY_BOOTS);
+		}
+		if (ptr == &mons[PM_SQUEEZE_HUSSY]) {
+			(void)mongets(mtmp, SOFT_SNEAKERS);
+			(void)mongets(mtmp, SCR_FLOOD);
+		}
+		if (ptr == &mons[PM_CUDDLY_TURN_SHOE_QUEEN]) {
+			(void)mongets(mtmp, SOFT_SNEAKERS);
+			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
+		}
+		if (ptr == &mons[PM_BLOND_SWOON_BUNDLE_HARE]) {
+			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			(void)mongets(mtmp, LADY_BOOTS);
+		}
+		if (ptr == &mons[PM_AUNTIE_WENDY]) {
+			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+		}
 		if (ptr == &mons[PM_MINOTARD]) (void)mongets(mtmp, T_SHIRT);
 		if (ptr == &mons[PM_BEER_BELLY]) {
 			(void)mongets(mtmp, POT_CONFUSION);
@@ -11274,6 +11346,10 @@ loveheelover:
 		if (ptr == &mons[PM_SILVER_GIANT]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, SILVER_SLINGSTONE, 40);
+		}
+		if (ptr == &mons[PM_RUBY_BOSS]) {
+			(void) mongets(mtmp, CATAPULT);
+			 m_initthrow(mtmp, RUBY, 30);
 		}
 
 		if (ptr == &mons[PM_SHOTTIANT]) {
@@ -12994,6 +13070,35 @@ loveheelover:
 			(void) mongets(mtmp, SILVER_KHAKKHARA);
 			 m_initthrow(mtmp, SILVER_SLINGSTONE, 50);
 		}
+		if (ptr == &mons[PM_CHEATER_LION]) {
+			(void) mongets(mtmp, BFG);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+			 m_initthrow(mtmp, BFG_AMMO, 40);
+		}
+		if (ptr == &mons[PM_ASIAN_ENEMY_BOSS]) {
+			(void) mongets(mtmp, LEATHER_PEEP_TOES);
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		}
+		if (ptr == &mons[PM_SCRATCHY_MAFIA_BOSS]) {
+			(void) mongets(mtmp, LADY_BOOTS);
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		}
+		if (ptr == &mons[PM_AUNT_ANITA]) {
+			(void) mongets(mtmp, FEMININE_PUMPS);
+			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+			(void) mongets(mtmp, WILDHILD_BOW);
+			 m_initthrow(mtmp, ODOR_SHOT, 50);
+			 m_initthrow(mtmp, ODOR_SHOT, 50);
+		}
+		if (ptr == &mons[PM_NEWCOMER_BONUS_GIRL]) (void) mongets(mtmp, WAN_CHROMATIC_BEAM);
 
 		if (ptr == &mons[PM_SEXY_BALROG]) {
 			(void) mongets(mtmp, LADY_BOOTS);
@@ -15951,7 +16056,38 @@ loveheelover:
 
 	}
 
+	if (ptr == &mons[PM_VIET_BOSS]) {
+
+		mtmp->crapbonus += 10;
+
+	}
+
 	if (ptr == &mons[PM_PRINCESS_CATHLETTE]) {
+
+		mtmp->fartbonus += 9;
+
+	}
+
+	if (ptr == &mons[PM_NICE_EVIL_GIRL]) {
+
+		mtmp->fartbonus += 9;
+
+	}
+
+	if (ptr == &mons[PM_INDIAN_QUEEN]) {
+
+		mtmp->fartbonus += 9;
+		mtmp->crapbonus += 20;
+
+	}
+
+	if (ptr == &mons[PM_AUNTIE_WENDY]) {
+
+		mtmp->fartbonus += 9;
+
+	}
+
+	if (ptr == &mons[PM_BLOND_SWOON_BUNDLE_HARE]) {
 
 		mtmp->fartbonus += 9;
 
@@ -19504,6 +19640,7 @@ register int	mmflags;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN]) mtmp->mfrenzied = TRUE;
+	if (ptr == &mons[PM_TAPIA]) mtmp->mfrenzied = TRUE;
 	mtmp->mtraitor  = FALSE;
 	mtmp->masleep = 0;
 
@@ -24888,6 +25025,7 @@ register int otyp;
 	    if (otmp->otyp == LARGE_SHIELD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 	    if (otmp->otyp == SHIELD_OF_REFLECTION && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 	    if (otmp->otyp == ROBE && mtmp->data->mlet == S_WRAITH) otmp->mstartinventC = 1;
+	    if (otmp->otyp == RUBY && mtmp->data == &mons[PM_RUBY_BOSS]) otmp->mstartinventC = 1;
 	    (void) mpickobj(mtmp, otmp, TRUE);	/* might free otmp */
 	    return(spe);
 	} else return(0);

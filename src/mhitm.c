@@ -389,7 +389,7 @@ mattackm(magr, mdef)
 	   && magr->data != &mons[PM_INCUBUS]
  	   && magr->data != &mons[PM_NEWS_DAEMON]
  	   && magr->data != &mons[PM_PRINTER_DAEMON]) {
-		if(!magr->mcan && !rn2(magr->data == &mons[PM_PERCENTI_OPENS_A_GATE_] ? 5 : magr->data == &mons[PM_PERCENTI_PASSES_TO_YOU_] ? 5 : 23)) {
+		if(!magr->mcan && !rn2(magr->data == &mons[PM_PERCENTI_OPENS_A_GATE_] ? 5 : magr->data == &mons[PM_CHEATER_LION] ? 5 : magr->data == &mons[PM_TEA_HUSSY] ? 5 : magr->data == &mons[PM_PERCENTI_PASSES_TO_YOU_] ? 5 : 23)) {
 			msummon(magr, TRUE);
 			pline("%s opens a gate!", Monnam(magr) );
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");

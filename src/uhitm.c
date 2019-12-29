@@ -5694,7 +5694,7 @@ register struct attack *mattk;
 	      return 1;
 	}
 
-	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_IMMOVABLE_OBSTACLE] || mdef->data == &mons[PM_INVINCIBLE_HAEN] || mdef->data == &mons[PM_CHAREY] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mdef->data == &mons[PM_FIRST_DUNVEGAN] || mdef->data == &mons[PM_PERCENTI_HAS_LOST___] || mdef->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
+	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mdef->data == &mons[PM_IMMOVABLE_OBSTACLE] || mdef->data == &mons[PM_INVINCIBLE_HAEN] || mdef->data == &mons[PM_CHAREY] || mdef->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mdef->data == &mons[PM_FIRST_DUNVEGAN] || mdef->data == &mons[PM_PERCENTI_HAS_LOST___] || mdef->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mdef));
 		if (FunnyHallu) You("curse at Konami for designing it like that.");
