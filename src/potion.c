@@ -8858,7 +8858,7 @@ register struct obj *obj;
 			/* DEATH */
 			losehp(10,"a potion of cyanide",KILLED_BY);
 		} else {
-			u.uhp /= 5;
+			u.uhp -= ((u.uhp / 3) + 1);
 			if (u.uhp < 1) u.uhp = 1;		/* be generous */
 		}
 		flags.botl = 1;
@@ -8869,14 +8869,14 @@ register struct obj *obj;
 			/* DEATH */
 			losehp(3,"a potion of urine",KILLED_BY);
 		} else {
-			u.uhp /= 3;
+			u.uhp -= ((u.uhp / 5) + 1);
 			if (u.uhp < 1) u.uhp = 1;		/* be generous */
 		}
 		flags.botl = 1;
 		You_feel("very poisoned!");
 		break;
 	case POT_RADIUM:
-		u.uhp /= 4;
+		u.uhp -= ((u.uhp / 4) + 1);
 		if (u.uhp < 1) u.uhp = 1;		/* be generous */
 		flags.botl = 1;
 		You_feel("very sick!");
