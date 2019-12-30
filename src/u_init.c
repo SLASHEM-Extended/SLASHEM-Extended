@@ -12699,8 +12699,8 @@ u_init()
 
 	case PM_PROSTITUTE:
 		ini_inv(Prostitute);
-		skill_init(Skill_Pro);
 		if(!rn2(10)) ini_inv(Condome);
+		skill_init(Skill_Pro);
 		break;
 
 	case PM_HUSSY:
@@ -12870,13 +12870,13 @@ u_init()
 
 	case PM_BULLY:
 		ini_inv(Bully);
-		skill_init(Skill_Bul);
 
 		if (rn2(5)) ini_inv(BullyA);
 		if (rn2(2)) ini_inv(BullyB);
 		if (!rn2(20)) ini_inv(Candle);
 		if (!rn2(20)) ini_inv(BullyD);
 		if (!rn2(20)) ini_inv(BullyE);
+		skill_init(Skill_Bul);
 
 		break;
 
@@ -13021,28 +13021,28 @@ u_init()
 		break;
 
 	case PM_CARTOMANCER:
-		skill_init(Skill_Car);
 		ini_inv(Cartomancer);
+		skill_init(Skill_Car);
 		break;
 
 	case PM_DRAGONMASTER:
-		skill_init(Skill_Dra);
 		ini_inv(Dragonmaster);
+		skill_init(Skill_Dra);
 		break;
 
 	case PM_COMBATANT:
-		skill_init(Skill_Com);
 		ini_inv(Combatant);
+		skill_init(Skill_Com);
 		break;
 
 	case PM_FJORDE:
-		skill_init(Skill_Fjo);
 		ini_inv(Fjorde);
+		skill_init(Skill_Fjo);
 		break;
 
 	case PM_PRACTICANT:
-		skill_init(Skill_Pra);
 		ini_inv(Practicant);
+		skill_init(Skill_Pra);
 #ifndef GOLDOBJ
 		u.ugold = u.ugold0 = rnd(100);
 #else
@@ -13052,34 +13052,34 @@ u_init()
 
 	case PM_EMERA:
 		Emera[EMERA_FLINT].trquan = 50 + rnd(50);
-		skill_init(Skill_Eme);
 		ini_inv(Emera);
+		skill_init(Skill_Eme);
 		break;
 
 	case PM_TOSSER:
-		skill_init(Skill_Tos);
 		ini_inv(Tosser);
+		skill_init(Skill_Tos);
 		break;
 
 	case PM_AKLYST:
-		skill_init(Skill_Akl);
 		ini_inv(Aklyst);
+		skill_init(Skill_Akl);
 		break;
 
 	case PM_MILL_SWALLOWER:
 		MillSwallower[MS_BOLTS].trquan = 20 + rnd(40);
-		skill_init(Skill_Mil);
 		ini_inv(MillSwallower);
+		skill_init(Skill_Mil);
 		break;
 
 	case PM_SYMBIANT:
-		skill_init(Skill_Sym);
 		ini_inv(Symbiant);
+		skill_init(Skill_Sym);
 		break;
 
 	case PM_GENDERSTARIST:
-		skill_init(Skill_Gen);
 		ini_inv(Genderstarist);
+		skill_init(Skill_Gen);
 		break;
 
 	case PM_UNDEAD_SLAYER:
