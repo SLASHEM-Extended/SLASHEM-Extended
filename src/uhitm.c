@@ -2811,7 +2811,7 @@ int dieroll;
 
 	    /* [this assumes that `!thrown' implies wielded...] */
 	    wtype = weapon_type(wep);
-	    if (!(mon->egotype_flickerer) && !noeffect ) {
+	    if (!(mon->egotype_flickerer) && !noeffect && !(mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) ) {
 		    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);
 		    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
 
@@ -3053,6 +3053,19 @@ int dieroll;
 		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
 		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
 	      tmp = 0;
+		return FALSE;
+	}
+
+	if (mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
+
+		pline("%s is IMMUNE to the attack!", Monnam(mon));
+		if (FunnyHallu) You("curse at Konami for designing it like that.");
+		if (!rn2(30)) pline("Reminder: you must use something else in order to damage this monster!");
+		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
+		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
+
+	      tmp = 0;
+		return FALSE;
 	}
 
         /* WAC Added instant kill from wooden stakes vs vampire */
