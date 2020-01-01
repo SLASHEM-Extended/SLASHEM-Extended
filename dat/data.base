@@ -3213,6 +3213,8 @@ deep gnome
 		[ The Underdark, by Mike Drees and Albert Foster ]
 # note: "gnomish wizard" is a monster; cave*man entry doesn't fit nonhumans
 ~gnome ??m*
+~ruggo*
+~*nome king
 gnome*
 gnomish wizard
 gnom* cave*man
@@ -6301,8 +6303,8 @@ rothe
 	adventurers who use what they consider the "cheat code"
 	of NetHack, their attacks will erase any such engravings and
 	thereby render them useless.
-Ruggo
-?nome king
+ruggo*
+*nome king
 	The Nome King declared, "Cruelty is a thing I can't abide. So, 
 	as slaves must work hard, and the Queen of Ev and her children 
 	were delicate and tender, I transformed them all into articles of 
