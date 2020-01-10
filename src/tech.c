@@ -4681,7 +4681,7 @@ secureidchoice:
 	      break;
 
 	    case T_IRON_SKIN:
-		num = 1 + techlevX(tech_no);
+		num = 9 + techlevX(tech_no);
 	    	techt_inuse(tech_no) = num + 1;
 		pline("Your skin becomes harder.");
 
