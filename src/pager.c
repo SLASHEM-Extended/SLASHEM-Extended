@@ -24857,6 +24857,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your act of writing transfers some of your intelligence to the paper...",
 	"Wow, you found an easter egg!",
 	"*ding*",
+	"You hear a steam locomotive passing by.",
+	"You hear someone chant 'Chug, chug, chug!'",
 
 };
 

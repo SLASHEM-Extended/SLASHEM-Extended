@@ -2417,7 +2417,8 @@ struct obj *otmp;
 		pline("%s drinks %s!", Monnam(mtmp), singular(otmp, doname));
 	} else
 		if (flags.soundok) {
-			You_hear("a chugging sound.");
+			if (FunnyHallu) You_hear(rn2(2) ? "a steam locomotive passing by." : "someone chant 'Chug, chug, chug!'");
+			else You_hear("a chugging sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Odin men'she zel'ya, kotoryye vy mozhete ispol'zovat', i yest' bol'shaya veroyatnost' togo, chto eto bylo chto-to ochen' polezno. Potomu chto vy byli slishkom medlennymi, kha-kha!" : "Gluckgluckgluckgluck!");
 		}
 
