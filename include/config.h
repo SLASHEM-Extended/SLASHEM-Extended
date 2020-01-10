@@ -44,7 +44,8 @@
  * Some combinations make no sense.  See the installation document.
  */
 #define TTY_GRAPHICS		/* good old tty based graphics */
-#define CURSES_GRAPHICS	/* awful curses interface */
+/* #define CURSES_GRAPHICS */	/* awful curses interface */
+/* #define AWFUL_CURSES */	/* not defined by default; if on, disables pokedex (on systems where pokedex is buggy) */
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */

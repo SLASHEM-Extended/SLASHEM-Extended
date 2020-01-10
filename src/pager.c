@@ -1660,7 +1660,12 @@ blaone:
 #endif
 
 #ifdef EXTENDED_INFO
-		if(flags.pokedex && (pm != (struct permonst *) 0) ) {
+		if(flags.pokedex
+#ifdef AWFUL_CURSES
+			/* on the esm server, curses pokedex has always been buggy and started crashing lately... --Amy */
+			&& !(!strcmpi(windowprocs.name, "curses")
+#endif
+			&& (pm != (struct permonst *) 0) ) {
 
 		    struct monst *mtmpX = m_at(cc.x, cc.y);
 
@@ -24961,7 +24966,7 @@ void
 demagogueparole()
 {
 	char buf[BUFSZ];
-	verbalize(demagoguemessage());
+	verbalize("%s", demagoguemessage());
 
 }
 
