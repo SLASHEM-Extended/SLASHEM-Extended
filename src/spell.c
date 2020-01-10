@@ -2674,6 +2674,11 @@ age_spells()
 	int i;
 	if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5))
 		return;
+
+	/* the spell color trap that causes your memory to decrease when casting shouldn't be too awfully harsh... --Amy */
+	if (SpellColorCyan && rn2(10))
+		return;
+
 	/*
 	 * The time relative to the hero (a pass through move
 	 * loop) causes all spell knowledge to be decremented.
@@ -9927,7 +9932,7 @@ rerollX:
 	}
 
 	if (SpellColorCyan) {
-		boostknow(spell, -500);
+		boostknow(spell, -rnd(100));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 	}
 
