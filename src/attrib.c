@@ -2727,13 +2727,13 @@ int x;
 
 	if (Race_if(PM_PERVERT)) { /* debuff when not praying or having sex every once in a while --Amy */
 		int reductorval = u.pervertsex;
-		while (reductorval >= 5000) {
-			reductorval -= 5000;
+		while (reductorval >= 10000) {
+			reductorval -= 10000;
 			tmp--;
 		}
 		reductorval = u.pervertpray;
-		while (reductorval >= 5000) {
-			reductorval -= 5000;
+		while (reductorval >= 10000) {
+			reductorval -= 10000;
 			tmp--;
 		}
 	}

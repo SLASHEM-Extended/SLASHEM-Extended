@@ -1911,15 +1911,15 @@ moveloop()
 		if (Race_if(PM_PERVERT)) {
 			u.pervertsex++;
 			u.pervertpray++;
-			if (!(u.pervertsex % 5000)) {
-				You("didn't have sex in 5000 turns and thereby suffer from withdrawal!");
+			if (!(u.pervertsex % 10000)) {
+				You("didn't have sex in 10000 turns and thereby suffer from withdrawal!");
 			} else if (!(u.pervertsex % 1000)) {
-				pline("Remember that you need to have sex once every 5000 turns or you'll suffer from withdrawal!");
+				pline("Remember that you need to have sex once every 10000 turns or you'll suffer from withdrawal!");
 			}
-			if (!(u.pervertpray % 5000)) {
-				You("didn't pray in 5000 turns and therefore the gods decide to debuff you!");
+			if (!(u.pervertpray % 10000)) {
+				You("didn't pray in 10000 turns and therefore the gods decide to debuff you!");
 			} else if (!(u.pervertpray % 1000)) {
-				pline("Remember that you need to pray once every 5000 turns or the gods will debuff you!");
+				pline("Remember that you need to pray once every 10000 turns or the gods will debuff you!");
 			}
 		}
 
