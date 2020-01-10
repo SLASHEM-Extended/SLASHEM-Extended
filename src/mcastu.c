@@ -103,8 +103,6 @@ STATIC_OVL int
 choose_magic_spell(spellval)
 int spellval;
 {
-    if (!issoviet && !rn2(2)) return MGC_PSI_BOLT;
-
     switch (spellval) {
     case 45:
 	if (!rn2(25)) return MGC_DIVINE_WRATH; /* waaaay too overpowered, so this will appear much more rarely --Amy */
@@ -219,8 +217,6 @@ STATIC_OVL int
 choose_clerical_spell(spellnum)
 int spellnum;
 {
-
-    if (!issoviet && !rn2(2)) return CLC_OPEN_WOUNDS;
 
     switch (spellnum) {
     case 41:

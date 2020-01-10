@@ -2247,12 +2247,13 @@ mattacku(mtmp)
 		case AT_HUGS:	/* automatic if prev two attacks succeed */
 			/* Note: if displaced, prev attacks never succeeded */
 		/* Note by Amy: come on, allow it to hit sometimes even if there are no previous attacks (shambling horror)! */
-		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(Race_if(PM_IRRITATOR) ? 4 : 20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
+		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(Race_if(PM_IRRITATOR) ? 4 : 50) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
 				if ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) sum[i]= hitmu(mtmp, mattk);
 				}
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
 			break;
 		case AT_BEAM:  /* ranged non-contact attack by Chris - only go off 40% of the time for balance reasons --Amy */
+			if (!rn2(2) && !issoviet) break;
 cursesatyou:
 			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
@@ -2260,6 +2261,7 @@ cursesatyou:
 			}
 			break;
 		case AT_GAZE:	/* can affect you either ranged or not */
+			if (!rn2(2) && !issoviet) break;
 			/* Medusa gaze already operated through m_respond in
 			 * dochug(); don't gaze more than once per round.
 			 */
@@ -2299,6 +2301,9 @@ cursesatyou:
 			}
 			break;
 		case AT_BREA:
+
+			if (!issoviet && rn2(2)) break;
+
 			if (/*range2 &&*/ !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_SPC2) ) )
 			    sum[i] = breamu(mtmp, mattk);
 			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
@@ -2310,6 +2315,9 @@ cursesatyou:
 			/* Note: breamu takes care of displacement */
 			break;
 		case AT_SPIT:
+
+			if (!issoviet && rn2(2)) break;
+
 			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_TCKL || mattk->adtyp == AD_NAST) )
 			    sum[i] = spitmu(mtmp, mattk);
 			/* Note: spitmu takes care of displacement */
@@ -2709,7 +2717,7 @@ elena37:
 			}
 			break;
 		case AT_MAGC:
-			if (!rn2(iswarper ? 2 : 4)) /* yeah they need to be toned down a lot */{
+			if (!rn2(iswarper ? 2 : 8)) /* yeah they need to be toned down a lot */{
 
 			if (range2) {
 			    if (!blue_on_blue(mtmp))
@@ -3556,7 +3564,7 @@ elena37:
 		a->damn = (1 + (mtmp->m_lev / 4));
 		a->damd = (1 + (mtmp->m_lev / 4));
 
-		if (range2 && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) )
+		if (range2 && (rn2(2) || issoviet) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) )
 		    sum[i] = breamu(mtmp, a);
 		/* Note: breamu takes care of displacement */
 
