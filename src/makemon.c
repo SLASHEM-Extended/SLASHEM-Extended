@@ -6831,6 +6831,10 @@ register struct monst *mtmp;
 			      (void)mongets(mtmp, ROCKET_LAUNCHER);
 				m_initthrow(mtmp, ROCKET, 20);
 			}
+			if(ptr == &mons[PM_ROCKET_FATGUY]) {
+			      (void)mongets(mtmp, ROCKET_LAUNCHER);
+				m_initthrow(mtmp, ROCKET, 5);
+			}
 
 			if(ptr == &mons[PM_OREMORJ__THE_CYBERDEMON_LORD]) {
 			      (void)mongets(mtmp, ROCKET_LAUNCHER);
@@ -8349,6 +8353,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_THE_WING_ZERO]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 20);}
 
 		if (mtmp->data == &mons[PM_ARCH_VILE]) (void) mongets(mtmp, WAN_CREATE_HORDE);
+		if (mtmp->data == &mons[PM_HERRER]) (void) mongets(mtmp, WAN_CREATE_MONSTER);
 		if (mtmp->data == &mons[PM_ANJA_S_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 		if (mtmp->data == &mons[PM_EVA_S_MOCASSIN]) { (void) mongets(mtmp, SWEET_MOCASSINS); (void) mongets(mtmp, SCR_TRAP_CREATION); }
 		if (mtmp->data == &mons[PM_KLARA_S_HIGH_HEELED_SANDAL]) { (void) mongets(mtmp, HIGH_HEELED_SANDAL); (void) mongets(mtmp, WEDGE_SANDALS); (void) mongets(mtmp, SCR_TRAP_CREATION); (void) mongets(mtmp, POT_SPEED); }

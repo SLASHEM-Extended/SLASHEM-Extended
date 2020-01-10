@@ -54,12 +54,12 @@ MONSTER:'@',"super warrior",random
 MONSTER:'@',"super warrior",random
 MONSTER:'@',"super warrior",random
 # Corrupt guards
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
 # Good `ol mimics
 MONSTER:'&',"baron of hell", (74,05),hostile
 # Random traps
@@ -137,15 +137,15 @@ DOOR:closed,(45,17)
 DOOR:locked,(36,12)
 DOOR:closed,(61,02)
 # Police station kops
-MONSTER: 'i',"arch-vile",(62,01),hostile
-MONSTER: 'i',"arch-vile",(65,01),hostile
-MONSTER: 'i',"arch-vile",(66,01),hostile
-MONSTER: 'i',"arch-vile",(74,02),hostile
-MONSTER: 'i',"arch-vile",(63,03),hostile
-MONSTER: 'i',"arch-vile",(72,03),hostile
-MONSTER: 'i',"arch-vile",(71,04),hostile
-MONSTER: 'i',"arch-vile",(68,05),hostile
-MONSTER: 'i',"arch-vile",(64,06),hostile
+MONSTER: 'i',"herrer",(62,01),hostile
+MONSTER: 'i',"herrer",(65,01),hostile
+MONSTER: 'i',"herrer",(66,01),hostile
+MONSTER: 'i',"herrer",(74,02),hostile
+MONSTER: 'i',"herrer",(63,03),hostile
+MONSTER: 'i',"herrer",(72,03),hostile
+MONSTER: 'i',"herrer",(71,04),hostile
+MONSTER: 'i',"herrer",(68,05),hostile
+MONSTER: 'i',"herrer",(64,06),hostile
 # Iron golem in supply room
 MONSTER: '&',"baron of hell",(11,17),asleep,hostile
 # Supply room junk
@@ -205,13 +205,13 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Lava demons
-MONSTER: 'i',"arch-vile",(30,05),hostile,awake
-MONSTER: 'i',"arch-vile",(23,09),hostile,awake
-MONSTER: 'i',"arch-vile",(39,09),hostile,awake
-MONSTER: 'i',"arch-vile",(36,14),hostile,awake
-MONSTER: 'i',"arch-vile",(26,14),hostile,awake
+MONSTER: 'i',"herrer",(30,05),hostile,awake
+MONSTER: 'i',"herrer",(23,09),hostile,awake
+MONSTER: 'i',"herrer",(39,09),hostile,awake
+MONSTER: 'i',"herrer",(36,14),hostile,awake
+MONSTER: 'i',"herrer",(26,14),hostile,awake
 # Elite guard
-MONSTER: '&',"cyberdemon",(04,13),hostile
+MONSTER: '&',"rocket fatguy",(04,13),hostile
 # Objects
 OBJECT:')',"chainsword",(31,10),blessed,+0,"Brutal Chainsaw"
 
@@ -267,14 +267,14 @@ STAIR:(03,17),down
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # "Regular" prisoners
-MONSTER:'i',"arch-vile",(59,02),hostile
-MONSTER:'i',"arch-vile",(55,08),hostile
-MONSTER:'i',"arch-vile",(43,14),hostile
-MONSTER:'i',"arch-vile",(38,05),hostile
-MONSTER:'i',"arch-vile",(27,02),hostile
-MONSTER:'i',"arch-vile",(23,08),hostile
-MONSTER:'i',"arch-vile",(11,14),hostile
-MONSTER:'i',"arch-vile",(06,05),hostile
+MONSTER:'i',"herrer",(59,02),hostile
+MONSTER:'i',"herrer",(55,08),hostile
+MONSTER:'i',"herrer",(43,14),hostile
+MONSTER:'i',"herrer",(38,05),hostile
+MONSTER:'i',"herrer",(27,02),hostile
+MONSTER:'i',"herrer",(23,08),hostile
+MONSTER:'i',"herrer",(11,14),hostile
+MONSTER:'i',"herrer",(06,05),hostile
 # Undead prisoners
 # Bugs and snakes
 # Corrupt guards
@@ -304,25 +304,25 @@ NOMAP
 STAIR: random, up
 STAIR: random, down
 # Peaceful miners
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
 # Earth creatures
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
 # Other nasties
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
-MONSTER:'i',"arch-vile",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
+MONSTER:'i',"herrer",random,hostile
 # Tools and corpses
 OBJECT: '%', "corpse", random
 OBJECT: '%', "corpse", random
