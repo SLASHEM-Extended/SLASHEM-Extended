@@ -11576,7 +11576,7 @@ mineralize()
 {
 	s_level *sp;
 	struct obj *otmp;
-	int goldprob, gemprob, objprob, x, y, cnt;
+	int goldprob, goldamount, gemprob, objprob, x, y, cnt;
       const char *str;
 
 	int density = 3;
@@ -12207,6 +12207,7 @@ mineralize()
 
 	/* basic level-related probabilities */
 	goldprob = 20 + depth(&u.uz) / 3;
+	goldamount = 20 + depth(&u.uz) / 3;
 	gemprob = goldprob / 6;
 	objprob = goldprob / 20;
 
@@ -12248,7 +12249,7 @@ mineralize()
 		if (rn2(1000) < goldprob) {
 		    if ((otmp = mksobj(GOLD_PIECE, FALSE, FALSE)) != 0) {
 			otmp->ox = x,  otmp->oy = y;
-			otmp->quan = 1L + rnd(goldprob * 3);
+			otmp->quan = 1L + rnd(goldamount * 3);
 			otmp->owt = weight(otmp);
 			if (!rn2((uarmc && itemhasappearance(uarmc, APP_CLOISTER_CLOAK)) ? 2 : 3)) add_to_buried(otmp);
 			else place_object(otmp, x, y);

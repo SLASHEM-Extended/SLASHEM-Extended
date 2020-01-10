@@ -12767,9 +12767,20 @@ loveheelover:
 		break;
 	    case S_LEPRECHAUN:
 #ifndef GOLDOBJ
-		mtmp->mgold = (long) d(level_difficulty(), 30);
+
+		if (mtmp->m_lev <= 0) 
+			mtmp->mgold = (long) rnd(4);
+		else if (mtmp->m_lev < level_difficulty()) 
+			mtmp->mgold = (long) d(mtmp->m_lev, 4);
+		else
+			mtmp->mgold = (long) d(level_difficulty(), 4);
 #else
-		mkmonmoney(mtmp, (long) d(level_difficulty(), 30));
+		if (mtmp->m_lev <= 0) 
+			mkmonmoney(mtmp, (long) rnd(4);
+		else if (mtmp->m_lev < level_difficulty()) 
+			mkmonmoney(mtmp, (long) d(mtmp->m_lev, 4);
+		else
+			mkmonmoney(mtmp, (long) d(level_difficulty(), 4));
 #endif
 		if (monsndx(ptr) == PM_LUPIN_THE_THIRD) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (monsndx(ptr) == PM_GRETA_S_HUGGING_BOOT) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TRAP_CREATION); }
