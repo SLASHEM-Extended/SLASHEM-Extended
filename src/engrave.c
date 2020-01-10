@@ -5195,6 +5195,8 @@ static const char *epitaphs[] = {
 	"Around to shorten helps only full processor power lay.",
 	"upper shitty lay!",
 	"ziratha: Finder of stupid way to die #2014", /* trying to quicktravel while sinking in lava */
+	"whenever you wish for an artifact you instead get a pink tutu and high heels if you're male, or a flannel shirt if you are female. that's how you make artiwishing gay", /* by Demo */
+	"There most probably is no god, but if there is, at best he doesn't care about us humans and at worst he's laughing his ass off at our ineptitude.",
 
 };
 
