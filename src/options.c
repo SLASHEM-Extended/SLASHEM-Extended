@@ -2931,7 +2931,12 @@ goodfruit:
 		return;
 	}
 	fullname = "windowtype";
-	if (match_optname(opts, fullname, 3, TRUE)) {
+
+	if (
+#ifdef AWFUL_CURSES
+		FALSE &&
+#endif
+	    match_optname(opts, fullname, 3, TRUE)) {
 	    if (negated) {
 		bad_negation(fullname, FALSE);
 		return;

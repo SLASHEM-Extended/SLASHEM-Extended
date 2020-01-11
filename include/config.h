@@ -45,7 +45,6 @@
  */
 #define TTY_GRAPHICS		/* good old tty based graphics */
 #define CURSES_GRAPHICS		/* awful curses interface */
-/* #define AWFUL_CURSES */	/* not defined by default; if on, disables pokedex (on systems where pokedex is buggy) */
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */
@@ -55,6 +54,11 @@
 /* #define MSWIN_GRAPHICS */	/* Windows NT, CE, Graphics */
 /* #define GL_GRAPHICS */	/* OpenGL graphics */
 /* #define SDL_GRAPHICS */	/* Software SDL graphics */
+
+/* on Unix, it's well possible for the game to simply not compile when CURSES_GRAPHICS is not defined; if the
+ * curses interface is causing errors, enable the following AWFUL_CURSES option to prevent players from
+ * turning the curses interface on (basically, it disables the windowtype option, and it defaults to tty) --Amy */
+/* #define AWFUL_CURSES */	/* turns off the curses interface (i.e. effectively compiles it out) */
 
 /*
  * Define the default window system.  This should be one that is compiled
