@@ -286,7 +286,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 	if (!Upolyd) u.polyformed = 0;
 	if (Slimed) {
 		Your("body transforms, but there is still slime on you.");
-		make_slimed(100);
+		Slimed = 100;
 	}
 	flags.botl = 1;
 	vision_full_recalc = 1;
