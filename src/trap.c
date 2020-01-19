@@ -6771,7 +6771,7 @@ newbossPENT:
 		if (!is_undead(youmonst.data) ) {
 			pline("A definite, impenetrable black glow suddenly surrounds you...");
 
-			if (!rn2(20) && !Antimagic ) {
+			if (!rn2(20) && !PlayerResistsDeathRays ) {
 				u.youaredead = 1;
 				killer_format = KILLED_BY_AN;
 				killer = "instadeath trap";

@@ -5600,7 +5600,7 @@ register struct attack *mattk;
 		    tmp = 0;
 		    shieldeff(mdef->mx, mdef->my);
 		    (void) mon_reflects(mdef, "But it reflects from %s %s!");
-		    if (Antimagic) {
+		    if (PlayerResistsDeathRays) {
 			You("shudder momentarily...");
 			break;
 		    }
@@ -9658,7 +9658,7 @@ boolean ranged;
 		}
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
-		    if (!Antimagic) {
+		    if (!PlayerResistsDeathRays) {
 			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "touch of death";

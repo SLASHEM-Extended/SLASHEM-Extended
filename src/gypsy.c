@@ -386,8 +386,7 @@ fortune (mtmp)
 			incr_itimeout(&HHalf_spell_damage, rn1(500, 500));
 			break;
 		case 13: /* Death */
-			if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance
-					|| Antimagic)
+			if (nonliving(youmonst.data) || is_demon(youmonst.data) || PlayerResistsDeathRays)
 				shieldeff(u.ux, u.uy);
 			else if(Hallucination)
 				You("have an out of body experience.");

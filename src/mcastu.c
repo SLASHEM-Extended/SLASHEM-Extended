@@ -623,7 +623,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 			pline("But you resist the effects.");
 			dmg = 0;
 		}
-		else if (!Antimagic && !rn2(20)) {
+		else if (!PlayerResistsDeathRays && !rn2(20)) {
 		    u.youaredead = 1;
 		    killer_format = KILLED_BY_AN;
 		    killer = "Avada Kedavra curse";

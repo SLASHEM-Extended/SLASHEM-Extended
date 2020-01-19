@@ -6738,7 +6738,7 @@ boolean ordinary;
 			/* Fix stOOpid interface screw. There is no sane reason why you would ever zap a death ray
 			 * in . direction, other than as a way to end the game without so much as a confirmation prompt.
 			 * Therefore, I'm deciding that magic resistance has to fucking work. --Amy */
-			if (Antimagic && (u.uhpmax > 20)) {
+			if (PlayerResistsDeathRays && (u.uhpmax > 20)) {
 				You("irradiate yourself with pure energy!");
 				losehp(rnd(20), "a self-zapped death ray", KILLED_BY);
 				u.uhpmax -= rnd(20);

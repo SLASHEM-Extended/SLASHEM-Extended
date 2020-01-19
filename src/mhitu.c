@@ -9252,7 +9252,7 @@ dopois:
 		}
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
-		    if (!Antimagic) {
+		    if (!PlayerResistsDeathRays) {
 			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "touch of death";
@@ -12094,7 +12094,7 @@ do_stone2:
 		}
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
-		    if (!Antimagic) {
+		    if (!PlayerResistsDeathRays) {
 			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "engulf of death";
@@ -13777,7 +13777,7 @@ common:
 		}
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
-		    if (!Antimagic) {
+		    if (!PlayerResistsDeathRays) {
 			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "explosion of death";
@@ -17715,7 +17715,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			u.uhpmax -= 2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			break;
-		    } else if (Antimagic) {
+		    } else if (PlayerResistsDeathRays) {
 			You("shudder momentarily...");
 		    } else {
 			u.youaredead = 1;
