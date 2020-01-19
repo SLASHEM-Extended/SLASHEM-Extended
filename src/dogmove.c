@@ -396,7 +396,7 @@ int udist;
 		    could_reach_item(mtmp, obj->ox, obj->oy)) && u.petcaneat)
 		    return dog_eat(mtmp, obj, omx, omy, FALSE);
 
-		/* [Tom] demonic & undead pets don't mind cursed items */                
+		/* [Tom] demonic & undead pets don't mind cursed items */
 		if(can_carry(mtmp, obj) && u.petcollectitems && (issoviet || !Has_contents(obj)) &&
 		  !(obj == uchain) && !(obj == uball) &&
 		  could_reach_item(mtmp, obj->ox, obj->oy) &&
@@ -404,9 +404,9 @@ int udist;
 		  (!obj->blessed || (!is_demon(mtmp->data) && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ))) {
 		    if(rn2(20) < edog->apport+3) {
 			if (rn2(udist) || !rn2(edog->apport)) {
-			    if ((!nohands(mtmp->data)) ||
-						/* KMH, balance patch -- 10*level */
-						(obj->quan <= dogquan))
+				/* KMH, balance patch -- 10*level
+				 * oh-my-god by Amy: why the hell did you make this depend on the mon having hands... */
+			    if (((!nohands(mtmp->data)) || (obj->quan <= dogquan)) && !(obj->oclass == COIN_CLASS))
 			    {
 			    if (cansee(omx, omy) && flags.verbose)
 				pline("%s picks up %s.", Monnam(mtmp),
@@ -417,10 +417,10 @@ int udist;
 			    }                            
 			    else /* picking up a few objects from a pile... */
 				/* KMH -- fix picking up zero quantity */
-			    if (dogquan > 0) {
+			    if (dogquan > 0 || (obj->oclass == COIN_CLASS)) {
 				if (obj->oclass == COIN_CLASS) {
 				    /* KMH, balance patch -- 10*level */
-
+				    if (dogquan < 1) dogquan = 1; /* fail safe by Amy */
 #ifndef GOLDOBJ
 				    obj->quan -= dogquan;
 				    if (cansee(omx, omy) && flags.verbose)

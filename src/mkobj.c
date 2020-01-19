@@ -134,27 +134,29 @@ const struct icp hellprobs[] = {
 };
 
 struct obj *
-mkobj_at(let, x, y, artif)
+mkobj_at(let, x, y, artif, shopinit)
 char let;
 int x, y;
 int artif;
+boolean shopinit;
 {
 	struct obj *otmp;
 
-	otmp = mkobj(let, artif);
+	otmp = mkobj(let, artif, shopinit);
 	place_object(otmp, x, y);
 	return(otmp);
 }
 
 struct obj *
-mksobj_at(otyp, x, y, init, artif)
+mksobj_at(otyp, x, y, init, artif, shopinit)
 int otyp, x, y;
 boolean init;
 int artif;
+boolean shopinit;
 {
 	struct obj *otmp;
 
-	otmp = mksobj(otyp, init, artif);
+	otmp = mksobj(otyp, init, artif, shopinit);
 	if (!otmp) return (struct obj *)0;
 	place_object(otmp, x, y);
 	return(otmp);
@@ -167,9 +169,10 @@ int artif;
  */
 
 struct obj *
-mkobj(oclass, artif)
+mkobj(oclass, artif, shopinit)
 char oclass;
 int artif;
+boolean shopinit;
 {
 	int tprob, i, j, prob = rnd(10000);
 
@@ -444,45 +447,45 @@ armorreroll:
 
 	}
 
-	if ((objects[u.veryobtainable].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost) ) return(mksobj(u.veryobtainable, TRUE, artif));
+	if ((objects[u.veryobtainable].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost) ) return(mksobj(u.veryobtainable, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable2].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost2) ) return(mksobj(u.veryobtainable2, TRUE, artif));
+	else if ((objects[u.veryobtainable2].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost2) ) return(mksobj(u.veryobtainable2, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable3].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost3) ) return(mksobj(u.veryobtainable3, TRUE, artif));
+	else if ((objects[u.veryobtainable3].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost3) ) return(mksobj(u.veryobtainable3, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable4].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost4) ) return(mksobj(u.veryobtainable4, TRUE, artif));
+	else if ((objects[u.veryobtainable4].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost4) ) return(mksobj(u.veryobtainable4, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable5].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost5) ) return(mksobj(u.veryobtainable5, TRUE, artif));
+	else if ((objects[u.veryobtainable5].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost5) ) return(mksobj(u.veryobtainable5, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable6].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost6) ) return(mksobj(u.veryobtainable6, TRUE, artif));
+	else if ((objects[u.veryobtainable6].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost6) ) return(mksobj(u.veryobtainable6, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable7].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost7) ) return(mksobj(u.veryobtainable7, TRUE, artif));
+	else if ((objects[u.veryobtainable7].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost7) ) return(mksobj(u.veryobtainable7, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable8].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost8) ) return(mksobj(u.veryobtainable8, TRUE, artif));
+	else if ((objects[u.veryobtainable8].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost8) ) return(mksobj(u.veryobtainable8, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable9].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost9) ) return(mksobj(u.veryobtainable9, TRUE, artif));
+	else if ((objects[u.veryobtainable9].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost9) ) return(mksobj(u.veryobtainable9, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable10].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost10) ) return(mksobj(u.veryobtainable10, TRUE, artif));
+	else if ((objects[u.veryobtainable10].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost10) ) return(mksobj(u.veryobtainable10, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable11].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost11) ) return(mksobj(u.veryobtainable11, TRUE, artif));
+	else if ((objects[u.veryobtainable11].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost11) ) return(mksobj(u.veryobtainable11, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable12].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost12) ) return(mksobj(u.veryobtainable12, TRUE, artif));
+	else if ((objects[u.veryobtainable12].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost12) ) return(mksobj(u.veryobtainable12, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable13].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost13) ) return(mksobj(u.veryobtainable13, TRUE, artif));
+	else if ((objects[u.veryobtainable13].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost13) ) return(mksobj(u.veryobtainable13, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable14].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost14) ) return(mksobj(u.veryobtainable14, TRUE, artif));
+	else if ((objects[u.veryobtainable14].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost14) ) return(mksobj(u.veryobtainable14, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable15].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost15) ) return(mksobj(u.veryobtainable15, TRUE, artif));
+	else if ((objects[u.veryobtainable15].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost15) ) return(mksobj(u.veryobtainable15, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable16].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost16) ) return(mksobj(u.veryobtainable16, TRUE, artif));
+	else if ((objects[u.veryobtainable16].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost16) ) return(mksobj(u.veryobtainable16, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable17].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost17) ) return(mksobj(u.veryobtainable17, TRUE, artif));
+	else if ((objects[u.veryobtainable17].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost17) ) return(mksobj(u.veryobtainable17, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable18].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost18) ) return(mksobj(u.veryobtainable18, TRUE, artif));
+	else if ((objects[u.veryobtainable18].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost18) ) return(mksobj(u.veryobtainable18, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable19].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost19) ) return(mksobj(u.veryobtainable19, TRUE, artif));
+	else if ((objects[u.veryobtainable19].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost19) ) return(mksobj(u.veryobtainable19, TRUE, artif, shopinit));
 
-	else if ((objects[u.veryobtainable20].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost20) ) return(mksobj(u.veryobtainable20, TRUE, artif));
+	else if ((objects[u.veryobtainable20].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost20) ) return(mksobj(u.veryobtainable20, TRUE, artif, shopinit));
 
 	else if (!rn2(100) && oclass == ARMOR_CLASS) {
 
@@ -502,16 +505,16 @@ armorreroll:
 			}
 		}
 
-		return (mksobj(j, TRUE, artif));
+		return (mksobj(j, TRUE, artif, shopinit));
 	}
 
 	else if (!rn2(100) && issoviet && oclass == WAND_CLASS) {
 
-		return(mksobj(WAN_DESLEXIFICATION, TRUE, artif));
+		return(mksobj(WAN_DESLEXIFICATION, TRUE, artif, shopinit));
 
 	}
 
-	else return(mksobj(i, TRUE, artif));
+	else return(mksobj(i, TRUE, artif, shopinit));
 }
 
 STATIC_OVL void
@@ -550,13 +553,13 @@ struct obj *box;
 	for (n = rn1(n+1 - minn, minn); n > 0; n--) {
 	    if (box->otyp == MEDICAL_KIT) {
 		int supplies[] = { PHIAL, BANDAGE, PILL };
-		if (!(otmp = mksobj(supplies[rn2(SIZE(supplies))], TRUE, TRUE)))
+		if (!(otmp = mksobj(supplies[rn2(SIZE(supplies))], TRUE, TRUE, FALSE)))
 		    continue;
 		else
 		    otmp->oinvis = otmp->oinvisreal = FALSE;
 	    } else
 	    if (box->otyp == ICE_BOX || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == ICE_BOX_OF_WATERPROOFING || box->otyp == ICE_BOX_OF_DIGESTION) {
-		if (!(otmp = mksobj(CORPSE, TRUE, TRUE))) continue;
+		if (!(otmp = mksobj(CORPSE, TRUE, TRUE, FALSE))) continue;
 		/* Note: setting age to 0 is correct.  Age has a different
 		 * from usual meaning for objects stored in ice boxes. -KAA
 		 */
@@ -573,7 +576,7 @@ struct obj *box;
 		for (tprob = rnd(1000); (tprob -= iprobs->iprob) > 0; iprobs++)
 		    ;
 		if (!timebasedlowerchance()) continue;
-		if (!(otmp = mkobj(iprobs->iclass, TRUE))) continue;
+		if (!(otmp = mkobj(iprobs->iclass, TRUE, FALSE))) continue;
 
 		/* handle a couple of special cases */
 		if (otmp->oclass == COIN_CLASS) {
@@ -609,7 +612,7 @@ struct obj *box;
 		for (tprob = rnd(1000); (tprob -= iprobs->iprob) > 0; iprobs++)
 		    ;
 		if (!timebasedlowerchance()) continue;
-		if (!(otmp = mkobj(iprobs->iclass, TRUE))) continue;
+		if (!(otmp = mkobj(iprobs->iclass, TRUE, FALSE))) continue;
 
 		/* handle a couple of special cases */
 		if (otmp->oclass == COIN_CLASS) {
@@ -1773,10 +1776,11 @@ static const char dknowns[] = {
 };
 
 struct obj *
-mksobj(otyp, init, artif)
+mksobj(otyp, init, artif, shopinit)
 int otyp;
 boolean init;
 int artif;
+boolean shopinit;
 {
 	int mndx, tryct;
 	struct obj *otmp;
@@ -1858,6 +1862,7 @@ int artif;
 	otmp->enchantment = 0;
 	otmp->finalcancel = 0;
 	otmp->nemtrident = 0;
+	otmp->objwassold = (shopinit ? 1 : 0);
 
 	otmp->shirtmessage = rnd(1000000);
 	/* for use in read.c (shirts only) - since items can be polymorphed, set it for everything, including non-shirts */
@@ -2781,7 +2786,7 @@ int artif;
 			if ( (!verysmall(&mons[otmp->corpsenm]) || !rn2(10) ) && timebasedlowerchance() && (artif != 2) &&
 				rn2(level_difficulty()/2 + 10) > 10)
 			    (void) add_to_container(otmp,
-						    mkobj(SPBOOK_CLASS,FALSE));
+						    mkobj(SPBOOK_CLASS,FALSE, FALSE));
 		}
 	      blessorcurse_on_creation(otmp, 7);
 
@@ -3311,8 +3316,8 @@ struct obj *
 rnd_treefruit_at(x,y)
 int x, y;
 {
-	if (rn2(200) || issoviet) return mksobj_at(treefruits[rn2(SIZE(treefruits))], x, y, TRUE, FALSE);
-	else return mksobj_at(treefruitsX[rn2(SIZE(treefruitsX))], x, y, TRUE, FALSE);
+	if (rn2(200) || issoviet) return mksobj_at(treefruits[rn2(SIZE(treefruits))], x, y, TRUE, FALSE, FALSE);
+	else return mksobj_at(treefruitsX[rn2(SIZE(treefruitsX))], x, y, TRUE, FALSE, FALSE);
 }
 #endif /* OVL0 */
 #ifdef OVLB
@@ -3341,7 +3346,7 @@ int x, y;
     if (gold) {
 	gold->quan += amount;
     } else {
-	gold = mksobj_at(GOLD_PIECE, x, y, TRUE, FALSE);
+	gold = mksobj_at(GOLD_PIECE, x, y, TRUE, FALSE, FALSE);
 	gold->quan = amount;
     }
     gold->owt = weight(gold);
@@ -3387,10 +3392,10 @@ boolean init;
 	if (objtype != CORPSE && objtype != STATUE)
 	    impossible("making corpstat type %d", objtype);
 	if (x == 0 && y == 0) {		/* special case - random placement */
-		otmp = mksobj(objtype, init, FALSE);
+		otmp = mksobj(objtype, init, FALSE, FALSE);
 		if (otmp) rloco(otmp);
 	} else
-		otmp = mksobj_at(objtype, x, y, init, FALSE);
+		otmp = mksobj_at(objtype, x, y, init, FALSE, FALSE);
 
 	u.riderhack = FALSE;
 
@@ -3515,7 +3520,7 @@ register int x, y;
 
 	/* player statues never contain books */
 	initialize_it = (objtype != STATUE);
-	if ((otmp = mksobj_at(objtype, x, y, initialize_it, FALSE)) != 0) {
+	if ((otmp = mksobj_at(objtype, x, y, initialize_it, FALSE, FALSE)) != 0) {
 	    /* tt_oname will return null if the scoreboard is empty */
 	    if ((otmp2 = tt_oname(otmp)) != 0) otmp = otmp2;
 	}

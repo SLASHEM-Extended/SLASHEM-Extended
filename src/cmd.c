@@ -1510,7 +1510,7 @@ domonability()
 			}
 		}
 		register struct obj *otmp2;
-		otmp2 = mksobj(BOULDER, FALSE, FALSE);
+		otmp2 = mksobj(BOULDER, FALSE, FALSE, FALSE);
 		if (!otmp2) {
 			pline("For some strange reason, no boulder appeared!");
 			return TRUE;

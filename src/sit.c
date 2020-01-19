@@ -689,7 +689,7 @@ secureidchoice:
 			return 0;
 		}
 
-		uegg = mksobj(EGG, FALSE, FALSE);
+		uegg = mksobj(EGG, FALSE, FALSE, FALSE);
 		if (uegg) {
 			uegg->spe = 1;
 			uegg->quan = 1;

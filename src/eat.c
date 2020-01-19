@@ -7155,7 +7155,7 @@ floorfood(verb)		/* get food from floor or pack */
 		if ((c = yn_function(qbuf, ynqchars, 'n')) == 'y') {
 		    u.utrap = u.utraptype = 0;
 		    deltrap(ttmp);
-		    return mksobj(BEARTRAP, TRUE, FALSE);
+		    return mksobj(BEARTRAP, TRUE, FALSE, FALSE);
 		} else if (c == 'q') {
 		    return (struct obj *)0;
 		}

@@ -1725,7 +1725,7 @@ static void make_bottle(boolean certain)
 	struct obj *otmp;
 
 	if (certain || !rn2(8)) {
-		otmp = mksobj(BOTTLE,TRUE,TRUE);
+		otmp = mksobj(BOTTLE,TRUE,TRUE, FALSE);
 /* We do not transfer curses/blessings, assuming that these a property
 ** of the actual potion, not the bottle. */
 		if (otmp) {
@@ -1993,7 +1993,7 @@ badeffect()
 
 		case 103:
 
-		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
+		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE, FALSE)) != (struct obj *)0) {
 		You_feel("burdened");
 		otmp->quan = 1;
 		otmp->owt = weight(otmp);
@@ -3179,7 +3179,7 @@ reallybadeffect()
 
 		case 12:
 
-		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
+		if ((otmp = mksobj(LOADSTONE, TRUE, FALSE, FALSE)) != (struct obj *)0) {
 		You_feel("burdened");
 		otmp->quan = 1;
 		otmp->owt = weight(otmp);
@@ -5295,7 +5295,7 @@ newbadtry:
 	}
 
 	/* we should have an eligible item now (if not, the above code called return) */
-	otmp = mksobj(objtyp, TRUE, FALSE);
+	otmp = mksobj(objtyp, TRUE, FALSE, FALSE);
 	if (!otmp) return; /* fail safe */
 
 	if (objects[otmp->otyp].oc_charged && eqflags == 0) {
@@ -5435,7 +5435,7 @@ newbadheeltry:
 	}
 
 	/* we should have an eligible item now (if not, the above code called return) */
-	otmp = mksobj(objtyp, TRUE, FALSE);
+	otmp = mksobj(objtyp, TRUE, FALSE, FALSE);
 	if (!otmp) return; /* fail safe */
 
 	if (objects[otmp->otyp].oc_charged) {
@@ -6529,7 +6529,7 @@ peffects(otmp)
 	if (otmp->otyp == POT_WONDER || otmp->otyp == POT_TERCES_DLU) {
 
 		struct obj *wonderpot;
-		wonderpot = mkobj(POTION_CLASS,FALSE);
+		wonderpot = mkobj(POTION_CLASS,FALSE, FALSE);
 		if (wonderpot) otmp->otyp = wonderpot->otyp;
 		if (otmp->otyp == GOLD_PIECE) otmp->otyp = POT_WATER; /* minimalist fix */
 		if (wonderpot) obfree(wonderpot, (struct obj *)0);
@@ -9580,7 +9580,7 @@ boolean amnesia;
 
 			}
 			useup(obj);
-			otmp = mksobj(POT_SALT_WATER,TRUE,FALSE);
+			otmp = mksobj(POT_SALT_WATER,TRUE,FALSE, FALSE);
 			if (otmp) {
 				otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 				addinv(otmp);
@@ -10631,7 +10631,7 @@ dodip()
 			case 4:
 				{
 				  struct obj *otmp;
-				  otmp = mkobj(POTION_CLASS,FALSE);
+				  otmp = mkobj(POTION_CLASS,FALSE, FALSE);
 				  obj->otyp = otmp->otyp;
 				  obfree(otmp, (struct obj *)0);
 				}

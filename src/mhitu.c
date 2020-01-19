@@ -19783,7 +19783,7 @@ enjoyable:
 		else { pline("Oh! %s is pregnant!",noit_Monnam(mon)); verbalize("Please take good care of my baby, %s!",playeraliasname);
 		}
 
-		uegg = mksobj(EGG, FALSE, FALSE);
+		uegg = mksobj(EGG, FALSE, FALSE, FALSE);
 		if (uegg) {
 			uegg->spe = (flags.female ? 1 : 0);
 			uegg->quan = 1;

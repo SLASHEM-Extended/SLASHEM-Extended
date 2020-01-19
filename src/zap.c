@@ -2876,7 +2876,7 @@ poly_obj(obj, id, degradation)
 	    else if (otmp) {
 		typ = otmp->otyp;
 		delobj(otmp);
-		otmp = mksobj(typ, TRUE, FALSE);
+		otmp = mksobj(typ, TRUE, FALSE, FALSE);
 	    }
 	}
 	if (!otmp)
@@ -2888,19 +2888,19 @@ poly_obj(obj, id, degradation)
 	    otmp = (struct obj *)0;
 	    do {
 		if (otmp) delobj(otmp);
-		otmp = mkobj(obj->oclass, FALSE);
+		otmp = mkobj(obj->oclass, FALSE, FALSE);
 	    } while (--try_limit > 0 &&
 		  objects[obj->otyp].oc_magic != objects[otmp->otyp].oc_magic);
 	    if (otmp && rn2(3) && objects[otmp->otyp].oc_magic) { /* force the item to become nonmagic --Amy */
 		try_limit = 11;
 	 	do {
 			if (otmp) delobj(otmp);
-			otmp = mkobj(obj->oclass, FALSE);
+			otmp = mkobj(obj->oclass, FALSE, FALSE);
 		} while (--try_limit > 0 && objects[otmp->otyp].oc_magic);
 	    }
 	} else {
 	    /* literally replace obj with this new thing */
-	    otmp = mksobj(id, FALSE, FALSE);
+	    otmp = mksobj(id, FALSE, FALSE, FALSE);
 	/* Actually more things use corpsenm but they polymorph differently */
 #define USES_CORPSENM(typ) ((typ)==CORPSE || (typ)==STATUE || (typ)==FIGURINE || (typ)==ENERGY_SAP)
 	    if (USES_CORPSENM(obj->otyp) && USES_CORPSENM(id))
@@ -4575,41 +4575,41 @@ secureidchoice:
 			/* Yeah, I know this is less elegant than DCSS. But hey, it's a wand of acquirement! */
 
 				if (yn("Do you want to acquire a random item?")=='y') {
-					    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a weapon?")=='y') {
-					    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire an armor?")=='y') {
-					    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a ring?")=='y') {
-					    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire an amulet?")=='y') {
-					    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire an implant?")=='y') {
-					    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a tool?")=='y') {
-					    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire some food?")=='y') {
-					    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a potion?")=='y') {
-					    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a scroll?")=='y') {
-					    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a spellbook?")=='y') {
-					    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a wand?")=='y') {
-					    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire some coins?")=='y') {
-					    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a gem?")=='y') {
-					    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a boulder or statue?")=='y') {
-					    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
-					    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire an iron chain?")=='y') {
-					    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a splash of venom?")=='y') {
-					    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+					    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 	
 			}
 
@@ -7209,7 +7209,7 @@ struct obj *obj;	/* wand or spell */
 		      ceiling(x, y), body_part(HEAD));
 		losehp(rnd((uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) ? 2 : 6),
 		       "falling rock", KILLED_BY_AN);
-		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE)) != 0) {
+		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE, FALSE)) != 0) {
 
 			if(!rn2(8)) {
 				otmp->spe = rne(2);
@@ -10375,7 +10375,7 @@ othergreateffect()
 
 	if (typeofeffect == 1) {
 
-		acqo = mksobj(makegreatitem(), TRUE, TRUE);
+		acqo = mksobj(makegreatitem(), TRUE, TRUE, FALSE);
 		if (acqo) {
 			dropy(acqo);
 			pline("A high-quality item appeared on the ground!");
@@ -10453,41 +10453,41 @@ othergreateffect()
 		while (acquireditem == 0) { /* ask the player what they want --Amy */
 
 			if (yn("Do you want to acquire a random item?")=='y') {
-				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a weapon?")=='y') {
-				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an armor?")=='y') {
-				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a ring?")=='y') {
-				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an amulet?")=='y') {
-				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an implant?")=='y') {
-				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a tool?")=='y') {
-				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some food?")=='y') {
-				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a potion?")=='y') {
-				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a scroll?")=='y') {
-				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a spellbook?")=='y') {
-				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a wand?")=='y') {
-				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some coins?")=='y') {
-				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a gem?")=='y') {
-				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a boulder or statue?")=='y') {
-				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
-				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an iron chain?")=='y') {
-				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a splash of venom?")=='y') {
-				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 	
 		}
 		if (!acqo) {

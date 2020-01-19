@@ -2481,7 +2481,7 @@ register struct monst *shkp;
 
 	if (Role_if(PM_OTAKU)) tmp /= 3L; /* bad at making deals */
 	if (Race_if(PM_DUTHOL)) tmp /= 2L;
-	
+
 	/* shopkeeper may notice if the player isn't very knowledgeable -
 	   especially when gem prices are concerned */
 	if (!obj->dknown || !objects[obj->otyp].oc_name_known) {
@@ -2495,8 +2495,24 @@ register struct monst *shkp;
 		} else if (tmp > 1L && !rn2(4))
 			tmp -= tmp / 4L;
 	}
- 	if (obj->otyp == IC && obj->cursed) tmp /= 20L;	
-	if (obj->otyp == IC && !obj->cursed) tmp /= 10L;
+	/* reduce player's ability to gain tons of money from selling common items --Amy */
+	if (tmp > 1) {
+	 	if (obj->otyp == IC && obj->cursed) tmp /= 20L;	
+		if (obj->otyp == IC && !obj->cursed) tmp /= 10L;
+		if (objects[obj->otyp].oc_skill == P_FIREARM) tmp /= 10L;
+		if (objects[obj->otyp].oc_skill == -P_FIREARM) tmp /= 3L;
+		if (tmp < 1) tmp = 1; /* fail safe */
+		if (obj->oclass == RING_CLASS) tmp /= 10L;
+		if (obj->oclass == AMULET_CLASS) tmp /= 10L;
+		if (obj->oclass == IMPLANT_CLASS) tmp /= 10L;
+		if (obj->oclass == POTION_CLASS) tmp /= 10L;
+		if (obj->oclass == SCROLL_CLASS) tmp /= 10L;
+		if (obj->oclass == SPBOOK_CLASS) tmp /= 10L;
+		if (obj->oclass == WAND_CLASS) tmp /= 10L;
+	}
+	/* after all, we nuked the thing that should not exist (price id) by making many item types always have the price
+	 * of the most expensive item in that type; if you can sell common scrolls, potions etc. for that price, it's way
+	 * too easy to gain money or (worst of all) credit clone! */
 
 	return tmp;
 }
@@ -2617,6 +2633,7 @@ const char *arg;
 	char *obj_name, fmtbuf[BUFSZ];
 	boolean was_unknown = !obj->dknown;
 
+	obj->objwassold = TRUE; /* so you can't sell it again for credit cloning --Amy */
 	obj->dknown = TRUE;
 	/* Use real name for ordinary weapons/armor, and spell-less
 	 * scrolls/books (that is, blank and mail), but only if the
@@ -3044,7 +3061,7 @@ xchar x, y;
 
 	/* get one case out of the way: nothing to sell, and no gold */
 	if(!isgold &&
-	   ((offer + gltmp) == 0L || (sell_how == SELL_DONTSELL && !(uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) ) )) {
+	   ((offer + gltmp) == 0L || (obj->objwassold) || (sell_how == SELL_DONTSELL && !(uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) ) )) {
 		register boolean unpaid = (obj->unpaid ||
 				  (container && count_unpaid(obj->cobj)));
 
@@ -3056,8 +3073,9 @@ xchar x, y;
 			    subfrombill(obj, shkp);
 		} else obj->no_charge = 1;
 
-		if(!unpaid && (sell_how != SELL_DONTSELL))
-		    pline("%s seems uninterested.", Monnam(shkp));
+		if(!unpaid && (sell_how != SELL_DONTSELL)) {
+			pline("%s seems uninterested%s.", Monnam(shkp), (obj && obj->objwassold) ? " in items that already got sold earlier" : "");
+		}
 		return;
 	}
 
@@ -3132,6 +3150,7 @@ move_on:
 	if((!saleitem && !(container && cltmp > 0L))
 	   || eshkp->billct == BILLSZ
 	   || obj->oclass == BALL_CLASS
+	   || obj->objwassold
 	   || obj->oclass == CHAIN_CLASS || offer == 0L
 	   || is_hazy(obj)
 	   || (obj->oclass == FOOD_CLASS && obj->oeaten)
@@ -3152,6 +3171,12 @@ move_on:
 #endif
 		char c, qbuf[BUFSZ];
 		long tmpcr = ((offer * 9L) / 10L) + (offer <= 1L);
+		if (!issoviet && tmpcr > 0) {
+		/* if the shk has no money then he has no money. Giving credit is all fine and dandy, but there's way too much
+		 * potential for abuse so from now on credit is one third of the # of zorkmids the shk would have paid. --Amy */
+			tmpcr /= 3;
+			if (tmpcr < 1) tmpcr = 1;
+		}
 
 		if (sell_how == SELL_NORMAL || auto_credit) {
 		    c = sell_response = 'y';
@@ -4098,8 +4123,7 @@ boolean catchup;	/* restoring a level */
 		    return(0);
 	    if (ttmp->ttyp == LANDMINE || ttmp->ttyp == BEAR_TRAP) {
 		/* convert to an object */
-		otmp = mksobj((ttmp->ttyp == LANDMINE) ? LAND_MINE :
-				BEARTRAP, TRUE, FALSE);
+		otmp = mksobj((ttmp->ttyp == LANDMINE) ? LAND_MINE : BEARTRAP, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan= 1;
 			otmp->owt = weight(otmp);

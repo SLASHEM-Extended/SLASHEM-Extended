@@ -318,7 +318,7 @@ found:
 	/* KMH, conduct */
 	u.uconduct.literate++;
 
-	new_obj = mksobj(i, FALSE, FALSE);
+	new_obj = mksobj(i, FALSE, FALSE, FALSE);
 	if (!new_obj) {
 		pline("Scroll creation failed!");
 		return(1);

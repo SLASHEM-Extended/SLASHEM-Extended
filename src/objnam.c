@@ -6386,7 +6386,7 @@ register struct obj *obj;
 	register char *buf = &(bufr[PREFIX]);   /* leave room for "17 -3 " */
 
 	if (Hallucination && !program_state.gameover) {
-		hobj = mkobj(obj->oclass, 2);
+		hobj = mkobj(obj->oclass, 2, FALSE);
 		if (hobj) {
 			hobj->quan = obj->quan;
 			/* WAC clean up */
@@ -8465,7 +8465,7 @@ boolean actualwish;
 #else
 		if (!actualwish) return (&zeroobj);
 
-                otmp = mksobj(GOLD_PIECE, FALSE, FALSE);
+                otmp = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
 		otmp->quan = cnt;
                 otmp->owt = weight(otmp);
 		flags.botl=1;
@@ -9044,9 +9044,9 @@ typfnd:
 	if (typ == WAN_DESLEXIFICATION && !wizard && !issoviet) typ = WAN_NOTHING;
 
 	if(typ) {
-		otmp = mksobj(typ, TRUE, FALSE);
+		otmp = mksobj(typ, TRUE, FALSE, FALSE);
 	} else {
-		otmp = mkobj(oclass, FALSE);
+		otmp = mkobj(oclass, FALSE, FALSE);
 		if (otmp) typ = otmp->otyp;
 	}
 	if (!otmp) {

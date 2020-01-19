@@ -29210,8 +29210,8 @@ register struct trobj *trop;
 				otyp = inv_asubs[i].subs_otyp;
 				break;
 			    }
-			obj = mksobj(otyp, TRUE, FALSE);
-			if (Race_if(PM_HAXOR)) objX = mksobj(otyp, TRUE, FALSE);
+			obj = mksobj(otyp, TRUE, FALSE, FALSE);
+			if (Race_if(PM_HAXOR)) objX = mksobj(otyp, TRUE, FALSE, FALSE);
 		} else {	/* UNDEF_TYP */
 			static NEARDATA short nocreate = STRANGE_OBJECT;
 			static NEARDATA short nocreate2 = STRANGE_OBJECT;
@@ -29227,8 +29227,8 @@ register struct trobj *trop;
 		 * one will immediately read it and use the iron ball as a
 		 * weapon.)
 		 */
-			obj = mkobj(trop->trclass, FALSE);
-			if (Race_if(PM_HAXOR)) objX = mkobj(trop->trclass, FALSE);
+			obj = mkobj(trop->trclass, FALSE, FALSE);
+			if (Race_if(PM_HAXOR)) objX = mkobj(trop->trclass, FALSE, FALSE);
 			otyp = obj->otyp;
 			while (otyp == WAN_WISHING
 				|| otyp == WAN_ACQUIREMENT
@@ -29288,7 +29288,7 @@ register struct trobj *trop;
 				    restricted_spell_discipline(otyp)))*/
 							) {
 				dealloc_obj(obj);
-				obj = mkobj(trop->trclass, FALSE);
+				obj = mkobj(trop->trclass, FALSE, FALSE);
 				otyp = obj->otyp;
 			} /* re-enabled a lot of stuff. Startscum if you really have to. --Amy */
 
@@ -29375,7 +29375,7 @@ register struct trobj *trop;
 				    restricted_spell_discipline(otyp)))*/
 							) {
 				dealloc_obj(objX);
-				objX = mkobj(trop->trclass, FALSE);
+				objX = mkobj(trop->trclass, FALSE, FALSE);
 				otyp = objX->otyp;
 			}
 			}

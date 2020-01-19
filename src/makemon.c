@@ -181,7 +181,7 @@ int otyp,oquan;
 {
 	register struct obj *otmp;
 
-	otmp = mksobj(otyp, TRUE, FALSE);
+	otmp = mksobj(otyp, TRUE, FALSE, FALSE);
 	if (!otmp) return;
 	otmp->quan = (long) rn1(oquan, 3);
 	if (!issoviet) {
@@ -874,7 +874,7 @@ register struct monst *mtmp;
 	if (!rn2(ishaxor ? 600 : 1200)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 
 	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 1000 : 2000)) {
-		struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+		struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 		if (otmpX) {
 			otmpX->spe = 0;
 			otmpX->quan = 1;
@@ -888,7 +888,7 @@ register struct monst *mtmp;
 
 	if (attacktype(ptr, AT_WEAP) && !rn2(ishaxor ? 250 : 500)) {
 
-		struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
+		struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE, FALSE);
 
 		if (otmpY) {
 			otmpY->spe = 0;
@@ -899,7 +899,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp,otmpY, TRUE);
 		}
 
-		struct obj *otmpZ = mksobj(rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY), TRUE, FALSE);
+		struct obj *otmpZ = mksobj(rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY), TRUE, FALSE, FALSE);
 		if (otmpZ) {
 			otmpZ->quan = 1;
 			otmpZ->owt = weight(otmpZ);
@@ -940,17 +940,17 @@ register struct monst *mtmp;
 				    BOULDER : CLUB);
 
 		if (ptr == &mons[PM_HILL_GIANT_WITH_NO_DOTS_ON_THE_U]) {
-			otmp = mksobj(BOULDER, FALSE, FALSE);
+			otmp = mksobj(BOULDER, FALSE, FALSE, FALSE);
 			if (otmp) {
 				otmp->oinvis = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
 			}
-			otmp = mksobj(BOULDER, FALSE, FALSE);
+			otmp = mksobj(BOULDER, FALSE, FALSE, FALSE);
 			if (otmp) {
 				otmp->oinvis = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
 			}
-			otmp = mksobj(BOULDER, FALSE, FALSE);
+			otmp = mksobj(BOULDER, FALSE, FALSE, FALSE);
 			if (otmp) {
 				otmp->oinvis = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -1214,7 +1214,7 @@ register struct monst *mtmp;
 
 				(void) mongets(mtmp, LEATHER_GLOVES);
 				{
-					struct obj *otmpS = mksobj(CORPSE,TRUE,FALSE);
+					struct obj *otmpS = mksobj(CORPSE,TRUE,FALSE, FALSE);
 
 					if (otmpS) {
 						otmpS->spe = 0;
@@ -2389,7 +2389,7 @@ register struct monst *mtmp;
 			 m_initthrow(mtmp, FLINT, 25);
 			(void)mongets(mtmp, PICK_AXE);
 
-			struct obj *otmp = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmp = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmp) {
 				otmp->spe = 0;
 				otmp->quan = 1;
@@ -3812,7 +3812,7 @@ register struct monst *mtmp;
 			int v,vials;
 			vials = rn2(4)+1;
 			for (v=0;v<vials;v++) {
-			  otmp = mksobj(POT_WATER, FALSE, FALSE);
+			  otmp = mksobj(POT_WATER, FALSE, FALSE, FALSE);
 			  if (otmp) {
 				  bless(otmp);
 				  mpickobj(mtmp, otmp, TRUE);
@@ -4756,7 +4756,7 @@ register struct monst *mtmp;
 		else if (ptr->msound == MS_PRIEST ||
 			quest_mon_represents_role(ptr,PM_PRIEST)) {
 
-		    otmp = mksobj(MACE, FALSE, FALSE);
+		    otmp = mksobj(MACE, FALSE, FALSE, FALSE);
 		    if(otmp) {
 			otmp->spe = rnd(3);
 			if(!rn2(2)) curse(otmp);
@@ -4769,7 +4769,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, HIGH_BOOTS);
 
 		} else if (mm == PM_SIZZLE){
-		    otmp = mksobj(LONG_SWORD, FALSE, FALSE);
+		    otmp = mksobj(LONG_SWORD, FALSE, FALSE, FALSE);
 		    if (otmp) {
 			int spe2;
 			otmp = oname(otmp, artiname(ART_VORPAL_BLADE));
@@ -5505,7 +5505,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_MAYOR_CUMMERBUND){
 
 			int spe2;
-		    otmp = mksobj(SCIMITAR, FALSE, FALSE);
+		    otmp = mksobj(SCIMITAR, FALSE, FALSE, FALSE);
 		    if (otmp) {
 			curse(otmp);
 			otmp->oerodeproof = TRUE;
@@ -5514,7 +5514,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp, TRUE);
 		    }
 			
-		    otmp = mksobj(LEATHER_JACKET, FALSE, FALSE);
+		    otmp = mksobj(LEATHER_JACKET, FALSE, FALSE, FALSE);
 		    if (otmp) {
 			otmp->oerodeproof = TRUE;
 			spe2 = d(2,3);
@@ -5522,7 +5522,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp, TRUE);
 		    }
 
-		    otmp = mksobj(SMALL_SHIELD, FALSE, FALSE);
+		    otmp = mksobj(SMALL_SHIELD, FALSE, FALSE, FALSE);
 		    if (otmp) {
 			otmp->oerodeproof = TRUE;
 			spe2 = d(1,3);
@@ -5538,7 +5538,7 @@ register struct monst *mtmp;
 		else if (mm == PM_MINER) {
 
 		    (void)mongets(mtmp, PICK_AXE);
-		    otmp = mksobj(BRASS_LANTERN, TRUE, FALSE);
+		    otmp = mksobj(BRASS_LANTERN, TRUE, FALSE, FALSE);
 			if (otmp) (void) mpickobj(mtmp, otmp, TRUE);
 	            /*begin_burn(otmp, FALSE);*/
 		}
@@ -5570,7 +5570,7 @@ register struct monst *mtmp;
 		if(mm == PM_BLACKBEARD_S_GHOST){
 
 			int spe2;
-		    otmp = mksobj(SCIMITAR, FALSE, FALSE);
+		    otmp = mksobj(SCIMITAR, FALSE, FALSE, FALSE);
 		    if (otmp) {
 			curse(otmp);
 			otmp->oerodeproof = TRUE;
@@ -5584,7 +5584,7 @@ register struct monst *mtmp;
 
 		    if (In_mines(&u.uz)) {
 		      if (!rn2(4)) {	
-			otmp = mksobj(TORCH, TRUE, FALSE);
+			otmp = mksobj(TORCH, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1;
 				otmp->owt = weight(otmp);
@@ -5628,7 +5628,7 @@ register struct monst *mtmp;
 		    int spe2;
 
 		    /* create minion stuff; can't use mongets */
-		    otmp = mksobj(LONG_SWORD, FALSE, FALSE);
+		    otmp = mksobj(LONG_SWORD, FALSE, FALSE, FALSE);
 
 		    if (otmp) {
 
@@ -5642,8 +5642,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp, otmp, TRUE);
 
 			otmp = mksobj(!rn2(4) || is_lord(ptr) ?
-				  SHIELD_OF_REFLECTION : LARGE_SHIELD,
-				  FALSE, FALSE);
+				  SHIELD_OF_REFLECTION : LARGE_SHIELD, FALSE, FALSE, FALSE);
 			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = FALSE;
 			otmp->oerodeproof = TRUE;
 			otmp->spe = 0;
@@ -6764,12 +6763,12 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_POLICE_OFFICER]) (void) mongets(mtmp, SCR_FIRE);
 
 		if(mm == PM_SKELETAL_PIRATE){
-		    otmp = rn2(2) ? mksobj(SCIMITAR, FALSE, FALSE) : mksobj(KNIFE, FALSE, FALSE);
+		    otmp = rn2(2) ? mksobj(SCIMITAR, FALSE, FALSE, FALSE) : mksobj(KNIFE, FALSE, FALSE, FALSE);
 		    curse(otmp);
 			otmp->oeroded = 1;
 		    (void) mpickobj(mtmp, otmp, TRUE);
 			
-		    otmp = rn2(2) ? mksobj(HIGH_BOOTS, FALSE, FALSE) : mksobj(LEATHER_JACKET, FALSE, FALSE);
+		    otmp = rn2(2) ? mksobj(HIGH_BOOTS, FALSE, FALSE, FALSE) : mksobj(LEATHER_JACKET, FALSE, FALSE, FALSE);
 		    curse(otmp);
 			otmp->oeroded2 = 1;
 		    (void) mpickobj(mtmp, otmp, TRUE);
@@ -6864,7 +6863,7 @@ register struct monst *mtmp;
 
 				else {
 
-					struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE);
+					struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE, FALSE);
 
 					if (otmpY) {
 
@@ -6883,13 +6882,13 @@ register struct monst *mtmp;
 
 		switch (mm) {
 			case PM_DAMNED_PIRATE:
-				otmp = mksobj(SCIMITAR, FALSE, FALSE);
+				otmp = mksobj(SCIMITAR, FALSE, FALSE, FALSE);
 				if (otmp) {
 					curse(otmp);
 					(void) mpickobj(mtmp, otmp, TRUE);
 				}
 				
-				otmp = mksobj(LEATHER_ARMOR, FALSE, FALSE);
+				otmp = mksobj(LEATHER_ARMOR, FALSE, FALSE, FALSE);
 				if (otmp) {
 					curse(otmp);
 					otmp->oeroded = 1;
@@ -6970,7 +6969,7 @@ mkmonmoney(mtmp, amount)
 struct monst *mtmp;
 long amount;
 {
-    struct obj *gold = mksobj(GOLD_PIECE, FALSE, FALSE);
+    struct obj *gold = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
     if (gold) {
 	    gold->quan = amount;
 	    add_to_minv(mtmp, gold);
@@ -7000,7 +6999,7 @@ register struct	monst	*mtmp;
 	/* Sometimes, monsters might be generated with eggs. --Amy */
 
 	if (!rn2(lays_eggs(mtmp->data) ? 500 : 1000) ) {
-		struct obj *otmpB = mksobj(EGG,TRUE,FALSE);
+		struct obj *otmpB = mksobj(EGG,TRUE,FALSE, FALSE);
 		if (otmpB) {
 			otmpB->spe = 0;
 			if (!rn2(200)) otmpB->spe = 2;
@@ -7014,7 +7013,7 @@ register struct	monst	*mtmp;
 	}
 
 	if (!rn2(5000)) {
-		struct obj *otmpC = mksobj(EGG,TRUE,FALSE);
+		struct obj *otmpC = mksobj(EGG,TRUE,FALSE, FALSE);
 		if (otmpC) {
 			otmpC->spe = 0;
 			if (!rn2(200)) otmpC->spe = 2;
@@ -7946,7 +7945,7 @@ loveheeltry:
 				else goto loveheelover;
 			}
 
-			lvhl = mksobj(objtyp, TRUE, FALSE);
+			lvhl = mksobj(objtyp, TRUE, FALSE, FALSE);
 			if (lvhl)
 				(void) mpickobj(mtmp, lvhl, TRUE);
 
@@ -8630,7 +8629,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_HENATRICE]) {
 
-			struct obj *otmpH = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpH = mksobj(EGG,TRUE,FALSE, FALSE);
 
 			if (otmpH) {
 
@@ -8980,7 +8979,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_SAND_MAGGOT]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 1;
@@ -8992,7 +8991,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_FOREST_MAGGOT]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 1;
@@ -9004,7 +9003,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_DARK_MAGGOT]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 1;
@@ -9016,7 +9015,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_UNDEAD_WORM]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 1;
@@ -9028,7 +9027,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_ROCK_WORM]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 2;
@@ -9040,7 +9039,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_STEEL_MAGGOT]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 2;
@@ -9052,7 +9051,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_DEVOURER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 3;
@@ -9064,7 +9063,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_GIANT_ERROR]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 3;
@@ -9076,7 +9075,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_PETTY_GIANT_ERROR]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 3;
@@ -9088,7 +9087,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_GIANT_LAMPREY]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 4;
@@ -9100,7 +9099,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_CAVE_WORM]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 4;
@@ -9112,7 +9111,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_CAVE_ERROR]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 4;
@@ -9124,7 +9123,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_WORLD_KILLER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 5;
@@ -9136,7 +9135,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_SPEEDSTER_MAGGOT]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 7;
@@ -9148,7 +9147,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_NYMPHOMANIAC]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 7;
@@ -9160,7 +9159,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_BIRD_SPAWNER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 3;
@@ -9171,7 +9170,7 @@ loveheelover:
 			}
 		}
 		if (mtmp->data == &mons[PM_GLOAM_SPAWNER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 3;
@@ -9744,7 +9743,7 @@ loveheelover:
 		/* evil patch idea by jonadab: levelwarping nymphs. To avoid annoying segfaults I'll have them do it via item. --Amy */
 		if(!rn2(200)) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ptr == &mons[PM_NYMPH_QUEEN]) {
-			struct obj *otmp = mksobj(SKELETON_KEY,TRUE,FALSE);
+			struct obj *otmp = mksobj(SKELETON_KEY,TRUE,FALSE, FALSE);
 			if (otmp) {
 				otmp = oname(otmp,artiname(ART_KEY_OF_ACCESS));
 				mpickobj(mtmp,otmp, TRUE);
@@ -10941,7 +10940,7 @@ loveheelover:
 			 (void) mongets(mtmp, CHOCOEGG);
 		}
 		if (mtmp->data == &mons[PM_EASTER]) { 
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = rnd(4);
@@ -11250,7 +11249,7 @@ loveheelover:
 
 			if (!rn2(3)) { /* greatly lowered chance --Amy */
 			otmp = mksobj(rnd_class(DILITHIUM_CRYSTAL,LUCKSTONE-1),
-				      FALSE, FALSE);
+				      FALSE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = rnd(3); /* lower amount */
 				otmp->owt = weight(otmp);
@@ -11857,7 +11856,7 @@ loveheelover:
 		if (ptr == &mons[PM_SOPHIA_S_HIGH_HEELED_LADY_S_SHOE]) { (void)mongets(mtmp, COMBAT_STILETTOS); (void)mongets(mtmp, SPIKED_BATTLE_BOOT); }
 
 		if (ptr == &mons[PM_NAZGUL]) {
-			otmp = mksobj(RIN_INVISIBILITY, FALSE, FALSE);
+			otmp = mksobj(RIN_INVISIBILITY, FALSE, FALSE, FALSE);
 			if (otmp) {
 				curse(otmp);
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -12441,7 +12440,7 @@ loveheelover:
 			(void)mongets(mtmp, (rn2(7) ? ATHAME : WAN_NOTHING));
 		else if (ptr == &mons[PM_ARCH_LICH] && !rn2(3)) {
 			otmp = mksobj(rn2(3) ? ATHAME : QUARTERSTAFF,
-				      TRUE, rn2(13) ? FALSE : TRUE);
+				      TRUE, rn2(13) ? FALSE : TRUE, FALSE);
 			if (otmp) {
 				if (otmp->spe < 2) otmp->spe = rnd(3);
 				if (!rn2(4)) otmp->oerodeproof = 1;
@@ -12632,7 +12631,7 @@ loveheelover:
 		break;
 	    case S_QUANTMECH:
 		if (monsndx(ptr) == PM_QUANTUM_MECHANIC && !rn2(20)) {
-			otmp = mksobj(LARGE_BOX, FALSE, FALSE);
+			otmp = mksobj(LARGE_BOX, FALSE, FALSE, FALSE);
 			if (otmp) {
 				otmp->spe = 1; /* flag for special box */
 				otmp->owt = weight(otmp);
@@ -13162,7 +13161,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_PURPLE_AMPERSAND]) {
-			otmp = mksobj(SCALPEL, FALSE, FALSE);
+			otmp = mksobj(SCALPEL, FALSE, FALSE, FALSE);
 			if (otmp) {
 				otmp->spe = 4;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -13438,7 +13437,7 @@ loveheelover:
 		}
 
 		if (monsndx(ptr) == PM_GREEN_COUATL) {
-			otmp = mksobj(DAGGER, FALSE, FALSE);
+			otmp = mksobj(DAGGER, FALSE, FALSE, FALSE);
 			if (otmp) {
 				otmp->opoisoned = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -13596,7 +13595,7 @@ loveheelover:
 			int i;
 			int t[3] = {DIODE, TRANSISTOR, IC};
 			for (i=0;i<3;i++) {
-				otmp = mksobj(t[i],FALSE,FALSE);
+				otmp = mksobj(t[i],FALSE,FALSE, FALSE);
 				if (otmp) {
 					otmp->quan = rn2(7) + 1;
 					otmp->owt = weight(otmp);
@@ -13638,7 +13637,7 @@ loveheelover:
 
 			int eggcount = 200;
 			while (eggcount > 0) {
-				struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+				struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 				if (otmpX) {
 
 					struct permonst *antpm = 0;
@@ -13666,7 +13665,7 @@ loveheelover:
 		}
 
 		if (monsndx(ptr) == PM_DEEP_THOUGHT) {
-			otmp = mksobj(IC,FALSE,FALSE);
+			otmp = mksobj(IC,FALSE,FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 42;
 	 			otmp->owt = weight(otmp);
@@ -13743,7 +13742,7 @@ loveheelover:
 		}
 
 		if (monsndx(ptr) == PM_ZAPHOD_BREEBLEBROX) {
-			otmp = mksobj(POT_PAN_GALACTIC_GARGLE_BLASTE,FALSE,FALSE);
+			otmp = mksobj(POT_PAN_GALACTIC_GARGLE_BLASTE,FALSE,FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = d(2,4);
 				otmp->owt = weight(otmp);
@@ -14138,7 +14137,7 @@ loveheelover:
 	    case S_DRAGON:
 		if (ptr == &mons[PM_DRAGON_LORD]) {
 			struct obj *otmp;
-			otmp = mksobj(GRAY_DRAGON_SCALE_MAIL,TRUE,FALSE);
+			otmp = mksobj(GRAY_DRAGON_SCALE_MAIL,TRUE,FALSE, FALSE);
 			if (otmp) {
 				otmp = oname(otmp,artiname(ART_SCALES_OF_THE_DRAGON_LORD));
 				if (otmp) mpickobj(mtmp,otmp, TRUE);
@@ -14375,7 +14374,7 @@ loveheelover:
 
 		int artilistentry = find_wildtalentartifact(); /*&artilist[ART_ELLI_S_PSEUDOBAND_OF_POS];*/
 
-		otmp = mksobj(artilistentry, FALSE, FALSE);
+		otmp = mksobj(artilistentry, FALSE, FALSE, FALSE);
 
 		if (otmp) {
 
@@ -14391,7 +14390,7 @@ loveheelover:
 
 		int artilistentry = find_prostituteartifact(); /*&artilist[ART_HIGHEST_FEELING];*/
 
-		otmp = mksobj(artilistentry, FALSE, FALSE);
+		otmp = mksobj(artilistentry, FALSE, FALSE, FALSE);
 
 		if (otmp) {
 
@@ -14407,7 +14406,7 @@ loveheelover:
 
 		int artilistentry = find_kurwaartifact(); /*&artilist[ART_LORSKEL_S_INTEGRITY];*/
 
-		otmp = mksobj(artilistentry, FALSE, FALSE);
+		otmp = mksobj(artilistentry, FALSE, FALSE, FALSE);
 
 		if (otmp) {
 
@@ -19691,39 +19690,39 @@ register int	mmflags;
       if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
 
 	  if (rn2(3) && timebasedlowerchance() && (rn2(100) > u.concealitemchance))
-		(void) mkobj_at(0, x, y, TRUE);
+		(void) mkobj_at(0, x, y, TRUE, FALSE);
 	  else
-		(void) mkobj_at(COIN_CLASS, x, y, TRUE);
+		(void) mkobj_at(COIN_CLASS, x, y, TRUE, FALSE);
 	}
 
 	if (x && y && isok(x, y) && ptr == &mons[PM_BEST_TREASURE_RUSSIAN]) {
-		(void) mkobj_at(0, x, y, TRUE);
-		(void) mkobj_at(0, x, y, TRUE);
-		(void) mkobj_at(0, x, y, TRUE);
+		(void) mkobj_at(0, x, y, TRUE, FALSE);
+		(void) mkobj_at(0, x, y, TRUE, FALSE);
+		(void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 
 		/* and even lower chance to get extra objects */
 	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(200) && allow_special) {
-	  (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
+	  (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(400) && allow_special) {
-	  (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
+	  (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(800) && allow_special) {
-	  (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE);
+	  (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(1600) && allow_special) {
-	  (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE);
-	  if (!rn2(81)) (void) mkobj_at(0, x, y, TRUE);
+	  (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE, FALSE);
+	  if (!rn2(81)) (void) mkobj_at(0, x, y, TRUE, FALSE);
 	}
 
 	/* maybe generate a sleeping monster */
@@ -19746,13 +19745,13 @@ register int	mmflags;
 		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP, 0);
 
 	if (ptr == &mons[PM_BOULDER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE);
+		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
 
 	if (ptr == &mons[PM_GOOD_ITEM_MASTER] && x && y && isok(x, y) )
-		(void) mksobj_at(usefulitem(), x, y, TRUE, FALSE);
+		(void) mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 	if (ptr == &mons[PM_BAD_ITEM_MASTER] && x && y && isok(x, y) )
-		(void) mksobj_at(nastymusableitem(), x, y, TRUE, FALSE);
+		(void) mksobj_at(nastymusableitem(), x, y, TRUE, FALSE, FALSE);
 
 	if (ptr == &mons[PM_HOLE_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, HOLE, 10);
@@ -21007,7 +21006,7 @@ register int	mmflags;
 		}
 
 		if (mtmp->data == &mons[PM_PUTRID_DEFILER]) { 
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 3;
@@ -21018,7 +21017,7 @@ register int	mmflags;
 			}
 		}
 		if (mtmp->data == &mons[PM_WRETCHED_DEFILER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 4;
@@ -21029,7 +21028,7 @@ register int	mmflags;
 			}
 		}
 		if (mtmp->data == &mons[PM_FETID_DEFILER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 5;
@@ -21040,7 +21039,7 @@ register int	mmflags;
 			}
 		}
 		if (mtmp->data == &mons[PM_RANCID_DEFILER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 6;
@@ -21051,7 +21050,7 @@ register int	mmflags;
 			}
 		}
 		if (mtmp->data == &mons[PM_MOLDY_DEFILER]) {
-			struct obj *otmpX = mksobj(EGG,TRUE,FALSE);
+			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
 			if (otmpX) {
 				otmpX->spe = 0;
 				otmpX->quan = 7;
@@ -21230,7 +21229,7 @@ register int	mmflags;
 	} else if (mndx == PM_NIGHTMARE) {
 		struct obj *otmp;
 
-		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
+		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE, FALSE),
 				artiname(ART_KEY_OF_LAW));
 		if (otmp) {
 			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
@@ -21239,7 +21238,7 @@ register int	mmflags;
 	} else if (mndx == PM_BEHOLDER) {
 		struct obj *otmp;
 
-		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
+		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE, FALSE),
 				artiname(ART_KEY_OF_NEUTRALITY));
 		if (otmp) {
 			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
@@ -21248,7 +21247,7 @@ register int	mmflags;
 	} else if (mndx == PM_VECNA) {
 		struct obj *otmp;
 
-		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
+		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE, FALSE),
 				artiname(ART_KEY_OF_CHAOS));
 		if (otmp) {
 			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
@@ -24978,7 +24977,7 @@ register int otyp;
 	int spe;
 
 	if (!otyp) return 0;
-	otmp = mksobj(otyp, TRUE, rn2(50) ? FALSE : TRUE);
+	otmp = mksobj(otyp, TRUE, rn2(50) ? FALSE : TRUE, FALSE);
 	if (otmp) {
 	    if (mtmp->data->mlet == S_DEMON) {
 		/* demons never get blessed objects */
@@ -25927,7 +25926,7 @@ register struct monst *mtmp;
 			if (s_sym == S_MIMIC_DEF) {
 				appear = STRANGE_OBJECT;
 			} else {
-				otmp = mkobj( (char) s_sym, FALSE );
+				otmp = mkobj( (char) s_sym, FALSE, FALSE );
 				if (otmp) {
 					appear = otmp->otyp;
 					/* make sure container contents are free'ed */
@@ -26048,7 +26047,7 @@ assign_sym:
 			if (s_sym == S_MIMIC_DEF) {
 				appear = STRANGE_OBJECT;
 			} else {
-				otmp = mkobj( (char) s_sym, FALSE );
+				otmp = mkobj( (char) s_sym, FALSE, FALSE );
 				if (otmp) {
 					appear = otmp->otyp;
 					/* make sure container contents are free'ed */

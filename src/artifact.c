@@ -748,7 +748,7 @@ boolean existingagain;	/* if TRUE, existing ones can be generated again */
 	    a = &artilist[m];
 
 	    /* make an appropriate object if necessary, then christen it */
-make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE);
+make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE, FALSE);
 
 	    if (existingagain && !(a->spfx & SPFX_ONLYONE)) otmp = onameX(otmp, a->name);
 	    else otmp = oname(otmp, a->name);
@@ -785,7 +785,7 @@ bad_artifact()
 	    a = &artilist[m];
 
 	    /* make an appropriate object if necessary, then christen it */
-	    otmp = mksobj((int)a->otyp, TRUE, FALSE);
+	    otmp = mksobj((int)a->otyp, TRUE, FALSE, FALSE);
 
 		if (!otmp) return;
 
@@ -930,7 +930,7 @@ bad_artifact_xtra()
 	    a = &artilist[m];
 
 	    /* make an appropriate object if necessary, then christen it */
-	    otmp = mksobj((int)a->otyp, TRUE, FALSE);
+	    otmp = mksobj((int)a->otyp, TRUE, FALSE, FALSE);
 
 		if (!otmp) return;
 
@@ -2527,7 +2527,7 @@ doinvoke()
 					break;
 				case 2:
 					{
-					acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);
+					acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);
 					if (acqo) {
 						acqo->bknown = acqo->known = TRUE;
 						pline("A book appeared at your %s!", makeplural(body_part(FOOT)));
@@ -2963,7 +2963,7 @@ doinvoke()
 				case 19:
 					{
 					struct obj *pseudo;
-					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2);
+					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2, FALSE);
 					if (!pseudo) {
 						pline("Nothing happens...");
 						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -3209,7 +3209,7 @@ arti_invoke(obj)
 	    break;
 	  }
 	case IDENTIFY: {
-		struct obj *pseudo = mksobj(SPE_IDENTIFY, FALSE, 2);
+		struct obj *pseudo = mksobj(SPE_IDENTIFY, FALSE, 2, FALSE);
 		if (!pseudo) break;
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 42L;		/* do not let useup get it */
@@ -3518,7 +3518,7 @@ chargingchoice:
 	    enlightenment(0, 1);
 	    break;
 	case CREATE_AMMO: {
-	    struct obj *otmp = mksobj(ARROW, TRUE, FALSE);
+	    struct obj *otmp = mksobj(ARROW, TRUE, FALSE, FALSE);
 
 	    if (!otmp) goto nothing_special;
 	    otmp->blessed = obj->blessed;
@@ -3547,7 +3547,7 @@ chargingchoice:
 		}
 		
 		if (!Punished) {
-		    setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
+		    setworn(mkobj(CHAIN_CLASS, TRUE, FALSE), W_CHAIN);
 		    setworn(obj, W_BALL);
 		    /*uball->spe = 1;*/
 		    if (!u.uswallow) {

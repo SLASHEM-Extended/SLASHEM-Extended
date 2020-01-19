@@ -480,18 +480,18 @@ boolean artif;
 	} else {
 	    atype = get_shop_item(shp - shtypes);
 	    if (atype < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE, artif);
+		(void) mksobj_at(-atype, sx, sy, TRUE, artif, TRUE);
 	    else
-		(void) mkobj_at(atype, sx, sy, artif);
+		(void) mkobj_at(atype, sx, sy, artif, TRUE);
 	}
 
 	if (ishaxor && (rn2(250) >= depth(&u.uz)) ) {
 
 	    atype = get_shop_item(shp - shtypes);
 	    if (atype < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE, artif);
+		(void) mksobj_at(-atype, sx, sy, TRUE, artif, TRUE);
 	    else
-		(void) mkobj_at(atype, sx, sy, artif);
+		(void) mkobj_at(atype, sx, sy, artif, TRUE);
 
 	}
 
@@ -1259,34 +1259,34 @@ struct mkroom	*sroom;
 /* make sure black marketeer can wield Thiefbane */
 	  shk->data->maligntyp = -1;
 /* black marketeer's equipment */
-	  otmp = mksobj(LONG_SWORD, FALSE, FALSE);
+	  otmp = mksobj(LONG_SWORD, FALSE, FALSE, FALSE);
 	  if (otmp) {
 		  otmp = oname(otmp, artiname(ART_THIEFBANE));
 		  mpickobj(shk, otmp, TRUE);
 		  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  }
-	  otmp = mksobj(SHIELD_OF_REFLECTION, FALSE, FALSE);
+	  otmp = mksobj(SHIELD_OF_REFLECTION, FALSE, FALSE, FALSE);
 	  if (otmp) {
 		  mpickobj(shk, otmp, TRUE);
 		  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  }
-	  otmp = mksobj(GRAY_DRAGON_SCALE_MAIL, FALSE, FALSE);
+	  otmp = mksobj(GRAY_DRAGON_SCALE_MAIL, FALSE, FALSE, FALSE);
 	  if (otmp) {
 		  mpickobj(shk, otmp, TRUE);
 		  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  }
-	  otmp = mksobj(SPEED_BOOTS, FALSE, FALSE);
+	  otmp = mksobj(SPEED_BOOTS, FALSE, FALSE, FALSE);
 	  if (otmp) {
 		  mpickobj(shk, otmp, TRUE);
 		  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  }
-	  otmp = mksobj(AMULET_OF_LIFE_SAVING, FALSE, FALSE);
+	  otmp = mksobj(AMULET_OF_LIFE_SAVING, FALSE, FALSE, FALSE);
 	  if (otmp) {
 		  mpickobj(shk, otmp, TRUE);
 	  }
 /* wear armor and amulet */
 	  m_dowear(shk, TRUE);
-	  otmp = mksobj(SKELETON_KEY, FALSE, FALSE);
+	  otmp = mksobj(SKELETON_KEY, FALSE, FALSE, FALSE);
 	  if (otmp) {
 		  mpickobj(shk, otmp, TRUE);
 	  }
@@ -1454,11 +1454,11 @@ register int sh;
 	      objects[typ].oc_nowish || typ==0)
 	    continue;
 
-	  otmp = mkobj_at(RANDOM_CLASS,sx,sy,TRUE);
+	  otmp = mkobj_at(RANDOM_CLASS,sx,sy,TRUE, TRUE);
 /* generate multiple copies with decreasing probabilities */
 /*        if (rn2(blkmar_gen[typ]+1) && i<49)  continue; */
 
-/*        otmp = mksobj_at(typ, sx, sy, TRUE, TRUE);
+/*        otmp = mksobj_at(typ, sx, sy, TRUE, TRUE, TRUE);
 	  blkmar_gen[typ]++;*/
 
 	if (!otmp) break;

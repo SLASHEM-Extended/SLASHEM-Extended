@@ -3028,22 +3028,22 @@ struct attack *mattk;
 	switch (mattk->adtyp) {
 	    case AD_BLND:
 	    case AD_DRST:
-		obj = mksobj(BLINDING_VENOM, TRUE, FALSE);
+		obj = mksobj(BLINDING_VENOM, TRUE, FALSE, FALSE);
 		break;
 	    case AD_DRLI:
-		obj = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE);
+		obj = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE, FALSE);
 		break;
 	    case AD_TCKL:
-		obj = mksobj(TAIL_SPIKES, TRUE, FALSE);
+		obj = mksobj(TAIL_SPIKES, TRUE, FALSE, FALSE);
 		break;
 	    case AD_NAST:
-		obj = mksobj(SEGFAULT_VENOM, TRUE, FALSE);
+		obj = mksobj(SEGFAULT_VENOM, TRUE, FALSE, FALSE);
 		break;
 	    default:
 		pline("bad attack type in spitmm");
 	    /* fall through */
 	    case AD_ACID:
-		obj = mksobj(ACID_VENOM, TRUE, FALSE);
+		obj = mksobj(ACID_VENOM, TRUE, FALSE, FALSE);
 		break;
 	}
 	if (!obj) return MM_MISS;
@@ -3841,7 +3841,7 @@ mdamagem(magr, mdef, mattk)
 		num = monsndx(mdef->data);
 		if (magr->mtame && !magr->isminion &&
 		    !(mvitals[num].mvflags & G_NOCORPSE)) {
-		    struct obj *virtualcorpse = mksobj(CORPSE, FALSE, FALSE);
+		    struct obj *virtualcorpse = mksobj(CORPSE, FALSE, FALSE, FALSE);
 		    int nutrit;
 
 		    if (virtualcorpse) {

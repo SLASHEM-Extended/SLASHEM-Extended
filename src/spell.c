@@ -3681,7 +3681,7 @@ castanyway:
 	exercise(A_WIS, TRUE);
 
 	/* pseudo is a temporary "false" object containing the spell stats. */
-	pseudo = mksobj(spellid(spell), FALSE, 2);
+	pseudo = mksobj(spellid(spell), FALSE, 2, FALSE);
 	if (!pseudo) {
 		pline("The spell failed spontaneously!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -4015,8 +4015,8 @@ magicalenergychoice:
 					levl[u.ux + i][u.uy + j].typ = CORR;
 
 					if (!rn2(3)) { /* 80% chance of glass, 20% of precious gems */
-						if (rn2(5)) mksobj_at(rnd_class(JADE+1, LUCKSTONE-1), u.ux + i, u.uy + j, TRUE, FALSE);
-						else mksobj_at(rnd_class(DILITHIUM_CRYSTAL, JADE), u.ux + i, u.uy + j, TRUE, FALSE);
+						if (rn2(5)) mksobj_at(rnd_class(JADE+1, LUCKSTONE-1), u.ux + i, u.uy + j, TRUE, FALSE, FALSE);
+						else mksobj_at(rnd_class(DILITHIUM_CRYSTAL, JADE), u.ux + i, u.uy + j, TRUE, FALSE, FALSE);
 						pline("A stalactite turns into gems!");
 						alreadydone = TRUE;
 
@@ -4972,7 +4972,7 @@ aulechoice:
 
 					register struct obj *acqo;
 
-					acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);
+					acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);
 					if (acqo) {
 						acqo->bknown = acqo->known = TRUE;
 						pline("A book appeared at your %s!", makeplural(body_part(FOOT)));
@@ -5402,7 +5402,7 @@ aulechoice:
 				case 19:
 					{
 					struct obj *pseudogram;
-					pseudogram = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2);
+					pseudogram = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2, FALSE);
 					if (!pseudogram) {
 						pline("Nothing happens...");
 						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -7222,41 +7222,41 @@ secureidchoice:
 		while (acquireditem == 0) { /* ask the player what they want --Amy */
 
 			if (yn("Do you want to acquire a random item?")=='y') {
-				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a weapon?")=='y') {
-				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an armor?")=='y') {
-				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a ring?")=='y') {
-				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an amulet?")=='y') {
-				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an implant?")=='y') {
-				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a tool?")=='y') {
-				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some food?")=='y') {
-				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a potion?")=='y') {
-				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a scroll?")=='y') {
-				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a spellbook?")=='y') {
-				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a wand?")=='y') {
-				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some coins?")=='y') {
-				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a gem?")=='y') {
-				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a boulder or statue?")=='y') {
-				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
-				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an iron chain?")=='y') {
-				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a splash of venom?")=='y') {
-				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 	
 		}
 		if (!acqo) {
@@ -10367,7 +10367,7 @@ int specialmenutype;
 
 		register struct obj *pseudo;
 
-		pseudo = mksobj(spellid(selected[0].item.a_int - 1), FALSE, 2);
+		pseudo = mksobj(spellid(selected[0].item.a_int - 1), FALSE, 2, FALSE);
 		if (!pseudo) {
 			impossible("bugged pseudo object for spell description.");
 			return dospellmenu(prompt, splaction, spell_no, specialmenutype);

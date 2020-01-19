@@ -453,7 +453,7 @@ dig()
 				 * is highly resistant to erosion or even immune to being destroyed and simply smash all bars
 				 * in the entire dungeon, which isn't what we want --Amy */
 
-				if (!rn2(5)) mkobj_at(CHAIN_CLASS, dpx, dpy, FALSE); /* maybe make a chain from the bars --Amy */
+				if (!rn2(5)) mkobj_at(CHAIN_CLASS, dpx, dpy, FALSE, FALSE); /* maybe make a chain from the bars --Amy */
 
 			} else {
 			    digtxt = "You succeed in cutting away some rock.";
@@ -1413,7 +1413,7 @@ register struct monst *mtmp;
 	    here->typ = CORR;
 	    if (!rn2(7) && pile && pile < 5) /* if you dig out rock yourself, you don't get boulders or rock either! --Amy */
 	    (void) mksobj_at((pile == 1) ? BOULDER : ROCK,
-			     mtmp->mx, mtmp->my, TRUE, FALSE);
+			     mtmp->mx, mtmp->my, TRUE, FALSE, FALSE);
 	}
 	newsym(mtmp->mx, mtmp->my);
 	if (!sobj_at(BOULDER, mtmp->mx, mtmp->my))
@@ -1685,7 +1685,7 @@ boolean bigrange;
 		    pline("It falls on your %s!", body_part(HEAD));
 		    losehp(rnd((uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) ? 2 : 6),
 			   "falling rock", KILLED_BY_AN);
-		    otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE, FALSE);
+		    otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE, FALSE, FALSE);
 		    if (otmp) {
 
 			if(!rn2(8)) {

@@ -754,7 +754,7 @@ int spellnum;
 	break;
 
     case MGC_MEGALOAD:
-	if ((otmp = mksobj(LOADSTONE, TRUE, FALSE)) != (struct obj *)0) {
+	if ((otmp = mksobj(LOADSTONE, TRUE, FALSE, FALSE)) != (struct obj *)0) {
 	pline(FunnyHallu ? "Aww, something's killing your good feelings!" : "You feel burdened");
 	otmp->quan = 1;
 	otmp->owt = weight(otmp);

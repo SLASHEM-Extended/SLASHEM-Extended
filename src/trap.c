@@ -2410,9 +2410,9 @@ register int x, y, typ, replacechance;
 
 	/* "Stop Fungi/Objects from hiding statue traps. It's a bit of a balance issue and created clutter, and had a good chance of spawning out of depth monsters." In Soviet Russia, people want to be able to see that statue of a slimy vortex in advance. They don't like games being difficult, and they don't want any nasty surprises, so they make sure that statue traps are never obscured by anything. I wonder if the next thing they'll do is to remove all the other traps because you can't see them in advance, or even make sure all of them are visible before you trigger them, too? Completely missing the point of traps, but oh well... --Amy */
 
-		else if (!rn2(10) && !issoviet) (void) mkobj_at(COIN_CLASS, x, y, TRUE); /* hidden underneath a zorkmid */
-		else if (!rn2(10) && !issoviet) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE); /* hidden underneath a boulder */
-		else if (!rn2(10) && !issoviet) (void) mkobj_at(timebasedlowerchance() ? 0 : COIN_CLASS, x, y, TRUE); /* hidden underneath a random item */
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(COIN_CLASS, x, y, TRUE, FALSE); /* hidden underneath a zorkmid */
+		else if (!rn2(10) && !issoviet) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE); /* hidden underneath a boulder */
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(timebasedlowerchance() ? 0 : COIN_CLASS, x, y, TRUE, FALSE); /* hidden underneath a random item */
 		else if (!rn2(12) && !issoviet) (void) makemon( mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS); /* hidden beneath a mimic */
 		else if (!rn2(7) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 20; sessileattempts++) {
@@ -2466,9 +2466,9 @@ register int x, y, typ, replacechance;
 
 	/* "Stop Fungi/Objects from hiding statue traps. It's a bit of a balance issue and created clutter, and had a good chance of spawning out of depth monsters." In Soviet Russia, people want to be able to see that statue of a slimy vortex in advance. They don't like games being difficult, and they don't want any nasty surprises, so they make sure that statue traps are never obscured by anything. I wonder if the next thing they'll do is to remove all the other traps because you can't see them in advance, or even make sure all of them are visible before you trigger them, too? Completely missing the point of traps, but oh well... --Amy */
 
-		else if (!rn2(10) && !issoviet) (void) mkobj_at(COIN_CLASS, x, y, TRUE); /* hidden underneath a zorkmid */
-		else if (!rn2(10) && !issoviet) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE); /* hidden underneath a boulder */
-		else if (!rn2(10) && !issoviet) (void) mkobj_at(timebasedlowerchance() ? 0 : COIN_CLASS, x, y, TRUE); /* hidden underneath a random item */
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(COIN_CLASS, x, y, TRUE, FALSE); /* hidden underneath a zorkmid */
+		else if (!rn2(10) && !issoviet) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE); /* hidden underneath a boulder */
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(timebasedlowerchance() ? 0 : COIN_CLASS, x, y, TRUE, FALSE); /* hidden underneath a random item */
 		else if (!rn2(12) && !issoviet) (void) makemon( mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS); /* hidden beneath a mimic */
 		else if (!rn2(7) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 20; sessileattempts++) {
@@ -3410,7 +3410,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("An arrow shoots out at you!");
-		otmp = mksobj(ARROW, TRUE, FALSE);
+		otmp = mksobj(ARROW, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -3440,7 +3440,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("A bolt shoots out at you!");
-		otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE);
+		otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -3470,7 +3470,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("BANG! A gun shoots at you!");
-		otmp = mksobj(BULLET, TRUE, FALSE);
+		otmp = mksobj(BULLET, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -3495,7 +3495,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("A glass arrow shoots out at you!");
-		otmp = mksobj(DROVEN_ARROW, TRUE, FALSE);
+		otmp = mksobj(DROVEN_ARROW, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -3520,7 +3520,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("A glass bolt shoots out at you!");
-		otmp = mksobj(DROVEN_BOLT, TRUE, FALSE);
+		otmp = mksobj(DROVEN_BOLT, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -3630,7 +3630,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("A little dart shoots out at you!");
-		otmp = mksobj(DART, TRUE, FALSE);
+		otmp = mksobj(DART, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -3661,7 +3661,7 @@ unsigned trflags;
 		trap->once = 1;
 		seetrap(trap);
 		pline("A shuriken shoots out at you!");
-		otmp = mksobj(SHURIKEN, TRUE, FALSE);
+		otmp = mksobj(SHURIKEN, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -3693,7 +3693,7 @@ unsigned trflags;
 
 		    trap->once = 1;
 		    seetrap(trap);
-		    otmp = mksobj_at(ROCK, u.ux, u.uy, TRUE, FALSE);
+		    otmp = mksobj_at(ROCK, u.ux, u.uy, TRUE, FALSE, FALSE);
 		    if (otmp) {
 			    otmp->quan = 1L;
 			    otmp->owt = weight(otmp);
@@ -3726,7 +3726,7 @@ unsigned trflags;
 		{
 		    int dmg = rnd(30) + rnd(monster_difficulty() + 1);
 
-		    otmp = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
+		    otmp = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE, FALSE);
 		    if (otmp) {
 			    otmp->quan = 1L;
 			    otmp->owt = weight(otmp);
@@ -3762,7 +3762,7 @@ unsigned trflags;
 		{
 		    int dmg = rnd(20) + rnd(monster_difficulty() + 1);
 
-		    otmp = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE);
+		    otmp = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE, FALSE);
 		    if (otmp) {
 			    otmp->quan = 1L;
 			    otmp->owt = weight(otmp);
@@ -3805,7 +3805,7 @@ unsigned trflags;
 
 		    trap->once = 1;
 		    seetrap(trap);
-		    otmp = mksobj_at(BOULDER, u.ux, u.uy, TRUE, FALSE);
+		    otmp = mksobj_at(BOULDER, u.ux, u.uy, TRUE, FALSE, FALSE);
 		    if (otmp) {
 			    otmp->quan = 1L;
 			    otmp->owt = weight(otmp);
@@ -4658,7 +4658,7 @@ newegomon:
 				break;
 			case 18:
 				You_feel("a gem here!");
-				(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1), u.ux, u.uy, TRUE, FALSE);
+				(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1), u.ux, u.uy, TRUE, FALSE, FALSE);
 				break;
 			case 19:
 				pline("A water nymph is summoned!");
@@ -5556,7 +5556,7 @@ rerollX:
 
 					register struct obj *acqo;
 
-					acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);
+					acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);
 					if (acqo) {
 						acqo->bknown = acqo->known = TRUE;
 						pline("A book appeared at your %s!", makeplural(body_part(FOOT)));
@@ -5987,7 +5987,7 @@ rerollX:
 				case 19:
 					{
 					struct obj *pseudo;
-					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2);
+					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2, FALSE);
 					if (!pseudo) {
 						pline("Nothing happens...");
 						if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -6547,7 +6547,7 @@ newbossPENT:
 		    boolean didmerge;
 
 			/* pseudo is a temporary "false" object containing the spell stats. */
-			pseudo = mksobj(SPE_STONE_TO_FLESH, FALSE, 2);
+			pseudo = mksobj(SPE_STONE_TO_FLESH, FALSE, 2, FALSE);
 			if (!pseudo) break;
 			if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_STONE_TO_FLESH; /* minimalist fix */
 			pseudo->blessed = pseudo->cursed = 0;
@@ -9179,7 +9179,7 @@ madnesseffect:
 		trap->once = 1;
 		seetrap(trap);
 		pline("A stone shoots out at you!");
-		otmp = mksobj(ROCK, TRUE, FALSE);
+		otmp = mksobj(ROCK, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
@@ -14105,9 +14105,9 @@ int zx,zy;
 		ry = zy + rn2(3)-1;
 		if (levl[rx][ry].typ == ROOM || levl[rx][ry].typ == CORR) {
 			if (rn2(50)) {
-				otmp = mksobj(ROCK,FALSE,FALSE);
+				otmp = mksobj(ROCK,FALSE,FALSE, FALSE);
 			} else {
-				otmp = mksobj(BOULDER,FALSE,FALSE);
+				otmp = mksobj(BOULDER,FALSE,FALSE, FALSE);
 			}
 			if (!otmp) continue;
 
@@ -14696,7 +14696,7 @@ long ocount;
 		cc.x = bcc.x = x;
 		cc.y = bcc.y = y;
 	} else {
-		otmp = mksobj(otyp, TRUE, FALSE);
+		otmp = mksobj(otyp, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->quan = ocount;
 			otmp->owt = weight(otmp);
@@ -14844,7 +14844,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(ARROW, TRUE, FALSE);
+			otmp = mksobj(ARROW, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14863,7 +14863,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE);
+			otmp = mksobj(CROSSBOW_BOLT, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14882,7 +14882,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(BULLET, TRUE, FALSE);
+			otmp = mksobj(BULLET, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14901,7 +14901,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(DROVEN_ARROW, TRUE, FALSE);
+			otmp = mksobj(DROVEN_ARROW, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14920,7 +14920,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(DROVEN_BOLT, TRUE, FALSE);
+			otmp = mksobj(DROVEN_BOLT, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14939,7 +14939,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(DART, TRUE, FALSE);
+			otmp = mksobj(DART, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14958,7 +14958,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(SHURIKEN, TRUE, FALSE);
+			otmp = mksobj(SHURIKEN, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14977,7 +14977,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(ROCK, TRUE, FALSE);
+			otmp = mksobj(ROCK, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -14998,7 +14998,7 @@ register struct monst *mtmp;
 			    break;
 			}
 			trap->once = 1;
-			otmp = mksobj(BOULDER, TRUE, FALSE);
+			otmp = mksobj(BOULDER, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -18338,7 +18338,7 @@ int otyp;
 int cnt;
 struct trap *ttmp;
 {
-	struct obj *otmp = mksobj(otyp, TRUE, FALSE);
+	struct obj *otmp = mksobj(otyp, TRUE, FALSE, FALSE);
 	/* [ALI] Only dart traps are capable of being poisonous */
 	if (otmp) {
 		if (!timebasedlowerchance()) {
@@ -18725,7 +18725,7 @@ struct trap *ttmp;
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
-	unkrwrd = mkobj(RANDOM_CLASS, FALSE);
+	unkrwrd = mkobj(RANDOM_CLASS, FALSE, FALSE);
 	if (unkrwrd) dropy(unkrwrd);
 
 	deltrap(ttmp);
@@ -19693,7 +19693,7 @@ register int bodypart;
 
 	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
 		register struct obj *otmp3;
-		otmp3 = mksobj(BOULDER, FALSE, FALSE);
+		otmp3 = mksobj(BOULDER, FALSE, FALSE, FALSE);
 		if (!otmp3) goto boulderdone;
 		otmp3->quan = 1;
 		otmp3->owt = weight(otmp3);

@@ -1312,7 +1312,7 @@ exprecalc(void)
 		u.urmaxlvl++;
 
 		if (!rn2(2)) {
-			ubookz = mkobj(SPBOOK_CLASS, FALSE);
+			ubookz = mkobj(SPBOOK_CLASS, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book appeared at your feet!");
 		}
@@ -2304,7 +2304,7 @@ exprecalc(void)
 		u.urmaxlvlC++;
 
 		if (!rn2(3)) {
-			ubookz = mkobj(SPBOOK_CLASS, FALSE);
+			ubookz = mkobj(SPBOOK_CLASS, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book appeared at your feet!"); }
 
@@ -2316,62 +2316,62 @@ exprecalc(void)
 		/* Yes I know, most of the names make no sense. They're from the bard patch. --Amy */
 
 		if (u.urmaxlvlD == 3) {
-			ubookz = mksobj(SPE_SLEEP, TRUE, FALSE);
+			ubookz = mksobj(SPE_SLEEP, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of lullaby appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 4) {
-			ubookz = mksobj(SPE_CURE_BLINDNESS, TRUE, FALSE);
+			ubookz = mksobj(SPE_CURE_BLINDNESS, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of cause blindness appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 5) {
-			ubookz = mksobj(SPE_CONFUSE_MONSTER, TRUE, FALSE);
+			ubookz = mksobj(SPE_CONFUSE_MONSTER, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of cacophony appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 6) {
-			ubookz = mksobj(SPE_CURE_SICKNESS, TRUE, FALSE);
+			ubookz = mksobj(SPE_CURE_SICKNESS, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of cause sickness appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 7) {
-			ubookz = mksobj(SPE_SLOW_MONSTER, TRUE, FALSE);
+			ubookz = mksobj(SPE_SLOW_MONSTER, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of drowsiness appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 8) {
-			ubookz = mksobj(SPE_HASTE_SELF, TRUE, FALSE);
+			ubookz = mksobj(SPE_HASTE_SELF, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of haste pets appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 9) {
-			ubookz = mksobj(RIN_PROTECTION_FROM_SHAPE_CHAN, TRUE, FALSE);
+			ubookz = mksobj(RIN_PROTECTION_FROM_SHAPE_CHAN, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A ring of silence appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 10) {
-			ubookz = mksobj(SPE_CAUSE_FEAR, TRUE, FALSE);
+			ubookz = mksobj(SPE_CAUSE_FEAR, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of despair appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 12) {
-			ubookz = mksobj(SPE_FORCE_BOLT, TRUE, FALSE);
+			ubookz = mksobj(SPE_FORCE_BOLT, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of shatter appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 14) {
-			ubookz = mksobj(CLOAK_OF_DISPLACEMENT, TRUE, FALSE);
+			ubookz = mksobj(CLOAK_OF_DISPLACEMENT, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A cloak of ventriloquism appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 15) {
-			ubookz = mksobj(SPE_CHARM_MONSTER, TRUE, FALSE);
+			ubookz = mksobj(SPE_CHARM_MONSTER, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of friendship appeared at your feet!");
 		}
 		if (u.urmaxlvlD == 20) {
-			ubookz = mksobj(SPE_POLYMORPH, TRUE, FALSE);
+			ubookz = mksobj(SPE_POLYMORPH, TRUE, FALSE, FALSE);
 			if (ubookz) dropy(ubookz);
 			pline("A book of change appeared at your feet!");
 		}

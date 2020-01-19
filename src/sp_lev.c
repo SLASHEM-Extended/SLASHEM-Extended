@@ -263,7 +263,7 @@ register int x, y;
 	if (!rn2(3)) (void) mkgold(0L, x, y);
 	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 		if (timebasedlowerchance()) {
-		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
 		    if (!otmp) return;
 		    curse(otmp);
 		    otmp->ox = x;
@@ -3142,9 +3142,9 @@ struct mkroom	*croom;
 	    c = 0;
 
 	if (!c)
-	    otmp = mkobj_at(RANDOM_CLASS, x, y, !named);
+	    otmp = mkobj_at(RANDOM_CLASS, x, y, !named, FALSE);
 	else if (o->id != -1)
-	    otmp = mksobj_at(o->id, x, y, TRUE, !named);
+	    otmp = mksobj_at(o->id, x, y, TRUE, !named, FALSE);
 	else {
 	    /*
 	     * The special levels are compiled with the default "text" object
@@ -3161,7 +3161,7 @@ struct mkroom	*croom;
 		mkgold(0L, x, y);
 		otmp = g_at(x,y);
 	    } else
-		otmp = mkobj_at(oclass, x, y, !named);
+		otmp = mkobj_at(oclass, x, y, !named, FALSE);
 	}
 
 	if (!otmp) return;
@@ -3577,9 +3577,9 @@ schar ftyp, btyp;
 			crm->fleecycolor = randomcolouur;
 
 			if(/*nxcor && */!rn2(ishaxor ? 38 : 75))
-				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE);
+				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE, FALSE);
 			else if(/*nxcor &&*/ !rn2(ishaxor ? 20 : 40) && timebasedlowerchance())
-				(void) mkobj_at(0, xx, yy, TRUE);
+				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
 			else if(/*nxcor &&*/ !rn2(ishaxor ? 50 : 100)){ 
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
@@ -4339,7 +4339,7 @@ retryrandtype:
 
 		}
 
-		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE);
+		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE, FALSE);
 		if (!rn2(3)) (void) maketrap(sx, sy, rndtrap(), 100);
 
 		} /* for loop */
@@ -4364,7 +4364,7 @@ retryrandtype:
 		} /* for loop */
 
 		if (somexy(croom, &mm)) {
-			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		}
 
 	}
@@ -4455,7 +4455,7 @@ retryrandtype:
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++) {
-			(void) mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE, NASTY_STONE), sx, sy, TRUE, FALSE);
+			(void) mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE, NASTY_STONE), sx, sy, TRUE, FALSE, FALSE);
 		}
 
 	}
@@ -4481,11 +4481,11 @@ retryrandtype:
 
 		  if (!rn2(10)) {
 			  if (somexy(croom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 
 			while (!rn2(2)) {
 			  if (somexy(croom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 			}
 		  }
 
@@ -4510,7 +4510,7 @@ retryrandtype:
 					if (!rn2(3)) (void) mkgold(0L, sx, sy);
 					for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 						if (timebasedlowerchance()) {
-						    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+						    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
 						    if (!otmp) return;
 						    curse(otmp);
 						    otmp->ox = sx;
@@ -4524,8 +4524,8 @@ retryrandtype:
 
 			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))	(void) maketrap(sx, sy, typ2, 100);
 
-			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
-			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE);
+			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE, FALSE);
+			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE, FALSE);
 
 			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40)) 	(void) makemon(insidemon(), sx, sy, MM_ADJACENTOK);
 		}
@@ -4539,7 +4539,7 @@ retryrandtype:
 
 		  if (!rn2(30)) {
 			  if (somexy(croom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
@@ -4572,12 +4572,12 @@ retryrandtype:
 		for(sy = croom->ly; sy <= croom->hy; sy++)
 		    if(rn2(2)) 
 			{
-			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE);
+			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE, FALSE);
 
 			    if (sobj && !rn2(3) ) {
 				for (i = rn2(2 + rn2(4)); i; i--)
 					if (timebasedlowerchance()) {
-					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE));
+					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE));
 					}
 				sobj->owt = weight(sobj);
 			    }
@@ -5994,12 +5994,12 @@ dlb *fd;
 #endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE);
+		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
-		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
+		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	    }
 #ifdef BIGSLEX
 	    for (x = rn2(40); x; x--) 	{ 
@@ -6054,12 +6054,12 @@ dlb *fd;
 #endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE);
+		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
-		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
+		    (void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	    }
 #ifdef BIGSLEX
 	    for (x = rn2(40); x; x--) 	{ 

@@ -221,13 +221,13 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		}
 		/* 2 to 4 spellbooks */
 		for (cnt = rn1(3,2); cnt > 0; --cnt) {
-		    (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE), TRUE);
+		    (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE, FALSE), TRUE);
 		}
 		/* [ALI] Upgrade existing robe or aquire new */
 
 		if (In_yendorian(&u.uz) && depth(&u.uz) == 1) {
 			struct obj *obj;
-			obj = mksobj(ROBE, TRUE, FALSE);
+			obj = mksobj(ROBE, TRUE, FALSE, FALSE);
 			if (obj) {
 				obj = oname(obj, artiname(ART_MOTHERFUCKER_TROPHY));
 				if (obj) {
@@ -240,7 +240,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		} else if (rn2(2) || (otmp = which_armor(priest, W_ARM)) == 0) {
 		    struct obj *obj;
 		    obj = mksobj(rn2(p_coaligned(priest) ? 2 : 5) ?
-			    ROBE_OF_PROTECTION : ROBE_OF_POWER, TRUE, FALSE);
+			    ROBE_OF_PROTECTION : ROBE_OF_POWER, TRUE, FALSE, FALSE);
 		    if (obj) { /* this should fix a STUPID segfault for minimalist characters --Amy */
 			    if (p_coaligned(priest))
 				uncurse(obj, TRUE);

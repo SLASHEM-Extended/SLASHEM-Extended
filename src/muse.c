@@ -6817,7 +6817,7 @@ struct monst *mtmp;
 
 		pline("A gray stone appears from nowhere!");
 
-		ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
+		ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE, FALSE);
 		if (ldstone) {
 			ldstone->quan = 1L;
 			ldstone->owt = weight(ldstone);
@@ -9553,8 +9553,7 @@ newboss:
 			    register struct monst *mtmp2;
 
 	    	    	    /* Make the object(s) */
-	    	    	    otmp2 = mksobj(confused ? ROCK : BOULDER,
-	    	    	    		FALSE, FALSE);
+	    	    	    otmp2 = mksobj(confused ? ROCK : BOULDER, FALSE, FALSE, FALSE);
 	    	    	    if (!otmp2) continue;  /* Shouldn't happen */
 
 				if(!rn2(8)) {
@@ -9621,8 +9620,7 @@ newboss:
 		    struct obj *otmp2;
 
 		    /* Okay, _you_ write this without repeating the code */
-		    otmp2 = mksobj(confused ? ROCK : BOULDER,
-				FALSE, FALSE);
+		    otmp2 = mksobj(confused ? ROCK : BOULDER, FALSE, FALSE, FALSE);
 		    if (!otmp2) goto xxx_noobj;  /* Shouldn't happen */
 
 			if(!rn2(8)) {

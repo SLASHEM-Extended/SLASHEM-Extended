@@ -785,7 +785,7 @@ register const char *s;
 	maze0xy(&mm);
 	walkfrom((int) mm.x, (int) mm.y);
 	/* put a boulder at the maze center */
-	(void) mksobj_at(BOULDER, (int) mm.x, (int) mm.y, TRUE, FALSE);
+	(void) mksobj_at(BOULDER, (int) mm.x, (int) mm.y, TRUE, FALSE, FALSE);
 
 #ifdef WALLIFIED_MAZE
 	wallification(2, 2, x_maze_max, y_maze_max, TRUE);
@@ -867,7 +867,7 @@ register const char *s;
 #endif
 		if (timebasedlowerchance()) {
 			mazexy_all(&mm);
-			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
 #ifdef BIGSLEX
@@ -882,7 +882,7 @@ register const char *s;
 			}
 	for(x = rn1(10,2); x; x--) {
 		mazexy_all(&mm);
-		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
+		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
 	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
@@ -922,7 +922,7 @@ register const char *s;
 #endif
 		if (timebasedlowerchance()) {
 			mazexy_all(&mm);
-			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
 #ifdef BIGSLEX
@@ -937,7 +937,7 @@ register const char *s;
 			}
 	for(x = rn1(10,2); x; x--) {
 		mazexy_all(&mm);
-		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE);
+		(void) mksobj_at(BOULDER, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
 	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
@@ -1090,7 +1090,7 @@ int x,y;
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
 					if (timebasedlowerchance()) {
-					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    otmpX = mkobj(RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
@@ -1223,7 +1223,7 @@ int x,y;
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
 					if (timebasedlowerchance()) {
-					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    otmpX = mkobj(RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
@@ -1370,7 +1370,7 @@ int x,y;
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
 					if (timebasedlowerchance()) {
-					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    otmpX = mkobj(RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
@@ -1500,7 +1500,7 @@ int x,y;
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
 					if (timebasedlowerchance()) {
-					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    otmpX = mkobj(RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;

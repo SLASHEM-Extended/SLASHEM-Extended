@@ -1044,7 +1044,7 @@ gcrownu()
 	    !carrying(SPE_FINGER_OF_DEATH)) {
 	class_gift = SPE_FINGER_OF_DEATH;
  make_splbk:
-	obj = mksobj(class_gift, TRUE, FALSE);
+	obj = mksobj(class_gift, TRUE, FALSE, FALSE);
 	if (obj) {
 		bless(obj);
 		obj->bknown = TRUE;
@@ -1074,7 +1074,7 @@ gcrownu()
 			Your("%s rings with the sound of waves!", xname(obj));
 			obj->dknown = TRUE;
 		} else if (!already_exists) {
-			obj = mksobj(SCIMITAR, FALSE, FALSE);
+			obj = mksobj(SCIMITAR, FALSE, FALSE, FALSE);
 			if (obj) {
 				obj = oname(obj, artiname(ART_REAVER));
 				obj->spe = 1;
@@ -1185,7 +1185,7 @@ gcrownu()
 	    Your("%s goes snicker-snack!", xname(obj));
 	    obj->dknown = TRUE;
 	} else if (!already_exists) {
-	    obj = mksobj(LONG_SWORD, FALSE, FALSE);
+	    obj = mksobj(LONG_SWORD, FALSE, FALSE, FALSE);
 	    if (obj) {
 		    obj = oname(obj, artiname(ART_VORPAL_BLADE));
 		    obj->spe = 1;
@@ -1250,7 +1250,7 @@ gcrownu()
 	    Your("%s hums ominously!", swordbuf);
 	    obj->dknown = TRUE;
 	} else if (!already_exists) {
-	    obj = mksobj(RUNESWORD, FALSE, FALSE);
+	    obj = mksobj(RUNESWORD, FALSE, FALSE, FALSE);
 	    if (obj) {
 		    obj = oname(obj, artiname(ART_STORMBRINGER));
 		    at_your_feet(An(swordbuf));
@@ -1581,7 +1581,7 @@ pleased(g_align)
 	    at_your_feet("An object");
 	    /* not yet known spells given preference over already known ones */
 	    /* Also, try to grant a spell for which there is a skill slot */
-	    otmp = mkobj(SPBOOK_CLASS, TRUE);
+	    otmp = mkobj(SPBOOK_CLASS, TRUE, FALSE);
 	    while (--trycnt > 0) {
 		if (!otmp) break;
 		if (otmp->otyp != SPE_BLANK_PAPER) {
@@ -2634,8 +2634,7 @@ dosacrifice()
 		} else {
 		    pline("A spellbook appears at your %s!",
 				    makeplural(body_part(FOOT)));
-		    bless(mkobj_at(SPBOOK_CLASS,
-				    u.ux, u.uy, TRUE));
+		    bless(mkobj_at(SPBOOK_CLASS, u.ux, u.uy, TRUE, FALSE));
 #ifdef NOARTIFACTWISH
 				u.usacrifice = 0;
 #endif

@@ -1557,9 +1557,9 @@ E const char *waterbody_name(XCHAR_P,XCHAR_P);
 
 /* ### mkobj.c ### */
 
-E struct obj *mkobj_at(CHAR_P,int,int,int);
-E struct obj *mksobj_at(int,int,int,BOOLEAN_P,int);
-E struct obj *mkobj(CHAR_P,int);
+E struct obj *mkobj_at(CHAR_P,int,int,int,BOOLEAN_P);
+E struct obj *mksobj_at(int,int,int,BOOLEAN_P,int,BOOLEAN_P);
+E struct obj *mkobj(CHAR_P,int,BOOLEAN_P);
 E int rndmonnum(void);
 E int usefulitem(void);
 E int nastymusableitem(void);
@@ -1567,7 +1567,7 @@ E int makegreatitem(void);
 E struct obj *splitobj(struct obj *,long);
 E void replace_object(struct obj *,struct obj *);
 E void bill_dummy_object(struct obj *);
-E struct obj *mksobj(int,BOOLEAN_P,int);
+E struct obj *mksobj(int,BOOLEAN_P,int,BOOLEAN_P);
 E int bcsign(struct obj *);
 E int weight(struct obj *);
 E struct obj *mkgold(long,int,int);

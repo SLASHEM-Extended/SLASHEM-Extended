@@ -1708,22 +1708,22 @@ dospit()
 	    switch (mattk->adtyp) {
 		case AD_BLND:
 		case AD_DRST:
-		    otmp = mksobj(BLINDING_VENOM, TRUE, FALSE);
+		    otmp = mksobj(BLINDING_VENOM, TRUE, FALSE, FALSE);
 		    break;
 		case AD_DRLI:
-		    otmp = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE);
+		    otmp = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE, FALSE);
 		    break;
 		case AD_TCKL:
-		    otmp = mksobj(TAIL_SPIKES, TRUE, FALSE);
+		    otmp = mksobj(TAIL_SPIKES, TRUE, FALSE, FALSE);
 		    break;
 		case AD_NAST:
-		    otmp = mksobj(SEGFAULT_VENOM, TRUE, FALSE);
+		    otmp = mksobj(SEGFAULT_VENOM, TRUE, FALSE, FALSE);
 		    break;
 		default:
 		    pline("bad attack type in do_spit");
 		    /* fall through */
 		case AD_ACID:
-		    otmp = mksobj(ACID_VENOM, TRUE, FALSE);
+		    otmp = mksobj(ACID_VENOM, TRUE, FALSE, FALSE);
 		    break;
 	    }
 	    if (!otmp) return(0);

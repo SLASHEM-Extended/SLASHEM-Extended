@@ -2140,7 +2140,7 @@ boolean at_stairs, falling, portal;
 		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet && !rn2(5)) {
 			angbandx = rn1(COLNO-3,2);
 			angbandy = rn2(ROWNO);
-			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE);
+			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
 		}
 
 		/* bossrusher race: spawn a boss at a random location whenever you enter a new level --Amy */
@@ -2238,7 +2238,7 @@ rerollelemloc:
 
 				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE);
+					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE, FALSE);
 				} else if (rn2(1000)) goto rerollelemloc;
 
 			}
@@ -2264,7 +2264,7 @@ rerolloccloc:
 
 				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE);
+					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE, FALSE);
 				} else if (rn2(1000)) goto rerolloccloc;
 
 			}
@@ -2290,7 +2290,7 @@ rerollchaloc:
 
 				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE);
+					(void) mksobj_at(booktype, angbandx, angbandy, TRUE, TRUE, FALSE);
 				} else if (rn2(1000)) goto rerollchaloc;
 
 			}
@@ -3037,7 +3037,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, FALSE);
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, FALSE, FALSE);
 
 					}
 				}
@@ -3054,11 +3054,11 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, FALSE);
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, FALSE, FALSE);
 					}
 				}
 
@@ -3067,7 +3067,7 @@ rerollchaloc:
 
 				if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-				    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
+				    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE, FALSE);
 				}
 
 			}
@@ -3082,13 +3082,13 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, FALSE);
-						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, FALSE);
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, FALSE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, FALSE, FALSE);
 					}
 				}
 
@@ -3099,7 +3099,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 	
-					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
+					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE, FALSE);
 					}
 				}
 
@@ -3115,16 +3115,16 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE);
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE, FALSE);
 
 						if (!rn2(1000)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0);
 
@@ -3138,7 +3138,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 	
-					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
+					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE, FALSE);
 					}
 				}
 			}
@@ -3152,31 +3152,31 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 
-					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE);
-					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE);
-						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE);
-					      if (!rn2(5)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-					      if (!rn2(10)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-					      if (!rn2(25)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-					      if (!rn2(50)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
-					      if (!rn2(100)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE);
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE, FALSE);
+					    (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SCROLL_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(POTION_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WAND_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(WEAPON_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(100)) (void) mkobj_at(ARMOR_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(SPBOOK_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(RING_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE, FALSE);
+						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE, FALSE);
+					      if (!rn2(5)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+					      if (!rn2(10)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+					      if (!rn2(25)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+					      if (!rn2(50)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
+					      if (!rn2(100)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
 
 						if (!rn2(500)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0);
 
@@ -3190,7 +3190,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && (levl[angbandx][angbandy].typ == ROOM || levl[angbandx][angbandy].typ == CORR) && !(t_at(angbandx, angbandy)) ) {
 	
-					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE);
+					    (void) mksobj_at(usefulitem(), angbandx, angbandy, TRUE, TRUE, FALSE);
 					}
 				}
 			}
@@ -4508,7 +4508,7 @@ final_level()
 		    mtmp->mhp = mtmp->mhpmax =
 					d((int)mtmp->m_lev,10) + 30 + rnd(30);
 		    if ((otmp = select_hwep(mtmp)) == 0) {
-			otmp = mksobj(SILVER_SABER, FALSE, FALSE);
+			otmp = mksobj(SILVER_SABER, FALSE, FALSE, FALSE);
 			if (otmp) {
 				if (mpickobj(mtmp, otmp, TRUE))
 				    panic("merged weapon?");

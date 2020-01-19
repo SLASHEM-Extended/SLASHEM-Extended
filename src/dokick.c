@@ -1511,7 +1511,7 @@ dokick()
 			if(i > 6) i = 6;
 			while(i--)
 			    (void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL,
-					LUCKSTONE-1), x, y, TRUE, TRUE);
+					LUCKSTONE-1), x, y, TRUE, TRUE, FALSE);
 
 			if (Blind)
 			    You("kick %s loose!", something);
@@ -1599,7 +1599,7 @@ dokick()
 				if (nfall != nfruit) {
 				    /* scatter left some in the tree, but treefruit
 				     * may not refer to the correct object */
-				    treefruit = mksobj(frtype, TRUE, FALSE);
+				    treefruit = mksobj(frtype, TRUE, FALSE, FALSE);
 				    if (treefruit) {
 					    treefruit->quan = nfruit-nfall;
 					    treefruit->owt = weight(treefruit);
@@ -1708,7 +1708,7 @@ dokick()
 
 						if (!Blind)
 							You("see a ring shining in its midst.");
-						(void) mkobj_at(RING_CLASS, x, y, TRUE);
+						(void) mkobj_at(RING_CLASS, x, y, TRUE, FALSE);
 						newsym(x, y);
 						exercise(A_DEX, TRUE);
 						exercise(A_WIS, TRUE);	/* a discovery! */

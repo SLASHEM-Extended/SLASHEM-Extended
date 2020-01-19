@@ -4522,7 +4522,7 @@ register struct obj	*sobj;
 	if (sobj->otyp == SCR_COPYING) {
 
 		struct obj *wonderscroll;
-		wonderscroll = mkobj(SCROLL_CLASS,FALSE);
+		wonderscroll = mkobj(SCROLL_CLASS,FALSE, FALSE);
 		if (wonderscroll) sobj->otyp = wonderscroll->otyp;
 		if (sobj->otyp == GOLD_PIECE) sobj->otyp = SCR_RUMOR; /* minimalist fix */
 		if (wonderscroll) obfree(wonderscroll, (struct obj *)0);
@@ -5296,7 +5296,7 @@ proofarmorchoice:
 
 		pline("A gray stone appears from nowhere!");
 
-		ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE);
+		ldstone = mksobj_at(LOADSTONE, u.ux, u.uy, TRUE, FALSE, FALSE);
 		if (ldstone) {
 			ldstone->quan = 1L;
 			ldstone->owt = weight(ldstone);
@@ -8234,7 +8234,7 @@ retry:
 		/* If confused, you will always genocide something, and you won't know what. --Amy 
 		 * Sometimes it also happens if the scroll was cursed. */
 
-		otmpY = (confused || (sobj->cursed && rn2(2) )) ? mkobj(RANDOM_CLASS, TRUE) : readobjnam(buf, &nothing, TRUE, FALSE);
+		otmpY = (confused || (sobj->cursed && rn2(2) )) ? mkobj(RANDOM_CLASS, TRUE, FALSE) : readobjnam(buf, &nothing, TRUE, FALSE);
 		if (!otmpY) {
 		    pline("Nothing fitting that description exists in the game.");
 		    if (++tries < 5) goto retry;
@@ -8885,8 +8885,7 @@ randenchchoice:
 			    register struct monst *mtmp;
 
 	    	    	    /* Make the object(s) */
-	    	    	    otmp2 = mksobj(confused ? ROCK : BOULDER,
-	    	    	    		FALSE, FALSE);
+	    	    	    otmp2 = mksobj(confused ? ROCK : BOULDER, FALSE, FALSE, FALSE);
 	    	    	    if (!otmp2) continue;  /* Shouldn't happen */
 
 				if(!rn2(8)) {
@@ -8951,8 +8950,7 @@ randenchchoice:
 		    struct obj *otmp2;
 
 		    /* Okay, _you_ write this without repeating the code */
-		    otmp2 = mksobj(confused ? ROCK : BOULDER,
-				FALSE, FALSE);
+		    otmp2 = mksobj(confused ? ROCK : BOULDER, FALSE, FALSE, FALSE);
 		    if (!otmp2) break;
 
 			if(!rn2(8)) {
@@ -9449,7 +9447,7 @@ newbossC:
 		} else {
 			struct obj *uroub;
 
-			uroub = mksobj(T_SHIRT, TRUE, FALSE);
+			uroub = mksobj(T_SHIRT, TRUE, FALSE, FALSE);
 
 			if (uroub) {
 				dropy(uroub);
@@ -9488,41 +9486,41 @@ newbossC:
 		/* Yeah, I know this is less elegant than DCSS. But hey, it's a scroll of acquirement! */
 
 			if (yn("Do you want to acquire a random item?")=='y') {
-				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a weapon?")=='y') {
-				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an armor?")=='y') {
-				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a ring?")=='y') {
-				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an amulet?")=='y') {
-				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an implant?")=='y') {
-				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a tool?")=='y') {
-				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some food?")=='y') {
-				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a potion?")=='y') {
-				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a scroll?")=='y') {
-				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a spellbook?")=='y') {
-				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a wand?")=='y') {
-				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some coins?")=='y') {
-				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a gem?")=='y') {
-				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a boulder or statue?")=='y') {
-				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
-				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an iron chain?")=='y') {
-				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a splash of venom?")=='y') {
-				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
 
 		}
 		if (!acqo) {
@@ -9746,7 +9744,7 @@ newbossC:
 			struct obj *createdscroll;
 			pline("Now that's weird.");
 		    	known = FALSE;
-		    	createdscroll = mksobj_at(SCR_CREATE_CREATE_SCROLL, u.ux, u.uy, FALSE, FALSE);
+		    	createdscroll = mksobj_at(SCR_CREATE_CREATE_SCROLL, u.ux, u.uy, FALSE, FALSE, FALSE);
 			if (createdscroll) {
 			    	createdscroll->blessed = sobj->blessed;
 			    	createdscroll->cursed = sobj->cursed;
@@ -10690,16 +10688,16 @@ register struct obj	*sobj;
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
 		pline("A ball and chain appears, then falls away.");
-		dropy(mkobj(BALL_CLASS, TRUE));
+		dropy(mkobj(BALL_CLASS, TRUE, FALSE));
 		return;
 	}
-	setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
+	setworn(mkobj(CHAIN_CLASS, TRUE, FALSE), W_CHAIN);
     if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==
      ART_IRON_BALL_OF_LIBERATION)) {
         setworn(otmp, W_BALL);
         Your("%s chains itself to you!", xname(otmp));
     } else {
-	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+	setworn(mkobj(BALL_CLASS, TRUE, FALSE), W_BALL);
     }
 	/*uball->spe = 1;*/		/* special ball (see save) */
 
@@ -10732,16 +10730,16 @@ punishx()
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
 		pline("A ball and chain appears, then falls away.");
-		dropy(mkobj(BALL_CLASS, TRUE));
+		dropy(mkobj(BALL_CLASS, TRUE, FALSE));
 		return;
 	}
-	setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
+	setworn(mkobj(CHAIN_CLASS, TRUE, FALSE), W_CHAIN);
     if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==
      ART_IRON_BALL_OF_LIBERATION)) {
         setworn(otmp, W_BALL);
         Your("%s chains itself to you!", xname(otmp));
     } else {
-	setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+	setworn(mkobj(BALL_CLASS, TRUE, FALSE), W_BALL);
     }
 	/*uball->spe = 1;*/		/* special ball (see save) */
 
@@ -10767,7 +10765,7 @@ unpunish()
 	dealloc_obj(savechain);
 	/*uball->spe = 0;*/
 	setworn((struct obj *)0, W_BALL);
-	if (!rn2(5)) mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE); /* maybe make a chain, since the original one disappeared --Amy */
+	if (!rn2(5)) mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE, FALSE); /* maybe make a chain, since the original one disappeared --Amy */
 
 }
 

@@ -883,7 +883,7 @@ struct mkroom *sroom;
 				levl[sx][sy].typ = rn2(2) ? SNOW : ICE;
 			}
 			if(!rn2(10))
-			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE);
+			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE, FALSE);
 			break;
 
 		    case VOIDROOM:
@@ -904,7 +904,7 @@ struct mkroom *sroom;
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(3)) {
 				levl[sx][sy].typ = rn2(4) ? WATERTUNNEL : MOAT;
 			}
-			if (!rn2(5)) (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE);
+			if (!rn2(5)) (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE, FALSE);
 			break;
 
 		    case WIZARDSDORM:
@@ -913,7 +913,7 @@ struct mkroom *sroom;
 			}
 
 			if(!rn2(50))
-			    (void) mksobj_at(CHARGER,sx,sy,TRUE,FALSE);
+			    (void) mksobj_at(CHARGER,sx,sy,TRUE,FALSE, FALSE);
 
 			break;
 
@@ -937,7 +937,7 @@ struct mkroom *sroom;
 				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100);
 
 			if(!rn2(20))
-			    (void) mksobj_at(rn2(10) ? CHARGER : SYMBIOTE,sx,sy,TRUE,FALSE);
+			    (void) mksobj_at(rn2(10) ? CHARGER : SYMBIOTE,sx,sy,TRUE,FALSE, FALSE);
 
 			break;
 
@@ -974,7 +974,7 @@ struct mkroom *sroom;
 				levl[sx][sy].typ = GRASSLAND;
 			}
 			if(!rn2(5))
-			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE);
+			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE, FALSE);
 
 			break;
 
@@ -990,7 +990,7 @@ struct mkroom *sroom;
 		    case ZOO:
 			if (specialzoo) {
 				if (specialzoochance > rnd(100)) {
-				    (void) mkobj_at(specialzootype, sx, sy, TRUE);
+				    (void) mkobj_at(specialzootype, sx, sy, TRUE, FALSE);
 				}
 			}
 			/* fall through */
@@ -1023,15 +1023,14 @@ struct mkroom *sroom;
 			    (void) tt_mname(&mmm, FALSE, 0);
 				}
 			if(!rn2(ishaxor ? 5 : 10))	/* lots of treasure buried with dead */
-			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
-					     sx, sy, TRUE, FALSE);
+			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST, sx, sy, TRUE, FALSE, FALSE);
 			if (!rn2(5)) {
 			    make_grave(sx, sy, (char *)0);
 
 				if (!rn2(3)) (void) mkgold(0L, sx, sy);
 				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
 					if (timebasedlowerchance()) {
-					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmp) return;
 					    curse(otmp);
 					    otmp->ox = sx;
@@ -1044,30 +1043,29 @@ struct mkroom *sroom;
 			break;
 		    case BEEHIVE:
 			if(!rn2(5)) /* slightly lowered chance --Amy */
-			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY,
-					     sx, sy, TRUE, FALSE);
+			    (void) mksobj_at(LUMP_OF_ROYAL_JELLY, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case FUNGUSFARM:
 			if (!rn2(25)) /* lowered chance --Amy */
-			    (void) mksobj_at(SLIME_MOLD, sx, sy, TRUE, FALSE);
+			    (void) mksobj_at(SLIME_MOLD, sx, sy, TRUE, FALSE, FALSE);
 			if (!rn2(100))
-			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE);
+			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case MIGOHIVE:
 			switch (rn2(30)) { /* greatly lowered chance --Amy */
 			    case 9:
-				mksobj_at(DIAMOND, sx, sy, TRUE, FALSE);
+				mksobj_at(DIAMOND, sx, sy, TRUE, FALSE, FALSE);
 				break;
 			    case 8:
-				mksobj_at(RUBY, sx, sy, TRUE, FALSE);
+				mksobj_at(RUBY, sx, sy, TRUE, FALSE, FALSE);
 				break;
 			    case 7:
 			    case 6:
-				mksobj_at(AGATE, sx, sy, TRUE, FALSE);
+				mksobj_at(AGATE, sx, sy, TRUE, FALSE, FALSE);
 				break;
 			    case 5:
 			    case 4:
-				mksobj_at(FLUORITE, sx, sy, TRUE, FALSE);
+				mksobj_at(FLUORITE, sx, sy, TRUE, FALSE, FALSE);
 				break;
 			    default:
 				break;
@@ -1075,15 +1073,14 @@ struct mkroom *sroom;
 			break;
 		    case BARRACKS:
 			if(!rn2(ishaxor ? 10 : 20))	/* the payroll and some loot */
-			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
-					     sx, sy, TRUE, FALSE);
+			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST, sx, sy, TRUE, FALSE, FALSE);
 			if (!rn2(5)) {
 			    make_grave(sx, sy, (char *)0);
 
 				if (!rn2(3)) (void) mkgold(0L, sx, sy);
 				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
 					if (timebasedlowerchance()) {
-					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmp) return;
 					    curse(otmp);
 					    otmp->ox = sx;
@@ -1097,20 +1094,20 @@ struct mkroom *sroom;
 
 		    case CLINIC:
 			if(!rn2(10))
-			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE);
+			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE, FALSE);
 			if (!rn2(100))
-			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE);
+			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case GOLEMHALL:
 			if(!rn2(ishaxor ? 10 : 20))
-			    (void) mkobj_at(CHAIN_CLASS, sx, sy, FALSE);
+			    (void) mkobj_at(CHAIN_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		    case SPIDERHALL:
 			if(!rn2(3))
-			    (void) mksobj_at(EGG,sx,sy,TRUE,FALSE);
+			    (void) mksobj_at(EGG,sx,sy,TRUE,FALSE, FALSE);
 			break;
 		    case EMPTYNEST:
-		      (void) mksobj_at(EGG,sx,sy,TRUE,FALSE);
+		      (void) mksobj_at(EGG,sx,sy,TRUE,FALSE, FALSE);
 			break;
 		    case COCKNEST:
 			if(!rn2(3)) {
@@ -1119,7 +1116,7 @@ struct mkroom *sroom;
 			    if (sobj) {
 				for (i = rn2(5); i; i--)
 					if (timebasedlowerchance()) {
-					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE));
+					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE));
 					}
 				sobj->owt = weight(sobj);
 			    }
@@ -1130,9 +1127,9 @@ struct mkroom *sroom;
 				struct obj *otmp;
 				if (!rn2(5)) { /* sorry Patrick, but the quantity of those items needs to be lower. --Amy */
 					if (rn2(2))
-						otmp = mkobj_at(WEAPON_CLASS, sx, sy, FALSE);
+						otmp = mkobj_at(WEAPON_CLASS, sx, sy, FALSE, FALSE);
 					else
-						otmp = mkobj_at(ARMOR_CLASS, sx, sy, FALSE);
+						otmp = mkobj_at(ARMOR_CLASS, sx, sy, FALSE, FALSE);
 					if (otmp) {
 						if (is_rustprone(otmp)) otmp->oeroded = rn2(4);
 						else if (is_rottable(otmp)) otmp->oeroded2 = rn2(4);
@@ -1144,31 +1141,31 @@ struct mkroom *sroom;
 			{
 				if (!rn2(2)) {
 					if (rn2(10))
-						(void) mkobj_at(WEAPON_CLASS, sx, sy, FALSE);
+						(void) mkobj_at(WEAPON_CLASS, sx, sy, FALSE, FALSE);
 					else
-						(void) mkobj_at(ARMOR_CLASS, sx, sy, FALSE);
+						(void) mkobj_at(ARMOR_CLASS, sx, sy, FALSE, FALSE);
 				}
 			}
 			break;
 		    case ANTHOLE:
 			if(!rn2(15))
-			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE);
+			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		    case ANGELHALL:
 			if(!rn2(10))
-			    (void) mkobj_at(GEM_CLASS, sx, sy, FALSE);
+			    (void) mkobj_at(GEM_CLASS, sx, sy, FALSE, FALSE);
 			break;
 
 		    case CURSEDMUMMYROOM:
 			if(!rn2(10))
-			    (void) mksobj_at(STATUE, sx, sy, TRUE, FALSE);
+			    (void) mksobj_at(STATUE, sx, sy, TRUE, FALSE, FALSE);
 
 			if(!rn2(10) && !t_at(sx, sy))
 				(void) maketrap(sx, sy, rn2(50) ? STATUE_TRAP : SATATUE_TRAP, 100);
 
 			if(!rn2(10)) {
 				struct obj *enchantedgear;
-				enchantedgear = mkobj_at(rn2(2) ? WEAPON_CLASS : ARMOR_CLASS, sx, sy, FALSE);
+				enchantedgear = mkobj_at(rn2(2) ? WEAPON_CLASS : ARMOR_CLASS, sx, sy, FALSE, FALSE);
 
 				if (enchantedgear && enchantedgear->spe == 0) {
 					enchantedgear->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -1190,17 +1187,17 @@ struct mkroom *sroom;
 		    case RUINEDCHURCH:
 
 			if(!rn2(5))
-			    (void) mksobj_at(rnd_class(JADE+1, LUCKSTONE-1), sx, sy, TRUE, FALSE); /* worthless glass */
+			    (void) mksobj_at(rnd_class(JADE+1, LUCKSTONE-1), sx, sy, TRUE, FALSE, FALSE); /* worthless glass */
 			if(!rn2(20))
-			    (void) mkobj_at(SCROLL_CLASS, sx, sy, FALSE);
+			    (void) mkobj_at(SCROLL_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		    case MIMICHALL: /* lower overall amount of items --Amy */
 			if(!rn2(10))
-			    (void) mkobj_at(rn2(5) ? COIN_CLASS : RANDOM_CLASS, sx, sy, FALSE);
+			    (void) mkobj_at(rn2(5) ? COIN_CLASS : RANDOM_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		    case HUMANHALL:
 			if(!rn2(3))
-			    (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE);
+			    (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		}
 	    }
@@ -1213,7 +1210,7 @@ struct mkroom *sroom;
 		  if (somexy(sroom, &mm)) {
 			  (void) mkgold((long) rn1(50 * level_difficulty(),10), mm.x, mm.y);
 			  /* the royal coffers */
-			  chest = mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE);
+			  chest = mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 			  if (chest) {
 				  chest->spe = 2; /* so it can be found later */
 			  }
@@ -1221,7 +1218,7 @@ struct mkroom *sroom;
 
 		  if (!rn2(20)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
 
 		  level.flags.has_court = 1;
@@ -1233,7 +1230,7 @@ struct mkroom *sroom;
 
 		  if (!rn2(10)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
 
 		  break;
@@ -1251,7 +1248,7 @@ struct mkroom *sroom;
 
 			}
 
-			(void) mkobj_at(SPBOOK_CLASS, mm.x, mm.y, FALSE);
+			(void) mkobj_at(SPBOOK_CLASS, mm.x, mm.y, FALSE, FALSE);
 
 		  }
               level.flags.has_ruinedchurch = 1;
@@ -1262,7 +1259,7 @@ struct mkroom *sroom;
 
 		  if (!rn2(50)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
 
 		  level.flags.has_barracks = 1;
@@ -1270,7 +1267,7 @@ struct mkroom *sroom;
 	      case ZOO:
 		  if (!rn2(50)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
 	      case REALZOO:              
 		  level.flags.has_zoo = 1;
@@ -1278,7 +1275,7 @@ struct mkroom *sroom;
 	      case MORGUE:
 		  if (!rn2(50)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
 
 		  level.flags.has_morgue = 1;
@@ -1301,7 +1298,7 @@ struct mkroom *sroom;
 	      case FUNGUSFARM:
 		  if (!rn2(5)) {
 			  if (somexy(sroom, &mm)) {
-				(void) mksobj_at(SYMBIOTE, mm.x, mm.y, TRUE, FALSE);
+				(void) mksobj_at(SYMBIOTE, mm.x, mm.y, TRUE, FALSE, FALSE);
 			  }
 		  }
 		  level.flags.has_fungusfarm = 1;
@@ -1309,7 +1306,7 @@ struct mkroom *sroom;
             case CLINIC:
 		  if (!rn2(10)) {
 			  if (somexy(sroom, &mm)) {
-				(void) mksobj_at(SYMBIOTE, mm.x, mm.y, TRUE, FALSE);
+				(void) mksobj_at(SYMBIOTE, mm.x, mm.y, TRUE, FALSE, FALSE);
 			  }
 		  }
               level.flags.has_clinic = 1;
@@ -1321,11 +1318,11 @@ struct mkroom *sroom;
 
 		  if (!rn2(10)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 
 			while (!rn2(2)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 			}
 		  }
 
@@ -1334,14 +1331,14 @@ struct mkroom *sroom;
             case RIVERROOM:
 		  if (!rn2(30)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
               level.flags.has_riverroom = 1;
               break;
             case TENSHALL:
 		  if (!rn2(50)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
               level.flags.has_tenshall = 1;
               break;
@@ -1357,7 +1354,7 @@ struct mkroom *sroom;
             case ARDUOUSMOUNTAIN:
 		  if (!rn2(3)) {
 			  if (somexy(sroom, &mm))
-				  (void) (void) mkobj_at(IMPLANT_CLASS, mm.x, mm.y, FALSE);
+				  (void) (void) mkobj_at(IMPLANT_CLASS, mm.x, mm.y, FALSE, FALSE);
 		  }
               level.flags.has_arduousmountain = 1;
               break;
@@ -1373,7 +1370,7 @@ struct mkroom *sroom;
             case MACHINEROOM:
 		  if (!rn2(5)) {
 			  if (somexy(sroom, &mm))
-				  (void) (void) mkobj_at(IMPLANT_CLASS, mm.x, mm.y, FALSE);
+				  (void) (void) mkobj_at(IMPLANT_CLASS, mm.x, mm.y, FALSE, FALSE);
 		  }
               level.flags.has_machineroom = 1;
               break;
@@ -1392,14 +1389,14 @@ struct mkroom *sroom;
             case ELEMHALL:
 		  if (!rn2(50)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
               level.flags.has_elemhall = 1;
               break;
             case ANGELHALL:
 		  if (!rn2(20)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
               level.flags.has_angelhall = 1;
               break;
@@ -1415,7 +1412,7 @@ struct mkroom *sroom;
             case TROLLHALL:
 		  if (!rn2(50)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
               level.flags.has_trollhall = 1;
               break;
@@ -1425,7 +1422,7 @@ struct mkroom *sroom;
             case HUMANHALL:
 		  if (!rn2(30)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
               level.flags.has_humanhall = 1;
               break;
@@ -1442,7 +1439,7 @@ struct mkroom *sroom;
 	    case CRYPTROOM:
 		level.flags.has_cryptroom = 1;
 		if (somexy(sroom, &mm)) {
-			(void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE);
+			(void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		}
 		break;
 	    case TROUBLEZONE:
@@ -1454,7 +1451,7 @@ struct mkroom *sroom;
 			}
 		  }
 		if (somexy(sroom, &mm)) {
-			(void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE);
+			(void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		}
 		level.flags.has_troublezone = 1;
 		break;
@@ -1475,7 +1472,7 @@ struct mkroom *sroom;
 		level.flags.has_feminismroom = 1;
 
 		if (somexy(sroom, &mm)) {
-			(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE);
+			(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE, FALSE);
 		}
 
 		break;
@@ -1513,7 +1510,7 @@ struct mkroom *sroom;
 		level.flags.has_diverparadise = 1;
 		if (!rn2(5)) {
 			if (somexy(sroom, &mm)) {
-				(void) mksobj_at(MATERIAL_KIT, mm.x, mm.y, TRUE, FALSE);
+				(void) mksobj_at(MATERIAL_KIT, mm.x, mm.y, TRUE, FALSE, FALSE);
 			}
 		}
 		break;
@@ -2663,7 +2660,7 @@ mknastycentral()
 
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
 	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
-		(void) mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE, NASTY_STONE), sx, sy, TRUE, FALSE);
+		(void) mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE, NASTY_STONE), sx, sy, TRUE, FALSE, FALSE);
 	}
 
 	level.flags.has_nastycentral = 1;
@@ -2737,7 +2734,7 @@ mkmixedpool()
 	}
 
 	if (somexy(sroom, &mm)) {
-		  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 	}
 
 }
@@ -2837,7 +2834,7 @@ mkrampageroom()
 			levl[sx][sy].typ = ROCKWALL;
 		}
 
-		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE);
+		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE, FALSE);
 		if (!rn2(3)) (void) maketrap(sx, sy, randomtrap(), 100);
 	}
 
@@ -2899,11 +2896,11 @@ mkinsideroom()
 
 		  if (!rn2(10)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 
 			while (!rn2(2)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 			}
 		  }
 
@@ -2928,7 +2925,7 @@ mkinsideroom()
 					if (!rn2(3)) (void) mkgold(0L, sx, sy);
 					for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 						if (timebasedlowerchance()) {
-						    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+						    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
 						    if (!otmp) return;
 						    curse(otmp);
 						    otmp->ox = sx;
@@ -2941,8 +2938,8 @@ mkinsideroom()
 			}
 			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10)) (void) maketrap(sx, sy, typ2, 100);
 
-			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE);
-			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE);
+			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE, FALSE);
+			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE, FALSE);
 
 			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40)) 	(void) makemon(insidemon(), sx, sy, MM_ADJACENTOK);
 
@@ -2971,7 +2968,7 @@ mkriverroom()
 
 		  if (!rn2(30)) {
 			  if (somexy(sroom, &mm))
-				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
@@ -3017,12 +3014,12 @@ mkstatueroom()
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		    if(rn2(2)) 
 			{
-			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE);
+			    struct obj *sobj = mksobj_at(STATUE, sx, sy, TRUE, FALSE, FALSE);
 
 			    if (sobj && !rn2(3) ) {
 				for (i = rn2(2 + rn2(4)); i; i--)
 					if (timebasedlowerchance()) {
-					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE));
+					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE));
 					}
 				sobj->owt = weight(sobj);
 			    }

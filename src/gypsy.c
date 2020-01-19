@@ -407,7 +407,7 @@ fortune (mtmp)
 			if (rn2(3)) break; /* greatly reduce player's farming ability --Amy */
 			otyp = birthstones[getmonth()];
 			makeknown(otyp);
-			if ((otmp = mksobj(otyp, TRUE, FALSE)) != (struct obj *)0) {
+			if ((otmp = mksobj(otyp, TRUE, FALSE, TRUE)) != (struct obj *)0) {
 				pline("%s reaches behind your %s and pulls out %s.",
 						Monnam(mtmp), body_part(HEAD), doname(otmp));
 				if (pickup_object(otmp, otmp->quan, FALSE, FALSE) <= 0) {
@@ -756,6 +756,11 @@ pawn (mtmp)
 	if (otmp->otyp < DILITHIUM_CRYSTAL || otmp->otyp > LAST_GEM) {
 		/* Reject glass */
 		verbalize("Don\'t bother with that junk!");
+		return;
+	}
+
+	if (otmp->objwassold) { /* filthy exploit exploiter --Amy */
+		verbalize("It was sold once already! I don't want it!");
 		return;
 	}
 

@@ -149,7 +149,7 @@ boolean showmsg, update;
 		     return TRUE;
 		  }
 	       } else {
-		  otmp = mksobj(herb, TRUE, FALSE);
+		  otmp = mksobj(herb, TRUE, FALSE, FALSE);
 		  if (otmp) {
 			  otmp->quan = 1;
 			  otmp->owt = weight(otmp); 
@@ -1204,7 +1204,7 @@ int mode;
 					u.ugold += rnz(10);
 				}
 				if (!rn2(1000) && isok(ux+dx, uy+dy)) {
-					(void) mksobj_at(DIAMOND, ux+dx, uy+dy, TRUE, TRUE);
+					(void) mksobj_at(DIAMOND, ux+dx, uy+dy, TRUE, TRUE, FALSE);
 					pline("Wow, this was one of the special grave walls where Hans Walt had hidden a diamond!");
 				}
 			}

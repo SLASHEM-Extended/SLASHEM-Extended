@@ -2619,7 +2619,7 @@ trapsdone:
 		}
 
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(1000)) {
-			acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE);
+			acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);
 			if (acqo) pline("Someting appeared on the ground beneath you!");
 		}
 
@@ -2961,7 +2961,7 @@ trapsdone:
 
 		if (!rn2(2500) && uarmg && itemhasappearance(uarmg, APP_DEMOLITION_GLOVES) ) {
 			struct obj *dynamite;
-			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE);
+			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
 			if (dynamite) {
 				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
 				else {
@@ -8451,7 +8451,7 @@ newboss:
 
 		if (Race_if(PM_BATMAN) && u.ualign.record > 0 && (rnd(300000) < u.ualign.record) ) {
 			struct obj *ubatarang;
-			ubatarang = mksobj(rn2(10) ? BATARANG : DARK_BATARANG, TRUE, FALSE);
+			ubatarang = mksobj(rn2(10) ? BATARANG : DARK_BATARANG, TRUE, FALSE, FALSE);
 			if (ubatarang) {
 				ubatarang->known = ubatarang->dknown = ubatarang->bknown = ubatarang->rknown = 1;
 				ubatarang->owt = weight(ubatarang);
@@ -10801,8 +10801,8 @@ aliasagain:
 	/* Yes I know, nymphs usually remove iron balls. The playable nymph race doesn't, since I don't want them
 	   to be totally overpowered - I mean, they start with teleportitis *and* can get teleport control! --Amy */
        if (Role_if(PM_CONVICT) || Role_if(PM_MURDERER) || Race_if(PM_NYMPH) ) {
-              setworn(mkobj(CHAIN_CLASS, TRUE), W_CHAIN);
-              setworn(mkobj(BALL_CLASS, TRUE), W_BALL);
+              setworn(mkobj(CHAIN_CLASS, TRUE, FALSE), W_CHAIN);
+              setworn(mkobj(BALL_CLASS, TRUE, FALSE), W_BALL);
               /*uball->spe = 1;*/
               placebc();
               newsym(u.ux,u.uy);

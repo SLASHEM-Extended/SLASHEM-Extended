@@ -1369,9 +1369,8 @@ int trap_type;
 		    if (!rn2(2) && IS_WALL(levl[xx][yy].typ)) levl[xx][yy].typ = IRONBARS;
 
 		    if (!level.flags.noteleport)
-			(void) mksobj_at(SCR_TELEPORTATION,
-					 xx, yy+dy, TRUE, FALSE);
-		    if (!rn2(3) && timebasedlowerchance()) (void) mkobj_at(0, xx, yy+dy, TRUE);
+			(void) mksobj_at(SCR_TELEPORTATION, xx, yy+dy, TRUE, FALSE, FALSE);
+		    if (!rn2(3) && timebasedlowerchance()) (void) mkobj_at(0, xx, yy+dy, TRUE, FALSE);
 		}
 	    }
 	    return;
@@ -1626,7 +1625,7 @@ boolean lava,rndom;
 			if (!rn2(3)) (void) mkgold(0L, cx, cy);
 			for (tryct = rn2(5); tryct; tryct--) {
 					if (timebasedlowerchance()) {
-					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    otmpX = mkobj(RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = cx;
@@ -1823,7 +1822,7 @@ boolean lava,rndom;
 			if (!rn2(3)) (void) mkgold(0L, cx, cy);
 			for (tryct = rn2(5); tryct; tryct--) {
 					if (timebasedlowerchance()) {
-					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    otmpX = mkobj(RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = cx;
@@ -11503,8 +11502,7 @@ skip0:
 		 *  when few rooms; chance for 3 or more is neglible.
 		 */
 		if(!rn2(nroom * 5 / 2))
-		    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST,
-				     somex(croom), somey(croom), TRUE, FALSE);
+		    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST, somex(croom), somey(croom), TRUE, FALSE, FALSE);
 
 		/* maybe make some graffiti */
 		if(!rn2(3 + 3 * abs(depth(&u.uz)))) {
@@ -11526,26 +11524,26 @@ skip0:
 
 /* STEPHEN WHITE'S NEW CODE */
 		if(!rn2(4) && timebasedlowerchance()) {
-		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE);
+		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
 			if(++tryct > 100) {
 			    impossible("tryct overflow4");
 			    break;
 			}
-			(void) mkobj_at(0, somex(croom), somey(croom), TRUE);
+			(void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    }
 		}
 
 		if(ishaxor && timebasedlowerchance() && !rn2(4)) {
-		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE);
+		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
 			if(++tryct > 100) {
 			    impossible("tryct overflow4");
 			    break;
 			}
-			(void) mkobj_at(0, somex(croom), somey(croom), TRUE);
+			(void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    }
 		}
 
@@ -11771,7 +11769,7 @@ mineralize()
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
 					if (timebasedlowerchance()) {
-					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    otmpX = mkobj(RANDOM_CLASS, TRUE, FALSE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
@@ -11821,7 +11819,7 @@ mineralize()
 		/* Since you can now pick up items from the bottom with swimming, let's reduce the amount of kelp --Amy */
 		if ((levl[x][y].typ == POOL && !rn2(150)) ||
 			(levl[x][y].typ == MOAT && !rn2(50)))
-	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE);
+	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE, FALSE);
 
 		/* locate level for camperstriker role should be filled end to end with traps on trees */
 		if (levl[x][y].typ == TREE && Role_if(PM_CAMPERSTRIKER) && !rn2(10) && Is_qlocate(&u.uz) )
@@ -11935,7 +11933,7 @@ mineralize()
 	    	    makemon(mkclass(S_QUADRUPED,0), x, y, MM_ADJACENTOK);
 
 		if (levl[x][y].typ == WATERTUNNEL && In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !rn2(15) )
-		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE);
+		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE, FALSE);
 
 		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
 	    	    makemon(specialtensmon(61), x, y, MM_ADJACENTOK); /* flying */
@@ -12106,7 +12104,7 @@ mineralize()
 	    	    makerandomtrap_at(x, y);
 
 		if (levl[x][y].typ == WATERTUNNEL && In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !rn2(15) )
-		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE);
+		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE, FALSE);
 
 		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
 	    	    makerandomtrap_at(x, y);
@@ -12247,7 +12245,7 @@ mineralize()
 		  levl[x+1][y].typ   == STONE && levl[x-1][y].typ   == STONE &&
 		  levl[x+1][y+1].typ == STONE && levl[x-1][y+1].typ == STONE) || !rn2(100) ) ) {
 		if (rn2(1000) < goldprob) {
-		    if ((otmp = mksobj(GOLD_PIECE, FALSE, FALSE)) != 0) {
+		    if ((otmp = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE)) != 0) {
 			otmp->ox = x,  otmp->oy = y;
 			otmp->quan = 1L + rnd(goldamount * 3);
 			otmp->owt = weight(otmp);
@@ -12257,7 +12255,7 @@ mineralize()
 		}
 		if ((rn2(1000) < gemprob) && timebasedlowerchance()) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
-			if ((otmp = mkobj(GEM_CLASS, FALSE)) != 0) {
+			if ((otmp = mkobj(GEM_CLASS, FALSE, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
 				dealloc_obj(otmp);	/* discard it */
 			    } else {
@@ -12269,7 +12267,7 @@ mineralize()
 		}
 		if ((rn2(1500) < objprob) && timebasedlowerchance()) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
-			if ((otmp = mkobj(RANDOM_CLASS, FALSE)) != 0) {
+			if ((otmp = mkobj(RANDOM_CLASS, FALSE, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
 				dealloc_obj(otmp);	/* discard it */
 			    } else {
@@ -15355,7 +15353,7 @@ struct mkroom *croom;
 	if (!rn2(3)) (void) mkgold(0L, m.x, m.y);
 	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 		if (timebasedlowerchance()) {
-		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
 		    if (!otmp) return;
 		    curse(otmp);
 		    otmp->ox = m.x;
@@ -15365,7 +15363,7 @@ struct mkroom *croom;
 	}
 
 	/* Leave a bell, in case we accidentally buried someone alive */
-	if (dobell) (void) mksobj_at(BELL, m.x, m.y, TRUE, FALSE);
+	if (dobell) (void) mksobj_at(BELL, m.x, m.y, TRUE, FALSE, FALSE);
 	return;
 }
 

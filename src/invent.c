@@ -5430,7 +5430,7 @@ register long q;
 {
 	register struct obj *otmp;
 
-	otmp = mksobj(GOLD_PIECE, FALSE, FALSE);
+	otmp = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
 	u.ugold -= q;
 	otmp->quan = q;
 	otmp->owt = weight(otmp);
@@ -7758,6 +7758,11 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 
 	if(obj->oartifact != otmp->oartifact) return FALSE;
 	if(obj->fakeartifact != otmp->fakeartifact) return FALSE;
+
+	/* trying to merge an item flagged as sold onto one that doesn't have the flag will not work --Amy
+	 * it will work the other way round because then the player won't benefit from it :P (yes you old credit cloning
+	 * exploiters, I think of everything, I'm the slex devteam after all!) */
+	if (obj->objwassold && !otmp->objwassold) return FALSE;
 
 	if(obj->known == otmp->known || (otmp->known) ||
 		!objects[otmp->otyp].oc_uses_known) {

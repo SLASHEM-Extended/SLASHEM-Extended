@@ -2249,7 +2249,7 @@ register struct obj *obj;
 
 	if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 
-	if ((can = mksobj(TIN, FALSE, FALSE)) != 0) {
+	if ((can = mksobj(TIN, FALSE, FALSE, FALSE)) != 0) {
 	    static const char you_buy_it[] = "You tin it, you bought it!";
 
 	    can->corpsenm = corpse->corpsenm;
@@ -2379,7 +2379,7 @@ register struct obj *obj;
 
 	if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 
-	if ((can = mksobj(TIN, FALSE, FALSE)) != 0) {
+	if ((can = mksobj(TIN, FALSE, FALSE, FALSE)) != 0) {
 	    static const char you_buy_it[] = "You tin it, you bought it!";
 
 	    can->corpsenm = NON_PM;
@@ -2444,7 +2444,7 @@ register struct obj *obj;
 				default : fertilammotyp = FLINT; break;
 			}
 
-			uammo = mksobj(fertilammotyp, TRUE, FALSE);
+			uammo = mksobj(fertilammotyp, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->quan = rn1(15, 15);
 				if (uammo->quan < 1) uammo->quan = 1;
@@ -3924,7 +3924,7 @@ use_pole (obj)
 		case 4:
 		    /* Snag some garbage */
 		    if (fishing && flags.boot_count < 1 &&
-			    (otmp = mksobj(LOW_BOOTS, TRUE, FALSE)) !=
+			    (otmp = mksobj(LOW_BOOTS, TRUE, FALSE, FALSE)) !=
 			    (struct obj *)0) {
 			flags.boot_count++;
 			You("snag some garbage from the %s!",
@@ -3949,7 +3949,7 @@ use_pole (obj)
 		    break;
 		case 5:
 		    /* Catch your dinner */
-		    if (fishing && flags.cram_count < 50 && (otmp = mksobj(CRAM_RATION, TRUE, FALSE)) !=
+		    if (fishing && flags.cram_count < 50 && (otmp = mksobj(CRAM_RATION, TRUE, FALSE, FALSE)) !=
 			    (struct obj *)0) {
 			flags.cram_count++; /* I swear I implemented that once already, but apparently the change got eaten,
 							just like that annoying polearms code... --Amy */
@@ -5546,14 +5546,14 @@ doapply()
 
 			if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 		    if (!rn2(13)) {
-			otmp = mkobj(POTION_CLASS, FALSE);
+			otmp = mkobj(POTION_CLASS, FALSE, FALSE);
 			/* KMH, balance patch -- rewritten */
 			while ((otmp->otyp == POT_SICKNESS) || (otmp->otyp == POT_POISON) ||
 					objects[otmp->otyp].oc_magic)
 			    otmp->otyp = rnd_class(POT_BOOZE, POT_WATER);
 			what = "A potion";
 		    } else {
-			otmp = mkobj(FOOD_CLASS, FALSE);
+			otmp = mkobj(FOOD_CLASS, FALSE, FALSE);
 			if (otmp->otyp == FOOD_RATION && !rn2(7))
 			    otmp->otyp = LUMP_OF_ROYAL_JELLY;
 			what = "Some food";

@@ -135,7 +135,7 @@ picklock()	/* try to open/close a lock */
 				if (!u.keythief) {
 					u.keythief = TRUE;
 					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
-					trophy = mksobj(STONE_OF_MAGIC_RESISTANCE, TRUE, FALSE);
+					trophy = mksobj(STONE_OF_MAGIC_RESISTANCE, TRUE, FALSE, FALSE);
 					if (trophy) {
 					    dropy(trophy);
 					}
@@ -145,7 +145,7 @@ picklock()	/* try to open/close a lock */
 				if (!u.keynocturn) {
 					u.keynocturn = TRUE;
 					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
-					trophy = mksobj(SPE_PASSWALL, TRUE, FALSE);
+					trophy = mksobj(SPE_PASSWALL, TRUE, FALSE, FALSE);
 					if (trophy) {
 					    dropy(trophy);
 					}
@@ -155,7 +155,7 @@ picklock()	/* try to open/close a lock */
 				if (!u.keyaccess) {
 					u.keyaccess = TRUE;
 					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
-					trophy = mksobj(SPE_GODMODE, TRUE, FALSE);
+					trophy = mksobj(SPE_GODMODE, TRUE, FALSE, FALSE);
 					if (trophy) {
 					    dropy(trophy);
 					}
@@ -165,7 +165,7 @@ picklock()	/* try to open/close a lock */
 				if (!u.keygauntlet) {
 					u.keygauntlet = TRUE;
 					pline("Congratulations, a reward for picking this lock was dropped at your %s!", makeplural(body_part(FOOT)));
-					trophy = mksobj(SCR_WISHING, TRUE, FALSE);
+					trophy = mksobj(SCR_WISHING, TRUE, FALSE, FALSE);
 					if (trophy) {
 					    dropy(trophy);
 					}

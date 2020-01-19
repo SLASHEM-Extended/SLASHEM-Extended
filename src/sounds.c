@@ -3230,7 +3230,7 @@ register struct monst *mtmp;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
 								struct obj *medkit;
-								medkit = mksobj(MEDICAL_KIT, TRUE, FALSE);
+								medkit = mksobj(MEDICAL_KIT, TRUE, FALSE, FALSE);
 								verbalize(medkit ? "A pleasure doing business with you. The medical kit is waiting on the ground below you." : "Whoops. It seems that I don't have supplies for you right now, but for technical reasons I can't give you a refund. Sorry.");
 								use_skill(P_SQUEAKING, 2);
 								if (medkit) {
@@ -3251,7 +3251,7 @@ register struct monst *mtmp;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
 								struct obj *medkit;
-								medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE);
+								medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE, FALSE);
 								verbalize(medkit ? "Here, your stuff is on the ground. Have fun, but remember: if you call the cops, I'll send my assassins after you!" : "Oh, sorry, I don't have anything for you... but thanks for the money, sucker!");
 								use_skill(P_SQUEAKING, 1);
 								if (medkit) {

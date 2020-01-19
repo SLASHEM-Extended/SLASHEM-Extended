@@ -4260,7 +4260,7 @@ secureidchoice:
 		if (u.uexp > 0)
 		    u.uexp = newuexp(u.ulevel - 1);
 		}
-		otmp = mksobj(POT_VAMPIRE_BLOOD, FALSE, FALSE);
+		otmp = mksobj(POT_VAMPIRE_BLOOD, FALSE, FALSE, FALSE);
 		if (otmp) {
 			otmp->cursed = obj->cursed;
 			otmp->blessed = obj->blessed;
@@ -4534,12 +4534,12 @@ secureidchoice:
 
 		struct obj *uammo;
 
-		if (ammotype == 6) uammo = mksobj(rn2(2) ? GAS_GRENADE : FRAG_GRENADE, TRUE, FALSE);
-		else if (ammotype == 5) uammo = mksobj(BFG_AMMO, TRUE, FALSE);
-		else if (ammotype == 4) uammo = mksobj(ROCKET, TRUE, FALSE);
-		else if (ammotype == 3) uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE);
-		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
-		else uammo = mksobj(BULLET, TRUE, FALSE);
+		if (ammotype == 6) uammo = mksobj(rn2(2) ? GAS_GRENADE : FRAG_GRENADE, TRUE, FALSE, FALSE);
+		else if (ammotype == 5) uammo = mksobj(BFG_AMMO, TRUE, FALSE, FALSE);
+		else if (ammotype == 4) uammo = mksobj(ROCKET, TRUE, FALSE, FALSE);
+		else if (ammotype == 3) uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE, FALSE);
+		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE, FALSE);
+		else uammo = mksobj(BULLET, TRUE, FALSE, FALSE);
 		if (uammo) {
 			uammo->quan = techlevX(tech_no);
 			/* gunner really specializes in ranged weapons, so needs a big bonus --Amy */
@@ -4563,7 +4563,7 @@ secureidchoice:
 
 			if (!u.grenadoninlauncher && !rn2(5)) {
 				u.grenadoninlauncher = TRUE;
-				uammo = mksobj(GRENADE_LAUNCHER, TRUE, FALSE);
+				uammo = mksobj(GRENADE_LAUNCHER, TRUE, FALSE, FALSE);
 				if (uammo) {
 					uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
 					dropy(uammo);
@@ -4573,7 +4573,7 @@ secureidchoice:
 			}
 
 			if (!rn2(10)) {
-				uammo = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE);
+				uammo = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
 				if (uammo) {
 					uammo->quan = techlevX(tech_no) - 9;
 					if (uammo->quan < 1) uammo->quan = 1;
@@ -4591,7 +4591,7 @@ secureidchoice:
 		}
 
 		if (uarmh && uarmh->oartifact == ART_TURKISH_EMPIRE) {
-			uammo = mksobj(ROCKET, TRUE, FALSE);
+			uammo = mksobj(ROCKET, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->quan = techlevX(tech_no);
 				if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
@@ -4621,7 +4621,7 @@ secureidchoice:
 
 		while (caughtZ == 0) {
 
-			uegg = mksobj(EGG, FALSE, FALSE);
+			uegg = mksobj(EGG, FALSE, FALSE, FALSE);
 			if (uegg) {
 				uegg->spe = 0;
 				uegg->quan = 1;
@@ -4663,7 +4663,7 @@ secureidchoice:
 
 		while (caughtW == 0) {
 
-			udrink = mksobj(POT_BOOZE, TRUE, FALSE);
+			udrink = mksobj(POT_BOOZE, TRUE, FALSE, FALSE);
 			if (udrink) {
 				udrink->known = udrink->dknown = 1;
 				udrink->finalcancel = 1; /* goddamn it, these aren't supposed to be free holy water... */
@@ -5184,7 +5184,7 @@ resettechdone:
 				struct obj *usaddling;
 
 				pline("A saddle is created!");
-				usaddling = mksobj(rn2(2) ? LEATHER_SADDLE : INKA_SADDLE, TRUE, FALSE);
+				usaddling = mksobj(rn2(2) ? LEATHER_SADDLE : INKA_SADDLE, TRUE, FALSE, FALSE);
 				if (usaddling) {
 					usaddling->quan = 1;
 					usaddling->known = usaddling->dknown = usaddling->bknown = usaddling->rknown = 1;
@@ -5219,7 +5219,7 @@ resettechdone:
 				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 				trycnt++;
 			}
-			heelses1 = mksobj(heelidentity, TRUE, FALSE);
+			heelses1 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 			if (heelses1) {
 				heelses1->quan = 1;
 				heelses1->known = heelses1->dknown = heelses1->bknown = heelses1->rknown = 1;
@@ -5235,7 +5235,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses2 = mksobj(heelidentity, TRUE, FALSE);
+				heelses2 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses2) {
 					heelses2->quan = 1;
 					heelses2->known = heelses2->dknown = heelses2->bknown = heelses2->rknown = 1;
@@ -5249,7 +5249,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses3 = mksobj(heelidentity, TRUE, FALSE);
+				heelses3 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses3) {
 					heelses3->quan = 1;
 					heelses3->known = heelses3->dknown = heelses3->bknown = heelses3->rknown = 1;
@@ -5267,7 +5267,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses4 = mksobj(heelidentity, TRUE, FALSE);
+				heelses4 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses4) {
 					heelses4->quan = 1;
 					heelses4->known = heelses4->dknown = heelses4->bknown = heelses4->rknown = 1;
@@ -5281,7 +5281,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses5 = mksobj(heelidentity, TRUE, FALSE);
+				heelses5 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses5) {
 					heelses5->quan = 1;
 					heelses5->known = heelses5->dknown = heelses5->bknown = heelses5->rknown = 1;
@@ -5299,7 +5299,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses6 = mksobj(heelidentity, TRUE, FALSE);
+				heelses6 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses6) {
 					heelses6->quan = 1;
 					heelses6->known = heelses6->dknown = heelses6->bknown = heelses6->rknown = 1;
@@ -5313,7 +5313,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses7 = mksobj(heelidentity, TRUE, FALSE);
+				heelses7 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses7) {
 					heelses7->quan = 1;
 					heelses7->known = heelses7->dknown = heelses7->bknown = heelses7->rknown = 1;
@@ -5327,7 +5327,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses8 = mksobj(heelidentity, TRUE, FALSE);
+				heelses8 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses8) {
 					heelses8->quan = 1;
 					heelses8->known = heelses8->dknown = heelses8->bknown = heelses8->rknown = 1;
@@ -5341,7 +5341,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses9 = mksobj(heelidentity, TRUE, FALSE);
+				heelses9 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses9) {
 					heelses9->quan = 1;
 					heelses9->known = heelses9->dknown = heelses9->bknown = heelses9->rknown = 1;
@@ -5355,7 +5355,7 @@ resettechdone:
 					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
 					trycnt++;
 				}
-				heelses10 = mksobj(heelidentity, TRUE, FALSE);
+				heelses10 = mksobj(heelidentity, TRUE, FALSE, FALSE);
 				if (heelses10) {
 					heelses10->quan = 1;
 					heelses10->known = heelses10->dknown = heelses10->bknown = heelses10->rknown = 1;
@@ -5702,7 +5702,7 @@ heelschosen:
 				struct obj *uboomerang;
 
 				pline("A boomerang is created!");
-				uboomerang = mksobj(rn2(3) ? BOOMERANG : !rn2(3) ? BATARANG : rn2(2) ? DARK_BATARANG : SILVER_CHAKRAM, TRUE, FALSE);
+				uboomerang = mksobj(rn2(3) ? BOOMERANG : !rn2(3) ? BATARANG : rn2(2) ? DARK_BATARANG : SILVER_CHAKRAM, TRUE, FALSE, FALSE);
 				if (uboomerang) {
 					uboomerang->quan = 1;
 					uboomerang->known = uboomerang->dknown = uboomerang->bknown = uboomerang->rknown = 1;
@@ -6633,7 +6633,7 @@ revid_end:
 
 			struct obj *uroub;
 
-			uroub = mksobj(rnd_class(ROBE, ROBE_OF_WEAKNESS), TRUE, FALSE);
+			uroub = mksobj(rnd_class(ROBE, ROBE_OF_WEAKNESS), TRUE, FALSE, FALSE);
 
 			if (uroub) {
 				dropy(uroub);
@@ -6845,7 +6845,7 @@ revid_end:
 
 			struct obj *uammo;
 
-			uammo = mksobj(CROSSBOW_BOLT, TRUE, FALSE);
+			uammo = mksobj(CROSSBOW_BOLT, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->quan = rnd(20 + (2 * techlevX(tech_no)));
 				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
@@ -6926,7 +6926,7 @@ cardtrickchoice:
 
 			struct obj *uammo;
 
-			uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE);
+			uammo = mksobj(SHOTGUN_SHELL, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->quan = 5 + (techlevX(tech_no) / 3);
 				if (uammo->quan < 1) uammo->quan = 1;
@@ -6978,9 +6978,9 @@ cardtrickchoice:
 
 			struct obj *uammo;
 
-			if (!rn2(100)) uammo = mksobj(LASER_BEAM, TRUE, FALSE);
-			else if (!rn2(10)) uammo = mksobj(HEAVY_BLASTER_BOLT, TRUE, FALSE);
-			else uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
+			if (!rn2(100)) uammo = mksobj(LASER_BEAM, TRUE, FALSE, FALSE);
+			else if (!rn2(10)) uammo = mksobj(HEAVY_BLASTER_BOLT, TRUE, FALSE, FALSE);
+			else uammo = mksobj(BLASTER_BOLT, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->quan = 10 + techlevX(tech_no);
 				if (uammo->quan < 1) uammo->quan = 1;
@@ -7004,14 +7004,14 @@ cardtrickchoice:
 
 			struct obj *uammo;
 
-			uammo = mksobj(ROCKET_LAUNCHER, TRUE, FALSE);
+			uammo = mksobj(ROCKET_LAUNCHER, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
 				dropy(uammo);
 				stackobj(uammo);
 			}
 
-			uammo = mksobj(ROCKET, TRUE, FALSE);
+			uammo = mksobj(ROCKET, TRUE, FALSE, FALSE);
 			if (uammo) {
 				uammo->quan = 5 + (techlevX(tech_no) / 3);
 				if (uammo->quan < 1) uammo->quan = 1;
@@ -7328,7 +7328,7 @@ repairitemchoice:
 				struct obj *usymbioteitem;
 
 				pline("A symbiote is created!");
-				usymbioteitem = mksobj(SYMBIOTE, TRUE, FALSE);
+				usymbioteitem = mksobj(SYMBIOTE, TRUE, FALSE, FALSE);
 				if (usymbioteitem) {
 					usymbioteitem->quan = 1;
 					usymbioteitem->known = usymbioteitem->dknown = usymbioteitem->bknown = usymbioteitem->rknown = 1;
@@ -7525,7 +7525,7 @@ repairitemchoice:
 				struct obj *uegg;
 
 				You("lay a symbiote egg.");
-				uegg = mksobj(EGG, FALSE, FALSE);
+				uegg = mksobj(EGG, FALSE, FALSE, FALSE);
 				if (uegg) {
 					uegg->spe = 1; /* "laid by you" */
 					uegg->quan = 1;

@@ -213,7 +213,7 @@ short typ;
 	struct obj *obj;
 
 	if (typ == STRANGE_OBJECT) return;
-	obj = mksobj(typ, FALSE, FALSE);
+	obj = mksobj(typ, FALSE, FALSE, FALSE);
 	if (obj) {
 		if (!rn2(3)) obj->oerodeproof = 1;
 		if (!rn2(3)) curse(obj);
@@ -945,7 +945,7 @@ register boolean special;
 	    }
 
 	    if (weapon != STRANGE_OBJECT) {
-		otmp = mksobj(weapon, TRUE, FALSE);
+		otmp = mksobj(weapon, TRUE, FALSE, FALSE);
 		if (otmp) {
 			otmp->spe = (special ? rn1(5,4) : (rn2(4) - rn2(7) ) );
 			if (!rn2(3)) otmp->oerodeproof = 1;
@@ -989,7 +989,7 @@ register boolean special;
 #endif
 		quan = rn2(10);
 		while(quan--)
-		    (void) mpickobj(mtmp, mkobj(RANDOM_CLASS, FALSE), TRUE);
+		    (void) mpickobj(mtmp, mkobj(RANDOM_CLASS, FALSE, FALSE), TRUE);
 	    } else { /* wandering characters... */
 #ifndef GOLDOBJ
 	       mtmp->mgold = rn2((mtmp->m_lev)*100);

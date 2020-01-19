@@ -461,7 +461,7 @@ maeney:
 	if(!mtmp) return((struct monst *) 0); /* pets were genocided */
 
 	/* Horses already wear a saddle */
-	if ((pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(Race_if(PM_INKA) ? INKA_SADDLE : LEATHER_SADDLE, TRUE, FALSE))) {
+	if ((pettype == PM_PONY || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(Race_if(PM_INKA) ? INKA_SADDLE : LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
 	    if (mpickobj(mtmp, otmp, TRUE)) {
 		impossible("merged saddle?");
 		} else {
