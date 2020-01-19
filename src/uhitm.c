@@ -4336,7 +4336,7 @@ int dieroll;
 				case 575: pline("You've learned how to use conqueror's haki, even though one has to be born with that, and make %s fall down unconscious.", mon_nam(mon)); break;
 				case 576: pline("%s is someone from the revolutinos army, who don't like marine guys like you at all, but the reverse is also true and therefore you shoot down %s now.", Monnam(mon), mon_nam(mon)); break;
 				case 577: pline("Your cannonball hits %s fully in the %s.", mon_nam(mon), mbodypart(mon, STOMACH)); break;
-				case 578: pline("Since you know that a guillotine trap is nearby, you lure %s to it, who is so stupid and actually triggers the trap, losing %s %s.", mon_nam(mon), mhis(mon), mbodypart(mon, HEAD));
+				case 578: pline("Since you know that a guillotine trap is nearby, you lure %s to it, who is so stupid and actually triggers the trap, losing %s %s.", mon_nam(mon), mhis(mon), mbodypart(mon, HEAD)); break;
 				case 579: pline("As %s tries to push you into a bottomless pit, you dodge and thereby cause %s to fall in %sself.", m_monnam(mon), mhim(mon), mhim(mon)); break;
 				case 580: pline("%s clicked on a cursed called and sees a game over screen!", Monnam(mon)); break;
 				case 581: pline("%s has a level bug.", Monnam(mon)); break;

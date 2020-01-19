@@ -7490,6 +7490,22 @@ peffects(otmp)
 			break; /* don't run the code that makes you fast */
 		}
 
+		if (otmp->blessed) {
+			if (!(HFast & INTRINSIC)) {
+				if (!Fast) You("speed up.");
+				else Your("quickness feels more natural.");
+				exercise(A_DEX, TRUE);
+			}
+			HFast |= FROMOUTSIDE;
+			if (u.inertia) {
+				u.inertia = 0;
+				You_feel("less slow.");
+			}
+		} else if (!otmp->blessed && !otmp->cursed && u.inertia > 1) {
+			u.inertia /= 2;
+			Your("inertia counter is halved.");
+		}
+
 		if(Wounded_legs && !otmp->cursed && !u.usteed	/* heal_legs() would heal steeds legs */
 		) {
 			heal_legs();

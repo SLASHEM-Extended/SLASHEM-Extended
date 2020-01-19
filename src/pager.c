@@ -24859,6 +24859,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"*ding*",
 	"You hear a steam locomotive passing by.",
 	"You hear someone chant 'Chug, chug, chug!'",
+	"Your inertia counter is halved.",
+	"Your pick-axe suddenly strikes a stick of dynamite that was buried in the solid rock! KABOOM! It explodes! Your scroll of genocide catches fire and burns! Your spellbook of identify catches fire and burns!",
+	"Yeeowch! Spiky!",
+	"You feel like someone just walked over your grave.",
+	"You feel like you just walked under a ladder.",
+	"You feel like you just walked under a ladder. That's seven years of bad luck for superstition reasons.",
+	"A slideshow of perfectly logical images flashes in front of you.",
+	"A flurry of nightmarish images flash through your head!",
 
 };
 
