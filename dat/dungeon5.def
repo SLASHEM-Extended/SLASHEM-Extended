@@ -448,9 +448,9 @@ ALIGNMENT:      chaotic
 # Yendorian Tower: bonus dungeon after getting the Amulet --Amy
 DUNGEON:        "Yendorian Tower" "Y" (100, 0)
 DESCRIPTION:    hellish
-BRANCH:         "Forging Chamber" @ (1, 99)
-BRANCH:         "Dead Grounds" @ (1, 99)
-BRANCH:         "Ordered Chaos" @ (1, 99)
+BRANCH:         "Forging Chamber" @ (2, 98)
+BRANCH:         "Dead Grounds" @ (2, 98)
+BRANCH:         "Ordered Chaos" @ (2, 98)
 
 LEVEL:		"elderp" "P" @ (1, 0)
 

@@ -13270,11 +13270,11 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* Apparently the game is so stupid and doesn't know what a teleport region is, and still occasionally
 		 * spawns you inside the temple! This should not be, and therefore you're teleported out if it happens. */
-		if (*in_rooms(u.ux, u.uy, TEMPLE)) {
+		if (*in_rooms(u.ux, u.uy, TEMPLE) || (u.ux > 74) ) {
 			pline("S'Wonderful!");
 			(void) safe_teleds(FALSE);
 			/* still in the temple? try again, but prevent infinite loops */
-			while (rn2(1000) && *in_rooms(u.ux, u.uy, TEMPLE)) (void) safe_teleds(FALSE);
+			while (rn2(1000) && (*in_rooms(u.ux, u.uy, TEMPLE) || (u.ux > 74)) ) (void) safe_teleds(FALSE);
 		}
 
 	}
