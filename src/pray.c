@@ -2570,6 +2570,9 @@ dosacrifice()
 	} else if (!rn2((altaralign == A_CHAOTIC) ? (value > 24 ? 3 : value > 10 ? 4 : 5) : (altaralign == A_LAWFUL) ? (value > 24 ? 2 : value > 10 ? 3 : 4) : (value > 24 ? 1 : value > 10 ? 2 : 3) )) {
 	    int nartifacts = nartifact_exist();
 
+	    /* the # of regularly generated artifacts shouldn't screw you over so badly... --Amy */
+	    nartifacts = rn3(nartifacts);
+
 	    /* you were already in pretty good standing */
 	    /* The player can gain an artifact */
 	    /* The chance goes down as the number of artifacts goes up */
