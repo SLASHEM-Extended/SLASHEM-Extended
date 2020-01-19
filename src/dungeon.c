@@ -2036,6 +2036,27 @@ level_difficulty()
 	if (moves > 750000 && retvalue < 125 && rn2(2) ) retvalue = 125;
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
+	/* if you play for over 200k turns, you're probably procrastinating, or at the very least should be capable of
+	 * handling the occasional high-level monster... --Amy
+	 * after 100k turns, have a more gentle increase until 200k is reached */
+	if (moves > 100000) {
+		int retcrease = 1;
+		if (moves > 110000) retcrease += ((moves - 100000) / 10000);
+		if (retcrease > 10) retcrease = 10; /* fail safe */
+		if (retcrease < 1) retcrease = 1;
+		if (!rn2(3)) retvalue += retcrease;
+	}
+	if (moves > 200000) {
+		int retcrease = 1;
+		if (moves > 210000) retcrease += ((moves - 200000) / 10000);
+		/* no upper limit */
+		if (retcrease < 1) retcrease = 1; /* fail safe */
+		retvalue += retcrease;
+	}
+
+	/* occasionally have them be just a little out of depth to keep you on your toes... --Amy */
+	if (!rn2(20)) retvalue += rno(3);
+
 	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
 	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
 	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 5 : 3)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
