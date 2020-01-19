@@ -235,6 +235,13 @@ boolean showmsg, update;
    if (IS_TREE(lev->typ) && !(lev->looted & TREE_LOOTED) && may_dig(x,y)) {
       coord pos;
       int dir, dofs = rn2(8);
+
+	/* Amy edit: this shouldn't be a 100% chance, after all kicking isn't either */
+	if (rn2(3)) {
+		levl[x][y].looted |= TREE_LOOTED;
+		return FALSE;
+	}
+
       for (dir = 0; dir < 8; dir++) {
 	 dtoxy(&pos, (dir + dofs) % 8);
 	 pos.x += x;
