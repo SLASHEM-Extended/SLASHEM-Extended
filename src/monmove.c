@@ -1713,7 +1713,7 @@ toofar:
 	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && (!resist(mtmp, RING_CLASS, 0, 0) || (StrongConflict && !resist(mtmp, RING_CLASS, 0, 0)) ) && !mtmp->iswiz
 	   && !Is_blackmarket(&u.uz)
 	   ) ||
-	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 4)) || mtmp->mpeaceful) {
+	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 8)) || mtmp->mpeaceful) {
 		/* Possibly cast an undirected spell if not attacking you */
 		/* note that most of the time castmu() will pick a directed
 		   spell and do nothing, so the monster moves normally */

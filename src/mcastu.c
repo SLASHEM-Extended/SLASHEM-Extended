@@ -120,8 +120,7 @@ int spellval;
     case 39:
 	return MGC_HASTE_SELF;
     case 38:
-	if (!rn2(2)) return MGC_AGGRAVATION;
-	else return MGC_SUMMON_MONS;
+	return MGC_SUMMON_MONS;
     case 37:
     case 36:
 	return MGC_AGGRAVATION;
@@ -134,8 +133,7 @@ int spellval;
     case 33:
 	return MGC_CURSE_ITEMS;
     case 32:
-	if (!rn2(2)) return MGC_AGGRAVATION;
-	else return MGC_CALL_UNDEAD;
+	return MGC_CALL_UNDEAD;
     case 31:
 	if (!rn2(4)) return MGC_WITHER;
 	else if (!rn2(2)) return MGC_DAMAGE_ARMR;
@@ -172,8 +170,7 @@ int spellval;
     case 16:
 	return MGC_HASTE_SELF;
     case 15:
-	if (!rn2(2)) return MGC_AGGRAVATION;
-	else return MGC_SUMMON_MONS;
+	return MGC_SUMMON_MONS;
     case 14:
     case 13:
 	return MGC_AGGRAVATION;
@@ -186,8 +183,7 @@ int spellval;
     case 10:
 	return MGC_CURSE_ITEMS;
     case 9:
-	if (!rn2(2)) return MGC_AGGRAVATION;
-	else return MGC_CALL_UNDEAD;
+	return MGC_CALL_UNDEAD;
     case 8:
 	if (!rn2(4)) return MGC_WITHER;
 	else if (!rn2(2)) return MGC_DAMAGE_ARMR;
@@ -220,8 +216,7 @@ int spellnum;
 
     switch (spellnum) {
     case 41:
-	/*if (rn2(10)) */return CLC_GEYSER;
-	/*else return CLC_PETRIFY;*/ /* this is incorporated into CLC_GEYSER now, see below --Amy */
+	return CLC_GEYSER;
     case 40:
 	return CLC_FIRE_PILLAR;
     case 39:
@@ -232,7 +227,7 @@ int spellnum;
 	return CLC_CURSE_ITEMS;
     case 36:
 	if (rn2(2)) return CLC_RANDOM;
-	else if (!rn2(3)) return CLC_AGGRAVATION;
+	else if (!rn2(50)) return CLC_AGGRAVATION;
 	else return CLC_INSECTS;
     case 35:
 	return CLC_FREEZE_YOU;
@@ -251,8 +246,7 @@ int spellnum;
     case 28:
 	return (rn2(10) ? CLC_OPEN_WOUNDS : CLC_VULN_YOU);
     case 27:
-	/*if (rn2(10)) */return CLC_GEYSER;
-	/*else return CLC_PETRIFY;*/ /* this is incorporated into CLC_GEYSER now, see below --Amy */
+	return CLC_GEYSER;
     case 26:
 	return CLC_FIRE_PILLAR;
     case 25:
@@ -263,7 +257,7 @@ int spellnum;
 	return CLC_CURSE_ITEMS;
     case 22:
 	if (rn2(2)) return CLC_RANDOM;
-	else if (!rn2(3)) return CLC_AGGRAVATION;
+	else if (!rn2(50)) return CLC_AGGRAVATION;
 	else return CLC_INSECTS;
     case 21:
 	return CLC_FREEZE_YOU;
@@ -282,8 +276,7 @@ int spellnum;
     case 14:
 	return (rn2(10) ? CLC_OPEN_WOUNDS : CLC_VULN_YOU);
     case 13:
-	/*if (rn2(10)) */return CLC_GEYSER;
-	/*else return CLC_PETRIFY;*/ /* this is incorporated into CLC_GEYSER now, see below --Amy */
+	return CLC_GEYSER;
     case 12:
 	return CLC_FIRE_PILLAR;
     case 11:
@@ -294,7 +287,7 @@ int spellnum;
 	return CLC_CURSE_ITEMS;
     case 8:
 	if (rn2(2)) return CLC_RANDOM;
-	else if (!rn2(3)) return CLC_AGGRAVATION;
+	else if (!rn2(50)) return CLC_AGGRAVATION;
 	else return CLC_INSECTS;
     case 7:
 	return CLC_FREEZE_YOU;
@@ -1682,7 +1675,7 @@ int spellnum;
 
 	/* Let's allow some variation. Unofficial spell names for each type of creature see below. --Amy */
 
-	if (!rn2(10)) { switch (rnd(54)) {
+	if (!rn2(3)) { switch (rnd(54)) {
 
 		case 1:
 		case 2:

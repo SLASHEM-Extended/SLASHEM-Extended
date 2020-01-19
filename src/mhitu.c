@@ -2754,7 +2754,7 @@ elena37:
 	    /* sum[i] == 0: unsuccessful attack */
 	}
 
-	if (mtmp->egotype_arcane && !rn2(iswarper ? 2 : 4) && !range2) {
+	if (mtmp->egotype_arcane && !rn2(iswarper ? 2 : 8) && !range2) {
 
 	    if (foundyou) {
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -2769,7 +2769,7 @@ elena37:
 
 	}
 
-	if (mtmp->egotype_clerical && !rn2(iswarper ? 2 : 4) && !range2) {
+	if (mtmp->egotype_clerical && !rn2(iswarper ? 2 : 8) && !range2) {
 
 	    if (foundyou) {
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -2784,7 +2784,7 @@ elena37:
 
 	}
 
-	if (mtmp->egotype_mastercaster && !rn2(iswarper ? 2 : 4) && !range2) {
+	if (mtmp->egotype_mastercaster && !rn2(iswarper ? 2 : 8) && !range2) {
 
 	    if (foundyou) {
 		mdat2 = &mons[PM_CAST_DUMMY];
