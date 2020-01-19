@@ -2204,7 +2204,7 @@ moveloop()
 			if (u.pract_conv1timer < 1) {
 				u.pract_conv1timer = 5000;
 				fineforpracticant(1000, 0, 0);
-				pline("%s booms: 'You have to pay 1000 zorkmids again for your past offense of killing too many monsters.', noroelaname()");
+				pline("%s booms: 'You have to pay 1000 zorkmids again for your past offense of killing too many monsters.'", noroelaname());
 			}
 		}
 
@@ -2213,7 +2213,7 @@ moveloop()
 			if (u.pract_conv2timer < 1) {
 				u.pract_conv2timer = 5000;
 				fineforpracticant(1000, 0, 0);
-				pline("%s booms: 'You have to pay 1000 zorkmids again for your past offense of sacrificing too many corpses.', noroelaname()");
+				pline("%s booms: 'You have to pay 1000 zorkmids again for your past offense of sacrificing too many corpses.'", noroelaname());
 			}
 		}
 
@@ -2222,7 +2222,7 @@ moveloop()
 			if (u.pract_conv3timer < 1) {
 				u.pract_conv3timer = 5000;
 				fineforpracticant(2000, 0, 0);
-				pline("%s booms: 'You have to pay 2000 zorkmids again for your past offense of murdering too many innocent townspeople.', noroelaname()");
+				pline("%s booms: 'You have to pay 2000 zorkmids again for your past offense of murdering too many innocent townspeople.'", noroelaname());
 			}
 		}
 
@@ -2231,7 +2231,7 @@ moveloop()
 			if (u.pract_conv4timer < 1) {
 				u.pract_conv4timer = 5000;
 				fineforpracticant(2000, 0, 0);
-				pline("%s booms: 'You have to pay 2000 zorkmids again for your past offense of gaining an impossible intrinsic.', noroelaname()");
+				pline("%s booms: 'You have to pay 2000 zorkmids again for your past offense of gaining an impossible intrinsic.'", noroelaname());
 			}
 
 		}
@@ -2260,7 +2260,7 @@ moveloop()
 			u.pract_finetimer++;
 			if (u.pract_finetimer >= 10000) {
 				fineforpracticant(1000, 0, 0); /* sets the finetimer var back to 0 */
-				pline("%s thunders: 'You now have to pay a fine of 1000 zorkmds as a penalty for not having to pay a fine in such a long time!', noroelaname()");
+				pline("%s thunders: 'You now have to pay a fine of 1000 zorkmds as a penalty for not having to pay a fine in such a long time!'", noroelaname());
 			}
 		}
 
