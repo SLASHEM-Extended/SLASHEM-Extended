@@ -4606,7 +4606,7 @@ secureidchoice:
 		}
 
 		if (Role_if(PM_DOOM_MARINE) || Role_if(PM_GUNNER)) t_timeout = rnz(500);
-		else t_timeout = rnz(1000);
+		else t_timeout = rnz(2500);
 	 	break;
 
 	    }
@@ -4633,7 +4633,7 @@ secureidchoice:
 				dropy(uegg);
 				stackobj(uegg);
 			}
-			if (techlevX(tech_no) < rnd(100)) caughtZ++;
+			if (techlevX(tech_no) < rnd(500)) caughtZ++;
 
 		}
 
@@ -6967,7 +6967,7 @@ cardtrickchoice:
 				}
 			}
 
-			t_timeout = rnz(4000);
+			t_timeout = rnz(10000);
 			break;
 
 		case T_LASER_POWER:
@@ -6993,7 +6993,7 @@ cardtrickchoice:
 
 			}
 
-			t_timeout = rnz(5000);
+			t_timeout = rnz(7500);
 			break;
 
 		case T_BIG_DADDY:
@@ -7024,7 +7024,7 @@ cardtrickchoice:
 
 			}
 
-			t_timeout = rnz(10000);
+			t_timeout = rnz(25000);
 			break;
 
 		case T_SHUT_THAT_BITCH_UP:
