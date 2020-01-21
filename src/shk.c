@@ -5673,7 +5673,8 @@ shk_uncurse(slang, shkp)
 
 	/* Charge is same as cost */
 	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops));
-		
+	charge *= 3; /* uncursing shouldn't be possible for peanuts! --Amy */
+
 	/* Artifacts cost more to deal with */
 	/* KMH -- Avoid floating-point */
 	if (obj->oartifact) charge = charge * 3 / 2;
@@ -5951,7 +5952,8 @@ struct monst *shkp;
 	    verbalize("This'll leave your %s untouchable!", xname(obj));
 	    
 	    /* Costs more the more eroded it is (oeroded 0-3 * 2) */
-	    charge = 500 * (obj->oeroded + obj->oeroded2 + 1);
+	    charge = 5000;
+	    charge += ((obj->oeroded + obj->oeroded2) * 500);
 	    if (obj->oeroded + obj->oeroded2 > 2)
 		verbalize("This thing's in pretty sad condition, %s", slang);
 
@@ -5968,7 +5970,7 @@ struct monst *shkp;
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(50)) {
+		if (!rn2(10)) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_A;
 		}
 
@@ -6004,7 +6006,7 @@ struct monst *shkp;
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(200)) {
+		if (!rn2(50)) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_B;
 		}
 
@@ -6107,9 +6109,11 @@ shk_armor_works(slang, shkp)
 		if (!flags.female && is_human(youmonst.data))
 		     verbalize("They'll call you the man of stainless steel!");
 
-		/* Costs more the more rusty it is (oeroded 0-3) */
-		charge = 300 * (obj->oeroded+1);
-		if (obj->oeroded > 2) verbalize("Yikes!  This thing's a mess!");
+		/* Costs more the more rusty it is (oeroded 0-3), Amy edit: oeroded2 is also fixed */
+		charge = 3000;
+		charge += (obj->oeroded * 300);
+		charge += (obj->oeroded2 * 300);
+		if ((obj->oeroded + obj->oeroded2) > 2) verbalize("Yikes!  This thing's a mess!");
 
 		/* Artifacts cost more to deal with */
 		/* KMH -- Avoid floating-point */
@@ -6120,7 +6124,7 @@ shk_armor_works(slang, shkp)
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(50)) {
+		if (!rn2(10)) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_A;
 		}
 
@@ -6131,6 +6135,7 @@ shk_armor_works(slang, shkp)
 			You("mistake your %s for a pot and...", xname(obj));
 
 		obj->oeroded = 0;
+		obj->oeroded2 = 0;
 		obj->rknown = TRUE;
 		obj->oerodeproof = TRUE;
 		break;
@@ -6152,7 +6157,7 @@ shk_armor_works(slang, shkp)
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(200)) {
+		if (!rn2(50)) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_B;
 		}
 
@@ -6278,9 +6283,9 @@ shk_charge(slang, shkp)
 
 	/* Compute charge */
 	if (type == 'b')
-		charge = 300;
+		charge = 3000;
 	else
-		charge = 1000;
+		charge = 10000;
 
 	/* Wands of wishing should be hard to get recharged */
 	if (/*obj->oclass == WAND_CLASS &&*/ obj->otyp == WAN_WISHING || obj->otyp == WAN_ACQUIREMENT)
