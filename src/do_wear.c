@@ -5406,12 +5406,12 @@ find_ac()
 
 		if (!PlayerCannotUseSkills) {
 			switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
-				case P_BASIC: heavyreduction = 81; break;
-				case P_SKILLED: heavyreduction = 82; break;
-				case P_EXPERT: heavyreduction = 83; break;
-				case P_MASTER: heavyreduction = 84; break;
-				case P_GRAND_MASTER: heavyreduction = 85; break;
-				case P_SUPREME_MASTER: heavyreduction = 86; break;
+				case P_BASIC: heavyreduction = 83; break;
+				case P_SKILLED: heavyreduction = 86; break;
+				case P_EXPERT: heavyreduction = 89; break;
+				case P_MASTER: heavyreduction = 92; break;
+				case P_GRAND_MASTER: heavyreduction = 95; break;
+				case P_SUPREME_MASTER: heavyreduction = 98; break;
 				default: heavyreduction = 80; break;
 			}
 		}

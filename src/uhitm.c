@@ -753,7 +753,22 @@ register struct monst *mtmp;
 
 	/* heavy weapons are inaccurate versus tiny monsters (e.g. rats or insects) --Amy */
 	if (uwep && is_heavyweapon(uwep) && verysmall(mtmp->data) && tmp > 1) {
-		tmp /= 2;
+
+		int heavyreduction = 50;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
+				case P_BASIC: heavyreduction = 58; break;
+				case P_SKILLED: heavyreduction = 66; break;
+				case P_EXPERT: heavyreduction = 75; break;
+				case P_MASTER: heavyreduction = 83; break;
+				case P_GRAND_MASTER: heavyreduction = 91; break;
+				case P_SUPREME_MASTER: heavyreduction = 100; break;
+				default: heavyreduction = 50; break;
+			}
+		}
+
+		if (heavyreduction < rnd(100)) tmp /= 2;
 	}
 	/* but they're particularly good at hitting huge monsters */
 	if (uwep && is_heavyweapon(uwep) && hugemonst(mtmp->data)) {
@@ -2787,7 +2802,7 @@ int dieroll;
 			pline("%s is bleeding!", Monnam(mon));
 		}
 
-		if (wep && wep->otyp == ARCANE_HORN) {
+		if (wep && wep->otyp == ARCANE_HORN && !thrown) {
 			if (use_unicorn_horn(wep)) { /* wep has now been REMOVED - make sure we don't segfault! --Amy */
 				nomul(0, 0, FALSE);
 				return FALSE;
@@ -3152,12 +3167,43 @@ int dieroll;
 
 	/* javelin is meant to be thrown, and therefore less effective in melee --Amy */
 	if (!thrown && !Role_if(PM_TOSSER) && obj && obj->oclass == WEAPON_CLASS && (objects[obj->otyp].oc_skill == P_JAVELIN) && tmp > 1) {
-		tmp /= 2;
+
+		int javreduction = 0;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_JAVELIN)) {
+				case P_BASIC: javreduction = 20; break;
+				case P_SKILLED: javreduction = 40; break;
+				case P_EXPERT: javreduction = 60; break;
+				case P_MASTER: javreduction = 80; break;
+				case P_GRAND_MASTER: javreduction = 95; break;
+				case P_SUPREME_MASTER: javreduction = 100; break;
+				default: javreduction = 0; break;
+			}
+		}
+
+		if (javreduction < rnd(100)) tmp /= 2;
+
 	}
 
 	/* heavy two-handed weapons are bad versus tiny enemies (hard to effectively hit a tiny monster with a huge weapon) */
-	if (!thrown && obj && is_heavyweapon(obj) && verysmall(mon->data)) {
-		tmp /= 2;
+	if (!thrown && obj && is_heavyweapon(obj) && verysmall(mon->data) && tmp > 1) {
+
+		int heavyreduction = 50;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_TWO_HANDED_WEAPON)) {
+				case P_BASIC: heavyreduction = 58; break;
+				case P_SKILLED: heavyreduction = 66; break;
+				case P_EXPERT: heavyreduction = 75; break;
+				case P_MASTER: heavyreduction = 83; break;
+				case P_GRAND_MASTER: heavyreduction = 91; break;
+				case P_SUPREME_MASTER: heavyreduction = 100; break;
+				default: heavyreduction = 50; break;
+			}
+		}
+
+		if (heavyreduction < rnd(100)) tmp /= 2;
 	}
 
 	if (!already_killed) mon->mhp -= tmp;
