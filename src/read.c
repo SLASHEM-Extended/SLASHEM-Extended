@@ -821,6 +821,7 @@ doread()
 	"I haven't watched One Piece, and therefore I'm controlling two devil fruits because I don't know that that's impossible.",
 	"I petition that the gender star be renamed to gender snowflake",
 	"the game is an acid trip where weapons become shoes and monsters become glitchymissingnos", /* by bug_sniper */
+	"My cuten lovenails are nothing special, they just mean that I like the color purple.",
 
 	    };
 	    char buf[BUFSZ];

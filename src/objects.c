@@ -6293,6 +6293,8 @@ SCROLL((char *)0,               "FILTHY CASUAL",  P_NONE,     1,   0, 300, CLR_B
 SCROLL((char *)0,               "IM BAD AT THIS GAME PLZKILL ME",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "SHOUTOUT TO SINGLEFLIPS",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "SUPER TOADIO 64 AKA RELEASIO",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "WHEN WILL BETAIGOIZE EXPLODE",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "THATITWOULDBE ARYTOS PERI TO SOMATI",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 
 
 #ifdef MAIL
