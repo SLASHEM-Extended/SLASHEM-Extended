@@ -408,7 +408,7 @@ dig()
 			    u.cnd_treechopamount++;
 			    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 			    lev->typ = ROOM;
-			    if (!rn2(5)) (void) rnd_treefruit_at(dpx, dpy);
+			    if (!rn2(5) && !(lev->looted & TREE_LOOTED) ) (void) rnd_treefruit_at(dpx, dpy);
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					use_skill(P_WEDI, 1);
 				}
@@ -1403,7 +1403,7 @@ register struct monst *mtmp;
 	    }
 	} else if (IS_TREE(here->typ)) {
 	    here->typ = ROOM;
-	    if (!rn2(50) && pile && pile < 5) /* it shouldn't be that easy to get tree fruits... --Amy */
+	    if (!rn2(50) && !(here->looted & TREE_LOOTED) && pile && pile < 5) /* it shouldn't be that easy to get tree fruits... --Amy */
 		(void) rnd_treefruit_at(mtmp->mx, mtmp->my);
 	} else if (IS_WATERTUNNEL(here->typ)) {
 	    u.cnd_monsterdigamount++;
