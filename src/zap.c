@@ -956,9 +956,14 @@ armorsmashdone:
 		}
 		break;
 	case WAN_SPEED_MONSTER:
-	case WAN_HASTE_MONSTER:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
 			mon_adjust_speed(mtmp, 1, otmp);
+			m_dowear(mtmp, FALSE); /* might want speed boots */
+		}
+		break;
+	case WAN_HASTE_MONSTER:
+		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+			mon_adjust_speed(mtmp, 2, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 		}
 		break;

@@ -14136,7 +14136,7 @@ boolean knoweverything;
 			case WAN_SPEED_MONSTER:
 				pline("Zapping yourself with this wand gives you permanent intrinsic speed. It can also be zapped at monsters to speed them up."); break;
 			case WAN_HASTE_MONSTER:
-				pline("Zapping yourself with this wand will make you very fast for a while. It can also be zapped at monsters to speed them up."); break;
+				pline("Zapping yourself with this wand will make you very fast for a while. It can also be zapped at monsters to make them very fast permanently."); break;
 			case WAN_STRIKING:
 				pline("A wand that shoots invisible bolts of force to damage enemies, break doors and otherwise interact with the dungeon."); break;
 			case WAN_UNDEAD_TURNING:
