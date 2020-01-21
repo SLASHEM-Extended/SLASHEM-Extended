@@ -387,10 +387,24 @@ place_lregion(lx, ly, hx, hy, nlx, nly, nhx, nhy, rtype, lev)
 	/*
 	 * if there are rooms and this a branch, let place_branch choose
 	 * the branch location (to avoid putting branches in corridors).
+	 * Amy edit: but only if it's a plot-critical branch that you must find in order to win the game, and even then
+	 * only if you're not playing the evil variant. Otherwise, let them be randomly placed.
+	 * Note that it's not a bug that the sanctum-to-yendortower portal is exempt - otherwise, we'd always place it
+	 * either in the temple or the graveyard, which we definitely don't want!
+	 * Also, the flipside of those branches is free to be placed completely randomly, because you (normally) don't
+	 * have to look for it - to any would-be slex modders reading this, I only want to avoid the player having to search
+	 * the entirety of every level for branches that absolutely MUST be done to win the game.
+	 * Stairseeker hybrid race should also allow them all to be placed randomly, like evilvariant mode
 	 */
 	if(rtype == LR_BRANCH && nroom) {
-	    place_branch(Is_branchlev(&u.uz), 0, 0);
-	    return;
+
+		if (!evilfriday && (at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos") ) ) {
+
+			place_branch(Is_branchlev(&u.uz), 0, 0);
+			return;
+
+		}
+
 	}
 
 	lx = 1; hx = COLNO-1;

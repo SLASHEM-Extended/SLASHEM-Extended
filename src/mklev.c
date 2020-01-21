@@ -12479,24 +12479,40 @@ xchar x, y;	/* location */
 	if (!br || made_branch) return;
 
 	if (!x) {	/* find random coordinates for branch */
-	    br_room = find_branch_room(&m);
+	    br_room = (find_branch_room(&m));
 	    x = m.x;
 	    y = m.y;
 
 	    /* somehow this genius code can place the branch staircase on an existing branch!!! we can't have that --Amy */
 	    if (On_stairs(x, y) && stairtryct++ < 50000) {
 			impossible("placing branch on existing staircase?");
-			br_room = find_branch_room(&m);
+			br_room = (find_branch_room(&m));
 			x = m.x;
 			y = m.y;
 	    }
 	    while (On_stairs(x, y) && stairtryct++ < 50000) {
-			br_room = find_branch_room(&m);
+			br_room = (find_branch_room(&m));
 			x = m.x;
 			y = m.y;
 	    }
 
+		if (br && (evilfriday || !(at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos")) )) {
+
+			int steetries = 0;
+			while (steetries < 50000) {
+				steetries++;
+				x = rnd(COLNO-1);
+				y = rn2(ROWNO);
+				if (ACCESSIBLE(levl[x][y].typ) && !On_stairs(x, y)) break; /* we got a good location! */
+			}
+			if (!ACCESSIBLE(levl[x][y].typ) || On_stairs(x, y)) {
+				x = m.x;
+				y = m.y;
+			}
+		}
+
 	} else {
+
 	    br_room = pos_to_room(x, y);
 	}
 
