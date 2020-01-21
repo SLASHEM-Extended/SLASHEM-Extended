@@ -2781,6 +2781,7 @@ char *buf;
     const char *ptr;
 
     switch (P_SKILL(skill)) {
+	case P_ISRESTRICTED:    ptr = "Restricted"; break;
 	case P_UNSKILLED:    ptr = "Unskilled"; break;
 	case P_BASIC:	     ptr = "Basic";     break;
 	case P_SKILLED:	     ptr = "Skilled";   break;
@@ -2819,6 +2820,7 @@ char *buf;
     const char *ptr;
 
     switch (P_MAX_SKILL(skill)) {
+	case P_ISRESTRICTED:    ptr = "(max Restricted)"; break;
 	case P_UNSKILLED:    ptr = "(max Unskilled)"; break;
 	case P_BASIC:	     ptr = "(max Basic)";     break;
 	case P_SKILLED:	     ptr = "(max Skilled)";   break;
@@ -4187,6 +4189,9 @@ int enhance_skill(boolean want_dump)
     boolean logged;
 #endif
 
+	boolean restrpass = 0;
+	boolean restrdo = 0;
+
 #ifdef WIZARD
 #ifdef DUMP_LOG
 	if (!want_dump)
@@ -4199,7 +4204,7 @@ int enhance_skill(boolean want_dump)
 	    /* find longest available skill name, count those that can advance */
 	    to_advance = eventually_advance = maxxed_cnt = 0;
 	    for (longest = 0, i = 0; i < P_NUM_SKILLS; i++) {
-		if (P_RESTRICTED(i)) continue;
+		if (P_RESTRICTED(i) && !(want_dump || wizard)) continue;
 
 		/* stupidity... If you fucking have the fucking skill and fucking trained it while being fucking polymorphed,
 		 * then there's ZERO FUCKING REASON TO NOT FUCKING SHOW IT IN THE FUCKING DUMP!!! --Amy */
@@ -4255,6 +4260,9 @@ int enhance_skill(boolean want_dump)
 	       selectable.  List the miscellaneous skills first.
 	       Possible future enhancement:  list spell skills before
 	       weapon skills for spellcaster roles. */
+
+restrpasstwo:
+
 	  for (pass = 0; pass < SIZE(skill_ranges); pass++)
 	    for (i = skill_ranges[pass].first;
 		 i <= skill_ranges[pass].last; i++) {
@@ -4263,15 +4271,34 @@ int enhance_skill(boolean want_dump)
 		if (i == skill_ranges[pass].first)
 #ifdef DUMP_LOG
 		if (want_dump) {
-		    dump("  ",(char *)skill_ranges[pass].name);
+		    if (!restrpass && !restrdo) dump("  ",(char *)skill_ranges[pass].name);
+		    else if (!restrdo) {
+				dump("  ", "Restricted Skills");
+				restrdo = TRUE;
+		    }
 		    logged=FALSE;
-		} else
+		} else 
 #endif
-		    add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		{
+			if (!restrpass && !restrdo) add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 			     skill_ranges[pass].name, MENU_UNSELECTED);
+			else if (!restrdo) {add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Restricted Skills", MENU_UNSELECTED);
+				restrdo = TRUE;
+			}
+		}
 #ifdef DUMP_LOG
 		if (want_dump) {
-		    if (P_SKILL(i) >= P_UNSKILLED) {
+		    if (P_SKILL(i) >= P_UNSKILLED && !restrpass) {
+
+			(void) skill_level_name(i, sklnambuf);
+			(void) skill_level_name_max(i, sklnambuftwo);
+
+		 	sprintf(buf2,"%-*s [%s] %s (%d of %d)",
+			    longest, P_NAME(i), sklnambuf, sklnambuftwo, P_ADVANCE(i),
+			    practice_needed_to_advance(P_SKILL(i), i) );
+			dump("    ",buf2);
+			logged=TRUE;
+		    } else if (P_SKILL(i) < P_UNSKILLED && restrpass) {
 
 			(void) skill_level_name(i, sklnambuf);
 			(void) skill_level_name_max(i, sklnambuftwo);
@@ -4287,7 +4314,8 @@ int enhance_skill(boolean want_dump)
                } else {
 #endif
 
-		if (P_RESTRICTED(i)) continue;
+		if (P_RESTRICTED(i) && (!(want_dump || wizard) || !restrpass) ) continue;
+		if (!P_RESTRICTED(i) && restrpass) continue;
 		/* I don't like the idea of hidden skills. They probably won't appear in the endgame dump either! --Amy */
 		/*if (i == P_TWO_WEAPON_COMBAT &&
 			youmonst.data->mattk[1].aatyp != AT_WEAP)
@@ -4339,6 +4367,11 @@ int enhance_skill(boolean want_dump)
 #ifdef DUMP_LOG
 		} /* !want_dump */
 #endif
+	    }
+
+	    if (!restrpass && (wizard || want_dump)) {
+		restrpass = TRUE;
+		goto restrpasstwo;
 	    }
 
 	    strcpy(buf, (to_advance > 0) ? "Pick a skill to advance:" :
