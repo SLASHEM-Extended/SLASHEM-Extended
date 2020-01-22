@@ -1357,7 +1357,7 @@ boolean guaranteed;
 	    /* KMH -- Added gypsy */
 	    mtmp->isgyp ||
 	    (is_covetous(mtmp->data) && (issoviet || rn2(50) ) ) || (is_human(mtmp->data) && (issoviet || rn2(4) ) ) ||
-	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && (issoviet || rn2(10) ) ) ||
+	    (is_demon(mtmp->data) && !is_demon(youmonst.data) && !Race_if(PM_HUMANOID_DEVIL) && !Race_if(PM_GAVIL) && !(Race_if(PM_PLAYER_SHEEP) && u.ulevel >= 20) && (issoviet || rn2(10) ) ) ||
 	    /* Mik -- New flag to indicate which things cannot be tamed... */
 	    cannot_be_tamed(mtmp->data) || mtmp->mfrenzied ||
 	    (obj && dogfood(mtmp, obj) >= MANFOOD && !(Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) )) {
