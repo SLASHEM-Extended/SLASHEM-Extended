@@ -3611,7 +3611,7 @@ struct obj *obj, *otmp;
 		switch (objects[obj->otyp].oc_class) {
 		    case ROCK_CLASS:	/* boulders and statues */
 			if (obj->otyp == BOULDER) {
-			    obj = poly_obj(obj, rnd(20) ? MEATBALL : HUGE_CHUNK_OF_MEAT, FALSE);
+			    obj = poly_obj(obj, rn2(20) ? MEATBALL : HUGE_CHUNK_OF_MEAT, FALSE);
 			    goto smell;
 			} else if (obj->otyp == STATUE) {
 
