@@ -266,8 +266,10 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 		/* extra heavy damage bonus */
 	    if((int)(ptr->mattk[i].damd * ptr->mattk[i].damn) > 23)
 		tmp += mtmp->m_lev;
-	    if (tmp2 == AD_WRAP && ptr->mlet == S_EEL && !Amphibious)
-		tmp += 100;
+	    if (tmp2 == AD_WRAP && ptr->mlet == S_EEL) { /* edited by Amy */
+		tmp *= 11;
+		tmp /= 10;
+	    }
 	}
 
 /*	For certain "extra nasty" monsters, give even more */
@@ -275,6 +277,16 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 
 /*	For higher level monsters, an additional bonus is given */
 	if(mtmp->m_lev > 8) tmp += 50;
+	/* Amy edit: high experience levels require lots of XP, but high-level monsters don't give all that much more XP
+	 * than low-level ones? gotta fix that... */
+	if(mtmp->m_lev > 20) {
+		int hilvlmod = (mtmp->m_lev - 19);
+		tmp += (hilvlmod * hilvlmod);
+	}
+	if(mtmp->m_lev > 40) {
+		int hilvlmod = (mtmp->m_lev - 39);
+		tmp += (hilvlmod * hilvlmod * 100);
+	}
 
 #ifdef MAIL
 	/* Mail daemons put up no fight. */
@@ -460,6 +472,7 @@ newexplevel()
 	    u.uexp = 10000000;
 	    You_feel("more experienced.");
 	    pluslvl(TRUE);
+	    u.weapon_slots++; /* leveling via EXP can keep giving you skill slots --Amy */
 	}
 }
 
