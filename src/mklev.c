@@ -1486,6 +1486,41 @@ specdungeoninit()
 
 	}
 
+	/* make rivers if possible --Amy */
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+
+	if (ishaxor) {
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+	}
+
+	if (isaquarian && (!rn2(100) || depth(&u.uz) > 1) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+	if (RngeRivers && (!rn2(100) || depth(&u.uz) > 1) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+
+	if (ishaxor) {
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+	}
+
+	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !In_endgame(&u.uz)) {
+
+		mkroommateroom(0);
+		if (!rn2(5)) {
+			mkroommateroom(0);
+			while (!rn2(3)) mkroommateroom(0);
+
+		}
+
+	}
+
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+
+
 }
 
 STATIC_OVL void
@@ -10695,30 +10730,6 @@ gehennomxtra:
 
 		}
 
-		specdungeoninit();
-
-	    /* Underground rivers */
-	    if ( u_depth > 13 && !rn2(7)) mkrivers();
-	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
-
-		if (ishaxor) {
-	    if ( u_depth > 13 && !rn2(7)) mkrivers();
-	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrivers();
-		}
-
-		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrivers();
-		if (RngeRivers && (!rn2(100) || u_depth > 1) ) mkrivers();
-
-	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
-	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
-
-		if (ishaxor) {
-	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
-	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
-		}
-
-		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrandrivers();
-		if (RngeRivers && (!rn2(100) || u_depth > 1) ) mkrandrivers();
 
 	/*}*/
 
@@ -11549,17 +11560,6 @@ skip0:
 
 	}
 
-	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
-
-		mkroommateroom(0);
-		if (!rn2(5)) {
-			mkroommateroom(0);
-			while (!rn2(3)) mkroommateroom(0);
-
-		}
-
-	}
-
    }
 }
 
@@ -12296,18 +12296,8 @@ mklev()
 	in_mklev = TRUE;
 	makelevel();
 
-	if ((isroommate || !rn2(100)) && ( (depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
-
-		mkroommateroom(0);
-		if (!rn2(5)) {
-			mkroommateroom(0);
-			while (!rn2(3)) mkroommateroom(0);
-
-		}
-
-	}
-
 	bound_digging();
+	specdungeoninit();
 	mineralize();
 	in_mklev = FALSE;
 	/* has_morgue gets cleared once morgue is entered; graveyard stays
@@ -12461,21 +12451,6 @@ xchar x, y;	/* location */
 	 * as a favored spot for a branch.
 	 */
 
-	if (!br) { /* not making a branch means that roommate rooms can't collide with them */
-
-		if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
-
-			mkroommateroom(0);
-			if (!rn2(5)) {
-				mkroommateroom(0);
-				while (!rn2(3)) mkroommateroom(0);
-
-			}
-
-		}
-
-	}
-
 	if (!br || made_branch) return;
 
 	if (!x) {	/* find random coordinates for branch */
@@ -12496,6 +12471,7 @@ xchar x, y;	/* location */
 			y = m.y;
 	    }
 
+		/* stairseeker changes stuff here */
 		if (br && (evilfriday || !(at_dgn_entrance("The Subquest") || at_dgn_entrance("The Quest") || at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") || at_dgn_entrance("The Elemental Planes") || at_dgn_entrance("Sheol") || at_dgn_entrance("Bell Caves") || at_dgn_entrance("Vlad's Tower") || at_dgn_entrance("Forging Chamber") || at_dgn_entrance("Dead Grounds") || at_dgn_entrance("Ordered Chaos")) )) {
 
 			int steetries = 0;
@@ -12503,9 +12479,9 @@ xchar x, y;	/* location */
 				steetries++;
 				x = rnd(COLNO-1);
 				y = rn2(ROWNO);
-				if (ACCESSIBLE(levl[x][y].typ) && !On_stairs(x, y)) break; /* we got a good location! */
+				if (ACCESSIBLE(levl[x][y].typ) && !(t_at(x,y) && ((t_at(x,y))->ttyp == MAGIC_PORTAL)) && (levl[x][y].typ == CORR || levl[x][y].typ == ROOM) && !On_stairs(x, y)) break; /* we got a good location! */
 			}
-			if (!ACCESSIBLE(levl[x][y].typ) || On_stairs(x, y)) {
+			if (!ACCESSIBLE(levl[x][y].typ) || (t_at(x,y) && ((t_at(x,y))->ttyp == MAGIC_PORTAL)) || On_stairs(x, y)) {
 				x = m.x;
 				y = m.y;
 			}
@@ -12551,16 +12527,6 @@ xchar x, y;	/* location */
 
 	/* now that the branch exists, it can no longer happen that the stair/portal appears in an impossible place... */
 
-	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
-
-		mkroommateroom(0);
-		if (!rn2(5)) {
-			mkroommateroom(0);
-			while (!rn2(3)) mkroommateroom(0);
-
-		}
-
-	}
 }
 
 STATIC_OVL boolean

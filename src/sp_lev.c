@@ -5317,42 +5317,6 @@ dlb *fd;
 		create_corridor(&tmpcor);
 	}
 
-	specdungeoninit();
-
-	/* make rivers if possible --Amy */
-	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
-	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
-
-	if (ishaxor) {
-		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
-		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
-	}
-
-	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
-	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
-
-	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
-	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
-
-	if (ishaxor) {
-		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
-		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
-	}
-
-	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
-	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
-
-	if ((isroommate || !rn2(100)) && ((depth(&u.uz) > 1 && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
-
-		mkroommateroom(0);
-		if (!rn2(5)) {
-			mkroommateroom(0);
-			while (!rn2(3)) mkroommateroom(0);
-
-		}
-
-	}
-
 	/* chance to create Ludios portal, by Amy */
 	if (In_dod(&u.uz)) {
 		mazexy_all(&mm);
@@ -6108,8 +6072,6 @@ dlb *fd;
 		}
 
     }
-
-	specdungeoninit();
 
 	/* make rivers if possible --Amy */
 	if (!rn2(50) && !In_endgame(&u.uz) ) mkrivers();
