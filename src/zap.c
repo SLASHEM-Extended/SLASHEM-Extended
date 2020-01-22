@@ -1947,7 +1947,7 @@ struct monst *mon;
 	    /* for a merged group, only one is revived; should this be fixed? */
 
 	    /* Amy edit: farming via undead turning is lame, give a chance to vaporize the corpse instead */
-	    if (otmp->otyp == CORPSE && !rn2(10)) {
+	    if (otmp->otyp == CORPSE && !is_rider(&mons[otmp->corpsenm]) && !is_deadlysin(&mons[otmp->corpsenm]) && !rn2(10)) {
 
 			switch (otmp->where) {
 			    case OBJ_INVENT:
