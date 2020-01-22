@@ -6323,6 +6323,10 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && StrongAggravate_monster) enl_msg("You completely aggravate", "", "d", " monsters");
 	if ((guaranteed || !rn2(10)) && !StrongAggravate_monster && ExtAggravate_monster) enl_msg("You strongly aggravate", "", "d", " monsters");
 	if ((guaranteed || !rn2(10)) && !StrongAggravate_monster && IntAggravate_monster) enl_msg("You aggravate", "", "d", " monsters");
+	if ((guaranteed || !rn2(10)) && Aggravate_monster) {
+		sprintf(buf, "aggravating monsters for %d more turns", HAggravate_monster);
+		you_are(buf);
+	}
 	if ((guaranteed || !rn2(10)) && Conflict) enl_msg("You cause", "", "d", StrongConflict ? " lots of conflict" : " conflict");
 
 	/*** Transportation ***/
@@ -10032,6 +10036,11 @@ int final;
 	if (StrongAggravate_monster) dump("  ", "You completely aggravated monsters");
 	if (!StrongAggravate_monster && ExtAggravate_monster) dump("  ", "You strongly aggravated monsters");
 	if (!StrongAggravate_monster && IntAggravate_monster) dump("  ", "You aggravated monsters");
+	if (Aggravate_monster) {
+		sprintf(buf, "aggravating monsters for %d more turns", HAggravate_monster);
+		dump(youwere, buf);
+	}
+
 	if (Conflict) dump("  ", StrongConflict ? "You caused lots of conflict" : "You caused conflict");
 
 	/*** Transportation ***/
@@ -11445,8 +11454,12 @@ int final;
 		enl_msg(You_, "wiped your ", "wiped your ", buf);
 	}
 	if (u.cnd_acquirementcount) {
-		sprintf(buf, "%s %ld item%s", u.cnd_acquirementcount, plur(u.cnd_acquirementcount));
+		sprintf(buf, "%ld item%s", u.cnd_acquirementcount, plur(u.cnd_acquirementcount));
 		enl_msg(You_, "have acquired ", "acquired ", buf);
+	}
+	if (u.cnd_cannibalcount) {
+		sprintf(buf, "%ld time%s", u.cnd_cannibalcount, plur(u.cnd_cannibalcount));
+		enl_msg(You_, "have been a cannibal ", "were a cannibal ", buf);
 	}
 
 	/* Pop up the window and wait for a key */
@@ -11982,8 +11995,11 @@ int final;
 	sprintf(buf, "%s %ld time%s", body_part(FACE), u.cnd_wipecount, plur(u.cnd_wipecount));
 	dump("  You wiped your ", buf);
 
-	sprintf(buf, "%s %ld item%s", u.cnd_acquirementcount, plur(u.cnd_acquirementcount));
+	sprintf(buf, "%ld item%s", u.cnd_acquirementcount, plur(u.cnd_acquirementcount));
 	dump("  You acquired ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_cannibalcount, plur(u.cnd_cannibalcount));
+	dump("  You were a cannibal ", buf);
 
 	dump("", "");
 }

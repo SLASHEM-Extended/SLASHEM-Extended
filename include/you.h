@@ -1755,6 +1755,7 @@ struct you {
 	int cnd_eggcount;	/* how many eggs hatched */
 	int cnd_wipecount;	/* how often you successfully use the #wipe command */
 	int cnd_acquirementcount;	/* how often you use acquirement */
+	int cnd_cannibalcount;	/* how often you ate your own race without permission (i.e. caveman doesn't count) */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

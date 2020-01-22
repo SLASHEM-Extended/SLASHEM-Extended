@@ -936,7 +936,17 @@ boolean allowmsg;
 			You("have a bad feeling deep inside.");
 		    You("cannibal!  You will regret this!");
 		}
-		HAggravate_monster |= FROMOUTSIDE;
+		u.cnd_cannibalcount++;
+
+		/* Amy edit: it's teh uber-sux if one mishap gives you aggravate monster permanently.
+		 * So we're just making it last longer the more often you cannibalize */
+		if (u.cnd_cannibalcount < 1) u.cnd_cannibalcount = 1; /* should never happen */
+		if (u.cnd_cannibalcount < 5) {
+			HAggravate_monster += (1000 * u.cnd_cannibalcount);
+		} else {
+			HAggravate_monster += ((1000 + rnd(9000)) * u.cnd_cannibalcount);
+
+		}
 		increasesanity(rnd((level_difficulty() * 2) + 5));
 
 		/* "Cannibalism angers your god instead of removing telepathy." In the Evil Variant, new bad effects are added,
@@ -998,7 +1008,8 @@ register int pm;
 	    You_feel("that %s the %s%s was a bad idea.",
 	      victual.eating ? "eating" : "biting",
 	      occupation == opentin ? "tinned " : "", mons[pm].mname);
-	    HAggravate_monster |= FROMOUTSIDE;
+	    HAggravate_monster += rnd(100);
+
 	}
 
 	if (HardcoreAlienMode && mons[pm].mlet == S_QUADRUPED) {
@@ -1028,7 +1039,9 @@ register int pm;
 		    You_feel("that %s the %s%s was a bad idea.",
 		      victual.eating ? "eating" : "biting",
 		      occupation == opentin ? "tinned " : "", mons[pm].mname);
-		    HAggravate_monster |= FROMOUTSIDE;
+
+			/* make aggravation last only for a couple turns, but summon stuff (see cpostfx) --Amy */
+
 		}
 		break;
 	    case PM_LIZARD:
@@ -1829,6 +1842,32 @@ register int pm;
 	if (eatmbuf) (void)eatmdone();
 
 	switch(pm) {
+
+	    case PM_LITTLE_DOG:
+	    case PM_DOG:
+	    case PM_LARGE_DOG:
+	    case PM_KITTEN:
+	    case PM_HOUSECAT:
+	    case PM_LARGE_CAT:
+	    case PM_DOMESTIC_COCKATRICE:
+	    case PM_CHAIN_SMOKER_ASSHOLE:
+			{
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+				u.cnd_aggravateamount++;
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			pline("Several monsters come out of a portal.");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+		break;
+
 	    case PM_IGUANA:
 	    case PM_LEGWA:
 	    case PM_GECKO:
@@ -3481,6 +3520,23 @@ register int pm;
 		    pline("Suddenly you have a nightmare!");
 		    nomul(-5, "scared by a nightmare", TRUE);
 		    nomovemsg = 0;
+		}
+
+		if (dmgtype(ptr, AD_AGGR)) {
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+				u.cnd_aggravateamount++;
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			pline("Several monsters come out of a portal.");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
 		}
 
 		/* Eating slimy or oily corpses makes your fingers slippery in unnethack because harharhar harhar har. */
