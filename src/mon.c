@@ -2501,11 +2501,12 @@ mpickgold(mtmp)
 	register struct obj *gold;
 	int mat_idx;
 
+	if ((gold = g_at(mtmp->mx, mtmp->my)) != 0) {
+
 	/* Amy edit: pets shouldn't be able to simply pick up the 10k you used for credit cloning, you lame ass... */
 	int dogquan = 5 * mtmp->m_lev; /* halved by Amy, see also dogmove.c */
-	if (gold->quan < dogquan) dogquan = gold->quan;
+	if (gold && gold->quan < dogquan) dogquan = gold->quan;
 
-	if ((gold = g_at(mtmp->mx, mtmp->my)) != 0) {
 	mat_idx = objects[gold->otyp].oc_material;
 
 	if (uchain && (gold == uchain) ) return;
