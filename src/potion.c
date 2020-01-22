@@ -1827,7 +1827,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(451)) {
+	switch (rnd(452)) {
 
 		case 1:
 		case 2:
@@ -3039,6 +3039,19 @@ badeffect()
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 			break;
 
+		case 452:
+			otmp = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!Blind) otmp->dknown = 1;
+				if (otmp) {
+					pline("%s lands in your knapsack!", Doname2(otmp));
+					(void) pickup_object(otmp, 1L, TRUE, TRUE);
+				}
+			}
+			break;
+
 		default:
 		break;
 	}
@@ -3104,7 +3117,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(92)) {
+	switch (rnd(93)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -3955,6 +3968,19 @@ reallybadeffect()
 
 		case 92:
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+			break;
+
+		case 93:
+			otmp = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!Blind) otmp->dknown = 1;
+				if (otmp) {
+					pline("%s lands in your knapsack!", Doname2(otmp));
+					(void) pickup_object(otmp, 1L, TRUE, TRUE);
+				}
+			}
 			break;
 
 		default:
