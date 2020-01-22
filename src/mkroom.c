@@ -27,6 +27,7 @@ STATIC_DCL struct permonst * douglas_adams_mon(void);
 STATIC_DCL struct permonst * tenshallmon(void);
 STATIC_DCL struct permonst * tenshallmonB(void);
 STATIC_DCL struct permonst * squadmon(void);
+STATIC_DCL struct permonst * prisonermon(void);
 STATIC_DCL struct permonst * doomsquadmon(void);
 STATIC_DCL struct permonst * evilroommon(void);
 STATIC_DCL struct permonst * machineroommon(void);
@@ -670,7 +671,8 @@ struct mkroom *sroom;
 	if (type == NUCLEARCHAMBER) moreorless /= 2;
 	if (type == HAMLETROOM && moreorless > 5) moreorless = 5;
 	if (issuxxor) moreorless /= 2;
-	if (moreorless < 0) moreorless = 0;
+	moreorless /= rnd(5); /* generally tone it down --Amy */
+	if (moreorless < 1) moreorless = 1;
 	if (moreorless > 100) moreorless = 100;
 
 	if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
@@ -722,7 +724,7 @@ struct mkroom *sroom;
 			}
 		}
 
-		if ( (rnd(100) <= moreorless) && (type != EMPTYNEST) ) mon = makemon(
+		if ( ((rnd(100) <= moreorless) || (rn2(5) && sx == tx && sy == ty)) && (type != EMPTYNEST) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 
 		    (type == INSIDEROOM) ? (/*!*/rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
@@ -779,7 +781,7 @@ struct mkroom *sroom;
 		    (type == MORGUE) ? morguemon() :
 		    (type == FUNGUSFARM) ? (!rn2(4) ? mkclass(S_BLOB,0) : !rn2(3) ? mkclass(S_PUDDING,0) : !rn2(2) ? mkclass(S_JELLY,0) : mkclass(S_FUNGUS,0)) :
 		    (type == BEEHIVE) ? (sx == tx && sy == ty ? (((depthuz < 5) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (3 + rn2(3)))) ? &mons[PM_BIG_BEE] : &mons[PM_QUEEN_BEE]) : beehivemon()) :
-		    (type == PRISONCHAMBER) ? (sx == tx && sy == ty ? &mons[PM_PRISONER] : mkclass(S_OGRE,0) ) :
+		    (type == PRISONCHAMBER) ? (sx == tx && sy == ty ? prisonermon() : mkclass(S_OGRE,0) ) :
 		    (type == DOUGROOM) ? douglas_adams_mon() : 
 		    (type == LEPREHALL) ? mkclass(S_LEPRECHAUN,0) :
 		    (type == COCKNEST) ? mkclass(S_COCKATRICE,0) :
@@ -1005,7 +1007,8 @@ struct mkroom *sroom;
 			    i = goldlim;
 			if(i >= goldlim) i = 5*level_difficulty();
 			goldlim -= i;
-			(void) mkgold((long) rn1(i, 10), sx, sy);
+			if (rn2(4)) (void) mkgold(1, sx, sy); /* don't spawn endless amounts of gold --Amy */
+			else (void) mkgold((long) rn1(i, 10), sx, sy);
 			break;
 		    case MORGUE:
 			if(!rn2(5))
@@ -1022,12 +1025,12 @@ struct mkroom *sroom;
 				mmm.y = sy;
 			    (void) tt_mname(&mmm, FALSE, 0);
 				}
-			if(!rn2(ishaxor ? 5 : 10))	/* lots of treasure buried with dead */
+			if(!rn2(ishaxor ? 10 : 20))	/* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST, sx, sy, TRUE, FALSE, FALSE);
-			if (!rn2(5)) {
+			if (!rn2(10)) {
 			    make_grave(sx, sy, (char *)0);
 
-				if (!rn2(3)) (void) mkgold(0L, sx, sy);
+				if (!rn2(5)) (void) mkgold(0L, sx, sy);
 				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
 					if (timebasedlowerchance()) {
 					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
@@ -1052,7 +1055,7 @@ struct mkroom *sroom;
 			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case MIGOHIVE:
-			switch (rn2(30)) { /* greatly lowered chance --Amy */
+			switch (rn2(100)) { /* greatly lowered chance --Amy */
 			    case 9:
 				mksobj_at(DIAMOND, sx, sy, TRUE, FALSE, FALSE);
 				break;
@@ -1072,12 +1075,12 @@ struct mkroom *sroom;
 			}
 			break;
 		    case BARRACKS:
-			if(!rn2(ishaxor ? 10 : 20))	/* the payroll and some loot */
+			if(!rn2(ishaxor ? 25 : 50))	/* the payroll and some loot */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST, sx, sy, TRUE, FALSE, FALSE);
-			if (!rn2(5)) {
+			if (!rn2(25)) {
 			    make_grave(sx, sy, (char *)0);
 
-				if (!rn2(3)) (void) mkgold(0L, sx, sy);
+				if (!rn2(5)) (void) mkgold(0L, sx, sy);
 				for (gravetries = rn2(2 + rn2(4)); gravetries; gravetries--) {
 					if (timebasedlowerchance()) {
 					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
@@ -1110,7 +1113,7 @@ struct mkroom *sroom;
 		      (void) mksobj_at(EGG,sx,sy,TRUE,FALSE, FALSE);
 			break;
 		    case COCKNEST:
-			if(!rn2(3)) {
+			if(!rn2(7)) {
 			    struct obj *sobj = mk_tt_object(STATUE, sx, sy);
 
 			    if (sobj) {
@@ -1269,7 +1272,7 @@ struct mkroom *sroom;
 			  if (somexy(sroom, &mm))
 				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE, FALSE);
 		  }
-	      case REALZOO:              
+	      case REALZOO:
 		  level.flags.has_zoo = 1;
 		  break;
 	      case MORGUE:
@@ -2371,6 +2374,21 @@ realzoomon()
 	else                    return(&mons[PM_MONKEY]);
 }
 
+STATIC_OVL struct permonst *
+prisonermon()	/* return random prisoner type --Amy */
+{
+	if (rn2(5)) return (&mons[PM_PRISONER]);
+	else switch (rnd(7)) {
+		case 1: return (&mons[PM_CASTLE_PRISONER]);
+		case 2: return (&mons[PM_OCCASIONAL_FRIEND]);
+		case 3: return (&mons[PM_GIRL_OUTSIDE_GANG]);
+		case 4: return (&mons[PM_YOUR_BROTHER]);
+		case 5: return (&mons[PM_YOUR_SISTER]);
+		case 6: return (&mons[PM_GRAVITY_STRIKER]);
+		case 7: return (&mons[PM_POEZ_PRESIDENT]);
+	}
+}
+
 #define NSTYPES (PM_CAPTAIN - PM_SOLDIER + 1)
 
 static struct {
@@ -2922,7 +2940,7 @@ mkinsideroom()
 
 					make_grave(sx, sy, (char *) 0);
 					/* Possibly fill it with objects */
-					if (!rn2(3)) (void) mkgold(0L, sx, sy);
+					if (!rn2(5)) (void) mkgold(0L, sx, sy);
 					for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 						if (timebasedlowerchance()) {
 						    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);

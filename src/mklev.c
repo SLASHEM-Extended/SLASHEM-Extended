@@ -15332,7 +15332,7 @@ struct mkroom *croom;
 	make_grave(m.x, m.y, dobell ? "Saved by the bell!" : (char *) 0);
 
 	/* Possibly fill it with objects */
-	if (!rn2(3)) (void) mkgold(0L, m.x, m.y);
+	if (!rn2(5)) (void) mkgold(0L, m.x, m.y);
 	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 		if (timebasedlowerchance()) {
 		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);

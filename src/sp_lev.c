@@ -260,7 +260,7 @@ register int x, y;
 	case 130:
 	make_grave(x, y, (char *) 0);
 	/* Possibly fill it with objects */
-	if (!rn2(3)) (void) mkgold(0L, x, y);
+	if (!rn2(5)) (void) mkgold(0L, x, y);
 	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 		if (timebasedlowerchance()) {
 		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
@@ -4507,7 +4507,7 @@ retryrandtype:
 
 					make_grave(sx, sy, (char *) 0);
 					/* Possibly fill it with objects */
-					if (!rn2(3)) (void) mkgold(0L, sx, sy);
+					if (!rn2(5)) (void) mkgold(0L, sx, sy);
 					for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
 						if (timebasedlowerchance()) {
 						    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE, FALSE);
