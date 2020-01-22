@@ -4854,12 +4854,14 @@ wipeoff()
 	else			Blinded -= 4;
 	if (!Blinded) {
 		pline("You've got the glop off.");
+		u.cnd_wipecount++;
 		u.ucreamed = 0;
 		Blinded = 1;
 		make_blinded(0L,TRUE);
 		return(0);
 	} else if (!u.ucreamed) {
 		Your("%s feels clean now.", body_part(FACE));
+		u.cnd_wipecount++;
 		return(0);
 	}
 	return(1);		/* still busy */

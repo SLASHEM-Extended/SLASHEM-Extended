@@ -3358,6 +3358,7 @@ E void destroy_item(int,int);
 E int destroy_mitem(struct monst *,int,int);
 E int resist(struct monst *,CHAR_P,int,int);
 E void makewish(BOOLEAN_P);
+E void acquireitem(void);
 E void makenonworkingwish(void);
 E void othergreateffect(void);
 /* KMH -- xchar to XCHAR_P */

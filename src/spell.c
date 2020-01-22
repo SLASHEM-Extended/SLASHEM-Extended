@@ -7213,68 +7213,7 @@ secureidchoice:
 		AMAX(A_CHA) = ABASE(A_CHA);
 		}
 
-		register struct obj *acqo;
-		int acquireditem;
-		acquireditem = 0;
-
-		pline("Pick an item type that you want to acquire. The prompt will loop until you actually make a choice.");
-
-		while (acquireditem == 0) { /* ask the player what they want --Amy */
-
-			if (yn("Do you want to acquire a random item?")=='y') {
-				    acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a weapon?")=='y') {
-				    acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire an armor?")=='y') {
-				    acqo = mkobj_at(ARMOR_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a ring?")=='y') {
-				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire an amulet?")=='y') {
-				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire an implant?")=='y') {
-				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a tool?")=='y') {
-				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire some food?")=='y') {
-				    acqo = mkobj_at(FOOD_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a potion?")=='y') {
-				    acqo = mkobj_at(POTION_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a scroll?")=='y') {
-				    acqo = mkobj_at(SCROLL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a spellbook?")=='y') {
-				    acqo = mkobj_at(SPBOOK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a wand?")=='y') {
-				    acqo = mkobj_at(WAND_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire some coins?")=='y') {
-				    acqo = mkobj_at(COIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a gem?")=='y') {
-				    acqo = mkobj_at(GEM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a boulder or statue?")=='y') {
-				    acqo = mkobj_at(ROCK_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a heavy iron ball?")=='y') {
-				    acqo = mkobj_at(BALL_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire an iron chain?")=='y') {
-				    acqo = mkobj_at(CHAIN_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-			else if (yn("Do you want to acquire a splash of venom?")=='y') {
-				    acqo = mkobj_at(VENOM_CLASS, u.ux, u.uy, FALSE, FALSE);	acquireditem = 1; }
-	
-		}
-		if (!acqo) {
-			pline("Unfortunately it failed.");
-			break;
-		}
-
-		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
-
-		if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
-		if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
-		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
-	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
-		acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
-	    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_MAKE_PENTAGRAM || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
-		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
-
-		pline("Something appeared on the ground just beneath you!");
+		acquireitem();
 
 		break;
 

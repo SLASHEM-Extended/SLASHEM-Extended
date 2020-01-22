@@ -3455,6 +3455,9 @@ long timeout;
 		    if (!enexto(&cc, x, y, &mons[mnum]) ||
 			 !(mon = makemon(&mons[mnum], cc.x, cc.y, NO_MINVENT)))
 			break;
+
+			if (mon) u.cnd_eggcount++;
+
 		    /* tame if your own egg hatches while you're on the
 		       same dungeon level, or any dragon egg which hatches
 		       while it's in your inventory */

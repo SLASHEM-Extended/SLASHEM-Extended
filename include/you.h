@@ -1752,6 +1752,9 @@ struct you {
 	int cnd_alchemycount;	/* how often you did alchemy */
 	int cnd_weaponbreakcount;	/* how many opponents' weapons you broke/cut */
 	int cnd_newmancount;	/* how often you felt like a new man */
+	int cnd_eggcount;	/* how many eggs hatched */
+	int cnd_wipecount;	/* how often you successfully use the #wipe command */
+	int cnd_acquirementcount;	/* how often you use acquirement */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

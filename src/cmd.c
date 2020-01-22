@@ -11436,6 +11436,18 @@ int final;
 		(urace.individual.m) ? urace.individual.m : urace.noun), u.cnd_newmancount, plur(u.cnd_newmancount));
 		enl_msg(You_, "felt like a new ", "felt like a new ", buf);
 	}
+	if (u.cnd_eggcount && final) {
+		sprintf(buf, "%ld egg%s to hatch", u.cnd_eggcount, plur(u.cnd_eggcount));
+		enl_msg(You_, "allowed ", "allowed ", buf);
+	}
+	if (u.cnd_wipecount) {
+		sprintf(buf, "%s %ld time%s", body_part(FACE), u.cnd_wipecount, plur(u.cnd_wipecount));
+		enl_msg(You_, "wiped your ", "wiped your ", buf);
+	}
+	if (u.cnd_acquirementcount) {
+		sprintf(buf, "%s %ld item%s", u.cnd_acquirementcount, plur(u.cnd_acquirementcount));
+		enl_msg(You_, "have acquired ", "acquired ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -11963,6 +11975,15 @@ int final;
 	sprintf(buf, "%s %ld time%s", ((flags.female && urace.individual.f) ? urace.individual.f :
 	(urace.individual.m) ? urace.individual.m : urace.noun), u.cnd_newmancount, plur(u.cnd_newmancount));
 	dump("  You felt like a new ", buf);
+
+	sprintf(buf, "%ld egg%s to hatch", u.cnd_eggcount, plur(u.cnd_eggcount));
+	dump("  You allowed ", buf);
+
+	sprintf(buf, "%s %ld time%s", body_part(FACE), u.cnd_wipecount, plur(u.cnd_wipecount));
+	dump("  You wiped your ", buf);
+
+	sprintf(buf, "%s %ld item%s", u.cnd_acquirementcount, plur(u.cnd_acquirementcount));
+	dump("  You acquired ", buf);
 
 	dump("", "");
 }
