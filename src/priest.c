@@ -219,9 +219,12 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		     on_level(&sanctum_level, &u.uz)) {
 			(void) mongets(priest, AMULET_OF_YENDOR);
 		}
-		/* 2 to 4 spellbooks */
-		for (cnt = rn1(3,2); cnt > 0; --cnt) {
-		    (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE, FALSE), TRUE);
+		/* 2 to 4 spellbooks - but less later on
+		 * Amy edit: 50% chance of having just one, har-har :P
+		 * they're just free loot anyway, the priest doesn't benefit from having them! */
+		cnt = (rn2(2) ? 1 : rn1(3,2));
+		for (cnt; cnt > 0; --cnt) {
+		    if (timebasedlowerchance()) (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE, FALSE), TRUE);
 		}
 		/* [ALI] Upgrade existing robe or aquire new */
 
