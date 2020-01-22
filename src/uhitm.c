@@ -62,8 +62,11 @@ int attk;
 
 	switch(attk) {
 	    /* 0 is burning, which we should never be called with */
+		/* Amy edit: AD_LAVA does now. */
 	    case AD_RUST: hurt = 1; break;
 	    case AD_CORR: hurt = 3; break;
+	    case AD_LAVA: hurt = 0; break;
+	    case AD_FLAM: hurt = 0; break;
 	    default: hurt = 2; break;
 	}
 	/* What the following code does: it keeps looping until it
@@ -5087,6 +5090,9 @@ register struct attack *mattk;
 		if (!rn2(3)) hurtmarmor(mdef, AD_DCAY);
 		if (pd == &mons[PM_WOOD_GOLEM] || pd == &mons[PM_LEATHER_GOLEM]) tmp = 0;
 		break;
+	    case AD_FLAM:
+		if (!rn2(3)) hurtmarmor(mdef, AD_FLAM);
+		break;
 	    case AD_DRST:
 	    case AD_DRDX:
 	    case AD_DRCO:
@@ -5987,6 +5993,9 @@ register struct attack *mattk;
 			xkilled(mdef,0);
 		}
 		hurtmarmor(mdef, AD_DCAY);
+		break;
+	    case AD_FLAM:
+		hurtmarmor(mdef, AD_FLAM);
 		break;
 	    case AD_DRST:
 	    case AD_DRDX:
@@ -8046,6 +8055,13 @@ boolean ranged;
 
 		break;
 
+	    case AD_DEBU:
+
+		pline("You're being sapped!");
+		statdebuff();
+
+		break;
+
 	    case AD_SCOR:
 
 		u.urexp -= (tmp * 50);
@@ -9519,6 +9535,23 @@ boolean ranged;
 		}
 	    break;
 
+	  case AD_FLAM:
+
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			hurtarmor(AD_FLAM);
+		} else {
+
+		    if(mhit && !mon->mcan) {
+			if (aatyp == AT_KICK) {
+			    if (uarmf)
+				(void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW ||
+				   aatyp == AT_MAGC || aatyp == AT_TUCH)
+			    passive_obj(mon, target, &(ptr->mattk[i]));
+		    }
+		}
+	    break;
+
 	    case AD_HEAL:
 		if (mon->mcan) {
 		    break;
@@ -10908,6 +10941,7 @@ struct attack *mattk;		/* null means we find one internally */
 	    }
 	    break;
 	case AD_LAVA:
+	case AD_FLAM:
 
 burnagain:
 	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == MT_WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == MT_LEATHER && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
@@ -10920,6 +10954,27 @@ burnagain:
 			else if (obj->oeroded == MAX_ERODE && !(obj->oartifact && rn2(4)) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
 				pline("Your weapon burned to ashes!");
+				if (obj == uball) unpunish();
+				delobj(obj);
+				uwepgone();
+				update_inventory();
+	    
+			}
+
+	    }
+	    break;
+
+	case AD_DCAY:
+
+	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_rottable(obj) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
+
+			if (obj->oeroded2 < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) {
+				obj->oeroded2++;
+				pline("%s weapon rots!", carried(obj) ? "Your" : "A");
+				}
+			else if (obj->oeroded2 == MAX_ERODE && !(obj->oartifact && rn2(4)) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
+			{
+				pline("Your weapon rotted away to nothing!");
 				if (obj == uball) unpunish();
 				delobj(obj);
 				uwepgone();

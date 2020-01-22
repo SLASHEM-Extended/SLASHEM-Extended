@@ -251,7 +251,7 @@ int
 randattack()
 {
 
-	switch (rnd(343)) {
+	switch (rnd(345)) {
 
 		case 1:
 		case 2:
@@ -729,6 +729,10 @@ randattack()
 			return AD_LEVI;
 		case 343:
 			return AD_MCRE;
+		case 344:
+			return AD_FLAM;
+		case 345:
+			return AD_DEBU;
 		default:
 			return AD_PHYS;
 
@@ -739,7 +743,7 @@ randattack()
 int
 randomdamageattack()
 {
-	switch (rnd(25)) {
+	switch (rnd(26)) {
 		case 1:
 			return AD_ACID;
 		case 2:
@@ -790,6 +794,8 @@ randomdamageattack()
 			return AD_ANTI;
 		case 25:
 			return AD_NACU;
+		case 26:
+			return AD_FLAM;
 		default:
 			return AD_PHYS;
 	}
@@ -798,7 +804,7 @@ randomdamageattack()
 int
 randomthievingattack()
 {
-	switch (rnd(25)) {
+	switch (rnd(26)) {
 		case 1:
 			return AD_SLOW;
 		case 2:
@@ -849,6 +855,8 @@ randomthievingattack()
 			return AD_STAT;
 		case 25:
 			return AD_MCRE;
+		case 26:
+			return AD_DEBU;
 		default:
 			return AD_PHYS;
 	}
@@ -857,7 +865,7 @@ randomthievingattack()
 int
 randomillusionattack()
 {
-	switch (rnd(28)) {
+	switch (rnd(29)) {
 		case 1:
 			return AD_SPC2;
 		case 2:
@@ -914,6 +922,8 @@ randomillusionattack()
 			return AD_LEVI;
 		case 28:
 			return AD_MCRE;
+		case 29:
+			return AD_DEBU;
 		default:
 			return AD_PHYS;
 	}

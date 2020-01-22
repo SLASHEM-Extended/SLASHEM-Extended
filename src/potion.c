@@ -4496,6 +4496,44 @@ obsidianprotection()
 	return FALSE;
 }
 
+/* stat debuff attack: reduces a random stat, temporarily */
+void
+statdebuff()
+{
+	if (Role_if(PM_ASTRONAUT) && rn2(2)) {
+		pline("Your steeled body prevents the stat loss!");
+		return;
+	}
+
+	switch (rnd(6)) {
+		case 1:
+			u.tsloss_str++;
+			You_feel("weaker!");
+			break;
+		case 2:
+			u.tsloss_dex++;
+			You_feel("clumsier!");
+			break;
+		case 3:
+			u.tsloss_con++;
+			You_feel(rn2(2) ? "fralier!" : "frailer!");
+			break;
+		case 4:
+			u.tsloss_wis++;
+			You_feel("more naive!");
+			break;
+		case 5:
+			u.tsloss_int++;
+			You_feel("stupider!");
+			break;
+		case 6:
+			u.tsloss_cha++;
+			You_feel("more repulsive!");
+			break;
+		flags.botl = 1;
+	}
+}
+
 /* if you're an angel, shadowstuff items reduce your stats --Amy */
 int
 angelshadowstuff()
@@ -5821,7 +5859,7 @@ terrainterror()
 
 		else {
 
-			monstercolor = rnd(372);
+			monstercolor = rnd(374);
 
 			for (i = 0; i < randsp; i++) {
 

@@ -4268,6 +4268,21 @@ physical:
 			if (vis) pline("%s corrodes!", Monnam(mdef));
 		}
 		break;
+	    case AD_FLAM:
+		if (magr->mcan) break;
+		hurtmarmor(mdef, AD_FLAM);
+		mdef->mstrategy &= ~STRAT_WAITFORU;
+		if (mattk->aatyp == AT_EXPL && tmp > 1) {
+			tmp /= 5;
+			if (tmp < 1) tmp = 1;
+		}
+		/*tmp = 0;*/
+		if (mdef->mtame && !rn2(5)) {
+			if (mdef->mhpmax > 1) mdef->mhpmax--;
+			if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+			if (vis) pline("%s is engulfed by flames!", Monnam(mdef));
+		}
+		break;
 	    case AD_DCAY:
 		if (magr->mcan) break;
 		if (pd == &mons[PM_WOOD_GOLEM] ||
@@ -5525,6 +5540,7 @@ physical:
 	    case AD_DRDX:
 	    case AD_DRCO:
 	    case AD_POIS:
+	    case AD_DEBU:
 	    case AD_WISD:
 	    case AD_DRCH:
 		if (nohit) break;
@@ -6805,6 +6821,14 @@ int attnumber;
 			if (magr->mhpmax > 1) magr->mhpmax--;
 			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
 			if (canseemon(magr)) pline("%s decays!", Monnam(magr));
+		}
+		break;
+
+	    case AD_FLAM:
+		if (magr->mtame && !rn2(5)) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			if (canseemon(magr)) pline("%s burns!", Monnam(magr));
 		}
 		break;
 

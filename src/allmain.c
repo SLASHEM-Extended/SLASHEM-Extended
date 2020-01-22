@@ -929,7 +929,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(372);
+				monstercolor = rnd(374);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -992,7 +992,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(372);
+				monstercolor = rnd(374);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -3499,7 +3499,7 @@ fukrosionchoice:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(372);
+			monstercolor = rnd(374);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -4588,6 +4588,37 @@ fukrosionchoice:
 	
 		}
 
+		if (u.tsloss_str && !rn2(5000)) {
+			u.tsloss_str--;
+			if (u.tsloss_str < 0) u.tsloss_str = 0; /* fail safe */
+			You_feel("stronger!");
+		}
+		if (u.tsloss_dex && !rn2(5000)) {
+			u.tsloss_dex--;
+			if (u.tsloss_dex < 0) u.tsloss_dex = 0; /* fail safe */
+			You_feel("nimbler!");
+		}
+		if (u.tsloss_con && !rn2(5000)) {
+			u.tsloss_con--;
+			if (u.tsloss_con < 0) u.tsloss_con = 0; /* fail safe */
+			You_feel("hardier!");
+		}
+		if (u.tsloss_wis && !rn2(5000)) {
+			u.tsloss_wis--;
+			if (u.tsloss_wis < 0) u.tsloss_wis = 0; /* fail safe */
+			You_feel("wiser!");
+		}
+		if (u.tsloss_int && !rn2(5000)) {
+			u.tsloss_int--;
+			if (u.tsloss_int < 0) u.tsloss_int = 0; /* fail safe */
+			You_feel("smarter!");
+		}
+		if (u.tsloss_cha && !rn2(5000)) {
+			u.tsloss_cha--;
+			if (u.tsloss_cha < 0) u.tsloss_cha = 0; /* fail safe */
+			You_feel("prettier!");
+		}
+
 		if (uarmh && uarmh->oartifact == ART_NULL_THE_LIVING_DATABASE && !rn2(5000) ) {
 		      (void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
 		}
@@ -4918,7 +4949,7 @@ fukrosionchoice:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(372);
+			monstercolor = rnd(374);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -10328,7 +10359,7 @@ past3:
 			u.pokelieflags = 0;
 			u.pokeliespeed = rnd(50);
 			u.pokelieattacktype = rnd(22);
-			u.pokeliedamagetype = rnd(154);
+			u.pokeliedamagetype = rnd(156);
 		}
 	} else {
 		u.pokelieresistances = 0;
@@ -10342,7 +10373,7 @@ past3:
 
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
-		u.frequentationtrait = rnd(372); /* same as monstercolor function */
+		u.frequentationtrait = rnd(374); /* same as monstercolor function */
 	} else {
 		u.frequentationtrait = 0;
 	}

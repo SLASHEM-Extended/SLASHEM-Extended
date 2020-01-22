@@ -256,7 +256,10 @@ extern char *attk_dname(Attk);
 
 #define AD_MCRE		136	/* temporarily reduce magic cancellation (by K2) */
 
-#define AD_ENDS		137	/* placeholder */
+#define AD_FLAM		137	/* flame attack - burns items (weaker form of AD_LAVA) */
+#define AD_DEBU		138	/* debuff - temporarily reduces the player's stats */
+
+#define AD_ENDS		139	/* placeholder */
 
 #define AD_ILLU		229	/* illusion attack - random effect also seen in illusion rooms */
 #define AD_PART		230	/* specific regular attack (rolled at game start) */

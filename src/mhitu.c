@@ -5421,6 +5421,7 @@ int attk;
 	    case AD_RUST: hurt = 1; break;
 	    case AD_CORR: hurt = 3; break;
 	    case AD_LAVA: hurt = 0; break;
+	    case AD_FLAM: hurt = 0; break;
 	    default: hurt = 2; break;
 	}
 
@@ -6368,6 +6369,13 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		shank_player();
+
+		break;
+
+	    case AD_DEBU:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		statdebuff();
 
 		break;
 
@@ -8958,6 +8966,12 @@ dopois:
 		}
 		if (evilfriday || rn2(3)) hurtarmor(AD_DCAY);
 		break;
+	    case AD_FLAM:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		if (mtmp->mcan) break;
+		if (evilfriday || rn2(3)) hurtarmor(AD_FLAM);
+		break;
 	    case AD_HEAL:
 		/* a cancelled nurse is just an ordinary monster */
 		if (mtmp->mcan) {
@@ -10179,6 +10193,13 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			You("have trouble keeping your clothes on!");
 			shank_player();
+
+		break;
+
+		case AD_DEBU:
+
+			You("seem to lose stats...");
+			statdebuff();
 
 		break;
 
@@ -12083,6 +12104,10 @@ do_stone2:
 		}
 		if (evilfriday || rn2(3)) hurtarmor(AD_DCAY);
 		break;
+	    case AD_FLAM:
+		pline("You are engulfed in flames!");
+		if (evilfriday || rn2(3)) hurtarmor(AD_FLAM);
+		break;
 	    case AD_HALU:
 		    pline("You inhale some great stuff!");
 		    make_hallucinated(HHallucination + tmp,FALSE,0L);
@@ -13894,6 +13919,10 @@ common:
 		hurtarmor(AD_DCAY);
 		break;
 
+	    case AD_FLAM:
+		hurtarmor(AD_FLAM);
+		break;
+
 	    case AD_HEAL:
 		if(!uwep
 		   && !uarmu
@@ -14178,6 +14207,11 @@ common:
 
 	    case AD_SHAN:
 		shank_player();
+
+		break;
+
+	    case AD_DEBU:
+		statdebuff();
 
 		break;
 
@@ -16943,6 +16977,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		hurtarmor(AD_DCAY);
 		}
 		break;
+	    case AD_FLAM:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
+		pline("%s shoots a flamethrower at you!", Monnam(mtmp));
+		    stop_occupation();
+
+		hurtarmor(AD_FLAM);
+		}
+		break;
 	    case AD_CORR:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
 		pline("%s throws corrosive stuff at you!", Monnam(mtmp));
@@ -18536,6 +18578,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(12))) {
                 pline("%s commands you to take your clothes off!", Monnam(mtmp));
 			shank_player();
+		}
+
+		break;
+
+	    case AD_DEBU:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(12))) {
+                pline("%s fires a sapping beam!", Monnam(mtmp));
+			statdebuff();
 		}
 
 		break;

@@ -3275,8 +3275,12 @@ get_description_of_damage_type(uchar id)
 			damageid = 153; break;
 		case AD_MCRE:
 			damageid = 154; break;
-		case AD_ENDS:
+		case AD_FLAM:
 			damageid = 155; break;
+		case AD_DEBU:
+			damageid = 156; break;
+		case AD_ENDS:
+			damageid = 157; break;
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -3286,7 +3290,7 @@ get_description_of_damage_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		damageid += u.pokeliedamagetype;
-		if (damageid > 155) damageid -= 155;
+		if (damageid > 157) damageid -= 157;
 	}
 
 	switch(damageid){
@@ -3452,8 +3456,10 @@ get_description_of_damage_type(uchar id)
 		case 152: return "levitation";
 		case 153: return "illusion attack";
 		case 154: return "reduce magic cancellation";
+		case 155: return "flames";
+		case 156: return "debuff";
 
-		case 155: return "placeholder attack";
+		case 157: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";

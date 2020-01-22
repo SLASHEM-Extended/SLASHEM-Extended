@@ -1084,6 +1084,10 @@ int traitno;
 			return "monsters with illusion attacks";
 		case 372:
 			return "monsters whose attacks reduce your magic cancellation";
+		case 373:
+			return "monsters with armor-burning flame attacks";
+		case 374:
+			return "monsters with debuff attacks";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);
@@ -3588,6 +3592,31 @@ boolean guaranteed;
 
 	if ((guaranteed || !rn2(10)) && u.tremblingamount) {sprintf(buf, " %d", u.tremblingamount);
 		enl_msg("You're trembling, which reduces your to-hit and spellcasting chances. The amount ", "is", "was", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.tsloss_str) {
+		sprintf(buf, " %d", u.tsloss_str);
+		enl_msg("Your strength ", "is temporarily reduced by", "was temporarily reduced by", buf);
+	}
+	if ((guaranteed || !rn2(10)) && u.tsloss_dex) {
+		sprintf(buf, " %d", u.tsloss_dex);
+		enl_msg("Your dexterity ", "is temporarily reduced by", "was temporarily reduced by", buf);
+	}
+	if ((guaranteed || !rn2(10)) && u.tsloss_con) {
+		sprintf(buf, " %d", u.tsloss_con);
+		enl_msg("Your constitution ", "is temporarily reduced by", "was temporarily reduced by", buf);
+	}
+	if ((guaranteed || !rn2(10)) && u.tsloss_wis) {
+		sprintf(buf, " %d", u.tsloss_wis);
+		enl_msg("Your wisdom ", "is temporarily reduced by", "was temporarily reduced by", buf);
+	}
+	if ((guaranteed || !rn2(10)) && u.tsloss_int) {
+		sprintf(buf, " %d", u.tsloss_int);
+		enl_msg("Your intelligence ", "is temporarily reduced by", "was temporarily reduced by", buf);
+	}
+	if ((guaranteed || !rn2(10)) && u.tsloss_cha) {
+		sprintf(buf, " %d", u.tsloss_cha);
+		enl_msg("Your charisma ", "is temporarily reduced by", "was temporarily reduced by", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.extralives == 1) {
@@ -7357,6 +7386,31 @@ int final;
 	if (u.tremblingamount) {
 		sprintf(buf, " %d", u.tremblingamount);
 		dump("  You were tremling, reducing your to-hit and spellcasting chances. Amount:", buf);
+	}
+
+	if (u.tsloss_str) {
+		sprintf(buf, " %d", u.tsloss_str);
+		dump("  Your strength was temporarily reduced by", buf);
+	}
+	if (u.tsloss_dex) {
+		sprintf(buf, " %d", u.tsloss_dex);
+		dump("  Your dexterity was temporarily reduced by", buf);
+	}
+	if (u.tsloss_con) {
+		sprintf(buf, " %d", u.tsloss_con);
+		dump("  Your constitution was temporarily reduced by", buf);
+	}
+	if (u.tsloss_wis) {
+		sprintf(buf, " %d", u.tsloss_wis);
+		dump("  Your wisdom was temporarily reduced by", buf);
+	}
+	if (u.tsloss_int) {
+		sprintf(buf, " %d", u.tsloss_int);
+		dump("  Your intelligence was temporarily reduced by", buf);
+	}
+	if (u.tsloss_cha) {
+		sprintf(buf, " %d", u.tsloss_cha);
+		dump("  Your charisma was temporarily reduced by", buf);
 	}
 
 	if (u.extralives == 1) {

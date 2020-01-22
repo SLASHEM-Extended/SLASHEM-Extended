@@ -1583,6 +1583,13 @@ struct you {
 	int bodyfluideffect;	/* how long you have until bodyfluid strengthening spell runs out */
 	int antitelespelltimeout;	/* how long you have until anti-teleportation spell runs out */
 
+	int tsloss_str;	/* temporarily lost stats, from e.g. AD_DEBU */
+	int tsloss_dex;
+	int tsloss_con;
+	int tsloss_wis;
+	int tsloss_int;
+	int tsloss_cha;
+
 	int lightsabermax1;	/* your highest value you ever had in a lightsaber form */
 	int lightsabermax2;
 	int lightsabermax3;

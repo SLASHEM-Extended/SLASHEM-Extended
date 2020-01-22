@@ -2491,6 +2491,7 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
+		if (u.tsloss_str > 0) tmp -= u.tsloss_str;
 
 			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_CHA) {
@@ -2615,6 +2616,7 @@ int x;
 		if (have_lowstatstone()) tmp -= 10;
 		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
+		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 
 		/* having a hemorrhage means you don't look so good... --Amy */
 		if (PlayerBleeds > 100) tmp--;
@@ -2650,6 +2652,8 @@ int x;
 		if (have_lowstatstone()) tmp -= 10;
 		if (PlayerBleeds > 100) tmp -= 2;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
+		if (u.tsloss_int > 0 && x == A_INT) tmp -= u.tsloss_int;
+		if (u.tsloss_wis > 0 && x == A_WIS) tmp -= u.tsloss_wis;
 
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 	} else if (x == A_DEX) {
@@ -2683,6 +2687,7 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
+		if (u.tsloss_dex > 0) tmp -= u.tsloss_dex;
 
 	} else { /* A_CON */
 
@@ -2722,6 +2727,7 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
+		if (u.tsloss_con > 0) tmp -= u.tsloss_con;
 
 	}
 
