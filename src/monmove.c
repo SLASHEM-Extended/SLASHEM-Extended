@@ -910,8 +910,10 @@ register struct monst *mtmp;
 	if (mdat->msound == MS_FART_QUIET && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	{
 		pline("Using %s %s butt, %s produces tender noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
-		u.ucreamed += rnd(20);
-		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+
+		int blindinc = rnd(20);
+		u.ucreamed += blindinc;
+		make_blinded(Blinded + (long)blindinc, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -920,8 +922,10 @@ register struct monst *mtmp;
 	if (mdat->msound == MS_FART_NORMAL && mtmp->crapbonus && (rn2(1000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	{
 		pline("Using %s %s butt, %s produces beautiful noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
-		u.ucreamed += rnd(50);
-		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+
+		int blindinc = rnd(50);
+		u.ucreamed += blindinc;
+		make_blinded(Blinded + (long)blindinc, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -930,8 +934,10 @@ register struct monst *mtmp;
 	if (mdat->msound == MS_FART_LOUD && mtmp->crapbonus && (rn2(400) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	{
 		pline("Using %s %s butt, %s produces disgusting noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
-		u.ucreamed += rnd(100);
-		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+
+		int blindinc = rnd(100);
+		u.ucreamed += blindinc;
+		make_blinded(Blinded + (long)blindinc, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
