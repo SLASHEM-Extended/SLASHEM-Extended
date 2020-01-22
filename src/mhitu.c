@@ -28,6 +28,8 @@ STATIC_DCL int explmu(struct monst *,struct attack *,BOOLEAN_P);
 STATIC_DCL void missmu(struct monst *,int,int,struct attack *);
 STATIC_DCL void mswings(struct monst *,struct obj *);
 STATIC_DCL void wildmiss(struct monst *,struct attack *);
+STATIC_DCL boolean slextest(int, int);
+STATIC_DCL void stdmsg(const char *);
 
 /*STATIC_DCL void hurtarmor(int);*/
 /*STATIC_DCL void witherarmor(void);*/
@@ -19828,17 +19830,15 @@ enjoyable:
 
 	/* maybe contract a disease? --Amy */
 	if (protect_test) {
-#define slextest(a, b) if (!rn2(RngeSlexuality ? a : Race_if(PM_BOVER) ? a : b))
-#define stdmsg(s) pline("Ulch - you contracted %s from having unprotected intercourse with your lover!", s)
 
-		 slextest(5, 25) {
+		 if (slextest(5, 25)) {
 			stdmsg("syphilis");
 
 			diseasemu(mon->data);
 			increasesanity(rnz((monster_difficulty() * 5) + 1));
 		}
 
-            slextest(200, 1000) {
+            if (slextest(200, 1000)) {
 		stdmsg("AIDS");
 		u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
@@ -19910,7 +19910,7 @@ enjoyable:
             }
         
 
-            slextest(50, 250) {
+            if (slextest(50, 250)) {
 		stdmsg("ataxia");
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
@@ -19918,20 +19918,20 @@ enjoyable:
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(20, 100) {
+            if (slextest(20, 100)) {
 		stdmsg("rust chancres");
                 HAggravate_monster |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(40, 200) {
+            if (slextest(40, 200)) {
 		stdmsg("chills");
 		make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 		set_itimeout(&HeavyFrozen, HFrozen);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(100, 500) {
+            if (slextest(100, 500)) {
 		stdmsg("blackheart plague");
 
 		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) && !Slimed) {
@@ -19945,533 +19945,533 @@ enjoyable:
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(20, 100) {
+            if (slextest(20, 100)) {
 		stdmsg("swamp fever");
 		make_burned(HBurned + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyBurned, HBurned);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(20, 100) {
+            if (slextest(20, 100)) {
 		stdmsg("depression");
 		make_dimmed(HDimmed + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyDimmed, HDimmed);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(100, 500) {
+            if (slextest(100, 500)) {
 		stdmsg("gray star");
 		make_blinded(Blinded + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyBlind, Blinded);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(100, 500) {
+            if (slextest(100, 500)) {
 		stdmsg("voracious hunger");
                 HHunger |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(1000, 5000) {
+            if (slextest(1000, 5000)) {
 		stdmsg("polymorphitis");
                 HPolymorph |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(1000, 5000) {
+            if (slextest(1000, 5000)) {
 		stdmsg("green star");
                 u.uprops[WEAKSIGHT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("an ancient foul curse");
                 u.uprops[PREMDEATH].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("witbane");
                 u.uprops[UNIDENTIFY].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(1000, 5000) {
+            if (slextest(1000, 5000)) {
 		stdmsg("brain rot");
                 u.uprops[LOW_EFFECTS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(800, 4000) {
+            if (slextest(800, 4000)) {
 		stdmsg("dehydration");
                 u.uprops[DEHYDRATION].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(1000, 5000) {
+            if (slextest(1000, 5000)) {
 		stdmsg("alexithymia");
                 u.uprops[HATE_TRAP_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("hydroanemia");
                 u.uprops[THIRST].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("lung cancer");
                 u.uprops[NONINTRINSIC_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("orientation loss");
                 u.uprops[TOTTER_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("power anemia");
                 u.uprops[GUSHLUSH].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("forced atheism");
                 u.uprops[NON_PRAYER_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("speech stroke");
                 u.uprops[UNCALLED_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("gangrene");
                 u.uprops[HARD_MODE_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(4000, 20000) {
+            if (slextest(4000, 20000)) {
 		stdmsg("light sensitivity");
                 u.uprops[DARK_MODE_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(3000, 15000) {
+            if (slextest(3000, 15000)) {
 		stdmsg("imperception");
                 u.uprops[ANTISEARCH_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(50000, 250000) {
+            if (slextest(50000, 250000)) {
 		stdmsg("ether corruption");
                 u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("shapechanging anomaly");
                 u.uprops[WEREFORM_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("slexual deprivation");
                 u.uprops[LONGING_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("indecisiveness");
                 u.uprops[CHOICELESSNESS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("development disorder");
                 u.uprops[DEPROVEMENT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("Dudley's disease");
                 u.uprops[LUCK_LOSS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(200, 1000) {
+            if (slextest(200, 1000)) {
 		stdmsg("fuckedupness (the disease that has befallen Christian Grey)");
                 u.uprops[SHADES_OF_GREY].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(200, 1000) {
+            if (slextest(200, 1000)) {
 		stdmsg("Rodney's Black Cancer");
                 u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("Tourette's syndrome");
                 u.uprops[MOMMA_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("bad boss disease");
                 u.uprops[CHANGING_DIRECTIVES].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("K-Measurer disease");
                 u.uprops[FLUCTUATING_SPEED].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("Satan disease");
                 u.uprops[SATAN_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("collectomania");
                 u.uprops[AUTOPICKUP_ALWAYS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("narcolepsy");
                 u.uprops[FAINT_ACTIVE].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(80, 400) {
+            if (slextest(80, 400)) {
 		stdmsg("diarrhea");
                 u.uprops[CRAP_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("deafness");
                 u.uprops[DEAFNESS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(1000, 5000) {
+            if (slextest(1000, 5000)) {
 		stdmsg("a tapeworm infection");
                 u.uprops[WEAKNESS_PROBLEM].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(400, 2000) {
+            if (slextest(400, 2000)) {
 		stdmsg("a heavy flu");
                 u.uprops[STATUS_FAILURE].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(400, 2000) {
+            if (slextest(400, 2000)) {
 		stdmsg("loss of will");
                 u.uprops[ITEM_STEALING_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(800, 4000) {
+            if (slextest(800, 4000)) {
 		stdmsg("incontinence");
                 u.uprops[REBELLION_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("migraine");
                 u.uprops[UNINFORMATION].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(6000, 30000) {
+            if (slextest(6000, 30000)) {
 		stdmsg("arrhythmia");
                 u.uprops[MONSTER_SPEED_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(8000, 40000) {
+            if (slextest(8000, 40000)) {
 		stdmsg("optical nervitis");
                 u.uprops[GRAYOUT_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("retina destruction");
                 u.uprops[GRAY_CENTER_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("rupturization");
                 u.uprops[DYWYPI_PROBLEM].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("mass murder syndrome");
                 u.uprops[ELM_STREET_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("checkerboard disease");
                 u.uprops[CHECKERBOARD_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("severe rotating worm");
                 u.uprops[CLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("rotating worm");
                 u.uprops[COUNTERCLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("mind lag");
                 u.uprops[LAG_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(4000, 20000) {
+            if (slextest(4000, 20000)) {
 		stdmsg("cursed hands");
                 u.uprops[BLESSCURSE_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("antechamber flickering");
                 u.uprops[FLICKER_STRIP_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("exhibitionism");
                 u.uprops[UNDRESSING_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 25000) {
+            if (slextest(5000, 25000)) {
 		stdmsg("dysentery");
                 u.uprops[CUT_NUTRITION].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(8000, 40000) {
+            if (slextest(8000, 40000)) {
 		stdmsg("paranoia");
                 u.uprops[PARANOIA_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(1000, 2000) {
+            if (slextest(1000, 2000)) {
 		pline("Ulch - you contracted polychromia from having unprotected intercourse with your lover! (But that is actually a fun disease which some might consider a boon. :-))");
                 u.uprops[FLEECESCRIPT_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(3000, 15000) {
+            if (slextest(3000, 15000)) {
 		stdmsg("mana battery disease");
                 u.uprops[MANA_BATTERY_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(3000, 15000) {
+            if (slextest(3000, 15000)) {
 		stdmsg("poison hands disease");
                 u.uprops[MONSTERFINGERS_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(6000, 30000) {
+            if (slextest(6000, 30000)) {
 		stdmsg("monster schizophreny");
                 u.uprops[EVC_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(3000, 6000) {
+            if (slextest(3000, 6000)) {
 		stdmsg("identity loss");
                 u.uprops[FUCKED_INFO_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(5000, 10000) {
+            if (slextest(5000, 10000)) {
 		pline("Ulch - you contracted... you contracted... you contracted... you contracted... you contracted...");
                 u.uprops[HEAP_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(4000, 20000) {
+            if (slextest(4000, 20000)) {
 		stdmsg("mongoloism (trisomia-13)");
                 u.uprops[ANTILEVELING].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("quasar vision");
                 u.uprops[QUASAR_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("apocalyptic madness");
                 u.uprops[SIMEOUT_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("borderline disorder");
                 u.uprops[SANITY_TREBLE_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("bomber disease");
                 u.uprops[AUTOPILOT_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("ulcerous skin anomaly");
                 u.uprops[ENMITY_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(4000, 20000) {
+            if (slextest(4000, 20000)) {
 		stdmsg("selective inertia");
                 u.uprops[TIMERUN_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(4000, 20000) {
+            if (slextest(4000, 20000)) {
 		stdmsg("disconnection");
                 u.uprops[DISCONNECTED_STAIRS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("screwedness");
                 u.uprops[INTERFACE_SCREW].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("Alzheimer's disease");
                 u.uprops[RECURRING_AMNESIA].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("intellectual poorness");
                 u.uprops[SPELL_FORGETTING].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("accoustic hallucinations");
                 u.uprops[SOUND_EFFECT_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("telomer cutting disease");
                 u.uprops[INTRINSIC_LOSS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("tongue crippling");
                 u.uprops[MUTENESS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("parkinson");
                 u.uprops[ENGRAVINGBUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(400, 2000) {
+            if (slextest(400, 2000)) {
 		stdmsg("jazzy hands");
                 u.uprops[PROJECTILES_MISFIRE].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("shatterhands");
                 u.uprops[MAGIC_DEVICE_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("dyslexia");
                 u.uprops[BOOKBUG].intrinsic |= FROMOUTSIDE;
                 u.uprops[CONFUSION_PROBLEM].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("hypermetabolism");
                 u.uprops[FAST_METABOLISM].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("ghoulification");
                 u.uprops[FOOD_IS_ROTTEN].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("autism");
                 u.uprops[SKILL_DEACTIVATED].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("schizophreny");
                 u.uprops[STATS_LOWERED].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("down syndrome");
                 u.uprops[TRAINING_DEACTIVATED].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("locked-in syndrome");
                 u.uprops[EXERCISE_DEACTIVATED].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("magic vacuum");
                 u.uprops[NORETURN].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(2000, 10000) {
+            if (slextest(2000, 10000)) {
 		stdmsg("brittle bones");
                 u.uprops[NAKEDNESS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(200, 1000) {
+            if (slextest(200, 1000)) {
 		stdmsg("osteoporosis");
 		set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(10000));
 		set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(10000));
@@ -20479,13 +20479,13 @@ enjoyable:
 
             }
 
-            slextest(400, 2000) {
+            if (slextest(400, 2000)) {
 		stdmsg("porphyric hemophilia");
                 u.uprops[BLOOD_LOSS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
-            slextest(10000, 50000) {
+            if (slextest(10000, 50000)) {
 		stdmsg("an ancient Morgothian curse");
                 u.uprops[NASTINESS_EFFECTS].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
@@ -20497,8 +20497,6 @@ enjoyable:
 		set_itimeout(&HeavyNumbed, HNumbed);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
-#undef slextest
-#undef stdmsg
         } else {
             if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
             if (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
@@ -21283,6 +21281,26 @@ katicleaning()
 		pline("Finally, you cleaned all the dog shit from the sexy Kati shoes!");
 		return(0);
 	}
+}
+
+STATIC_OVL boolean
+slextest(numberone, numbertwo)
+int numberone, numbertwo;
+{
+	if (RngeSlexuality || Race_if(PM_BOVER)) {
+		if (!rn2(numberone)) return TRUE;
+		else return FALSE;
+	} else {
+		if (!rn2(numbertwo)) return TRUE;
+		else return FALSE;
+	}
+}
+
+STATIC_OVL void
+stdmsg(stdmsgse)
+const char *stdmsgse;
+{
+	pline("Ulch - you contracted %s from having unprotected intercourse with your lover!", stdmsgse);
 }
 
 #endif /* OVLB */
