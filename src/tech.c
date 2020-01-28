@@ -3175,7 +3175,7 @@ int tech_no;
 		    break;
 		} else if(invent) {
 			You("examine your possessions.");
-			identify_pack((int) ((techlevX(tech_no) / 10) + 1), 0);
+			identify_pack((int) ((techlevX(tech_no) / 10) + 1), 0, 0);
 		} else {
 			/* KMH -- fixed non-compliant string */
 		    You("are already quite familiar with the contents of your pack.");

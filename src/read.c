@@ -8444,7 +8444,7 @@ retry:
 		makeknown(SCR_IDENTIFY);
 	id:
 		if(invent && !confused) {
-		    identify_pack(cval, 0);
+		    identify_pack(cval, 0, sobj->otyp == SPE_IDENTIFY ? TRUE : FALSE);
 		}
 		if (!rn2(5) && sobj->otyp == SPE_IDENTIFY) {
 			pline("The spell backlashes!");
@@ -8463,7 +8463,7 @@ retry:
 		else useupf(sobj, 1L);
 
 		if(invent && !confused) {
-		    identify_pack(0, 0);
+		    identify_pack(0, 0, 0);
 		}
 		return(1);
 	case SCR_STANDARD_ID: /* always identifies exactly one item --Amy */
@@ -8474,7 +8474,7 @@ retry:
 		else useupf(sobj, 1L);
 
 		if(invent) {
-		    identify_pack(1, 0);
+		    identify_pack(1, 0, 0);
 		}
 		return(1);
 	case SCR_HEALING: /* a basic healing item that can be used to - who would have guessed? - cure wounds! --Amy */

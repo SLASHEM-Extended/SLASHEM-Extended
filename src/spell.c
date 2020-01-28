@@ -3172,12 +3172,15 @@ boolean atme;
 
 	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
 	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 2;
-	if (spellid(spell) == SPE_TIME_STOP) energy *= 2;
+	if (spellid(spell) == SPE_TIME) energy *= 4;
+	if (spellid(spell) == SPE_INERTIA) energy *= 4;
+	if (spellid(spell) == SPE_TIME_STOP) energy *= 5;
+	if (spellid(spell) == SPE_PARALYSIS) energy *= 2;
 	if (spellid(spell) == SPE_HELLISH_BOLT) energy *= 2;
-	if (spellid(spell) == SPE_PETRIFY) { energy *= 5; energy /= 2;}
+	if (spellid(spell) == SPE_PETRIFY) energy *= 4;
 	if (spellid(spell) == SPE_GODMODE) { energy *= 5; energy /= 2;}
-	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 3;
-	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 3;
+	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 5;
+	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 5;
 	if (spellid(spell) == SPE_FIXING) energy *= 3;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
 	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
@@ -4887,7 +4890,10 @@ aulechoice:
 		    for (obj = invent; obj; obj = obj2) {
 		      obj2 = obj->nobj;
 
-			if (obj->oclass == ARMOR_CLASS && (obj->shirtmessage % 3 == 0) ) obj->known = TRUE;
+			if (obj->oclass == ARMOR_CLASS && !obj->known && (obj->shirtmessage % 3 == 0) ) {
+				obj->known = TRUE;
+				break;
+			}
 
 		    }
 		}
@@ -5686,7 +5692,7 @@ newbossPENT:
 			You("are granted an insight!");
 			if (invent) {
 			    /* rn2(5) agrees w/seffects() */
-			    identify_pack(rn2(5), 0);
+			    identify_pack(rn2(5), 0, 0);
 			}
 			break;
 		    case 13:
@@ -6412,7 +6418,10 @@ secureidchoice:
 		    for (obj = invent; obj; obj = obj2) {
 		      obj2 = obj->nobj;
 
-			if (obj->shirtmessage % 4 == 0) obj->known = TRUE;
+			if (obj->shirtmessage % 4 == 0 && !obj->known) {
+				obj->known = TRUE;
+				break;
+			}
 
 		    }
 		}
@@ -6446,10 +6455,10 @@ secureidchoice:
 
 	case SPE_WHISPERS_FROM_BEYOND:
 
-		identify_pack(0, 0);
-		identify_pack(0, 0);
-		if (rn2(2)) identify_pack(0, 0);
-		if (!rn2(5)) identify_pack(0, 0);
+		identify_pack(0, 0, 0);
+		identify_pack(0, 0, 0);
+		if (rn2(2)) identify_pack(0, 0, 0);
+		if (!rn2(5)) identify_pack(0, 0, 0);
 
 		ABASE(A_INT) -= rnd(2);
 		if (ABASE(A_INT) < ATTRMIN(A_INT)) {
@@ -7035,7 +7044,7 @@ secureidchoice:
 			     objC->otyp == SLEEPSTONE ||
 			     objC->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(objC) ||
-			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) ) && !stack_too_big(objC) ) {
+			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
 			    	blessorcurse(objC, 2);
 			}
 		}
@@ -10789,8 +10798,12 @@ int spell;
 
 	splcaster += 5;
 
-	if (splcaster < 0) splcaster = 0;
-	if (splcaster > 25) splcaster = 25;
+	if (splcaster < 0) {
+		splcaster /= 5;
+		if (splcaster > 0) splcaster = 0; /* fail safe */
+		if (splcaster < -10) splcaster = -10; /* absolute limit */
+	}
+	if (splcaster > 50) splcaster = 50;
 
 	if (difficulty > 0) {
 		/* Player is too low level or unskilled. */
@@ -11250,6 +11263,20 @@ int spell;
 	if (Race_if(PM_INHERITOR)) chance -= 10;
 	if (RngeUnnethack) chance -= 33;
 
+	/* "bullshit change" by Amy: make it quite a bit harder to get to 0% fail, because spells are generally easier to
+	 * cast compared to vanilla which results in difficult spells being too easy for non-caster roles */
+	if (chance > 50) {
+		int chancediff = (chance - 50);
+		chancediff /= 2;
+		chance = 50 + chancediff;
+
+		if (chance > 90) {
+			int chancediff = (chance - 90);
+			chancediff /= 10;
+			chance = 90 + chancediff;
+		}
+	}
+
 	/* Clamp to percentile */
 	if (chance > 100) chance = 100;
 
@@ -11271,17 +11298,59 @@ int spell;
 
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
-	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) chance += 5;
+	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) {
+		if (chance < 86) chance += 5;
+		else if (chance == 86) chance += 4;
+		else if (chance == 87) chance += 4;
+		else if (chance == 88) chance += 3;
+		else if (chance == 89) chance += 3;
+		else if (chance == 90) chance += 2;
+		else chance += 1;
+	}
 
-	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;
+	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) {
+		if (chance < 86) chance += 5;
+		else if (chance == 86) chance += 4;
+		else if (chance == 87) chance += 4;
+		else if (chance == 88) chance += 3;
+		else if (chance == 89) chance += 3;
+		else if (chance == 90) chance += 2;
+		else chance += 1;
+	}
 
-	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
+	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) {
+		if (chance < 86) chance += 5;
+		else if (chance == 86) chance += 4;
+		else if (chance == 87) chance += 4;
+		else if (chance == 88) chance += 3;
+		else if (chance == 89) chance += 3;
+		else if (chance == 90) chance += 2;
+		else chance += 1;
+	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
+	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) {
+		if (chance < 86) chance += 5;
+		else if (chance == 86) chance += 4;
+		else if (chance == 87) chance += 4;
+		else if (chance == 88) chance += 3;
+		else if (chance == 89) chance += 3;
+		else if (chance == 90) chance += 2;
+		else chance += 1;
+	}
 
-	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) chance += 5;
+	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) {
+		if (chance < 86) chance += 5;
+		else if (chance == 86) chance += 4;
+		else if (chance == 87) chance += 4;
+		else if (chance == 88) chance += 3;
+		else if (chance == 89) chance += 3;
+		else if (chance == 90) chance += 2;
+		else chance += 1;
+	}
 
-	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) chance += 20;
+	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) {
+		chance += 20;
+	}
 
 	/* REALLY clamp chance now */
 	if (chance > 100) chance = 100;

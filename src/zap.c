@@ -1131,9 +1131,27 @@ armorsmashdone:
 		}
 		break;
 	case WAN_STONING:
-	case SPE_PETRIFY:
 		if (!munstone(mtmp, FALSE))
 		    minstapetrify(mtmp, FALSE);
+
+		break;
+	case SPE_PETRIFY:
+
+		if (resists_ston(mtmp)) break;
+		if (mtmp->permspeed != MSLOW) {
+
+			mon_adjust_speed(mtmp, -1, otmp);
+			m_dowear(mtmp, FALSE); /* might want speed boots */
+			if (u.uswallow && (mtmp == u.ustuck) &&
+				is_whirly(mtmp->data)) {
+				You("disrupt %s!", mon_nam(mtmp));
+				pline("A huge hole opens up...");
+				expels(mtmp, mtmp->data, TRUE);
+			}
+		} else {
+			if (!munstone(mtmp, FALSE))
+				minstapetrify(mtmp, FALSE);
+		}
 
 		break;
 	case WAN_TELEPORTATION:
@@ -1297,8 +1315,8 @@ armorsmashdone:
 		  (otyp == WAN_HEALING ? (d(5,2) + rnz(u.ulevel) + 5 * !!bcsign(otmp)) :
 		  otyp == WAN_EXTRA_HEALING ? (d(5,4) + rnz(u.ulevel) + rnz(u.ulevel) + 10 * !!bcsign(otmp)) :
 		  otyp == WAN_FULL_HEALING ? (d(5,8) + rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel) + 20 * !!bcsign(otmp)) :
-		  otyp == SPE_HEALING ? (rnd(10) + 4 + rnd(rnz(u.ulevel))): 
-		  otyp == SPE_EXTRA_HEALING ? (rnd(20) + 6 + rnd(rnz(u.ulevel) + rnz(u.ulevel))) : 
+		  otyp == SPE_HEALING ? (rnd(10) + 4 + (rn2(2) ? 0 : rnd(rnz(u.ulevel))) ): 
+		  otyp == SPE_EXTRA_HEALING ? (rnd(20) + 6 + rnd(rnz(u.ulevel) + (rn2(2) ? rnd(u.ulevel) : rnz(u.ulevel)) )) : 
 		  (rnd(40) + 8 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel))) ) ;
 
 		mtmp->mhp += healamount;
@@ -1399,8 +1417,7 @@ armorsmashdone:
 		if (resists_drli(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
-		}else if (!resist(mtmp, otmp->oclass, dmg, NOTELL) &&
-				mtmp->mhp > 0) {
+		} else if ((otyp == WAN_DRAINING || !rn2(4)) && !resist(mtmp, otmp->oclass, dmg, NOTELL) && mtmp->mhp > 0) {
 			mtmp->mhp -= dmg;
 			mtmp->mhpmax -= dmg;
 			if (mtmp->mhp <= 0 || mtmp->mhpmax <= 0 || mtmp->m_lev < 1)
@@ -1453,7 +1470,7 @@ armorsmashdone:
 		mtmp->mhpmax -= dmg;
 		if (mtmp->mhp <= 0 || mtmp->mhpmax <= 0 || mtmp->m_lev < 1)
 			xkilled(mtmp, 1);
-		else {
+		else if (otyp == WAN_TIME || !rn2(3)) {
 			mtmp->m_lev--;
 			if (canseemon(mtmp))
 				pline("%s suddenly seems weaker!", Monnam(mtmp));
@@ -4818,7 +4835,7 @@ secureidchoice:
 			if (invent) {
 			    /* rn2(5) agrees w/seffects() */
 			    if (issoviet) pline("Sovet reshil, chto etot vopros byl slishkom silen, khotya eto ne bylo, poetomu on identifitsiruyet tol'ko odin punkt kazhdyy raz.");
-			    identify_pack(issoviet ? 1 : rn2(5), 0);
+			    identify_pack(issoviet ? 1 : rn2(5), 0, 0);
 			}
 			exercise(A_WIS, TRUE);
 			break;
@@ -4965,7 +4982,7 @@ chargingchoice:
 				You_feel("insightful!");
 				if (invent) {
 				    /* rn2(5) agrees w/seffects() */
-				    identify_pack(rn2(5), 0);
+				    identify_pack(rn2(5), 0, 0);
 				}
 				exercise(A_WIS, TRUE);
 				break;
@@ -6788,15 +6805,16 @@ boolean ordinary;
 
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
-		    healup(obj->otyp == SPE_HEALING ? rnd(10) + 4 + rnd(rnz(u.ulevel)) : d(3,8)+6 + rnz(u.ulevel),
-			   0, FALSE, FALSE);
+
+			if (obj->otyp == SPE_HEALING) healup(rnd(10) + 4 + (rn2(2) ? 0 : rnd(rnz(u.ulevel))), 0, FALSE, FALSE);
+			else healup(d(3,8) + 6 + rnd(rnz(u.ulevel)), 0, FALSE, FALSE);
+
 		    You_feel("%sbetter.",
 			obj->otyp == SPE_EXTRA_HEALING ? "much " : "");
 		    break;
 
 		case SPE_FULL_HEALING:
-		    healup(d(10,10) + rnz(u.ulevel) + rnz(u.ulevel),
-			   0, FALSE, FALSE);
+		    healup(d(10,10) + rnz(u.ulevel) + (rn2(2) ? 0 : rnz(u.ulevel)), 0, FALSE, FALSE);
 		    You_feel("restored to health.");
 		    break;
 		case WAN_LIGHT:	/* (broken wand) */
@@ -7483,7 +7501,7 @@ struct obj *obj;
 				}
 				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), sleepnerfamount, u.ux, u.uy, u.dx, u.dy);
 			} else { /* zap a "normal" spell */
-				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), (u.ulevel / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 			}
 
 		else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_PSYBEAM) {
@@ -7503,7 +7521,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_HYPER_BEAM) {
-		buzz((int)(20), (u.ulevel * 3 / 2) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(20), (u.ulevel * 3 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7515,19 +7533,19 @@ struct obj *obj;
 
 	    else if (otyp == SPE_CHROMATIC_BEAM) {
 		int damagetype = 20 + rn2(9);
-		buzz((int)(damagetype), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_ELEMENTAL_BEAM) {
 		int damagetype = !rn2(4) ? 21 : !rn2(3) ? 22 : !rn2(2) ? 25 : 26;
-		buzz((int)(damagetype), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_NATURE_BEAM) {
 		int damagetype = !rn2(4) ? 21 : !rn2(3) ? 22 : !rn2(2) ? 25 : 26;
-		buzz((int)(damagetype), u.ulevel + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel * 2 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7542,12 +7560,12 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_FIRE_BOLT) {
-		buzz((int)(21), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (u.ulevel / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_NETHER_BEAM) {
-		buzz((int)(29), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(29), (u.ulevel / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7557,7 +7575,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_AURORA_BEAM) {
-		buzz((int)(28), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(28), (u.ulevel / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7567,7 +7585,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_INFERNO) {
-		buzz((int)(21), u.ulevel + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (u.ulevel * 2 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7577,21 +7595,21 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_ICE_BEAM) {
-		buzz((int)(22), u.ulevel + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(22), (u.ulevel * 2 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_MULTIBEAM) {
-		buzz((int)(22), (u.ulevel / (3 + rn2(2))) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(21), (u.ulevel / (3 + rn2(2))) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(25), (u.ulevel / (3 + rn2(2))) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(22), (u.ulevel / (9 + rn2(2))) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (u.ulevel / (9 + rn2(2))) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(25), (u.ulevel / (9 + rn2(2))) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_CALL_THE_ELEMENTS) {
-		buzz((int)(22), (u.ulevel / 2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(21), (u.ulevel / 2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(25), (u.ulevel / 2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(22), (u.ulevel / 5) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (u.ulevel / 5) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(25), (u.ulevel / 5) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7601,7 +7619,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_THUNDER) {
-		buzz((int)(25), u.ulevel + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(25), (u.ulevel * 2 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7611,7 +7629,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_SLUDGE) {
-		buzz((int)(27), u.ulevel + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(27), (u.ulevel * 2 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7621,7 +7639,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_TOXIC) {
-		buzz((int)(26), u.ulevel + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(26), (u.ulevel * 2 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -7631,7 +7649,7 @@ struct obj *obj;
 	    }
 
 	    else if (otyp == SPE_CHLOROFORM) {
-		buzz((int)(23), u.ulevel + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(23), (u.ulevel * 2 / 5) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 

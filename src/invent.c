@@ -30,7 +30,7 @@ static char display_pickinv(const char *,BOOLEAN_P, long *);
 STATIC_DCL boolean this_type_only(struct obj *);
 STATIC_DCL void dounpaid(void);
 STATIC_DCL struct obj *find_unpaid(struct obj *,struct obj **);
-STATIC_DCL void menu_identify(int);
+STATIC_DCL void menu_identify(int, BOOLEAN_P);
 STATIC_DCL boolean tool_in_use(struct obj *);
 #endif /* OVLB */
 STATIC_DCL char obj_to_let(struct obj *);
@@ -6524,8 +6524,9 @@ struct obj *otmp;
 
 /* menu of unidentified objects; select and identify up to id_limit of them */
 STATIC_OVL void
-menu_identify(id_limit)
+menu_identify(id_limit, dumbid)
 int id_limit;
+boolean dumbid;
 {
     menu_item *pick_list;
     int n, i, first = 1;
@@ -6549,8 +6550,14 @@ identifydialogue:
 
 	if (n > 0) {
 	    if (n > id_limit) n = id_limit;
-	    for (i = 0; i < n; i++, id_limit--)
-		(void) identify(pick_list[i].item.a_obj);
+	    for (i = 0; i < n; i++, id_limit--) {
+		if (dumbid) {
+			(void) identifyless(pick_list[i].item.a_obj);
+		}
+		else {
+			(void) identify(pick_list[i].item.a_obj);
+		}
+	    }
 	    free((void *) pick_list);
 	    mark_synch(); /* Before we loop to pop open another menu */
 	} else {
@@ -6563,9 +6570,10 @@ identifydialogue:
 
 /* dialog with user to identify a given number of items; 0 means all */
 void
-identify_pack(id_limit, wizmodeflag)
+identify_pack(id_limit, wizmodeflag, dumbid)
 int id_limit;
 boolean wizmodeflag;
+boolean dumbid;
 {
     struct obj *obj, *the_obj;
     register struct obj *otmp;
@@ -6621,7 +6629,7 @@ boolean wizmodeflag;
 		if (n < 0) break; /* quit or no eligible items */
 	    } while ((id_limit -= n) > 0);
 	if (n == 0 || n < -1)
-	    menu_identify(id_limit);
+	    menu_identify(id_limit, dumbid);
     }
     update_inventory();
 }
@@ -13387,7 +13395,7 @@ boolean knoweverything;
 			case SPE_CREATE_MONSTER:
 				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too."); break;
 			case SPE_DRAIN_LIFE:
-				pline("This spell drains the life force out of monsters, reducing their level. It also reduces the enchantment of objects it hits."); break;
+				pline("This spell drains the life force out of monsters, sometimes reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
 				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts. Also, the spell may occasionally backfire."); break;
 			case SPE_SUMMON_UNDEAD:
@@ -13511,7 +13519,7 @@ boolean knoweverything;
 			case SPE_DETECT_UNSEEN:
 				pline("A spell that may detect hidden things close by, e.g. traps or invisible monsters."); break;
 			case SPE_IDENTIFY:
-				pline("Casting this spell allows you to identify some objects in your inventory. Careful: very rarely this spell can backlash, causing random bad effects or occasionally amnesia!"); break;
+				pline("Casting this spell allows you to identify some objects in your inventory. Careful: this spell can sometimes backlash, causing random bad effects or occasionally amnesia!"); break;
 			case SPE_DETECT_TREASURE:
 				pline("This spell detects some of the objects on the current level."); break;
 			case SPE_MAGIC_MAPPING:
@@ -13619,7 +13627,7 @@ boolean knoweverything;
 			case SPE_INERTIA:
 				pline("Powerful spell that you can fire at enemies to slow them down."); break;
 			case SPE_TIME:
-				pline("You can 'clock back' enemies with this spell, draining their health and level permanently."); break;
+				pline("You can 'clock back' enemies with this spell, sometimes draining their health and level permanently."); break;
 			case SPE_LEVITATION:
 				pline("This spell allows you to levitate for a while."); break;
 			case SPE_TELEPORT_AWAY:
@@ -13683,7 +13691,7 @@ boolean knoweverything;
 			case SPE_AMNESIA:
 				pline("This spellbook causes you to forget stuff."); break;
 			case SPE_KNOW_ENCHANTMENT:
-				pline("Your entire inventory may have their enchantment revealed, so pack as much stuff as you can before casting this spell. However, only 1 in 4 items will actually be affected, and it's predetermined which ones they are, so don't bother trying repeatedly."); break;
+				pline("Your items may have their enchantment revealed, so pack some stuff with unknown enchantment when casting this spell. However, only 1 in 4 items will actually be affected, and it's predetermined which ones they are, so don't bother trying repeatedly. Also, every cast only reveals the enchantment of one item at a time."); break;
 			case SPE_MAGICTORCH:
 				pline("A spell that increases your field of view for a period of time."); break;
 			case SPE_DISPLACEMENT:
@@ -13695,7 +13703,7 @@ boolean knoweverything;
 			case SPE_TIME_SHIFT:
 				pline("Casting this spell increases the turn counter by 5. Don't do it if you're doing a speedrun."); break;
 			case SPE_DETECT_ARMOR_ENCHANTMENT:
-				pline("This spell tries to detect the enchantment value of all armor items in your main inventory. It only affects roughly one third of all items though, and repeated casting won't change which ones they are. Either they're revealed on the first cast or this spell doesn't reveal them at all."); break;
+				pline("This spell tries to detect the enchantment value of armor items in your main inventory. It only affects roughly one third of all items though, and repeated casting won't change which ones they are. Also, every cast can only affect one item so if you have a lot of armor, you might have to cast it repeatedly."); break;
 			case SPE_CONFUSE_SELF:
 				pline("Want to confuse yourself? Cast this spell!"); break;
 			case SPE_STUN_SELF:
@@ -13714,7 +13722,7 @@ boolean knoweverything;
 			case SPE_DISINTEGRATION:
 				pline("This very powerful spell will fire invisible disintegration beams that can be used to instakill monsters."); break;
 			case SPE_PETRIFY:
-				pline("Cast this spell at monsters to turn them to stone."); break;
+				pline("Cast this spell at monsters to turn them to slow them down, or turn them to stone if they're already slow. If the monster resists petrification, it will be completely unaffected."); break;
 			case SPE_PARALYSIS:
 				pline("You can shoot paralysis beams by casting this spell."); break;
 			case SPE_LEVELPORT:
@@ -13780,7 +13788,7 @@ boolean knoweverything;
 			case SPE_LYCANTHROPY:
 				pline("Afflicts you with random lycanthropy."); break;
 			case SPE_BUC_RANDOMIZATION:
-				pline("This spell can affect uncursed items in your inventory, turning them into blessed or cursed ones at random."); break;
+				pline("This spell can affect uncursed items in your inventory, turning them into blessed or cursed ones at random. However, it only works on equipped ones."); break;
 			case SPE_LOCK_MANIPULATION:
 				pline("Cast this spell at doors and chests to manipulate their 'locked' status. You may occasionally get container trap effects though."); break;
 			case SPE_POLYFORM:
