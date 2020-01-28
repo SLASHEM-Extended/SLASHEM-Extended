@@ -8505,39 +8505,41 @@ xchar sx, sy;
 			losehp(rnz(100 + level_difficulty()), "a termination beam", KILLED_BY);
 			break;
 		}
-
+		/* end disintegration code */
 	    } else if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 		shieldeff(sx, sy);
 		You("seem unaffected.");
 		break;
 	    } else if (Antimagic) { /* Sorry people, but being magic resistant no longer makes you immune. --Amy */
-	            dam = d(2,4) + rno(level_difficulty() + 1);
-			if (StrongAntimagic && dam > 1) dam /= 2;
-			u.uhpmax -= dam/2;
-			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-	            pline("You resist the attack, but it hurts!");
-            break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
-                dam = 0;
-                pline("You are unharmed!");
-                break;
+		dam = d(2,4) + rno(level_difficulty() + 1);
+		if (StrongAntimagic && dam > 1) dam /= 2;
+		u.uhpmax -= dam/2;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		pline("You resist the attack, but it hurts!");
+		break;
+	    } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+		dam = 0;
+		pline("You are unharmed!");
+		break;
 	    }
 
-		if (!rn2(20) || abs(type) == ZT_BREATH(ZT_DEATH) ) {
+		/* we can reach this even if it was disintegration, but only if no item saved you */
+
+	    if (!rn2(20) || abs(type) == ZT_BREATH(ZT_DEATH) ) {
 		u.youaredead = 1;
-	    killer_format = KILLED_BY_AN;
-	    killer = fltxt;
-	    /* when killed by disintegration breath, don't leave corpse */
-	    u.ugrave_arise = (type == -ZT_BREATH(ZT_DEATH)) ? -3 : NON_PM;
-	    done(DIED);
+		killer_format = KILLED_BY_AN;
+		killer = fltxt;
+		/* when killed by disintegration breath, don't leave corpse */
+		u.ugrave_arise = (type == -ZT_BREATH(ZT_DEATH)) ? -3 : NON_PM;
+		done(DIED);
 		u.youaredead = 0;
-	    return; /* lifesaved */
-		}
-		else
-                dam = d(4,6) + rnd(level_difficulty() + 1);
-			u.uhpmax -= dam/2;
-			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
-                pline("This hurts a lot!");
+		return; /* lifesaved */
+	    } else { /* death ray and didn't get instakilled */
+		dam = d(4,6) + rnd(level_difficulty() + 1);
+		u.uhpmax -= dam/2;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		pline("This hurts a lot!");
+	    }
 		break;
 	case ZT_LIGHTNING:
 	    if (Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) {
