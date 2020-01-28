@@ -1370,7 +1370,7 @@ armorsmashdone:
 		break;
 	case SPE_STONE_TO_FLESH:
 		if (monsndx(mtmp->data) == PM_STONE_GOLEM)
-		    pm_index = PM_FLESH_GOLEM;
+		    pm_index = PM_FLESHY_GOLEM;
 		else if (monsndx(mtmp->data) == PM_STATUE_GARGOYLE)
 		    pm_index = PM_GARGOYLE;
 		else
@@ -2668,7 +2668,7 @@ create_polymon(obj, okind)
 	case MT_FLESH:
 	case MT_VEGGY:
 	    /* there is no flesh type, but all food is type 0, so we use it */
-	    pm_index = PM_FLESH_GOLEM;
+	    pm_index = PM_FLESHY_GOLEM;
 	    material = "organic ";
 	    break;
 	case MT_COMPOST:
@@ -3612,12 +3612,14 @@ struct obj *obj, *otmp;
 		    case ROCK_CLASS:	/* boulders and statues */
 			if (obj->otyp == BOULDER) {
 			    obj = poly_obj(obj, rn2(20) ? MEATBALL : HUGE_CHUNK_OF_MEAT, FALSE);
+			    if (obj) obj->finalcancel = TRUE;
 			    goto smell;
 			} else if (obj->otyp == STATUE) {
 
 				/* endless stone to flesh farming shouldn't be possible --Amy */
 			    if (!rn2(10)) {
 			      obj = poly_obj(obj, MEATBALL, FALSE);
+				if (obj) obj->finalcancel = TRUE;
 			      goto smell;
 			    }
 
@@ -3628,6 +3630,7 @@ struct obj *obj, *otmp;
 			    if (vegetarian(&mons[obj->corpsenm])) {
 				/* Don't animate monsters that aren't flesh */
 				obj = poly_obj(obj, MEATBALL, FALSE);
+				if (obj) obj->finalcancel = TRUE;
 			    	goto smell;
 			    }
 			    if (!animate_statue(obj, oox, ooy,
@@ -3647,6 +3650,7 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 				    place_object(item, oox, ooy);
 				}
 				obj = poly_obj(obj, CORPSE, FALSE);
+				if (obj) obj->finalcancel = TRUE;
 				break;
 			    }
 			} else { /* new rock class object... */
@@ -3666,6 +3670,7 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 			if (vegetarian(&mons[obj->corpsenm])) {
 			    /* Don't animate monsters that aren't flesh */
 			    obj = poly_obj(obj, MEATBALL, FALSE);
+			    if (obj) obj->finalcancel = TRUE;
 			    goto smell;
 			}
 			(void) get_obj_location(obj, &oox, &ooy, 0);
@@ -3683,12 +3688,15 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 		    /* maybe add weird things to become? */
 		    case RING_CLASS:	/* some of the rings are stone */
 			obj = poly_obj(obj, MEAT_RING, FALSE);
+			if (obj) obj->finalcancel = TRUE;
 			goto smell;
 		    case WAND_CLASS:	/* marble wand */
 			obj = poly_obj(obj, MEAT_STICK, FALSE);
+			if (obj) obj->finalcancel = TRUE;
 			goto smell;
 		    case GEM_CLASS:	/* rocks & gems */
 			obj = poly_obj(obj, MEATBALL, FALSE);
+			if (obj) obj->finalcancel = TRUE;
 smell:
 			if (herbivorous(youmonst.data) &&
 			    (!carnivorous(youmonst.data) ||
@@ -6844,7 +6852,7 @@ boolean ordinary;
 		    boolean didmerge;
 
 		    if (u.umonnum == PM_STONE_GOLEM)
-			(void) polymon(PM_FLESH_GOLEM);
+			(void) polymon(PM_FLESHY_GOLEM);
 		    if (Stoned) fix_petrification();	/* saved! */
 		    /* but at a cost.. */
 		    for (otemp = invent; otemp; otemp = onext) {

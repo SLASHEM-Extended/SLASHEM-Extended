@@ -3093,7 +3093,7 @@ int *fail_reason;
 	} else {
 	    /* statue of any golem hit with stone-to-flesh becomes flesh golem */
 	    if (is_golem(&mons[statue->corpsenm]) && cause == ANIMATE_SPELL)
-	    	mptr = &mons[PM_FLESH_GOLEM];
+	    	mptr = &mons[PM_FLESHY_GOLEM];
 	    else
 		mptr = &mons[statue->corpsenm];
 	    /*
@@ -6554,7 +6554,7 @@ newbossPENT:
 			pseudo->quan = 20L;			/* do not let useup get it */
 
 		    if (u.umonnum == PM_STONE_GOLEM)
-			(void) polymon(PM_FLESH_GOLEM);
+			(void) polymon(PM_FLESHY_GOLEM);
 		    if (Stoned) fix_petrification();	/* saved! */
 		    /* but at a cost.. */
 		    for (otemp = invent; otemp; otemp = onext) {

@@ -25392,6 +25392,7 @@ int type;
 		case PM_SPACE_TRANSPORT: return 199;
 		case PM_WEATWIND: return 199;
 		case PM_FLESH_GOLEM: return 120;
+		case PM_FLESHY_GOLEM: return 120;
 		case PM_MYSTERIOUS_GOLEM: return 240;
 		case PM_HUMAN_FLESH_GOLEM: return 120;
 		case PM_ANIMATED_SYNTHETIC_SANDAL: return 120;
