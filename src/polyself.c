@@ -610,10 +610,16 @@ boolean forcecontrol;
 				mntmp = PM_HUMAN; /* Illegal; force newman() */
 			else
 				mntmp = u.ulycn;
-		} else if (isvamp) {
-			if (u.umonnum != PM_VAMPIRE_BAT)
+		} else if (isvamp && issoviet) {
+			/* Amy edit: vampire bats are ultra sucky polymorph forms... */
+			/* In Soviet Russia, vampires aren't allowed to polymorph into non-vampires. It's actually weird that
+			 * the country isn't called Soviet Romania, where the vampires originally come from. And of course they
+			 * don't take into account the fact that there's many many vampiric monsters in this game, not all of
+			 * which deserve to always turn into such a godawfully weak form. */
+			if (u.umonnum != PM_VAMPIRE_BAT) {
 				mntmp = PM_VAMPIRE_BAT;
-			else
+				pline("Teper' vy bespoleznaya letuchaya mysh', kotoraya vsegda oglushena i dvizhetsya sluchaynym obrazom. Vse tol'ko potomu, chto sovetskiy tip ledyanykh glyb nastol'ko otstalyy i nikogda ne mozhet izmenit' chto-to ot vanili.");
+			} else
 				mntmp = PM_HUMAN; /* newman() */
 		}
 		/* if polymon fails, "you feel" message has been given
