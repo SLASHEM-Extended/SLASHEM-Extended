@@ -24874,6 +24874,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel like you just walked under a ladder. That's seven years of bad luck for superstition reasons.",
 	"A slideshow of perfectly logical images flashes in front of you.",
 	"A flurry of nightmarish images flash through your head!",
+	"You accidentally fall into this crazed place... there is no way out... and you are forced to survive with your life.",
+	"As you enter the shop, the shopkeeper says: 'Come in. Take a closer look at my ass.'",
 
 };
 
