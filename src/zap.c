@@ -5079,6 +5079,7 @@ dozap()
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 
+	/* wands can explode under certain circumstances - make sure to keep engrave.c code in sync!!! --Amy */
 	else if(obj->otyp == WAN_MISFIRE) {
 		backfire(obj);  /* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
@@ -5171,6 +5172,8 @@ dozap()
 		exercise(A_STR, FALSE);
 		return(1);
 	} else
+
+	/* so the wand didn't explode. again, reminder: keep engrave.c in sync for explosion causes */
 glowandfadechoice:
 	  if(!(objects[obj->otyp].oc_dir == NODIR) && !getdir((char *)0)) {
 

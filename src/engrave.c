@@ -1551,6 +1551,114 @@ doengrave()
 
 	}
 
+	/* from *shudder* Nethack 3.6 - if the wand could explode when zapped, it can also explode when engraved --Amy */
+	if (otmp && otmp->oclass == WAND_CLASS) {
+		if(otmp->otyp == WAN_MISFIRE) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);  /* the wand blows up in your face! */
+			exercise(A_STR, FALSE);
+			return(0);
+		}
+
+		else if(otmp->cursed && !rn2(5)) {
+			/* WAC made this rn2(5) from rn2(100)*/
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);  /* the wand blows up in your face! */
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+
+		/* evil patch idea by jonadab: eroded wands have a chance of exploding */
+		else if ( (otmp->oeroded > 2 || (otmp->oeroded2 > 2 && !(objects[(otmp)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(5) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);  /* the wand blows up in your face! */
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( (otmp->oeroded > 1 || (otmp->oeroded2 > 1 && !(objects[(otmp)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(20) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);  /* the wand blows up in your face! */
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( (otmp->oeroded > 0 || (otmp->oeroded2 > 0 && !(objects[(otmp)->otyp].oc_material == MT_COMPOST) ) ) && !rn2(80) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);  /* the wand blows up in your face! */
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+
+		/* evil patch idea by jondab: zapping a wand while impaired can cause it to explode */
+		else if ( Stunned && !rn2(StrongStun_resist ? 2000 : Stun_resist ? 200 : 20) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( Confusion && !rn2(StrongConf_resist ? 15000 : Conf_resist ? 1500 : 150) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( Numbed && !rn2(500) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( Feared && !rn2(500) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( Frozen && !rn2(30) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( Burned && !rn2(300) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( Dimmed && !rn2(1000) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ( Blind && !rn2(200) ) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+		else if ((MagicDeviceEffect || u.uprops[MAGIC_DEVICE_BUG].extrinsic || have_magicdevicestone()) && !rn2(10)) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+
+		else if(otmp->otyp == WAN_WONDER && !rn2(100)) {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);  /* the wand blows up in your face! */
+			exercise(A_STR, FALSE);
+			return(1);
+	    /* WAC wands of lightning will also explode in your face*/
+		} else if ((otmp->otyp == WAN_LIGHTNING || otmp->otyp == SPE_LIGHTNING) && (Underwater) && (!otmp->blessed))   {
+			pline("%s suddenly explodes!", The(xname(otmp)));
+			wand_explode(otmp, FALSE);	/* the wand blows up in your face! */
+			exercise(A_STR, FALSE);
+			return(1);
+		}
+
+	} /* wand can explode check */
+
 	/* There's no reason you should be able to write with a wand
 	 * while both your hands are tied up.
 	 */
