@@ -4394,6 +4394,8 @@ restrpasstwo:
 		n = selected[0].item.a_int - 1;	/* get item selected */
 		free((void *)selected);
 		skill_advance(n);
+		restrpass = FALSE;
+		restrdo = FALSE;
 		/* check for more skills able to advance, if so then .. */
 		for (n = i = 0; i < P_NUM_SKILLS; i++) {
 		    if (can_advance(i, speedy)) {
