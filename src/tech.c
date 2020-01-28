@@ -4448,7 +4448,9 @@ secureidchoice:
 			} /* monster is catchable loop */
 		    } /* for loop */
 
-		t_timeout = rnz(5000);
+		/* signature technique of some roles, but too OP for others --Amy */
+		if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_FAILED_EXISTENCE)) t_timeout = rnz(5000);
+		else t_timeout = rnz(25000);
 		break;
 
 	    case T_WORLD_FALL:
