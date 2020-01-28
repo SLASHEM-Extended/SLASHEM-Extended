@@ -291,6 +291,7 @@ use_symbiote(obj)
 	struct monst *mtmp;
 	int rx, ry, res;
 	int symchecks = 1;
+	int symdiff = 50;
 
 	if (obj->oartifact == ART_XOM_S_SCROLLINATOR) {
 
@@ -334,12 +335,12 @@ use_symbiote(obj)
 		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SYMBIOSIS)) {
 				default: break;
-				case P_BASIC: if (!rn2(3)) symchecks++; break;
-				case P_SKILLED: if (!rn2(3)) symchecks += rno(2); break;
-				case P_EXPERT: if (!rn2(3)) symchecks += rnd(2); break;
-				case P_MASTER: if (!rn2(2)) symchecks += rnd(2); break;
-				case P_GRAND_MASTER: if (!rn2(2)) symchecks += rnd(3); break;
-				case P_SUPREME_MASTER: symchecks += rnd(3); break;
+				case P_BASIC: if (!rn2(3)) symchecks++; symdiff = 40; break;
+				case P_SKILLED: if (!rn2(3)) symchecks += rno(2); symdiff = 30; break;
+				case P_EXPERT: if (!rn2(3)) symchecks += rnd(2); symdiff = 20; break;
+				case P_MASTER: if (!rn2(2)) symchecks += rnd(2); symdiff = 10; break;
+				case P_GRAND_MASTER: if (!rn2(2)) symchecks += rnd(3); symdiff = 0; break;
+				case P_SUPREME_MASTER: symchecks += rnd(3); symdiff = 0; break;
 			}
 		}
 
@@ -392,6 +393,10 @@ use_symbiote(obj)
 			if (!mtmp->mtame && resistrounds >= 2 && resist(mtmp, TOOL_CLASS, 0, 0) && ((!Role_if(PM_SYMBIANT) || resist(mtmp, TOOL_CLASS, 0, 0) ) ) ) continue;
 			if (!mtmp->mtame && resistrounds >= 3 && resist(mtmp, TOOL_CLASS, 0, 0) && ((!Role_if(PM_SYMBIANT) || resist(mtmp, TOOL_CLASS, 0, 0) ) ) )  continue;
 			if (!mtmp->mtame && mtmp->m_lev > u.ulevel && (rn2(100) < (mtmp->m_lev - u.ulevel) ) ) continue;
+
+			/* it shouldn't be guaranteed just because the monster has no MR, except if you're very skilled --Amy */
+			if (!mtmp->mtame && symdiff > rn2(100)) continue;
+			if (!mtmp->mtame && humanoid(mtmp->data) && symdiff > rn2(100)) continue;
 
 			/* we caught it! */
 			symchecks = 0;
@@ -449,20 +454,20 @@ use_symbiote(obj)
 			return 1;
 		}
 
-		int frenzychance = 5;
+		int frenzychance = 33;
 
 		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SYMBIOSIS)) {
 				default: break;
-				case P_BASIC: frenzychance = 6; break;
-				case P_SKILLED: frenzychance = 7; break;
-				case P_EXPERT: frenzychance = 8; break;
-				case P_MASTER: frenzychance = 9; break;
+				case P_BASIC: frenzychance = 30; break;
+				case P_SKILLED: frenzychance = 25; break;
+				case P_EXPERT: frenzychance = 20; break;
+				case P_MASTER: frenzychance = 15; break;
 				case P_GRAND_MASTER: frenzychance = 10; break;
-				case P_SUPREME_MASTER: frenzychance = 12; break;
+				case P_SUPREME_MASTER: frenzychance = 7; break;
 			}
 		}
-		if (!rn2(frenzychance)) {
+		if (frenzychance > rn2(100)) {
 			mtmp->mtame = FALSE;
 			mtmp->mpeaceful = FALSE;
 			mtmp->mfrenzied = TRUE;
@@ -470,6 +475,16 @@ use_symbiote(obj)
 
 		pline(FunnyHallu ? "The stupid pokeball is apparently made of plastic because the monster easily broke out!" : "Your symbiosis attempt failed.");
 		if (mtmp->mfrenzied) pline(FunnyHallu ? "And in fact the monster now wants to EAT you! Quick, run back to Professor Oak so he can save you!" : "Now the monster is frenzied and you cannot use symbiosis on it anymore.");
+
+		/* it's stupid if you can just try indefinitely... --Amy */
+		if (obj && !rn2(7)) {
+			if (obj->oartifact == ART_SCIENTIFIC_SYMBIONT_KIT && rn2(5)) {
+				pline("You wasted some material from the kit.");
+			} else {
+				useup(obj);
+				pline("Sadly, your symbiote token has become unusable due to your failed attempt...");
+			}
+		}
 
 		return 1;
 
