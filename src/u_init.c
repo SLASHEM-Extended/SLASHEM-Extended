@@ -9530,14 +9530,9 @@ u_init()
 		ptr = &mons[u.nospawnspecies10];
 	}
 
-	u.minimalism = 0;
-
-	if (isminimalist) {
-
-		u.minimalism = 1 + rnd(4);
-		if (!rn2(10)) u.minimalism += rnd(5);
-		if (!rn2(100)) u.minimalism += rnz(5);
-	}
+	u.minimalism = 1 + rnd(4);
+	if (!rn2(10)) u.minimalism += rnd(5);
+	if (!rn2(100)) u.minimalism += rnz(5);
 
 	u.femauspices4 = rnd(11);
 	u.femauspices6 = rnd(9);
@@ -31100,14 +31095,9 @@ int realityflag;
 		ptr = &mons[u.nospawnspecies10];
 	}
 
-	u.minimalism = 0;
-
-	if (isminimalist) {
-
-		u.minimalism = 1 + rnd(4);
-		if (!rn2(10)) u.minimalism += rnd(5);
-		if (!rn2(100)) u.minimalism += rnz(5);
-	}
+	u.minimalism = 1 + rnd(4);
+	if (!rn2(10)) u.minimalism += rnd(5);
+	if (!rn2(100)) u.minimalism += rnz(5);
 
 	u.femauspices4 = rnd(11);
 	u.femauspices6 = rnd(9);

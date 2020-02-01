@@ -3302,7 +3302,7 @@ boolean guaranteed;
 		enl_msg("The monster class that ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && u.minimalism) {sprintf(buf, " %d", u.minimalism);
+	if ((guaranteed || !rn2(10)) && u.minimalism && isminimalist) {sprintf(buf, " %d", u.minimalism);
 		enl_msg("Items generate only 1 time in X, and X ", "is", "was", buf);
 	}
 
@@ -7186,7 +7186,7 @@ int final;
 		dump("  The monster class that ", buf );
 	}
 
-	if (u.minimalism) {
+	if (u.minimalism && isminimalist) {
 		sprintf(buf, " %d", u.minimalism);
 		dump("  Items generated only 1 time in", buf);
 	}

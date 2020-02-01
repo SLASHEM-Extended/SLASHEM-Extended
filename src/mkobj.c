@@ -1829,7 +1829,7 @@ boolean shopinit;
 		otyp = GOLD_PIECE;
 	}
 
-	if (u.minimalism && rn2(u.minimalism) && !(issokosolver && otyp == BOULDER)) {
+	if (u.minimalism && isminimalist && rn2(u.minimalism) && !(issokosolver && otyp == BOULDER)) {
 		if (otyp != GOLD_PIECE && otyp != STRANGE_OBJECT && otyp != AMULET_OF_YENDOR && otyp != CANDELABRUM_OF_INVOCATION
 #ifdef MAIL
 	&& otyp != SCR_MAIL
