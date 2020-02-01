@@ -1137,6 +1137,11 @@ armorsmashdone:
 		break;
 	case SPE_PETRIFY:
 
+		if (distu(mtmp->mx, mtmp->my) > 3) {
+			wake = FALSE;
+			break;
+		}
+
 		if (resists_ston(mtmp)) break;
 		if (mtmp->permspeed != MSLOW) {
 

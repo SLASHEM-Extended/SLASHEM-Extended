@@ -11268,12 +11268,15 @@ int spell;
 	if (chance > 50) {
 		int chancediff = (chance - 50);
 		chancediff /= 2;
-		chance = 50 + chancediff;
+		if (chancediff > 50) chancediff = 50;
+		chance -= chancediff;
 
 		if (chance > 90) {
 			int chancediff = (chance - 90);
+			chancediff *= 9;
 			chancediff /= 10;
-			chance = 90 + chancediff;
+			if (chancediff > 90) chancediff = 90;
+			chance -= chancediff;
 		}
 	}
 
