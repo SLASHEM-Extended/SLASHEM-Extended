@@ -970,7 +970,6 @@ doread()
 			case SCR_IDENTIFY:
 			case SCR_STONING:
 			case SCR_BULLSHIT:
-			case SCR_REVERSE_IDENTIFY:
 			case SCR_SCARE_MONSTER:
 			case SCR_SNOW:
 			case SCR_SAND:
@@ -1051,7 +1050,6 @@ doread()
 			case SCR_WONDER:
 			case SCR_GEOLYSIS:
 			case SCR_OFFLEVEL_ITEM:
-			case SCR_SECURE_IDENTIFY:
 			case SCR_REPAIR_ITEM:
 			case SCR_EXTRA_HEALING:
 			case SCR_MOUNTAINS:
@@ -1107,6 +1105,7 @@ doread()
 			case SCR_CREATE_FAMILIAR:
 			case SCR_ITEM_GENOCIDE:
 			case SCR_POWER_HEALING:
+			case SCR_REVERSE_IDENTIFY:
 			case SCR_SUPERIOR_MATERIAL:
 				cartochance = 10;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
@@ -1126,6 +1125,7 @@ doread()
 			case SCR_INVENTORY_ID:
 			case SCR_SKILL_UP:
 			case SCR_ALTER_REALITY:
+			case SCR_SECURE_IDENTIFY:
 			case SCR_HYBRIDIZATION:
 			case SCR_RAGNAROK:
 				cartochance = 5;

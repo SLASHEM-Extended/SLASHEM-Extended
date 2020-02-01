@@ -63,7 +63,6 @@ register struct obj *otmp;
 	case SCR_IDENTIFY:
 	case SCR_STONING:
 	case SCR_BULLSHIT:
-	case SCR_REVERSE_IDENTIFY:
 	case SCR_SCARE_MONSTER:
 	case SCR_SNOW:
 	case SCR_SAND:
@@ -125,7 +124,6 @@ register struct obj *otmp;
 	case SCR_WONDER:
 	case SCR_GEOLYSIS:
 	case SCR_OFFLEVEL_ITEM:
-	case SCR_SECURE_IDENTIFY:
 	case SCR_REPAIR_ITEM:
 	case SCR_EXTRA_HEALING:
 	case SCR_MOUNTAINS:
@@ -161,6 +159,7 @@ register struct obj *otmp;
 	case SCR_CREATE_FAMILIAR:
 	case SCR_ITEM_GENOCIDE:
 	case SCR_POWER_HEALING:
+	case SCR_REVERSE_IDENTIFY:
 	case SCR_SUPERIOR_MATERIAL:
 		return(40);
 	case SCR_CONSECRATION:
@@ -169,6 +168,7 @@ register struct obj *otmp;
 	case SCR_SECURE_CURSE_REMOVAL:
 	case SCR_INVENTORY_ID:
 	case SCR_SKILL_UP:
+	case SCR_SECURE_IDENTIFY:
 	case SCR_ALTER_REALITY:
 	case SCR_HYBRIDIZATION:
 		return(50);
