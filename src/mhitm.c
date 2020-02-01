@@ -303,6 +303,9 @@ mattackm(magr, mdef)
     if (DEADMONSTER(mdef)) { /* catchall by Amy */
 	return(MM_MISS);
     }
+    if (DEADMONSTER(magr)) { /* shouldn't happen, but who knows? */
+	return(MM_MISS);
+    }
     if (!magr->mcanmove || magr->msleeping) return(MM_MISS);
     pa = magr->data;  pd = mdef->data;
 
