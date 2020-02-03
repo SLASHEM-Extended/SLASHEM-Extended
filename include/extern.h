@@ -1281,7 +1281,7 @@ E void fully_identify_obj(struct obj *);
 E void maybe_fully_identify_obj(struct obj *);
 E int identify(struct obj *);
 E int identifyless(struct obj *);
-E void identify_pack(int, BOOLEAN_P);
+E void identify_pack(int, BOOLEAN_P, BOOLEAN_P);
 E int askchain(struct obj **,const char *,int,int (*)(OBJ_P), int (*)(OBJ_P),int,const char *);
 E void prinv(const char *,struct obj *,long);
 E char *xprname(struct obj *,const char *,CHAR_P,BOOLEAN_P,long,long);
