@@ -227,9 +227,9 @@ spell_known(int sbook_id)
  *	to permit magic-use).
  */
 
-#define uarmhbon 4 /* Metal helmets interfere with the mind */
-#define uarmgbon 6 /* Casting channels through the hands */
-#define uarmfbon 2 /* All metal interferes to some degree */
+#define uarmhbon 3 /* Metal helmets interfere with the mind */
+#define uarmgbon 5 /* Casting channels through the hands */
+#define uarmfbon 1 /* All metal interferes to some degree */
 
 /* since the spellbook itself doesn't blow up, don't say just "explodes" */
 static const char explodes[] = "radiates explosive energy";
@@ -3178,6 +3178,8 @@ boolean atme;
 	if (spellid(spell) == SPE_PARALYSIS) energy *= 2;
 	if (spellid(spell) == SPE_HELLISH_BOLT) energy *= 2;
 	if (spellid(spell) == SPE_PETRIFY) energy *= 4;
+	if (spellid(spell) == SPE_JUMPING) energy *= 5;
+	if (spellid(spell) == SPE_ARMOR_SMASH) { energy *= 5; energy /= 3; }
 	if (spellid(spell) == SPE_GODMODE) { energy *= 5; energy /= 2;}
 	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 5;
 	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 5;
@@ -10455,8 +10457,8 @@ int spell;
 	statused = ACURR(urole.spelstat);
 
 	/* Calculate armor penalties */
-	if (uarm && !SpellColorMetal && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) 
-	    splcaster += 2;
+	if (uarm && !SpellColorMetal && !(uarm->blessed) && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) 
+	    splcaster += 1;
 
 	/* Robes are body armour in SLASH'EM */
 	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm)) {
@@ -10484,7 +10486,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (urole.spelarmr * armorpenalties / 12);
+		if (uarm->blessed) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 30);
 	}
 	if (SpellColorMetal && (!uarm || !is_metallic(uarm))) {
 
@@ -10495,7 +10499,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (urole.spelarmr * armorpenalties / 12);
+		if (uarm->blessed) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 30);
 	}
 
 	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc)) {
@@ -10522,7 +10528,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (urole.spelarmr * armorpenalties / 36);
+		if (uarmc->blessed) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 50);
 	}
 	if (SpellColorMetal && (!uarmc || !is_metallic(uarmc))) {
 
@@ -10533,7 +10541,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (urole.spelarmr * armorpenalties / 36);
+		if (uarmc->blessed) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 50);
 
 	}
 
@@ -10561,6 +10571,8 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
+		if (uarmu->blessed) armorpenalties /= 2;
+
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 	}
 	if (SpellColorMetal && (!uarmu || !is_metallic(uarmu))) {
@@ -10571,6 +10583,8 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+
+		if (uarmu->blessed) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 100);
 
@@ -10601,7 +10615,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
-		splcaster += (urole.spelshld * shieldpenalties / 12);
+		if (uarms->blessed) armorpenalties /= 2;
+
+		splcaster += (urole.spelshld * shieldpenalties / 30);
 	}
 	if (SpellColorMetal && (!uarms || !is_metallic(uarms))) {
 
@@ -10612,7 +10628,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
-		splcaster += (urole.spelshld * shieldpenalties / 12);
+		if (uarms->blessed) armorpenalties /= 2;
+
+		splcaster += (urole.spelshld * shieldpenalties / 30);
 
 	}
 
@@ -10640,7 +10658,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (uarmhbon * armorpenalties / 12);
+		if (uarmh->blessed) armorpenalties /= 2;
+
+		splcaster += (uarmhbon * armorpenalties / 20);
 	}
 	if (SpellColorMetal && (!uarmh || !is_metallic(uarmh))) {
 
@@ -10651,7 +10671,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (uarmhbon * armorpenalties / 12);
+		if (uarmh->blessed) armorpenalties /= 2;
+
+		splcaster += (uarmhbon * armorpenalties / 20);
 
 	}
 
@@ -10679,7 +10701,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (uarmgbon * armorpenalties / 12);
+		if (uarmg->blessed) armorpenalties /= 2;
+
+		splcaster += (uarmgbon * armorpenalties / 20);
 	}
 	if (SpellColorMetal && (!uarmg || !is_metallic(uarmg))) {
 
@@ -10690,7 +10714,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (uarmgbon * armorpenalties / 12);
+		if (uarmg->blessed) armorpenalties /= 2;
+
+		splcaster += (uarmgbon * armorpenalties / 20);
 
 	}
 
@@ -10718,7 +10744,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (uarmfbon * armorpenalties / 12);
+		if (uarmf->blessed) armorpenalties /= 2;
+
+		splcaster += (uarmfbon * armorpenalties / 20);
 	}
 
 	if (SpellColorMetal && (!uarmf || !is_metallic(uarmf))) {
@@ -10730,7 +10758,9 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		splcaster += (uarmfbon * armorpenalties / 12);
+		if (uarmf->blessed) armorpenalties /= 2;
+
+		splcaster += (uarmfbon * armorpenalties / 20);
 
 	}
 
