@@ -4192,13 +4192,13 @@ register struct monst *mtmp;
 	if (tmp == PM_MOLDOUX__THE_DEFENCELESS_MOLD) {
 		pline("This monster was under the protection of a Great Wyrm of Power!");
 		verbalize("Harharhar mortal, now you DIE!!!");
-	      (void) makemon(&mons[PM_GREAT_WYRM_OF_POWER], u.ux, u.uy, NO_MM_FLAGS);
+	      (void) makemon(&mons[PM_GREAT_WYRM_OF_POWER], u.ux, u.uy, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED);
 	}
 
 	if (tmp == PM_ARIANE_S_FLEECY_COMBAT_BOOT) {
 		pline("This monster was under the protection of a Great Wyrm of Power!");
 		verbalize("Harharhar mortal, now you DIE!!!");
-	      (void) makemon(&mons[PM_GREAT_WYRM_OF_POWER], u.ux, u.uy, NO_MM_FLAGS);
+	      (void) makemon(&mons[PM_GREAT_WYRM_OF_POWER], u.ux, u.uy, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED);
 	}
 
 	if (tmp == PM_GUNNHILD_S_GENERAL_STORE) {	/* create traps on the level, disregarding special probability checks */
