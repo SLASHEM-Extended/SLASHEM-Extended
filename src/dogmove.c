@@ -406,7 +406,7 @@ int udist;
 			if (rn2(udist) || !rn2(edog->apport)) {
 				/* KMH, balance patch -- 10*level
 				 * oh-my-god by Amy: why the hell did you make this depend on the mon having hands... */
-			    if (((!nohands(mtmp->data)) || (obj->quan <= dogquan)) && !(obj->oclass == COIN_CLASS))
+			    if (((!nohands(mtmp->data)) || (obj->quan <= dogquan)) && !(obj->oclass == COIN_CLASS && obj->quan > dogquan))
 			    {
 			    if (cansee(omx, omy) && flags.verbose)
 				pline("%s picks up %s.", Monnam(mtmp),
