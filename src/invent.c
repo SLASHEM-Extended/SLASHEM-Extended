@@ -9011,7 +9011,7 @@ boolean knoweverything;
 			case FORBIDDEN_ARROW:
 				pline("An arrow type that can be fired with a bow. If you fire it with a compost bow, you can fire more of them in a single turn."); break;
 			case WILDHILD_BOW:
-				pline("This bow can fire several arrows in a single turn. Firing odor shots from it gives a multishot bonus"); break;
+				pline("This bow can fire several arrows in a single turn. Firing odor shots from it gives a multishot bonus. However, unless you're playing the hussy role, actually hitting things with it will be difficult for you."); break;
 			case META_BOW:
 				pline("The material of this bow is randomized, which doesn't actually affect all that much. Equip some arrows in your quiver and fire away."); break;
 			case WIND_BOW:
@@ -9088,33 +9088,33 @@ boolean knoweverything;
 				pline("Apply it to hit monsters from far away or joust monsters with it while riding (and risk breaking it). Unlike other lances, this one can even be applied to hit monsters standing three squares away, but it's more likely to be damaged in the process or cause monsters to speed up/frenzy/snatch your weapon."); break;
 			case FORCE_PIKE: 
 				pline("One of Chris_ANG's creations, this weapon is in fact a lance. Apply it to hit monsters from far away. You can also joust monsters with it while riding, but that may cause it to break."); break;
-			case PARASOL: 
+			case PARASOL:
 				pline("A crappy lance that can be applied to hit monsters from far away or used to joust monsters while riding. The latter can cause it to break but I guess it wouldn't be a huge loss."); break;
-			case UMBRELLA: 
+			case UMBRELLA:
 				pline("You will look like a monumental fool with this 'weapon'. It can be applied to hit monsters from far away, or you can joust monsters while riding and risk breaking it."); break;
-			case ORCISH_BOW: 
+			case ORCISH_BOW:
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
-			case BOW: 
+			case BOW:
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
-			case ELVEN_BOW: 
+			case ELVEN_BOW:
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
-			case DARK_ELVEN_BOW: 
+			case DARK_ELVEN_BOW:
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies. This bow has a small to-hit bonus."); break;
-			case YUMI: 
+			case YUMI:
 				pline("A two-handed bow that is meant to be used in conjunction with quivered arrows to fire at enemies."); break;
-			case HYDRA_BOW: 
-				pline("This bow fires three arrows at once and is therefore very powerful. You need to wield it with both hands though."); break;
-			case ORCISH_ARROW: 
+			case HYDRA_BOW:
+				pline("This bow fires three arrows at once and is therefore very powerful. You need to wield it with both hands though. Also, your to-hit will be lower than it would be with regular bows, because this particular bow is rather unwieldy."); break;
+			case ORCISH_ARROW:
 				pline("The weakest type of arrow. These are meant to be put in a quiver and shot with a bow."); break;
-			case ARROW: 
+			case ARROW:
 				pline("A standard arrow. These are meant to be put in a quiver and shot with a bow."); break;
-			case GOLDEN_ARROW: 
+			case GOLDEN_ARROW:
 				pline("Arrows made of pure gold. They deal significant amounts of damage when shot with a bow."); break;
-			case ANCIENT_ARROW: 
+			case ANCIENT_ARROW:
 				pline("This metal arrow can be fired with a bow to deal good damage to enemies."); break;
-			case SILVER_ARROW: 
+			case SILVER_ARROW:
 				pline("An arrow that does more damage to undead. These are meant to be put in a quiver and shot with a bow."); break;
-			case ELVEN_ARROW: 
+			case ELVEN_ARROW:
 				pline("A good quality arrow that does high amounts of damage. These are meant to be put in a quiver and shot with a bow."); break;
 			case DARK_ELVEN_ARROW: 
 				pline("There are no arrows in the game that deal more damage than this one. These are meant to be put in a quiver and shot with a bow."); break;
@@ -9122,8 +9122,8 @@ boolean knoweverything;
 				pline("A high-quality arrow that has a moderate to-hit bonus. These are meant to be put in a quiver and shot with a bow."); break;
 			case SLING: 
 				pline("The sling is what you want to use if you want your thrown rocks to do more than a single point of damage. You can quiver most types of rocks and gems to shoot them with a sling."); break;
-			case CATAPULT: 
-				pline("A much better version of the sling that shoots more rocks at once and also grants significant bonuses to hit, but it has to be wielded with both hands. You can quiver rocks and gems to fire. If you shoot regular rocks from it, as opposed to flint stones or other ammo, the multishot bonus is lower."); break;
+			case CATAPULT:
+				pline("A much better version of the sling that shoots more rocks at once, but you'll have shaky to-hit with it. You can quiver rocks and gems to fire. If you shoot regular rocks from it, as opposed to flint stones or other ammo, the multishot bonus is lower."); break;
 			case PISTOL: 
 				pline("This firearm is capable of shooting bullets to deal damage to enemies."); break;
 			case FLINTLOCK: 
@@ -9136,32 +9136,32 @@ boolean knoweverything;
 #else
 				pline("An atomic weapon of mass destruction, this bad boy will fire a heck of a lot of green beams (BFG ammo) per turn. If you can hit with it, you'll be capable of bringing even the strongest monsters down to their knees."); break;
 #endif
-			case HAND_BLASTER: 
+			case HAND_BLASTER:
 				pline("A low-range energy gun with a fairly good rate of fire."); break;
-			case ARM_BLASTER: 
-				pline("PEW PEW PEW! This gun fires streams of laser ammo at your enemies."); break;
-			case CUTTING_LASER: 
+			case ARM_BLASTER:
+				pline("PEW PEW PEW! This gun fires streams of laser ammo at your enemies, albeit with a low accuracy."); break;
+			case CUTTING_LASER:
 				pline("If you need an energy gun capable of hitting enemies standing up to 3 squares away, this thing might be useful. Don't try to shoot monsters standing any farther away though."); break;
-			case RAYGUN: 
+			case RAYGUN:
 				pline("This energy gun shoots laser ammo at a good rate of fire over medium distances."); break;
-			case SUBMACHINE_GUN: 
-				pline("An automatic firearm that can fire three bullets in a single round of combat."); break;
-			case HEAVY_MACHINE_GUN: 
-				pline("The heavy machine gun requires two hands to use, but it can rip monsters a new one by firing 8 bullets per turn."); break;
-			case RIFLE: 
+			case SUBMACHINE_GUN:
+				pline("An automatic firearm that can fire three bullets in a single round of combat. Its spread makes it slightly harder to hit things with it though."); break;
+			case HEAVY_MACHINE_GUN:
+				pline("The heavy machine gun requires two hands to use, but it can rip monsters a new one by firing 8 bullets per turn. Problem is, it's about as accurate as the Para in Counter-Strike, meaning that unless you have an absurdly high bonus to-hit (e.g. from firearm skill), you'll often miss the target, wasting your ammo."); break;
+			case RIFLE:
 				pline("A two-handed gun with a low rate of fire that shoots single bullets at enemies."); break;
 			case ASSAULT_RIFLE:
-				pline("Your standard-issue heavy firearm that fires 5 bullets in one turn."); break;
+				pline("Your standard-issue heavy firearm that fires 5 bullets in one turn. It can be wielded in one hand, strangely enough, but has quite a spread and will thus not always actually hit the target."); break;
 			case KALASHNIKOV:
-				pline("This two-handed russian assault rifle can fire up to 7 bullets per turn."); break;
-			case SNIPER_RIFLE: 
+				pline("This two-handed russian assault rifle can fire up to 7 bullets per turn, but is even less accurate than the regular assault rifle."); break;
+			case SNIPER_RIFLE:
 				pline("Very slow, two-handed, but highly accurate. It fires single bullets."); break;
-			case SHOTGUN: 
+			case SHOTGUN:
 				pline("A short-range firearm that fires highly damaging (and accurate) shotgun shells."); break;
-			case SAWED_OFF_SHOTGUN: 
+			case SAWED_OFF_SHOTGUN:
 				pline("It's a one-handed shotgun with bad to-hit, but its rate of fire is better than the regular shotgun."); break;
-			case AUTO_SHOTGUN: 
-				pline("This two-handed shotgun is capable of firing several shotgun shells in one round of combat."); break;
+			case AUTO_SHOTGUN:
+				pline("This two-handed shotgun is capable of firing several shotgun shells in one round of combat. It has a rather random to-hit chance though, so not all pellets might hit the target."); break;
 			case ROCKET_LAUNCHER: 
 				pline("The 'big daddy' of firearms, this baby shoots explosive rockets for massive damage. Yeah, baby. It takes awfully long to reload though."); break;
 			case GRENADE_LAUNCHER: 
@@ -9186,33 +9186,33 @@ boolean knoweverything;
 				pline("This shell does a lot of damage if fired with a shotgun."); break;
 			case LEAD_SHOT:
 				pline("You can fire this ammo from a shotgun, and very occasionally you can even pick it back up and use it again."); break;
-			case ROCKET: 
+			case ROCKET:
 				pline("A highly explosive rocket. It requires a rocket launcher to be used effectively, but the explosion can hit several enemies at once."); break;
-			case FRAG_GRENADE: 
+			case FRAG_GRENADE:
 				pline("You can just arm this bomb and throw it at a monster, but for better results, fire it with a grenade launcher."); break;
-			case GAS_GRENADE: 
+			case GAS_GRENADE:
 				pline("This bomb will explode in a cloud of noxious gas if you arm it. You can also fire it with a grenade launcher."); break;
-			case STICK_OF_DYNAMITE: 
+			case STICK_OF_DYNAMITE:
 				pline("A stick with a fuse that can be armed. Once the fuse is burned out, it detonates to do explosive damage."); break;
-			case CROSSBOW: 
+			case CROSSBOW:
 				pline("The crossbow is a two-handed ranged weapon that fires bolts, doing respectable damage. Put a stack of bolts in your quiver to fire."); break;
-			case DROVEN_CROSSBOW: 
+			case DROVEN_CROSSBOW:
 				pline("A more accurate, one-handed version of the crossbow. Use it to fire bolts at your enemies."); break;
-			case POWER_CROSSBOW: 
-				pline("Two-handed crossbow that can fire more quickly than a regular one."); break;
-			case DEMON_CROSSBOW: 
-				pline("An automatic crossbow that can quiver several bolts in a single turn. Wielding it for a while may occasionally summon hostile demons around you."); break;
-			case PILE_BUNKER: 
+			case POWER_CROSSBOW:
+				pline("Two-handed crossbow that can fire more quickly than a regular one, but will hit targets less often."); break;
+			case DEMON_CROSSBOW:
+				pline("An automatic crossbow that can quiver several bolts in a single turn, but has rather bad accuracy. Wielding it for a while may occasionally summon hostile demons around you."); break;
+			case PILE_BUNKER:
 				pline("This crossbow can fire a bit faster than a regular crossbow but at the expense of accuracy. It only requires one hand to be wielded."); break;
-			case HELO_CROSSBOW: 
+			case HELO_CROSSBOW:
 				pline("Want to snipe with a crossbow? Now you can! This thing has a huge range."); break;
-			case DROVEN_BOW: 
+			case DROVEN_BOW:
 				pline("A more accurate, one-handed version of the bow. Use it to fire arrows at your enemies."); break;
-			case CROSSBOW_BOLT: 
+			case CROSSBOW_BOLT:
 				pline("This is the ammunition used by crossbows. Put it in your quiver while having a wielded crossbow and fire away. They do solid damage, too."); break;
-			case DROVEN_BOLT: 
+			case DROVEN_BOLT:
 				pline("These glass bolts can be fired with a crossbow, doing more damage than regular bolts, but unfortunately they are very likely to break on impact."); break;
-			case KOKKEN: 
+			case KOKKEN:
 				pline("Silver crossbow ammo. They deal very good damage."); break;
 			case POISON_BOLT:
 				pline("This crossbow bolt is permanently poisoned."); break;

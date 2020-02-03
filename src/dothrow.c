@@ -1942,6 +1942,38 @@ boolean polearming;
 		if (uarmf && is_metallic(uarmf)) tmp -= rnd(3);
 	}
 
+	if (launcher && launcher->otyp == HYDRA_BOW) tmp -= rnd(8);
+	if (launcher && launcher->otyp == WILDHILD_BOW && !Role_if(PM_HUSSY)) tmp -= rnd(10);
+	if (launcher && launcher->otyp == CATAPULT) {
+		tmp -= rnd(10);
+		if (!rn2(2)) tmp -= rnd(10);
+	}
+	if (launcher && launcher->otyp == SUBMACHINE_GUN) tmp -= rnd(6);
+	if (launcher && launcher->otyp == AUTO_SHOTGUN) tmp -= rnd(8);
+	if (launcher && launcher->otyp == POWER_CROSSBOW) tmp -= rnd(8);
+	if (launcher && launcher->otyp == PILE_BUNKER) tmp -= rnd(4);
+	if (launcher && launcher->otyp == ASSAULT_RIFLE) {
+		tmp -= rnd(8);
+		if (!rn2(3)) tmp -= rnd(5);
+	}
+	if (launcher && launcher->otyp == ARM_BLASTER) {
+		tmp -= rnd(10);
+		if (!rn2(2)) tmp -= rnd(8);
+	}
+	if (launcher && launcher->otyp == DEMON_CROSSBOW) {
+		tmp -= rnd(8);
+		if (!rn2(2)) tmp -= rnd(6);
+	}
+	if (launcher && launcher->otyp == KALASHNIKOV) {
+		tmp -= rnd(9);
+		if (!rn2(2)) tmp -= rnd(5);
+	}
+	if (launcher && launcher->otyp == HEAVY_MACHINE_GUN) {
+		tmp -= rnd(20);
+		if (!rn2(2)) tmp -= rnd(10);
+		if (!rn2(3)) tmp -= rnd(10);
+	}
+
 	/* quarterback is highly skilled at shooting small round objects --Amy */
 	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == -P_SLING) tmp += rn1(5, 5);
 	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == P_SLING) tmp += rn1(5, 5);
