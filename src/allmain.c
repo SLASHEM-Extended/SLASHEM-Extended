@@ -5559,7 +5559,7 @@ newbossO:
 
 		if ((HighscoreBug || u.uprops[HIGHSCORE_BUG].extrinsic || have_highscorestone()) && !rn2(300) ) {
 			if (!rn2(2)) makespacewarstrap();
-			else (void) makemon(insidemon(), 0, 0, NO_MM_FLAGS);
+			else (void) makemon(insidemon(), 0, 0, MM_ANGRY);
 		}
 
 		if (SpellColorPink) {

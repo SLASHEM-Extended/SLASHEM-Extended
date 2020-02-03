@@ -9612,8 +9612,8 @@ madnesseffect:
 			makespacewarstrap();
 			while (rn2(4)) makespacewarstrap();
 
-			(void) makemon(insidemon(), 0, 0, NO_MM_FLAGS);
-			while (rn2(5)) makemon(insidemon(), 0, 0, NO_MM_FLAGS);
+			(void) makemon(insidemon(), 0, 0, MM_ANGRY);
+			while (rn2(5)) makemon(insidemon(), 0, 0, MM_ANGRY);
 
 			if (!rn2(100)) pline("You see:");
 
