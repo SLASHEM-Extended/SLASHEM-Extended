@@ -5306,6 +5306,7 @@ static const char *epitaphs[] = {
 	"whenever you wish for an artifact you instead get a pink tutu and high heels if you're male, or a flannel shirt if you are female. that's how you make artiwishing gay", /* by Demo */
 	"There most probably is no god, but if there is, at best he doesn't care about us humans and at worst he's laughing his ass off at our ineptitude.",
 	"playing slex is like going in vacation to hell", /* by Demo */
+	"F you are your game and the dragon you rode in on! This $hit SUCKS WHy is there a fire elemental on Dl2 ahfgakjhg akjhajkhga;pkdhgAljkg;lkgjh", /* by amateurhour I think? */
 
 };
 

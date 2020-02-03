@@ -822,6 +822,7 @@ doread()
 	"I petition that the gender star be renamed to gender snowflake",
 	"the game is an acid trip where weapons become shoes and monsters become glitchymissingnos", /* by bug_sniper */
 	"My cuten lovenails are nothing special, they just mean that I like the color purple.",
+	"why does nethack have a tendency to attract dysfunctional people and programmer?", /* by bhaak */
 
 	    };
 	    char buf[BUFSZ];
