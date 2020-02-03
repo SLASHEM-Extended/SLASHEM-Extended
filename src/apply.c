@@ -476,14 +476,11 @@ use_symbiote(obj)
 		pline(FunnyHallu ? "The stupid pokeball is apparently made of plastic because the monster easily broke out!" : "Your symbiosis attempt failed.");
 		if (mtmp->mfrenzied) pline(FunnyHallu ? "And in fact the monster now wants to EAT you! Quick, run back to Professor Oak so he can save you!" : "Now the monster is frenzied and you cannot use symbiosis on it anymore.");
 
-		/* it's stupid if you can just try indefinitely... --Amy */
-		if (obj && !rn2(7)) {
-			if (obj->oartifact == ART_SCIENTIFIC_SYMBIONT_KIT && rn2(5)) {
-				pline("You wasted some material from the kit.");
-			} else {
-				useup(obj);
-				pline("Sadly, your symbiote token has become unusable due to your failed attempt...");
-			}
+		/* it's stupid if you can just try indefinitely... --Amy
+		 * but artifacts should be guaranteed to work eventually, rather than being destroyed */
+		if (obj && !rn2(10) && !obj->oartifact) {
+			useup(obj);
+			pline("Sadly, your symbiote token has become unusable due to your failed attempt...");
 		}
 
 		return 1;
