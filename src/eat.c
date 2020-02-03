@@ -4649,8 +4649,20 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		tp++;
 		pline(FunnyHallu ? "Feels like your face is turning green!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
-			if (!rn2(3)) losestr(rnd(2), TRUE); /* tone down strength loss, since you have to eat many more poisonous */
-			if (!rn2(60)) losestr(rnd(2), TRUE); /* corpses in order to get poison resistance --Amy */
+
+			/* tone down strength loss, since you have to eat many more poisonous
+			 * corpses in order to get poison resistance --Amy
+			 * In Soviet Russia, kobolds and certain animals are REALLY poisonous and will completely trash
+			 * your strength when eaten. No one should be able to gain poison resistance from eating those without
+			 * sacrificing a significant amount of strength because otherwise the communist government can't sell
+			 * enough antidotes and stuff. */
+
+			if (!rn2(3)) losestr(rnd(2), TRUE);
+			if (!rn2(60)) losestr(rnd(2), TRUE);
+			if (issoviet) {
+				losestr(rnd(5), TRUE);
+				pline("On, on, ty otravilsya i, veroyatno, poteryal silu! Nay khe khe!");
+			}
 			losehp(rnd(15 + ptr->mlevel), "poisonous corpse", KILLED_BY_AN);
 		} else	You("seem unaffected by the poison.");
 	/* now any corpse left too long will make you mildly ill */
@@ -6553,6 +6565,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		if(!Poison_resistance) {
 		    if (!rn2(2)) losestr(rnd(2), TRUE);
 		    if (!rn2(15)) losestr(rnd(2), TRUE);
+		    if (issoviet) {
+				losestr(rnd(5), TRUE);
+				pline("On, on, ty otravilsya i, veroyatno, poteryal silu! Nay khe khe!");
+		    }
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
 		} else
 		    You("seem unaffected by the poison.");
