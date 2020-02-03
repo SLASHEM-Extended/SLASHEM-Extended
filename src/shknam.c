@@ -171,6 +171,19 @@ static const char * const shkweapons[] = {
 	"Helline", "Robertt", "Elspet", "Criste", "Alesoun", "Adam", "Helene",
 	"Williame", "Margrete", "Gibboun", "Mariota", "Niniane", "Margarete",
 	"Hugh", "Effe",
+    /* GTA 3 */
+    "Claude", "Catalina", "8-Ball", "Salvatore",
+    /* Vice City */
+    "Tommy", "Ken", "Vance", "Sonny", "Ricardo",
+    /* San Andreas */
+    "Carl", "Sean", "Melvin", "Wilson", /* don't want "Lance" twice, sorry Soviet --Amy */
+    /* 4 */
+    "Niko", "Dimitri", "Mikhail", "Vlad",
+    /* Chinatown Wars */
+    "Huang", "Wu",
+    /* GTAV */
+    "Michael", "Franklin", "Trevor", "Steve",
+    "Weston",
 
 	"Legel", "Deathstrike", "Arschegast", "Mashevka", "Valus",
 	"Arm Chest Contractor", "Falcon", "Al Capone", "Schrack", "Mach",
