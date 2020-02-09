@@ -5895,6 +5895,8 @@ register const char *let,*word;
 			 * from Larn.
 			 */
 
+			if (cnt == 0 && u.ugold > 0) cnt = u.ugold;
+
 			if (cnt <= 0) {
 			    if (cnt < 0 || !prezero)
 				pline_The("LRS would be very interested to know you have that much.");
