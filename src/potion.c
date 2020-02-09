@@ -8018,8 +8018,13 @@ peffects(otmp)
 		    } else if (u.ualign.type == A_NEUTRAL)
 			adjalign(-3);
 		    exercise(A_CON, FALSE);
-		    if (!Unchanging && polymon(PM_VAMPIRE))
-			u.mtimedone = 0;	/* "Permament" change */
+		    int vampirepolypm = PM_LONG_WORM_TAIL;
+		    while (!is_vampire(&mons[vampirepolypm]) || !polyok(&mons[vampirepolypm]) || (notake(&mons[vampirepolypm]) && rn2(4) ) || ((mons[vampirepolypm].mlet == S_BAT) && rn2(2)) || ((mons[vampirepolypm].mlet == S_EYE) && rn2(2) ) || ((mons[vampirepolypm].mmove == 1) && rn2(4) ) || ((mons[vampirepolypm].mmove == 2) && rn2(3) ) || ((mons[vampirepolypm].mmove == 3) && rn2(2) ) || ((mons[vampirepolypm].mmove == 4) && !rn2(3) ) || ( (mons[vampirepolypm].mlevel < 10) && ((mons[vampirepolypm].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[vampirepolypm]) && rn2(2) ) || ( is_nonmoving(&mons[vampirepolypm]) && rn2(5) ) || ( is_eel(&mons[vampirepolypm]) && rn2(5) ) || ( is_nonmoving(&mons[vampirepolypm]) && rn2(20) ) || (is_jonadabmonster(&mons[vampirepolypm]) && rn2(20)) || ( uncommon2(&mons[vampirepolypm]) && !rn2(4) ) || ( uncommon3(&mons[vampirepolypm]) && !rn2(3) ) || ( uncommon5(&mons[vampirepolypm]) && !rn2(2) ) || ( uncommon7(&mons[vampirepolypm]) && rn2(3) ) || ( uncommon10(&mons[vampirepolypm]) && rn2(5) ) || ( is_eel(&mons[vampirepolypm]) && rn2(20) ) ) {
+				vampirepolypm = rn2(NUMMONS);
+		    }
+		    if (!Unchanging)
+			polymon(vampirepolypm);
+			/* This used to polymorph you permanently but I decided to get rid of that. --Amy */
 		} else {
 		    violated_vegetarian();
 		    pline("Ugh.  That was vile.");
