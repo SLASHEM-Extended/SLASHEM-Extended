@@ -4556,6 +4556,8 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli vy brosayete zheleznyye shary ili prygayete v Sokobane, vy poteryayete udachu, dazhe yesli eti deystviya nikogda ne prob'yut vas cherez dyry. Potomu chto glupyy kod dolzhen ostavat'sya tupym s tipom ledyanogo bloka. On prosto vladelets!",
 "Yesli vy voobshche yavlyayetes' vampirom, vy vsegda VSEGDA prevrashchayetes' v kakuyu-to chertovu letuchuyu mysh', potomu chto konechno delayete. Sovetskiye yego ledyanyye glyby Varianty KHAR KHAR nikogda ne mogut za svoyu zhizn' vnesti kakiye-libo izmeneniya, i, yesli Emi delayet eto, on otmenyayet eto i smeyetsya nad svoyey 'genial'nost'yu'.",
 "Yesli vy s''yedite yadovityy trup, vy pochti vsegda budete teryat' silu, a ne tol'ko nemnogo. Potomu chto sovetskiy tip ledyanykh glyb vernulsya i reshil deystvitel'no udalit' vse sledy Emi iz yego varianta der'ma.",
+"Tip ledyanoy glyby sposoben vnezapno vernut'sya cherez pyat' let i prodolzhit' imenno tam, gde on ostanovilsya.",
+"V Sovetskoy Rossii ne mozhet byt' nikakikh izmeneniy, kotoryye delayet Emi, nezavisimo ot togo, oblegchayet li ona igru ili delayet yeye slozhneye. I poetomu umen'shennyye shtrafy za ispol'zovaniye zaklinaniy takzhe byli otmeneny, potomu chto 'Sovetskaya pyaterka' yavlyayetsya LUCHSHIM razrabotchikom variantov za vse vremya.",
 };
 
 static NEARDATA const char * const practicantlines[] = {
