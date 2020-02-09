@@ -2511,7 +2511,7 @@ goodfruit:
 			    flags.menu_style == MENU_COMBINATION) {
 			use_menu = FALSE;
 			sprintf(qbuf, "New pickup_types: [%s am] (%s)",
-				ocl, *tbuf ? tbuf : "all");
+				ocl, *tbuf ? tbuf : "none");
 			getlin(qbuf, abuf);
 			op = mungspaces(abuf);
 			if (abuf[0] == '\0' || abuf[0] == '\033')
@@ -4310,7 +4310,7 @@ char *buf;
 		sprintf(buf, "%s", burdentype[flags.pickup_burden] );
 	else if (!strcmp(optname, "pickup_types")) {
 		oc_to_str(flags.pickup_types, ocl);
-		sprintf(buf, "%s", ocl[0] ? ocl : "all" );
+		sprintf(buf, "%s", ocl[0] ? ocl : "none" );
 	     }
 	else if (!strcmp(optname, "pilesize")) {
 		sprintf(buf, "%u", iflags.pilesize);
@@ -4456,7 +4456,7 @@ dotogglepickup()
 	flags.pickup = !flags.pickup;
 	if (flags.pickup) {
 	    oc_to_str(flags.pickup_types, ocl);
-	    sprintf(buf, "ON, for %s objects%s", ocl[0] ? ocl : "all",
+	    sprintf(buf, "ON, for %s objects%s", ocl[0] ? ocl : "no",
 #ifdef AUTOPICKUP_EXCEPTIONS
 			(iflags.autopickup_exceptions[AP_LEAVE] ||
 			 iflags.autopickup_exceptions[AP_GRAB]) ?

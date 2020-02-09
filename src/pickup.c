@@ -686,10 +686,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 		else {
 
 #ifndef AUTOPICKUP_EXCEPTIONS
-	    if (!*otypes || index(otypes, curr->oclass) ||
+	    if (/*!*otypes || */index(otypes, curr->oclass) ||
 		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) )
 #else
-	    if ((!*otypes || index(otypes, curr->oclass) ||
+	    if ((/*!*otypes || */index(otypes, curr->oclass) ||
 		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ||
 		is_autopickup_exception(curr, TRUE)) &&
 		!is_autopickup_exception(curr, FALSE))
@@ -710,10 +710,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 			} else {
 
 #ifndef AUTOPICKUP_EXCEPTIONS
-				if (!*otypes || index(otypes, curr->oclass) ||
+				if (/*!*otypes || */index(otypes, curr->oclass) ||
 					(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ) {
 #else
-				if ((!*otypes || index(otypes, curr->oclass) ||
+				if ((/*!*otypes || */index(otypes, curr->oclass) ||
 					(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ||
 					is_autopickup_exception(curr, TRUE)) && !is_autopickup_exception(curr, FALSE)) {
 #endif
