@@ -1702,6 +1702,7 @@ E void cursesymbiote(void);
 E boolean symbiotemelee(void);
 E boolean symbiotepassive(void);
 E void getrandomsymbiote(BOOLEAN_P);
+E void monst_globals_init(void);
 
 /* ### mondata.c ### */
 
@@ -1755,8 +1756,6 @@ E void set_apparxy(struct monst *);
 E boolean can_ooze(struct monst *);
 
 /* ### monst.c ### */
-
-E void monst_init(void);
 
 /* ### monstr.c ### */
 

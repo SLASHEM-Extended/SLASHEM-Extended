@@ -24877,6 +24877,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"A flurry of nightmarish images flash through your head!",
 	"You accidentally fall into this crazed place... there is no way out... and you are forced to survive with your life.",
 	"As you enter the shop, the shopkeeper says: 'Come in. Take a closer look at my ass.'",
+	"Effect deactivated. Sorry.",
 
 };
 

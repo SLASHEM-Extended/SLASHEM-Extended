@@ -99,7 +99,6 @@ void store_room(void);
 boolean write_level_file(char *,splev *,specialmaze *);
 void free_rooms(splev *);
 
-extern void monst_init(void);
 extern void objects_init(void);
 extern void decl_init(void);
 
@@ -904,7 +903,7 @@ char **argv;
 	/* Note:  these initializers don't do anything except guarantee that
 		we're linked properly.
 	*/
-	monst_init();
+	monst_globals_init();
 	objects_init();
 	decl_init();
 	/* this one does something... */

@@ -302,7 +302,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define onlineu(xx,yy)	online2((int)(xx),(int)(yy),(int)u.ux,(int)u.uy)
 #define setustuck(v)	(flags.botl = 1, u.ustuck = (v))
 
-#define missingnoprotect	(Race_if(PM_MISSINGNO) || u.ughmemory)
+#define missingnoprotect	(u.ughmemory)
 
 #define isangbander (Race_if(PM_ANGBANDER) || flags.hybridangbander)
 #define isaquarian (Race_if(PM_AQUATIC_MONSTER) || flags.hybridaquarian)

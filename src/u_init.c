@@ -24882,7 +24882,7 @@ u_init()
 	starlitmonster = -1;
 	starlitattempts = 0;
 	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
-		starlitmonster = (NUMMONS + rnd(MISSINGNORANGE));
+		starlitmonster = /*(NUMMONS + rnd(MISSINGNORANGE));*/PM_HUMAN;
 		starlitattempts++;
 	}
 
@@ -30309,6 +30309,8 @@ int realityflag;
 	static char buf[BUFSZ];
 
 	struct attack* attkptr;
+
+	monst_globals_init();
 
       u.monstertimeout = rnz(12000)+rnz(18000);
 	while (u.monstertimeout < 10) u.monstertimeout = rnz(12000)+rnz(18000);
@@ -39766,7 +39768,7 @@ int realityflag;
 	starlitmonster = -1;
 	starlitattempts = 0;
 	while ((starlitmonster == -1) && starlitattempts < 50000 ) {
-		starlitmonster = (NUMMONS + rnd(MISSINGNORANGE));
+		starlitmonster = /*(NUMMONS + rnd(MISSINGNORANGE));*/PM_HUMAN;
 		starlitattempts++;
 	}
 

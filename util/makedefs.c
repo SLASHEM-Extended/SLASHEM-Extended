@@ -186,7 +186,7 @@ void do_vision(void);
 /*WAC filenames*/
 void do_filenames(void);
 
-extern void monst_init(void);		/* monst.c */
+extern void monst_globals_init(void);		/* monst.c */
 extern void objects_init(void);	/* objects.c */
 
 static void make_version(void);
@@ -297,7 +297,7 @@ char	*options;
 	/* Note:  these initializers don't do anything except guarantee that
 		we're linked properly.
 	*/
-	monst_init();
+	monst_globals_init();
 	objects_init();
 
 	/* construct the current version number */

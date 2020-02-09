@@ -395,8 +395,8 @@ boolean forcecontrol;
 		goto made_change;
 	}
 
-	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnd(MISSINGNORANGE));
-	else if (Race_if(PM_WARPER) && !u.wormpolymorph) {
+	/*if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnd(MISSINGNORANGE));*/
+	/*else*/ if (Race_if(PM_WARPER) && !u.wormpolymorph) {
 		do {
 			/* randomly pick any monster, but reroll if it sucks too much --Amy */
 			mntmp = rn2(NUMMONS);
@@ -633,7 +633,7 @@ boolean forcecontrol;
 		u.polyformed = 1;
 	}
 
-	if (!u.wormpolymorph && !Race_if(PM_MISSINGNO) && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && mntmp < LOW_PM) {
+	if (!u.wormpolymorph && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && mntmp < LOW_PM) {
 		tries = 0;
 		do {
 			/* randomly pick an "ordinary" monster */
@@ -758,7 +758,7 @@ int	mntmp;
 		if(!rn2(10)) dochange = TRUE;
 	}
 
-	if (!Race_if(PM_MISSINGNO) && !u.ughmemory) {
+	if (!u.ughmemory) {
 	if (dochange) {
 		flags.female = !flags.female;
 		You("%s %s%s!",

@@ -381,6 +381,8 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	flags.bypasses = 0;	/* never use the saved value of bypasses */
 	if (remember_discover) discover = remember_discover;
 
+	monst_globals_init();
+
 	role_init();	/* Reset the initial role, gender, and alignment */
 
 #ifdef AMII_GRAPHICS

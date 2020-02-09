@@ -147,7 +147,6 @@ moveloop()
 	    we're linked properly.
     */
     decl_init();
-    monst_init();
     monstr_init();	/* monster strengths */
     objects_init();
 
@@ -10741,6 +10740,8 @@ newgame()
 #endif
 
 	flags.ident = 1;
+
+	monst_globals_init();
 
 	for (i = 0; i < NUMMONS; i++)
 		mvitals[i].mvflags = mons[i].geno & G_NOCORPSE;

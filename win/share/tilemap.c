@@ -241,7 +241,6 @@ int set, entry;
 	/* Note:  these initializers don't do anything except guarantee that
 		we're linked properly.
 	*/
-	monst_init();
 	objects_init();
 	(void) def_char_to_objclass(']');
 
