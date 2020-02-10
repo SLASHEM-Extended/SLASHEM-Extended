@@ -7771,8 +7771,12 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 
 	/* trying to merge an item flagged as sold onto one that doesn't have the flag will not work --Amy
 	 * it will work the other way round because then the player won't benefit from it :P (yes you old credit cloning
-	 * exploiters, I think of everything, I'm the slex devteam after all!) */
-	if (obj->objwassold && !otmp->objwassold) return FALSE;
+	 * exploiters, I think of everything, I'm the slex devteam after all!)
+	 * edit: or maybe we'll just make it so that the merged stack has the sold flag */
+	if (obj->objwassold && !otmp->objwassold) {
+		obj->objwassold = TRUE;
+		otmp->objwassold = TRUE;
+	}
 
 	if(obj->known == otmp->known || (otmp->known) ||
 		!objects[otmp->otyp].oc_uses_known) {
