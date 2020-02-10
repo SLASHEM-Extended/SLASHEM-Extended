@@ -1511,7 +1511,7 @@ die:
 	program_state.something_worth_saving = 0;
 #ifdef DUMP_LOG
 	/* D: Grab screen dump right here */
-	if (dump_fn[0] && how < PANICKED) {
+	if (dump_fn[0] && how != PANICKED && how != TRICKED) {
 	  dump_init();
 	  sprintf(pbuf, "%s, %s %s %s %s", playeraliasname,
 		  aligns[1 - u.ualign.type].adj,
@@ -1525,7 +1525,7 @@ die:
 	  dump_screen();
 	}
 
-	if (lastmsg >= 0 && how < PANICKED) {
+	if (lastmsg >= 0 && how != PANICKED && how != TRICKED) {
 		char tmpbuf[BUFSZ];
 		int i,j;
 		dump("Latest messages", "");
@@ -1543,7 +1543,7 @@ die:
 		dump("","");
 	}
 
-	if (how < PANICKED) doredraw();
+	if (how != PANICKED && how != TRICKED) (void)doredraw();
 
 #endif /* DUMP_LOG */
 
