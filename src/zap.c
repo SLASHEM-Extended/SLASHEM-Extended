@@ -820,10 +820,10 @@ armorsmashdone:
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
 		} else if (u.uswallow || rnd(20) < 10 + find_mac(mtmp) + rnz(u.ulevel) ) {
-			dmg = d(2,12) + rnz(u.ulevel);
+			dmg = d(2,12) + rnd(u.ulevel);
 			if (otyp == WAN_STRIKING) dmg += rnz(u.ulevel);
 			/* teh hardcore nerf by Amy - force bolt is just plain too strong */
-			if (otyp == SPE_FORCE_BOLT && rn2(3)) dmg = d(2,12) + rnd(u.ulevel);
+			if (otyp == SPE_FORCE_BOLT && rn2(3)) dmg = rnd(12) + rnd(u.ulevel);
 			if (otyp == SPE_FORCE_BOLT && rn2(2) && dmg > 1) dmg = rnd(dmg);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
