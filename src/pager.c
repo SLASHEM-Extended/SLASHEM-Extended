@@ -24880,6 +24880,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You accidentally fall into this crazed place... there is no way out... and you are forced to survive with your life.",
 	"As you enter the shop, the shopkeeper says: 'Come in. Take a closer look at my ass.'",
 	"Effect deactivated. Sorry.",
+	"The Amy is a huge fan of Catrice 'Orange Is The New Black' nail polish.",
 
 };
 
