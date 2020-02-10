@@ -4508,27 +4508,27 @@ statdebuff()
 	switch (rnd(6)) {
 		case 1:
 			u.tsloss_str++;
-			You_feel("weaker!");
+			You_feel("temporarily weaker!");
 			break;
 		case 2:
 			u.tsloss_dex++;
-			You_feel("clumsier!");
+			You_feel("temporarily clumsier!");
 			break;
 		case 3:
 			u.tsloss_con++;
-			You_feel(rn2(2) ? "fralier!" : "frailer!");
+			You_feel(rn2(2) ? "temporarily fralier!" : "temporarily frailer!");
 			break;
 		case 4:
 			u.tsloss_wis++;
-			You_feel("more naive!");
+			You_feel("temporarily more naive!");
 			break;
 		case 5:
 			u.tsloss_int++;
-			You_feel("stupider!");
+			You_feel("temporarily stupider!");
 			break;
 		case 6:
 			u.tsloss_cha++;
-			You_feel("more repulsive!");
+			You_feel("temporarily more repulsive!");
 			break;
 		flags.botl = 1;
 	}
@@ -5095,7 +5095,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(219)) {
+	switch (rnd(221)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -5324,6 +5324,8 @@ register struct monst *mtmp;
 		case 217: mtmp->egotype_stealer = 1; break;
 		case 218: mtmp->egotype_stoner = 1; break;
 		case 219: mtmp->egotype_maecke = 1; break;
+		case 220:
+		case 221: mtmp->egotype_flamer = 1; break;
 
 	}
 

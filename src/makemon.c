@@ -19925,6 +19925,10 @@ register int	mmflags;
 		}
 		if (!rn2(100)) {
 			mtmp->isegotype = 1;
+			mtmp->egotype_flamer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
 			mtmp->egotype_wither = TRUE;
 		}
 		if (!rn2(100)) {
@@ -22802,6 +22806,15 @@ loopback:
 		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && dmgtype(ptr, AD_SSEX) )) ct += 3;
 		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && (ptr->msound == MS_CUSS))) ct += 5;
 		if (ct > 0 && (Race_if(PM_GOAULD) && is_dnethackmonster(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_CELLAR_CHILD) && dmgtype(ptr, AD_DEBU) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_GENDERSTARIST) && dmgtype(ptr, AD_DEBU) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_ICE_MAGE) && dmgtype(ptr, AD_FLAM) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_PRACTICANT) && dmgtype(ptr, AD_DEBU) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(ptr, AD_DEBU) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_LOWER_ENT) && dmgtype(ptr, AD_FLAM) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_LOLI) && dmgtype(ptr, AD_DEBU) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_SEA_ELF) && dmgtype(ptr, AD_FLAM) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_SPRIGGAN) && dmgtype(ptr, AD_FLAM) )) ct += 2;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -23902,6 +23915,15 @@ int     spc;
 		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[last], AD_SSEX) )) num += 3;
 		if ((Role_if(PM_GENDERSTARIST) && (mons[last].msound == MS_CUSS))) num += 5;
 		if ((Race_if(PM_GOAULD) && is_dnethackmonster(&mons[last]))) num += 10;
+		if ((Role_if(PM_CELLAR_CHILD) && dmgtype(&mons[last], AD_DEBU) )) num += 5;
+		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[last], AD_DEBU) )) num += 5;
+		if ((Role_if(PM_ICE_MAGE) && dmgtype(&mons[last], AD_FLAM) )) num += 1;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[last], AD_DEBU) )) num += 3;
+		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[last], AD_DEBU) )) num += 5;
+		if ((Race_if(PM_LOWER_ENT) && dmgtype(&mons[last], AD_FLAM) )) num += 2;
+		if ((Race_if(PM_LOLI) && dmgtype(&mons[last], AD_DEBU) )) num += 2;
+		if ((Race_if(PM_SEA_ELF) && dmgtype(&mons[last], AD_FLAM) )) num += 4;
+		if ((Race_if(PM_SPRIGGAN) && dmgtype(&mons[last], AD_FLAM) )) num += 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -24718,6 +24740,15 @@ int     spc;
 		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[first], AD_SSEX) )) num -= 3;
 		if ((Role_if(PM_GENDERSTARIST) && (mons[first].msound == MS_CUSS))) num -= 5;
 		if ((Race_if(PM_GOAULD) && is_dnethackmonster(&mons[first]))) num -= 10;
+		if ((Role_if(PM_CELLAR_CHILD) && dmgtype(&mons[first], AD_DEBU) )) num -= 5;
+		if ((Role_if(PM_GENDERSTARIST) && dmgtype(&mons[first], AD_DEBU) )) num -= 5;
+		if ((Role_if(PM_ICE_MAGE) && dmgtype(&mons[first], AD_FLAM) )) num -= 1;
+		if ((Role_if(PM_PRACTICANT) && dmgtype(&mons[first], AD_DEBU) )) num -= 3;
+		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[first], AD_DEBU) )) num -= 5;
+		if ((Race_if(PM_LOWER_ENT) && dmgtype(&mons[first], AD_FLAM) )) num -= 2;
+		if ((Race_if(PM_LOLI) && dmgtype(&mons[first], AD_DEBU) )) num -= 2;
+		if ((Race_if(PM_SEA_ELF) && dmgtype(&mons[first], AD_FLAM) )) num -= 4;
+		if ((Race_if(PM_SPRIGGAN) && dmgtype(&mons[first], AD_FLAM) )) num -= 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 
