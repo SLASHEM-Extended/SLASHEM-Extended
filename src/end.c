@@ -1511,7 +1511,7 @@ die:
 	program_state.something_worth_saving = 0;
 #ifdef DUMP_LOG
 	/* D: Grab screen dump right here */
-	if (dump_fn[0]) {
+	if (dump_fn[0] && how < PANICKED) {
 	  dump_init();
 	  sprintf(pbuf, "%s, %s %s %s %s", playeraliasname,
 		  aligns[1 - u.ualign.type].adj,
@@ -1525,7 +1525,7 @@ die:
 	  dump_screen();
 	}
 
-	if (lastmsg >= 0) {
+	if (lastmsg >= 0 && how < PANICKED) {
 		char tmpbuf[BUFSZ];
 		int i,j;
 		dump("Latest messages", "");
@@ -1543,7 +1543,7 @@ die:
 		dump("","");
 	}
 
-	(void)doredraw();
+	if (how < PANICKED) doredraw();
 
 #endif /* DUMP_LOG */
 
@@ -1657,14 +1657,14 @@ die:
 	} else	taken = FALSE;	/* lint; assert( !bones_ok ); */
 
 	if (!goexplore && !gofreeplay) {
-	clearlocks();
+		clearlocks();
 
-	if (have_windows) display_nhwindow(WIN_MESSAGE, FALSE);
+		if (have_windows) display_nhwindow(WIN_MESSAGE, FALSE);
 
-	if (strcmp(flags.end_disclose, "none") && how != PANICKED)
-		disclose(how, taken);
-	/* finish_paybill should be called after disclosure but before bones */
-	if (bones_ok && taken) finish_paybill();
+		if (strcmp(flags.end_disclose, "none") && how != PANICKED)
+			disclose(how, taken);
+		/* finish_paybill should be called after disclosure but before bones */
+		if (bones_ok && taken) finish_paybill();
 	}
 
 	/* calculate score, before creating bones [container gold] */
@@ -1808,7 +1808,7 @@ die:
 	}
 	/* since we're not removing the amulet any longer (this is by design)... had to restore celestial disgrace --Amy */
 
-//	if (!done_stopprint) {
+//	if (!done_stopprint)
 	    sprintf(pbuf, "%s %s the %s...", Goodbye(), playeraliasname,
 		   how != ASCENDED ?
 		      (const char *) ((flags.female && urole.name.f) ?
