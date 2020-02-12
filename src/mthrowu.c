@@ -1821,6 +1821,7 @@ boolean
 linedup(ax, ay, bx, by)
 register xchar ax, ay, bx, by;
 {
+	int dx, dy;
 	tbx = ax - bx;	/* These two values are set for use */
 	tby = ay - by;	/* after successful return.	    */
 
@@ -1828,11 +1829,28 @@ register xchar ax, ay, bx, by;
 	   own location; prevent it from throwing and zapping in that case */
 	if (!tbx && !tby) return FALSE;
 
-	if((!tbx || !tby || abs(tbx) == abs(tby)) /* straight line or diagonal */
-	   && distmin(tbx, tby, 0, 0) < ((ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM)) {
+    if ((!tbx || !tby || abs(tbx) == abs(tby)) /* straight line or diagonal */
+        && distmin(tbx, tby, 0, 0) < ((ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM) ) {
+        if ((ax == u.ux && ay == u.uy) ? (boolean) couldsee(bx, by) : clear_path(ax, ay, bx, by))
+            return TRUE;
+        /* don't have line of sight, but might still be lined up
+           if that lack of sight is due solely to boulders */
+        dx = sgn(ax - bx), dy = sgn(ay - by);
+        do {
+            /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
+            bx += dx, by += dy;
+            if (IS_ROCK(levl[bx][by].typ) || closed_door(bx, by))
+                return FALSE;
+        } while (bx != ax || by != ay);
+        /* reached target position without encountering obstacle */
+            return TRUE;
+    }
+
+	/*if((!tbx || !tby || abs(tbx) == abs(tby))*/ /* straight line or diagonal */
+	/*   && distmin(tbx, tby, 0, 0) < ((ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM)) {
 	    if(ax == u.ux && ay == u.uy) return((boolean)(couldsee(bx,by)));
 	    else if(clear_path(ax,ay,bx,by)) return TRUE;
-	}
+	}*/
 	return FALSE;
 }
 
@@ -1840,6 +1858,7 @@ boolean
 linedupB(ax, ay, bx, by) /* without the distance check --Amy */
 register xchar ax, ay, bx, by;
 {
+	int dx, dy;
 	tbx = ax - bx;	/* These two values are set for use */
 	tby = ay - by;	/* after successful return.	    */
 
@@ -1847,11 +1866,28 @@ register xchar ax, ay, bx, by;
 	   own location; prevent it from throwing and zapping in that case */
 	if (!tbx && !tby) return FALSE;
 
-	if((!tbx || !tby || abs(tbx) == abs(tby))) /* straight line or diagonal */
-	{
+    if ((!tbx || !tby || abs(tbx) == abs(tby)) /* straight line or diagonal */
+        ) {
+        if ((ax == u.ux && ay == u.uy) ? (boolean) couldsee(bx, by) : clear_path(ax, ay, bx, by))
+            return TRUE;
+        /* don't have line of sight, but might still be lined up
+           if that lack of sight is due solely to boulders */
+        dx = sgn(ax - bx), dy = sgn(ay - by);
+        do {
+            /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
+            bx += dx, by += dy;
+            if (IS_ROCK(levl[bx][by].typ) || closed_door(bx, by))
+                return FALSE;
+        } while (bx != ax || by != ay);
+        /* reached target position without encountering obstacle */
+            return TRUE;
+    }
+
+	/*if((!tbx || !tby || abs(tbx) == abs(tby)))*/ /* straight line or diagonal */
+	/*{
 	    if(ax == u.ux && ay == u.uy) return((boolean)(couldsee(bx,by)));
 	    else if(clear_path(ax,ay,bx,by)) return TRUE;
-	}
+	}*/
 	return FALSE;
 }
 
