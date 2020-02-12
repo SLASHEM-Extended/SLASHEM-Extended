@@ -1324,6 +1324,8 @@ armorsmashdone:
 		  otyp == SPE_EXTRA_HEALING ? (rnd(20) + 6 + rnd(rnz(u.ulevel) + (rn2(2) ? rnd(u.ulevel) : rnz(u.ulevel)) )) : 
 		  (rnd(40) + 8 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel))) ) ;
 
+		if ((otyp == SPE_HEALING || otyp == SPE_EXTRA_HEALING || otyp == SPE_FULL_HEALING) && healamount > 1) healamount /= 2;
+
 		mtmp->mhp += healamount;
 		if (mtmp->bleedout && mtmp->bleedout <= healamount) {
 			mtmp->bleedout = 0;
@@ -5927,9 +5929,12 @@ boolean ordinary;
 
 		case WAN_FIREBALL:
 		    makeknown(WAN_FIREBALL);
-		case SPE_FIREBALL:
 		    You("explode a fireball on top of yourself!");
 		    explode(u.ux, u.uy, 11, d(6,6), WAND_CLASS, EXPL_FIERY);
+		    break;
+		case SPE_FIREBALL:
+		    You("explode a fireball on top of yourself!");
+		    explode(u.ux, u.uy, 11, d(3,6), WAND_CLASS, EXPL_FIERY);
 		    break;
 
 		case WAN_FIRE:
@@ -6810,16 +6815,27 @@ boolean ordinary;
 
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
+			{
 
-			if (obj->otyp == SPE_HEALING) healup(rnd(10) + 4 + (rn2(2) ? 0 : rnd(rnz(u.ulevel))), 0, FALSE, FALSE);
-			else healup(d(3,8) + 6 + rnd(rnz(u.ulevel)), 0, FALSE, FALSE);
+			int healamount = (obj->otyp == SPE_HEALING) ? (rnd(10) + 4 + (rn2(2) ? 0 : rnd(rnz(u.ulevel))) ) : (d(3,8) + 6 + rnd(rnz(u.ulevel)) );
+			if (healamount > 1) healamount /= 2;
+
+			healup(healamount, 0, FALSE, FALSE);
+
+			}
 
 		    You_feel("%sbetter.",
 			obj->otyp == SPE_EXTRA_HEALING ? "much " : "");
 		    break;
 
 		case SPE_FULL_HEALING:
-		    healup(d(10,10) + rnz(u.ulevel) + (rn2(2) ? 0 : rnz(u.ulevel)), 0, FALSE, FALSE);
+			{
+			int healamount = (d(10,10) + rnz(u.ulevel) + (rn2(2) ? 0 : rnz(u.ulevel)) );
+			if (healamount > 1) healamount /= 2;
+
+		    healup(healamount, 0, FALSE, FALSE);
+
+			}
 		    You_feel("restored to health.");
 		    break;
 		case WAN_LIGHT:	/* (broken wand) */

@@ -14061,7 +14061,7 @@ boolean knoweverything;
 			case SPE_CURE_GLIB:
 				pline("If you don't have a towel, you can cast this spell to cure your glibbery hands. However, if you had a long-lasting glib effect, its duration will merely be reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_MONSTER:
-				pline("If there are monsters adjacent to you that are suffering from confusion, paralysis or other status effects, casting this will cure their afflictions."); break;
+				pline("If there are monsters adjacent to you that are suffering from confusion, paralysis or other status effects, casting this may cure their afflictions."); break;
 			case SPE_MANA_BATTERY:
 				pline("Deletes all wands in your open inventory (so you should make sure you put away all those that you want to keep), and recovers 10 mana for every charge. The idea is from Elona. Yep. Elona introduced this first. What, you say ADOM did? Nope! ADOM stole it from Elona, of course! :P"); break;
 			case SPE_THORNS:

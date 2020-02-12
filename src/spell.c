@@ -6214,6 +6214,7 @@ secureidchoice:
 			    nxtmon = frostmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(frostmon)) continue;
 			    if (!monnear(frostmon, u.ux, u.uy)) continue;
+			    if (rn2(2)) continue;
 				frostmon->mfrozen = 0;
 				frostmon->msleeping = 0;
 				frostmon->masleep = 0;
@@ -6574,8 +6575,11 @@ secureidchoice:
 
 	case SPE_SYMHEAL:
 		if (uactivesymbiosis) {
+			int healamount;
+			healamount = (rnd(10) + 4 + (spell_damage_bonus(spellid(spell)) * 2) + rnd(rnz(u.ulevel)));
+			if (healamount > 1) healamount /= 2;
 			Your("symbiote seems healthier!");
-			u.usymbiote.mhp += (rnd(10) + 4 + (spell_damage_bonus(spellid(spell)) * 2) + rnd(rnz(u.ulevel)));
+			u.usymbiote.mhp += healamount;
 			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
 		}
 
@@ -7242,15 +7246,22 @@ secureidchoice:
 			}
 			if (!canspotmon(mtmp)) continue;	/*you can't see it and can't sense it*/
 
-			mtmp->mhp += rnd(200);
+			mtmp->mhp += rnd(50);
 			if (mtmp->mhp > mtmp->mhpmax) {
 			    mtmp->mhp = mtmp->mhpmax;
 			}
-			if (mtmp->bleedout) mtmp->bleedout = 0;
+			if (mtmp->bleedout) {
+				mtmp->bleedout -= rnd(50);
+				if (mtmp->bleedout < 0) mtmp->bleedout = 0;
+			}
+			pline("%s is healed.", Monnam(mtmp));
 
 		    }
 
-		    healup(d(6,8) + rnz(u.ulevel),0,0,0);
+		    int healamount = (d(6,8) + rnd(rnz(u.ulevel)) );
+		    if (healamount > 1) healamount /= 2;
+
+		    healup(healamount,0,0,0);
 		}
 		break;
 
@@ -10894,13 +10905,13 @@ int spell;
 			chance -= 10;
 			break;
 		case 6:
-			chance -= 30;
+			chance -= 32;
 			break;
 		case 7:
-			chance -= 60;
+			chance -= 70;
 			break;
 		case 8:
-			chance -= 100;
+			chance -= 125;
 			break;
 
 	}
@@ -10967,15 +10978,15 @@ int spell;
 				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 40;
 				break;
 			case 6:
-				chance -= 60;
+				chance -= 58;
 				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 60;
 				break;
 			case 7:
-				chance -= 80;
+				chance -= 70;
 				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 80;
 				break;
 			case 8:
-				chance -= 100;
+				chance -= 75;
 				if (!Role_if(PM_CHAOS_SORCEROR)) chance -= 100;
 				break;
 
