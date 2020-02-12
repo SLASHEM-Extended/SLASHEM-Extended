@@ -2669,7 +2669,7 @@ register struct monst *mtmp;
 		   case PM_UNDEAD_SYMBIANT:
 			(void)mongets(mtmp, MACE);
 			(void)mongets(mtmp, DRAGON_HORNED_HEADPIECE);
-			(void)mongets(mtmp, SYMBIOTE);
+			if (timebasedlowerchance()) (void)mongets(mtmp, SYMBIOTE);
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
@@ -3808,7 +3808,7 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, MACE);
 		     (void)mongets(mtmp, rnd_class(ROBE,ROBE_OF_WEAKNESS));
 		     (void)mongets(mtmp, SMALL_SHIELD);
-		     if (!rn2(4)) {
+		     if (!rn2(4) && timebasedlowerchance()) {
 			int v,vials;
 			vials = rn2(4)+1;
 			for (v=0;v<vials;v++) {
@@ -4374,7 +4374,7 @@ register struct monst *mtmp;
 
 		     m_initthrow(mtmp, DART, 40);
 		     (void)mongets(mtmp, HAWAIIAN_SHIRT);
-		     if (rn2(2)) (void)mongets(mtmp, EXPENSIVE_CAMERA);
+		     if (rn2(2) && timebasedlowerchance()) (void)mongets(mtmp, EXPENSIVE_CAMERA);
 #ifndef GOLDOBJ
 		     mtmp->mgold = (long) d(mtmp->m_lev, 20);
 #else

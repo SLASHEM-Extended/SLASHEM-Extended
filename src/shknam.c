@@ -491,21 +491,29 @@ boolean artif;
 		mtmp->mappearance = STRANGE_OBJECT;
 	    }
 	} else {
-	    atype = get_shop_item(shp - shtypes);
-	    if (atype < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE, artif, TRUE);
-	    else
-		(void) mkobj_at(atype, sx, sy, artif, TRUE);
+
+	    if (timebasedlowerchance()) {
+
+		    atype = get_shop_item(shp - shtypes);
+		    if (atype < 0)
+			(void) mksobj_at(-atype, sx, sy, TRUE, artif, TRUE);
+		    else
+			(void) mkobj_at(atype, sx, sy, artif, TRUE);
+
+	    }
 	}
 
 	if (ishaxor && (rn2(250) >= depth(&u.uz)) ) {
 
-	    atype = get_shop_item(shp - shtypes);
-	    if (atype < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE, artif, TRUE);
-	    else
-		(void) mkobj_at(atype, sx, sy, artif, TRUE);
+	    if (timebasedlowerchance()) {
 
+		    atype = get_shop_item(shp - shtypes);
+		    if (atype < 0)
+			(void) mksobj_at(-atype, sx, sy, TRUE, artif, TRUE);
+		    else
+			(void) mkobj_at(atype, sx, sy, artif, TRUE);
+
+	    }
 	}
 
 }

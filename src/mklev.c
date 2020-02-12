@@ -11817,8 +11817,7 @@ mineralize()
 		}
 
 		/* Since you can now pick up items from the bottom with swimming, let's reduce the amount of kelp --Amy */
-		if ((levl[x][y].typ == POOL && !rn2(150)) ||
-			(levl[x][y].typ == MOAT && !rn2(50)))
+		if (((levl[x][y].typ == POOL && !rn2(150)) || (levl[x][y].typ == MOAT && !rn2(50))) && timebasedlowerchance())
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE, FALSE);
 
 		/* locate level for camperstriker role should be filled end to end with traps on trees */
@@ -12206,16 +12205,16 @@ mineralize()
 	/* basic level-related probabilities */
 	goldprob = 20 + depth(&u.uz) / 3;
 	goldamount = 20 + depth(&u.uz) / 3;
-	gemprob = goldprob / 6;
+	gemprob = goldprob / 10;
 	objprob = goldprob / 20;
 
 	/* mines have ***MORE*** goodies - otherwise why mine? */
 	if (In_mines(&u.uz)) {
 	    goldprob *= 2;
-	    gemprob *= 3;
+	    gemprob *= 2;
 	} else if (In_deepmines(&u.uz)) {
-	    goldprob *= 4;
-	    gemprob *= 5;
+	    goldprob *= 3;
+	    gemprob *= 3;
 	} else if (In_quest(&u.uz)) {
 	    goldprob /= 4;
 	    gemprob /= 6;
@@ -12244,7 +12243,7 @@ mineralize()
 		  levl[x+1][y-1].typ == STONE && levl[x-1][y-1].typ == STONE &&
 		  levl[x+1][y].typ   == STONE && levl[x-1][y].typ   == STONE &&
 		  levl[x+1][y+1].typ == STONE && levl[x-1][y+1].typ == STONE) || !rn2(100) ) ) {
-		if (rn2(1000) < goldprob) {
+		if ((rn2(1000) < goldprob) && !rn2(10) && (depth(&u.uz) > rn2(100)) && timebasedlowerchance()) {
 		    if ((otmp = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE)) != 0) {
 			otmp->ox = x,  otmp->oy = y;
 			otmp->quan = 1L + rnd(goldamount * 3);
@@ -12253,7 +12252,7 @@ mineralize()
 			else place_object(otmp, x, y);
 		    }
 		}
-		if ((rn2(1000) < gemprob) && timebasedlowerchance()) {
+		if ((rn2(1000) < gemprob) && !rn2(10) && (depth(&u.uz) > rn2(100)) && timebasedlowerchance()) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
 			if ((otmp = mkobj(GEM_CLASS, FALSE, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
@@ -12265,7 +12264,7 @@ mineralize()
 			    }
 		    }
 		}
-		if ((rn2(1500) < objprob) && timebasedlowerchance()) {
+		if ((rn2(1500) < objprob) && !rn2(10) && (depth(&u.uz) > rn2(100)) && timebasedlowerchance()) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
 			if ((otmp = mkobj(RANDOM_CLASS, FALSE, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
