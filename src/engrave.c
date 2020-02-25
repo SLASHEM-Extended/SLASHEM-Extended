@@ -5307,6 +5307,8 @@ static const char *epitaphs[] = {
 	"There most probably is no god, but if there is, at best he doesn't care about us humans and at worst he's laughing his ass off at our ineptitude.",
 	"playing slex is like going in vacation to hell", /* by Demo */
 	"F you are your game and the dragon you rode in on! This $hit SUCKS WHy is there a fire elemental on Dl2 ahfgakjhg akjhajkhga;pkdhgAljkg;lkgjh", /* by amateurhour I think? */
+	"I never said that SLEX would be easy, or that it wouldn't have pitfalls for unwary players to stumble into.",
+	"'unbalanced', you keep using that word... I don't think it means what you think it means",
 
 };
 

@@ -9530,6 +9530,9 @@ loveheelover:
 	        if(!rn2(2)) (void) mongets(mtmp, POT_BOOZE);
 	        (void) mongets(mtmp, WOODEN_FLUTE);
 		}
+		if (ptr == &mons[PM_CANDLE_NYMPH]) {
+			(void) mongets(mtmp, TALLOW_CANDLE);
+		}
 
 		if (ptr == &mons[PM_LUMBERJACK_NYMPH]) {
 			(void) mongets(mtmp, SHARP_AXE);
