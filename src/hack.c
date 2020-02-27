@@ -13,6 +13,7 @@ STATIC_DCL int still_chewing(XCHAR_P,XCHAR_P);
 STATIC_DCL void dosinkfall(void);
 STATIC_DCL boolean findtravelpath(BOOLEAN_P);
 STATIC_DCL boolean monstinroom(struct permonst *,int);
+STATIC_DCL boolean anymonstinroom(int);
 
 STATIC_DCL void move_update(BOOLEAN_P);
 STATIC_PTR void set_litX(int,int,void *);
@@ -3178,6 +3179,18 @@ int roomno;
 	return(FALSE);
 }
 
+STATIC_OVL boolean
+anymonstinroom(roomno)
+int roomno;
+{
+	register struct monst *mtmp;
+
+	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
+		if(!DEADMONSTER(mtmp) && index(in_rooms(mtmp->mx, mtmp->my, 0), roomno + ROOMOFFSET))
+			return(TRUE);
+	return(FALSE);
+}
+
 char *
 in_rooms(x, y, typewanted)
 register xchar x, y;
@@ -3412,41 +3425,44 @@ register boolean newlev;
 		 * There's no reason to get rid of them if you enter a room, and it's OK to get a message every time, too. */
 	    switch (rt) {
 
-		/* "Special Room monster change. Entering a special room will no longer awaken all monsters inside of the room, making the behavior the same as Vanilla Nethack and Slash'EM. Removed wake_nearby, gets really annoying" In Soviet Russia, players want to be able to mindlessly slaughter all the denizens of special rooms, because they're somehow unable to handle a game posing an actual challenge. They don't view it as too easy if they can hack up one monster after the other without the remaining ones even reacting or doing anything. But of course we all know that this is not the way it's supposed to be, so for all the other races the monsters will wake up. --Amy */
+		/* "Special Room monster change. Entering a special room will no longer awaken all monsters inside of the room, making the behavior the same as Vanilla Nethack and Slash'EM. Removed wake_nearby, gets really annoying" In Soviet Russia, players want to be able to mindlessly slaughter all the denizens of special rooms, because they're somehow unable to handle a game posing an actual challenge. They don't view it as too easy if they can hack up one monster after the other without the remaining ones even reacting or doing anything. But of course we all know that this is not the way it's supposed to be, so for all the other races the monsters will wake up. --Amy
+		 * edit: do the wake_nearby only if there are monsters in the room, because they're the reason why we're
+		 * doing it at all: to make sure that you can't simply kill the sleeping monsters. If there's no monsters
+		 * in the room anyway, we have no need to wake up monsters somewhere else on the level! */
 
 		case ZOO:
 		    pline(FunnyHallu ? "Welcome to our Theme Park!" : "Welcome to David's treasure zoo!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case SWAMP:
 		    pline("It %s rather %s down here.",
 			  Blind ? "feels" : "looks",
 			  Blind ? "humid" : "muddy");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case COURT:
 		    You(FunnyHallu ? "enter the Queen's chambers!" : "enter an opulent throne room!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case REALZOO:
 		    You(FunnyHallu ? "feel that some extinct species might still live here!" : "enter a smelly zoo!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case GIANTCOURT:
 		    You(FunnyHallu ? "enter a real huge hall!" : "enter a giant throne room!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case DRAGONLAIR:
 		    You(FunnyHallu ? "enter a fairy lair!" : "enter a dragon lair...");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case BADFOODSHOP:
 		    You(FunnyHallu ? "enter some sort of market! Perhaps you can buy some weed here?" : "enter an abandoned store...");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case LEPREHALL:
 		    You(FunnyHallu ? "encounter a Stonehenge replica!" : "enter a leprechaun hall!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case MORGUE:
 		    if(midnight()) {
@@ -3454,79 +3470,79 @@ register boolean newlev;
 			pline("%s away!  %s away!", run, run);
 		    } else
 			{ You("have an uncanny feeling..."); }
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case BEEHIVE:
 		    You(FunnyHallu ? "enter a tracker jacker nest! RUN AWAY!!!" : "enter a giant beehive!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case LEMUREPIT:
 		    You(FunnyHallu ? "enter the Devil's Lair!" : "enter a pit of screaming lemures!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case MIGOHIVE:
 		    You(FunnyHallu ? "enter some futuristic alien structure!" : "enter a strange hive!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case FUNGUSFARM:
 		    You(FunnyHallu ? "enter a sticky, slimy room..." : "enter a room full of fungi!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case COCKNEST:
 		    You(FunnyHallu ? "sense the well-known smell of weed as you enter this room!" : "enter a disgusting nest!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case ANTHOLE:
 		    You(FunnyHallu ? "enter a room filled with bugs!" : "enter an anthole!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
             case CLINIC:
                 You(FunnyHallu ? "feel reminded of 'Emergency Room' as you enter this area!" : "enter a modern hospital.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
             case ANGELHALL:
                 You(FunnyHallu ? "see the gods as you enter! WOW! So that's what they look like..." : "enter a radiating hall of Angels!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case TERRORHALL:
                 You(FunnyHallu ? "feel like you just got detected by a tripwire!" : "enter a terrifying hall.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case TENSHALL:
                 You(FunnyHallu ? "have died. Do you want your possessions identified? [ynq] (n) _" : "enter a killer room! This is actually an ADOM tension room.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case ELEMHALL:
                 You(FunnyHallu ? "get a vision of Mother Nature as you enter!" : "enter a room full of elementals!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case NYMPHHALL:
                 You(FunnyHallu ? "see a picture on the wall of this room. It shows the most beautiful woman you ever saw..." : "enter a beautiful garden!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
             case ARMORY:
                 You(FunnyHallu ? "enter some old weapon storage chamber! Let's see what weapons are left!" : "enter a dilapidated armory.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case COINHALL:
                 You(FunnyHallu ? "enter a room full of treasure, and it's all going to be yours! YEAH!" : "enter a room filled with money!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case TROLLHALL:
                 You(FunnyHallu ? "feel that this room smells like a public toilet!" : "enter a room full of stinking trolls...");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case HUMANHALL:
                 You(FunnyHallu ? "encounter a party room! Let's invite some hot girls!" : "encounter a living room!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case SPIDERHALL:
                 You(FunnyHallu ? "notice spiders of all forms and sizes in this room sitting everywhere!" : "stumble into a nest of spiders...");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case GOLEMHALL:
                 You(FunnyHallu ? "encounter some warmeches!" : "enter a room full of golems!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case TRAPROOM:
                 if (wizard) You("enter a trapped room!");
@@ -3545,50 +3561,50 @@ register boolean newlev;
                 break;
 	      case INSIDEROOM:
                 You(FunnyHallu ? "enter a normal-looking room." : "enter a weird-looking room...");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case RIVERROOM:
                 You(FunnyHallu ? "encounter an underground mountain! Wait, what? This makes no sense!" : "encounter an underground river!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case GRUEROOM:
                 pline(FunnyHallu ? "It is radiant bright. You are likely to be eaten by the sun." : "It is pitch black. You are likely to be eaten by a grue.");
 	    do_clear_areaX(u.ux,u.uy,		/* extra darkness --Amy */
 		15, set_litX, (void *)((char *)0));
 		/* IMHO grue rooms may remove light every time you enter them. --Amy */
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case CRYPTROOM:
                 You(FunnyHallu ? "forgot to bring your light source and can't see anything in this room." : "enter the dark crypts!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case TROUBLEZONE:
                 You(FunnyHallu ? "got tons of trouble, baby!" : "enter the trouble zone!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case WEAPONCHAMBER:
                 You(FunnyHallu ? "see people with long pointy sticks who want to impale you!" : "enter a weapons chamber!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case HELLPIT:
                 pline(FunnyHallu ? "Gee, this looks exactly like the realms of Oblivion!" : "You enter the fiery pits of Hell!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case FEMINISMROOM:
                 You(FunnyHallu ? "enter a room full of girls in sexy bikinis and high-heeled leather boots! WOW!" : "enter a feminist meeting room!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case MEADOWROOM:
                 You(FunnyHallu ? "stumble into a ranch! Where's the cowboys and horses?" : "encounter a cattle meadow!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case COOLINGCHAMBER:
                 You(FunnyHallu ? "entered the radiator area!" : "freeze as you enter the cooling chamber.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case VOIDROOM:
                 pline(FunnyHallu ? "Your body warps strangely and you cease to exist... Do you want your possessions identified? [ynq] (n) _" : "You entered the Void!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case HAMLETROOM:
                 pline(FunnyHallu ? "This room looks not dangerous at all." : "You've stumbled over a tiny hamlet!");
@@ -3596,120 +3612,117 @@ register boolean newlev;
 	            	pline(FunnyHallu ? "You feel that you've seen this before... it reminds you of the Woodstock Festival!" : "It looks familiar... didn't your adventures usually start in a similar place?");
 
 			}
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case KOPSTATION:
                 pline(FunnyHallu ? "As you enter the heavily guarded army base, bullets start flying in your direction! TAKE COVER!" : "You've entered the local police station!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case BOSSROOM:
                 You(FunnyHallu ? "were fated to die here. DIE!" : "feel that you will meet your fate here.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case RNGCENTER:
                 You(FunnyHallu ? "enter a room that looks like it was designed by God Himself!" : "enter the Random Number Generator central!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case WIZARDSDORM:
                 You(FunnyHallu ? "disturbed some old wizened fool that lives here, and now you have to kill that stupid git!" : "entered a wizard's dormitory!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case DOOMEDBARRACKS:
                 You(FunnyHallu ? "realize that the game has turned into DoomRL! Quick, ready your kalashnikov and BFG!" : "enter an alien barracks!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case SLEEPINGROOM:
                 pline(FunnyHallu ? "I heard you were sleeping there." : "You stumble into a sleeping room!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case DIVERPARADISE:
                 You(FunnyHallu ? "enter a huge swimming pool, and the entrance is free! YEAH! Now you can splash around in the water and have many hours of pure FUN!" : "encounter the diver's paradise!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case MENAGERIE:
                 You(FunnyHallu ? "enter a zoo filled with prehistoric animals! Err... I really hope they're peaceful!" : "enter a menagerie!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case EMPTYDESERT:
                 pline(FunnyHallu ? "This looks like the Shifting Sand Land from Super Mario 64!" : "The air in this room is hot and arid.");
                 break;
 	      case RARITYROOM:
                 pline(FunnyHallu ? "It's the dungeon master's rarity collection! Quick, steal it before he turns up!" : "You enter a room filled with rare creatures!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case EXHIBITROOM:
                 pline(FunnyHallu ? "Oh, look at all the zoo exhibits! Can I feed them? Can I pet them? Mind if I incinerate them?" : "You encounter an exhibit of strange creatures!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case PRISONCHAMBER:
                 pline(FunnyHallu ? "Go directly to jail. Do not pass go. Do not collect 200 zorkmids." : "You enter a prison!");
 			if (FunnyHallu) pline("Do you want your possessions identified? [ynq] (n) _");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case NUCLEARCHAMBER:
                 pline(FunnyHallu ? "It's where the government is researching weaponized uranium! If you can steal their technology, you can nuke the entire dungeon and ascend prematurely!" : "You encounter a nuclear power plant!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case LEVELSEVENTYROOM: /* no message but still wake_nearby --Amy */
                 if (wizard) You("enter a level 70 room!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case VARIANTROOM:
                 pline(FunnyHallu ? "The game suddenly turned into dnethack. The elder priest tentacles to tentacle you! Your cloak of magic resistance disintegrates!" : "You encounter a room from another variant!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case ROBBERCAVE:
                 pline(FunnyHallu ? "Oh my god, Amy's fanfics have come true!" : "You enter the robbers' hideout!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 	      case SANITATIONCENTRAL:
                 pline(FunnyHallu ? "Muahahahahaha, you feel like focusing your gaze on a great race of yith because who needs sanity anyway?" : "Something seems to focus on your mind as you enter this room.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
                 break;
 
 		case BARRACKS:
-		    if(monstinroom(&mons[PM_SOLDIER], roomno) ||
-			monstinroom(&mons[PM_SERGEANT], roomno) ||
-			monstinroom(&mons[PM_LIEUTENANT], roomno) ||
-			monstinroom(&mons[PM_CAPTAIN], roomno) ||
-			monstinroom(&mons[PM_GENERAL], roomno))
+		    if(anymonstinroom(roomno)) {
 			You("enter a military barracks!");
-		    else
-			{ You("enter an abandoned barracks."); }
-		    if (!issoviet) wake_nearby();
+		    } else {
+			You("enter an abandoned barracks.");
+		    }
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case DELPHI:
 		    if(monstinroom(&mons[PM_ORACLE], roomno))
 			verbalize("%s, %s, welcome to Delphi!", Hello((struct monst *) 0), playeraliasname);
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case DOUGROOM:
 		    You_feel("42.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case EVILROOM:
 			pline(FunnyHallu ? "Eek, you've stumbled into a SJW meeting!" : "The feel of this room is giving you the creeps.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case RELIGIONCENTER:
 			pline(FunnyHallu ? "Ugh, an overwhelming cancerous stench floods your nostrils as you enter this room!" : "This room smells like rotten holy water.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case CURSEDMUMMYROOM:
 			pline(FunnyHallu ? "You entered the Pharao's chambers!" : "Things that should be dead are walking this room.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case ARDUOUSMOUNTAIN:
 			pline(FunnyHallu ? "You encounter an underground mountain. Wait, why the hell is there a mountain in the dungeon???" : "You encounter an underground mountain.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case LEVELFFROOM:
 			pline(FunnyHallu ? "Hey, this room looks just like your own living room!" : "This room looks familiar, but somehow different too.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case VERMINROOM:
 			pline(FunnyHallu ? "Oh great, you entered a room full of shit." : "The air in this room is rank with mildew.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case CHAOSROOM:
 			if (wizard) pline("You enter a chaos room!");
@@ -3722,11 +3735,11 @@ register boolean newlev;
 		    break;
 		case MIRASPA:
 			pline(FunnyHallu ? "Whoa, this room totally smells of ammonia!" : "As you enter the room, you can hear Mira inviting you for a swim.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case MACHINEROOM:
 			pline(FunnyHallu ? "It's the inside of the Space Shuttle!" : "You enter a machinery room.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case SHOWERROOM:
 			pline(FunnyHallu ? "Wow! You seem to have found the Niagara Falls!" : "You enter the shower.");
@@ -3736,15 +3749,15 @@ register boolean newlev;
 		    break;
 		case RUINEDCHURCH:
 			pline(FunnyHallu ? "You enter Satan's chamber! Quick, ask him what is inferior to SLEX!" : "You enter a desecrated church.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case GAMECORNER:
 			pline(FunnyHallu ? "You've entered the local Game Stop store! The storeclerk says: 'Hello sir or miss, what can I do for you? I have GTA 5, the newest Call of Duty and of course also the latest Pokemon generation games available!'" : "You encounter a game corner!");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case ILLUSIONROOM:
 			pline(FunnyHallu ? "This room is an illusion and a trap devisut by Satan. Go ahead dauntlessly! Make rapid progres!" : "Somehow, this room doesn't seem to be what it looks like.");
-		    if (!issoviet) wake_nearby();
+		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case CENTRALTEDIUM:
 			pline(FunnyHallu ? "It's the Straight Road! In order to get through this room, you need to stay on the road at all times and be fast or the Straight Road will weaken and ultimately be destroyed!" : "You encounter a highway to the left.");
