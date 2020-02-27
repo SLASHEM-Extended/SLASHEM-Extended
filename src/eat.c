@@ -5054,6 +5054,7 @@ struct obj *otmp;
 {
 	pline("Magic spreads through your body as you digest the %s.",
 	    otmp->oclass == RING_CLASS ? "ring" : otmp->oclass == IMPLANT_CLASS ? "implant" : "amulet");
+	u.cnd_ringtrinsiccount++;
 }
 
 STATIC_OVL void

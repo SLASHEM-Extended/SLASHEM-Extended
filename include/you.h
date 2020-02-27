@@ -1763,6 +1763,7 @@ struct you {
 	int cnd_wipecount;	/* how often you successfully use the #wipe command */
 	int cnd_acquirementcount;	/* how often you use acquirement */
 	int cnd_cannibalcount;	/* how often you ate your own race without permission (i.e. caveman doesn't count) */
+	int cnd_ringtrinsiccount;	/* how often you actually gain effects from eating jewelry */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

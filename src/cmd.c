@@ -11515,6 +11515,10 @@ int final;
 		sprintf(buf, "%ld time%s", u.cnd_cannibalcount, plur(u.cnd_cannibalcount));
 		enl_msg(You_, "have been a cannibal ", "were a cannibal ", buf);
 	}
+	if (u.cnd_ringtrinsiccount && final) {
+		sprintf(buf, "%ld time%s", u.cnd_ringtrinsiccount, plur(u.cnd_ringtrinsiccount));
+		enl_msg(You_, "have gained intrinsics from eating jewelry ", "gained intrinsics from eating jewelry ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -12054,6 +12058,9 @@ int final;
 
 	sprintf(buf, "%ld time%s", u.cnd_cannibalcount, plur(u.cnd_cannibalcount));
 	dump("  You were a cannibal ", buf);
+
+	sprintf(buf, "%ld time%s", u.cnd_ringtrinsiccount, plur(u.cnd_ringtrinsiccount));
+	dump("  You gained intrinsics from eating jewelry ", buf);
 
 	dump("", "");
 }
