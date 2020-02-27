@@ -10130,8 +10130,11 @@ past3:
 			}
 		}	/* !u.uinvulnerable */
 
-		    if(Searching && multi >= 0 && (!Role_if(PM_CAMPERSTRIKER) || !rn2(3) ) ) (void) dosearch0(1);
-		    if(StrongSearching && multi >= 0 && (!Role_if(PM_CAMPERSTRIKER) || !rn2(3) ) ) (void) dosearch0(1);
+		if(Searching && multi >= 0 && (!Role_if(PM_CAMPERSTRIKER) || !rn2(3) ) ) {
+				if (StrongSearching && rn2(5)) (void) dosearch0(1);
+				else if (!StrongSearching && !rn2(3)) (void) dosearch0(1);
+		}
+
 		    dosounds();
 		    do_storms();
 		    gethungry();
@@ -10139,6 +10142,7 @@ past3:
 		    exerchk();
 		    invault();
 		    if (u.uhave.amulet && !u.freeplaymode) amulet();
+
 		if (!rn2(40+(int)(ACURR(A_DEX)*3))) u_wipe_engr(rnd(3));
 		    if ((u.uevent.udemigod && !u.freeplaymode && !rn2(5) && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {
 			if (u.udg_cnt) u.udg_cnt--;
