@@ -763,6 +763,10 @@ stupidsegfault:
 	    strcat(buf, shkname(mtmp));
 	    if (mdat == &mons[PM_SHOPKEEPER] && !do_invis)
 		return buf;
+	    if (mdat == &mons[PM_MASTER_SHOPKEEPER] && !do_invis)
+		return buf;
+	    if (mdat == &mons[PM_ELITE_SHOPKEEPER] && !do_invis)
+		return buf;
 	    strcat(buf, " the ");
 	    if (do_invis)
 		strcat(buf, "invisible ");
