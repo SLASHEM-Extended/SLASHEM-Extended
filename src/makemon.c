@@ -1234,6 +1234,68 @@ register struct monst *mtmp;
 			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
+			case PM_TEUTON_SOLDIER:
+			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = WAR_HAMMER;
+			  if (rn2(2)) (void) mongets(mtmp, GAS_GRENADE);
+			  break;
+			case PM_FRANKISH_SOLDIER:
+			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = rn2(2) ? AXE : SHORT_SWORD;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
+			case PM_BRITISH_SOLDIER:
+			  w1 = rn2(2) ? BOW : YUMI;
+		  	  m_initthrow(mtmp, ARROW, 25);
+		  	  m_initthrow(mtmp, ARROW, 25);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  if (rn2(2)) (void) mongets(mtmp, POT_INVISIBILITY);
+			  break;
+			case PM_AMERICAN_SOLDIER:
+			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
+			case PM_ARAB_SOLDIER:
+			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = rn2(2) ? SAND_SWORD : DESERT_SWORD;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			  break;
+			case PM_ASIAN_SOLDIER:
+			  w1 = rn2(2) ? HUNTING_RIFLE : SUBMACHINE_GUN;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = rn2(2) ? SCIMITAR : QUARTERSTAFF;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  if (!rn2(10)) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+			  break;
+			case PM_SEAFARING_SOLDIER:
+			  w1 = rn2(2) ? SHOTGUN : SAWED_OFF_SHOTGUN;
+		  	  m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+		  	  m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+			  w2 = !rn2(10) ? SILVER_SABER : rn2(2) ? SCIMITAR : IRON_SABER;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
+			case PM_BYZANTINE_SOLDIER:
+			  w1 = JAVELIN;
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  break;
+			case PM_CELTIC_SOLDIER:
+			  w1 = rn2(2) ? SLING : METAL_SLING;
+		  	  m_initthrow(mtmp, FLINT, 25);
+		  	  m_initthrow(mtmp, SLING_AMMO, 25);
+			  w2 = rn2(2) ? WAR_HAMMER : CLUB;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
 			case PM_BEGINNER_MERC:
 			  w1 = SHORT_SWORD;
 			  w2 = NOOB_POLLAX;
@@ -1277,6 +1339,66 @@ register struct monst *mtmp;
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  }
 			  break;
+			case PM_YAMATO_LIEUTENANT:
+			  if (rn2(2)) {
+			  	w1 = HEAVY_MACHINE_GUN;
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  } else {
+			  	w1 = SUBMACHINE_GUN;
+			  	m_initthrow(mtmp, BULLET, 30);
+			  	m_initthrow(mtmp, BULLET, 30);
+			  }
+			  w2 = rn2(2) ? SHORT_SWORD : LANCE;
+			  if (!rn2(4)) {
+			  	(void) mongets(mtmp, FRAG_GRENADE);
+			  	(void) mongets(mtmp, FRAG_GRENADE);
+			  } else if (!rn2(4)) {
+			  	(void) mongets(mtmp, GAS_GRENADE);
+			  	(void) mongets(mtmp, GAS_GRENADE);
+			  }
+			  break;
+			case PM_CARTHAGE_LIEUTENANT:
+			  if (rn2(2)) {
+			  	w1 = HEAVY_MACHINE_GUN;
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  } else {
+			  	w1 = SUBMACHINE_GUN;
+			  	m_initthrow(mtmp, BULLET, 30);
+			  	m_initthrow(mtmp, BULLET, 30);
+			  }
+			  w2 = rn2(2) ? TRIDENT : SPEAR;
+			  if (!rn2(4)) {
+			  	(void) mongets(mtmp, FRAG_GRENADE);
+			  	(void) mongets(mtmp, FRAG_GRENADE);
+			  } else if (!rn2(4)) {
+			  	(void) mongets(mtmp, GAS_GRENADE);
+			  	(void) mongets(mtmp, GAS_GRENADE);
+			  }
+			  break;
+			case PM_ROMAN_LIEUTENANT:
+			  if (rn2(2)) {
+			  	w1 = HEAVY_MACHINE_GUN;
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  	m_initthrow(mtmp, BULLET, 50);
+			  } else {
+			  	w1 = SUBMACHINE_GUN;
+			  	m_initthrow(mtmp, BULLET, 30);
+			  	m_initthrow(mtmp, BULLET, 30);
+			  }
+			  w2 = rn2(2) ? LONG_SWORD : GRAIN_SCYTHE;
+			  if (!rn2(4)) {
+			  	(void) mongets(mtmp, FRAG_GRENADE);
+			  	(void) mongets(mtmp, FRAG_GRENADE);
+			  } else if (!rn2(4)) {
+			  	(void) mongets(mtmp, GAS_GRENADE);
+			  	(void) mongets(mtmp, GAS_GRENADE);
+			  }
+			  break;
 			case PM_SERGEANT:
 			  if (rn2(2)) {
 			  	w1 = AUTO_SHOTGUN;
@@ -1288,6 +1410,94 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, BULLET, 30);
 			  }
 			  w2= rn2(2) ? DAGGER : KNIFE;
+			  if (!rn2(5)) {
+			  	m_initthrow(mtmp, FRAG_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  } else if (!rn2(5)) {
+			  	m_initthrow(mtmp, GAS_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  }
+			  break;
+			case PM_EXTRATERRESTRIAL_SERGEANT:
+			  if (rn2(2)) {
+			  	w1 = AUTO_SHOTGUN;
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  } else {
+			  	w1 = ASSAULT_RIFLE;
+			  	m_initthrow(mtmp, BULLET, 30);
+			  	m_initthrow(mtmp, BULLET, 30);
+			  }
+			  w2= rn2(2) ? DAGGER : KNIFE;
+			  if (!rn2(5)) {
+			  	m_initthrow(mtmp, FRAG_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  } else if (!rn2(5)) {
+			  	m_initthrow(mtmp, GAS_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  }
+			  break;
+			case PM_MINOAN_SERGEANT:
+			  if (rn2(2)) {
+			  	w1 = YUMI;
+			  	m_initthrow(mtmp, YA, 30);
+			  	m_initthrow(mtmp, YA, 30);
+			  } else {
+			  	w1 = CROSSBOW;
+			  	m_initthrow(mtmp, CROSSBOW_BOLT, 30);
+			  	m_initthrow(mtmp, CROSSBOW_BOLT, 30);
+			  }
+			  w2= rn2(2) ? DAGGER : KNIFE;
+			  break;
+			case PM_HUN_SERGEANT:
+			  if (rn2(2)) {
+			  	w1 = AUTO_SHOTGUN;
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  } else {
+			  	w1 = ASSAULT_RIFLE;
+			  	m_initthrow(mtmp, BULLET, 30);
+			  	m_initthrow(mtmp, BULLET, 30);
+			  }
+			  w2= rn2(2) ? STEEL_WHIP : CHAINWHIP;
+			  if (!rn2(5)) {
+			  	m_initthrow(mtmp, FRAG_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  } else if (!rn2(5)) {
+			  	m_initthrow(mtmp, GAS_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  }
+			  break;
+			case PM_MONGOL_SERGEANT:
+			  if (rn2(2)) {
+			  	w1 = AUTO_SHOTGUN;
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  } else {
+			  	w1 = ASSAULT_RIFLE;
+			  	m_initthrow(mtmp, BULLET, 30);
+			  	m_initthrow(mtmp, BULLET, 30);
+			  }
+			  w2= rn2(2) ? LONG_SWORD : TWO_HANDED_SWORD;
+			  if (!rn2(5)) {
+			  	m_initthrow(mtmp, FRAG_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  } else if (!rn2(5)) {
+			  	m_initthrow(mtmp, GAS_GRENADE, 5);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			  }
+			  break;
+			case PM_PERSIAN_SERGEANT:
+			  if (rn2(2)) {
+			  	w1 = AUTO_SHOTGUN;
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			  } else {
+			  	w1 = ASSAULT_RIFLE;
+			  	m_initthrow(mtmp, BULLET, 30);
+			  	m_initthrow(mtmp, BULLET, 30);
+			  }
+			  w2= rn2(2) ? BARDICHE : FAUCHARD;
 			  if (!rn2(5)) {
 			  	m_initthrow(mtmp, FRAG_GRENADE, 5);
 				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
@@ -1326,6 +1536,31 @@ register struct monst *mtmp;
 			  	  	5);
 			  } else {
 				  w2 = rn2(2) ? SILVER_SABER : DAGGER;
+			  }
+			  break;
+			case PM_GOTHIC_CAPTAIN:
+			  if (rn2(2)) {
+			  	w1 = AUTO_SHOTGUN;
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+			  	m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+			  } else if (rn2(2)) {
+			  	w1 = HEAVY_MACHINE_GUN;
+			  	m_initthrow(mtmp, BULLET, 60);
+			  	m_initthrow(mtmp, BULLET, 60);
+			  	m_initthrow(mtmp, BULLET, 60);
+			  } else {
+			  	w1 = ASSAULT_RIFLE;
+			  	m_initthrow(mtmp, BULLET, 60);
+			  	m_initthrow(mtmp, BULLET, 60);
+			  }
+			  if (rn2(2)) {
+				  w2 = ROCKET_LAUNCHER;
+			  	  m_initthrow(mtmp, ROCKET, 5);
+			  } else if (!rn2(4)) {
+				  (void) mongets(mtmp, GRENADE_LAUNCHER);			  
+			  	  m_initthrow(mtmp, (rn2(2) ? FRAG_GRENADE : GAS_GRENADE), 5);
+			  } else {
+				  w2 = rn2(2) ? GREAT_HOUCHOU : WEIGHTED_FLAIL;
 			  }
 			  break;
 			case PM_CHIEF_YEOMAN_WARDER:
@@ -7754,13 +7989,35 @@ register struct	monst	*mtmp;
 		    switch(monsndx(ptr)) {
 			case PM_BEGINNER_MERC: mac = 10; break;
 			case PM_UNARMORED_SOLDIER: mac = 10; break;
+			case PM_WEAKISH_SOLDIER: mac = 10; break;
+			case PM_LUSH_SOLDIER: mac = 10; break;
+			case PM_NEWBIE_SOLDIER: mac = 10; break;
+			case PM_RECRUIT_SOLDIER: mac = 10; break;
 			case PM_GUARD: mac = -1; break;
 			case PM_PRISON_GUARD: mac = -2; break;
 			case PM_SOLDIER: mac = 3; break;
+			case PM_TEUTON_SOLDIER: mac = 3; break;
+			case PM_FRANKISH_SOLDIER: mac = 3; break;
+			case PM_BRITISH_SOLDIER: mac = 3; break;
+			case PM_AMERICAN_SOLDIER: mac = 3; break;
+			case PM_ARAB_SOLDIER: mac = 3; break;
+			case PM_ASIAN_SOLDIER: mac = 3; break;
+			case PM_SEAFARING_SOLDIER: mac = 3; break;
+			case PM_BYZANTINE_SOLDIER: mac = 3; break;
+			case PM_CELTIC_SOLDIER: mac = 3; break;
 			case PM_ILLUSIONARY_SOLDIER: mac = 3; break;
 			case PM_SERGEANT: mac = 0; break;
+			case PM_EXTRATERRESTRIAL_SERGEANT: mac = 0; break;
+			case PM_MINOAN_SERGEANT: mac = 0; break;
+			case PM_HUN_SERGEANT: mac = 0; break;
+			case PM_MONGOL_SERGEANT: mac = 0; break;
+			case PM_PERSIAN_SERGEANT: mac = 0; break;
 			case PM_LIEUTENANT: mac = -2; break;
+			case PM_YAMATO_LIEUTENANT: mac = -2; break;
+			case PM_CARTHAGE_LIEUTENANT: mac = -2; break;
+			case PM_ROMAN_LIEUTENANT: mac = -2; break;
 			case PM_CAPTAIN: mac = -3; break;
+			case PM_GOTHIC_CAPTAIN: mac = -3; break;
 			case PM_GENERAL: mac = -3; break;
 			case PM_YEOMAN_WARDER:
 			case PM_WATCHMAN: mac = 3; break;
@@ -7812,6 +8069,10 @@ register struct	monst	*mtmp;
 			ptr != &mons[PM_WATCHMAN] &&
 			ptr != &mons[PM_BEGINNER_MERC] &&
 			ptr != &mons[PM_UNARMORED_SOLDIER] &&
+			ptr != &mons[PM_NEWBIE_SOLDIER] &&
+			ptr != &mons[PM_WEAKISH_SOLDIER] &&
+			ptr != &mons[PM_LUSH_SOLDIER] &&
+			ptr != &mons[PM_RECRUIT_SOLDIER] &&
 			ptr != &mons[PM_ANGRY_WATCHMAN] &&
 			ptr != &mons[PM_ANGRY_WATCH_LIEUTENANT] &&
 			ptr != &mons[PM_ANGRY_WATCH_LEADER] &&
@@ -7821,7 +8082,7 @@ register struct	monst	*mtmp;
 			ptr != &mons[PM_WATCH_CAPTAIN]) {
 			if (!rn2(15)) (void) mongets(mtmp, K_RATION);
 			if (!rn2(12)) (void) mongets(mtmp, C_RATION);
-			if (ptr != &mons[PM_SOLDIER] && !rn2(3))
+			if (ptr != &mons[PM_SOLDIER] && ptr != &mons[PM_TEUTON_SOLDIER] && ptr != &mons[PM_FRANKISH_SOLDIER] && ptr != &mons[PM_BRITISH_SOLDIER] && ptr != &mons[PM_AMERICAN_SOLDIER] && ptr != &mons[PM_ARAB_SOLDIER] && ptr != &mons[PM_ASIAN_SOLDIER] && ptr != &mons[PM_SEAFARING_SOLDIER] && ptr != &mons[PM_BYZANTINE_SOLDIER] && ptr != &mons[PM_CELTIC_SOLDIER] && !rn2(3))
 				(void) mongets(mtmp, BUGLE);
 		    } else
 			   if (ptr == &mons[PM_WATCHMAN] && rn2(3))
@@ -19184,6 +19445,15 @@ loveheelover:
 
 	/* ordinary soldiers rarely have access to magic (or gold :-) */
 	if (ptr == &mons[PM_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_TEUTON_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_FRANKISH_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_BRITISH_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_AMERICAN_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_ARAB_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_ASIAN_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_SEAFARING_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_BYZANTINE_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_CELTIC_SOLDIER] && rn2(15)) return;
 
 
 #ifndef GOLDOBJ
@@ -21540,7 +21810,7 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
-	if (!rn2(20) && uarmh && uarmh->oartifact == ART_ARMY_LEADER && (mndx == PM_SOLDIER || mndx == PM_SERGEANT || mndx == PM_LIEUTENANT || mndx == PM_CAPTAIN || mndx == PM_GENERAL) ) {
+	if (!rn2(20) && uarmh && uarmh->oartifact == ART_ARMY_LEADER && (mndx == PM_SOLDIER || mndx == PM_SERGEANT || mndx == PM_LIEUTENANT || mndx == PM_CAPTAIN || mndx == PM_GENERAL || (mndx >= PM_TEUTON_SOLDIER && mndx <= PM_GOTHIC_CAPTAIN) ) ) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}

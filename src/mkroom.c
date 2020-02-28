@@ -727,7 +727,7 @@ struct mkroom *sroom;
 		if ( ((rnd(100) <= moreorless) || (rn2(5) && sx == tx && sy == ty)) && (type != EMPTYNEST) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 
-		    (type == INSIDEROOM) ? (/*!*/rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
+		    (type == INSIDEROOM) ? (rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
 
 		    (type == BARRACKS) ? squadmon() :
 		    (type == DOOMEDBARRACKS) ? doomsquadmon() :
@@ -2390,19 +2390,10 @@ prisonermon()	/* return random prisoner type --Amy */
 	}
 }
 
-#define NSTYPES (PM_CAPTAIN - PM_SOLDIER + 1)
-
-static struct {
-    unsigned	pm;
-    unsigned	prob;
-} squadprob[NSTYPES] = {
-    {PM_SOLDIER, 80}, {PM_SERGEANT, 15}, {PM_LIEUTENANT, 4}, {PM_CAPTAIN, 1}
-};
-
 STATIC_OVL struct permonst *
 squadmon()		/* return soldier types. */
 {
-	int sel_prob, i, cpro, mndx;
+	int sel_prob, i, mndx;
 
 	sel_prob = rnd(80+level_difficulty());
 
@@ -2423,22 +2414,59 @@ squadmon()		/* return soldier types. */
 		depthuz = depth(&u.uz);
 	}
 
-	cpro = 0;
-
 	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (4 + rn2(2)))) {
-		mndx = PM_UNARMORED_SOLDIER;
+		switch (rnd(5)) {
+			case 1: mndx = PM_UNARMORED_SOLDIER; break;
+			case 2: mndx = PM_WEAKISH_SOLDIER; break;
+			case 3: mndx = PM_NEWBIE_SOLDIER; break;
+			case 4: mndx = PM_LUSH_SOLDIER; break;
+			case 5: mndx = PM_RECRUIT_SOLDIER; break;
+		}
 		goto gotone;
 	}
 
-	for (i = 0; i < NSTYPES; i++) {
-	    cpro += squadprob[i].prob;
-	    if (cpro > sel_prob) {
-		mndx = squadprob[i].pm;
+	if (sel_prob < 81) {
+		switch (rnd(10)) {
+			case 1: mndx = PM_SOLDIER; break;
+			case 2: mndx = PM_TEUTON_SOLDIER; break;
+			case 3: mndx = PM_FRANKISH_SOLDIER; break;
+			case 4: mndx = PM_BRITISH_SOLDIER; break;
+			case 5: mndx = PM_AMERICAN_SOLDIER; break;
+			case 6: mndx = PM_ARAB_SOLDIER; break;
+			case 7: mndx = PM_ASIAN_SOLDIER; break;
+			case 8: mndx = PM_SEAFARING_SOLDIER; break;
+			case 9: mndx = PM_BYZANTINE_SOLDIER; break;
+			case 10: mndx = PM_CELTIC_SOLDIER; break;
+		}
 		goto gotone;
-	    }
 	}
-	mndx = squadprob[rn2(NSTYPES)].pm;
-	if ((depthuz < 8) && !In_sokoban_real(&u.uz) && !In_mainframe(&u.uz) && (level_difficulty() < (4 + rn2(2)))) mndx = PM_UNARMORED_SOLDIER;
+	if (sel_prob < 96) {
+		switch (rnd(6)) {
+			case 1: mndx = PM_SERGEANT; break;
+			case 2: mndx = PM_EXTRATERRESTRIAL_SERGEANT; break;
+			case 3: mndx = PM_MINOAN_SERGEANT; break;
+			case 4: mndx = PM_HUN_SERGEANT; break;
+			case 5: mndx = PM_MONGOL_SERGEANT; break;
+			case 6: mndx = PM_PERSIAN_SERGEANT; break;
+		}
+		goto gotone;
+	}
+	if (sel_prob < 100) {
+		switch (rnd(4)) {
+			case 1: mndx = PM_LIEUTENANT; break;
+			case 2: mndx = PM_YAMATO_LIEUTENANT; break;
+			case 3: mndx = PM_CARTHAGE_LIEUTENANT; break;
+			case 4: mndx = PM_ROMAN_LIEUTENANT; break;
+		}
+		goto gotone;
+	}
+	if (sel_prob > 120 && !rn2(3)) {
+		mndx = PM_GENERAL;
+		goto gotone;
+	}
+	mndx = rn2(2) ? PM_CAPTAIN : PM_GOTHIC_CAPTAIN;
+	goto gotone;
+
 gotone:
 	if (!(mvitals[mndx].mvflags & G_GONE)) return(&mons[mndx]);
 	else			    return((struct permonst *) 0);

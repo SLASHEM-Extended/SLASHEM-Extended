@@ -906,11 +906,47 @@ register struct obj *gold;
 		    if (rn2(3)) {
 			if (mtmp->data == &mons[PM_SOLDIER])
 			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_TEUTON_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_FRANKISH_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_BRITISH_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_AMERICAN_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_ARAB_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_ASIAN_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_SEAFARING_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_BYZANTINE_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_CELTIC_SOLDIER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_EXTRATERRESTRIAL_SERGEANT])
+			   goldreqd = 250L;
+			else if (mtmp->data == &mons[PM_MINOAN_SERGEANT])
+			   goldreqd = 250L;
+			else if (mtmp->data == &mons[PM_HUN_SERGEANT])
+			   goldreqd = 250L;
+			else if (mtmp->data == &mons[PM_MONGOL_SERGEANT])
+			   goldreqd = 250L;
+			else if (mtmp->data == &mons[PM_PERSIAN_SERGEANT])
+			   goldreqd = 250L;
 			else if (mtmp->data == &mons[PM_SERGEANT])
 			   goldreqd = 250L;
 			else if (mtmp->data == &mons[PM_LIEUTENANT])
 			   goldreqd = 500L;
+			else if (mtmp->data == &mons[PM_YAMATO_LIEUTENANT])
+			   goldreqd = 500L;
+			else if (mtmp->data == &mons[PM_CARTHAGE_LIEUTENANT])
+			   goldreqd = 500L;
+			else if (mtmp->data == &mons[PM_ROMAN_LIEUTENANT])
+			   goldreqd = 500L;
 			else if (mtmp->data == &mons[PM_CAPTAIN])
+			   goldreqd = 750L;
+			else if (mtmp->data == &mons[PM_GOTHIC_CAPTAIN])
 			   goldreqd = 750L;
 			else if (mtmp->data == &mons[PM_GENERAL])
 			   goldreqd = 1000L;
