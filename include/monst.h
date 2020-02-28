@@ -364,6 +364,18 @@ struct monst {
 	Bitfield(egotype_maecke,1); /* AD_MAGC */
 	Bitfield(egotype_flamer,1); /* AD_FLAM */
 
+	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
+	Bitfield(nurse_decontaminate,1);
+	Bitfield(nurse_healing,1);
+	Bitfield(nurse_curesickness,1);
+	Bitfield(nurse_curesliming,1);
+	Bitfield(nurse_curesanity,1);
+	Bitfield(nurse_medicalsupplies,1);
+	Bitfield(nurse_purchasedrugs,1);
+	Bitfield(nurse_obtainsymbiote,1);
+	Bitfield(nurse_fixsymbiote,1);
+	Bitfield(nurse_shutdownsymbiote,1);
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

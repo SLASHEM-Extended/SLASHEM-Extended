@@ -19668,6 +19668,20 @@ register int	mmflags;
 	}
 	if (!rn2(30)) mtmp->crapbonus += rnd(50);
 
+	/* initialize nurse services... yes it's not a bug that we set this for every monster, because monsters are capable
+	 * of polymorphing into MS_NURSE monsters, you noob :P --Amy */
+	mtmp->nurse_extrahealth = !rn2(5);
+	mtmp->nurse_decontaminate = !rn2(20);
+	mtmp->nurse_healing = !rn2(3);
+	mtmp->nurse_curesickness = !rn2(10);
+	mtmp->nurse_curesliming = !rn2(15);
+	mtmp->nurse_curesanity = !rn2(10);
+	mtmp->nurse_medicalsupplies = !rn2(5);
+	mtmp->nurse_purchasedrugs = !rn2(10);
+	mtmp->nurse_obtainsymbiote = !rn2(10);
+	mtmp->nurse_fixsymbiote = !rn2(15);
+	mtmp->nurse_shutdownsymbiote = !rn2(8);
+
 	mtmp->sagesvisible = !rn2(10);
 	mtmp->internetvisible = !rn2(9);
 	mtmp->stunnovisible = rn2(4);

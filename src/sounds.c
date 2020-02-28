@@ -3070,31 +3070,36 @@ register struct monst *mtmp;
 			menu_item *selected;
 			int n;
 
+			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote) {
+				verbalize("Sorry. I'm all out of services.");
+				goto noservices;
+			}
+
 			any.a_void = 0;         /* zero out all bits */
 			tmpwin = create_nhwindow(NHW_MENU);
 			start_menu(tmpwin);
 			any.a_int = 1;
-			add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, "Extra Health", MENU_UNSELECTED);
+			if (mtmp->nurse_extrahealth) add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, "Extra Health", MENU_UNSELECTED);
 			any.a_int = 2;
-			add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, "Decontaminate", MENU_UNSELECTED);
+			if (mtmp->nurse_decontaminate) add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, "Decontaminate", MENU_UNSELECTED);
 			any.a_int = 3;
-			add_menu(tmpwin, NO_GLYPH, &any , 'h', 0, ATR_NONE, "Healing", MENU_UNSELECTED);
+			if (mtmp->nurse_healing) add_menu(tmpwin, NO_GLYPH, &any , 'h', 0, ATR_NONE, "Healing", MENU_UNSELECTED);
 			any.a_int = 4;
-			add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE, "Cure Sickness", MENU_UNSELECTED);
+			if (mtmp->nurse_curesickness) add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE, "Cure Sickness", MENU_UNSELECTED);
 			any.a_int = 5;
-			add_menu(tmpwin, NO_GLYPH, &any , 'l', 0, ATR_NONE, "Cure Sliming", MENU_UNSELECTED);
+			if (mtmp->nurse_curesliming) add_menu(tmpwin, NO_GLYPH, &any , 'l', 0, ATR_NONE, "Cure Sliming", MENU_UNSELECTED);
 			any.a_int = 6;
-			add_menu(tmpwin, NO_GLYPH, &any , 'i', 0, ATR_NONE, "Cure Sanity", MENU_UNSELECTED);
+			if (mtmp->nurse_curesanity) add_menu(tmpwin, NO_GLYPH, &any , 'i', 0, ATR_NONE, "Cure Sanity", MENU_UNSELECTED);
 			any.a_int = 7;
-			add_menu(tmpwin, NO_GLYPH, &any , 'm', 0, ATR_NONE, "Medical Supplies", MENU_UNSELECTED);
+			if (mtmp->nurse_medicalsupplies) add_menu(tmpwin, NO_GLYPH, &any , 'm', 0, ATR_NONE, "Medical Supplies", MENU_UNSELECTED);
 			any.a_int = 8;
-			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Purchase Drugs", MENU_UNSELECTED);
+			if (mtmp->nurse_purchasedrugs) add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Purchase Drugs", MENU_UNSELECTED);
 			any.a_int = 9;
-			add_menu(tmpwin, NO_GLYPH, &any , 'o', 0, ATR_NONE, "Obtain Symbiote", MENU_UNSELECTED);
+			if (mtmp->nurse_obtainsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 'o', 0, ATR_NONE, "Obtain Symbiote", MENU_UNSELECTED);
 			any.a_int = 10;
-			add_menu(tmpwin, NO_GLYPH, &any , 'f', 0, ATR_NONE, "Fix Symbiote", MENU_UNSELECTED);
+			if (mtmp->nurse_fixsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 'f', 0, ATR_NONE, "Fix Symbiote", MENU_UNSELECTED);
 			any.a_int = 11;
-			add_menu(tmpwin, NO_GLYPH, &any , 's', 0, ATR_NONE, "Shutdown Symbiote", MENU_UNSELECTED);
+			if (mtmp->nurse_shutdownsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 's', 0, ATR_NONE, "Shutdown Symbiote", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -3107,6 +3112,7 @@ register struct monst *mtmp;
 							verbalize("I can inject extra health into you for %d dollars if you want.", nursehpcost);
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								if (!rn2(10)) mtmp->nurse_extrahealth = 0;
 								u.ugold -= nursehpcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3129,6 +3135,7 @@ register struct monst *mtmp;
 							verbalize("I can decontaminate you for %d dollars if you want.", nursedecontcost);
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								if (!rn2(5)) mtmp->nurse_decontaminate = 0;
 								u.ugold -= nursedecontcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3153,6 +3160,7 @@ register struct monst *mtmp;
 							verbalize("Sure thing, I can heal you for 500 dollars.");
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								if (!rn2(50)) mtmp->nurse_healing = 0;
 								u.ugold -= 500;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3176,6 +3184,7 @@ register struct monst *mtmp;
 							verbalize("It is wise of you to come to see a doctor. For only 5000 dollars, I can heal you.");
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								if (!rn2(15)) mtmp->nurse_curesickness = 0;
 								u.ugold -= 5000;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3195,6 +3204,7 @@ register struct monst *mtmp;
 							verbalize("Eek! Yeah that would normally require a medical doctor, but if you have 10000 dollars I can give you something that should hopefully cure the sliming.");
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								if (!rn2(12)) mtmp->nurse_curesliming = 0;
 								u.ugold -= 10000;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3212,6 +3222,7 @@ register struct monst *mtmp;
 							verbalize("I can cure your sanity for %d dollars if you want.", nursesanitycost);
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								if (!rn2(5)) mtmp->nurse_curesanity = 0;
 								u.ugold -= nursesanitycost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3227,6 +3238,7 @@ register struct monst *mtmp;
 							verbalize("Ah, you look like a walking coinpurse. Sure, you can have medical supplies, but they come at a price. For 10000 dollars I can sell you a medical kit.");
 							if (yn("Accept the offer?") == 'y') {
 								u.ugold -= 10000;
+								if (!rn2(10)) mtmp->nurse_medicalsupplies = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
 								struct obj *medkit;
@@ -3248,6 +3260,7 @@ register struct monst *mtmp;
 							verbalize("Hmm, I think I can give you a little something, but I need 2000 dollars to cover up expenses.");
 							if (yn("Accept the offer?") == 'y') {
 								u.ugold -= 2000;
+								if (!rn2(20)) mtmp->nurse_purchasedrugs = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
 								struct obj *medkit;
@@ -3281,6 +3294,7 @@ register struct monst *mtmp;
 							verbalize("A symbiote injection costs %d dollars. According to current Yendorian law, I'm forced to inform you that the symbiote you receive is random and may or may not be useful to you. By continuing, you confirm that you know of this risk and will not hold me responsible if you don't like the result.", nursesymbiotecost);
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Alright, here's your injection.");
+								if (!rn2(10)) mtmp->nurse_obtainsymbiote = 0;
 								u.ugold -= nursesymbiotecost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3319,6 +3333,7 @@ register struct monst *mtmp;
 							verbalize("Sure thing, I can fully heal your symbiote and remove all curses from it for %d dollars.", symhealcost);
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Alright, hold still. Don't worry, this injection won't hurt your symbiote a bit.");
+								if (!rn2(8)) mtmp->nurse_fixsymbiote = 0;
 								u.ugold -= symhealcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3350,6 +3365,7 @@ register struct monst *mtmp;
 							verbalize("Shutting down your symbiote will temporarily prevent it from attacking, defending or otherwise participating in combat. This will cost you %d dollars.", nurseshutdowncost);
 							if (yn("Accept the offer?") == 'y') {
 								verbalize("Okay, here's a special injection for your symbiote. Please hold still.");
+								if (!rn2(20)) mtmp->nurse_shutdownsymbiote = 0;
 								u.ugold -= nurseshutdowncost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
@@ -3367,6 +3383,7 @@ register struct monst *mtmp;
 				} /* switch statement */
 			} /* n > 0 menu check */
 
+noservices:
 	    if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
 		|| (u.twoweap && uswapwep && (uswapwep->oclass == WEAPON_CLASS
 		|| is_weptool(uswapwep))))
