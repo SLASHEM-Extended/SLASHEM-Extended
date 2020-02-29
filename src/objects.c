@@ -6295,6 +6295,7 @@ SCROLL((char *)0,               "SHOUTOUT TO SINGLEFLIPS",  P_NONE,     1,   0, 
 SCROLL((char *)0,               "SUPER TOADIO 64 AKA RELEASIO",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "WHEN WILL BETAIGOIZE EXPLODE",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "THATITWOULDBE ARYTOS PERI TO SOMATI",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "THEY TREAT SLEX AS IF IT WAS INFECTED WITH COVID 19",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 
 
 #ifdef MAIL

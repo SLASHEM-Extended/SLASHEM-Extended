@@ -24881,6 +24881,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"As you enter the shop, the shopkeeper says: 'Come in. Take a closer look at my ass.'",
 	"Effect deactivated. Sorry.",
 	"The Amy is a huge fan of Catrice 'Orange Is The New Black' nail polish.",
+	"The succubus has made you its bitch!",
+	"The gnome zaps a wand of remove resistance! You feel less control over your own body. What do you want to do? (P)ut on a ring of polymorph control, (z)ap yourself with a wand of draining to regain the level at which you get that intrinsic, or (rage)quit this game forever? [pzrq] (r) _",
 
 };
 
