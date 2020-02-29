@@ -879,20 +879,20 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				break;
 			case ELVEN_SHIELD:
 				shieldblockrate = 30;
-				if (is_elf(mon->data)) shieldblockrate += 5;
+				if (is_elf(mtmp->data)) shieldblockrate += 5;
 				break;
 			case URUK_HAI_SHIELD:
 				shieldblockrate = 32;
-				if (is_orc(mon->data)) shieldblockrate += 5;
+				if (is_orc(mtmp->data)) shieldblockrate += 5;
 				break;
 			case ORCISH_SHIELD:
 			case ORCISH_GUARD_SHIELD:
 				shieldblockrate = 28;
-				if (is_orc(mon->data)) shieldblockrate += 5;
+				if (is_orc(mtmp->data)) shieldblockrate += 5;
 				break;
 			case DWARVISH_ROUNDSHIELD:
 				shieldblockrate = 34;
-				if (is_dwarf(mon->data)) shieldblockrate += 5;
+				if (is_dwarf(mtmp->data)) shieldblockrate += 5;
 				break;
 			case LARGE_SHIELD:
 			case SHIELD:
