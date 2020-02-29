@@ -3327,6 +3327,12 @@ struct obj *tstone;
 		    (Role_if(PM_ARCHEOLOGIST) || Role_if(PM_GOLDMINER) || Race_if(PM_GNOME))))) {
 	    makeknown(TOUCHSTONE);
 	    makeknown(obj->otyp);
+	    if (!rn2(10)) {
+			if (tstone->blessed) tstone->blessed = 0;
+			else curse(tstone);
+			pline("Your touchstone seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+	    }
 	    prinv((char *)0, obj, 0L);
 	    return;
 	} else {
