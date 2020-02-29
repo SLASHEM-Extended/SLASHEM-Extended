@@ -173,7 +173,7 @@ awaken_soldiers()
 
 	while(mtmp) {
 	    if (!DEADMONSTER(mtmp) &&
-			is_mercenary(mtmp->data) && mtmp->data != &mons[PM_GUARD]) {
+			is_mercenary(mtmp->data) && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD]) {
 		mtmp->mpeaceful = mtmp->msleeping = mtmp->mfrozen = 0;
 		mtmp->masleep = 0;
 		mtmp->mcanmove = 1;

@@ -1550,6 +1550,7 @@ struct monst *mtmp;
 
 	    switch (monsndx(mtmp->data)) {
 	    case PM_SPARD:
+	    case PM_IBERIAN_SOLDIER:
 		    multishot += 3;
 		    break;
 	    case PM_RANGER:

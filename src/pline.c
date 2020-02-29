@@ -720,7 +720,7 @@ register struct monst *mtmp;
 	aligntyp alignment;
 	char info[BUFSZ], monnambuf[BUFSZ];
 
-	if (mtmp->ispriest || mtmp->data == &mons[PM_ALIGNED_PRIEST]
+	if (mtmp->ispriest || mtmp->data == &mons[PM_ALIGNED_PRIEST] || mtmp->data == &mons[PM_ELITE_PRIEST] || mtmp->data == &mons[PM_MASTER_PRIEST]
 				|| mtmp->data == &mons[PM_ANGEL])
 		alignment = EPRI(mtmp)->shralign;
 	else
@@ -810,7 +810,7 @@ register struct monst *mtmp;
 	aligntyp alignment;
 	char info[BUFSZ], monnambuf[BUFSZ];
 
-	if (mtmp->ispriest || mtmp->data == &mons[PM_ALIGNED_PRIEST]
+	if (mtmp->ispriest || mtmp->data == &mons[PM_ALIGNED_PRIEST] || mtmp->data == &mons[PM_MASTER_PRIEST] || mtmp->data == &mons[PM_ELITE_PRIEST]
 				|| mtmp->data == &mons[PM_ANGEL])
 		alignment = EPRI(mtmp)->shralign;
 	else

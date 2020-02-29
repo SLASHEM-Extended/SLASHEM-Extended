@@ -199,7 +199,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 	if(MON_AT(sx+1, sy))
 		(void) rloc(m_at(sx+1, sy), FALSE); /* insurance */
 
-	priest = makemon(&mons[(In_yendorian(&u.uz) && depth(&u.uz) == 1) ? PM_DNETHACK_ELDER_PRIEST_TM_ : isevilvariant ? PM_DNETHACK_ELDER_PRIEST_TM_ : sanctum ? PM_HIGH_PRIEST : PM_ALIGNED_PRIEST],
+	priest = makemon(&mons[(In_yendorian(&u.uz) && depth(&u.uz) == 1) ? PM_DNETHACK_ELDER_PRIEST_TM_ : isevilvariant ? PM_DNETHACK_ELDER_PRIEST_TM_ : sanctum ? PM_HIGH_PRIEST : (level_difficulty() > 39 && Amask2align(levl[sx][sy].altarmask) != A_NONE) ? PM_ELITE_PRIEST : (level_difficulty() > 19 && Amask2align(levl[sx][sy].altarmask) != A_NONE) ? PM_MASTER_PRIEST : PM_ALIGNED_PRIEST],
 			 sx + 1, sy, NO_MM_FLAGS);
 
 	if (priest) {
@@ -287,7 +287,7 @@ char *pname;		/* caller-supplied output buffer */
 
 	strcpy(pname, "the ");
 	if (mon->minvis) strcat(pname, "invisible ");
-	if (mon->ispriest || mon->data == &mons[PM_ALIGNED_PRIEST] ||
+	if (mon->ispriest || mon->data == &mons[PM_ALIGNED_PRIEST] || mon->data == &mons[PM_MASTER_PRIEST] || mon->data == &mons[PM_ELITE_PRIEST] ||
 					mon->data == &mons[PM_ANGEL]) {
 		/* use epri */
 		if (mon->mtame && mon->data == &mons[PM_ANGEL])
@@ -616,7 +616,7 @@ boolean peaceful;
 	register struct monst *roamer;
 	register boolean coaligned = (u.ualign.type == alignment);
 
-	if (ptr != &mons[PM_ALIGNED_PRIEST] && ptr != &mons[PM_ANGEL])
+	if (ptr != &mons[PM_ALIGNED_PRIEST] && ptr != &mons[PM_MASTER_PRIEST] && ptr != &mons[PM_ELITE_PRIEST] && ptr != &mons[PM_ANGEL])
 		return((struct monst *)0);
 	
 	if (MON_AT(x, y)) (void) rloc(m_at(x, y), FALSE);	/* insurance */
@@ -642,7 +642,7 @@ void
 reset_hostility(roamer)
 register struct monst *roamer;
 {
-	if(!(roamer->isminion && (roamer->data == &mons[PM_ALIGNED_PRIEST] ||
+	if(!(roamer->isminion && (roamer->data == &mons[PM_ALIGNED_PRIEST] || roamer->data == &mons[PM_MASTER_PRIEST] || roamer->data == &mons[PM_ELITE_PRIEST] ||
 				  roamer->data == &mons[PM_ANGEL])))
 	        return;
 

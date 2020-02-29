@@ -1234,6 +1234,51 @@ register struct monst *mtmp;
 			  w2 = rn2(2) ? KNIFE : DAGGER;
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			  break;
+			case PM_VANILLA_SOLDIER:
+			  if (rn2(3)) w1 = rn2(2) ? SHORT_SWORD : SPEAR;
+			  else if (!rn2(5)) w1 = LANCE;
+			  else if (!rn2(5)) w1 = DWARVISH_MATTOCK;
+			  else w1 = rnd_class(PARTISAN,BEC_DE_CORBIN);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  break;
+			case PM_VIKING_SOLDIER:
+			  if (rn2(3)) {
+				  w1 = BOW;
+			  	  m_initthrow(mtmp, ARROW, 25);
+			  	  m_initthrow(mtmp, ARROW, 25);
+			  } else {
+				  w1 = CROSSBOW;
+			  	  m_initthrow(mtmp, CROSSBOW_BOLT, 25);
+			  	  m_initthrow(mtmp, CROSSBOW_BOLT, 25);
+			  }
+			  w2 = BATLETH;
+			  break;
+			case PM_SWAMP_SOLDIER:
+			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
+			case PM_JAVA_SOLDIER:
+			  w1 = AKLYS;
+		  	  m_initthrow(mtmp, JAVELIN, 7);
+			  w2 = SPEAR;
+			  break;
+			case PM_IBERIAN_SOLDIER:
+			  w1 = PISTOL;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
+			case PM_ROHIRRIM_SOLDIER:
+			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			  w2 = rn2(2) ? KNIFE : DAGGER;
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+			  break;
 			case PM_TEUTON_SOLDIER:
 			  w1 = rn2(2) ? RIFLE : SUBMACHINE_GUN;
 		  	  m_initthrow(mtmp, BULLET, 25);
@@ -7994,6 +8039,8 @@ register struct	monst	*mtmp;
 			case PM_NEWBIE_SOLDIER: mac = 10; break;
 			case PM_RECRUIT_SOLDIER: mac = 10; break;
 			case PM_GUARD: mac = -1; break;
+			case PM_MASTER_GUARD: mac = -2; break;
+			case PM_ELITE_GUARD: mac = -3; break;
 			case PM_PRISON_GUARD: mac = -2; break;
 			case PM_SOLDIER: mac = 3; break;
 			case PM_TEUTON_SOLDIER: mac = 3; break;
@@ -8005,6 +8052,12 @@ register struct	monst	*mtmp;
 			case PM_SEAFARING_SOLDIER: mac = 3; break;
 			case PM_BYZANTINE_SOLDIER: mac = 3; break;
 			case PM_CELTIC_SOLDIER: mac = 3; break;
+			case PM_VANILLA_SOLDIER: mac = 3; break;
+			case PM_VIKING_SOLDIER: mac = 3; break;
+			case PM_SWAMP_SOLDIER: mac = 3; break;
+			case PM_JAVA_SOLDIER: mac = 3; break;
+			case PM_IBERIAN_SOLDIER: mac = 3; break;
+			case PM_ROHIRRIM_SOLDIER: mac = 3; break;
 			case PM_ILLUSIONARY_SOLDIER: mac = 3; break;
 			case PM_SERGEANT: mac = 0; break;
 			case PM_EXTRATERRESTRIAL_SERGEANT: mac = 0; break;
@@ -8065,6 +8118,8 @@ register struct	monst	*mtmp;
 			mac += 1 + mongets(mtmp, LEATHER_CLOAK);
 
 		    if(ptr != &mons[PM_GUARD] &&
+			ptr != &mons[PM_MASTER_GUARD] &&
+			ptr != &mons[PM_ELITE_GUARD] &&
 			ptr != &mons[PM_PRISON_GUARD] &&
 			ptr != &mons[PM_WATCHMAN] &&
 			ptr != &mons[PM_BEGINNER_MERC] &&
@@ -8082,7 +8137,7 @@ register struct	monst	*mtmp;
 			ptr != &mons[PM_WATCH_CAPTAIN]) {
 			if (!rn2(15)) (void) mongets(mtmp, K_RATION);
 			if (!rn2(12)) (void) mongets(mtmp, C_RATION);
-			if (ptr != &mons[PM_SOLDIER] && ptr != &mons[PM_TEUTON_SOLDIER] && ptr != &mons[PM_FRANKISH_SOLDIER] && ptr != &mons[PM_BRITISH_SOLDIER] && ptr != &mons[PM_AMERICAN_SOLDIER] && ptr != &mons[PM_ARAB_SOLDIER] && ptr != &mons[PM_ASIAN_SOLDIER] && ptr != &mons[PM_SEAFARING_SOLDIER] && ptr != &mons[PM_BYZANTINE_SOLDIER] && ptr != &mons[PM_CELTIC_SOLDIER] && !rn2(3))
+			if (ptr != &mons[PM_SOLDIER] && ptr != &mons[PM_TEUTON_SOLDIER] && ptr != &mons[PM_VANILLA_SOLDIER] && ptr != &mons[PM_VIKING_SOLDIER] && ptr != &mons[PM_SWAMP_SOLDIER] && ptr != &mons[PM_JAVA_SOLDIER] && ptr != &mons[PM_IBERIAN_SOLDIER] && ptr != &mons[PM_ROHIRRIM_SOLDIER] && ptr != &mons[PM_FRANKISH_SOLDIER] && ptr != &mons[PM_BRITISH_SOLDIER] && ptr != &mons[PM_AMERICAN_SOLDIER] && ptr != &mons[PM_ARAB_SOLDIER] && ptr != &mons[PM_ASIAN_SOLDIER] && ptr != &mons[PM_SEAFARING_SOLDIER] && ptr != &mons[PM_BYZANTINE_SOLDIER] && ptr != &mons[PM_CELTIC_SOLDIER] && !rn2(3))
 				(void) mongets(mtmp, BUGLE);
 		    } else
 			   if (ptr == &mons[PM_WATCHMAN] && rn2(3))
@@ -19454,6 +19509,12 @@ loveheelover:
 	if (ptr == &mons[PM_SEAFARING_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_BYZANTINE_SOLDIER] && rn2(15)) return;
 	if (ptr == &mons[PM_CELTIC_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_VANILLA_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_VIKING_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_SWAMP_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_JAVA_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_IBERIAN_SOLDIER] && rn2(15)) return;
+	if (ptr == &mons[PM_ROHIRRIM_SOLDIER] && rn2(15)) return;
 
 
 #ifndef GOLDOBJ
@@ -21642,7 +21703,7 @@ register int	mmflags;
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
-	    else if (!rn2(isgrouper ? 10 : 500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_MASTER_SHOPKEEPER && mndx != PM_ELITE_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
+	    else if (!rn2(isgrouper ? 10 : 500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_MASTER_SHOPKEEPER && mndx != PM_ELITE_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_MASTER_PRIEST && mndx != PM_ELITE_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != PM_MASTER_GUARD && mndx != PM_ELITE_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
 		if (!rn2(isgrouper ? 100 : 500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(isgrouper ?  10 : 100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (!rn2(isgrouper ? 5 : 20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);

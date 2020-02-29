@@ -2426,7 +2426,7 @@ squadmon()		/* return soldier types. */
 	}
 
 	if (sel_prob < 81) {
-		switch (rnd(10)) {
+		switch (rnd(16)) {
 			case 1: mndx = PM_SOLDIER; break;
 			case 2: mndx = PM_TEUTON_SOLDIER; break;
 			case 3: mndx = PM_FRANKISH_SOLDIER; break;
@@ -2437,6 +2437,12 @@ squadmon()		/* return soldier types. */
 			case 8: mndx = PM_SEAFARING_SOLDIER; break;
 			case 9: mndx = PM_BYZANTINE_SOLDIER; break;
 			case 10: mndx = PM_CELTIC_SOLDIER; break;
+			case 11: mndx = PM_VANILLA_SOLDIER; break;
+			case 12: mndx = PM_VIKING_SOLDIER; break;
+			case 13: mndx = PM_SWAMP_SOLDIER; break;
+			case 14: mndx = PM_JAVA_SOLDIER; break;
+			case 15: mndx = PM_IBERIAN_SOLDIER; break;
+			case 16: mndx = PM_ROHIRRIM_SOLDIER; break;
 		}
 		goto gotone;
 	}

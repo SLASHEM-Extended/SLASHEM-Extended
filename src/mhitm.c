@@ -2961,7 +2961,7 @@ meleeattack:
 		badpeteffect(mdef);
 	}
 
-	if ((magr->data == &mons[PM_DHWTY] || magr->data == &mons[PM_BLUEBEAM_GOLEM] || magr->data == &mons[PM_AIRTIGHT_FEMMY] || magr->data == &mons[PM_SVEN] || magr->data == &mons[PM_GRANDMASTER_SVEN] || magr->data == &mons[PM_WORLD_PWNZOR] || magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || magr->egotype_laserpwnzor) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((magr->data == &mons[PM_DHWTY] || magr->data == &mons[PM_ELITE_GUARD] || magr->data == &mons[PM_BLUEBEAM_GOLEM] || magr->data == &mons[PM_AIRTIGHT_FEMMY] || magr->data == &mons[PM_SVEN] || magr->data == &mons[PM_GRANDMASTER_SVEN] || magr->data == &mons[PM_WORLD_PWNZOR] || magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || magr->egotype_laserpwnzor) && monnear(magr, mdef->mx, mdef->my)) {
 		if (!magr->hominglazer && !rn2(20)) {
 			pline("ATTENTION: Something has started to load an ultra-mega-hyper-dyper laser cannon!");
 			magr->hominglazer = 1;
@@ -3249,6 +3249,7 @@ struct monst *magr, *mdef;
 
 	switch (monsndx(magr->data)) {
 	case PM_SPARD:
+	case PM_IBERIAN_SOLDIER:
 		multishot += 3;
 		break;
 	case PM_RANGER:
