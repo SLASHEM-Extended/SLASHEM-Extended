@@ -6121,8 +6121,8 @@ register struct obj *obj;
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
 
-		if (is_lightsaber(obj) && nn && obj->known) sprintf(eos(buf), " (%d)", obj->age);
-		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%d)", obj->age);
+		if (is_lightsaber(obj) && nn && obj->known) sprintf(eos(buf), " (%ld)", obj->age);
+		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%ld)", obj->age);
 
 		break;
 	    case ARMOR_CLASS:
@@ -6265,7 +6265,7 @@ register struct obj *obj;
 			strcat(buf, dn);
 			strcat(buf, " potion");
 		}
-		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%d)", obj->age);
+		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%ld)", obj->age);
 		break;
 	case SCROLL_CLASS:
 		strcpy(buf, "scroll");

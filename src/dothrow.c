@@ -2293,7 +2293,7 @@ boolean polearming;
 				shieldblockrate = 43;
 				break;
 
-			default: impossible("Unknown type of shield (%d)", blocker->otyp);
+			default: impossible("Unknown type of shield (%ld)", blocker->otyp);
 
 			}
 

@@ -1107,7 +1107,7 @@ int type;
 	    }
 
 	    set_itimeout(&Sick, xtime);
-	    if (Sickopathy) pline("You have %d turns to live.", Sick);
+	    if (Sickopathy) pline("You have %ld turns to live.", Sick);
 	    if (type == SICK_VOMITABLE) u.cnd_sickfoodpois++;
 	    else u.cnd_sickillness++;
 	    u.usick_type |= type;
@@ -8259,7 +8259,7 @@ peffects(otmp)
 		break;
 
 	default:
-		impossible("What a funny potion! (%u)", otmp->otyp);
+		impossible("What a funny potion! (%ld)", otmp->otyp);
 		return(0);
 	}
 	return(-1);

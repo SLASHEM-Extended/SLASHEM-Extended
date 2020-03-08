@@ -27,6 +27,7 @@ static boolean cancelled_don = FALSE;
 
 static NEARDATA const char see_yourself[] = "see yourself";
 static NEARDATA const char unknown_type[] = "Unknown type of %s (%d)";
+static NEARDATA const char unknown_type_long[] = "Unknown type of %s (%ld)";
 static NEARDATA const char c_armor[]  = "armor",
 			   c_suit[]   = "suit",
 			   c_shirt[]  = "shirt",
@@ -302,7 +303,7 @@ Boots_on()
 			spoteffects(FALSE);
 		}
 		break;
-	default: impossible(unknown_type, c_boots, uarmf->otyp);
+	default: impossible(unknown_type_long, c_boots, uarmf->otyp);
     }
 
     if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) ) {
@@ -1094,7 +1095,7 @@ Cloak_on()
 		EAcid_resistance |= WORN_CLOAK;
   		break;
 #endif
-	default: impossible(unknown_type, c_cloak, uarmc->otyp);
+	default: impossible(unknown_type_long, c_cloak, uarmc->otyp);
     }
 
 	if (uarmc && itemhasappearance(uarmc, APP_STRAITJACKET_CLOAK) ) {
@@ -1800,7 +1801,7 @@ Helmet_on()
 	case DUMMY_HELMET_U:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
-	default: impossible(unknown_type, c_helmet, uarmh->otyp);
+	default: impossible(unknown_type_long, c_helmet, uarmh->otyp);
     }
 
     if (uarmh && uarmh->oartifact == ART_NYPHERISBANE) {
@@ -2092,7 +2093,7 @@ Helmet_off()
 
 	    break;
 
-	default: impossible(unknown_type, c_helmet, uarmh->otyp);
+	default: impossible(unknown_type_long, c_helmet, uarmh->otyp);
     }
     setworn((struct obj *)0, W_ARMH);
     cancelled_don = FALSE;
@@ -2215,7 +2216,7 @@ Gloves_on()
 	case GAUNTLETS_OF_DEXTERITY:
 		makeknown(uarmg->otyp);
 		break;
-	default: impossible(unknown_type, c_gloves, uarmg->otyp);
+	default: impossible(unknown_type_long, c_gloves, uarmg->otyp);
     }
 
     if (uarmg && itemhasappearance(uarmg, APP_SPANISH_GLOVES) ) {
@@ -2476,7 +2477,7 @@ Gloves_off()
 	case GAUNTLETS_OF_DEXTERITY:
 		makeknown(uarmg->otyp);
 	    break;
-	default: impossible(unknown_type, c_gloves, uarmg->otyp);
+	default: impossible(unknown_type_long, c_gloves, uarmg->otyp);
     }
     setworn((struct obj *)0, W_ARMG);
     cancelled_don = FALSE;

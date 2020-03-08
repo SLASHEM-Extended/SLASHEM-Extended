@@ -228,7 +228,7 @@ struct toptenentry *tt;
 			for(dp = tt->death; *dp; dp++) {
 				if(!strncmp(dp, " Conduct=", 9)) {
 					dp2 = dp + 9;
-					sscanf(dp2, "%d", &tt->conduct);
+					sscanf(dp2, "%ld", &tt->conduct);
 					/* Find trailing null or space */
 					while(*dp2 && *dp2 != ' ')
 						dp2++;
@@ -270,7 +270,7 @@ struct toptenentry *tt;
 	/* Add a trailing " Conduct=%d" to tt->death */
 	/*if(tt->conduct != 8191) {*/
 		cp = tt->death + strlen(tt->death);
-		sprintf(cp, " Conduct=%d", tt->conduct);
+		sprintf(cp, " Conduct=%ld", tt->conduct);
 	/*}*/
 #endif
 
@@ -336,8 +336,8 @@ struct toptenentry *tt;
                 XLOG_SEP "hp=%d"
                 XLOG_SEP "maxhp=%d"
                 XLOG_SEP "deaths=%d"
-                XLOG_SEP "deathdate=%d"
-                XLOG_SEP "birthdate=%d"
+                XLOG_SEP "deathdate=%ld"
+                XLOG_SEP "birthdate=%ld"
                 XLOG_SEP "uid=%d",
                 tt->ver_major, tt->ver_minor, tt->patchlevel,
                 tt->points, tt->deathdnum, tt->deathlev,

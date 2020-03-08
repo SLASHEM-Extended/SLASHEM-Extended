@@ -2309,7 +2309,7 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 			case 13: /* violet */
 			    i = pseudorand ? AMETHYST : FLUORITE;
 			    break;
-			default: impossible("bad glass gem %d?", obj->otyp);
+			default: impossible("bad glass gem %ld?", obj->otyp);
 			    i = /*STRANGE_OBJECT*/MORGANITE; /* fail safe - in case of doubt have it be something expensive --Amy */
 			    break;
 		    }

@@ -1725,7 +1725,7 @@ int x, y;
 		loudness = 20;
 	    } else res = FALSE;
 	    break;
-	default: impossible("magic (%d) attempted on door.", otmp->otyp);
+	default: impossible("magic (%ld) attempted on door.", otmp->otyp);
 	    break;
 	}
 	if (msg && cansee(x,y)) pline("%s", msg);

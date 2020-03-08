@@ -2814,7 +2814,7 @@ boolean shopinit;
 	case COIN_CLASS:
 		break;	/* do nothing */
 	default:
-		impossible("impossible mkobj %d, sym '%c'.", otmp->otyp,
+		impossible("impossible mkobj %ld, sym '%c'.", otmp->otyp,
 						objects[otmp->otyp].oc_class);
 		return (struct obj *)0;
 	}

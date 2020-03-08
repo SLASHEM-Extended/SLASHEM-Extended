@@ -826,7 +826,7 @@ bot2str(char *newbot2)
 	else
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
-		sprintf(nb = eos(newbot2), "%c%d ",
+		sprintf(nb = eos(newbot2), "%c%ld ",
 		  flags.supergmmode ? monsyms[S_SNAKE] : flags.gmmode ? monsyms[S_GNOME] : oc_syms[COIN_CLASS],
 #ifndef GOLDOBJ
 		u.ugold
@@ -907,7 +907,7 @@ bot2str(char *newbot2)
 #ifdef REALTIME_ON_BOTL
   if(iflags.showrealtime) {
     time_t currenttime = get_realtime();
-    sprintf(nb = eos(nb), " %d:%2.2d", currenttime / 3600, 
+    sprintf(nb = eos(nb), " %ld:%2.2ld", currenttime / 3600, 
                                        (currenttime % 3600) / 60);
   }
 #endif
@@ -1297,7 +1297,7 @@ boolean reconfig;
     if (!YouAreThirsty) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
 	    hu_stat[u.uhs] : "";
     *rv++ = reconfig ? "encumberance" : enc_stat[near_capacity()];
-    *rv++ = reconfig ? "flags" : (sprintf(flgs, "%lX",
+    *rv++ = reconfig ? "flags" : (sprintf(flgs, "%d",
         (Levitation ? RAW_STAT_LEVITATION : 0) |
 	(Confusion ? RAW_STAT_CONFUSION : 0) |
 	(Sick && (u.usick_type & SICK_VOMITABLE) ? RAW_STAT_FOODPOIS : 0) |

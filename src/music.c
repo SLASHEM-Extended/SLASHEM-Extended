@@ -660,7 +660,7 @@ hornchoice:
 	    exercise(A_WIS, FALSE);
 	    break;
 	default:
-	    impossible("What a weird instrument (%d)!", instr->otyp);
+	    impossible("What a weird instrument (%ld)!", instr->otyp);
 	    break;
 	}
 	return 2;		/* That takes time */

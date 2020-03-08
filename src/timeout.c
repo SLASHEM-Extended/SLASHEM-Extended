@@ -176,7 +176,7 @@ slime_dialogue()
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			/* make it more obvious for the player how much time they have left --Amy */
-			if (i == 0L && Slimed > 1) pline("You have %d turns to live.", Slimed);
+			if (i == 0L && Slimed > 1) pline("You have %ld turns to live.", Slimed);
 		}
 	    } else
 		pline("%s", str);
@@ -2211,7 +2211,7 @@ nh_timeout()
 	if(Strangled) choke_dialogue();
 	if (Sick && (moves % 7 == 0) ) {
 		pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "Ye still feel poxy." : "You still feel deathly sick.");
-		if (Sickopathy) pline("You have %d turns to live.", Sick);
+		if (Sickopathy) pline("You have %ld turns to live.", Sick);
 	}
 	if(u.mtimedone && !--u.mtimedone) {
 		if (!Race_if(PM_UNGENOMOLD) && u.polyformed) rehumanize();

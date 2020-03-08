@@ -188,7 +188,7 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate = 33;
 			break;
 
-		default: impossible("Unknown type of shield (%d)", uarms->otyp);
+		default: impossible("Unknown type of shield (%ld)", uarms->otyp);
 
 		}
 
@@ -977,7 +977,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				shieldblockrate = 43;
 				break;
 
-			default: impossible("Unknown type of shield (%d)", blocker->otyp);
+			default: impossible("Unknown type of shield (%ld)", blocker->otyp);
 
 		}
 

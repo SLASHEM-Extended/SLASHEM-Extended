@@ -696,7 +696,7 @@ touch_whereis()
 
   sprintf(whereis_file,"%s",dump_format_str(WHEREIS_FILE));
   sprintf(whereis_work,
-	  "player=%s:depth=%d:dnum=%d:dname=%s:turns=%d:score=%ld:role=%s:race=%s:gender=%s:align=%s:amulet=0\n",
+	  "player=%s:depth=%d:dnum=%d:dname=%s:turns=%ld:score=%ld:role=%s:race=%s:gender=%s:align=%s:amulet=0\n",
 	  plname,
 	  depth(&u.uz),
 	  u.uz.dnum,
@@ -774,7 +774,7 @@ d_level *lev;
 	    sprintf(dptr, ".%d", lev->dlevel);
 	sprintf(file, "bon%s", bonesid); 
 #ifdef BONES_POOL 
-	sprintf(eos(file), ".%d", (u.ubirthday % 10)); 
+	sprintf(eos(file), ".%ld", (u.ubirthday % 10)); 
 #endif
 #ifdef VMS
 	strcat(file, ";1");

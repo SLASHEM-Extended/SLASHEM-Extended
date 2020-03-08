@@ -9842,7 +9842,7 @@ secremchoice:
 		break;
 	}
 	default:
-		impossible("What weird effect is this? (%u)", sobj->otyp);
+		impossible("What weird effect is this? (%ld)", sobj->otyp);
 	}
 	return(0);
 }

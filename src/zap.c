@@ -3748,7 +3748,7 @@ smell:
 	case SPE_BLANK_PAPER: /* placeholder for T_BLADE_ANGER */
 		break;
 	default:
-		impossible("What an interesting effect (%d)", otmp->otyp);
+		impossible("What an interesting effect (%ld)", otmp->otyp);
 		break;
 	}
 	return res;
@@ -6914,7 +6914,7 @@ boolean ordinary;
 		    } while (didmerge);
 		    }
 		    break;
-		default: impossible("object %d used?",obj->otyp);
+		default: impossible("object %ld used?",obj->otyp);
 		    break;
 	}
 	return(damage);
