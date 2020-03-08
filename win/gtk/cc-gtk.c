@@ -36,7 +36,7 @@ int verbose = 0;
 static void
 usage()
 {
-    fprintf(stderr, "Usage: cc-gtk [-v] [-c|-l] cc [cc options] ...\n");
+    fprintf(stderr,"%s", "Usage: cc-gtk [-v] [-c|-l] cc [cc options] ...\n");
     exit(1);
 }
 
@@ -315,7 +315,7 @@ char **argv;
     nargc = argc - n + pcargc;
     nargv = (char **)malloc((nargc + 1) * sizeof(char *));
     if (!nargv) {
-	fprintf(stderr, "cc-gtk: Not enough memory\n");
+	fprintf(stderr,"%s", "cc-gtk: Not enough memory\n");
 	exit(1);
     }
     if (mode == M_COMPILE) {

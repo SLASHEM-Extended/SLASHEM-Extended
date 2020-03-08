@@ -154,7 +154,7 @@ char **argv;
 	    }
 	}
 	if (fout && fout != stdout && fclose(fout) < 0) {
-	    fprintf(stderr, "Can't finish output file.");
+	    fprintf(stderr,"%s", "Can't finish output file.");
 	    perror(outfile);
 	    errors_encountered = TRUE;
 	}

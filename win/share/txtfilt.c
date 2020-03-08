@@ -206,7 +206,7 @@ char **argv;
 	    argn ++;
 	    if (argn >= argc)
 	    {
-		fprintf(stderr, "txtfilt: -f option requires a match file\n");
+		fprintf(stderr,"%s", "txtfilt: -f option requires a match file\n");
 		exit(EXIT_FAILURE);
 	    }
 	    if (match_load(argv[argn]))
@@ -219,7 +219,7 @@ char **argv;
 	    argn ++;
 	    if (argn >= argc)
 	    {
-		fprintf(stderr, "txtfilt: -p option requires a palette file\n");
+		fprintf(stderr,"%s", "txtfilt: -p option requires a palette file\n");
 		exit(EXIT_FAILURE);
 	    }
 	    if (!read_text_file_colormap(argv[argn]))

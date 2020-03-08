@@ -25,7 +25,7 @@ write_header()
 {
 	if (PpmScreen.Width > 9999 || PpmScreen.Height > 9999) {
 		/* Just increase the number of digits written to solve */
-		fprintf(stderr, "PPM dimensions too large\n");
+		fprintf(stderr,"%s", "PPM dimensions too large\n");
 		return FALSE;
 	}
 	(void) fprintf(ppm_file, "P6 %04d %04d 255\n",
@@ -55,7 +55,7 @@ const char *type;
 	int i;
 
 	if (strcmp(type, WRBMODE)) {
-		fprintf(stderr, "using writing routine for non-writing?\n");
+		fprintf(stderr,"%s", "using writing routine for non-writing?\n");
 		return FALSE;
 	}
 
@@ -68,7 +68,7 @@ const char *type;
 	}
 
 	if (!colorsinmainmap) {
-		fprintf(stderr, "no colormap set yet\n");
+		fprintf(stderr,"%s", "no colormap set yet\n");
 		return FALSE;
 	}
 

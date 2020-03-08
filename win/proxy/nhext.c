@@ -540,7 +540,7 @@ nhext_set_async_masks(int n,unsigned long *masks)
 	if (nhext_extend_flags(1 + (n - 1) * 32 + i + 1))
 	    impossible("Memory allocation failure in nhext_set_async_masks");
 #ifdef DEBUG
-	fprintf(stderr, "nhext: Async IDs:");
+	fprintf(stderr,"%s", "nhext: Async IDs:");
 #endif
 	for(i = 1; i < nhext_n_flags; i++) {
 	    if (masks[(i - 1) / 32] & 1L << ((i - 1) & 31))
@@ -551,12 +551,12 @@ nhext_set_async_masks(int n,unsigned long *masks)
 #endif
 	}
 #ifdef DEBUG
-	fprintf(stderr, "\n");
+	fprintf(stderr,"%s", "\n");
 #endif
     }
 #ifdef DEBUG
     else
-	fprintf(stderr, "No async IDs\n");
+	fprintf(stderr,"%s", "No async IDs\n");
 #endif
 }
 

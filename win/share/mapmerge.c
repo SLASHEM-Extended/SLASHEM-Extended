@@ -13,7 +13,7 @@ char **argv;
     int i, j, tile_number = 0;
     char buf[BUFSZ], buf2[BUFSZ];
     if (argc < 2) {
-	(void) fprintf(stderr, "usage: mapmerge outfile [infile] ...\n");
+	(void) fprintf(stderr,"%s", "usage: mapmerge outfile [infile] ...\n");
 	exit(EXIT_FAILURE);
     }
     fpo = fopen(argv[1], "w");

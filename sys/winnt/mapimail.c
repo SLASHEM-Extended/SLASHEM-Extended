@@ -265,11 +265,11 @@ char *mID;
 	tmpID[0] = '\0';
 
 #ifdef MAPI_VERBOSE
-	if (debugmapi) fprintf(dbgfile, "MAPI_mail_check() ");
+	if (debugmapi) fprintf(dbgfile,"%s", "MAPI_mail_check() ");
 #endif
 	if (mail_fetched) {
 #ifdef MAPI_VERBOSE
-	if (debugmapi) fprintf(dbgfile, "returning FALSE (buffer occupied)\n");
+	if (debugmapi) fprintf(dbgfile,"%s", "returning FALSE (buffer occupied)\n");
 #endif
 		return FALSE; /* buffer occupied, don't bother */
 	}
@@ -280,13 +280,13 @@ char *mID;
 	if (status == SUCCESS_SUCCESS) {
 		strcpy(mID, tmpID);
 #ifdef MAPI_VERBOSE
-	if (debugmapi) fprintf(dbgfile, "returning TRUE\n");
+	if (debugmapi) fprintf(dbgfile,"%s", "returning TRUE\n");
 #endif
 		return TRUE;
 	}
 	if (status == MAPI_E_NO_MESSAGES) {
 #ifdef MAPI_VERBOSE
-		if (debugmapi) fprintf(dbgfile, "returning FALSE\n");
+		if (debugmapi) fprintf(dbgfile,"%s", "returning FALSE\n");
 #endif
 		return FALSE;
 	}
@@ -304,7 +304,7 @@ char *mID;
 	unsigned long status;
 
 #ifdef MAPI_VERBOSE
-	if (debugmapi) fprintf(dbgfile, "MAPI_mail_fetch() ");
+	if (debugmapi) fprintf(dbgfile,"%s", "MAPI_mail_fetch() ");
 #endif
 	/*
 	 *  Update context right away so we don't loop if there
@@ -314,7 +314,7 @@ char *mID;
 
 	if (mail_fetched) {
 #ifdef MAPI_VERBOSE
-	if (debugmapi) fprintf(dbgfile, "returning FALSE (buffer occupied)\n");
+	if (debugmapi) fprintf(dbgfile,"%s", "returning FALSE (buffer occupied)\n");
 #endif
 		 return FALSE;  /* buffer occupied */
 	}
@@ -342,14 +342,14 @@ char *mID;
 		status = fpMAPIFreeBuffer(MAPIMessage);
 		InterlockedIncrement(&mail_fetched);
 #ifdef MAPI_VERBOSE
-		if (debugmapi) fprintf(dbgfile, "returning TRUE\n");
+		if (debugmapi) fprintf(dbgfile,"%s", "returning TRUE\n");
 #endif
 		return TRUE;
 	}
 #ifdef MAPI_VERBOSE
 	else
 		if (debugmapi) fprintf(dbgfile,"MAPIRead failed, status = %d\n", status);
-	if (debugmapi) fprintf(dbgfile, "returning FALSE (failed)\n");
+	if (debugmapi) fprintf(dbgfile,"%s", "returning FALSE (failed)\n");
 #endif
 	return FALSE;
 }
@@ -455,7 +455,7 @@ int InitMAPI()
 
 #ifdef MAPI_VERBOSE
     if (debugmapi) {
-	fprintf(dbgfile,"Entry Points:\n");
+	fprintf(dbgfile,"%s","Entry Points:\n");
     	fprintf(dbgfile,"MAPILogon      = %p\n",fpMAPILogon);
     	fprintf(dbgfile,"MAPILogoff     = %p\n",fpMAPILogoff);
     	fprintf(dbgfile,"MAPIFindNext   = %p\n",fpMAPIFindNext);

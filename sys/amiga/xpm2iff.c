@@ -257,7 +257,7 @@ conv_image(){
 	    int slot;
 	    int color = xb[col];
 	    if(!ttable[color].flag){
-		fprintf(stderr, "Bad image data\n");
+		fprintf(stderr,"%s", "Bad image data\n");
 	    }
 	    slot = ttable[color].slot;
 	    for(planeno = 0; planeno<nplanes; planeno++){

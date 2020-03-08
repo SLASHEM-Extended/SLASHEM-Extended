@@ -78,7 +78,7 @@ merge_text_colormap()
 		break;
 
 	if (j >= MAXCOLORMAPSIZE) {
-	    fprintf(stderr, "colormap overflow\n");
+	    fprintf(stderr,"%s", "colormap overflow\n");
 	    exit(1);
 	}
 
@@ -117,7 +117,7 @@ process_file(fname)
 	 */
 	tile_bytes = malloc(tile_x*tile_y*MAX_GLYPH);
 	if (!tile_bytes) {
-	    fprintf(stderr, "Not enough memory.\n");
+	    fprintf(stderr,"%s", "Not enough memory.\n");
 	    exit(1);
 	}
 	curr_tb = tile_bytes;
@@ -154,8 +154,8 @@ FILE *fp;
 		*curr_tb++ = 1;
 	    }
 
-    fprintf(fp, "/* XPM */\n");
-    fprintf(fp, "static char* nhtiles[] = {\n");
+    fprintf(fp,"%s", "/* XPM */\n");
+    fprintf(fp,"%s", "static char* nhtiles[] = {\n");
     fprintf(fp, "\"%lu %lu %lu %d\",\n",
 		header.tile_width*TILES_PER_ROW,
 		header.tile_height*TILES_PER_COL,
@@ -179,7 +179,7 @@ FILE *fp;
 	for (y = 0; y < header.tile_height; y++) {
 	    bytes=tile_bytes+(j*TILES_PER_ROW*header.tile_height+y)*
 	      header.tile_width;
-	    fprintf(fp, "\"");
+	    fprintf(fp,"%s", "\"");
 	    for (i = 0; i < TILES_PER_ROW; i++) {
 		for (x = 0; x < header.tile_width; x++) {
 		    if (header.ncolors > 64) {
@@ -196,7 +196,7 @@ FILE *fp;
 	    fprintf(fp, "\",\n");
 	}
 
-    return fprintf(fp, "};\n")>=0;
+    return fprintf(fp,"%s", "};\n")>=0;
 }
 #endif	/* USE_XPM */
 
@@ -276,24 +276,24 @@ main(argc, argv)
 
 #ifdef USE_XPM
     if (xpm_write(fp) == 0) {
-	fprintf(stderr, "can't write XPM file\n");
+	fprintf(stderr,"%s", "can't write XPM file\n");
 	exit(1);
     }
 #else
     if (fwrite_tile_header(&header, fp) == 0) {
-	fprintf(stderr, "can't write output header\n");
+	fprintf(stderr,"%s", "can't write output header\n");
 	exit(1);
 	}
 
     if (fwrite((char *)x11_colormap, 1, header.ncolors*3, fp) == 0) {
-	fprintf(stderr, "can't write output colormap\n");
+	fprintf(stderr,"%s", "can't write output colormap\n");
 	exit(1);
     }
 
     if (fwrite((char *)tile_bytes, 1,
 	(int) header.ntiles*header.tile_width*header.tile_height, fp) == 0) {
 
-	fprintf(stderr, "can't write tile bytes\n");
+	fprintf(stderr,"%s", "can't write tile bytes\n");
 	exit(1);
     }
 #endif

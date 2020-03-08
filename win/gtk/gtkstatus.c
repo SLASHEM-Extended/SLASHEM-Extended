@@ -133,7 +133,7 @@ static gint nh_light_expose(GtkWidget *widget, GdkEventExpose *expose)
 	gc = gdk_gc_new(widget->window);
 	cmap = gdk_drawable_get_colormap(widget->window);
 	if (!cmap)
-	    fprintf(stderr, "nh_light_expose: No colormap!\n");
+	    fprintf(stderr,"%s", "nh_light_expose: No colormap!\n");
 	color.red = bg = widget->style->bg[GTK_STATE_NORMAL].red;
 	color.red += (65535L - bg) * light->contrast / NH_LIGHT_MAX_CONTRAST;
 	color.green = bg = widget->style->bg[GTK_STATE_NORMAL].green;

@@ -282,7 +282,7 @@ expose_event(GtkWidget *widget, GdkEventExpose *event)
 	      GDK_RGB_DITHER_NORMAL, 0, 0);
 	gdk_gc_set_clip_region(gc, NULL);
 #ifdef DEBUG
-	fprintf(stderr, "backing pixmap updated ... ");
+	fprintf(stderr,"%s", "backing pixmap updated ... ");
 #endif
     }
     /* Now update the screen from the backing store */
@@ -309,7 +309,7 @@ expose_event(GtkWidget *widget, GdkEventExpose *event)
     xshm.areax = x;
     xshm.areay = y;
 #ifdef DEBUG
-    fprintf(stderr, "screen updated\n");
+    fprintf(stderr,"%s", "screen updated\n");
 #endif
     /* And clean up */
     if (xshm.dirty) {
@@ -331,9 +331,9 @@ scroll_event(GtkAdjustment *adj, gpointer data)
     if (!xshm.is_pending) {
 #ifdef DEBUG
 	if (adj == xshm.hadj)
-	    fprintf(stderr, "Horizontal scroll event\n");
+	    fprintf(stderr,"%s", "Horizontal scroll event\n");
 	else
-	    fprintf(stderr, "Vertical scroll event\n");
+	    fprintf(stderr,"%s", "Vertical scroll event\n");
 #endif
 	view.x = view.y = 0;
 	view.width = xshm.hadj->page_size;
@@ -342,7 +342,7 @@ scroll_event(GtkAdjustment *adj, gpointer data)
     }
 #ifdef DEBUG
     else
-	fprintf(stderr, "Clipping scroll event\n");
+	fprintf(stderr,"%s", "Clipping scroll event\n");
 #endif
 }
 
@@ -402,7 +402,7 @@ xshm_map_size(int mode, int width, int height)
     }
     if (mode == XSHM_MAP_PIXBUF) {
 #ifdef DEBUG
-	fprintf(stderr, "Map: Switching to pixbuf mode\n");
+	fprintf(stderr,"%s", "Map: Switching to pixbuf mode\n");
 #endif
 	/* We don't really want an alpha channel (it doesn't have
 	 * any meaning) but GDK doesn't support alpha -> non-alpha.
@@ -419,7 +419,7 @@ xshm_map_size(int mode, int width, int height)
 	xshm.dirty = gdk_region_rectangle(&rect);
     } else if (mode == XSHM_MAP_IMAGE) {
 #ifdef DEBUG
-	fprintf(stderr, "Map: Switching to image mode\n");
+	fprintf(stderr,"%s", "Map: Switching to image mode\n");
 #endif
 	visual = gdk_drawable_get_visual(xshm.area->window);
 	xshm_map_image = gdk_image_new(GDK_IMAGE_SHARED, visual, width, height);
@@ -440,7 +440,7 @@ xshm_map_size(int mode, int width, int height)
 	    xshm.dirty = NULL;
     } else {
 #ifdef DEBUG
-	fprintf(stderr, "Map: Switching to pixmap mode\n");
+	fprintf(stderr,"%s", "Map: Switching to pixmap mode\n");
 #endif
 	xshm.pixmap = gdk_pixmap_new(xshm.area->window, width, height, -1);
 	xshm.gc = gdk_gc_new(xshm.pixmap);
@@ -473,28 +473,28 @@ xshm_map_size(int mode, int width, int height)
     xshm.map_width = width;
     xshm.map_height = height;
 #ifdef DEBUG
-    fprintf(stderr, "New configuration:\n");
+    fprintf(stderr,"%s", "New configuration:\n");
     if (xshm_map_image)
 	fprintf(stderr, "\txshm_map_image: %d x %d\n",
 	  xshm_map_image->width, xshm_map_image->height);
     else
-	fprintf(stderr, "\txshm_map_image: none\n");
+	fprintf(stderr,"%s", "\txshm_map_image: none\n");
     if (xshm_map_pixmap) {
 	gdk_drawable_get_size(xshm_map_pixmap, &i, &j);
 	fprintf(stderr, "\txshm_map_pixmap: %d x %d\n", i, j);
     } else
-	fprintf(stderr, "\txshm_map_pixmap: none\n");
+	fprintf(stderr,"%s", "\txshm_map_pixmap: none\n");
     if (xshm_map_pixbuf)
 	fprintf(stderr, "\txshm_map_pixbuf: %d x %d\n",
 	  gdk_pixbuf_get_width(xshm_map_pixbuf),
 	  gdk_pixbuf_get_height(xshm_map_pixbuf));
     else
-	fprintf(stderr, "\txshm_map_pixbuf: none\n");
+	fprintf(stderr,"%s", "\txshm_map_pixbuf: none\n");
     if (xshm.pixmap) {
 	gdk_drawable_get_size(xshm.pixmap, &i, &j);
 	fprintf(stderr, "\tpixmap: %d x %d\n",i, j);
     } else
-	fprintf(stderr, "\tpixmap: none\n");
+	fprintf(stderr,"%s", "\tpixmap: none\n");
     fprintf(stderr, "\tarea: %d x %d\n",
       (int)xshm.hadj->page_size, (int)xshm.vadj->page_size);
 #endif
@@ -591,7 +591,7 @@ void
 xshm_map_destroy()
 {
 #ifdef DEBUG
-    fprintf(stderr, "Map: Destroy\n");
+    fprintf(stderr,"%s", "Map: Destroy\n");
 #endif
     if (xshm.pixmap) {
 	gdk_pixmap_unref(xshm.pixmap);

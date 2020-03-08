@@ -139,7 +139,7 @@ void livelog_write_string(char* buffer) {
 		if(!(livelogfile = fopen_datafile_area(LOGAREA, LIVELOGFILE, "a", SCOREPREFIX))) {
 			pline("Cannot open live log file!");
 		} else {
-			fprintf(livelogfile, buffer);
+			fprintf(livelogfile,"%s", buffer);
 			(void) fclose(livelogfile);
 		}
 		unlock_file_area(LOGAREA, LIVELOGFILE);

@@ -65,7 +65,7 @@ enum nhext_xdr_op op;
     for(i = 0; i < 8; i++) {
 	l = i;
 	if (!nhext_xdr_long(xdrs, &l)) {
-	    fprintf(stderr, "nhext_xdr_long failed\n");
+	    fprintf(stderr,"%s", "nhext_xdr_long failed\n");
 	    return FALSE;
 	}
 	if (op == NHEXT_XDR_DECODE)
@@ -87,7 +87,7 @@ enum nhext_xdr_op op;
 	vector[i] = i;
     if (!nhext_xdr_vector(xdrs, (char *)vector, SIZE(vector), sizeof(short),
       (nhext_xdrproc_t)nhext_xdr_short)) {
-	fprintf(stderr, "nhext_xdr_vector failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_vector failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE) {
@@ -112,7 +112,7 @@ enum nhext_xdr_op op;
     {
 	array = malloc(5);
 	if (!array) {
-	    fprintf(stderr, "malloc failed\n");
+	    fprintf(stderr,"%s", "malloc failed\n");
 	    return FALSE;
 	}
 	array[0] = 'h'; array[1] = 'e'; array[2] = array[3] = 'l'; array[4] = 'o';
@@ -122,7 +122,7 @@ enum nhext_xdr_op op;
 	array = NULL;
     if (!nhext_xdr_array(xdrs, (char **)&array, &length, (unsigned int)-1,
       sizeof(unsigned char), (nhext_xdrproc_t)nhext_xdr_u_char)) {
-	fprintf(stderr, "nhext_xdr_array failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_array failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE) {
@@ -137,7 +137,7 @@ enum nhext_xdr_op op;
     length = 0;
     if (!nhext_xdr_array(xdrs, (char **)&array, &length, (unsigned int)-1,
       sizeof(unsigned char), (nhext_xdrproc_t)nhext_xdr_u_char)) {
-	fprintf(stderr, "nhext_xdr_array failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_array failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE) {
@@ -148,7 +148,7 @@ enum nhext_xdr_op op;
 	putchar('\n');
     }
     if (array) {
-	fprintf(stderr, "nhext_xdr_array allocated on empty array\n");
+	fprintf(stderr,"%s", "nhext_xdr_array allocated on empty array\n");
 	return FALSE;
     }
     return TRUE;
@@ -166,7 +166,7 @@ enum nhext_xdr_op op;
     else
 	string = NULL;
     if (!nhext_xdr_string(xdrs, &string, (unsigned int)-1)) {
-	fprintf(stderr, "nhext_xdr_string failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_string failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE)
@@ -177,7 +177,7 @@ enum nhext_xdr_op op;
     else
 	string = NULL;
     if (!nhext_xdr_string(xdrs, &string, (unsigned int)-1)) {
-	fprintf(stderr, "nhext_xdr_string failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_string failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE)
@@ -188,7 +188,7 @@ enum nhext_xdr_op op;
     else
 	string = NULL;
     if (!nhext_xdr_string(xdrs, &string, (unsigned int)-1)) {
-	fprintf(stderr, "nhext_xdr_string failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_string failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE)
@@ -204,14 +204,14 @@ enum nhext_xdr_op op;
 {
     nhext_xdr_bool_t bool = TRUE;
     if (!nhext_xdr_bool(xdrs, &bool)) {
-	fprintf(stderr, "nhext_xdr_bool failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_bool failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE)
 	printf("%s ", bool == TRUE ? "TRUE" : bool == FALSE ? "FALSE" : "???");
     bool = FALSE;
     if (!nhext_xdr_bool(xdrs, &bool)) {
-	fprintf(stderr, "nhext_xdr_bool failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_bool failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE)
@@ -227,7 +227,7 @@ enum nhext_xdr_op op;
     enum nhext_xdr_op e;
     e = NHEXT_XDR_DECODE;
     if (!nhext_xdr_enum(xdrs, (int *)&e)) {
-	fprintf(stderr, "nhext_xdr_enum failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_enum failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE)
@@ -240,7 +240,7 @@ enum nhext_xdr_op op;
 	}
     e = NHEXT_XDR_ENCODE;
     if (!nhext_xdr_enum(xdrs, (int *)&e)) {
-	fprintf(stderr, "nhext_xdr_enum failed\n");
+	fprintf(stderr,"%s", "nhext_xdr_enum failed\n");
 	return FALSE;
     }
     if (op == NHEXT_XDR_DECODE)

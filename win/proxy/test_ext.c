@@ -146,16 +146,16 @@ void server(void)
     rd = nhext_io_open(parent_read, get_parent_readh(), NHEXT_IO_RDONLY);
     wr = nhext_io_open(parent_write, get_parent_writeh(), NHEXT_IO_WRONLY);
     if (!rd || !wr) {
-	fprintf(stderr, "C Failed to open I/O streams.\n");
+	fprintf(stderr,"%s", "C Failed to open I/O streams.\n");
 	exit(1);
     }
     (void)nhext_set_errhandler(nhext_error_handler);
     if (nhext_init(rd, wr, callbacks) < 0) {
-	fprintf(stderr, "C Failed to initialize NhExt.\n");
+	fprintf(stderr,"%s", "C Failed to initialize NhExt.\n");
 	exit(1);
     }
     if (nhext_set_protocol(1)) {
-	fprintf(stderr, "C Failed to select protocol 1.\n");
+	fprintf(stderr,"%s", "C Failed to select protocol 1.\n");
 	exit(1);
     }
     do {
@@ -176,24 +176,24 @@ void run_tests(void)
     winid w;
     int total;
     struct test5_request req;
-    fprintf(stderr, "Test 1...\n");
+    fprintf(stderr,"%s", "Test 1...\n");
     retval = nhext_rpc(EXT_FID_TEST1, 0, 0);
     fprintf(stderr, "Test 1 %s.\n", retval ? "passed" : "failed");
-    fprintf(stderr, "Test 2...\n");
+    fprintf(stderr,"%s", "Test 2...\n");
     retval = nhext_rpc(EXT_FID_TEST2, 1, EXT_INT(0), 0);
     fprintf(stderr, "Test 2 %s.\n", retval ? "passed" : "failed");
-    fprintf(stderr, "Test 3...\n");
+    fprintf(stderr,"%s", "Test 3...\n");
     retval = nhext_rpc(EXT_FID_TEST3, 1, EXT_INT(67), 1, EXT_INT_P(i));
     if (i != 68)
 	retval = FALSE;
     fprintf(stderr, "Test 3 %s.\n", retval ? "passed" : "failed");
-    fprintf(stderr, "Test 4...\n");
+    fprintf(stderr,"%s", "Test 4...\n");
     retval = nhext_rpc(EXT_FID_TEST4, 1, EXT_STRING("Hello"),
       1, EXT_STRING_P(s));
     if (strcmp(s, "<Hello>"))
 	retval = FALSE;
     fprintf(stderr, "Test 4 %s.\n", retval ? "passed" : "failed");
-    fprintf(stderr, "Test 5...\n");
+    fprintf(stderr,"%s", "Test 5...\n");
     req.n = 5;
     req.array = (long *)alloc(req.n * sizeof(long));
     for(i = 0; i < 5; i++)
@@ -206,7 +206,7 @@ void run_tests(void)
 	retval = FALSE;
     free(req.array);
     fprintf(stderr, "Test 5 %s.\n", retval ? "passed" : "failed");
-    fprintf(stderr, "Test 6...\n");
+    fprintf(stderr,"%s", "Test 6...\n");
     retval = nhext_rpc(EXT_FID_TEST6,
       5, EXT_INT(37), EXT_INT(2), EXT_CHAR('l'), EXT_STRING("Shalom"),
          EXT_BOOLEAN(TRUE),
@@ -216,7 +216,7 @@ void run_tests(void)
 	retval = FALSE;
     free(s);
     fprintf(stderr, "Test 6 %s.\n", retval ? "passed" : "failed");
-    fprintf(stderr, "Test 7...\n");
+    fprintf(stderr,"%s", "Test 7...\n");
     retval = nhext_rpc(EXT_FID_TEST7, 1, EXT_INT(11), 1, EXT_INT_P(i));
     if (i != 58)
 	retval = FALSE;
@@ -234,22 +234,22 @@ char **argv;
 	exit(0);
     }
     if (!child_start(argv[0])) {
-	fprintf(stderr, "Failed to start child.\n");
+	fprintf(stderr,"%s", "Failed to start child.\n");
 	exit(1);
     }
     rd = nhext_io_open(debug_read, get_child_readh(), NHEXT_IO_RDONLY);
     wr = nhext_io_open(debug_write, get_child_writeh(), NHEXT_IO_WRONLY);
     if (!rd || !wr) {
-	fprintf(stderr, "Failed to open I/O streams.\n");
+	fprintf(stderr,"%s", "Failed to open I/O streams.\n");
 	exit(1);
     }
     (void)nhext_set_errhandler(nhext_error_handler);
     if (nhext_init(rd, wr, callbacks) < 0) {
-	fprintf(stderr, "Failed to initialize NhExt.\n");
+	fprintf(stderr,"%s", "Failed to initialize NhExt.\n");
 	exit(1);
     }
     if (nhext_set_protocol(1)) {
-	fprintf(stderr, "Failed to select protocol 1.\n");
+	fprintf(stderr,"%s", "Failed to select protocol 1.\n");
 	exit(1);
     }
     run_tests();
@@ -258,7 +258,7 @@ char **argv;
     nhext_io_close(rd);
     nhext_io_close(wr);
     if (!child_wait()) {
-	fprintf(stderr, "Error while waiting for child.\n");
+	fprintf(stderr,"%s", "Error while waiting for child.\n");
 	exit(1);
     }
     exit(0);

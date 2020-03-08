@@ -346,7 +346,7 @@ init_dungeon()
 	if(++n_dgns > MAXDUNGEON) {
 	    (void) fprintf(stderr, "FATAL - Too many dungeons (limit: %d).\n",
 		    MAXDUNGEON);
-	    (void) fprintf(stderr, "To increase the limit edit MAXDUNGEON in global.h\n");
+	    (void) fprintf(stderr,"%s", "To increase the limit edit MAXDUNGEON in global.h\n");
 	    exit(EXIT_FAILURE);
 	}
 

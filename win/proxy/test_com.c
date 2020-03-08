@@ -340,7 +340,7 @@ static int child__wait(options)
 		fprintf(stderr, "Child died due to signal %d\n",
 		  WTERMSIG(status));
 	    else
-		fprintf(stderr, "Child died for unknown reason\n");
+		fprintf(stderr,"%s", "Child died for unknown reason\n");
 	}
 	else if (WEXITSTATUS(status))
 	    fprintf(stderr, "Child exited with code %d\n", WEXITSTATUS(status));

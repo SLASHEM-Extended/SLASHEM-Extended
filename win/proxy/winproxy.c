@@ -1106,7 +1106,7 @@ proxy_auth_open()
 	    argv = (char **) malloc((argc + 1) * sizeof(char *));
 	    if (!argv)
 	    {
-		fprintf(stderr, "Resource failure\n");
+		fprintf(stderr,"%s", "Resource failure\n");
 		exit(1);
 	    }
 	    argv[0] = authentication.prog;
@@ -1551,6 +1551,6 @@ win_proxy_iteration()
     int i;
     i = nhext_svc(proxy_callbacks);
     if (!i)
-	fprintf(stderr, "proxy: Ignoring packet with zero ID\n");
+	fprintf(stderr,"%s", "proxy: Ignoring packet with zero ID\n");
     return i;
 }

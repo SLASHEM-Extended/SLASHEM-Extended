@@ -400,7 +400,7 @@ struct toptenentry *tt;
 
   fprintf(rfile, XLOG_SEP "flags=0x%lx", encodexlogflags());
 
-  (void)fprintf(rfile, "\n");
+  (void)fprintf(rfile,"%s", "\n");
 
 }
 

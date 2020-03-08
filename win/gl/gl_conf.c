@@ -434,7 +434,7 @@ static int write_config_lines(const char *conf_name)
     {
       if (within_line)
       {
-        fprintf(fp, "\n");
+        fprintf(fp,"%s", "\n");
         within_line = 0;
       }
 
@@ -444,7 +444,7 @@ static int write_config_lines(const char *conf_name)
 
     if (within_line && (prev_flags & OFLG_GL) != (opt->flags & OFLG_GL))
     {
-      fprintf(fp, "\n");
+      fprintf(fp,"%s", "\n");
       within_line = 0;
     }
 
@@ -456,10 +456,10 @@ static int write_config_lines(const char *conf_name)
 
     /* handle booleans */
     if ((opt->flags & OFLG_Boolean) && opt->value[0] == '0')
-      fprintf(fp, "!");
+      fprintf(fp,"%s", "!");
 
     assert(opt->name);
-    fprintf(fp, opt->name);
+    fprintf(fp,"%s", opt->name);
 
     if (! (opt->flags & OFLG_Boolean))
       fprintf(fp, ":%s", opt->value ? opt->value : "");
@@ -469,7 +469,7 @@ static int write_config_lines(const char *conf_name)
   }
 
   if (within_line)
-    fprintf(fp, "\n");
+    fprintf(fp,"%s", "\n");
 
   fclose(fp);
 

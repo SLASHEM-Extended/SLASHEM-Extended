@@ -613,11 +613,11 @@ struct proxycb_get_glyph_mapping_res *mapping;
     struct proxycb_get_glyph_mapping_res_mapping *m;
     struct proxycb_get_glyph_mapping_res_submapping *s;
     struct proxycb_get_glyph_mapping_res_symdef *g;
-    fprintf(fp, "Glyph mapping:\n");
+    fprintf(fp,"%s", "Glyph mapping:\n");
     fprintf(fp, "No. glyphs: %d\n", mapping->no_glyph);
     fprintf(fp, "Transparent RGBsym: 0x%lX\n", mapping->transparent);
     fprintf(fp, "No. mappings: %d\n", mapping->n_mappings);
-    fprintf(fp, "Mappings:\n");
+    fprintf(fp,"%s", "Mappings:\n");
     for(i = 0; i < mapping->n_mappings; i++) {
 	m = mapping->mappings + i;
 	fprintf(fp, "%-3d Flags: %s\n", i, m->flags);
@@ -626,13 +626,13 @@ struct proxycb_get_glyph_mapping_res *mapping;
 	fprintf(fp, "    RGBsym: 0x%lX\n", m->symdef.rgbsym);
 	fprintf(fp, "    Description: %s\n", m->symdef.description);
 	fprintf(fp, "    No. sub mappings: %d\n", m->n_submappings);
-	fprintf(fp, "    Sub mappings:\n");
+	fprintf(fp,"%s", "    Sub mappings:\n");
 	for(j = 0; j < m->n_submappings; j++) {
 	    s = m->submappings + j;
 	    fprintf(fp, "    %-3d RGBsym: 0x%lX\n", j, s->symdef.rgbsym);
 	    fprintf(fp, "        Description: %s\n", s->symdef.description);
 	    fprintf(fp, "        No. glyphs: %d\n", s->n_glyphs);
-	    fprintf(fp, "        Glyphs:\n");
+	    fprintf(fp,"%s", "        Glyphs:\n");
 	    for(k = 0; k < s->n_glyphs; k++) {
 		g = s->glyphs + k;
 		fprintf(fp, "        %-3d RGBsym: 0x%lX\n", k, g->rgbsym);

@@ -207,7 +207,7 @@ int ifd, ofd;
 		nfrom = read(ifd, buf, BUFSIZ);
 		nto = write(ofd, buf, nfrom);
 		if (nto != nfrom) {
-			fprintf(stderr, "file copy failed!\n");
+			fprintf(stderr,"%s", "file copy failed!\n");
 			exit(EXIT_FAILURE);
 		}
 	} while (nfrom == BUFSIZ);
@@ -236,8 +236,8 @@ const char *directory;
  	    if(errno == EACCES) {
 	  	fprintf(stderr,
 			"\nThere are files from a game in progress under your name.");
-		fprintf(stderr,"\nThe files are locked or inaccessible.");
-		fprintf(stderr,"\nPerhaps the other game is still running?\n");
+		fprintf(stderr,"%s","\nThe files are locked or inaccessible.");
+		fprintf(stderr,"%s","\nPerhaps the other game is still running?\n");
 	    } else
 	  	fprintf(stderr,
 			"\nTrouble accessing level 0 (errno = %d).\n", errno);

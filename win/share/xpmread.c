@@ -29,7 +29,7 @@ char *type;
     const pixel bg = DEFAULT_BACKGROUND;
 
     if (strcmp(type, RDBMODE)) {
-	fprintf(stderr, "using reading routine for non-reading?\n");
+	fprintf(stderr,"%s", "using reading routine for non-reading?\n");
 	return FALSE;
     }
     errorcode = XpmReadFileToXpmImage(filename, &image, &info);
@@ -186,7 +186,7 @@ char *argv[];
 	    else if (argn + 1 < argc)
 		tile_x = atoi(argv[++argn]);
 	    else {
-		fprintf(stderr, "xpm2txt: -w option needs an argument\n");
+		fprintf(stderr,"%s", "xpm2txt: -w option needs an argument\n");
 		exit(EXIT_FAILURE);
 	    }
 	    argn ++;
@@ -197,7 +197,7 @@ char *argv[];
 	    else if (argn + 1 < argc)
 		tile_y = atoi(argv[++argn]);
 	    else {
-		fprintf(stderr, "xpm2txt: -h option needs an argument\n");
+		fprintf(stderr,"%s", "xpm2txt: -h option needs an argument\n");
 		exit(EXIT_FAILURE);
 	    }
 	    argn ++;
@@ -211,8 +211,8 @@ char *argv[];
     }
     
     if (argc - argn != (split_mode ? 4 : 2)) {
-	fprintf(stderr, "usage: xpm2txt [-w#] [-h#] xpmfile txtfile\n");
-	fprintf(stderr, "       xpm2txt -s xpmfile montxt objtxt othtxt\n");
+	fprintf(stderr,"%s", "usage: xpm2txt [-w#] [-h#] xpmfile txtfile\n");
+	fprintf(stderr,"%s", "       xpm2txt -s xpmfile montxt objtxt othtxt\n");
 	exit(EXIT_FAILURE);
     }
 

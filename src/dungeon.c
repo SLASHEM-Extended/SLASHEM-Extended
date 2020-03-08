@@ -103,7 +103,7 @@ dumpit()
 		    DD.flags.hellish    ? " hellish"    : "");
 	    getchar();
 	}
-	fprintf(stderr,"\nSpecial levels:\n");
+	fprintf(stderr,"%s","\nSpecial levels:\n");
 	for(x = sp_levchn; x; x = x->next) {
 	    fprintf(stderr, "%s (%d): ", x->proto, x->rndlevs);
 	    fprintf(stderr, "on %d, %d; ", x->dlevel.dnum, x->dlevel.dlevel);
@@ -114,7 +114,7 @@ dumpit()
 		    x->flags.town       ? " town"       : "");
 	    getchar();
 	}
-	fprintf(stderr,"\nBranches:\n");
+	fprintf(stderr,"%s","\nBranches:\n");
 	for (br = branches; br; br = br->next) {
 	    fprintf(stderr, "%d: %s, end1 %d %d, end2 %d %d, %s\n",
 		br->id,
@@ -128,7 +128,7 @@ dumpit()
 		br->end1_up ? "end1 up" : "end1 down");
 	}
 	getchar();
-	fprintf(stderr,"\nDone\n");
+	fprintf(stderr,"%s","\nDone\n");
 	getchar();
 }
 #endif
@@ -632,7 +632,7 @@ place_level(proto_index, pd)
 	fprintf(stderr,"%s: trying %d [ ", lev->proto, lev->dlevel.dlevel);
 	for (i = 1; i <= MAXLEVEL; i++)
 	    if (map[i]) fprintf(stderr,"%d ", i);
-	fprintf(stderr,"]\n");
+	fprintf(stderr,"%s","]\n");
 #endif
 	if (place_level(proto_index+1, pd)) return TRUE;
 	map[lev->dlevel.dlevel] = FALSE;	/* this choice didn't work */

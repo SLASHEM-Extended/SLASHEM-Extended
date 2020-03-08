@@ -89,7 +89,7 @@ char *argv[];
 	char *paletteptr;
 
 	if (argc != 1) {
-		fprintf(stderr, "usage: tile2bin (from the util directory)\n");
+		fprintf(stderr,"%s", "usage: tile2bin (from the util directory)\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -207,7 +207,7 @@ struct tibhdr_struct *tibhdr;
 {
 
 	if (fseek(fileptr,0L,SEEK_SET)) {
-		fprintf(stderr, "Error writing header to tile file\n");
+		fprintf(stderr,"%s", "Error writing header to tile file\n");
 	}
 	fwrite(tibhdr, sizeof(struct tibhdr_struct), 1, fileptr);
 }
@@ -234,7 +234,7 @@ pixel (*pixels)[MAX_TILE_X];
 					break;
 			}
 			if (k >= num_colors)
-				fprintf(stderr, "color not in colormap!\n");
+				fprintf(stderr,"%s", "color not in colormap!\n");
 #ifdef PACKED_FILE
 			packtile[j][i] = k;
 #endif

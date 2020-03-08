@@ -155,12 +155,12 @@ child(NhExtIO *rio, NhExtIO *wio)
 	    }
 	}
 	if (crc1 != crc) {
-	    fprintf(stderr, "child: nhext_io_read(random): Bad CRC\n");
+	    fprintf(stderr,"%s", "child: nhext_io_read(random): Bad CRC\n");
 	    goto done;
 	}
     }
     exitcode = 0;
-    fprintf(stderr, "No errors found on child side\n");
+    fprintf(stderr,"%s", "No errors found on child side\n");
 done:
     return exitcode;
 }
@@ -234,7 +234,7 @@ parent(NhExtIO *rio, NhExtIO *wio)
 	}
     }
     exitcode = 0;
-    fprintf(stderr, "No errors found on parent side\n");
+    fprintf(stderr,"%s", "No errors found on parent side\n");
 done:
     return exitcode;
 }
@@ -393,7 +393,7 @@ char **argv;
 	  NHEXT_IO_RDONLY | NHEXT_IO_NOAUTOFILL);
 	wr = nhext_io_open(parent_write, get_parent_writeh(), NHEXT_IO_WRONLY);
 	if (!rd || !wr) {
-	    fprintf(stderr, "C Failed to open I/O streams.\n");
+	    fprintf(stderr,"%s", "C Failed to open I/O streams.\n");
 	    exit(1);
 	}
 	retval = child(rd, wr);
@@ -402,13 +402,13 @@ char **argv;
 	exit(retval);
     }
     if (!child_start(argv[0])) {
-	fprintf(stderr, "Failed to start child.\n");
+	fprintf(stderr,"%s", "Failed to start child.\n");
 	exit(1);
     }
     rd = nhext_io_open(child_read, get_child_readh(), NHEXT_IO_RDONLY);
     wr = nhext_io_open(child_write, get_child_writeh(), NHEXT_IO_WRONLY);
     if (!rd || !wr) {
-	fprintf(stderr, "Failed to open I/O streams.\n");
+	fprintf(stderr,"%s", "Failed to open I/O streams.\n");
 	exit(1);
     }
     retval = parent(rd, wr);

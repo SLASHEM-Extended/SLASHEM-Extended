@@ -58,7 +58,7 @@ char *argv[];
 	int i;
 
 	if (argc != 2) {
-		fprintf(stderr, "usage: tile2img outfile.img\n");
+		fprintf(stderr,"%s", "usage: tile2img outfile.img\n");
 		exit(EXIT_FAILURE);
 	} else
 		strcpy(bmpname, argv[1]);
@@ -147,7 +147,7 @@ pixel (*pixels)[TILE_X];
 					break;
 		    }
 		    if (cur_color >= num_colors)
-				fprintf(stderr, "color not in colormap!\n");
+				fprintf(stderr,"%s", "color not in colormap!\n");
 		    y = cur_y + yoffset;
 		    x = cur_x + xoffset;
 		    Bild_daten[y][x] =cur_color;

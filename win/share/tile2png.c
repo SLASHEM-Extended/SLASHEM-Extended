@@ -90,14 +90,14 @@ void save_png(const char *filename, int width, int height)
 
   if (png_ptr == NULL)
   {
-    fprintf(stderr, "tile2png: PNG error (out of memory ?)\n");
+    fprintf(stderr,"%s", "tile2png: PNG error (out of memory ?)\n");
     goto failed;
   }
 
   info_ptr = png_create_info_struct(png_ptr);
   if (info_ptr == NULL)
   {
-    fprintf(stderr, "tile2png: PNG error (out of memory ?)\n");
+    fprintf(stderr,"%s", "tile2png: PNG error (out of memory ?)\n");
     goto failed;
   }
 
@@ -106,7 +106,7 @@ void save_png(const char *filename, int width, int height)
    */
   if (setjmp(png_ptr->jmpbuf))
   {
-    fprintf(stderr, "tile2png: Unknown problem while writing PNG.\n");
+    fprintf(stderr,"%s", "tile2png: Unknown problem while writing PNG.\n");
     goto failed;
   }
 
@@ -135,7 +135,7 @@ void save_png(const char *filename, int width, int height)
   row_pointers = (png_bytep *) malloc(height * sizeof(png_bytep));
   if (!row_pointers)
   {
-    fprintf(stderr, "tile2png: Out of memory.\n");
+    fprintf(stderr,"%s", "tile2png: Out of memory.\n");
     goto failed;
   }
    
@@ -251,7 +251,7 @@ static int convert_tiles(void)
 
     if (ntiles >= MAX_TILE_NUM)
     {
-      fprintf(stderr, "tile2png: Too many tiles !!\n");
+      fprintf(stderr,"%s", "tile2png: Too many tiles !!\n");
       exit(1);
     }
   }
@@ -345,10 +345,10 @@ static void usage(void)
 {
   fprintf(stderr, "Usage: tile2png [-o out_file] [-t] [-f] [-a##] [-b######] "
       "txt_file1 [txt_file2 ...]\n");
-  fprintf(stderr, "Where: -t enables transparency\n");
-  fprintf(stderr, "       -f is used for fonts\n");
-  fprintf(stderr, "       -a gives the number of tiles across\n");
-  fprintf(stderr, "       -b gives the background (transparent) color\n");
+  fprintf(stderr,"%s", "Where: -t enables transparency\n");
+  fprintf(stderr,"%s", "       -f is used for fonts\n");
+  fprintf(stderr,"%s", "       -a gives the number of tiles across\n");
+  fprintf(stderr,"%s", "       -b gives the background (transparent) color\n");
 }
 
 
@@ -377,7 +377,7 @@ int main(int argc, const char **argv)
         outname = argv[++argn];
       else 
       {
-        fprintf(stderr, "tile2png: -o option needs an argument\n");
+        fprintf(stderr,"%s", "tile2png: -o option needs an argument\n");
         exit(EXIT_FAILURE);
       }
       argn++;
@@ -392,12 +392,12 @@ int main(int argc, const char **argv)
         num_across = atoi(argv[++argn]);
       else 
       {
-        fprintf(stderr, "tile2png: -a option needs an argument\n");
+        fprintf(stderr,"%s", "tile2png: -a option needs an argument\n");
         exit(EXIT_FAILURE);
       }
       if (num_across < 1)
       {
-        fprintf(stderr, "tile2png: bad value for -a option\n");
+        fprintf(stderr,"%s", "tile2png: bad value for -a option\n");
         exit(EXIT_FAILURE);
       }
       argn++;
@@ -431,7 +431,7 @@ int main(int argc, const char **argv)
         val = argv[++argn];
       else 
       {
-        fprintf(stderr, "tile2png: -b option needs an argument\n");
+        fprintf(stderr,"%s", "tile2png: -b option needs an argument\n");
         exit(EXIT_FAILURE);
       }
 

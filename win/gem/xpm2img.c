@@ -32,7 +32,7 @@ char *argv[];
 	int row, col, planeno;
 	int farben, planes;
 	if (argc != 3) {
-		fprintf(stderr, "usage: tile2img infile.xpm outfile.img\n");
+		fprintf(stderr,"%s", "usage: tile2img infile.xpm outfile.img\n");
 		exit(EXIT_FAILURE);
 	}
 	initflag = 0;
@@ -59,12 +59,12 @@ char *argv[];
 		for(col = 0;col<width;col++){
 			int color = xb[col];
 			if(!ttable[color].flag)
-				fprintf(stderr, "Bad image data\n");
+				fprintf(stderr,"%s", "Bad image data\n");
 			Bild_daten[row][col]= ttable[color].slot;
 		}
 	}
 	if(num_colors>256){
-		fprintf(stderr,"ERROR: zuviele Farben\n");
+		fprintf(stderr,"%s","ERROR: zuviele Farben\n");
 		exit(EXIT_FAILURE);
 	}else if(num_colors>16){
 		farben=256;
@@ -114,7 +114,7 @@ fopen_xpm_file(const char *fn, const char *mode){
 /* XXX */
 	xpmbuf = malloc(width * 2);
 	if(!xpmbuf){
-		fprintf(stderr,"ERROR: Can't allocate line buffer\n");
+		fprintf(stderr,"%s","ERROR: Can't allocate line buffer\n");
 		exit(1);
 	}
 	if(temp != 1)return FALSE;		/* limitation of this code */

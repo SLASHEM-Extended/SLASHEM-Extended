@@ -110,12 +110,12 @@ static void show_aligns(unsigned short *aligns)
 {
   int x;
   
-  fprintf(stderr, "<");
+  fprintf(stderr,"%s", "<");
 
   for (x=0; x < MAX_ALGN; x++)
     fprintf(stderr, "%c", aligns[x] ? '|' : ' ');
    
-  fprintf(stderr, ">\n");
+  fprintf(stderr,"%s", ">\n");
 }
 #endif
 

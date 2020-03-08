@@ -335,7 +335,7 @@ static void show_help_message(void)
 static void show_version_message(void)
 {
 #ifdef VANILLA_GLHACK
-  fprintf(stderr, "glHack version " GLHACK_VER_STR "\n");
+  fprintf(stderr,"%s", "glHack version " GLHACK_VER_STR "\n");
 #else
   fprintf(stderr, "Slash'EM version " VERSION_STRING
           " (SDL/GL window port)\n");

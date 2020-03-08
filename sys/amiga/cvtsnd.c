@@ -50,11 +50,11 @@ main(int ac, char **av)
 	exit(20);
     }
     if (!(in = fopen(av[1], "r"))) {
-	fprintf(stderr, "Can't open input file\n");
+	fprintf(stderr,"%s", "Can't open input file\n");
 	exit(20);
     }
     if (!(out = fopen(av[2], "w"))) {
-	fprintf(stderr, "Can't open output file\n");
+	fprintf(stderr,"%s", "Can't open output file\n");
 	exit(20);
     }
 

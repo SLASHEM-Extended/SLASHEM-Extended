@@ -109,7 +109,7 @@ char **argv;
 	/* search for header line */
 	for (;;) {
 		if (fgets(buf, sizeof buf, in) == NULL) {
-			fprintf(stderr, "No begin line\n");
+			fprintf(stderr,"%s", "No begin line\n");
 			exit(3);
 		}
 		if (strncmp(buf, "begin ", 6) == 0)
@@ -127,7 +127,7 @@ char **argv;
 
 		sl = index(dest, '/');
 		if (sl == NULL) {
-			fprintf(stderr, "Illegal ~user\n");
+			fprintf(stderr,"%s", "Illegal ~user\n");
 			exit(3);
 		}
 		*sl++ = 0;
@@ -160,7 +160,7 @@ char **argv;
 	decode(in, out);
 
 	if (fgets(buf, sizeof buf, in) == NULL || strcmp(buf, "end\n")) {
-		fprintf(stderr, "No end line\n");
+		fprintf(stderr,"%s", "No end line\n");
 		exit(5);
 	}
 	exit(0);

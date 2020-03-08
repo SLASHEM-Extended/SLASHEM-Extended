@@ -259,20 +259,20 @@ char *argv[];
         
         if (util_mode != 'c') {
 	    if (argv[1][2] == '1' && argv[1][3] == '6') {
-    		fprintf(stderr, "Using 16x16 text tile files\n");
+    		fprintf(stderr,"%s", "Using 16x16 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles16;
 		strcpy(bigtile_file, bigtile_file16);
 	    } else if (argv[1][2] == '3' && 
 		    	(argv[1][3] == 'D' || argv[1][3] == 'd')) {
-    		fprintf(stderr, "Using 48x64 text tile files\n");
+    		fprintf(stderr,"%s", "Using 48x64 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles3d;
 		strcpy(bigtile_file, bigtile_file3d);
 		trans_background = TRUE;
 	    } else {
 	       	/* Default mode is 32 */
-    		fprintf(stderr, "Using 32x32 text tile files\n");
+    		fprintf(stderr,"%s", "Using 32x32 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles32;
 		strcpy(bigtile_file, bigtile_file32);
@@ -294,14 +294,14 @@ char *argv[];
 		perror(index_file);
 		exit(EXIT_FAILURE);
 	    }
-	    fprintf(ofp,Dont_Edit_Index);   
+	    fprintf(ofp,"%s",Dont_Edit_Index);   
         } else if (util_mode == 'h') {
 	    if (!(ofp = fopen(allegfx_file, WRTMODE))) {
 		perror(allegfx_file);
 		exit(EXIT_FAILURE);
 	    }
-    	    fprintf(ofp,"/*\tSCCS Id: @(#)allegfx.h\t3.2\t96/05/17 */\n\n");
-	    fprintf(ofp,Dont_Edit_Code);	    
+    	    fprintf(ofp,"%s","/*\tSCCS Id: @(#)allegfx.h\t3.2\t96/05/17 */\n\n");
+	    fprintf(ofp,"%s",Dont_Edit_Code);	    
 	    fprintf(ofp,"/*\tNOTE: This file is completely obselete! */\n"
 		"/*\tI have no idea why you made it */\n\n");
         } else if (util_mode == 'b' || util_mode == 'c') {

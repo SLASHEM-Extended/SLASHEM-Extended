@@ -104,7 +104,7 @@ char *argv[];
 		if (!fopen_text_file(tilefiles[filenum], RDTMODE))
 			exit(EXIT_FAILURE);
 		if (tile_x * 2 > MAX_TILE_X || tile_y * 2 > MAX_TILE_Y) {
-			fprintf(stderr, "tile size too large\n");
+			fprintf(stderr,"%s", "tile size too large\n");
 			exit(EXIT_FAILURE);
 		}
 		if (!fopen_text_file(magfiles[filenum], WRTMODE))

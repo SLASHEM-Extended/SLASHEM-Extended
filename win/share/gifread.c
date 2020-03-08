@@ -81,14 +81,14 @@ unsigned char	*buf;
 	unsigned char	count;
 
 	if (!ReadOK(fd,&count,1)) {
-		fprintf(stderr, "error in getting DataBlock size\n");
+		fprintf(stderr,"%s", "error in getting DataBlock size\n");
 		return -1;
 	}
 
 	ZeroDataBlock = (count == 0);
 
 	if ((count != 0) && (!ReadOK(fd, buf, count))) {
-		fprintf(stderr, "error in reading DataBlock\n");
+		fprintf(stderr,"%s", "error in reading DataBlock\n");
 		return -1;
 	}
 
@@ -199,12 +199,12 @@ FILE	*fd;
 	char		version[4];
 
 	if (!ReadOK(fd,buf,6)) {
-		fprintf(stderr, "error reading magic number\n");
+		fprintf(stderr,"%s", "error reading magic number\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (strncmp((void *)buf,"GIF",3) != 0) {
-		fprintf(stderr, "not a GIF file\n");
+		fprintf(stderr,"%s", "not a GIF file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -217,7 +217,7 @@ FILE	*fd;
 	}
 
 	if (!ReadOK(fd,buf,7)) {
-		fprintf(stderr, "failed to read screen descriptor\n");
+		fprintf(stderr,"%s", "failed to read screen descriptor\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -230,18 +230,18 @@ FILE	*fd;
 
 	if (BitSet(buf[4], LOCALCOLORMAP)) {	/* Global Colormap */
 		if (!ReadColorMap(fd, GifScreen.Colors)) {
-			fprintf(stderr, "error reading global colormap\n");
+			fprintf(stderr,"%s", "error reading global colormap\n");
 			exit(EXIT_FAILURE);
 		}
 	}
 
 	if (GifScreen.AspectRatio != 0 && GifScreen.AspectRatio != 49) {
-		fprintf(stderr, "warning - non-square pixels\n");
+		fprintf(stderr,"%s", "warning - non-square pixels\n");
 	}
 
 	for (;;) {
 		if (!ReadOK(fd,&c,1)) {
-			fprintf(stderr, "EOF / read error on image data\n");
+			fprintf(stderr,"%s", "EOF / read error on image data\n");
 			exit(EXIT_FAILURE);
 		}
 
@@ -266,7 +266,7 @@ FILE	*fd;
 		}
 
 		if (!ReadOK(fd,buf,9)) {
-		    fprintf(stderr, "couldn't read left/top/width/height\n");
+		    fprintf(stderr,"%s", "couldn't read left/top/width/height\n");
 		    exit(EXIT_FAILURE);
 		}
 
@@ -274,17 +274,17 @@ FILE	*fd;
 			/* replace global color map with local */
 			GifScreen.Colors = 1<<((buf[8]&0x07)+1);
 			if (!ReadColorMap(fd, GifScreen.Colors)) {
-			    fprintf(stderr, "error reading local colormap\n");
+			    fprintf(stderr,"%s", "error reading local colormap\n");
 			    exit(EXIT_FAILURE);
 			}
 
 		}
 		if (GifScreen.Width != LM_to_uint(buf[4],buf[5])) {
-			fprintf(stderr, "warning: widths don't match\n");
+			fprintf(stderr,"%s", "warning: widths don't match\n");
 			GifScreen.Width = LM_to_uint(buf[4],buf[5]);
 		}
 		if (GifScreen.Height != LM_to_uint(buf[6],buf[7])) {
-			fprintf(stderr, "warning: heights don't match\n");
+			fprintf(stderr,"%s", "warning: heights don't match\n");
 			GifScreen.Height = LM_to_uint(buf[6],buf[7]);
 		}
 		GifScreen.Interlace = BitSet(buf[8], INTERLACE);
@@ -313,7 +313,7 @@ int	flag;
 	if ((curbit+code_size) >= lastbit) {
 		if (done) {
 			if (curbit >= lastbit)
-				fprintf(stderr, "ran off the end of my bits\n");
+				fprintf(stderr,"%s", "ran off the end of my bits\n");
 			return -1;
 		}
 		buf[0] = buf[last_byte-2];
@@ -425,7 +425,7 @@ int	input_code_size;
 		while (code >= clear_code) {
 			*sp++ = table[1][code];
 			if (code == table[0][code]) {
-			    fprintf(stderr, "circular table entry BIG ERROR\n");
+			    fprintf(stderr,"%s", "circular table entry BIG ERROR\n");
 			    exit(EXIT_FAILURE);
 			}
 			code = table[0][code];
@@ -535,7 +535,7 @@ const char *type;
 	int i;
 
 	if (strcmp(type, RDBMODE)) {
-		fprintf(stderr, "using reading routine for non-reading?\n");
+		fprintf(stderr,"%s", "using reading routine for non-reading?\n");
 		return FALSE;
 	}
 	gif_file = fopen(filename, type);
@@ -577,12 +577,12 @@ const char *type;
 	**  Initialize the Compression routines
 	*/
 	if (!ReadOK(gif_file,&input_code_size,1)) {
-		fprintf(stderr, "EOF / read error on image data\n");
+		fprintf(stderr,"%s", "EOF / read error on image data\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (LWZReadByte(gif_file, TRUE, (int)input_code_size) < 0) {
-		fprintf(stderr, "error reading image\n");
+		fprintf(stderr,"%s", "error reading image\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -698,12 +698,12 @@ char *argv[];
 		argc = SIZE(std_args);
 		argv = std_args;
 	} else if (argc != 3) {
-		fprintf(stderr, "usage: gif2txt giffile txtfile\n");
+		fprintf(stderr,"%s", "usage: gif2txt giffile txtfile\n");
 		exit(EXIT_FAILURE);
 	}
 #else
 	if (argc != 4) {
-		fprintf(stderr, "usage: igif2txt indexfile giffile txtfile\n");
+		fprintf(stderr,"%s", "usage: igif2txt indexfile giffile txtfile\n");
 		exit(EXIT_FAILURE);
 	}
 #endif

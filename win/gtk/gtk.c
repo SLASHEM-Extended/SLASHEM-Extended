@@ -569,13 +569,13 @@ session_window_dump(FILE *fp, int i, const char *tag)
 {
     fprintf(fp, "%s(%s): flags:", tag, session_window_info[i].name);
     if (session_window_info[i].flags & NH_SESSION_RESIZABLE)
-	fprintf(fp, " resizable");
+	fprintf(fp,"%s", " resizable");
     if (session_window_info[i].flags & NH_SESSION_USER_POS)
-	fprintf(fp, " user-pos");
+	fprintf(fp,"%s", " user-pos");
     if (session_window_info[i].flags & NH_SESSION_USER_SIZE)
-	fprintf(fp, " user-size");
+	fprintf(fp,"%s", " user-size");
     if (session_window_info[i].flags & NH_SESSION_PLACED)
-	fprintf(fp, " placed");
+	fprintf(fp,"%s", " placed");
     fputc('\n', fp);
     fprintf(fp, "bounding is %d x %d @ (%d, %d)\n",
       session_window_info[i].bounding.width,
@@ -598,13 +598,13 @@ session_window_configure_event(GtkWidget *widget, GdkEventConfigure *event,
     session_window_dump(stderr, i, "configure start");
     fprintf(stderr, "event is %d x %d @ (%d, %d)\n",
       event->width, event->height, event->x, event->y);
-    fprintf(stderr, "widget state is:");
+    fprintf(stderr,"%s", "widget state is:");
     if (GTK_WIDGET_MAPPED(widget))
-	fprintf(stderr, " mapped");
+	fprintf(stderr,"%s", " mapped");
     if (GTK_WIDGET_REALIZED(widget))
-	fprintf(stderr, " realized");
+	fprintf(stderr,"%s", " realized");
     if (GTK_WIDGET_VISIBLE(widget))
-	fprintf(stderr, " visible");
+	fprintf(stderr,"%s", " visible");
     fputc('\n', stderr);
 #endif
     if (session_window_info[i].flags & NH_SESSION_PLACED) {
@@ -1168,8 +1168,8 @@ focus_dump(void)
 {
     struct focus_hierarchy *fh;
     GSList *list;
-    fprintf(stderr,"Focus hierarchy\n");
-    fprintf(stderr,"Master\t\tHandler\t\tSlaves\n");
+    fprintf(stderr,"%s","Focus hierarchy\n");
+    fprintf(stderr,"%s","Master\t\tHandler\t\tSlaves\n");
     for(fh = focus_top; fh; fh = fh->next) {
 	fprintf(stderr,"%p\t%p\t",fh->master,fh->handler);
 	if (fh->slaves)
@@ -2132,7 +2132,7 @@ GTK_init_nhwindows(char ***capvp)
   
     for(i = 0; i < N_NH_COLORS; i++)
 	if (!gdk_colormap_alloc_color(cmap, &nh_color[i], FALSE, TRUE))
-	    fprintf(stderr, "cannot allocate color\n");
+	    fprintf(stderr,"%s", "cannot allocate color\n");
 
     main_vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), main_window, "");
 
@@ -2272,8 +2272,8 @@ GTK_exit_nhwindows(const char *str)
 	unsigned int w, h, bw, dp;
 	XWindowAttributes wa;
 	char *type;
-	fprintf(stderr, "X Drawables not freed:\n");
-	fprintf(stderr, "XID       Type    Width   Height\n");
+	fprintf(stderr,"%s", "X Drawables not freed:\n");
+	fprintf(stderr,"%s", "XID       Type    Width   Height\n");
 	XSetErrorHandler(GTK_X11_error_handler);
 	for(i = 0; i < dpy->resource_id; i++) {
 	    d = (Drawable)(dpy->resource_base + (i << dpy->resource_shift));

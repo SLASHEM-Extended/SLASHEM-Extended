@@ -97,7 +97,7 @@ char **argv;
     }
 
     if (argc != 3) {
-	fprintf(stderr, "usage: txtbg [-s<seq>] infile outfile\n");
+	fprintf(stderr,"%s", "usage: txtbg [-s<seq>] infile outfile\n");
 	exit(EXIT_FAILURE);
     }
 

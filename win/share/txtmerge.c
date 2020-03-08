@@ -64,14 +64,14 @@ read_tiles()
 		tiles = (struct tile *)realloc(tiles,
 		  alloc_tiles * sizeof(*tiles));
 	    if (!tiles) {
-		fprintf(stderr, "Not enough memory\n");
+		fprintf(stderr,"%s", "Not enough memory\n");
 		exit(EXIT_FAILURE);
 	    }
 	    for(i = no_tiles; i < alloc_tiles; i++) {
 		tiles[i].bitmap = (pixel *)
 		  malloc(tile_x * tile_y * sizeof(pixel));
 		if (!tiles[i].bitmap) {
-		    fprintf(stderr, "Not enough memory\n");
+		    fprintf(stderr,"%s", "Not enough memory\n");
 		    exit(EXIT_FAILURE);
 		}
 	    }
@@ -89,7 +89,7 @@ read_tiles()
 	else {
 	    tiles[no_tiles].name = strdup(name);
 	    if (!tiles[no_tiles].name) {
-		fprintf(stderr, "Not enough memory\n");
+		fprintf(stderr,"%s", "Not enough memory\n");
 		exit(EXIT_FAILURE);
 	    }
 	}
