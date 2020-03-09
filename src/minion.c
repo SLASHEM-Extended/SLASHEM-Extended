@@ -9,7 +9,7 @@
 void
 msummon(mon, ownloc)		/* mon summons a monster */
 struct monst *mon;
-boolean ownloc; /* TRUE = summon wherever I am, FALSE = summon at player's location --Amy */
+boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!), FALSE = summon at player's location --Amy */
 {
 	register struct permonst *ptr;
 	register int dtype = NON_PM, cnt = 0;

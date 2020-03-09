@@ -446,7 +446,7 @@ nasty(mcast)
 	}
 
     if(!rn2(10) && Inhell) {
-	msummon((struct monst *) 0, TRUE);	/* summons like WoY */
+	msummon((struct monst *) 0, FALSE);	/* summons like WoY */
 	count++;
     } else {
 	tmp = (u.ulevel > 6) ? u.ulevel /6 : 1; /* just in case -- rph */
