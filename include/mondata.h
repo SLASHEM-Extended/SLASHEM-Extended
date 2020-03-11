@@ -307,6 +307,11 @@
 				 (ptr) == &mons[PM_HUMAN_WEREBLACKLIGHT] || \
 				 (ptr) == &mons[PM_CHEATING_BLACK_LIGHT] || \
 				 (ptr) == &mons[PM_FORCE_STALKER] || \
+				 (ptr) == &mons[PM_GREEN_STALKER] || \
+				 (ptr) == &mons[PM_WHITE_STALKER] || \
+				 (ptr) == &mons[PM_RED_STALKER] || \
+				 (ptr) == &mons[PM_YELLOW_STALKER] || \
+				 (ptr) == &mons[PM_CYAN_STALKER] || \
 				 (ptr) == &mons[PM_BLACK_LASER] || \
 				 (ptr) == &mons[PM_BLACK_BULB] || \
 				 (ptr) == &mons[PM_BLACK_STAR] || \

@@ -1067,6 +1067,8 @@ register int pm;
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
+	    case PM_HELTH_LIZARD:
+	    case PM_NORMAL_LIZARD:
 	    case PM_CLOCKBACK_LIZARD:
 	    case PM_ADULT_LIZARD:
 	    case PM_KARMIC_LIZARD:
@@ -1247,6 +1249,8 @@ struct monst *mon;
 	    case PM_OWN_SMOKE:
 	    case PM_ADULT_LIZARD:
 	    case PM_GRANDPA:
+	    case PM_HELTH_LIZARD:
+	    case PM_NORMAL_LIZARD:
 	    case PM_CLOCKBACK_LIZARD:
 	case PM_KARMIC_LIZARD:
 	case PM_GREEN_LIZARD:
@@ -2293,6 +2297,9 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_WIGHTSPECTRE:
+	    case PM_KING_WRAITH:
+	    case PM_GUD_WRAITH:
 	    case PM_CREVICE_WRAITH:
 	    case PM_HUDDLED_WRAITH:
 	    case PM_HITTABLE_WRAITH:
@@ -2803,6 +2810,11 @@ register int pm;
 
 	    case PM_STALKER:
 	    case PM_FORCE_STALKER:
+	    case PM_GREEN_STALKER:
+	    case PM_RED_STALKER:
+	    case PM_YELLOW_STALKER:
+	    case PM_WHITE_STALKER:
+	    case PM_CYAN_STALKER:
 	    case PM_THE_HIDDEN:
 	    case PM_INVISIBLE_BADGUY:
 	    case PM_UNSEEN_POTATO:
@@ -2846,6 +2858,8 @@ register int pm;
 		make_stunned(HStun + 30,FALSE);
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_ECO_MECHANIC:
+	    case PM_COMO_MECHANIC:
 	    case PM_MATHEMATICIAN:
 	    case PM_TOLKIEN_MECHANIC:
 	    case PM_FORGER_MECHANIC:
@@ -2899,6 +2913,7 @@ register int pm;
 	    case PM_CHAOTIC_LIZARD:
 	    case PM_LIZARD_MAN:
 	    case PM_SKELLIZARD:
+	    case PM_NORMAL_LIZARD:
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:
 	    case PM_LIZZY:
@@ -2951,6 +2966,7 @@ register int pm;
 		break;
 
 	    case PM_MIMIC_LIZARD:
+	    case PM_HELTH_LIZARD:
 	    case PM_DEFORMED_LIZARD:
 	    case PM_GRATING_CHICKEN:
 			lesshungry(20); /* fall thru */
@@ -3226,6 +3242,7 @@ register int pm;
 	    case PM_INTELLIGENT_TROVE:
 	    case PM_NEOTHELID:
 	    case PM_VILLITHID:
+	    case PM_ILLITHILICH:
 	    case PM_FEMIFLAYER:
 	    case PM_ULITHARID:
 	    case PM_ABERRATION_FLAYER:
@@ -3299,7 +3316,9 @@ register int pm;
 		case PM_PASSIVE_MIND_FLAYER:
 		case PM_MINDFLAY_WRAITH:
 		case PM_TROLL_FLAYER:
+		case PM_POSION_FLAYER:
 		case PM_PARASITIC_MIND_FLAYER:
+		case PM_SHIELDED_MIND_FLAYER:
 		case PM_PARASITIC_MASTER_MIND_FLAYER:
 		case PM_BLUE_FLAYER:
 		case PM_MASTER_BLUE_FLAYER:
