@@ -17505,8 +17505,11 @@ register boolean force, here;
 					|| obj->otyp == LOADBOULDER
 					|| obj->otyp == STARLIGHTSTONE
 					|| obj->otyp == STONE_OF_MAGIC_RESISTANCE
-					|| obj->otyp == TOUCHSTONE))
+					|| obj->otyp == TOUCHSTONE)) {
 			    obj->otyp = FLINT;
+				recalc_health();
+				recalc_mana();
+			}
 			break;
 		    case TOOL_CLASS:
 			if (level.flags.lethe) {
@@ -17645,8 +17648,11 @@ register boolean force, here;
 					|| obj->otyp == HEALTHSTONE
 					|| obj->otyp == MANASTONE
 					|| obj->otyp == STONE_OF_MAGIC_RESISTANCE
-					|| obj->otyp == TOUCHSTONE))
+					|| obj->otyp == TOUCHSTONE)) {
 			    obj->otyp = FLINT;
+				recalc_health();
+				recalc_mana();
+			}
 			break;
 		    case TOOL_CLASS:
 			    switch (obj->otyp) {

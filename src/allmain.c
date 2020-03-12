@@ -5020,6 +5020,13 @@ newbossF:
 			adjalign(1);
 		}
 
+		/* catchall for health/manastones: make sure that if they enter or leave your inventory without the function
+		 * making sure that their effect updates, the numbers are corrected periodically */
+		if (!rn2(200)) {
+			recalc_health();
+			recalc_mana();
+		}
+
 		if (uarmf && itemhasappearance(uarmf, APP_STANDING_FOOTWEAR) && !rn2(1000)) {
 			awaken_monsters(30);
 		}
@@ -10946,6 +10953,10 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* restore heretic gods */
 	reinitgods();
+
+	/* in case healthstones and stuff got out of sync somehow... */
+	recalc_health();
+	recalc_mana();
 
     }
 
