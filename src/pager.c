@@ -5097,7 +5097,7 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "If you keep wasting so much time, %s, you'll just allow me and the other Hussies to grow even stronger!",
 "%s, I'll give you a hint. That strategy of yours, it's not working. Why don't you just give up?",
 "%s, Walt is only using you. You're just a pawn in his army of redshirts! Turn traitor on him and I'll allow you to live!",
-"So you're capable of erecting diamond barriers, %s. Well, you should know that my female butt is capable of destryoying them again and again, no matter how many you set up.",
+"So you're capable of erecting diamond barriers, %s. Well, you should know that my female butt is capable of destroying them again and again, no matter how many you set up.",
 "%s, you smoke too much and are also overweight!",
 };
 
