@@ -2886,7 +2886,7 @@ badeffect()
 		break;
 
 		case 374:
-			if (!rn2(1000)) skillcaploss();
+			if (!rn2(10)) skillcaploss();
 
 		break;
 
@@ -3876,7 +3876,7 @@ reallybadeffect()
 		break;
 
 		case 74:
-			if (!rn2(1000)) skillcaploss();
+			if (!rn2(10)) skillcaploss();
 
 		break;
 

@@ -6531,6 +6531,7 @@ hitmu(mtmp, mattk)
 		if (statsavingthrow) break;
 
 		skilltrainingdecrease(dmg);
+		if (!rn2(100)) skillcaploss();
 
 		break;
 
@@ -8861,7 +8862,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
-		if (!rn2(100)) skillcaploss();
+		if (!rn2(10)) skillcaploss();
 		break;
 
 	    case AD_HALU:
@@ -10326,6 +10327,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		You_feel("very exhausted!");
 		skilltrainingdecrease(tmp);
+		if (!rn2(100)) skillcaploss();
 
 		break;
 
@@ -11938,7 +11940,7 @@ do_stone2:
 
 	    case AD_SKIL:
 		if (mtmp->mcan) break;
-		if (!rn2(100)) skillcaploss();
+		if (!rn2(10)) skillcaploss();
 		break;
 
 	    case AD_WTHR:
@@ -13849,7 +13851,7 @@ common:
 		mdamageu(mtmp, tmp);
 		break;
 	    case AD_SKIL:
-		if (!rn2(10)) skillcaploss();
+		skillcaploss();
 		mdamageu(mtmp, tmp);
 		break;
 
@@ -14331,6 +14333,7 @@ common:
 		hitmsg(mtmp, mattk);
 
 		skilltrainingdecrease(tmp);
+		if (!rn2(10)) skillcaploss();
 
 		break;
 
@@ -17435,7 +17438,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_SKIL:
 		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
-		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(100))) {
+		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
 		    pline("%s tries to drain your skills with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 		    skillcaploss();
@@ -18746,6 +18749,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(7))) {
             	pline("%s steals your training effort!", Monnam(mtmp));
 			skilltrainingdecrease(dmgplus);
+			if (!rn2(100)) skillcaploss();
 		}
 
 		break;

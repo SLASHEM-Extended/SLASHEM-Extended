@@ -5759,7 +5759,7 @@ physical:
 		if (mdef->mtame) tmp *= rnd(4);
 		break;
 	    case AD_SKIL:
-		if (mdef->mtame && !rn2(20)) badpeteffect(mdef);
+		if (mdef->mtame && !rn2(4)) badpeteffect(mdef);
 		break;
 	    case AD_SUCK:
 		if (mdef->mtame) {
@@ -7310,7 +7310,7 @@ int attnumber;
 		}
 		break;
 	    case AD_SKIL:
-		if (magr->mtame && !rn2(20)) badpeteffect(magr);
+		if (magr->mtame && !rn2(4)) badpeteffect(magr);
 		break;
 	    case AD_SUCK:
 		if (magr->mtame) {

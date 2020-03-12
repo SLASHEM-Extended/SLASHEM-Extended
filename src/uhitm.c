@@ -8163,6 +8163,7 @@ boolean ranged;
 	    case AD_TRAI:
 
 		skilltrainingdecrease(tmp);
+		if (!rn2(100)) skillcaploss();
 
 		break;
 
@@ -9159,7 +9160,7 @@ boolean ranged;
 		break;
 
 	    case AD_SKIL:
-		if (!rn2(100)) skillcaploss();
+		if (!rn2(10)) skillcaploss();
 		break;
 
 	  case AD_NGRA:
