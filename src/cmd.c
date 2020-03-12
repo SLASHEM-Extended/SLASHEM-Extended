@@ -6185,7 +6185,11 @@ boolean guaranteed;
 		enl_msg("Your chance to block ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && Fumbling) enl_msg("You fumble", "", "d", "");
+	if ((guaranteed || !rn2(10)) && Fumbling) {
+		sprintf(buf, "fumbling");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.fumbleduration);
+		you_are(buf);
+	}
 	if ((guaranteed || !rn2(10)) && (Wounded_legs && !u.usteed)) {
 		sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", HWounded_legs);
@@ -9957,6 +9961,13 @@ int final;
 	}
 
 	if (Fumbling) dump("  ", "You fumbled");
+
+	if (Fumbling) {
+		sprintf(buf, "fumbling");
+		sprintf(eos(buf), " (%ld)", u.fumbleduration);
+		dump(youwere, buf);
+	}
+
 	if (Wounded_legs && !u.usteed ) {
 		sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
 	      sprintf(eos(buf), " (%ld)", HWounded_legs);
