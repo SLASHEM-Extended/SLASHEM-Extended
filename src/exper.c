@@ -476,75 +476,6 @@ newexplevel()
 	}
 }
 
-#if 0 /* The old newexplevel() */
-{
-	register int tmp;
-	struct obj *ubook;
-
-	if(u.ulevel < MAXULEV && u.uexp >= newuexp(u.ulevel)) {
-
-		u.ulevel++;
-		if (u.ulevelmax < u.ulevel) u.ulevelmax = u.ulevel;	/* KMH */
-		if (u.uexp >= newuexp(u.ulevel)) u.uexp = newuexp(u.ulevel) - 1;
-		pline("Welcome to experience level %d.", u.ulevel);
-		/* give new intrinsics */
-		adjabil(u.ulevel - 1, u.ulevel);
-
-
-		reset_rndmonst(NON_PM); /* new monster selection */
-/* STEPHEN WHITE'S NEW CODE */                
-		tmp = newhp();
-		u.uhpmax += tmp;
-		u.uhpmax += rn2(3);
-		u.uhp += tmp;
-		u.uhpmax += rnz(2); /*making the game a bit easier --Amy */
-		if (!issoviet && (u.uhp < u.uhpmax)) u.uhp = u.uhpmax;
-		if (issoviet) pline("Vy dazhe ne poluchayete polnyye linii, potomu chto sovetskiy ne ponimayet, kak rolevyye igry rabotayut!");
-		switch (Role_switch) {
-			case PM_ARCHEOLOGIST: u.uenbase += rnd(4) + 1; break;
-			case PM_BARBARIAN: u.uenbase += rnd(2); break;
-			case PM_CAVEMAN: u.uenbase += rnd(2); break;
-			/*case PM_DOPPELGANGER: u.uenbase += rnd(5) + 1; break;
-			case PM_ELF: case PM_DROW: u.uenbase += rnd(5) + 1; break;*/
-			case PM_FLAME_MAGE: u.uenbase += rnd(6) + 2; break;
-			case PM_ACID_MAGE: u.uenbase += rnd(6) + 2; break;
-			case PM_GNOME: u.uenbase += rnd(3); break;
-			case PM_HEALER: u.uenbase += rnd(6) + 2; break;
-			case PM_ICE_MAGE: u.uenbase += rnd(6) + 2; break;
-			case PM_ELECTRIC_MAGE: u.uenbase += rnd(6) + 2; break;
-			case PM_YEOMAN:
-			case PM_KNIGHT: u.uenbase += rnd(3); break;
-			/*case PM_HUMAN_WEREWOLF: u.uenbase += rnd(5) + 1; break;*/
-			case PM_MONK: u.uenbase += rnd(5) + 1; break;
-			case PM_ELPH: u.uenbase += rnd(5) + 1; break;
-			case PM_NECROMANCER: u.uenbase += rnd(6) + 2; break;
-			case PM_PRIEST: u.uenbase += rnd(6) + 2; break;
-			case PM_CHEVALIER: u.uenbase += rnd(6) + 2; break;
-			case PM_ROGUE: u.uenbase += rnd(4) + 1; break;
-			/*case PM_MAIA: u.uenbase += rnd(4) + 1; break;
-			case PM_GASTLY: u.uenbase += rnd(3) + 1; break;*/
-			case PM_SAMURAI: u.uenbase += rnd(2); break;
-			case PM_TOURIST: u.uenbase += rnd(4) + 1; break;
-			case PM_UNDEAD_SLAYER: u.uenbase += rnd(3); break;
-			case PM_VALKYRIE: u.uenbase += rnd(2); break;
-			case PM_WIZARD: u.uenbase += rnd(6) + 2; break;
-			case PM_CONVICT: break;
-			/*case PM_ALIEN: break;
-			case PM_OGRO: break;
-			case PM_KOBOLT: break;
-			case PM_TROLLOR: break;
-			case PM_GIGANT: break;*/
-			case PM_WARRIOR: break;
-			case PM_COURIER: break;
-			default: u.uenbase += rnd(2) + 1; break;
-		}
-		if (u.uen < u.uenmax) u.uen = u.uenmax;
-
-		flags.botl = 1;
-	}
-}
-#endif /* old newexplevel() */
-
 void
 pluslvl(incr)
 boolean incr;	/* true iff via incremental experience growth */
@@ -594,6 +525,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	    u.mhmax += num;
 	    u.mh += num;
+
 		if ((u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) && !issoviet && (u.mh < u.mhmax)) u.mh = u.mhmax;
 	}
 	if (u.ulevel < urole.xlev)
@@ -726,7 +658,7 @@ exprecalc(void)
 	register struct obj *acqo;
 	struct obj *ubookz;
 
-	while (u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) {
+	while (u.ulevel > u.urmaxlvlUP && u.ulevel < 30) {
 		u.urmaxlvlUP++;
 
 		if ( (Role_if(PM_FEMINIST) || Role_if(PM_GRENADONIN)) && !rn2(5)) {
