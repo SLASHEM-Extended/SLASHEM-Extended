@@ -10099,6 +10099,7 @@ int lossamount;
 
 		/* sometimes we're mean and reduce it by more, depending on how many spells you have... --Amy */
 		if (!rn2(3) && choicenumber > 1) lossamount *= rno(choicenumber);
+		lossamount *= rnd(5);
 
 		if (choicenumber > 0 && thisone >= 0) {
 			boostknow(thisone, -(lossamount * 100));

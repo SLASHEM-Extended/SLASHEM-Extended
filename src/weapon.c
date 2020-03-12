@@ -9010,6 +9010,7 @@ int lossamount;
 
 	/* this is so that the effect is actually noticeable... --Amy */
 	if (!rn2(10)) lossamount *= (1 + rnd(9));
+	lossamount *= rnd(5);
 
 	if ((P_ADVANCE(pickskill)) < lossamount) P_ADVANCE(pickskill) = 0;
 	else P_ADVANCE(pickskill) -= lossamount;

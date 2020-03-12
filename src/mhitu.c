@@ -6419,7 +6419,7 @@ hitmu(mtmp, mattk)
 	    case AD_FEMI:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		randomfeminismtrap(rnz( (dmg + 2) * rnd(25)));
+		randomfeminismtrap(rnz( (dmg + 2) * rnd(100)));
 
 		break;
 
@@ -10241,7 +10241,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		case AD_FEMI:
 
 			pline("It feels very feminine in here!");
-			randomfeminismtrap(rnz( (tmp + 2) * rnd(25)));
+			randomfeminismtrap(rnz( (tmp + 2) * rnd(100)));
 
 		break;
 
@@ -14251,7 +14251,7 @@ common:
 		break;
 
 	    case AD_FEMI:
-		randomfeminismtrap(rnz( (tmp + 2) * rnd(25)));
+		randomfeminismtrap(rnz( (tmp + 2) * rnd(100)));
 
 		break;
 
@@ -18638,7 +18638,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(20))) {
                 pline("%s gazes at you in a very female way!", Monnam(mtmp));
-			randomfeminismtrap(rnz( (dmgplus + 2) * rnd(25)));
+			randomfeminismtrap(rnz( (dmgplus + 2) * rnd(100)));
 		}
 
 		break;

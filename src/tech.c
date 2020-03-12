@@ -9369,6 +9369,7 @@ int increaseamount;
 
 	/* make this effect actually matter --Amy */
 	if (!rn2(2) && choicenumber > 1) increaseamount *= choicenumber;
+	increaseamount *= rnd(5);
 
 	if (choicenumber > 0 && thisone >= 0) {
 		techtout(thisone) += increaseamount;

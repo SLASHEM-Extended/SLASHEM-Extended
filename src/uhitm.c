@@ -8078,7 +8078,7 @@ boolean ranged;
 
 	    case AD_FEMI:
 
-		randomfeminismtrap(rnz( (tmp + 2) * rnd(25)));
+		randomfeminismtrap(rnz( (tmp + 2) * rnd(100)));
 
 		break;
 
