@@ -70640,7 +70640,24 @@ essential in locating the Amulet of Yendor."
 %Cp - 01252
 "If so,it might be relat with electric wave."
 %E
-
+%Cp - 01253
+"Judgment hath been passed upon thee, %p."
+%E
+%Cp - 01254
+"Thy reckoning is at hand, %p."
+%E
+%Cp - 01255
+"Thou shalt be brought before %D for thy crimes!"
+%E
+%Cp - 01256
+"With %D as my witness, I shall strike thee down."
+%E
+%Cp - 01257
+"STOP! %D commands it!"
+%E
+%Cp - 01258
+"Thy fate is sealed!"
+%E
 
 #
 #       Demonic maledictions.
@@ -71502,6 +71519,63 @@ essential in locating the Amulet of Yendor."
 %E
 %Cp - 02285
 "You dirty traitor! Die, you dirty traitor! Go to hell and suck the cock of Satan!"
+%E
+%Cp - 02286
+"Go hug a manticore!"
+%E
+%Cp - 02287
+"Thou ought to be a comedian, thy skills are so laughable!"
+%E
+%Cp - 02288
+"Thy gaze is so vacant, I thought thee a floating eye!"
+%E
+%Cp - 02289
+"Thy head is unfit for a mind flayer to munch upon!"
+%E
+%Cp - 02290
+"Thou art but a talentles rube!"
+%E
+%Cp - 02291
+"Once I am finished with thee, I think I may feed upon thy pet!"
+%E
+%Cp - 02292
+"Is thy name truly '%p?' Truly, 'dunnderhead' wouldst be more fitting!"
+%E
+%Cp - 02293
+"Thou calls thyself a %r? In seriousness?"
+%E
+%Cp - 02294
+"Only thy reflection could love thee!"
+%E
+%Cp - 02295
+"Hast thou considered masking thy odor?"
+%E
+%Cp - 02296
+"Thy mother is a sow, and thy father is a cow!"
+%E
+%Cp - 02297
+"Wouldst thou assist me with directions? I appear to be at an idiot convention!"
+%E
+%Cp - 02298
+"Hold! Thy face is a most exquisite torture!"
+%E
+%Cp - 02299
+"I wouldst fart in thy direction, but it might improve thy smell!"
+%E
+%Cp - 02300
+"Thhbbbbbt!!!"
+%E
+%Cp - 02301
+"I bite my thumb at thee!"
+%E
+%Cp - 02302
+"I cannot wait to drag thy body across a sea of spikes!"
+%E
+%Cp - 02303
+"I wonder, what circle awaits thou after I slay thee?"
+%E
+%Cp - 02304
+"Nyeah nyeah, thou canst hurt me!"
 %E
 
 #

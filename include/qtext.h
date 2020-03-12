@@ -127,10 +127,10 @@ struct	qtlists {
 #define COMMON_ID	"-"	/* common message id value */
 
 #define QT_ANGELIC	1000
-#define QTN_ANGELIC	253
+#define QTN_ANGELIC	259
 
 #define QT_DEMONIC	2000
-#define QTN_DEMONIC	286
+#define QTN_DEMONIC	305
 
 #define QT_BANISHED	60
 
