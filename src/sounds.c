@@ -2726,6 +2726,8 @@ register struct monst *mtmp;
 		}
 		adjalign(-(mtmp->m_lev + 1));
 
+		if (!rn2(10)) badeffect();
+
 	    break;
 
 	case MS_HCALIEN:
