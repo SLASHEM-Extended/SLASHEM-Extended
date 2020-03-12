@@ -686,20 +686,28 @@ armorsmashdone:
 		break;
 
 	case WAN_AURORA_BEAM:
-	case SPE_AURORA_BEAM:
 		(void) cancel_monst(mtmp, otmp, TRUE, TRUE, FALSE);
 		break;
 
+	case SPE_AURORA_BEAM:
+		if (!rn2(3)) (void) cancel_monst(mtmp, otmp, TRUE, TRUE, FALSE);
+		break;
+
 	case WAN_NETHER_BEAM:
-	case SPE_NETHER_BEAM:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL) && mtmp->mhp > 1) {
 			mtmp->mhp /= 2;
 			if (canseemon(mtmp)) pline("%s is severely damaged by nether forces!", Monnam(mtmp));
 		}
 		break;
 
+	case SPE_NETHER_BEAM:
+		if (!rn2(3) && !resist(mtmp, otmp->oclass, 0, NOTELL) && mtmp->mhp > 1) {
+			mtmp->mhp /= 2;
+			if (canseemon(mtmp)) pline("%s is severely damaged by nether forces!", Monnam(mtmp));
+		}
+		break;
+
 	case WAN_TOXIC:
-	case SPE_TOXIC:
 		if (!resists_poison(mtmp)) {
 			if (canseemon(mtmp)) pline("%s is badly poisoned!", Monnam(mtmp));
 			while ((!resist(mtmp, otmp->oclass, 0, NOTELL) && rn2(20) && (mtmp->mhp > 1) ) ) {
@@ -708,8 +716,16 @@ armorsmashdone:
 		}
 		break;
 
+	case SPE_TOXIC:
+		if (!rn2(3) && !resists_poison(mtmp)) {
+			if (canseemon(mtmp)) pline("%s is badly poisoned!", Monnam(mtmp));
+			while ((!resist(mtmp, otmp->oclass, 0, NOTELL) && rn2(20) && (mtmp->mhp > 1) ) ) {
+				mtmp->mhp--;
+			}
+		}
+		break;
+
 	case WAN_SLUDGE:
-	case SPE_SLUDGE:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL) && mtmp->mhp > 0) {
 			if (mtmp->m_lev < 1)
 				xkilled(mtmp, 1);
@@ -719,33 +735,44 @@ armorsmashdone:
 					pline("%s suddenly seems weaker!", Monnam(mtmp));
 			}
 		}
+		break;
 
+	case SPE_SLUDGE:
+		if (!rn2(3) && !resist(mtmp, otmp->oclass, 0, NOTELL) && mtmp->mhp > 0) {
+			if (mtmp->m_lev < 1)
+				xkilled(mtmp, 1);
+			else {
+				mtmp->m_lev--;
+				if (canseemon(mtmp))
+					pline("%s suddenly seems weaker!", Monnam(mtmp));
+			}
+		}
 		break;
 
 	case SPE_CALL_THE_ELEMENTS:
 
-		if (mtmp->mcanmove && !rn2(3) && !(dmgtype(mtmp->data, AD_PLYS)) ) {
+		if (mtmp->mcanmove && !rn2(9) && !(dmgtype(mtmp->data, AD_PLYS)) ) {
 			mtmp->mcanmove = 0;
 			mtmp->mfrozen = rnd(2);
 		    if (canseemon(mtmp)) pline("%s is paralyzed!", Monnam(mtmp));
 		}
 
-		if (!(mtmp->mstun) && !rn2(2)) {
+		if (!(mtmp->mstun) && !rn2(6)) {
 			mtmp->mstun = TRUE;
 		    if (canseemon(mtmp)) pline("%s is numbed!", Monnam(mtmp));
 		}
 
-		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+		if (!rn2(3) && !resist(mtmp, otmp->oclass, 0, NOTELL)) {
 			mon_adjust_speed(mtmp, -1, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 		}
 
-		if (!(mtmp->mblinded) && mtmp->mcansee) {
+		if (!rn2(3) && !(mtmp->mblinded) && mtmp->mcansee) {
 		    mtmp->mblinded = rnd(8);
 		    mtmp->mcansee = 0;
 		    if (canseemon(mtmp)) pline("%s is blinded by the flames!", Monnam(mtmp));
 		}
-		if (mtmp->mhp > 1) {
+		if (!rn2(3) && mtmp->mhp > 1) {
 			mtmp->mhp--;
 			mtmp->mhpmax--;
 		    if (canseemon(mtmp)) pline("%s is burned!", Monnam(mtmp));
@@ -754,7 +781,6 @@ armorsmashdone:
 		break;
 
 	case WAN_THUNDER:
-	case SPE_THUNDER:
 		if (mtmp->mcanmove && !rn2(3) && !(dmgtype(mtmp->data, AD_PLYS)) ) {
 			mtmp->mcanmove = 0;
 			mtmp->mfrozen = rnd(3);
@@ -765,19 +791,36 @@ armorsmashdone:
 			mtmp->mstun = TRUE;
 		    if (canseemon(mtmp)) pline("%s is numbed!", Monnam(mtmp));
 		}
+		break;
 
+	case SPE_THUNDER:
+		if (mtmp->mcanmove && !rn2(9) && !(dmgtype(mtmp->data, AD_PLYS)) ) {
+			mtmp->mcanmove = 0;
+			mtmp->mfrozen = rnd(3);
+		    if (canseemon(mtmp)) pline("%s is paralyzed!", Monnam(mtmp));
+		}
+
+		if (!(mtmp->mstun) && !rn2(6)) {
+			mtmp->mstun = TRUE;
+		    if (canseemon(mtmp)) pline("%s is numbed!", Monnam(mtmp));
+		}
 		break;
 
 	case WAN_ICE_BEAM:
-	case SPE_ICE_BEAM:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
 			mon_adjust_speed(mtmp, -1, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 		}
 		break;
 
+	case SPE_ICE_BEAM:
+		if (!rn2(3) && !resist(mtmp, otmp->oclass, 0, NOTELL)) {
+			mon_adjust_speed(mtmp, -1, otmp);
+			m_dowear(mtmp, FALSE); /* might want speed boots */
+		}
+		break;
+
 	case WAN_INFERNO:
-	case SPE_INFERNO:
 		if (!(mtmp->mblinded) && mtmp->mcansee) {
 		    mtmp->mblinded = rnd(20);
 		    mtmp->mcansee = 0;
@@ -788,7 +831,19 @@ armorsmashdone:
 			mtmp->mhpmax--;
 		    if (canseemon(mtmp)) pline("%s is burned!", Monnam(mtmp));
 		}
+		break;
 
+	case SPE_INFERNO:
+		if (!rn2(3) && !(mtmp->mblinded) && mtmp->mcansee) {
+		    mtmp->mblinded = rnd(20);
+		    mtmp->mcansee = 0;
+		    if (canseemon(mtmp)) pline("%s is blinded by the flames!", Monnam(mtmp));
+		}
+		if (!rn2(3) && mtmp->mhp > 1) {
+			mtmp->mhp--;
+			mtmp->mhpmax--;
+		    if (canseemon(mtmp)) pline("%s is burned!", Monnam(mtmp));
+		}
 		break;
 
 	case WAN_GRAVITY_BEAM:

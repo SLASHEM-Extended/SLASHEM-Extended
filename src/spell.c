@@ -3171,7 +3171,7 @@ boolean atme;
 	if (spellid(spell) == urole.spelspec) { if (rn2(10)) energy += 1; energy *= 4; energy /= 5; }
 
 	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
-	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 2;
+	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 3;
 	if (spellid(spell) == SPE_TIME) energy *= 4;
 	if (spellid(spell) == SPE_INERTIA) energy *= 4;
 	if (spellid(spell) == SPE_TIME_STOP) energy *= 5;
@@ -3958,6 +3958,11 @@ magicalenergychoice:
 
 		trap_detectX((struct obj *)0);
 		exercise(A_WIS, TRUE);
+
+		if (!rn2(10)) {
+			pline("The spell backlashes!");
+			badeffect();
+		}
 
 		break;
 	/* these are all duplicates of potion effects */
@@ -7792,6 +7797,7 @@ secureidchoice:
 			if (!rn2(128)) makeinvisotrap();
 			if (!rn2(256)) makeinvisotrap();
 		}
+		badeffect();
 
 		break;
 
@@ -9268,6 +9274,14 @@ totemsummonchoice:
 
 	case SPE_MAP_LEVEL:
 
+		if (level.flags.nommap) {
+
+			pline("Whoops, something blocks the spell's power and causes it to backfire.");
+			badeffect();
+			break;
+
+		}
+
 		if (role_skill >= P_SUPREME_MASTER) n = 4;
 		else if (role_skill >= P_GRAND_MASTER) n = 5;
 		else if (role_skill >= P_MASTER) n = 7;
@@ -9292,6 +9306,12 @@ totemsummonchoice:
 		    HHallucination = save_Hhallu;
 		    You_feel("knowledgable!");
 		    object_detect(pseudo, 0);
+
+		    if (!rn2(3)) {
+			pline("The spell backlashes!");
+			badeffect();
+		    }
+
 		} else
 		    pline("The map refuses to reveal its secrets.");
 		break;

@@ -8726,6 +8726,7 @@ randenchchoice:
 		    else
 			Your("%s spins in bewilderment.", body_part(HEAD));
 		    make_confused(HConfusion + rnd(30), FALSE);
+		    if (!rn2(3)) badeffect();
 		    break;
 		}
 		if (sobj->blessed && !(sobj->oartifact == ART_MARAUDER_S_MAP)) {

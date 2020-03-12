@@ -13535,7 +13535,7 @@ boolean knoweverything;
 			case SPE_MAGIC_MAPPING:
 				pline("A spell that reveals fragments of what the current dungeon level looks like, unless it's a non-mappable special level."); break;
 			case SPE_ENTRAPPING:
-				pline("Casting this spell allows you to detect traps on the level, but each cast only reveals a few of them at once."); break;
+				pline("Casting this spell allows you to detect traps on the level, but each cast only reveals a few of them at once. It may sometimes backfire."); break;
 			case SPE_FINGER:
 				pline("This spell fires an invisible beam that shows you the attributes of monsters hit by it."); break;
 			case SPE_CHEMISTRY:
@@ -13619,7 +13619,7 @@ boolean knoweverything;
 			case SPE_WARPING:
 				pline("Wanna get out of a sticky situation? This is a possible way, although you won't be able to control your destination. This spell also backlashes fairly frequently, causing undesirable effects."); break;
 			case SPE_TRAP_CREATION:
-				pline("You will create some traps around you by casting this spell. Beware, sometimes the traps will be invisible, in which case you can't detect them and they won't be revealed when triggered."); break;
+				pline("You will create some traps around you by casting this spell. Beware, sometimes the traps will be invisible, in which case you can't detect them and they won't be revealed when triggered. Also, casting it will always cause some random bad effect too."); break;
 			case SPE_STUN_MONSTER:
 				pline("A spell that fires invisible beams to stun monsters."); break;
 			case SPE_CURSE_ITEMS:
@@ -13752,7 +13752,7 @@ boolean knoweverything;
 			case SPE_GAIN_LEVEL:
 				pline("An absurdly powerful spell that may increase your character level. However, it often fails."); break;
 			case SPE_MAP_LEVEL:
-				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level (with a few gaps) and show quite some objects as well as traps."); break;
+				pline("This spell fails most of the time, but if it doesn't, it will reveal the map of the entire level (with a few gaps) and show quite some objects as well as traps. When it does work, it has quite a chance of backfiring, and of course it doesn't work at all if the level isn't mappable."); break;
 			case SPE_INFERNO:
 				pline("Fire spell that severely burns enemies, afflicting them with blindness and damaging them in a way that cannot be easily healed."); break;
 			case SPE_ICE_BEAM:
