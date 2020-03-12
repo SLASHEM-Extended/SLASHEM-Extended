@@ -4964,6 +4964,8 @@ inv_weight()
 	if (uarmf && itemhasappearance(uarmf, APP_LEAD_BOOTS)) wt += 100;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
 
+	/* Symbiotes can have a weight. If you're a symbiant, the weight is considerably lower; everyone else will get
+	 * a skill-dependant amount of weight added. At master and above, the weight no longer gets a multiplier --Amy */
 	if (uinsymbiosis) {
 
 		if (Role_if(PM_SYMBIANT)) {
@@ -4972,10 +4974,31 @@ inv_weight()
 			else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) wt += 10;
 			if ((int) mons[u.usymbiote.mnum].cwt > 99) wt += ((int) mons[u.usymbiote.mnum].cwt / 100);
 		} else {
-			if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) wt += 1000;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_HUGE) wt += 300;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) wt += 100;
-			if ((int) mons[u.usymbiote.mnum].cwt > 9) wt += ((int) mons[u.usymbiote.mnum].cwt / 10);
+
+			int symweight = 50; /* base weight even for weightless one */
+
+			if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) symweight += 1000;
+			else if (mons[u.usymbiote.mnum].msize >= MZ_HUGE) symweight += 300;
+			else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) symweight += 100;
+			if ((int) mons[u.usymbiote.mnum].cwt > 9) symweight += ((int) mons[u.usymbiote.mnum].cwt / 10);
+
+			/* goauld is special: they don't get a multiplier */
+			if (Race_if(PM_GOAULD)) ;
+			else if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_SYMBIOSIS)) {
+					default: symweight *= 5; break;
+					case P_BASIC: symweight *= 4; break;
+					case P_SKILLED: symweight *= 3; break;
+					case P_EXPERT: symweight *= 2; break;
+					case P_MASTER: break;
+					case P_GRAND_MASTER: break;
+					case P_SUPREME_MASTER: break;
+				}
+			} else symweight *= 5;
+
+			if (symweight < 0) symweight = 0; /* fail safe */
+			wt += symweight;
+
 		}
 	}
 
