@@ -414,6 +414,7 @@ register struct obj *obj;
 		levl[u.ux][u.uy].typ = FOUNTAIN;
 		level.flags.nfountains++;
 		newsym(u.ux,u.uy);
+		useup(obj);
 		return;
 	}
 
@@ -805,6 +806,7 @@ register struct obj *obj;
 		levl[u.ux][u.uy].typ = FOUNTAIN;
 		level.flags.nfountains++;
 		newsym(u.ux,u.uy);
+		useup(obj);
 		return;
 	}
 
