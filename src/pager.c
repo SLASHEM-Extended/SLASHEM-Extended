@@ -24885,6 +24885,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The gnome zaps a wand of remove resistance! You feel less control over your own body. What do you want to do? (P)ut on a ring of polymorph control, (z)ap yourself with a wand of draining to regain the level at which you get that intrinsic, or (rage)quit this game forever? [pzrq] (r) _",
 	"Whoops, something blocks the spell's power and causes it to backfire.",
 	"Oh, the bloody noob who keeps skipping past important messages with escape is accusing the world champion of cheating. That's... quite a display of jealousy.",
+	"Your instrument breaks into pieces!",
+	"Your instrument breaks into pieces! Seems you're a really bad musician, treating precious musical instruments that badly.",
 
 };
 

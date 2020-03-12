@@ -686,6 +686,12 @@ struct obj *instr;
 	return(0);
     }
 
+    if ( ((instr->otyp == WOODEN_FLUTE) || (instr->otyp == TOOLED_HORN) || (instr->otyp == FOG_HORN) || (instr->otyp == WOODEN_HARP) || (instr->otyp == LEATHER_DRUM) || (instr->otyp == MAGIC_FLUTE && instr->spe < 1) || (instr->otyp == MAGIC_HARP && instr->spe < 1) || (instr->otyp == DRUM_OF_EARTHQUAKE && instr->spe < 1) || (Confusion && !Conf_resist)) && !(Role_if(PM_BARD) && rn2(100)) && !(Role_if(PM_MUSICIAN) && rn2(20)) && (!instr->oartifact || !rn2(10)) && !rn2(isfriday ? 50 : 200)) {
+	useup(instr);
+	Your("instrument breaks into pieces!");
+	return 2;
+    }
+
     if (instr->oartifact == ART_KILLER_PIANO) {
 
 		getnastytrapintrinsic();

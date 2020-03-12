@@ -506,19 +506,27 @@ use_stethoscope(obj)
 	boolean interference = (u.uswallow && is_whirly(u.ustuck->data) &&
 				!rn2(Role_if(PM_HEALER) ? 10 : Race_if(PM_HERBALIST) ? 10 : 3));
 
-	if (!rn2((obj->oartifact == ART_FISSILITY) ? 10 : 100)) {
+	if ((!rn2(20) || !obj->blessed) && !rn2((obj->oartifact == ART_FISSILITY) ? 50 : 500)) {
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 2;
 		}
 
-	if (isfriday && !rn2((obj->oartifact == ART_FISSILITY) ? 10 : 100)) {
+	if ((!rn2(20) || !obj->blessed) && isfriday && !rn2((obj->oartifact == ART_FISSILITY) ? 50 : 500)) {
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 2;
 		}
+
+	if (!rn2(isfriday ? 30 : 100)) {
+		if (obj->blessed) unbless(obj);
+		else curse(obj);
+		pline("Your stethoscope seems less effective.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+
+	}
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {	/* should also check for no ears and/or deaf */
 		You("have no hands, so you can't use the stethoscope!");	/* not `body_part(HAND)' */
@@ -2574,6 +2582,7 @@ degradeagain:
 	    case 10: make_dimmed(HDimmed + lcount, TRUE);
 		    break;
 	    }
+	    badeffect(); /* otherwise it would be too easy to get confusion on demand --Amy */
 	    return 0;
 	}
 
@@ -5452,6 +5461,7 @@ doapply()
 	case PAN_PIPE_OF_THE_SEWERS:
 	case PAN_PIPE:*/
 		res = do_play_instrument(obj);
+		if (res == 2) noartispeak = TRUE; /* it broke */
 		break;
 	case MEDICAL_KIT:        
 		if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST) ) can_use = TRUE;
