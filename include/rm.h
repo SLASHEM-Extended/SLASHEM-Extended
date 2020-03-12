@@ -130,7 +130,7 @@
 #define IS_DRAWBRIDGE(typ) ((typ) == DRAWBRIDGE_UP || (typ) == DRAWBRIDGE_DOWN)
 #define IS_FURNITURE(typ) ((typ) >= STAIRS && (typ) <= STRAWMATTRESS)
 #define IS_AIR(typ)	((typ) >= AIR && (typ) <= RAINCLOUD)
-#define IS_SOFT(typ)	( ((typ) >= AIR && (typ) <= RAINCLOUD) || IS_POOL(typ))
+#define IS_SOFT(typ)	( ((typ) >= AIR && (typ) <= RAINCLOUD) || (typ) == SAND || (typ) == SNOW || (typ) == GRASSLAND || IS_POOL(typ))
 #define IS_GRAVEWALL(typ)	((typ) == GRAVEWALL)
 #define IS_TUNNELWALL(typ)	((typ) == TUNNELWALL)
 #define IS_ROCKWALL(typ)	((typ) == ROCKWALL)
