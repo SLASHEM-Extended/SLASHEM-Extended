@@ -5749,10 +5749,19 @@ shk_uncurse(slang, shkp)
 	}
 	else if (Confusion)
 	{
-		/* Curse the item! */
-		You("accidentally ask for the item to be cursed");
-		if (!stack_too_big(obj)) curse(obj);
-		else pline("But the stack was so big that the shopkeeper failed to curse it.");
+		if (rn2(10)) {
+			You("accidentally point to the wrong item in your confusion.");
+		} else {
+			/* Curse the item! */
+			You("accidentally ask for the item to be cursed");
+			if (!stack_too_big(obj)) {
+				curse(obj);
+				if (obj->cursed && !rn2(3)) obj->hvycurse = TRUE;
+				if (obj->cursed && !rn2(20)) obj->stckcurse = TRUE;
+				if (obj->cursed && !rn2(100)) obj->prmcurse = TRUE;
+			}
+			else pline("But the stack was so big that the shopkeeper failed to curse it.");
+		}
 	}
 	else if (Hallucination)
 	{
@@ -5760,7 +5769,18 @@ shk_uncurse(slang, shkp)
 		** Let's have some fun:  If you're hallucinating,
 		** then there's a chance for the object to be blessed!
 		*/
-		if (!rn2(4))
+		if (!rn2(10)) {
+			pline("Distracted by your blood-shot %s, the shopkeeper",
+			makeplural(body_part(EYE)));
+			pline("accidentally curses the item!");
+			if (!stack_too_big(obj)) {
+				curse(obj);
+				if (obj->cursed && !rn2(3)) obj->hvycurse = TRUE;
+				if (obj->cursed && !rn2(20)) obj->stckcurse = TRUE;
+				if (obj->cursed && !rn2(100)) obj->prmcurse = TRUE;
+			}
+			else pline("But the stack was so big that the shopkeeper failed to curse it.");
+		} else if (!rn2(10))
 		{
 		    pline("Distracted by your blood-shot %s, the shopkeeper",
 			makeplural(body_part(EYE)));
