@@ -1722,7 +1722,14 @@ dokick()
 
 			u.cnd_sinkamount++;
 
-			if(rn2(5)) {
+			if (!rn2(5)) { /* punish the sucker who keeps kicking sinks :P --Amy */
+				pline_The("pipes break!  Water spurts out!");
+				level.flags.nsinks--;
+				levl[x][y].typ = FOUNTAIN;
+				level.flags.nfountains++;
+				newsym(x,y);
+				return(1);
+			} else if (rn2(5)) {
 				if(flags.soundok)
 					pline("Klunk!  The pipes vibrate noisily.");
 				else pline("Klunk!");

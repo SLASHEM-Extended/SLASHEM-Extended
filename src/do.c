@@ -408,6 +408,15 @@ register struct obj *obj;
 	obj->in_use = TRUE;	/* block free identification via interrupt */
 	u.cnd_sinkamount++;
 
+	if (!rn2(isfriday ? 3 : 10)) { /* we don't want them to be endless; ring is now lost without a message */
+		pline_The("pipes break!  Water spurts out!");
+		level.flags.nsinks--;
+		levl[u.ux][u.uy].typ = FOUNTAIN;
+		level.flags.nfountains++;
+		newsym(u.ux,u.uy);
+		return;
+	}
+
 	if (isfriday && !rn2(10)) goto fridaydone;
 
 	switch(obj->otyp) {	/* effects that can be noticed without eyes */
@@ -789,6 +798,15 @@ register struct obj *obj;
 
 	You("drop %s down the drain.", doname(obj));
 	obj->in_use = TRUE;	/* block free identification via interrupt */
+
+	if (!rn2(isfriday ? 3 : 10)) { /* we don't want them to be endless; amulet is now lost without a message */
+		pline_The("pipes break!  Water spurts out!");
+		level.flags.nsinks--;
+		levl[u.ux][u.uy].typ = FOUNTAIN;
+		level.flags.nfountains++;
+		newsym(u.ux,u.uy);
+		return;
+	}
 
 	if (isfriday && !rn2(10)) goto fridaydone2;
 
