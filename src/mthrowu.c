@@ -2045,7 +2045,7 @@ boolean force_linedup;
 		|| (attacktype(mtmp->data, AT_SPIT) && !mtmp->mcan && distmin(mtmp2->mx,mtmp2->my,mtmp->mx,mtmp->my) < BOLT_LIM)) )
 		{
 			if (!mret) {
-				if ((!rn2(20) && !(u.usteed && mtmp2 == u.usteed && !rn2(10)) && (!rn2(5) || mtmp2->mcanmove) && (!rn2(5) || (mtmp2->mhpmax > 5 && mtmp2->mhp > (mtmp2->mhpmax / 5) )) && (mtmp2->m_lev > rn2(6)) && ((mtmp->m_lev - mtmp2->m_lev) < (2 + rn2(5)) ) ) || attacktype(mtmp2->data, AT_EXPL) || mtmp->mfrenzied) mret = mtmp2;
+				if ((!rn2((mtmp2->m_lev > 40) ? 3 : (mtmp2->m_lev > 30) ? 5 : (mtmp2->m_lev > 20) ? 10 : 20) && !(u.usteed && mtmp2 == u.usteed && !rn2(10)) && (!rn2(5) || mtmp2->mcanmove) && (!rn2(5) || (mtmp2->mhpmax > 5 && mtmp2->mhp > (mtmp2->mhpmax / 5) )) && (mtmp2->m_lev > rn2(6)) && ((mtmp->m_lev - mtmp2->m_lev) < (2 + rn2(5)) ) ) || attacktype(mtmp2->data, AT_EXPL) || mtmp->mfrenzied) mret = mtmp2;
 			}
 		}
 	}

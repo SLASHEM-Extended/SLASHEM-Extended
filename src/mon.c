@@ -3546,7 +3546,7 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	/* Amy edit: if pets are ignored by everything, it can result in them being way too unkillable because they often
 	 * won't attack things that would kill them...
 	 * keyword: dnethack */
-	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2(20) && (!rn2(5) || mdef->mcanmove) && (!rn2(5) || (mdef->mhpmax > 5 && mdef->mhp > (mdef->mhpmax / 5))) ) return ALLOW_M|ALLOW_TM;
+	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && (mdef->m_lev > rn2(6)) && ((magr->m_lev - mdef->m_lev) < (2 + rn2(5)) ) && !rn2((mdef->m_lev > 40) ? 3 : (mdef->m_lev > 30) ? 5 : (mdef->m_lev > 20) ? 10 : 20) && (!rn2(5) || mdef->mcanmove) && (!rn2(5) || (mdef->mhpmax > 5 && mdef->mhp > (mdef->mhpmax / 5))) ) return ALLOW_M|ALLOW_TM;
 	if (!magr->mtame && !magr->mpeaceful && mdef->mtame && !(u.usteed && mdef == u.usteed) && ((attacktype(mdef->data, AT_EXPL)) || (mindless(magr->data) && evilfriday) || magr->mfrenzied ) ) return ALLOW_M|ALLOW_TM;
 
 	if (Race_if(PM_ALBAE)) return 0L; /* if you're an albae, everything hates you more than anything else --Amy */

@@ -1031,10 +1031,18 @@ register int after;	/* this is extra fast monster movement */
 
 		    /* Mindless monsters and spelled monsters have no fear of 
 		     * attacking higher level monsters 
+		     * Amy edit: and high-level pets are less afraid of high-level monsters; it's really stupid if your
+		     * level 45 pet still won't attack Jubilex just because the latter is level 48...
 		     */
-		    if (((int)mtmp2->m_lev >= (int)mtmp->m_lev+2 && !is_spell && 
-			    !mindless(mtmp->data)) ||
-			(mtmp2->data == &mons[PM_FLOATING_EYE] && rn2(10) &&
+		    if (
+			(
+			(
+			(((int)mtmp2->m_lev >= (int)mtmp->m_lev+2) && mtmp->m_lev < 20) ||
+			(((int)mtmp2->m_lev >= (int)mtmp->m_lev+10) && mtmp->m_lev < 30)
+			)
+			&& !is_spell && !mindless(mtmp->data))
+
+			|| (mtmp2->data == &mons[PM_FLOATING_EYE] && rn2(10) &&
 			 mtmp->mcansee && haseyes(mtmp->data) && mtmp2->mcansee
 			 && !mtmp2->minvisreal && (perceives(mtmp->data) || !mtmp2->minvis)) ||
 			(mtmp2->data==&mons[PM_GELATINOUS_CUBE] && rn2(10)) ||
