@@ -31,12 +31,6 @@ static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
-#define incrnknow(spell)        spl_book[spell].sp_know = ((spl_book[spell].sp_know < 1) ? (Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN) \
-				 : ((spl_book[spell].sp_know + (Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN) ) > MAX_KNOW) ? MAX_KNOW \
-				 : spl_book[spell].sp_know + (Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN) )
-#define boostknow(spell,boost)  spl_book[spell].sp_know = ((spl_book[spell].sp_know + boost > MAX_KNOW) ? MAX_KNOW \
-				 : spl_book[spell].sp_know + boost)
-
 #define spellev(spell)		spl_book[spell].sp_lev
 #define spellid(spell)          spl_book[spell].sp_id
 #define spellname(spell)	OBJ_NAME(objects[spellid(spell)])
@@ -62,6 +56,8 @@ STATIC_DCL void cast_reflection(void);
 STATIC_DCL void spell_backfire(int);
 STATIC_DCL const char *spelltypemnemonic(int);
 static int spell_dash(void);
+STATIC_DCL void boostknow(int, int);
+STATIC_DCL void incrnknow(int, BOOLEAN_P);
 
 #ifndef OVLB
 
@@ -335,7 +331,7 @@ cursed_book(bp)
 		rndcurse();
 		break;
 	}
-	return FALSE;
+	return (bp->spe < 0) ? TRUE : FALSE;
 }
 
 /* study while confused: returns TRUE if the book is destroyed */
@@ -2261,9 +2257,9 @@ learn()
 			    Your("knowledge of that spell is keener.");
 			    use_skill(P_MEMORIZATION, spellev(i));
 			    u.cnd_spellbookcount++;
-			    incrnknow(i);
-				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
-				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+			    incrnknow(i, FALSE);
+				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
+				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
 			    book->spestudied++;
 
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
@@ -2301,9 +2297,9 @@ learn()
 				}
 
 			    if (end_delay) {
-			    	boostknow(i, end_delay * (book->spe > 0 ? 20 : 10));
+			    	boostknow(i, end_delay * ((book->spe > 0) ? 20 : 10));
 
-				use_skill(spell_skilltype(book->otyp), end_delay / (book->spe > 0 ? 10 : 20));
+				use_skill(spell_skilltype(book->otyp), end_delay / ((book->spe > 0) ? 10 : 20));
 			    }
 			    exercise(A_WIS, TRUE);      /* extra study */
 			} else { /* MAX_CAN_STUDY < spellknow(i) <= MAX_SPELL_STUDY */
@@ -2320,9 +2316,9 @@ learn()
 			spl_book[i].sp_memorize = TRUE;
 			use_skill(P_MEMORIZATION, spellev(i));
 			u.cnd_spellbookcount++;
-			incrnknow(i);
-			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
-			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+			incrnknow(i, TRUE);
+			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 			book->spestudied++;
 			You("have keen knowledge of the spell.");
 			You(i > 0 ? "add %s to your repertoire." : "learn %s.",
@@ -2412,7 +2408,7 @@ register struct obj *spellbook;
 			makeknown(booktype);
 			return(1);
 		}
-		if (spellbook->spe && confused && rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 2 : 10) ) {
+		if (spellbook->spe > 0 && confused && rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 2 : 10) ) {
 		    check_unpaid_usage(spellbook, TRUE);
 
 			int nochargechange = 10;
@@ -2442,7 +2438,7 @@ register struct obj *spellbook;
 		    pline_The("words on the page seem to glow faintly purple.");
 		    You_cant("quite make them out.");
 		    return 1;
-		}
+		} else if (spellbook->spe == 0) spellbook->spe--;
 
 		switch (objects[booktype].oc_level) {
 		 case 1:
@@ -2505,7 +2501,7 @@ register struct obj *spellbook;
 			/* only wizards know if a spell is too difficult */
 			/* Amy edit: others may randomly know it sometimes */
 			if ((Role_if(PM_WIZARD) || !rn2(4)) && read_ability < 20 &&
-			    !confused && (!spellbook->spe || spellbook->cursed)) {
+			    !confused && ((spellbook->spe < 1) || spellbook->cursed)) {
 			    char qbuf[QBUFSZ];
 			    sprintf(qbuf,
 		      "This spellbook is %sdifficult to comprehend. Continue?",
@@ -2522,7 +2518,7 @@ register struct obj *spellbook;
 		    }
 		}
 
-		if ( (too_hard || rn2(2)) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) ) || (!(spellbook->spe) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) )) {
+		if ( (too_hard || rn2(2)) && ( (spellbook->cursed && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) ) || ((spellbook->spe < 1) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) )) {
 		    boolean gone = cursed_book(spellbook);
 
 		    if (delay < 0) {
@@ -2540,7 +2536,7 @@ register struct obj *spellbook;
 
 		    }
 		    delay = 0;
-		    if(gone || !rn2(3)) {
+		    if(gone || (spellbook->spe < 0) || !rn2(3)) {
 			if (!gone && !(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook crumbles to dust!");
 			if (!objects[spellbook->otyp].oc_name_known &&
 				!objects[spellbook->otyp].oc_uname)
@@ -2575,7 +2571,7 @@ register struct obj *spellbook;
 		/* The glowing words make studying easier */
 		if (spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 		    delay *= 2;
-		    if (spellbook->spe) {
+		    if (spellbook->spe > 0) {
 			check_unpaid_usage(spellbook, TRUE);
 
 			int nochargechange = 10;
@@ -10051,9 +10047,32 @@ losespells()
 {
 	boolean confused = (Confusion != 0);
 	int  n, nzap, i;
+	int thisone, thisonetwo, choicenumber;
 
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
+
+	/* reduce memory of one known spell that still has memory left --Amy */
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n) {
+		thisone = -1;
+		choicenumber = 0;
+		for (n = 0; ((n < MAXSPELL) && spellid(n) != NO_SPELL); n++) {
+			if ((!choicenumber || (!rn2(choicenumber + 1)) ) && (spellknow(n) > 0)) {
+				thisone = n;
+			}
+			if (spellknow(n) > 0) choicenumber++;
+		}
+
+		if (choicenumber > 0 && thisone >= 0 && (spellknow(thisone) > 0)) {
+			if (rn2(10)) {
+				spellknow(thisone) = rn2(spellknow(thisone));
+			} else {
+				spellknow(thisone) = 0;
+			}
+		}
+	}
 
 	book = 0;
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
@@ -10080,6 +10099,46 @@ losespells()
 		    exercise(A_WIS, FALSE);	/* ouch! */
 		}
 	}
+
+	/* now if you have too many forgotten spells, remove them --Amy */
+removeagain:
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n > 4) {
+		thisone = -1;
+		thisonetwo = -1;
+		choicenumber = 0;
+		for (n = 0; ((n < MAXSPELL) && spellid(n) != NO_SPELL); n++) {
+			if (spellknow(n) <= 0) {
+				thisone = n;
+				choicenumber++;
+			}
+		}
+
+		if (choicenumber > 5 && thisone >= 0 && spellknow(thisone) <= 0) {
+
+			spellknow(thisone) = 0; /* make sure the spell memory is deleted! */
+			spellid(thisone) = NO_SPELL;
+
+			for (n = thisone; n < MAXSPELL; n++) {
+				if (spellid(n) != NO_SPELL) thisonetwo = n;
+			}
+			if (thisonetwo >= 0 && spellid(thisonetwo) != NO_SPELL) { /* move last known spell to the one we've erased */
+				spellknow(thisone) = spellknow(thisonetwo);
+				spellid(thisone) = spellid(thisonetwo);
+				spellev(thisone) = spellev(thisonetwo);
+				spellname(thisone) = spellname(thisonetwo);
+
+				spellknow(thisonetwo) = 0; /* make sure the spell memory is deleted! */
+				spellid(thisonetwo) = NO_SPELL;
+
+			}
+
+			if (choicenumber > 6) goto removeagain;
+		}
+	}
+
+
 }
 
 void
@@ -11437,6 +11496,80 @@ int spell;
 	return chance;
 }
 
+/* increase memory of a spell: now a function; inspired by Elona, the increase is now lower if your current spell memory
+ * is already rather high. We're trying to make the decrease not be too harsh at first, but 2000% spell memory should be
+ * extremely difficult to reach. */
+void
+boostknow(spell,boost)
+int spell, boost;
+{
+	int priorknow = spl_book[spell].sp_know;
+	int boostmultiplier = 100;
+	if (priorknow > 190100) boostmultiplier = 1;
+	else if (priorknow > 180100) boostmultiplier = 2;
+	else if (priorknow > 170100) boostmultiplier = 3;
+	else if (priorknow > 160100) boostmultiplier = 4;
+	else if (priorknow > 150100) boostmultiplier = 5;
+	else if (priorknow > 140100) boostmultiplier = 6;
+	else if (priorknow > 130100) boostmultiplier = 7;
+	else if (priorknow > 120100) boostmultiplier = 8;
+	else if (priorknow > 110100) boostmultiplier = 9;
+	else if (priorknow > 100100) boostmultiplier = 10;
+	else if (priorknow > 90100) boostmultiplier = 15;
+	else if (priorknow > 80100) boostmultiplier = 20;
+	else if (priorknow > 70100) boostmultiplier = 30;
+	else if (priorknow > 60100) boostmultiplier = 40;
+	else if (priorknow > 50100) boostmultiplier = 50;
+	else if (priorknow > 40100) boostmultiplier = 60;
+	else if (priorknow > 30100) boostmultiplier = 70;
+	else if (priorknow > 20100) boostmultiplier = 80;
+	else if (priorknow > 10100) boostmultiplier = 90;
+
+	boost *= boostmultiplier;
+	boost /= 100;
+
+	spl_book[spell].sp_know = ((spl_book[spell].sp_know + boost > MAX_KNOW) ? MAX_KNOW : (spl_book[spell].sp_know + boost) );
+
+}
+
+void
+incrnknow(spell, initial)
+int spell;
+boolean initial; /* FALSE if you knew the spell before, otherwise TRUE; reduction only if FALSE */
+{
+	int priorknow = spl_book[spell].sp_know;
+	int knowvalue = (Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN);
+	int boostmultiplier = 100;
+	if (priorknow > 190100) boostmultiplier = 1;
+	else if (priorknow > 180100) boostmultiplier = 2;
+	else if (priorknow > 170100) boostmultiplier = 3;
+	else if (priorknow > 160100) boostmultiplier = 4;
+	else if (priorknow > 150100) boostmultiplier = 5;
+	else if (priorknow > 140100) boostmultiplier = 6;
+	else if (priorknow > 130100) boostmultiplier = 7;
+	else if (priorknow > 120100) boostmultiplier = 8;
+	else if (priorknow > 110100) boostmultiplier = 9;
+	else if (priorknow > 100100) boostmultiplier = 10;
+	else if (priorknow > 90100) boostmultiplier = 15;
+	else if (priorknow > 80100) boostmultiplier = 20;
+	else if (priorknow > 70100) boostmultiplier = 30;
+	else if (priorknow > 60100) boostmultiplier = 40;
+	else if (priorknow > 50100) boostmultiplier = 50;
+	else if (priorknow > 40100) boostmultiplier = 60;
+	else if (priorknow > 30100) boostmultiplier = 70;
+	else if (priorknow > 20100) boostmultiplier = 80;
+	else if (priorknow > 10100) boostmultiplier = 90;
+
+	if (initial) boostmultiplier = 100;
+
+	knowvalue *= boostmultiplier;
+	knowvalue /= 100;
+
+	spl_book[spell].sp_know = (spl_book[spell].sp_know < 1) ? knowvalue : ((spl_book[spell].sp_know + knowvalue) > MAX_KNOW) ? MAX_KNOW : (spl_book[spell].sp_know + knowvalue);
+
+
+}
+
 /* Learn a spell during creation of the initial inventory */
 void
 initialspell(obj)
@@ -11450,15 +11583,15 @@ struct obj *obj;
 
 		/* In Soviet Russia, enhancements aren't a thing. In fact, they don't even know how to spell the word 'enhancement'. Therefore, if someone goes ahead and suggests an enhancement that consists of double spellbooks giving twice the starting spellcasting memory, they say NOPE THAT IS INCOMPATIBLE WITH COMMUNISM and refuse to implement it. --Amy */
 		if (!issoviet) {
-			incrnknow(i);
-			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+			incrnknow(i, TRUE);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 
-			if (spl_book[i].sp_lev == 3) incrnknow(i);
-			if (spl_book[i].sp_lev == 4) { incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 5) { incrnknow(i); incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 6) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 7) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 8) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 3) incrnknow(i, TRUE);
+			if (spl_book[i].sp_lev == 4) { incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 5) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 6) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 7) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 8) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
 		}
 
 	         return;
@@ -11467,17 +11600,17 @@ struct obj *obj;
 	        spl_book[i].sp_id = obj->otyp;
 	        spl_book[i].sp_lev = objects[obj->otyp].oc_level;
 		  spl_book[i].sp_memorize = TRUE;
-	        incrnknow(i);
-			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+	        incrnknow(i, TRUE);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 
 			/* high-level starting spells will be known for a longer time
 			 * since you might not be able to cast them at all when you're just starting --Amy */
-			if (spl_book[i].sp_lev == 3) incrnknow(i);
-			if (spl_book[i].sp_lev == 4) { incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 5) { incrnknow(i); incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 6) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 7) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
-			if (spl_book[i].sp_lev == 8) { incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i); incrnknow(i);}
+			if (spl_book[i].sp_lev == 3) incrnknow(i, TRUE);
+			if (spl_book[i].sp_lev == 4) { incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 5) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 6) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 7) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
+			if (spl_book[i].sp_lev == 8) { incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE); incrnknow(i, TRUE);}
 
 	        return;
 	    }
@@ -11498,8 +11631,8 @@ studyspell()
 			return (FALSE);
 		} else if (spellknow(spell_no) <= 1000) {
 			Your("focus and reinforce your memory of the spell.");
-			incrnknow(spell_no);
-			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(spell_no);
+			incrnknow(spell_no, FALSE);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(spell_no, FALSE);
 			exercise(A_WIS, TRUE);      /* extra study */
 			return (TRUE);
 		} else /* 1000 < spellknow(spell_no) <= 5000 */
@@ -11579,9 +11712,9 @@ wonderspell()
 		if (spellid(i) == randomspell)  {
 			if (spellknow(i) <= MAX_CAN_STUDY) {
 				Your("knowledge of the %s spell is keener.", splname);
-				incrnknow(i);
-				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
-				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+				incrnknow(i, FALSE);
+				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
+				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
 
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 
@@ -11625,9 +11758,9 @@ wonderspell()
 			spl_book[i].sp_id = randomspell;
 			spl_book[i].sp_lev = objects[randomspell].oc_level;
 			spl_book[i].sp_memorize = TRUE;
-			incrnknow(i);
-			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i);
-			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+			incrnknow(i, TRUE);
+			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 			You("gain knowledge of the %s spell.", splname);
 			if (randomspell == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;
