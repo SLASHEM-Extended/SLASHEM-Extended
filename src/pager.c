@@ -24887,6 +24887,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Oh, the bloody noob who keeps skipping past important messages with escape is accusing the world champion of cheating. That's... quite a display of jealousy.",
 	"Your instrument breaks into pieces!",
 	"Your instrument breaks into pieces! Seems you're a really bad musician, treating precious musical instruments that badly.",
+	"The cuddly cutie glomps you!",
+	"Unfortunately, nothing much happes.", /* sic from gnollhack */
 
 };
 

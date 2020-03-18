@@ -974,6 +974,7 @@ static const char *random_mesg[] = {
 	"crapshoot noun, North American - The chance of finding a secret door or corridor in NetHack with a new character.",
 	"DEMO casts SEGFAULT! It's super effective! THRONE-POOFING CODE fainted! DNETHACK was defeated!",
 	"slexxx <--- nethack porn", /* by K2 */
+	"Whoops, by reading this message you've contracted corona virus!",
 
 };
 
@@ -5310,6 +5311,7 @@ static const char *epitaphs[] = {
 	"I never said that SLEX would be easy, or that it wouldn't have pitfalls for unwary players to stumble into.",
 	"'unbalanced', you keep using that word... I don't think it means what you think it means",
 	"Bro, the entire game is like crawling inside a lunatic's head. Even the maps look like someone threw up a bag of skittles. Everything about it is traumatizing.", /* by someone on 4chan */
+	"This fool thought he could ignore the safety precautions, ended up getting infected with corona virus, and died.",
 
 };
 

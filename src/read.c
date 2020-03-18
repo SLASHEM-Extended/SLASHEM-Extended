@@ -825,6 +825,7 @@ doread()
 	"why does nethack have a tendency to attract dysfunctional people and programmer?", /* by bhaak */
 	"can I get a wand of reverse wishing that makes something you have go poof?", /* by Demo */
 	"basing a variant on SLEX and then removing all of SLEX specifics is almost as stupid as basing your variant on NitroHack without assessing the shitty code quality of NitroHack first", /* by bhaak */
+	"I'm not afraid of corona virus",
 
 	    };
 	    char buf[BUFSZ];
