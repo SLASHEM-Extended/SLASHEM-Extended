@@ -4287,7 +4287,7 @@ SCROLL("taming",                "PRIRUTSENIE",          P_ENCHANTMENT_SPELL, 1, 
 SCROLL("light",                 "VERR YED HORRE",       P_DIVINATION_SPELL, 1,  150, 300, CLR_BLACK, 1),
 SCROLL("food detection",        "YUM YUM",              P_DIVINATION_SPELL, 1,  130, 300, CLR_YELLOW, 1),
 SCROLL("gold detection",        "THARR",                P_DIVINATION_SPELL, 1, 220, 300, CLR_BROWN, 1),
-SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 1417, 300, CLR_GREEN, 3),
+SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 1464, 300, CLR_GREEN, 3),
 SCROLL("secure identify",       "LARGE ALARM ALL PERSONNEL EVACUATE THE AREA IMMEDIATELY", P_DIVINATION_SPELL, 1, 50, 300, CLR_RED, 25),
 SCROLL("inventory id",              "NOW YOU SEE IT",           P_DIVINATION_SPELL, 1,  50, 300, CLR_YELLOW, 30),
 SCROLL("magic mapping",         "ELAM EBOW",            P_DIVINATION_SPELL, 1,  330, 300, CLR_CYAN, 8),
@@ -4351,7 +4351,7 @@ SCROLL("undo genocide",		"42",			      P_NONE,  1,  50, 300, CLR_ORANGE, 1),
 SCROLL("ward",			"UNPLAYABLE BINDER ROLE", P_NONE, 1, 10, 300, CLR_BLACK, 1), /* half physical damage */
 SCROLL("warding",			"YOU DO NOT GO PAST AT ME", P_NONE, 1, 10, 300, CLR_ORANGE, 1), /* half spell damage */
 SCROLL("reverse identify",	"OH CAPTAIN MY CAPTAIN",P_NONE,  1,  50, 300, CLR_RED, 5),
-SCROLL("wishing",		"TRICK 13",		      P_CHAOS_SPELL,  1,  50, 300, CLR_WHITE, 80),
+SCROLL("wishing",		"TRICK 13",		      P_CHAOS_SPELL,  1,  3, 300, CLR_WHITE, 80),
 SCROLL("wonder",			"GIMMIE ALL THE SPELLS", P_NONE, 1, 50, 300, CLR_RED, 1),
 
 SCROLL("alter reality",        "FORGETABOUTIT",        P_OCCULT_SPELL,  1,   2, 300, CLR_BRIGHT_GREEN, 60),
