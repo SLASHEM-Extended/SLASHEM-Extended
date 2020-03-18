@@ -6260,7 +6260,7 @@ int attnumber;
 
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return (mdead | mhit); /* no passive attacks */
-	    if((i == attnumber) && mddat->mattk[i].aatyp == AT_NONE || mddat->mattk[i].aatyp == AT_RATH) break;
+	    if((i == attnumber) && (mddat->mattk[i].aatyp == AT_NONE || mddat->mattk[i].aatyp == AT_RATH)) break;
 	}
 
 	if (mddat->mattk[i].damn)
