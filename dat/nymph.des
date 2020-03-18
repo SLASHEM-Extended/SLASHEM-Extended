@@ -250,22 +250,22 @@ OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "food shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "weapon shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "armor shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
@@ -640,22 +640,22 @@ OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "food shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "weapon shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "armor shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
@@ -1030,22 +1030,22 @@ OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 OBJECT: random, random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "food shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "weapon shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile
 
-ROOM: "armor shop" , random, random, random, random
+ROOM: "ordinary" , random, random, random, random
 OBJECT: random, random, random
 TRAP: random, random
 MONSTER: 'n', random, random, hostile

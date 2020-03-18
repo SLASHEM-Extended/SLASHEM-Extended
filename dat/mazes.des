@@ -1075,7 +1075,7 @@ ENDMAP
 STAIR:levregion(01,00,79,20),(0,0,0,0),up
 STAIR:levregion(01,00,79,20),(0,0,0,0),down
 #
-REGION:(09,04,09,04),lit,"random shop"
+REGION:(09,04,09,04),lit,"ordinary"
 
 DOOR:closed,(00,04)
 
