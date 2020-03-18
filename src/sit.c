@@ -554,7 +554,7 @@ dosit()
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
-			} else pluslvl(FALSE);
+			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
@@ -582,7 +582,7 @@ dosit()
 				}
 			}
 
-			pluslvl(FALSE);
+			gainlevelmaybe();
 
 			break;
 		    case 18:

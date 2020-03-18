@@ -3998,7 +3998,7 @@ newboss:
 
 		case WAN_GAIN_LEVEL:
 
-			pluslvl(FALSE);
+			gainlevelmaybe();
 			known = TRUE;
 
 		break;

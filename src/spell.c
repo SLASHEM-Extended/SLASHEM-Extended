@@ -5748,7 +5748,7 @@ newbossPENT:
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
-			} else pluslvl(FALSE);
+			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
@@ -5776,7 +5776,7 @@ newbossPENT:
 				}
 			}
 
-			pluslvl(FALSE);
+			gainlevelmaybe();
 
 			break;
 		    case 18:
@@ -9251,7 +9251,7 @@ totemsummonchoice:
 		else if (role_skill >= P_BASIC) n = 48;
 		else n = 50;	/* Unskilled or restricted */
 		if (!rn2(n)) {
-			pluslvl(FALSE);
+			gainlevelmaybe();
 		} else
 		    pline("Too bad - it didn't work!");
 		break;

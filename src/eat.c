@@ -2238,7 +2238,7 @@ register int pm;
 	    case PM_DISINTITRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      You_feel("that was a smart thing to do.");
-		pluslvl(FALSE);
+		gainlevelmaybe();
 
 		break;
 
@@ -2358,7 +2358,7 @@ register int pm;
 		case 9:                        
 		case 10:                
 		    You_feel("that was a smart thing to do.");
-		pluslvl(FALSE);
+		gainlevelmaybe();
 		break;
 		default:            
 		    break;
@@ -2418,7 +2418,7 @@ register int pm;
 		case 9:                        
 		case 10:                
 		    You_feel("that was a smart thing to do.");
-		pluslvl(FALSE);
+		gainlevelmaybe();
 		make_hallucinated(HHallucination+rn1(10,50),TRUE,0L);
 		break;
 		default:            
@@ -3466,7 +3466,7 @@ register int pm;
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
-			} else pluslvl(FALSE);
+			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
@@ -3494,7 +3494,7 @@ register int pm;
 				}
 			}
 
-			pluslvl(FALSE);
+			gainlevelmaybe();
 
 		}
 
@@ -3637,7 +3637,7 @@ register int pm;
 			break;
 			case 6:
 			      You_feel("that was a smart thing to do.");
-				pluslvl(FALSE);
+				gainlevelmaybe();
 			break;
 			case 7:
 				if (Upolyd) u.mh = u.mhmax;

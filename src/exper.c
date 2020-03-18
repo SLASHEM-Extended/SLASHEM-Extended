@@ -468,12 +468,29 @@ newexplevel()
 	if (u.ulevel < MAXULEV && u.uexp >= newuexp(u.ulevel))
 	    pluslvl(TRUE);
 	else if (u.uexp >= (10000000 + (2000000 * u.xtralevelmult))) {
-	    u.xtralevelmult++;
-	    u.uexp = 10000000;
-	    You_feel("more experienced.");
-	    pluslvl(TRUE);
-	    u.weapon_slots++; /* leveling via EXP can keep giving you skill slots --Amy */
+		u.xtralevelmult++;
+		u.uexp = 10000000;
+		You_feel("more experienced.");
+		pluslvl(TRUE);
+		u.weapon_slots++; /* leveling via EXP can keep giving you skill slots --Amy */
+		/* but now also via gain level, because that requires more and more potions, too */
 	}
+}
+
+/* if your level is rather high already, gain level effects shouldn't always give you a full level --Amy
+ * important: increase u.uexp value even when you have anti-experience! */
+void
+gainlevelmaybe()
+{
+	if (u.ulevel >= MAXULEV && ((u.uexp + 200000) < (10000000 + (2000000 * u.xtralevelmult)) ) ) {
+		u.uexp += 200000;
+		flags.botl = TRUE;
+		You("gain experience.");
+	} else if (u.ulevel < MAXULEV && ((u.uexp + 200000) < newuexp(u.ulevel)) ) {
+		u.uexp += 200000;
+		flags.botl = TRUE;
+		You("gain experience.");
+	} else pluslvl(FALSE);
 }
 
 void
@@ -483,6 +500,12 @@ boolean incr;	/* true iff via incremental experience growth */
 	register int num;
 
 	if (!incr) You_feel("more experienced.");
+
+	if (u.ulevel >= MAXULEV) {
+		u.uexp = 10000000; /* reset counter for gain level */
+		u.xtralevelmult++;
+		u.weapon_slots++; /* leveling past 30 can keep giving you skill slots --Amy */
+	}
 
 	if (u.ulevel < MAXULEV) {
 

@@ -24889,6 +24889,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your instrument breaks into pieces! Seems you're a really bad musician, treating precious musical instruments that badly.",
 	"The cuddly cutie glomps you!",
 	"Unfortunately, nothing much happes.", /* sic from gnollhack */
+	"You gain experience.",
+	"You gain experience, but not enough to actually level up because otherwise the game would be too easy.",
 
 };
 

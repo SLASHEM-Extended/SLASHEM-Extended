@@ -7279,7 +7279,7 @@ peffects(otmp)
 			break;
 			case 6:
 			      You_feel("that was a smart thing to do.");
-				pluslvl(FALSE);
+				gainlevelmaybe();
 			break;
 			case 7:
 				if (Upolyd) u.mh = u.mhmax;
@@ -7649,7 +7649,7 @@ peffects(otmp)
 			else You("have an uneasy feeling.");
 			break;
 		}
-		pluslvl(FALSE);
+		gainlevelmaybe();
 		if (otmp->blessed)
 			/* blessed potions place you at a random spot in the
 			 * middle of the new level instead of the low point
@@ -7754,7 +7754,7 @@ peffects(otmp)
 		    /* when multiple levels have been lost, drinking
 		       multiple potions will only get half of them back */
 		    u.ulevelmax -= 1;
-		    pluslvl(FALSE);
+		    gainlevelmaybe();
 		}
 		(void) make_hallucinated(0L,TRUE,0L);
 		exercise(A_STR, TRUE);
@@ -8059,7 +8059,7 @@ peffects(otmp)
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			}
 			if (otmp->blessed && !rn2(10)) {
-				pluslvl(FALSE);
+				gainlevelmaybe();
 			} else {
 				u.uhp += 5;
 				if (u.uhp > u.uhpmax) {

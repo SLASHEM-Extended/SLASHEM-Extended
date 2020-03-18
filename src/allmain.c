@@ -3016,7 +3016,7 @@ trapsdone:
 							flags.botl = 1;
 							break;
 						case 3: pline("That was a very educational experience.");
-							pluslvl(FALSE);
+							gainlevelmaybe();
 							exercise(A_WIS, TRUE);
 							break;
 						case 4: You_feel("restored to health!");

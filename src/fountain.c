@@ -357,7 +357,7 @@ drinkfountain()
 			break;
 
 		case 18: /* Experience (idea by Amy) */
-			pluslvl(FALSE);
+			gainlevelmaybe();
 			break;
 
 		case 19: /* Self-knowledge */

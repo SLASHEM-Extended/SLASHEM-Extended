@@ -767,6 +767,7 @@ E void newexplevel(void);
 E void pluslvl(BOOLEAN_P);
 E long rndexp(BOOLEAN_P);
 E void exprecalc(void);
+E void gainlevelmaybe(void);
 
 /* ### explode.c ### */
 

@@ -1532,7 +1532,7 @@ pleased(g_align)
 	       treat this effect like blessed full healing */
 	    if (u.ulevel < u.ulevelmax) {
 		u.ulevelmax -= 1;	/* see potion.c */
-		pluslvl(FALSE);
+		gainlevelmaybe();
 	    } else {
 		u.uhpmax += 5;
 		if (Upolyd) u.mhmax += 5;

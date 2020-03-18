@@ -4690,7 +4690,7 @@ newegomon:
 				pline("An urge to take a bath overwhelms you.");
 				break;
 			case 25:
-				pluslvl(FALSE);
+				gainlevelmaybe();
 				break;
 			case 26:
 				if (!rn2(10)) {
@@ -4941,7 +4941,7 @@ newegomon:
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
-			} else pluslvl(FALSE);
+			} else gainlevelmaybe();
 
 			if (Race_if(PM_RUSMOT)) {
 				if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
@@ -4969,7 +4969,7 @@ newegomon:
 				}
 			}
 
-			pluslvl(FALSE);
+			gainlevelmaybe();
 
 			break;
 		    case 18:
