@@ -17463,6 +17463,13 @@ register boolean force, here;
 			    /* The Lethe sometimes does a little rewrite */
 			    obj->otyp = (level.flags.lethe && !rn2(10)) ?
 					SCR_AMNESIA : SCR_BLANK_PAPER;
+			if (obj->otyp == SCR_AMNESIA) {
+				obj->blessed = FALSE;
+				obj->cursed = TRUE;
+				curse(obj);
+				curse(obj);
+				obj->finalcancel = TRUE;
+			}
 			obj->spe = 0;
 		    }
 			break;
@@ -17483,8 +17490,14 @@ register boolean force, here;
 			} else
 			/* Potions turn to water or amnesia... */
 			if (level.flags.lethe) {
-			    if (obj->otyp == POT_WATER)
+			    if (obj->otyp == POT_WATER) {
 				obj->otyp = POT_AMNESIA;
+				obj->blessed = FALSE;
+				obj->cursed = TRUE;
+				curse(obj);
+				curse(obj);
+				obj->finalcancel = TRUE;
+			    }
 			    else if (obj->otyp != POT_AMNESIA) {
 				obj->otyp = POT_WATER;
 				obj->odiluted = 0;
@@ -17633,6 +17646,11 @@ register boolean force, here;
 			)
 		    {
 			obj->otyp = SCR_AMNESIA;
+			obj->blessed = FALSE;
+			obj->cursed = TRUE;
+			curse(obj);
+			curse(obj);
+			obj->finalcancel = TRUE;
 			obj->spe = 0;
 		    }
 			break;
@@ -17640,8 +17658,14 @@ register boolean force, here;
 			break;
 		    case POTION_CLASS:
 			if (obj->finalcancel) break;
-			if (obj->otyp == POT_WATER || !rn2(10))
+			if (obj->otyp == POT_WATER || !rn2(10)) {
 				obj->otyp = POT_AMNESIA;
+				obj->blessed = FALSE;
+				obj->cursed = TRUE;
+				curse(obj);
+				curse(obj);
+				obj->finalcancel = TRUE;
+			}
 			break;
 		    case GEM_CLASS:
 			if ((obj->otyp == LUCKSTONE

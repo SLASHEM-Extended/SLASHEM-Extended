@@ -1656,14 +1656,14 @@ water_prayer(bless_water)
 
     for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 	/* turn water into (un)holy water */
-	if (otmp->otyp == POT_WATER &&
-		(bless_water ? !otmp->blessed : !otmp->cursed)) {
-	    otmp->blessed = bless_water;
-	    otmp->cursed = !bless_water;
-	    otmp->bknown = bc_known;
-	    changed += otmp->quan;
+	if (otmp->otyp == POT_WATER && (bless_water ? !otmp->blessed : !otmp->cursed)) {
+		otmp->blessed = bless_water;
+		otmp->cursed = !bless_water;
+		otmp->bknown = bc_known;
+		otmp->finalcancel = TRUE;
+		changed += otmp->quan;
 	} else if(otmp->oclass == POTION_CLASS)
-	    other = TRUE;
+		other = TRUE;
     }
     if(!Blind && changed) {
 	pline("%s potion%s on the altar glow%s %s for a moment.",

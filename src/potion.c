@@ -8763,40 +8763,40 @@ boolean your_fault;
 		    if (canseemon(mon))
 			pline("%s looks like %s's having a bad hair day!", 
 					Monnam(mon), mhe(mon));
-		    cancelmonsterlite(mon);
+		    if (obj->blessed) cancelmonsterlite(mon);
 		    break;
 		case PM_CROESUS:
 		    if (canseemon(mon))
 		        pline("%s says: 'My gold! I must count my gold!'", 
 					Monnam(mon));
-		    mon->mconf = TRUE;
+		    if (obj->blessed) mon->mconf = TRUE;
 		    break;
 		case PM_DEATH:
  		    if (canseemon(mon))
 		        pline("%s pauses, then looks at you thoughtfully!", 
 					Monnam(mon));
-		    if (mon->m_lev > 0) mon->m_lev--;
+		    if (obj->blessed && mon->m_lev > 0) mon->m_lev--;
 		    break;
 		case PM_FAMINE:
 		    if (canseemon(mon))
 		        pline("%s looks unusually hungry!", Monnam(mon));
-		    if (mon->m_lev > 0) mon->m_lev--;
+		    if (obj->blessed && mon->m_lev > 0) mon->m_lev--;
 		    break;
 		case PM_PESTILENCE:
 		    if (canseemon(mon))
 		        pline("%s looks unusually well!", Monnam(mon));
-		    if (mon->m_lev > 0) mon->m_lev--;
+		    if (obj->blessed && mon->m_lev > 0) mon->m_lev--;
 		    break;
 		case PM_FRUSTRATION:
 		    if (canseemon(mon))
 		        pline("%s looks like something terrible happened to him!", Monnam(mon));
-		    if (mon->m_lev > 0) mon->m_lev--;
+		    if (obj->blessed && mon->m_lev > 0) mon->m_lev--;
 		    break;
 		default:
 		    if (mon->data->msound == MS_NEMESIS && canseemon(mon)
 				    && your_fault) {
 			pline("%s curses your ancestors!", Monnam(mon));
-		      if (mon->m_lev > 0) mon->m_lev--;
+		      if (obj->blessed && mon->m_lev > 0) mon->m_lev--;
 		      mon->mstun = TRUE;
 		    } else if (mon->isshk) {
 			angermon = FALSE;
@@ -9543,9 +9543,14 @@ boolean amnesia;
 		if (obj->otyp == POT_WATER) {
 		    if (amnesia) {
 			Your("%s to sparkle.", aobjnam(obj,"start"));
-			obj->odiluted 	= 0;
-			obj->otyp 	= POT_AMNESIA;
-			used 		= TRUE;
+			obj->odiluted = 0;
+			obj->otyp = POT_AMNESIA;
+			obj->blessed = FALSE;
+			obj->cursed = TRUE;
+			curse(obj);
+			curse(obj);
+			obj->finalcancel = TRUE;
+			used = TRUE;
 			break;
 		    }
 		    return FALSE;
@@ -9556,6 +9561,7 @@ boolean amnesia;
 			Your("%s flat.", aobjnam(obj, "become"));
 			obj->odiluted = 0;
 			obj->otyp = POT_WATER;
+			obj->finalcancel = TRUE;
 			used = TRUE;
 			break;
 		}
