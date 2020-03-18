@@ -572,10 +572,12 @@ struct monst *shkp;
 	    total, currency(total));
 	u.cnd_stealamount += total;
 	if (!Role_if(PM_ROGUE)) {     /* stealing is unlawful */
-	    adjalign(-sgn(u.ualign.type));
-	    You_feel("like an evil rogue.");
-		if(u.ualign.type < 0) u.ualign.sins++;
-		if(u.ualign.type < 0) u.alignlim--;
+		adjalign(-sgn(u.ualign.type));
+		You_feel("like an evil rogue.");
+		if (u.ualign.type == A_LAWFUL) {
+			u.ualign.sins++;
+			u.alignlim--;
+		}
 	}
 
 	hot_pursuit(shkp);
