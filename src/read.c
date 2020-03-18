@@ -1143,7 +1143,7 @@ doread()
 					default: break;
 				}
 				break;
-			case SCR_WORLD_FALL:
+			/* this bit is meant for hypothetical 100 ink scrolls, in case we add any --Amy
 				cartochance = 1;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 1; break;
@@ -1154,7 +1154,8 @@ doread()
 					case P_SUPREME_MASTER: cartochance = 4; break;
 					default: break;
 				}
-				break;
+				break; */
+			case SCR_WORLD_FALL:
 			case SCR_ASTRALCENSION:
 			case SCR_ARTIFACT_CREATION:
 			case SCR_MISSING_CODE:

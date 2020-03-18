@@ -175,7 +175,6 @@ register struct obj *otmp;
 	case SCR_RAGNAROK:
 		return(64);
 	case SCR_WORLD_FALL:
-		return(100);
 	case SCR_ASTRALCENSION: /* more expensive than the max # of charges in a marker on purpose --Amy */
 		return(150);
 	case SCR_BLANK_PAPER:
