@@ -13176,7 +13176,7 @@ boolean knoweverything;
 			case SCR_GROUP_SUMMONING:
 				pline("Summons a group of themed monsters for you to fight."); break;
 			case SCR_WORLD_FALL:
-				pline("Also known as 'apocalypse' or 'cataclysm', this scroll wipes out all monsters on the level whose level is lower than yours, and ones with a higher level can sometimes be removed too."); break;
+				pline("Also known as 'apocalypse' or 'cataclysm', this scroll wipes out all monsters on the level whose level is lower than half of your own level, and ones with a higher level can sometimes be removed too."); break;
 			case SCR_RESURRECTION:
 				pline("Reading this scroll grants you an extra life, i.e. you come back to life after death!"); break;
 			case SCR_SUMMON_GHOST:
@@ -13963,7 +13963,7 @@ boolean knoweverything;
 			case SPE_MAGIC_SHIELD:
 				pline("Casting this spell will increase your magic cancellation for a while."); break;
 			case SPE_WORLD_FALL:
-				pline("Cataclysm/apocalypse. It kills all monsters whose level is lower than yours, and can also sometimes kill higher-level ones, but you lose quite a lot of maximum health and mana for casting it and are hit by several bad effects as well as long-lasting nasty trap effects."); break;
+				pline("Cataclysm/apocalypse. It kills all monsters whose level is lower than half of your own, and can also sometimes kill higher-level ones, but you lose quite a lot of maximum health and mana for casting it and are hit by several bad effects as well as long-lasting nasty trap effects."); break;
 			case SPE_ESP:
 				pline("Temporary ESP (telepathy)."); break;
 			case SPE_RADAR:

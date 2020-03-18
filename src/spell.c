@@ -9186,9 +9186,12 @@ totemsummonchoice:
 		int num;
 	      register struct monst *wfm, *wfm2;
 		num = 0;
+		int wflvl = (u.ulevel / 2);
+		if (wflvl < 1) wflvl = 1;
+
 		for (wfm = fmon; wfm; wfm = wfm2) {
 			wfm2 = wfm->nmon;
-			if ( ((wfm->m_lev < u.ulevel) || (!rn2(4) && wfm->m_lev < (2 * u.ulevel))) && wfm->mnum != quest_info(MS_NEMESIS) && !(wfm->data->geno & G_UNIQ) ) {
+			if ( ((wfm->m_lev < wflvl) || (!rn2(4) && wfm->m_lev < (2 * wflvl))) && wfm->mnum != quest_info(MS_NEMESIS) && !(wfm->data->geno & G_UNIQ) ) {
 				mondead(wfm);
 				num++;
 			}

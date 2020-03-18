@@ -8316,9 +8316,12 @@ retry:
 		int num;
 	      register struct monst *mtmp, *mtmp2;
 		num = 0;
+		int wflvl = (u.ulevel / 2);
+		if (wflvl < 1) wflvl = 1;
+
 		for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 			mtmp2 = mtmp->nmon;
-			if ( ((mtmp->m_lev < u.ulevel) || (!rn2(4) && mtmp->m_lev < (2 * u.ulevel))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && (!sobj->cursed || rn2(2) ) ) {
+			if ( ((mtmp->m_lev < wflvl) || (!rn2(4) && mtmp->m_lev < (2 * wflvl))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && (!sobj->cursed || rn2(2) ) ) {
 				mondead(mtmp);
 				num++;
 			}

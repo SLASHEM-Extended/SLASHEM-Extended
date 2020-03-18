@@ -2537,7 +2537,7 @@ dotech()
 			break;
 
 		case T_WORLD_FALL:
-			pline("A very powerful technique that will instakill all non-unique monsters on the current dungeon level whose monster level is lower than the technique's level. Sometimes it will also kill higher-level monsters.");
+			pline("A very powerful technique that will instakill all non-unique monsters on the current dungeon level whose monster level is lower than half the technique's level. Sometimes it will also kill higher-level monsters.");
 			break;
 
 		case T_CREATE_AMMO:
@@ -4459,13 +4459,16 @@ secureidchoice:
 		/* Actually, it's "To win the game you must kill me, John Romero" recorded backwards.
 		 * When I was little, I always thought it said "Eygoorts-togaal, jezehh". --Amy */
 		{
+			int wflvl = ((techlevX(tech_no)) / 2);
+			if (wflvl < 1) wflvl = 1;
+
 			register struct monst *mtmp, *mtmp2;
 
 			num = 0;
 
 			for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 				mtmp2 = mtmp->nmon;
-				if ( ((mtmp->m_lev < techlevX(tech_no)) || (!rn2(4) && mtmp->m_lev < (2 * techlevX(tech_no)))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+				if ( ((mtmp->m_lev < wflvl) || (!rn2(4) && mtmp->m_lev < (2 * wflvl))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 					mondead(mtmp);
 					num++;
 					}
