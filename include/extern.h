@@ -2758,6 +2758,7 @@ E void castinertiaspell(void);
 E void wonderspell(void);
 E int isqrt(int);
 E boolean mastermindsave(void);
+E void removeforgottenspell(void);
 
 /* ### steal.c ### */
 

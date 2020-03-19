@@ -24891,6 +24891,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Unfortunately, nothing much happes.", /* sic from gnollhack */
 	"You gain experience.",
 	"You gain experience, but not enough to actually level up because otherwise the game would be too easy.",
+	"You completely forgot the finger of death spell.",
+	"You completely forgot the chemistry spell. Don't you love me now? I cleared one of your forgotten spells that you haven't been using anyway!",
+	"The attempt to invoke the forgotten spell failed.",
 
 };
 

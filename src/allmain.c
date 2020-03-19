@@ -5036,6 +5036,11 @@ newbossF:
 			incr_itimeout(&HFast, rnd(50));
 		}
 
+		/* if you have many forgotten spells, maybe remove one of them entirely --Amy */
+		if (!rn2(2000)) {
+			removeforgottenspell();
+		}
+
 		if (uarmf && uarmf->oartifact == ART_SUBLEVEL_FLOODING && !rn2(10000)) {
 			int madepoolQ = 0;
 

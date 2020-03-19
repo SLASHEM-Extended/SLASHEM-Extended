@@ -3145,14 +3145,49 @@ boolean atme;
 	 * decrement of spell knowledge is done every turn.
 	 */
 	if (spellknow(spell) <= 0) {
-	    Your("knowledge of this spell is twisted.");
-	    pline("It invokes nightmarish images in your mind...");
-	    u.cnd_forgottenspellcount++;
-	    spell_backfire(spell);
-	    if (!rn2(25)) {
-		badeffect();
-	    }
-	    return(1);
+
+		/* overhaul by Amy: forgotten spells are no longer free, they cost Pw now and can fail or backfire
+		 * higher-level spells cost less mana to cast, THIS IS NOT AN ERROR, it's because those will also generally
+		 * have a higher fail rate, because I want there to be no easy answer for the question of "which is the best
+		 * spell to turn into a forgotten spell?" - low-level ones will have a low fail rate but cost much Pw,
+		 * high-level ones will have a high fail rate (unless you're a pretty good spellcaster) but cost little Pw */
+		int forgottencost;
+		forgottencost = ((9 - spellev(spell)) * 5);
+		if (u.uhave.amulet && u.amuletcompletelyimbued && !u.freeplaymode) {
+			You_feel("the amulet draining your energy away.");
+			forgottencost += rnd(2*forgottencost);
+
+			if (u.uen < forgottencost) {
+				u.uen = 0;
+				pline("You are exhausted, and fail to invoke the forgotten spell due to the amulet draining all your energy away.");
+				return(1);
+			}
+		}
+		if (u.uen < forgottencost) {
+			You("don't have enough energy to cast that spell. The required amount was %d.", forgottencost);
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			return(0);
+		}
+		u.uen -= forgottencost;
+
+		Your("knowledge of this spell is twisted.");
+
+		if (rnd(100) > (percent_success(spell))) {
+			pline("The attempt to invoke the forgotten spell failed.");
+			if (!rn2(10)) {
+				pline("In fact, you've screwed up badly enough for it to backfire...");
+				badeffect();
+			}
+			return(1);
+		}
+
+		pline("It invokes nightmarish images in your mind...");
+		u.cnd_forgottenspellcount++;
+		spell_backfire(spell);
+		if (!rn2(25)) {
+			badeffect();
+		}
+		return(1);
 	} else if (spellknow(spell) <= 100) {
 	    You("strain to recall the spell.");
 	} else if (spellknow(spell) <= 1000) {
@@ -10138,6 +10173,51 @@ removeagain:
 		}
 	}
 
+
+}
+
+/* having too many forgotten spells just clogs up the interface, so we'll occasionally remove one --Amy */
+void
+removeforgottenspell()
+{
+	int n, thisone, thisonetwo, choicenumber;
+
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n > 4) {
+		thisone = -1;
+		thisonetwo = -1;
+		choicenumber = 0;
+		for (n = 0; ((n < MAXSPELL) && spellid(n) != NO_SPELL); n++) {
+			if (spellknow(n) <= 0) {
+				thisone = n;
+				choicenumber++;
+			}
+		}
+
+		if (choicenumber > 5 && thisone >= 0 && spellknow(thisone) <= 0) {
+
+			pline("You completely forgot the %s spell.", spellname(thisone));
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			spellknow(thisone) = 0; /* make sure the spell memory is deleted! */
+			spellid(thisone) = NO_SPELL;
+
+			for (n = thisone; n < MAXSPELL; n++) {
+				if (spellid(n) != NO_SPELL) thisonetwo = n;
+			}
+			if (thisonetwo >= 0 && spellid(thisonetwo) != NO_SPELL) { /* move last known spell to the one we've erased */
+				spellknow(thisone) = spellknow(thisonetwo);
+				spellid(thisone) = spellid(thisonetwo);
+				spellev(thisone) = spellev(thisonetwo);
+				spellname(thisone) = spellname(thisonetwo);
+
+				spellknow(thisonetwo) = 0; /* make sure the spell memory is deleted! */
+				spellid(thisonetwo) = NO_SPELL;
+
+			}
+
+		}
+	}
 
 }
 
