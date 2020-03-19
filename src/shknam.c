@@ -492,7 +492,7 @@ boolean artif;
 	    }
 	} else {
 
-	    if (timebasedlowerchance()) {
+	    if (timebasedlowerchance() && (rnd(100) > u.shopitemreduction) ) {
 
 		    atype = get_shop_item(shp - shtypes);
 		    if (atype < 0)
@@ -505,7 +505,7 @@ boolean artif;
 
 	if (ishaxor && (rn2(250) >= depth(&u.uz)) ) {
 
-	    if (timebasedlowerchance()) {
+	    if (timebasedlowerchance() && (rnd(100) > u.shopitemreduction) ) {
 
 		    atype = get_shop_item(shp - shtypes);
 		    if (atype < 0)

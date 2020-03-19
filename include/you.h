@@ -1366,6 +1366,10 @@ struct you {
 	int lavtrainingtimer;
 	int slowtrainingskill; /* becomes harder to train the higher it already is */
 
+	int invistrapchance; /* percentage chance for a random trap to be generated invisible */
+	int xdifftrapchance; /* percentage chance for a random trap to have arbitrarily inflated difficulty */
+	int shopitemreduction; /* percentage chance for shop items to not exist */
+
 	int drippingtread;
 	int drippingtreadtype;
 	int geolysis;

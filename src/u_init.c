@@ -10175,6 +10175,12 @@ u_init()
 	u.trapxtradiff = 0;
 	if (!rn2(10)) u.trapxtradiff = rno(100);
 
+	u.invistrapchance = 20 + rn2(81);
+	u.xdifftrapchance = rno(50);
+	if (!rn2(5)) u.xdifftrapchance = rno(100);
+	if (u.xdifftrapchance < 1) u.xdifftrapchance = 1;
+	if (u.xdifftrapchance > 100) u.xdifftrapchance = 100;
+
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
 	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;
@@ -10320,6 +10326,14 @@ u_init()
 	if (!rn2(500)) u.foodspawnchance += rnd(50);
 	if (u.foodspawnchance > 90) u.foodspawnchance = 90;
 	if (u.foodspawnchance < 0) u.foodspawnchance = 0;
+
+	u.shopitemreduction = 0;
+	if (rn2(5)) u.shopitemreduction += rnd(80);
+	if (!rn2(5)) u.shopitemreduction += rnd(20);
+	if (!rn2(20)) u.shopitemreduction += rnd(50);
+	if (!rn2(100)) u.shopitemreduction += rnd(100);
+	if (u.shopitemreduction > 90) u.shopitemreduction = 90;
+	if (u.shopitemreduction < 0) u.shopitemreduction = 0;
 
 	u.potionspawnchance = 0;
 	if (!rn2(2)) u.potionspawnchance += rnd(15);
@@ -31738,6 +31752,12 @@ int realityflag;
 	u.trapxtradiff = 0;
 	if (!rn2(10)) u.trapxtradiff = rno(100);
 
+	u.invistrapchance = 20 + rn2(81);
+	u.xdifftrapchance = rno(50);
+	if (!rn2(5)) u.xdifftrapchance = rno(100);
+	if (u.xdifftrapchance < 1) u.xdifftrapchance = 1;
+	if (u.xdifftrapchance > 100) u.xdifftrapchance = 100;
+
 	u.impossibleproperty = -1;
 	u.nonextrinsicproperty = -1;
 	u.nonintrinsicproperty = -1;
@@ -31860,6 +31880,14 @@ int realityflag;
 	if (!rn2(500)) u.foodspawnchance += rnd(50);
 	if (u.foodspawnchance > 90) u.foodspawnchance = 90;
 	if (u.foodspawnchance < 0) u.foodspawnchance = 0;
+
+	u.shopitemreduction = 0;
+	if (rn2(5)) u.shopitemreduction += rnd(80);
+	if (!rn2(5)) u.shopitemreduction += rnd(20);
+	if (!rn2(20)) u.shopitemreduction += rnd(50);
+	if (!rn2(100)) u.shopitemreduction += rnd(100);
+	if (u.shopitemreduction > 90) u.shopitemreduction = 90;
+	if (u.shopitemreduction < 0) u.shopitemreduction = 0;
 
 	u.potionspawnchance = 0;
 	if (!rn2(2)) u.potionspawnchance += rnd(15);

@@ -2810,7 +2810,7 @@ register int x, y, typ, replacechance;
 		break;
 	}
 	ttmp->hiddentrap = 0;
-	if (!rn2(100)) ttmp->hiddentrap = 1;
+	if (!rn2(u.invistrapchance)) ttmp->hiddentrap = 1;
 	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == u.invisotrap) ttmp->hiddentrap = 1;
@@ -2829,7 +2829,9 @@ register int x, y, typ, replacechance;
 	if (ttmp->ttyp != MAGIC_PORTAL) {
 		ttmp->trapdiff = level_difficulty();
 		if (u.trapxtradiff) ttmp->trapdiff += rnd(u.trapxtradiff);
-		if (ttmp->trapdiff > 125) ttmp->trapdiff = 125; /* make sure they don't become impossible to find */
+		if (u.xdifftrapchance > rn2(100)) ttmp->trapdiff += rnd(500);
+		/* we used to have a fail safe for this difficulty level, but I decided we don't need it :P
+		 * after all, most traps will reveal themselves when triggered, and if some nasty ones don't, oh well! --Amy */
 	}
 	ttmp->madeby_u = 0;
 	ttmp->dst.dnum = -1;

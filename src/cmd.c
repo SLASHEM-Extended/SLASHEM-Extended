@@ -2904,6 +2904,11 @@ boolean guaranteed;
 		enl_msg("Food drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.shopitemreduction)) {
+		sprintf(buf, " %d%%", 100 - u.shopitemreduction);
+		enl_msg("Shop item generation ", "is reduced to", "was reduced to", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.antimusablebias)) {
 		sprintf(buf, " %d%%", u.antimusablebias);
 		enl_msg("Musable item generation frequency ", "has a negative bias of", "had a negative bias of", buf);
@@ -3556,9 +3561,19 @@ boolean guaranteed;
 		enl_msg("Trap randomization ", "happens ", "happened ", buf );
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		sprintf(buf, "spawned invisible 1 times in %d", u.invistrapchance);
+		enl_msg("Traps ", "are ", "were ", buf );
+	}
+
 	if ((guaranteed || !rn2(10)) && u.trapxtradiff && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "increased by %d", u.trapxtradiff);
 		enl_msg("Trap difficulty ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		sprintf(buf, "extra hard to find %d%% of the time", u.xdifftrapchance);
+		enl_msg("Traps ", "are ", "were ", buf );
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " turn %d", u.next_check);
@@ -6861,6 +6876,11 @@ int final;
 		dump("  Food drop chance was reduced to", buf);
 	}
 
+	if (u.shopitemreduction) {
+		sprintf(buf, " %d%%", 100 - u.shopitemreduction);
+		dump("  Shop item generation was reduced to", buf);
+	}
+
 	if (u.concealitemchance) {
 		sprintf(buf, " %d%% of the time only", 100 - u.concealitemchance);
 		dump("  Concealing monsters were spawned underneath items", buf);
@@ -7359,10 +7379,16 @@ int final;
 	sprintf(buf, "for 1 in %d traps", u.traprandomizing);
 	dump("  Trap randomization happened ", buf );
 
+	sprintf(buf, "spawned invisible 1 times in %d", u.invistrapchance);
+	dump("  Traps were ", buf );
+
 	if (u.trapxtradiff) {
 		sprintf(buf, "increased by %d", u.trapxtradiff);
 		dump("  Trap difficulty was ", buf );
 	}
+
+	sprintf(buf, "extra hard to find %d%% of the time", u.xdifftrapchance);
+	dump("  Traps were ", buf );
 
 	sprintf(buf, " turn %d", u.next_check);
 	dump("  Next attribute increase check would have come at", buf);
