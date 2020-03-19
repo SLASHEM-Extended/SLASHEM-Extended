@@ -22027,6 +22027,11 @@ STATIC_OVL boolean
 uncommon(mndx)
 int mndx;
 {
+	int notuncommonlate = 0;
+	if (moves > 100000) notuncommonlate = ((moves - 100000) / 10000);
+	if (notuncommonlate < 0) notuncommonlate = 0;
+	if (notuncommonlate > 1000) notuncommonlate = 1000;
+
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
 	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
@@ -22042,18 +22047,18 @@ int mndx;
 	if (uncommon7(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 	if (uncommon10(&mons[mndx]) && !(isscriptor && is_jonadabmonster(&mons[mndx]) ) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
-	if (monstr[mndx] >= 9 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
-	if (monstr[mndx] >= 14 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
-	if (monstr[mndx] >= 19 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
-	if (monstr[mndx] >= 24 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
-	if (monstr[mndx] >= 28 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
-	if (monstr[mndx] >= 33 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
-	if (monstr[mndx] >= 37 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
-	if (monstr[mndx] >= 42 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
-	if (monstr[mndx] >= 46 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
-	if (monstr[mndx] >= 50 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
-	if (monstr[mndx] >= 60 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
-	if (monstr[mndx] >= 70 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
+	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
+	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
+	if (monstr[mndx] >= 19 && (rn2(200) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
+	if (monstr[mndx] >= 24 && (rn2(250) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
+	if (monstr[mndx] >= 28 && (rn2(290) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
+	if (monstr[mndx] >= 33 && (rn2(340) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
+	if (monstr[mndx] >= 37 && (rn2(380) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
+	if (monstr[mndx] >= 42 && (rn2(420) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
+	if (monstr[mndx] >= 46 && (rn2(460) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
+	if (monstr[mndx] >= 50 && (rn2(500) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
+	if (monstr[mndx] >= 60 && (rn2(600) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
+	if (monstr[mndx] >= 70 && (rn2(700) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
 
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
@@ -23414,6 +23419,47 @@ int     spc;
 	int uncommonnewfifty = rn2(10) ? 1 : 0;
 	int uncommonnewsixty = rn2(20) ? 1 : 0;
 	int uncommonnewseventy = rn2(50) ? 1 : 0;
+
+	if (moves > 100000) {
+		int notuncommonlate = 0;
+		notuncommonlate = ((moves - 100000) / 10000);
+		if (notuncommonlate < 0) notuncommonlate = 0;
+		if (notuncommonlate > 1000) notuncommonlate = 1000;
+
+		if (rn2(100) < notuncommonlate) {
+			uncommonnewten = 0;
+		}
+		if (rn2(150) < notuncommonlate) {
+			uncommonnewfifteen = 0;
+		}
+		if (rn2(200) < notuncommonlate) {
+			uncommonnewtwenty = 0;
+		}
+		if (rn2(250) < notuncommonlate) {
+			uncommonnewtwentyfive = 0;
+		}
+		if (rn2(300) < notuncommonlate) {
+			uncommonnewthirty = 0;
+		}
+		if (rn2(350) < notuncommonlate) {
+			uncommonnewthirtyfive = 0;
+		}
+		if (rn2(400) < notuncommonlate) {
+			uncommonnewforty = 0;
+		}
+		if (rn2(450) < notuncommonlate) {
+			uncommonnewfortyfive = 0;
+		}
+		if (rn2(500) < notuncommonlate) {
+			uncommonnewfifty = 0;
+		}
+		if (rn2(600) < notuncommonlate) {
+			uncommonnewsixty = 0;
+		}
+		if (rn2(700) < notuncommonlate) {
+			uncommonnewseventy = 0;
+		}
+	}
 
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && rn2(5)) uncommonnewten = 0;
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && rn2(4)) uncommonnewfifteen = 0;
