@@ -7649,12 +7649,16 @@ peffects(otmp)
 			else You("have an uneasy feeling.");
 			break;
 		}
-		gainlevelmaybe();
-		if (otmp->blessed)
-			/* blessed potions place you at a random spot in the
-			 * middle of the new level instead of the low point
-			 */
-			u.uexp = rndexp(TRUE);
+
+		{
+			int urlvl = u.ulevel;
+			gainlevelmaybe();
+			if (otmp->blessed && (u.ulevel > urlvl) )
+				/* blessed potions place you at a random spot in the
+				 * middle of the new level instead of the low point
+				 * Amy edit: only if you actually gained a level, and only up to 200k EXP for the new level */
+				u.uexp = rndexp(TRUE);
+		}
 
 		break;
 	case POT_DOWN_LEVEL:

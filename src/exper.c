@@ -658,6 +658,10 @@ boolean gaining;	/* gaining XP via potion vs setting XP for polyself */
 
 	minexp = (u.ulevel == 1) ? 0L : newuexp(u.ulevel - 1);
 	maxexp = newuexp(u.ulevel);
+	/* don't make blessed gain level too strong... --Amy */
+	if (gaining && ((newuexp(u.ulevel) - newuexp(u.ulevel - 1)) > 200000)) {
+		maxexp = (newuexp(u.ulevel - 1)) + 200000;
+	}
 	diff = maxexp - minexp,  factor = 1L;
 	/* make sure that `diff' is an argument which rn2() can handle */
 	while (diff >= (long)LARGEST_INT)
