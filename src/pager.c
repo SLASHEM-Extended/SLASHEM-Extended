@@ -24894,6 +24894,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"You completely forgot the finger of death spell.",
 	"You completely forgot the chemistry spell. Don't you love me now? I cleared one of your forgotten spells that you haven't been using anyway!",
 	"The attempt to invoke the forgotten spell failed.",
+	"You forget a lot of force bolt spell knowledge!",
+	"You forget a lot of force bolt spell knowledge! Now it's back to 46%% fail and you need to cast it a bunch to reach 0%% again.",
+	"You forget all usage of the extra healing spell!",
+	"You forget all usage of the extra healing spell! And since you also no longer have the spellbook, you're out of luck now and need to make do without that spell. Too bad.",
+	"Your phase door technique is put on a lengthy timeout!",
+	"Your phase door technique is put on a lengthy timeout! Don't expect it to become available again any time soon, because the timeout is a five-digit number of turns.",
+	"Your attack spell skill falls off, and you're much less skilled than before.",
+	"Your attack spell skill falls off, and you're much less skilled than before. Now you can cast that force bolt spell a thousand times or so to gain back all the skill training you just lost.",
 
 };
 

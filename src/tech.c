@@ -9350,6 +9350,33 @@ blitz_spirit_bomb()
 	return 1;
 }
 
+/* for bad effects: add d50000 turns of timeout to a random tech */
+void
+eviltechincrease()
+{
+	int i, thisone, choicenumber;
+
+	thisone = -1;
+	choicenumber = 0;
+
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0) {
+		techtout(thisone) += rnd(50000);
+		pline("Your %s technique is put on a lengthy timeout!", techname(thisone));
+	}
+
+}
+
 void
 techcapincrease(increaseamount)
 int increaseamount;

@@ -10176,6 +10176,77 @@ removeagain:
 
 }
 
+/* for bad effects: spell zonking similar to the amnesia effect */
+void
+evilspellforget()
+{
+	int n;
+	int thisone, thisonetwo, choicenumber;
+
+	/* reduce memory of one known spell that still has memory left --Amy */
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n) {
+		thisone = -1;
+		choicenumber = 0;
+		for (n = 0; ((n < MAXSPELL) && spellid(n) != NO_SPELL); n++) {
+			if ((!choicenumber || (!rn2(choicenumber + 1)) ) && (spellknow(n) > 0)) {
+				thisone = n;
+			}
+			if (spellknow(n) > 0) choicenumber++;
+		}
+
+		if (choicenumber > 0 && thisone >= 0 && (spellknow(thisone) > 0)) {
+			if (rn2(10)) {
+				spellknow(thisone) = rn2(spellknow(thisone));
+				pline("You forget a lot of %s spell knowledge!", spellname(thisone));
+			} else {
+				spellknow(thisone) = 0;
+				pline("You forget all usage of the %s spell!", spellname(thisone));
+			}
+		}
+	}
+
+	/* now if you have too many forgotten spells, remove them --Amy */
+removeagain:
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n > 4) {
+		thisone = -1;
+		thisonetwo = -1;
+		choicenumber = 0;
+		for (n = 0; ((n < MAXSPELL) && spellid(n) != NO_SPELL); n++) {
+			if (spellknow(n) <= 0) {
+				thisone = n;
+				choicenumber++;
+			}
+		}
+
+		if (choicenumber > 5 && thisone >= 0 && spellknow(thisone) <= 0) {
+
+			spellknow(thisone) = 0; /* make sure the spell memory is deleted! */
+			spellid(thisone) = NO_SPELL;
+
+			for (n = thisone; n < MAXSPELL; n++) {
+				if (spellid(n) != NO_SPELL) thisonetwo = n;
+			}
+			if (thisonetwo >= 0 && spellid(thisonetwo) != NO_SPELL) { /* move last known spell to the one we've erased */
+				spellknow(thisone) = spellknow(thisonetwo);
+				spellid(thisone) = spellid(thisonetwo);
+				spellev(thisone) = spellev(thisonetwo);
+				spellname(thisone) = spellname(thisonetwo);
+
+				spellknow(thisonetwo) = 0; /* make sure the spell memory is deleted! */
+				spellid(thisonetwo) = NO_SPELL;
+
+			}
+
+			if (choicenumber > 6) goto removeagain;
+		}
+	}
+
+}
+
 /* having too many forgotten spells just clogs up the interface, so we'll occasionally remove one --Amy */
 void
 removeforgottenspell()

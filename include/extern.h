@@ -2760,6 +2760,7 @@ E void wonderspell(void);
 E int isqrt(int);
 E boolean mastermindsave(void);
 E void removeforgottenspell(void);
+E void evilspellforget(void);
 
 /* ### steal.c ### */
 
@@ -2817,6 +2818,7 @@ E int disarm_landmine(struct trap *);
 E int disarm_squeaky_board(struct trap *);
 E int disarm_shooting_trap(struct trap *, int);
 E void techcapincrease(int);
+E void eviltechincrease(void);
 E int get_tech_no(int);
 E int techlevX(int);
 
@@ -3217,6 +3219,7 @@ E void practice_weapon(void);
 E void xtraskillinit(void);
 E int get_obj_skill(struct obj *,BOOLEAN_P);
 E void skilltrainingdecrease(int);
+E void evilskilldecrease(void);
 E void doubleskilltraining(void);
 E void additionalskilltraining(void);
 E void unrestrictskillchoice(void);

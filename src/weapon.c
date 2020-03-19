@@ -8713,6 +8713,55 @@ register struct obj *obj;
     obj->owornmask &= ~W_WEP;
 }
 
+/* for random bad effect: lose a lot of knowledge in a skill
+ * this will only select unrestricted ones that you have actually trained */
+void
+evilskilldecrease()
+{
+	int pickskill, tryct, tryct2, i, lossamount;
+
+eviltryagain:
+	pickskill = rnd(P_RIDING);
+	if (rn2(1000) && (P_RESTRICTED(pickskill) || (P_ADVANCE(pickskill) < 1) )) goto eviltryagain;
+
+	if (P_RESTRICTED(pickskill) || (P_ADVANCE(pickskill) < 1)) return; /* apparently you have no eligible skills */
+
+	lossamount = rnd(P_ADVANCE(pickskill));
+
+	if ((P_ADVANCE(pickskill)) < lossamount) P_ADVANCE(pickskill) = 0;
+	else P_ADVANCE(pickskill) -= lossamount;
+
+	if (!P_RESTRICTED(pickskill)) {
+		pline("Your %s skill falls off, and you're much less skilled than before.", P_NAME(pickskill));
+
+		tryct = 2000;
+		tryct2 = 10;
+		i = 0;
+
+		while (u.skills_advanced && tryct && (P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) ) {
+			lose_weapon_skill(1);
+			i++;
+			tryct--;
+		}
+
+		while (i) {
+			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+			else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+			i--;
+		}
+
+		/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+		while (tryct2 && P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) {
+			P_SKILL(pickskill)--;
+			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
+			else u.weapon_slots++;
+			tryct2--;
+		}
+
+	}
+
+}
+
 void
 skilltrainingdecrease(lossamount)
 int lossamount;
