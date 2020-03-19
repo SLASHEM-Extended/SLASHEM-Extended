@@ -8055,6 +8055,34 @@ boolean ranged;
 
 		break;
 
+	    case AD_UNPR:
+
+		if (ptr->mattk[i].aatyp == AT_RATH) {
+			struct obj *obj = some_armor(&youmonst);
+			if (obj && obj->oerodeproof) {
+				obj->oerodeproof = FALSE;
+				Your("%s brown for a moment.", aobjnam(obj, "glow"));
+			}
+		} else {
+
+		    if(mhit && !mon->mcan) {
+			if (aatyp == AT_KICK) {
+				if (uarmf && uarmf->oerodeproof) {
+					uarmf->oerodeproof = FALSE;
+					Your("%s brown for a moment.", aobjnam(uarmf, "glow"));
+				}
+			} else if (aatyp == AT_WEAP || aatyp == AT_CLAW || aatyp == AT_MAGC || aatyp == AT_TUCH)
+				passive_obj(mon, target, &(ptr->mattk[i]));
+		    }
+		}
+
+		break;
+
+	    case AD_NIVE:
+
+		nivellate();
+		break;
+
 	    case AD_DEBU:
 
 		pline("You're being sapped!");
@@ -10940,6 +10968,9 @@ struct attack *mattk;		/* null means we find one internally */
 	    if(!mon->mcan) {
 		erode_obj(obj, TRUE, FALSE);
 	    }
+	    break;
+	case AD_UNPR:
+	    if (!mon->mcan && obj->oerodeproof) obj->oerodeproof = FALSE;
 	    break;
 	case AD_LAVA:
 	case AD_FLAM:

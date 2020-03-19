@@ -2310,6 +2310,7 @@ E boolean obsidianprotection(void);
 E boolean chromeprotection(void);
 E int angelshadowstuff(void);
 E void statdebuff(void);
+E void nivellate(void);
 
 E boolean extralongsqueak(void);
 

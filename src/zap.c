@@ -2130,6 +2130,9 @@ boolean weakeffect;
 		obj->enchantment = 0;
 	}
 
+	/* why the hell didn't this remove erosionproofing??? --Amy */
+	if (obj->oerodeproof) obj->oerodeproof = FALSE;
+
 	switch(obj->otyp) {
 		case RIN_GAIN_STRENGTH:
 			if ((obj->owornmask & W_RING) && u_ring) {

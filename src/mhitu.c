@@ -6400,6 +6400,26 @@ hitmu(mtmp, mattk)
 
 		break;
 
+	    case AD_UNPR:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		{
+			struct obj *obj = some_armor(&youmonst);
+			if (obj && obj->oerodeproof) {
+				obj->oerodeproof = FALSE;
+				Your("%s brown for a moment.", aobjnam(obj, "glow"));
+			}
+		}
+
+		break;
+
+	    case AD_NIVE:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		nivellate();
+		break;
+
 	    case AD_SCOR:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -10223,6 +10243,24 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			You("seem to lose stats...");
 			statdebuff();
 
+		break;
+
+		case AD_UNPR:
+
+		{
+			struct obj *obj = some_armor(&youmonst);
+			if (obj && obj->oerodeproof) {
+				obj->oerodeproof = FALSE;
+				Your("%s brown for a moment.", aobjnam(obj, "glow"));
+			}
+		}
+
+		break;
+
+		case AD_NIVE:
+
+			You("seem to be brought down to a lower level...");
+			nivellate();
 		break;
 
 		case AD_SCOR:
@@ -14235,6 +14273,28 @@ common:
 
 	    case AD_DEBU:
 		statdebuff();
+
+		break;
+
+	    case AD_UNPR:
+
+		{
+			struct obj *obj = some_armor(&youmonst);
+			if (obj && obj->oerodeproof) {
+				obj->oerodeproof = FALSE;
+				Your("%s brown for a moment.", aobjnam(obj, "glow"));
+			}
+
+			pline("A brown glow surrounds you...");
+			for(obj = invent; obj ; obj = obj->nobj)
+				if (!rn2(3) && !stack_too_big(obj) && obj->oerodeproof) obj->oerodeproof = FALSE;
+
+		}
+
+		break;
+
+	    case AD_NIVE:
+		nivellate();
 
 		break;
 
@@ -18613,6 +18673,26 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			statdebuff();
 		}
 
+		break;
+
+	    case AD_UNPR:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(20))) {
+			pline("%s sends airborne covid-19 viri your way!", Monnam(mtmp));
+			struct obj *obj = some_armor(&youmonst);
+			if (obj && obj->oerodeproof) {
+				obj->oerodeproof = FALSE;
+				Your("%s brown for a moment.", aobjnam(obj, "glow"));
+			}
+		}
+
+		break;
+
+	    case AD_NIVE:
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(12))) {
+                pline("%s reminds you that you won't ascend this time!", Monnam(mtmp));
+			nivellate();
+		}
 		break;
 
 	    case AD_SCOR:

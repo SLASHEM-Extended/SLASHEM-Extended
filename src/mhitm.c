@@ -5882,6 +5882,7 @@ physical:
 		}
 		break;
 	    case AD_ENCH:
+	    case AD_UNPR:
 		/* There's no msomearmor() function, so just do damage */
 	     /* if (cancelled) break; */
 		if (mdef->mtame && !rn2(3)) {
@@ -5890,6 +5891,8 @@ physical:
 			badpeteffect(mdef);
 		}
 		break;
+	    case AD_NIVE:
+		break; /* todo */
 	    case AD_DEST:
 		if (mdef->mtame) tmp *= 10;
 		break;
@@ -6349,6 +6352,16 @@ int attnumber;
 			badpeteffect(magr);
 		}
 		break;
+	    case AD_UNPR:
+		if (magr->mtame && !rn2(3)) {
+			if (magr->mhpmax > 1) magr->mhpmax--;
+			if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+			badpeteffect(magr);
+		}
+		break;
+	    case AD_NIVE:
+		break; /* todo */
+
 	    case AD_NGEN:
 		if (mhit && !mdef->mcan && otmp) {
 			drain_item(otmp);

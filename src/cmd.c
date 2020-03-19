@@ -1088,6 +1088,10 @@ int traitno;
 			return "monsters with armor-burning flame attacks";
 		case 374:
 			return "monsters with debuff attacks";
+		case 375:
+			return "monsters whose attacks un-erosionproof your gear";
+		case 376:
+			return "monsters who nivellate your HP and Pw";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

@@ -3279,8 +3279,12 @@ get_description_of_damage_type(uchar id)
 			damageid = 155; break;
 		case AD_DEBU:
 			damageid = 156; break;
-		case AD_ENDS:
+		case AD_UNPR:
 			damageid = 157; break;
+		case AD_NIVE:
+			damageid = 158; break;
+		case AD_ENDS:
+			damageid = 159; break;
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -3290,7 +3294,7 @@ get_description_of_damage_type(uchar id)
 
 	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
 		damageid += u.pokeliedamagetype;
-		if (damageid > 157) damageid -= 157;
+		if (damageid > 159) damageid -= 159;
 	}
 
 	switch(damageid){
@@ -3458,8 +3462,10 @@ get_description_of_damage_type(uchar id)
 		case 154: return "reduce magic cancellation";
 		case 155: return "flames";
 		case 156: return "debuff";
+		case 157: return "unproofing";
+		case 158: return "nivellation";
 
-		case 157: return "placeholder attack";
+		case 159: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
 		impossible("bug in get_description_of_damage_type(%d)", id); return "<MISSING DESCRIPTION, THIS IS A BUG>";
@@ -24902,6 +24908,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your phase door technique is put on a lengthy timeout! Don't expect it to become available again any time soon, because the timeout is a five-digit number of turns.",
 	"Your attack spell skill falls off, and you're much less skilled than before.",
 	"Your attack spell skill falls off, and you're much less skilled than before. Now you can cast that force bolt spell a thousand times or so to gain back all the skill training you just lost.",
+	"nethack string theory: glorkums are elementary particles, and each glorkum can manifest as a single object",
 
 };
 

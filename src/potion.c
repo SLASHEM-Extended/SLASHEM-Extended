@@ -1847,7 +1847,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(452)) {
+	switch (rnd(458)) {
 
 		case 1:
 		case 2:
@@ -3072,6 +3072,32 @@ badeffect()
 			}
 			break;
 
+		case 453:
+		case 454:
+		case 455:
+			statdebuff();
+			break;
+
+		case 456:
+			if (!rn2(3)) evilspellforget();
+			else if (!rn2(2)) eviltechincrease();
+			else evilskilldecrease();
+
+			break;
+
+		case 457:
+		case 458:
+
+			{
+				register struct obj *obj;
+
+				pline("A brown glow surrounds you...");
+				for(obj = invent; obj ; obj = obj->nobj)
+					if (!rn2(10) && !stack_too_big(obj) && obj->oerodeproof) obj->oerodeproof = FALSE;
+			}
+
+			break;
+
 		default:
 		break;
 	}
@@ -3137,7 +3163,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(93)) {
+	switch (rnd(96)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4003,6 +4029,27 @@ reallybadeffect()
 			}
 			break;
 
+		case 94:
+			statdebuff();
+			break;
+
+		case 95:
+			if (!rn2(3)) evilspellforget();
+			else if (!rn2(2)) eviltechincrease();
+			else evilskilldecrease();
+
+			break;
+
+		case 96:
+			{
+				register struct obj *obj;
+
+				pline("A brown glow surrounds you...");
+				for(obj = invent; obj ; obj = obj->nobj)
+					if (!rn2(10) && !stack_too_big(obj) && obj->oerodeproof) obj->oerodeproof = FALSE;
+			}
+			break;
+
 		default:
 		break;
 	}
@@ -4567,6 +4614,272 @@ statdebuff()
 	}
 }
 
+/* nivellation: rather than doing what some other variants are doing (imposing a hard cap on max HP and Pw), I decided
+ * that it's much more interesting to instead have an attack/trap/badeffect that can reduce the max depending on how high
+ * it already is; this effect will do nothing if the player's max is below a certain threshold */
+void
+nivellate()
+{
+	boolean type = rn2(2); /* 0 = HP, 1 = Pw */
+	boolean nivellevel = u.ulevel;
+	int lowerceiling = 1;
+	int upperceiling = 1;
+	int reduceamount = 1;
+
+	/* at very low XLs, we'll be nice... */
+	if (u.ulevel < 3) nivellevel = 3;
+	if (u.ulevel == 3) nivellevel = 4;
+
+	if (type == 0) {
+
+		if (Race_if(PM_SUSTAINER)) return;
+
+		if (rnd(ACURR(A_CON)) > 14) {
+			Your("constitution prevents the health drain.");
+			return;
+		}
+
+		lowerceiling = (nivellevel * 10);
+		upperceiling = (ACURR(A_CON) > 15) ? (nivellevel * ACURR(A_CON)) : (nivellevel * 15);
+
+		if (Role_if(PM_ASTRONAUT)) {
+			lowerceiling *= 6;
+			lowerceiling /= 5;
+			upperceiling *= 6;
+			upperceiling /= 5;
+		}
+		if (Role_if(PM_BARBARIAN)) {
+			lowerceiling *= 5;
+			lowerceiling /= 4;
+			upperceiling *= 5;
+			upperceiling /= 4;
+		}
+		if (Role_if(PM_AUGURER)) {
+			lowerceiling *= 4;
+			lowerceiling /= 5;
+			upperceiling *= 4;
+			upperceiling /= 5;
+		}
+		if (Role_if(PM_BLEEDER)) {
+			lowerceiling *= 2;
+			upperceiling *= 2;
+		}
+		if (Role_if(PM_DRUID)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
+		if (Role_if(PM_ORDINATOR)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_BACTERIA)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_INKA)) {
+			lowerceiling *= 6;
+			lowerceiling /= 5;
+			upperceiling *= 6;
+			upperceiling /= 5;
+		}
+		if (Race_if(PM_ITAQUE)) {
+			lowerceiling *= 7;
+			lowerceiling /= 5;
+			upperceiling *= 7;
+			upperceiling /= 5;
+		}
+		if (Race_if(PM_PLAYER_CERBERUS)) {
+			lowerceiling *= 5;
+			lowerceiling /= 4;
+			upperceiling *= 5;
+			upperceiling /= 4;
+		}
+		if (Race_if(PM_PLAYER_FAIRY)) {
+			lowerceiling *= 2;
+			lowerceiling /= 3;
+			upperceiling *= 2;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_WEAPONIZED_DINOSAUR)) {
+			lowerceiling *= 4;
+			lowerceiling /= 3;
+			upperceiling *= 4;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_SHELL)) {
+			lowerceiling *= 4;
+			lowerceiling /= 3;
+			upperceiling *= 4;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_CARTHAGE)) {
+			lowerceiling *= 9;
+			lowerceiling /= 10;
+			upperceiling *= 9;
+			upperceiling /= 10;
+		}
+		if (Race_if(PM_VIKING)) {
+			lowerceiling *= 9;
+			lowerceiling /= 10;
+			upperceiling *= 9;
+			upperceiling /= 10;
+		}
+
+		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
+		if (upperceiling < 15) upperceiling = 15; /* fail safe */
+
+		if (u.uhpmax > upperceiling) {
+			reduceamount = rnd(u.uhpmax / 10);
+			u.uhpmax -= reduceamount;
+			Your("health was drained by %d!", reduceamount);
+		} else if (u.uhpmax > lowerceiling && !rn2(3)) {
+			u.uhpmax--;
+			Your("health was drained by 1!");
+		}
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+		if (Upolyd) {
+			if (u.mhmax > upperceiling) {
+				reduceamount = rnd(u.mhmax / 10);
+				u.mhmax -= reduceamount;
+				Your("polymorphed health was drained by %d!", reduceamount);
+			} else if (u.mhmax > lowerceiling && !rn2(3)) {
+				u.mhmax--;
+				Your("polymorphed health was drained by 1!");
+			}
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+
+		}
+
+	} else {
+
+		if (Race_if(PM_SUSTAINER)) return;
+
+		if (rnd(ACURR(A_WIS)) > 14) {
+			Your("wisdom prevents the mana drain.");
+			return;
+		}
+
+		lowerceiling = (nivellevel * 10);
+		upperceiling = (ACURR(A_WIS) > 15) ? (nivellevel * ACURR(A_WIS)) : (nivellevel * 15);
+
+		if (Role_if(PM_ALTMER)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
+		if (Role_if(PM_MASTERMIND)) {
+			lowerceiling *= 4;
+			lowerceiling /= 3;
+			upperceiling *= 4;
+			upperceiling /= 3;
+		}
+		if (Role_if(PM_WIZARD)) {
+			lowerceiling *= 5;
+			lowerceiling /= 4;
+			upperceiling *= 5;
+			upperceiling /= 4;
+		}
+		if (Role_if(PM_UNBELIEVER)) {
+			lowerceiling /= 5;
+			upperceiling /= 5;
+		}
+		if (Race_if(PM_BACTERIA)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_TROLLOR)) {
+			lowerceiling *= 2;
+			lowerceiling /= 3;
+			upperceiling *= 2;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_REDGUARD)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_YOKUDA)) {
+			lowerceiling *= 2;
+			lowerceiling /= 3;
+			upperceiling *= 2;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_RODNEYAN)) {
+			lowerceiling *= 2;
+			upperceiling *= 2;
+		}
+		if (Race_if(PM_CARTHAGE)) {
+			lowerceiling *= 9;
+			lowerceiling /= 10;
+			upperceiling *= 9;
+			upperceiling /= 10;
+		}
+		if (Race_if(PM_LICH_WARRIOR)) {
+			lowerceiling *= 5;
+			lowerceiling /= 4;
+			upperceiling *= 5;
+			upperceiling /= 4;
+		}
+		if (Race_if(PM_WISP)) {
+			lowerceiling *= 4;
+			lowerceiling /= 3;
+			upperceiling *= 4;
+			upperceiling /= 3;
+		}
+
+		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
+		if (upperceiling < 15) upperceiling = 15; /* fail safe */
+
+		if (u.uenmax > upperceiling) {
+			reduceamount = rnd(u.uenmax / 10);
+			u.uenmax -= reduceamount;
+			Your("mana was drained by %d!", reduceamount);
+		} else if (u.uenmax > lowerceiling && !rn2(3)) {
+			u.uenmax--;
+			Your("mana was drained by 1!");
+		}
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+	}
+
+	if (uactivesymbiosis && !rn2(2)) {
+		lowerceiling = 200;
+		upperceiling = 300;
+		reduceamount = 1;
+
+		int symlevel = mons[u.usymbiote.mnum].mlevel;
+		if (symlevel < 5) symlevel = 5;
+		else if (symlevel == 5) symlevel = 6;
+		if (u.usymbiote.mhpmax > (symlevel * 8)) upperceiling = (symlevel * 8);
+
+		if (Role_if(PM_SYMBIANT)) {
+			lowerceiling = 400;
+			upperceiling = 500;
+		}
+
+		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
+		if (upperceiling < 15) upperceiling = 15; /* fail safe */
+
+		if (u.usymbiote.mhpmax > upperceiling) {
+			reduceamount = rnd(u.usymbiote.mhpmax / 10);
+			u.usymbiote.mhpmax -= reduceamount;
+			Your("symbiote's health was drained by %d!", reduceamount);
+		} else if (u.usymbiote.mhpmax > lowerceiling && !rn2(3)) {
+			u.usymbiote.mhpmax--;
+			Your("symbiote's health was drained by 1!");
+		}
+		if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+
+	}
+
+	flags.botl = TRUE;
+}
+
 /* if you're an angel, shadowstuff items reduce your stats --Amy */
 int
 angelshadowstuff()
@@ -4918,7 +5231,7 @@ register struct monst *mtmp;
 
 	boolean vis = cansee(mtmp->mx,mtmp->my);
 
-	switch (rnd(48)) {
+	switch (rnd(51)) {
 
 		case 1:
 		case 2:
@@ -5038,6 +5351,21 @@ register struct monst *mtmp;
 			mtmp->inertia += rnd(1 + (level_difficulty() * rnd(50)));
 			if (vis) pline("%s slows to a crawl.", Monnam(mtmp));
 			break;
+		case 49:
+		case 50:
+		case 51:
+			if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 480 : 240)) {
+				int reduction = rnd(mtmp->mhpmax / 10);
+				if (reduction < 1) reduction = 1; /* shouldn't happen */
+				mtmp->mhpmax -= reduction;
+				if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+				if (vis) pline("%s is in pain!", Monnam(mtmp));
+			} else if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
+				mtmp->mhpmax--;
+				if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+				if (vis) pline("%s seems to be hurt!", Monnam(mtmp));
+			}
+			break;
 
 		default: /* fail safe */
 			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
@@ -5119,6 +5447,18 @@ register struct monst *mtmp;
 
 	makedoghungry(mtmp, (1 + level_difficulty()) * rnd(50));
 	if (vis) pline("%s looks hungry.", Monnam(mtmp));
+
+	if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 480 : 240)) {
+		int reduction = rnd(mtmp->mhpmax / 10);
+		if (reduction < 1) reduction = 1; /* shouldn't happen */
+		mtmp->mhpmax -= reduction;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		if (vis) pline("%s is in pain!", Monnam(mtmp));
+	} else if (mtmp->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
+		mtmp->mhpmax--;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		if (vis) pline("%s seems to be hurt!", Monnam(mtmp));
+	}
 
 }
 
@@ -5894,7 +6234,7 @@ terrainterror()
 
 		else {
 
-			monstercolor = rnd(374);
+			monstercolor = rnd(376);
 
 			for (i = 0; i < randsp; i++) {
 
