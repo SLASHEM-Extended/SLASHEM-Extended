@@ -1857,8 +1857,7 @@ do_permonst()
 	for (i = 0; mons[i].mlet; i++) {
 		SpinCursor(3);
 		fprintf(ofp,"%s","\n#define\tPM_");
-		if (mons[i].mlet == S_HUMAN &&
-				!strncmp(mons[i].mname, "were", 4))
+		if (mons[i].mflags4 & M4_HUMANWERE)
 		    fprintf(ofp,"%s", "HUMAN_");
 		for (nam = c = tmpdup(mons[i].mname); *c; c++)
 		    if (*c >= 'a' && *c <= 'z') *c -= (char)('a' - 'A');
