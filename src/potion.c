@@ -4269,6 +4269,19 @@ destroyarmorattack()
 
 }
 
+/* does the player character have anorexia? --Amy */
+boolean
+have_anorexia()
+{
+	if (RngeAnorexia) return TRUE;
+	if (Role_if(PM_TOPMODEL)) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_INA_S_SORROW) return TRUE;
+	if (Role_if(PM_GOFF)) return TRUE;
+	if (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) return TRUE;
+
+	return FALSE;
+}
+
 /* does your equipment made of sand protect you from sand terrain? --Amy */
 boolean
 sandprotection()

@@ -2302,6 +2302,7 @@ E void giftartifact(void);
 E void heraldgift(void);
 E void sjwtrigger(void);
 E void emerafrenzy(void);
+E boolean have_anorexia(void);
 
 E boolean sandprotection(void);
 E boolean shadowprotection(void);

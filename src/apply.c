@@ -1124,9 +1124,9 @@ struct obj *obj;
 			You(look_str, hcolor((char *)0));
 		    else if (Sick)
 			You(look_str, "peaked");
-		    else if (u.uhs >= WEAK && !RngeAnorexia && !Role_if(PM_TOPMODEL) && !(uarmc && uarmc->oartifact == ART_INA_S_SORROW) && !(uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK))  )
+		    else if (u.uhs >= WEAK && !have_anorexia() )
 			You(look_str, "undernourished");
-		    else if (u.uhs >= WEAK && (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK))) )
+		    else if (u.uhs >= WEAK && have_anorexia() )
 			You(look_str, "beautiful and skinny");
 		    else You("look as %s as ever.",
 				ACURR(A_CHA) > 14 ?

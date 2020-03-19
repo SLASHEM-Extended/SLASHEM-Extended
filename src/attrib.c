@@ -1709,22 +1709,22 @@ exerper()
 					    exercise(A_WIS, FALSE);
 
 					}
-					if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) { /* They strongly dislike being full --Amy */
+					if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) { /* They strongly dislike being full --Amy */
 					    exercise(A_WIS, FALSE); exercise(A_STR, FALSE); exercise(A_CON, FALSE); exercise(A_DEX, FALSE); }
 					break;
 		    case NOT_HUNGRY:	exercise(A_CON, TRUE); break;
-		    case HUNGRY:	if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) exercise(A_WIS, TRUE); break;
+		    case HUNGRY:	if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) exercise(A_WIS, TRUE); break;
 		    case WEAK:
-					if (!Role_if(PM_TOPMODEL) && !rn2(10) && !RngeAnorexia && !(uarmc && uarmc->oartifact == ART_INA_S_SORROW) && !Role_if(PM_FAILED_EXISTENCE) && !(uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) exercise(A_STR, FALSE);
+					if (!have_anorexia() && !rn2(10) && !Role_if(PM_FAILED_EXISTENCE) ) exercise(A_STR, FALSE);
 					if (Role_if(PM_MONK))	/* fasting */
 					    exercise(A_WIS, TRUE);
-					if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) {
+					if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) {
 					    exercise(A_WIS, TRUE); exercise(A_STR, TRUE);
 }					break;
 		    case FAINTING:
 		    case FAINTED:
-					if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && uarmc->oartifact == ART_INA_S_SORROW) || Role_if(PM_FAILED_EXISTENCE) || (uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) { exercise(A_WIS, TRUE); exercise(A_STR, TRUE); exercise(A_DEX, TRUE);		}					
-					if (!Role_if(PM_TOPMODEL) && !rn2(10) && !RngeAnorexia && !(uarmc && uarmc->oartifact == ART_INA_S_SORROW) && !Role_if(PM_FAILED_EXISTENCE) && !(uarmc && itemhasappearance(uarmc, APP_ANOREXIA_CLOAK)) ) exercise(A_CON, FALSE); break;
+					if (have_anorexia() || Role_if(PM_FAILED_EXISTENCE)) { exercise(A_WIS, TRUE); exercise(A_STR, TRUE); exercise(A_DEX, TRUE);		}					
+					if (!have_anorexia() && !rn2(10) && !Role_if(PM_FAILED_EXISTENCE)) exercise(A_CON, FALSE); break;
 		}
 
 		/* Encumberance Checks */
