@@ -490,19 +490,9 @@ armorreroll:
 	else if (!rn2(100) && oclass == ARMOR_CLASS) {
 
 		for (j = STRANGE_OBJECT; j < NUM_OBJECTS; j++) {
-			register const char *zn;
-			if ((zn = OBJ_DESCR(objects[j])) && !strcmpi(zn, "frequent helmet")) {
-				if (!OBJ_NAME(objects[j])) j = STRANGE_OBJECT;
-				break;
-			}
-			if ((zn = OBJ_DESCR(objects[j])) && !strcmpi(zn, "chastyy shlem")) {
-				if (!OBJ_NAME(objects[j])) j = STRANGE_OBJECT;
-				break;
-			}
-			if ((zn = OBJ_DESCR(objects[j])) && !strcmpi(zn, "tez-tez zarbdan")) {
-				if (!OBJ_NAME(objects[j])) j = STRANGE_OBJECT;
-				break;
-			}
+
+			if (itemnumwithappearance(i, APP_FREQUENT_HELMET)) break;
+
 		}
 
 		return (mksobj(j, TRUE, artif, shopinit));

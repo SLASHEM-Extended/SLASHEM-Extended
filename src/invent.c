@@ -9298,484 +9298,484 @@ boolean knoweverything;
 		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. Slot: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", is_shield(obj) ? "shield" : is_helmet(obj) ? "helmet" : is_boots(obj) ? "boots" : is_gloves(obj) ? "gloves" : is_cloak(obj) ? "cloak" : is_shirt(obj) ? "shirt" : is_suit(obj) ? "suit" : "weird slot (this may be a bug)");
 #endif
 
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tartibsizlik chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_IRREGULAR_BOOTS))
 			pline("These boots have weird-shaped high heels, which look a bit like a wedge heel with part of it cut out, which can occasionally cause you to fumble. But while you're wearing them, the turn counter advances at half the normal speed.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "keng dunyo veb-zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INTERNET_HELMET))
 			pline("A special helmet that provides internet access. Watching the webcams can occasionally show you the movement of monsters on the current dungeon level.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xanjar chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEDGE_BOOTS))
 			pline("These boots are super-comfortable thanks to their beautifully massive wedge heels!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qish sandal chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WINTER_STILETTOS))
 			pline("The epitome of beauty and elegance, these very high stiletto boots even allow you to walk on ice without slipping.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qisqa ko'chirish to'piqlarni"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CLUNKY_HEELS))
 			pline("You notice that these boots are characterized by extra thick, clunky block heels.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bilagi zo'r chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANKLE_BOOTS))
 			pline("Ankle boots are a type of high-heeled footwear with cone heels.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "blok-o'tish chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLOCK_HEELED_BOOTS))
 			pline("You love the fleecy block heels of this pair of boots, because they are very kind and gentle.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vampiric cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vampir plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sindirishi plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VAMPIRIC_CLOAK))
 			pline("Wearing this cloak will give you the special effect of resisting drain life effects 1 out of 10 times.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "aluminium helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem iz alyuminiya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "alyuminiy dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ALUMINIUM_HELMET))
 			pline("Prevents telepathy while you wear it.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shrouded cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "okutana plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kafan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHROUDED_CLOAK))
 			pline("Occasionally, this cloak creates a displaced image to fool monsters if you wear it.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "aksil-hukumat dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANTI_GOVERNMENT_HELMET))
 			pline("Do you hate the government and especially the kops? Now you can put on this helmet, and they will spawn less often and in smaller groups!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "filtrlangan zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FILTERED_HELMET))
 			pline("A helmet with a gas filter that protects you a bit from inhaling noxious gases.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "graffiti gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "graffiti perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'lqop purkash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GRAFFITI_GLOVES))
 			pline("Beware, these gloves are made of liquid graffiti. They are very slippery. Expect to drop your weapon at inopportune moments.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vampiric gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vampiry perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sindirishi qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VAMPIRIC_GLOVES))
 			pline("You should not wear this pair of gloves if you don't really have to, because they will continuously drain your experience.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "RNG helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem gsch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "RNG dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RNG_HELMET))
 			pline("Very rarely, the RNG will make random bad stuff happen if you put on this helmet.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "mysterious cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tainstvennyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sirli plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MYSTERIOUS_CLOAK))
 			pline("Wearing this cloak grants you Angband-style pseudo identification for the objects in your main inventory!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ghostly cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "prizrachnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "diniy plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GHOSTLY_CLOAK))
 			pline("The spirits of the deceased may be summoned to haunt you while you wear this.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qulay qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_COMFORTABLE_GLOVES))
 			pline("A pair of gloves that is really comfortable and causes your prayer timeout to be faster, so you can pray more often.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "complete helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polnaya shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "to'liq dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_COMPLETE_HELMET))
 			pline("Your entire head will be covered by this helm. This protects you from beheading attacks.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "polnish gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pol'skiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polsha qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POLNISH_GLOVES))
 			pline("Yes I know, it's called 'polish', but that word is ambiguous... anyway, the #borrow command works better if you wear this pair of gloves.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "cirt chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VELCRO_BOOTS))
 			pline("Warning: This pair of boots will constrict itself around your feet with its velcro lashes, and they will hurt you from time to time while worn. However, if you kick a monster with them, the lashes will scratch up and down the monster's legs, which is a lot of fun. You'll also use the sexy flats skill while wearing them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "straitjacket cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "smiritel'naya rubashka plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tor kamzul plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STRAITJACKET_CLOAK))
 			pline("Don't expect this cloak to come off easily once you put it on.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "battle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bitvy sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "urush chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BATTLE_BOOTS))
 			pline("Battle boots power up your kicks to do more damage.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "platform boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plato sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "platosi chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLATFORM_BOOTS))
 			pline("If you kick someone with this pair of beautiful platform boots, you will sometimes stomp their toes, causing the target to be stunned! And to top it off, they use the sexy flats skill!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "plateau boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi na platforme") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "platformalar chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLATEAU_BOOTS))
 			pline("You like plateau boots? Of course you do! You can kick monsters with them, which will occasionally cause you to stomp their toes flat (stunning the monster). And you'll also train the sexy flats skill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jangovar chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_COMBAT_BOOTS))
 			pline("This is a pair of boots that improves your kicking prowess: it greatly reduces the chance that your kick is 'clumsy'.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "jungle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "dzhunglyakh sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'rmon chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_JUNGLE_BOOTS))
 			pline("Are you annoyed by the fact that kicking a tree often hurts your legs? Well, with this special footwear that cannot happen any longer!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'pol qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CLUMSY_GLOVES))
 			pline("Clumsy gloves are just what they say on the tin. Your ranged weapons will occasionally misfire while wearing these, and have a significant to-hit penalty.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kanatcik chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FIN_BOOTS))
 			pline("You cannot drown while you have these fins around your feet.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "profilli chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PROFILED_BOOTS))
 			pline("Profiled soles are lovely, and stepping into dog shit with them is fun because it's so much work to clean them again! :D Well, actually you will speed up if you step into a heap of shit while wearing them. And you will also look so hot that they'll even allow you to train the sexy flats skill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "issiq chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HOT_BOOTS))
 			pline("This pair of boots can withstand temperatures of up to 9000 degrees. Wearing them allows you to swim in lava unharmed.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "politician cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "politik plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "siyosatchi plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POLITICIAN_CLOAK))
 			pline("Nobody likes politicians. So if you dress like one, nobody will like you either.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "angelic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "angel'skoye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "farishtalarning plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANGELIC_CLOAK))
 			pline("This lovely cloak makes you look like an angel! Which has the effect that most other angels will not attack you.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "demonic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "demonicheskaya plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jinlarning plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DEMONIC_CLOAK))
 			pline("Demons are more likely to be peaceful if you don this cloak, because it makes you look like one of them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "void cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nedeystvitel'nym plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "haqiqiy emas plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VOID_CLOAK))
 			pline("The void cloak generates a weak aura of anti-magic around you, making it harder for monsters to cast spells.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "grey-shaded gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sero-zatenennykh perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kulrang-soyali qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GREY_SHADED_GLOVES))
 			pline("Are you into BDSM? If you wear these gloves, your chances of sexual pleasure will go up! You can get your nuts kicked, be whacked over the head with sexy high heels, have your legs scratched up and down until it bleeds etc.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slippery gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "skol'zkiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sirg'anchiq qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SLIPPERY_GLOVES))
 			pline("Slippery gloves are similar to slippery cloaks, often allowing you to slip free of monsters' holding attacks.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qotib plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PETRIFIED_CLOAK))
 			pline("If you hear the cockatrice's hissing, you will often turn to stone. But this lithic cloak allows you to resist most of the time.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "akslantirish qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MIRRORED_GLOVES))
 			pline("A pair of gloves that's like a mirror. Monsters that try to use their gaze on you will sometimes gaze at the gloves, keeping you safe from the effects.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "visored helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zabralom shlema") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "soyabon zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VISORED_HELMET))
 			pline("The visor keeps you safe from blindness attacks.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "orange visored helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oranzhevyy shlem zabralom") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "apelsin soyabon zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ORANGE_VISORED_HELMET))
 			pline("Your eyes are protected from blinding attacks while wearing this helmet.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kamalak chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RAINBOW_BOOTS))
 			pline("A pair of boots that is so colorful, it alerts every monster to your presence. They also use the sexy flats skill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "roller boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rolikovyye botinki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rolikli chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ROLLER_BOOTS))
 			pline("These boots have roller blades at their soles, which should be able to roll over annoying monsters but unfortunately that isn't implemented. Still, they look very sexy and therefore will train the sexy flats skill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "snow boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zimniye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qor chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SNOW_BOOTS))
 			pline("Walking on ice will not cause you to slip with these boots.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "winter boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi zimniye") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qish chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WINTER_BOOTS))
 			pline("These boots can walk on any type of ice, no matter how slippery.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "water-pipe helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem kal'yannym") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "suv-quvur dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WATER_PIPE_HELMET))
 			pline("Wanna do the liquid diet conduct? Now you can - while wearing this helmet, every time you quaff anything you'll gain some nutrition!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "godless cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bezbozhnaya plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xudosiz plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GODLESS_CLOAK))
 			pline("Wearing this cloak means that praying can anger your god, even if it's actually safe to pray.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yaponiya ucube rido"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEEB_CLOAK))
 			pline("Only a Mahou Shoujo will benefit from the special effect of this cloak, everyone else isn't Japanese enough. What is the effect? Reduced spellcasting costs! Now your Mahou Shoujo can cast even more spells in the same time!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "riding gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yezda perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kopgina qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RIDING_GLOVES))
 			pline("Riding your automobile (steed) becomes much easier with this pair of gloves.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "riding boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi dlya verkhovoy yezdy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kopgina chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RIDING_BOOTS))
 			pline("You wanna ride a motorcycle? With these boots, you almost cannot fail! They also help when you're trying to ride something else. :-)");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "explosive boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vzryvnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "portlovchi chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_EXPLOSIVE_BOOTS))
 			pline("DANGER: This pair of boots is filled with TNT. Wearing them for too long will cause them to detonate.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "radio helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "translyatsii shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uzatuvchi zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RADIO_HELMET))
 			pline("The Dungeons of Doom radio broadcast will sometimes inform you of the location of traps, but the only way to listen to it is by putting on this helm.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "persian boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "persidskiye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fors chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PERSIAN_BOOTS))
 			pline("If you ask this very beautiful pair of leather boots whether you may wear them, they will tell you that yes, you may, but you'll have to allow their long zippers to slit your legs from time to time. They also count as sexy flats because mmmmmmmmmmmm, they look SOOOOO sexy!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deadly cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "smertel'noy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'ldiradigan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DEADLY_CLOAK))
 			pline("The deadly cloak will try to kill you while you wear it, but thankfully all it ever does is occasionally causing a small amount of damage.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "jarring cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sotryaseniye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "g'azablantiradigan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_JARRING_CLOAK))
 			pline("Something isn't right with this cloak... it emits jarring noises from time to time...");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "havola etdi chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HUGGING_BOOTS))
 			pline("They're actually called 'hiking boots', and they love to step into dog shit with their profiled soles. Have fun cleaning them again! By the way, as long as their base type isn't high-heeled, they count as sexy flats.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BRAND_NEW_GLOVES))
 			pline("This pair of gloves is highly resistant to erosion.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tueplue zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SCUBA_HELMET))
 			pline("The ultimate diving equipment. Wearing this helmet will protect your entire inventory from getting wet!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "boxing gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boks para perchatok") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boks qo'lqoplari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BOXING_GLOVES))
 			pline("Practising kung-fu or marital arts? Your chances of successfully fighting off your spouse will go up while wearing these!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fencing gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ograzhdeniya perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qilichbozlik qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FENCING_GLOVES))
 			pline("If your main weapon type is swords you will want to wear these gloves for bonus damage. This is especially true if you actually are a Fencer.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tozalamoq chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLEECY_BOOTS))
 			pline("Your potions will be kept safe from cold because these leather boots are so wonderfully fleecy. Yes, this makes sense! The fleeciness keeps the cold weather out! And they're also so sexy-looking that they count as sexy flats!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shaxmat chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHESS_BOOTS))
 			pline("You can play chess with the monsters by putting on this pair of boots - well, sort of. It will occasionally prevent monsters from moving diagonally.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fingerless gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mitenki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kam qo'lqop barmoq"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FINGERLESS_GLOVES))
 			pline("Unlike other gloves, these will not cover your fingers.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "energizer cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "antidepressant plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "energiya plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ENERGIZER_CLOAK))
 			pline("A cloak full of energy, which allows you to draw on the mystical power of any creature you kill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ko'ylagi mantiya"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MANTLE_OF_COAT))
 			pline("This cloak type grants extra AC, but also causes nastiness sometimes.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chilling cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pugayushchim plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovutgichli plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHILLING_CLOAK))
 			pline("Wearing this cloak causes you to be surrounded by frost, and occasionally you'll be frozen.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "bug-tracking helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oshibka otslezhivaniya shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hasharotlar-kuzatish dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUG_TRACKING_HELMET))
 			pline("Monsters will be able to track you if you wear this type of helm, and it especially attracts bugs.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fatal gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fatal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "halokatli qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FATAL_GLOVES))
 			pline("If you wear this pair of gloves, your magnetic items can occasionally experience a case of fatal attraction.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chiroyli ko'chirish to'piqlarni"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BEAUTIFUL_HEELS))
 			pline("Such a lovely pair of high heels! <3 They will greatly increase your charisma when worn because the cone heels are incredibly cuuuuuute, so you should definitely allow them to gently enclose your sweet feet!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ELECTROSTATIC_CLOAK))
 			pline("It crackles with electricity, and will damage monsters that attack you in melee. However, sometimes you will be confused or numbed by the voltage.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yig'lab dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEEPING_HELMET))
 			pline("If you wear this helmet, you will suffer from levelteleportitis. And if you cannot levelport for some reason, it will drain your experience levels instead, ignoring any drain resistance that you might have.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "runi qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RUNIC_GLOVES))
 			pline("Reading a spellbook will increase your spell memory by more than the standard amount if you do it while wearing these gloves.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "roman sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rimskiye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rim fuqarosi kavushlari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ROMAN_SANDALS))
 			pline("Sandals are impractical for running. This is especially true for 'gladiator' sandals like these, and therefore you will move a bit slower in them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "homicidal cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "smertonosnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "halokatli plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HOMICIDAL_CLOAK))
 			pline("Sometimes, while you wear this cloak, new traps are generated on the current dungeon level.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "narrow helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uzkiy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tor dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NARROW_HELMET))
 			pline("A helmet that constricts your head in a bad way because it's so narrow, making you more susceptible to psychic blasts.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "spanish gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ispanskiy perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ispaniya qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SPANISH_GLOVES))
 			pline("Thumb screws in glove form! They will autocurse if you wear them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "castlevania boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zamok vaney sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qal'a vania chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CASTLEVANIA_BOOTS))
 			pline("As if the dungeon wasn't dark enough, these boots will occasionally darken an area while you wear them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yunon plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GREEK_CLOAK))
 			pline("This cloak turns everyone into a greek centurion if you wear them. Or, in other words, both you and all monsters will move faster.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "celtic helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kel'tskaya shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "seltik dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CELTIC_HELMET))
 			pline("The Ancient Celts are masters of constructs, and therefore, if you wear them, all newly generated golems will have much more hit points. Useful if you're planning to get some golem pets.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "english gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "angliyskiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ingliz tili qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ENGLISH_GLOVES))
 			pline("Sniper alert! Your beam spells and wands will have bigger range while wearing this pair of gloves, but because the Amy is stupid, she accidentally gave the bonus to monster-caused beams too... :-P");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "janubiy koreyaning kavushlari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_KOREAN_SANDALS))
 			pline("If you want to turn into a sweet asian amazon, wear these multicolored sweeties. They make you more resistant to fire and also confer weak displacement, but monsters will hit you more often in melee. Also, wearing them trains the sexy flats skill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gentle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nezhnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yumshoq chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GENTLE_BOOTS))
 			pline("These boots are soooooo gentle! Wearing them will use the sexy flats skill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "buckled boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pryazhkami sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "quyon chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLED_BOOTS))
 			pline("A pair of boots that counts as sexy flats (as long as its base type isn't high-heeled), because admit it, the buckles look very sexy <3");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "spider boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pauk sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'rgimchak chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SPIDER_BOOTS))
 			pline("Spider webs will not hold you in place as long as you wear this pair of boots.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kamuflaj to'n"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CAMO_ROBE))
 			pline("A robe in urban camo colors that makes you more difficult to spot for your enemies.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "octarine robe") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vos'moy tsvet khalata") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sakkizinchi rang to'n"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_OCTARINE_ROBE))
 			pline("This robe is imbued with special magic. Sometimes it will send beams back at whoever fired them.");
 
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "forgetful cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zabyvchiv plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "unutuvchan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FORGETFUL_CLOAK))
 			pline("You will forget your spells more quickly while wearing this cloak.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "changing cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "izmeneniye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'zgaruvchan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHANGING_CLOAK))
 			pline("It causes a weaker form of polymorphitis; wear it at your own risk!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shell cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch obolochki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qobiq plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHELL_CLOAK))
 			pline("This cloak provides an antimagic shell that can cause you to sometimes fail when trying to cast a spell, but the same applies to spellcasting monsters.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "chinese cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kitayskiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xitoy plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHINESE_CLOAK))
 			pline("It is labelled 'Arabella's Bank of Crossroads Employee of the Month'.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "polyform cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sopolimer forma plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "belgigacha bo'lgan poli shakli plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POLYFORM_CLOAK))
 			pline("Very rarely, you may get a controlled polymorph while wearing this cloak. But beware, occasionally it will be an uncontrolled polymorph instead!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "absorbing cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pogloshchayushchiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yutucu plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ABSORBING_CLOAK))
 			pline("This cloak absorbs light, and will usually cause monsters to be short-sighted.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deep cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "glubokiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chuqur plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DEEP_CLOAK))
 			pline("While wearing this cloak, you will occasionally be displaced so monsters have a harder time hitting you, and it can also sometimes prevent level drain effects.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "portlash-pushti plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PINK_CLOAK))
 			pline("Yes, it doesn't really make sense, but while wearing this bright pink color, monsters will be reluctant to close in on you.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "birthcloth") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rozhdeniye tkan'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tug'ilgan mato"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BIRTHCLOTH))
 			pline("Do you wanna have children? Then wear this as you're about to have a sexual encounter!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "grass cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch trava") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o't plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GRASS_CLOAK))
 			pline("It's a very green cloak. So green in fact that green-colored monsters may spontaneously become your pets.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "contaminated coat") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zagryaznennoye pal'to") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ifloslangan palto"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CONTAMINATED_COAT))
 			pline("This coat is contaminated with botulism spores! If you wear it, you will become deathly ill every once in a while!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WITHERED_CLOAK))
 			pline("It's a cloak that shows signs of withering... but strangely enough, that seems to make it much more resilient to damage. After all, if it's already damaged beyond repair, it cannot be damaged any further!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ignorant cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nevezhestvennyye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "johil plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_IGNORANT_CLOAK))
 			pline("You will become an ignorant fool if you put on this cloak. It will autocurse and occasionally cause your item identification attempts to fail.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qasoskor plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_AVENGER_CLOAK))
 			pline("Did you watch the 'Avengers' movies? With this cloak, you can become mighty like Thor and do extra damage with hammers, but such power also comes at a cost: you will aggravate monsters and go hungry much more quickly.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gravity cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gravitatsionnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "agar tortishish kuchi plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GRAVITY_CLOAK))
 			pline("Gravity will randomly warp around you while wearing this cloak, causing you to be stunned and disoriented.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "istalgan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WISHFUL_CLOAK))
 			pline("Your wishes will work even with negative luck as long as you're wearing this cloak.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "soktudun mongo plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POKE_MONGO_CLOAK))
 			pline("It turns you into a smombie, but also causes all pokemon to spawn peaceful most of the time. Sometimes they'll even be generated tame. Beware: if any of your pets dies while you wear it, your deity will get angry!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "levuntation cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "levitatsii plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "havo rido kiygan suzadi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LEVUNTATION_CLOAK))
 			pline("There is no actual 'levuntation' effect, but wearing this cloak will make all of your potions unsafe to drink.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "quicktravel cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bystryy plashch puteshestviya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tez safar plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_QUICKTRAVEL_CLOAK))
 			pline("A highly dangerous cloak that will prevent multi-turn actions from being interrupted.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "geek cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "komp'yutershchik plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qani plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GEEK_CLOAK))
 			pline("If you're a software engineer, cracker, geek or graduate, you will gain the power of Eru Illuvator (sic) by putting it on!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hamshira plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NURSE_CLOAK))
 			pline("Effects that heal you will be improved while you wear it.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slexual cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polovoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jinsiy plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SLEXUAL_CLOAK))
 			pline("Wearing it increases the chance of receiving sexual pleasure from nymphs. :-)");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'rta yer qal'a plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANGBAND_CLOAK))
 			pline("While you wear this cloak, the game will behave like Angband. Just see for yourself.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fleecy-colored cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vorsistyye tsvetnoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "serjun rangli plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLEECY_COLORED_CLOAK))
 			pline("The colors are very fleecy! <3 Everyone will like you much more, and therefore your charisma will go way up while you wear it!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eb buzilishi plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANOREXIA_CLOAK))
 			pline("You will suffer from a terrible, life-threatening condition if you wear it. DANGER: anorexia exists in real life too and is just as deadly there. The Amy will not be responsible if you stupidly kill yourself by refusing to eat!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "flash cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "flesh-plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bir flesh plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLASH_CLOAK))
 			pline("This cloak will occasionally hit you with a flash of light that causes blindness.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "dnethack cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "podzemeliy i vnezemnyye plashch vzlomat'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hamzindon va dunyo bo'lmagan doirasi so'yish plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DNETHACK_CLOAK))
 			pline("Just in case you felt like SLASH'EM Extended was too easy, this cloak will recalculate a bunch of things to make it harder for you.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boks libosi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BOXING_GOWN))
 			pline("Wearing this cloak will make you a better martial artist. However, if you don't have the martial arts skill, you won't receive a bonus.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jamoasi xavfsizlik plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TEAM_SPLAT_CLOAK))
 			pline("Gogo junethack team splat! TROPHY GET! :D");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "aql bovar qilmaydigan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ELDRITCH_CLOAK))
 			pline("While wearing this cloak, mundane monsters can sometimes turn into dangerous eldritch abominations.");
 
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "musiqiy dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MUSICAL_HELMET))
 			pline("While wearing this helmet, you will be very good at playing music. This means that playing an instrument will train your device skill much faster than usual.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yashirin dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SECRET_HELMET))
 			pline("Wearing this helmet allows you to hide underneath items by moving onto them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "inkcoat helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem pal'to chernil") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "siyoh palto dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INKCOAT_HELMET))
 			pline("This helmet is covered with ink, and makes you difficult to spot so monsters may move randomly sometimes.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "knowledgeable helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "znayushchikh shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bilimdon dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_KNOWLEDGEABLE_HELMET))
 			pline("A helmet that grants you knowledge about the arcane things and improves your spellcasting success chance.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "formula bir zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FORMULA_ONE_HELMET))
 			pline("Racecar drivers usually wear this helm. It will make you a little faster, but all monsters will also be a bit faster if you wear it!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "difficult cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "trudnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qiyin plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DIFFICULT_CLOAK))
 			pline("Wearing this cloak will make the game more difficult by spawning much higher-level monsters.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gentle cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nezhnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "muloyim plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GENTLE_CLOAK))
 			pline("It's a very lovely cloak that increases your charisma by one point while worn.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "irradiation cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oblucheniye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nurlanish plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_IRRADIATION_CLOAK))
 			pline("This cloak is radioactive and will slowly damage your maximum hit points and mana while worn.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "soft cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "myagkiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yumshoq plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SOFT_CLOAK))
 			pline("Wearing this cloak will very slightly decrease the amount of physical damage you take.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "excrement cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ekskrementy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chiqindi plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_EXCREMENT_CLOAK))
 			pline("Don't wear this cloak unless you want to stink like a heap of shit. It causes you to aggravate monsters, and you will be unable to have stealth while you have it on!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hungry cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "golodnymi plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chanqoq plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HUNGRY_CLOAK))
 			pline("This cloak will occasionally make you much more hungry while you wear it. Careful, don't starve to death!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "science cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nauka plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ilm-fan plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SCIENCE_CLOAK))
 			pline("Scientific modifications allow the wearer of this cloak to cast spells with an increased chance of success.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "guild cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gil'dii plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "birlik plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GUILD_CLOAK))
 			pline("Wearing this cloak puts you in the Mages Guild, so to speak - you will not forget your spells over time while you have it on.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "erotic boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "erotik chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_EROTIC_BOOTS))
 			pline("You get all wet and horny when looking at this pair of high heels. In particular, you almost have a spontaneous orgasm when you look at the fleecy block heels.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sputa boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sputa chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SPUTA_BOOTS))
 			pline("Think of the sweet block heels your sputa will flow down.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "radiant heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yorqin ko'chirish to'piqlarni"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RADIANT_HEELS))
 			pline("These high heels are very colorful! Gotta love the beautiful wedge heels <3");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qidiruvi va turbo chizilmasin"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TURBO_BOOTS))
 			pline("It's a pair of boots with a built-in turbo that makes you move a bit faster, but certain actions that would usually interrupt you will no longer do so.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sexy heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "belgila sexy ko'chirish to'piqlarni"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SEXY_HEELS))
 			pline("These high heels are very sexy! In fact, just looking at the cone heels makes you wet!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "etiklar silay"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STROKING_BOOTS))
 			pline("You absolutely want to stroke these wonderful high heels. The block heels certainly feel soooooo incredibly soft!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "baxmal qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VELVET_GLOVES))
 			pline("Wearing this pair of gloves will halve your spellcasting penalty for wearing armor, so if you want to be able to cast in full plate mail, this is the ticket. Also, secret hint! If you happen to find a nastroscha, a rare but possibly dangerous monster, chat to her while wearing these gloves and something good may happen.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "poygachi qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RACER_GLOVES))
 			pline("You will be slightly faster than usual while wearing this pair of gloves, but it prevents you from using the quicktravel command so you have to walk everywhere on foot.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shitty gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "der'movyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boktan qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHITTY_GLOVES))
 			pline("This pair of gloves is not very good; if you try to pick up a petrifying object with them, bad things will happen. Not necessarily petrification, mind you.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sensor gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sensornyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tayinlangan qurilmani qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SENSOR_GLOVES))
 			pline("Use this pair of gloves to be warned of traps that you step on - the sensor will sound an alarm whenever you walk over one.");
 
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ko'k shippak"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLUE_SNEAKERS))
 			pline("These sneakers look cute, and their rough soles can sometimes prevent you from fumbling. They count as sexy flats.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "colorfade cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch tsveta") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ranglash plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_COLORFADE_CLOAK))
 			pline("Wearing this cloak causes monsters to have no color.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nazokat etigi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FEMMY_BOOTS))
 			pline("A high-heeled pair of boots that used to be worn by Femmy. She really likes cone heels, it seems. If you let them enclose your feet, the dungeon will slowly become more feminine.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "dream helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem mechty") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "dubulg'a orzu"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DREAM_HELMET))
 			pline("Pleasant dreams will come to you while you have this helmet on - it allows you to regenerate hit points and mana more quickly while sleeping.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "red sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "krasnyye krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qizil shippak"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RED_SNEAKERS))
 			pline("This is a lovely pair of bang-red sneakers. If you kill a monster while wearing them, you will heal up a bit. Of course they also count as sexy flats.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sariq shippak"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_YELLOW_SNEAKERS))
 			pline("An incredibly cute pair of sneakers made of wonderfully soft velvet. But they are actually powerful and increase the damage you do while kicking, plus they're immune to heaps of shit. However, if you ever allow them to get wet, you'll be paralyzed. Wearing them trains the sexy flats skill.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "pink sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rozovyye krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pushti shippak"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PINK_SNEAKERS))
 			pline("This pair of sneakers looks very female and lovely, and will train your sexy flats skill when worn! However, they also emit a beguiling stench that can affect both you and monsters.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'tkir xanjarday kavushlari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHARP_EDGED_SANDALS))
 			pline("The heels of this pair of female stiletto sandals are very sharp-edged.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chang'i poshnalar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SKI_HEELS))
 			pline("A special pair of high-heeled footwear that can walk over snow, which is now actually in the game and causes them to speed up. But they walk on ice just as well :-). However, they have a tendency to step into invisible heaps of shit and might also trigger other traps without you noticing. Their heels aren't really wedge heels but they don't really fit into any other heel category.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sekinlashuvi libos"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SLOWING_GOWN))
 			pline("It's very heavy and improves your armor class by an extra 3 points, but also slows you down to half speed.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "foundry cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "liteynyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "quyish plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FOUNDRY_CLOAK))
 			pline("While wearing this cloak, if you quaff from a fountain you'll get extra nutrition. But quaffing from fountains is like playing russian roulette anyway. Are you foolish enough to do it?");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "but poshnalar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FETISH_HEELS))
 			pline("These high heels slow you down greatly when moving around, because seriously, they're not meant to be used for walking. After all, stiletto heels with a height of 15 cm are super cumbersome, try it in real life :P They also increase your charisma and allow you to chat to nymphs or farting monsters to pacify them. However, monsters with claw attacks will try to rip you to pieces.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rubynus helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rubinovyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yoqut asosiy dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RUBYNUS_HELMET))
 			pline("The rubynus material is actually from Elona and increases 'life rating' there. But here, wearing this helmet will instead increase your constitution.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fikr dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_THINKING_HELMET))
 			pline("This helmet thinks for you! It improves all of your stats by one. However, it's also rather self-willed and will occasionally cause you to move in an unintended direction.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "silk fingerlings") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shelkovyye mal'ki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ipak va ling, barmoqlar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SILK_FINGERLINGS))
 			pline("A thin pair of gloves that doesn't cover your fingers. Beware the cockatrice.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "netradiation helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "obluchonnyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sof radiatsiya dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NETRADIATION_HELMET))
 			pline("Made of radioactive material, wearing it for a prolonged time will slowly sap your maximum health. It also has a chance of protecting you from monsters' gaze attacks.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "duxoba nasoslar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VELVET_PUMPS))
 			pline("Such a lovely, soft pair of high-heeled female pumps! <3 (No, the Amy does not have a shoe fetish at all. She just happens to love cone heels!)");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hearing cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch dlya slukha") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eshitish plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HEARING_CLOAK))
 			pline("If you wear this cloak, listening to the dungeon becomes possible and very occasionally you'll notice a monster being spawned.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buzoq-charm kavushlari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CALF_LEATHER_SANDALS))
 			pline("With this pair of sandals, you can kick your enemies into the shins repeatedly, and your kick will never be clumsy. However, it will also deal considerably less damage. They count as sexy flats.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "cirt kavushlari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VELCRO_SANDALS))
 			pline("These sandals are a curse if you want to run, because they slow you down if you try to move around. They also don't look very good and reduce your charisma. Plus, you'll be more vulnerable to claw attacks. However, if you kick an enemy, you'll deal extra damage and paralyze the target! Also, despite not actually looking very sexy, they still count as sexy flats.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "spellsucking cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch zaklinaniy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "so'rib imlo plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SPELLSUCKING_CLOAK))
 			pline("This cloak randomly increases or decreases your current amount of mana.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "malika qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PRINCESS_GLOVES))
 			pline("Wearing this royal attire increases your charisma and makes lords and princes spawn peaceful more often. However, lowly monsters will hate you and try to scratch or sting you to death.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "dahshatli qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_UNCANNY_GLOVES))
 			pline("A pair of gloves that makes your spells both harder to cast and more expensive, but your weapon damage and accuracy will go up.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bir ip yengil bosh kiyim"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STRIP_BANDANA))
 			pline("This headgear is so thin that it doesn't protect your head from the mind flayer's tentacles.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "roadmap cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch dorozhnoy karty") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yo'l xaritasi plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ROADMAP_CLOAK))
 			pline("Occasionally, this cloak will reveal some information about the current dungeon level to you.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "storm coat") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shtorm") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bo'ron palto"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STORM_COAT))
 			pline("With this cloak, praying to your deity will not always set a prayer timeout. Unfortunately, the game never tells you whether it did or not, though.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'tos botlarni"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUFFALO_BOOTS))
 			pline("Thanks to the plateau soles, this pair of boots counts as high heels (technically one could consider them to be wedge heels). Kicking a monster with them will push it back more often, but you will encounter more heaps of shit and you will fully step into them even if you're flying.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "serjunrangli plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLEECELING_CLOAK))
 			pline("All glyphs have a 1 in 5 chance of being fleecy-colored while you wear this.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qahramoni mokasen"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HEROINE_MOCASSINS))
 			pline("If you want to be a true heroine, wear these and the damage reduction effect you're getting from having negative AC will be better! And they also look so cute that they'll use the sexy flats skill!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "up-down cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch s verkhnim plashchem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "up-pastga plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_UP_DOWN_CLOAK))
 			pline("This cloak is weird. It supposedly allows you to take off armor worn underneath it, but the cloak will not come off unless you take off the armor first!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "twisted visor helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem vitoy shlema") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buekuemlue soyabon dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TWISTED_VISOR_HELMET))
 			pline("It protects you from blindness attacks. However, confusion and hallucination will take five times as long to time out!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "occultism gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "perchatki okkul'tizma") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "folbinlik qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_OCCULTISM_GLOVES))
 			pline("A pair of gloves that reduces the amount of mana required for casting occult spells.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "cyanism cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch s tsianom") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ko'k zaharlanish plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CYANISM_CLOAK))
 			pline("Wearing this cloak increases the range of rocks and gems you shoot with your sling.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "heap of shit boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kucha der'movykh sapog") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boktan etik to'p"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HEAP_OF_SHIT_BOOTS))
 			pline("The previous owner of this pair of profiled boots stepped into a heap of shit again and again until the soles were completely immersed with the stuff, and as a result you'll aggravate monsters and not be stealthy while wearing them. For some weird reason they will also use the sexy flats skill when worn.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "bluy helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "siniy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bluy dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLUY_HELMET))
 			pline("This helmet attracts blue monsters.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bosh ketish etigi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LOLITA_BOOTS))
 			pline("While wearing these heels, monsters will want to have sex with you. And the Amy will constantly swoon over your very beautiful block heels and want to marry you. <3");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "digger gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kopatel'skiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kazici qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DIGGER_GLOVES))
 			pline("This pair of gloves improves your digging speed with tools.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "long-range cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "dlinnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uzoq masofaga plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LONG_RANGE_CLOAK))
 			pline("If you wear this cloak, beams and breath attacks will have more range, and it applies both ways.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "inverse gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "obratnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "teskari qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INVERSE_GLOVES))
 			pline("Putting on these gloves will invert the enchantment value. If that causes it to become negative, they'll also become heavily cursed!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qurol engil etigi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEAPON_LIGHT_BOOTS))
 			pline("This fleecy-soft pair of leather boots can slit a person's leg full length in a matter of seconds because the tender combat boot heels can cause a lot of damage even though they look very cute. If you kick a monster with them, you deal a ton of extra damage by scratching the enemy with the lovely stiletto heel, but because you do not have the required weapon light to use them, it will increase your sin counter every time until the cops show up and try to arrest you!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'ldirish qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SLAYING_GLOVES))
 			pline("These gloves increase your accuracy and damage by one point each.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "less helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "men'she shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kam dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LESS_HELMET))
 			pline("Every time you put on this helmet, it will disenchant itself if its enchantment was positive.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uchuvchi plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLIER_CLOAK))
 			pline("A cloak that allows you to move over water or lava without falling in. Careful: other ground-based hazards can still affect you!");
 
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rifling power cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "naplechnyy shchit sily") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "miltig'idan tortib, kuch-quvvat plashi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RIFLING_POWER_CLOAK))
 			pline("While wearing this cloak, your rifles have a multishot bonus. It works for the regular rifle as well as the hunting rifle, sniper rifle and process card.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "la'natlangan la'nati"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CURSED_CALLED_CLOAK))
 			pline("A cloak that causes items to be generated cursed more often while you wear it, and may also very occasionally cause your items to become cursed.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "failuncap cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mantiya s provalom") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "noto'g'ri plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FAILUNCAP_CLOAK))
 			pline("This cloak has the beneficial effect of slightly improving your casting rates even when other effects of that type don't help.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "to'rtburchak plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FOURCHAN_CLOAK))
 			pline("Wearing this cloak as an otaku (and only that role) improves your to-hit, damage output, armor class and casting chances.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "inalish cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "glupyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ichki plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INALISH_CLOAK))
 			pline("As long as you wear this cloak, sickness effects only have one quarter of the usual chance to make you sick.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "grunter helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shturmovoy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "go'shtli dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GRUNTER_HELMET))
 			pline("A helmet that increases the chance of sickness-inducing monsters being spawned.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "cloudy helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oblachnyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bulutli dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CLOUDY_HELMET))
 			pline("Wearing this helmet gives you half physical damage while you're on a cloud tile.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "failuncap helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem s provalom") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "noto'g'ri zarbdan"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FAILUNCAP_HELMET))
 			pline("While you wear this helmet, all of your spells are slightly easier to cast, even if their success rate would otherwise be limited.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nafasni boshqarish dubulg'asi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BREATH_CONTROL_HELMET))
 			pline("You may receive sexual pleasure while wearing this helmet, but it can also cause you to take suffocation damage and eventually die.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gaz niqobi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GAS_MASK))
 			pline("This randomized helmet was invented by bugsniper because he wants to have something that provides resistance to perfume attacks, which this mask does.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "do'stlar dubulg'asi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SAGES_HELMET))
 			pline("A wise helmet that displays a few invisible enemies and also offers slight protection from the curse items effect.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "demolition gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "perchatki dlya snosa") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buzilgan qo'lqoplar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DEMOLITION_GLOVES))
 			pline("With a rather low chance, these gloves cause a stick of dynamite to explode underneath you, which can be good because it razes walls but it's also bad because it hurts you.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "failuncap gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "perchatki s perforatsiyey") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "noto'g'ri qo'lqop"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FAILUNCAP_GLOVES))
 			pline("A magic-enhancing pair of gloves that slightly improves your spellcasting success chance, potentially increasing it beyond the normal limit.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nurli qo'lqoplar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RAYDUCTNAY_GLOVES))
 			pline("With this pair of gloves, rays will no longer have their range reduced when they hit something.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "flower gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tsvetochnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gul qo'lqoplari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLOWER_GLOVES))
 			pline("While you're wearing these gloves, %%-class monsters may be spawned peaceful or occasionally even tame.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gameble gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "geymperskiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'yinchoq qo'lqoplari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GAMEBLE_GLOVES))
 			pline("Putting these gloves on will cause the enchantment to either go up or down, decided randomly, and their BUC will change to match.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "bise gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bi sebe perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bosh o'pish sportchisi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BISE_GLOVES))
 			pline("Occasionally these gloves will kiss you, which increases your charisma but also paralyzes you for a few turns.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "orgasm pumps") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nasosy dlya orgazma") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "orgazm nasoslari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ORGASM_PUMPS))
 			pline("Wow, these cone-heeled beauties are SOOOOOOOOOOOO cute!!! <3<3<3");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "worn-out sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "iznoshennyye krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eskirib qolgan sport poyafzali"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WORN_OUT_SNEAKERS))
 			pline("Despite being all torn and damaged, these sneakers still count as sexy flats.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xayoliy to'pi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_IMAGINARY_HEELS))
 			pline("This pair of stiletto heels doesn't really exist, it's only an illusion. And therefore, they're mostly immune to item erosion effects.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "noble sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "blagorodnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oqlangan sandallar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NOBLE_SANDALS))
 			pline("A very elegant pair of cone-heeled sandals that reduces the odds of item-stealing monsters being successful against you, but you become more susceptible to claw attacks while wearing them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "failuncap shoes") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "s provalom obuv'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "poyafzal poyafzallari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FAILUNCAP_SHOES))
 			pline("Wearing this pair of shoes can increase your spellcasting chances beyond the limit.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "flipflops") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlepki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sohil shippaklari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLIPFLOPS))
 			pline("Wearing flipflops cancels out your ability to swim (if present).");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rumble boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gul botinki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yirtqich chiziqlar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RUMBLE_BOOTS))
 			pline("Every step you take with these boots alerts monsters to your position.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "high iron boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vysokiye zheleznyye botinki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yuqori temir chiziqlar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HIGH_IRON_BOOTS))
 			pline("Unlike other boots, this pair fully protects you against leg injury attacks that xans and similar monsters can use.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "doctor claw boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kolgotki dlya sapog") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shifokor chiziqlari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DOCTOR_CLAW_BOOTS))
 			pline("If you kick an enemy with these boots, it often gets pushed back.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "spooky boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zhutkiy botinok") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jingalak botinkalar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SPOOKY_BOOTS))
 			pline("Occasionally, this pair of boots summons high-level ghosts that attack you.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "feelgood heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chuvstvennyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "his-tuyg'ulari baland"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FEELGOOD_HEELS))
 			pline("Such a gentle-soft pair of female cone heels! You can wear them even without having the high heels skill and won't get hit by any bad side effects.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gentle sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nezhnyy krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nozik poyafzallar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GENTLE_SNEAKERS))
 			pline("Occasionally, kicking a monster with this pair of sexy flat sneakers can disarm it.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buzilgan yurish ovozi to'piqlari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLOF_HEELS))
 			pline("They count as block heels, and while wearing them, stun and paralysis may sometimes time out more quickly. They may also deal extra damage if you kick a monster. But if anyone kicks you, the heels may be damaged.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "malika nasoslari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PRINCESS_PUMPS))
 			pline("A pair of cone-heeled pumps that greatly increases your charisma and makes royal monsters spawn peaceful more often, but monsters with lash, sting or scratch attacks are spawned more often and deal more damage to you while wearing them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "balet poshnali"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BALLET_HEELS))
 			pline("This pair of stilettos is a trap. They slow you down when you wear them.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "steel toed boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "stal'nyye kosolapyy sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "po'latdan yasalgan poyafzal"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STEEL_TOED_BOOTS))
 			pline("Kicking a monster with these boots deals an extra point of kicking damage.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oz maryam poyafzallari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MARJI_SHOES))
 			pline("A pair of sexy flats that makes you slightly resistant to damage.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "mary janes") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "meri dzheyn") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "meri janes"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MARY_JANES))
 			pline("These cone heels magically grant resistance to mind flayers' intelligence drain attacks.");
 
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "volcanic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vulkanicheskiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vulkanik plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VOLCANIC_CLOAK))
 			pline("Wearing this cloak makes you resistant to the very bad effects of falling into lava, but even with it, lava will still be VERY BAD, so you shouldn't ever rely on it to get you across a pool of lava.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "different cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "drugoy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "har xil plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DIFFERENT_CLOAK))
 			pline("Certain monsters spawn a bit more often if you wear this.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fuel cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "toplivnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yonilg'i plashi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FUEL_CLOAK))
 			pline("While wearing this cloak, you don't have to pay yendorian fuel tax.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "pure cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chistyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "toza plash"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PURE_CLOAK))
 			pline("If you're wearing this cloak, you have a little extra protection from poison and sickness effects.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "cloister cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch monastyrya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "monastir plashi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CLOISTER_CLOAK))
 			pline("A cloak that makes it more likely for buried items to exist on a newly generated dungeon level.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shemagh") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "arabskiy golovnoy ubor") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "arabcha bosh kiyim"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHEMAGH))
 			pline("If you don't know what a shemagh is, it's a type of arabian headgear that protects against sand. This is reflected in-game, where you're immune to sandstorms while wearing it.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "lead helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vedushchiy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'rg'oshin dubulg'asi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LEAD_HELMET))
 			pline("While wearing this helmet, your carried weight is increased, meaning you can carry less other stuff.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "serrated helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zubchatyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "jag'li dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SERRATED_HELMET))
 			pline("If you're attacked by a mind flayer while wearing this helmet, the helmet will retaliate with its spikes.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "technical helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tekhnicheskiy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "texnik dubulg'a"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TECHNICAL_HELMET))
 			pline("Wearing this helmet increases your techniques' effective level by one, but not beyond 50.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "thick boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tolstyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qalin etiklar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_THICK_BOOTS))
 			pline("A pair of boots that offers full protection against xans.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sand-als") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pesok kak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qum kabi"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SAND_ALS))
 			pline("This pair of sandals protects you from the bad effect of sandstorms.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shadowy heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "temnyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "soyali poshnalar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHADOWY_HEELS))
 			pline("These cone-heeled lady pumps are almost invisible.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "reflective slippers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "svetootrazhayushchiye tapochki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yansitici terlik"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_REFLECTIVE_SLIPPERS))
 			pline("A pair of shoes that counts as sexy flats, and allows you to occasionally reflect beams.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "lead boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "svintsovyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'rg'oshin etiklari"))))
-			pline("Wearing these boots adds 100 points to the weight of your stuff, so your effective carry capacity will be decreased. Because these boots are rather geavy.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weight attachment boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sapogi navesnyye") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vazn biriktiruvchi etiklar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LEAD_BOOTS))
+			pline("Wearing these boots adds 100 points to the weight of your stuff, so your effective carry capacity will be decreased. Because these boots are rather heavy.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEIGHT_ATTACHMENT_BOOTS))
 			pline("These boots will turn out to weigh an additional 500 units if you put them on, and also prevent you from flying.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fungal sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gribnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'ziqorin sandallari"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FUNGAL_SANDALS))
 			pline("This pair of sandals is infected with fungi, sadly. For some reason they still count as sexy flats though, and while you're wearing them, there's a 1 in 50000 chance per turn that you polymorph into a fungus!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "porcelain sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "farforovyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chinni sandal"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PORCELAIN_SANDALS))
 			pline("You shouldn't kick with these sandals, because they will be disenchanted every time and eventually break!");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "3D-printed sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "trekhmernyye pechatnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uch o'lchamli bosma sandal"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PRINTED_SANDALS))
 			pline("This pair of stiletto sandals was created with a 3D printer.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "3D-printed wedges") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "trekhmernyye pechatnyye klin'ya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uch o'lchamli bosilgan takozlar"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PRINTED_WEDGES))
 			pline("This pair of wedge sandals was created with a 3D printer.");
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "standing footwear") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "stoyachaya obuv'") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tik turgan poyafzal"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STANDING_FOOTWEAR))
 			pline("A pair of shoes that's unsuitable for walking, because the wedge heels are so weirdly-shaped. Every once in a while they will cause you to sink into the ground, forcing you to free yourself before you can move again, but on the bright side, monsters may occasionally be scared when they see you in such outerspace heels.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");

@@ -1264,36 +1264,37 @@ playerwearshighheels()
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "3D-printed wedges") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "trekhmernyye pechatnyye klin'ya") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "uch o'lchamli bosilgan takozlar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mary janes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri dzheyn") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri janes")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "balet poshnali")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "noble sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blagorodnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oqlangan sandallar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "xayoliy to'pi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "xanjar chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qish sandal chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qisqa ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bilagi zo'r chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shadowy heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "temnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "soyali poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok-o'tish chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chiroyli ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "erotic boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "orgasm pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy dlya orgazma") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "orgazm nasoslari") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "erotik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sputa boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sputa chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nazokat etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'tkir xanjarday kavushlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "3D-printed sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "trekhmernyye pechatnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "uch o'lchamli bosma sandal")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar")) return TRUE;
-		if ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "feelgood heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chuvstvennyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "his-tuyg'ulari baland")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "duxoba nasoslar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qurol engil etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "radiant heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yorqin ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sexy heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "belgila sexy ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "etiklar silay")) return TRUE;
+		if (itemhasappearance(uarmf, APP_IRREGULAR_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PRINTED_WEDGES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_MARY_JANES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BALLET_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_NOBLE_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_IMAGINARY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WEDGE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PLOF_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WINTER_STILETTOS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_CLUNKY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PRINCESS_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ANKLE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SHADOWY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_EROTIC_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ORGASM_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SPUTA_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FEMMY_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SHARP_EDGED_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PRINTED_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SKI_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FEELGOOD_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FETISH_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_LOLITA_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_RADIANT_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_STROKING_BOOTS)) return TRUE;
 
 	}
 
@@ -1370,29 +1371,38 @@ struct obj *otmp;
 	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == LADY_BOOTS || (otmp)->otyp == ITALIAN_HEELS || (otmp)->otyp == STILETTO_SANDALS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS) return TRUE;
 
 	if (OBJ_DESCR(objects[otmp->otyp])) {
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "tartibsizlik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "3D-printed wedges") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "trekhmernyye pechatnyye klin'ya") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uch o'lchamli bosilgan takozlar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "xanjar chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qish sandal chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qisqa ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "bilagi zo'r chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "shadowy heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "temnyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "soyali poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "blok-o'tish chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "chiroyli ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "erotic boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "erotik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "sputa boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "sputa chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "nazokat etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "o'tkir xanjarday kavushlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "3D-printed sandals") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "trekhmernyye pechatnyye sandalii") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uch o'lchamli bosma sandal")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "chang'i poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "but poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "duxoba nasoslar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qo'tos botlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "bosh ketish etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "qurol engil etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "radiant heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "yorqin ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "sexy heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "belgila sexy ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[otmp->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "etiklar silay")) return TRUE;
+		if (itemhasappearance(otmp, APP_IRREGULAR_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_PRINTED_WEDGES)) return TRUE;
+		if (itemhasappearance(otmp, APP_MARY_JANES)) return TRUE;
+		if (itemhasappearance(otmp, APP_BALLET_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_NOBLE_SANDALS)) return TRUE;
+		if (itemhasappearance(otmp, APP_IMAGINARY_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_WEDGE_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_PLOF_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_WINTER_STILETTOS)) return TRUE;
+		if (itemhasappearance(otmp, APP_CLUNKY_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_PRINCESS_PUMPS)) return TRUE;
+		if (itemhasappearance(otmp, APP_ANKLE_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_SHADOWY_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_BEAUTIFUL_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_EROTIC_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_ORGASM_PUMPS)) return TRUE;
+		if (itemhasappearance(otmp, APP_SPUTA_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_FEMMY_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_SHARP_EDGED_SANDALS)) return TRUE;
+		if (itemhasappearance(otmp, APP_PRINTED_SANDALS)) return TRUE;
+		if (itemhasappearance(otmp, APP_SKI_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_FEELGOOD_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_FETISH_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_VELVET_PUMPS)) return TRUE;
+		if (itemhasappearance(otmp, APP_BUFFALO_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_LOLITA_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_RADIANT_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_SEXY_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_STROKING_BOOTS)) return TRUE;
+
 	}
 
 	return FALSE;
@@ -1406,29 +1416,39 @@ int number;
 	if (number == WEDGE_SANDALS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == ITALIAN_HEELS || number == LADY_BOOTS || number == STILETTO_SANDALS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS) return TRUE;
 
 	if (OBJ_DESCR(objects[number])) {
-		if (!strcmp(OBJ_DESCR(objects[number]), "irregular boots") || !strcmp(OBJ_DESCR(objects[number]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "tartibsizlik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "3D-printed wedges") || !strcmp(OBJ_DESCR(objects[number]), "trekhmernyye pechatnyye klin'ya") || !strcmp(OBJ_DESCR(objects[number]), "uch o'lchamli bosilgan takozlar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "wedge boots") || !strcmp(OBJ_DESCR(objects[number]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[number]), "xanjar chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[number]), "zima stilety") || !strcmp(OBJ_DESCR(objects[number]), "qish sandal chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "clunky heels") || !strcmp(OBJ_DESCR(objects[number]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "qisqa ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "ankle boots") || !strcmp(OBJ_DESCR(objects[number]), "botil'ony") || !strcmp(OBJ_DESCR(objects[number]), "bilagi zo'r chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "shadowy heels") || !strcmp(OBJ_DESCR(objects[number]), "temnyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "soyali poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[number]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[number]), "blok-o'tish chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[number]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "chiroyli ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "erotic boots") || !strcmp(OBJ_DESCR(objects[number]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "erotik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "sputa boots") || !strcmp(OBJ_DESCR(objects[number]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[number]), "sputa chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "femmy boots") || !strcmp(OBJ_DESCR(objects[number]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "nazokat etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[number]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[number]), "o'tkir xanjarday kavushlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "3D-printed sandals") || !strcmp(OBJ_DESCR(objects[number]), "trekhmernyye pechatnyye sandalii") || !strcmp(OBJ_DESCR(objects[number]), "uch o'lchamli bosma sandal")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "ski heels") || !strcmp(OBJ_DESCR(objects[number]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "chang'i poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "fetish heels") || !strcmp(OBJ_DESCR(objects[number]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[number]), "but poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[number]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[number]), "duxoba nasoslar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[number]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[number]), "qo'tos botlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "lolita boots") || !strcmp(OBJ_DESCR(objects[number]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[number]), "bosh ketish etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[number]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[number]), "qurol engil etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "radiant heels") || !strcmp(OBJ_DESCR(objects[number]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "yorqin ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "sexy heels") || !strcmp(OBJ_DESCR(objects[number]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[number]), "belgila sexy ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[number]), "stroking boots") || !strcmp(OBJ_DESCR(objects[number]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[number]), "etiklar silay")) return TRUE;
+
+		if (itemnumwithappearance(number, APP_IRREGULAR_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_PRINTED_WEDGES)) return TRUE;
+		if (itemnumwithappearance(number, APP_MARY_JANES)) return TRUE;
+		if (itemnumwithappearance(number, APP_BALLET_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_NOBLE_SANDALS)) return TRUE;
+		if (itemnumwithappearance(number, APP_IMAGINARY_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_WEDGE_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_PLOF_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_WINTER_STILETTOS)) return TRUE;
+		if (itemnumwithappearance(number, APP_CLUNKY_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_PRINCESS_PUMPS)) return TRUE;
+		if (itemnumwithappearance(number, APP_ANKLE_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_SHADOWY_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_BEAUTIFUL_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_EROTIC_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_ORGASM_PUMPS)) return TRUE;
+		if (itemnumwithappearance(number, APP_SPUTA_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_FEMMY_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_SHARP_EDGED_SANDALS)) return TRUE;
+		if (itemnumwithappearance(number, APP_PRINTED_SANDALS)) return TRUE;
+		if (itemnumwithappearance(number, APP_SKI_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_FEELGOOD_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_FETISH_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_VELVET_PUMPS)) return TRUE;
+		if (itemnumwithappearance(number, APP_BUFFALO_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_LOLITA_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_RADIANT_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_SEXY_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_STROKING_BOOTS)) return TRUE;
+
 	}
 
 	return FALSE;
@@ -1447,31 +1467,31 @@ playerwearssexyflats()
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buckled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pryazhkami sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "quyon chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persian boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "persidskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fors chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "gentle sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nezhnyy krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nozik poyafzallar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rainbow boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "raduga sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kamalak chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "worn-out sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "iznoshennyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "eskirib qolgan sport poyafzali")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "roller boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rolikovyye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rolikli chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platform boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plato sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platosi chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plateau boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sapogi na platforme") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platformalar chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lipuchki sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "reflective slippers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "svetootrazhayushchiye tapochki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yansitici terlik")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fungal sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "gribnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'ziqorin sandallari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "red sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasnyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qizil shippak")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pink sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rozovyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pushti shippak")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qahramoni mokasen")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heap of shit boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kucha der'movykh sapog") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boktan etik to'p")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "gentle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nezhnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yumshoq chizilmasin")) return TRUE;
+		if (itemhasappearance(uarmf, APP_BUCKLED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PERSIAN_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FLEECY_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_HUGGING_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_GENTLE_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_MARJI_SHOES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_RAINBOW_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WORN_OUT_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ROLLER_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PLATFORM_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PROFILED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PLATEAU_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_VELCRO_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_REFLECTIVE_SLIPPERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FUNGAL_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_RED_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_YELLOW_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PINK_SNEAKERS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_VELCRO_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_HEROINE_MOCASSINS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_KOREAN_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_GENTLE_BOOTS)) return TRUE;
 
 	}
 
@@ -1489,13 +1509,13 @@ maybestilettoheels()
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qish sandal chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "xayoliy to'pi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "balet poshnali")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'tkir xanjarday kavushlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "3D-printed sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "trekhmernyye pechatnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "uch o'lchamli bosma sandal")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qurol engil etigi")) return TRUE;
+		if (itemhasappearance(uarmf, APP_WINTER_STILETTOS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_IMAGINARY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BALLET_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SHARP_EDGED_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PRINTED_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FETISH_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
 
 	}
 
@@ -1513,17 +1533,17 @@ maybeconeheels()
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bilagi zo'r chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shadowy heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "temnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "soyali poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chiroyli ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "noble sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blagorodnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oqlangan sandallar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "orgasm pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy dlya orgazma") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "orgazm nasoslari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mary janes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri dzheyn") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri janes")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "feelgood heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chuvstvennyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "his-tuyg'ulari baland")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nazokat etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "duxoba nasoslar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sexy heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "belgila sexy ko'chirish to'piqlarni")) return TRUE;
+		if (itemhasappearance(uarmf, APP_ANKLE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SHADOWY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_NOBLE_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ORGASM_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_MARY_JANES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PRINCESS_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FEELGOOD_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FEMMY_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) return TRUE;
 
 	}
 
@@ -1541,13 +1561,13 @@ maybeblockheels()
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qisqa ko'chirish to'piqlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blok-o'tish chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "erotic boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "erotik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sputa boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sputa chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "etiklar silay")) return TRUE;
+		if (itemhasappearance(uarmf, APP_CLUNKY_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PLOF_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_EROTIC_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SPUTA_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_LOLITA_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_STROKING_BOOTS)) return TRUE;
 
 	}
 
@@ -1565,12 +1585,12 @@ maybewedgeheels()
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "3D-printed wedges") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "trekhmernyye pechatnyye klin'ya") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "uch o'lchamli bosilgan takozlar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "xanjar chizilmasin")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni")) return TRUE;
-		if (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "radiant heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yorqin ko'chirish to'piqlarni")) return TRUE;
+		if (itemhasappearance(uarmf, APP_IRREGULAR_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PRINTED_WEDGES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_WEDGE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_SKI_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_RADIANT_HEELS)) return TRUE;
 
 	}
 

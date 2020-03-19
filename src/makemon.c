@@ -13339,19 +13339,9 @@ loveheelover:
 		/* Amy edit: but only if the vampire is at least level 5 */
 		if (ptr->mlevel >= 5) {
 			for (i = STRANGE_OBJECT; i < NUM_OBJECTS; i++) {
-				register const char *zn;
-				if ((zn = OBJ_DESCR(objects[i])) && !strcmpi(zn, "opera cloak")) {
-					if (!OBJ_NAME(objects[i])) i = STRANGE_OBJECT;
-					break;
-				}
-				if ((zn = OBJ_DESCR(objects[i])) && !strcmpi(zn, "nakidka")) {
-					if (!OBJ_NAME(objects[i])) i = STRANGE_OBJECT;
-					break;
-				}
-				if ((zn = OBJ_DESCR(objects[i])) && !strcmpi(zn, "operasi plash")) {
-					if (!OBJ_NAME(objects[i])) i = STRANGE_OBJECT;
-					break;
-				}
+
+				if (itemnumwithappearance(i, APP_OPERA_CLOAK)) break;
+
 			}
 			if (i != NUM_OBJECTS) (void)mongets(mtmp, i);
 		}
