@@ -8735,7 +8735,7 @@ madnesseffect:
 
 	      {
 		boolean youbreath = !breathless(youmonst.data);
-		boolean youghoul = (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_DOGSHIT_SEARCHER || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY ||
+		boolean youghoul = (u.umonnum == PM_GHOUL || u.umonnum == PM_GHAST || u.umonnum == PM_CORPSEWORM || u.umonnum == PM_DOGSHIT_SEARCHER || u.umonnum == PM_STINKING_ALIEN || u.umonnum == PM_GASTLY ||
 				u.umonnum == PM_PHANTOM_GHOST || u.umonnum == PM_HAUNTER || u.umonnum == PM_GENGAR ||
 				(Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) );
 		trap->once = 1;

@@ -7517,6 +7517,8 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WEREPERMAMIMIC) u.ulycn = PM_WEREPERMAMIMIC;
 			if (u.ulycn == PM_HUMAN_WERECOW) u.ulycn = PM_WERECOW;
 			if (u.ulycn == PM_HUMAN_WEREBEAR) u.ulycn = PM_WEREBEAR;
+			if (u.ulycn == PM_HUMAN_WEREDEMON) u.ulycn = PM_WEREDEMON;
+			if (u.ulycn == PM_HUMAN_WEREPHANT) u.ulycn = PM_WEREPHANT;
 			if (u.ulycn == PM_HUMAN_WEREVORTEX) u.ulycn = PM_WEREVORTEX;
 			if (u.ulycn == PM_HUMAN_WEREGIANT) u.ulycn = PM_WEREGIANT;
 			if (u.ulycn == PM_HUMAN_WEREGHOST) u.ulycn = PM_WEREGHOST;

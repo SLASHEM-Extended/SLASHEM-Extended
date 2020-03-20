@@ -5892,7 +5892,20 @@ physical:
 		}
 		break;
 	    case AD_NIVE:
-		break; /* todo */
+		if (mdef->mtame) {
+			if (mdef->mhpmax > (Role_if(PM_ZOOKEEPER) ? 480 : 240)) {
+				int reduction = rnd(mdef->mhpmax / 10);
+				if (reduction < 1) reduction = 1; /* shouldn't happen */
+				mdef->mhpmax -= reduction;
+				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+				if (vis) pline("%s is in pain!", Monnam(mdef));
+			} else if (mdef->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
+				mdef->mhpmax--;
+				if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
+				if (vis) pline("%s seems to be hurt!", Monnam(mdef));
+			}
+		}
+		break;
 	    case AD_DEST:
 		if (mdef->mtame) tmp *= 10;
 		break;
@@ -6360,7 +6373,20 @@ int attnumber;
 		}
 		break;
 	    case AD_NIVE:
-		break; /* todo */
+		if (magr->mtame) {
+			if (magr->mhpmax > (Role_if(PM_ZOOKEEPER) ? 480 : 240)) {
+				int reduction = rnd(magr->mhpmax / 10);
+				if (reduction < 1) reduction = 1; /* shouldn't happen */
+				magr->mhpmax -= reduction;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+				if (canseemon(magr)) pline("%s is in pain!", Monnam(magr));
+			} else if (magr->mhpmax > (Role_if(PM_ZOOKEEPER) ? 320 : 160)) {
+				magr->mhpmax--;
+				if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
+				if (canseemon(magr)) pline("%s seems to be hurt!", Monnam(magr));
+			}
+		}
+		break;
 
 	    case AD_NGEN:
 		if (mhit && !mdef->mcan && otmp) {

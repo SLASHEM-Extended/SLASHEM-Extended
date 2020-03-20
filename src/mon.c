@@ -355,6 +355,9 @@ int mndx;
 	case PM_SLUMBER_HULK:	mcham = CHAM_SLUMBER_HULK; break;
 	case PM_IVEL_WUXTINA:	mcham = CHAM_IVEL_WUXTINA; break;
 	case PM_EARLY_LEON:	mcham = CHAM_EARLY_LEON; break;
+	case PM_CHANGELING:	mcham = CHAM_CHANGELING; break;
+	case PM_CHANGELING_ZOMBIE:	mcham = CHAM_CHANGELING_ZOMBIE; break;
+	case PM_CHANGELING_MUMMY:	mcham = CHAM_CHANGELING_MUMMY; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -409,6 +412,9 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_THE_ZRUTINATOR,
 		PM_METAMORPHOSE,
 		PM_GREEN_SLAAD,
+		PM_CHANGELING,
+		PM_CHANGELING_MUMMY,
+		PM_CHANGELING_ZOMBIE,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -4038,6 +4044,10 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOW], -1);
 	else if (mtmp->data == &mons[PM_WEREBEAR])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBEAR], -1);
+	else if (mtmp->data == &mons[PM_WEREDEMON])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREDEMON], -1);
+	else if (mtmp->data == &mons[PM_WEREPHANT])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREPHANT], -1);
 	else if (mtmp->data == &mons[PM_WEREPIERCER])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREPIERCER], -1);
 	else if (mtmp->data == &mons[PM_WEREPENETRATOR])
@@ -7253,6 +7263,9 @@ struct monst *mon;
 	case CHAM_ZRUTINATOR: chambaselvl = 25; break;
 	case CHAM_METAMORPHOSE: chambaselvl = 51; break;
 	case CHAM_GREEN_SLAAD: chambaselvl = 24; break;
+	case CHAM_CHANGELING: chambaselvl = 8; break;
+	case CHAM_CHANGELING_MUMMY: chambaselvl = 6; break;
+	case CHAM_CHANGELING_ZOMBIE: chambaselvl = 4; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7716,6 +7729,9 @@ metamorphchoice:
 	    case CHAM_CHAMELEON:
 	    case CHAM_CHAMECHAUN:
 	    case CHAM_GHELEON:
+	    case CHAM_CHANGELING:
+	    case CHAM_CHANGELING_ZOMBIE:
+	    case CHAM_CHANGELING_MUMMY:
 	    case CHAM_KARMA_CHAMELEON:
 	    case CHAM_GIANT_CHAMELEON:
 		if (!rn2(7)) {

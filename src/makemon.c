@@ -23191,6 +23191,14 @@ loopback:
 		if (ct > 0 && (Race_if(PM_LOLI) && dmgtype(ptr, AD_DEBU) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_SEA_ELF) && dmgtype(ptr, AD_FLAM) )) ct += 4;
 		if (ct > 0 && (Race_if(PM_SPRIGGAN) && dmgtype(ptr, AD_FLAM) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_ALTMER) && dmgtype(ptr, AD_NIVE) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_CELLAR_CHILD) && dmgtype(ptr, AD_UNPR) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_FJORDE) && dmgtype(ptr, AD_UNPR) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_MYSTIC) && dmgtype(ptr, AD_NIVE) )) ct += 10;
+		if (ct > 0 && (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(ptr, AD_UNPR) )) ct += 3;
+		if (ct > 0 && (iserosator && dmgtype(ptr, AD_UNPR) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_INCANTIFIER) && dmgtype(ptr, AD_NIVE) )) ct += 1;
+		if (ct > 0 && (Race_if(PM_MONGUNG) && dmgtype(ptr, AD_NIVE) )) ct += 2;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -24343,6 +24351,14 @@ int     spc;
 		if ((Race_if(PM_LOLI) && dmgtype(&mons[last], AD_DEBU) )) num += 2;
 		if ((Race_if(PM_SEA_ELF) && dmgtype(&mons[last], AD_FLAM) )) num += 4;
 		if ((Race_if(PM_SPRIGGAN) && dmgtype(&mons[last], AD_FLAM) )) num += 2;
+		if ((Role_if(PM_ALTMER) && dmgtype(&mons[last], AD_NIVE) )) num += 2;
+		if ((Role_if(PM_CELLAR_CHILD) && dmgtype(&mons[last], AD_UNPR) )) num += 1;
+		if ((Role_if(PM_FJORDE) && dmgtype(&mons[last], AD_UNPR) )) num += 3;
+		if ((Role_if(PM_MYSTIC) && dmgtype(&mons[last], AD_NIVE) )) num += 10;
+		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[last], AD_UNPR) )) num += 3;
+		if ((iserosator && dmgtype(&mons[last], AD_UNPR) )) num += 10;
+		if ((Race_if(PM_INCANTIFIER) && dmgtype(&mons[last], AD_NIVE) )) num += 1;
+		if ((Race_if(PM_MONGUNG) && dmgtype(&mons[last], AD_NIVE) )) num += 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -25170,6 +25186,14 @@ int     spc;
 		if ((Race_if(PM_LOLI) && dmgtype(&mons[first], AD_DEBU) )) num -= 2;
 		if ((Race_if(PM_SEA_ELF) && dmgtype(&mons[first], AD_FLAM) )) num -= 4;
 		if ((Race_if(PM_SPRIGGAN) && dmgtype(&mons[first], AD_FLAM) )) num -= 2;
+		if ((Role_if(PM_ALTMER) && dmgtype(&mons[first], AD_NIVE) )) num -= 2;
+		if ((Role_if(PM_CELLAR_CHILD) && dmgtype(&mons[first], AD_UNPR) )) num -= 1;
+		if ((Role_if(PM_FJORDE) && dmgtype(&mons[first], AD_UNPR) )) num -= 3;
+		if ((Role_if(PM_MYSTIC) && dmgtype(&mons[first], AD_NIVE) )) num -= 10;
+		if ((Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && dmgtype(&mons[first], AD_UNPR) )) num -= 3;
+		if ((iserosator && dmgtype(&mons[first], AD_UNPR) )) num -= 10;
+		if ((Race_if(PM_INCANTIFIER) && dmgtype(&mons[first], AD_NIVE) )) num -= 1;
+		if ((Race_if(PM_MONGUNG) && dmgtype(&mons[first], AD_NIVE) )) num -= 2;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 
@@ -25764,6 +25788,7 @@ int type;
 		case PM_DANCING_BLADE: return 230;
 		case PM_BRONZE_COLOSSUS: return 270;
 		case PM_SILVER_GOLEM: return 290;
+		case PM_MIEP_SILVER_GOLEM: return 290;
 		case PM_BANPEI_KUN: return 290;
 		case PM_PLATINUM_GOLEM: return 310;
 		case PM_ANIMATED_ARMOR: return 100;
