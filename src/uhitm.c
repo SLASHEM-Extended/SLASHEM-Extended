@@ -4711,7 +4711,7 @@ register struct attack *mattk;
 	if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 	if (need_four(mdef)  && enchantlvl < 4 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 
-	if ((is_demon(youmonst.data) || (Race_if(PM_PLAYER_SHEEP) && !Upolyd && u.ulevel >= 20) || (Race_if(PM_GAVIL) && !Upolyd) ) && !rn2(23) && !(Race_if(PM_BORG) && !Upolyd)
+	if ((is_demon(youmonst.data) || (Race_if(PM_PLAYER_SHEEP) && !Upolyd && u.ulevel >= 20) || (Race_if(PM_GAVIL) && !Upolyd) ) && !rn2(23) && !(Race_if(PM_BORG) && !Upolyd) && !(Race_if(PM_AK_THIEF_IS_DEAD_) && !Upolyd)
 		&& u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS
 		&& u.umonnum != PM_BALROG && u.umonnum != PM_NEWS_DAEMON
 		&& u.umonnum != PM_PRINTER_DAEMON) {
