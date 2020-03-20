@@ -3169,6 +3169,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	/* todo area */
 
 	{ SCR_HEAL_OTHER, "todo" },
+	{ CORONA_DRAGON_SCALES, "todo" },
+	{ CORONA_DRAGON_SCALE_MAIL, "todo" },
+	{ CORONA_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };
@@ -5786,6 +5789,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	/* todo area */
 
 	{ SCR_HEAL_OTHER, "todo" },
+	{ CORONA_DRAGON_SCALES, "todo" },
+	{ CORONA_DRAGON_SCALE_MAIL, "todo" },
+	{ CORONA_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };

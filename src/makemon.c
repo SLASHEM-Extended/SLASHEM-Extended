@@ -5226,6 +5226,9 @@ register struct monst *mtmp;
 		} else if (mm == PM_PERSIAN_GIRL){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 
+		} else if (mm == PM_WUHANESE_GIRL){
+			(void)mongets(mtmp, INKA_BOOT);
+
 		} else if (mm == PM_TENDER_ASIAN_GIRL){
 			(void)mongets(mtmp, HUGGING_BOOT);
 
@@ -5623,6 +5626,10 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void)mongets(mtmp, SWEET_MOCASSINS);
 
+		} else if (mm == PM_WUHANESE_WOMAN){
+			(void)mongets(mtmp, WOODEN_GETA);
+			(void)mongets(mtmp, FEMININE_PUMPS);
+
 		} else if (mm == PM_PRETTY_ASIAN_WOMAN){
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, LEATHER_PEEP_TOES);
@@ -5661,6 +5668,10 @@ register struct monst *mtmp;
 		} else if (mm == PM_PERSIAN_LADY){
 			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void)mongets(mtmp, FEMININE_PUMPS);
+
+		} else if (mm == PM_WUHANESE_LADY){
+			(void)mongets(mtmp, STEEL_CAPPED_SANDAL);
+			(void)mongets(mtmp, STILETTO_SANDALS);
 
 		} else if (mm == PM_SEXY_ASIAN_LADY){
 			(void)mongets(mtmp, WOODEN_GETA);
@@ -7319,6 +7330,7 @@ register struct	monst	*mtmp;
 		else if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
+		if (ptr == &mons[PM_SICKLY_GRANNY]) (void) mongets(mtmp, TROUTSTAFF);
 		if (ptr == &mons[PM_GIRL_OUTSIDE_GANG]) (void) mongets(mtmp, LADY_BOOTS);
 		if (ptr == &mons[PM_YOUR_SISTER]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (ptr == &mons[PM_GRAVITY_STRIKER]) {
@@ -8507,6 +8519,9 @@ loveheelover:
 			 (void) mongets(mtmp, CUTTING_LASER);
 			 m_initthrow(mtmp, LASER_BEAM, 50);
 		}
+		if (mtmp->data == &mons[PM_SARS_SLINGER]) {
+			 m_initthrow(mtmp, ASBESTOS_JAVELIN, 5);
+		}
 		if (ptr == &mons[PM_DAY_SLINGER]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, LEAD_CLUMP, 30);
@@ -9172,6 +9187,9 @@ loveheelover:
 		if (ptr == &mons[PM_SHARPOLD]) {
 			(void) mongets(mtmp, ORCISH_HELM);
 			(void) mongets(mtmp, SHARP_AXE);
+		}
+		if (ptr == &mons[PM_DOUBLECONTOKOBOLD]) {
+			(void) mongets(mtmp, SPETUM);
 		}
 
 		if (ptr == &mons[PM_MEAGER_KOBOLD]) {
@@ -10283,6 +10301,10 @@ loveheelover:
 		if (ptr == &mons[PM_HEAVY_CENTAUR]) {
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, LEAD_BULLET, 20);
+		}
+		if (ptr == &mons[PM_CENTAUR_QUACKSTER]) {
+			(void) mongets(mtmp, CROSSBOW);
+	  		m_initthrow(mtmp, POISON_BOLT, 50);
 		}
 		if (ptr == &mons[PM_REUSE_CENTAUR]) {
 			(void) mongets(mtmp, CROSSBOW);
@@ -12077,6 +12099,10 @@ loveheelover:
 			(void) mongets(mtmp, FLINTLOCK);
 	  		m_initthrow(mtmp, LEAD_BULLET, 20);
 		}
+		if (ptr == &mons[PM_DROPLET_INFECTION_FISH]) {
+			(void) mongets(mtmp, CROSSBOW);
+	  		m_initthrow(mtmp, POISON_BOLT, 40);
+		}
 
 		if (ptr == &mons[PM_FLINTFISH]) {
 			(void) mongets(mtmp, FLINTLOCK);
@@ -12161,6 +12187,7 @@ loveheelover:
 	    if (!rn2(2)) (void)mongets(mtmp, ROBE);
 
 		if (mtmp->data == &mons[PM_BROWN_FEMMY]) (void) mongets(mtmp, DANCING_SHOES);
+		if (mtmp->data == &mons[PM_CORONA_WRAITH]) (void) mongets(mtmp, POT_INVISIBILITY);
 		if (mtmp->data == &mons[PM_WANG_OF_DEATH]) (void) mongets(mtmp, WAN_DEATH);
 		if (mtmp->data == &mons[PM_CLANG_CLANG]) (void) mongets(mtmp, IRON_CHAIN);
 
@@ -13205,6 +13232,16 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, SLING_AMMO, 30);
 		}
+		if (ptr == &mons[PM_CORONA_PARTY_CELEBRATOR]) {
+			(void) mongets(mtmp, T_SHIRT);
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, BO_STAFF);
+		}
+		if (ptr == &mons[PM_COVID_GUEST]) {
+			(void) mongets(mtmp, T_SHIRT);
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, BO_STAFF);
+		}
 
 		if (ptr == &mons[PM_MUTATED_UNDEAD_POTATO]) (void) mongets(mtmp, rn2(10) ? POT_MUTATION : WAN_MUTATION);
 	      if (ptr == &mons[PM_FRANZI_S_WEDGE_SANDAL]) { mongets(mtmp, WEDGE_SANDALS); mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); }
@@ -14111,6 +14148,14 @@ loveheelover:
 	    case S_HUMANOID:
 
 		if (ptr == &mons[PM_KNIVER]) (void) mongets(mtmp, UNKNOWN_KNIFE);
+		if (ptr == &mons[PM_CONTAGION_LASHER]) {
+			otmp = mksobj(BULLWHIP, FALSE, FALSE, FALSE);
+			if (otmp) {
+				otmp->opoisoned = TRUE;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+		}
+		if (ptr == &mons[PM_TSAR_CULTIST]) (void) mongets(mtmp, ROBE);
 		if (mtmp->data == &mons[PM_WEAPGAFF]) m_initweap_normal(mtmp);
 
 		if (ptr == &mons[PM_KLINGON_TROOPER]) {
@@ -14409,6 +14454,15 @@ loveheelover:
 			m_initthrow(mtmp, BULLET, 10);
 
 		}
+
+		if (ptr == &mons[PM_LANCE_INFECTOR]) {
+			otmp = mksobj(GLAIVE, FALSE, FALSE, FALSE);
+			if (otmp) {
+				otmp->opoisoned = TRUE;
+				(void) mpickobj(mtmp, otmp, TRUE);
+			}
+		}
+
 		if (ptr == &mons[PM_EASY_OPPONENT]) {
 			(void) mongets(mtmp, SHORT_BLADE);
 		}
@@ -14491,6 +14545,21 @@ loveheelover:
 		  		m_initthrow(mtmp, LEAD_BULLET, 20);
 
 			}
+		}
+		if (ptr == &mons[PM_LOCKDOWN_DENIER]) {
+			(void) mongets(mtmp, CONGLOMERATE_PICK);
+			(void) mongets(mtmp, WAN_DIGGING);
+		}
+		if (ptr == &mons[PM_SARS_FINDER]) {
+			(void) mongets(mtmp, POT_FULL_HEALING);
+			(void) mongets(mtmp, POT_FULL_HEALING);
+		}
+		if (ptr == &mons[PM_CRISIS_POLITICIAN]) {
+			(void) mongets(mtmp, SCR_LOCKOUT);
+			(void) mongets(mtmp, SCR_LOCKOUT);
+			(void) mongets(mtmp, SCR_LOCKOUT);
+			(void) mongets(mtmp, SCR_LOCKOUT);
+			(void) mongets(mtmp, SCR_LOCKOUT);
 		}
 
 		if (ptr == &mons[PM_AS_A_MOMMY]) {

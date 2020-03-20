@@ -10049,6 +10049,8 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as 5 points of magic cancellation."); break;
 			case NEGATIVE_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as death resistance."); break;
+			case CORONA_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as sustain ability."); break;
 			case HEROIC_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALE_MAIL: 
@@ -10117,6 +10119,8 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as 5 points of magic cancellation."); break;
 			case NEGATIVE_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as death resistance."); break;
+			case CORONA_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as sustain ability."); break;
 			case HEROIC_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALES: 
@@ -10937,6 +10941,8 @@ boolean knoweverything;
 				pline("A shield made from dragon hide that provides 5 points of magic cancellation as well as protection."); break;
 			case NEGATIVE_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides death resistance as well as protection."); break;
+			case CORONA_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides sustain ability as well as protection."); break;
 			case HEROIC_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides diminished bleeding as well as protection."); break;
 			case STONE_DRAGON_SCALE_SHIELD:

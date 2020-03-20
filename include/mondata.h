@@ -266,10 +266,14 @@
 				 ((ptr) == &mons[PM_BANG_BRIGHT_LIGHT]) ? 5 : ( (ptr)->mlet == S_LIGHT || \
 				  (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_ELEMENTAL]) ? 2 : \
+				 ((ptr) == &mons[PM_CORONA_SENTAI]) ? 2 : \
 				 ((ptr) == &mons[PM_LAMP_GOLEM]) ? 2 : \
+				 ((ptr) == &mons[PM_POFF_LICH]) ? 2 : \
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
 				 ((ptr) == &mons[PM_SATANIC_GNOME]) ? 3 : \
+				 ((ptr) == &mons[PM_CORONA_WRAITH]) ? 3 : \
+				 ((ptr) == &mons[PM_BRIGHT_DISEASE_JABBERWOCK]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_MOLD]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_GROWTH]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_FUNGUS]) ? 3 : \
@@ -285,9 +289,12 @@
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_PATCH]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_GLOWING_DRACONIAN]) ? 2 : \
+				 ((ptr) == &mons[PM_UNDERWATER_THREAT]) ? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
+				 ((ptr) == &mons[PM_POFFISH]) ? 1 : \
 				 ((ptr) == &mons[PM_GOBLIN_WHO_CAN_T_SEE_IN_THE_DARK]) ? 1 : \
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : \
+				 ((ptr) == &mons[PM_CORONA_GHOST]) ? 1 : \
 				 ((ptr) == &mons[PM_GOLD_DRACONIAN]) ? 1 : \
 				 ((ptr) == &mons[PM_FIRECRACKER_KANGAROO]) ? 1 : \
 				 ((ptr) == &mons[PM_ANIMATED_TORCH]) ? 1 : \

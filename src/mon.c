@@ -470,6 +470,7 @@ register struct monst *mtmp;
 	    case PM_FEMINISM_DRAGON:
 	    case PM_CANCEL_DRAGON:
 	    case PM_NEGATIVE_DRAGON:
+	    case PM_CORONA_DRAGON:
 	    case PM_HEROIC_DRAGON:
 	    case PM_STONE_DRAGON:
 	    case PM_CYAN_DRAGON:

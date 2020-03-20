@@ -2306,6 +2306,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_CORONA_WRAITH:
 	    case PM_WIGHTSPECTRE:
 	    case PM_KING_WRAITH:
 	    case PM_GUD_WRAITH:
@@ -2892,6 +2893,7 @@ register int pm;
 	    case PM_FORCE_QUANTUM_MECHANIC:
 	    case PM_METAL_MECHANIC:
 	    case PM_AUTO_MECHANIC:
+	    case PM_COMMUNITY_SPREAD_MECHANIC:
 	    case PM_GORGON_BEETLE:
 	    case PM_SPEED_TROVE:
 	    case PM_MINI_CHICKATRICE:
@@ -3129,17 +3131,31 @@ register int pm;
 
 		break;
 
+	    case PM_ROTTEN_EXHAUSTED_NOODLE:
+
+		pline("Ulch - the noodle was tainted!");
+	      make_sick(rn1(25,25), "a tainted noodle", TRUE, SICK_VOMITABLE);
+
+		break;
+
+	    case PM_HOPE_COCKATRICE:
+
+		pline("Ulch - the cockatrice was tainted!");
+	      make_sick(rn1(25,25), "a tainted cockatrice", TRUE, SICK_VOMITABLE);
+
+		break;
+
 	    case PM_NAPT_GIRL:
 
 		pline("Ulch - the asian girl was tainted!");
-	      make_sick(rn1(25,25), "a tainted combat boot", TRUE, SICK_VOMITABLE);
+	      make_sick(rn1(25,25), "a tainted nude girl", TRUE, SICK_VOMITABLE);
 
 		break;
 
 	    case PM_FIREBALL_LASS:
 
 		pline("Ulch - the stupid girl was tainted!");
-	      make_sick(rn1(25,25), "a tainted combat boot", TRUE, SICK_VOMITABLE);
+	      make_sick(rn1(25,25), "a tainted lass", TRUE, SICK_VOMITABLE);
 
 		break;
 
