@@ -1663,7 +1663,7 @@ blaone:
 		if(flags.pokedex
 #ifdef AWFUL_CURSES
 			/* on the esm server, curses pokedex has always been buggy and started crashing lately... --Amy */
-			&& !(!strcmpi(windowprocs.name, "curses")
+			&& !(!strcmpi(windowprocs.name, "curses"))
 #endif
 			&& (pm != (struct permonst *) 0) ) {
 
