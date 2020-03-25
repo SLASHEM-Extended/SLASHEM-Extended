@@ -6329,26 +6329,22 @@ shk_charge(slang, shkp)
 	/*
 	** Wand shops can offer special service!
 	** Extra charges (for a lot of extra money!)
+	* Amy edit: fuck you, why only wands? other items can also be either uncursed- or blessed-charged by scrolls,
+	* so why the everloving fuck should only wand shops get that?
 	*/
-	if (obj->oclass == WAND_CLASS)
-	{
-		/* What type of service? */
-		if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B)) ==
-				(SHK_SPECIAL_A|SHK_SPECIAL_B)) {
-			type = yn_function("[B]asic service or [P]remier",
-					ident_chars, '\0');
-			if (type == '\0') return;
-		} else if (ESHK(shkp)->services & SHK_SPECIAL_A) {
-			pline ("I only perform basic charging.");
-			type = 'b';
-		} else if (ESHK(shkp)->services & SHK_SPECIAL_B) {
-			pline ("I only perform complete charging.");
-			type = 'p';
-		}
- 	}
-	else
-	{
+
+	/* What type of service? */
+	if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B)) ==
+			(SHK_SPECIAL_A|SHK_SPECIAL_B)) {
+		type = yn_function("[B]asic service or [P]remier",
+				ident_chars, '\0');
+		if (type == '\0') return;
+	} else if (ESHK(shkp)->services & SHK_SPECIAL_A) {
+		pline ("I only perform basic charging.");
 		type = 'b';
+	} else if (ESHK(shkp)->services & SHK_SPECIAL_B) {
+		pline ("I only perform complete charging.");
+		type = 'p';
 	}
 
 	/* Compute charge */
@@ -6358,7 +6354,7 @@ shk_charge(slang, shkp)
 		charge = 10000;
 
 	/* Wands of wishing should be hard to get recharged */
-	if (/*obj->oclass == WAND_CLASS &&*/ obj->otyp == WAN_WISHING || obj->otyp == WAN_ACQUIREMENT)
+	if (obj->otyp == WAN_WISHING || obj->otyp == WAN_ACQUIREMENT)
 		charge *= 3;
 	else /* Smooth out the charge a bit */
 		shk_smooth_charge(&charge, 100, NOBOUND);
