@@ -12150,6 +12150,8 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* todo area */
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -13215,6 +13217,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cancel dragonhide shield")) OBJ_DESCR(objects[i]) = "ajdarhid qalqonini bekor qiling";
 
 		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corona dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
