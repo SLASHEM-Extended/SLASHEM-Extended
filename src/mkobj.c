@@ -143,6 +143,7 @@ boolean shopinit;
 	struct obj *otmp;
 
 	otmp = mkobj(let, artif, shopinit);
+	if (!otmp) return (struct obj *)0; /* fail safe added by Amy */
 	place_object(otmp, x, y);
 	return(otmp);
 }
@@ -175,6 +176,10 @@ int artif;
 boolean shopinit;
 {
 	int tprob, i, j, prob = rnd(10000);
+
+	int debugvar = 0;
+	if (Is_rogue_level(&u.uz)) debugvar = 1;
+	else if (Inhell) debugvar = 2;
 
 	register int levscalediff;
 
@@ -285,6 +290,12 @@ boolean shopinit;
 
 		if ((oclass == RING_CLASS) && ( (!timebasedlowerchance() && !timebasedlowerchance() ) || (!timebasedlowerchance() && !timebasedlowerchance() ) ) ) {
 			oclass = COIN_CLASS;
+		}
+
+		if (oclass >= MAXOCLASSES) {
+			impossible("Error: mkobj() random class object returned invalid object class %d. Please tell Amy about this bug. Debug variable: %d", (int) oclass, debugvar);
+			oclass = COIN_CLASS;
+
 		}
 
 	}
@@ -1775,6 +1786,16 @@ boolean shopinit;
 	int mndx, tryct;
 	struct obj *otmp;
 
+	if (otyp >= NUM_OBJECTS) {
+		impossible("Error: mksobj() called with invalid object type %d! Debug info for Amy: %d, %d, %d", otyp, (int) init, artif, (int) shopinit);
+		otyp = GOLD_PIECE;
+	}
+
+	if (objects[otyp].oc_class >= MAXOCLASSES) {
+		impossible("Error: mksobj() called with invalid object class! Debug info for Amy: %d, %d, %d, %d", otyp, (int) init, artif, (int) shopinit);
+		otyp = GOLD_PIECE;
+	}
+
 	if (otyp == u.unobtainable && !(u.riderhack && otyp == CORPSE) && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
@@ -1829,6 +1850,9 @@ boolean shopinit;
 	}
 
 	char let = objects[otyp].oc_class;
+	if (objects[otyp].oc_class >= MAXOCLASSES) {
+		impossible("Error! mkobj oc_class invalid. Debug info for Amy: %d, %d, %d, %d, let %c", otyp, (int) init, artif, (int) shopinit, let);
+	}
 
 	otmp = newobj(0);
 	*otmp = zeroobj;
@@ -1867,6 +1891,10 @@ boolean shopinit;
 	if (otmp->otyp == BOULDER && In_sokoban(&u.uz) && !((moves + u.monstertimefinish) % 1317) ) otmp->oinvis = 1;
 
 	if (otmp->oinvis && !rn2(!(u.monstertimefinish % 13333) ? 3 : !(u.monstertimefinish % 1333) ? 10 : !(u.monstertimefinish % 133) ? 30 : 100) ) otmp->oinvisreal = 1;
+
+	if (init && (let >= MAXOCLASSES)) {
+		impossible("Error: mksobj() let value is invalid! Debug info for Amy: %d, %d, %d, %d, let %c", otyp, (int) init, artif, (int) shopinit, let);
+	}
 
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   
@@ -2804,8 +2832,8 @@ boolean shopinit;
 	case COIN_CLASS:
 		break;	/* do nothing */
 	default:
-		impossible("impossible mkobj %ld, sym '%c'.", otmp->otyp,
-						objects[otmp->otyp].oc_class);
+		impossible("impossible mkobj %ld, sym '%c'. Debug info for Amy: %d, %d, %d, %d, let %c", otmp->otyp, objects[otmp->otyp].oc_class, otyp, (int) init, artif, (int) shopinit, let);
+
 		return (struct obj *)0;
 	}
 
