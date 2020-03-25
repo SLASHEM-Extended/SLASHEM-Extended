@@ -2122,7 +2122,7 @@ dotechmenu(how, tech_no)
 	    if (techid(i) == NO_TECH)
 		continue;
 	    tlevel = techlev(i);
-	    if (!techtout(i) && tlevel > 0) {
+	    if (tlevel > 0) {
 		/* Ready to use */
 		techs_useable++;
 		prefix = "";
@@ -2185,7 +2185,7 @@ dotechmenu(how, tech_no)
 			techtout(i) > 100 ? "Reloading" : "Soon");
 
 	    add_menu(tmpwin, NO_GLYPH, &any,
-		    (techtout(i) || (tlevel <= 0)) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
+		    (tlevel <= 0) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    if (let++ == 'z') let = 'A';
 	    if (let == 'Z') let = 'a';
 	}
@@ -3121,7 +3121,7 @@ int tech_no;
 	    pline("This technique is already active!");
 	    return (0);
 	}
-        if (techtout(tech_no) && !can_limitbreak()) {
+        if (techtout(tech_no) /*&& !can_limitbreak()*/) {
 	    You("have to wait %s before using your technique again.",
                 (techtout(tech_no) > 100) ?
                         "for a while" : "a little longer");
