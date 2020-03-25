@@ -504,9 +504,18 @@ armorreroll:
 
 			if (itemnumwithappearance(i, APP_FREQUENT_HELMET)) break;
 
+			if (j >= NUM_OBJECTS) {
+				impossible("where is the frequent helmet?!");
+			}
+
 		}
 
-		return (mksobj(j, TRUE, artif, shopinit));
+		if (j < NUM_OBJECTS) return (mksobj(j, TRUE, artif, shopinit));
+		/* j should never be >= NUM_OBJECTS but if we don't return some item, we SEGFAULT!!! --Amy */
+		else {
+			return(mksobj(i, TRUE, artif, shopinit));
+		}
+
 	}
 
 	else if (!rn2(100) && issoviet && oclass == WAND_CLASS) {

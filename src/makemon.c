@@ -13380,7 +13380,7 @@ loveheelover:
 				if (itemnumwithappearance(i, APP_OPERA_CLOAK)) break;
 
 			}
-			if (i != NUM_OBJECTS) (void)mongets(mtmp, i);
+			if (i < NUM_OBJECTS) (void)mongets(mtmp, i);
 		}
 
 		if (rn2(2)) {
