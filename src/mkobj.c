@@ -500,19 +500,10 @@ armorreroll:
 
 	else if (!rn2(100) && oclass == ARMOR_CLASS) {
 
-		for (j = STRANGE_OBJECT; j < NUM_OBJECTS; j++) {
-
-			if (itemnumwithappearance(i, APP_FREQUENT_HELMET)) break;
-
-			if (j >= NUM_OBJECTS) {
-				impossible("where is the frequent helmet?!");
-			}
-
-		}
-
-		if (j < NUM_OBJECTS) return (mksobj(j, TRUE, artif, shopinit));
-		/* j should never be >= NUM_OBJECTS but if we don't return some item, we SEGFAULT!!! --Amy */
-		else {
+		int freqhelmet = find_frequent_helmet();
+		if (freqhelmet != -1 && freqhelmet < NUM_OBJECTS) {
+			return(mksobj(freqhelmet, TRUE, artif, shopinit));
+		} else {
 			return(mksobj(i, TRUE, artif, shopinit));
 		}
 
