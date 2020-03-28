@@ -1,6 +1,106 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.6.4 - Mar 2020
+- Shops can now offer blessed charging even when they're not wand shops.
+- Fixed a design error with the interface for selecting techniques.
+- Fixed a bug that could occur if an ak Thief is dead! player character in their normal form had the demon flag, which could cause error messages and the occasional segfault.
+
+2.6.3 - Jan 2020
+- At the start of the game, the RNG can now decide to make shop items more scarce or traps more difficult to find.
+- As the game goes on, high-level monsters will become gradually less uncommon to ensure that game difficulty goes up if the player procrastinates.
+- Forgotten spells can fail now, cost Pw to attempt, and having too many of them may remove the ones at the bottom of the player's list entirely after a while.
+- Spell amnesia will now be more eager to remove forgotten spells, especially if the player has many of those, and can also significantly reduce the memory of any random spell in the player's list.
+- If the player leaves a level that has the "spooky" flag, it now correctly unsets the flag so that the messages don't keep appearing even while the player is on other levels.
+- Fixed defunct shops on certain special levels; they had a chance of crashing the game.
+- The scroll of world fall now costs 150 ink to write.
+- At high experience levels, gain level effects are no longer guaranteed to give an experience level to the player; they can grant at most 200k points of experience.
+- Dipping potions and scrolls into lethe water can now finalize and/or curse them.
+- Greatly reduced the generation rate for random scrolls of wishing.
+- World fall used by the player is only guaranteed to wipe out monsters up to half of its effect level now, but still has a chance of affecting higher-level ones.
+- Fixed the error where monsters dying to another monster's ranged thorns effect could throw a dmonsfree error.
+- Fixed an old bug where shoplifting would add to the sin counter only as a chaotic character. Now, it properly does that for lawful characters only.
+- The skill training decrease, technique timeout, spell memory loss and random feminism trap effects have all been boosted to be more dangerous.
+- The effects of purchasing a shopkeeper's uncursing service while impaired are much less likely to be beneficial and have a chance of putting powerful curses on the item instead.
+- Symbiotes now weigh much more if the player's skill is low, and having low charisma makes them take longer to regenerate hit points but high charisma speeds up their regeneration.
+- Dropping rings or amulets down sinks/toilets, as well as kicking sinks, now has a significant chance of breaking the furniture, turning it into a fountain.
+- Cursed unicorn horns are more dangerous to use, and mundane musical instruments or magical ones without charges can occasionally shatter when used.
+- Fixed an off-by-one error when the player levels up.
+- Dropping items from a height will no longer shatter them if they land on snow, sand or grass.
+- Enlightenment can now display the amount of turns for which a player will fumble intermittently.
+- Fixed an oversight that could cause the effects of health- and manastones to not be updated correctly.
+- Made high-level pets more likely to participate in combat, even with things that are quite a bunch of levels higher than themselves.
+- The HC converters' taunts can now occasionally cause random bad effects.
+- Effects that can lower the player's skill caps are much more significant now.
+- Fixed a segfault that could occur when Rodney's harassment summoned monsters around the player.
+- Using a touchstone now has a chance of it degrading.
+- Fixed a segfault that got introduced when making monsters able to block missiles with shields.
+- Added some higher-level shopkeepers and vault guards that are more dangerous than their vanilla counterparts.
+- Nurses now only offer specific services, determined when the monster is spawned, and they can run out, like shopkeeper services.
+- Entering a special room that is empty of monsters will no longer cause monsters on the level to wake up.
+- Autosearching is much less likely to find things now.
+- Temple priests and guards can fly now.
+- Monsters can now shoot at the player through boulders.
+- Reduced another bunch of vectors of item generation.
+- Armor pieces are less likely to spawn with random enchantments ("object properties").
+- Quaffing a potion of vampire blood no longer permanently polymorphs the player, and the monster to polymorph into is a random type of vampire instead of always being the plain "vampire" one.
+- Restored the ability to drop gold by selecting $ in the drop menu, fixing the bug where the game would say "The LRS would be very interested in knowing you had that much".
+- If the player unchecks all item types in the autopickup options menu, the character should now properly not autopickup anything (except thrown objects if pickup_thrown is TRUE) anymore instead of picking up everything.
+- Fixed the bug where alter reality wouldn't correctly re-initialize certain monsters.
+- Nerfed certain ranged weapons (especially ones with high multishot) for the player by reducing their to-hit.
+- Monsters in weird-looking rooms should always spawn hostile now, like monsters in other special rooms already do.
+- Eating poisonous corpses in soviet mode now drains much more strength than before.
+- The great wyrm of power summoned by defeating certain monsters now spawns frenzied.
+- The reverse identify and secure identify scrolls now cost more ink to write, and world fall as well as resurrection are no longer wishable nor can they be randomly more common than usual.
+- Fixed an oversight that caused the minimalist hybrid race's special effect to not always be in effect.
+- Overhauled the spellcasting system to make it much harder to reach 0% fail rate, while also nerfing some spells that were too strong and ensuring that it takes a long time to reach 2000% spell memory. However, metal spellcasting penalties are lower, making spellcasting in plate mail more feasible.
+- Several changes to make it harder to secure an endless food supply via stone to flesh.
+- Engraving with a wand can now cause it to explode, with the same chance as zapping it.
+- Symbiote tokens now have a failure chance, which is higher the lower the player's skill is.
+- Greatly lengthened the attire charm technique's timeout for most roles.
+- If the player is a vampire, polymorphing no longer always results in becoming a vampire bat.
+- Stone to flesh can now actually produce huge chunks of meat again when used on a boulder, with the originally intended 1 in 20 chance.
+
+2.6.2 - Jan 2020
+- Gavil and sheep players are capable of taming demons reliably.
+- Cannibalism and eating corpses that give aggravate monster will now only give temporary aggravate monster, however it can result in monsters coming out of a portal.
+- Special rooms now have less monsters and loot on average.
+- Added a new random effect that gives the player a nasty gray stone.
+- Toned down the zrutinator.
+- Players can now receive extra skill points by leveling past XL30, and high-level monsters will give more experience when killed.
+- Temple priests spawn with less spellbooks, especially as the game goes on.
+- Hopefully fixed a bug where crapping effects could leave the player semi-permanently blinded.
+- Fixed an oversight with zapping the wand of undead turning at a rider corpse.
+- Some shopkeeper services are more expensive and/or more likely to run out.
+- After the game ends, the player may now also see how much they used restricted skills.
+- Branch stairs and portals that don't lead to mandatory branches can now be placed completely randomly on a level, including in corridors on a rooms-and-corridors level.
+- Rebalanced the penalty for using heavy two-handed weapons.
+- Zapping monsters with the wand of haste monster will now make them fast even if they were slow before.
+- Fixed a bug when polymorphing into a monster while slimed.
+- Toned down the stronger versions of the three alignment key bosses that may be met when imbuing the Amulet of Yendor. Also, Cthulhu was moved to the elder priest level; a new boss is now the sidekick of the high priest on the sanctum.
+- Death ray resistance now also protects against touch of death.
+- Trees are less likely to randomly drop fruit. If a tree has already dropped fruit, cutting it down with an axe should no longer drop another fruit now.
+- Monsters that can cast spells will do so more rarely, and the mechanic for selecting which spell to cast has also been overhauled.
+- Increased the average timeouts for some techniques.
+- If the game goes on for long enough, effective monster difficulty starts to increase slowly, resulting in a higher chance of encountering high-level monsters.
+- The amount of artifacts in existence now has a lesser effect on the odds of gaining an artifact via sacrificing compared to before.
+- Potions of speed can reduce inertia, or completely cure it if blessed, and blessed ones also give intrinsic speed.
+- Fixed a bug with some practicant messages not showing the correct name.
+- Made credit cloning much harder to perform, by lowering sell prices (but not buy prices) for many item types and making it so that as soon as an item is sold in a shop, it can never be sold in any shop ever again.
+- Toned down some monsters on certain quests that were too annoying to defeat, sometimes introducing new, weaker variants of those monsters specifically for the quests.
+
 2.6.1 - December 2019
+- Monsters should spam breaths and similar ranged attacks less often.
+- The player starts with 2 skill slots that can be spent as soon as a skill has received enough training.
+- Some mechanisms of spawning random zorkmids spawn less of them on average.
+- The iron skin technique lasts longer on average.
+- Toned down the spell memory loss effect from the cyan spell trap.
+- Fixed an oversight that caused some monsters to still be hittable with attacks that shouldn't harm them.
+- Toned down the effects when monsters throw certain harmful potions at the player.
+- Fixed the bug from Vanilla NetHack that made artifacts with drain life effects not work correctly when a monster used them.
+- Thrones and pentagrams may rarely give the player an additional skill slot.
+- The amulet of strangulation now takes 10 turns to kill the player rather than 5.
+- Using a magic marker in evilvariant mode can drain the player's intelligence.
+- Improved the handling for doors that need specific artifact keys, found mostly on Vlad's tower. In particular, certain rewards that are supposed to be obtainable only with the correct key can no longer be obtained without the key now.
 - The player now gains extra skill slots upon reaching experience levels divisible by 10, and also when showing the quest artifact to their quest leader.
 - Fixed the oversight that allowed players to tell the real Amulet of Yendor apart from fakes via the materialglyph option.
 - The natalje trap effect now stops the player's occupation after a few turns, to ensure that multi-turn actions no longer automatically lead to losing stats and health.
