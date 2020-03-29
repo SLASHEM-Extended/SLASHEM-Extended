@@ -13052,7 +13052,7 @@ boolean knoweverything;
 			case SCR_IDENTIFY: 
 				pline("You may identify one or more objects if you use this scroll."); break;
 			case SCR_INVENTORY_ID: 
-				pline("A powerful identify scroll that always identifies everything in your main inventory. Pick up as much as you can before reading it, and move your container's contents in your main inventory too!"); break;
+				pline("A powerful identify scroll that tries to identify everything in your main inventory. Pick up as much as you can before reading it, and move your container's contents in your main inventory too! (Actually, the effect goes into containers, but not into nested containers.)"); break;
 			case SCR_MAGIC_MAPPING: 
 				pline("This scroll can reveal the map of your current dungeon level. However, certain levels are unmappable."); break;
 			case SCR_FLOOD: 

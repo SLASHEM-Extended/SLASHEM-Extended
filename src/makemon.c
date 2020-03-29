@@ -7338,6 +7338,10 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, BLASTER_BOLT, 30);
 		}
 
+		if (ptr == &mons[PM_PURPLE_BOUNCING_GIRL]) {
+			(void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
+		}
+
 		if (ptr == &mons[PM_FEMALE_FEMMY]) {
 			(void) mongets(mtmp, SCR_FEMINISM);
 		}
@@ -8993,6 +8997,10 @@ loveheelover:
 			 m_initthrow(mtmp, SILVER_SLINGSTONE, 40);
 		}
 
+		if (ptr == &mons[PM_PENCIL_MOUNTED_ERASER]) {
+			(void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
+		}
+
 		if (mtmp->data == &mons[PM_JULCHEN_S_COMBAT_BOOT]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void) mongets(mtmp, HIPPIE_HEELS);
@@ -9594,6 +9602,10 @@ loveheelover:
 			(void) mongets(mtmp, LARGE_SHIELD);
 			(void) mongets(mtmp, HELMET);
 		}
+		if (ptr == &mons[PM_KETAMINE_GLADIATOR]) {
+			(void) mongets(mtmp, IRON_SABER);
+			(void) mongets(mtmp, LARGE_SHIELD);
+		}
 		if (ptr == &mons[PM_DIAZ_GANG_MEMBER]) {
 			(void) mongets(mtmp, ASSAULT_RIFLE);
 			(void) mongets(mtmp, HAWAIIAN_SHIRT);
@@ -10102,6 +10114,9 @@ loveheelover:
 
 	    case S_QUADRUPED:
 
+		if (ptr == &mons[PM_BLASTPIG]) {
+			 m_initthrow(mtmp, FRAG_GRENADE, 10);
+		}
 		if (ptr == &mons[PM_SAINT_MARKS_MAFIA_TYPE]) {
 			(void) mongets(mtmp, PISTOL);
 			(void) mongets(mtmp, CAMOUFLAGED_CLOTHES);
@@ -13446,6 +13461,9 @@ loveheelover:
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
+		}
+		if (ptr == &mons[PM_HORNY_DEVIL]) {
+			(void) mongets(mtmp, BULLWHIP);
 		}
 		if (ptr == &mons[PM_CHUNK_DEVIL]) {
 			(void) mongets(mtmp, SLING);
@@ -25781,6 +25799,7 @@ int type;
 		case PM_BUNDLE_MONSTER: return 60;
 		case PM_CUDDLE_MONSTER: return 80;
 		case PM_FLEECE_MONSTER: return 100;
+		case PM_FELEECHY: return 100;
 		case PM_TIN_SOLDIER: return 60;
 		case PM_CLAY_SOLDIER: return 60;
 		case PM_LEATHER_GOLEM: return 80;

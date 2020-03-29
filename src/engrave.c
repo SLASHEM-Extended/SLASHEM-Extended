@@ -975,6 +975,7 @@ static const char *random_mesg[] = {
 	"DEMO casts SEGFAULT! It's super effective! THRONE-POOFING CODE fainted! DNETHACK was defeated!",
 	"slexxx <--- nethack porn", /* by K2 */
 	"Whoops, by reading this message you've contracted corona virus!",
+	"This space is definitely not infected with covid-19 yet.",
 
 };
 
@@ -5312,6 +5313,8 @@ static const char *epitaphs[] = {
 	"'unbalanced', you keep using that word... I don't think it means what you think it means",
 	"Bro, the entire game is like crawling inside a lunatic's head. Even the maps look like someone threw up a bag of skittles. Everything about it is traumatizing.", /* by someone on 4chan */
 	"This fool thought he could ignore the safety precautions, ended up getting infected with corona virus, and died.",
+	"Apparently corona ignores face masks now.",
+	"Huh... so it is possible to contract corona after all. Seems like I'm the one unlucky fool who actually managed to get it by meeting other people.",
 
 };
 

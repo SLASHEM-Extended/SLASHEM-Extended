@@ -1984,6 +1984,7 @@ register int pm;
 
 	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
+	    case PM_PINBALL_NEWT:
 	    case PM_NUUT:
 	    case PM_ENERGY_TROVE:
 	    case PM_GRAY_NEWT:
@@ -2070,6 +2071,7 @@ register int pm;
 		}
 		break;
 	    case PM_TWEN:
+	    case PM_PINBALL_TWEN:
 	    case PM_DWEN:
 	    case PM_HEALTH_TROVE:
 	    case PM_GRAY_TWEN:
@@ -3042,6 +3044,7 @@ register int pm;
 	    case PM_GIANT_CHAMELEON:
 	    case PM_MEDUQUASIT:
 	    case PM_FICKATRICE:
+	    case PM_PUCE_JELLY:
 
 		/* evil patch idea by jonadab: eating shapeshifters has a 5% chance of conveying polymorphitis */
 		if (!rn2(20)) {
@@ -3359,6 +3362,8 @@ register int pm;
 		case PM_BLUE_FLAYER:
 		case PM_MASTER_BLUE_FLAYER:
 		case PM_MIND_FLAYER_TELEPATH:
+		case PM_MIND_FLAYER_LARVA:
+		case PM_EVIL_MIND_FLAYER_LARVA:
 		case PM_VAMPIRIC_MIND_FLAYER:
 		case PM_HAPPY_MEAL:
 		case PM_CANCEROUS_MIND_FLAYER:

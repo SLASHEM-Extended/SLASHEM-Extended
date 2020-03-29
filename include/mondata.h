@@ -262,6 +262,7 @@
    monsters, we'll likely have to add a new light range field to mons[] */
 #define emits_light(ptr)	( ((ptr) == &mons[PM_BRIGHTLIGHT]) ? 4 : \
 				 ((ptr) == &mons[PM_VERY_BRIGHT_LIGHT]) ? 4 : \
+				 ((ptr) == &mons[PM_SHINY_LUCOZADE]) ? 4 : \
 				 ((ptr) == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP]) ? 1 : \
 				 ((ptr) == &mons[PM_BANG_BRIGHT_LIGHT]) ? 5 : ( (ptr)->mlet == S_LIGHT || \
 				  (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
@@ -273,6 +274,8 @@
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
 				 ((ptr) == &mons[PM_SATANIC_GNOME]) ? 3 : \
 				 ((ptr) == &mons[PM_CORONA_WRAITH]) ? 3 : \
+				 ((ptr) == &mons[PM_GLOWWORM]) ? 3 : \
+				 ((ptr) == &mons[PM_RADIATION_WORM]) ? 3 : \
 				 ((ptr) == &mons[PM_BRIGHT_DISEASE_JABBERWOCK]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_MOLD]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_GROWTH]) ? 3 : \

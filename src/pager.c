@@ -24909,6 +24909,21 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your attack spell skill falls off, and you're much less skilled than before.",
 	"Your attack spell skill falls off, and you're much less skilled than before. Now you can cast that force bolt spell a thousand times or so to gain back all the skill training you just lost.",
 	"nethack string theory: glorkums are elementary particles, and each glorkum can manifest as a single object",
+	"The mind flayer larva gurgles at you fleecily as it burrows into your brain! *bundlebundlebundle*",
+	"You are now affected by corona hysteria.",
+	"You are now affected by corona hysteria. If anyone comes closer than 1.50 m to you, you'll overreact completely.",
+	"You wonder whether you should wear a face mask, because while that doesn't protect against corona virus, it may improve your personal feeling of safety.",
+	"You're out of toilet paper.",
+	"You're out of toilet paper. Guess you just need to use your hand then.",
+	"You're out of toilet paper. And because people buy it like mad during the corona epidemic, there's no way for you to resupply.",
+	"You try to buy 4 tins of tuna but the supermarket cashier says 'Sorry, due to the current corona situation everyone may buy 2 tins max.'",
+	"The truck that resupplies the supermarket with toilet paper comes only once per week, even though people buy the stuff like mad because it supposedly protects against corona.",
+	"You need to develop ablutomania (compulsion to wash), because if you forget to wash your hands even once, you'll immediately come down with a deadly flu.",
+	"Always sneeze into your armpit, and don't shake hands with other people but shake elbows. That's of course a very sensible plan, because if everyone exhales their snot into the elbow, touching someone else's elbow will then spread the disease.",
+	"Suddenly some ugly-looking youth guy runs toward you and screams 'I HAVE CORONA!'",
+	"Suddenly some asshole runs toward you, sneezes into your face and screams 'CORONA!'",
+	"You were observed while celebrating a corona party with your friends! Pay a fine of too expensive 200 euros now or go to jail.",
+	"You were observed while behaving like a completely normal human, except that right now corona lockdown rules apply which force you to behave in a way that goes totally against human instinct. Meaning that you have to pay 500 euros now.",
 
 };
 

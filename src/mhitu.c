@@ -5853,6 +5853,8 @@ hitmu(mtmp, mattk)
 		You("are being cuddled.");
 	} else if (mtmp->data == &mons[PM_FLEECE_MONSTER] && mattk->aatyp == AT_HUGS) {
 		You("are being fleeced.");
+	} else if (mtmp->data == &mons[PM_FELEECHY] && mattk->aatyp == AT_HUGS) {
+		You("are being feleechyd.");
 	}
 
 	otmp = MON_WEP(mtmp);
@@ -6055,7 +6057,7 @@ hitmu(mtmp, mattk)
 			if (!dmg) break;
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
 				   objects[otmp->otyp].oc_material == MT_IRON &&
-					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
+					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_STICKY_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
 			     * take the damage _before_ being cloned.
@@ -9759,7 +9761,7 @@ dopois:
 
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
 				   objects[otmp->otyp].oc_material == MT_IRON &&
-					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
+					(u.umonnum==PM_SHOCK_PUDDING || u.umonnum==PM_VOLT_PUDDING || u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_STICKY_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING || u.umonnum==PM_MORAL_HAZARD || u.umonnum==PM_MORAL_EVENT_HORIZON
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
 			     * take the damage _before_ being cloned.
