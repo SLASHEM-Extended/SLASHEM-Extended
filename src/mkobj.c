@@ -2963,7 +2963,7 @@ start_corpse_timeout(body)
 		long age;
 
 		for (age = 2; age <= TAINT_AGE; age++)
-		    if (!rn2(MOLD_REVIVE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {    /* mold revives */
+		    if ((mons[body->corpsenm].mlet == S_FUNGUS) && !rn2(MOLD_REVIVE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {    /* mold revives */
 			action = REVIVE_MON;
 			when = age;
 			break;
