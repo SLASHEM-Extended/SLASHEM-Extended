@@ -828,6 +828,10 @@ doread()
 	"I'm not afraid of corona virus",
 	"I'm immune to corona virus!",
 	"You can get closer than 1.50 m to me if you want, because I don't believe in corona hysteria anyway.",
+	"Could I cheat and argue that it was not on purpose?",
+	"I've decided that it would be unethical to cheat in this scenario.",
+	"I'll never play in a NetHack tournament where the prizes are real money. This isn't Diablo 3, after all.",
+	"Are you trying to bribe me with 5 euros to be a beta tester for your shit variant? Because fuck you, I'm not going to stoop that low. Go find some other fool to playtest your garbage.",
 
 	    };
 	    char buf[BUFSZ];

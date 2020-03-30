@@ -5315,6 +5315,17 @@ static const char *epitaphs[] = {
 	"This fool thought he could ignore the safety precautions, ended up getting infected with corona virus, and died.",
 	"Apparently corona ignores face masks now.",
 	"Huh... so it is possible to contract corona after all. Seems like I'm the one unlucky fool who actually managed to get it by meeting other people.",
+	"Why make a tournament for such a broken mess of a variant? Better fix all the bugs first and obtain save stability :P",
+	"oh whoops, we only added some monsters, didn't think that would break save compatibility... sorry!",
+	"I fell and cheated on NetHack!",
+	"Oops, I think I cheated! Sorry, my mistake, didn't mean to!",
+	"Oh no, here I go cheating again!",
+	"no, I totally didn't intentionally hang up when that mumak's second attack would have procced to kill me, my internet connection dropped!",
+	"I keep hitting the 'cheat' key on my keyboard. Sorry.",
+	"I did something that MIIIIIIIGHT be cheating, but ACKSHUALLY isn't cheating!!!",
+	"Can I discover a new bug and then it's not cheating?",
+	"Wow, yay, great game design. Very hard difficulty just makes all hostile monsters have 8x as much HP! That's... so incredibly well-designed, I can't believe it!",
+	"Telling me to play very easy difficulty when I complain about the impossibility to have pets steal from shops is incredibly arrogant.",
 
 };
 

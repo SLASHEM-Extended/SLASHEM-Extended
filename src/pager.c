@@ -24924,6 +24924,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Suddenly some asshole runs toward you, sneezes into your face and screams 'CORONA!'",
 	"You were observed while celebrating a corona party with your friends! Pay a fine of too expensive 200 euros now or go to jail.",
 	"You were observed while behaving like a completely normal human, except that right now corona lockdown rules apply which force you to behave in a way that goes totally against human instinct. Meaning that you have to pay 500 euros now.",
+	"Hey, here's all those new items, dungeon features and so on! Oh hey, and we also make a tournament! But no cheating! If one of the new items turns out to be OP, please don't use it to get an easy win!",
+	"Making a tournament for a variant that is in beta stage may be an idea to get people interested... but if that tournament is about real-life money, I'm out. I play to have fun, I don't want to get paid 5 euros for several days of beta testing.",
+	"NetHack tournaments are fun as long as they're actually done for fun. Keep real life money out of our game though!",
 
 };
 
