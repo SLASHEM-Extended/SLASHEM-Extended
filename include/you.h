@@ -1768,6 +1768,10 @@ struct you {
 	int cnd_acquirementcount;	/* how often you use acquirement */
 	int cnd_cannibalcount;	/* how often you ate your own race without permission (i.e. caveman doesn't count) */
 	int cnd_ringtrinsiccount;	/* how often you actually gain effects from eating jewelry */
+	int cnd_potionthrowyoucount;	/* how many potions have been thrown by you */
+	int cnd_potionthrowmoncount;	/* how many potions have been thrown by monsters */
+	int cnd_overlevelcount;	/* how many times you leveled past XL30 */
+	int cnd_vomitingcount;	/* how many times you vomited */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

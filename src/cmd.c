@@ -11562,6 +11562,22 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_ringtrinsiccount, plur(u.cnd_ringtrinsiccount));
 		enl_msg(You_, "have gained intrinsics from eating jewelry ", "gained intrinsics from eating jewelry ", buf);
 	}
+	if (u.cnd_potionthrowyoucount && final) {
+		sprintf(buf, "%d potion%s", u.cnd_potionthrowyoucount, plur(u.cnd_potionthrowyoucount));
+		enl_msg(You_, "have thrown ", "threw ", buf);
+	}
+	if (u.cnd_potionthrowmoncount && final) {
+		sprintf(buf, "%d potion%s", u.cnd_potionthrowmoncount, plur(u.cnd_potionthrowmoncount));
+		enl_msg(You_, "allowed monsters to throw ", "allowed monsters to throw ", buf);
+	}
+	if (u.cnd_overlevelcount) {
+		sprintf(buf, "%d time%s", u.cnd_overlevelcount, plur(u.cnd_overlevelcount));
+		enl_msg(You_, "have leveled past the maximum experience level ", "leveled past the maximum experience level ", buf);
+	}
+	if (u.cnd_vomitingcount) {
+		sprintf(buf, "%d time%s", u.cnd_vomitingcount, plur(u.cnd_vomitingcount));
+		enl_msg(You_, "have vomited ", "vomited ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -12104,6 +12120,18 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_ringtrinsiccount, plur(u.cnd_ringtrinsiccount));
 	dump("  You gained intrinsics from eating jewelry ", buf);
+
+	sprintf(buf, "%d potion%s", u.cnd_potionthrowyoucount, plur(u.cnd_potionthrowyoucount));
+	dump("  You threw ", buf);
+
+	sprintf(buf, "%d potion%s", u.cnd_potionthrowmoncount, plur(u.cnd_potionthrowmoncount));
+	dump("  You allowed monsters to throw ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_overlevelcount, plur(u.cnd_overlevelcount));
+	dump("  You leveled past the maximum experience level ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_vomitingcount, plur(u.cnd_vomitingcount));
+	dump("  You vomited ", buf);
 
 	dump("", "");
 }

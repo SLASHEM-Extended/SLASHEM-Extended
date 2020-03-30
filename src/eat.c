@@ -7306,6 +7306,7 @@ floorfood(verb)		/* get food from floor or pack */
 void
 vomit()		/* A good idea from David Neves */
 {
+	u.cnd_vomitingcount++;
 	make_sick(0L, (char *) 0, TRUE, SICK_VOMITABLE);
 	nomul(-2, "vomiting", TRUE);
 	u_wipe_engr(100);

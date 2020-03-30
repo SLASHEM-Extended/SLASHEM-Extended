@@ -8799,6 +8799,9 @@ boolean your_fault;
 	boolean isyou = (mon == &youmonst);
 	int distance;
 
+	if (your_fault) u.cnd_potionthrowyoucount++;
+	else u.cnd_potionthrowmoncount++;
+
 	if(isyou) {
 		distance = 0;
 		pline_The("%s crashes on your %s and breaks into shards.",

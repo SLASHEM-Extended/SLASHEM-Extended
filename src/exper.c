@@ -469,12 +469,11 @@ newexplevel()
 	if (u.ulevel < MAXULEV && u.uexp >= newuexp(u.ulevel))
 	    pluslvl(TRUE);
 	else if (u.uexp >= (10000000 + (2000000 * u.xtralevelmult))) {
-		u.xtralevelmult++;
-		u.uexp = 10000000;
 		You_feel("more experienced.");
-		pluslvl(TRUE);
-		u.weapon_slots++; /* leveling via EXP can keep giving you skill slots --Amy */
-		/* but now also via gain level, because that requires more and more potions, too */
+		pluslvl(TRUE); /* will increase the xtralevelmult variable */
+		/* leveling via EXP can keep giving you skill slots --Amy
+		 * but now also via gain level, because that requires more and more potions, too
+		 * effect moved to pluslvl() function */
 	}
 }
 
@@ -505,6 +504,7 @@ boolean incr;	/* true iff via incremental experience growth */
 	if (u.ulevel >= MAXULEV) {
 		u.uexp = 10000000; /* reset counter for gain level */
 		u.xtralevelmult++;
+		u.cnd_overlevelcount++;
 		u.weapon_slots++; /* leveling past 30 can keep giving you skill slots --Amy */
 	}
 
