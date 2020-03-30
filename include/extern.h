@@ -2762,6 +2762,7 @@ E int isqrt(int);
 E boolean mastermindsave(void);
 E void removeforgottenspell(void);
 E void evilspellforget(void);
+E int dodeletespell(void);
 
 /* ### steal.c ### */
 

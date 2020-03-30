@@ -10073,6 +10073,36 @@ rerollX:
 	return(1);
 }
 
+/* #spelldelete command: allows the player to erase the bottommost spell outright, but only if it's a forgotten one */
+int
+dodeletespell()
+{
+	int n;
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n) {
+
+		n--; /* fix off-by-one error */
+		if (spellid(n) == NO_SPELL) {
+			impossible("ERROR: dodeletespell() trying to erase empty spell?");
+			return 0;
+		}
+
+		if (spellknow(n) > 0) {
+			pline("This doesn't work as long as your bottommost spell still has memory left.");
+		} else {
+			pline("Your bottommost spell is %s, which has no memory left.", spellname(n));
+			if (yn("Erase it from the list?") == 'y') {
+				spellid(n) = NO_SPELL;
+				/* no need to nullify spell memory because it's already zero */
+				pline("Done! The spell has been removed from your list.");
+			}
+		}
+	} else pline("It seems that you have no known spells in the first place.");
+
+	/* shouldn't cost a turn, regardless of result */
+	return 0;
+}
 
 void
 losespells()

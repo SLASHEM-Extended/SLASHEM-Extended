@@ -206,6 +206,7 @@ extern int dozap(void); /**/
 extern int doorganize(void); /**/
 extern int domarkforpet(void); /**/
 extern int doremoveimarkers(void); /**/
+extern int dodeletespell(void); /**/
 
 #ifdef LIVELOG_SHOUT
 extern int doshout(void); /**/
@@ -12209,6 +12210,7 @@ struct ext_func_tab extcmdlist[] = {
 
 	{"apply", "apply (use) a tool (pick-axe, key, lamp...)", doapply, !IFBURIED},
 	{"removeimarkers", "remove all \"I\"s, remembered, unseen creatures from the level", doremoveimarkers, IFBURIED},
+	{"spelldelete", "delete lowest spell in the list (must be forgotten)", dodeletespell, IFBURIED, AUTOCOMPLETE},
 	{"attributes", "show your attributes (intrinsic ones included in debug or explore mode)", doattributes, IFBURIED},
 	{"close", "close a door", doclose, !IFBURIED},
 	{"cast", "zap (cast) a spell", docast, IFBURIED},
