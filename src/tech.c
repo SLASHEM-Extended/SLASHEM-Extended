@@ -220,6 +220,9 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"implanted symbiosis",
 	"assume symbiote",
 	"generate offspring",
+	"undertow",
+	"definalize",
+	"anti inertia",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3034,6 +3037,18 @@ dotech()
 
 		case T_POWERBIOSIS:
 			pline("Activating this technique temporarily allows your symbiote to deal double damage and take half damage.");
+			break;
+
+		case T_UNDERTOW:
+			pline("Allows you to try to drown a monster. For that to work, either you or the monster needs to be on a water square (can be a pool, moat, watery tunnel or crystal water) and the monster may not be unbreathing of course.");
+			break;
+
+		case T_DEFINALIZE:
+			pline("If you're annoyed by all the finalized items that you cannot polymorph, blank or cancel, this technique allows you to remove the finalized flag from one item.");
+			break;
+
+		case T_ANTI_INERTIA:
+			pline("Useful when you're slowed down by inertia, because it reduces the amount of time for which you're slowed.");
 			break;
 
 		case T_IMPLANTED_SYMBIOSIS:
@@ -7465,6 +7480,97 @@ repairitemchoice:
 			Your("symbiote's health is improved!");
 
 			t_timeout = rnz(4000);
+			break;
+
+		case T_UNDERTOW:
+			if (!getdir((char *)0)) return 0;
+			if (u.uswallow) {
+				pline("You're way too busy right now!");
+				return (0);
+			}
+			if (!isok(u.ux, u.uy)) {
+				pline("It seems that you're in a location where you're not allowed to be...");
+				return (0);
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("You try to drown an invisible barrier, which fails (predictably).");
+				/* make the player pay for the attempt --Amy */
+				t_timeout = rnz(8000);
+				break;
+			}
+			if (levl[u.ux][u.uy].typ != POOL && levl[u.ux][u.uy].typ != MOAT && levl[u.ux][u.uy].typ != WATER && levl[u.ux][u.uy].typ != WATERTUNNEL && levl[u.ux][u.uy].typ != CRYSTALWATER && levl[u.ux + u.dx][u.uy + u.dy].typ != POOL && levl[u.ux + u.dx][u.uy + u.dy].typ != MOAT && levl[u.ux + u.dx][u.uy + u.dy].typ != WATER && levl[u.ux + u.dx][u.uy + u.dy].typ != WATERTUNNEL && levl[u.ux + u.dx][u.uy + u.dy].typ != CRYSTALWATER) {
+				pline("You can't drown someone here!");
+				return (0);
+			}
+
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				You("grasp at nothing.");
+				/* splicehack would return 0 here, but I won't let you use the tech to
+				 *  scan the area for monsters --Amy */
+				t_timeout = rnz(8000);
+				break;
+			}
+			if (!sticks(mtmp->data)) {
+				u.ustuck = mtmp;
+				pline("You wrap up %s with your tail and pull him/her/them/it into the depths with you!", Monnam(mtmp));
+				if (!is_swimmer(mtmp->data) && !amphibious(mtmp->data)) {
+						You("attempt to drown %s...", mon_nam(mtmp));
+						hurtmon(mtmp, (!rn2(5) && (techlevX(tech_no) > mtmp->m_lev) && (techlevX(tech_no) >= 10)) ? mtmp->mhp : (rnd(techlevX(tech_no)) * 5) );
+				} else {
+						pline("%s does not drown!", Monnam(mtmp));
+				}
+			} else {
+				You("cannot get a grip on %s!", mon_nam(mtmp));
+			}
+
+			t_timeout = rnz(8000);
+			break;
+
+		case T_DEFINALIZE:
+
+definalizechoice:
+			otmp = getobj(all_count, "definalize");
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to definalize an item.");
+				else goto definalizechoice;
+				pline("A feeling of loss comes over you.");
+				break;
+
+			}
+			if (otmp) {
+				if (!otmp->finalcancel) {
+					pline("That item wasn't finalized, and therefore nothing happens.");
+				} else if (!stack_too_big(otmp)) {
+					otmp->finalcancel = FALSE;
+					pline("%s is no longer finalized.", Yname2(otmp));
+				} else pline("The stack was too big, and therefore nothing happens.");
+
+			}
+
+			t_timeout = rnz(50000);
+			break;
+
+		case T_ANTI_INERTIA:
+			if (!u.inertia) You("weren't slowed by inertia and therefore nothing happens.");
+			else {
+				if (u.inertia < 200) {
+					u.inertia -= 100;
+					if (u.inertia < 0) u.inertia = 0;
+					Your("inertia counter was reduced by 100.");
+					if (!u.inertia) pline("You've been cured of inertia.");
+				} else if (u.inertia < 1000) {
+					u.inertia /= 2;
+					Your("inertia counter was reduced, and amounts to %d turns now.", u.inertia);
+				} else {
+					u.inertia -= 500;
+					Your("inertia counter was reduced by 500.");
+				}
+			}
+			if (u.inertia < 0) u.inertia = 0; /* fail safe */
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_POWERBIOSIS:

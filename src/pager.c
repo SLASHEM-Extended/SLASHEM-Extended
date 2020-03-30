@@ -24927,6 +24927,19 @@ static NEARDATA const char * const fake_plines[] = {
 	"Hey, here's all those new items, dungeon features and so on! Oh hey, and we also make a tournament! But no cheating! If one of the new items turns out to be OP, please don't use it to get an easy win!",
 	"Making a tournament for a variant that is in beta stage may be an idea to get people interested... but if that tournament is about real-life money, I'm out. I play to have fun, I don't want to get paid 5 euros for several days of beta testing.",
 	"NetHack tournaments are fun as long as they're actually done for fun. Keep real life money out of our game though!",
+	"You're way too busy right now!",
+	"You're way too busy right now! You need to write a ten-page essay about coronahysteria!",
+	"It seems that you're in a location where you're not allowed to be...",
+	"It seems that you're in a location where you're not allowed to be... and therefore the game ends now, cheater.",
+	"You try to drown an invisible barrier, which fails (predictably).",
+	"You try to drown an invisible barrier, which fails (predictably). Although it could also have segfaulted if the devteam didn't think of everything.",
+	"You grasp at nothing.",
+	"You grasp at nothing. Even the thin air managed to evade your hands.",
+	"The giant eel does not drown!",
+	"The giant eel does not drown! Maybe it's because they can breathe underwater?",
+	"You cannot get a grip on the slippery fungus!",
+	"You cannot get a grip on the slippery fungus! If you keep trying, you just get the Glib status effect and drop your weapon.",
+	"A - a head-detonating dart. Your head explodes. You die...",
 
 };
 

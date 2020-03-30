@@ -242,9 +242,13 @@ struct blitz_tab {
 #define T_ASSUME_SYMBIOTE	175
 #define T_GENERATE_OFFSPRING	176
 
-#define T_JEDI_JUMP	177
-#define T_CHARGE_SABER	178
-#define T_TELEKINESIS	179
+#define T_UNDERTOW	177
+#define T_DEFINALIZE	178
+#define T_ANTI_INERTIA	179
+
+#define T_JEDI_JUMP	180
+#define T_CHARGE_SABER	181
+#define T_TELEKINESIS	182
  
 #define MAXTECH 180
 

@@ -5598,6 +5598,7 @@ struct obj *otmp;
 		|| (!strcmp(word, "duplicate") && !(otmp->oclass == SCROLL_CLASS && !otmp->oartifact) )
 		|| (!strcmp(word, "extracharge") && !(otmp->oclass == WAND_CLASS) )
 		|| (!strcmp(word, "polyfix") && !is_hazy(otmp) )
+		|| (!strcmp(word, "definalize") && !otmp->finalcancel )
 		|| (!strcmp(word, "randomly enchant") && !is_enchantable(otmp))
 		|| (!strcmp(word, "poison") && !is_poisonable(otmp))
 		|| (!strcmp(word, "rustproof") && objects[(otmp)->otyp].oc_material == MT_IRON)

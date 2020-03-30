@@ -3566,6 +3566,18 @@ jediskip:
 	    	learntech(T_POWERBIOSIS, FROMOUTSIDE, 1);
 	    	You("learn how to perform powerbiosis!");
 	}
+	if (skill == P_SHORT_SWORD && P_SKILL(skill) == P_MASTER && !tech_known(T_UNDERTOW)) {
+	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
+	    	You("learn how to perform undertow!");
+	}
+	if (skill == P_CLUB && P_SKILL(skill) == P_MASTER && !tech_known(T_DEFINALIZE)) {
+	    	learntech(T_DEFINALIZE, FROMOUTSIDE, 1);
+	    	You("learn how to perform definalize!");
+	}
+	if (skill == P_MACE && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_ANTI_INERTIA)) {
+	    	learntech(T_ANTI_INERTIA, FROMOUTSIDE, 1);
+	    	You("learn how to perform anti inertia!");
+	}
 	if (skill == P_SYMBIOSIS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_IMPLANTS) >= P_EXPERT && !tech_known(T_IMPLANTED_SYMBIOSIS)) {
 	    	learntech(T_IMPLANTED_SYMBIOSIS, FROMOUTSIDE, 1);
 	    	You("learn how to perform implanted symbiosis!");
@@ -5007,6 +5019,18 @@ int degree;
 			if (skill == P_SYMBIOSIS && !tech_known(T_POWERBIOSIS)) {
 			    	learntech(T_POWERBIOSIS, FROMOUTSIDE, 1);
 			    	You("learn how to perform powerbiosis!");
+			}
+			if (skill == P_SHORT_SWORD && !tech_known(T_UNDERTOW)) {
+			    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
+			    	You("learn how to perform undertow!");
+			}
+			if (skill == P_CLUB && !tech_known(T_DEFINALIZE)) {
+			    	learntech(T_DEFINALIZE, FROMOUTSIDE, 1);
+			    	You("learn how to perform definalize!");
+			}
+			if (skill == P_MACE && !tech_known(T_ANTI_INERTIA)) {
+			    	learntech(T_ANTI_INERTIA, FROMOUTSIDE, 1);
+			    	You("learn how to perform anti inertia!");
 			}
 			if (skill == P_SYMBIOSIS && P_ADVANCE(P_IMPLANTS) == 0 && !tech_known(T_IMPLANTED_SYMBIOSIS)) {
 			    	learntech(T_IMPLANTED_SYMBIOSIS, FROMOUTSIDE, 1);
@@ -7972,6 +7996,15 @@ rerollthree:
 	}
 	if (P_SKILL(P_SYMBIOSIS) >= P_GRAND_MASTER && !tech_known(T_POWERBIOSIS)) {
 	    	learntech(T_POWERBIOSIS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SHORT_SWORD) >= P_MASTER && !tech_known(T_UNDERTOW)) {
+	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CLUB) >= P_MASTER && !tech_known(T_DEFINALIZE)) {
+	    	learntech(T_DEFINALIZE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_MACE) >= P_GRAND_MASTER && !tech_known(T_ANTI_INERTIA)) {
+	    	learntech(T_ANTI_INERTIA, FROMOUTSIDE, 1);
 	}
 	if (P_SKILL(P_SYMBIOSIS) >= P_EXPERT && P_SKILL(P_IMPLANTS) >= P_EXPERT && !tech_known(T_IMPLANTED_SYMBIOSIS)) {
 	    	learntech(T_IMPLANTED_SYMBIOSIS, FROMOUTSIDE, 1);
