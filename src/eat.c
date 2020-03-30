@@ -318,6 +318,9 @@ register struct obj *obj;
 	/* same for golems, except they also don't get hungry over time */
 	if (Race_if(PM_PLAYER_GOLEM) && !Upolyd) return 0;
 
+	/* and also Demo's etherealoid */
+	if (Race_if(PM_ETHEREALOID) && !Upolyd) return 0;
+
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;
 

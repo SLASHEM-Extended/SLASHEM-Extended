@@ -6604,6 +6604,11 @@ register struct attack *mattk;
 			}
 			dam = 0;
 			break;
+		    case AD_DARK: /* for etherealoid race */
+			do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
+			pline("You generate a sinister darkness!");
+			if (mdef->data->mlet == S_ANGEL) dam *= 2;
+			break;
 		    case AD_FIRE:
 			if (rn2(2)) {
 			    if (resists_fire(mdef)) {

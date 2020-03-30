@@ -1319,6 +1319,10 @@ const struct innate {
 		     {   1, &(HUndead_warning), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	eth_abil[] = { {  1, &(HStone_resistance), "", "", TRUE },
+		     {   1, &(HDisint_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	lyc_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HRegeneration), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
@@ -2226,6 +2230,7 @@ int oldlevel, newlevel;
 	case PM_HUMAN_WRAITH:            rabil = wra_abil;	break;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
 	case PM_SPIRIT:            rabil = esp_abil;	break;
+	case PM_ETHEREALOID:            rabil = eth_abil;	break;
 	case PM_SHOE:            rabil = sho_abil;	break;
 	case PM_PLAYER_GOLEM:            rabil = glm_abil;	break;
 	case PM_SATRE:            rabil = sat_abil;	break;

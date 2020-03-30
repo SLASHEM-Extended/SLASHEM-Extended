@@ -6663,6 +6663,7 @@ rerollthree:
 		case PM_MISSINGNO: implantbonus = 6; break;
 		case PM_MOULD: implantbonus = 5; break;
 		case PM_GOAULD: implantbonus = 5; break;
+		case PM_ETHEREALOID: implantbonus = 5; break;
 		case PM_OCTOPODE: implantbonus = 6; break;
 		case PM_BACTERIA: implantbonus = 6; break;
 		case PM_POLYINITOR: implantbonus = 5; break;

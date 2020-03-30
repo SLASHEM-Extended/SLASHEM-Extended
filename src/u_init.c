@@ -10701,6 +10701,7 @@ u_init()
 	 */
 	u.nv_range   =  1;
 	u.xray_range = -1;
+	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
 	u.artifactprotection = 0;
 	u.fumbleduration = 0;
 	u.antimagicshell = 0;
