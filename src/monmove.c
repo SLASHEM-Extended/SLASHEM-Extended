@@ -2859,8 +2859,7 @@ postmov:
 		if (organivorous(ptr) || mtmp->egotype_organivore) {
 		    if (meatobj(mtmp) == 2) return 2;	/* it died */
 		}
-		if (ptr == &mons[PM_GHOUL] || ptr == &mons[PM_GHAST] || ptr == &mons[PM_CORPSEWORM] || ptr == &mons[PM_DOGSHIT_SEARCHER] || ptr == &mons[PM_STINKING_ALIEN] || ptr == &mons[PM_GASTLY] || ptr == &mons[PM_PHANTOM_GHOST]
-		|| ptr == &mons[PM_HAUNTER] || ptr == &mons[PM_GENGAR] || ptr == &mons[PM_CORPULENT_DOG] || ptr == &mons[PM_SPIT_DEMON] || ptr == &mons[PM_THESTRAL] || ptr == &mons[PM_THICK_POTATO] || ptr == &mons[PM_BLACK_MUZZLE] || ptr == &mons[PM_CORPSE_SPITTER] || ptr == &mons[PM_MUZZLE_FIEND] || ptr == &mons[PM_MAW_FIEND] || ptr == &mons[PM_ROCKET_MUZZLE]) meatcorpse(mtmp);
+		if (saprovorous(ptr) || ptr == &mons[PM_CORPULENT_DOG] || ptr == &mons[PM_SPIT_DEMON] || ptr == &mons[PM_THESTRAL] || ptr == &mons[PM_THICK_POTATO] || ptr == &mons[PM_BLACK_MUZZLE] || ptr == &mons[PM_CORPSE_SPITTER] || ptr == &mons[PM_MUZZLE_FIEND] || ptr == &mons[PM_MAW_FIEND] || ptr == &mons[PM_ROCKET_MUZZLE]) meatcorpse(mtmp);
 
 		if(!*in_rooms(mtmp->mx, mtmp->my, SHOPBASE) || !rn2(25)) {
 		    boolean picked = FALSE;
