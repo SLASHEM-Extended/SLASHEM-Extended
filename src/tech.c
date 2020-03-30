@@ -2122,7 +2122,7 @@ dotechmenu(how, tech_no)
 	    if (techid(i) == NO_TECH)
 		continue;
 	    tlevel = techlev(i);
-	    if (tlevel > 0) {
+	    if (tlevel > 0 && (wizard || !techtout(i)) ) {
 		/* Ready to use */
 		techs_useable++;
 		prefix = "";
@@ -2133,9 +2133,9 @@ dotechmenu(how, tech_no)
 	    }
 #ifdef WIZARD
 	    if (wizard || RngeTechInsight) 
-		if (!iflags.menu_tab_sep)			
-		    sprintf(buf, "%s%-*s %2d%c%c%c   %s(%i)",
-			    prefix, longest, techname(i), tlevel,
+		if (!iflags.menu_tab_sep)
+		    sprintf(buf, "%s%-*s %2d%c%c%c%c  %s(%i)",
+			    prefix, longest, techname(i), tlevel, ((techtout(i) || (tlevel <= 0)) ? '*' : ' '),
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
@@ -2148,8 +2148,8 @@ dotechmenu(how, tech_no)
 			    techtout(i) > 100 ? "Reloading" : "Soon",
 			    techtout(i));
 		else
-		    sprintf(buf, "%s%s\t%2d%c%c%c\t%s(%i)",
-			    prefix, techname(i), tlevel,
+		    sprintf(buf, "%s%s\t%2d%c%c%c%c\t%s(%i)",
+			    prefix, techname(i), tlevel, ((techtout(i) || (tlevel <= 0)) ? '*' : ' '),
 			    tech_list[i].t_intrinsic & FROMEXPER ? 'X' : ' ',
 			    tech_list[i].t_intrinsic & FROMRACE ? 'R' : ' ',
 			    tech_list[i].t_intrinsic & FROMOUTSIDE ? 'O' : ' ',
@@ -2163,9 +2163,9 @@ dotechmenu(how, tech_no)
 			    techtout(i));
 	    else
 #endif
-	    if (!iflags.menu_tab_sep)			
-		sprintf(buf, "%s%-*s %5d   %s",
-			prefix, longest, techname(i), tlevel,
+	    if (!iflags.menu_tab_sep)
+		sprintf(buf, "%s%-*s %5d%c  %s",
+			prefix, longest, techname(i), tlevel, ((techtout(i) || (tlevel <= 0)) ? '*' : ' '),
 			tech_inuse(techid(i)) ? "Active" :
 			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
@@ -2174,8 +2174,8 @@ dotechmenu(how, tech_no)
 			techtout(i) > 1000 ? "Not Ready" :
 			techtout(i) > 100 ? "Reloading" : "Soon");
 	    else
-		sprintf(buf, "%s%s\t%5d\t%s",
-			prefix, techname(i), tlevel,
+		sprintf(buf, "%s%s\t%5d%c\t%s",
+			prefix, techname(i), tlevel, ((techtout(i) || (tlevel <= 0)) ? '*' : ' '),
 			tech_inuse(techid(i)) ? "Active" :
 			tlevel <= 0 ? "Beyond recall" :
 			can_limitbreak() ? "LIMIT" :
@@ -2185,7 +2185,7 @@ dotechmenu(how, tech_no)
 			techtout(i) > 100 ? "Reloading" : "Soon");
 
 	    add_menu(tmpwin, NO_GLYPH, &any,
-		    (tlevel <= 0) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
+		    (tlevel <= 0) ? 0 : (techtout(i) && !wizard) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    if (let++ == 'z') let = 'A';
 	    if (let == 'Z') let = 'a';
 	}
