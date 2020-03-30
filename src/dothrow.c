@@ -1438,9 +1438,10 @@ int thrown;
 	     *
 	     * Rockets hit the ceiling/floor and explode.
 	     */
-	    else if (is_grenade(obj))
+	    else if (is_grenade(obj)) {
 		arm_bomb(obj, TRUE);
-	    else if (is_bullet(obj) && ammo_and_launcher(obj, launcher)) {
+		You("yell 'Fire in the hole!'");
+	    } else if (is_bullet(obj) && ammo_and_launcher(obj, launcher)) {
 		if (!Is_airlevel(&u.uz) && !Is_waterlevel(&u.uz) && !Underwater
 			&& (objects[obj->otyp].oc_dir & EXPLOSION)) {
 		    pline("%s hit%s the %s and explodes in a ball of fire!",
@@ -1592,6 +1593,7 @@ int thrown;
 	/* Handle grenades or rockets */
 	if (is_grenade(obj)) {
 	    arm_bomb(obj, TRUE);
+	    You("yell 'Fire in the hole!'");
 	} else if (ammo_and_launcher(obj, launcher) &&
 		(objects[obj->otyp].oc_dir & EXPLOSION)) {
 	    if (cansee(bhitpos.x,bhitpos.y)) 

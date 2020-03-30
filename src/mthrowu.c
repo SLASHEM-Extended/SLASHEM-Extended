@@ -685,6 +685,12 @@ int x,y;
 
 	/* Detonate rockets */
 	if (is_grenade(obj)) {
+
+		if (rn2(5)) verbalize("Fire in the hole!");
+		else if (rn2(3)) verbalize("Fire in the ass hole!");
+		else if (rn2(2)) verbalize("Fire in your ass hole %s!", playeraliasname);
+		else verbalize("Here is a grenade four you!"); /* sic */
+
 		if (!ohit) {
 			create = 1; /* Don't destroy */
 			arm_bomb(obj, FALSE);
