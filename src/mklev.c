@@ -1241,7 +1241,7 @@ register int type;
 		if (level_difficulty() >= (issoviet ? 9 : 5) && !rn2(5) ) {
 		    /* make a mimic instead */
 		    levl[x][y].doormask = D_NODOOR;
-		    mtmp = makemon(mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS);
+		    mtmp = makemon(mkclass(S_MIMIC,0), x, y, MM_MAYSLEEP);
 		    if (mtmp)
 			set_mimic_sym(mtmp);
 		}
@@ -10751,7 +10751,7 @@ skip0:
 		   we have to check for monsters on the stairs anyway. */
 		if((u.uhave.amulet && !u.freeplaymode) || !rn2(3)) {
 		    x = somex(croom); y = somey(croom);
-		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
 			(void) maketrap(x, y, WEB, 25);
@@ -10760,7 +10760,7 @@ skip0:
 		}
 		if(ishaxor && ((u.uhave.amulet && !u.freeplaymode) || !rn2(3)) ) {
 		    x = somex(croom); y = somey(croom);
-		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x,y,NO_MM_FLAGS);
+		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
 			(void) maketrap(x, y, WEB, 25);
@@ -11846,172 +11846,172 @@ mineralize()
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)))
-	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		/* More random monsters on other terrain, too. --Amy */
 
 		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == ROOM && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makemon(mkclass(S_WALLMONST,0), x, y, MM_ADJACENTOK);
+			makemon(mkclass(S_WALLMONST,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000 )) )
-			makemon(mkclass(S_TURRET,0), x, y, MM_ADJACENTOK);
+			makemon(mkclass(S_TURRET,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == TREE && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
-			makemon(mkclass(S_BAT,0), x, y, MM_ADJACENTOK);
+			makemon(mkclass(S_BAT,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_SNAKE,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_SNAKE,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_LEPRECHAUN,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_LEPRECHAUN,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_NYMPH,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_NYMPH,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_SPIDER,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_SPIDER,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_RUBMONST,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_RUBMONST,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makemon(courtmon(), x, y, MM_ADJACENTOK);
+	    	    makemon(courtmon(), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_VORTEX,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_VORTEX,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_LIGHT,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_LIGHT,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_TRAPPER,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_TRAPPER,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_ANGEL,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_ANGEL,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_ELEMENTAL,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_ELEMENTAL,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_HUMAN,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_HUMAN,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(mkclass(S_NEMESE,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_NEMESE,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-	    	    makemon(mkclass(S_ARCHFIEND,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_ARCHFIEND,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_PUDDING,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_PUDDING,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_BLOB,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_BLOB,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_JELLY,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_JELLY,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_FUNGUS,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_FUNGUS,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_GRUE,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_GRUE,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_LIZARD,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_LIZARD,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_RODENT,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_RODENT,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makemon(mkclass(S_WORM,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_WORM,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == FARMLAND && !rn2((ishaxor && !issuxxor) ? 400 : (issuxxor && !ishaxor) ? 1600 : 800)) )
-	    	    makemon(mkclass(S_QUADRUPED,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_QUADRUPED,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if (levl[x][y].typ == WATERTUNNEL && In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !rn2(15) )
 		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE, FALSE);
 
 		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
-	    	    makemon(specialtensmon(61), x, y, MM_ADJACENTOK); /* flying */
+	    	    makemon(specialtensmon(61), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* flying */
 		if ((levl[x][y].typ == WATERTUNNEL && !rn2((ishaxor && !issuxxor) ? 12 : (issuxxor && !ishaxor) ? 50 : 25)) )
-	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == CRYSTALWATER && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == MOORLAND && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
-	    	    makemon(specialtensmon(70), x, y, MM_ADJACENTOK); /* amphibious */
+	    	    makemon(specialtensmon(70), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* amphibious */
 		if ((levl[x][y].typ == URINELAKE && !rn2((ishaxor && !issuxxor) ? 400 : (issuxxor && !ishaxor) ? 1600 : 800)) )
-	    	    makemon(specialtensmon(88), x, y, MM_ADJACENTOK); /* acidic */
+	    	    makemon(specialtensmon(88), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* acidic */
 		if ((levl[x][y].typ == SHIFTINGSAND && !rn2((ishaxor && !issuxxor) ? 125 : (issuxxor && !ishaxor) ? 500 : 250)) )
-	    	    makemon(specialtensmon(219), x, y, MM_ADJACENTOK); /* AD_WRAP */
+	    	    makemon(specialtensmon(219), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_WRAP */
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 450 : (issuxxor && !ishaxor) ? 1800 : 900)) )
-	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 450 : (issuxxor && !ishaxor) ? 1800 : 900)) )
-	    	    makemon(specialtensmon(337), x, y, MM_ADJACENTOK); /* AD_CONT */
+	    	    makemon(specialtensmon(337), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_CONT */
 		if ((levl[x][y].typ == PENTAGRAM && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makemon(specialtensmon(313), x, y, MM_ADJACENTOK); /* AD_CAST */
+	    	    makemon(specialtensmon(313), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_CAST */
 		if ((levl[x][y].typ == WELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(mkclass(S_ZOMBIE,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_ZOMBIE,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == POISONEDWELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(specialtensmon(89), x, y, MM_ADJACENTOK); /* poisonous */
+	    	    makemon(specialtensmon(89), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* poisonous */
 		if ((levl[x][y].typ == WAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(specialtensmon(68), x, y, MM_ADJACENTOK); /* concealing */
+	    	    makemon(specialtensmon(68), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* concealing */
 		if ((levl[x][y].typ == BURNINGWAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(specialtensmon(194), x, y, MM_ADJACENTOK); /* AD_FIRE */
+	    	    makemon(specialtensmon(194), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_FIRE */
 		if ((levl[x][y].typ == WOODENTABLE && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
-	    	    makemon(specialtensmon(82), x, y, MM_ADJACENTOK); /* thick hide */
+	    	    makemon(specialtensmon(82), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* thick hide */
 		if ((levl[x][y].typ == CARVEDBED && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makemon(specialtensmon(45), x, y, MM_ADJACENTOK); /* resist sleep */
+	    	    makemon(specialtensmon(45), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* resist sleep */
 		if ((levl[x][y].typ == STRAWMATTRESS && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
-	    	    makemon(specialtensmon(205), x, y, MM_ADJACENTOK); /* AD_PLYS */
+	    	    makemon(specialtensmon(205), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_PLYS */
 		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(specialtensmon(44), x, y, MM_ADJACENTOK); /* resist cold */
+	    	    makemon(specialtensmon(44), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* resist cold */
 		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(specialtensmon(43), x, y, MM_ADJACENTOK); /* resist fire */
+	    	    makemon(specialtensmon(43), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* resist fire */
 		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(specialtensmon(90), x, y, MM_ADJACENTOK); /* carnivorous */
+	    	    makemon(specialtensmon(90), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* carnivorous */
 		if ((levl[x][y].typ == PAVEDFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(specialtensmon(332), x, y, MM_ADJACENTOK); /* MS_SHOE */
+	    	    makemon(specialtensmon(332), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* MS_SHOE */
 		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(speedymon(), x, y, MM_ADJACENTOK);
+	    	    makemon(speedymon(), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(specialtensmon(172), x, y, MM_ADJACENTOK); /* AT_BITE */
+	    	    makemon(specialtensmon(172), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AT_BITE */
 		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(specialtensmon(310), x, y, MM_ADJACENTOK); /* AD_NTHR */
+	    	    makemon(specialtensmon(310), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_NTHR */
 		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
+	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
 			(void) maketrap(x, y, CURSED_GRAVE, 100);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
 			(void) maketrap(x, y, randomtrap(), 100);
 		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK); /* AD_STUN */
+	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_STUN */
 		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
-	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
+	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == ROCKWALL || levl[x][y].typ == GRAVEWALL || levl[x][y].typ == TUNNELWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
+			makemon((struct permonst *)0, x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
-			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == SCORR && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
-			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == DOOR && !rn2((ishaxor && !issuxxor) ? 300 : (issuxxor && !ishaxor) ? 1200 : 600)) )
-			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK);
+			makemon(mkclass(S_MIMIC,0), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 
 		} /* !ishomicider check */
 
@@ -13799,7 +13799,7 @@ selecttrap:
 	(void) maketrap(m.x, m.y, kind, isspecific ? ((u.monstertimefinish % 2) ? 5 : 10) : 100);
 	/* Webs can generate on dlvl1, where giant spiders would be totally out of depth. Let's make random spiders. --Amy */
 	if (kind == WEB) (void) makemon( /*&mons[PM_GIANT_SPIDER]*/ mkclass(S_SPIDER,0),
-						m.x, m.y, NO_MM_FLAGS);
+						m.x, m.y, MM_MAYSLEEP);
 }
 
 void

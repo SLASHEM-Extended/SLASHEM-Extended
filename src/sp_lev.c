@@ -3589,7 +3589,7 @@ schar ftyp, btyp;
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) 
 				(void) maketrap(xx, yy, rndtrap(), 100);
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 100 : 200)) {
-				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);
+				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, MM_MAYSLEEP);
 				else makerandomtrap_at(xx, yy);
 				}
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 10 : 20)) 
@@ -4130,10 +4130,10 @@ retryrandtype:
 				create_feature(0,0,croom,POOL);
 				create_feature(1,1,croom,POOL);
 				if (!rn2(3)) {
-					(void)makemon(mkclass(S_EEL,0),croom->lx,croom->ly,NO_MM_FLAGS);
+					(void)makemon(mkclass(S_EEL,0),croom->lx,croom->ly, MM_MAYSLEEP);
 				}
 				if (!rn2(3)) {
-					(void)makemon(mkclass(S_EEL,0),croom->hx,croom->hy,NO_MM_FLAGS);
+					(void)makemon(mkclass(S_EEL,0),croom->hx,croom->hy, MM_MAYSLEEP);
 				}
 			}
 			else if (!rn2(100)) { /* evil patch idea by jonadab - cursed vaults filled with L */
@@ -4146,14 +4146,14 @@ retryrandtype:
 				HighlevelStatus += 1; /* and make the high-level ones more likely to spawn (ugly hack #2) */
 				reset_rndmonst(NON_PM);
 
-				mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->ly,NO_MM_FLAGS);
+				mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->ly, MM_MAYSLEEP);
 				if (mtmp) mtmp->msleeping = 1;
-				mtmp = makemon(mkclass(S_LICH,0),croom->hx,croom->hy,NO_MM_FLAGS);
+				mtmp = makemon(mkclass(S_LICH,0),croom->hx,croom->hy, MM_MAYSLEEP);
 				if (mtmp) mtmp->msleeping = 1;
-				if (rn2(2)) {mtmp = makemon(mkclass(S_LICH,0),croom->hx,croom->ly,NO_MM_FLAGS);
+				if (rn2(2)) {mtmp = makemon(mkclass(S_LICH,0),croom->hx,croom->ly, MM_MAYSLEEP);
 				if (mtmp) mtmp->msleeping = 1;
 				}
-				if (rn2(2)) {mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->hy,NO_MM_FLAGS);
+				if (rn2(2)) {mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->hy, MM_MAYSLEEP);
 				if (mtmp) mtmp->msleeping = 1;
 				}
 
@@ -5977,7 +5977,7 @@ dlb *fd;
 			}
 	    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 		maze1xy(&mm, DRY);
-		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
@@ -5987,7 +5987,7 @@ dlb *fd;
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 #endif
 		    maze1xy(&mm, WET|DRY);
-		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
 		    else makerandomtrap_at(mm.x, mm.y);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
@@ -6037,7 +6037,7 @@ dlb *fd;
 			}
 	    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 		maze1xy(&mm, DRY);
-		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
@@ -6047,7 +6047,7 @@ dlb *fd;
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 #endif
 		    maze1xy(&mm, WET|DRY);
-		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
 		    else makerandomtrap_at(mm.x, mm.y);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {

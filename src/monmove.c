@@ -417,17 +417,12 @@ disturb(mtmp)
 		distu(mtmp->mx,mtmp->my) <= 100 &&
 		(!Stealth || (Stealth && !StrongStealth && !rn2(5)) || (Aggravate_monster && !rn2(3) ) || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
 		(!(mtmp->data->mlet == S_NYMPH
-			|| mtmp->data == &mons[PM_JABBERWOCK]
-			|| mtmp->data == &mons[PM_VORPAL_JABBERWOCK]
-#if 0	/* DEFERRED */
-			|| mtmp->data == &mons[PM_VORPAL_JABBERWOCK]
-#endif
+			|| mtmp->data->mlet == S_JABBERWOCK
 			|| mtmp->data->mlet == S_LEPRECHAUN) || !rn2(50)) &&
 		(Aggravate_monster
-			|| (mtmp->data->mlet == S_DOG ||
-				mtmp->data->mlet == S_HUMAN)
-			|| (!rn2(7) && mtmp->m_ap_type != M_AP_FURNITURE &&
-				mtmp->m_ap_type != M_AP_OBJECT) )) {
+			|| (mtmp->data->mlet == S_DOG
+			|| mtmp->data->mlet == S_HUMAN)
+			|| (!rn2(7) && (mtmp->m_ap_type != M_AP_FURNITURE) && (mtmp->m_ap_type != M_AP_OBJECT)) )) {
 		mtmp->msleeping = 0;
 		return(1);
 	}

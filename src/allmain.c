@@ -282,9 +282,9 @@ moveloop()
 			/* TODO: adj difficulty in makemon */
 			if (!rn2(monclock) && !ishomicider ) {
 				if ( ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) && xupstair && rn2(10)) {
-					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK);
+					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK|MM_MAYSLEEP);
 				} else {
-					(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+					(void) makemon((struct permonst *)0, 0, 0, MM_MAYSLEEP);
 				}
 			}
 
@@ -1015,7 +1015,7 @@ moveloop()
 
 		    if(!rn2( ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 250 :
 			    (depth(&u.uz) > depth(&stronghold_level)) ? 450 : 500)) {
-			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, MM_MAYSLEEP);
 			else makerandomtrap();
 			}
 

@@ -7010,6 +7010,11 @@ void
 wakeup(mtmp)
 register struct monst *mtmp;
 {
+	if (mtmp->masleep && !rn2(3)) {
+		mtmp->mcanmove = 1;
+		mtmp->masleep = 0;
+		mtmp->mfrozen = 0;
+	}
 	mtmp->msleeping = 0;
 	mtmp->meating = 0;	/* assume there's no salvagable food left */
 	setmangry(mtmp);
@@ -7026,8 +7031,17 @@ wake_nearby()
 {
 	register struct monst *mtmp;
 
+	/* Amy edit: stealth gives a chance of the monster not waking up; aggravate monster reduces that chance */
+	int stealthchance = 0;
+	if (Stealth) stealthchance += 20;
+	if (StrongStealth) stealthchance += 30;
+	if (Aggravate_monster) stealthchance /= 2;
+	if (StrongAggravate_monster) stealthchance /= 2;
+	if (stealthchance < 0) stealthchance = 0; /* less than 0% chance makes no sense anyway --Amy */
+	if (stealthchance > 0) stealthchance = rnd(stealthchance); /* some randomness */
+
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
+	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -7035,7 +7049,7 @@ wake_nearby()
 	}
 
 	if (!rn2(250)) for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3))) {
+	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3))) {
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -7044,17 +7058,23 @@ wake_nearby()
 
 }
 
-/* Wake up monsters near some particular location. */
+/* Wake up monsters near some particular location.
+ * Amy edit: not guaranteed, and less likely with greater distance */
 void
 wake_nearto(x, y, distance)
 register int x, y, distance;
 {
 	register struct monst *mtmp;
+	int wakedistance;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
-				 dist2(mtmp->mx, mtmp->my, x, y) < distance))
-		mtmp->msleeping = 0;
+		if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
+				 dist2(mtmp->mx, mtmp->my, x, y) < distance)) {
+			if (distance > 1) wakedistance = rnd(distance);
+			if (rn2(2) && ( (distance == 0) || (dist2(mtmp->mx, mtmp->my, x, y) < wakedistance)) ) {
+				mtmp->msleeping = 0;
+			}
+		}
 	}
 }
 

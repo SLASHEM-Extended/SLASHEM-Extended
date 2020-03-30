@@ -389,15 +389,33 @@ aggravate()
 	incr_itimeout(&HAggravate_monster, rnd( (monster_difficulty() + 1) * 5));
 	/* gotta make sure aggravate monster actually does something after all! --Amy */
 
-	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
-	    if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && !rn2(3))) {
-		mtmp->msleeping = 0;
-		if(!mtmp->mcanmove && !rn2(5)) {
-			mtmp->mfrozen = 0;
-			mtmp->masleep = 0;
-			mtmp->mcanmove = 1;
+	/* Amy edit: stealth gives a chance of the monster not waking up; aggravate monster reduces that chance */
+	int stealthchance = 0;
+	if (Stealth) stealthchance += 20;
+	if (StrongStealth) stealthchance += 30;
+	if (StrongAggravate_monster) stealthchance /= 2;
+	if (stealthchance < 0) stealthchance = 0; /* less than 0% chance makes no sense anyway --Amy */
+	if (stealthchance > 0) stealthchance = rnd(stealthchance); /* some randomness */
+
+	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+
+		int distagravate = distu(mtmp->mx,mtmp->my);
+
+		if (distagravate > 75) {
+			distagravate /= 10;
+			if (distagravate < 1) distagravate = 1;
+			if (distagravate > 95) distagravate = 95;
+		} else distagravate = 0;
+
+		if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && (rnd(100) > distagravate) && !(Race_if(PM_VIETIS) && !rn2(3))) {
+			mtmp->msleeping = 0;
+			if(!mtmp->mcanmove && !rn2(5)) {
+				mtmp->mfrozen = 0;
+				mtmp->masleep = 0;
+				mtmp->mcanmove = 1;
+			}
 		}
-	    }
+	}
 }
 
 void

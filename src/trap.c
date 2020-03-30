@@ -3858,7 +3858,7 @@ unsigned trflags;
 		    wake_nearby();
 			register struct monst *mtmp3;
 			for(mtmp3 = fmon; mtmp3; mtmp3 = mtmp3->nmon) {
-			    if (!DEADMONSTER(mtmp3)) {
+			    if (!DEADMONSTER(mtmp3) && !rn2(3)) {
 				mtmp3->msleeping = 0;
 			    }
 			}
@@ -15036,7 +15036,7 @@ register struct monst *mtmp;
 			{
 				register struct monst *mtmp3;
 				for(mtmp3 = fmon; mtmp3; mtmp3 = mtmp3->nmon) {
-				    if (!DEADMONSTER(mtmp3)) {
+				    if (!DEADMONSTER(mtmp3) && !rn2(3)) {
 					mtmp3->msleeping = 0;
 				    }
 				}

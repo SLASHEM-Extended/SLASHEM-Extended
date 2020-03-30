@@ -1441,8 +1441,8 @@ armorsmashdone:
 		}
 		break;
 	case WAN_SLEEP:	/* (broken wand) */
-		/* [wakeup() doesn't rouse victims of temporary sleep,
-		    so it's okay to leave `wake' set to TRUE here] */
+		/* Amy edit: wakeup() now rouses monsters from temporary sleep */
+		wake = FALSE;
 		reveal_invis = TRUE;
 		if (sleep_monst(mtmp, d(1 + otmp->spe, 12), WAND_CLASS))
 		    slept_monst(mtmp);
@@ -8293,6 +8293,14 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	boolean spellcaster = (is_hero_spell(type) || is_mega_spell(type)); 
 				/* maybe get a bonus! */
     	int skilldmg = 0;
+
+	/* if it's not a sleep ray, a monster that is temporarily asleep may wake up now --Amy */
+
+	if (abstype != ZT_SLEEP && mon->masleep && !rn2(3)) {
+		mon->mcanmove = 1;
+		mon->mfrozen = 0;
+		mon->masleep = 0;
+	}
 
 	*ootmp = (struct obj *)0;
 	switch(abstype) {

@@ -734,7 +734,15 @@ meleeattack:
 	 *  to see if the defender died.  We don't want to modify
 	 *  unallocated monsters!
 	 */
-	if (strike) mdef->msleeping = 0;
+	if (strike) {
+		mdef->msleeping = 0;
+
+		if (mdef->masleep && !rn2(3)) {
+			mdef->mcanmove = 1;
+			mdef->mfrozen = 0;
+			mdef->masleep = 0;
+		}
+	}
 
 	if (res[i] & MM_AGR_DIED)  return res[i];
 	/* return if aggressor can no longer attack */

@@ -901,7 +901,7 @@ register const char *s;
 	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
@@ -911,7 +911,7 @@ register const char *s;
 	for(x = rn1(5,7); x; x--) {
 #endif
 		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y);
 	}
 	for(x = rn1(6,7); x; x--) {
@@ -956,7 +956,7 @@ register const char *s;
 	if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
@@ -966,7 +966,7 @@ register const char *s;
 	for(x = rn1(5,7); x; x--) {
 #endif
 		mazexy_all(&mm);
-		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, NO_MM_FLAGS);
+		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
 		else makerandomtrap_at(mm.x, mm.y);
 	}
 	for(x = rn1(6,7); x; x--) {

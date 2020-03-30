@@ -20185,6 +20185,10 @@ register int	mmflags;
 
 	if (!rn2(Aggravate_monster ? 500 : 100) && (!u.uhave.amulet || u.freeplaymode || (!u.amuletcompletelyimbued && rn2(3)))) mtmp->msleeping = 1;
 
+	if ((mmflags & MM_MAYSLEEP) && !rn2(5)) {
+		if ((!(u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued)) || !rn2(5)) mtmp->msleeping = 1;
+	}
+
 	if (ptr == &mons[PM_SLEEPING_GIANT]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_SLEEPY_GIRL]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_SLEEPY_WOMAN]) mtmp->msleeping = 1;
