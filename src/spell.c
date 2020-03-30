@@ -4255,7 +4255,7 @@ bucchoice:
 
 		if(!(HDiscount_action & INTRINSIC)) {
 			You("gain paralysis resistance!");
-			incr_itimeout(&HDiscount_action, Discount_action ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDiscount_action, HDiscount_action ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -4270,7 +4270,7 @@ bucchoice:
 
 		if(!(HFull_nutrient & INTRINSIC)) {
 			Your("nutrition consumption slows down!");
-			incr_itimeout(&HFull_nutrient, Full_nutrient ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HFull_nutrient, HFull_nutrient ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -4285,7 +4285,7 @@ bucchoice:
 
 		if(!(HTechnicality & INTRINSIC)) {
 			Your("techniques become stronger!");
-			incr_itimeout(&HTechnicality, Technicality ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HTechnicality, HTechnicality ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -8954,7 +8954,7 @@ totemsummonchoice:
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You_feel("healthy ..... for the moment at least.");
-			incr_itimeout(&HPoison_resistance, Poison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HPoison_resistance, HPoison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -8966,7 +8966,7 @@ totemsummonchoice:
 	case SPE_ANTI_DISINTEGRATION:
 		if(!(HDisint_resistance & INTRINSIC)) {
 			You_feel("quite firm for a while.");
-			incr_itimeout(&HDisint_resistance, Disint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDisint_resistance, HDisint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -8978,8 +8978,7 @@ totemsummonchoice:
 	case SPE_MAGICTORCH:
 		if(!(HSight_bonus & INTRINSIC)) {
 			You("can see in the dark!");
-			incr_itimeout(&HSight_bonus, rn1(20, 10) +
-				spell_damage_bonus(spellid(spell))*20);
+			incr_itimeout(&HSight_bonus, rn1(20, 10) + spell_damage_bonus(spellid(spell))*20);
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -8991,7 +8990,7 @@ totemsummonchoice:
 	case SPE_DISPLACEMENT:
 		if(!(HDisplaced & INTRINSIC)) {
 			pline("Your image is displaced!");
-			incr_itimeout(&HDisplaced, Displaced ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(200, 100) + spell_damage_bonus(spellid(spell))*20));
+			incr_itimeout(&HDisplaced, HDisplaced ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(200, 100) + spell_damage_bonus(spellid(spell))*20));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9003,7 +9002,7 @@ totemsummonchoice:
 	case SPE_TRUE_SIGHT:
 		if(!(HSee_invisible & INTRINSIC)) {
 			pline("You can see invisible things!");
-			incr_itimeout(&HSee_invisible, See_invisible ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(50, 25) + spell_damage_bonus(spellid(spell))*5));
+			incr_itimeout(&HSee_invisible, HSee_invisible ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(50, 25) + spell_damage_bonus(spellid(spell))*5));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9015,7 +9014,7 @@ totemsummonchoice:
 	case SPE_CONFLICT:
 		if(!(HConflict & INTRINSIC)) {
 			pline("You start generating conflict!");
-			incr_itimeout(&HConflict, Conflict ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(20, 10) + spell_damage_bonus(spellid(spell))*3));
+			incr_itimeout(&HConflict, HConflict ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(20, 10) + spell_damage_bonus(spellid(spell))*3));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9027,7 +9026,7 @@ totemsummonchoice:
 	case SPE_ESP:
 		if(!(HTelepat & INTRINSIC)) {
 			You_feel("a strange mental acuity.");
-			incr_itimeout(&HTelepat, Blind_telepat ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HTelepat, HTelepat ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9039,7 +9038,7 @@ totemsummonchoice:
 	case SPE_RADAR:
 		if(!(HWarning & INTRINSIC)) {
 			pline("You turn on your radar.");
-			incr_itimeout(&HWarning, Warning ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HWarning, HWarning ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9051,7 +9050,7 @@ totemsummonchoice:
 	case SPE_REGENERATION:
 		if(!(HRegeneration & INTRINSIC)) {
 			pline("You direct your internal energy to closing your wounds.");
-			incr_itimeout(&HRegeneration, Regeneration ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HRegeneration, HRegeneration ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9063,7 +9062,7 @@ totemsummonchoice:
 	case SPE_SEARCHING:
 		if(!(HSearching & INTRINSIC)) {
 			pline("You start searching.");
-			incr_itimeout(&HSearching, Searching ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSearching, HSearching ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9075,7 +9074,7 @@ totemsummonchoice:
 	case SPE_FREE_ACTION:
 		if(!(HFree_action & INTRINSIC)) {
 			pline("You are resistant to paralysis.");
-			incr_itimeout(&HFree_action, Free_action ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HFree_action, HFree_action ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9087,7 +9086,7 @@ totemsummonchoice:
 	case SPE_STEALTH:
 		if(!(HStealth & INTRINSIC)) {
 			pline("You start moving silently.");
-			incr_itimeout(&HStealth, Stealth ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HStealth, HStealth ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9099,7 +9098,7 @@ totemsummonchoice:
 	case SPE_INFRAVISION:
 		if(!(HInfravision & INTRINSIC)) {
 			pline("Your %s are suddenly very sensitive!", makeplural(body_part(EYE)));
-			incr_itimeout(&HInfravision, Infravision ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HInfravision, HInfravision ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9111,7 +9110,7 @@ totemsummonchoice:
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
 			You_feel("resistant to sickness.");
-			incr_itimeout(&HSick_resistance, Sick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSick_resistance, HSick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9123,7 +9122,7 @@ totemsummonchoice:
 	case SPE_DRAGON_BLOOD:
 		if(!(HDrain_resistance & INTRINSIC)) {
 			You_feel("resistant to level drainage.");
-			incr_itimeout(&HDrain_resistance, Drain_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDrain_resistance, HDrain_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9135,7 +9134,7 @@ totemsummonchoice:
 	case SPE_ANTI_MAGIC_FIELD:
 		if(!(HAntimagic & INTRINSIC)) {
 			You_feel("resistant to magic.");
-			incr_itimeout(&HAntimagic, Antimagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HAntimagic, HAntimagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9358,7 +9357,7 @@ totemsummonchoice:
 	case SPE_ACIDSHIELD:
 		if(!(HAcid_resistance & INTRINSIC)) {
 			You("are resistant to acid now. Your items, however, are not.");
-			incr_itimeout(&HAcid_resistance, Acid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HAcid_resistance, HAcid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9370,7 +9369,7 @@ totemsummonchoice:
 	case SPE_RESIST_PETRIFICATION:
 		if(!(HStone_resistance & INTRINSIC)) {
 			You_feel("more limber. Let's eat some cockatrice meat!");
-			incr_itimeout(&HStone_resistance, Stone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
+			incr_itimeout(&HStone_resistance, HStone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9385,7 +9384,7 @@ totemsummonchoice:
 				pline("Too much coffee!");
 			else
 				You("no longer feel tired.");
-			incr_itimeout(&HSleep_resistance, Sleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSleep_resistance, HSleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9397,7 +9396,7 @@ totemsummonchoice:
 	case SPE_FLYING:
 		if(!(HFlying & INTRINSIC)) {
 			You("start flying!");
-			incr_itimeout(&HFlying, Flying ? (rnd(4) + spell_damage_bonus(spellid(spell))) : (rn1(20, 25) + spell_damage_bonus(spellid(spell))*20));
+			incr_itimeout(&HFlying, HFlying ? (rnd(4) + spell_damage_bonus(spellid(spell))) : (rn1(20, 25) + spell_damage_bonus(spellid(spell))*20));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9409,7 +9408,7 @@ totemsummonchoice:
 	case SPE_ENDURE_COLD:
 		if(!(HCold_resistance & INTRINSIC)) {
 			You_feel("warmer.");
-			incr_itimeout(&HCold_resistance, Cold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HCold_resistance, HCold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9424,7 +9423,7 @@ totemsummonchoice:
 				pline("Excellent! You feel, like, totally cool!");
 			else
 				You_feel("colder.");
-			incr_itimeout(&HFire_resistance, Fire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HFire_resistance, HFire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9439,7 +9438,7 @@ totemsummonchoice:
 				pline("Bummer! You've been grounded!");
 			else
 				You("are not at all shocked by this feeling.");
-			incr_itimeout(&HShock_resistance, Shock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HShock_resistance, HShock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9452,7 +9451,7 @@ totemsummonchoice:
 	case SPE_HOLD_AIR:
 		if(!(HMagical_breathing & INTRINSIC)) {
 			You("hold your breath.");
-			incr_itimeout(&HMagical_breathing, Amphibious ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HMagical_breathing, HMagical_breathing ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9465,7 +9464,7 @@ totemsummonchoice:
 	case SPE_SWIMMING:
 		if(!(HSwimming & INTRINSIC)) {
 			You("grow water wings.");
-			incr_itimeout(&HSwimming, Amphibious ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSwimming, HSwimming ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9483,7 +9482,7 @@ totemsummonchoice:
 						pline("Bummer! You've been grounded!");
 					else
 						You("are not at all shocked by this feeling.");
-					incr_itimeout(&HShock_resistance, Shock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HShock_resistance, HShock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9498,7 +9497,7 @@ totemsummonchoice:
 						pline("Excellent! You feel, like, totally cool!");
 					else
 						You_feel("colder.");
-					incr_itimeout(&HFire_resistance, Fire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HFire_resistance, HFire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9510,7 +9509,7 @@ totemsummonchoice:
 			case 3:
 				if(!(HCold_resistance & INTRINSIC)) {
 					You_feel("warmer.");
-					incr_itimeout(&HCold_resistance, Cold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HCold_resistance, HCold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9525,7 +9524,7 @@ totemsummonchoice:
 						pline("Too much coffee!");
 					else
 						You("no longer feel tired.");
-					incr_itimeout(&HSleep_resistance, Sleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HSleep_resistance, HSleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9537,7 +9536,7 @@ totemsummonchoice:
 			case 5:
 				if(!(HStone_resistance & INTRINSIC)) {
 					You_feel("more limber. Let's eat some cockatrice meat!");
-					incr_itimeout(&HStone_resistance, Stone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
+					incr_itimeout(&HStone_resistance, HStone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9549,7 +9548,7 @@ totemsummonchoice:
 			case 6:
 				if(!(HAcid_resistance & INTRINSIC)) {
 					You("are resistant to acid now. Your items, however, are not.");
-					incr_itimeout(&HAcid_resistance, Acid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HAcid_resistance, HAcid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9561,7 +9560,7 @@ totemsummonchoice:
 			case 7:
 				if(!(HSick_resistance & INTRINSIC)) {
 					You_feel("resistant to sickness.");
-					incr_itimeout(&HSick_resistance, Sick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HSick_resistance, HSick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9573,7 +9572,7 @@ totemsummonchoice:
 			case 8:
 				if(!(HPoison_resistance & INTRINSIC)) {
 					You_feel("healthy ..... for the moment at least.");
-					incr_itimeout(&HPoison_resistance, Poison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HPoison_resistance, HPoison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9585,7 +9584,7 @@ totemsummonchoice:
 			case 9:
 				if(!(HDisint_resistance & INTRINSIC)) {
 					You_feel("quite firm for a while.");
-					incr_itimeout(&HDisint_resistance, Disint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HDisint_resistance, HDisint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -9604,16 +9603,14 @@ totemsummonchoice:
 				pline("Let the casting commence!");
 			else
 				You_feel("a sense of spell knowledge.");
-			incr_itimeout(&HHalf_spell_damage, rn1(100, 50) +
-				spell_damage_bonus(spellid(spell))*10);
+			incr_itimeout(&HHalf_spell_damage, rn1(500, 250) + spell_damage_bonus(spellid(spell))*50);
 		}
 		if(!(HHalf_physical_damage & INTRINSIC)) {
 			if (FunnyHallu)
 				You_feel("like a tough motherfucker!");
 			else
 				You("are resistant to normal damage.");
-			incr_itimeout(&HHalf_physical_damage, rn1(100, 50) +
-				spell_damage_bonus(spellid(spell))*10);
+			incr_itimeout(&HHalf_physical_damage, rn1(500, 250) + spell_damage_bonus(spellid(spell))*50);
 		}
 		u.ugangr++;
 
