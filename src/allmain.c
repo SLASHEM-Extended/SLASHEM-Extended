@@ -6053,6 +6053,7 @@ newbossX:
 
 		if (u.segfaultpanic && !rn2(100)) {
 			u.youaredead = 1;
+			u.youarereallydead = 1;
 			pline("Oops... Suddenly, the dungeon collapses.");
 			pline("Report error to 'flauschie' and it might be possible to rebuild.");
 			pline("obj_is_local:Segmentation fault -- core dumped.");
@@ -10454,6 +10455,7 @@ past3:
 		if (moves < 50) {
 			pline("You are playing an old version of SLEX, which is no longer supported and therefore your game ends. The version is only kept on the server so that people can finish old savegames. If you had a far-progressed savegame that is somehow gone, complain to the server administrators and they might be able to restore it. --Amy");
 			u.youaredead = 1;
+			u.youarereallydead = 1;
 			done(ESCAPED);
 			/* still game over if you somehow get here */
 			done(DIED);
@@ -10979,7 +10981,10 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	/* prevent hangup cheating when special game modes haven't teleported you yet --Amy */
-	if ((flags.wonderland || iszapem || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) && new_game) u.youaredead = 1;
+	if ((flags.wonderland || iszapem || flags.lostsoul || flags.uberlostsoul || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) && new_game) {
+		u.youaredead = 1;
+		u.youarereallydead = 1;
+	}
 
     if (!new_game) {
 
@@ -13343,6 +13348,7 @@ boolean new_game;	/* false => restoring an old game */
 		goto_level(&zapemlevel, TRUE, FALSE, FALSE);
 
 		u.youaredead = 0;
+		u.youarereallydead = 0;
 		save_currentstate();
 		pline("You find yourself in a derelict spaceship. In order to get out, you have to make it at least to the bottom of the Sewer Plant. But watch out: once you leave, the monster difficulty inside the Space Base and its sub-branches will increase to reflect its actual depth.");
 
@@ -13352,6 +13358,7 @@ boolean new_game;	/* false => restoring an old game */
 		flags.lostsoul = flags.uberlostsoul = FALSE;
 		goto_level(&elderpriest_level, TRUE, FALSE, FALSE);
 		u.youaredead = 0;
+		u.youarereallydead = 0;
 		save_currentstate();
 		pline("Welcome to Wonderland. You have to get to the bottom of the Yendorian Tower to escape.");
 		pline("If you manage to do that, you regain your ability to levelport. Good luck, and don't get near the elder priest or he will tentacle to tentacle you!");
@@ -13371,6 +13378,7 @@ boolean new_game;	/* false => restoring an old game */
 
 		goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
 		u.youaredead = 0;
+		u.youarereallydead = 0;
 		save_currentstate();
 		pline("These are the halls of Mandos... err, Medusa. Good luck making your way back up!");
 
@@ -13388,6 +13396,7 @@ boolean new_game;	/* false => restoring an old game */
 		get_level(&newlevel, newlev);
 		goto_level(&newlevel, TRUE, FALSE, FALSE);
 		u.youaredead = 0;
+		u.youarereallydead = 0;
 		save_currentstate();
 		pline("Enjoy your stay, and try to get out if you can.");
 
@@ -13562,8 +13571,30 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
+	if (!new_game && u.youarereallydead) {
+
+		pline("You are dead. Filthy cheater. Don't try to abuse the hangup function again, you hear?");
+		killer = "trying to circumvent an instadeath via hangup cheating";
+		killer_format = KILLED_BY;
+		done(DIED);
+		/* lifesaved */
+		killer = "trying to be a wiseguy";
+		killer_format = KILLED_BY;
+		done(DIED);
+
+		if (!wizard) done(ESCAPED);
+
+		/* should only get here if wizard */
+		You_feel("like a very cheaty wizard.");
+
+		u.youaredead = 0;
+		u.youarereallydead = 0;
+
+	}
+
 	if (u.segfaultpanic) {
 		u.youaredead = 1;
+		u.youarereallydead = 1;
 		pline("Stack corruption panic dumped to desktop SIGSEGV c0000005.");
 		killer = "the dreaded segfault panic";
 		killer_format = KILLED_BY;
@@ -14360,7 +14391,7 @@ newturn:
 						killer = "having their head crushed by a high-heeled leather pump";
 						killer_format = KILLED_BY;
 						done(DIED);
-						u.youaredead = 0;
+						u.youaredead = 0; /* lifesaving allowed, unlike mind flayer instadeath */
 						return;
 
 					} else {

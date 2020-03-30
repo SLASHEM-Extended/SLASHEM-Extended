@@ -5488,6 +5488,7 @@ register struct monst *mdef;
 		otmp = obj->nobj;
 		if (obj && obj->otyp == AMULET_OF_YENDOR && !u.freeplaymode) {
 			u.youaredead = 1;
+			u.youarereallydead = 1;
 			pline("Oh no! The monster that was holding the Amulet of Yendor has left the dungeon and since your game is no longer winnable now, it ends here. Sorry.");
 			killer_format = NO_KILLER_PREFIX;
 			killer = "allowed the Amulet of Yendor to be removed from the dungeon";
@@ -5499,6 +5500,7 @@ register struct monst *mdef;
 
 		if (obj && (obj->otyp == CANDELABRUM_OF_INVOCATION || obj->otyp == BELL_OF_OPENING || obj->otyp == SPE_BOOK_OF_THE_DEAD) && !u.uevent.invoked && !u.freeplaymode) {
 			u.youaredead = 1;
+			u.youarereallydead = 1;
 			pline("Oh no! One of the special items that were required to win the game has just been removed from the dungeon, and therefore your game is now over. Sorry.");
 			killer_format = NO_KILLER_PREFIX;
 			killer = "allowed an invocation artifact to be removed from the dungeon";

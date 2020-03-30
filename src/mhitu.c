@@ -2572,7 +2572,7 @@ elena30:
 							    /* used up AMULET_OF_LIFE_SAVING; still
 							       subject to dying from brainlessness */
 							    wore_amulet = 0;
-							} else {
+							} else if (wizard) {
 							    /* explicitly chose not to die;
 							       arbitrarily boost intelligence */
 							    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
@@ -2581,6 +2581,7 @@ elena30:
 							}
 						    }
 						    u.youaredead = 1;
+						    u.youarereallydead = 1;
 
 						    if (lifesaved)
 							pline("Unfortunately your brain is still gone.");
@@ -2589,7 +2590,10 @@ elena30:
 						    killer = "brainlessness";
 						    killer_format = KILLED_BY;
 						    done(DIED);
-						    u.youaredead = 0;
+						    if (wizard) {
+							    u.youaredead = 0;
+							    u.youarereallydead = 0;
+						    }
 						    lifesaved++;
 						}
 					    }
@@ -5265,6 +5269,7 @@ elena37:
 				Your("brain is cored like an apple!");
 				if (ABASE(A_INT) <= 3) {
 					u.youaredead = 1;
+					u.youarereallydead = 1;
 					Your("last thought fades away.");
 					killer = "destruction of the brain and spinal cord";
 					killer_format = KILLED_BY;
@@ -5276,7 +5281,14 @@ elena37:
 					killer = "destruction of the brain and spinal cord";
 					killer_format = KILLED_BY;
 					done(DIED);
+
+					if (!wizard) {
+						pline("Unfortunately your brain is STILL gone. Your game ends here.");
+						done(ESCAPED);
+					}
+
 					u.youaredead = 0;
+					u.youarereallydead = 0;
 
 					ABASE(A_INT) = ATTRMIN(A_INT);
 					You_feel("like a scarecrow.");
@@ -6740,7 +6752,7 @@ dopois:
 				    /* used up AMULET_OF_LIFE_SAVING; still
 				       subject to dying from brainlessness */
 				    wore_amulet = 0;
-				} else {
+				} else if (wizard) {
 				    /* explicitly chose not to die;
 				       arbitrarily boost intelligence */
 				    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
@@ -6749,6 +6761,7 @@ dopois:
 				}
 			    }
 			    u.youaredead = 1;
+			    u.youarereallydead = 1;
 
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
@@ -6757,7 +6770,10 @@ dopois:
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
-			    u.youaredead = 0;
+			    if (wizard) {
+				u.youaredead = 0;
+				u.youarereallydead = 0;
+			    }
 			    lifesaved++;
 			}
 		    }
@@ -12635,7 +12651,7 @@ do_stone2:
 				    /* used up AMULET_OF_LIFE_SAVING; still
 				       subject to dying from brainlessness */
 				    wore_amulet = 0;
-				} else {
+				} else if (wizard) {
 				    /* explicitly chose not to die;
 				       arbitrarily boost intelligence */
 				    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
@@ -12643,7 +12659,8 @@ do_stone2:
 				    break;
 				}
 			    }
-				u.youaredead = 1;
+			    u.youaredead = 1;
+			    u.youarereallydead = 1;
 
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
@@ -12652,7 +12669,10 @@ do_stone2:
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
-				u.youaredead = 0;
+			    if (wizard) {
+				    u.youaredead = 0;
+				    u.youarereallydead = 0;
+			    }
 			    lifesaved++;
 			}
 		    }
@@ -15186,7 +15206,7 @@ common:
 				    /* used up AMULET_OF_LIFE_SAVING; still
 				       subject to dying from brainlessness */
 				    wore_amulet = 0;
-				} else {
+				} else if (wizard) {
 				    /* explicitly chose not to die;
 				       arbitrarily boost intelligence */
 				    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
@@ -15195,6 +15215,7 @@ common:
 				}
 			    }
 				u.youaredead = 1;
+				u.youarereallydead = 1;
 
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
@@ -15203,7 +15224,10 @@ common:
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
-				u.youaredead = 0;
+			    if (wizard) {
+				    u.youaredead = 0;
+				    u.youarereallydead = 0;
+			    }
 			    lifesaved++;
 			}
 		    }

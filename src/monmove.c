@@ -2254,6 +2254,7 @@ not_special:
 
 						if (mtmp->mx == altarx && mtmp->my == altary) { /* game over */
 							u.youaredead = 1;
+							u.youarereallydead = 1;
 							pline("Oh no! Someone else managed to offer the Amulet of Yendor and obtained immortality. You have failed your mission and the game ends here.");
 							killer_format = NO_KILLER_PREFIX;
 							killer = "allowed someone else to offer the Amulet of Yendor to the gods";

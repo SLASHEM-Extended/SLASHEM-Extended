@@ -9391,7 +9391,7 @@ boolean ranged;
 				    /* used up AMULET_OF_LIFE_SAVING; still
 				       subject to dying from brainlessness */
 				    wore_amulet = 0;
-				} else {
+				} else if (wizard) {
 				    /* explicitly chose not to die;
 				       arbitrarily boost intelligence */
 				    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
@@ -9401,6 +9401,7 @@ boolean ranged;
 			    }
 
 				u.youaredead = 1;
+				u.youarereallydead = 1;
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
 			    else
@@ -9408,7 +9409,10 @@ boolean ranged;
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
-				u.youaredead = 0;
+			    if (wizard) {
+				    u.youaredead = 0;
+				    u.youarereallydead = 0;
+			    }
 			    lifesaved++;
 			}
 		    }

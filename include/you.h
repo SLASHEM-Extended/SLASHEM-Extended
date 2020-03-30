@@ -1264,6 +1264,7 @@ struct you {
 	int hangupparalysis;	/* saved paralysis counter so you *really* cannot cheat */
 
 	int youaredead;		/* if you hang up at a prompt before an instadeath, i.e. sickness */
+	int youarereallydead;	/* if you hang up at something like mind flayer instadeath, where life saving doesn't work */
 
 	int negativeprotection;	/* AD_NPRO - deduct this amount from the player's AC */
 	int tremblingamount;	/* AD_TREM - reduces player's to-hit and spellcasting chances */

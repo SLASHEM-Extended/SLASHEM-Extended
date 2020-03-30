@@ -8707,6 +8707,7 @@ u_init()
 	u.hanguppenalty = 0;
 
 	u.youaredead = 0;	/* if this is non-zero, returning to the game kills you because you should have died --Amy */
+	u.youarereallydead = 0;	/* if this is non-zero, returning to the game REALLY kills you, even if you have lifesaving */
 
 	u.bankcashamount = 0;
 	u.bankcashlimit = 0;
