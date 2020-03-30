@@ -3164,6 +3164,22 @@ arti_invoke(obj)
     int kill_loop;
  */
 
+	/* highly randomized timeout; squeaking skill helps --Amy */
+	int artitimeout = rnz(2000);
+	if (!rn2(5)) artitimeout = rnz(20000);
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_SQUEAKING)) {
+	      	case P_BASIC:	artitimeout *= 9; artitimeout /= 10; break;
+	      	case P_SKILLED:	artitimeout *= 8; artitimeout /= 10; break;
+	      	case P_EXPERT:	artitimeout *= 7; artitimeout /= 10; break;
+	      	case P_MASTER:	artitimeout *= 6; artitimeout /= 10; break;
+	      	case P_GRAND_MASTER:	artitimeout *= 5; artitimeout /= 10; break;
+	      	case P_SUPREME_MASTER:	artitimeout *= 4; artitimeout /= 10; break;
+	      	default: break;
+		}
+	}
+	if (artitimeout < 1) artitimeout = 1; /* fail safe */
+
     if(!oart || !oart->inv_prop) {
 	if(obj->otyp == CRYSTAL_BALL)
 	    use_crystal_ball(obj);
@@ -3193,9 +3209,11 @@ arti_invoke(obj)
 		     the(xname(obj)), otense(obj, "are"));
 	    /* and just got more so; patience is essential... */
 	    obj->age += (long) d(3,10);
+	    if (!rn2(5)) obj->age += (long) rnz(100);
 	    return 1;
 	}
-	obj->age = monstermoves + rnz(1000);
+	obj->age = monstermoves + artitimeout;
+	use_skill(P_SQUEAKING, rnd(10));
 
 	u.cnd_invokecount++;
 
@@ -3587,11 +3605,13 @@ chargingchoice:
 		     the(xname(obj)), otense(obj, "are"));
 	    /* can't just keep repeatedly trying */
 	    obj->age += (long) d(3,10);
+	    if (!rn2(5)) obj->age += (long) rnz(100);
 	    return 1;
 	} else if(!on) {
 	    /* when turning off property, determine downtime */
 	    /* arbitrary for now until we can tune this -dlc */
-	    obj->age = monstermoves + rnz(1000);
+	    obj->age = monstermoves + artitimeout;
+	    use_skill(P_SQUEAKING, rnd(10));
 	}
 
 	if ((eprop & ~W_ARTI) || iprop) {
