@@ -250,6 +250,6 @@ struct blitz_tab {
 #define T_CHARGE_SABER	181
 #define T_TELEKINESIS	182
  
-#define MAXTECH 180
+#define MAXTECH 183
 
 #endif /* TECH_H */
