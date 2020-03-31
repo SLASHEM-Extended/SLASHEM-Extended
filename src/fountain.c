@@ -630,7 +630,8 @@ register struct obj *obj;
 	if (!obj) return; /* if the get_wet destroyed it --Amy */
 	if (level.flags.lethe) { /* bad idea */
 		pline("The sparkling waters wash over your %s...", doname(obj));
-		lethe_damage(obj, TRUE, FALSE);
+		(void)wither_dmg(obj, xname(obj), 0, TRUE, &youmonst);
+		/* don't use lethe_damage() since that is programmed to affect the entire inventory! */
 	}
 	if (!obj) return; /* if the lethe_damage destroyed it --Amy */
 
