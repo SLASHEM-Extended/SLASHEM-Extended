@@ -7338,6 +7338,18 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, BLASTER_BOLT, 30);
 		}
 
+		if (ptr == &mons[PM_PSYCHOPOMP]) {
+			(void) mongets(mtmp, GENTLEMAN_S_SUIT);
+			(void) mongets(mtmp, FUR);
+			(void) mongets(mtmp, COLOR_CONE);
+			(void) mongets(mtmp, ROCKET_GAUNTLETS);
+			(void) mongets(mtmp, HEAVY_SHIELD);
+			(void) mongets(mtmp, ATSUZOKO_BOOTS);
+			(void) mongets(mtmp, LONG_STAKE);
+			(void) mongets(mtmp, SHOTGUN);
+			 m_initthrow(mtmp, LEAD_SHOT, 50);
+		}
+
 		if (ptr == &mons[PM_PURPLE_BOUNCING_GIRL]) {
 			(void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 		}
@@ -13278,6 +13290,7 @@ loveheelover:
 	      if (ptr == &mons[PM_TRAM_VORTEX]) (void) mongets(mtmp, WAN_TREMBLING);
 	      if (ptr == &mons[PM_UNEXPECTED_WHIRLWIND]) (void) mongets(mtmp, NASTYPOLE);
 	      if (ptr == &mons[PM_WONDERCLOUD]) (void) mongets(mtmp, WONDER_DAGGER);
+	      if (ptr == &mons[PM_UNHOLY_VORTEX]) (void) mongets(mtmp, SCR_OFFLEVEL_ITEM);
 	      if (ptr == &mons[PM_ROTATER_CLOUD]) (void) mongets(mtmp, WONDER_DAGGER);
 		if (ptr == &mons[PM_VIOLETTA]) {
 			(void) mongets(mtmp, FEMININE_PUMPS);

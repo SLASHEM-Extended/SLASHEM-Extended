@@ -4903,6 +4903,16 @@ elena37:
 			datadeleteattack();
 		}
 	}
+	if (mtmp->data == &mons[PM_ALPHANUMEROGORGON] && isevilvariant) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			datadeleteattack();
+		}
+	}
+	if (mtmp->data == &mons[PM_LEFTOGORGON] && isevilvariant) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			datadeleteattack();
+		}
+	}
 
 	if (mtmp->data == &mons[PM_TAUNTBUGGER]) {
 		mtmp->minvis = TRUE;
