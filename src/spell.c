@@ -7586,12 +7586,10 @@ secureidchoice:
 				pline("Oh wait, actually I do mind...");
 				badeffect();
 			}
-		    obfree(pseudo, (struct obj *)0);
 		    break;
 		}
 		if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
 		    You("smell rotten eggs.");
-		    obfree(pseudo, (struct obj *)0);
 		    break;
 		}
 		(void) create_gas_cloud(cc.x, cc.y, 2, 5);
