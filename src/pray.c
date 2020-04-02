@@ -2022,8 +2022,8 @@ dosacrifice()
 		if (race != ROLE_NONE)
 		    pline_The("altar is stained with %s blood.",
 			    races[race].adj);
-		else
-		    impossible("Bad monster race?");
+		else /* used to be impossible but there is the stoaning eye now --Amy */
+		    pline_The("altar is stained with undefined blood.");
 		if(!Is_astralevel(&u.uz))
 		    levl[u.ux][u.uy].altarmask = AM_CHAOTIC;
 		angry_priest();
