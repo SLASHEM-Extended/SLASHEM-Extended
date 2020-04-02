@@ -3507,6 +3507,29 @@ hitmm(magr, mdef, mattk)
 		return 0;
 	}
 
+	if (mdef->mtame && !rn2(3) && mattk->aatyp == AT_KICK) {
+		struct obj *footwear = which_armor(magr, W_ARMF);
+		if (footwear && ishighheeled(footwear)) {
+			if (vis) pline("%s is kicked by female shoes!", Monnam(mdef));
+			badpeteffect(mdef);
+			if (DEADMONSTER(mdef)) return 2; /* defender died */
+
+		}
+	}
+
+	if (mdef->mtame && !rn2(3) && mattk->aatyp == AT_WEAP) {
+
+		struct obj *heelshoe = MON_WEP(magr);
+		if (heelshoe && (heelshoe->otyp == WEDGED_LITTLE_GIRL_SANDAL || heelshoe->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || heelshoe->otyp == BLOCK_HEELED_SANDAL || heelshoe->otyp == PROSTITUTE_SHOE || heelshoe->otyp == BLOCK_HEELED_COMBAT_BOOT || heelshoe->otyp == HUGGING_BOOT || heelshoe->otyp == WOODEN_GETA || heelshoe->otyp == LACQUERED_DANCING_SHOE || heelshoe->otyp == HIGH_HEELED_SANDAL || heelshoe->otyp == SEXY_LEATHER_PUMP || heelshoe->otyp == INKA_BOOT || heelshoe->otyp == SOFT_LADY_SHOE || heelshoe->otyp == STEEL_CAPPED_SANDAL || heelshoe->otyp == DOGSHIT_BOOT || heelshoe->otyp == SPIKED_BATTLE_BOOT) ) {
+			if (vis) pline("%s is whacked by a high-heeled shoe!", Monnam(mdef));
+			badpeteffect(mdef);
+			if (DEADMONSTER(mdef)) return 2; /* defender died */
+
+		}
+	}
+
+	if (DEADMONSTER(mdef)) return 2; /* defender died */
+
 	return(mdamagem(magr, mdef, mattk));
 }
 
@@ -4039,7 +4062,7 @@ physical:
 			    touch_petrifies(&mons[otmp->corpsenm]) && nohit)
 			nohit = FALSE;
 		} else if(nohit) break;
-		if (mattk->aatyp == AT_KICK && thick_skinned(pd) && tmp) {
+		if (mattk->aatyp == AT_KICK && thick_skinned(pd) && tmp && rn2(3)) {
 		    tmp = 1;
 		} else if(mattk->aatyp == AT_WEAP) {
 		    if(otmp) {

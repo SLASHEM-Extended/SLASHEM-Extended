@@ -15513,7 +15513,8 @@ common:
 	    ugolemeffects((int)mattk->adtyp, tmp);
 	}
     }
-    mondead(mtmp);
+    /* let's be really mean and give them a chance of exploding several times... :-P --Amy */
+    if (rn2(isevilvariant ? 2 : 10)) mondead(mtmp);
     wake_nearto(mtmp->mx, mtmp->my, 7*7);
     if (mtmp->mhp > 0) return(0);
     return(2);	/* it dies */
