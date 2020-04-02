@@ -116,6 +116,7 @@ struct flag {
 	boolean  showsanity;	/* shows sanity on bottom status line */
 
 	boolean  silent;	/* whether the bell rings or not */
+	boolean  simpledescs;	/* make item descriptions more simple so that they take up less space */
 	boolean  sortpack;	/* sorted inventory */
 	boolean  soundok;	/* ok to tell about sounds heard */
 	boolean  sparkle;	/* show "resisting" special FX (Scott Bigham) */

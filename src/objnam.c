@@ -6054,7 +6054,7 @@ register struct obj *obj;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */
 	if (obj->oclass == WEAPON_CLASS && is_poisonable(obj) && obj->opoisoned)
-		strcpy(buf, "poisoned ");
+		strcpy(buf, flags.simpledescs ? "pois " : "poisoned ");
 
 	/*if (obj_is_pname(obj))
 	    goto nameit;*/
@@ -6142,10 +6142,10 @@ register struct obj *obj;
 		 * Unlike Grunthack, there are no scrolls of detect magic and the wizard doesn't get free knowledge here. */
 
 		if (obj->enchantment && !(isevilvariant && !(obj->rknown)) && !(PlayerUninformation) )
-			strcat(buf, "enchanted ");
+			strcat(buf, flags.simpledescs ? "ench " : "enchanted ");
 
 		if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
-			sprintf(eos(buf), "(of %s) ", enchname(obj->enchantment) );
+			sprintf(eos(buf), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
 		}
 
 		if (typ >= GRAY_DRAGON_SCALES && typ <= YELLOW_DRAGON_SCALES) {
@@ -6461,25 +6461,24 @@ char *prefix;
 	 */
 	if (obj->oeroded && !iscrys) {
 		switch (obj->oeroded) {
-			case 2:	strcat(prefix, "very "); break;
-			case 3:	strcat(prefix, "thoroughly "); break;
+			case 2:	strcat(prefix, flags.simpledescs ? "2x " : "very "); break;
+			case 3:	strcat(prefix, flags.simpledescs ? "3x " : "thoroughly "); break;
 		}			
 		strcat(prefix, is_rustprone(obj) ? "rusty " : "burnt ");
 	}
 	if (obj->oeroded2 && !iscrys) {
 		switch (obj->oeroded2) {
-			case 2:	strcat(prefix, "very "); break;
-			case 3:	strcat(prefix, "thoroughly "); break;
+			case 2:	strcat(prefix, flags.simpledescs ? "2x " : "very "); break;
+			case 3:	strcat(prefix, flags.simpledescs ? "3x " : "thoroughly "); break;
 		}			
-		strcat(prefix, is_corrodeable(obj) ? "corroded " :
-			"rotted ");
+		strcat(prefix, is_corrodeable(obj) ? (flags.simpledescs ? "etched " : "corroded ") : "rotted ");
 	}
 	if (obj->otyp == BELL_OF_OPENING) {
-		if (u.bellimbued) strcat(prefix, "imbued ");
-		else strcat(prefix, "non-imbued ");
+		if (u.bellimbued) strcat(prefix, flags.simpledescs ? "imb " : "imbued ");
+		else strcat(prefix, flags.simpledescs ? "0imb " : "non-imbued ");
 	}
 	if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) {
-		if (u.amuletcompletelyimbued) strcat(prefix, "fully imbued ");
+		if (u.amuletcompletelyimbued) strcat(prefix, flags.simpledescs ? "3ximbued " : "fully imbued ");
 		else {
 			int countimbues = 0;
 			if (u.amuletimbued1) countimbues++;
@@ -6487,16 +6486,16 @@ char *prefix;
 			if (u.amuletimbued3) countimbues++;
 			switch (countimbues) {
 				case 0:
-					strcat(prefix, "non-imbued ");
+					strcat(prefix, flags.simpledescs ? "plain " : "non-imbued ");
 					break;
 				case 1:
-					strcat(prefix, "partly imbued (1 of 3) ");
+					strcat(prefix, flags.simpledescs ? "1ximb " : "partly imbued (1 of 3) ");
 					break;
 				case 2:
-					strcat(prefix, "partly imbued (2 of 3) ");
+					strcat(prefix, flags.simpledescs ? "2ximb " : "partly imbued (2 of 3) ");
 					break;
 				case 3:
-					strcat(prefix, "fully imbued ");
+					strcat(prefix, flags.simpledescs ? "f-imb " : "fully imbued ");
 					break;
 			}
 		}
@@ -6504,7 +6503,7 @@ char *prefix;
 
 	if (obj->rknown && obj->oerodeproof)
 		strcat(prefix,
-		       iscrys ? "fixed " :
+		       (iscrys || flags.simpledescs) ? "fixed " :
 			/* Amy grepping target: "materialeffect" */
 			(objects[(obj)->otyp].oc_material == MT_VIVA) ? "fissionproof " :
 			(objects[(obj)->otyp].oc_material == MT_INKA) ? "beautified " :
@@ -6555,11 +6554,11 @@ register struct obj *obj;
 	} else strcpy(prefix, "a ");
 
 	if (obj->selfmade && !PlayerUninformation) {
-		strcat(prefix,"selfmade ");
+		strcat(prefix, flags.simpledescs ? "own " : "selfmade ");
 	}
 
 	if (obj->oinvisreal && !PlayerUninformation) strcat(prefix,"hidden ");
-	if (obj->oinvis && !obj->oinvisreal && !PlayerUninformation) strcat(prefix,"invisible ");
+	if (obj->oinvis && !obj->oinvisreal && !PlayerUninformation) strcat(prefix, flags.simpledescs ? "invis " : "invisible ");
 	if (/*wizard && */is_hazy(obj) && !PlayerUninformation) strcat(prefix,"hazy ");
 /* there is absolutely no reason to not display this outside of wizard mode! --Amy */
 
@@ -6618,19 +6617,19 @@ register struct obj *obj;
 	     * always allow "uncursed potion of water"
 	     */
 	    if (Hallucination ? !rn2(10) : obj->cursed) {
-		if (Hallucination ? !rn2(1000) : obj->stckcurse) strcat(prefix, "sticky ");
-		if (Hallucination ? !rn2(1000) : obj->morgcurse) strcat(prefix, "morgothian cursed ");
+		if (Hallucination ? !rn2(1000) : obj->stckcurse) strcat(prefix, flags.simpledescs ? "stk " : "sticky ");
+		if (Hallucination ? !rn2(1000) : obj->morgcurse) strcat(prefix, flags.simpledescs ? "morg cursed " : "morgothian cursed ");
 		if (Hallucination ? !rn2(1000) : obj->evilcurse) strcat(prefix, "foul cursed ");
-		if (Hallucination ? !rn2(1000) : obj->bbrcurse) strcat(prefix, "blackbreath cursed ");
+		if (Hallucination ? !rn2(1000) : obj->bbrcurse) strcat(prefix, flags.simpledescs ? "bbr cursed " : "blackbreath cursed ");
 		if (!(obj->morgcurse || obj->evilcurse || obj->bbrcurse)) {
-			if (Hallucination ? !rn2(100) : obj->prmcurse) strcat(prefix, "prime cursed ");
-			else if (Hallucination ? !rn2(10) : obj->hvycurse) strcat(prefix, "heavily cursed ");
+			if (Hallucination ? !rn2(100) : obj->prmcurse) strcat(prefix, flags.simpledescs ? "prm cursed " : "prime cursed ");
+			else if (Hallucination ? !rn2(10) : obj->hvycurse) strcat(prefix, flags.simpledescs ? "hvy cursed " : "heavily cursed ");
 			else strcat(prefix, "cursed ");
 			}
 		}
 	    else if (Hallucination ? !rn2(10) : obj->blessed)
 		strcat(prefix, "blessed ");
-	    else strcat(prefix, "uncursed "); /*if ((!obj->known || !objects[obj->otyp].oc_charged ||
+	    else strcat(prefix, flags.simpledescs ? "normal " : "uncursed "); /*if ((!obj->known || !objects[obj->otyp].oc_charged ||
 		      (obj->oclass == ARMOR_CLASS ||
 		       obj->oclass == RING_CLASS)) */
 		/* For most items with charges or +/-, if you know how many
@@ -6650,12 +6649,12 @@ register struct obj *obj;
 			&& obj->otyp != FAKE_AMULET_OF_YENDOR
 			&& obj->otyp != AMULET_OF_YENDOR
 			&& !Role_if(PM_PRIEST) && !Role_if(PM_CHEVALIER) && !Race_if(PM_VEELA) && !Role_if(PM_NECROMANCER))
-		strcat(prefix, "uncursed ");*/
+		strcat(prefix, flags.simpledescs ? "normal " : "uncursed ");*/
 	}
 
-	if (Hallucination ? !rn2(100) : (obj->greased && !PlayerUninformation) ) strcat(prefix, (obj->greased == 3) ? "thoroughly greased " : (obj->greased == 2) ? "strongly greased " : "greased ");
+	if (Hallucination ? !rn2(100) : (obj->greased && !PlayerUninformation) ) strcat(prefix, (obj->greased == 3) ? (flags.simpledescs ? "3xgreased " : "thoroughly greased ") : (obj->greased == 2) ? (flags.simpledescs ? "2xgreased " : "strongly greased ") : "greased ");
 
-	if (Hallucination ? !rn2(100) : obj->finalcancel) strcat(prefix, "finalized ");
+	if (Hallucination ? !rn2(100) : obj->finalcancel) strcat(prefix, flags.simpledescs ? "final " : "finalized ");
 
 	switch(obj->oclass) {
 	case SCROLL_CLASS:
@@ -6664,12 +6663,12 @@ register struct obj *obj;
 	case AMULET_CLASS:
 		if (!PlayerUninformation) add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_AMUL)
-			strcat(bp, " (being worn)");
+			strcat(bp, flags.simpledescs ? " (worn)" : " (being worn)");
 		break;
 	case IMPLANT_CLASS:
 		if (!PlayerUninformation) add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_IMPLANT)
-			strcat(bp, " (being worn)");
+			strcat(bp, flags.simpledescs ? " (worn)" : " (being worn)");
 
 		if (Hallucination)
 			break;
@@ -6682,7 +6681,7 @@ register struct obj *obj;
 		break;
 	case WEAPON_CLASS:
 		if(ispoisoned && !PlayerUninformation)
-			strcat(prefix, "poisoned ");
+			strcat(prefix, flags.simpledescs ? "pois " : "poisoned ");
 plus:
 		add_erosion_words(obj, prefix);
 		if (Hallucination)
@@ -6711,8 +6710,8 @@ plus:
 		break;
 	case ARMOR_CLASS:
 		if(obj->owornmask & W_ARMOR)
-			strcat(bp, (obj == uskin) ? " (embedded in your skin)" :
-				" (being worn)");
+			strcat(bp, (obj == uskin) ? (flags.simpledescs ? " (skin)" : " (embedded in your skin)") :
+				(flags.simpledescs ? " (worn)" : " (being worn)") );
 		goto plus;
 	case TOOL_CLASS:
 		/* weptools already get this done when we go to the +n code */
@@ -6723,7 +6722,7 @@ plus:
 		if(obj->owornmask & (W_TOOL /* blindfold */
 				| W_SADDLE
 				)) {
-			strcat(bp, " (being worn)");
+			strcat(bp, flags.simpledescs ? " (worn)" : " (being worn)");
 			break;
 		}
 		if (obj->otyp == LEATHER_LEASH && obj->leashmon != 0) {
@@ -6790,8 +6789,8 @@ charges:
 	case RING_CLASS:
 		add_erosion_words(obj, prefix);
 ring:
-		if(obj->owornmask & W_RINGR) strcat(bp, " (on right ");
-		if(obj->owornmask & W_RINGL) strcat(bp, " (on left ");
+		if(obj->owornmask & W_RINGR) strcat(bp, flags.simpledescs ? " (right " : " (on right ");
+		if(obj->owornmask & W_RINGL) strcat(bp, flags.simpledescs ? " (left " : " (on left ");
 		if(obj->owornmask & W_RING) {
 		    strcat(bp, body_part(HAND));
 		    strcat(bp, ")");
@@ -6841,9 +6840,9 @@ ring:
 			strcat(prefix, mons[obj->corpsenm].mname);
 			strcat(prefix, " ");
 			if (obj->spe == 2)
-			    strcat(bp, " (with your markings)");
+			    strcat(bp, flags.simpledescs ? " (mark)" : " (with your markings)");
 			else if (obj->spe)
-			    strcat(bp, " (laid by you)");
+			    strcat(bp, flags.simpledescs ? " (yours)" : " (laid by you)");
 		    }
 		}
 		if (obj->otyp == MEAT_RING) goto ring;
@@ -6857,7 +6856,7 @@ ring:
 		goto plus;
 		add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_BALL)
-			strcat(bp, " (chained to you)");
+			strcat(bp, flags.simpledescs ? " (chained)" : " (chained to you)");
 			break;
 	case GEM_CLASS:
 		/*add_erosion_words(obj, prefix);*/
@@ -6871,17 +6870,16 @@ ring:
 			const char *hand_s = body_part(HAND);
 
 			if (bimanual(obj)) hand_s = makeplural(hand_s);
-			sprintf(eos(bp), " (weapon in %s)", hand_s);
+			sprintf(eos(bp), flags.simpledescs ? " (%s)" : " (weapon in %s)", hand_s);
 		}
 	}
 	if(obj->owornmask & W_SWAPWEP) {
 		if (u.twoweap)
-			sprintf(eos(bp), " (wielded in other %s)",
-				body_part(HAND));
+			sprintf(eos(bp), flags.simpledescs ? " (%s)" : " (wielded in other %s)", body_part(HAND));
 		else
-			strcat(bp, " (alternate weapon; not wielded)");
+			strcat(bp, flags.simpledescs ? " (swap)" : " (alternate weapon; not wielded)");
 	}
-	if(obj->owornmask & W_QUIVER) strcat(bp, " (in quiver)");
+	if(obj->owornmask & W_QUIVER) strcat(bp, flags.simpledescs ? " (quiver)" : " (in quiver)");
 	if (!Hallucination && obj->unpaid) {
 		xchar ox, oy; 
 		long quotedprice = unpaid_cost(obj);
