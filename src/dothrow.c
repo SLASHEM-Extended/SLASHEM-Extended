@@ -214,6 +214,12 @@ int thrown;
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
 
+	    if (launcher && objects[launcher->otyp].oc_skill == P_FIREARM && !(PlayerCannotUseSkills) && P_SKILL(P_SQUEAKING) >= P_MASTER && P_SKILL(P_GUN_CONTROL) >= P_MASTER && Upolyd) {
+			multishot++;
+			if (P_SKILL(P_SQUEAKING) >= P_GRAND_MASTER && P_SKILL(P_GUN_CONTROL) >= P_GRAND_MASTER) multishot++;
+			if (P_SKILL(P_SQUEAKING) >= P_SUPREME_MASTER && P_SKILL(P_GUN_CONTROL) >= P_SUPREME_MASTER) multishot++;
+	    }
+
 	    if (launcher && launcher->otyp == CATAPULT && (!obj || obj->otyp != ROCK)) multishot += rnd(5);
 	    if (launcher && launcher->otyp == CATAPULT && obj && obj->otyp == ROCK) multishot += rno(5);
 
