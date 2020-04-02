@@ -9960,6 +9960,49 @@ boolean amnesia;
 			used = TRUE;
 			break;
 		}
+		if (obj->otyp == POT_OIL) {
+			You("pollute the environment.");
+			adjalign(-sgn(u.ualign.type));
+			if (u.ualign.type == A_LAWFUL) {
+				u.ualign.sins++;
+				u.alignlim--;
+			}
+			if (!rn2((u.ualign.type == A_LAWFUL) ? 3 : 10)) {
+				int copcnt;
+				u.cnd_kopsummonamount++;
+				copcnt = rnd(monster_difficulty() ) + 1;
+				if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
+				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+				if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
+				if (RngeAntiGovernment) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
+			      while(--copcnt >= 0) {
+					(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+
+					if (!rn2(100)) {
+
+						int koptryct = 0;
+						int kox, koy;
+
+						for (koptryct = 0; koptryct < 2000; koptryct++) {
+							kox = rn1(COLNO-3,2);
+							koy = rn2(ROWNO);
+
+							if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
+								(void) maketrap(kox, koy, KOP_CUBE, 0);
+								break;
+								}
+						}
+					}
+				} /* while */
+			}
+		}
 		if (amnesia)
 		    pline("%s %s completely.", Your_buf, aobjnam(obj,"dilute"));
 		else
