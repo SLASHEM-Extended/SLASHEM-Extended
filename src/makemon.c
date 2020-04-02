@@ -23304,6 +23304,7 @@ loopback:
 		if (ct > 0 && (iserosator && dmgtype(ptr, AD_UNPR) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_INCANTIFIER) && dmgtype(ptr, AD_NIVE) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_MONGUNG) && dmgtype(ptr, AD_NIVE) )) ct += 2;
+		if (ct > 0 && (isfeminizer && dmgtype(ptr, AD_FEMI) )) ct += 10;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -24465,6 +24466,7 @@ int     spc;
 		if ((iserosator && dmgtype(&mons[last], AD_UNPR) )) num += 10;
 		if ((Race_if(PM_INCANTIFIER) && dmgtype(&mons[last], AD_NIVE) )) num += 1;
 		if ((Race_if(PM_MONGUNG) && dmgtype(&mons[last], AD_NIVE) )) num += 2;
+		if ((isfeminizer && dmgtype(&mons[last], AD_FEMI) )) num += 10;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -25301,6 +25303,7 @@ int     spc;
 		if ((iserosator && dmgtype(&mons[first], AD_UNPR) )) num -= 10;
 		if ((Race_if(PM_INCANTIFIER) && dmgtype(&mons[first], AD_NIVE) )) num -= 1;
 		if ((Race_if(PM_MONGUNG) && dmgtype(&mons[first], AD_NIVE) )) num -= 2;
+		if ((isfeminizer && dmgtype(&mons[first], AD_FEMI) )) num -= 10;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 

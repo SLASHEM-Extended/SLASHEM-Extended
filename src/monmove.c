@@ -594,6 +594,10 @@ register struct monst *mtmp;
 
 	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 
+	/* huro troves are for the matrayser race: they're only there as a means of porting your possessions to a different
+	 * dungeon level at game start; we don't want them to waste potions of invisibility or similar stuff --Amy */
+	if (mdat == &mons[PM_HURO_TROVE]) return 0;
+
 	/* there is a chance we will wake it */
 	if (mtmp->msleeping && !disturb(mtmp)) {
 		if (Hallucination) newsym(mtmp->mx,mtmp->my);

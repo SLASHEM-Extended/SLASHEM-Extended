@@ -10442,10 +10442,12 @@ ghnhom4:
 		makerooms();
 	sort_rooms();
 
-	/* construct stairs (up and down in different rooms if possible) */
+	/* construct stairs (up and down in different rooms if possible); stairseeker needs to make changes here
+	 * see below */
 	croom = &rooms[rn2(nroom)];
-	if (!Is_botlevel(&u.uz))
-	     mkstairs(somex(croom), somey(croom), 0, croom);	/* down */
+	if (!Is_botlevel(&u.uz) && !isstairseeker) {
+		mkstairs(somex(croom), somey(croom), 0, croom);	/* down */
+	}
 	if (nroom > 1) {
 	    troom = croom;
 	    croom = &rooms[rn2(nroom-1)];
@@ -10460,7 +10462,7 @@ ghnhom4:
 		sy = somey(croom);
 		stairattempts++;
 	    } while((stairattempts > 50000) ? reallyoccupied(sx, sy) : occupied(sx, sy));
-	    mkstairs(sx, sy, 1, croom);	/* up */
+	    if (!isstairseeker) mkstairs(sx, sy, 1, croom);	/* up */
 	}
 
 	branchp = Is_branchlev(&u.uz);	/* possible dungeon branch */
@@ -10471,6 +10473,56 @@ ghnhom4:
 #endif
 	makecorridors();
 	make_niches();
+
+	/* stairseeker mode: try hard to find an OK location, but fall back to the regular stair creation method
+	 * if we fail to find a good location after 50k tries. --Amy
+	 * we need to do that here, after corridors have already been made, to ensure that the stair can be in them */
+skip0:
+	if (isstairseeker) {
+		int steetries = 0;
+
+		if (!Is_botlevel(&u.uz)) {
+			while (steetries < 50000) {
+				steetries++;
+				x = rnd(COLNO-1);
+				y = rn2(ROWNO);
+				if (ACCESSIBLE(levl[x][y].typ) && !(t_at(x,y) && ((t_at(x,y))->ttyp == MAGIC_PORTAL)) && (levl[x][y].typ == CORR || levl[x][y].typ == ROOM) && !On_stairs(x, y)) break; /* we got a good location! */
+			}
+			if (!ACCESSIBLE(levl[x][y].typ) || (t_at(x,y) && ((t_at(x,y))->ttyp == MAGIC_PORTAL)) || On_stairs(x, y)) {
+				croom = &rooms[rn2(nroom)];
+				mkstairs(somex(croom), somey(croom), 0, croom);	/* down */
+			} else {
+				mkstairs(x, y, 0, (struct mkroom *)0);	/* down */
+			}
+		}
+
+		if (u.uz.dlevel != 1) {
+			steetries = 0;
+			while (steetries < 50000) {
+				steetries++;
+				x = rnd(COLNO-1);
+				y = rn2(ROWNO);
+				if (ACCESSIBLE(levl[x][y].typ) && !(t_at(x,y) && ((t_at(x,y))->ttyp == MAGIC_PORTAL)) && (levl[x][y].typ == CORR || levl[x][y].typ == ROOM) && !On_stairs(x, y)) break; /* we got a good location! */
+			}
+			if (!ACCESSIBLE(levl[x][y].typ) || (t_at(x,y) && ((t_at(x,y))->ttyp == MAGIC_PORTAL)) || On_stairs(x, y)) {
+				xchar sx, sy;
+				register int stairattempts = 0; /* see reallyoccupied function --Amy */
+				do {
+					sx = somex(croom);
+					sy = somey(croom);
+					stairattempts++;
+				} while((stairattempts > 50000) ? reallyoccupied(sx, sy) : occupied(sx, sy));
+				mkstairs(sx, sy, 1, croom);	/* up */
+			} else {
+				mkstairs(x, y, 1, (struct mkroom *)0);	/* up */
+			}
+		}
+
+	} /* end stairseeker code */
+
+#ifdef REINCARNATION
+	if (Is_rogue_level(&u.uz)) goto skip1;
+#endif
 
 	if (!rn2(5)) make_ironbarwalls(rn2(20) ? rn2(20) : rn2(50));
 
@@ -10735,7 +10787,7 @@ gehennomxtra:
 	/*}*/
 
 #ifdef REINCARNATION
-skip0:
+skip1:
 #endif
 	/* Place multi-dungeon branch. */
 	place_branch(branchp, 0, 0);
