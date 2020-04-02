@@ -3125,7 +3125,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapThai && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
+		if (FemtrapActiveThai && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
 			pline("For some reason, you have to take a shit right now.");
 
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
@@ -3143,7 +3143,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapYvonne && (multi >= 0) && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
+		if (FemtrapActiveYvonne && (multi >= 0) && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
 			pline("A toilet! You feel that you have to take a shit, and so you do.");
 
 			use_skill(P_SQUEAKING, 10);
@@ -3170,7 +3170,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapMaurah && !rn2(100)) {
+		if (FemtrapActiveMaurah && !rn2(100)) {
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
 			u.cnd_fartingcount++;
@@ -3190,7 +3190,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapSarah && !rn2(250)) {
+		if (FemtrapActiveSarah && !rn2(250)) {
 
 			int x, y;
 			x = rn1(COLNO-3,2);
@@ -3202,7 +3202,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapClaudia && !rn2(100)) {
+		if (FemtrapActiveClaudia && !rn2(100)) {
 
 			int x, y;
 			x = rn1(COLNO-3,2);
@@ -3226,7 +3226,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapClaudia && !rn2(250)) {
+		if (FemtrapActiveClaudia && !rn2(250)) {
 			make_confused(HConfusion + rnd(20), FALSE);
 			set_itimeout(&HeavyConfusion, HConfusion);
 			pline("Whoops, you're getting really dizzy.");
@@ -3235,7 +3235,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapElif && !rn2(100)) {
+		if (FemtrapActiveElif && !rn2(100)) {
 
 			switch (rnd(4)) {
 
@@ -3279,7 +3279,7 @@ trapsdone:
 
 		}
 
-		if (FemaleTrapNatalje) {
+		if (FemtrapActiveNatalje) {
 			if ((u.ux != u.nataljetrapx) || (u.uy != u.nataljetrapy)) {
 				u.nataljetrapturns = moves;
 				u.nataljetrapx = u.ux;
@@ -5041,6 +5041,11 @@ newbossF:
 			removeforgottenspell();
 		}
 
+		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
+		if (!rn2(5000)) u.feminizeffect = rnd(22); /* amount of feminism trap effects; keyword: "marlena" */
+
+		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+
 		if (uarmf && uarmf->oartifact == ART_SUBLEVEL_FLOODING && !rn2(10000)) {
 			int madepoolQ = 0;
 
@@ -6071,7 +6076,7 @@ newbossX:
 			u.youaredead = 0;
 		}
 
-		if (FemaleTrapFemmy && !rn2(500) ) {
+		if (FemtrapActiveFemmy && !rn2(500) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -6103,7 +6108,7 @@ newbossZ:
 
 		}
 
-		if (FemaleTrapLudgera && !rn2(500) ) {
+		if (FemtrapActiveLudgera && !rn2(500) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -6926,7 +6931,7 @@ newbossB:
 			}
 		}
 
-		if (FemaleTrapFemmy && !rn2(200)) {
+		if (FemtrapActiveFemmy && !rn2(200)) {
 
 			int tryct = 0;
 			int x, y;
@@ -6977,7 +6982,7 @@ newbossB:
 
 		}
 
-		if (FemaleTrapFemmy && !rn2(200)) {
+		if (FemtrapActiveFemmy && !rn2(200)) {
 
 			int tryct = 0;
 			int x, y;
@@ -7009,7 +7014,7 @@ newbossB:
 			}
 		}
 
-		if (FemaleTrapAnastasia && !rn2(250) ) {
+		if (FemtrapActiveAnastasia && !rn2(250) ) {
 			int tryct = 0;
 			int x, y;
 
@@ -7353,7 +7358,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (FemaleTrapSolvejg && !rn2(200)) {
+		if (FemtrapActiveSolvejg && !rn2(200)) {
 
 			aggravate();
 			Your("loud voice aggravates the denizens of the dungeon.");
@@ -7615,7 +7620,7 @@ newboss:
 
 		}
 
-		if (FemaleTrapYvonne && !rn2(250)) {
+		if (FemtrapActiveYvonne && !rn2(250)) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -10970,6 +10975,22 @@ boolean new_game;	/* false => restoring an old game */
 		iflags.winggraphics = FALSE;
 	}
 
+	/* matrayser hybrid race: all of the player's starting inventory items are levelported away
+	 * after that has happened, all the item materials are shuffled --Amy */
+	if (ismatrayser && new_game) {
+		int mattries = 0;
+		register struct monst *offmon;
+		while ((inv_cnt() > 0) && mattries++ < 50000) {
+			if ((offmon = makemon(&mons[PM_HURO_TROVE], 0, 0, MM_ANGRY)) != 0) {
+				char bufof[BUFSZ];
+				bufof[0] = '\0';
+				steal(offmon, bufof, TRUE);
+				u_teleport_monB(offmon, FALSE);
+			}
+		}
+		matraysershuffle();
+	}
+
 	if (TheInfoIsFucked) {
 		pline("You've forgotten who you are, but you are back.");
 		return;
@@ -11052,6 +11073,9 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridscriptor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "scriptor ");
 	if (flags.hybridunbalancor && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "unbalancor ");
 	if (flags.hybridbeacher && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "beacher ");
+	if (flags.hybridstairseeker && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stairseeker ");
+	if (flags.hybridmatrayser && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "matrayser ");
+	if (flags.hybridfeminizer && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "feminizer ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (new_game) { /* for recursion trap */

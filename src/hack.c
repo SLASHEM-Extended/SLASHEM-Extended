@@ -2282,7 +2282,7 @@ domove()
 				"You are still in a pit." );
 		    }
 
-			if (FemaleTrapNatalje) {
+			if (FemtrapActiveNatalje) {
 				u.nataljetrapturns = moves;
 				u.nataljetrapx = u.ux;
 				u.nataljetrapy = u.uy;
@@ -2355,7 +2355,7 @@ domove()
 
 		} else if (u.utraptype == TT_LAVA) { /* WHO THE HELL MADE THIS INTO A NOREP GAAAAAAH --Amy */
 
-			if (FemaleTrapNatalje) {
+			if (FemtrapActiveNatalje) {
 				u.nataljetrapturns = moves;
 				u.nataljetrapx = u.ux;
 				u.nataljetrapy = u.uy;
@@ -2388,7 +2388,7 @@ domove()
 			return;
 		    }
 
-			if (FemaleTrapNatalje) {
+			if (FemtrapActiveNatalje) {
 				u.nataljetrapturns = moves;
 				u.nataljetrapx = u.ux;
 				u.nataljetrapy = u.uy;
@@ -2412,7 +2412,7 @@ domove()
 		    }
 		} else if (u.utraptype == TT_GLUE) {
 
-			if (FemaleTrapNatalje) {
+			if (FemtrapActiveNatalje) {
 				u.nataljetrapturns = moves;
 				u.nataljetrapx = u.ux;
 				u.nataljetrapy = u.uy;
@@ -2436,7 +2436,7 @@ domove()
 		    }
 		} else if (u.utraptype == TT_INFLOOR) {
 
-			if (FemaleTrapNatalje) {
+			if (FemtrapActiveNatalje) {
 				u.nataljetrapturns = moves;
 				u.nataljetrapx = u.ux;
 				u.nataljetrapy = u.uy;
@@ -2462,7 +2462,7 @@ domove()
 		    }
 		} else {
 
-			if (FemaleTrapNatalje) {
+			if (FemtrapActiveNatalje) {
 				u.nataljetrapturns = moves;
 				u.nataljetrapx = u.ux;
 				u.nataljetrapy = u.uy;

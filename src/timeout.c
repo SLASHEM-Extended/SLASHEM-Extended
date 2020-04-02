@@ -480,7 +480,7 @@ nh_timeout()
 	}
 	if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
 
-	if (u.legscratching > 1 && !FemaleTrapJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");

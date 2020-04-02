@@ -564,8 +564,8 @@ register struct monst *mtmp;
 	mdat = mtmp->data;
 
 	int fartdistance = 1;
-	if (FemaleTrapKatharina) fartdistance = 15;
-	if (FemaleTrapKatharina && mtmp->crapbonus) fartdistance = 100;
+	if (FemtrapActiveKatharina) fartdistance = 15;
+	if (FemtrapActiveKatharina && mtmp->crapbonus) fartdistance = 100;
 
 	if (TimeStopped) return 0;	/* time stop completely prevents monsters from doing anything --Amy */
 	if (u.stasistime) return 0;	/* stasis does the same --Amy */
@@ -804,7 +804,7 @@ register struct monst *mtmp;
 
 	if (mtmp->fartbonus > 9) mtmp->fartbonus = 9; /* fail save, gaaaaaah */
 
-	if (FemaleTrapMeltem && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
+	if (FemtrapActiveMeltem && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -841,7 +841,7 @@ register struct monst *mtmp;
 
 		if (!rn2(20)) increasesanity(1);
 
-		while (FemaleTrapElena && !rn2(3)) {
+		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 			u.cnd_fartingcount++;
@@ -885,21 +885,21 @@ register struct monst *mtmp;
 
 	if (mdat->msound == MS_FART_QUIET && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
-		while (FemaleTrapElena && !rn2(3)) {
+		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
 	}
 	if (mdat->msound == MS_FART_NORMAL && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
-		while (FemaleTrapElena && !rn2(3)) {
+		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
 	}
 	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
-		while (FemaleTrapElena && !rn2(3)) {
+		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
@@ -944,7 +944,7 @@ register struct monst *mtmp;
 
 	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
-		while (FemaleTrapElena && !rn2(3)) {
+		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
@@ -1151,7 +1151,7 @@ register struct monst *mtmp;
 				if (!rn2(100)) {
 					char bufof[BUFSZ];
 					bufof[0] = '\0';
-					steal(mtmp, bufof, FALSE);
+					steal(mtmp, bufof, FALSE, FALSE);
 				}
 
 				break;

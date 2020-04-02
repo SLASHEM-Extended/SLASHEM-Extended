@@ -147,6 +147,40 @@ shuffle(o_low, o_high, domaterial)
 	}
 }
 
+/* for matrayser race: shuffle materials per item class --Amy */
+void
+matraysershuffle()
+{
+	int first, last, oclass;
+	int i, lastgood, k, savemat;
+
+	for (oclass = 1; oclass < MAXOCLASSES; oclass++) {
+		first = bases[oclass];
+		last = first+1;
+		while (last < NUM_OBJECTS && objects[last].oc_class == oclass)
+			last++;
+		lastgood = last-1;
+		/* lastgood stays constant from here on */
+
+		if (objects[lastgood].oc_class != oclass) {
+			impossible("matraysershuffle() ERROR: object %d is not object class %d!", lastgood, oclass);
+		}
+
+		/* shuffle(first, lastgood, TRUE);
+		 * first = o_low, lastgood = o_high */
+
+		for (i = first; i <= lastgood; i++) {
+			k = i + rn2(lastgood - i + 1);
+
+			savemat = objects[i].oc_material;
+			objects[i].oc_material = objects[k].oc_material;
+			objects[k].oc_material = savemat;
+		}
+
+	}
+
+}
+
 /* A function that assigns random materials to a few objects, called once at game start. --Amy */
 void
 randommaterials()

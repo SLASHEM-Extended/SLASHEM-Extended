@@ -6014,6 +6014,21 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  2, 0,  1, 0,  0, 0 }		/* Energy */
 },
+{	"feminizer", "feminizer", "feminism", "Fem",
+	{0, 0},
+	PM_FEMINIZER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"fenek", "fenek", "fenekhood", "Fen",
 	{0, 0},
 	PM_FENEK, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -6948,6 +6963,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
+},
+{	"matrayser", "matrayser", "material raise", "Mat",
+	{0, 0},
+	PM_MATRAYSER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"maymes", "maymes", "maymestry", "May",
 	{0, 0},
@@ -7943,6 +7973,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  4, 0,  5, 0,  5, 0 }		/* Energy */
+},
+{	"stairseeker", "stairseeker", "search for the stairs", "Sta",
+	{0, 0},
+	PM_STAIRSEEKER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"sticker", "sticky", "stickiness", "Sti",
 	{0, 0},
@@ -9004,7 +9049,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(39)) {
+			switch (rnd(42)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -9084,12 +9129,18 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridunbalancor = 1; break;
 				case 39:
 					flags.hybridbeacher = 1; break;
+				case 40:
+					flags.hybridstairseeker = 1; break;
+				case 41:
+					flags.hybridmatrayser = 1; break;
+				case 42:
+					flags.hybridfeminizer = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(39)) {
+				switch (rnd(42)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -9207,6 +9258,15 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 39:
 						if (!(flags.hybridbeacher)) {flags.hybridbeacher = 1; flags.hybridization++; break;
+						}
+					case 40:
+						if (!(flags.hybridstairseeker)) {flags.hybridstairseeker = 1; flags.hybridization++; break;
+						}
+					case 41:
+						if (!(flags.hybridmatrayser)) {flags.hybridmatrayser = 1; flags.hybridization++; break;
+						}
+					case 42:
+						if (!(flags.hybridfeminizer)) {flags.hybridfeminizer = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -9364,7 +9424,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(39)) {
+			switch (rnd(42)) {
 
 			case 1:
 				if (flags.hybridangbander) {
@@ -9678,16 +9738,39 @@ int type;
 					pline("You no longer have the beacher hybrid race.");
 				}
 				break;
+			case 40:
+				if (flags.hybridstairseeker) {
+					tryct = 1000;
+					flags.hybridstairseeker = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the stairseeker hybrid race.");
+				}
+				break;
+			case 41:
+				if (flags.hybridmatrayser) {
+					tryct = 1000;
+					flags.hybridmatrayser = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the matrayser hybrid race.");
+				}
+				break;
+			case 42:
+				if (flags.hybridfeminizer) {
+					tryct = 1000;
+					flags.hybridfeminizer = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the feminizer hybrid race.");
+				}
+				break;
 
-			}
-
+			} /* end switch case */
 		}
 
 	} else {
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(39)) {
+			switch (rnd(42)) {
 
 			case 1:
 				if (!flags.hybridangbander) {
@@ -10001,8 +10084,32 @@ int type;
 					pline("You now have the beacher hybrid race.");
 				}
 				break;
+			case 40:
+				if (!flags.hybridstairseeker) {
+					tryct = 1000;
+					flags.hybridstairseeker = TRUE;
+					flags.hybridization++;
+					pline("You now have the stairseeker hybrid race.");
+				}
+				break;
+			case 41:
+				if (!flags.hybridmatrayser) {
+					tryct = 1000;
+					flags.hybridmatrayser = TRUE;
+					flags.hybridization++;
+					pline("You now have the matrayser hybrid race.");
+				}
+				break;
+			case 42:
+				if (!flags.hybridfeminizer) {
+					tryct = 1000;
+					flags.hybridfeminizer = TRUE;
+					flags.hybridization++;
+					pline("You now have the feminizer hybrid race.");
+				}
+				break;
 
-			}
+			} /* end switch case */
 
 		}
 

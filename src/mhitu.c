@@ -193,13 +193,13 @@ on the first floor, especially when you're playing as something with drain resis
 			pline("%s kicks you%c", Monnam(mtmp),
 				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
 
-			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapJeanetta) {
+			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
 				u.legscratching++;
 				losehp(rno(u.legscratching + 1), "being scratched by Jeanetta's little boots", KILLED_BY);
 			}
 
-			if (FemaleTrapKati && humanoid(mtmp->data) && is_female(mtmp->data)) {
+			if (FemtrapActiveKati && humanoid(mtmp->data) && is_female(mtmp->data)) {
 				pline("%s painfully kicks you in the %s with her sexy Kati shoes!", Monnam(mtmp), makeplural(body_part(LEG)));
 				monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -263,7 +263,7 @@ elenaWDG:
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slams %s sandals against your shins! It hurts!", Monnam(mtmp), mhis(mtmp) );
 				losehp(d(1,monsterlev), "sandal to the shin bone", KILLED_BY_AN);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elenaWDG;
 				}
@@ -279,7 +279,7 @@ elena1:
 				pline("%s slams %s plateau soles against your shins, and stomps your %s!", Monnam(mtmp), mhis(mtmp), makeplural(body_part(FOOT)) );
 				losehp(d(1,monsterlev), "being kicked by an atsuzoko boot", KILLED_BY);
 				make_stunned(HStun + (monsterlev * rnd(3)), FALSE);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena1;
 				}
@@ -304,7 +304,7 @@ elena2:
 				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
 			    set_wounded_legs(side, HWounded_legs + monsterlev);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena2;
 				}
@@ -322,7 +322,7 @@ elena3:
 				badeffect();
 				if (!rn2(2)) badeffect();
 				if (!rn2(3)) badeffect();
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena3;
 				}
@@ -344,7 +344,7 @@ elena4:
 				if (!rn2(3) && !(Role_if(PM_COURIER)) ) pushplayer(FALSE);
 				if (Role_if(PM_COURIER)) pline("But since you don't actually have a head, you're unharmed.");
 				else losehp(monsterlev, "sky-high heel", KILLED_BY_AN);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena4;
 				}
@@ -450,7 +450,7 @@ elena5:
 
 				randomnastytrapeffect(monsterlev, 1000);
 
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena5;
 				}
@@ -465,7 +465,7 @@ elena6:
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s rolls over you with %s roller blades!", Monnam(mtmp), mhis(mtmp) );
 				badeffect();
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena6;
 				}
@@ -482,7 +482,7 @@ elena7:
 				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
 				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
 			    set_wounded_legs(side, HWounded_legs + monsterlev);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena7;
 				}
@@ -498,7 +498,7 @@ elena8:
 				monsterlev *= rnd(10);
 				pline("%s kicks you in the ass!", Monnam(mtmp) );
 				morehungry(monsterlev);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena8;
 				}
@@ -515,7 +515,7 @@ elena9:
 				pline("%s slams %s dancing shoes against your shins! You stagger...", Monnam(mtmp), mhis(mtmp) );
 				make_stunned(HStun + monsterlev, FALSE);
 				losehp(1, "soft dancing shoe", KILLED_BY_AN);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena9;
 				}
@@ -529,7 +529,7 @@ elena10:
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slides %s mocassins over your %ss, opening your arteries and squirting %s everywhere!", Monnam(mtmp), mhis(mtmp), body_part(HAND), body_part(BLOOD) );
 				    incr_itimeout(&Glib, monsterlev);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena10;
 				}
@@ -544,7 +544,7 @@ elena11:
 				pline("%s hits your %s with %s sneakers!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
 				    incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
 				losehp(d(1,monsterlev), "soft sneaker to the hand", KILLED_BY_AN);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena11;
 				}
@@ -668,7 +668,7 @@ elena12:
 		    make_feared(HFeared+monsterlev,FALSE);
 				}
 
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena12;
 				}
@@ -699,7 +699,7 @@ elena13:
 					exercise(A_DEX, FALSE);
 				    }
 				}
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena13;
 				}
@@ -736,7 +736,7 @@ elena14:
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
 
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena14;
 				}
@@ -751,7 +751,7 @@ elenalady:
 				monsterlev *= rnd(2);
 				pline("%s scratches over your %s with her block heel!", Monnam(mtmp), body_part(LEG));
 				playerbleed(monsterlev);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elenalady;
 				}
@@ -768,7 +768,7 @@ elenaitaly:
 				pline("%s's high heels scratch your %s very painfully!", Monnam(mtmp), body_part(LEG));
 				playerbleed(monsterlev);
 				badeffect();
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elenaitaly;
 				}
@@ -785,7 +785,7 @@ elenass:
 				pline("%s's razor-sharp stiletto heel scratches very %sy wounds on your %s!", Monnam(mtmp), body_part(BLOOD), body_part(LEG));
 				playerbleed(monsterlev);
 				losehp(rnd(monsterlev), "extremely sharp-edged stiletto sandal", KILLED_BY_AN);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elenass;
 				}
@@ -800,7 +800,7 @@ elena15:
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s does a round-house and painfully hits you with %s combat boots!", Monnam(mtmp), mhis(mtmp) );
 				losehp(d(4,monsterlev), "kung-fu attack", KILLED_BY_AN);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena15;
 				}
@@ -831,7 +831,7 @@ elena16:
 					}
 					badeffect();
 				}
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena16;
 				}
@@ -847,7 +847,7 @@ elena17:
 				monsterlev *= rnd(5);
 				pline("Those weird high heels look like they should make %s's %s hurt... but they definitely hurt you, and you feel an icy chill!", mon_nam(mtmp), makeplural(mbodypart(mtmp,FOOT)) );
 				make_frozen(HFrozen+monsterlev,FALSE);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena17;
 				}
@@ -870,7 +870,7 @@ elena18:
 				u.uhp += monsterlev;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			    }
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena18;
 				}
@@ -914,14 +914,14 @@ elena19:
 
 					}
 				}
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena19;
 				}
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || (FemaleTrapSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_WINTER_STILETTOS) ) || mtmp->data == &mons[PM_ANIMATED_WINTER_STILETTO] || mtmp->data == &mons[PM_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_HUMAN_WEREWINTERSTILETTO] || mtmp->data == &mons[PM_STILETTO_LOVER] || mtmp->data == &mons[PM_SABRINA_S_CONE_HEELED_COMBAT_BOOT] || (FemtrapActiveSandra && humanoid(mtmp->data) && is_female(mtmp->data) ) || mtmp->data == &mons[PM_BOOT_GIRL] ) ) {
 elena20:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -997,7 +997,7 @@ elena20:
 			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena20;
 				}
@@ -1013,7 +1013,7 @@ elena21:
 				monsterlev *= rn2(20) ? rnd(10) : rnd(20);
 				pline("Argh! Those clunky heels hurt like hell!");
 				losehp(d(1,monsterlev), "big fat clunky heel", KILLED_BY_AN);
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena21;
 				}
@@ -1064,7 +1064,7 @@ elena22:
 				    exercise(A_DEX, FALSE);
 
 				}
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena22;
 				}
@@ -1170,7 +1170,7 @@ elena23:
 				pline("You are hit by %s's high-heeled female footwear, and suddenly become afraid of %s like the little coward you are. Wimp. :-P", l_monnam(mtmp), mhis(mtmp));
 				make_feared(HFeared+monsterlev,FALSE);
 				}
-				if (FemaleTrapElena && !rn2(3)) {
+				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena23;
 				}
@@ -1282,7 +1282,7 @@ elena23:
 		case AT_LASH:
 			pline("%s lashes you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tvoya zadnitsa sobirayetsya poluchit' vzbityye, suka!" : "Rhaeaeaeaei!");
-			if (FemaleTrapJessica && !rn2(3)) {
+			if (FemtrapActiveJessica && !rn2(3)) {
 				pline("Oh no! %s bashed your tender, vulnerable butt cheeks!", Monnam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
 				losehp(monsterlev, "a slap on the butt cheeks", KILLED_BY);
@@ -1330,7 +1330,7 @@ elena23:
 			pline("%s touches you!", Monnam(mtmp));
 			if ((!issoviet || !rn2(5)) && !rn2(3)) losehp(player_shades_of_grey() ? 2 : 1, "icy touch", KILLED_BY_AN);
 
-			if (FemaleTrapJessica && !rn2(3)) {
+			if (FemtrapActiveJessica && !rn2(3)) {
 				pline("Your tender butt cheeks are stimulated by %s's caressing touch... and you start producing tender farting noises.", mon_nam(mtmp));
 				if (!extralongsqueak()) badeffect();
 			}
@@ -2039,8 +2039,8 @@ mattacku(mtmp)
 	if (mtmp->fartbonus) tmp += mtmp->fartbonus;
 	if (mtmp->crapbonus) tmp += mtmp->crapbonus;
 	if (is_table(mtmp->mx, mtmp->my)) tmp += 3;
-	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemaleTrapMadeleine) tmp += 100;
-	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp += rnd(20);
+	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemtrapActiveMadeleine) tmp += 100;
+	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp += rnd(20);
 
 	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
 
@@ -2416,7 +2416,7 @@ elena24:
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					pline("The massive wedge heel thunders painfully on your %s!", body_part(HEAD));
 					losehp(rnd(4),"a wedged little-girl sandal",KILLED_BY);
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena24;
 						}
@@ -2432,7 +2432,7 @@ elena25:
 
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena25;
 						}
@@ -2443,7 +2443,7 @@ elena26:
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					pline("The unyielding plateau boot bonks your %s!", body_part(HEAD));
 					losehp(rnd(10),"a sturdy plateau boot for girls",KILLED_BY);
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena26;
 						}
@@ -2457,7 +2457,7 @@ elenabhs:
 					make_dimmed(HDimmed + rnd(50), TRUE);
 					losehp(rnd(10),"a pretty block-heeled sandal",KILLED_BY);
 
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elenabhs;
 						}
@@ -2470,7 +2470,7 @@ elenaps:
 					pline("Wow, you just can't resist the beautiful prostitute shoe as the massive heel slams on your %s.", body_part(HEAD));
 					losehp(rnd(10),"a sexy prostitute shoe",KILLED_BY);
 					badeffect();
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elenaps;
 						}
@@ -2505,7 +2505,7 @@ elena27:
 						pline("You're seeing little asterisks everywhere.");
 						make_confused(HConfusion + rnd(10), FALSE);
 						}
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena27;
 						}
@@ -2521,7 +2521,7 @@ elena28:
 						else u.uhpmax--; /* lose one hit point */
 						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 						if (u.mh > u.mhmax) u.mh = u.mhmax;
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena28;
 						}
@@ -2544,7 +2544,7 @@ elena29:
 						exercise(A_DEX, FALSE);
 						    }
 						}
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena29;
 						}
@@ -2606,7 +2606,7 @@ elena30:
 					exercise(A_WIS, FALSE);
 
 						}
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena30;
 						}
@@ -2618,7 +2618,7 @@ elena31:
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					pline("Your %s is hit painfully by the high heel!", body_part(HEAD));
 					losehp(rnd(12),"a high-heeled sandal",KILLED_BY);
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena31;
 						}
@@ -2629,7 +2629,7 @@ elena32:
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					pline("Klock! The heel slams on your %s, producing a beautiful sound.", body_part(HEAD));
 					losehp(rnd(20),"a sexy leather pump",KILLED_BY);
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena32;
 						}
@@ -2640,7 +2640,7 @@ elena33:
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					pline("You have an orgasm because the soft inka leather is so lovely.");
 					badeffect();
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena33;
 						}
@@ -2651,7 +2651,7 @@ elena34:
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					pline("Ouch! Despite being incredibly soft, the lady shoe hit your optical nerve!");
 					make_blinded(Blinded + rnd(30),FALSE);
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena34;
 						}
@@ -2669,7 +2669,7 @@ elena35:
 							else if (Free_action) nomul(-rnd(4), "knocked out by a steel-capped sandal", TRUE);
 							else nomul(-rnd(20), "knocked out by a steel-capped sandal", TRUE);
 						}
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena35;
 						}
@@ -2687,7 +2687,7 @@ elena36:
 						if (objX && !rn2(100)) wither_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 
 					    }
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena36;
 						}
@@ -2701,7 +2701,7 @@ elena37:
 					losehp(rnd(10),"a spiked battle boot",KILLED_BY);
 				    if (!rn2(6))
 					poisoned("spikes", A_STR, "poisoned boot spike", 8);
-						if (FemaleTrapElena && !rn2(3)) {
+						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
 							goto elena37;
 						}
@@ -5410,13 +5410,13 @@ elena37:
 				if(invent){
 					You_feel("the tentacles pick through your remaining possessions.");
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE);
+					steal(mtmp, buf, TRUE, FALSE);
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE);
+					steal(mtmp, buf, TRUE, FALSE);
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE);
+					steal(mtmp, buf, TRUE, FALSE);
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE);
+					steal(mtmp, buf, TRUE, FALSE);
 				}
 			break;
 		}
@@ -7690,7 +7690,7 @@ dopois:
 		buf[0] = '\0';
 
 		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
-			switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE)) {
+			switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -7712,7 +7712,7 @@ dopois:
 		} else if (issoviet || (  (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 /* male characters are more susceptible to nymphs --Amy */
-			{ switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE)) {
+			{ switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -11629,7 +11629,7 @@ do_stone2:
 			buf[0] = '\0';
 
 		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
-			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE)) {
+			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -11643,7 +11643,7 @@ do_stone2:
 		} else if (issoviet || ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 			{ 
-			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE)) {
+			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -16839,7 +16839,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) ) )
 			{
 				buf[0] = '\0';
-				switch (steal(mtmp, buf, FALSE)) {
+				switch (steal(mtmp, buf, FALSE, FALSE)) {
 			  case -1:
 				return 2;
 			  case 0:
@@ -16864,7 +16864,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
-			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE)) {
+			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -16884,7 +16884,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
-			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE)) {
+			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE, FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:

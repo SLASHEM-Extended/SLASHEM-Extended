@@ -6898,14 +6898,14 @@ struct monst *mtmp;
 				while (inv_cnt() && inventcount) {
 					char bufof[BUFSZ];
 					bufof[0] = '\0';
-					steal(mtmp, bufof, TRUE);
+					steal(mtmp, bufof, TRUE, TRUE);
 					inventcount--;
 				}
 
 			}
 
 			mdrop_special_objs(mtmp); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
-			u_teleport_monB(mtmp, TRUE);
+			u_teleport_monB(mtmp, FALSE);
 			pline("Some of your possessions have been stolen!");
 
 		}

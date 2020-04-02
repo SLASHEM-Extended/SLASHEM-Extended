@@ -1219,6 +1219,8 @@ struct you {
 	int dorian24;
 	int dorian28;
 
+	int feminizeffect; /* for feminizer race to decide which feminism trap effect is currently active */
+
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];
 	char	starlit3[BUFSZ];

@@ -9420,7 +9420,7 @@ newbossC:
 					while (inv_cnt() && inventcount) {
 						char bufof[BUFSZ];
 						bufof[0] = '\0';
-						steal(offmon, bufof, TRUE);
+						steal(offmon, bufof, TRUE, TRUE);
 						inventcount--;
 					}
 
@@ -9428,7 +9428,7 @@ newbossC:
 
 				mdrop_special_objs(offmon); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
 				if (u.uevent.udemigod && !u.freeplaymode) break;
-				else u_teleport_monB(offmon, TRUE);
+				else u_teleport_monB(offmon, FALSE);
 				pline("Some of your possessions have been stolen!");
 
 			} else pline("Somehow you feel that you just averted a major crisis.");

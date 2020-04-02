@@ -1287,6 +1287,160 @@ have_invisoloadstone()
 }
 
 boolean
+have_femtrapfemmy()
+{
+	if (feminizecheck(1)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmadeleine()
+{
+	if (feminizecheck(2)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmarlena()
+{
+	if (feminizecheck(3)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapanastasia()
+{
+	if (feminizecheck(4)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjessica()
+{
+	if (feminizecheck(5)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapsolvejg()
+{
+	if (feminizecheck(6)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapwendy()
+{
+	if (feminizecheck(7)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapkatharina()
+{
+	if (feminizecheck(8)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapelena()
+{
+	if (feminizecheck(9)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapthai()
+{
+	if (feminizecheck(10)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapelif()
+{
+	if (feminizecheck(11)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapnadja()
+{
+	if (feminizecheck(12)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapsandra()
+{
+	if (feminizecheck(13)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapnatalje()
+{
+	if (feminizecheck(14)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapjeanetta()
+{
+	if (feminizecheck(15)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapyvonne()
+{
+	if (feminizecheck(16)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmaurah()
+{
+	if (feminizecheck(17)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapmeltem()
+{
+	if (feminizecheck(18)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapsarah()
+{
+	if (feminizecheck(19)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapclaudia()
+{
+	if (feminizecheck(20)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapludgera()
+{
+	if (feminizecheck(21)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapkati()
+{
+	if (feminizecheck(22)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;
@@ -1401,6 +1555,18 @@ usingquestarti()
 		}
 	}
 	return(FALSE);
+}
+
+/* for feminizer race: do you have a specific feminism trap effect? --Amy */
+boolean
+feminizecheck(femnumber)
+int femnumber;
+{
+	if (!isfeminizer) return FALSE;
+
+	if (u.feminizeffect == femnumber) return TRUE;
+
+	return FALSE;
 }
 
 /* for SJW role: do you have a specific nastytrap effect at your current XL? --Amy */

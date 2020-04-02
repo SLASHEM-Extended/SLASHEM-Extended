@@ -3995,7 +3995,7 @@ dotalk()
     result = dochat();
     flags.soundok = save_soundok;
 
-	if (FemaleTrapSolvejg) {
+	if (FemtrapActiveSolvejg) {
 
 		pline("Your grating, annoying voice aggravates everyone in your vicinity.");
 

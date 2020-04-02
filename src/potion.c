@@ -1604,7 +1604,7 @@ playerextrinsicaggravatemon()
 
 	if (u.heavyaggravation || EAggravate_monster) return TRUE;
 	if (RngePunishment) return TRUE;
-	if (FemaleTrapSolvejg) return TRUE;
+	if (FemtrapActiveSolvejg) return TRUE;
 	if (Race_if(PM_HC_ALIEN) && !flags.female) return TRUE;
 
 	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK)) return TRUE;

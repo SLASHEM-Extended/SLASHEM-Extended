@@ -20024,7 +20024,7 @@ register int	mmflags;
 		d((int)mtmp->m_lev, 8) + (mtmp->m_lev*rnd(2));
 	}
 
-	if (humanoid(ptr) && is_female(ptr) && FemaleTrapWendy && (mtmp->mhpmax < 2000) ) mtmp->mhpmax += rnd(mtmp->mhpmax);
+	if (humanoid(ptr) && is_female(ptr) && FemtrapActiveWendy && (mtmp->mhpmax < 2000) ) mtmp->mhpmax += rnd(mtmp->mhpmax);
 
 	if (ptr->mlevel > 49) { /* so they still get extra HP --Amy */
 

@@ -2482,7 +2482,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 
-		if (FemaleTrapThai) tmp -= 2;
+		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
 		if (uarm && uarm->otyp == ROBE_OF_WEAKNESS) tmp -= 3;
 
@@ -2569,8 +2569,8 @@ int x;
 		if (Race_if(PM_CUPID)) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
-		if (FemaleTrapSolvejg) tmp += 5;
-		if (FemaleTrapNatalje) tmp += 10;
+		if (FemtrapActiveSolvejg) tmp += 5;
+		if (FemtrapActiveNatalje) tmp += 10;
 
 		if (PlayerInHighHeels && !(PlayerCannotUseSkills)) {
 
@@ -2684,7 +2684,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 
-		if (FemaleTrapThai) tmp -= 2;
+		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
@@ -2724,7 +2724,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 
-		if (FemaleTrapJessica) tmp -= 5;
+		if (FemtrapActiveJessica) tmp -= 5;
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
 

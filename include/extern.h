@@ -1003,6 +1003,7 @@ E boolean have_cursedmagicresstone(void);
 E boolean have_loadboulder(void);
 E boolean have_starlightstone(void);
 E boolean sjwcheck(int);
+E boolean feminizecheck(int);
 E int itemactions(struct obj *,BOOLEAN_P);
 E boolean have_hungerhealer(void);
 
@@ -1257,6 +1258,29 @@ E boolean have_unfairattackstone(void);
 E boolean have_badpartstone(void);
 E boolean have_completelybadpartstone(void);
 E boolean have_evilvariantstone(void);
+
+E boolean have_femtrapfemmy(void);
+E boolean have_femtrapmadeleine(void);
+E boolean have_femtrapmarlena(void);
+E boolean have_femtrapanastasia(void);
+E boolean have_femtrapjessica(void);
+E boolean have_femtrapsolvejg(void);
+E boolean have_femtrapwendy(void);
+E boolean have_femtrapkatharina(void);
+E boolean have_femtrapelena(void);
+E boolean have_femtrapthai(void);
+E boolean have_femtrapelif(void);
+E boolean have_femtrapnadja(void);
+E boolean have_femtrapsandra(void);
+E boolean have_femtrapnatalje(void);
+E boolean have_femtrapjeanetta(void);
+E boolean have_femtrapyvonne(void);
+E boolean have_femtrapmaurah(void);
+E boolean have_femtrapmeltem(void);
+E boolean have_femtrapsarah(void);
+E boolean have_femtrapclaudia(void);
+E boolean have_femtrapludgera(void);
+E boolean have_femtrapkati(void);
 
 E boolean have_primecurse(void);
 
@@ -1903,6 +1927,7 @@ E void synch_cursor(void);
 E void initobjectsamnesia(void);
 E void init_objects(BOOLEAN_P);
 E void randommaterials(void);
+E void matraysershuffle(void);
 E int find_skates(void);
 E int find_skates2(void);
 E int find_skates3(void);
@@ -2776,7 +2801,7 @@ E long somegold(void);
 #endif
 E void stealgold(struct monst *);
 E void remove_worn_item(struct obj *,BOOLEAN_P);
-E int steal(struct monst *, char *,BOOLEAN_P);
+E int steal(struct monst *, char *,BOOLEAN_P,BOOLEAN_P);
 E int mpickobj(struct monst *,struct obj *,BOOLEAN_P);
 E void stealamulet(struct monst *);
 E void mdrop_special_objs(struct monst *);

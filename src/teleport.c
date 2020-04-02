@@ -1935,17 +1935,16 @@ boolean give_feedback;
 			d_level flev;
 
 			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
-			   pline("%s seems very disoriented for a moment.", Monnam(mtmp));
-			    return 2;
+				if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
+				return 2;
 			}
 			nlev = random_banish_level();
 			if (nlev == depth(&u.uz)) {
-			    pline("%s shudders for a moment.", Monnam(mtmp));
-			    return 2;
+				if (give_feedback) pline("%s shudders for a moment.", Monnam(mtmp));
+				return 2;
 			}
 			get_level(&flev, nlev);
-			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM,
-				(coord *)0);
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
 
 	return TRUE;
 }

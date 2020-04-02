@@ -382,8 +382,8 @@ mattackm(magr, mdef)
 	if (magr->fartbonus) tmp += magr->fartbonus;
 	if (magr->crapbonus) tmp += magr->crapbonus;
 	if (is_table(magr->mx, magr->my)) tmp += 3;
-	if (humanoid(magr->data) && is_female(magr->data) && attacktype(magr->data, AT_KICK) && FemaleTrapMadeleine) tmp += 100;
-	if (humanoid(magr->data) && is_female(magr->data) && FemaleTrapWendy) tmp += rnd(20);
+	if (humanoid(magr->data) && is_female(magr->data) && attacktype(magr->data, AT_KICK) && FemtrapActiveMadeleine) tmp += 100;
+	if (humanoid(magr->data) && is_female(magr->data) && FemtrapActiveWendy) tmp += rnd(20);
 
 	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
 

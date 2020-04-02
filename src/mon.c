@@ -1744,7 +1744,7 @@ register struct monst *mtmp;
 		if (cansee(mtmp->mx, mtmp->my)) pline("%s cures the well of its poison!", Monnam(mtmp));
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && !rn2(10) && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemaleTrapThai ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && !rn2(10) && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemtrapActiveKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemtrapActiveThai ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
@@ -1768,7 +1768,7 @@ register struct monst *mtmp;
 
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound != MS_FART_QUIET) && (mtmp->data->msound != MS_FART_NORMAL) && (mtmp->data->msound != MS_FART_LOUD) ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemtrapActiveKatharina) && ((mtmp->data->msound != MS_FART_QUIET) && (mtmp->data->msound != MS_FART_NORMAL) && (mtmp->data->msound != MS_FART_LOUD) ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces crapping noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {

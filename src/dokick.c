@@ -508,7 +508,7 @@ register boolean clumsy;
 
 	}
 
-	if (FemaleTrapNatalje) {
+	if (FemtrapActiveNatalje) {
 		pline("Your sexy high heels stomp %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, TOE)) );
 		mon->mcanmove = 0;
 		mon->mfrozen += 1;

@@ -381,7 +381,7 @@ struct monst *mtmp;
 
 	}
 
-	if (FemaleTrapNadja && mtmp->female && humanoid(mtmp->data)) {
+	if (FemtrapActiveNadja && mtmp->female && humanoid(mtmp->data)) {
 
 		pline("%s is really angry about the fact that you tried to hit her, and uses a pair of buckled shoes to scratch up and down your %s, ripping a lot of skin to shreds.", Monnam(mtmp), body_part(LEG));
 
@@ -725,7 +725,7 @@ register struct monst *mtmp;
 	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
-	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp -= rnd(20);
+	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(20);
 
 	/* early-game bonuses to make starting characters not suck too badly --Amy */
 	if (u.ulevel < 6) tmp += 1;
@@ -10136,7 +10136,7 @@ boolean ranged;
 			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
-				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE)) {
+				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {
 			  case -1:
 				return 2;
 			  case 0:
@@ -10154,7 +10154,7 @@ boolean ranged;
 			) 		{
 			You_feel("a tug on your backpack!");
 			buf[0] = '\0';
-				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE)) {
+				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {
 			  case -1:
 				return 2;
 			  case 0:
