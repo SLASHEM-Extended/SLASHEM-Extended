@@ -1058,7 +1058,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(162)) {
+	switch (rnd(172)) {
 
 		case 1:
 		case 2:
@@ -1459,6 +1459,7 @@ randenchantment()
 			case 235: return SANITY_TREBLE_EFFECT;
 			case 236: return STAT_DECREASE_BUG;
 			case 237: return SIMEOUT_BUG;
+			default: return POISON_RES;
 
 			}
 		case 116:
@@ -1522,7 +1523,7 @@ randenchantment()
 		case 151:
 		case 152:
 		case 153:
-			switch (rnd(97)) {
+			switch (rnd(102)) {
 			case 1: return HALLU_PARTY;
 			case 2: return DRUNKEN_BOXING;
 			case 3: return STUNNOPATHY;
@@ -1620,6 +1621,12 @@ randenchantment()
 			case 95: return RNGE_LISTENING;
 			case 96: return RNGE_CANNIBALISM;
 			case 97: return RNGE_POLYVISION;
+			case 98: return RNGE_HEMOPHILIA;
+			case 99: return RNGE_BLAST_SHIELDING;
+			case 100: return RNGE_FUNNY_HALLU;
+			case 101: return RNGE_POLYPILING;
+			case 102: return RNGE_SAP_GENERATION;
+			default: return POISON_RES;
 			}
 		case 154:
 			return STUNNED;
@@ -1639,6 +1646,41 @@ randenchantment()
 			return SCENT_VIEW;
 		case 162:
 			return DIMINISHED_BLEEDING;
+		case 163:
+		case 164:
+		case 165:
+		case 166:
+		case 167:
+		case 168:
+		case 169:
+		case 170:
+		case 171:
+		case 172:
+			switch (rnd(22)) {
+			case 1: return FEMTRAP_FEMMY;
+			case 2: return FEMTRAP_MADELEINE;
+			case 3: return FEMTRAP_MARLENA;
+			case 4: return FEMTRAP_ANASTASIA;
+			case 5: return FEMTRAP_JESSICA;
+			case 6: return FEMTRAP_SOLVEJG;
+			case 7: return FEMTRAP_WENDY;
+			case 8: return FEMTRAP_KATHARINA;
+			case 9: return FEMTRAP_ELENA;
+			case 10: return FEMTRAP_THAI;
+			case 11: return FEMTRAP_ELIF;
+			case 12: return FEMTRAP_NADJA;
+			case 13: return FEMTRAP_SANDRA;
+			case 14: return FEMTRAP_NATALJE;
+			case 15: return FEMTRAP_JEANETTA;
+			case 16: return FEMTRAP_YVONNE;
+			case 17: return FEMTRAP_MAURAH;
+			case 18: return FEMTRAP_MELTEM;
+			case 19: return FEMTRAP_SARAH;
+			case 20: return FEMTRAP_CLAUDIA;
+			case 21: return FEMTRAP_LUDGERA;
+			case 22: return FEMTRAP_KATI;
+			default: return POISON_RES;
+			}
 
 		default:
 			return POISON_RES;

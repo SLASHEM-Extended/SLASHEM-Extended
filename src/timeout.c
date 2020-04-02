@@ -329,6 +329,8 @@ nh_timeout()
 			/* being a bleeder (or hemophage = racial bleeder) means you have hemophilia... */
 			if ((Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE)) && rn2(3)) bleedreductionchance = 0;
 
+			if (RngeHemophilia && rn2(3)) bleedreductionchance = 0;
+
 			if (bleedreductionchance > rn2(100)) {
 
 				PlayerBleeds -= (bleedingdamage - 1);

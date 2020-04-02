@@ -372,8 +372,62 @@ int prop;
 			return "cannibalism";
 		case RNGE_POLYVISION:
 			return "polyvision";
+		case RNGE_HEMOPHILIA:
+			return "hemophilia";
+		case RNGE_BLAST_SHIELDING:
+			return "blast shielding";
+		case RNGE_FUNNY_HALLU:
+			return "funny hallu";
+		case RNGE_POLYPILING:
+			return "polypiling";
+		case RNGE_SAP_GENERATION:
+			return "sap generation";
 		case DIMINISHED_BLEEDING:
 			return "diminished bleeding";
+		case FEMTRAP_FEMMY:
+			return "Femmy's curse";
+		case FEMTRAP_MADELEINE:
+			return "Madeleine's curse";
+		case FEMTRAP_MARLENA:
+			return "Marlena's curse";
+		case FEMTRAP_ANASTASIA:
+			return "Anastasia's curse";
+		case FEMTRAP_JESSICA:
+			return "Jessica's curse";
+		case FEMTRAP_SOLVEJG:
+			return "Solvejg's curse";
+		case FEMTRAP_WENDY:
+			return "Wendy's curse";
+		case FEMTRAP_KATHARINA:
+			return "Katharina's curse";
+		case FEMTRAP_ELENA:
+			return "Elena's curse";
+		case FEMTRAP_THAI:
+			return "Thai's curse";
+		case FEMTRAP_ELIF:
+			return "Elif's curse";
+		case FEMTRAP_NADJA:
+			return "Nadja's curse";
+		case FEMTRAP_SANDRA:
+			return "Sandra's curse";
+		case FEMTRAP_NATALJE:
+			return "Natalje's curse";
+		case FEMTRAP_JEANETTA:
+			return "Jeanetta's curse";
+		case FEMTRAP_YVONNE:
+			return "Yvonne's curse";
+		case FEMTRAP_MAURAH:
+			return "Maurah's curse";
+		case FEMTRAP_MELTEM:
+			return "Meltem's curse";
+		case FEMTRAP_SARAH:
+			return "Sarah's curse";
+		case FEMTRAP_CLAUDIA:
+			return "Claudia's curse";
+		case FEMTRAP_LUDGERA:
+			return "Ludgera's curse";
+		case FEMTRAP_KATI:
+			return "Kati's curse";
 		case SCENT_VIEW:
 			return "scent view";
 

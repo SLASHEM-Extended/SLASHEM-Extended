@@ -1642,6 +1642,15 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (obj && RngeSapGeneration && !rn2(100) && !(mtmp->egotype_troll) && !is_reviver(mdat) ) {
+		register struct obj *energysap;
+
+		energysap = mksobj_at(ENERGY_SAP, x, y, FALSE, FALSE, FALSE);
+		if (energysap) {
+			energysap->corpsenm = mtmp->mnum;
+		}
+	}
+
 	/* All special cases should precede the G_NOCORPSE check */
 
 	/* if polymorph or undead turning has killed this monster,

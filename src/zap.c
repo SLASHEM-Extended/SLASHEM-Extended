@@ -3055,7 +3055,7 @@ poly_obj(obj, id, degradation)
 	/* Amy change: make it so that occasionally the polymorph sticks, because polypiling in general was nerfed */
 	/* In Soviet Russia, everything has to be exactly like it is in regular SLASH'EM, so it's weird that there was a
 	 * variant of it being made in the first place if every change is considered bullshit anyway. */
-	if (!issoviet && !rn2(5)) unpoly = FALSE;
+	if (!issoviet && !rn2(RngePolypiling ? 2 : 5)) unpoly = FALSE;
 
 	/* avoid abusing eggs laid by you */
 	if (obj->otyp == EGG && obj->spe) {

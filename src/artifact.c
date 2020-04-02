@@ -1509,8 +1509,7 @@ touch_artifact(obj,mon)
 	badalign = !!spec_applies(&tmp, mon);
     }
 
-    if (((badclass || badalign) && self_willed) ||
-       (badalign && (!yours || !rn2(4))))  {
+    if ((((badclass || badalign) && self_willed) || (badalign && (!yours || !rn2(4)))) && !RngeBlastShielding) {
 	int dmg;
 	char buf[BUFSZ];
 
