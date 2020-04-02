@@ -223,6 +223,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"undertow",
 	"definalize",
 	"anti inertia",
+	"grenades of course",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3049,6 +3050,10 @@ dotech()
 
 		case T_ANTI_INERTIA:
 			pline("Useful when you're slowed down by inertia, because it reduces the amount of time for which you're slowed.");
+			break;
+
+		case T_GRENADES_OF_COURSE:
+			pline("Creates frag grenades or gas grenades.");
 			break;
 
 		case T_IMPLANTED_SYMBIOSIS:
@@ -7480,6 +7485,32 @@ repairitemchoice:
 			Your("symbiote's health is improved!");
 
 			t_timeout = rnz(4000);
+			break;
+
+		case T_GRENADES_OF_COURSE:
+
+			You("make some grenades.");
+
+			{
+
+			struct obj *uammo;
+
+			if (!rn2(2)) uammo = mksobj(FRAG_GRENADE, TRUE, FALSE, FALSE);
+			else uammo = mksobj(GAS_GRENADE, TRUE, FALSE, FALSE);
+			if (uammo) {
+				uammo->quan = 5 + (techlevX(tech_no) / 5);
+				if (Role_if(PM_GRENADONIN)) uammo->quan *= 5;
+				if (uammo->quan < 1) uammo->quan = 1;
+				if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE) uammo->quan *= 2;
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			}
+
+			t_timeout = rnz(20000);
 			break;
 
 		case T_UNDERTOW:

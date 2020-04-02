@@ -245,11 +245,12 @@ struct blitz_tab {
 #define T_UNDERTOW	177
 #define T_DEFINALIZE	178
 #define T_ANTI_INERTIA	179
+#define T_GRENADES_OF_COURSE	180
 
-#define T_JEDI_JUMP	180
-#define T_CHARGE_SABER	181
-#define T_TELEKINESIS	182
+#define T_JEDI_JUMP	181
+#define T_CHARGE_SABER	182
+#define T_TELEKINESIS	183
  
-#define MAXTECH 183
+#define MAXTECH 184
 
 #endif /* TECH_H */

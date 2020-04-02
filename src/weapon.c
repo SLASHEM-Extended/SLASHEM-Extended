@@ -3574,6 +3574,10 @@ jediskip:
 	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
 	    	You("learn how to perform undertow!");
 	}
+	if (skill == P_FIREARM && P_SKILL(skill) == P_MASTER && !tech_known(T_GRENADES_OF_COURSE)) {
+	    	learntech(T_GRENADES_OF_COURSE, FROMOUTSIDE, 1);
+	    	You("learn how to perform grenades of course!");
+	}
 	if (skill == P_CLUB && P_SKILL(skill) == P_MASTER && !tech_known(T_DEFINALIZE)) {
 	    	learntech(T_DEFINALIZE, FROMOUTSIDE, 1);
 	    	You("learn how to perform definalize!");
@@ -5027,6 +5031,10 @@ int degree;
 			if (skill == P_SHORT_SWORD && !tech_known(T_UNDERTOW)) {
 			    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
 			    	You("learn how to perform undertow!");
+			}
+			if (skill == P_FIREARM && !tech_known(T_GRENADES_OF_COURSE)) {
+			    	learntech(T_GRENADES_OF_COURSE, FROMOUTSIDE, 1);
+			    	You("learn how to perform grenades of course!");
 			}
 			if (skill == P_CLUB && !tech_known(T_DEFINALIZE)) {
 			    	learntech(T_DEFINALIZE, FROMOUTSIDE, 1);
@@ -8003,6 +8011,9 @@ rerollthree:
 	}
 	if (P_SKILL(P_SHORT_SWORD) >= P_MASTER && !tech_known(T_UNDERTOW)) {
 	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_FIREARM) >= P_MASTER && !tech_known(T_GRENADES_OF_COURSE)) {
+	    	learntech(T_GRENADES_OF_COURSE, FROMOUTSIDE, 1);
 	}
 	if (P_SKILL(P_CLUB) >= P_MASTER && !tech_known(T_DEFINALIZE)) {
 	    	learntech(T_DEFINALIZE, FROMOUTSIDE, 1);
