@@ -1495,6 +1495,38 @@ register struct attack *mattk;
 			}
 		}
 
+		/* compost equipment will occasionally undo a point of negative enchantment --Amy */
+		if (blocker && objects[blocker->otyp].oc_material == MT_COMPOST && blocker->spe < 0 && !rn2(100)) {
+			if (blocker == uarm) {
+				blocker->spe++;
+				pline("Your armor repairs itself a bit!");
+			}
+			else if (blocker == uarmc) {
+				blocker->spe++;
+				pline("Your cloak repairs itself a bit!");
+			}
+			else if (blocker == uarmu) {
+				blocker->spe++;
+				pline("Your shirt repairs itself a bit!");
+			}
+			else if (blocker == uarms) {
+				blocker->spe++;
+				pline("Your shield repairs itself a bit!");
+			}
+			else if (blocker == uarmg) {
+				blocker->spe++;
+				pline("Your pair of gloves repairs itself a bit!");
+			}
+			else if (blocker == uarmf) {
+				blocker->spe++;
+				pline("Your pair of shoes repairs itself a bit!");
+			}
+			else if (blocker == uarmh) {
+				blocker->spe++;
+				pline("Your helmet repairs itself a bit!");
+			}
+		}
+
 		int savechance = 0;
 
 		if (!(PlayerCannotUseSkills)) {
@@ -5991,6 +6023,10 @@ hitmu(mtmp, mattk)
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
 			}
+			if (objects[otmp->otyp].oc_material == MT_PLATINUM &&
+				(hates_platinum(youmonst.data) || u.contamination >= 1000) ) {
+			    pline("The platinum smashes you!");
+			}
 			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");
 			}
@@ -9699,6 +9735,10 @@ dopois:
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
 				hates_copper(youmonst.data)) {
 			    pline("The copper decomposes you!");
+			}
+			if (objects[otmp->otyp].oc_material == MT_PLATINUM &&
+				(hates_platinum(youmonst.data) || u.contamination >= 1000) ) {
+			    pline("The platinum smashes you!");
 			}
 			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");

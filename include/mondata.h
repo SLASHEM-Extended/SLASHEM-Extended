@@ -379,6 +379,7 @@
 #define is_shade(ptr)	((ptr)->mflags4 & M4_SHADE)
 #define hates_viva(ptr)		(is_golem(ptr))
 #define hates_copper(ptr)		((ptr)->mlet == S_FUNGUS)
+#define hates_platinum(ptr)		(dmgtype(ptr, AD_CONT))
 #define hates_cursed(ptr)		((ptr)->mlet == S_ANGEL)
 #define hates_inka(ptr)		(is_animal(ptr))
 #define hates_odor(ptr)		(is_animal(ptr) || humanoid(ptr))

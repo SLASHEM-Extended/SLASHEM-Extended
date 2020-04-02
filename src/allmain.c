@@ -8724,6 +8724,56 @@ newboss:
 			u.inertia /= 2;
 		}
 
+		if (u.inertia) {
+
+			/* silk helps against inertia --Amy */
+			if (uwep && objects[uwep->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uarm && objects[uarm->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uarmc && objects[uarmc->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uarmh && objects[uarmh->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uarms && objects[uarms->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uarmg && objects[uarmg->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uarmf && objects[uarmf->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uarmu && objects[uarmu->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uamul && objects[uamul->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uimplant && objects[uimplant->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uleft && objects[uleft->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (uright && objects[uright->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+			if (ublindf && objects[ublindf->otyp].oc_material == MT_SILK && !rn2(12)) {
+				u.inertia--;
+			}
+
+			if (u.inertia < 0) u.inertia = 0; /* fail safe */
+
+		}
+
 		if (u.inertiacontrol) {
 
 			castinertiaspell();

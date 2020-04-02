@@ -422,6 +422,11 @@ const char *name;	/* if null, then format `obj' */
 			pline_The("copper decomposes you!");
 			exercise(A_CON, FALSE);
 		}
+		if (obj && objects[obj->otyp].oc_material == MT_PLATINUM && (hates_platinum(youmonst.data) || u.contamination >= 1000) ) {
+			dam += 20;
+			pline_The("platinum smashes you!");
+			exercise(A_CON, FALSE);
+		}
 		if (obj && obj->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL))) {
 			dam += 4;
 			if (obj->hvycurse) dam += 4;
@@ -1067,6 +1072,9 @@ blockingdone:
 	    }
 	    if (objects[otmp->otyp].oc_material == MT_COPPER && hates_copper(mtmp->data)) {
 		if (verbose) pline("It is decomposed!");
+	    }
+	    if (objects[otmp->otyp].oc_material == MT_PLATINUM && hates_platinum(mtmp->data)) {
+		if (verbose) pline("It is smashed!");
 	    }
 	    if (otmp->cursed && hates_cursed(mtmp->data)) {
 		if (verbose) pline("It is blasted by darkness!");

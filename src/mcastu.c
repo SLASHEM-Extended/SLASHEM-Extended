@@ -60,6 +60,7 @@ STATIC_DCL boolean is_undirected_spell(unsigned int,int);
 STATIC_DCL boolean is_melee_spell(unsigned int,int);
 STATIC_DCL boolean spell_would_be_useless(struct monst *,unsigned int,int);
 STATIC_PTR void set_litZ(int,int,void *);
+STATIC_DCL boolean arcaniumfail(void);
 
 #ifdef OVL0
 
@@ -96,6 +97,57 @@ boolean undirected;
 
 #endif /* OVL0 */
 #ifdef OVLB
+
+/* will a monster fail to cast a spell? this happens if you wear arcanium equipment --Amy
+ * it's not a bug that this can also affect spellcasting pets; returns TRUE if the monster actually fails to cast */
+STATIC_OVL boolean
+arcaniumfail()
+{
+	if (uwep && objects[uwep->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarm && objects[uarm->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmc && objects[uarmc->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmh && objects[uarmh->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarms && objects[uarms->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmg && objects[uarmg->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmf && objects[uarmf->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmu && objects[uarmu->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uamul && objects[uamul->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uimplant && objects[uimplant->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uleft && objects[uleft->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (uright && objects[uright->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+	if (ublindf && objects[ublindf->otyp].oc_material == MT_ARCANIUM && !rn2(20)) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
 
 /* convert a level based random selection into a specific mage spell;
    inappropriate choices will be screened out by spell_would_be_useless() */
@@ -389,7 +441,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	}
 
 	/* monster unable to cast spells? */
-	if (mtmp->mcan || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5))  ) {
+	if (mtmp->mcan || arcaniumfail() || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5))  ) {
 	    cursetxt(mtmp, is_undirected_spell(mattk->adtyp, spellnum));
 	    return(0);
 	}
@@ -2240,7 +2292,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	if ((mattk->adtyp > AD_SPC2) || (mattk->adtyp < AD_MAGM))
 	    return(0);
 
-	if (mtmp->mcan || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5)) ) {
+	if (mtmp->mcan || arcaniumfail() || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5)) ) {
 	    cursetxt(mtmp, FALSE);
 	    return(0);
 	}

@@ -1282,6 +1282,7 @@ int dieroll;
 	boolean silvermsg = FALSE, silverobj = FALSE;
 	boolean vivaobj = FALSE;
 	boolean copperobj = FALSE;
+	boolean platinumobj = FALSE;
 	int cursedobj = 0;
 	boolean inkaobj = FALSE;
 	boolean odorobj = FALSE;
@@ -1946,6 +1947,9 @@ int dieroll;
 		    if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
 			copperobj = TRUE;
 		    }
+		    if (objects[obj->otyp].oc_material == MT_PLATINUM && hates_platinum(mdat)) {
+			platinumobj = TRUE;
+		    }
 		    if (obj->cursed && hates_cursed(mdat)) {
 			cursedobj = 1;
 			if (obj->hvycurse) cursedobj++;
@@ -2515,6 +2519,10 @@ int dieroll;
 			if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
 				tmp += 20;
 				copperobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_PLATINUM && hates_platinum(mdat)) {
+				tmp += 20;
+				platinumobj = TRUE;
 			}
 			if (obj->cursed && hates_cursed(mdat)) {
 				tmp += 4;
@@ -3765,6 +3773,7 @@ int dieroll;
 	if (inkaobj) pline("The inka string hurts %s!", mon_nam(mon));
 	if (odorobj) pline("The odor beguils %s!", mon_nam(mon));
 	if (copperobj) pline("The copper decomposes %s!", mon_nam(mon));
+	if (platinumobj) pline("The platinum smashes %s!", mon_nam(mon));
 	if (cursedobj) pline("A black aura blasts %s!", mon_nam(mon));
 
 	if (needpoismsg) {
@@ -7539,6 +7548,11 @@ use_weapon:
 					}
 				}
 
+				if (uwep && objects[uwep->otyp].oc_material == MT_COMPOST && uwep->spe < 0 && !rn2(500)) {
+					uwep->spe++;
+					pline("Your weapon repairs itself a bit!");
+				}
+
 				if (uwep && uwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uwep->spe > -20) {
 					uwep->spe--;
 					pline("Your ball sustains damage.");
@@ -7578,6 +7592,11 @@ use_weapon:
 						uswapwep->spe--;
 						pline("Your weapon dulls.");
 					}
+				}
+
+				if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_COMPOST && uswapwep->spe < 0 && !rn2(500)) {
+					uswapwep->spe++;
+					pline("Your off-hand weapon repairs itself a bit!");
 				}
 
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uswapwep->spe > -20) {

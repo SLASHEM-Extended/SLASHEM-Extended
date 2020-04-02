@@ -251,6 +251,52 @@ nh_timeout()
 		}
 	} else if (u.usanity && !isevilvariant && !rn2(isfriday ? 2500 : 1000)) {
 		u.usanity--;
+
+		/* mineral helps against sanity --Amy */
+		if (uwep && objects[uwep->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uarm && objects[uarm->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uarmc && objects[uarmc->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uarmh && objects[uarmh->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uarms && objects[uarms->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uarmg && objects[uarmg->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uarmf && objects[uarmf->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uarmu && objects[uarmu->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uamul && objects[uamul->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uimplant && objects[uimplant->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uleft && objects[uleft->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (uright && objects[uright->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (ublindf && objects[ublindf->otyp].oc_material == MT_MINERAL) {
+			u.usanity--;
+		}
+		if (u.usanity < 0) u.usanity = 0;
+
 		if (flags.showsanity) flags.botl = 1;
 	}
 	if (u.usanity < 0) u.usanity = 0; /* fail safe */

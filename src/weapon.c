@@ -612,6 +612,8 @@ struct monst *mon;
 		bonus += rnd(20);
 	    if (objects[otyp].oc_material == MT_COPPER && hates_copper(ptr))
 		bonus += 20;
+	    if (objects[otyp].oc_material == MT_PLATINUM && hates_platinum(ptr))
+		bonus += 20;
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {
 		bonus += 4;
 		if (otmp->hvycurse) bonus += 4;
@@ -1028,6 +1030,8 @@ struct monst *mon;
 	    if (objects[otyp].oc_material == MT_SILVER && hates_silver(ptr))
 		bonus += rnd(20);
 	    if (objects[otyp].oc_material == MT_COPPER && hates_copper(ptr))
+		bonus += 20;
+	    if (objects[otyp].oc_material == MT_PLATINUM && hates_platinum(ptr))
 		bonus += 20;
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {
 		bonus += 4;

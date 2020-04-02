@@ -6444,6 +6444,64 @@ int snamount;
 	if (Upolyd && dmgtype(youmonst.data, AD_SANI) && rn2(100)) return;
 	if (Race_if(PM_PLAYER_FAIRY) && rn2(2)) return;
 
+	/* Mineral is supposed to be a material that shields you against sanity --Amy */
+	if (uwep && objects[uwep->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral weapon prevents you from receiving sanity!");
+		return;
+	}
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral off-hand weapon prevents you from receiving sanity!");
+		return;
+	}
+	if (uarm && objects[uarm->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral armor prevents you from receiving sanity!");
+		return;
+	}
+	if (uarmc && objects[uarmc->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral cloak prevents you from receiving sanity!");
+		return;
+	}
+	if (uarmh && objects[uarmh->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral helmet prevents you from receiving sanity!");
+		return;
+	}
+	if (uarms && objects[uarms->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral shield prevents you from receiving sanity!");
+		return;
+	}
+	if (uarmg && objects[uarmg->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral pair of gauntlets prevents you from receiving sanity!");
+		return;
+	}
+	if (uarmf && objects[uarmf->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral pair of boots prevents you from receiving sanity!");
+		return;
+	}
+	if (uarmu && objects[uarmu->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral shirt prevents you from receiving sanity!");
+		return;
+	}
+	if (uamul && objects[uamul->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral amulet prevents you from receiving sanity!");
+		return;
+	}
+	if (uimplant && objects[uimplant->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral implant prevents you from receiving sanity!");
+		return;
+	}
+	if (uleft && objects[uleft->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral left ring prevents you from receiving sanity!");
+		return;
+	}
+	if (uright && objects[uright->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral right ring prevents you from receiving sanity!");
+		return;
+	}
+	if (ublindf && objects[ublindf->otyp].oc_material == MT_MINERAL && !rn2(20)) {
+		pline("Your mineral blindfold prevents you from receiving sanity!");
+		return;
+	}
+
 	if (!(PlayerCannotUseSkills)) {
 		int sanityprotection = 0;
 
