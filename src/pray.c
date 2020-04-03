@@ -269,6 +269,12 @@ canofferownrace()
 		case PM_PLAYER_ANDROID:
 		case PM_RETICULAN:
 		case PM_GOAULD:
+		case PM_KLACKON:
+		case PM_KUTAR:
+		case PM_TONBERRY:
+		case PM_PLAYER_GLORKUM:
+		case PM_RACE_THAT_DOESN_T_EXIST:
+		case PM_HYBRIDRAGON:
 		case PM_OUTSIDER:
 		case PM_HUMANOID_DEVIL:
 		case PM_MUMMY:

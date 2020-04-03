@@ -5420,7 +5420,7 @@ boolean ordinary;
 		case WAN_STRIKING:
 		    makeknown(WAN_STRIKING);
 		case SPE_FORCE_BOLT:
-		    if(Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+		    if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
 			pline("Boing!");
 		    } else {
@@ -6235,7 +6235,7 @@ boolean ordinary;
 		    makeknown(WAN_MAGIC_MISSILE);
 		case ETHER_HORN:
 		case SPE_MAGIC_MISSILE:
-		    if(Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+		    if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
 			pline_The("missiles bounce!");
 		    } else {
@@ -6247,7 +6247,7 @@ boolean ordinary;
 		case WAN_HYPER_BEAM:
 		    makeknown(WAN_HYPER_BEAM);
 		case SPE_HYPER_BEAM:
-		    if(Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+		    if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
 			pline_The("beam bounces!");
 		    } else {
@@ -8540,7 +8540,7 @@ xchar sx, sy;
 
 	switch (abs(type) % 10) {
 	case ZT_MAGIC_MISSILE:
-	    if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+	    if (Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 		shieldeff(sx, sy);
 		pline_The("missiles bounce off!");
 	    } else {

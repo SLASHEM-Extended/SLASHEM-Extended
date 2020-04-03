@@ -1777,6 +1777,35 @@ domonability()
 
 		return 1;
 
+	} else if (Race_if(PM_IRAHA) && !u.irahapoison && yn("Do you want to poison your weapon?") == 'y') {
+
+		if (!uwep) {
+			pline("You are not holding a weapon!");
+			return 0;
+		}
+		/* Iraha are somehow capable of poisoning weapons that cannot be poisoned, this is by design --Amy */
+		if (uwep) {
+			if (!stack_too_big(uwep)) {
+				uwep->opoisoned = TRUE;
+				pline("Your weapon was poisoned.");
+			} else pline("Unfortunately your wielded stack of weapons was too big, and so the poisoning failed.");
+
+		}
+
+		u.irahapoison = rnz(1000);
+		if (!PlayerCannotUseSkills && u.irahapoison >= 2) {
+			switch (P_SKILL(P_SQUEAKING)) {
+		      	case P_BASIC:	u.irahapoison *= 9; u.irahapoison /= 10; break;
+		      	case P_SKILLED:	u.irahapoison *= 8; u.irahapoison /= 10; break;
+		      	case P_EXPERT:	u.irahapoison *= 7; u.irahapoison /= 10; break;
+		      	case P_MASTER:	u.irahapoison *= 6; u.irahapoison /= 10; break;
+		      	case P_GRAND_MASTER:	u.irahapoison *= 5; u.irahapoison /= 10; break;
+		      	case P_SUPREME_MASTER:	u.irahapoison *= 4; u.irahapoison /= 10; break;
+		      	default: break;
+			}
+		}
+		use_skill(P_SQUEAKING, rnd(10));
+
 	} else if (!PlayerCannotUseSkills && u.juyofleeing && P_SKILL(P_JUYO) >= P_BASIC && yn("Do you want to turn off the increased chance of making a monster flee?") == 'y') {
 		u.juyofleeing = 0;
 		pline("Monsters have the regular chance of fleeing from you now, which is useful mainly if you are a role or race that gets penalties for hitting a fleeing monster.");
@@ -5607,6 +5636,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.irahapoison) {
+		sprintf(buf, "to wait until you can poison your weapon again.");
+	      sprintf(eos(buf), " (%d)", u.irahapoison);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && Role_if(PM_JANITOR)) {
 		sprintf(buf, "the following amount of trash in your trash can:");
 	      sprintf(eos(buf), " %d", u.garbagecleaned);
@@ -9395,6 +9430,12 @@ int final;
 	if (u.hussyperfume) {
 		sprintf(buf, "to wait until you can spread the perfume again.");
 	      sprintf(eos(buf), " (%d)", u.hussyperfume);
+		dump(youhad, buf);
+	}
+
+	if (u.irahapoison) {
+		sprintf(buf, "to wait until you can poison your weapon again.");
+	      sprintf(eos(buf), " (%d)", u.irahapoison);
 		dump(youhad, buf);
 	}
 

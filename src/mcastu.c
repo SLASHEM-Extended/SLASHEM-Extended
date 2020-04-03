@@ -686,7 +686,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		break;
 	    case AD_MAGM:
 		You("are hit by a shower of missiles!");
-		if(Antimagic && rn2(StrongAntimagic ? 20 : 5) ) {
+		if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5) ) {
 			shieldeff(u.ux, u.uy);
 			pline_The("missiles bounce off!");
 			dmg = 0;
@@ -1315,7 +1315,7 @@ newboss:
 
 	/* prior to 3.4.0 Antimagic was setting the damage to 1--this
 	   made the spell virtually harmless to players with magic res. */
-	if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+	if (Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 	    shieldeff(u.ux, u.uy);
 	    dmg = (dmg + 1) / 2;
 	}
@@ -1337,7 +1337,7 @@ newboss:
 	break;
     case MGC_ESCALATION:
 
-	if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+	if (Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 	    shieldeff(u.ux, u.uy);
 	    dmg = (dmg + 1) / 2;
 	}
@@ -2102,7 +2102,7 @@ newboss:
 	break;
 	}
 
-	if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+	if (Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 	    shieldeff(u.ux, u.uy);
 	    dmg = (dmg + 1) / 2;
 	}

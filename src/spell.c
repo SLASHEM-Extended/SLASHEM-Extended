@@ -318,7 +318,7 @@ cursed_book(bp)
 		bp->in_use = TRUE;
 		break;
 	case 6:
-		if(Antimagic && rn2(StrongAntimagic ? 20 : 5) ) {
+		if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5) ) {
 		    shieldeff(u.ux, u.uy);
 		    pline_The("book %s, but you are unharmed!", explodes);
 		} else {
@@ -11206,6 +11206,36 @@ int spell;
 
 		}
 
+	}
+
+	if (Race_if(PM_TONBERRY)) {
+		switch (spellev(spell)) {
+			case 1:
+				chance -= 10;
+				break;
+			case 2:
+				chance -= 20;
+				break;
+			case 3:
+				chance -= 30;
+				break;
+			case 4:
+				chance -= 40;
+				break;
+			case 5:
+				chance -= 50;
+				break;
+			case 6:
+				chance -= 60;
+				break;
+			case 7:
+				chance -= 70;
+				break;
+			case 8:
+				chance -= 80;
+				break;
+
+		}
 	}
 
 	if (issoviet) chance -= 30;

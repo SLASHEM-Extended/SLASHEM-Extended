@@ -4056,6 +4056,16 @@ reallybadeffect()
 
 }
 
+/* hybridragon race by rikersan: cannot be resistant to its own breath */
+boolean
+hybridragontype(attacktype)
+int attacktype;
+{
+	if (!Race_if(PM_HYBRIDRAGON)) return FALSE;
+	if (dmgtype(&mons[PM_HYBRIDRAGON], attacktype) ) return TRUE;
+	return FALSE;
+}
+
 boolean
 extralongsqueak()
 {

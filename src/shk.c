@@ -659,6 +659,7 @@ register char *enterstring;
 	    eshkp->pbanned = TRUE;
 	}
 	if (Race_if(PM_ALBAE) && !Upolyd) eshkp->pbanned = TRUE;
+	if (Race_if(PM_IRAHA)) eshkp->pbanned = TRUE;
 
 	rt = rooms[*enterstring - ROOMOFFSET].rtype;
 
@@ -2680,6 +2681,11 @@ register boolean ininv, dummy, silent;
 		 onbill(obj, shkp, FALSE) ||
 		 (obj->oclass == FOOD_CLASS && obj->oeaten)
 	      ) return;
+
+	if (Race_if(PM_IRAHA)) {
+		verbalize("You just signed your own death warrant, thief!");
+		hot_pursuit(shkp);
+	}
 
 	if(ESHK(shkp)->billct == BILLSZ) {
 		You("got that for free!");

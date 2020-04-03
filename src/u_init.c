@@ -8291,6 +8291,8 @@ u_init()
 	struct permonst* shamblerplayer = &mons[PM_AK_THIEF_IS_DEAD_];
 	struct permonst* shamblerplayerb = &mons[PM_UN_IN_PROTECT_MODE];
 
+	struct permonst* shamblerplayergl = &mons[PM_PLAYER_GLORKUM];
+
 	struct permonst* shamblerplayerc = &mons[PM_BROWN_MISSINGNO];
 	struct permonst* shamblerplayerd = &mons[PM_RED_MISSINGNO];
 	struct permonst* shamblerplayere = &mons[PM_BLACK_MISSINGNO];
@@ -8594,6 +8596,8 @@ u_init()
 	struct permonst* randxyy = &mons[PM_RNGHOST];
 	struct permonst* randxyz = &mons[PM_RANDOMIZER_DRACONIAN];
 	struct permonst* randxyaa = &mons[PM_CENTAUR_RENGER];
+
+	struct permonst* randhybrid = &mons[PM_HYBRIDRAGON];
 
 	static char buf[BUFSZ];
 
@@ -17961,6 +17965,7 @@ u_init()
 	case PM_VIKING: racebounus = rnz(8); break;
 	case PM_YUKI_PLAYA: racebounus = 0; break;
 	case PM_YEEK: racebounus = 0; break;
+	case PM_WOOKIE: racebounus = 0; break;
 	case PM_HUMANOID_DRYAD: racebounus = rnz(8); break;
 	case PM_PLAYER_ZRUTY: racebounus = rnz(15); break;
 	case PM_METAL: racebounus = rnz(6); break;
@@ -17991,7 +17996,7 @@ u_init()
 
 	if (temp > maxbounus) temp = maxbounus; /* prevent value from randomly becoming too high */
 	/*temp = rn1(10,70);*/
-	init_attr(temp);		/* init attribute values */
+	init_attr(temp, FALSE);		/* init attribute values */
 	find_ac();			/* get initial ac value */
 	max_rank_sz();			/* set max str size for class ranks */
 /*
@@ -20974,6 +20979,62 @@ u_init()
 	shamblerplayer->mflags2 &= ~M2_PNAME;				/* not a proper name */
 	shamblerplayer->mflags2 &= ~M2_NOPOLY;				/* see above */
 
+	/* what a horrible night to have a curse */
+	/*shamblerplayergl->mlevel += rnd(12)-3;*/				/* shuffle level */
+	shamblerplayergl->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayergl->ac = rn2(21)-10;				/* any AC */
+	shamblerplayergl->mr = rn2(11)*10;				/* varying amounts of MR */
+	shamblerplayergl->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &shamblerplayergl->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+	shamblerplayergl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	shamblerplayergl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayergl->cnutrit = rnd(2000);					/* see above */
+	shamblerplayergl->msound = randmonsound();			/* any but the specials */
+	shamblerplayergl->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		shamblerplayergl->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		shamblerplayergl->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	shamblerplayergl->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	shamblerplayergl->mflags1 = M1_CARNIVORE|M1_OVIPAROUS;
+	for (i = 0; i < rnd(17); i++) {
+		shamblerplayergl->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	shamblerplayergl->mflags2 = M2_NOPOLY;
+	for (i = 0; i < rnd(17); i++) {
+		shamblerplayergl->mflags2 |= (1 << rn2(31));
+	}
+	shamblerplayergl->mflags2 &= ~M2_MERC;				/* no guards */
+	shamblerplayergl->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	shamblerplayergl->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerb->mlevel += rnd(12)-3;*/				/* shuffle level */
@@ -23926,6 +23987,16 @@ u_init()
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randhybrid->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = rnd(10);
 		}
 
 	}
@@ -30021,6 +30092,8 @@ int realityflag;
 	struct permonst* shamblerplayer = &mons[PM_AK_THIEF_IS_DEAD_];
 	struct permonst* shamblerplayerb = &mons[PM_UN_IN_PROTECT_MODE];
 
+	struct permonst* shamblerplayergl = &mons[PM_PLAYER_GLORKUM];
+
 	struct permonst* shamblerplayerc = &mons[PM_BROWN_MISSINGNO];
 	struct permonst* shamblerplayerd = &mons[PM_RED_MISSINGNO];
 	struct permonst* shamblerplayere = &mons[PM_BLACK_MISSINGNO];
@@ -30323,6 +30396,8 @@ int realityflag;
 	struct permonst* randxyy = &mons[PM_RNGHOST];
 	struct permonst* randxyz = &mons[PM_RANDOMIZER_DRACONIAN];
 	struct permonst* randxyaa = &mons[PM_CENTAUR_RENGER];
+
+	struct permonst* randhybrid = &mons[PM_HYBRIDRAGON];
 
 	static char buf[BUFSZ];
 
@@ -35970,6 +36045,62 @@ int realityflag;
 	shamblerplayer->mflags2 &= ~M2_PNAME;				/* not a proper name */
 	shamblerplayer->mflags2 &= ~M2_NOPOLY;				/* see above */
 
+	/* what a horrible night to have a curse */
+	/*shamblerplayergl->mlevel += rnd(12)-3;*/				/* shuffle level */
+	shamblerplayergl->mmove = rn2(10)+9;				/* slow to very fast */
+	shamblerplayergl->ac = rn2(21)-10;				/* any AC */
+	shamblerplayergl->mr = rn2(11)*10;				/* varying amounts of MR */
+	shamblerplayergl->maligntyp = rn2(21)-10;			/* any alignment */
+	/* attacks...?  */
+	for (i = 0; i < rnd(5); i++) {
+		attkptr = &shamblerplayergl->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+	shamblerplayergl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
+	shamblerplayergl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
+	shamblerplayergl->cnutrit = rnd(2000);					/* see above */
+	shamblerplayergl->msound = randmonsound();			/* any but the specials */
+	shamblerplayergl->mresists = 0;
+	for (i = 0; i < rnd(6); i++) {
+		shamblerplayergl->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+	for (i = 0; i < rnd(5); i++) {
+		shamblerplayergl->mresists |= (0x100 << rn2(7));	/* 'different' resistances, even clumsy */
+	}
+	shamblerplayergl->mconveys = 0;					/* flagged NOCORPSE */
+	/*
+	 * now time for the random flags.  this will likely produce
+	 * a number of complete trainwreck monsters at first, but
+	 * every so often something will dial up nasty stuff
+	 */
+	shamblerplayergl->mflags1 = M1_CARNIVORE|M1_OVIPAROUS;
+	for (i = 0; i < rnd(17); i++) {
+		shamblerplayergl->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	shamblerplayergl->mflags2 = M2_NOPOLY;
+	for (i = 0; i < rnd(17); i++) {
+		shamblerplayergl->mflags2 |= (1 << rn2(31));
+	}
+	shamblerplayergl->mflags2 &= ~M2_MERC;				/* no guards */
+	shamblerplayergl->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	shamblerplayergl->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerb->mlevel += rnd(12)-3;*/				/* shuffle level */
@@ -38922,6 +39053,16 @@ int realityflag;
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
 			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randhybrid->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = rnd(10);
 		}
 
 	}

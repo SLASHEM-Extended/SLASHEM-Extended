@@ -7050,7 +7050,7 @@ wake_nearby()
 	if (stealthchance > 0) stealthchance = rnd(stealthchance); /* some randomness */
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
+	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -7058,7 +7058,7 @@ wake_nearby()
 	}
 
 	if (!rn2(250)) for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3))) {
+	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) ) {
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
 		    EDOG(mtmp)->whistletime = moves;
@@ -7077,7 +7077,7 @@ register int x, y, distance;
 	int wakedistance;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-		if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
+		if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
 				 dist2(mtmp->mx, mtmp->my, x, y) < distance)) {
 			if (distance > 1) wakedistance = rnd(distance);
 			if (rn2(2) && ( (distance == 0) || (dist2(mtmp->mx, mtmp->my, x, y) < wakedistance)) ) {

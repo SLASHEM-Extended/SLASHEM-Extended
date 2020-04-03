@@ -327,6 +327,7 @@ dig()
 
 	if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) )
 	    bonus *= 2;
+	if (Race_if(PM_IRAHA)) bonus *= rnd(3);
 	if (isfriday && bonus > 1) bonus /= 2;
 
 	if (is_lightsaber(uwep))
@@ -973,7 +974,7 @@ dig_up_grave()
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
-	if ((u.ualign.type == A_LAWFUL) && (u.ualign.record > -10)) {
+	if ((u.ualign.type == A_LAWFUL)) {
 	    adjalign(-sgn(u.ualign.type)*2);
 	    You("have violated the sanctity of this grave!");
 	}
@@ -1479,6 +1480,7 @@ nextiteration:
 	zx = u.ux + u.dx;
 	zy = u.uy + u.dy;
 	digdepth = rn1(18, 8);
+	if (Race_if(PM_IRAHA)) digdepth *= 2;
 	tmp_at(DISP_BEAM, cmap_to_glyph(S_digbeam));
 	while (--digdepth >= 0) {
 	    if (!isok(zx,zy)) break;
@@ -1716,6 +1718,7 @@ boolean bigrange;
 	zx = u.ux + u.dx;
 	zy = u.uy + u.dy;
 	digdepth = bigrange ? rn1(18, 8) : 1;
+	if (Race_if(PM_IRAHA)) digdepth *= 2;
 	tmp_at(DISP_BEAM, cmap_to_glyph(S_digbeam));
 	while (--digdepth >= 0) {
 	    if (!isok(zx,zy)) break;

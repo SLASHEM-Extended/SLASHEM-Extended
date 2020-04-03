@@ -1497,6 +1497,8 @@ struct you {
 	int hussykillturn;
 	int hussyperfume;
 
+	int irahapoison;
+
 	int snaildigging;
 
 	int acutraining;

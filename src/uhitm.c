@@ -317,8 +317,7 @@ struct monst *mtmp;
 {
 	if (Role_if(PM_KNIGHT) && u.ualign.type == A_LAWFUL &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
-	     (mtmp->mflee && !mtmp->mavenge)) &&
-	    u.ualign.record > -10) {
+	     (mtmp->mflee && !mtmp->mavenge)) ) {
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -326,8 +325,7 @@ struct monst *mtmp;
 
 	if (Role_if(PM_CHEVALIER) &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
-	     (mtmp->mflee && !mtmp->mavenge)) &&
-	    u.ualign.record > -10) {
+	     (mtmp->mflee && !mtmp->mavenge)) ) {
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -335,8 +333,7 @@ struct monst *mtmp;
 
 	if (Role_if(PM_CELLAR_CHILD) &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
-	     (mtmp->mflee && !mtmp->mavenge)) &&
-	    u.ualign.record > -10) {
+	     (mtmp->mflee && !mtmp->mavenge)) ) {
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -344,8 +341,7 @@ struct monst *mtmp;
 
 	if (Race_if(PM_VEELA) &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
-	     (mtmp->mflee && !mtmp->mavenge)) &&
-	    u.ualign.record > -10) {
+	     (mtmp->mflee && !mtmp->mavenge)) ) {
 	    You("crumple-horned snorkack!");
 	    adjalign(-5);
 		badeffect();
@@ -354,8 +350,7 @@ struct monst *mtmp;
 
 	if (Role_if(PM_PALADIN) &&
 	    (!mtmp->mcanmove || mtmp->msleeping ||
-	     (mtmp->mflee && !mtmp->mavenge)) &&
-	    u.ualign.record > -10) {
+	     (mtmp->mflee && !mtmp->mavenge)) ) {
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -482,21 +477,21 @@ register struct monst *mtmp;
 	check_caitiff(mtmp);
 
 /*	attacking peaceful creatures is bad for the samurai's giri */
-	if (Role_if(PM_SAMURAI) && mtmp->mpeaceful && u.ualign.record > -10) {
+	if (Role_if(PM_SAMURAI) && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
-	if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful && u.ualign.record > -10) {
+	if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
-	if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful && u.ualign.record > -10) {
+	if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
 		u.alignlim--;
@@ -504,13 +499,13 @@ register struct monst *mtmp;
 	}
 
 /* as well as for the way of the Jedi */
-	if (Role_if(PM_JEDI) && mtmp->mpeaceful && u.ualign.record > -10) {
+	if (Role_if(PM_JEDI) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
 		u.ualign.sins++;
 		u.alignlim--;
 	    adjalign(-5);
 	}
-	if (Race_if(PM_BORG) && mtmp->mpeaceful && u.ualign.record > -10) {
+	if (Race_if(PM_BORG) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
 		u.ualign.sins++;
 		u.alignlim--;
@@ -2788,12 +2783,12 @@ int dieroll;
 
 		}
 
-		if (wep && wep->otyp == COLLUSION_KNIFE) {
+		if (wep && wep->otyp == COLLUSION_KNIFE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 			pline("Collusion!");
 			litroomlite(FALSE);
 		}
 
-		if (wep && wep->otyp == DARKNESS_CLUB) {
+		if (wep && wep->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 			pline("Collusion!");
 			litroomlite(FALSE);
 		}
@@ -2927,30 +2922,31 @@ int dieroll;
 	}
 
 	if (ispoisoned) {
-	    int nopoison = (10/* - (obj->owt/10)*/);            
+	    int nopoison = (10/* - (obj->owt/10)*/);
+	    if (Race_if(PM_IRAHA)) nopoison *= 10;
 	    if(nopoison < 2) nopoison = 2;
-	    if (Role_if(PM_SAMURAI) && !Race_if(PM_POISONER)) {
+	    if (Role_if(PM_SAMURAI) && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-sgn(u.ualign.type));
 		adjalign(-5);
 		u.ualign.sins++;
 		u.alignlim--;
 	    }
-	    if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_POISONER)) {
+	    if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
 		u.ualign.sins++;
 		u.alignlim--;
 	    }
-	    if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_POISONER)) {
+	    if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
 		u.ualign.sins++;
 		u.alignlim--;
 	    }
-	    if ((u.ualign.type == A_LAWFUL) && !Race_if(PM_POISONER) && (u.ualign.record > -10)) {
+	    if ((u.ualign.type == A_LAWFUL) && !Race_if(PM_POISONER) && !Race_if(PM_IRAHA)) {
 		You_feel("like an evil coward for using a poisoned weapon.");
 		adjalign(-5);
 	    }
@@ -9380,6 +9376,7 @@ boolean ranged;
 	    break;
 	  case AD_DARK:
 
+		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
 		/* darken your surroundings --Amy */
 		pline("A maleficient darkness comes over you.");
 		litroomlite(FALSE);
@@ -9970,7 +9967,7 @@ boolean ranged;
 		break;
 	  case AD_MAGM:
 	    /* wrath of gods for attacking Oracle */
-	    if(Antimagic && rn2(StrongAntimagic ? 5 : 3)) {
+	    if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 5 : 3)) {
 		shieldeff(u.ux, u.uy);
 		pline("A hail of magic missiles narrowly misses you!");
 	    } else {

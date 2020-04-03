@@ -413,7 +413,7 @@ disturb(mtmp)
 	 *	Aggravate or mon is (dog or human) or
 	 *	    (1/7 and mon is not mimicing furniture or object)
 	 */
-	if(couldsee(mtmp->mx,mtmp->my) && !(Race_if(PM_VIETIS) && rn2(3)) &&
+	if(couldsee(mtmp->mx,mtmp->my) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) &&
 		distu(mtmp->mx,mtmp->my) <= 100 &&
 		(!Stealth || (Stealth && !StrongStealth && !rn2(5)) || (Aggravate_monster && !rn2(3) ) || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
 		(!(mtmp->data->mlet == S_NYMPH

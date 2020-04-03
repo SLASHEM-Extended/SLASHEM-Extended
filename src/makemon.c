@@ -7331,6 +7331,7 @@ register struct	monst	*mtmp;
 		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
 		if (ptr == &mons[PM_SICKLY_GRANNY]) (void) mongets(mtmp, TROUTSTAFF);
+		if (ptr == &mons[PM_BODYMORPHER]) (void) mongets(mtmp, WAN_POLYMORPH);
 		if (ptr == &mons[PM_GIRL_OUTSIDE_GANG]) (void) mongets(mtmp, LADY_BOOTS);
 		if (ptr == &mons[PM_YOUR_SISTER]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (ptr == &mons[PM_GRAVITY_STRIKER]) {
@@ -21770,6 +21771,10 @@ register int	mmflags;
 		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 	}
 
+	if (Race_if(PM_PLAYER_NIBELUNG) && !rn2(20)) {
+		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
+	}
+
 	if (mtmp->data->mlet == u.alwaysinvisible) mtmp->minvis = mtmp->perminvis = 1;
 	if (mtmp->data->mlet == u.alwayshidden) mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
 
@@ -23305,6 +23310,21 @@ loopback:
 		if (ct > 0 && (Race_if(PM_INCANTIFIER) && dmgtype(ptr, AD_NIVE) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_MONGUNG) && dmgtype(ptr, AD_NIVE) )) ct += 2;
 		if (ct > 0 && (isfeminizer && dmgtype(ptr, AD_FEMI) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_IRAHA) && (ptr->maligntyp > 0) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_PLAYER_NIBELUNG) && is_angbandmonster(ptr) )) ct += 5;
+		if (ct > 0 && (Race_if(PM_KLACKON) && humanoid(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_KLACKON) && is_angbandmonster(ptr) )) ct += 4;
+		if (ct > 0 && (Race_if(PM_KLACKON) && is_animemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_KUTAR) && is_angbandmonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_KUTAR) && is_animemonster(ptr) )) ct += 7;
+		if (ct > 0 && (Race_if(PM_KUTAR) && is_steammonster(ptr) )) ct += 3;
+		if (ct > 0 && (Race_if(PM_TONBERRY) && is_angbandmonster(ptr) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_TONBERRY) && is_animemonster(ptr) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_TONBERRY) && is_steammonster(ptr) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_TONBERRY) && is_jokemonster(ptr) )) ct += 2;
+		if (ct > 0 && (Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(ptr) )) ct += 50;
+		if (ct > 0 && (Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(ptr) )) ct += 10;
+		if (ct > 0 && (Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(ptr) )) ct += 12;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -24467,6 +24487,21 @@ int     spc;
 		if ((Race_if(PM_INCANTIFIER) && dmgtype(&mons[last], AD_NIVE) )) num += 1;
 		if ((Race_if(PM_MONGUNG) && dmgtype(&mons[last], AD_NIVE) )) num += 2;
 		if ((isfeminizer && dmgtype(&mons[last], AD_FEMI) )) num += 10;
+		if ((Race_if(PM_IRAHA) && (mons[last].maligntyp > 0) )) num += 10;
+		if ((Race_if(PM_PLAYER_NIBELUNG) && is_angbandmonster(&mons[last]) )) num += 5;
+		if ((Race_if(PM_KLACKON) && humanoid(&mons[last]) )) num += 3;
+		if ((Race_if(PM_KLACKON) && is_angbandmonster(&mons[last]) )) num += 4;
+		if ((Race_if(PM_KLACKON) && is_animemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_KUTAR) && is_angbandmonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_KUTAR) && is_animemonster(&mons[last]) )) num += 7;
+		if ((Race_if(PM_KUTAR) && is_steammonster(&mons[last]) )) num += 3;
+		if ((Race_if(PM_TONBERRY) && is_angbandmonster(&mons[last]) )) num += 10;
+		if ((Race_if(PM_TONBERRY) && is_animemonster(&mons[last]) )) num += 10;
+		if ((Race_if(PM_TONBERRY) && is_steammonster(&mons[last]) )) num += 10;
+		if ((Race_if(PM_TONBERRY) && is_jokemonster(&mons[last]) )) num += 2;
+		if ((Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(&mons[last]) )) num += 50;
+		if ((Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(&mons[last]) )) num += 10;
+		if ((Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(&mons[last]) )) num += 12;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -25304,6 +25339,21 @@ int     spc;
 		if ((Race_if(PM_INCANTIFIER) && dmgtype(&mons[first], AD_NIVE) )) num -= 1;
 		if ((Race_if(PM_MONGUNG) && dmgtype(&mons[first], AD_NIVE) )) num -= 2;
 		if ((isfeminizer && dmgtype(&mons[first], AD_FEMI) )) num -= 10;
+		if ((Race_if(PM_IRAHA) && (mons[first].maligntyp > 0) )) num -= 10;
+		if ((Race_if(PM_PLAYER_NIBELUNG) && is_angbandmonster(&mons[first]) )) num -= 5;
+		if ((Race_if(PM_KLACKON) && humanoid(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_KLACKON) && is_angbandmonster(&mons[first]) )) num -= 4;
+		if ((Race_if(PM_KLACKON) && is_animemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_KUTAR) && is_angbandmonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_KUTAR) && is_animemonster(&mons[first]) )) num -= 7;
+		if ((Race_if(PM_KUTAR) && is_steammonster(&mons[first]) )) num -= 3;
+		if ((Race_if(PM_TONBERRY) && is_angbandmonster(&mons[first]) )) num -= 10;
+		if ((Race_if(PM_TONBERRY) && is_animemonster(&mons[first]) )) num -= 10;
+		if ((Race_if(PM_TONBERRY) && is_steammonster(&mons[first]) )) num -= 10;
+		if ((Race_if(PM_TONBERRY) && is_jokemonster(&mons[first]) )) num -= 2;
+		if ((Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(&mons[first]) )) num -= 50;
+		if ((Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(&mons[first]) )) num -= 10;
+		if ((Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(&mons[first]) )) num -= 12;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 
@@ -26158,7 +26208,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 
-	if (Race_if(PM_ALBAE) || Race_if(PM_NEMESIS) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
+	if (Race_if(PM_ALBAE) || Race_if(PM_IRAHA) || Race_if(PM_NEMESIS) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) return FALSE;

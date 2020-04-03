@@ -788,7 +788,13 @@ const struct innate {
 			{  10, &(HFire_resistance), "cool", "warmer", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
+	nib_abil[] = { { 1, &(HSearching), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
 	dra_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	hyb_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	fel_abil[] = { { 20, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
@@ -1129,6 +1135,11 @@ const struct innate {
 	dut_abil[] = { {  1, &(HCold_resistance), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	ira_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
+		     {   12, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+		     {	26, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	yok_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
 		     {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HFire_resistance), "", "", TRUE },
@@ -1153,6 +1164,23 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	ill_abil[] = { {  1, &(HTelepat), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	kla_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
+		     {   1, &(HAcid_resistance), "", "", TRUE },
+		     {   7, &(HFast), "quick", "slow", TRUE },  
+		     {   12, &(HFast), "quick", "slow", TRUE },  
+		     {   17, &(HFast), "quick", "slow", TRUE },  
+			{     20, &(HPsi_resist), "psionic", "less psionic", TRUE },
+		     {   22, &(HFast), "quick", "slow", TRUE },  
+		     {   27, &(HFast), "quick", "slow", TRUE },  
+		     {   0, 0, 0, 0, 0 } },
+
+	kut_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
+			{	 1, &(HKeen_memory), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	ton_abil[] = { {  1, &(HScentView), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	ret_abil[] = { {	 1, &(HKeen_memory), "", "", TRUE },
@@ -1296,6 +1324,9 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	hou_abil[] = { {  1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	woo_abil[] = { {  1, &(HScentView), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	exp_abil[] = { {	 1, &(HPsi_resist), "", "", TRUE },
@@ -1941,8 +1972,9 @@ reset_attribute_clock()
 
 
 void
-init_attr(np)
-	register int	np;
+init_attr(np, rerollpossible)
+register int	np;
+boolean rerollpossible;
 {
 	register int	i, x, tryct;
 
@@ -1968,7 +2000,7 @@ init_attr(np)
 
 	    if (!attr_will_go_up(i, FALSE)) { /* aww --Amy */
 
-		np--;
+		if (!rerollpossible || !rn2(1000)) np--;
 		tryct = 0;
 		continue;
 	    }
@@ -2195,9 +2227,11 @@ int oldlevel, newlevel;
 	case PM_VIKING:	rabil = vik_abil;	break;
 	case PM_DOPPELGANGER:	rabil = dop_abil;	break;
 	case PM_HUMANLIKE_DRAGON:	rabil = dra_abil;	break;
+	case PM_HYBRIDRAGON:	rabil = hyb_abil;	break;
 	case PM_FELID:	rabil = fel_abil;	break;
 	case PM_KHAJIIT:	rabil = kha_abil;	break;
 	case PM_DWARF:		rabil = dwa_abil;	break;
+	case PM_PLAYER_NIBELUNG:		rabil = nib_abil;	break;
 	case PM_PLAYER_SLIME:		rabil = slm_abil;	break;
 	case PM_DROW:
 	case PM_PLAYER_MYRKALFR:
@@ -2210,12 +2244,16 @@ int oldlevel, newlevel;
 	case PM_ELEMENTAL:            rabil = elm_abil;	break;
 	case PM_REDGUARD:            rabil = red_abil;	break;
 	case PM_DUTHOL:            rabil = dut_abil;	break;
+	case PM_IRAHA:            rabil = ira_abil;	break;
 	case PM_YOKUDA:            rabil = yok_abil;	break;
 	case PM_SINNER:            rabil = sin_abil;	break;
 	case PM_REDDITOR:            rabil = rdt_abil;	break;
 	case PM_TROLLOR:            rabil = tro_abil;	break;
 	case PM_SNAKEMAN:            rabil = sna_abil;	break;
 	case PM_ILLITHID:            rabil = ill_abil;	break;
+	case PM_KLACKON:            rabil = kla_abil;	break;
+	case PM_TONBERRY:            rabil = ton_abil;	break;
+	case PM_KUTAR:            rabil = kut_abil;	break;
 	case PM_RETICULAN:            rabil = ret_abil;	break;
 	case PM_OUTSIDER:            rabil = out_abil;	break;
 	case PM_SPIDERMAN:            rabil = spi_abil;	break;
@@ -2244,6 +2282,7 @@ int oldlevel, newlevel;
 	case PM_PLAYER_SHEEP:            rabil = she_abil;	break;
 	case PM_PLAYER_CERBERUS:            rabil = cer_abil;	break;
 	case PM_PLAYER_HOUND:            rabil = hou_abil;	break;
+	case PM_WOOKIE:            rabil = woo_abil;	break;
 	case PM_EXPERT:            rabil = exp_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;
@@ -3038,6 +3077,38 @@ attrdevelop:
 		return FALSE;
 	}
 
+}
+
+/* recalculate player's stats --Amy
+ * This is not the same as feeling like a new man; it redistributes ALL stat points.
+ * percentage strength points will be converted into single points so you're likely to experience a net loss :P */
+void
+bodymorph()
+{
+	int amounttodistribute = 0;
+	register int	i, x, tryct;
+
+	for(i = 0; i < A_MAX; i++) {
+		if (i == A_STR) {
+			while (ABASE(i) > 3) {
+				if (ABASE(i) <= 18 || ABASE(i) >= STR19(19)) {
+					ABASE(i)--;
+					amounttodistribute++;
+				} else {
+					ABASE(i) -= 10;
+					amounttodistribute++;
+				}
+			}
+		} else {
+			while (ABASE(i) > 3) {
+				ABASE(i)--;
+				amounttodistribute++;
+			}
+		}
+		ABASE(i) = 3;
+		AMAX(i) = 3;
+	}
+	init_attr(amounttodistribute, TRUE);
 }
 
 /*attrib.c*/

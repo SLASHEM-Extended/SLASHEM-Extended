@@ -118,7 +118,7 @@ E void restore_attrib(void);
 E void exercise(int,BOOLEAN_P);
 E void exerchk(void);
 E void reset_attribute_clock(void);
-E void init_attr(int);
+E void init_attr(int,BOOLEAN_P);
 E void redist_attr(void);
 E void adjabil(int,int);
 E int newhp(void);
@@ -129,6 +129,7 @@ E void adjalign(int);
 E void recalc_health(void);
 E int recalc_mana(void);
 E boolean attr_will_go_up(int, BOOLEAN_P);
+E void bodymorph(void);
 
 /* ### ball.c ### */
 
@@ -2336,6 +2337,8 @@ E boolean chromeprotection(void);
 E int angelshadowstuff(void);
 E void statdebuff(void);
 E void nivellate(void);
+
+E boolean hybridragontype(int);
 
 E boolean extralongsqueak(void);
 

@@ -24947,6 +24947,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You pollute the environment.",
 	"You pollute the environment. Now the kops have been kalled and will teach you not to dilute your potions of oil in a pool!",
 	"You pollute the environment. Don't let the Fridays for Future activists know what you're doing there... in fact, better don't let them know that you had a potion of oil in the first place :P",
+	"Your body seems to morph...",
+	"Your body seems to morph... Now you're a lichen. Have fun trying to kill monsters in that form.",
+	"You feel something trying to drain your magical energy, but resist the effect.",
 
 };
 

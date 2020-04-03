@@ -6678,6 +6678,7 @@ rerollthree:
 	switch (Race_switch) {
 		default: break;
 		case PM_AK_THIEF_IS_DEAD_: implantbonus = 3; break;
+		case PM_PLAYER_GLORKUM: implantbonus = 3; break;
 		case PM_BATMAN: implantbonus = 1; break;
 		case PM_BURNINATOR: implantbonus = 2; break;
 		case PM_CHIROPTERAN: implantbonus = 1; break;
@@ -6688,12 +6689,14 @@ rerollthree:
 		case PM_DESTABILIZER: implantbonus = 3; break;
 		case PM_WEAPONIZED_DINOSAUR: implantbonus = 1; break;
 		case PM_HUMANLIKE_DRAGON: implantbonus = 2; break;
+		case PM_HYBRIDRAGON: implantbonus = 2; break;
 		case PM_FAWN: implantbonus = 1; break;
 		case PM_FELID: implantbonus = 1; break;
 		case PM_WEAPON_CUBE: implantbonus = 5; break;
 		case PM_PLAYER_SLIME: implantbonus = 6; break;
 		case PM_WEAPON_BUG: implantbonus = 3; break;
 		case PM_INSECTOID: implantbonus = 3; break;
+		case PM_KLACKON: implantbonus = 3; break;
 		case PM_JELLY: implantbonus = 5; break;
 		case PM_LEVITATOR: implantbonus = 3; break;
 		case PM_MISSINGNO: implantbonus = 6; break;
@@ -6712,10 +6715,12 @@ rerollthree:
 		case PM_UNGENOMOLD: implantbonus = 3; break;
 		case PM_PLAYER_SHEEP: implantbonus = 3; break;
 		case PM_PLAYER_HOUND: implantbonus = 3; break;
+		case PM_KUTAR: implantbonus = 3; break;
 		case PM_PLAYER_CERBERUS: implantbonus = 3; break;
 		case PM_PLAYER_UNICORN: implantbonus = 1; break;
 		case PM_VORTEX: implantbonus = 5; break;
 		case PM_WISP: implantbonus = 4; break;
+		case PM_TONBERRY: implantbonus = 4; break;
 		case PM_WORM_THAT_WALKS: implantbonus = 4; break;
 		case PM_HUMAN_WRAITH: implantbonus = 3; break;
 		case PM_WEAPON_XORN: implantbonus = 2; break;
@@ -6991,6 +6996,14 @@ rerollthree:
 
 	}
 
+	if (Race_if(PM_KUTAR)) {
+
+		P_SKILL(P_SEARCHING) = P_ISRESTRICTED;
+		P_MAX_SKILL(P_SEARCHING) = P_ISRESTRICTED;
+		P_ADVANCE(P_SEARCHING) = 0;
+
+	}
+
 	if (Race_if(PM_MANSTER)) {
 
 		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
@@ -6998,6 +7011,30 @@ rerollthree:
 			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_SKILLED;
 			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
 			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+
+		}
+	}
+
+	if (Race_if(PM_WOOKIE)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+
+			if (skill == P_LIGHTSABER || (skill >= P_SHII_CHO && skill <= P_WEDI)) {
+				if (P_RESTRICTED(skill)) {
+					P_SKILL(skill) = P_UNSKILLED;
+					P_ADVANCE(skill) = 0;
+					P_MAX_SKILL(skill) = P_EXPERT;
+				}
+				else if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_MASTER;
+				else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
+				else P_MAX_SKILL(skill) = P_SUPREME_MASTER;
+
+			} else {
+				if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_SKILLED;
+				else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
+				else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+				else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
+			}
 
 		}
 	}
@@ -7074,6 +7111,25 @@ rerollthree:
 			P_SKILL(P_SPIRITUALITY) = P_UNSKILLED;
 			P_ADVANCE(P_SPIRITUALITY) = 0;
 			P_MAX_SKILL(P_SPIRITUALITY) = P_BASIC;
+		}
+	}
+
+	if (Race_if(PM_TONBERRY)) {
+		if (P_RESTRICTED(P_AXE)) {
+			P_SKILL(P_AXE) = P_UNSKILLED;
+			P_ADVANCE(P_AXE) = 0;
+			P_MAX_SKILL(P_AXE) = P_EXPERT;
+		} else {
+			if (P_MAX_SKILL(P_AXE) == P_EXPERT) P_MAX_SKILL(P_AXE) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_AXE) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_KNIFE)) {
+			P_SKILL(P_KNIFE) = P_UNSKILLED;
+			P_ADVANCE(P_KNIFE) = 0;
+			P_MAX_SKILL(P_KNIFE) = P_EXPERT;
+		} else {
+			if (P_MAX_SKILL(P_KNIFE) == P_EXPERT) P_MAX_SKILL(P_KNIFE) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_KNIFE) = P_SUPREME_MASTER;
 		}
 	}
 

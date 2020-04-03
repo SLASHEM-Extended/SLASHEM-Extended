@@ -7222,7 +7222,7 @@ newbossPENT:
 			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
 				break;
 			case 2: /* shock */
-			if(Shock_resistance) dmg = 0;
+			if (Shock_resistance) dmg = 0;
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -7282,7 +7282,7 @@ newbossPENT:
 			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
 				break;
 			case 2: /* shock */
-			if(Shock_resistance) dmg = 0;
+			if (Shock_resistance) dmg = 0;
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -7324,7 +7324,7 @@ newbossPENT:
 			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
 				break;
 			case 2: /* shock */
-			if(Shock_resistance) dmg = 0;
+			if (Shock_resistance) dmg = 0;
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -7390,7 +7390,7 @@ newbossPENT:
 			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
 				break;
 			case 2: /* shock */
-			if(Shock_resistance) dmg = 0;
+			if (Shock_resistance) dmg = 0;
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -7436,7 +7436,7 @@ newbossPENT:
 			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
 				break;
 			case 2: /* shock */
-			if(Shock_resistance) dmg = 0;
+			if (Shock_resistance) dmg = 0;
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -7499,7 +7499,7 @@ newbossPENT:
 			if (dmg) {losehp(dmg, "hidden glyph", KILLED_BY_AN); }
 				break;
 			case 2: /* shock */
-			if(Shock_resistance) dmg = 0;
+			if (Shock_resistance) dmg = 0;
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -7798,7 +7798,7 @@ newbossPENT:
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
+			if (Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    break;
@@ -18275,6 +18275,16 @@ register int n;
 {
 	int maxenloss;
 
+	if (Race_if(PM_PLAYER_NIBELUNG)) {
+		if (rn2(5)) {
+			You("feel something trying to drain your magical energy, but resist the effect.");
+			return;
+		} else {
+			n /= rnd(5);
+			if (n < 1) n = 1;
+		}
+	}
+
 	if (!u.uenmax) return;
 	You_feel("your magical energy drain away!");
 	u.uen -= n;
@@ -19546,7 +19556,7 @@ boolean disarm;
 			int dmg;
 
 			You("are jolted by a surge of electricity!");
-			if(Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
+			if (Shock_resistance && (StrongShock_resistance || rn2(10)) )  {
 			    shieldeff(u.ux, u.uy);
 			    You("don't seem to be affected.");
 			    dmg = 0;

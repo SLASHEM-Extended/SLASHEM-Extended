@@ -407,7 +407,7 @@ aggravate()
 			if (distagravate > 95) distagravate = 95;
 		} else distagravate = 0;
 
-		if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && (rnd(100) > distagravate) && !(Race_if(PM_VIETIS) && !rn2(3))) {
+		if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && (rnd(100) > distagravate) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(Race_if(PM_KUTAR) && !rn2(3)) ) {
 			mtmp->msleeping = 0;
 			if(!mtmp->mcanmove && !rn2(5)) {
 				mtmp->mfrozen = 0;

@@ -3298,6 +3298,7 @@ powerfulimplants()
 	if (Race_if(PM_SATRE) && !Upolyd) return TRUE; /* equipment restrictions */
 	if (Race_if(PM_ELONA_SNAIL) && !Upolyd) return TRUE; /* equipment restrictions */
 	if (Race_if(PM_HUMAN_WRAITH)) return TRUE; /* loses maxHP permanently when equipping stuff */
+	if (Race_if(PM_PLAYER_GLORKUM)) return TRUE; /* is so weird that it always gets the bonus */
 	if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uactivesymbiosis && uimplant) return TRUE;
 
 	return FALSE;

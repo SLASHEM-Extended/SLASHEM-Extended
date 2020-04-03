@@ -1325,6 +1325,16 @@ static const struct innate_tech
 		       {   12, T_DOUBLE_THROWNAGE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
+	kla_tech[] = { {   1, T_SUMMON_TEAM_ANT, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   15, T_CRIT_STRIKE, 1},
+		       {   20, T_TELEKINESIS, 1},
+		       {   25, T_SPIRIT_BOMB, 1},
+		       {   0, 0, 0} },
 	kob_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -1346,6 +1356,16 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+	ton_tech[] = { {   1, T_DASH, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   6, T_SHIELD_BASH, 1},
+		       {   10, T_IRON_SKIN, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_POKE_BALL, 1},
 		       {   0, 0, 0} },
 	hmo_tech[] = { {   1, T_BERSERK, 1},
 		       {   1, T_APPRAISAL, 1},
@@ -1451,6 +1471,15 @@ static const struct innate_tech
 		       {   10, T_CHARGE_SABER, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_TELEKINESIS, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   0, 0, 0,} },
+
+	woo_tech[] = { {   12, T_JEDI_JUMP, 1},
+		       {   20, T_CHARGE_SABER, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
@@ -1636,6 +1665,14 @@ static const struct innate_tech
 		       {   11, T_RECHARGE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   28, T_SPIRITUALITY_CHECK, 1},
+		       {   0, 0, 0} },
+
+	ira_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   12, T_CREATE_AMMO, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
 	una_tech[] = { {   1, T_APPRAISAL, 1},
@@ -8667,6 +8704,7 @@ race_tech()
 		case PM_BATMAN:		return (bat_tech);
 		case PM_HUMANOID_CENTAUR:		return (cen_tech);
 		case PM_BORG:		return (bor_tech);
+		case PM_WOOKIE:		return (woo_tech);
 		case PM_RODNEYAN:		return (rod_tech);
 		case PM_TURTLE:		return (tur_tech);
 		case PM_TURMENE:		return (tme_tech);
@@ -8682,9 +8720,11 @@ race_tech()
 		case PM_ARGONIAN:		return (arg_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);
 		case PM_INSECTOID:		return (ins_tech);
+		case PM_KLACKON:		return (kla_tech);
 		case PM_MUMMY:		return (mum_tech);
 		case PM_KHAJIIT:	return (kha_tech);
 		case PM_WEAPON_CUBE:	return (gel_tech);
+		case PM_TONBERRY:	return (ton_tech);
 		case PM_HOBBIT:		return (hob_tech);
 		case PM_HUMAN_WEREWOLF:	return (lyc_tech);
 		case PM_HUMAN_MONKEY:	return (hmo_tech);
@@ -8705,6 +8745,7 @@ race_tech()
 		case PM_VENTURE_CAPITALIST:	return (ven_tech);
 		case PM_TRANSFORMER:	return (trf_tech);
 		case PM_WEAPON_TRAPPER:	return (trp_tech);
+		case PM_IRAHA:	return (ira_tech);
 		case PM_SPRIGGAN:	return (spr_tech);
 		case PM_VEELA:	return (vee_tech);
 		case PM_WARPER:	return (wrp_tech);

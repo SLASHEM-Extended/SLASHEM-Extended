@@ -444,6 +444,12 @@ nh_timeout()
 		if (!u.hussyperfume) pline("You are capable of spreading the perfume again.");
 	}
 
+	if (u.irahapoison) {
+		u.irahapoison--;
+		if (u.irahapoison < 0) u.irahapoison = 0; /* fail safe */
+		if (!u.irahapoison) pline("You are capable of poisoning your weapon again.");
+	}
+
 	if (u.acutraining) {
 		u.acutraining--;
 		if (u.acutraining < 0) u.acutraining = 0; /* fail safe */
@@ -623,27 +629,27 @@ nh_timeout()
 		losehp(rnd(u.ulevel), "dynamite amulet explosion", KILLED_BY_AN);
 	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_CASTLEVANIA_BOOTS) && !rn2(1000) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_CASTLEVANIA_BOOTS) && !rn2(1000) && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 		pline("You hear a dark orchestral melody, and all the lights go out...");
 		litroomlite(FALSE);
 	}
 
-	if (RngeCastlevania && !rn2(1000)) {
+	if (RngeCastlevania && !rn2(1000) && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 		pline("You hear a dark orchestral melody, and all the lights go out...");
 		litroomlite(FALSE);
 	}
 
-	if (uarmh && (uarmh->oartifact == ART_DARK_NADIR) && !rn2(200) ) {
+	if (uarmh && (uarmh->oartifact == ART_DARK_NADIR) && !rn2(200) && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 		pline("Darkness surrounds you.");
 		litroomlite(FALSE);
 	}
 
-	if (uarmh && (uarmh->oartifact == ART_RUTH_S_DARK_FORCE) && !rn2(200) ) {
+	if (uarmh && (uarmh->oartifact == ART_RUTH_S_DARK_FORCE) && !rn2(200) && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 		pline("Darkness surrounds you.");
 		litroomlite(FALSE);
 	}
 
-	if (uarmh && (uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) && !rn2(200) ) {
+	if (uarmh && (uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) && !rn2(200) && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 		pline("Darkness surrounds you.");
 		litroomlite(FALSE);
 	}

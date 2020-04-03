@@ -1046,6 +1046,7 @@ Cloak_on()
 		}
 		break;
 	case CLOAK_OF_UNLIGHT:
+		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
 		pline("Darkness surrounds you.");
 		litroomlite(FALSE);
 		break;
@@ -1820,7 +1821,7 @@ Helmet_on()
 			      Tobjnam(uarmh, "glow"), hcolor(NH_BLACK));
 			curse(uarmh);
 		}
-		litroomlite(FALSE);
+		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) litroomlite(FALSE);
     }
 
     if (uarmh && uarmh->oartifact == ART_RUTH_S_DARK_FORCE) {
@@ -1832,7 +1833,7 @@ Helmet_on()
 			      Tobjnam(uarmh, "glow"), hcolor(NH_BLACK));
 			curse(uarmh);
 		}
-		litroomlite(FALSE);
+		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) litroomlite(FALSE);
     }
 
     if (uarmh && uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) {
@@ -1844,7 +1845,7 @@ Helmet_on()
 			      Tobjnam(uarmh, "glow"), hcolor(NH_BLACK));
 			curse(uarmh);
 		}
-		litroomlite(FALSE);
+		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) litroomlite(FALSE);
     }
 
     if (uarmh && uarmh->oartifact == ART_FORMFILLER) {
@@ -4937,6 +4938,7 @@ find_ac()
 	if (Race_if(PM_ETHEREALOID)) uac -= u.ulevel;
 	if (Race_if(PM_TURTLE)) uac -= u.ulevel;
 	if (Race_if(PM_LOWER_ENT)) uac -= u.ulevel;
+	if (Race_if(PM_KUTAR)) uac -= (u.ulevel / 3);
 
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));

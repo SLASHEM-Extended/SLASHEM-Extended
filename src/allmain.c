@@ -1091,6 +1091,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (Race_if(PM_TONBERRY) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (Race_if(PM_CARTHAGE) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1376,6 +1379,9 @@ moveloop()
 			}
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (Race_if(PM_TONBERRY) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (Race_if(PM_CARTHAGE) && !rn2(8) && moveamt > 1)
@@ -5025,6 +5031,24 @@ newbossF:
 		if (!rn2(200)) {
 			recalc_health();
 			recalc_mana();
+		}
+
+		if (Race_if(PM_FIXER) && !rn2(1000)) {
+			Your("intrinsics change.");
+			intrinsicgainorloss();
+		}
+
+		if (Race_if(PM_RACE_THAT_DOESN_T_EXIST) && !rn2(100)) {
+			attrcurse();
+		}
+
+		if (Race_if(PM_RACE_THAT_DOESN_T_EXIST) && !rn2(1000)) {
+			eviltechincrease();
+		}
+
+		if (Race_if(PM_BODYMORPHER) && !rn2(5000)) {
+			Your("body seems to morph...");
+			bodymorph();
 		}
 
 		if (uarmf && itemhasappearance(uarmf, APP_STANDING_FOOTWEAR) && !rn2(1000)) {

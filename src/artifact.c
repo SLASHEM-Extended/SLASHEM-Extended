@@ -1516,7 +1516,7 @@ touch_artifact(obj,mon)
 	if (!yours) return 0;
 	You("are blasted by %s power!", s_suffix(the(xname(obj))));
 	u.cnd_artiblastcount++;
-	dmg = d((StrongAntimagic ? 3 : Antimagic ? 6 : 8), (self_willed ? 10 : 6));
+	dmg = d((Race_if(PM_KUTAR) ? 8 : StrongAntimagic ? 3 : Antimagic ? 6 : 8), (self_willed ? 10 : 6));
 	if (!issoviet && (u.ulevel < 10)) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
 		dmg *= u.ulevel;
 		dmg /= 10;

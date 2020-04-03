@@ -5989,14 +5989,14 @@ hitmu(mtmp, mattk)
 #endif
 			} else dmg += dmgval(otmp, &youmonst);
 
-			if (otmp && otmp->otyp == COLLUSION_KNIFE) {
+			if (otmp && otmp->otyp == COLLUSION_KNIFE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 
 				pline("Collusion!");
 				litroomlite(FALSE);
 
 			}
 
-			if (otmp && otmp->otyp == DARKNESS_CLUB) {
+			if (otmp && otmp->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 
 				pline("Collusion!");
 				litroomlite(FALSE);
@@ -6188,6 +6188,7 @@ hitmu(mtmp, mattk)
 		if (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) dmg *= 2;
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
+		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
 
 		/* create darkness around the player --Amy */
 		pline("That felt evil and sinister!");
@@ -6757,7 +6758,7 @@ dopois:
 			if (mtmp->mhp < 1) break;
 		}
 
-		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
+		if (defends(AD_DRIN, uwep) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -9592,7 +9593,7 @@ dopois:
 	    case AD_MAGM:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		    if(Antimagic && rn2(StrongAntimagic ? 5 : 3)) {
+		    if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 5 : 3)) {
 			shieldeff(u.ux, u.uy);
 			dmg = 0;
 			pline("A hail of magic missiles narrowly misses you!");
@@ -11534,6 +11535,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			You_feel("a constricting darkness...");
 
+			if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
+
 			/* create darkness around the player --Amy */
 			litroomlite(FALSE);
 			break;
@@ -12768,7 +12771,7 @@ do_stone2:
 			break;
 
 		case AD_MAGM:
-		    if(Antimagic && rn2(StrongAntimagic ? 5 : 3)) {
+		    if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 5 : 3)) {
 			tmp = 0;
 		    } else {
 			You("are irradiated with energy!");
@@ -15468,8 +15471,11 @@ common:
 	    break;
 
 	    case AD_DARK:
-		pline("Everything gets dark!");
-		litroomlite(FALSE);
+
+		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+			pline("Everything gets dark!");
+			litroomlite(FALSE);
+		}
 		if (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) tmp *= 2;
 	      mdamageu(mtmp, tmp);
 
@@ -16072,7 +16078,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 		pline("%s's eye color suddenly changes!", Monnam(mtmp));
 		    stop_occupation();
-		    if(Antimagic && !rn2(StrongAntimagic ? 3 : 2)) {
+		    if(Antimagic && !Race_if(PM_KUTAR) && !rn2(StrongAntimagic ? 3 : 2)) {
 			shieldeff(u.ux, u.uy);
 			pline("A hail of magic missiles narrowly misses you!");
 		    } else {
@@ -16379,6 +16385,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_DARK:
 		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4)) )
  		{
+
+		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
 
 		/* create darkness around the player --Amy */
 		pline("%s's sinister gaze fills your mind with dreadful, evil thoughts!", Monnam(mtmp));
@@ -21172,8 +21180,10 @@ dothepassive:
 		break;
 
 	    case AD_DARK:
-		litroomlite(FALSE);
-		pline("A sinister darkness fills the area!");
+		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+			litroomlite(FALSE);
+			pline("A sinister darkness fills the area!");
+		}
 		if (mtmp->data->mlet == S_ANGEL) tmp *= 2;
 		break;
 

@@ -5477,7 +5477,7 @@ register struct obj *otmp;
 		reveal_invis = TRUE;
 		if (mtmp == &youmonst) {
 			if (zap_oseen) makeknown(WAN_STRIKING);
-			if (Antimagic && rn2(StrongAntimagic ? 20 : 5) ) {
+			if (Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5) ) {
 			    shieldeff(u.ux, u.uy);
 			    pline("Boing!");
 			} else if (rnd(20) < 10 + u.uac || !rn2(3) ) { /* good ac will no longer be 100% protection --Amy */
