@@ -5363,8 +5363,14 @@ register long amount;
 	register struct eshk *eshkp;
 
 	if(!costly_spot(x, y)) return;
+
 	/* shkp now guaranteed to exist by costly_spot() */
 	shkp = shop_keeper(*in_rooms(x, y, SHOPBASE));
+
+	if (Race_if(PM_IRAHA) && shkp) {
+		verbalize("You just signed your own death warrant, thief!");
+		hot_pursuit(shkp);
+	}
 
 	eshkp = ESHK(shkp);
 	if(eshkp->credit >= amount) {

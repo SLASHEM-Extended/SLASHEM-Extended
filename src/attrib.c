@@ -3096,6 +3096,7 @@ bodymorph()
 					amounttodistribute++;
 				} else {
 					ABASE(i) -= 10;
+					if (ABASE(i) < 18) ABASE(i) = 18;
 					amounttodistribute++;
 				}
 			}
@@ -3108,6 +3109,7 @@ bodymorph()
 		ABASE(i) = 3;
 		AMAX(i) = 3;
 	}
+	amounttodistribute += 18; /* because of the base 3 points you always have in all attribs */
 	init_attr(amounttodistribute, TRUE);
 }
 

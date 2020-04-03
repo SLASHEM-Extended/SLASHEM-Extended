@@ -6107,7 +6107,7 @@ register struct obj *obj;
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) obj->bknown = TRUE;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */
-	if (obj->oclass == WEAPON_CLASS && is_poisonable(obj) && obj->opoisoned)
+	if (obj->oclass == WEAPON_CLASS && obj->opoisoned)
 		strcpy(buf, flags.simpledescs ? "pois " : "poisoned ");
 
 	/*if (obj_is_pname(obj))

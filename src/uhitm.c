@@ -1546,8 +1546,7 @@ int dieroll;
 
 	    if (is_lightsaber(obj)) objenchant = 4;
 
-	    if (is_poisonable(obj) && obj->opoisoned)
-		ispoisoned = TRUE;
+	    if (obj->opoisoned) ispoisoned = TRUE;
 
 		if (Race_if(PM_POISONER)) ispoisoned = TRUE;
 		if (obj->oartifact == ART_ASBESTOS_MATERIAL) ispoisoned = TRUE;

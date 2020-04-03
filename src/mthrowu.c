@@ -1048,7 +1048,7 @@ blockingdone:
 	    if (vis) hit(distant_name(otmp,mshot_xname), mtmp, exclam(damage));
 	    else if (verbose) pline("%s is hit%s", Monnam(mtmp), exclam(damage));
 
-	    if (otmp->opoisoned && is_poisonable(otmp)) {
+	    if (otmp->opoisoned) {
 		if (resists_poison(mtmp)) {
 		    if (vis) pline_The("poison doesn't seem to affect %s.",
 				   mon_nam(mtmp));
@@ -1301,8 +1301,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    if (dam < 1) dam = 1;
 			    hitu = thitu(hitv, dam, singleobj, (char *)0);
 		    }
-		    if (hitu && singleobj->opoisoned &&
-			is_poisonable(singleobj)) {
+		    if (hitu && singleobj->opoisoned) {
 			char onmbuf[BUFSZ], knmbuf[BUFSZ];
 
 			strcpy(onmbuf, xname(singleobj));

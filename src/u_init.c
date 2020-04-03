@@ -44171,6 +44171,9 @@ polyinitredoX:
 		pline("Suddenly, the reality is altered!");
 	}
 
+	/* in case the player is a race that has randomized stats in monster form... --Amy */
+	init_uasmon();
+
 	return;
 
 }
