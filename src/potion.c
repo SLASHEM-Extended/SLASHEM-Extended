@@ -5169,12 +5169,8 @@ newswap:
 		}
 	}
 
-	pline("strtempvar %d, strweirdness %d", strtempvar, strweirdness);
-
 	int difference = (firstswapstat - secondswapstat);
 	int strdifference = difference;
-
-	pline("difference %d", difference);
 
 	if (secondstat == A_STR) {
 		while (strdifference < -9 && strweirdness > 0) {

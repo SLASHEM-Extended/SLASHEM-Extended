@@ -2378,6 +2378,7 @@ learn()
 	    if (cursed_book(book)) {
 		if (carried(book)) useup(book);
 		else useupf(book, 1L);
+		pline_The("book falls apart.");
 		book = 0;
 		return 0;
 	    }
@@ -2538,6 +2539,7 @@ register struct obj *spellbook;
 		    delay = 0;
 		    if(gone || (spellbook->spe < 0) || !rn2(3)) {
 			if (!gone && !(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook crumbles to dust!");
+			else if (!(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook has been destroyed.");
 			if (!objects[spellbook->otyp].oc_name_known &&
 				!objects[spellbook->otyp].oc_uname)
 			    docall(spellbook);

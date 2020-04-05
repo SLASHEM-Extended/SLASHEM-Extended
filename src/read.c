@@ -1412,7 +1412,7 @@ int curse_bless;
 	    n = (int)obj->recharged;
 	    if (n > 0 && (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT || obj->otyp == WAN_GAIN_LEVEL || obj->otyp == WAN_INCREASE_MAX_HITPOINTS ||
 		/* no unlimited recharging of wands of charging --Amy */
-		    ((n * n * n > rn2(7*7*7) && !(obj->oartifact == ART_EXTRA_CONTROL && Role_if(PM_FORM_CHANGER)) ) && !rn2( Role_if(PM_WANDKEEPER) ? 10 : 2) ))) {	/* recharge_limit */
+		    ((n * n * n > rn2(7*7*7) && !(obj->oartifact == ART_EXTRA_CONTROL && Role_if(PM_FORM_CHANGER)) ) && ( Role_if(PM_WANDKEEPER) ? !rn2(10) : rn2(3)) ))) {	/* recharge_limit */
 		Your("%s vibrates violently, and explodes!",xname(obj));
 		wand_explode(obj, FALSE);
 		return;
@@ -1480,26 +1480,22 @@ int curse_bless;
 	     *	14 :  63.29   99.32
 	     */
 	    n = (int)obj->recharged;
-	    if (n > 0 && rn2(2) && (n * n * n > rn2(7*7*7))) {	/* recharge_limit */
+	    if (n > 0 && (Role_if(PM_LIBRARIAN) ? !rn2(10) : Role_if(PM_INTEL_SCRIBE) ? !rn2(10) : rn2(3)) && (n * n * n > rn2(7*7*7))) {	/* recharge_limit */
 		Your("%s crumbles to dust!", xname(obj));
 		useup(obj);
 		    return;
 		}
-	    /* didn't crumble, so possibly increment the recharge count */
-	    if (!rn2(2)) obj->recharged = (unsigned)(n + 1);
+	    /* didn't crumble, so increment the recharge count */
+	    obj->recharged = (unsigned)(n + 1);
 
 	    /* now handle the actual recharging */
 	    if (is_cursed) {
 		stripspe(obj);
   	    } else {
-		int lim = (objects[obj->otyp].oc_dir != NODIR) ? 8 : 15;
-
-		n = rn1(5, lim + 1 - 5);
-		if (!is_blessed) n = rnd(n);
-
-		if (obj->spe < n) obj->spe = n;
-		else obj->spe++;
-		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
+		n = (is_blessed) ? rnd(5) : rnd(3);
+		obj->spe += n;
+		if (obj->spe > 100) obj->spe = 100; /* upper limit */
+		if (obj->spe >= 5) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		u.cnd_chargingcount++;
 	    }
@@ -1574,7 +1570,7 @@ int curse_bless;
 	    case EXPENSIVE_CAMERA:
 
 		n = (int)obj->recharged;
-		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+		if (n > 0 && rn2(3) && (n * n * n > rn2(9*9*9))) {
 			Your("%s glows violently and evaporates!", xname(obj));
 			useup(obj);
 		    return;
@@ -1691,7 +1687,7 @@ int curse_bless;
 	    case CRYSTAL_BALL:
 
 		n = (int)obj->recharged;
-		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+		if (n > 0 && rn2(3) && (n * n * n > rn2(9*9*9))) {
 			Your("%s glows violently and evaporates!", xname(obj));
 			useup(obj);
 		    return;
@@ -1716,14 +1712,37 @@ int curse_bless;
 		    }
 		}
 		break;
-	    case HORN_OF_PLENTY:
-	    case BAG_OF_TRICKS:
+
 	    case CAN_OF_GREASE:
 	    case LUBRICANT_CAN:
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(3) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
+		if (is_cursed) stripspe(obj);
+		else if (is_blessed) {
+			obj->spe += rnd(30);
+			if (obj->spe > 100) obj->spe = 100;
+			p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
+		} else {
+			obj->spe += rnd(20);
+			if (obj->spe > 100) obj->spe = 100;
+			p_glow1(obj);
+			u.cnd_chargingcount++;
+		}
+		break;
+
+	    case HORN_OF_PLENTY:
+	    case BAG_OF_TRICKS:
 	    case CHEMISTRY_SET:
 
 		n = (int)obj->recharged;
-		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+		if (n > 0 && rn2(3) && (n * n * n > rn2(9*9*9))) {
 			Your("%s glows violently and evaporates!", xname(obj));
 			useup(obj);
 		    return;
@@ -1755,7 +1774,7 @@ int curse_bless;
 	    case DRUM_OF_EARTHQUAKE:
 
 		n = (int)obj->recharged;
-		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
+		if (n > 0 && rn2(3) && (n * n * n > rn2(9*9*9))) {
 			Your("%s glows violently and evaporates!", xname(obj));
 			useup(obj);
 		    return;
