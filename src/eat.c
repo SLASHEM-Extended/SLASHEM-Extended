@@ -5138,7 +5138,7 @@ struct obj *otmp;
 	    if (u.uhp <= 0) return; /* died from sink fall */
 	}
 	otmp->known = otmp->dknown = 1; /* by taste */
-	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : otmp->oclass == IMPLANT_CLASS ? 2 : 10)) || (Race_if(PM_OCTOPODE) && otmp->oclass == RING_CLASS) || objects[(otmp)->otyp].oc_material == MT_VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
+	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : otmp->oclass == IMPLANT_CLASS ? 2 : 10)) || (Race_if(PM_OCTOPODE) && otmp->oclass == RING_CLASS) || (objects[(otmp)->otyp].oc_material == MT_VIVA && !rn2(5)) ) { /* lower chance, due to existence of sickness resistance etc --Amy */
 	  switch (otmp->otyp) {
 	    default:
 	        if (!objects[typ].oc_oprop) break; /* should never happen */
