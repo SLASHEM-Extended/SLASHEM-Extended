@@ -3258,17 +3258,17 @@ polyskillchance()
 	register int percentualchance = 0;
 	register int enchantplant = 0;
 
-	if (PlayerCannotUseSkills) return FALSE;
-	else switch (P_SKILL(P_POLYMORPHING)) {
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_POLYMORPHING)) {
 
-      	case P_BASIC:	percentualchance = 15; break;
-      	case P_SKILLED:	percentualchance = 30; break;
-      	case P_EXPERT:	percentualchance = 45; break;
-      	case P_MASTER:	percentualchance = 60; break;
-      	case P_GRAND_MASTER:	percentualchance = 75; break;
-      	case P_SUPREME_MASTER:	percentualchance = 90; break;
-      	default: percentualchance = 0; break;
-		
+	      	case P_BASIC:	percentualchance = 15; break;
+	      	case P_SKILLED:	percentualchance = 30; break;
+	      	case P_EXPERT:	percentualchance = 45; break;
+	      	case P_MASTER:	percentualchance = 60; break;
+	      	case P_GRAND_MASTER:	percentualchance = 75; break;
+	      	case P_SUPREME_MASTER:	percentualchance = 90; break;
+	      	default: percentualchance = 0; break;
+		}
 	}
 
 	if (rn2(100) < percentualchance) return TRUE;
