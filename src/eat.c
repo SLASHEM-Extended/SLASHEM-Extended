@@ -4666,7 +4666,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	    otmp->odrained = 0;
 
 	/* Very rotten corpse will make you sick unless you are a ghoul or a ghast */
-	if (mnum != PM_ACID_BLOB && !stoneable && rotted > 5L) {
+	if (!acidic(&mons[mnum]) && !stoneable && rotted > 5L) {
 	    boolean cannibal = maybe_cannibal(mnum, FALSE);
 	    if (saprovorousnumber(u.umonnum) || (Race_if(PM_GASTLY) && !Upolyd) || (Race_if(PM_PLAYER_SKELETON) && !Upolyd) || (Race_if(PM_PHANTOM_GHOST) && !Upolyd) ) {
 	    	pline("Yum - that %s was well aged%s!",
@@ -6334,7 +6334,7 @@ struct obj *otmp;
 	 * order from most detrimental to least detrimental.
 	 */
 
-	if (cadaver && mnum != PM_ACID_BLOB && rotted > 5L && !(IntSick_resistance || (ExtSick_resistance && rn2(20))) ) {
+	if (cadaver && !acidic(&mons[mnum]) && rotted > 5L && !(IntSick_resistance || (ExtSick_resistance && rn2(20))) ) {
 		/* Tainted meat */
 		sprintf(buf, "%s like %s could be tainted! %s",
 			foodsmell, it_or_they, eat_it_anyway);
@@ -6453,7 +6453,7 @@ struct obj *otmp;
 		else return 2;
 	}
 
-	if (cadaver && mnum != PM_ACID_BLOB && rotted > 5L && Sick_resistance) {
+	if (cadaver && !acidic(&mons[mnum]) && rotted > 5L && Sick_resistance) {
 		/* Tainted meat with Sick_resistance */
 		sprintf(buf, "%s like %s could be tainted! %s",
 			foodsmell, it_or_they, eat_it_anyway);

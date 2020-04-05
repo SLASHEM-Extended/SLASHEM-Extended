@@ -2467,6 +2467,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		    while ((otmp3 = otmp->cobj) != 0) {
 			obj_extract_self(otmp3);
 			if ( (otmp->otyp == ICE_BOX || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == ICE_BOX_OF_WATERPROOFING || otmp->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+			    otmp3->icedobject = TRUE;
 			    otmp3->age = monstermoves - otmp3->age;
 			    start_corpse_timeout(otmp3);
 			}

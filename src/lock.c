@@ -269,6 +269,7 @@ forcelock()	/* try to force a locked chest */
 		}
 		if ( (xlock.box->otyp == ICE_BOX || xlock.box->otyp == ICE_BOX_OF_HOLDING || xlock.box->otyp == ICE_BOX_OF_WATERPROOFING || xlock.box->otyp == ICE_BOX_OF_DIGESTION) && otmp->otyp == CORPSE) {
 		    otmp->age = monstermoves - otmp->age; /* actual age */
+		    otmp->icedobject = TRUE;
 		    start_corpse_timeout(otmp);
 		}
 		place_object(otmp, u.ux, u.uy);

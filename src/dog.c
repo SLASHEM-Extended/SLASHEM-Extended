@@ -1143,7 +1143,7 @@ register struct obj *obj;
 		    return TABU;
 	    /* Ghouls only eat old corpses... yum! */
 	    if (saprovorous(mon->data)) {
-		return (obj->otyp == CORPSE && obj->corpsenm != PM_ACID_BLOB &&
+		return (obj->otyp == CORPSE && !acidic(&mons[obj->corpsenm]) &&
 		  peek_at_iced_corpse_age(obj) + 5*rn1(20,10) <= monstermoves) ?
 			DOGFOOD : TABU;
 	    }

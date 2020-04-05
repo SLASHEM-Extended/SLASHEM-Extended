@@ -565,6 +565,7 @@ struct obj *box;
 		 * from usual meaning for objects stored in ice boxes. -KAA
 		 */
 		otmp->age = 0L;
+		otmp->icedobject = TRUE;
 		if (otmp->timed) {
 		    (void) stop_timer(ROT_CORPSE, (void *)otmp);
 		    (void) stop_timer(MOLDY_CORPSE, (void *)otmp);
@@ -1877,6 +1878,7 @@ boolean shopinit;
 	otmp->finalcancel = 0;
 	otmp->nemtrident = 0;
 	otmp->objwassold = (shopinit ? 1 : 0);
+	otmp->icedobject = 0;
 
 	/* each aspect that can be identified has a 2 in 3 chance of being possible to reveal by using the ID spell --Amy */
 	otmp->ident_bst = rn2(3);

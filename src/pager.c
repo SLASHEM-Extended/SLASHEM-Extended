@@ -4564,6 +4564,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli vy s''yedite yadovityy trup, vy pochti vsegda budete teryat' silu, a ne tol'ko nemnogo. Potomu chto sovetskiy tip ledyanykh glyb vernulsya i reshil deystvitel'no udalit' vse sledy Emi iz yego varianta der'ma.",
 "Tip ledyanoy glyby sposoben vnezapno vernut'sya cherez pyat' let i prodolzhit' imenno tam, gde on ostanovilsya.",
 "V Sovetskoy Rossii ne mozhet byt' nikakikh izmeneniy, kotoryye delayet Emi, nezavisimo ot togo, oblegchayet li ona igru ili delayet yeye slozhneye. I poetomu umen'shennyye shtrafy za ispol'zovaniye zaklinaniy takzhe byli otmeneny, potomu chto 'Sovetskaya pyaterka' yavlyayetsya LUCHSHIM razrabotchikom variantov za vse vremya.",
+"Vy mozhete snova napolnit' svoy ledyanoy yashchik polnymi legkikh trupov i pozhertvovat' imi, potomu chto Sovetskiy Soyuz ne imeyet predstavleniya ob igrovom balanse.",
 };
 
 static NEARDATA const char * const practicantlines[] = {

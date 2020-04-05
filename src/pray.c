@@ -2004,9 +2004,32 @@ dosacrifice()
 	/* you're handling this corpse, even if it was killed upon the altar */
 	feel_cockatrice(otmp, TRUE);
 
-	if (otmp->corpsenm == PM_ACID_BLOB
+	/* it was stupid that acid blobs were special-cased. let's just make it so that acidic corpses stay sacrifice-able
+	 * for a longer time, but not eternally because they may be M3_NO_DECAY --Amy */
+	if ( (acidic(ptr) && (monstermoves <= peek_at_iced_corpse_age(otmp) + 250))
 		|| (monstermoves <= peek_at_iced_corpse_age(otmp) + 50)) {
-	    value = monstr[otmp->corpsenm] + 1;
+
+		value = monstr[otmp->corpsenm] + 1;
+
+		/* you're supposed to eat troves, not sacrifice them! Sacrifice is not the intended use! --Amy */
+		if (ptr->mlet == S_TROVE) {
+			value = 0;
+			pline("The gods have no use for trove corpses; you should probably eat them yourself.");
+		}
+
+		/* since ice boxes aren't ultra heavy relative to the maximum carry cap, we need to prevent the player from
+		 * simply stocking a box with 200 zero-weight corpses and sacrificing away... --Amy
+		 * In Soviet Russia, people are very religious and therefore go actively out of their way to be able to
+		 * sacrifice something to the gods. They would actually go ahead and put every single killer bee corpse into
+		 * an ice box, which won't burden them unless there's thousands of such corpses, and then head to the nearest
+		 * altar of their deity to receive a dozen artifacts or so. */
+		if (otmp->icedobject) {
+			if (issoviet) pline("Trup mozhet byt' prinesen v zhertvu, potomu chto tip ledyanogo bloka lyubit zamorozhennyye produkty. Tebe povezlo na etot raz.");
+			else {
+				value = 0;
+				pline("The gods aren't interested in iced corpses.");
+			}
+		}
 	}
 	    if (otmp->oeaten)
 		value = eaten_stat(value, otmp);
