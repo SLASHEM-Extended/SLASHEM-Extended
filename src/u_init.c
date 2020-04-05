@@ -10214,10 +10214,12 @@ u_init()
 	u.impossibleproperty = -1;
 	u.nonextrinsicproperty = -1;
 	u.nonintrinsicproperty = -1;
+	u.nondoubleproperty = -1;
 
 	if (!rn2(2)) u.impossibleproperty = randomdisableproperty();
 	if (!rn2(2)) u.nonextrinsicproperty = randomdisableproperty();
 	if (!rn2(2)) u.nonintrinsicproperty = randomdisableproperty();
+	if (!rn2(2)) u.nondoubleproperty = randomdisableproperty();
 
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
 	if (!rn2(7)) u.idscrollpenalty += rnz(100);
@@ -31842,10 +31844,12 @@ int realityflag;
 	u.impossibleproperty = -1;
 	u.nonextrinsicproperty = -1;
 	u.nonintrinsicproperty = -1;
+	u.nondoubleproperty = -1;
 
 	if (!rn2(2)) u.impossibleproperty = randomdisableproperty();
 	if (!rn2(2)) u.nonextrinsicproperty = randomdisableproperty();
 	if (!rn2(2)) u.nonintrinsicproperty = randomdisableproperty();
+	if (!rn2(2)) u.nondoubleproperty = randomdisableproperty();
 
 	u.idscrollpenalty = rnd(200); /* if rnd(this) is greater than 100, the scroll isn't ided */
 	if (!rn2(7)) u.idscrollpenalty += rnz(100);

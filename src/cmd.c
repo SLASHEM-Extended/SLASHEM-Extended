@@ -2823,6 +2823,11 @@ boolean guaranteed;
 		enl_msg("You ", "cannot have this property intrinsically:", "could not have this property intrinsically:", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (u.nondoubleproperty >= 0 ) && ((wizard || (!rn2(10)) || final >= 1 ) )) {
+		sprintf(buf, " %s", enchname(u.nondoubleproperty) );
+		enl_msg("You ", "cannot have the double effect of this property:", "could not have the double effect of this property:", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idscrollpenalty > 100)) {
 		sprintf(buf, " %d", u.idscrollpenalty);
 		enl_msg("Scroll identification only ", "works 100 times out of", "worked 100 times out of", buf);
@@ -6802,6 +6807,11 @@ int final;
 	if (u.nonintrinsicproperty >= 0) {
 		sprintf(buf, " %s", enchname(u.nonintrinsicproperty) );
 		dump("  You could not have this property intrinsically:", buf);
+	}
+
+	if (u.nondoubleproperty >= 0) {
+		sprintf(buf, " %s", enchname(u.nondoubleproperty) );
+		dump("  You could not have the double effect of this property:", buf);
 	}
 
 	if (u.idscrollpenalty > 100) {

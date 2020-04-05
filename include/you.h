@@ -1293,6 +1293,7 @@ struct you {
 	int impossibleproperty;	/* evil patch idea by jonadab - a property that you simply cannot get in this game */
 	int nonextrinsicproperty;
 	int nonintrinsicproperty;
+	int nondoubleproperty;
 
 	boolean temprecursion; /* temporary recursion trap */
 	int oldrecursionrole;
