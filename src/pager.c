@@ -24973,6 +24973,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"A trap just set all of your skills back to Unskilled and 0 points of training to ruin all the player's training effort.",
 	"A trap just set all of your skills back to Unskilled and 0 points of training to ruin all the player's training effort. This is a random bad effect designed to make sure that you don't get too cocky.",
 	"You permanently lost 20 skill points because this is the evil variant.",
+	"You are surrounded by a translucent glow!",
+	"You are surrounded by a translucent glow! Now your invisible items aren't invisible any longer.",
+	"You are surrounded by a translucent glow! Now your invisible items aren't invisible any longer. This can be easily fixed by just zapping a charge of your wand of make invisible but the effect mostly exists to annoy you, it probably doesn't pose a real threat.",
+	"Your items are no longer erosionproof.",
+	"Your items are no longer erosionproof, and they also lost their grease.",
+	"Your items are no longer erosionproof, and they also lost their grease. Oh, and of course they're no longer invisibel either.",
 
 };
 
