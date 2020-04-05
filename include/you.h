@@ -1258,6 +1258,7 @@ struct you {
 
 	char	aliasname[PL_NSIZ];
 
+	int graundweight;		/* increased encumbrance that times out very slowly */
 
 	int randomquestlevels;	/* chance to get quest levels instead of random ones */
 

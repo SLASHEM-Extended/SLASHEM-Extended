@@ -1948,6 +1948,12 @@ moveloop()
 			if (!u.shutdowntime) Your(uinsymbiosis ? "symbiote is no longer shut down." : "symbiote is no longer there and therefore its shutdown also ends.");
 		}
 
+		/* burden: rarely as a bad effect, more frequently as data delete effect; times out very slowly --Amy */
+		if (u.graundweight) {
+			if (!rn2(20)) u.graundweight--;
+			if (u.graundweight < 0) u.graundweight = 0; /* fail safe */
+		}
+
 		if (u.ualign.record > u.cnd_maxalignment) u.cnd_maxalignment = u.ualign.record;
 		if (u.ualign.record < u.cnd_minalignment) u.cnd_minalignment = u.ualign.record;
 		if (u.usanity > u.cnd_maxsanity) u.cnd_maxsanity = u.usanity;

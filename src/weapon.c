@@ -8867,6 +8867,50 @@ eviltryagain:
 
 }
 
+/* data delete: unconditionally set all the skills to zero, even if you've spent the previous 200k turns training them
+ * you can still train them back up from zero, but all training will be lost, no matter how much it was --Amy */
+void
+dataskilldecrease()
+{
+	int pickskill, tryct, tryct2, i;
+	tryct = 50000;
+	i = 0;
+	int permloss = 0;
+
+	while (u.skills_advanced && tryct) {
+		lose_weapon_skill(1);
+		i++;
+		tryct--;
+	}
+
+	while (i) {
+		if (!evilfriday) u.weapon_slots++;  /* because every skill up costs one slot --Amy */
+		else permloss++;
+		i--;
+	}
+
+	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
+
+	for (pickskill = 0; pickskill < P_NUM_SKILLS; pickskill++) {
+
+		if (pickskill > P_NONE) {
+
+			tryct2 = 20;
+			P_ADVANCE(pickskill) = 0; /* zonk all training of that skill */
+
+			while (tryct2 && P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) {
+				P_SKILL(pickskill)--;
+				if (!evilfriday) u.weapon_slots++;
+				else permloss++;
+				tryct2--;
+			}
+		}
+	}
+
+	if (permloss > 0) You("permanently lost %d skill points because this is the evil variant.", permloss);
+
+}
+
 void
 skilltrainingdecrease(lossamount)
 int lossamount;

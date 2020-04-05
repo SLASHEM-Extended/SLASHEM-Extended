@@ -5253,6 +5253,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.graundweight) {
+		sprintf(buf, "burdened by some dead weight.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.graundweight);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && NoStaircase) {
 		sprintf(buf, "to wait until you can use staircases again.");
 	      sprintf(eos(buf), " (%ld)", NoStaircase);
@@ -9049,6 +9055,12 @@ int final;
 		sprintf(buf, "increased encumbrance due to a stronger gravity.");
 	      sprintf(eos(buf), " (%ld)", IncreasedGravity);
 		dump(youhad, buf);
+	}
+
+	if (u.graundweight) {
+		sprintf(buf, "burdened by some dead weight.");
+		sprintf(eos(buf), " (%ld)", u.graundweight);
+		dump(youwere, buf);
 	}
 
 	if (NoStaircase) {

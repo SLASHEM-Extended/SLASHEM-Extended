@@ -4960,6 +4960,7 @@ inv_weight()
 		otmp = otmp->nobj;
 	}
 	if (IncreasedGravity) wt += IncreasedGravity;
+	if (u.graundweight) wt += u.graundweight;
 	if (uarmh && itemhasappearance(uarmh, APP_LEAD_HELMET)) wt += 50;
 	if (uarmf && itemhasappearance(uarmf, APP_LEAD_BOOTS)) wt += 100;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;

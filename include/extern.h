@@ -3250,6 +3250,7 @@ E void xtraskillinit(void);
 E int get_obj_skill(struct obj *,BOOLEAN_P);
 E void skilltrainingdecrease(int);
 E void evilskilldecrease(void);
+E void dataskilldecrease(void);
 E void doubleskilltraining(void);
 E void additionalskilltraining(void);
 E void unrestrictskillchoice(void);

@@ -1847,7 +1847,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(458)) {
+	switch (rnd(477)) {
 
 		case 1:
 		case 2:
@@ -1998,7 +1998,7 @@ badeffect()
 		break;
 
 		case 101:
-	    make_sick(rn1(25,25), "spreading food poisoning", TRUE, SICK_VOMITABLE);
+		make_sick(rn1(25,25), "spreading food poisoning", TRUE, SICK_VOMITABLE);
 		break;
 
 		case 102:
@@ -2006,8 +2006,8 @@ badeffect()
 			You("don't feel very well.");
 			make_slimed(100);
 			stop_occupation();
-		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimed by summoned slime";
+			killer_format = KILLED_BY_AN;
+			delayed_killer = "slimed by summoned slime";
 		}
 		break;
 
@@ -2216,8 +2216,8 @@ badeffect()
 		case 170:
 		case 171:
 		pline("It gets dark!");
-	    if (!shadowprotection()) do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
-		15, set_litI, (void *)((char *)0));
+		if (!shadowprotection()) do_clear_areaX(u.ux,u.uy, 15, set_litI, (void *)((char *)0));
+		/* darkness around player's position */
 
 		break;
 
@@ -2776,6 +2776,7 @@ badeffect()
 		case 336:
 
 			forget(3);
+			if (!rn2(10)) forget(rnd(25));
 			{
 			if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 				pline("Suddenly, your mind turns inward on itself!");
@@ -2797,6 +2798,8 @@ badeffect()
 		case 338:
 			if (Upolyd) u.mhmax--; /* lose one hit point */
 			else u.uhpmax--; /* lose one hit point */
+			if (u.mhmax < 1) u.mhmax = 1;
+			if (u.uhpmax < 1) u.uhpmax = 1;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 			pline("Your health has been drained!");
@@ -2805,6 +2808,7 @@ badeffect()
 
 		case 339:
 			u.uenmax--; /* lose one mana point */
+			if (u.uenmax < 0) u.uenmax = 0;
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 			pline("Your mana has been drained!");
 
@@ -3098,8 +3102,157 @@ badeffect()
 
 			break;
 
-		default:
+		case 459:
+		create_critters(rnz(50), (struct permonst *)0);
 		break;
+
+		case 460:
+		{coord mm;
+		mm.x = u.ux;
+		mm.y = u.uy;
+		mkundead(&mm, FALSE, 0, FALSE);
+		mm.x = u.ux;
+		mm.y = u.uy;
+		mkundead(&mm, FALSE, 0, FALSE);
+		mm.x = u.ux;
+		mm.y = u.uy;
+		mkundead(&mm, FALSE, 0, FALSE);
+		pline("Undead creatures are called forth from the grave!");   
+		}
+		break;
+
+		case 461:
+		You_feel("as if you need some help.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		rndcurse();
+		rndcurse();
+		rndcurse();
+		break;
+
+		case 462:
+		{
+		int aligntype;
+		aligntype = rn2((int)A_LAWFUL+2) - 1;
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		 pline("Servants of %s appear!",aligns[1 - aligntype].noun);
+		}
+		break;
+
+		case 463:
+		pline("You lose  Mana");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
+		drain_en(rnz((monster_difficulty() * 10) + 1) );
+		break;
+
+		case 464:
+
+			pline(FunnyHallu ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
+			u.ublesscnt += rnz(ishaxor ? 3000 : 6000);
+
+		break;
+
+		case 465:
+			deacrandomintrinsic(rnz(10000));
+			break;
+
+		case 466:
+		    adjalign(-rnd(500));
+		    if (flags.soundok) You_hear("a loud rumbling!");
+		    if (PlayerHearsSoundEffects) pline(issoviet ? "Pomolis'! Vash bog, bezuslovno, pomozhet vam!" : "Wumm.");
+
+		break;
+
+		case 467:
+			pline("Suddenly you're caught in a bluebeam trap!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
+			losehp(monster_difficulty() * rnd(5),"bluebeam trap out of nowhere",KILLED_BY_AN);
+
+		break;
+
+		case 468:
+			pline("Suddenly poison gas surrounds you!");
+			destroy_item(POTION_CLASS, AD_VENO);
+			destroy_item(FOOD_CLASS, AD_VENO);
+
+		break;
+
+		case 469:
+			if (Upolyd) u.mhmax -= 5;
+			else u.uhpmax -= 5;
+			if (u.mhmax < 1) u.mhmax = 1;
+			if (u.uhpmax < 1) u.uhpmax = 1;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			pline("Your health has been severely drained!");
+
+		break;
+
+		case 470:
+			u.uenmax -= 5;
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Your mana has been severely drained!");
+
+		break;
+
+		case 471:
+		{    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+		break;
+
+		case 472:
+			pline("Your %s are trembling like a leaf!", makeplural(body_part(HAND)));
+			u.tremblingamount += rnd(10);
+		break;
+
+		case 473:
+			playerbleed(rnd(2 + (level_difficulty() * rnd(100))));
+			break;
+
+		case 474:
+			shank_player();
+			shank_player();
+			shank_player();
+			break;
+
+		case 475:
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			break;
+
+		case 476:
+			make_confused(HConfusion + rnz(150),FALSE);
+			make_stunned(HStun + rnz(150),FALSE);
+			make_hallucinated(HHallucination + rnz(150),FALSE,0L);
+			make_blinded(Blinded+rnz(150),FALSE);
+			make_numbed(HNumbed + rnz(150),FALSE);
+			make_frozen(HFrozen + rnz(150),FALSE);
+			make_burned(HBurned + rnz(150),FALSE);
+			make_feared(HFeared + rnz(150),FALSE);
+			make_dimmed(HDimmed + rnz(150),FALSE);
+			pline("Suddenly you're afflicted with all the standard status effects!");
+			break;
+
+		case 477:
+			pline("You're burdened by some dead weight!");
+
+			u.graundweight += rnd(100);
+			break;
+
+		default:
+			break;
 	}
 
 }
@@ -3163,7 +3316,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(96)) {
+	switch (rnd(115)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -3820,6 +3973,7 @@ reallybadeffect()
 		case 64:
 
 			forget(3);
+			if (!rn2(10)) forget(rnd(25));
 			{
 			if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 				pline("Suddenly, your mind turns inward on itself!");
@@ -3841,6 +3995,8 @@ reallybadeffect()
 		case 66:
 			if (Upolyd) u.mhmax--; /* lose one hit point */
 			else u.uhpmax--; /* lose one hit point */
+			if (u.mhmax < 1) u.mhmax = 1;
+			if (u.uhpmax < 1) u.uhpmax = 1;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 			pline("Your health has been drained!");
@@ -3849,6 +4005,7 @@ reallybadeffect()
 
 		case 67:
 			u.uenmax--; /* lose one mana point */
+			if (u.uenmax < 0) u.uenmax = 0;
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 			pline("Your mana has been drained!");
 
@@ -4048,6 +4205,155 @@ reallybadeffect()
 				for(obj = invent; obj ; obj = obj->nobj)
 					if (!rn2(10) && !stack_too_big(obj) && obj->oerodeproof) obj->oerodeproof = FALSE;
 			}
+			break;
+
+		case 97:
+		create_critters(rnz(50), (struct permonst *)0);
+		break;
+
+		case 98:
+		{coord mm;
+		mm.x = u.ux;
+		mm.y = u.uy;
+		mkundead(&mm, FALSE, 0, FALSE);
+		mm.x = u.ux;
+		mm.y = u.uy;
+		mkundead(&mm, FALSE, 0, FALSE);
+		mm.x = u.ux;
+		mm.y = u.uy;
+		mkundead(&mm, FALSE, 0, FALSE);
+		pline("Undead creatures are called forth from the grave!");   
+		}
+		break;
+
+		case 99:
+		You_feel("as if you need some help.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		rndcurse();
+		rndcurse();
+		rndcurse();
+		break;
+
+		case 100:
+		{
+		int aligntype;
+		aligntype = rn2((int)A_LAWFUL+2) - 1;
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		summon_minion(aligntype, TRUE);
+		 pline("Servants of %s appear!",aligns[1 - aligntype].noun);
+		}
+		break;
+
+		case 101:
+		pline("You lose  Mana");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
+		drain_en(rnz((monster_difficulty() * 10) + 1) );
+		break;
+
+		case 102:
+
+			pline(FunnyHallu ? "You feel sinful... but do you really care?" : "You have a feeling of separation.");
+			u.ublesscnt += rnz(ishaxor ? 3000 : 6000);
+
+		break;
+
+		case 103:
+			deacrandomintrinsic(rnz(10000));
+			break;
+
+		case 104:
+		    adjalign(-rnd(500));
+		    if (flags.soundok) You_hear("a loud rumbling!");
+		    if (PlayerHearsSoundEffects) pline(issoviet ? "Pomolis'! Vash bog, bezuslovno, pomozhet vam!" : "Wumm.");
+
+		break;
+
+		case 105:
+			pline("Suddenly you're caught in a bluebeam trap!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
+			losehp(monster_difficulty() * rnd(5),"bluebeam trap out of nowhere",KILLED_BY_AN);
+
+		break;
+
+		case 106:
+			pline("Suddenly poison gas surrounds you!");
+			destroy_item(POTION_CLASS, AD_VENO);
+			destroy_item(FOOD_CLASS, AD_VENO);
+
+		break;
+
+		case 107:
+			if (Upolyd) u.mhmax -= 5;
+			else u.uhpmax -= 5;
+			if (u.mhmax < 1) u.mhmax = 1;
+			if (u.uhpmax < 1) u.uhpmax = 1;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			pline("Your health has been severely drained!");
+
+		break;
+
+		case 108:
+			u.uenmax -= 5;
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Your mana has been severely drained!");
+
+		break;
+
+		case 109:
+		{    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+		break;
+
+		case 110:
+			pline("Your %s are trembling like a leaf!", makeplural(body_part(HAND)));
+			u.tremblingamount += rnd(10);
+		break;
+
+		case 111:
+			playerbleed(rnd(2 + (level_difficulty() * rnd(100))));
+			break;
+
+		case 112:
+			shank_player();
+			shank_player();
+			shank_player();
+			break;
+
+		case 113:
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			statdebuff();
+			break;
+
+		case 114:
+			make_confused(HConfusion + rnz(150),FALSE);
+			make_stunned(HStun + rnz(150),FALSE);
+			make_hallucinated(HHallucination + rnz(150),FALSE,0L);
+			make_blinded(Blinded+rnz(150),FALSE);
+			make_numbed(HNumbed + rnz(150),FALSE);
+			make_frozen(HFrozen + rnz(150),FALSE);
+			make_burned(HBurned + rnz(150),FALSE);
+			make_feared(HFeared + rnz(150),FALSE);
+			make_dimmed(HDimmed + rnz(150),FALSE);
+			pline("Suddenly you're afflicted with all the standard status effects!");
+			break;
+
+		case 115:
+			pline("You're burdened by some dead weight!");
+
+			u.graundweight += rnd(100);
 			break;
 
 		default:
@@ -4942,100 +5248,141 @@ angelshadowstuff()
 	return shadowitems;
 }
 
+/* Data delete: designed to be the worst random bad effect that you can receive --Amy
+ * These effects are generally meant to be extremely destructive, and should really screw up the player. */
 void
 datadeleteattack()
-
 {
 
 	u.cnd_datadeleteamount++;
 	Your("data is deleted!");
 	stop_occupation();
 
-	switch (rnd(17)) {
+	switch (rnd(21)) {
 
 
-		case 1:
+		case 1: /* very strong amnesia effect - let that poor sap forget a whole lot of stuff */
+			forget(rn2(10) ? 35 : 100);
+			forget_levels(rn2(10) ? 35 : 100);
+			forget_objects(rn2(10) ? 35 : 100);
 			pline("Suddenly you don't remember anything.");
-			forget(35);
-			forget_levels(35);
-			forget_objects(35);
 			break;
-		case 2:
-			pline("Suddenly you don't remember your spells.");
+		case 2: /* delete a ton of their spells */
 			while (rn2(10)) {
 				losespells();
 			}
+			pline("Suddenly you don't remember your spells.");
 			break;
-		case 3:
+		case 3: /* drain 10 random attributes permanently, and deal high damage if it's already at the minimum */
 			pline("You feel a severe attribute loss.");
 			{
 			int attributelose = rn2(A_MAX);
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
 			}
 			if(ABASE(attributelose) > ATTRMIN(attributelose)) {
-				ABASE(attributelose) -= 1;
+				if (ABASE(attributelose) > 17) ABASE(attributelose) -= rnd(15);
+				else if (ABASE(attributelose) > 13) ABASE(attributelose) -= rnd(10);
+				else if (ABASE(attributelose) > 8) ABASE(attributelose) -= rnd(5);
+				else ABASE(attributelose) -= 1;
 				AMAX(attributelose) -= 1;
+				if (AMAX(attributelose) > ABASE(attributelose)) AMAX(attributelose) = ABASE(attributelose);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low stats", KILLED_BY);
@@ -5043,62 +5390,91 @@ datadeleteattack()
 
 			}
 			break;
-		case 4:
+		case 4: /* drain all attributes permanently, and deal high damage for those that were already at the minimum */
 			pline("You feel all your attributes draining.");
 			if(ABASE(A_STR) > ATTRMIN(A_STR)) {
-				ABASE(A_STR) -= 1;
+				if (ABASE(A_STR) > 17) ABASE(A_STR) -= rnd(15);
+				else if (ABASE(A_STR) > 13) ABASE(A_STR) -= rnd(10);
+				else if (ABASE(A_STR) > 8) ABASE(A_STR) -= rnd(5);
+				else ABASE(A_STR) -= 1;
 				AMAX(A_STR) -= 1;
+				if (AMAX(A_STR) > ABASE(A_STR)) AMAX(A_STR) = ABASE(A_STR);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low strength", KILLED_BY);
 			}
 			if(ABASE(A_DEX) > ATTRMIN(A_DEX)) {
-				ABASE(A_DEX) -= 1;
+				if (ABASE(A_DEX) > 17) ABASE(A_DEX) -= rnd(15);
+				else if (ABASE(A_DEX) > 13) ABASE(A_DEX) -= rnd(10);
+				else if (ABASE(A_DEX) > 8) ABASE(A_DEX) -= rnd(5);
+				else ABASE(A_DEX) -= 1;
 				AMAX(A_DEX) -= 1;
+				if (AMAX(A_DEX) > ABASE(A_DEX)) AMAX(A_DEX) = ABASE(A_DEX);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low dexterity", KILLED_BY);
 			}
 			if(ABASE(A_WIS) > ATTRMIN(A_WIS)) {
-				ABASE(A_WIS) -= 1;
+				if (ABASE(A_WIS) > 17) ABASE(A_WIS) -= rnd(15);
+				else if (ABASE(A_WIS) > 13) ABASE(A_WIS) -= rnd(10);
+				else if (ABASE(A_WIS) > 8) ABASE(A_WIS) -= rnd(5);
+				else ABASE(A_WIS) -= 1;
 				AMAX(A_WIS) -= 1;
+				if (AMAX(A_WIS) > ABASE(A_WIS)) AMAX(A_WIS) = ABASE(A_WIS);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low wisdom", KILLED_BY);
 			}
 			if(ABASE(A_INT) > ATTRMIN(A_INT)) {
-				ABASE(A_INT) -= 1;
+				if (ABASE(A_INT) > 17) ABASE(A_INT) -= rnd(15);
+				else if (ABASE(A_INT) > 13) ABASE(A_INT) -= rnd(10);
+				else if (ABASE(A_INT) > 8) ABASE(A_INT) -= rnd(5);
+				else ABASE(A_INT) -= 1;
 				AMAX(A_INT) -= 1;
+				if (AMAX(A_INT) > ABASE(A_INT)) AMAX(A_INT) = ABASE(A_INT);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low intelligence", KILLED_BY);
 			}
 			if(ABASE(A_CHA) > ATTRMIN(A_CHA)) {
-				ABASE(A_CHA) -= 1;
+				if (ABASE(A_CHA) > 17) ABASE(A_CHA) -= rnd(15);
+				else if (ABASE(A_CHA) > 13) ABASE(A_CHA) -= rnd(10);
+				else if (ABASE(A_CHA) > 8) ABASE(A_CHA) -= rnd(5);
+				else ABASE(A_CHA) -= 1;
 				AMAX(A_CHA) -= 1;
+				if (AMAX(A_CHA) > ABASE(A_CHA)) AMAX(A_CHA) = ABASE(A_CHA);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low charisma", KILLED_BY);
 			}
 			if(ABASE(A_CON) > ATTRMIN(A_CON)) {
-				ABASE(A_CON) -= 1;
+				if (ABASE(A_CON) > 17) ABASE(A_CON) -= rnd(15);
+				else if (ABASE(A_CON) > 13) ABASE(A_CON) -= rnd(10);
+				else if (ABASE(A_CON) > 8) ABASE(A_CON) -= rnd(5);
+				else ABASE(A_CON) -= 1;
 				AMAX(A_CON) -= 1;
+				if (AMAX(A_CON) > ABASE(A_CON)) AMAX(A_CON) = ABASE(A_CON);
 
 			} else {
 				losehp(rnd(10 + (u.ulevel * 5)), "fatally low constitution", KILLED_BY);
 			}
 			break;
-		case 5:
-			pline("You cannot pray any longer.");
+		case 5: /* you think you can pray, punk? now you can't :P */
 			u.ublesscnt += 1000000;
+			pline("You cannot pray any longer.");
 			break;
-		case 6:
-			pline("Your alignment is nuked.");
-			u.ualign.sins += 100;
-			u.alignlim -= 100;
+		case 6: /* oh whoops, suddenly your alignment record is shit and it'll take a long time to repair it! */
+			if (rn2(10)) {
+				u.ualign.sins += 100;
+				u.alignlim -= 100;
+			} else {
+				u.ualign.sins += 1000;
+				u.alignlim -= 1000;
+			}
 		      adjalign(-1000);
+			pline("Your alignment is nuked.");
 			break;
-		case 7:
+		case 7: /* lose all experience levels - have fun rebuilding your char from XL1! */
 			pline("Your level is resetted to 1.");
 			while (u.ulevel > 1) losexp("deleterious level drain", TRUE, FALSE);
 			if (u.uhpmax < (urole.hpadv.infix + urace.hpadv.infix)) {
@@ -5107,25 +5483,25 @@ datadeleteattack()
 				if (u.uhp < u.uhpmax) u.uhp = u.uhpmax;
 			}
 			break;
-		case 8:
+		case 8: /* steal 20 random intrinsics, so the chance of stealing something important is high, muahahahaha */
 			pline("You feel a loss of intrinsics...");
 			attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
 			break;
-		case 9:
+		case 9: /* deactivate an intrinsic for a million turns so you have to make do without it for a loooooong time */
 			pline("One of your intrinsics is permanently deactivated!");
 			deacrandomintrinsic(1000000);
 
 			break;
-		case 10:
+		case 10: /* trash the player's skill caps - they're hard to restore! */
 			pline("You feel much less skilled than before.");
 			skillcaploss(); skillcaploss(); skillcaploss(); skillcaploss(); skillcaploss(); skillcaploss(); skillcaploss(); skillcaploss(); skillcaploss(); skillcaploss();
 			break;
-		case 11:
+		case 11: /* damage all items in open inventory twice, with no real chance for them to resist */
 			pline("Your possessions are severely damaged!");
 			withering_damage(invent, FALSE, FALSE);
 			withering_damage(invent, FALSE, FALSE);
 			break;
-		case 12:
+		case 12: /* deal a lot of lethe damage to ensure that magic lamps and similar stuff gets ruined */
 			pline("Your magical items turn into mundane ones.");
 			lethe_damage(invent, FALSE, FALSE);
 			lethe_damage(invent, FALSE, FALSE);
@@ -5138,7 +5514,7 @@ datadeleteattack()
 			actual_lethe_damage(invent, FALSE, FALSE);
 			actual_lethe_damage(invent, FALSE, FALSE);
 			break;
-		case 13:
+		case 13: /* oh lol you just lost all your armor - better hope you have replacements! */
 			pline("You lose all of your armor!");
 			{
 			struct obj *otmpD;
@@ -5159,7 +5535,7 @@ datadeleteattack()
 			}
 
 			break;
-		case 14:
+		case 14: /* divide max HP and Pw by two - especially nasty if your limits were high *evil grin* */
 			pline("Your health and mana are severely damaged!");
 			if (u.uhpmax > 1) u.uhpmax /= 2;
 			else {
@@ -5176,11 +5552,11 @@ datadeleteattack()
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 			break;
-		case 15:
-			pline("Some of your techniques no longer work...");
+		case 15: /* randomly put some techs on such a high timeout that you won't be able to use them for an eternity */
 			datadeletetechs();
+			pline("Some of your techniques no longer work...");
 			break;
-		case 16:
+		case 16: /* each of your items has 1 in 5 chance of disappearing, with no saving throw, hahahahahahaha */
 			pline("Your items are randomly deleted!");
 
 			{
@@ -5208,7 +5584,7 @@ datadeleteattack()
 			}
 
 			break;
-		case 17:
+		case 17: /* curse and disenchant your entire inventory */
 			pline("Your items are cursed and disenchanted!");
 			{
 			struct obj *otmpD, *otmpE;
@@ -5225,6 +5601,109 @@ datadeleteattack()
 
 			}
 
+			break;
+
+		case 18: /* flip positively enchanted items, then disenchant every item by 5 more points */
+			pline("Your items are ruined!");
+			{
+			struct obj *otmpD, *otmpE;
+
+			for (otmpD = invent; otmpD; otmpD = otmpE) {
+			      otmpE = otmpD->nobj;
+
+				if (otmpD->spe > 0) {
+					otmpD->spe = -(otmpD->spe);
+					if (otmpD->spe < -50) otmpD->spe = -50;
+				}
+				if (otmpD->spe > -25) otmpD->spe -= 5;
+				else if (otmpD->spe > -50) otmpD->spe--;
+
+			}
+
+			}
+
+			break;
+
+		case 19: /* reduce the player's effective carry cap for a looooong time */
+			u.graundweight += rn1(2000, 1000);
+			pline("Your encumbrance limit is much lower than before.");
+
+			break;
+
+
+		case 20: /* deactivate ALL intrinsics for a lengthy amount of time */
+			u.uprops[DEAC_FIRE_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_COLD_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SLEEP_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DISINT_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SHOCK_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_POISON_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DRAIN_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SICK_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_ANTIMAGIC].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_ACID_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_STONE_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_FEAR_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SEE_INVIS].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_TELEPAT].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_WARNING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SEARCHING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_CLAIRVOYANT].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_INFRAVISION].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DETECT_MONSTERS].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_INVIS].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DISPLACED].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_STEALTH].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_JUMPING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_FLYING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_PASSES_WALLS].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SLOW_DIGESTION].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_HALF_SPDAM].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_HALF_PHDAM].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_REGENERATION].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_FAST].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_REFLECTING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_FREE_ACTION].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_HALLU_PARTY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_STUNNOPATHY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_NUMBOPATHY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DIMMOPATHY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_FREEZOPATHY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_STONED_CHILLER].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_CORROSIVITY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_FEAR_FACTOR].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_BURNOPATHY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SICKOPATHY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_KEEN_MEMORY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_THE_FORCE].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SIGHT_BONUS].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_VERSUS_CURSES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_STUN_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_CONF_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_QUAD_ATTACK].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_PSI_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_WONDERLEGS].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_GLIB_COMBAT].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_MANALEECH].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_PEACEVISION].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_CONT_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DISCOUNT_ACTION].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_FULL_NUTRIENT].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_TECHNICALITY].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_SCENT_VIEW].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += (rn2(10) ? 10000 : 100000);
+			pline("All your in- and extrinsics are deactivated!");
+			break;
+
+		case 21: /* set all skills back to Unskilled and 0 points of training to ruin all the player's training effort */
+			dataskilldecrease();
+			pline("You lose all training in all skills!");
 			break;
 
 	}
