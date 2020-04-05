@@ -5135,6 +5135,70 @@ statdebuff()
 	}
 }
 
+/* the stat-swapping effect of AD_NEXU and other nexus effects --Amy */
+void
+nexus_swap()
+{
+	int strweirdness = 0;
+	int strtempvar;
+	int strfractionvar;
+	int firststat;
+	int secondstat;
+newswap:
+	firststat = rn2(A_MAX);
+	secondstat = rn2(A_MAX);
+	if (firststat == secondstat) goto newswap; /* make sure we have two different stats for swapping, please! */
+	int firstswapstat = ABASE(firststat);
+	int secondswapstat = ABASE(secondstat);
+
+	if (firststat == A_STR) {
+		strtempvar = ABASE(firststat);
+		while (strtempvar >= STR19(19)) strtempvar--;
+		while (strtempvar > 18 && strtempvar > secondstat) {
+			if (strtempvar < STR18(10)) strfractionvar = (strtempvar - 18);
+			strtempvar -= 10;
+			if (!strfractionvar || (strfractionvar > rn2(10)) ) strweirdness++;
+		}
+	} else if (secondstat == A_STR) {
+		strtempvar = ABASE(secondstat);
+		while (strtempvar >= STR19(19)) strtempvar--;
+		while (strtempvar > 18 && strtempvar > firststat) {
+			if (strtempvar < STR18(10)) strfractionvar = (strtempvar - 18);
+			strtempvar -= 10;
+			if (!strfractionvar || (strfractionvar > rn2(10)) ) strweirdness++;
+		}
+	}
+
+	pline("strtempvar %d, strweirdness %d", strtempvar, strweirdness);
+
+	int difference = (firstswapstat - secondswapstat);
+	int strdifference = difference;
+
+	pline("difference %d", difference);
+
+	if (secondstat == A_STR) {
+		while (strdifference < -9 && strweirdness > 0) {
+			strdifference += 9;
+			strweirdness--;
+		}
+		ABASE(firststat) -= strdifference;
+	} else ABASE(firststat) -= difference;
+
+	if (firststat == A_STR) {
+		while (strdifference > 9 && strweirdness > 0) {
+			strdifference -= 9;
+			strweirdness--;
+		}
+		ABASE(secondstat) += strdifference;
+	} else ABASE(secondstat) += difference;
+	
+	AMAX(secondstat) = ABASE(secondstat);
+	AMAX(firststat) = ABASE(firststat);
+	pline("Your stats got scrambled!");
+
+
+}
+
 /* nivellation: rather than doing what some other variants are doing (imposing a hard cap on max HP and Pw), I decided
  * that it's much more interesting to instead have an attack/trap/badeffect that can reduce the max depending on how high
  * it already is; this effect will do nothing if the player's max is below a certain threshold */

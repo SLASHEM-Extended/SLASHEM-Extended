@@ -9044,16 +9044,7 @@ boolean ranged;
 				break;
 			case 7:
 				{
-					int firststat = rn2(A_MAX);
-					int secondstat = rn2(A_MAX);
-					int firstswapstat = ABASE(firststat);
-					int secondswapstat = ABASE(secondstat);
-					int difference = (firstswapstat - secondswapstat);
-					ABASE(secondstat) += difference;
-					ABASE(firststat) -= difference;
-					AMAX(secondstat) = ABASE(secondstat);
-					AMAX(firststat) = ABASE(firststat);
-					pline("Your stats got scrambled!");
+					nexus_swap();
 
 					if (!rn2(3)) {
 
