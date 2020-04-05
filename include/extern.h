@@ -3239,6 +3239,7 @@ E void unrestrict_weapon_skill(int);
 E void use_skill(int,int);
 E void add_weapon_skill(int);
 E void lose_weapon_skill(int);
+E void lose_last_spent_skill(void);
 E int weapon_type(struct obj *);
 E int uwep_skill_type(void);
 E int weapon_hit_bonus(struct obj *);

@@ -732,6 +732,8 @@ skillcaploss()
 	int tryct;
 	int i = 0;
 
+	if (P_RESTRICTED(skilltoreduce)) return; /* nothing to do */
+
 	if (P_MAX_SKILL(skilltoreduce) == P_BASIC) {
 		P_MAX_SKILL(skilltoreduce) = P_UNSKILLED;
 		pline("You lose all knowledge of the %s skill!", P_NAME(skilltoreduce));
@@ -755,7 +757,7 @@ skillcaploss()
 	tryct = 2000;
 
 	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
-		lose_weapon_skill(1);
+		lose_last_spent_skill();
 		i++;
 		tryct--;
 	}
@@ -785,6 +787,8 @@ int skilltoreduce;
 	int tryct, tryct2;
 	int i = 0;
 
+	if (P_RESTRICTED(skilltoreduce)) return; /* nothing to do */
+
 	if (P_MAX_SKILL(skilltoreduce) >= P_BASIC) {
 		P_MAX_SKILL(skilltoreduce) = P_ISRESTRICTED;
 	}
@@ -793,7 +797,7 @@ int skilltoreduce;
 	tryct2 = 10;
 
 	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
-		lose_weapon_skill(1);
+		lose_last_spent_skill();
 		i++;
 		tryct--;
 	}
@@ -852,7 +856,7 @@ severelossagain:
 		i = 0;
 
 		while (u.skills_advanced && tryct && (P_ADVANCE(skilltoreduce) < practice_needed_to_advance_nonmax(P_SKILL(skilltoreduce) - 1, skilltoreduce) ) ) {
-			lose_weapon_skill(1);
+			lose_last_spent_skill();
 			i++;
 			tryct--;
 		}
