@@ -1847,7 +1847,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(477)) {
+	switch (rnd(480)) {
 
 		case 1:
 		case 2:
@@ -3251,6 +3251,109 @@ badeffect()
 			u.graundweight += rnd(100);
 			break;
 
+		case 478:
+			if (!rn2(1000)) {
+				register struct monst *offmon;
+newoffmon:
+				if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+
+					register int inventcount = inv_cnt();
+
+					if (inventcount > 0) {
+						inventcount /= 8;
+						if (inventcount < 1) inventcount = 1;
+
+						while (inv_cnt() && inventcount) {
+							char bufof[BUFSZ];
+							bufof[0] = '\0';
+							steal(offmon, bufof, TRUE, TRUE);
+							inventcount--;
+						}
+
+					}
+
+					mdrop_special_objs(offmon); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
+					if (u.uevent.udemigod && !u.freeplaymode) break;
+					else u_teleport_monB(offmon, FALSE);
+					pline("Some of your possessions have been stolen!");
+
+				} else {
+					if (rn2(1000)) goto newoffmon;
+					else pline("Somehow you feel that you just averted a major crisis.");
+				}
+
+			} else {
+				pline("You are surrounded by a purple glow!");
+				if (invent) {
+				    struct obj *otmpi, *otmpii;
+				    int itemportchance = 10 + rn2(21);
+				    for (otmpi = invent; otmpi; otmpi = otmpii) {
+
+					otmpii = otmpi->nobj;
+
+					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+
+						if (otmpi->owornmask & W_ARMOR) {
+						    if (otmpi == uskin) {
+							skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+						    }
+						    if (otmpi == uarm) (void) Armor_off();
+						    else if (otmpi == uarmc) (void) Cloak_off();
+						    else if (otmpi == uarmf) (void) Boots_off();
+						    else if (otmpi == uarmg) (void) Gloves_off();
+						    else if (otmpi == uarmh) (void) Helmet_off();
+						    else if (otmpi == uarms) (void) Shield_off();
+						    else if (otmpi == uarmu) (void) Shirt_off();
+						    /* catchall -- should never happen */
+						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+						} else if (otmpi ->owornmask & W_AMUL) {
+						    Amulet_off();
+						} else if (otmpi ->owornmask & W_IMPLANT) {
+						    Implant_off();
+						} else if (otmpi ->owornmask & W_RING) {
+						    Ring_gone(otmpi);
+						} else if (otmpi ->owornmask & W_TOOL) {
+						    Blindf_off(otmpi);
+						} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+						    if (otmpi == uwep)
+							uwepgone();
+						    if (otmpi == uswapwep)
+							uswapwepgone();
+						    if (otmpi == uquiver)
+							uqwepgone();
+						}
+
+						if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+						    unpunish();
+						} else if (otmpi->owornmask) {
+						/* catchall */
+						    setnotworn(otmpi);
+						}
+
+						dropx(otmpi);
+					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+						u.cnd_itemportcount++;
+					}
+
+				    }
+				}
+
+			}
+
+			break;
+
+		case 479:
+		case 480:
+			pline("You are surrounded by a translucent glow!");
+			{
+				register struct obj *objX, *objX2;
+				for (objX = invent; objX; objX = objX2) {
+					objX2 = objX->nobj;
+					if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+				}
+			}
+			break;
+
 		default:
 			break;
 	}
@@ -3316,7 +3419,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(115)) {
+	switch (rnd(117)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4354,6 +4457,108 @@ reallybadeffect()
 			pline("You're burdened by some dead weight!");
 
 			u.graundweight += rnd(100);
+			break;
+
+		case 116:
+			if (!rn2(1000)) {
+				register struct monst *offmon;
+newoffmonX:
+				if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+
+					register int inventcount = inv_cnt();
+
+					if (inventcount > 0) {
+						inventcount /= 8;
+						if (inventcount < 1) inventcount = 1;
+
+						while (inv_cnt() && inventcount) {
+							char bufof[BUFSZ];
+							bufof[0] = '\0';
+							steal(offmon, bufof, TRUE, TRUE);
+							inventcount--;
+						}
+
+					}
+
+					mdrop_special_objs(offmon); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
+					if (u.uevent.udemigod && !u.freeplaymode) break;
+					else u_teleport_monB(offmon, FALSE);
+					pline("Some of your possessions have been stolen!");
+
+				} else {
+					if (rn2(1000)) goto newoffmonX;
+					else pline("Somehow you feel that you just averted a major crisis.");
+				}
+
+			} else {
+				pline("You are surrounded by a purple glow!");
+				if (invent) {
+				    struct obj *otmpi, *otmpii;
+				    int itemportchance = 10 + rn2(21);
+				    for (otmpi = invent; otmpi; otmpi = otmpii) {
+
+					otmpii = otmpi->nobj;
+
+					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+
+						if (otmpi->owornmask & W_ARMOR) {
+						    if (otmpi == uskin) {
+							skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+						    }
+						    if (otmpi == uarm) (void) Armor_off();
+						    else if (otmpi == uarmc) (void) Cloak_off();
+						    else if (otmpi == uarmf) (void) Boots_off();
+						    else if (otmpi == uarmg) (void) Gloves_off();
+						    else if (otmpi == uarmh) (void) Helmet_off();
+						    else if (otmpi == uarms) (void) Shield_off();
+						    else if (otmpi == uarmu) (void) Shirt_off();
+						    /* catchall -- should never happen */
+						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+						} else if (otmpi ->owornmask & W_AMUL) {
+						    Amulet_off();
+						} else if (otmpi ->owornmask & W_IMPLANT) {
+						    Implant_off();
+						} else if (otmpi ->owornmask & W_RING) {
+						    Ring_gone(otmpi);
+						} else if (otmpi ->owornmask & W_TOOL) {
+						    Blindf_off(otmpi);
+						} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+						    if (otmpi == uwep)
+							uwepgone();
+						    if (otmpi == uswapwep)
+							uswapwepgone();
+						    if (otmpi == uquiver)
+							uqwepgone();
+						}
+
+						if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+						    unpunish();
+						} else if (otmpi->owornmask) {
+						/* catchall */
+						    setnotworn(otmpi);
+						}
+
+						dropx(otmpi);
+					      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+						u.cnd_itemportcount++;
+					}
+
+				    }
+				}
+
+			}
+
+			break;
+
+		case 117:
+			pline("You are surrounded by a translucent glow!");
+			{
+				register struct obj *objX, *objX2;
+				for (objX = invent; objX; objX = objX2) {
+					objX2 = objX->nobj;
+					if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+				}
+			}
 			break;
 
 		default:
@@ -5617,6 +5822,9 @@ datadeleteattack()
 				}
 				if (otmpD->spe > -25) otmpD->spe -= 5;
 				else if (otmpD->spe > -50) otmpD->spe--;
+				if (otmpD->oerodeproof) otmpD->oerodeproof = 0; /* it's not erodeproof anymore */
+				if (otmpD->greased) otmpD->greased = 0; /* and not greased either */
+				otmpD->oinvis = otmpD->oinvisreal = 0; /* and of course also not invisible */
 
 			}
 

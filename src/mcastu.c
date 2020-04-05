@@ -1384,7 +1384,7 @@ int spellnum;
     switch (spellnum) {
     case CLC_GEYSER:
 
-	switch (rnd(39) ) {
+	switch (rnd(40) ) {
 	case 1:
 	case 2:
 	case 3:
@@ -1509,6 +1509,20 @@ int spellnum;
 		u.uenmax = oldhpmax;
 		u.uhpmax = oldmpmax;
 		You_feel("a wraparound!");
+		break;
+
+	case 40:
+
+		/* translucency - makes the player's items visible */
+		pline("You are surrounded by a translucent glow!");
+		{
+			register struct obj *objX, *objX2;
+			for (objX = invent; objX; objX = objX2) {
+				objX2 = objX->nobj;
+				if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+			}
+		}
+
 		break;
 
 	default: /*failsafe*/

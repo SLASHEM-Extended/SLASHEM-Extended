@@ -9409,6 +9409,7 @@ newbossC:
 		known = TRUE;
 		{
 			register struct monst *offmon;
+newoffmon:
 			if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
 
 				register int inventcount = inv_cnt();
@@ -9431,7 +9432,10 @@ newbossC:
 				else u_teleport_monB(offmon, FALSE);
 				pline("Some of your possessions have been stolen!");
 
-			} else pline("Somehow you feel that you just averted a major crisis.");
+			} else {
+				if (rn2(1000)) goto newoffmon;
+				else pline("Somehow you feel that you just averted a major crisis.");
+			}
 
 		}
 		break;
