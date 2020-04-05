@@ -10088,7 +10088,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	switch(atttypA) {
 
 		case AD_DGST:
-		    if (Slow_digestion) {
+		    if (Slow_digestion && (StrongSlow_digestion ? rn2(5) : !rn2(5)) ) {
 			/* Messages are handled below */
 			u.uswldtim = 0;
 			tmp = 0;
