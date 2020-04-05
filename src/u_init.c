@@ -10577,6 +10577,7 @@ u_init()
 	u.horsehopturns = 0;
 	u.ragnarokspelltimeout = 0;
 	u.freeplaymode = 0;
+	u.howtoenhanceskills = 0;
 
 	u.usymbiote.active = 0;
 	u.usymbiote.mnum = PM_PLAYERMON;

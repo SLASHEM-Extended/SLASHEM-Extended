@@ -134,6 +134,11 @@ int skill;
             skill <= P_LAST_H_TO_H ?
 	            "fighting ":
 	            "");
+
+	if (!u.howtoenhanceskills) {
+		u.howtoenhanceskills = TRUE;
+		pline("(Remember to use the #enhance command to actually spend your skill points; this does not happen automatically.)");
+	}
 }
 
 #endif	/* OVLB */

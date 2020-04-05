@@ -1572,6 +1572,8 @@ struct you {
 
 	boolean katitrapocc;	/* checking whether you have the occupation */
 
+	boolean howtoenhanceskills;	/* the first time you can enhance a skill, the game tells you how */
+
 	boolean roommatehack;	/* to allow monsters to spawn inside walls */
 
 	boolean metalguard;	/* for metal guard spell */
