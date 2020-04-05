@@ -4345,7 +4345,10 @@ aulechoice:
 					xkilled(nexusmon, 0);
 					pline("%s lost the last line and dies!", Monnam(nexusmon));
 				}
-				else pline("%s loses a line!", Monnam(nexusmon));
+				else {
+					pline("%s loses a line!", Monnam(nexusmon));
+					wakeup(nexusmon); /* monster becomes hostile */
+				}
 
 			}
 
@@ -4374,7 +4377,10 @@ aulechoice:
 					xkilled(nexusmon, 0);
 					pline("%s dies to the nuke!", Monnam(nexusmon));
 				}
-				else pline("%s is hurt by the nuke!", Monnam(nexusmon));
+				else {
+					pline("%s is hurt by the nuke!", Monnam(nexusmon));
+					wakeup(nexusmon); /* monster becomes hostile */
+				}
 
 			}
 
@@ -4416,7 +4422,7 @@ aulechoice:
 				break;
 			}
 
-			opdamage = d(12, 12) + (spell_damage_bonus(spellid(spell)) * 10);
+			opdamage = d(6, 12) + (spell_damage_bonus(spellid(spell)) * 5);
 
 			pline("Select the target monster");
 			cc.x = u.ux;
@@ -4442,15 +4448,22 @@ aulechoice:
 
 			}
 
-			opdamage += (opbonus * rnd(10));
+			if (opdamage > 1) opdamage = rnd(opdamage);
+			opdamage += (opbonus * rnd(20));
 
 			if (psychmonst) {
+
 				pline("PEW PEW PEW! %s is shot by your gun!", Monnam(psychmonst));
+				if (noncorporeal(psychmonst->data)) { /* ghosts are hard to hit... */
+					if (opdamage > 1) opdamage /= 2;
+					pline("%s resists the attack!", Monnam(psychmonst));
+					/* but isn't immune --Amy */
+				}
 				psychmonst->mhp -= opdamage;
 				if (psychmonst->mhp < 1) {
 					pline("%s resonates and breaks up.", Monnam(psychmonst));
 					xkilled(psychmonst,0);
-				}
+				} else wakeup(psychmonst); /* make them hostile */
 
 			}
 
@@ -4483,7 +4496,10 @@ aulechoice:
 					xkilled(nexusmon, 0);
 					pline("%s is crushed flat!", Monnam(nexusmon));
 				}
-				else pline("%s is hit by debris!", Monnam(nexusmon));
+				else {
+					pline("%s is hit by debris!", Monnam(nexusmon));
+					wakeup(nexusmon); /* monster becomes hostile */
+				}
 
 			}
 
@@ -4677,7 +4693,10 @@ aulechoice:
 					xkilled(nexusmon, 0);
 					pline("%s is poisoned to death!", Monnam(nexusmon));
 				}
-				else pline("%s is poisoned!", Monnam(nexusmon));
+				else {
+					pline("%s is poisoned!", Monnam(nexusmon));
+					wakeup(nexusmon); /* monster becomes hostile */
+				}
 			}
 
 		}
@@ -4735,7 +4754,8 @@ aulechoice:
 			break;
 		}
 		pline("You ram into %s with your %spenis.", mon_nam(u.ustuck), flags.female ? "nonexistant " : "");
-		u.ustuck->mhp -= d(5, 5 + spell_damage_bonus(SPE_GOUGE_DICK) + rno(u.ulevel));
+		if (u.ustuck->mpeaceful && !(u.ustuck->mtame)) u.ustuck->mpeaceful = 0; /* monster becomes hostile */
+		u.ustuck->mhp -= d(flags.female ? 2 : 5, 5 + spell_damage_bonus(SPE_GOUGE_DICK) + rno(u.ulevel));
 		u.ustuck->mcanmove = 0;
 		u.ustuck->mfrozen = rn1(5,5);
 		u.ustuck->mstrategy &= ~STRAT_WAITFORU;
@@ -4780,25 +4800,12 @@ aulechoice:
 			break;
 		}
 
-		{
-			int numspells;
-
-			for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
-				if (spellid(numspells) == SPE_ADD_SPELL_MEMORY) continue;
-
-				pline("You know the %s spell.", spellname(numspells));
-				if (yn("Add some memory to this spell?") == 'y') {
-
-					if (rn2(10) && spellknow(numspells) <= 0) {
-						pline("Your attempt to regain knowledge of that forgotten spell fails.");
-						break;
-					}
-
-					boostknow(numspells, 500);
-
-					break;
-				}
-			}
+		pline("Choose a spell to add spell memory.");
+addspmagain:
+		if (!addsomespellmemory()) {
+			if (yn("Really exit with no spell selected?") == 'y')
+				pline("You just wasted the opportunity to add memory to a spell.");
+			else goto addspmagain;
 		}
 
 		break;
@@ -6010,6 +6017,10 @@ secureidchoice:
 				pline("The water evaporizes!");
 				if ( (rainedmon = m_at(u.ux + i, u.uy + j)) != 0) {
 					rainedmon->mhp /= 2;
+					if (rainedmon->mpeaceful && !(rainedmon->mtame)) {
+						rainedmon->mpeaceful = 0;
+						pline("%s gets angry.", Monnam(rainedmon));
+					}
 					pline("%s is damaged by the vapors!", Monnam(rainedmon));
 					if (!rn2(3)) {
 						rainedmon->mcanmove = 0;
@@ -6050,6 +6061,7 @@ secureidchoice:
 				    fill_pit(nexusmon->mx, nexusmon->my);
 				}
 				pline("%s is beamed away!", Monnam(nexusmon));
+				wakeup(nexusmon); /* monster becomes hostile */
 				rloc(nexusmon, FALSE);
 			}
 		}
@@ -6087,7 +6099,7 @@ secureidchoice:
 					if (nexusmon->mhp <= 0) {
 						xkilled(nexusmon, 0);
 						pline("%s is killed!", Monnam(nexusmon));
-					}
+					} else wakeup(nexusmon); /* monster becomes hostile */
 					adjalign(-10);
 				}
 			}
@@ -6156,6 +6168,11 @@ secureidchoice:
 			    if (DEADMONSTER(frostmon)) continue;
 			    if (!monnear(frostmon, u.ux, u.uy)) continue;
 
+			    if (frostmon->mpeaceful && !frostmon->mtame) {
+				pline("%s gets angry.", Monnam(frostmon) );
+				frostmon->mpeaceful = 0; /* monster becomes hostile */
+			    }
+
 			    if (!resists_elec(frostmon) && !(dmgtype(frostmon->data, AD_PLYS)) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
 
 				if (canseemon(frostmon) ) {
@@ -6193,6 +6210,7 @@ secureidchoice:
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
 				if (dmgtype(mtmp->data, AD_ELEC) || dmgtype(mtmp->data, AD_MALK)) {
+					wakeup(mtmp);
 					mtmp->mhp -= rnd(40 + (spell_damage_bonus(spellid(spell)) * 10) );
 					pline("%s's power is down!", Monnam(mtmp));
 					if (rn2(3) && !mtmp->mstun) {
@@ -6601,6 +6619,7 @@ secureidchoice:
 
 		for(fleemon = fmon; fleemon; fleemon = fleemon->nmon) {
 		    if (DEADMONSTER(fleemon)) continue;
+			wakeup(fleemon); /* monster becomes hostile */
 			if (!resist(fleemon, SPBOOK_CLASS, 0, NOTELL))
 				monflee(fleemon, rnd(50), FALSE, FALSE);
 		}
@@ -6950,7 +6969,7 @@ secureidchoice:
 				if (mtmp->mhp <= 0) {
 					pline("%s is killed!", Monnam(mtmp));
 					xkilled(mtmp, 0);
-				}
+				} else wakeup(mtmp); /* monster becomes hostile */
 			}
 
 		    }
@@ -6982,7 +7001,7 @@ secureidchoice:
 				if (mtmp->mhp <= 0) {
 					pline("%s is killed!", Monnam(mtmp));
 					xkilled(mtmp, 0);
-				}
+				} else wakeup(mtmp); /* monster becomes hostile */
 			}
 
 		    }
@@ -8660,20 +8679,12 @@ totemsummonchoice:
 			break;
 		}
 
-		{
-			int numspells;
-
-			for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
-
-				pline("You know the %s spell.", spellname(numspells));
-				if (yn("Dememorize it?") == 'y') {
-
-					spl_book[numspells].sp_know = 0;
-					pline("Alright, the %s spell is a forgotten spell now.", spellname(numspells));
-
-					break;
-				}
-			}
+		pline("Choose a spell to dememorize.");
+dememostart:
+		if (!dememorizespell()) {
+			if (yn("Really exit with no spell selected?") == 'y')
+				pline("You just wasted the opportunity to dememorize a spell.");
+			else goto dememostart;
 		}
 
 		break;
@@ -8685,35 +8696,12 @@ totemsummonchoice:
 			break;
 		}
 
-		{
-			int numspells;
-
-			for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
-				if (spellid(numspells) == SPE_INERTIA_CONTROL) continue;
-
-				pline("You know the %s spell.", spellname(numspells));
-				if (yn("Control the flow of this spell?") == 'y') {
-					u.inertiacontrolspell = spellid(numspells);
-					u.inertiacontrolspellno = numspells;
-
-					u.inertiacontrol = 20;
-
-					if (!(PlayerCannotUseSkills) && P_SKILL(P_OCCULT_SPELL) >= P_BASIC) {
-
-						switch (P_SKILL(P_OCCULT_SPELL)) {
-							case P_BASIC: u.inertiacontrol = 23; break;
-							case P_SKILLED: u.inertiacontrol = 26; break;
-							case P_EXPERT: u.inertiacontrol = 30; break;
-							case P_MASTER: u.inertiacontrol = 33; break;
-							case P_GRAND_MASTER: u.inertiacontrol = 36; break;
-							case P_SUPREME_MASTER: u.inertiacontrol = 40; break;
-							default: break;
-						}
-					}
-
-					break;
-				}
-			}
+		pline("Choose a spell to control.");
+controlagain:
+		if (!inertiacontrolspell()) {
+			if (yn("Really exit with no spell selected?") == 'y')
+				pline("You just wasted the opportunity to control a spell.");
+			else goto controlagain;
 		}
 
 		break;
@@ -11843,6 +11831,73 @@ studyspell()
 			return (TRUE);
 		} else /* 1000 < spellknow(spell_no) <= 5000 */
 			You("know that spell quite well already.");
+	}
+	return (FALSE);
+}
+
+boolean
+inertiacontrolspell()
+{
+	int spell_no;
+
+	if (getspell(&spell_no, FALSE)) {
+		if (spellid(spell_no) == SPE_INERTIA_CONTROL) {
+			You("cannot control the inertia control spell.");
+			return (FALSE);
+		} else if (spellid(spell_no) != NO_SPELL) {
+			u.inertiacontrolspell = spellid(spell_no);
+			u.inertiacontrolspellno = spell_no;
+			u.inertiacontrol = 50;
+			You("start controlling the %s spell.", spellname(spell_no));
+			return (TRUE);
+		} else {
+			You("decided to not control any spell after all.");
+			return (FALSE);
+		}
+	}
+	return (FALSE);
+}
+
+boolean
+dememorizespell()
+{
+	int spell_no;
+
+	if (getspell(&spell_no, FALSE)) {
+		if (spellid(spell_no) != NO_SPELL) {
+			spl_book[spell_no].sp_know = 0;
+			pline("Alright, the %s spell is a forgotten spell now.", spellname(spell_no));
+			return (TRUE);
+		} else {
+			You("decided to not dememorize any spell after all.");
+			return (FALSE);
+		}
+
+	}
+	return (FALSE);
+}
+
+boolean
+addsomespellmemory()
+{
+	int spell_no;
+
+	if (getspell(&spell_no, FALSE)) {
+		if (spellid(spell_no) == SPE_ADD_SPELL_MEMORY) {
+			You("cannot add memory to that spell.");
+		} else if (spellid(spell_no) != NO_SPELL) {
+			if (rn2(10) && spellknow(spell_no) <= 0) {
+				pline("Your attempt to regain knowledge of that forgotten spell fails.");
+				return (TRUE);
+			}
+			pline("Your knowledge of the %s spell increases.", spellname(spell_no));
+			boostknow(spell_no, 500);
+			return (TRUE);
+		} else {
+			You("decided to not add memory to any spell after all.");
+			return (FALSE);
+		}
+
 	}
 	return (FALSE);
 }

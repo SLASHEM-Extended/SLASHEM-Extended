@@ -1878,6 +1878,13 @@ boolean shopinit;
 	otmp->nemtrident = 0;
 	otmp->objwassold = (shopinit ? 1 : 0);
 
+	/* each aspect that can be identified has a 2 in 3 chance of being possible to reveal by using the ID spell --Amy */
+	otmp->ident_bst = rn2(3);
+	otmp->ident_knw = rn2(3);
+	otmp->ident_dkn = rn2(3);
+	otmp->ident_bkn = rn2(3);
+	otmp->ident_rkn = rn2(3);
+
 	otmp->shirtmessage = rnd(1000000);
 	/* for use in read.c (shirts only) - since items can be polymorphed, set it for everything, including non-shirts */
 

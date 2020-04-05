@@ -6377,7 +6377,7 @@ revid_end:
 				if (psychmonst->mhp < 1) {
 					pline("%s dies!", Monnam(psychmonst));
 					xkilled(psychmonst,0);
-				}
+				} else wakeup(psychmonst); /* monster becomes hostile */
 
 			}
 
@@ -6476,6 +6476,7 @@ revid_end:
 			int tmp = 50 + rnd(techlevX(tech_no) * 4);
 			hurtmon(mtmp, tmp);
 		}
+		if (mtmp && !DEADMONSTER(mtmp) && mtmp->mpeaceful && !mtmp->mtame) mtmp->mpeaceful = 0; /* monster becomes hostile */
 
 	      t_timeout = rnz(2500);
 
@@ -6577,6 +6578,7 @@ revid_end:
 					mtmp3->mstrategy &= ~STRAT_WAITFORU;
 					mtmp3->mconf = TRUE;
 					pline("%s becomes dizzy from the smell!", Monnam(mtmp3));
+					if (mtmp3->mpeaceful && !mtmp3->mtame) mtmp3->mpeaceful = 0; /* monster becomes hostile */
 				}
 		}
 
@@ -6775,8 +6777,10 @@ revid_end:
 				if ((mtmp->mhp -= xtmp) <= 0 || !mtmp->m_lev) {
 					pline("%s dies!", Monnam(mtmp));
 					xkilled(mtmp,0);
-				} else
+				} else {
 					mtmp->m_lev--;
+					wakeup(mtmp); /* monster becomes hostile */
+				}
 			}
 
 			t_timeout = rnz(10000);
@@ -7175,6 +7179,7 @@ cardtrickchoice:
 
 				    if (distu(nexusmon->mx, nexusmon->my) > rnd(50)) continue;
 
+					/* doesn't anger peaceful ones - not a bug --Amy */
 					pline("%s cannot resist!", Monnam(nexusmon));
 					monflee(nexusmon, rnd(20), FALSE, TRUE);
 					if (nexusmon->mblinded < 100) nexusmon->mblinded += 20;
@@ -7588,6 +7593,7 @@ repairitemchoice:
 				} else {
 						pline("%s does not drown!", Monnam(mtmp));
 				}
+				if (mtmp && !DEADMONSTER(mtmp)) wakeup(mtmp); /* monster becomes hostile */
 			} else {
 				You("cannot get a grip on %s!", mon_nam(mtmp));
 			}

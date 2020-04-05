@@ -78,6 +78,11 @@ struct obj {
 	Bitfield(petmarked,1);	/* pets will not drop this --Amy */
 	Bitfield(nemtrident,1);	/* nemesis race PC has wielded this --Amy */
 	Bitfield(objwassold,1);	/* to thwart endless credit cloning */
+	Bitfield(ident_bst,1);	/* this and the next four flags determine whether identify spells reveal certain stuff */
+	Bitfield(ident_knw,1);
+	Bitfield(ident_dkn,1);
+	Bitfield(ident_bkn,1);
+	Bitfield(ident_rkn,1);
 
 	Bitfield(oeroded,2);	/* rusted/burnt weapon/armor */
 	Bitfield(oeroded2,2);	/* corroded/rotted weapon/armor */

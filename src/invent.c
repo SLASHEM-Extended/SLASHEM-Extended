@@ -6638,8 +6638,9 @@ struct obj *otmp;
 }
 
 void
-maybe_fully_identify_obj(otmp)
+maybe_fully_identify_obj(otmp, dumbid)
 struct obj *otmp;
+boolean dumbid;
 {
 	if (!rn2(10) && uarmc && itemhasappearance(uarmc, APP_IGNORANT_CLOAK)) {
 		pline("You are too ignorant, and therefore the identification attempt fails.");
@@ -6666,12 +6667,12 @@ struct obj *otmp;
 	else if (otmp->oclass == SPBOOK_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");
 	else if (otmp->oclass == GEM_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idgempenalty) > 100) pline("The gem resisted your identification attempt!");
 	else if (otmp->oclass == TOOL_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
-      else if (!rn2(3)) makeknown(otmp->otyp);
+      else if (!rn2(3) && !(dumbid && !otmp->ident_bst)) makeknown(otmp->otyp);
     if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
-    if (!rn2(3)) otmp->known = 1;
-    if (!rn2(3)) otmp->dknown = 1;
-    if (!rn2(3)) otmp->bknown = 1;
-    if (!rn2(3)) otmp->rknown = 1;
+    if (!rn2(3) && !(dumbid && !otmp->ident_knw)) otmp->known = 1;
+    if (!rn2(3) && !(dumbid && !otmp->ident_dkn)) otmp->dknown = 1;
+    if (!rn2(3) && !(dumbid && !otmp->ident_bkn)) otmp->bknown = 1;
+    if (!rn2(3) && !(dumbid && !otmp->ident_rkn)) otmp->rknown = 1;
     if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
 	learn_egg_type(otmp->corpsenm);
 }
@@ -6687,10 +6688,11 @@ struct obj *otmp;
 }
 
 int
-identifyless(otmp)
+identifyless(otmp, dumbid)
 struct obj *otmp;
+boolean dumbid;
 {
-    maybe_fully_identify_obj(otmp);
+    maybe_fully_identify_obj(otmp, dumbid);
     prinv((char *)0, otmp, 0L);
     return 1;
 }
@@ -6725,7 +6727,7 @@ identifydialogue:
 	    if (n > id_limit) n = id_limit;
 	    for (i = 0; i < n; i++, id_limit--) {
 		if (dumbid) {
-			(void) identifyless(pick_list[i].item.a_obj);
+			(void) identifyless(pick_list[i].item.a_obj, TRUE);
 		}
 		else {
 			(void) identify(pick_list[i].item.a_obj);
@@ -6769,7 +6771,7 @@ boolean dumbid;
 		for (otmp = obj->cobj; otmp; otmp = otmp->nobj) {
 		    if ( (rn2(5) || wizmodeflag) && not_fully_identified(otmp)) {
 			if (wizmodeflag) (void) identify(otmp);
-			else (void) identifyless(otmp);
+			else (void) identifyless(otmp, FALSE);
 			}
 		}
 
@@ -6789,7 +6791,7 @@ boolean dumbid;
 	    for (obj = invent; obj; obj = obj->nobj)
 		if ( (rn2(5) || wizmodeflag) && not_fully_identified(obj)) {
 			if (wizmodeflag) (void) identify(obj);
-			else (void) identifyless(obj);
+			else (void) identifyless(obj, FALSE);
 		}
 
 	}
@@ -13704,7 +13706,7 @@ boolean knoweverything;
 			case SPE_DETECT_UNSEEN:
 				pline("A spell that may detect hidden things close by, e.g. traps or invisible monsters."); break;
 			case SPE_IDENTIFY:
-				pline("Casting this spell allows you to identify some objects in your inventory. Careful: this spell can sometimes backlash, causing random bad effects or occasionally amnesia!"); break;
+				pline("Casting this spell allows you to identify some objects in your inventory, although they usually won't reveal all of their secrets even if you use it repeatedly, because you're meant to also use other methods of identifying your items. Careful: this spell can sometimes backlash, causing random bad effects or occasionally amnesia!"); break;
 			case SPE_DETECT_TREASURE:
 				pline("This spell detects some of the objects on the current level."); break;
 			case SPE_MAGIC_MAPPING:

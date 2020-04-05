@@ -3461,22 +3461,16 @@ fukrosionchoice:
 
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YES_YOU_CAN && !rn2(500)) {
 			if (spellid(0) != NO_SPELL)  {
-				int numspells;
 
 				getlin ("You may use inertia control to choose a spell of your choice, which will automatically be cast every turn. Do it? [y/yes/no]",buf);
 				(void) lcase (buf);
 				if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
 
-					for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
-						if (spellid(numspells) == SPE_INERTIA_CONTROL) continue;
-
-						pline("You know the %s spell.", spellname(numspells));
-						if (yn("Control the flow of this spell?") == 'y') {
-							u.inertiacontrolspell = spellid(numspells);
-							u.inertiacontrolspellno = numspells;
-							u.inertiacontrol = 50;
-							break;
-						}
+controlagain:
+					if (!inertiacontrolspell()) { /* see spell.c */
+						if (yn("Really exit with no spell selected?") == 'y')
+							pline("You just wasted the opportunity to control a spell.");
+						else goto controlagain;
 					}
 				}	
 			}
