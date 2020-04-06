@@ -1,5 +1,39 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.6.6 - Apr 2020
+- Spellbooks now spawn with less charges on average and gain less extra charges when recharged. Many rechargable items also have higher odds of exploding when recharged now.
+- Nexus swap will now permanently eat some stat points when it swaps a player's high strength stat with another stat.
+- The first time a player can enhance a skill, the game will now tell them how to do so.
+- Improved the odds that a player-read scroll of offlevel item works.
+- The player can no longer offer trove corpses on altars, and corpses that have ever been in an ice box can only be sacrificed in soviet mode.
+- Many spells that target monsters will now anger peaceful ones. Some spells have also been rebalanced and the menus for inertia control, dememorize and add spell memory are significantly improved.
+- Fixed the oversight that allowed items with different brittleness values to stack.
+- Slow digestion no longer provides complete immunity from engulfing monsters.
+- At the start of the game there may be a property selected for which the player cannot have the double in+extrinsic effect.
+- Fixed a bug that could cause skill loss effects to sometimes refund too many skill points.
+- Changed the calculation when eating rings made of viva.
+- Fixed a bug that could cause the player to sometimes not have an improved chance of doing stuff while polymorphed into a handless form.
+
+2.6.5 - Mar 2020
+- Fixed the error message when offering a stoaning eye corpse.
+- Some item materials have additional effects now.
+- Added a new option "simpledescs" that shortens many item attribute names to make it more likely for them to fit in a single line.
+- Added a synergy for when the player has both the squeaking and gun control skills.
+- Exploding monsters may occasionally survive after exploding, allowing them to explode again.
+- Monsters can now use high heels to kick the player's pets.
+- Diluting oil in a pool can now summon the kops.
+- Fixed an oversight that caused the stinking cloud spell to sometimes not gain memory or skill training when cast.
+- Fixed a long-standing bug that caused all of the player's inventory to take lethe damage when dipping a single item in a lethe fountain.
+- Monsters may now randomly spawn asleep and should be less likely to wake up, however the magical sleep effect from the wand or spell is more likely to end when the monster gets attacked or otherwise disturbed.
+- Corrected the chance that a monster with the reviver egotype will revive.
+- Added failsafes for players hanging up at a mind flayer instadeath.
+- Throwing a grenade can display funny messages sometimes.
+- Added a #spelldelete command that the player can use to remove forgotten spells from their list.
+- Fixed bugs that could occur when the player character leveled up beyond experience level 30.
+- Randomized the average artifact invocation timeout even more, and made it depend on squeaking skill.
+- Buff spells now generally get a lower duration only if the player already has it as an intrinsic; it used to give lower durations even if the player only had the extrinsic version.
+- Another change to the technique menu that should make it easier to see which ones can be used.
+
 2.6.4 - Mar 2020
 - Shops can now offer blessed charging even when they're not wand shops.
 - Fixed a design error with the interface for selecting techniques.
