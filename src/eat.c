@@ -1992,6 +1992,10 @@ register int pm;
 
 	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
+	    case PM_DRAGONEWT:
+	    case PM_CLAYMORE_DRAGONEWT:
+	    case PM_DRACO_EQUES:
+	    case PM_SUPER_DRAGONEWT:
 	    case PM_PINBALL_NEWT:
 	    case PM_NUUT:
 	    case PM_ENERGY_TROVE:

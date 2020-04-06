@@ -9799,6 +9799,7 @@ struct monst *mtmp;
 
 int
 rnd_offensive_item_new(mtmp)
+/* edit by Amy: keep rnd_offensive_potion() (see below) updated when adding new potion types */
 struct monst *mtmp;
 {
 	struct permonst *pm = mtmp->data;
@@ -10081,6 +10082,107 @@ struct monst *mtmp;
 	return 0;
 }
 
+int
+rnd_offensive_potion(mtmp)
+struct monst *mtmp;
+{
+	struct permonst *pm = mtmp->data;
+
+	switch (rn2(88)) {
+
+		case 0: return POT_PARALYSIS;
+		case 1: return POT_BLINDNESS;
+		case 2: return POT_CONFUSION;
+		case 3: return POT_SLEEPING;
+		case 4: return POT_ACID;
+		case 5: return POT_AMNESIA;
+		case 6: return POT_CYANIDE;
+		case 7: return POT_RADIUM;
+		case 8: return POT_HALLUCINATION;
+		case 9: return POT_NUMBNESS;
+		case 10: return POT_ICE;
+		case 11: return POT_STUNNING;
+		case 12: return POT_FIRE;
+		case 13: return POT_FEAR;
+		case 14: return POT_URINE;
+		case 15: return POT_SLIME;
+		case 16: return POT_CANCELLATION;
+		case 17: return POT_ACID;
+		case 18: return POT_CONFUSION;
+		case 19: return POT_BLINDNESS;
+		case 20: return POT_SLEEPING;
+		case 21: return POT_PARALYSIS;
+		case 22: return POT_ACID;
+		case 23: return POT_CONFUSION;
+		case 24: return POT_BLINDNESS;
+		case 25: return POT_SLEEPING;
+		case 26: return POT_PARALYSIS;
+		case 27: return POT_ACID;
+		case 28: return POT_CONFUSION;
+		case 29: return POT_BLINDNESS;
+		case 30: return POT_SLEEPING;
+		case 31: return POT_PARALYSIS;
+		case 32: return POT_ACID;
+		case 33: return POT_CONFUSION;
+		case 34: return POT_BLINDNESS;
+		case 35: return POT_SLEEPING;
+		case 36: return POT_PARALYSIS;
+		case 37: return POT_ACID;
+		case 38: return POT_CONFUSION;
+		case 39: return POT_BLINDNESS;
+		case 40: return POT_SLEEPING;
+		case 41: return POT_PARALYSIS;
+		case 42: return POT_HALLUCINATION;
+		case 43: return POT_NUMBNESS;
+		case 44: return POT_ICE;
+		case 45: return POT_STUNNING;
+		case 46: return POT_FIRE;
+		case 47: return POT_FEAR;
+		case 48: return POT_HALLUCINATION;
+		case 49: return POT_NUMBNESS;
+		case 50: return POT_ICE;
+		case 51: return POT_STUNNING;
+		case 52: return POT_FIRE;
+		case 53: return POT_FEAR;
+		case 54: return POT_HALLUCINATION;
+		case 55: return POT_NUMBNESS;
+		case 56: return POT_ICE;
+		case 57: return POT_STUNNING;
+		case 58: return POT_FIRE;
+		case 59: return POT_FEAR;
+		case 60: return POT_HALLUCINATION;
+		case 61: return POT_NUMBNESS;
+		case 62: return POT_ICE;
+		case 63: return POT_STUNNING;
+		case 64: return POT_FIRE;
+		case 65: return POT_FEAR;
+		case 66: return POT_HALLUCINATION;
+		case 67: return POT_NUMBNESS;
+		case 68: return POT_ICE;
+		case 69: return POT_STUNNING;
+		case 70: return POT_FIRE;
+		case 71: return POT_FEAR;
+		case 72: return POT_ACID;
+		case 73: return POT_CONFUSION;
+		case 74: return POT_BLINDNESS;
+		case 75: return POT_SLEEPING;
+		case 76: return POT_PARALYSIS;
+		case 77: return POT_DIMNESS;
+		case 78: return POT_DIMNESS;
+		case 79: return POT_DIMNESS;
+		case 80: return POT_DIMNESS;
+		case 81: return POT_DIMNESS;
+		case 82: return POT_DIMNESS;
+		case 83: return POT_DIMNESS;
+		case 84: return POT_SANITY;
+		case 85: return POT_SANITY;
+		case 86: return POT_SANITY;
+		case 87: return POT_SANITY;
+
+	}
+	/*NOTREACHED*/
+	return 0;
+}
 
 #define MUSE_POT_GAIN_LEVEL 1
 #define MUSE_WAN_MAKE_INVISIBLE 2

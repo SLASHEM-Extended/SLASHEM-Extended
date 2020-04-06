@@ -25023,7 +25023,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are surrounded by a translucent glow! Now your invisible items aren't invisible any longer. This can be easily fixed by just zapping a charge of your wand of make invisible but the effect mostly exists to annoy you, it probably doesn't pose a real threat.",
 	"Your items are no longer erosionproof.",
 	"Your items are no longer erosionproof, and they also lost their grease.",
-	"Your items are no longer erosionproof, and they also lost their grease. Oh, and of course they're no longer invisibel either.",
+	"Your items are no longer erosionproof, and they also lost their grease. Oh, and of course they're no longer invisible either.",
+	"The Urologist puts you to sleep. The Urologist puts your balls through a cheese grater! The urologist chops bits of your penis up and creates a neovagina! You are now female!", /* by porkman */
 
 };
 

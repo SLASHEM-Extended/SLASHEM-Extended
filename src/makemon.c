@@ -8647,6 +8647,12 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 10);
 		}
+		if (ptr == &mons[PM_EGELVEIL_THE_BIND]) {
+			(void) mongets(mtmp, SMALL_SHIELD);
+			(void) mongets(mtmp, PLATE_MAIL);
+			(void) mongets(mtmp, LOW_BOOTS);
+			 m_initthrow(mtmp, FRAG_GRENADE, 10);
+		}
 		if (ptr == &mons[PM_TALC_DEMON]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, ORCISH_HELM);
@@ -8796,6 +8802,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_GIANT_SWAMP_FROG]) (void) mongets(mtmp, SCR_MOORLAND);
 		if (mtmp->data == &mons[PM_GRAY_SLAAD]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 		if (mtmp->data == &mons[PM_DEATH_SLAAD]) (void) mongets(mtmp, TWO_HANDED_SWORD);
+		if (mtmp->data == &mons[PM_CLAYMORE_DRAGONEWT]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 
 		if (ptr == &mons[PM_TALCUM_DRACONIAN]) {
 			(void) mongets(mtmp, SLING);
@@ -9605,6 +9612,52 @@ loveheelover:
 		if (mtmp->data == &mons[PM_PIE_KEELHAULER]) m_initthrow(mtmp, CREAM_PIE, 2);
 		if (mtmp->data == &mons[PM_PIE_KLEEVER]) m_initthrow(mtmp, CREAM_PIE, 2);
 
+		if (ptr == &mons[PM_PUMPKIN]) {
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+		}
+		if (ptr == &mons[PM_GREATER_PUMPKIN]) {
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+		}
+		if (ptr == &mons[PM_HALLOWEEN_NIGHTMARE]) {
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+		}
+		if (ptr == &mons[PM_VAMPKIN]) {
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+		}
+
 		if (ptr == &mons[PM_COKE_TYPE]) {
 			(void) mongets(mtmp, ASSAULT_RIFLE);
 			 m_initthrow(mtmp, LEAD_BULLET, 50);
@@ -10203,6 +10256,7 @@ loveheelover:
 	  		m_initthrow(mtmp, LASER_BEAM, 50);
 		}
 		if (mtmp->data == &mons[PM_LANCEGOAT]) (void) mongets(mtmp, LANCE);
+		if (mtmp->data == &mons[PM_KILLING_ANTEATER]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
 		if (ptr == &mons[PM_EVIL_MAMMOTH]) {
 			(void) mongets(mtmp, SCR_EVIL_VARIANT);
@@ -10633,6 +10687,11 @@ loveheelover:
 		if (ptr == &mons[PM_ACTUAL_EVIL_PATCH]) {
 			(void) mongets(mtmp, SCR_EVIL_VARIANT);
 		}
+		if (ptr == &mons[PM_SOBER_THE_DRUNK]) {
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, POT_CONFUSION);
+			(void) mongets(mtmp, POT_CONFUSION);
+		}
 
 		if (ptr == &mons[PM_BRAVITY_MODDED_PERSON]) {
 			(void) mongets(mtmp, SLING);
@@ -10655,6 +10714,11 @@ loveheelover:
 		if (ptr == &mons[PM_RHED_MUSHROOM]) {
 		  	(void) mongets(mtmp, SLING);
 		  	m_initthrow(mtmp, ROCK, 50);
+		}
+		if (ptr == &mons[PM_THIEF_GUILD_MEMBER]) {
+		  	m_initthrow(mtmp, SHURIKEN, 30);
+		  	m_initthrow(mtmp, DAGGER, 5);
+		  	m_initthrow(mtmp, KNIFE, 5);
 		}
 
 		if (monsndx(ptr) == PM_LASERGUS) {
@@ -12065,6 +12129,8 @@ loveheelover:
 	    case S_EEL:
 
 		if (ptr == &mons[PM_CRYSTAL_FISH]) (void)mongets(mtmp, SCR_CRYSTALLIZATION);
+		if (ptr == &mons[PM_FLOWER_CORAL]) (void)mongets(mtmp, SPEAR);
+		if (ptr == &mons[PM_BAY_CORAL]) (void)mongets(mtmp, SPEAR);
 
 		if (ptr == &mons[PM_BONING_EEL]) {
 			(void) mongets(mtmp, SLING);
@@ -12612,6 +12678,19 @@ loveheelover:
 		if (ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ishaxor && ptr == &mons[PM_ELUSIVE_LICH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (ptr == &mons[PM_ORE_LICH]) (void) mongets(mtmp, WAN_SUMMON_UNDEAD);
+		if (ptr == &mons[PM_MIKSCXIFONA]) (void) mongets(mtmp, SCYTHE);
+		if (ptr == &mons[PM_PROFANITY_PRIEST]) (void) mongets(mtmp, SCYTHE);
+		if (ptr == &mons[PM_MESSENGER_OF_DEATH]) {
+			(void) mongets(mtmp, SCYTHE);
+			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, FLINT, 40);
+		}
+		if (ptr == &mons[PM_GREEN_REAPER]) {
+			(void) mongets(mtmp, SCYTHE);
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, FLINT, 40);
+		}
 
 		if (ptr == &mons[PM_SILVER_LICH]) {
 			(void) mongets(mtmp, SLING);
@@ -12872,6 +12951,20 @@ loveheelover:
 		if (monsndx(ptr) == PM_OGRE_STAFFER) (void) mongets(mtmp, QUARTERSTAFF);
 		if (ptr == &mons[PM_OGRE_WOARER]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+		}
+		if (ptr == &mons[PM_SMASH_OGRE]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, WAR_HAMMER);
+			 m_initthrow(mtmp, FLINT, 20);
+		}
+		if (ptr == &mons[PM_SLASH_OGRE]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, KATANA);
+			 m_initthrow(mtmp, FLINT, 30);
+		}
+		if (ptr == &mons[PM_SHINE_OGRE]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, FLINT, 40);
 		}
 
 		if (ptr == &mons[PM_SMEARY_OGRE]) {
@@ -14412,11 +14505,11 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_POTION_JEL]) {
-			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
-			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
-			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
-			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
-			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
 		}
 
  		break;
@@ -20786,6 +20879,10 @@ register int	mmflags;
 		case S_BAD_FOOD:
 
 			if (mndx == PM_CLEAR_MUSHROOM_PATCH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PUMPKIN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_GREATER_PUMPKIN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_HALLOWEEN_NIGHTMARE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_VAMPKIN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_CORPSER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_ROTTEN_FOOD_RATION]) set_mimic_sym(mtmp);
 

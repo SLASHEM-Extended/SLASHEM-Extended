@@ -2283,6 +2283,7 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_SOBER_THE_DRUNK) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LOONIE_BOSS) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_ERR_BOSS) mtmp->mconf = 1;
