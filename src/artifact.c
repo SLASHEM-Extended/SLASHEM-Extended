@@ -3515,6 +3515,12 @@ chargingchoice:
 	    } else {
 		if(!Blind) You("are surrounded by a shimmering sphere!");
 		else You_feel("weightless for a moment.");
+		if (practicantterror) {
+			pline("%s thunders: 'That's not an allowed form of transportation! Are you really too lazy to take the elevator or the stairs? Well wait, I'll ground you for that offense. And additionally you also pay 10000 zorkmids to me!'", noroelaname());
+			fineforpracticant(10000, 0, 0);
+			NoReturnEffect += rnz(10000);
+
+		}
 		u.cnd_branchportcount++;
 		goto_level(&newlev, FALSE, FALSE, FALSE);
 	    }

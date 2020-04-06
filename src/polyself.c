@@ -1513,6 +1513,11 @@ dogaze()
 
 	You("gaze at %s...", mon_nam(mtmp));
 
+	if (practicantterror) {
+		pline("%s booms: 'Don't look at other people like that. Now you have to pay a fine of 200 zorkmids and vow to not do it again.'", noroelaname());
+		fineforpracticant(200, 0, 0);
+	}
+
 	ranged_thorns(mtmp);
 
 	while (squeakamount > 20) {

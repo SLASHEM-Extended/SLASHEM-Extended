@@ -3835,6 +3835,13 @@ castanyway:
 	case SPE_HYPER_BEAM:
 	case SPE_PARALYSIS:
 
+		if (practicantterror && pseudo && pseudo->otyp == SPE_FINGER_OF_DEATH && !u.pract_fodzap) {
+			pline("%s thunders: 'Well wait, I'll shut down your evil spellcasting. Also, for actually casting an unforgivable curse, you have to pay 25000 zorkmids. If you keep misbehaving like that I'll show you some unforgivable curses, I tell you...'", noroelaname());
+			Muteness += rnz(5000);
+			fineforpracticant(25000, 0, 0);
+			u.pract_fodzap = TRUE;
+		}
+
 		if (pseudo->otyp == SPE_BLOOD_STREAM) {
 
 			if (Upolyd && u.mh < 5) {

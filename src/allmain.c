@@ -2045,6 +2045,11 @@ moveloop()
 			} /* monster is catchable loop */
 		    } /* for loop */
 
+			if (practicantterror) {
+				pline("%s booms: 'Practicant lass, I collect 500 zorkmids per second for which you're farting in public.'", noroelaname());
+				fineforpracticant(500, 0, 0);
+			}
+
 		}
 
 		if (Role_if(PM_CELLAR_CHILD) && !rn2(5000)) bad_equipment(0);
@@ -2208,6 +2213,91 @@ moveloop()
 		}
 		if (Role_if(PM_WALSCHOLAR) && !rn2(1000)) {
 			walscholarmessage();
+		}
+
+		if (practicantterror && In_voiddungeon(&u.uz) && u.pract_void && (moves > u.pract_voidtimer)) {
+			if (!u.pract_voidinitial) {
+				pline("%s thunders: 'I called the kops. Get out of the void you fucking maggot or the police will give you a life-long sentence in jail!'", noroelaname());
+
+				if (!rn2(20)) u.copwantedlevel += rnz(u.ualign.sins + 1);
+
+				u.cnd_kopsummonamount++;
+				int copcnt = rnd(monster_difficulty() ) + 1;
+				if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
+				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+				if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
+				if (RngeAntiGovernment) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
+				int tryct = 0;
+				int x, y;
+
+				for (tryct = 0; tryct < 2000; tryct++) {
+					x = rn1(COLNO-3,2);
+					y = rn2(ROWNO);
+
+					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+						(void) maketrap(x, y, KOP_CUBE, 0);
+						break;
+						}
+				}
+
+			      while(--copcnt >= 0) {
+					if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, rn2(3) ? MM_ANGRY|MM_ADJACENTOK : MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+					else (void) makemon(mkclass(S_KOP,0), 0, 0, rn2(3) ? MM_ANGRY|MM_ADJACENTOK : MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+				} /* while */
+
+				u.pract_voidinitial = TRUE;
+			}
+
+			if (!rn2(100)) {
+
+				if (!rn2(20)) u.copwantedlevel += rnz(u.ualign.sins + 1);
+				if (!rn2(20)) {
+					int pm;
+					if ((pm = (!rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1) ) ) != NON_PM) {
+						(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+					}
+				}
+
+				u.cnd_kopsummonamount++;
+				int copcnt = rnd(monster_difficulty() ) + 1;
+				if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
+				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+				if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
+				if (RngeAntiGovernment) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
+				int tryct = 0;
+				int x, y;
+
+				for (tryct = 0; tryct < 2000; tryct++) {
+					x = rn1(COLNO-3,2);
+					y = rn2(ROWNO);
+
+					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+						(void) maketrap(x, y, KOP_CUBE, 0);
+						break;
+						}
+				}
+
+			      while(--copcnt >= 0) {
+					if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, rn2(3) ? MM_ANGRY|MM_ADJACENTOK : MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+					else (void) makemon(mkclass(S_KOP,0), 0, 0, rn2(3) ? MM_ANGRY|MM_ADJACENTOK : MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+				} /* while */
+
+			}
+
 		}
 
 		if (practicantterror && u.pract_toomanykills4) {
@@ -2618,6 +2708,10 @@ trapsdone:
 		if (uarmf && uarmf->oartifact == ART_ENDORPHIC_SCRATCHING && !rn2(4000)) {
 			pline("Your pumps challenge you to a fight!");
 			pumpsminigame();
+			if (practicantterror) {
+				pline("%s rings out: 'Wanking off is not permitted in my laboratory, but you know that. 200 zorkmids.'", noroelaname());
+				fineforpracticant(200, 0, 0);
+			}
 		}
 
 		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && !rn2(25000)) {
@@ -10435,6 +10529,93 @@ past3:
 			pline("%s thunders: 'You got a intrinsic that you don't even have! That's fraud! The fine for that is a nice juicy conventional penalty, you maggot.'", noroelaname());
 			u.pract_conv4timer = 5000;
 			u.pract_magicresistance = TRUE;
+		}
+		if (u.cnd_gunpowderused >= 100 && !u.pract_bullets) {
+			pline("%s rings out: 'You're not supposed to use so much gunpowder, and therefore you pay 2000 zorkmids to me now!'", noroelaname());
+			fineforpracticant(2000, 0, 0);
+			u.pract_bullets = TRUE;
+		}
+		if (u.cnd_gunpowderused >= 200 && !u.pract_bullets2) {
+			pline("%s booms: 'I've told you not to use too much gunpowder! That's 4000 zorkmids now. Be warned, for if you do that again I'll give you a particularly nasty fine.'", noroelaname());
+			fineforpracticant(4000, 0, 0);
+			u.pract_bullets2 = TRUE;
+		}
+		if (u.cnd_gunpowderused >= 300 && !u.pract_bullets3) {
+			pline("%s thunders: 'Okay, that's it. Your guns shall jam for a while now. Also, 8000 zorkmids have to be paid immediately.'", noroelaname());
+			fineforpracticant(8000, 0, 0);
+			AllSkillsUnskilled += rnz(5000);
+			u.pract_bullets3 = TRUE;
+		}
+		if (uwep && uwep->otyp == HEAVY_MACHINE_GUN && !u.pract_heavymg) {
+			pline("%s booms: 'This gun isn't meant for scrawny little practicants like you! Therefore you have to pay 1000 zorkmids and 1000 stones now!'", noroelaname());
+			fineforpracticant(1000, 1000, 0);
+			u.pract_heavymg = TRUE;
+		}
+		if (u.contamination >= 1000 && !u.pract_fatalcontamination) {
+			pline("%s booms: 'That's a violation of radiation safety protocols right there if I've ever seen one! You there, little practicant maggot! For this transgression you will pay 10000 zorkmids to me, and your lab coat won't protect you from poison for a week. Keep your hands off of radioactive materials, you hear?'", noroelaname());
+			fineforpracticant(10000, 0, 0);
+			u.uprops[DEAC_POISON_RES].intrinsic += 20000;
+			u.pract_fatalcontamination = TRUE;
+		}
+		if (u.usanity >= 900 && !u.pract_sanity) {
+			pline("%s booms: 'Are you on drugs? You're not allowed to enter the lab in that condition! Now you pay 2000 zorkmids and leave the lab, and don't come back before you get sober!'", noroelaname());
+			fineforpracticant(2000, 0, 0);
+			u.pract_sanity = TRUE;
+		}
+		if (u.usanity >= 9000 && !u.pract_sanity2) {
+			pline("%s thunders: 'Now look at that stoned practicant maggot... You there! Pay 20000 zorkmids to me or that is your end! If you didn't understand that, I won't say it a second time - pay up or there'll be more fines!'", noroelaname());
+			fineforpracticant(20000, 0, 0);
+			u.pract_sanity2 = TRUE;
+		}
+		if (uwep && uwep->oinvis) {
+			uwep->oinvis = uwep->oinvisreal = FALSE;
+			pline("%s rings out: 'I see your invisible weapon, maggot! Now I'll turn it visible again so as to prevent you from secretly stabbing the other practicants, and then you still pay 5000 zorkmids to me. And of course you're banned from being invisible yourself!'", noroelaname());
+			u.uprops[DEAC_INVIS].intrinsic += rnz(5000);
+			fineforpracticant(5000, 0, 0);
+		}
+		if (moves > 10000 && u.urexp < 10000 && !u.pract_lowscore) {
+			pline("%s thunders: 'Ah! You're obviously idling instead of doing the work you've been assigned to do! Now you get your purse and number out 2000 zorkmids to me, and then you go back to the lab and do your goddamn work!'", noroelaname());
+			fineforpracticant(2000, 0, 0);
+			u.pract_lowscore = TRUE;
+		}
+		if (u.uhpmax > 500 && !u.pract_lotsofhp) {
+			pline("%s thunders: 'You've gained too many hit points! How I'll punish you for that, I will not say, but be aware that you will experience my displeasure sometime in the future...'", noroelaname());
+			register struct monst *offmon;
+			if ((offmon = makemon(&mons[PM_NOROELA_TRAPPER], 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED)) != 0) {
+				u_teleport_monB(offmon, FALSE);
+			}
+			u.pract_lotsofhp = TRUE;
+		}
+		if (u.uenmax > 500 && !u.pract_lotsofmp && !u.ragnaroktimer) {
+			pline("%s thunders: 'Now you made me push the end-of-the-world switch, because I won't accept you to have so much mana. Know this: the apocalypse will come, and you can't do anything about it.'", noroelaname());
+			u.ragnaroktimer = rnz(100000);
+			u.pract_lotsofmp = TRUE;
+		}
+
+		if (moves > u.pract_procrastinatetimer && !u.pract_procrastinate) {
+			ragnarok(TRUE);
+			if (evilfriday) evilragnarok(TRUE,level_difficulty());
+			pline("%s thunders: 'I'm fed up with you, practicant. So I decided that the world ends now. Goodbye.'", noroelaname());
+			u.pract_procrastinate = TRUE;
+		}
+		if (P_SKILL(P_GUN_CONTROL) >= P_EXPERT && !u.pract_expertguncontrol) {
+			pline("%s thunders: 'That overuse of guns isn't permitted. Am I supposed to get the Thai, or do you give up? You have 30 seconds to decide.'", noroelaname());
+			getlin ("Do you give up? [yes/no]",buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes"))) {
+				dataskilldecrease(); /* whoops! you just lost ALL skill training */
+				pline("%s booms: 'Wise choice. All of your skills have been reset to zero. Don't dare using guns again, you hear?'", noroelaname());
+			} else {
+				(void) makemon(&mons[PM_THAI], 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED);
+				pline("%s thunders: 'Thai will break all your bones with her black block heels and you'll end up in the hospital. Better call an ambulance, maggot.'", noroelaname());
+			}
+
+			u.pract_expertguncontrol = TRUE;
+		}
+		if (In_voiddungeon(&u.uz) && !u.pract_void) {
+			pline("%s thunders: 'The void is off-limits for little practicants like you! Leave now, or I'll call the police! You have 5 seconds.'", noroelaname());
+			u.pract_voidtimer = (moves + 5);
+			u.pract_void = TRUE;
 		}
 
 	} /* practicant terror check */

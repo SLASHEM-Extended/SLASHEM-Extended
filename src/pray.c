@@ -2822,6 +2822,11 @@ dopray()
     if (IS_TOILET(levl[u.ux][u.uy].typ)) {
 	pline("You pray to the Porcelain God.");
 
+	if (practicantterror) {
+		pline("%s booms: 'That's an inappropriate use of the toilet! You hereby get a fine of 2500 zorkmids to pay!'", noroelaname());
+		fineforpracticant(2500, 0, 0);
+	}
+
 	if (!rn2(10)) {levl[u.ux][u.uy].typ = ROOM;
 	pline_The("toilet suddenly vanishes!"); /* otherwise you could just cure food poisoning indefinitely --Amy */
 	newsym(u.ux,u.uy); return(1);}

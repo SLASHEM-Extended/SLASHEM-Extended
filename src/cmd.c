@@ -1594,6 +1594,11 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "tender" : "soft", flags.female ? "sexy" : "ugly");
+			if (practicantterror) {
+				pline("%s booms: 'Stop farting in public, you disgusting practicant! Now you have to pay a fine of 500 zorkmids to me!'", noroelaname());
+				fineforpracticant(500, 0, 0);
+			}
+
 			use_skill(P_SQUEAKING, 1);
 			u.cnd_fartingcount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1642,6 +1647,10 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "beautiful" : "squeaky", flags.female ? "sexy" : "ugly");
+			if (practicantterror) {
+				pline("%s booms: 'Stop farting in public, you disgusting practicant! Now you have to pay a fine of 500 zorkmids to me!'", noroelaname());
+				fineforpracticant(500, 0, 0);
+			}
 			use_skill(P_SQUEAKING, 1);
 			u.cnd_fartingcount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1684,6 +1693,10 @@ domonability()
 		} else {
 			morehungry(10);
 			pline("You produce %s farting noises with your %s butt.", rn2(2) ? "disgusting" : "loud", flags.female ? "sexy" : "ugly");
+			if (practicantterror) {
+				pline("%s booms: 'Stop farting in public, you disgusting practicant! Now you have to pay a fine of 500 zorkmids to me!'", noroelaname());
+				fineforpracticant(500, 0, 0);
+			}
 			use_skill(P_SQUEAKING, 1);
 			u.cnd_fartingcount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();

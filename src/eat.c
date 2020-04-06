@@ -6675,6 +6675,11 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			/* This ignores free action. --Amy */
 	    }
 
+	    if (practicantterror && material == MT_SILK) {
+			pline("%s booms: 'You insolent maggot! You're worse than a goddamn cat, eating valuable clothing like that! I'll punish you by forcing you to bring me 20 arrows, you have ten minutes to comply or you'll also pay a bunch of money.'", noroelaname());
+			fineforpracticant(0, 0, 20);
+	    }
+
 	    eatspecial();
 	    return 1;
 	}

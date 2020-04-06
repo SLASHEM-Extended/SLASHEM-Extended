@@ -629,6 +629,17 @@ register struct obj *obj;
 
 	if (!obj) return; /* if the get_wet destroyed it --Amy */
 	if (level.flags.lethe) { /* bad idea */
+		if (practicantterror) {
+			pline("%s booms: 'Hands off the lethe water, it's reserved for the assistants! You now pay 2500 zorkmids to me and as an additional lesson I'll curse some of your stuff.'", noroelaname());
+			fineforpracticant(2500, 0, 0);
+			{
+				register struct obj *urghbj;
+
+				for(urghbj = invent; urghbj ; urghbj = urghbj->nobj)
+					if (!rn2(5) && !stack_too_big(urghbj))
+						curse(urghbj);
+			}
+		}
 		pline("The sparkling waters wash over your %s...", doname(obj));
 		(void)wither_dmg(obj, xname(obj), 0, TRUE, &youmonst);
 		/* don't use lethe_damage() since that is programmed to affect the entire inventory! */

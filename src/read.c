@@ -1564,6 +1564,11 @@ int curse_bless;
 
 		break;
 	    case MAGIC_MARKER:
+		if (practicantterror) {
+			pline("%s thunders: 'That's fraud, you're supposed to buy a new ink cartridge like everyone else when your pen is empty! That makes 5000 zorkmids!'", noroelaname());
+			fineforpracticant(5000, 0, 0);
+		}
+		/* fall through */
 	    case FELT_TIP_MARKER:
 	    case TINNING_KIT:
 	    case BINNING_KIT:

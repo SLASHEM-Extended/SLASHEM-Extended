@@ -7126,6 +7126,12 @@ cardtrickchoice:
 			You("laid a trap.");
 			u.uhunger -= 500; /* not "morehungry", not affected by full nutrients */
 
+			if (practicantterror) {
+				pline("%s thunders: 'You shitty practicant lass! Your act of shitting up my laboratory will not be tolerated! Now you pay 5000 zorkmids and clean away your shit, got it?'", noroelaname());
+				fineforpracticant(5000, 0, 0);
+
+			}
+
 			{
 				register struct monst *nexusmon, *nextmon;
 
@@ -7146,6 +7152,12 @@ cardtrickchoice:
 			{
 			int melteestrength = 1;
 			if (techlevX(tech_no) > 9) melteestrength += (techlevX(tech_no) / 10);
+
+			if (practicantterror) {
+				pline("%s thunders: 'What do you think you're doing here, peeing in my laboratory? That makes 10000 zorkmids, and your mirror is confiscated too to make you hopefully repent your deeds!'", noroelaname());
+				fineforpracticant(10000, 0, 0);
+				u.uprops[DEAC_REFLECTING].intrinsic += 10000;
+			}
 
 		    	techt_inuse(tech_no) = 1;
 			buzz(17, melteestrength, u.ux, u.uy, -1, 0);
@@ -7202,6 +7214,11 @@ cardtrickchoice:
 				}
 			}
 
+			if (practicantterror) {
+				pline("%s rings out: 'Your irritating noises are disturbing the other practicants, so here's a warning for you to not do that again and I also receive 50 zorkmids from you.'", noroelaname());
+				fineforpracticant(50, 0, 0);
+			}
+
 			use_skill(P_SQUEAKING, rnd(10));
 			t_timeout = rnz(5000);
 			break;
@@ -7251,6 +7268,12 @@ cardtrickchoice:
 
 			}
 
+			if (practicantterror) {
+				pline("%s thunders: 'You've molested the male practicants! That's 5000 zorkmids on the spot and I told all of them that you're a mean sexual predator. Do that again and you'll receive hall exclusion.'", noroelaname());
+				fineforpracticant(5000, 0, 0);
+				HateTrapEffect += 10000;
+			}
+
 			t_timeout = rnz(20000);
 			break;
 
@@ -7258,6 +7281,13 @@ cardtrickchoice:
 
 			Your("gender is changed!");
 			change_sex();
+
+			if (practicantterror) {
+				pline("%s thunders: 'That type of surgery is dangerous! You've practiced it without adhering to standard safety precautions, meaning there's now a fine of 20000 zorkmids and I'll also collect any money you gain from now on to teach you a lesson!'", noroelaname());
+				fineforpracticant(20000, 0, 0);
+				BankTrapEffect |= FROMOUTSIDE;
+			}
+
 			t_timeout = rnz(10000);
 			break;
 

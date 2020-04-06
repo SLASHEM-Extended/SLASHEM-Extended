@@ -9750,6 +9750,24 @@ boolean your_fault;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 		break;
 	case POT_CYANIDE:
+
+		if (practicantterror && your_fault) {
+			pline("%s thunders: 'This is absolutely intolerable! A first-semester practicant like you is still light years from receiving clearance for using such highly toxic substances! You not only have to pay a fine of 10000 zorkmids, I'm also giving you hall exclusion. Do not come back to the laboratory today, you hear?'", noroelaname());
+			fineforpracticant(10000, 0, 0);
+
+			if (((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				pline("You shudder for a moment.");
+				(void) safe_teleds(FALSE);
+			} else if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || (iszapem && !(u.zapemescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) { 
+				pline("Somehow, the hall exclusion doesn't do anything.");
+				break;
+			} else {
+				u.banishmentbeam = 1;
+				nomul(-2, "having received hall exclusion", FALSE); /* because it's not called until you get another turn... */
+			}
+
+		}
+
 		if (!resist(mon,POTION_CLASS,0,NOTELL)) {
 			if (canseemon(mon)) {
 				pline("%s looks deathly sick.", Monnam(mon));
@@ -10777,6 +10795,12 @@ boolean amnesia;
 		}
 		if (obj->otyp == POT_OIL) {
 			You("pollute the environment.");
+			if (practicantterror && !u.pract_oilspill) {
+				pline("%s thunders: 'That's a serious crime you committed there! You pay a fine of 10000 zorkmids, and additionally you have to carry some dead weight for the remaining day to ensure that you don't do such a thing again!'", noroelaname());
+				fineforpracticant(4000, 0, 0);
+				u.graundweight += 1000;
+				u.pract_oilspill = TRUE;
+			}
 			adjalign(-sgn(u.ualign.type));
 			if (u.ualign.type == A_LAWFUL) {
 				u.ualign.sins++;
@@ -11916,6 +11940,10 @@ dodip()
 		if ((obj->cursed || obj->otyp == POT_ACID ||
 		    potion->cursed || potion->otyp == POT_ACID || !rn2(10) || (stack_too_big(obj) && stack_too_big(obj)) || (stack_too_big(potion) && stack_too_big(potion) ) ) && !(uarmc && uarmc->oartifact == ART_NO_MORE_EXPLOSIONS && !(obj->otyp == POT_ACID || potion->otyp == POT_ACID) ) ) {
 			pline("BOOM!  They explode!");
+			if (practicantterror) {
+				pline("%s booms: 'Quit trying to create bombs, maggot. 200 zorkmids.'", noroelaname());
+				fineforpracticant(200, 0, 0);
+			}
 			exercise(A_STR, FALSE);
 			if (!breathless(youmonst.data) || haseyes(youmonst.data))
 				potionbreathe(obj);
@@ -12185,6 +12213,10 @@ dodip()
 
 		if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && (obj->cursed || (obj->spe < (-rn1(10, 10)))) ) { /* uh-oh */
 			pline("BOOM! The potion explodes!");
+			if (practicantterror) {
+				pline("%s booms: 'Quit trying to create bombs, maggot. 200 zorkmids.'", noroelaname());
+				fineforpracticant(200, 0, 0);
+			}
 			potion->in_use = TRUE;
 			if (!breathless(youmonst.data) || haseyes(youmonst.data)) potionbreathe(potion);
 			useup(potion);
@@ -12223,6 +12255,10 @@ dodip()
 			    pline("Warning, Captain!  The warp core has been breached!");
 			}
 			pline("BOOM!  %s explodes!", The(xname(singlegem)));
+			if (practicantterror) {
+				pline("%s booms: 'Quit trying to create bombs, maggot. 200 zorkmids.'", noroelaname());
+				fineforpracticant(200, 0, 0);
+			}
 			exercise(A_STR, FALSE);
 			if (!breathless(youmonst.data) || haseyes(youmonst.data))
 			    potionbreathe(singlepotion);

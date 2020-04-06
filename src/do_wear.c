@@ -3101,6 +3101,13 @@ Amulet_on()
 
 		if (Unchanging) break;
 		change_sex();
+
+		if (practicantterror) {
+			pline("%s thunders: 'That type of surgery is dangerous! You've practiced it without adhering to standard safety precautions, meaning there's now a fine of 20000 zorkmids and I'll also collect any money you gain from now on to teach you a lesson!'", noroelaname());
+			fineforpracticant(20000, 0, 0);
+			BankTrapEffect |= FROMOUTSIDE;
+		}
+
 		/* Don't use same message as polymorph */
 		if (orig_sex != poly_gender()) {
 		    makeknown(AMULET_OF_CHANGE);

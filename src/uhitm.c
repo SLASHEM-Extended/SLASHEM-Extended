@@ -4953,6 +4953,11 @@ register struct attack *mattk;
 #ifndef GOLDOBJ
 		if (mdef->mgold) {
 		    u.ugold += mdef->mgold;
+		    if (practicantterror && (mdef->mgold > 0)) {
+			pline("%s thunders: 'Theft detected! You have to pay twice the amount that you stole.'", noroelaname());
+			fineforpracticant(mdef->mgold * 2, 0, 0);
+
+		    }
 		    mdef->mgold = 0;
 		    Your("purse feels heavier.");
 		}

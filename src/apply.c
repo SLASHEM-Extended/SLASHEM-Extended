@@ -4903,12 +4903,20 @@ blast_him:
 		if (Has_contents(new_obj))
 			delete_contents(new_obj);
 		obfree(new_obj,(struct obj *) 0);
+		if (practicantterror) {
+			pline("%s booms: 'Quit trying to create bombs, maggot. 200 zorkmids.'", noroelaname());
+			fineforpracticant(200, 0, 0);
+		}
 		return;
 	}
 
 	if (!(objects[new_obj->otyp].oc_name_known)) makeknown(new_obj->otyp);
 	hold_another_object(new_obj,"Oops! Where did you put that potion?",(const char *) 0,(const char *) 0);
 	You("have done it!");
+	if (practicantterror && new_obj->otyp == POT_CYANIDE) {
+		pline("%s thunders: 'You dare manufacturing such highly toxic substances??? 5000 zorkmids. Don't even think about actually using that type of poison!'", noroelaname());
+		fineforpracticant(5000, 0, 0);
+	}
 	use_skill(P_DEVICES,1);
 	if (Race_if(PM_FAWN)) {
 		use_skill(P_DEVICES,1);
@@ -5965,6 +5973,10 @@ doapply()
 		break;
 	case STICK_OF_DYNAMITE:
 		light_cocktail(obj);
+		if (practicantterror) {
+			pline("%s thunders: 'High explosives??? Are you out of your mind? In expectation of the damage to property that you'll likely cause, I decided that you pay 5000 zorkmids as compensation and 1000 stones to allow me to rebuild everything that you've destroyed.'", noroelaname());
+			fineforpracticant(5000, 1000, 0);
+		}
 		break;
 
 	case HITCHHIKER_S_GUIDE_TO_THE_GALA:

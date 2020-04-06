@@ -1844,6 +1844,25 @@ struct you {
 	boolean pract_artitheft;	/* nemesis finds out that you stole the quest artifact = 50000 zorkmids */
 	boolean pract_nofines;	/* didn't get any fine in 10000 turns = 1000 zorkmids */
 	int pract_finetimer;	/* timer for the above */
+	boolean pract_bullets;	/* 100 bullets fired = 2000 zorkmids */
+	boolean pract_bullets2;	/* 200 bullets fired = 4000 zorkmids */
+	boolean pract_bullets3;	/* 300 bullets fired = 8000 zorkmids and rnz(5000) turns of low skill */
+	boolean pract_heavymg;	/* equip a heavy MG = 1000 zorkmids and 1000 stones */
+	boolean pract_wodzap;	/* zap wand of death = 10000 zorkmids */
+	boolean pract_fodzap;	/* cast finger of death = 25000 zorkmids and rnz(5000) turns of muteness */
+	boolean pract_oilspill;	/* dilute oil in a pool = 10000 zorkmids and +1000 long-lasting wight */
+	boolean pract_fatalcontamination;	/* be fatally contaminated = 10000 zorkmids and disables poison resistance for 20000 turns */
+	boolean pract_sanity;	/* have over 900 sanity = 2000 zorkmids */
+	boolean pract_sanity2;	/* have over 9000 sanity = 20000 zorkmids */
+	boolean pract_lowscore;	/* less than 10k score after 10k turns = 2000 zorkmids */
+	boolean pract_lotsofhp;	/* have over 500 max HP = monster spawns with scroll of offlevel item and levelports */
+	boolean pract_lotsofmp;	/* have over 500 max Pw = ragnarok will happen eventually */
+	boolean pract_procrastinate;	/* if the nemesis is still not dead by a certain point, ragnarok happens */
+	int pract_procrastinatetimer;	/* timer for the above */
+	boolean pract_expertguncontrol;	/* have gun control on expert = can decide whether to lose all skills or spawn a boss */
+	boolean pract_void;	/* entered the void = 5 turns to leave, otherwise kops and demon lords can spawn */
+	int pract_voidtimer;	/* turn at which you may no longer be in the void */
+	boolean pract_voidinitial;	/* whether the initial spawn of badguys for the above has happened */
 
 	/* killing the nemesis would result in another fine but she's dead at that point so you no longer care :P */
 

@@ -813,6 +813,10 @@ elena16:
 				if (multi >= 0) {
 					pline("You come because %s's high-heeled sandals are so beautiful.", mon_nam(mtmp));
 					nomul(-2, "having a sexual orgasm", TRUE);
+					if (practicantterror) {
+						pline("%s rings out: 'Wanking off is not permitted in my laboratory, but you know that. 200 zorkmids.'", noroelaname());
+						fineforpracticant(200, 0, 0);
+					}
 				} else {
 					switch (rnd(13)) {
 						case 1: pline("%s exploits your momentary weakness and kicks your %s with %s high heel.", Monnam(mtmp), body_part(ARM), mhis(mtmp) ); break;
@@ -2671,6 +2675,10 @@ elena33:
 					u.cnd_shoedamageamount++;
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 					pline("You have an orgasm because the soft inka leather is so lovely.");
+					if (practicantterror) {
+						pline("%s rings out: 'Wanking off is not permitted in my laboratory, but you know that. 200 zorkmids.'", noroelaname());
+						fineforpracticant(200, 0, 0);
+					}
 					badeffect();
 						if (FemtrapActiveElena && !rn2(3)) {
 							pline("You long for more!");
@@ -20706,6 +20714,13 @@ enjoyable:
 		set_itimeout(&HeavyNumbed, HNumbed);
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
+
+		if (practicantterror) {
+			pline("%s thunders: 'What the hell, you're having sex in my lab??? And you're not even using contraceptives? Didn't your parents teach you anything, you can catch STDs that way! That's a fine of 5000 zorkmids, and here's also an additional punishment. At least get a fucking room next time!'", noroelaname());
+			fineforpracticant(5000, 0, 0);
+			badeffect();
+		}
+
         } else {
             if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
             if (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");

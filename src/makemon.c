@@ -10943,6 +10943,10 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_SMALL_TRICKSTER]) (void) mongets(mtmp, VOULGE);
 		if (mtmp->data == &mons[PM_ULTRA_EVIL_TRAPPER]) (void) mongets(mtmp, SCR_OFFLEVEL_ITEM);
+		if (mtmp->data == &mons[PM_NOROELA_TRAPPER]) {
+			(void) mongets(mtmp, SCR_OFFLEVEL_ITEM);
+			(void) mongets(mtmp, HIPPIE_HEELS);
+		}
 		if (mtmp->data == &mons[PM_TRICKSTER]) (void) mongets(mtmp, FAUCHARD);
 		if (ptr == &mons[PM_TRICKSTER_CANDIDATE]) {
 			(void) mongets(mtmp, RANSEUR);

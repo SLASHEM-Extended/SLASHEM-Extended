@@ -242,6 +242,12 @@ dosit()
 			}
 			else if (Role_if(PM_BARBARIAN) || Role_if(PM_CAVEMAN)) You("miss...");
 			else You("grunt.");
+
+			if (practicantterror) {
+				pline("%s booms: 'There's a fee of 100 zorkmids for using the toilet.'", noroelaname());
+				fineforpracticant(100, 0, 0);
+			}
+
 			/* Based on real life experience (urgh) this doesn't always instantly cure sickness. --Amy */
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);

@@ -5282,6 +5282,12 @@ glowandfadechoice:
 		obj = current_wand;
 		current_wand = 0;
 	}
+	if (practicantterror && obj && obj->otyp == WAN_DEATH && !u.pract_wodzap) {
+		pline("%s rings out: 'Little practicant lasses trying to impersonate Lord Voldemort have to pay 10000 zorkmids!'", noroelaname());
+		fineforpracticant(10000, 0, 0);
+		u.pract_wodzap = TRUE;
+	}
+
 	if (obj && obj->spe < 0) {
 	    pline("%s to dust.", Tobjnam(obj, "turn"));
 	    useup(obj);

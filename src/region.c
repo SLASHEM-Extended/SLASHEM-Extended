@@ -1020,8 +1020,13 @@ int damage;
 	tmprect.hy--;
     }
     cloud->ttl = rn1(3,4);
-    if (!in_mklev && !flags.mon_moving)
+    if (!in_mklev && !flags.mon_moving) {
 	set_heros_fault(cloud);		/* assume player has created it */
+	if (practicantterror) {
+		pline("%s booms: 'You're causing a smelling nuisance! That's very definitely not allowed, so you pay 2000 zorkmids now and then stop stinking around in my lab!'", noroelaname());
+		fineforpracticant(2000, 0, 0);
+	}
+    }
     cloud->inside_f = INSIDE_GAS_CLOUD;
     cloud->expire_f = EXPIRE_GAS_CLOUD;
     cloud->arg = (void *) damage;
