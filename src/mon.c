@@ -172,23 +172,31 @@ int
 undead_to_corpse(mndx)
 int mndx;
 {
+
 	switch (mndx) {
 	case PM_KOBOLD_ZOMBIE:
 	case PM_GHEY_KOBOLD_ZOMBIE:
+	case PM_EVIL_KOBOLD_MUMMY:
 	case PM_KOBOLD_MUMMY:	mndx = PM_KOBOLD;  break;
 	case PM_OGRE_ZOMBIE:
+	case PM_EVIL_OGRE_MUMMY:
 	case PM_OGRE_MUMMY:	mndx = PM_OGRE;  break;
 	case PM_DWARF_ZOMBIE:
+	case PM_EVIL_DWARF_MUMMY:
 	case PM_DWARF_MUMMY:	mndx = PM_DWARF;  break;
 	case PM_GNOME_ZOMBIE:
+	case PM_EVIL_GNOME_MUMMY:
 	case PM_GNOME_MUMMY:	mndx = PM_GNOME;  break;
 	case PM_ORC_ZOMBIE:
 	case PM_NEVER_AN_ORC_ZOMBIE:
 	case PM_DEFINITELY_NOT_ORC_MUMMY:
+	case PM_EVIL_ORC_MUMMY:
 	case PM_ORC_MUMMY:	mndx = PM_ORC;  break;
 	case PM_DROW_MUMMY:
 	case PM_DROW_ZOMBIE:
 	case PM_ELF_ZOMBIE:
+	case PM_EVIL_ELF_MUMMY:
+	case PM_EVIL_DROW_MUMMY:
 	case PM_ELF_MUMMY:	mndx = PM_ELF;  break;
 	case PM_VAMPIRE:
 	case PM_VAMPIRE_LORD:
@@ -242,16 +250,20 @@ int mndx;
 	case PM_WAIVED_POTATO:
 	case PM_DEAD_POTATO:
 	case PM_ADOM_MUMMY:
+	case PM_EVIL_HUMAN_MUMMY:
 	case PM_HUMAN_MUMMY:	mndx = PM_HUMAN;  break;
 	case PM_GIANT_ZOMBIE:
+	case PM_EVIL_GIANT_MUMMY:
 	case PM_GIANT_MUMMY:	mndx = PM_GIANT;  break;
 	case PM_ETTIN_ZOMBIE:
 	case PM_PROTESTAINST_ETTIN_ZOMBIE:
 	case PM_CALLS_ITSELF_ETTIN_MUMMY:
+	case PM_EVIL_ETTIN_MUMMY:
 	case PM_ETTIN_MUMMY:	mndx = PM_ETTIN;  break;
 	case PM_TROLL_ZOMBIE:
 	case PM_EGO_TROLL_MUMMY:
 	case PM_TROLL_PERMAMIMIC_MUMMY:
+	case PM_EVIL_TROLL_MUMMY:
 	case PM_TROLL_MUMMY:    mndx = PM_TROLL;  break;
 	case PM_MIMIC_MUMMY:    mndx = PM_GIANT_MIMIC;  break;
 	case PM_TASMANIAN_ZOMBIE:    mndx = PM_TASMANIAN_DEVIL;  break;
@@ -692,6 +704,7 @@ register struct monst *mtmp;
 		obj = mkcorpstat(CORPSE, mtmp, &mons[num], x, y, TRUE);
 		obj->age -= 100;		/* this is an *OLD* corpse */
 		break;
+	    case PM_EVIL_KOBOLD_MUMMY:
 	    case PM_KOBOLD_MUMMY:
 	    case PM_DWARF_MUMMY:
 	    case PM_GNOME_MUMMY:
@@ -1598,6 +1611,14 @@ register struct monst *mtmp;
 		mtmp->mnamelth = 0;
 		break;
 
+	    case PM_FOOD_GOLEM:
+	    case PM_SCHOOL_FOOD_GOLEM:
+		num = rnd(3);
+		while (num--)
+			obj = mksobj_at(rnd_class(TRIPE_RATION, TIN), x, y, TRUE, FALSE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+
 	    case PM_SCROLL_GOLEM:
 		num = rnd(4);
 		while (num--)
@@ -1742,13 +1763,13 @@ register struct monst *mtmp;
 		return (0);
 
 	/* poisonous non-zombies will poison a well --Amy */
-    if (IS_WELL(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && poisonous(mtmp->data) && !(mtmp->data->mlet == S_ZOMBIE)) {
+    if (IS_WELL(levl[mtmp->mx][mtmp->my].typ) && poisonous(mtmp->data) && !(mtmp->data->mlet == S_ZOMBIE)) {
 		levl[mtmp->mx][mtmp->my].typ = POISONEDWELL;
 		if (cansee(mtmp->mx, mtmp->my)) pline("%s poisons the well!", Monnam(mtmp));
     }
 
 	/* but zombies will cure it... no matter how nonsensical this might seem, it's intentional */
-    if (IS_POISONEDWELL(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && mtmp->data->mlet == S_ZOMBIE) {
+    if (IS_POISONEDWELL(levl[mtmp->mx][mtmp->my].typ) && mtmp->data->mlet == S_ZOMBIE) {
 		levl[mtmp->mx][mtmp->my].typ = WELL;
 		if (cansee(mtmp->mx, mtmp->my)) pline("%s cures the well of its poison!", Monnam(mtmp));
     }
@@ -1939,6 +1960,8 @@ struct monst *mon;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
 	}
+
+	if (mon->data == &mons[PM_YEEK_HARD_WORKER] && !rn2(5)) mmove += 12;
 
 	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
 
@@ -4357,6 +4380,13 @@ register struct monst *mtmp;
 	}
 	if(mtmp->iswiz) wizdead();
 	if(mtmp->data->msound == MS_NEMESIS && mtmp->mnum >= PM_LORD_CARNARVON && mtmp->mnum <= PM_UPPER_BULL) nemdead();
+
+	if (tmp == PM_SUPER_SLOW_TURTLE) {
+		adjalign(-100);
+		u.ualign.sins += 5;
+		u.alignlim -= 5;
+		You_feel("really bad about the death of this turtle...");
+	}
 
 	if(tmp == PM_ANASTASIA_STEELE) { /* very bad! */
 

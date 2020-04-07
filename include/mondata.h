@@ -259,7 +259,7 @@
 				 (ptr)->mlet == S_TROLL || ((ptr)->mflags4 & M4_REVIVE) )
 
 /* does the monster only eat old corpses? */
-#define saprovorous(ptr)	((ptr) == &mons[PM_GHOUL] || (ptr) == &mons[PM_GHAST] || (ptr) == &mons[PM_CORPSEWORM] || (ptr) == &mons[PM_DOGSHIT_SEARCHER] || (ptr) == &mons[PM_STINKING_ALIEN] || (ptr) == &mons[PM_GASTLY] || (ptr) == &mons[PM_PHANTOM_GHOST] || (ptr) == &mons[PM_HAUNTER] || (ptr) == &mons[PM_GENGAR])
+#define saprovorous(ptr)	((ptr) == &mons[PM_GHOUL] || (ptr) == &mons[PM_SAPROVOROUS_NYMPH] || (ptr) == &mons[PM_GHAST] || (ptr) == &mons[PM_CORPSEWORM] || (ptr) == &mons[PM_DOGSHIT_SEARCHER] || (ptr) == &mons[PM_STINKING_ALIEN] || (ptr) == &mons[PM_GASTLY] || (ptr) == &mons[PM_PHANTOM_GHOST] || (ptr) == &mons[PM_HAUNTER] || (ptr) == &mons[PM_GENGAR])
 #define saprovorousnumber(mnnm)	(mnnm == PM_GHOUL || mnnm == PM_GHAST || mnnm == PM_CORPSEWORM || mnnm == PM_DOGSHIT_SEARCHER || mnnm == PM_STINKING_ALIEN || mnnm == PM_GASTLY || mnnm == PM_PHANTOM_GHOST || mnnm == PM_HAUNTER || mnnm == PM_GENGAR)
 
 /* this returns the light's range, or 0 if none; if we add more light emitting

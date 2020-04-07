@@ -1487,6 +1487,11 @@ convertdone:
 		nomul(-(rnd(5) + (mtmp->m_lev / 4) ), "smelling sweaty inlays", TRUE);
 	}
 
+	if (mdat == &mons[PM_STINKING_HEAP_OF_SHIT] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
+		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
+	}
+
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
 		switch (rnd(9)) {
 

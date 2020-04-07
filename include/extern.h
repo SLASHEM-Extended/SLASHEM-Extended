@@ -2026,6 +2026,8 @@ E int find_ballet_heels(void);
 E int find_steel_toed_boots(void);
 E int find_marji_shoes(void);
 E int find_mary_janes(void);
+E int find_visored_helmet(void);
+E int find_orange_visored_helmet(void);
 
 E void oinit(void);
 E void savenames(int,int);

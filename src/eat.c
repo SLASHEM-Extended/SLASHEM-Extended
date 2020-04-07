@@ -3078,6 +3078,7 @@ register int pm;
 
 	    case PM_UMBER_MIND_FLAYER:
 	    case PM_GLOCKATRICE:
+	    case PM_BOSSATRICE:
 
 		You_feel("ethereal.");
 		incr_itimeout(&HPasses_walls, rn1(10, 50));

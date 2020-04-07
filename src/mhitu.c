@@ -4960,7 +4960,7 @@ elena37:
 	}
 
 	/* ultra-mega laser cannon for some specific ubermonsters, including the elder priest */
-	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_SIN_GORILLA] || mtmp->data == &mons[PM_ELITE_GUARD] || mtmp->data == &mons[PM_BLUEBEAM_GOLEM] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
+	if (mtmp->data == &mons[PM_DHWTY] || mtmp->data == &mons[PM_ARCHAYEEK_GUNNER] || mtmp->data == &mons[PM_SIN_GORILLA] || mtmp->data == &mons[PM_ELITE_GUARD] || mtmp->data == &mons[PM_BLUEBEAM_GOLEM] || mtmp->data == &mons[PM_AIRTIGHT_FEMMY] || mtmp->data == &mons[PM_SVEN] || mtmp->data == &mons[PM_GRANDMASTER_SVEN] || mtmp->data == &mons[PM_WORLD_PWNZOR] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->egotype_laserpwnzor) {
 		if (range2 && lined_up(mtmp) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) ) {
 			if (!mtmp->hominglazer && !rn2(20)) {
 				pline("ATTENTION: %s has started to load an ultra-mega-hyper-dyper laser cannon!", Monnam(mtmp));
