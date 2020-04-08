@@ -640,6 +640,10 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (mdat == &mons[PM_DARKNESS_ELEMENTAL] || mdat == &mons[PM_PERMADARKNESS_ELEMENTAL]) {
+		if (isok(mtmp->mx, mtmp->my)) levl[mtmp->mx][mtmp->my].lit = FALSE;
+	}
+
 	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
 		pline("A horrible call rang in your head...");
 		increasesanity(1);
@@ -2565,7 +2569,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

@@ -2748,6 +2748,7 @@ register struct obj *obj;
 {
 	char buf[BUFSZ];
 	boolean is_buddy = sgn(mon->data->maligntyp) == sgn(u.ualign.type);
+	if (mon->data == &mons[PM_MOLOCH_ALIGNED_UNICORN]) is_buddy = FALSE;
 	boolean is_gem = objects[obj->otyp].oc_material == MT_GEMSTONE;
 	int ret = 0;
 	static NEARDATA const char nogood[] = " is not interested in your junk.";

@@ -3156,9 +3156,19 @@ stillinwater:;
 				    Blind && !sensemon(mtmp) ?
 				    something : a_monnam(mtmp));
 				mtmp->mpeaceful = 0;
-			} else
-			    pline("%s attacks you by surprise!",
-					Amonnam(mtmp));
+			} else if (mtmp->data == &mons[PM_DROPCLONK_BEAR] || mtmp->data == &mons[PM_DROPTREE_BEAR]) {
+				int dmg;
+				You("are hit by %s!",
+				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
+				dmg = d(10, 10);
+				if(Half_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
+				if(StrongHalf_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
+				if (uarmh) dmg = (dmg+1) / 2;
+				mdamageu(mtmp, dmg);
+
+			} else {
+				pline("%s attacks you by surprise!", Amonnam(mtmp));
+			}
 			break;
 		}
 		mnexto(mtmp); /* have to move the monster */

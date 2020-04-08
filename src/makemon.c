@@ -7339,6 +7339,36 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, BLASTER_BOLT, 30);
 		}
 
+		if (mtmp->data == &mons[PM_TEAM_SPLAT_PLAYER]) {
+
+			struct obj *otmpH = mksobj(EGG,TRUE,FALSE, FALSE);
+
+			if (otmpH) {
+
+				otmpH->spe = 0;
+				otmpH->quan = rnd(5);
+				otmpH->owt = weight(otmpH);
+				otmpH->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
+				attach_egg_hatch_timeout(otmpH);
+				kill_egg(otmp); /* make sure they're stale --Amy */
+				(void) mpickobj(mtmp,otmpH, TRUE);
+			}
+
+		}
+		if (ptr == &mons[PM_MEMBER_OF_THE_COCKATRICE_ORDER]) {
+
+			(void) mongets(mtmp, GAUNTLETS_OF_FUMBLING);
+			struct obj *otmpY = mksobj(CORPSE,TRUE,FALSE, FALSE);
+			if (otmpY) {
+				otmpY->spe = 0;
+				otmpY->quan = 1;
+				otmpY->owt = 30;
+				otmpY->corpsenm = PM_COCKATRICE;
+				start_corpse_timeout(otmpY); /* gotta make sure they time out after a while! --Amy */
+				(void) mpickobj(mtmp,otmpY, TRUE);
+			}
+		}
+
 		if (ptr == &mons[PM_PSYCHOPOMP]) {
 			(void) mongets(mtmp, GENTLEMAN_S_SUIT);
 			(void) mongets(mtmp, FUR);
@@ -8261,6 +8291,7 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, VOLCANIC_GLASS_FRAGMENT, 50);
 		}
 		if (mtmp->data == &mons[PM_THING_CUSTOMER_GOLEM]) (void) mongets(mtmp, FLY_SWATTER);
+		if (mtmp->data == &mons[PM_BRITISH_ARMY_SURPLUS_BOOT]) (void) mongets(mtmp, LOW_BOOTS);
 
 		if (mtmp->data == &mons[PM_KOP_HOSE]) (void) mongets(mtmp, RUBBER_HOSE);
 		if (mtmp->data == &mons[PM_HOSE_SERGEANT]) (void) mongets(mtmp, RUBBER_HOSE);
@@ -8810,6 +8841,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_GRAY_SLAAD]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 		if (mtmp->data == &mons[PM_DEATH_SLAAD]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 		if (mtmp->data == &mons[PM_CLAYMORE_DRAGONEWT]) (void) mongets(mtmp, TWO_HANDED_SWORD);
+		if (mtmp->data == &mons[PM_LUSTY_ARGONIAN_MAID]) (void) mongets(mtmp, MAID_DRESS);
 
 		if (ptr == &mons[PM_TALCUM_DRACONIAN]) {
 			(void) mongets(mtmp, SLING);
@@ -10199,6 +10231,11 @@ loveheelover:
 		if (ptr == &mons[PM_BLASTPIG]) {
 			 m_initthrow(mtmp, FRAG_GRENADE, 10);
 		}
+		if (ptr == &mons[PM_VOLDEPORK]) {
+			(void) mongets(mtmp, WAN_DEATH);
+			(void) mongets(mtmp, SHOTGUN);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+		}
 		if (ptr == &mons[PM_SAINT_MARKS_MAFIA_TYPE]) {
 			(void) mongets(mtmp, PISTOL);
 			(void) mongets(mtmp, CAMOUFLAGED_CLOTHES);
@@ -10513,6 +10550,7 @@ loveheelover:
 			if (!rn2(2)) (void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
 		}
 
+		if (mtmp->data == &mons[PM_NOZZLE_IMPULSE]) (void) mongets(mtmp, ROCKET_GAUNTLETS);
 		if (mtmp->data == &mons[PM_HELL_BRIDE]) (void) mongets(mtmp, DANCING_SHOES);
 		if (mtmp->data == &mons[PM_GREUVENENE]) (void) mongets(mtmp, SCR_LOCKOUT);
 		if (mtmp->data == &mons[PM_SUE_LYN_S_PLATEAU_BOOT]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
@@ -11029,6 +11067,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_TAWNY]) {
 			(void) mongets(mtmp, LADY_BOOTS);
+		}
+		if (ptr == &mons[PM_DROPTREE_BEAR]) {
+			(void) mongets(mtmp, SCR_GROWTH);
 		}
 		if (ptr == &mons[PM_RAINBOW_DRESSER]) {
 			(void) mongets(mtmp, WAN_UNDRESSING);
@@ -13129,6 +13170,7 @@ loveheelover:
 		if (monsndx(ptr) == PM_JULIETTEN_WOMAN) (void) mongets(mtmp, LACQUERED_DANCING_SHOE);
 		if (monsndx(ptr) == PM_MEASURER_MAN) (void) mongets(mtmp, MEASURER);
 		if (monsndx(ptr) == PM_HIRED_MEASURER_MAN) (void) mongets(mtmp, MEASURER);
+		if (monsndx(ptr) == PM_BEAUTIFUL_MUSEUM_GUIDE) (void) mongets(mtmp, LADY_BOOTS);
 
 		if (ptr == &mons[PM_ALABASTER_MUMMY]) {
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
@@ -13417,6 +13459,7 @@ loveheelover:
 	      if (ptr == &mons[PM_BANNIK] && !rn2(5)) (void) mongets(mtmp, TOWEL);
 	      if (ptr == &mons[PM_LESHY]) (void) mongets(mtmp, APPLE);
 	      if (ptr == &mons[PM_DESERT_KANGAROO]) (void) mongets(mtmp, SCR_QUICKSAND);
+	      if (ptr == &mons[PM_TWINE_BITCH]) (void) mongets(mtmp, FEMININE_PUMPS);
 
 		if (ptr == &mons[PM_MACRO_KANGAROO]) {
 			 m_initthrow(mtmp, SAND_DART, 50);
@@ -14296,6 +14339,11 @@ loveheelover:
 
 		if (ptr == &mons[PM_HIBERNAL_YETI]) (void) mongets(mtmp, SCR_SNOW);
 		if (ptr == &mons[PM_CHARLENE]) (void) mongets(mtmp, HIPPIE_HEELS);
+
+		if (ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER]) {
+			(void) mongets(mtmp, WILDHILD_BOW);
+			 m_initthrow(mtmp, ODOR_SHOT, 50);
+		}
 
 		if (ptr == &mons[PM_PRISON_ZRUTY]) {
 			(void) mongets(mtmp, SLING);
@@ -20893,6 +20941,10 @@ register int	mmflags;
 			if (mndx == PM_MINOTAUR_MIMIC) set_mimic_sym(mtmp);
 
 			break;
+		case S_WALLMONST:
+			if (mndx == PM_DARK_NUMBER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_BELT_MOUNTAIN) set_mimic_sym(mtmp);
+			break;
 		case S_LICH:
 			if (mndx == PM_MIMIC_LICH) set_mimic_sym(mtmp);
 			if (mndx == PM_DEMILICH_PERMAMIMIC) set_mimic_sym(mtmp);
@@ -21782,10 +21834,10 @@ register int	mmflags;
 		case S_UNICORN:
 
 			if (mndx == PM_THESTRAL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_MOLOCH_ALIGNED_UNICORN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DISGUISED_UNDEAD_UNICORN) set_mimic_sym(mtmp);
 
-			if (is_unicorn(ptr) &&
-					sgn(u.ualign.type) == sgn(ptr->maligntyp))
+			if (is_unicorn(ptr) && mndx != PM_MOLOCH_ALIGNED_UNICORN && sgn(u.ualign.type) == sgn(ptr->maligntyp))
 				mtmp->mpeaceful = TRUE;
 			break;
 		case S_BAT:
@@ -26176,6 +26228,7 @@ int type;
 		case PM_TRUCK_OF_PEACE: return 200;
 		case PM_AMUSING_THIRTEEN_GRADER: return 137;
 		case PM_SECURITY_BOT: return 137;
+		case PM_DELETION_BOT: return 137;
 		case PM_ANIMATED_MARBLE_STATUE: return 199;
 		case PM_SUPER_VANISHING_POINT: return 199;
 		case PM_SCHOOL_DIRECTOR: return 199;
@@ -26270,6 +26323,7 @@ int type;
 		case PM_DRAGONHIDE_GOLEM: return 400;
 		case PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT: return 200;
 		case PM_SLAP_HEELED_SANDAL_BOOT: return 200;
+		case PM_BRITISH_ARMY_SURPLUS_BOOT: return 160;
 		case PM_WEREBLOCKHEELEDCOMBATBOOT: return 200;
 		case PM_ANIMATED_IRREGULAR_HEEL: return 233;
 		case PM_SAURON_THE_IMPRISONED: return 200;
@@ -26906,6 +26960,10 @@ assign_sym:
 		s_sym = ARMOR_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = FEDORA;
+	}
+	if (mtmp->data == &mons[PM_BELT_MOUNTAIN]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_mountain;
 	}
 
 	if (mtmp->data == &mons[PM_POTION_MIMIC] || mtmp->data == &mons[PM_POTION_PERMAMIMIC]) {

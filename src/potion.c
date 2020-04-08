@@ -9674,9 +9674,14 @@ boolean your_fault;
 		break;
 	case POT_AMNESIA:
 		/* Uh-oh! */
-		if (uarmh && is_helmet(uarmh) && 
-			rn2(10 - (uarmh->cursed? 8 : 0)))
-		    get_wet(uarmh, TRUE);
+		/* Amy edit: it's stupid if it's basically guaranteed that your helmet loses a point of enchantment. */
+		/* In Soviet Russia, amnesia potions are as abundant as vodka, and no one needs enchanted helmets anyway
+		 * because people are naturally cold resistant there. So they're throwing wild parties where they throw around
+		 * those potions of sparkling champagne just for fun, not caring whether it disenchants people's helmets. */
+		if (uarmh && is_helmet(uarmh) && (!rn2(3) || issoviet) && rn2(10 - (uarmh->cursed ? 8 : 0))) {
+			get_wet(uarmh, TRUE);
+			if (issoviet) pline("Da, vash shlem razocharovalsya! Da uzh! Tak tebe i nado!");
+		}
 		break;
 	}
     } else {
@@ -9922,7 +9927,7 @@ boolean your_fault;
 				!Protection_from_shape_changers)
 			    new_were(mon);	/* transform into beast */
 		    }
-		} else if(mon->data == &mons[PM_GREMLIN]) {
+		} else if (splittinggremlin(mon->data)) {
 		    angermon = FALSE;
 		    (void)split_mon(mon, (struct monst *)0);
 		} else if(mon->data == &mons[PM_FLAMING_SPHERE] ||
@@ -9942,12 +9947,12 @@ boolean your_fault;
 		break;
 	case POT_AMNESIA:
 		if (mon->mfrenzied) mon->mfrenzied = 0;
+		if (splittinggremlin(mon->data)) {
+			/* Gremlins multiply... */
+			mon->mtame = FALSE;	
+			(void)split_mon(mon, (struct monst *)0);
+		}
 		switch (monsndx(mon->data)) {
-		case PM_GREMLIN:
-		    /* Gremlins multiply... */
-		    mon->mtame = FALSE;	
-		    (void)split_mon(mon, (struct monst *)0);
-		    break;
 		case PM_FLAMING_SPHERE:
 		case PM_IRON_GOLEM:
 		    if (canseemon(mon)) pline("%s %s.", Monnam(mon),
@@ -10017,8 +10022,7 @@ boolean your_fault;
 			    pline("%s looks at you curiously!", 
 					    Monnam(mon));
 			make_happy_shk(mon, FALSE);
-		    } else if (!is_covetous(mon->data) && !rn2(4) &&
-				    !resist(mon, POTION_CLASS, 0, 0)) {
+		    } else if (!is_covetous(mon->data) && !rn2(4) && !(splittinggremlin(mon->data)) && !resist(mon, POTION_CLASS, 0, 0)) {
 			angermon = FALSE;
 			if (canseemon(mon)) {
 			    if (mon->msleeping) {
@@ -10281,7 +10285,7 @@ register struct obj *obj;
 		if (!Blind && !u.usleep) Your("%s", vision_clears);
 		break;
 	case POT_WATER:
-		if(u.umonnum == PM_GREMLIN) {
+		if (splittinggremlin(youmonst.data)) {
 		    (void)split_mon(&youmonst, (struct monst *)0);
 		} else if (u.ulycn >= LOW_PM) {
 		    /* vapor from [un]holy water will trigger
@@ -10293,9 +10297,9 @@ register struct obj *obj;
 		}
 		break;
 	case POT_AMNESIA:
-		if(u.umonnum == PM_GREMLIN)
+		if (splittinggremlin(youmonst.data)) {
 		    (void)split_mon(&youmonst, (struct monst *)0);
-		else if(u.umonnum == PM_FLAMING_SPHERE) {
+		} else if(u.umonnum == PM_FLAMING_SPHERE) {
 		    You("flicker!");
 		    losehp(d(1,6),"potion of amnesia", KILLED_BY_AN);
 		} else if(u.umonnum == PM_IRON_GOLEM) {

@@ -3012,6 +3012,7 @@ register int pm;
 	    case PM_CHAMECHAUN:
 	    case PM_METAMORPHOSE:
 	    case PM_GHELEON:
+	    case PM_COCKAMELEON:
 	    case PM_GREEN_SLAAD:
 	    case PM_POLYFESHNEE:
 	    case PM_FOREPREACHER_CONVERTER:
@@ -3203,6 +3204,7 @@ register int pm;
 		break;
 
 	    case PM_CHOOKATRICE:
+	    case PM_ROCKATRICE:
 
 		switch (rnd(16)) {
 
@@ -3244,6 +3246,11 @@ register int pm;
 	    case PM_NEXUS_CHICKEN:
 
 		pline("This corpse can grant both teleportitis and teleport control. It can also petrify you, though.");
+		break;
+
+	    case PM_STONE_BACULATHRIUM:
+
+		pline("This monster is a funny misspelling of 'baluchitherium' and can turn you to stone.");
 		break;
 
 		/* non-mind flayers that emit mental blasts sometimes give INT boosts, too --Amy */
@@ -3300,6 +3307,9 @@ register int pm;
 	    case PM_ABERRATION_FLAYER:
 	    case PM_MASTER_ABERRATION_FLAYER:
 	    case PM_MASTER_MIND_FLAYER:
+	    case PM_MINDFLAYER_MIMIC:
+	    case PM_MINDFLAYER_PERMAMIMIC:
+	    case PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER:
 	    case PM_YITHIAN_MIND_FLAYER:
 	    case PM_VORPAL_MIND_FLAYER:
 	    case PM_MEAN_FLAYER:

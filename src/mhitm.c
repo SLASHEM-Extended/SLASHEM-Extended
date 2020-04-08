@@ -2849,7 +2849,7 @@ meleeattack:
 
 	}
 
-	if ((magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL]) && isevilvariant) {
+	if ((magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || (magr->data == &mons[PM_GIANT_ENEMY_CRAB] && !rn2(20)) || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL]) && isevilvariant) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -5345,7 +5345,6 @@ physical:
 	    case AD_CURS:
 		if (nohit) break;
 
-		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
 		    cancelmonsterlite(mdef); /* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
@@ -5374,7 +5373,6 @@ physical:
 	    case AD_ICUR:
 		if (nohit) break;
 
-		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
 		    cancelmonsterlite(mdef);	/* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
@@ -5410,7 +5408,6 @@ physical:
 	    case AD_NACU:
 		if (nohit) break;
 
-		if (!night() && (pa == &mons[PM_GREMLIN])) break;
 		if (!magr->mcan && !rn2(10) && (rnd(100) > mdef->data->mr) ) {
 		    cancelmonsterlite(mdef); /* cancelled regardless of lifesave */
 		    mdef->mstrategy &= ~STRAT_WAITFORU;

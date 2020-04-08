@@ -4988,6 +4988,15 @@ elena37:
 
 	}
 
+	if (mtmp->data == &mons[PM_GIANT_ENEMY_CRAB]) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned) ) {
+				pline("Bad luck - the giant enemy crab bisects you. Goodbye.");
+				losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "being bisected by a giant enemy crab",KILLED_BY);
+			}
+		}
+	}
+
 	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
 	 * thanks Chris_ANG for creating it, you evil person :P */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL]) {

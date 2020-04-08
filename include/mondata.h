@@ -246,6 +246,9 @@
 
 #define slime_on_touch(ptr)		((ptr)->mflags3 & M3_SLIME)
 
+/* will the monster split in water (only regular gremlin in vanilla but different types here in slex)? */
+#define splittinggremlin(ptr)		((ptr) == &mons[PM_GREMLIN] || (ptr) == &mons[PM_GAME_OVER] || (ptr) == &mons[PM_BLACK_PUDDLIN] || (ptr) == &mons[PM_NAYSAYER_GREMLIN] || (ptr) == &mons[PM_HEA_LOL_GREMLIN] || (ptr) == &mons[PM_DISSOLIN] || (ptr) == &mons[PM_GRRGRRGRR] || (ptr) == &mons[PM_GREMLIN_MANYFOLDCURSER] || (ptr) == &mons[PM_GREMLIN_VIRER] || (ptr) == &mons[PM_DISTANCE_GREMLIN] || (ptr) == &mons[PM_SPREAD_CONTACT_GREMLIN] || (ptr) == &mons[PM_YAY_AMNESIA_GREMLIN] || (ptr) == &mons[PM_GREMLIN_LEADER] || (ptr) == &mons[PM_GREMLIN_WARLORD] || (ptr) == &mons[PM_GREMLIN_DEATHSUCKER])
+
 #define always_egotype(ptr)		((ptr)->mflags3 & M3_EGOTYPE)
 
 #define uncommon2(ptr)		((ptr)->mflags3 & M3_FREQ_UNCOMMON2)
@@ -268,14 +271,15 @@
 				 ((ptr) == &mons[PM_VERY_BRIGHT_LIGHT]) ? 4 : \
 				 ((ptr) == &mons[PM_SHINY_LUCOZADE]) ? 4 : \
 				 ((ptr) == &mons[PM_INDIVIDUAL_WILL_O_THE_WISP]) ? 1 : \
-				 ((ptr) == &mons[PM_BANG_BRIGHT_LIGHT]) ? 5 : ( (ptr)->mlet == S_LIGHT || \
-				  (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
+				 ((ptr) == &mons[PM_BANG_BRIGHT_LIGHT]) ? 5 : \
+				 ( (ptr)->mlet == S_LIGHT || (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_ELEMENTAL]) ? 2 : \
 				 ((ptr) == &mons[PM_CORONA_SENTAI]) ? 2 : \
 				 ((ptr) == &mons[PM_LAMP_GOLEM]) ? 2 : \
 				 ((ptr) == &mons[PM_POFF_LICH]) ? 2 : \
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
+				 ((ptr) == &mons[PM_LIGHT_SHAPE]) ? 3 : \
 				 ((ptr) == &mons[PM_SATANIC_GNOME]) ? 3 : \
 				 ((ptr) == &mons[PM_CORONA_WRAITH]) ? 3 : \
 				 ((ptr) == &mons[PM_GLOWWORM]) ? 3 : \

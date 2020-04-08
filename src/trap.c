@@ -4123,7 +4123,7 @@ unsigned trflags;
 		    if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 		    losehp(dam, "drenching", KILLED_BY);
 		    break;
-		} else if (u.umonnum == PM_GREMLIN && rn2(3)) {
+		} else if (splittinggremlin(youmonst.data) && rn2(3)) {
 		    pline("%s you!", A_gush_of_water_hits);
 		    (void)split_mon(&youmonst, (struct monst *)0);
 		    break;
@@ -15183,7 +15183,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				mondied(mtmp);
 				if (mtmp->mhp <= 0)
 					trapkilled = TRUE;
-			} else if (mptr == &mons[PM_GREMLIN] && rn2(3)) {
+			} else if (splittinggremlin(mtmp->data) && rn2(3)) {
 				(void)split_mon(mtmp, (struct monst *)0);
 			}
 			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
@@ -17969,7 +17969,7 @@ drown()
 	}
 	if (Burned) make_burned(0L, TRUE);
 
-	if (u.umonnum == PM_GREMLIN && rn2(3))
+	if (splittinggremlin(youmonst.data) && rn2(3))
 	    (void)split_mon(&youmonst, (struct monst *)0);
 	else if (u.umonnum == PM_IRON_GOLEM) {
 	    You("rust!");
@@ -18158,7 +18158,7 @@ crystaldrown()
 	}
 	if (Burned) make_burned(0L, TRUE);
 
-	if (u.umonnum == PM_GREMLIN && rn2(3))
+	if (splittinggremlin(youmonst.data) && rn2(3))
 	    (void)split_mon(&youmonst, (struct monst *)0);
 	else if (u.umonnum == PM_IRON_GOLEM) {
 	    You("rust!");

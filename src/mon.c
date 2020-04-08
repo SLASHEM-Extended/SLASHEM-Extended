@@ -326,6 +326,7 @@ int mndx;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
 	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
 	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
+	case PM_COCKAMELEON:	mcham = CHAM_COCKAMELEON; break;
 	case PM_GREEN_SLAAD:	mcham = CHAM_GREEN_SLAAD; break;
 	case PM_KARMA_CHAMELEON:	mcham = CHAM_KARMA_CHAMELEON; break;
 	case PM_DOPPELGANGER:	mcham = CHAM_DOPPELGANGER; break;
@@ -427,6 +428,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_CHANGELING,
 		PM_CHANGELING_MUMMY,
 		PM_CHANGELING_ZOMBIE,
+		PM_COCKAMELEON,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -1817,7 +1819,7 @@ register struct monst *mtmp;
      * keep going down, and when it gets to 1 hit point the clone
      * function will fail.
      */
-    if (mtmp->data == &mons[PM_GREMLIN] && (inpool || infountain) && !rn2(5)) { /* lowered chance --Amy */
+    if (splittinggremlin(mtmp->data) && (inpool || infountain) && !rn2(5)) { /* lowered chance --Amy */
 	if (split_mon(mtmp, (struct monst *)0))
 	    dryup(mtmp->mx, mtmp->my, FALSE);
 	if (inpool) water_damage(mtmp->minvent, FALSE, FALSE);
@@ -5363,6 +5365,39 @@ boolean was_swallowed;			/* digestion */
 	int i, tmp;
 	boolean trolling = 0;
 
+	int monsx, monsy;
+	boolean terrainok = FALSE;
+	if (mon) {
+		monsx = mon->mx;
+		monsy = mon->my;
+		if (isok(monsx, monsy)) terrainok = TRUE;
+	}
+
+	if (terrainok && mdat == &mons[PM_WATERFIELD_NYMPH]) {
+		if (levl[monsx][monsy].typ == ROOM || levl[monsx][monsy].typ == CORR || (levl[monsx][monsy].typ >= ICE && levl[monsx][monsy].typ <= CRYPTFLOOR) || (levl[monsx][monsy].typ >= AIR && levl[monsx][monsy].typ <= RAINCLOUD)) {
+			levl[monsx][monsy].typ = POOL;
+			if(cansee(monsx,monsy)) {
+				newsym(monsx,monsy);
+			}
+		}
+	}
+	if (terrainok && mdat == &mons[PM_DEEP_POOL_NYMPH]) {
+		if (levl[monsx][monsy].typ == ROOM || levl[monsx][monsy].typ == CORR || (levl[monsx][monsy].typ >= ICE && levl[monsx][monsy].typ <= CRYPTFLOOR) || (levl[monsx][monsy].typ >= AIR && levl[monsx][monsy].typ <= RAINCLOUD)) {
+			levl[monsx][monsy].typ = MOAT;
+			if(cansee(monsx,monsy)) {
+				newsym(monsx,monsy);
+			}
+		}
+	}
+	if (terrainok && mdat == &mons[PM_LAVALAND_NYMPH]) {
+		if (levl[monsx][monsy].typ == ROOM || levl[monsx][monsy].typ == CORR || (levl[monsx][monsy].typ >= ICE && levl[monsx][monsy].typ <= CRYPTFLOOR) || (levl[monsx][monsy].typ >= AIR && levl[monsx][monsy].typ <= RAINCLOUD)) {
+			levl[monsx][monsy].typ = LAVAPOOL;
+			if(cansee(monsx,monsy)) {
+				newsym(monsx,monsy);
+			}
+		}
+	}
+
 	if (mdat == &mons[PM_VLAD_THE_IMPALER] || (mdat->mlet == S_LICH && mdat != &mons[PM_LICHZARD] && !(mon->egotype_troll || (is_reviver(mdat))) ) ) {
 	    if (cansee(mon->mx, mon->my) && !was_swallowed)
 		pline("%s body crumbles into dust.", s_suffix(Monnam(mon)));
@@ -6200,7 +6235,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && timebasedlowerchance() && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 		/* you should not be able to farm trolls, gremlins, long worms etc. --Amy */
-		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && mdat != &mons[PM_GREMLIN] && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
+		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(u.uprops[NO_DROPS_EFFECT].extrinsic || NoDropsEffect || have_droplessstone() ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 					&& (!issoviet || (mdat->mlet != S_KOP))
@@ -6366,8 +6401,7 @@ cleanup:
 
 	}
 	if((mtmp->mpeaceful && !rn2(2)) || mtmp->mtame)	change_luck(-1);
-	if (is_unicorn(mdat) &&
-				sgn(u.ualign.type) == sgn(mdat->maligntyp)) {
+	if (is_unicorn(mdat) && mndx != PM_MOLOCH_ALIGNED_UNICORN && sgn(u.ualign.type) == sgn(mdat->maligntyp)) {
 		change_luck(-5);
 		You_feel("guilty...");
 	}
@@ -7331,6 +7365,7 @@ struct monst *mon;
 	case CHAM_CHANGELING: chambaselvl = 8; break;
 	case CHAM_CHANGELING_MUMMY: chambaselvl = 6; break;
 	case CHAM_CHANGELING_ZOMBIE: chambaselvl = 4; break;
+	case CHAM_COCKAMELEON: chambaselvl = 5; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7794,6 +7829,7 @@ metamorphchoice:
 	    case CHAM_CHAMELEON:
 	    case CHAM_CHAMECHAUN:
 	    case CHAM_GHELEON:
+	    case CHAM_COCKAMELEON:
 	    case CHAM_CHANGELING:
 	    case CHAM_CHANGELING_ZOMBIE:
 	    case CHAM_CHANGELING_MUMMY:

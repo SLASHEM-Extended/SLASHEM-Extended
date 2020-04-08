@@ -1574,7 +1574,7 @@ domonability()
 	else if ((webmaker(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && webmaker(&mons[u.usymbiote.mnum]) )) && yn("Do you want to spin webs?")=='y' ) return dospinweb();
 	else if ((is_hider(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_hider(&mons[u.usymbiote.mnum]) )) && yn("Do you want to hide?")=='y' ) return dohide();
 	else if ((is_mind_flayer(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) )) && yn("Do you want to emit a mind blast?")=='y' ) return domindblast();
-	else if (u.umonnum == PM_GREMLIN && yn("Do you want to replicate in water?")=='y' ) {
+	else if (splittinggremlin(youmonst.data) && yn("Do you want to replicate in water?")=='y' ) {
 	    if(IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
 		if (split_mon(&youmonst, (struct monst *)0))
 		    dryup(u.ux, u.uy, TRUE);

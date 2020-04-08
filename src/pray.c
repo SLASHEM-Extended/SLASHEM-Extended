@@ -2016,6 +2016,11 @@ dosacrifice()
 			value = 0;
 			pline("The gods have no use for trove corpses; you should probably eat them yourself.");
 		}
+		/* gremlins that can split should already be G_NOCORPSE, but just in case... --Amy */
+		if (splittinggremlin(ptr)) {
+			value = 0;
+			pline("The gods look with disdain at mortals who endlessly split monsters for farming purposes.");
+		}
 
 		/* since ice boxes aren't ultra heavy relative to the maximum carry cap, we need to prevent the player from
 		 * simply stocking a box with 200 zero-weight corpses and sacrificing away... --Amy

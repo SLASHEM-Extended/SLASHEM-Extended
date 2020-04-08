@@ -994,7 +994,7 @@ int	mntmp;
 		pline(use_thec,monsterc,"summon help");
 	    if (webmaker(youmonst.data))
 		pline(use_thec,monsterc,"spin a web");
-	    if (u.umonnum == PM_GREMLIN)
+	    if (splittinggremlin(youmonst.data))
 		pline(use_thec,monsterc,"multiply in a fountain");
 	    if (is_unicorn(youmonst.data))
 		pline(use_thec,monsterc,"use your horn");
