@@ -5624,7 +5624,7 @@ newbossPENT:
 			}
 
 
-		if (!rn2(10)) badeffect();
+		if (!rn2(7)) badeffect();
 
 		break;
 
@@ -5890,7 +5890,7 @@ secureidchoice:
 		    You_feel("somehow out of place...");
 	    }
 
-		if (!rn2(10)) badeffect();
+		if (!rn2(7)) badeffect();
 
 		break;
 
@@ -7180,6 +7180,11 @@ secureidchoice:
 			break;
 		}
 
+		if (ABASE(A_STR) < 6 || ABASE(A_DEX) < 6 || ABASE(A_INT) < 6 || ABASE(A_WIS) < 6 || ABASE(A_CON) < 6 || ABASE(A_CHA) < 6) {
+			pline("You don't have the stats required to power this mighty spell!");
+			break;
+		}
+
 		u.uhpmax -= rnd(500);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (Upolyd) {
@@ -7229,6 +7234,11 @@ secureidchoice:
 		}
 		if (u.uenmax < 101) {
 			pline("You don't have enough mana to control the powers of this spell!");
+			break;
+		}
+
+		if (ABASE(A_STR) < 4 || ABASE(A_DEX) < 4 || ABASE(A_INT) < 4 || ABASE(A_WIS) < 4 || ABASE(A_CON) < 4 || ABASE(A_CHA) < 4) {
+			pline("You don't have the stats required to power this mighty spell!");
 			break;
 		}
 
@@ -9941,28 +9951,28 @@ rerollX:
 
 	}
 
-	if (pseudo && (pseudo->otyp == SPE_THRONE_GAMBLE) && !rn2(20) ) {
+	if (pseudo && (pseudo->otyp == SPE_THRONE_GAMBLE) && !rn2(6) ) {
 
-		boostknow(spell, -(rnd(50000)));
+		boostknow(spell, -(rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
-	if (pseudo && (pseudo->otyp == SPE_ATTUNE_MAGIC) && !rn2(20) ) {
+	if (pseudo && (pseudo->otyp == SPE_ATTUNE_MAGIC) && !rn2(6) ) {
 
-		boostknow(spell, -(rnd(50000)));
+		boostknow(spell, -(rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_REROLL_ARTIFACT) && !rn2(5) ) {
 
-		boostknow(spell, -(rnd(50000)));
+		boostknow(spell, -(rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
-	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_SUPREME_MASTER ? 16 : role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
+	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_SUPREME_MASTER ? 9 : role_skill == P_GRAND_MASTER ? 8 : role_skill == P_MASTER ? 7 : role_skill == P_EXPERT ? 6 : role_skill == P_SKILLED ? 5 : 4) ) {
 
 		boostknow(spell, -(rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
@@ -9976,14 +9986,14 @@ rerollX:
 
 	}
 
-	if (pseudo && (pseudo->otyp == SPE_AULE_SMITHING) && !rn2(role_skill == P_SUPREME_MASTER ? 16 : role_skill == P_GRAND_MASTER ? 15 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
+	if (pseudo && (pseudo->otyp == SPE_AULE_SMITHING) && !rn2(role_skill == P_SUPREME_MASTER ? 9 : role_skill == P_GRAND_MASTER ? 8 : role_skill == P_MASTER ? 7 : role_skill == P_EXPERT ? 6 : role_skill == P_SKILLED ? 5 : 4) ) {
 
 		boostknow(spell, -(rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
-	if (pseudo && ((pseudo->otyp == SPE_REPAIR_WEAPON) || (pseudo->otyp == SPE_REPAIR_ARMOR)) && !rn2(role_skill == P_SUPREME_MASTER ? 30 : role_skill == P_GRAND_MASTER ? 25 : role_skill == P_MASTER ? 24 : role_skill == P_EXPERT ? 23 : role_skill == P_SKILLED ? 22 : 20) ) {
+	if (pseudo && ((pseudo->otyp == SPE_REPAIR_WEAPON) || (pseudo->otyp == SPE_REPAIR_ARMOR)) && !rn2(role_skill == P_SUPREME_MASTER ? 15 : role_skill == P_GRAND_MASTER ? 14 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
 
 		boostknow(spell, -(rnd(25000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;

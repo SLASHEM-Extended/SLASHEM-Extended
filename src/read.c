@@ -1449,6 +1449,10 @@ int curse_bless;
 
 	} else if (obj->oclass == SPBOOK_CLASS) {
 
+		/* some books are so powerful that charging them gives much fewer charges (similar to wand of wishing) --Amy */
+		boolean fewchargesadded = FALSE;
+		if (obj->otyp == SPE_TIME || obj->otyp == SPE_GAIN_LEVEL || obj->otyp == SPE_MAP_LEVEL || obj->otyp == SPE_INERTIA || obj->otyp == SPE_CHARGING || obj->otyp == SPE_GENOCIDE || obj->otyp == SPE_GODMODE || obj->otyp == SPE_CHARACTER_RECURSION || obj->otyp == SPE_PETRIFY || obj->otyp == SPE_ACQUIREMENT || obj->otyp == SPE_THRONE_GAMBLE || obj->otyp == SPE_WISHING || obj->otyp == SPE_WORLD_FALL || obj->otyp == SPE_REROLL_ARTIFACT || obj->otyp == SPE_ATTUNE_MAGIC || obj->otyp == SPE_GAIN_SPACT || obj->otyp == SPE_CLONE_MONSTER || obj->otyp == SPE_TIME_STOP || obj->otyp == SPE_ALTER_REALITY || obj->otyp == SPE_AULE_SMITHING) fewchargesadded = TRUE;
+
 	    if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 	    	pline("%s", nothing_happens);
 		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -1492,7 +1496,8 @@ int curse_bless;
 	    if (is_cursed) {
 		stripspe(obj);
   	    } else {
-		n = (is_blessed) ? rnd(5) : rnd(3);
+		if (fewchargesadded) n = (is_blessed) ? rnd(2) : 1;
+		else n = (is_blessed) ? rnd(5) : rnd(3);
 		obj->spe += n;
 		if (obj->spe > 100) obj->spe = 100; /* upper limit */
 		if (obj->spe >= 5) p_glow2(obj, NH_BLUE);
