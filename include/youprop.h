@@ -1235,8 +1235,11 @@
 
 #define NoFree_action	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FREE_ACTION].intrinsic || RngeAids || (u.impossibleproperty == FREE_ACTION) || (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+/* Sustain ability */
 #define Fixed_abil		u.uprops[FIXED_ABIL].extrinsic	/* KMH */
 #define SustainAbilityOn	(Fixed_abil || Race_if(PM_SUSTAINER) || (uarmh && uarmh->oartifact == ART_SLIPPING_SUCKING) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_NO_REDUCTION_ALLOWED) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES))
+/* note by Amy: unless you're the sustainer race, there's 10% chance that stat loss still happens, stat gain is disabled */
+#define SustainLossSafe		(Race_if(PM_SUSTAINER) || rn2(10))
 
 #define Lifesaved		u.uprops[LIFESAVED].extrinsic
 

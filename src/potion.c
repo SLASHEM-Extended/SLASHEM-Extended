@@ -8615,7 +8615,7 @@ peffects(otmp)
 		    else {
 			int typ = rn2(A_MAX);
 
-			if (!SustainAbilityOn) {
+			if (!SustainAbilityOn || !SustainLossSafe) {
 			    poisontell(typ);
 			    if (!StrongPoison_resistance || !rn2(3)) {
 				(void) adjattrib(typ, Poison_resistance ? -1 : -rno(5), TRUE, TRUE);

@@ -3400,7 +3400,7 @@ trapsdone:
 
 				stop_occupation();
 
-				if (!SustainAbilityOn && ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
+				if ((!SustainAbilityOn || !SustainLossSafe) && ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
 				else {
 				    if (Upolyd) {
 					u.mh -= 5;
