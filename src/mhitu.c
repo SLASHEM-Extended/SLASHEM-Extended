@@ -15227,7 +15227,7 @@ common:
 		
 		mdamageu(mtmp, tmp);
 
-		if (uarmh->otyp != DUNCE_CAP) {
+		if (!uarmh || (uarmh->otyp != DUNCE_CAP)) {
 		    Your("brain is eaten!");
 		    /* No such thing as mindless players... */
 		    if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
