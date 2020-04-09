@@ -1810,7 +1810,7 @@ die:
 
 //	if (!done_stopprint)
 	    sprintf(pbuf, "%s %s the %s...", Goodbye(), playeraliasname,
-		   how != ASCENDED ?
+		   (how != ASCENDED && !u.freeplaymode) ?
 		      (const char *) ((flags.female && urole.name.f) ?
 		         urole.name.f : urole.name.m) :
 		      (const char *) (flags.female ? "Demigoddess" : "Demigod"));
@@ -1822,7 +1822,7 @@ die:
 	if (dump_fp) dump("", pbuf);
 #endif
 
-	if (how == ESCAPED || how == ASCENDED) {
+	if (how == ESCAPED || how == ASCENDED || u.freeplaymode) {
 	    register struct monst *mtmp;
 	    register struct obj *otmp;
 	    register struct val_list *val;
@@ -1865,6 +1865,7 @@ die:
 	    }
 		sprintf(eos(pbuf), "%s with %ld point%s,",
 			how==ASCENDED ? "went to your reward" :
+			u.freeplaymode ? "retired after beating the game" :
 					"escaped from the dungeon",
 			u.urexp, plur(u.urexp));
 #ifdef DUMP_LOG
