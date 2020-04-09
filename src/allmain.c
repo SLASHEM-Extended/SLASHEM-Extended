@@ -6101,6 +6101,11 @@ newbossX:
 
 		}
 
+		if (u.ucreamed < 0) {
+			pline("Fixing a bug that gave you a negative creamed counter...");
+			u.ucreamed = 0;
+		}
+		if (HeavyBlind < 0) HeavyBlind = 0;
 		if (Blinded < 0) {
 			pline("Fixing a bug that gave you a negative blindness counter...");
 			Blinded = 1;
@@ -6108,48 +6113,56 @@ newbossX:
 			make_blinded(0L,TRUE);
 		}
 
+		if (HeavyStunned < 0) HeavyStunned = 0;
 		if (HStun < 0) {
 			pline("Fixing a bug that gave you a negative stun counter...");
 			HStun = 1;
 			make_stunned(0L,TRUE);
 		}
 
+		if (HeavyConfusion < 0) HeavyConfusion = 0;
 		if (HConfusion < 0) {
 			pline("Fixing a bug that gave you a negative confusion counter...");
 			HConfusion = 1;
 			make_confused(0L,TRUE);
 		}
 
+		if (HeavyNumbed < 0) HeavyNumbed = 0;
 		if (HNumbed < 0) {
 			pline("Fixing a bug that gave you a negative numbness counter...");
 			HNumbed = 1;
 			make_numbed(0L,TRUE);
 		}
 
+		if (HeavyFeared < 0) HeavyFeared = 0;
 		if (HFeared < 0) {
 			pline("Fixing a bug that gave you a negative fear counter...");
 			HFeared = 1;
 			make_feared(0L,TRUE);
 		}
 
+		if (HeavyFrozen < 0) HeavyFrozen = 0;
 		if (HFrozen < 0) {
 			pline("Fixing a bug that gave you a negative freeze counter...");
 			HFrozen = 1;
 			make_frozen(0L,TRUE);
 		}
 
+		if (HeavyBurned < 0) HeavyBurned = 0;
 		if (HBurned < 0) {
 			pline("Fixing a bug that gave you a negative burn counter...");
 			HBurned = 1;
 			make_burned(0L,TRUE);
 		}
 
+		if (HeavyDimmed < 0) HeavyDimmed = 0;
 		if (HDimmed < 0) {
 			pline("Fixing a bug that gave you a negative dimness counter...");
 			HDimmed = 1;
 			make_dimmed(0L,TRUE);
 		}
 
+		if (HeavyHallu < 0) HeavyHallu = 0;
 		if (HHallucination < 0) {
 			pline("Fixing a bug that gave you a negative hallucination counter...");
 			HHallucination = 1;

@@ -1239,6 +1239,11 @@ boolean talk;
 	    }
 	}
 
+	if (xtime < 0) {
+		impossible("make_blinded called with negative blindness counter %d", xtime);
+		xtime = 0;
+	}
+
 	set_itimeout(&Blinded, xtime);
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "Aww, even the images in your mind have disappeared!" : "The darkness seems definite and impenetrable!");
