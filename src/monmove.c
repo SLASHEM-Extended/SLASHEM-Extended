@@ -647,7 +647,25 @@ register struct monst *mtmp;
 			"I rock a lot of polka dots.",
 			"To dance is human, to polka is divine.",
 			"There is never a wrong time for a polka dot.",
-			/* need a lot more... */
+			"Nuapurista kuulu se polokan tahti, jalakani pohjii kutkutti...",
+			"Salivili hipput tupput taeppyt, aeppyt tipput hilijalleen.",
+			"On kauniina muistona Karjalan maa, mutta vielaekin syoemmestae soinnahtaa, kun soittajan sormista kuulla saa, Saekkijaerven polkkaa!",
+			"On sointuna Karjalan kaunoisen: Saekkijaerven polkka!",
+			"Slim Shady won't you please stand up?",
+			"I'm Slim Shady, yes I'm the real Shady; all you other Slim Shadys are just imitating...",
+			"There's a garden, what a garden, Only happy faces bloom there, And there's never any room there, For a worry or a gloom there...",
+			"Sing a song of good cheer, 'Cause the whole gang is here, Roll it out, roll it out, Let's do the beer barrel polka!",
+			"Hoop-dee-doo, hoop-dee-doo, I hear a polka and my troubles are through",
+			"Hoop-dee-doo, hoop-dee-dee, This kind of music is like heaven to me",
+			"I am gonna get my wish, Hoop-dee-doin' it tonight",
+			"In Heaven There Is No Beer, That's why we drink it here, And when we're gone from here, All our friends will be drinking all that beer",
+			"Who laughs this way, ho ho ho? Santa laughs this way, ho ho ho! Ho ho ho, cherry nose, cap on head, suit that's red...",
+			"I come from Alabama with my Banjo on my knee, I'se gwine to Lou'siana...",
+			"De bulgine bust and de hoss ran off, I really thought I'd die; I shut my eyes to hold my bref, Susanna, dont you cry.",
+			"So they say you booked a flight and you'll be leaving. Is it business, is it pleasure, is it both.",
+			"Say hello to someone in Massachusetts, Tip your hat to every lady that you meet, Shake a hand, you'll make a friend in Massachusetts, That New England old-time custom can't be beat.",
+			"Someone stole the kishka, Someone stole the kishka, Who stole the kishka, From the butcher's shop?",
+			"Fat and round and firmly packed, It was hanging on the rack, Someone stole the kishka, When I turned my back!",
 		};
 		verbalize("%s", polka_msgs[rn2(SIZE(polka_msgs))]);
 	}

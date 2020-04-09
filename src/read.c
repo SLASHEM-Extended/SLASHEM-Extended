@@ -832,6 +832,9 @@ doread()
 	"I've decided that it would be unethical to cheat in this scenario.",
 	"I'll never play in a NetHack tournament where the prizes are real money. This isn't Diablo 3, after all.",
 	"Are you trying to bribe me with 5 euros to be a beta tester for your shit variant? Because fuck you, I'm not going to stoop that low. Go find some other fool to playtest your garbage.",
+	"Rock 'n Mole",
+	"Yendor Alchemical Academy, Class of '47",
+	"Zombies aren't so tough. I'm more scared of an archon apocalypse.",
 
 	    };
 	    char buf[BUFSZ];

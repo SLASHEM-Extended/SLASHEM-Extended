@@ -977,6 +977,7 @@ static const char *random_mesg[] = {
 	"Whoops, by reading this message you've contracted corona virus!",
 	"This space is definitely not infected with covid-19 yet.",
 	"know when to hold em, know when to fold em, know when to pork'em, know when to run", /* by porkman */
+	"The engraving you have just started reading is the engraving you have just finished reading.",
 
 };
 
@@ -5327,6 +5328,8 @@ static const char *epitaphs[] = {
 	"Can I discover a new bug and then it's not cheating?",
 	"Wow, yay, great game design. Very hard difficulty just makes all hostile monsters have 8x as much HP! That's... so incredibly well-designed, I can't believe it!",
 	"Telling me to play very easy difficulty when I complain about the impossibility to have pets steal from shops is incredibly arrogant.",
+	"Here lies Sid, ascended... and cracked his skull on the ceiling.",
+	"Time Capsule: Do not open until T:4283852",
 
 };
 
