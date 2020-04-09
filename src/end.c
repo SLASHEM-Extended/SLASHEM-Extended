@@ -1850,7 +1850,12 @@ die:
 	    strcpy(pbuf, "You");
 	    if (mtmp) {
 		while (mtmp) {
-			sprintf(eos(pbuf), " and %s", mon_nam(mtmp));
+			/* CAREFUL! if the player has a lot of pets with long names, this can result in a SIGSEGV! --Amy
+			 * the buffer should be 3000 characters long, so this will normally not be an issue, but just in case
+			 * that it would be exceeded, prevent it from crashing upon ascension... */
+			if (strlen(pbuf) < (BUFSZ - 300)) {
+				sprintf(eos(pbuf), " and %s", mon_nam(mtmp));
+			}
 		    if (mtmp->mtame)
 			u.urexp += mtmp->mhp;
 		    mtmp = mtmp->nmon;

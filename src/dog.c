@@ -965,7 +965,8 @@ boolean pets_only;	/* true for ascension or final escape */
 			if (canseemon(mtmp))
 			    pline("%s is still eating.", Monnam(mtmp));
 			stay_behind = TRUE;
-		} else if (mtmp->mtame && 
+		/* there's a bug where escaping or ascending makes the game think you're going to the black market... --Amy */
+		} else if (mtmp->mtame && !u.freeplaytransit && !program_state.gameover &&
 		    (Is_blackmarket(&new_dlevel) || Is_blackmarket(&u.uz))) {
 			pline("%s can't follow you %s.",
 			      Monnam(mtmp), Is_blackmarket(&u.uz) ?
