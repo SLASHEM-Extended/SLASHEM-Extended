@@ -3012,6 +3012,8 @@ register int pm;
 	    case PM_CHAMECHAUN:
 	    case PM_METAMORPHOSE:
 	    case PM_GHELEON:
+	    case PM_CHARMONIE:
+	    case PM_EDOTO:
 	    case PM_COCKAMELEON:
 	    case PM_GREEN_SLAAD:
 	    case PM_POLYFESHNEE:
@@ -3304,6 +3306,7 @@ register int pm;
 	    case PM_ILLITHILICH:
 	    case PM_FEMIFLAYER:
 	    case PM_ULITHARID:
+	    case PM_BRAIN_SLUG:
 	    case PM_ABERRATION_FLAYER:
 	    case PM_MASTER_ABERRATION_FLAYER:
 	    case PM_MASTER_MIND_FLAYER:

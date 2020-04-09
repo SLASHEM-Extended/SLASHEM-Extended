@@ -326,6 +326,8 @@ int mndx;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
 	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
 	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
+	case PM_CHARMONIE:	mcham = CHAM_CHARMONIE; break;
+	case PM_EDOTO:	mcham = CHAM_EDOTO; break;
 	case PM_COCKAMELEON:	mcham = CHAM_COCKAMELEON; break;
 	case PM_GREEN_SLAAD:	mcham = CHAM_GREEN_SLAAD; break;
 	case PM_KARMA_CHAMELEON:	mcham = CHAM_KARMA_CHAMELEON; break;
@@ -429,6 +431,8 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_CHANGELING_MUMMY,
 		PM_CHANGELING_ZOMBIE,
 		PM_COCKAMELEON,
+		PM_CHARMONIE,
+		PM_EDOTO,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -5376,6 +5380,7 @@ boolean was_swallowed;			/* digestion */
 	if (terrainok && mdat == &mons[PM_WATERFIELD_NYMPH]) {
 		if (levl[monsx][monsy].typ == ROOM || levl[monsx][monsy].typ == CORR || (levl[monsx][monsy].typ >= ICE && levl[monsx][monsy].typ <= CRYPTFLOOR) || (levl[monsx][monsy].typ >= AIR && levl[monsx][monsy].typ <= RAINCLOUD)) {
 			levl[monsx][monsy].typ = POOL;
+			blockorunblock_point(monsx,monsy);
 			if(cansee(monsx,monsy)) {
 				newsym(monsx,monsy);
 			}
@@ -5384,6 +5389,7 @@ boolean was_swallowed;			/* digestion */
 	if (terrainok && mdat == &mons[PM_DEEP_POOL_NYMPH]) {
 		if (levl[monsx][monsy].typ == ROOM || levl[monsx][monsy].typ == CORR || (levl[monsx][monsy].typ >= ICE && levl[monsx][monsy].typ <= CRYPTFLOOR) || (levl[monsx][monsy].typ >= AIR && levl[monsx][monsy].typ <= RAINCLOUD)) {
 			levl[monsx][monsy].typ = MOAT;
+			blockorunblock_point(monsx,monsy);
 			if(cansee(monsx,monsy)) {
 				newsym(monsx,monsy);
 			}
@@ -5392,6 +5398,7 @@ boolean was_swallowed;			/* digestion */
 	if (terrainok && mdat == &mons[PM_LAVALAND_NYMPH]) {
 		if (levl[monsx][monsy].typ == ROOM || levl[monsx][monsy].typ == CORR || (levl[monsx][monsy].typ >= ICE && levl[monsx][monsy].typ <= CRYPTFLOOR) || (levl[monsx][monsy].typ >= AIR && levl[monsx][monsy].typ <= RAINCLOUD)) {
 			levl[monsx][monsy].typ = LAVAPOOL;
+			blockorunblock_point(monsx,monsy);
 			if(cansee(monsx,monsy)) {
 				newsym(monsx,monsy);
 			}
@@ -7366,6 +7373,8 @@ struct monst *mon;
 	case CHAM_CHANGELING_MUMMY: chambaselvl = 6; break;
 	case CHAM_CHANGELING_ZOMBIE: chambaselvl = 4; break;
 	case CHAM_COCKAMELEON: chambaselvl = 5; break;
+	case CHAM_CHARMONIE: chambaselvl = 90; break;
+	case CHAM_EDOTO: chambaselvl = 45; break;
 	case CHAM_GIANT_CHAMELEON: chambaselvl = 10; break;
 	/* gah they made it so that regular polymorphs, e.g. via potion, also use this function! */
 	default:
@@ -7825,6 +7834,23 @@ metamorphchoice:
 		if (!rn2(20)) mndx = pick_nasty();
 		else if (!rn2(7)) mndx = rn1(PM_WIZARD - PM_ARCHEOLOGIST + 1,
 					    PM_ARCHEOLOGIST);
+		break;
+	    case CHAM_CHARMONIE:
+		mndx = rn1(PM_DEMOGORGON - PM_JUIBLEX + 1, PM_JUIBLEX);
+		break;
+	    case CHAM_EDOTO:
+edotochoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto edotochoice;
+			if (rnd(pm->mlevel + 1) > (chambaselvl + rn2(11))) goto edotochoice;
+			if (uncommon2(pm) && !rn2(4)) goto edotochoice;
+			if (uncommon3(pm) && !rn2(3)) goto edotochoice;
+			if (uncommon5(pm) && !rn2(2)) goto edotochoice;
+			if (uncommon7(pm) && rn2(3)) goto edotochoice;
+			if (uncommon10(pm) && rn2(5)) goto edotochoice;
+			if (is_jonadabmonster(pm) && rn2(20)) goto edotochoice;
+			if (rn2(10000) && !(pm->mlet == S_ARCHFIEND) ) goto jokechoice;
 		break;
 	    case CHAM_CHAMELEON:
 	    case CHAM_CHAMECHAUN:

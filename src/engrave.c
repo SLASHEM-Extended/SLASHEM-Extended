@@ -976,6 +976,7 @@ static const char *random_mesg[] = {
 	"slexxx <--- nethack porn", /* by K2 */
 	"Whoops, by reading this message you've contracted corona virus!",
 	"This space is definitely not infected with covid-19 yet.",
+	"know when to hold em, know when to fold em, know when to pork'em, know when to run", /* by porkman */
 
 };
 

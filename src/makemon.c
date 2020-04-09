@@ -8293,6 +8293,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_THING_CUSTOMER_GOLEM]) (void) mongets(mtmp, FLY_SWATTER);
 		if (mtmp->data == &mons[PM_BRITISH_ARMY_SURPLUS_BOOT]) (void) mongets(mtmp, LOW_BOOTS);
 
+		if (mtmp->data == &mons[PM_ANIMATED_PAVEMENT_HEEL]) (void) mongets(mtmp, ITALIAN_HEELS);
 		if (mtmp->data == &mons[PM_KOP_HOSE]) (void) mongets(mtmp, RUBBER_HOSE);
 		if (mtmp->data == &mons[PM_HOSE_SERGEANT]) (void) mongets(mtmp, RUBBER_HOSE);
 		if (mtmp->data == &mons[PM_HOSE_LIEUTENANT]) (void) mongets(mtmp, RUBBER_HOSE);
@@ -8590,6 +8591,7 @@ loveheelover:
 			 (void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ARROW, 25);
 		}
+		if (mtmp->data == &mons[PM_MISS_ENTREPRENEURIAL]) (void) mongets(mtmp, FEMININE_PUMPS);
 		if (mtmp->data == &mons[PM_ELOJAGUAR_WARRIOR]) (void) mongets(mtmp, LONG_SWORD);
 		if (mtmp->data == &mons[PM_ALIEN_IN_BRIDAL_DRESS]) (void) mongets(mtmp, GENTLEWOMAN_S_DRESS);
 
@@ -9048,6 +9050,10 @@ loveheelover:
 			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
 			 m_initthrow(mtmp, LEAD_SHOT, 30);
 		}
+		if (ptr == &mons[PM_MILKSHAKE_STICKER]) {
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+		}
+
 		if (ptr == &mons[PM_SILVER_RUBBER]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, SILVER_SPEAR);
@@ -11071,6 +11077,9 @@ loveheelover:
 		if (ptr == &mons[PM_DROPTREE_BEAR]) {
 			(void) mongets(mtmp, SCR_GROWTH);
 		}
+		if (ptr == &mons[PM_THAI_MASSEUSE]) {
+			(void) mongets(mtmp, UNFAIR_STILETTOS);
+		}
 		if (ptr == &mons[PM_RAINBOW_DRESSER]) {
 			(void) mongets(mtmp, WAN_UNDRESSING);
 		}
@@ -11174,6 +11183,7 @@ loveheelover:
 
 	    case S_UMBER:
 
+		if (mtmp->data == &mons[PM_WISE_GREEN_SMOKER]) (void) mongets(mtmp, LADY_BOOTS);
 		if (mtmp->data == &mons[PM_GLUTTONOUS_HULK]) (void) mongets(mtmp, WAN_STARVATION);
 		if (mtmp->data == &mons[PM_DENRYU]) (void) mongets(mtmp, KATANA);
 		if (mtmp->data == &mons[PM_CHAOS_HORROR]) (void) mongets(mtmp, WAN_CHAOS_TERRAIN);
@@ -13176,6 +13186,11 @@ loveheelover:
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
 		}
 
+		if (monsndx(ptr) == PM_BJARNARHAVEN_FARMER) {
+			(void) mongets(mtmp, GRAIN_SCYTHE);
+			(void) mongets(mtmp, LOW_BOOTS);
+		}
+
 		if (monsndx(ptr) == PM_LASER_MUMMY) {
 			(void) mongets(mtmp, HAND_BLASTER);
 			m_initthrow(mtmp, BLASTER_BOLT, 40);
@@ -13685,6 +13700,11 @@ loveheelover:
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
+		}
+		if (ptr == &mons[PM_XEREN_SATELITE_UNIT]) {
+			(void) mongets(mtmp, RAYGUN);
+			 m_initthrow(mtmp, LASER_BEAM, 50);
+			 m_initthrow(mtmp, LASER_BEAM, 50);
 		}
 		if (ptr == &mons[PM_HORNY_DEVIL]) {
 			(void) mongets(mtmp, BULLWHIP);
@@ -14418,6 +14438,15 @@ loveheelover:
 		if (ptr == &mons[PM_REAL_FIGHT_OVERSEER]) {
 			(void) mongets(mtmp, BULLWHIP);
 			(void) mongets(mtmp, CHAIN_MAIL);
+		}
+		if (ptr == &mons[PM_JASON_SEEKER]) {
+			if (rn2(2)) {
+				(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
+				 m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+			} else {
+				(void) mongets(mtmp, HAND_BLASTER);
+				 m_initthrow(mtmp, BLASTER_BOLT, 40);
+			}
 		}
 
 		if (ptr == &mons[PM_TALC_HOBBIT]) {
@@ -25962,6 +25991,8 @@ int type;
 		case PM_CARYATID: return 100;
 		case PM_KNIGHT_OF_EMPTY_REFLECTIONS: return 300;
 		case PM_SANDAL_GOLEM: return 150;
+		case PM_MOUNTAIN_GOLEM: return 200;
+		case PM_PHASING_MOUNTAIN_GOLEM: return 200;
 		case PM_SENTINEL_OF_MITHARDIR: return 150;
 		case PM_ITALIAN_GOLEM: return 150;
 		case PM_PEARL_GOLEM: return 12;
@@ -26095,6 +26126,7 @@ int type;
 		case PM_BOEH_BABY: return 10;
 		case PM_PINK_BABY: return 10;
 		case PM_BLOWSTREAM_BABY: return 1000;
+		case PM_GOOGLEM: return 1111;
 		case PM_GEMSTONE_GOLEM: return 250;
 
 		case PM_HULL_ALIEN: return 255;
@@ -26202,6 +26234,7 @@ int type;
 		case PM_DARK_SAILOR: return 103;
 		case PM_HYPERTYPE: return 103;
 		case PM_ANIMATED_WEDGE_SANDAL: return 100;
+		case PM_ANIMATED_PAVEMENT_HEEL: return 100;
 		case PM_SHOE: return 100;
 		case PM_FUCK_SHOE: return 100;
 		case PM_SCIM_GOLEM: return 70;
@@ -26352,6 +26385,7 @@ int type;
 		case PM_TELERETRIEVER: return 250;
 		case PM_RUBY_GOLEM: return 250;
 		case PM_FIRE_GOLEM: return 250;
+		case PM_ASH_GOLEM: return 250;
 		case PM_SUMMONED_FIRE_GOLEM: return 250;
 		case PM_LAVA_GOLEM: return 250;
 		case PM_AUTO_ROLLER: return 250;

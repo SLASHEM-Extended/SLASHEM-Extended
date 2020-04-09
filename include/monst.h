@@ -124,7 +124,9 @@ struct monst {
 #define CHAM_CHANGELING_MUMMY		47	/* animal */
 #define CHAM_CHANGELING_ZOMBIE		48	/* animal */
 #define CHAM_COCKAMELEON		49	/* animal */
-#define CHAM_GIANT_CHAMELEON		50	/* animal */
+#define CHAM_CHARMONIE		50	/* animal */
+#define CHAM_EDOTO		51	/* animal */
+#define CHAM_GIANT_CHAMELEON		52	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,
