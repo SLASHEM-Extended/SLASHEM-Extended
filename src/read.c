@@ -8466,6 +8466,13 @@ retry:
 		goto id;
 	case SCR_IDENTIFY:
 		/* known = TRUE; */
+
+		if (evilfriday && sobj->cursed && confused) { /* thanks Porkman */
+			forget(rnd(10));
+			You("forget everything else while identifying this as an identify scroll.");
+			return;
+		}
+
 		if (sobj->cursed) { /* Credits go to TvTropes for creating this joke. The player doesn't actually die. --Amy */
 			pline("You fall below the bottom of the page! You die...");
 			if (isevilvariant) {
@@ -10623,6 +10630,27 @@ int how;
 			pline("Oh wait, actually something bad happens...");
 			badeffect();
 		}
+	    }
+	    /* Amy addition: revgeno can be really powerful, so let's add backlashes... */
+	    if (!rn2(3)) {
+		int aggroamount = rnd(6);
+		if (isfriday) aggroamount *= 2;
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+		while (aggroamount) {
+
+			u.cnd_aggravateamount++;
+			makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			aggroamount--;
+			if (aggroamount < 0) aggroamount = 0;
+		}
+		u.aggravation = 0;
+		pline("Several monsters come out of a portal.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+	    }
+	    if (!rn2(10)) {
+		badeffect();
 	    }
 	}
 }
