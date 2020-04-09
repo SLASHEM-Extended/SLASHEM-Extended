@@ -367,7 +367,7 @@ static const char *shkpet[] = {
  */
 const struct shclass shtypes[] = {
 	{"general store", RANDOM_CLASS, 23,
-	    D_SHOP, {{100, RANDOM_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
+	    D_SHOP, {{100, WILDCARD_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
 	{"used armor dealership", ARMOR_CLASS, 17,
 	    D_SHOP, {{90, ARMOR_CLASS}, {10, WEAPON_CLASS}, {0, 0}},
 	     shkarmors},
@@ -445,7 +445,7 @@ const struct shclass shtypes[] = {
 	    {{25, -WAX_CANDLE}, {35, -TALLOW_CANDLE}, {5, -TORCH}, {11, -BRASS_LANTERN},
 	    {16, -OIL_LAMP}, {3, -MAGIC_LAMP}, {5, -MAGIC_CANDLE}}, shklight},
 	{"black market", RANDOM_CLASS, 0, D_SHOP,
-	   {{100, RANDOM_CLASS}, {0, 0}, {0, 0}}, shkblack},
+	   {{100, WILDCARD_CLASS}, {0, 0}, {0, 0}}, shkblack},
 	{(char *)0, 0, 0, 0, {{0, 0}, {0, 0}, {0, 0}}, 0}
 };
 
@@ -1483,7 +1483,7 @@ register int sh;
 	      objects[typ].oc_nowish || typ==0)
 	    continue;
 
-	  otmp = mkobj_at(RANDOM_CLASS,sx,sy,TRUE, TRUE);
+	  otmp = mkobj_at(WILDCARD_CLASS,sx,sy,TRUE, TRUE);
 /* generate multiple copies with decreasing probabilities */
 /*        if (rn2(blkmar_gen[typ]+1) && i<49)  continue; */
 
@@ -1529,7 +1529,7 @@ struct monst *shk;
 	if (Is_blackmarket(&u.uz)) {
 		ESHK(shk)->services = 
 		    SHK_ID_BASIC|SHK_ID_PREMIUM|SHK_UNCURSE|SHK_APPRAISE|
-		    SHK_SPECIAL_A|SHK_SPECIAL_B|SHK_SPECIAL_C;
+		    SHK_SPECIAL_A|SHK_SPECIAL_B|SHK_SPECIAL_C|SHK_CREDITSRV;
 		return;
 	}
 
@@ -1558,6 +1558,9 @@ struct monst *shk;
 	}
 	if (!rn2(3/*5*/) && (shk_class_match(WEAPON_CLASS, shk) == SHK_MATCH))
 	 ESHK(shk)->services |= SHK_SPECIAL_C;
+
+	/* establishing credit is always possible --Amy */
+	ESHK(shk)->services |= SHK_CREDITSRV;
 
 	return;
 }

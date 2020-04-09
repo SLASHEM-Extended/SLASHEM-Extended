@@ -180,6 +180,11 @@ boolean shopinit;
 	int debugvar = 0;
 	if (Is_rogue_level(&u.uz)) debugvar = 1;
 	else if (Inhell) debugvar = 2;
+	boolean wildcard = 0;
+	if (oclass == WILDCARD_CLASS) { /* RANDOM_CLASS, but timebasedlowerchance is not in effect --Amy */
+		oclass = RANDOM_CLASS;
+		wildcard = TRUE;
+	}
 
 	register int levscalediff;
 
@@ -248,47 +253,47 @@ boolean shopinit;
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == SCROLL_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == SCROLL_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == WEAPON_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == WEAPON_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == ARMOR_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == ARMOR_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == TOOL_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == TOOL_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == POTION_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == POTION_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == WAND_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == WAND_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == AMULET_CLASS) && !timebasedlowerchance() ) {
+		if ((oclass == AMULET_CLASS) && !wildcard && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == SPBOOK_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == SPBOOK_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == FOOD_CLASS) && !timebasedlowerchance() && !timebasedlowerchance() && !timebasedlowerchance() ) {
+		if ((oclass == FOOD_CLASS) && !wildcard && !timebasedlowerchance() && !timebasedlowerchance() && !timebasedlowerchance() ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == GEM_CLASS) && !timebasedlowerchance() && (!timebasedlowerchance() || !timebasedlowerchance() ) ) {
+		if ((oclass == GEM_CLASS) && !wildcard && !timebasedlowerchance() && (!timebasedlowerchance() || !timebasedlowerchance() ) ) {
 			oclass = COIN_CLASS;
 		}
 
-		if ((oclass == RING_CLASS) && ( (!timebasedlowerchance() && !timebasedlowerchance() ) || (!timebasedlowerchance() && !timebasedlowerchance() ) ) ) {
+		if ((oclass == RING_CLASS) && !wildcard && ( (!timebasedlowerchance() && !timebasedlowerchance() ) || (!timebasedlowerchance() && !timebasedlowerchance() ) ) ) {
 			oclass = COIN_CLASS;
 		}
 
@@ -560,6 +565,7 @@ struct obj *box;
 		    otmp->oinvis = otmp->oinvisreal = FALSE;
 	    } else
 	    if (box->otyp == ICE_BOX || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == ICE_BOX_OF_WATERPROOFING || box->otyp == ICE_BOX_OF_DIGESTION) {
+		if (!timebasedlowerchance()) continue;
 		if (!(otmp = mksobj(CORPSE, TRUE, TRUE, FALSE))) continue;
 		/* Note: setting age to 0 is correct.  Age has a different
 		 * from usual meaning for objects stored in ice boxes. -KAA

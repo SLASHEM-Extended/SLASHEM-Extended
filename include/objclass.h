@@ -184,6 +184,8 @@ extern NEARDATA struct objdescr obj_descr[];
 #define VENOM_CLASS	18
 #define MAXOCLASSES	19
 
+#define WILDCARD_CLASS	69	/* RANDOM_CLASS but without timebasedlowerchance effect */
+
 #define ALLOW_COUNT	(MAXOCLASSES+1) /* Can be used in the object class */
 #define ALL_CLASSES	(MAXOCLASSES+2) /* input to getobj().		   */
 #define ALLOW_NONE	(MAXOCLASSES+3) /*				   */

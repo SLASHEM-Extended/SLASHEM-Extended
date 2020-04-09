@@ -74,6 +74,7 @@ static void shk_appraisal(char *, struct monst *);
 static void shk_weapon_works(char *, struct monst *);
 static void shk_armor_works(char *, struct monst *);
 static void shk_charge(char *, struct monst *);
+static void shk_estcredit(char *, struct monst *);
 static boolean shk_obj_match(struct obj *, struct monst *);
 /*static int shk_class_match(long class, struct monst *shkp);*/
 static boolean shk_offer_price(char *, long, struct monst *);
@@ -1762,6 +1763,11 @@ shk_other_services()
 	/* Do you want to use other services */
 	if (yn("Do you wish to try our other services?") != 'y' ) return;
 
+	if (Race_if(PM_IRAHA)) {
+		verbalize("Get the fuck out of here, insufferable scumbag!");
+		return;
+	}
+
 	/* Init your name */
 	if (Role_if(PM_CONVICT))
 		slang = "scumbag";
@@ -1791,6 +1797,7 @@ shk_other_services()
 	** p = poison weapon
 	** r = armor-works
 	** c = charge wands
+	** e = establish credit
 	*/
 	/*WAC - did this using the windowing system...*/
 	any.a_void = 0;         /* zero out all bits */
@@ -1849,6 +1856,11 @@ shk_other_services()
 				"Charge", MENU_UNSELECTED);
 	}
 
+	any.a_int = 7;
+	if (ESHK(shkp)->services & (SHK_CREDITSRV))
+	     add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE,
+	         "Establish Credit", MENU_UNSELECTED);
+
 	end_menu(tmpwin, "Services Available:");
 	n = select_menu(tmpwin, PICK_ONE, &selected);
 	destroy_nhwindow(tmpwin);
@@ -1877,6 +1889,9 @@ shk_other_services()
 
 	        case 6:
 	                shk_charge(slang, shkp);
+	                break;
+	        case 7:
+	                shk_estcredit(slang, shkp);
 	                break;
 	        default:
 	                pline ("Unknown Service");
@@ -6447,6 +6462,47 @@ shk_charge(slang, shkp)
 	}
 }
 
+/* establish credit via shopkeeper service by Amy: always available on any shopkeeper, but disappears if you exceed
+ * your credit limit. This is a way to establish credit without the shk cheating you, but the gold is deleted; this is
+ * intentional because that way you can't steal it back or otherwise get stuff for nothing, credit cloner. :P */
+static void
+shk_estcredit(slang, shkp)
+	char *slang;
+	struct monst *shkp;
+{
+	char buf[BUFSZ];
+	long offer;
+	struct eshk *eshkp = ESHK(shkp);
+
+	if (!u.ugold) {
+		pline("It seems that you have no money.");
+		return;
+	}
+
+	getlin("How much credit do you want to establish?", buf);
+	if (sscanf(buf, "%ld", &offer) != 1) offer = 0L;
+
+	if (offer < 0L) {
+		pline("Enter a positive number, please.");
+		return;
+	} else if (offer == 0L) {
+		pline("You've changed your mind.");
+		return;
+	} else if (offer > u.ugold) {
+		You("don't have that much!");
+		return;
+	} else {
+		if ((eshkp->totalcredit + offer) > eshkp->creditlimit) {
+			offer = (eshkp->creditlimit - eshkp->totalcredit);
+			ESHK(shkp)->services &= ~SHK_CREDITSRV;
+			verbalize("That would exceed your credit limit! I'll only accept %d zorkmids.", offer);
+		}
+		u.ugold -= offer;
+		eshkp->totalcredit += offer;
+		eshkp->credit += offer;
+		verbalize("Your total credit amounts to %d zorkmids now. Thank you!", eshkp->credit);
+	}
+}
 
 /*
 ** FUNCTION shk_obj_match

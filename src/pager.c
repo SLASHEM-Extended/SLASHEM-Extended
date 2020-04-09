@@ -25027,6 +25027,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your items are no longer erosionproof, and they also lost their grease. Oh, and of course they're no longer invisible either.",
 	"The Urologist puts you to sleep. The Urologist puts your balls through a cheese grater! The urologist chops bits of your penis up and creates a neovagina! You are now female!", /* by porkman */
 	"Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.",
+	"It seems that you have no money.",
+	"It seems that you have no money. You're as poor as a church mouse.",
 
 };
 
