@@ -25029,6 +25029,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.",
 	"It seems that you have no money.",
 	"It seems that you have no money. You're as poor as a church mouse.",
+	"Whoops... suddenly you feel hungry.",
+	"Whoops... suddenly you feel hungry. There might still be some ice cream in the freezer.",
+	"Suddenly you feel a healing touch!",
 
 };
 

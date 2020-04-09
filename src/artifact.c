@@ -2517,7 +2517,7 @@ doinvoke()
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(25)) {
+			} else switch (rnd(28)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -3124,6 +3124,24 @@ newboss:
 
 					You_feel("in grave danger...");
 					}
+					break;
+				case 26:
+					badeffect();
+					break;
+				case 27:
+					if (!uinsymbiosis) {
+						getrandomsymbiote(FALSE);
+						pline("Suddenly you have a symbiote!");
+					} else {
+						u.usymbiote.mhpmax += rnd(10);
+						if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+						flags.botl = TRUE;
+						Your("symbiote seems much stronger now.");
+					}
+					break;
+				case 28:
+					decontaminate(100);
+					You_feel("decontaminated.");
 					break;
 				default:
 					impossible("undefined pentagram effect");

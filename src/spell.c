@@ -5070,7 +5070,7 @@ addspmagain:
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(25)) {
+			} else switch (rnd(28)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -5675,6 +5675,24 @@ newbossPENT:
 					You_feel("in grave danger...");
 					}
 					break;
+				case 26:
+					badeffect();
+					break;
+				case 27:
+					if (!uinsymbiosis) {
+						getrandomsymbiote(FALSE);
+						pline("Suddenly you have a symbiote!");
+					} else {
+						u.usymbiote.mhpmax += rnd(10);
+						if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+						flags.botl = TRUE;
+						Your("symbiote seems much stronger now.");
+					}
+					break;
+				case 28:
+					decontaminate(100);
+					You_feel("decontaminated.");
+					break;
 				default:
 					impossible("undefined pentagram effect");
 					break;
@@ -5689,7 +5707,7 @@ newbossPENT:
 	case SPE_THRONE_GAMBLE:
 
 	    if (rnd(6) > 4)  {
-		switch (rnd(20))  {
+		switch (rnd(32))  {
 		    case 1:
 			(void) adjattrib(rn2(A_MAX), -rno(5), FALSE, TRUE);
 			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
@@ -5936,6 +5954,130 @@ secureidchoice:
 				prinv((char *)0, idobj, 0L);
 			}
 			}
+			break;
+		    case 21:
+			{
+				int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+				if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+				int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+				if (!blackngdur ) blackngdur = 500; /* fail safe */
+				randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), (blackngdur - (monster_difficulty() * 3)));
+				You_feel("uncomfortable.");
+			}
+			break;
+		    case 22:
+			morehungry(500);
+			pline("Whoops... suddenly you feel hungry.");
+			break;
+		    case 23:
+			pline("Suddenly you feel a healing touch!");
+			reducesanity(100);
+			break;
+		    case 24:
+			poisoned("throne", rn2(6) /* A_STR ... A_CHA*/, "poisoned throne", 30);
+			break;
+		    case 25:
+			{
+				int thronegold = rnd(200);
+				u.ugold += thronegold;
+				pline("Some coins come loose! You pick up %d zorkmids.", thronegold);
+			}
+			break;
+		    case 26:
+			{
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+				pline("A voice echoes:");
+				verbalize("Thou hath been summoned to appear before royalty, %s!", playeraliasname);
+				(void) makemon(specialtensmon(rn2(2) ? 105 : 106), u.ux, u.uy, MM_ANGRY); /* M2_LORD, M2_PRINCE */
+
+				u.aggravation = 0;
+
+			}
+			break;
+		    case 27:
+			badeffect();
+			break;
+		    case 28:
+			u.uhp++;
+			u.uhpmax++;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			You_feel("a health boost!");
+			break;
+		    case 29:
+			pline("A pretty ethereal woman appears and offers: 'For only 10000 zorkmids, I will give you a very rare trinket!");
+			if (u.ugold < 10000) {
+				pline("But you don't have enough money! Frustrated, she places a terrible curse on you and disappears.");
+				randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+			}
+			else {
+				char femhandlebuf[BUFSZ];
+				getlin ("Do you want to buy her goods? [y/yes/no]",femhandlebuf);
+				(void) lcase (femhandlebuf);
+				if (!(strcmp (femhandlebuf, "yes")) || !(strcmp (femhandlebuf, "y"))) {
+					u.ugold -= 10000;
+					register struct obj *acqo;
+					acqo = mksobj(makegreatitem(), TRUE, TRUE, FALSE);
+					if (acqo) {
+						dropy(acqo);
+						verbalize("Thanks a lot! You'll find your prize on the ground.");
+					} else {
+						verbalize("Oh sorry, I must have misplaced it. Here you have your money back. Maybe next time I'll have something for you.");
+						u.ugold += 10000;
+					}
+				} else {
+					verbalize("You will regret that decision!");
+					randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+
+				}
+			}
+			break;
+		    case 30:
+			pline("A shady merchant appears and offers: 'Sale! Sale! I'm selling you this useful item for 2000 zorkmids!");
+			if (u.ugold < 2000) {
+				pline("But you don't have enough money! The merchant disappears.");
+			}
+			else {
+				char femhandlebuf[BUFSZ];
+				getlin ("Do you want to buy his item? [y/yes/no]",femhandlebuf);
+				(void) lcase (femhandlebuf);
+				if (!(strcmp (femhandlebuf, "yes")) || !(strcmp (femhandlebuf, "y"))) {
+					u.ugold -= 2000;
+					register struct obj *acqo;
+					acqo = mksobj(usefulitem(), TRUE, TRUE, FALSE);
+					if (acqo) {
+						dropy(acqo);
+						verbalize("Thank you! I've dropped the item at your feet.");
+					} else {
+						verbalize("Nyah-nyah, thanks for the money, sucker!");
+					}
+				} else {
+					verbalize("Are you sure? Well, it's your decision. I'll find someone else to sell it to, then.");
+				}
+			}
+			break;
+		    case 31:
+			{
+				struct obj *stupidstone;
+				stupidstone = mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE), u.ux, u.uy, TRUE, FALSE, FALSE);
+				if (stupidstone) {
+					stupidstone->quan = 1L;
+					stupidstone->owt = weight(stupidstone);
+					if (!Blind) stupidstone->dknown = 1;
+					if (stupidstone) {
+						pline("%s lands in your knapsack!", Doname2(stupidstone));
+						(void) pickup_object(stupidstone, 1L, TRUE, TRUE);
+					}
+				}
+			}
+			break;
+		    case 32:
+			(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, ROCK), u.ux, u.uy, TRUE, TRUE, FALSE);
+			pline("Some stones come loose!");
 			break;
 
 		    default:	impossible("throne effect");
