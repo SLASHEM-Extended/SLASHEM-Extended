@@ -1103,8 +1103,13 @@ const char *
 currency(amount)
 long amount;
 {
-	if (amount == 1L) return "zorkmid";
-	else return "zorkmids";
+	if (zapmrename()) {
+		if (amount == 1L) return "buckazoid";
+		else return "buckazoids";
+	} else {
+		if (amount == 1L) return "zorkmid";
+		else return "zorkmids";
+	}
 }
 
 boolean

@@ -5113,3 +5113,12 @@ void * val;
 	    snuff_light_source(x, y);
 	}
 }
+
+/* will zorkmids be renamed to buckazoids? */
+boolean
+zapmrename()
+{
+	if (In_ZAPM(&u.uz) || Role_if(PM_SOFTWARE_ENGINEER) || Role_if(PM_CRACKER) || Role_if(PM_JANITOR) || Role_if(PM_SPACE_MARINE) || Role_if(PM_STORMBOY) || Role_if(PM_YAUTJA) || Role_if(PM_QUARTERBACK) || Role_if(PM_PSYKER) || Role_if(PM_EMPATH) || Role_if(PM_MASTERMIND) || Role_if(PM_WEIRDBOY) || Role_if(PM_ASTRONAUT) || Role_if(PM_CYBERNINJA) || Role_if(PM_DISSIDENT) || Race_if(PM_RETICULAN) || Race_if(PM_OUTSIDER) || Role_if(PM_XELNAGA)) return TRUE;
+
+	return FALSE;
+}

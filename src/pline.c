@@ -64,7 +64,7 @@ msgpline_type(msg)
 /* Note that these declarations rely on knowledge of the internals
  * of the variable argument handling stuff in "tradstdc.h"
  */
-char * replace(const char *, const char *, const char *);
+char * replace(const char *, const char *, const char *, BOOLEAN_P);
 
 #if defined(USE_STDARG) || defined(USE_VARARGS)
 static void vpline(const char *, va_list);
@@ -139,64 +139,63 @@ pline VA_DECL(const char *, line)
 
         if (RotThirteenCipher && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
 
-		line = replace(line,"a","N");
-		line = replace(line,"b","O");
-		line = replace(line,"c","P");
-		line = replace(line,"d","Q");
-		line = replace(line,"e","R");
-		line = replace(line,"f","S");
-		line = replace(line,"g","T");
-		line = replace(line,"h","U");
-		line = replace(line,"i","V");
-		line = replace(line,"j","W");
-		line = replace(line,"k","X");
-		line = replace(line,"l","Y");
-		line = replace(line,"m","Z");
-		line = replace(line,"n","A");
-		line = replace(line,"o","B");
-		line = replace(line,"p","C");
-		line = replace(line,"q","D");
-		line = replace(line,"r","E");
-		line = replace(line,"s","F");
-		line = replace(line,"t","G");
-		line = replace(line,"u","H");
-		line = replace(line,"v","I");
-		line = replace(line,"w","J");
-		line = replace(line,"x","K");
-		line = replace(line,"y","L");
-		line = replace(line,"z","M");
+		line = replace(line,"a","N", FALSE);
+		line = replace(line,"b","O", FALSE);
+		line = replace(line,"c","P", FALSE);
+		line = replace(line,"d","Q", FALSE);
+		line = replace(line,"e","R", FALSE);
+		line = replace(line,"f","S", FALSE);
+		line = replace(line,"g","T", FALSE);
+		line = replace(line,"h","U", FALSE);
+		line = replace(line,"i","V", FALSE);
+		line = replace(line,"j","W", FALSE);
+		line = replace(line,"k","X", FALSE);
+		line = replace(line,"l","Y", FALSE);
+		line = replace(line,"m","Z", FALSE);
+		line = replace(line,"n","A", FALSE);
+		line = replace(line,"o","B", FALSE);
+		line = replace(line,"p","C", FALSE);
+		line = replace(line,"q","D", FALSE);
+		line = replace(line,"r","E", FALSE);
+		line = replace(line,"s","F", FALSE);
+		line = replace(line,"t","G", FALSE);
+		line = replace(line,"u","H", FALSE);
+		line = replace(line,"v","I", FALSE);
+		line = replace(line,"w","J", FALSE);
+		line = replace(line,"x","K", FALSE);
+		line = replace(line,"y","L", FALSE);
+		line = replace(line,"z","M", FALSE);
 
 	  }  else if (YouHaveBigscript && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
 
-		line = replace(line,"a","A");
-		line = replace(line,"b","B");
-		line = replace(line,"c","C");
-		line = replace(line,"d","D");
-		line = replace(line,"e","E");
-		line = replace(line,"f","F");
-		line = replace(line,"g","G");
-		line = replace(line,"h","H");
-		line = replace(line,"i","I");
-		line = replace(line,"j","J");
-		line = replace(line,"k","K");
-		line = replace(line,"l","L");
-		line = replace(line,"m","M");
-		line = replace(line,"n","N");
-		line = replace(line,"o","O");
-		line = replace(line,"p","P");
-		line = replace(line,"q","Q");
-		line = replace(line,"r","R");
-		line = replace(line,"s","S");
-		line = replace(line,"t","T");
-		line = replace(line,"u","U");
-		line = replace(line,"v","V");
-		line = replace(line,"w","W");
-		line = replace(line,"x","X");
-		line = replace(line,"y","Y");
-		line = replace(line,"z","Z");
+		line = replace(line,"a","A", FALSE);
+		line = replace(line,"b","B", FALSE);
+		line = replace(line,"c","C", FALSE);
+		line = replace(line,"d","D", FALSE);
+		line = replace(line,"e","E", FALSE);
+		line = replace(line,"f","F", FALSE);
+		line = replace(line,"g","G", FALSE);
+		line = replace(line,"h","H", FALSE);
+		line = replace(line,"i","I", FALSE);
+		line = replace(line,"j","J", FALSE);
+		line = replace(line,"k","K", FALSE);
+		line = replace(line,"l","L", FALSE);
+		line = replace(line,"m","M", FALSE);
+		line = replace(line,"n","N", FALSE);
+		line = replace(line,"o","O", FALSE);
+		line = replace(line,"p","P", FALSE);
+		line = replace(line,"q","Q", FALSE);
+		line = replace(line,"r","R", FALSE);
+		line = replace(line,"s","S", FALSE);
+		line = replace(line,"t","T", FALSE);
+		line = replace(line,"u","U", FALSE);
+		line = replace(line,"v","V", FALSE);
+		line = replace(line,"w","W", FALSE);
+		line = replace(line,"x","X", FALSE);
+		line = replace(line,"y","Y", FALSE);
+		line = replace(line,"z","Z", FALSE);
 
 	  }
-
 
 /*Intercept direct speach, inpossible() and very short or long Strings here*/
 /* to cut down unnecesary calls to the now slower replace */
@@ -209,79 +208,132 @@ pline VA_DECL(const char *, line)
              &&(!program_state.in_impossible)
              &&(strlen(line)>9)){
                 /* >9: "You die ..." but not "It hits." */
-		line = replace(line,"You","Ye");
-		line = replace(line,"you","ye");
-		line = replace(line,"His","'is");
-		line = replace(line," his"," 'is");
-		line = replace(line,"Her","'er");
-		line = replace(line," her"," 'er");
-		line = replace(line,"Are","Be");
-		line = replace(line," are"," be");
-		line = replace(line,"Is ","Be");
-		line = replace(line," is "," be ");
-		line = replace(line," is."," be.");
-		line = replace(line," is,"," be,");
+		line = replace(line,"You","Ye", TRUE);
+		line = replace(line,"you","ye", TRUE);
+		line = replace(line,"His","'is", TRUE);
+		line = replace(line," his"," 'is", TRUE);
+		line = replace(line,"Her","'er", TRUE);
+		line = replace(line," her"," 'er", TRUE);
+		line = replace(line,"Are","Be", TRUE);
+		line = replace(line," are"," be", TRUE);
+		line = replace(line,"Is ","Be", TRUE);
+		line = replace(line," is "," be ", TRUE);
+		line = replace(line," is."," be.", TRUE);
+		line = replace(line," is,"," be,", TRUE);
 		if (Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) { /* words beginning with a c will begin with a k for korsairs --Amy */
-		line = replace(line,"C","K");
-		line = replace(line," c"," k");
-		line = replace(line,"(c","(k");
+		line = replace(line,"C","K", FALSE);
+		line = replace(line," c"," k", FALSE);
+		line = replace(line,"(c","(k", FALSE);
 		}
-		line = replace(line,"Is ","Be ");
-		line = replace(line,"Of ","O' ");
-		line = replace(line," of "," o' ");
-		line = replace(line,"Of.","O'.");
-		line = replace(line," of."," o'.");
-		line = replace(line,"Of,","O',");
-		line = replace(line," of,"," o',");
-		line = replace(line," ear"," lug");
-		line = replace(line,"Ear","Lug");
-		line = replace(line,"eye","deadlight");
-		line = replace(line,"Eye","Deadlight");
+		line = replace(line,"Is ","Be ", TRUE);
+		line = replace(line,"Of ","O' ", TRUE);
+		line = replace(line," of "," o' ", TRUE);
+		line = replace(line,"Of.","O'.", TRUE);
+		line = replace(line," of."," o'.", TRUE);
+		line = replace(line,"Of,","O',", TRUE);
+		line = replace(line," of,"," o',", TRUE);
+		line = replace(line," ear"," lug", TRUE);
+		line = replace(line,"Ear","Lug", TRUE);
+		line = replace(line,"eye","deadlight", TRUE);
+		line = replace(line,"Eye","Deadlight", TRUE);
                 /* If orkmid isn't contained, save some time -CK */
                 if(strstr(line,"orkmid") )
                 {
-                 line = replace(line,"zorkmids ","doubloons ");
-                 line = replace(line,"Zorkmids ","Doubloons ");
-                 line = replace(line,"zorkmids.","doubloons.");
-                 line = replace(line,"Zorkmids.","Doubloons.");
-                 line = replace(line,"zorkmids,","doubloons,");
-                 line = replace(line,"Zorkmids,","Doubloons,");
-                 line = replace(line,"zorkmids)","doubloons)");
-                 line = replace(line,"Zorkmids)","Doubloons)");
-                 line = replace(line,"zorkmid ","doubloon ");
-                 line = replace(line,"Zorkmid ","Doubloon ");
-                 line = replace(line,"zorkmid.","doubloon.");
-                 line = replace(line,"Zorkmid.","Doubloon.");
-                 line = replace(line,"zorkmid,","doubloon,");
-                 line = replace(line,"Zorkmid,","Doubloon,");
-                 line = replace(line,"zorkmid)","doubloon)");
-                 line = replace(line,"Zorkmid)","Doubloon)");
+                 line = replace(line,"zorkmids ","doubloons ", TRUE);
+                 line = replace(line,"Zorkmids ","Doubloons ", TRUE);
+                 line = replace(line,"zorkmids.","doubloons.", TRUE);
+                 line = replace(line,"Zorkmids.","Doubloons.", TRUE);
+                 line = replace(line,"zorkmids,","doubloons,", TRUE);
+                 line = replace(line,"Zorkmids,","Doubloons,", TRUE);
+                 line = replace(line,"zorkmids)","doubloons)", TRUE);
+                 line = replace(line,"Zorkmids)","Doubloons)", TRUE);
+                 line = replace(line,"zorkmid ","doubloon ", TRUE);
+                 line = replace(line,"Zorkmid ","Doubloon ", TRUE);
+                 line = replace(line,"zorkmid.","doubloon.", TRUE);
+                 line = replace(line,"Zorkmid.","Doubloon.", TRUE);
+                 line = replace(line,"zorkmid,","doubloon,", TRUE);
+                 line = replace(line,"Zorkmid,","Doubloon,", TRUE);
+                 line = replace(line,"zorkmid)","doubloon)", TRUE);
+                 line = replace(line,"Zorkmid)","Doubloon)", TRUE);
                 } /* endif orkmid */
                 /* If old coin isn't contained, save some time -CK */
                 if(strstr(line,"old coin") )
                 {
-                 line = replace(line,"gold coins","pieces of eight");
-                 line = replace(line,"Gold coins","Pieces of eight");
-                 line = replace(line,"gold coin","piece of eight");
-                 line = replace(line,"Gold coin","Piece of eight");
+                 line = replace(line,"gold coins","pieces of eight", TRUE);
+                 line = replace(line,"Gold coins","Pieces of eight", TRUE);
+                 line = replace(line,"gold coin","piece of eight", TRUE);
+                 line = replace(line,"Gold coin","Piece of eight", TRUE);
                 }
                 /* If old piece isn't contained, save some time -CK */
                 if(strstr(line,"old piece") )
                 {
-                 line = replace(line,"gold pieces.","pieces of eight");
-                 line = replace(line,"Gold pieces.","Pieces of eight");
-                 line = replace(line,"gold pieces,","pieces of eight");
-                 line = replace(line,"Gold pieces,","Pieces of eight");
-                 line = replace(line,"gold pieces ","pieces of eight");
-                 line = replace(line,"Gold pieces ","Pieces of eight");
-                 line = replace(line,"gold piece.","piece of eight");
-                 line = replace(line,"Gold piece.","Piece of eight");
-                 line = replace(line,"gold piece,","piece of eight");
-                 line = replace(line,"Gold piece,","Piece of eight");
-                 line = replace(line,"gold piece ","piece of eight");
-                 line = replace(line,"Gold piece ","Piece of eight");
+                 line = replace(line,"gold pieces.","pieces of eight", TRUE);
+                 line = replace(line,"Gold pieces.","Pieces of eight", TRUE);
+                 line = replace(line,"gold pieces,","pieces of eight", TRUE);
+                 line = replace(line,"Gold pieces,","Pieces of eight", TRUE);
+                 line = replace(line,"gold pieces ","pieces of eight", TRUE);
+                 line = replace(line,"Gold pieces ","Pieces of eight", TRUE);
+                 line = replace(line,"gold piece.","piece of eight", TRUE);
+                 line = replace(line,"Gold piece.","Piece of eight", TRUE);
+                 line = replace(line,"gold piece,","piece of eight", TRUE);
+                 line = replace(line,"Gold piece,","Piece of eight", TRUE);
+                 line = replace(line,"gold piece ","piece of eight", TRUE);
+                 line = replace(line,"Gold piece ","Piece of eight", TRUE);
                 } /* endif old piece */
         }  /* endif role_if(PM_PIRATE),etc. */
+
+	/* ZAPM has buckazoids; shopkeepers and stuff will also use that term, so no check for direct speech --Amy */
+	  if (zapmrename() && (strlen(line)<(BUFSZ-5))
+		 &&(!program_state.in_impossible)
+             &&(strlen(line)>9)) {
+                if(strstr(line,"orkmid") )
+                {
+                 line = replace(line,"zorkmids ","buckazoids ", FALSE);
+                 line = replace(line,"Zorkmids ","Buckazoids ", FALSE);
+                 line = replace(line,"zorkmids.","buckazoids.", FALSE);
+                 line = replace(line,"Zorkmids.","Buckazoids.", FALSE);
+                 line = replace(line,"zorkmids,","buckazoids,", FALSE);
+                 line = replace(line,"Zorkmids,","Buckazoids,", FALSE);
+                 line = replace(line,"zorkmids)","buckazoids)", FALSE);
+                 line = replace(line,"Zorkmids)","Buckazoids)", FALSE);
+                 line = replace(line,"zorkmid ","buckazoid ", FALSE);
+                 line = replace(line,"Zorkmid ","Buckazoid ", FALSE);
+                 line = replace(line,"zorkmid.","buckazoid.", FALSE);
+                 line = replace(line,"Zorkmid.","Buckazoid.", FALSE);
+                 line = replace(line,"zorkmid,","buckazoid,", FALSE);
+                 line = replace(line,"Zorkmid,","Buckazoid,", FALSE);
+                 line = replace(line,"zorkmid)","buckazoid)", FALSE);
+                 line = replace(line,"Zorkmid)","Buckazoid)", FALSE);
+                } /* endif orkmid */
+                /* If old coin isn't contained, save some time -CK */
+                if(strstr(line,"old coin") )
+                {
+                 line = replace(line,"gold coins","buckazoids", FALSE);
+                 line = replace(line,"Gold coins","Buckazoids", FALSE);
+                 line = replace(line,"gold coin","buckazoids", FALSE);
+                 line = replace(line,"Gold coin","Buckazoids", FALSE);
+                }
+                /* If old piece isn't contained, save some time -CK */
+                if(strstr(line,"old piece") )
+                {
+                 line = replace(line,"gold pieces.","buckazoids.", FALSE);
+                 line = replace(line,"Gold pieces.","Buckazoids.", FALSE);
+                 line = replace(line,"gold pieces,","buckazoids,", FALSE);
+                 line = replace(line,"Gold pieces,","Buckazoids,", FALSE);
+                 line = replace(line,"gold pieces ","buckazoids ", FALSE);
+                 line = replace(line,"Gold pieces ","Buckazoids ", FALSE);
+                 line = replace(line,"gold pieces","buckazoids", FALSE);
+                 line = replace(line,"Gold pieces","Buckazoids", FALSE);
+                 line = replace(line,"gold piece.","buckazoid.", FALSE);
+                 line = replace(line,"Gold piece.","Buckazoid.", FALSE);
+                 line = replace(line,"gold piece,","buckazoid,", FALSE);
+                 line = replace(line,"Gold piece,","Buckazoid,", FALSE);
+                 line = replace(line,"gold piece ","buckazoid ", FALSE);
+                 line = replace(line,"Gold piece ","Buckazoid ", FALSE);
+                 line = replace(line,"gold piece","buckazoid", FALSE);
+                 line = replace(line,"Gold piece","Buckazoid", FALSE);
+                } /* endif old piece */
+	  } /* endif ZAPM etc. */
 
 #if defined(DUMP_LOG)
 	if (DUMPMSGS > 0 && !program_state.gameover) {
@@ -998,8 +1050,9 @@ unsigned int    flipflop=0;              /* which one ? */
 /* If it wrote beyond the end of buffer, flipflop is >1 ... */
 /* ... then you can panic */
 
-char *replace(st, orig, repl)
+char *replace(st, orig, repl, extratest)
 const char *st, *orig, *repl;
+boolean extratest;
 {
         char *buffer;
 	char *ch;
@@ -1010,7 +1063,7 @@ const char *st, *orig, *repl;
         /*"Thou art doomed, scapegrace!" */
         /*"Who do you think you are, War?" */
         /*"Hello Dudley. Welcome to Delphi."*/
-        if( (*st)== '"' ) return st;
+        if(extratest && ((*st)== '"') ) return st;
 
         /* at most 20 times we replace the word to prevent infinite loops */
         i=100;
@@ -1050,7 +1103,7 @@ REPEAT:
 /*The voice of Moloch booms out "So, mortal!  You dare desecrate my High Temple!"*/
 /* voice o' Moloch, but not Ye dare */
 /* rare enough, to come last */
-        if( (tmp=strstr(st,"\"")) && (tmp<ch) ) return st;
+        if( (tmp=strstr(st,"\"")) && (tmp<ch) && extratest ) return st;
 
         /* Don't convert disorder messages into pirate slang ! */
         /* Nested calls of impossible() call panic(). */

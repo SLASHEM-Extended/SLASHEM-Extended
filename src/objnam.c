@@ -467,12 +467,18 @@ struct Jitem {
 
 #ifndef OVLB
 
+STATIC_DCL struct Jitem ZAPM_items[];
 STATIC_DCL struct Jitem Japanese_items[];
 STATIC_OVL struct Jitem Pirate_items[];
 STATIC_OVL struct Jitem Soviet_items[];
 STATIC_OVL struct Jitem Ancient_items[];
 
 #else /* OVLB */
+
+STATIC_OVL struct Jitem ZAPM_items[] = {
+	{ GOLD_PIECE, "buckazoid" },
+	{0, "" }
+};
 
 STATIC_OVL struct Jitem Japanese_items[] = {
 	{ APPLE, "ringo" },
@@ -5897,6 +5903,8 @@ register int otyp;
 	register const char *un = ocl->oc_uname;
 	register int nn = ocl->oc_name_known;
 
+	if (zapmrename() && Alternate_item_name(otyp,ZAPM_items))
+		actualn = Alternate_item_name(otyp,ZAPM_items);
 	if (Role_if(PM_SAMURAI) && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if (Role_if(PM_NINJA) && Alternate_item_name(otyp,Japanese_items))
@@ -6080,6 +6088,8 @@ register struct obj *obj;
 	register const char *un = ocl->oc_uname;
 
 	buf = nextobuf() + PREFIX;	/* leave room for "17 -3 " */
+	if (zapmrename() && Alternate_item_name(typ,ZAPM_items))
+		actualn = Alternate_item_name(typ,ZAPM_items);
 	if (Role_if(PM_SAMURAI) && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if (Role_if(PM_NINJA) && Alternate_item_name(typ,Japanese_items))
@@ -8654,7 +8664,7 @@ srch:
 		i++;
 	}
 	if (actualn) {
-		struct Jitem *j[] = {Japanese_items,Pirate_items,Soviet_items,Ancient_items};
+		struct Jitem *j[] = {ZAPM_items,Japanese_items,Pirate_items,Soviet_items,Ancient_items};
 		for(i=0;i<sizeof(j)/sizeof(j[0]);i++)
 		{
 		while(j[i]->item) {

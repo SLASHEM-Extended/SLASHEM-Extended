@@ -926,6 +926,7 @@ E void reducesanity(int);
 #ifdef GOLDOBJ
 E long money_cnt(struct obj *);
 #endif
+E boolean zapmrename(void);
 
 /* ### hacklib.c ### */
 
