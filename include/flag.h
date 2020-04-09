@@ -60,6 +60,7 @@ struct flag {
 	boolean  help;		/* look in data file for info about stuff */
     boolean  hitpointbar; /* colourful hit point status bar */
 	boolean  ignintr;	/* ignore interrupts */
+	boolean  inertiaconfirm;	/* controls whether inertia control has y/n or yes/no */
 #ifdef INSURANCE
 	boolean  ins_chkpt;	/* checkpoint as appropriate */
 #endif

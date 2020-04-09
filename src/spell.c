@@ -2923,9 +2923,36 @@ docast()
 void
 castinertiaspell()
 {
+	char buf[BUFSZ];
+	char c;
+	boolean willcastinertiaspell = FALSE;
 
 	pline("You control the %s spell flow.", spellname(u.inertiacontrolspellno));
-	if (yn("Cast it?") == 'y') {
+
+	if (flags.inertiaconfirm) {
+		getlin ("Cast it? [y/yes/no/q/quit]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) willcastinertiaspell = TRUE;
+		if (!(strcmp (buf, "q")) || !(strcmp (buf, "quit"))) {
+			You("ended inertia control prematurely.");
+			u.inertiacontrol = 0;
+			u.inertiacontrolspell = -1;
+			u.inertiacontrolspellno = -1;
+			return;
+		}
+	} else {
+		c = yn_function("Cast it?", ynqchars, 'n');
+		if (c == 'y') willcastinertiaspell = TRUE;
+		else if (c == 'q') {
+			You("ended inertia control prematurely.");
+			u.inertiacontrol = 0;
+			u.inertiacontrolspell = -1;
+			u.inertiacontrolspellno = -1;
+			return;
+		}
+	}
+
+	if (willcastinertiaspell) {
 
 		if (spellid(u.inertiacontrolspellno) != u.inertiacontrolspell) {
 			pline("The inertia controlled spell is no longer in place, and therefore cannot be auto-casted!");
@@ -3198,6 +3225,21 @@ boolean atme;
 	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
 	if (SpellColorYellow) energy *= 2;
 	if (SpellColorWhite) energy *= 4;
+
+	/* inertia control and spellbinder make spells a bit more expensive... --Amy */
+	if (u.inertiacontrol) {
+		energy *= 5;
+		energy /= 4;
+	}
+	if (u.spellbinder) {
+		energy *= 5;
+		energy /= 4;
+	}
+	/* if you have both active, it's even more expensive */
+	if (u.spellbinder && u.inertiacontrol) {
+		energy *= 4;
+		energy /= 3;
+	}
 
 	/* only being easier to cast is not good enough for the "special spell", since you can't have a failure rate
 	 * lower than 0%. Reduce cost of casting the special spell to 80%! --Amy */
@@ -3835,6 +3877,15 @@ castanyway:
 	case SPE_HYPER_BEAM:
 	case SPE_PARALYSIS:
 
+		if (pseudo->otyp == SPE_PARTICLE_CANNON) {
+			if (u.gaugetimer) {
+				You("need to wait %d more turns to refill your gauge. The particle cannon can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+				break;
+			} else {
+				u.gaugetimer = 50;
+			}
+		}
+
 		if (practicantterror && pseudo && pseudo->otyp == SPE_FINGER_OF_DEATH && !u.pract_fodzap) {
 			pline("%s thunders: 'Well wait, I'll shut down your evil spellcasting. Also, for actually casting an unforgivable curse, you have to pay 25000 zorkmids. If you keep misbehaving like that I'll show you some unforgivable curses, I tell you...'", noroelaname());
 			Muteness += rnz(5000);
@@ -4414,6 +4465,13 @@ aulechoice:
 		break;
 
 	case SPE_ONE_POINT_SHOOT:
+
+		if (u.gaugetimer) {
+			You("need to wait %d more turns to refill your gauge. One Point Shoot can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+			break;
+		} else {
+			u.gaugetimer = 50;
+		}
 
 		{
 			register struct obj *opbullet;
@@ -10063,6 +10121,15 @@ rerollX:
 
 		badeffect();
 
+	}
+
+	/* particle cannon and one point shoot need "gauge"; since this isn't Elona, we don't have an actual gauge meter,
+	 * so I decided that it just takes 50 turns to reload --Amy */
+	if (pseudo && (pseudo->otyp == SPE_PARTICLE_CANNON)) {
+		pline("The particle cannon can be used again at turn %d.", (moves + u.gaugetimer));
+	}
+	if (pseudo && (pseudo->otyp == SPE_ONE_POINT_SHOOT)) {
+		pline("One Point Shoot can be used again at turn %d.", (moves + u.gaugetimer));
 	}
 
 	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */

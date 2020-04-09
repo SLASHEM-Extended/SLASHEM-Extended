@@ -13662,9 +13662,9 @@ boolean knoweverything;
 			case SPE_STRANGLING:
 				pline("Allows you to strangle an adjacent monster, which works especially well against humanoids."); break;
 			case SPE_PARTICLE_CANNON:
-				pline("A very powerful damage-dealing beam spell with great range. If you cast it, you're paralyzed for 5 turns because you have to reload the cannon."); break;
+				pline("A very powerful damage-dealing beam spell with great range. If you cast it, you're paralyzed for 5 turns because you have to reload the cannon, and it then requires an additional 45 more turns to become available again."); break;
 			case SPE_ONE_POINT_SHOOT:
-				pline("This spell works only if you have a bullet in your inventory, which will be used up. You then get a target cursor that you can place on a monster, which then takes a lot of damage. If the bullet was positively enchanted, the damage will be even higher."); break;
+				pline("This spell works only if you have a bullet in your inventory, which will be used up. You then get a target cursor that you can place on a monster, which then takes a lot of damage. If the bullet was positively enchanted, the damage will be even higher. However, you can only use this spell once every 50 turns."); break;
 			case SPE_BLOOD_STREAM:
 				pline("A spell that lets you use your menstruation as a weapon, shooting a stream of blood in a direction that can hit several enemies. However, you take damage equal to up to 20%% of your maximum HP. The damage it deals is higher the less health you have remaining after that loss, and if you're female it deals even more damage."); break;
 			case SPE_SHINING_WAVE:
@@ -14015,11 +14015,11 @@ boolean knoweverything;
 			case SPE_DISRUPTION_SHIELD:
 				pline("A spell that allows you to use your mana as health for a while: for the duration of the effect, any damage you take will be subtracted from your mana instead - as long as you have enough mana, that is."); break;
 			case SPE_SPELLBINDER:
-				pline("Casting this spell allows you to cast several spells in the same turn. Every spell that you have can only be cast once per turn, and of course you cannot use those extra castings for another spellbinder, because things need to be sane. :-)"); break;
+				pline("Casting this spell allows you to cast several spells in the same turn. Every spell that you have can only be cast once per turn, and of course you cannot use those extra castings for another spellbinder, because things need to be sane. :-) Also, the spells will require 25%% more mana than usual."); break;
 			case SPE_TRACKER:
 				pline("Teleports you to the last monster that entered the current dungeon level, provided that nothing prevents you from teleporting and there is an empty space next to the monster in question. It will occasionally backfire."); break;
 			case SPE_INERTIA_CONTROL:
-				pline("This spell allows you to choose any of your other known spells, which will be inertia controlled for a while. That way you can automatically cast it while doing other things. Don't move the spell around in your spellcasting menu while inertia control is in effect though, or it will end prematurely!"); break;
+				pline("This spell allows you to choose any of your other known spells, which will be inertia controlled for a while. That way you can automatically cast it while doing other things at a slightly higher mana cost. Don't move the spell around in your spellcasting menu while inertia control is in effect though, or it will end prematurely!"); break;
 			case SPE_CODE_EDITING:
 				pline("Allows you to edit the code of the game ;), err, not really. It detonates all corpses on the current dungeon level, generating fiery explosions that deal damage depending on the dead monster's level."); break;
 			case SPE_FORGOTTEN_SPELL:
@@ -14497,9 +14497,9 @@ boolean knoweverything;
 			case WAN_LEVITATION:
 				pline("If anyone zaps this wand, you will levitate, but not at will."); break;
 			case WAN_SPELLBINDER:
-				pline("A wand that allows you to cast up to five spells at once every time you zap it."); break;
+				pline("A wand that allows you to cast up to five spells at once every time you zap it. Be aware, though: the spells will cost 25%% more mana than they ordinarily would."); break;
 			case WAN_INERTIA_CONTROL:
-				pline("Zapping this wand allows you to control the flow of one of your spells (you can select which one), which will automatically be cast once per turn without taking time."); break;
+				pline("Zapping this wand allows you to control the flow of one of your spells (you can select which one), which will automatically be cast once per turn without taking time. This will cost more mana than casting the spell normally, though."); break;
 			case WAN_STERILIZE:
 				pline("Prevents breeding and egg hatching for a while."); break;
 			case WAN_DEBUGGING:

@@ -148,6 +148,7 @@ static struct Bool_Opt
 #else
 	{"ignintr", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+	{"inertiaconfirm", &flags.inertiaconfirm, FALSE, SET_IN_GAME},
 #ifdef SHOW_WEIGHT
 	{"invweight", &flags.invweight, TRUE, SET_IN_GAME},
 #else

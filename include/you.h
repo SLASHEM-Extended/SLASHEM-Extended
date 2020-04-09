@@ -1619,6 +1619,8 @@ struct you {
 
 	boolean fungalsandals;
 
+	int gaugetimer;	/* one point shoot and particle cannon require 50 turns to reload */
+
 	int stoogedepth;	/* occasionally the three stooges will spawn */
 
 	int funnyhalluroll;	/* how much sanity you need to have in order to get funny hallu messages */
