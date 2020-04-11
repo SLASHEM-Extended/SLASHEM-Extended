@@ -1339,13 +1339,20 @@ armorsmashdone:
 	case WAN_OPENING:
 	case SPE_KNOCK:
 		wake = FALSE;	/* don't want immediate counterattack */
+
 		if (u.uswallow && mtmp == u.ustuck) {
+			if (otyp == SPE_KNOCK && rn2(5)) {
+				pline("You knock on the inside of %s, but nothing seems to happen.", mon_nam(mtmp));
+				break;
+			}
+
 			if (is_animal(mtmp->data)) {
 				if (Blind) You_feel("a sudden rush of air!");
 				else pline("%s opens its mouth!", Monnam(mtmp));
 			}
 			expels(mtmp, mtmp->data, TRUE);
 		} else if (!!(obj = which_armor(mtmp, W_SADDLE))) {
+			if (otyp == SPE_KNOCK && rn2(5)) break;
 			mtmp->misc_worn_check &= ~obj->owornmask;
 			update_mon_intrinsics(mtmp, obj, FALSE, FALSE);
 			obj->owornmask = 0L;
