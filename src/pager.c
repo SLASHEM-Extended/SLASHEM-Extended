@@ -25032,6 +25032,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"Whoops... suddenly you feel hungry.",
 	"Whoops... suddenly you feel hungry. There might still be some ice cream in the freezer.",
 	"Suddenly you feel a healing touch!",
+	"Your amulet turns into a werewolf!  The werewolf hits!  You die...",
+	"You feel like you got zapped by fire!",
+	"You switched fire resistance for shock resistance.",
+	"You switched fire resistance for shock resistance. Seems like a bad deal with all the fire traps in Gehennom.",
+	"You switched shock resistance for fire resistance.",
+	"You switched fire resistance for intrinsic hunger. Nyah-nyah, now you've screwed yourself over, noob.",
 
 };
 

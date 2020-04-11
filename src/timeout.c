@@ -534,6 +534,16 @@ nh_timeout()
 	}
 	if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
 
+	if (u.soviettemporary) {
+		u.soviettemporary--;
+	}
+	if (u.soviettemporary < 0) u.soviettemporary = 0; /* fail safe */
+
+	if (u.evilvartemporary) {
+		u.evilvartemporary--;
+	}
+	if (u.evilvartemporary < 0) u.evilvartemporary = 0; /* fail safe */
+
 	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {

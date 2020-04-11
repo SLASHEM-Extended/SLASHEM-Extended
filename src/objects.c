@@ -509,7 +509,8 @@ WEAPON("thunder hammer", (char *)0,
 WEAPON("mallet", (char *)0,
 	1, 0, 0,  10, 20,500, 14, 14, 0, B,   P_HAMMER, MT_WOOD, HI_WOOD, 24),
 
-/* Yes, these are melee weapons for whacking enemies to death. Hammer skill, for obvious reasons. --Amy */
+/* Yes, these are melee weapons for whacking enemies to death. Hammer skill, for obvious reasons. --Amy
+ * wedged little-girl sandal has to be first, see makemon.c */
 WEAPON("wedged little-girl sandal", (char *)0,
 	1, 0, 0, 10, 1,  5,  4,  4, 2, B,   P_HAMMER, MT_MINERAL, CLR_WHITE, 1),
 WEAPON("soft girl sneaker", (char *)0,
@@ -546,6 +547,7 @@ WEAPON("dogshit boot", (char *)0,
 	1, 0, 0, 10, 10, 10,  4,  4, 5, B,   P_HAMMER, MT_SECREE, CLR_BROWN, 8),
 WEAPON("prostitute shoe", (char *)0,
 	1, 0, 0, 10, 10, 200, 10,  10, 2, B,   P_HAMMER, MT_WOOD, CLR_ORANGE, 30),
+/* prostitute shoe has to be last */
 
 /* Quarterstaves */
 WEAPON("quarterstaff", "staff",
@@ -2439,6 +2441,8 @@ BOOTS("sneakers", "turning shoes",
 		0, 0,  0,	   2, 2,  2,  8,  9, 0, MT_CLOTH, CLR_WHITE, 1, 0),
 BOOTS("crystal boots", "glass boots",
 		0, 0,  0,	   2, 2,30,300,  7, 0, MT_GLASS, CLR_CYAN, 10, 0),
+
+/* pretty footwear: wedge sandals have to be first, see makemon.c */
 BOOTS("wedge sandals", "heeled sandals",
 		0, 0,  0,         10, 5, 2,  25,  10, 0, MT_MINERAL, CLR_WHITE, 1, 0),
 BOOTS("dancing shoes", "soft footwear", /* not high-heeled - transvestites won't benefit from wearing this pair! --Amy */
@@ -2461,6 +2465,8 @@ BOOTS("stiletto sandals", "feminine sandals", /* offers full protection from san
 		0, 0,  0,         10, 5, 1,  100,  10, 0, MT_SAND, CLR_BROWN, 5, 0),
 BOOTS("italian heels", (char *)0, /* stiletto */
 		1, 0,  0,   	10, 4, 5, 400, 9, 0, MT_LEATHER, CLR_BRIGHT_BLUE, 30, 0),
+/* italian heels have to be last */
+
 /* ...with shuffled appearances */
 BOOTS("speed boots", "combat boots",
 		0, 1,  FAST,	  120, 2, 8, 50,  9, 0, MT_LEATHER, HI_LEATHER, 5, APP_COMBAT_BOOTS),

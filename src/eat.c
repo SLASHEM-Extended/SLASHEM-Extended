@@ -1077,6 +1077,10 @@ register int pm;
 	    case PM_FBI_AGENT:
 	    case PM_OWN_SMOKE:
 	    case PM_GRANDPA:
+	    case PM_LIZARD_MAGE:
+	    case PM_BLACK_LIZARDMAN:
+	    case PM_ASSASSIN_LIZARD:
+	    case PM_BLIZZARD_LIZARD:
 	    case PM_HELTH_LIZARD:
 	    case PM_NORMAL_LIZARD:
 	    case PM_CLOCKBACK_LIZARD:
@@ -1259,6 +1263,10 @@ struct monst *mon;
 	    case PM_OWN_SMOKE:
 	    case PM_ADULT_LIZARD:
 	    case PM_GRANDPA:
+	    case PM_LIZARD_MAGE:
+	    case PM_BLACK_LIZARDMAN:
+	    case PM_ASSASSIN_LIZARD:
+	    case PM_BLIZZARD_LIZARD:
 	    case PM_HELTH_LIZARD:
 	    case PM_NORMAL_LIZARD:
 	    case PM_CLOCKBACK_LIZARD:
@@ -2941,6 +2949,10 @@ register int pm;
 	    case PM_LICHZARD:
 			lesshungry(500); /* fall thru */
 	    case PM_GIANT_LIZARD:
+	    case PM_LIZARD_MAGE:
+	    case PM_BLACK_LIZARDMAN:
+	    case PM_ASSASSIN_LIZARD:
+	    case PM_BLIZZARD_LIZARD:
 			lesshungry(300); /* fall thru */
 	    case PM_CHAOS_LIZARD:
 	    case PM_CHAOTIC_LIZARD:
@@ -3008,10 +3020,29 @@ register int pm;
 
 		break;
 
+	    case PM_PYROLETROLISK:
+		if ((HFire_resistance & FROMOUTSIDE) && (HShock_resistance & FROMOUTSIDE)) {
+			HFire_resistance &= ~FROMOUTSIDE;
+			HShock_resistance &= ~FROMOUTSIDE;
+			You_feel("like you got zapped by fire!");
+		} else if (HFire_resistance & FROMOUTSIDE) {
+			HFire_resistance &= ~FROMOUTSIDE;
+			HShock_resistance |= FROMOUTSIDE;
+			You("switched fire resistance for shock resistance.");
+		} else if (HShock_resistance & FROMOUTSIDE) {
+			HShock_resistance &= ~FROMOUTSIDE;
+			HFire_resistance |= FROMOUTSIDE;
+			You("switched shock resistance for fire resistance.");
+		}
+		break;
+
 	    case PM_CHAMELEON:
 	    case PM_CHAMECHAUN:
 	    case PM_METAMORPHOSE:
 	    case PM_GHELEON:
+	    case PM_PURPLE_R:
+	    case PM_VAMPSHIFTER:
+	    case PM_UNGENOCIDABLE_VAMPSHIFTER:
 	    case PM_CHARMONIE:
 	    case PM_EDOTO:
 	    case PM_COCKAMELEON:

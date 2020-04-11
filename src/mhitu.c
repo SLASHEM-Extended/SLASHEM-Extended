@@ -2142,6 +2142,11 @@ mattacku(mtmp)
 		pline("%s makes an ultra-annoying whistling sound!",Monnam(mtmp) ); 
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kakoy-to ublyudok - nadoyedlivyy mudak." : "Pfiepfiepfie pfiiiie pfiePFIEpfie");
 	}
+	if (mtmp->data == &mons[PM_DURATION_HALLER]) {
+
+		wake_nearby();
+		pline("%s makes a lot of noise!",Monnam(mtmp) ); 
+	}
 
 	if (mtmp->data == &mons[PM_DINGBAT] && !rn2(25) ) {
 
@@ -12974,6 +12979,16 @@ boolean ufound;
 		while (atttypC >= AD_ENDS) atttypC -= AD_ENDS;
 		if (!(atttypC >= AD_PHYS && atttypC < AD_ENDS)) atttypC = AD_PHYS; /* fail safe --Amy */
 		if (atttypC == AD_WERE) atttypC = AD_PHYS;
+	}
+
+	if (mtmp->data == &mons[PM_FLEECEY_LIGHT]) {
+		if (!rn2(2)) {
+			u.soviettemporary += rnz(5000);
+			pline("KHAR KHAR TY NUB TEPER' TY OBLAZHALSYA KHEKHEKHE!");
+		} else {
+			u.evilvartemporary += rnz(5000);
+			pline("Have fun with the evil variant, sucker.");
+		}
 	}
 
 	switch (atttypC) {

@@ -655,6 +655,9 @@ struct you {
 	int fumbleduration;	/* for wand of fumbling */
 	int antimagicshell;	/* for scroll of antimagic */
 
+	int soviettemporary;	/* for fleecey light */
+	int evilvartemporary;	/* for fleecey light */
+
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
 
 	/* Extra nastiness - currently only nastinator race, but might add more functionality someday --Amy

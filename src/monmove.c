@@ -594,6 +594,8 @@ register struct monst *mtmp;
 
 	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 
+	if (mdat == &mons[PM_BLOTREE] && !rn2(2)) return 0;
+
 	/* huro troves are for the matrayser race: they're only there as a means of porting your possessions to a different
 	 * dungeon level at game start; we don't want them to waste potions of invisibility or similar stuff --Amy */
 	if (mdat == &mons[PM_HURO_TROVE]) return 0;
@@ -990,6 +992,96 @@ register struct monst *mtmp;
 		if (isok(mtmp->mx, mtmp->my)) {
 			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {
 				levl[mtmp->mx][mtmp->my].typ = RAINCLOUD;
+				blockorunblock_point(mtmp->mx,mtmp->my);
+				if(cansee(mtmp->mx,mtmp->my)) {
+					newsym(mtmp->mx,mtmp->my);
+				}
+			}
+		}
+	}
+
+	if (mdat == &mons[PM_CHAOS_TILER] || mdat == &mons[PM_CHAOTIC_FILLER]) {
+		if (isok(mtmp->mx, mtmp->my)) {
+			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR) {
+
+				int wallclass = randomwalltype();
+
+				if (wallclass != TREE || (levl[mtmp->mx][mtmp->my].wall_info & W_NONDIGGABLE) == 0) levl[mtmp->mx][mtmp->my].typ = wallclass;
+				blockorunblock_point(mtmp->mx,mtmp->my);
+				if(cansee(mtmp->mx,mtmp->my)) {
+					newsym(mtmp->mx,mtmp->my);
+				}
+			}
+		}
+	}
+
+	if (mdat == &mons[PM_DIMM_COIN]) {
+		if (isok(mtmp->mx, mtmp->my)) {
+			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR) {
+
+				int wallclass = GRASSLAND;
+				switch (mtmp->terraintrans) {
+					case 1:
+						wallclass = TREE; break;
+					case 2:
+						wallclass = MOAT; break;
+					case 3:
+						wallclass = LAVAPOOL; break;
+					case 4:
+						wallclass = IRONBARS; break;
+					case 5:
+						wallclass = CORR; break;
+					case 6:
+						wallclass = ICE; break;
+					case 7:
+						wallclass = CLOUD; break;
+					case 8:
+						wallclass = ROCKWALL; break;
+					case 9:
+						wallclass = GRAVEWALL; break;
+					case 10:
+						wallclass = TUNNELWALL; break;
+					case 11:
+						wallclass = FARMLAND; break;
+					case 12:
+						wallclass = MOUNTAIN; break;
+					case 13:
+						wallclass = WATERTUNNEL; break;
+					case 14:
+						wallclass = CRYSTALWATER; break;
+					case 15:
+						wallclass = MOORLAND; break;
+					case 16:
+						wallclass = URINELAKE; break;
+					case 17:
+						wallclass = SHIFTINGSAND; break;
+					case 18:
+						wallclass = STYXRIVER; break;
+					case 19:
+						wallclass = SNOW; break;
+					case 20:
+						wallclass = ASH; break;
+					case 21:
+						wallclass = SAND; break;
+					case 22:
+						wallclass = PAVEDFLOOR; break;
+					case 23:
+						wallclass = HIGHWAY; break;
+					case 24:
+						wallclass = GRASSLAND; break;
+					case 25:
+						wallclass = NETHERMIST; break;
+					case 26:
+						wallclass = STALACTITE; break;
+					case 27:
+						wallclass = CRYPTFLOOR; break;
+					case 28:
+						wallclass = BUBBLES; break;
+					case 29:
+						wallclass = RAINCLOUD; break;
+				}
+
+				if (wallclass != TREE || (levl[mtmp->mx][mtmp->my].wall_info & W_NONDIGGABLE) == 0) levl[mtmp->mx][mtmp->my].typ = wallclass;
 				blockorunblock_point(mtmp->mx,mtmp->my);
 				if(cansee(mtmp->mx,mtmp->my)) {
 					newsym(mtmp->mx,mtmp->my);
@@ -1881,6 +1973,15 @@ convertdone:
 		pline("Urrrrrgh, there seems to be a stinking heap of shit nearby! You pass out from the vile stench.");
 		nomul(-(rnd(5)), "unconscious from smelling shit", TRUE);
 	}
+	if (mdat == &mons[PM_STINK_HOMER] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+		pline("Urrrrrgh, some really stinky person seems to be nearby! You pass out from the vile stench.");
+		nomul(-(rnd(5)), "unconscious from the stink homer's stench", TRUE);
+	}
+
+	if (mdat == &mons[PM_NOISY_ANNOYANCE] && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+		demagogueparole();
+		aggravate();
+	}
 
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
 		switch (rnd(9)) {
@@ -2690,6 +2791,7 @@ altarfound:
 	if (monsndx(ptr) == PM_HIGHEST_PRIESTEST) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_PARROT_RIDING_A_GIANT_PENIS && !rn2(10)) mtmp->mconf = 1;
 	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_ERR_BOSS) || (monsndx(ptr) == PM_ERR) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else if ((monsndx(ptr) == PM_WIMPDAG_BANGER) || (monsndx(ptr) == PM_SLING_BANGER) || (monsndx(ptr) == PM_FLINT_BANGER) || (monsndx(ptr) == PM_DAT_BANGER) || (monsndx(ptr) == PM_BOW_BANGER) || (monsndx(ptr) == PM_PISTOL_BANGER) || (monsndx(ptr) == PM_SPEA_BANGER) || (monsndx(ptr) == PM_XBOW_BANGER) || (monsndx(ptr) == PM_SHOTTY_BANGER) || (monsndx(ptr) == PM_SHURI_BANGER) || (monsndx(ptr) == PM_SMG_BANGER) || (monsndx(ptr) == PM_LASER_BANGER) || (monsndx(ptr) == PM_ASSAULT_BANGER) || (monsndx(ptr) == PM_JAV_BANGER) || (monsndx(ptr) == PM_AUTOSHOT_BANGER) || (monsndx(ptr) == PM_ARMSTREAM_BANGER) || (monsndx(ptr) == PM_BIG_FUCKING_BANGER) )
@@ -2955,7 +3057,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

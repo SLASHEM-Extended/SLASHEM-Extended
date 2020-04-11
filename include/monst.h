@@ -126,7 +126,10 @@ struct monst {
 #define CHAM_COCKAMELEON		49	/* animal */
 #define CHAM_CHARMONIE		50	/* animal */
 #define CHAM_EDOTO		51	/* animal */
-#define CHAM_GIANT_CHAMELEON		52	/* animal */
+#define CHAM_PURPLE_R		52	/* rust monster */
+#define CHAM_VAMPSHIFTER		53	/* vampire */
+#define CHAM_UNGENOCIDABLE_VAMPSHIFTER		54	/* vampire */
+#define CHAM_GIANT_CHAMELEON		55	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,
@@ -408,6 +411,7 @@ struct monst {
 	int bleedout;	/* normally zero; monster bleeds out (takes continuous damage) if nonzero */
 	int healblock;	/* normally zero; monster cannot heal over time if nonzero */
 	int inertia;	/* normally zero; monster moves at half speed */
+	int terraintrans;	/* for dimm coin: determines which terrain is created when the monster moves */
 
 	struct obj *mw;
 	long misc_worn_check;
