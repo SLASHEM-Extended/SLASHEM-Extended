@@ -8470,7 +8470,7 @@ retry:
 		if (evilfriday && sobj->cursed && confused) { /* thanks Porkman */
 			forget(rnd(10));
 			You("forget everything else while identifying this as an identify scroll.");
-			return;
+			break;
 		}
 
 		if (sobj->cursed) { /* Credits go to TvTropes for creating this joke. The player doesn't actually die. --Amy */
