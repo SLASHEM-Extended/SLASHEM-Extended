@@ -2878,6 +2878,7 @@ altarfound:
 	if (ptr == &mons[PM_BOGUXORN]) appr = -1;
 	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
 	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;
+	if (ptr == &mons[PM_LITTLE_WALL_FLOWER]) appr = -1;
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
 

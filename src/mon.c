@@ -3899,7 +3899,7 @@ struct monst *mtmp;
 		} else
 			return;
 
-	} else if (mtmp->data == &mons[PM_IMMORTAL_MYSTIC_SCARAB] && rn2(5) ) {
+	} else if ((mtmp->data == &mons[PM_IMMORTAL_MYSTIC_SCARAB] || mtmp->data == &mons[PM_WRONG_DECISION_MEETING_COURT]) && rn2(5) ) {
 		visible = u.uswallow && u.ustuck == mtmp ||
 			cansee(mtmp->mx, mtmp->my);
 		if (visible) {

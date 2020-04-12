@@ -9065,6 +9065,33 @@ loveheelover:
 			(void) mongets(mtmp, ORCISH_CHAIN_MAIL);
 			 m_initthrow(mtmp, SILVER_SLINGSTONE, 40);
 		}
+		if (ptr == &mons[PM_CHESS_KNIGHT]) {
+			if (!rn2(3)) {
+				(void) mongets(mtmp, SLING);
+				m_initthrow(mtmp, ROCK, 20);
+			} else if (rn2(2)) {
+				m_initthrow(mtmp, FRAG_GRENADE, 5);
+			} else {
+				m_initthrow(mtmp, SHURIKEN, 25);
+			}
+		}
+		if (ptr == &mons[PM_KING]) {
+			if (!rn2(3)) {
+				(void) mongets(mtmp, SLING);
+				m_initthrow(mtmp, ROCK, 30);
+			} else if (rn2(2)) {
+				m_initthrow(mtmp, FRAG_GRENADE, 8);
+			} else {
+				m_initthrow(mtmp, SHURIKEN, 35);
+			}
+		}
+		if (mtmp->data == &mons[PM_GRANDMASTER]) {
+			m_initthrow(mtmp, DART, 50);
+		}
+		if (mtmp->data == &mons[PM_SUPER_GRANDMASTER]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 50);
+		}
 
 		if (ptr == &mons[PM_PENCIL_MOUNTED_ERASER]) {
 			(void)mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
@@ -9399,6 +9426,19 @@ loveheelover:
 		if (mtmp->data == &mons[PM_GRAND_LEECH]) {
 			(void) mongets(mtmp, BOW);
 			m_initthrow(mtmp, ARROW, 40);
+		}
+		if (mtmp->data == &mons[PM_BIND_DEVIL_WORM]) {
+			m_initthrow(mtmp, SHURIKEN, 50);
+		}
+		if (mtmp->data == &mons[PM_REAL_DEVIL_WORM]) {
+			m_initthrow(mtmp, SHURIKEN, 50);
+		}
+		if (mtmp->data == &mons[PM_ELONIC_ROCK_WORM]) {
+			(void) mongets(mtmp, PISTOL);
+			m_initthrow(mtmp, BULLET, 50);
+		}
+		if (ptr == &mons[PM_WOUWOU_LEYDE]) {
+			(void)mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
 		}
 
 		if (ptr == &mons[PM_BEAUTY_FROM_WOMAN_CITY]) {
@@ -10629,6 +10669,16 @@ loveheelover:
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, BULLET, 10);
 		}
+		if (ptr == &mons[PM_SYLPH_SPIRIT]) {
+		  	(void) mongets(mtmp, BOW);
+		  	(void) mongets(mtmp, LONG_SWORD);
+		  	(void) mongets(mtmp, LEATHER_CLOAK);
+		  	m_initthrow(mtmp, ARROW, 50);
+		}
+		if (ptr == &mons[PM_CHAOS_HUNTER]) {
+		  	(void) mongets(mtmp, BOW);
+		  	m_initthrow(mtmp, ARROW, 50);
+		}
 		if (ptr == &mons[PM_WASTELAND_BOO]) {
 		  	(void) mongets(mtmp, SAND_SWORD);
 		  	(void) mongets(mtmp, RAPIRAPI);
@@ -11478,6 +11528,9 @@ loveheelover:
 
 		if (ptr == &mons[PM_SEXTARIAN_CUTIE]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL);
+		}
+		if (ptr == &mons[PM_RELIGIOUS_COQUETTE]) {
+			(void) mongets(mtmp, SWEET_MOCASSINS);
 		}
 
 		if (mtmp->data == &mons[PM_HAM_TAIROU]) {
@@ -13446,6 +13499,9 @@ loveheelover:
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ARROW, 50);
 		}
+		if (ptr == &mons[PM_HC_LEYDE]) {
+			(void)mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
+		}
 		if (ptr == &mons[PM_HELLSTLING]) {
 			 m_initthrow(mtmp, SHURIKEN, 50);
 			 m_initthrow(mtmp, SHURIKEN, 50);
@@ -13688,6 +13744,9 @@ loveheelover:
 
 		if(ptr == &mons[PM_VAMPIRE_CORRODER]) (void) mongets(mtmp, WAN_ACID);
 		if(ptr == &mons[PM_DRRDRRDRR_VAMPIRE]) (void) mongets(mtmp, WAN_ACID);
+		if (ptr == &mons[PM_VEIL_PSEUDO_LEYDE]) {
+			(void)mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
+		}
 
 		if (ptr == &mons[PM_SELF_LOATHING_VAMPIRE]) {
 			(void) mongets(mtmp, SLING);
@@ -13750,6 +13809,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_HORNY_DEVIL]) {
 			(void) mongets(mtmp, BULLWHIP);
+		}
+		if (ptr == &mons[PM_LAUGHING_RELIGIOUS_HARLOT]) {
+			(void) mongets(mtmp, HIPPIE_HEELS);
 		}
 		if (ptr == &mons[PM_CHUNK_DEVIL]) {
 			(void) mongets(mtmp, SLING);
@@ -14510,6 +14572,7 @@ loveheelover:
 	    case S_HUMANOID:
 
 		if (ptr == &mons[PM_KNIVER]) (void) mongets(mtmp, UNKNOWN_KNIFE);
+		if (ptr == &mons[PM_RELIGIOUS_DIRT_BIRTH]) (void) mongets(mtmp, KNIFE);
 		if (ptr == &mons[PM_CONTAGION_LASHER]) {
 			otmp = mksobj(BULLWHIP, FALSE, FALSE, FALSE);
 			if (otmp) {
@@ -20463,8 +20526,18 @@ register int	mmflags;
 		mtmp->mpeaceful = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
-	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN]) mtmp->mfrenzied = TRUE;
-	if (ptr == &mons[PM_TAPIA]) mtmp->mfrenzied = TRUE;
+	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN]) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
+	if (ptr == &mons[PM_TAPIA]) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
+	if (ptr == &mons[PM_PRION]) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
 	mtmp->mtraitor  = FALSE;
 	mtmp->masleep = 0;
 
@@ -21158,6 +21231,11 @@ register int	mmflags;
 			if (mndx == PM_CYCLE_OF_LIFE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_SOLAR_CREEPER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_VINES) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PRION) {
+				mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;
+				mtmp->mtame = mtmp->mpeaceful = FALSE;
+				mtmp->mfrenzied = TRUE;
+			}
 
 			break;
 
@@ -26468,6 +26546,8 @@ int type;
 		case PM_ANIMATED_ROLLER_BLADE: return 260;
 		case PM_IRONMAN: return 240;
 		case PM_IRON_GOLEM: return 240;
+		case PM_PYRITE_GOLEM: return 240;
+		case PM_FOOL_S_GOLD_GOLEM: return 240;
 		case PM_ETHEREAL_IRON_GOLEM: return 240;
 		case PM_CONSEQUENCE_OF_YOUR_INSOUCIANCE: return 240;
 		case PM_LONG_GOLEM: return 240;
