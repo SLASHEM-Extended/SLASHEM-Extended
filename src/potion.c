@@ -9494,28 +9494,37 @@ healup(nhp, nxtra, curesick, cureblind)
 			else if (!rn2(2)) u.uhpmax += nxtra;
 		}
 		if (uactivesymbiosis) {
+			/* heal symbiote by about 10% of the amount you were healed; more if high skill --Amy */
 			u.usymbiote.mhpmax += nxtra;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			if (nhp > 1) {
-				int healsymamount = 110;
+				int healsymamount = 10;
+				int reallyhealsym = 0;
 				if (!PlayerCannotUseSkills) {
 					switch (P_SKILL(P_SYMBIOSIS)) {
-						default: healsymamount = 110; break;
-						case P_BASIC: healsymamount = 112; break;
-						case P_SKILLED: healsymamount = 114; break;
-						case P_EXPERT: healsymamount = 116; break;
-						case P_MASTER: healsymamount = 118; break;
-						case P_GRAND_MASTER: healsymamount = 120; break;
-						case P_SUPREME_MASTER: healsymamount = 122; break;
+						default: healsymamount = 10; break;
+						case P_BASIC: healsymamount = 12; break;
+						case P_SKILLED: healsymamount = 14; break;
+						case P_EXPERT: healsymamount = 16; break;
+						case P_MASTER: healsymamount = 18; break;
+						case P_GRAND_MASTER: healsymamount = 20; break;
+						case P_SUPREME_MASTER: healsymamount = 22; break;
 					}
 				} else {
-					healsymamount = 110;
+					healsymamount = 10;
 				}
-				if (Role_if(PM_SYMBIANT)) healsymamount += 10;
+				if (Role_if(PM_SYMBIANT)) healsymamount += 1;
 
-				u.usymbiote.mhp *= healsymamount;
-				u.usymbiote.mhp /= 100;
-				if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+				reallyhealsym = nhp;
+				reallyhealsym *= healsymamount;
+				reallyhealsym /= 10;
+				reallyhealsym /= 10; /* it is no mistake that we do this twice... --Amy */
+				if (reallyhealsym < 0) reallyhealsym = 0;
+
+				if (reallyhealsym > 0) {
+					u.usymbiote.mhp += reallyhealsym;
+					if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
+				}
 			}
 			if (flags.showsymbiotehp) flags.botl = TRUE;
 		}
