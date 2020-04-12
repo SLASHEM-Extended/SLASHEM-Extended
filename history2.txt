@@ -1,6 +1,22 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.6.6 - Apr 2020
+- Fixed the calculations for healing symbiotes; they have been bugged since the introduction of symbiotes.
+- The knock spell now only works sometimes when used against an engulfer or steed.
+- Added new effects for thrones and pentagrams.
+- In evilvariant mode, reading a cursed scroll of identify while confused now causes amnesia.
+- Reverse genocide is now more dangerous, by summoning OOD monsters or otherwise backfiring on occasion.
+- Fixed problems where the player's pets wouldn't always be able to ascend with the player and could segfault if there were too many.
+- If the player's game ends while in freeplay mode, it should now show the artifacts and other valuables in a list.
+- If the player is playing a ZAPM role/race or is in the ZAPM branch, zorkmids are now referred to as buckazoids.
+- New option "inertiaconfirm" that changes the y/n prompt from inertia control to require a full yes/no answer. Also, it's now possible to choose 'q' on that prompt, which will end inertia control immediately.
+- Added more failsafes that should prevent the player from getting stuck with uncurable blindness (which is a bug as long as it's not XBlind).
+- New shopkeeper service: "establish credit", which can be used to establish credit without being cheated by the shopkeeper.
+- Reduced the rate at which general stores get their stock reduced, meaning that they should now have more items on average.
+- Prevented the iraha race from buying services in shops.
+- Fixed a potential segfault when a mindflaying explosion attack hit the player.
+- Sustain ability only prevents stat loss 90% of the time now (unless playing the sustainer race). Stat gains are still completely prevented.
+- Implemented a (hopefully) better fix for the problem where players with the demon flag in their natural form would sometimes summon buggy crash-prone monsters.
 - Spellbooks now spawn with less charges on average and gain less extra charges when recharged. Many rechargable items also have higher odds of exploding when recharged now.
 - Nexus swap will now permanently eat some stat points when it swaps a player's high strength stat with another stat.
 - The first time a player can enhance a skill, the game will now tell them how to do so.
