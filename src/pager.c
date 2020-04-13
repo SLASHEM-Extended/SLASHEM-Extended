@@ -25038,6 +25038,17 @@ static NEARDATA const char * const fake_plines[] = {
 	"You switched fire resistance for shock resistance. Seems like a bad deal with all the fire traps in Gehennom.",
 	"You switched shock resistance for fire resistance.",
 	"You switched fire resistance for intrinsic hunger. Nyah-nyah, now you've screwed yourself over, noob.",
+	"You are being crushed under the weight of your sins!",
+	"Your thoughts are whited out by an overwhelming presence!",
+	"Suddenly, blood streams from your face and eyes!",
+	"Suddenly, blood streams from your face and eyes! OH MY GOD YOU'RE GONNA DIE!!!",
+	"You are being crushed by telekinetic coils!",
+	"You are walloped by an enormous phantasmal warhammer!",
+	"You are bombarded by spectral fists!",
+	"Your body withers and decays!",
+	"You are torn apart by phantasmal skulls!",
+	"Your stomach heaves as it is suddenly filled with water!",
+	"You are covered in ravenous insects!",
 
 };
 

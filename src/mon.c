@@ -1974,6 +1974,7 @@ struct monst *mon;
 	}
 
 	if (mon->data == &mons[PM_YEEK_HARD_WORKER] && !rn2(5)) mmove += 12;
+	if (mon->data == &mons[PM_KOBOLD_BLASTER] && !rn2(5)) mmove += 12;
 
 	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
 
