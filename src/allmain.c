@@ -10423,6 +10423,14 @@ past3:
 	/* etherealoid should have xray vision; doesn't stack with artifacts */
 	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
 
+	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
+		int lagamount = rno(10);
+		while (lagamount > 0) {
+			delay_output();
+			lagamount--;
+		}
+	}
+
 	if (practicantterror) {
 		if (u.uconduct.killer >= 1000 && !u.pract_toomanykills) {
 			pline("%s booms: 'You killed too many monsters, you maggot. That's a fine of 1000 zorkmids.'", noroelaname());

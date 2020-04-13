@@ -634,7 +634,7 @@ register struct monst *mtmp;
 		}
       }
 
-	if (mdat == &mons[PM_LAG_MONSTER] || mdat == &mons[PM_LAG_DEFENSE_TOWER]) { /* laaaaaaaaaag! :D --Amy */
+	if (mdat == &mons[PM_LAG_MONSTER] || mdat == &mons[PM_SLITHER] || mdat == &mons[PM_LAG_DEFENSE_TOWER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
 		while (lagamount > 0) {
 			delay_output();
@@ -2777,8 +2777,10 @@ altarfound:
 	if (monsndx(ptr) == PM_SLEEPY_WOMAN && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPY_LADY && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_SLEEPING_ASIAN_GIRL && !rn2(10)) mtmp->msleeping = 1;
+	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(20)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BEER_BELLY) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_CRAMP_CART_TO_THE_WALL_DRIVER) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SOBER_THE_DRUNK) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LOONIE_BOSS) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_BARTOLI_RETARD) mtmp->mconf = 1;
@@ -2791,6 +2793,7 @@ altarfound:
 	if (monsndx(ptr) == PM_HIGHEST_PRIESTEST) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HAMMER_DRIVE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DIDDLY_DINGUS_DUDE && !rn2(10)) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_PARROT_RIDING_A_GIANT_PENIS && !rn2(10)) mtmp->mconf = 1;
 	if (mtmp->mconf || (uarmh && !rn2(10) && itemhasappearance(uarmh, APP_INKCOAT_HELMET) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_ERR_BOSS) || (monsndx(ptr) == PM_ERR) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (monsndx(ptr) == PM_DEAR_ENEMY) || (monsndx(ptr) == PM_TOIDI) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
@@ -3337,7 +3340,7 @@ postmov:
 		    conceals = hides_under(ptr);
 		}
 
-		if ((EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone() || mtmp->egotype_allivore)) {
+		if ((EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone() || ptr == &mons[PM_RAW_MATERIAL_COLLECTING_TANK] || mtmp->egotype_allivore)) {
 		    if (meatanything(mtmp) == 2) return 2;	/* it died */
 		}
 

@@ -7338,6 +7338,10 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, HAND_BLASTER);
 			 m_initthrow(mtmp, BLASTER_BOLT, 30);
 		}
+		if (ptr == &mons[PM_CHERRY_DENTIST]) {
+			(void) mongets(mtmp, COMBAT_STILETTOS);
+			(void) mongets(mtmp, SCALPEL);
+		}
 
 		if (mtmp->data == &mons[PM_TEAM_SPLAT_PLAYER]) {
 
@@ -8269,6 +8273,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RIM_GOLEM]) {
 			(void) mongets(mtmp, SHOTGUN);
 			 m_initthrow(mtmp, LEAD_SHOT, 30);
+		}
+		if (ptr == &mons[PM_PLASTIC_EXPLOSIVES_GOLEM]) {
+			(void) mongets(mtmp, STICK_OF_DYNAMITE);
+			 m_initthrow(mtmp, FRAG_GRENADE, 20);
 		}
 		if (ptr == &mons[PM_OCTIRON_GOLEM]) {
 			(void) mongets(mtmp, PARTISAN);
@@ -11562,6 +11570,9 @@ loveheelover:
 		if (ptr == &mons[PM_SEXTARIAN_CUTIE]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL);
 		}
+		if (ptr == &mons[PM_PRICK_BEARER]) {
+			(void) mongets(mtmp, BATLETH);
+		}
 		if (ptr == &mons[PM_RELIGIOUS_COQUETTE]) {
 			(void) mongets(mtmp, SWEET_MOCASSINS);
 		}
@@ -12323,6 +12334,7 @@ loveheelover:
 		if (ptr == &mons[PM_CRYSTAL_FISH]) (void)mongets(mtmp, SCR_CRYSTALLIZATION);
 		if (ptr == &mons[PM_FLOWER_CORAL]) (void)mongets(mtmp, SPEAR);
 		if (ptr == &mons[PM_BAY_CORAL]) (void)mongets(mtmp, SPEAR);
+		if (ptr == &mons[PM_WHIP_SHARK]) (void)mongets(mtmp, BULLWHIP);
 
 		if (ptr == &mons[PM_BONING_EEL]) {
 			(void) mongets(mtmp, SLING);
@@ -13303,6 +13315,10 @@ loveheelover:
 			(void) mongets(mtmp, GRAIN_SCYTHE);
 			(void) mongets(mtmp, LOW_BOOTS);
 		}
+		if (monsndx(ptr) == PM_CUDDLY_BANK_LADY) {
+			(void) mongets(mtmp, GENTLEWOMAN_S_DRESS);
+			(void) mongets(mtmp, HIGH_STILETTOS);
+		}
 
 		if (monsndx(ptr) == PM_LASER_MUMMY) {
 			(void) mongets(mtmp, HAND_BLASTER);
@@ -13877,6 +13893,9 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_HORNY_DEVIL]) {
 			(void) mongets(mtmp, BULLWHIP);
+		}
+		if (ptr == &mons[PM_TEACHER_INSIDE_WOMAN]) {
+			(void) mongets(mtmp, FEMININE_PUMPS);
 		}
 		if (ptr == &mons[PM_LAUGHING_RELIGIOUS_HARLOT]) {
 			(void) mongets(mtmp, HIPPIE_HEELS);
@@ -14882,6 +14901,13 @@ loveheelover:
 			 (void) mongets(mtmp, PLATE_MAIL);
 			 (void) mongets(mtmp, LARGE_SHIELD);
 			 (void) mongets(mtmp, LORICATED_CLOAK);
+		}
+		if (mtmp->data == &mons[PM_ROYAL_JELLY]) {
+			(void) mongets(mtmp, LUMP_OF_ROYAL_JELLY);
+			if (rn2(3)) {
+				(void) mongets(mtmp, LUMP_OF_ROYAL_JELLY);
+				if (!rn2(2)) (void) mongets(mtmp, LUMP_OF_ROYAL_JELLY);
+			}
 		}
 
 		if (mtmp->data == &mons[PM_POTION_JEL]) {
@@ -20530,7 +20556,10 @@ register int	mmflags;
 	if (ptr == &mons[PM_LONG_LIVE_THE_GOLDEN]) {
 		mtmp->mhpmax *= 2;
 		mtmp->mhp *= 2;
-
+	}
+	if (ptr == &mons[PM_CUDDLY_BANK_LADY]) {
+		mtmp->mhpmax *= 2;
+		mtmp->mhp *= 2;
 	}
 
 	if ((ptr->geno & G_UNIQ) ) {
@@ -26245,6 +26274,7 @@ int type;
 		case PM_KNIGHT_OF_EMPTY_REFLECTIONS: return 300;
 		case PM_SANDAL_GOLEM: return 150;
 		case PM_MOUNTAIN_GOLEM: return 200;
+		case PM_CRAMP_CART_TO_THE_WALL_DRIVER: return 200;
 		case PM_PHASING_MOUNTAIN_GOLEM: return 200;
 		case PM_SENTINEL_OF_MITHARDIR: return 150;
 		case PM_ITALIAN_GOLEM: return 150;
@@ -26719,6 +26749,7 @@ int type;
 		case PM_TIN_GOLEM: return 40;
 		case PM_RESIN_GOLEM: return 40;
 		case PM_PLASTIC_GOLEM: return 60;
+		case PM_PLASTIC_EXPLOSIVES_GOLEM: return 180;
 		case PM_MOTHERFUCKER_GLASS_GOLEM: return 1000;
 		default: return (mons[type].mlevel * 10); /* failsafe so undefined golems don't start with zero hp! --Amy */
 	}

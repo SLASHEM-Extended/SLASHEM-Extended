@@ -25049,6 +25049,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are torn apart by phantasmal skulls!",
 	"Your stomach heaves as it is suddenly filled with water!",
 	"You are covered in ravenous insects!",
+	"You got turned, and are now gay.",
 
 };
 

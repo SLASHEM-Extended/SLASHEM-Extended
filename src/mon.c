@@ -184,6 +184,8 @@ int mndx;
 	case PM_DWARF_ZOMBIE:
 	case PM_EVIL_DWARF_MUMMY:
 	case PM_DWARF_MUMMY:	mndx = PM_DWARF;  break;
+	case PM_COCKATRICE_ZOMBIE:
+	case PM_COCKATRICE_MUMMY:	mndx = PM_COCKATRICE;  break;
 	case PM_GNOME_ZOMBIE:
 	case PM_EVIL_GNOME_MUMMY:
 	case PM_GNOME_MUMMY:	mndx = PM_GNOME;  break;
@@ -581,6 +583,7 @@ register struct monst *mtmp;
 	    case PM_SMOKY_QUARTZ_UNICORN:
 	    case PM_JET_UNICORN:
 	    case PM_PEARL_UNICORN:
+	    case PM_WIPED_UNICORN:
 	    case PM_GREAT_WHITE_UNICORN:
 	    case PM_GREAT_GRAY_UNICORN:
 	    case PM_GREAT_BLACK_UNICORN:
@@ -721,6 +724,8 @@ register struct monst *mtmp;
 	    case PM_DWARF_MUMMY:
 	    case PM_GNOME_MUMMY:
 	    case PM_ORC_MUMMY:
+	    case PM_COCKATRICE_MUMMY:
+	    case PM_COCKATRICE_ZOMBIE:
 	    case PM_DEFINITELY_NOT_ORC_MUMMY:
 	    case PM_ELF_MUMMY:
 	    case PM_HUMAN_MUMMY:
