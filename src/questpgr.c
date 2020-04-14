@@ -146,7 +146,7 @@ unload_qtlist()
 	return;
 }
 
-short
+int
 quest_info(typ)
 int typ;
 {

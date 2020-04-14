@@ -147,7 +147,7 @@ STATIC_DCL void warn_effects(void);
 #endif /* 0 */
 
 #ifndef OVLB
-STATIC_VAR short cham_to_pm[];
+STATIC_VAR int cham_to_pm[];
 #else
 STATIC_DCL struct obj *make_corpse(struct monst *);
 STATIC_DCL void m_detach(struct monst *, struct permonst *);
@@ -385,7 +385,7 @@ int mndx;
 }
 
 /* convert chameleon index to monster index */
-STATIC_VAR short cham_to_pm[] = {
+STATIC_VAR int cham_to_pm[] = {
 		NON_PM,		/* placeholder for CHAM_ORDINARY */
 		PM_CHAMELEON,
 		PM_DOPPELGANGER,
@@ -7290,7 +7290,7 @@ register struct monst *mtmp;
 	return(FALSE);
 }
 
-short *animal_list = 0;		/* list of PM values for animal monsters */
+int *animal_list = 0;		/* list of PM values for animal monsters */
 int animal_list_count;
 
 void
@@ -7298,7 +7298,7 @@ mon_animal_list(construct)
 boolean construct;
 {
 	if (construct) {
-	    short animal_temp[SPECIAL_PM];
+	    int animal_temp[SPECIAL_PM];
 	    int i, n;
 
 	 /* if (animal_list) impossible("animal_list already exists"); */
@@ -7307,7 +7307,7 @@ boolean construct;
 		if (is_animal(&mons[i])) animal_temp[n++] = i;
 	 /* if (n == 0) animal_temp[n++] = NON_PM; */
 
-	    animal_list = (short *)alloc(n * sizeof *animal_list);
+	    animal_list = (int *)alloc(n * sizeof *animal_list);
 	    (void) memcpy((void *)animal_list,
 			  (void *)animal_temp,
 			  n * sizeof *animal_list);
@@ -8503,7 +8503,7 @@ mimic_hit_msg(mtmp, otyp)
 struct monst *mtmp;
 short otyp;
 {
-	short ap = mtmp->mappearance;
+	int ap = mtmp->mappearance;
 
 	switch(mtmp->m_ap_type) {
 	    case M_AP_NOTHING:

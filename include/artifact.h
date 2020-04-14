@@ -48,8 +48,8 @@ struct artifact {
 	struct attack attk, defn, cary;
 	/*uchar*/int	    inv_prop;	/* property obtained by invoking artifact */
 	aligntyp    alignment;	/* alignment of bequeathing gods */
-	short	    role;	/* character role associated with */
-	short	    race;	/* character race associated with */
+	int	    role;	/* character role associated with */
+	int	    race;	/* character race associated with */
 	long        cost;	/* price when sold to hero (default 100 x base cost) */
 	
 	Bitfield(questarti,1);	/* is quest artifact */

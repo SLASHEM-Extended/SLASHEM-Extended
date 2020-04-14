@@ -2373,7 +2373,7 @@ struct obj *otmp;
 {
 	boolean vismon = canseemon(mtmp);
 	char onambuf[BUFSZ];
-	short saverole;
+	int saverole;
 	unsigned savebknown;
 
 	u.cnd_monscrollcount++;

@@ -1713,7 +1713,7 @@ dokick()
 		}
 		if(IS_SINK(maploc->typ)) {
 			int gend = poly_gender();
-			short washerndx = (gend == 1 || (gend == 2 && rn2(2))) ?
+			int washerndx = (gend == 1 || (gend == 2 && rn2(2))) ?
 					PM_INCUBUS : PM_SUCCUBUS;
 			boolean specwasher = rn2(2) ? 0 : 1;
 			boolean specpudding = rn2(2) ? 0 : 1;

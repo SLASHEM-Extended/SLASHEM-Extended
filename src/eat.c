@@ -3282,6 +3282,11 @@ register int pm;
 		pline("This corpse can grant both teleportitis and teleport control. It can also petrify you, though.");
 		break;
 
+	    case PM_ELONA__:
+
+		pline("You dare to eat @!");
+		break;
+
 	    case PM_STONE_BACULATHRIUM:
 
 		pline("This monster is a funny misspelling of 'baluchitherium' and can turn you to stone.");

@@ -255,7 +255,7 @@ int rank;
 const char *
 rank_of(lev, monnum, female)
 int lev;
-	short monnum;
+int monnum;
 boolean female;
 {
 	register struct Role *role;

@@ -165,7 +165,7 @@ E void max_rank_sz(void);
 E long botl_score(void);
 E int describe_level(char *, int);
 E const char *rank(void);
-E const char *rank_of(int,SHORT_P,BOOLEAN_P);
+E const char *rank_of(int,int,BOOLEAN_P);
 E void bot_set_handler(void (*)());
 E void bot_reconfig(void);
 E void bot(void);
@@ -2427,7 +2427,7 @@ E void finish_quest(struct obj *);
 
 E void load_qtlist(void);
 E void unload_qtlist(void);
-E short quest_info(int);
+E int quest_info(int);
 E const char *ldrname(void);
 E boolean is_quest_artifact(struct obj*);
 E void com_pager(int);

@@ -66,7 +66,7 @@ typedef struct {
 
 typedef struct {
 	Str_or_Len name, appear_as;
-	short id;
+	int id;
 	aligntyp align;
 	xchar x, y, chance, class, appear;
 	schar peaceful, asleep;

@@ -3216,7 +3216,7 @@ static struct trobj WarXtrT[] = {
 
 /* race-based substitutions for initial inventory;
    the weaker cloak for elven rangers is intentional--they shoot better */
-static struct inv_sub { short race_pm, item_otyp, subs_otyp; } inv_subs[] = {
+static struct inv_sub { int race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_ELF,	DAGGER,			ELVEN_DAGGER	      },
     { PM_ELF,	SPEAR,			ELVEN_SPEAR	      },
     { PM_ELF,	SHORT_SWORD,		ELVEN_SHORT_SWORD     },

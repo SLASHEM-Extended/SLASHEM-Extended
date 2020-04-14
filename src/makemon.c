@@ -9065,6 +9065,13 @@ loveheelover:
 			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
 			 m_initthrow(mtmp, LEAD_SHOT, 30);
 		}
+		if (ptr == &mons[PM_SEMINAR_LECTURER]) {
+			 m_initthrow(mtmp, FRAG_GRENADE, 15);
+		}
+		if (ptr == &mons[PM_WYNAN_LORD_OF_THE_ANCIENT_CASTLE]) {
+			(void) mongets(mtmp, QUARTERSTAFF);
+			 m_initthrow(mtmp, DART, 25);
+		}
 		if (ptr == &mons[PM_MILKSHAKE_STICKER]) {
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
 		}
@@ -9881,8 +9888,21 @@ loveheelover:
 			 m_initthrow(mtmp, GRAPHITE, 30);
 		}
 
+		if (ptr == &mons[PM_CLEANER]) {
+			struct obj *otmpX = mksobj(POT_SALT_WATER, TRUE, FALSE, FALSE);
+			if (otmpX) {
+				otmpX->finalcancel = TRUE;
+				otmpX->quan = 5;
+				otmpX->owt = weight(otmpX);
+				mpickobj(mtmp, otmpX, TRUE);
+			}
+		}
+
 		if (mtmp->data == &mons[PM_SNAKE_WOMAN]) (void) mongets(mtmp, SCALPEL);
 		if (mtmp->data == &mons[PM_MEASURER_ALIEN]) (void) mongets(mtmp, MEASURER);
+		if (mtmp->data == &mons[PM_RED_NINJA]) {
+		  	m_initthrow(mtmp, SHURIKEN, 30);
+		}
 
 		if (mtmp->data == &mons[PM_HYDRA_SNAKE]) {
 		  	(void) mongets(mtmp, HYDRA_BOW);
@@ -10764,6 +10784,10 @@ loveheelover:
 		  	(void) mongets(mtmp, PISTOL);
 		  	m_initthrow(mtmp, BULLET, 40);
 		}
+		if (ptr == &mons[PM_PUNK]) {
+		  	(void) mongets(mtmp, FLINTLOCK);
+		  	m_initthrow(mtmp, BULLET, 5);
+		}
 		if (ptr == &mons[PM_GRAPHITE_PUDDING]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, GRAPHITE, 25);
@@ -11270,6 +11294,7 @@ loveheelover:
 	    case S_JABBERWOCK:
 
 		if (mtmp->data == &mons[PM_FUMBLING_MONSTER]) (void) mongets(mtmp, WAN_FUMBLING);
+		if (mtmp->data == &mons[PM_JURE_FANATIC]) (void) mongets(mtmp, SCR_HEALING);
 		if (mtmp->data == &mons[PM_GLIB_MONSTER]) (void) mongets(mtmp, WAN_FINGER_BENDING);
 		if (mtmp->data == &mons[PM_GREATER_STUN_MONSTER]) (void) mongets(mtmp, WAN_STUN_MONSTER);
 		if (mtmp->data == &mons[PM_TOURETTE_ALIEN]) (void) mongets(mtmp, SWEET_MOCASSINS);
@@ -11852,6 +11877,10 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_ARMED_SNAKE]) { (void) mongets(mtmp, ORCISH_BOW); m_initthrow(mtmp, ARROW, 30);}
+
+		if (mtmp->data == &mons[PM_NUNSISTER]) {
+			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+		}
 
 		if (ptr == &mons[PM_GRAPH_SNAKE]) {
 			(void) mongets(mtmp, SLING);
@@ -13637,6 +13666,10 @@ loveheelover:
 			 m_initthrow(mtmp, SAND_DART, 50);
 			 m_initthrow(mtmp, SAND_DART, 50);
 		}
+		if (ptr == &mons[PM_MERCENARY_ARCHER]) {
+			(void) mongets(mtmp, BOW);
+			 m_initthrow(mtmp, ARROW, 25);
+		}
 
 		if (ptr == &mons[PM_FIRECRACKER_KANGAROO]) {
 			(void) mongets(mtmp, SLING);
@@ -13691,6 +13724,7 @@ loveheelover:
 	      if (ptr == &mons[PM_WONDERCLOUD]) (void) mongets(mtmp, WONDER_DAGGER);
 	      if (ptr == &mons[PM_UNHOLY_VORTEX]) (void) mongets(mtmp, SCR_OFFLEVEL_ITEM);
 	      if (ptr == &mons[PM_ROTATER_CLOUD]) (void) mongets(mtmp, WONDER_DAGGER);
+	      if (ptr == &mons[PM_DUNGEON_CLEANER]) (void) mongets(mtmp, POT_SALT_WATER);
 		if (ptr == &mons[PM_VIOLETTA]) {
 			(void) mongets(mtmp, FEMININE_PUMPS);
 			(void) mongets(mtmp, WAN_DEATH);
@@ -14248,6 +14282,10 @@ loveheelover:
 			(void) mongets(mtmp, BAMBOO_MAIL);
 			 m_initthrow(mtmp, SALT_CHUNK, 25);
 		}
+		if (ptr == &mons[PM_DAYDREAMER]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 20);
+		}
 		if (ptr == &mons[PM_SKIES_GEL]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, METAL_LAMELLAR_ARMOR);
@@ -14659,6 +14697,7 @@ loveheelover:
 	    case S_HUMANOID:
 
 		if (ptr == &mons[PM_KNIVER]) (void) mongets(mtmp, UNKNOWN_KNIFE);
+		if (ptr == &mons[PM_FASHIONABLE_KUNOICHI]) (void) mongets(mtmp, SCYTHE);
 		if (ptr == &mons[PM_RELIGIOUS_DIRT_BIRTH]) (void) mongets(mtmp, KNIFE);
 		if (ptr == &mons[PM_CONTAGION_LASHER]) {
 			otmp = mksobj(BULLWHIP, FALSE, FALSE, FALSE);
@@ -21411,6 +21450,8 @@ register int	mmflags;
 			break;
 		case S_NAGA:
 			if (mtmp->data == &mons[PM_MULTI_HUED_NAGA]) set_mimic_sym(mtmp);
+			if (mndx == PM_ELONINJA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_RED_NINJA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 
 		case S_FELINE:

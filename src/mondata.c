@@ -599,7 +599,7 @@ const char *in_str;
 	slen = strlen(str); /* length possibly needs recomputing */
 
     {
-	static const struct alt_spl { const char* name; short pm_val; }
+	static const struct alt_spl { const char* name; int pm_val; }
 	    names[] = {
 	    /* Alternate spellings */
 		{ "grey dragon",	PM_GRAY_DRAGON },
@@ -718,7 +718,7 @@ struct monst *mtmp;
 				(!mtmp->mflee || (u.uhave.amulet && !u.freeplaymode))); /* non-stalking monsters occasionally follow too --Amy */
 }
 
-static const short grownups[][2] = {
+static const int grownups[][2] = {
 	{PM_MOSQUITO, PM_GIANT_MOSQUITO},
 	{PM_LITTLE_DOG, PM_DOG}, {PM_DOG, PM_LARGE_DOG},
 	{PM_LITTLE_GREEN_DOG, PM_GREEN_DOG}, {PM_GREEN_DOG, PM_LARGE_GREEN_DOG},

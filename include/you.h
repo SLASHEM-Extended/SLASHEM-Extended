@@ -30,7 +30,7 @@ struct RoleAdvance {
 
 struct symbiotemon {
 	boolean active;
-	long mnum;	/* permanent monster index number */
+	int mnum;	/* permanent monster index number */
 	int mhp, mhpmax;
 	boolean cursed, hvycurse, prmcurse, bbcurse, morgcurse, evilcurse, stckcurse;
 };
@@ -93,7 +93,7 @@ struct Role {
 	const char *intermed;	/* quest intermediate goal (from questpgr.c) */
 
 	/*** Indices of important monsters and objects ***/
-	short malenum,		/* index (PM_) as a male (botl.c) */
+	int malenum,		/* index (PM_) as a male (botl.c) */
 	      femalenum,	/* ...or as a female (NON_PM == same) */
 		undeadmalenum,	/* index (PM_) as an undead */
 		undeadfemalenum,	/* mainly for bones files --Amy */
@@ -178,7 +178,7 @@ struct Race {
 	struct RoleName individual; /* individual as a noun ("man", "elf") */
 
 	/*** Indices of important monsters and objects ***/
-	short malenum,		/* PM_ as a male monster */
+	int malenum,		/* PM_ as a male monster */
 	      femalenum,	/* ...or as a female (NON_PM == same) */
 	      mummynum,		/* PM_ as a mummy */
 	      zombienum;	/* PM_ as a zombie */

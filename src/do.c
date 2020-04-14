@@ -2063,6 +2063,19 @@ boolean at_stairs, falling, portal;
 		mklev();
 		new = TRUE;	/* made the level */
 
+		if (Race_if(PM_ELONA_SNAIL)) { /* cleaner bastard */
+			s_level *sptr;
+			if ( (sptr = Is_special(&u.uz)) != 0 && sptr->flags.town) {
+				(void) makemon(&mons[PM_CLEANER], 0, 0, MM_ANGRY);
+				if (!rn2(3)) { /* some towns, like Palmia or Arcbelc, have two cleaners */
+					(void) makemon(&mons[PM_CLEANER], 0, 0, MM_ANGRY);
+					if (!rn2(5)) { /* Port Kapul even has three of the bastards! */
+						(void) makemon(&mons[PM_CLEANER], 0, 0, MM_ANGRY);
+					}
+				}
+			}
+		}
+
 		if (In_illusorycastle(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* glass golem */
 			(void) makemon(&mons[PM_MOTHERFUCKER_GLASS_GOLEM], 0, 0, NO_MM_FLAGS);
 			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
