@@ -615,6 +615,7 @@ int after, udist, whappr;
 	    edog->ogoal.x = 0;
 	}
 	if (!u.petcanfollow && appr == 1) appr = 0;
+	if (mtmp && mtmp->data == &mons[PM_ASSBALL_FOOTBALL] && appr == 1) appr = 0;
 	if ((PetAIScrewed || u.uprops[PET_AI_SCREWED].extrinsic || have_petaistone()) && appr == 1) appr = 0;
 	return appr;
 }

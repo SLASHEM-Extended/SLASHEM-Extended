@@ -9739,6 +9739,11 @@ newboss:
 		 * sight, a problem not existing with wands because wand rays
 		 * are not objects.  Also set dknown in mthrowu.c.
 		 */
+
+		if (otmp && otmp->otyp == POT_SALT_WATER && mtmp && mtmp->data == &mons[PM_CLEANER] && Race_if(PM_ELONA_SNAIL)) {
+			verbalize(rn2(2) ? "Snail!" : "Kill!");
+		}
+
 		if (cansee(mtmp->mx, mtmp->my)) {
 			otmp->dknown = 1;
 			pline("%s hurls %s!", Monnam(mtmp),

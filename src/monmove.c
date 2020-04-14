@@ -2958,7 +2958,7 @@ altarfound:
 
 		    if(((likegold && otmp->oclass == COIN_CLASS) ||
 		       (likeobjs && index(practical, otmp->oclass) &&
-			(otmp->otyp != CORPSE || (ptr->mlet == S_NYMPH
+			(otmp->otyp != CORPSE || ((ptr->mlet == S_NYMPH || ptr == &mons[PM_GOLDEN_KNIGHT])
 			   && !is_rider(&mons[otmp->corpsenm]) && !is_deadlysin(&mons[otmp->corpsenm]) ))) ||
 		       (likemagic && index(magical, otmp->oclass)) ||
 		       (uses_items && searches_for_item(mtmp, otmp)) ||
@@ -3061,7 +3061,7 @@ altarfound:
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

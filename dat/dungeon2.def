@@ -87,6 +87,7 @@ BRANCH:	"Space Base" @ (2, 48)
 RNDLEVEL:		"nymph" "N" @ (23, 27) 25 5
 RNDLEVEL:	"bigrm" "B" @ (20, 30) 75 60
 RNDLEVEL:	"exmall" "Y" @ (25, 25) 75 9
+LEVELDESC:	town
 LEVEL:		"cowlc" "A" @ (25, 25) 50
 LEVEL:		"cowld" "A" @ (25, 25) 20
 LEVALIGN:		chaotic
@@ -197,6 +198,7 @@ RNDLEVEL:          "slexd" "M" @ (2, 47) 95 12
 RNDLEVEL:          "slexd" "M" @ (2, 47) 50 12
 
 RNDLEVEL:	"hllma" "H" @ (2, 47) 75 10
+LEVELDESC:	town
 BRANCH:         "Sheol" @ (3, 46) down
 
 # The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
@@ -462,6 +464,7 @@ RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
 RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
 RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
 RNDLEVEL:	"exmall" "Y" @ (1, 99) 75 9
+LEVELDESC:	town
 LEVEL:		"rndmaze" "Z" @ (1, 99) 30
 LEVEL:		"rndmazea" "T" @ (1, 99) 30
 RNDLEVEL:	"intpla" "J" @ (1, 99) 30 5

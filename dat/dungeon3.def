@@ -97,6 +97,7 @@ BRANCH:	"Space Base" @ (2, 48)
 RNDLEVEL:		"nymph" "N" @ (23, 27) 5
 RNDLEVEL:	"bigrm" "B" @ (20, 30) 60
 RNDLEVEL:	"exmall" "Y" @ (25, 25) 9
+LEVELDESC:	town
 LEVEL:		"cowlc" "A" @ (25, 25)
 LEVEL:		"cowld" "A" @ (25, 25)
 LEVALIGN:		chaotic
@@ -207,6 +208,7 @@ RNDLEVEL:          "slexd" "M" @ (2, 47) 12
 RNDLEVEL:          "slexd" "M" @ (2, 47) 12
 
 RNDLEVEL:	"hllma" "H" @ (2, 47) 10
+LEVELDESC:	town
 BRANCH:         "Sheol" @ (3, 46) down
 
 RNDLEVEL:          "heck" "Q" @ (2, 47) 96
@@ -463,6 +465,7 @@ RNDLEVEL:	"bigrm" "B" @ (1, 99) 60
 RNDLEVEL:	"bigrm" "B" @ (1, 99) 60
 RNDLEVEL:	"bigrm" "B" @ (1, 99) 60
 RNDLEVEL:	"exmall" "Y" @ (1, 99) 9
+LEVELDESC:	town
 LEVEL:		"rndmaze" "Z" @ (1, 99)
 LEVEL:		"rndmazea" "T" @ (1, 99)
 RNDLEVEL:	"intpla" "J" @ (1, 99) 5

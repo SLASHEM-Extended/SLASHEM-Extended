@@ -2715,6 +2715,7 @@ BOOTS("levitation boots", "snow boots",
 		OBJ(name,stone), \
 		BITS(0,0,spec,0,mgc,spec,0,0,0,HARDGEM(mohs),0,0,metal), \
 		power, RING_CLASS, prob, 0, 0, cost, 0, 0, 0, 0, 15, color, minlvl, 0 )
+/* adornment must be first, see makemon.c */
 RING("adornment", ADORNED, "wooden",        300, 195, 1, 1, 2, MT_WOOD, HI_WOOD, 1),
 RING("hunger",     HUNGER,     "topaz",     300, 179, 1, 0, 8, MT_GEMSTONE, CLR_CYAN, 1),
 RING("disarming",     GLIB,     "wet",     300,  50, 1, 0, 1, MT_VEGGY, CLR_BRIGHT_BLUE, 1),
