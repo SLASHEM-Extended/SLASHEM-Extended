@@ -2159,6 +2159,12 @@ mattacku(mtmp)
 		pline("*ding*"); 
 	}
 
+	if (mtmp->data == &mons[PM_LUXMAS] && !rn2(20) ) {
+
+		wake_nearby();
+		You_hear(FunnyHallu ? "someone sing 'Jingle bells, jingle bells...'" : "a jingle.");
+	}
+
 /*	Special lycanthrope handling code */
 	if(!mtmp->cham && is_were(mdat) && !range2) {
 	    if(is_human(mdat)) {

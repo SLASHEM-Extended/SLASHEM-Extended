@@ -8615,6 +8615,11 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DEEP_CRYPT_ZOMBIE]) {
 			 (void) mongets(mtmp, SCR_CRYPT);
 		}
+		if (mtmp->data == &mons[PM_BOULDER_ZOMBIE]) {
+			 (void) mongets(mtmp, BOULDER);
+			 (void) mongets(mtmp, BOULDER);
+			 (void) mongets(mtmp, BOULDER);
+		}
 		if (ptr == &mons[PM_MONEY_DECEASED]) {
 		    mtmp->mgold += (long) rnd(200);
 		}
@@ -13008,6 +13013,9 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, FLINT, 40);
 		}
+		if (ptr == &mons[PM_REAPERSAN]) {
+			(void) mongets(mtmp, SCYTHE);
+		}
 
 		if (ptr == &mons[PM_SILVER_LICH]) {
 			(void) mongets(mtmp, SLING);
@@ -13980,6 +13988,9 @@ loveheelover:
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
+		}
+		if (ptr == &mons[PM_SPAGHETTI_MONSTER]) {
+			(void) mongets(mtmp, MYSTERY_LIGHTSABER);
 		}
 		if (ptr == &mons[PM_ELBOW_DEVIL]) {
 			(void) mongets(mtmp, BOW);
@@ -27409,6 +27420,11 @@ assign_sym:
 		ap_type = M_AP_OBJECT;
 		appear = FEDORA;
 	}
+	if (mtmp->data == &mons[PM_ZOMBIE_BOULDER]) {
+		s_sym = ROCK_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = BOULDER;
+	}
 	if (mtmp->data == &mons[PM_BELT_MOUNTAIN]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_mountain;
@@ -27437,7 +27453,7 @@ assign_sym:
 	}
 
 	if (mtmp->data == &mons[PM_STAFF_MIMIC] || mtmp->data == &mons[PM_STAFF_PERMAMIMIC]) {
-		s_sym = SCROLL_CLASS;
+		s_sym = WEAPON_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = QUARTERSTAFF;
 	}
@@ -27449,13 +27465,13 @@ assign_sym:
 	}
 
 	if (mtmp->data == &mons[PM_ROD_MIMIC] || mtmp->data == &mons[PM_ROD_PERMAMIMIC]) {
-		s_sym = SCROLL_CLASS;
+		s_sym = WEAPON_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = STAR_ROD;
 	}
 
 	if (mtmp->data == &mons[PM_WAND_MIMIC] || mtmp->data == &mons[PM_WAND_PERMAMIMIC]) {
-		s_sym = SCROLL_CLASS;
+		s_sym = WAND_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
 	}
