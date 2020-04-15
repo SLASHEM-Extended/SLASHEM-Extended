@@ -301,12 +301,12 @@ RNDLEVEL:		"soko4" "D" @ (4, 0) 95 28
 #
 DUNGEON:	"Town" "A" (5, 0)
 LEVALIGN:       lawful
+LEVELDESC:      town
 RNDLEVEL:       "town" "T" @ (1, 0) 98 4
 RNDLEVEL:          "unhck" "X" @ (2, 0) 5 96
 RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 60
 RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
 LEVEL:		"schoolX" "C" @ (5, 0) 5
-LEVELDESC:      town
 
 ### Grund's Stronghold ###
 DUNGEON:        "Grund's Stronghold" "Z" (1, 0)
