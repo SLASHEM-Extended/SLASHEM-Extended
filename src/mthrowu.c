@@ -348,7 +348,7 @@ const char *name;	/* if null, then format `obj' */
 
 		/* dodge missiles, even when blind; see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
-		use_skill(P_SHIEN, 1);
+		use_skill(P_SHIEN, rnd(4)); /* would take forever to train otherwise --Amy */
 
 		if (tech_inuse(T_ABSORBER_SHIELD) && uwep && is_lightsaber(uwep) && uwep->lamplit) {
 			pline("Energy surges into the lightsaber as the projectile is blocked.");
