@@ -1857,7 +1857,7 @@ E void thrwmu(struct monst *);
 E int spitmu(struct monst *,struct attack *);
 E int breamu(struct monst *,struct attack *);
 E boolean breamspot(struct monst *, struct attack *, XCHAR_P, XCHAR_P);
-E boolean linedup(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
+E boolean linedup(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P);
 E boolean linedupB(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 E boolean lined_up(struct monst *);
 E boolean lined_upB(struct monst *);

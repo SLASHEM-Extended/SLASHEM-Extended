@@ -1299,6 +1299,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 					hitv += 8 + singleobj->spe;
 				}
 			    if (dam < 1) dam = 1;
+			    if (mon && mon->data == &mons[PM_UTIMA_DESTROYER_OF_XEREN]) dam += rnd(100);
 			    hitu = thitu(hitv, dam, singleobj, (char *)0);
 		    }
 		    if (hitu && singleobj->opoisoned) {
@@ -1503,14 +1504,14 @@ struct monst *mtmp;
 	skill = objects[otmp->otyp].oc_skill;
 	mwep = MON_WEP(mtmp);		/* wielded weapon */
 
-	if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
+	if (!(mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
 		dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) >
 		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range) 
 		return; /* Out of range */
 
 	/* monsters were throwing darts way across the map, that is, distances of 70+ squares.
 	 * This was obviously not intended; they should just be able to fire sniper rifles at their actual range. --Amy */
-	else if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
+	else if (!(mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
 
 	/* Multishot calculations */
 	multishot = 1;
@@ -1834,8 +1835,9 @@ xchar ax, ay;
 
 
 boolean
-linedup(ax, ay, bx, by)
+linedup(ax, ay, bx, by, special)
 register xchar ax, ay, bx, by;
+boolean special; /* for monsters that can shoot from infinite distance --Amy */
 {
 	int dx, dy;
 	tbx = ax - bx;	/* These two values are set for use */
@@ -1846,7 +1848,7 @@ register xchar ax, ay, bx, by;
 	if (!tbx && !tby) return FALSE;
 
     if ((!tbx || !tby || abs(tbx) == abs(tby)) /* straight line or diagonal */
-        && distmin(tbx, tby, 0, 0) < ((ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM) ) {
+        && distmin(tbx, tby, 0, 0) < ((special || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM) ) {
         if ((ax == u.ux && ay == u.uy) ? (boolean) couldsee(bx, by) : clear_path(ax, ay, bx, by))
             return TRUE;
         /* don't have line of sight, but might still be lined up
@@ -1911,7 +1913,7 @@ boolean
 lined_up(mtmp)		/* is mtmp in position to use ranged attack? */
 	register struct monst *mtmp;
 {
-	return(linedup(mtmp->mux,mtmp->muy,mtmp->mx,mtmp->my));
+	return(linedup(mtmp->mux,mtmp->muy,mtmp->mx,mtmp->my, (mtmp->data == &mons[PM_UNITDEAD_JOKER]) ));
 }
 
 boolean
@@ -2085,7 +2087,7 @@ mlined_up(mtmp, mdef, breath)	/* From dnethack: is mtmp in position to use range
 {
 	struct monst *mat;
 
-	boolean lined_up = linedup(mdef->mx,mdef->my,mtmp->mx,mtmp->my);
+	boolean lined_up = linedup(mdef->mx,mdef->my,mtmp->mx,mtmp->my, FALSE);
 
 	int dx = sgn(mdef->mx - mtmp->mx),
 	    dy = sgn(mdef->my - mtmp->my);

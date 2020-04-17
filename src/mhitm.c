@@ -466,7 +466,7 @@ mattackm(magr, mdef)
 	    case AT_BREA:
 	    case AT_SPIT:
 
-		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my) ) {
+		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
 		    strike = 0;
 		    attk = 0;
 		    break;
@@ -515,7 +515,7 @@ mattackm(magr, mdef)
 
 	    case AT_MAGC:
 
-		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my) ) {
+		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
 		    strike = 0;
 		    attk = 0;
 		    break;
@@ -579,7 +579,7 @@ mattackm(magr, mdef)
 	    case AT_BEAM:
 meleeattack:
 		/* Nymph that teleported away on first attack? */
-		if ((distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1) && mattk->aatyp != AT_BREA && mattk->aatyp != AT_SPIT && mattk->aatyp != AT_MAGC && (mattk->aatyp != AT_BEAM || (mattk->aatyp == AT_BEAM && !linedup(magr->mx,magr->my,mdef->mx,mdef->my)) ) ) {
+		if ((distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1) && mattk->aatyp != AT_BREA && mattk->aatyp != AT_SPIT && mattk->aatyp != AT_MAGC && (mattk->aatyp != AT_BEAM || (mattk->aatyp == AT_BEAM && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE)) ) ) {
 		    strike = 0;
 		    break;
 		}
@@ -3044,7 +3044,7 @@ struct attack *mattk;
     int typ = mattk->adtyp == AD_RBRE ? rnd(AD_SPC2) : mattk->adtyp;
     int mhp;
 
-    if (linedup(mdef->mx, mdef->my, magr->mx, magr->my)) {
+    if (linedup(mdef->mx, mdef->my, magr->mx, magr->my, FALSE)) {
 	if (magr->mcan) {
 	    if (flags.soundok) {
 		if (canseemon(magr))
@@ -3092,7 +3092,7 @@ struct attack *mattk;
 	return MM_MISS;
     }
 
-    if (linedup(mdef->mx, mdef->my, magr->mx, magr->my)) {
+    if (linedup(mdef->mx, mdef->my, magr->mx, magr->my, FALSE)) {
 	switch (mattk->adtyp) {
 	    case AD_BLND:
 	    case AD_DRST:
@@ -3234,7 +3234,7 @@ struct monst *magr, *mdef;
 	}
     }
 
-    if (!linedup(mdef->mx, mdef->my, magr->mx, magr->my))
+    if (!linedup(mdef->mx, mdef->my, magr->mx, magr->my, FALSE))
 	return MM_MISS;
 
     skill = objects[obj->otyp].oc_skill;

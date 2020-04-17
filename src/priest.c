@@ -707,7 +707,7 @@ struct monst *priest;
 	 * a door then (u.ux, u.uy) may be counted as a possible source which
 	 * is later rejected by linedup() letting the hero off the hook.
 	 */
-	if((u.ux == x && u.uy == y) || !linedup(u.ux, u.uy, x, y) ||
+	if((u.ux == x && u.uy == y) || !linedup(u.ux, u.uy, x, y, FALSE) ||
 		stpx == sgn(tbx) && stpy == sgn(tby)) {
 	    if(IS_DOOR(levl[u.ux][u.uy].typ)) {
 
@@ -820,7 +820,7 @@ struct monst *priest;
 		    return;
 		}
 	    }
-	    if(!linedup(u.ux, u.uy, x, y))
+	    if(!linedup(u.ux, u.uy, x, y, FALSE))
 		return;
 	}
 
