@@ -14062,6 +14062,10 @@ loveheelover:
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
 		}
+		if (ptr == &mons[PM_CTHULHIME]) {
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
+		}
 		if (ptr == &mons[PM_SPAGHETTI_MONSTER]) {
 			(void) mongets(mtmp, MYSTERY_LIGHTSABER);
 		}
@@ -26988,6 +26992,7 @@ int type;
 		case PM_ROBO_KY: return 750;
 		case PM_IRIS_S_SILVER_PUMP: return 750;
 		case PM_INVULNERABLE_GOLEM: return 2000;
+		case PM_MIKRAANESIS: return 2000;
 		case PM_HAMMER_OF_THE_UNDERWORLD: return 1000;
 		case PM_WAX_GOLEM: return 40;
 		case PM_WRAP_GOLEM: return 40;

@@ -1982,6 +1982,13 @@ convertdone:
 		demagogueparole();
 		aggravate();
 	}
+	if (mdat == &mons[PM_GHOST_PORKER] && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+		verbalize("DENERF! DENERF! DENERF!");
+	}
+	if (mdat == &mons[PM_MIKRAANESIS] && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+		pline("*tschoeck tschoeck* Mikraanesis stopped time.");
+		nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
+	}
 
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
 		switch (rnd(9)) {
