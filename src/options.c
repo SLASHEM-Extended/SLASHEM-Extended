@@ -3012,7 +3012,7 @@ goodfruit:
 	fullname = "term_cols";
 	if (match_optname(opts, fullname, sizeof("term_cols")-1, TRUE)) {
 		op = string_for_opt(opts, negated);
-		iflags.wc2_term_cols = atoi(op);
+		iflags.wc2_term_cols = op ? atoi(op) : 0;
 		if (negated) bad_negation(fullname, FALSE);
 		return;
 	}
@@ -3022,7 +3022,7 @@ goodfruit:
 	fullname = "term_rows";
 	if (match_optname(opts, fullname, sizeof("term_rows")-1, TRUE)) {
 		op = string_for_opt(opts, negated);
-		iflags.wc2_term_rows = atoi(op);
+		iflags.wc2_term_rows = op ? atoi(op) : 0;
 		if (negated) bad_negation(fullname, FALSE);
 		return;
 	}
