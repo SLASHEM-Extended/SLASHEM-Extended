@@ -70658,6 +70658,27 @@ essential in locating the Amulet of Yendor."
 %Cp - 01258
 "Thy fate is sealed!"
 %E
+%Cp - 01259
+"You're not wearing your face mask! Your fault if you contract corona!"
+%E
+%Cp - 01260
+"Be wise! Go back home and stay there! Help us prevent covid-19 from spreading!"
+%E
+%Cp - 01261
+"%p, didn't you hear the news? Due to the corona pandemic, all adventurers are forced to stay at home!"
+%E
+%Cp - 01262
+"You haven't obeyed the 'we're staying at home' corona protocol! %p, I'm calling the kops!"
+%E
+%Cp - 01263
+"Halt! %p, show me your papers and give me a compelling reason for why you left your home during corona lockdown!"
+%E
+%Cp - 01264
+"%d will not forgive you if you contract corona due to neglecting the social distancing instructions."
+%E
+%Cp - 01265
+"You wish you could get my shield of reflection, huh?"
+%E
 
 #
 #       Demonic maledictions.
@@ -71576,6 +71597,18 @@ essential in locating the Amulet of Yendor."
 %E
 %Cp - 02304
 "Nyeah nyeah, thou canst hurt me!"
+%E
+%Cp - 02305
+"Contract corona and die!"
+%E
+%Cp - 02306
+"You dastardly covid-19 spreader!"
+%E
+%Cp - 02307
+"Lamer! You can only ascend by abusing throne gamble and time stop! Face me without those spells if you are a man!"
+%E
+%Cp - 02308
+"Social distancing? I'll give you some social distancing, you obedient lawful stupid adventurer!"
 %E
 
 #

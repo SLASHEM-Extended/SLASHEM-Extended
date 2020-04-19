@@ -835,6 +835,8 @@ doread()
 	"Rock 'n Mole",
 	"Yendor Alchemical Academy, Class of '47",
 	"Zombies aren't so tough. I'm more scared of an archon apocalypse.",
+	"I only play SLEX, developed by Amy. Variants of SLEX developed by others are too easy, ascending those would mean nothing to me.",
+	"I used all 8 charges in the wand of wishing despite the developers pleading me to pretend it only had 3!",
 
 	    };
 	    char buf[BUFSZ];

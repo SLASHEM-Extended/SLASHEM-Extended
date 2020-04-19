@@ -4372,6 +4372,11 @@ static NEARDATA const char * const longinglines[] = {
 "Your head wants to disappear in %s's lap, with her hanging her long bundle over your body.",
 "Everyone absolutely wants to be bundled by %s!",
 "Being physically hurt by %s is actually a sign that she loves you, and so you should enjoy the pain :-)",
+"%s's block heels are so fleecy because they're made of cuddle cloth.",
+"Did you see %s's new super-high block heel sandals?",
+"Do you like to watch %s crush the spikes in a spiked pit with her very tender stiletto heels?",
+"%s can hang on to a ledge with her heels, because when she'd otherwise fall down, the front portion of her shoe is still on the ledge and the heel latches on so she'll be saved! Isn't that wonderful? You also want to have such high-heeled shoes.",
+"While %s might not be the most attractive woman in the world, her black lady boots with extra thick block heels can walk the dyke, which you definitely consider very erotic.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4765,6 +4770,7 @@ static NEARDATA const char * const bangganglines[] = {
 "I'm surprised they're just sending one single gang scholar to try to defeat Anna. Deluded fools.",
 "Caesar's Legion will punish you, you mean bastard!",
 "Player 1, soon you'll see what your god looks like - because I'm going to send you to him!",
+"Soon, we will remove you from our lands...",
 };
 
 static NEARDATA const char * const hussylines_specific[] = {
@@ -5046,6 +5052,12 @@ static NEARDATA const char * const hussylines_wal[] = {
 "I really pity you for listening to that Walt fool who seriously thinks he and his 'walscholars' could defeat Anna.",
 "You will probably be knocked out if I kick you even once with my girl boots.",
 "That walscholar is an obese couch potato! They certainly can't even hope to defeat a Hussy in combat.",
+"Sigh, why don't those walscholars obey the social distancing protocols... ah well, instead of calling the cops, I'll just finish them off real quick.",
+"Did you know that Walt has corona virus? You probably contracted it when you met him last time, and I hope you die of it!",
+"If the corona infection doesn't kill you, my perfume will. After all, your immune system will be weakened from the disease.",
+"That butt-ugly face mask will not protect you from my scentful perfume. In fact, it won't protect you from covid either, but you probably already knew that.",
+"You're wearing one of those hideously ugly face masks? And you call the members of the hola-hola brigade 'ugly'??? Just look in the mirror! You'll wish that your parents never conceived you!",
+"Should have stayed at home, walscholar! Anna and the Hussy Club will make you wish you had listened to the government's regulations!",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -5147,6 +5159,12 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "%s, Walt is only using you. You're just a pawn in his army of redshirts! Turn traitor on him and I'll allow you to live!",
 "So you're capable of erecting diamond barriers, %s. Well, you should know that my female butt is capable of destroying them again and again, no matter how many you set up.",
 "%s, you smoke too much and are also overweight!",
+"%s, you probably have covid-19, so why the hell aren't you staying at home?",
+"Us Hussies don't care about social distancing, at least not as long as %s still remains a threat! All of us will come for you in formation and finish you!",
+"That %s heretic isn't wearing a face mask! They probably have corona already! We need to lure them into our trap so that we don't contract the plague ourselves!",
+"%s, you and your abnormal friends! I know you were celebrating corona parties with them instead of isolating like a good citizen!",
+"Yes, of course the hola-hola brigade is also wearing face protection. But they're still looking not nearly as ugly as you, %s!",
+"%s, why do you insist on wearing that ridiculous face mask. Real men wear a shemagh for protection!",
 };
 
 static NEARDATA const char * const noroelabuying[] = {
@@ -5217,6 +5235,9 @@ static NEARDATA const char * const noroelabuying[] = {
 "And yet again I bought %s! Collecting practicant money is great, since I can afford several of the same type of item so I have a spare!",
 "I'm really raking it in lately, just now I spent some practicant money on %s!",
 "Man I'm making a killing off of you little practicant. Look! %s is the new trophy I've bought!",
+"Screw social distancing, I can go shopping whenever I want. Today I bought %s!",
+"I'm not afraid of corona. As long as I'm raking in practicant money, I'll go shopping whenever I want, in fact there was %s on sale today and I just could not resist!",
+"The government can bite me, no shop is closed for me. After all, that practicant gave me so much money, I just had to go out there and get %s.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -5766,6 +5787,15 @@ static NEARDATA const char * const bosstaunts[] = {
 "sneers: 'You're in a dead end position.'",
 "threatens: 'You're going down, clown.'",
 "announces: 'I'm going to rub you out.'",
+"announces: 'You've violated the social distancing protocols!'",
+"shouts: 'Police! I've spotted someone who isn't wearing a face mask!'",
+"screams: 'That adventurer over there is obviously infected with corona!'",
+"points a finger at you and shouts 'Corona!'",
+"gets ready to sneeze in your general direction with the intention of spreading the corona infection.",
+"calls: 'You there! You have covid-19! Why aren't you quarantined?'",
+"calls: 'You there! You have covid-19! Since the government didn't quarantine you yet, I'll now quarantine you permanently!'",
+"starts hacking the game code to nerf your most used spells!",
+"stopped time! You can't move!",
 
 };
 

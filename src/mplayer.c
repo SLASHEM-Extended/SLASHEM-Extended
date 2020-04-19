@@ -97,7 +97,7 @@ char *nam;
 
 		} else {
 
-			switch (rnd(78)) {
+			switch (rnd(79)) {
 
 				case 1: strcpy(nam, "Bhaak"); break;
 				case 2: strcpy(nam, "Jonadab"); break;
@@ -177,6 +177,7 @@ char *nam;
 				case 76: strcpy(nam, "Micromoog"); break;
 				case 77: strcpy(nam, "Malor"); break;
 				case 78: strcpy(nam, "Merlek"); break;
+				case 79: strcpy(nam, "Musicdemon"); break;
 				default: strcpy(nam, "BugMalName"); break;
 
 			}

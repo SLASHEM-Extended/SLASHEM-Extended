@@ -5330,6 +5330,12 @@ static const char *epitaphs[] = {
 	"Telling me to play very easy difficulty when I complain about the impossibility to have pets steal from shops is incredibly arrogant.",
 	"Here lies Sid, ascended... and cracked his skull on the ceiling.",
 	"Time Capsule: Do not open until T:4283852",
+	"Here, we buried the variant that was impossible to ascend despite there being a tournament held that would award money to those who ascend it.",
+	"RIP wand of wishing (0:3), killed by the wand of wishing (0:8) and the developers whining that players please don't use more than three charges.",
+	"Wait, the elder priest is immune to time stop???",
+	"Huh. Didn't think the random backfires from the map level spell could be that bad.",
+	"RIP tender yellow-blonde practicant lass, crushed under the weight of Noroela's cruel dictatorship when she ultimately ran out of money with which to pay the fines.",
+	"Amy, even a fresh slex compile has this problem!!!",
 
 };
 
