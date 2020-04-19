@@ -939,7 +939,7 @@ doforce()		/* try to force a chest with your weapon */
 
 				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 					u.uwediturns++;
-					if (u.uwediturns >= 5) {
+					if (u.uwediturns >= 2) {
 						u.uwediturns = 0;
 						use_skill(P_WEDI, 1);
 					}
