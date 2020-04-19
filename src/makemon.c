@@ -7338,9 +7338,21 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, HAND_BLASTER);
 			 m_initthrow(mtmp, BLASTER_BOLT, 30);
 		}
+		if (ptr == &mons[PM_SHOTGUN_SNIPER]) {
+			(void) mongets(mtmp, AUTO_SHOTGUN);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 40);
+		}
 		if (ptr == &mons[PM_CHERRY_DENTIST]) {
 			(void) mongets(mtmp, COMBAT_STILETTOS);
 			(void) mongets(mtmp, SCALPEL);
+		}
+		if (ptr == &mons[PM_ELONGATED_KURWA]) {
+			(void) mongets(mtmp, RED_SPELL_HEELS);
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
+			(void) mongets(mtmp, rnd_offensive_item(mtmp));
 		}
 
 		if (mtmp->data == &mons[PM_TEAM_SPLAT_PLAYER]) {
@@ -8808,6 +8820,18 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BUNTER]) {
 			(void) mongets(mtmp, HUNTING_RIFLE);
 			m_initthrow(mtmp, BULLET, 45);
+		}
+		if (mtmp->data == &mons[PM_REAL_ARROW_DUCK]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 45);
+		}
+		if (mtmp->data == &mons[PM_REAL_BOLT_DUCK]) {
+			(void) mongets(mtmp, CROSSBOW);
+			m_initthrow(mtmp, CROSSBOW_BOLT, 55);
+		}
+		if (mtmp->data == &mons[PM_REAL_BULLET_DUCK]) {
+			(void) mongets(mtmp, RIFLE);
+			m_initthrow(mtmp, BULLET, 50);
 		}
 		if (mtmp->data == &mons[PM_PREDATOR_DRONE]) {
 			(void) mongets(mtmp, ARM_BLASTER);
@@ -10953,6 +10977,10 @@ loveheelover:
 			(void) mongets(mtmp, POT_CONFUSION);
 		}
 
+		if (ptr == &mons[PM_HOT_MUSHROOM_TEACHER]) {
+			(void) mongets(mtmp, ROCKET_LAUNCHER);
+			 m_initthrow(mtmp, ROCKET, 20);
+		}
 		if (ptr == &mons[PM_BRAVITY_MODDED_PERSON]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, GRAPHITE, 20);
@@ -11387,6 +11415,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_HAMMER_ATHACH]) (void) mongets(mtmp, WAR_HAMMER);
 		if (mtmp->data == &mons[PM_MACE_ATHACH]) (void) mongets(mtmp, MACE);
 		if (mtmp->data == &mons[PM_ACID_SOURCE]) (void) mongets(mtmp, POT_ACID);
+		if (mtmp->data == &mons[PM_RNG_DICER]) (void) mongets(mtmp, ARCANE_HORN);
 		if(ptr == &mons[PM_YITH_DAEMON]) {
 			(void) mongets(mtmp, YITH_TENTACLE);
 		}
@@ -11802,6 +11831,12 @@ loveheelover:
 		if (mtmp->data == &mons[PM_WIMPDAG_BANGER]) {
 			(void) mongets(mtmp, UNICORN_HORN);
 			m_initthrow(mtmp, ORCISH_DAGGER, 5);
+		}
+		if (mtmp->data == &mons[PM_DARK_BANGER]) {
+			(void) mongets(mtmp, DARK_HORN);
+		}
+		if (mtmp->data == &mons[PM_ARCANE_BANGER]) {
+			(void) mongets(mtmp, ARCANE_HORN);
 		}
 		if (mtmp->data == &mons[PM_AVARICIOUS_BANGER]) {
 			(void) mongets(mtmp, UNICORN_HORN);
@@ -14672,6 +14707,14 @@ loveheelover:
 		if (ptr == &mons[PM_MOAI]) {
 			(void) mongets(mtmp, HAND_BLASTER);
 			m_initthrow(mtmp, rn2(20) ? BLASTER_BOLT : HEAVY_BLASTER_BOLT, 30);
+		}
+		if (ptr == &mons[PM_DESKTOP_NAVY]) {
+			(void) mongets(mtmp, ROCKET_LAUNCHER);
+			 m_initthrow(mtmp, ROCKET, 10);
+		}
+		if (ptr == &mons[PM_DESKTOP_NAVY_SWARM]) {
+			(void) mongets(mtmp, ROCKET_LAUNCHER);
+			 m_initthrow(mtmp, ROCKET, 10);
 		}
 
 		if (ptr == &mons[PM_LIGHTWHOOSH_WALL]) {

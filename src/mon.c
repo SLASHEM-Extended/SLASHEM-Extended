@@ -661,6 +661,24 @@ register struct monst *mtmp;
 		} else
 			(void) mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE, FALSE);
 		goto default_1;
+	    case PM_ARCANE_LIGHT_UNICORN:
+	    case PM_ARCANE_MEDIUM_UNICORN:
+	    case PM_ARCANE_EVIL_UNICORN:
+		if (mtmp->mrevived && rn2(20)) {
+			if (canseemon(mtmp))
+			   pline("%s recently regrown horn crumbles to dust.",
+				s_suffix(Monnam(mtmp)));
+		} else
+			(void) mksobj_at(ARCANE_HORN, x, y, TRUE, FALSE, FALSE);
+		goto default_1;
+	    case PM_COLLUDE_UNICORN:
+		if (mtmp->mrevived && rn2(20)) {
+			if (canseemon(mtmp))
+			   pline("%s recently regrown horn crumbles to dust.",
+				s_suffix(Monnam(mtmp)));
+		} else
+			(void) mksobj_at(DARK_HORN, x, y, TRUE, FALSE, FALSE);
+		goto default_1;
 	    case PM_LONG_WORM: /* crysknives are too powerful, they should be rare --Amy */
 		if (!rn2(20)) (void) mksobj_at(WORM_TOOTH, x, y, TRUE, FALSE, FALSE);
 		goto default_1;
@@ -1979,6 +1997,7 @@ struct monst *mon;
 	}
 
 	if (mon->data == &mons[PM_YEEK_HARD_WORKER] && !rn2(5)) mmove += 12;
+	if (mon->data == &mons[PM_INDRA] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_KOBOLD_BLASTER] && !rn2(5)) mmove += 12;
 
 	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
@@ -3910,7 +3929,7 @@ struct monst *mtmp;
 		} else
 			return;
 
-	} else if ((mtmp->data == &mons[PM_IMMORTAL_MYSTIC_SCARAB] || mtmp->data == &mons[PM_WRONG_DECISION_MEETING_COURT]) && rn2(5) ) {
+	} else if ((mtmp->data == &mons[PM_IMMORTAL_MYSTIC_SCARAB] || mtmp->data == &mons[PM_WRONG_DECISION_MEETING_COURT] || mtmp->data == &mons[PM_ORICHAL_CO]) && rn2(5) ) {
 		visible = u.uswallow && u.ustuck == mtmp ||
 			cansee(mtmp->mx, mtmp->my);
 		if (visible) {

@@ -337,6 +337,9 @@ elongation_monster(ptr)
 register struct permonst *ptr;
 {
 	if (ptr == &mons[PM_UNITDEAD_JOKER]) return TRUE;
+	if (ptr == &mons[PM_SHOTGUN_SNIPER]) return TRUE;
+	if (ptr == &mons[PM_ELONGATED_KURWA]) return TRUE;
+	if (ptr == &mons[PM_LONG_DISTANCE_OWLBEAR]) return TRUE;
 
 	return FALSE;
 }
@@ -400,7 +403,11 @@ struct permonst *ptr;
     case PM_SMOKY_QUARTZ_UNICORN:
     case PM_JET_UNICORN:
     case PM_PEARL_UNICORN:
+    case PM_ARCANE_LIGHT_UNICORN:
+    case PM_ARCANE_MEDIUM_UNICORN:
+    case PM_ARCANE_EVIL_UNICORN:
     case PM_WIPED_UNICORN:
+    case PM_COLLUDE_UNICORN:
     case PM_PLAYER_UNICORN:
     case PM_ILLUSION_HORN:
     case PM_BLOODY_HORN:
