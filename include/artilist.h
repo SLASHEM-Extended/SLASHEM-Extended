@@ -45,7 +45,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
  * 2.  By weapon class (skill).
  */
 
-/* Amy test entry for easier copy-n-pasting */
+/* Amy test entry (dummy) for easier copy-n-pasting */
 /*
 A("",				itemname,
 	(SPFX_RESTR), 0, 0,
@@ -6906,6 +6906,10 @@ A("Laughtersnee",				ETHER_SAW, /* resist confusion and stun, displacement; by j
 A("Nenya",				RIN_PROTECTION, /* unchanging, causes elves to generate peaceful; by aosdict */
 	(SPFX_RESTR|SPFX_WARN|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Porkman's Balls of Steel",				HEAVY_SILVER_BALL, /* silver spells, you take extra damage of silver */
+	(SPFX_RESTR|SPFX_REGEN|SPFX_EREGEN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
 
 /*

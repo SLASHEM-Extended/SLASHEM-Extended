@@ -8907,7 +8907,7 @@ madnesseffect:
 				break;
 			case 3: /* holy incense */
 
-				if(is_undead(youmonst.data) || hates_silver(youmonst.data)) {
+				if(is_undead(youmonst.data) || hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL)) {
 
 					pline("Eek - this smells like %s!", FunnyHallu ? "priest's fart" : "exocism incense");
 					losehp(rnd(20)+ rnd( (monster_difficulty() ) + 1),"holy incense",KILLED_BY);

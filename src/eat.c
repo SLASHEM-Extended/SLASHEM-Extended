@@ -5087,7 +5087,7 @@ struct obj *otmp;
 
 	    case WHITE_PEACH:
 	    case SENTOU:
-		if (hates_silver(youmonst.data)) {
+		if (hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			make_vomiting((long)rn1(victual.reqtime, 5), FALSE);
 			break;
 		}

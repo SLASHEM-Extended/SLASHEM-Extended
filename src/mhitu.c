@@ -6049,7 +6049,7 @@ hitmu(mtmp, mattk)
 			}
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
-				hates_silver(youmonst.data)) {
+				hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			    pline("The silver sears your flesh!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
@@ -9759,7 +9759,7 @@ dopois:
 			} else dmg += dmgval(otmp, &youmonst);
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
-				hates_silver(youmonst.data)) {
+				hates_silver(youmonst.data) || (uwep && uwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PORKMAN_S_BALLS_OF_STEEL) ) {
 			    pline("The silver sears your flesh!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
