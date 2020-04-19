@@ -1192,6 +1192,13 @@ register int after;	/* this is extra fast monster movement */
 		}
 	nxti:	;
 	}
+
+	/* monmove.c now allows stationary pets to get turns, but they're not supposed to actually walk around --Amy
+	 * the "goto newdogpos" above means the pet can cheat and move anyway if it wants to get food :P */
+	if (mtmp->data->mlet == S_TURRET || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) {
+		return 0;
+	}
+
 newdogpos:
 	if (nix != omx || niy != omy) {
 		struct obj *mw_tmp;

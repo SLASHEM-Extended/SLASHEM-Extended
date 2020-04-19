@@ -2576,6 +2576,11 @@ register int after;
 			return 3;			/* still eating */
 		}
 
+		if(mtmp->mtame) {
+			mmoved = dog_move(mtmp, after);
+			goto postmov;
+		}
+
 		return(0); /* stationary turrets --Amy */
 	}
 
