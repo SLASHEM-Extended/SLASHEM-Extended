@@ -331,6 +331,31 @@ sticks(ptr)	/* creature sticks other creatures it hits */
 		attacktype(ptr,AT_HUGS)));
 }
 
+/* can the monster use wands, hug attacks etc. from infinitely far away? --Amy */
+boolean
+elongation_monster(ptr)
+register struct permonst *ptr;
+{
+	if (ptr == &mons[PM_UNITDEAD_JOKER]) return TRUE;
+
+	return FALSE;
+}
+
+/* can the monster still move when you stopped time? --Amy */
+boolean
+immune_timestop(ptr)
+register struct permonst *ptr;
+{
+	if (ptr == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) return TRUE;
+	if (ptr == &mons[PM_TIKSRVZLLAT]) return TRUE;
+	if (ptr == &mons[PM_SVEN]) return TRUE;
+	if (ptr == &mons[PM_GRANDMASTER_SVEN]) return TRUE;
+	if (ptr == &mons[PM_WORLD_PWNZOR]) return TRUE;
+	if (dmgtype(ptr, AD_TIME)) return TRUE;
+
+	return FALSE;
+}
+
 /* number of horns this type of monster has on its head */
 int
 num_horns(ptr)

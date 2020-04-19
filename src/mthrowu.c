@@ -1504,14 +1504,14 @@ struct monst *mtmp;
 	skill = objects[otmp->otyp].oc_skill;
 	mwep = MON_WEP(mtmp);		/* wielded weapon */
 
-	if (!(mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
+	if (!(elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
 		dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) >
 		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range) 
 		return; /* Out of range */
 
 	/* monsters were throwing darts way across the map, that is, distances of 70+ squares.
 	 * This was obviously not intended; they should just be able to fire sniper rifles at their actual range. --Amy */
-	else if (!(mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
+	else if (!(elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
 
 	/* Multishot calculations */
 	multishot = 1;
@@ -1913,7 +1913,7 @@ boolean
 lined_up(mtmp)		/* is mtmp in position to use ranged attack? */
 	register struct monst *mtmp;
 {
-	return(linedup(mtmp->mux,mtmp->muy,mtmp->mx,mtmp->my, (mtmp->data == &mons[PM_UNITDEAD_JOKER]) ));
+	return(linedup(mtmp->mux,mtmp->muy,mtmp->mx,mtmp->my, (elongation_monster(mtmp->data)) ));
 }
 
 boolean

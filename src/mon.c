@@ -3605,7 +3605,7 @@ struct monst *magr,	/* monster that is currently deciding where to move */
 	     *mdef;	/* another monster which is next to it */
 {
 
-	if (TimeStopped) return 0L; /* turned out they were still able to bash each other during time stop! */
+	if (TimeStopped && !immune_timestop(magr->data) && !immune_timestop(mdef->data) ) return 0L; /* turned out they were still able to bash each other during time stop! */
 
 	if (!magr || !mdef) return 0L; /* error - shouldn't happen */
 	if (DEADMONSTER(magr) || DEADMONSTER(mdef)) return 0L; /* bugfix */

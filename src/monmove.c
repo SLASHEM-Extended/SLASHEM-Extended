@@ -567,7 +567,7 @@ register struct monst *mtmp;
 	if (FemtrapActiveKatharina) fartdistance = 15;
 	if (FemtrapActiveKatharina && mtmp->crapbonus) fartdistance = 100;
 
-	if (TimeStopped) return 0;	/* time stop completely prevents monsters from doing anything --Amy */
+	if (TimeStopped && !immune_timestop(mtmp->data)) return 0;	/* time stop completely prevents monsters from doing anything, but some are immune --Amy */
 	if (u.stasistime) return 0;	/* stasis does the same --Amy */
 	if (uarmf && uarmf->oartifact == ART_ELEVECULT && !rn2(3)) return 0;
 

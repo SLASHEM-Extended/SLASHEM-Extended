@@ -2247,7 +2247,7 @@ mattacku(mtmp)
 		case AT_BUTT:
 		case AT_TENT:
 			if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
-					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
+					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
@@ -2258,7 +2258,7 @@ mattacku(mtmp)
 			    } else wildmiss(mtmp, mattk);
 			}
 
-			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
+			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -2301,7 +2301,7 @@ mattacku(mtmp)
 		case AT_HUGS:	/* automatic if prev two attacks succeed */
 			/* Note: if displaced, prev attacks never succeeded */
 		/* Note by Amy: come on, allow it to hit sometimes even if there are no previous attacks (shambling horror)! */
-		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(Race_if(PM_IRRITATOR) ? 4 : 50) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
+		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(Race_if(PM_IRRITATOR) ? 4 : 50) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
 				if ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) sum[i]= hitmu(mtmp, mattk);
 				}
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
@@ -2309,7 +2309,7 @@ mattacku(mtmp)
 		case AT_BEAM:  /* ranged non-contact attack by Chris - only go off 40% of the time for balance reasons --Amy */
 			if (!rn2(2) && !issoviet) break;
 cursesatyou:
-			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
+			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}
@@ -2360,7 +2360,7 @@ cursesatyou:
 
 			if (/*range2 &&*/ !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_SPC2) ) )
 			    sum[i] = breamu(mtmp, mattk);
-			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
+			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
 			{  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
@@ -2376,7 +2376,7 @@ cursesatyou:
 			    sum[i] = spitmu(mtmp, mattk);
 			/* Note: spitmu takes care of displacement */
 
-			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) )
+			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) )
 			{  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
@@ -2419,10 +2419,10 @@ cursesatyou:
 			break;
 		case AT_WEAP:
 
-			if (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && (tmp > (rnd(20+i))) )
+			if (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && (tmp > (rnd(20+i))) )
 			hitmu(mtmp, mattk);
 
-			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
+			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -4419,7 +4419,7 @@ elena37:
 		a->damd = (1 + (mtmp->m_lev));
 
 		if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
-					!touch_petrifies(youmonst.data))) || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
+					!touch_petrifies(youmonst.data))) || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
 				sum[i] = hitmu(mtmp, a);
@@ -4439,7 +4439,7 @@ elena37:
 		a->damn = 2;
 		a->damd = (1 + (mtmp->m_lev));
 
-		if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (mtmp->data == &mons[PM_UNITDEAD_JOKER] || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
+		if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
 		{
 		    if (foundyou) {
 			sum[i] = hitmu(mtmp, a);

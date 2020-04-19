@@ -1750,6 +1750,8 @@ E boolean can_track(struct permonst *);
 E boolean breakarm(struct permonst *);
 E boolean sliparm(struct permonst *);
 E boolean sticks(struct permonst *);
+E boolean elongation_monster(struct permonst *);
+E boolean immune_timestop(struct permonst *);
 E int num_horns(struct permonst *);
 /* E boolean canseemon(struct monst *); */
 E struct attack *dmgtype_fromattack(struct permonst *,int,int);
