@@ -3009,6 +3009,7 @@ badeffect()
 				ragnarok(TRUE);
 				if (evilfriday) evilragnarok(TRUE, level_difficulty());
 			} else if (!rn2(evilfriday ? 100 : 10000)) {
+				u.datadeletedefer = 1;
 				pline("OH MY GOD the dungeon master rolled the jackpot. You're screwed.");
 				datadeleteattack();
 			}
@@ -4253,6 +4254,7 @@ reallybadeffect()
 				if (evilfriday) evilragnarok(TRUE, level_difficulty());
 			} else if (!rn2(evilfriday ? 100 : 10000)) {
 				pline("OH MY GOD the dungeon master rolled the jackpot. You're screwed.");
+				u.datadeletedefer = 1;
 				datadeleteattack();
 			}
 
@@ -5980,6 +5982,8 @@ datadeleteattack()
 			break;
 
 	}
+
+	u.datadeletedefer = 0;
 
 }
 

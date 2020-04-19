@@ -8428,6 +8428,7 @@ boolean ranged;
 
 	    case AD_DATA:
 
+		u.datadeletedefer = 1;
 		datadeleteattack();
 		break;
 

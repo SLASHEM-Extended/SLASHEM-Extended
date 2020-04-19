@@ -10266,7 +10266,10 @@ past3:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
-				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+					u.datadeletedefer = 1;
+					datadeleteattack();
+				}
 				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -10282,7 +10285,10 @@ past3:
 					You("were banished!");
 
 				}
-				else datadeleteattack();
+				else {
+					u.datadeletedefer = 1;
+					datadeleteattack();
+				}
 
 			}
 
@@ -10291,7 +10297,10 @@ past3:
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 
-				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				if ((((u.uevent.udemigod || u.uhave.amulet) && !u.freeplaymode) || In_endgame(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+					u.datadeletedefer = 1;
+					datadeleteattack();
+				}
 				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
 
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -10308,7 +10317,10 @@ past3:
 
 				}
 
-				else datadeleteattack();
+				else {
+					u.datadeletedefer = 1;
+					datadeleteattack();
+				}
 
 			}
 
@@ -13890,6 +13902,12 @@ boolean new_game;	/* false => restoring an old game */
 		u.youaredead = 0;
 		u.youarereallydead = 0;
 
+	}
+
+	if (!new_game && u.datadeletedefer) {
+		pline("Oh no, you're not gonna hangup cheat past a data delete effect.");
+		datadeleteattack();
+		u.datadeletedefer = 0;
 	}
 
 	if (u.segfaultpanic) {

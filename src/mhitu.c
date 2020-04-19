@@ -4956,16 +4956,19 @@ elena37:
 	 * will not consider SLEX a balanced game. It is balanced around the fact that you can die unfairly :P) --Amy */
 	if (mtmp->data == &mons[PM_BOFH] && isevilvariant) {
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
 			datadeleteattack();
 		}
 	}
 	if (mtmp->data == &mons[PM_ALPHANUMEROGORGON] && isevilvariant) {
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
 			datadeleteattack();
 		}
 	}
 	if (mtmp->data == &mons[PM_LEFTOGORGON] && isevilvariant) {
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
 			datadeleteattack();
 		}
 	}
@@ -5038,6 +5041,7 @@ elena37:
 		}
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			u.datadeletedefer = 1;
 			datadeleteattack();
 		}
 
@@ -8006,6 +8010,7 @@ dopois:
 
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
+		u.datadeletedefer = 1;
 		datadeleteattack();
 
 		break;
@@ -10617,6 +10622,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		case AD_DATA:
 
+			u.datadeletedefer = 1;
 			datadeleteattack();
 			break;
 
@@ -13181,6 +13187,7 @@ common:
 	    case AD_DATA:
 
 		mdamageu(mtmp, tmp);
+		u.datadeletedefer = 1;
 		datadeleteattack();
 		break;
 
@@ -18038,6 +18045,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
 			pline("%s infects your system with viruses!", Monnam(mtmp));
+			u.datadeletedefer = 1;
 			datadeleteattack();
 		}
 

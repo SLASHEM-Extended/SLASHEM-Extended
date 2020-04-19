@@ -9864,6 +9864,7 @@ secremchoice:
 	case SCR_ROOT_PASSWORD_DETECTION:
 
 		if (sobj->oartifact == ART_ERASE_ALL_DATA) {
+			u.datadeletedefer = 1;
 			datadeleteattack();
 			pline("Congratulations, now all your data has been erased. Well done!");
 			break;

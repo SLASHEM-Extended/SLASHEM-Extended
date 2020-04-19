@@ -11722,6 +11722,7 @@ madnesseffect:
 
 		 case DATA_DELETE_TRAP:
 
+			u.datadeletedefer = 1;
 			pline("CLICK! You have triggered a trap!");
 			deltrap(trap);
 			datadeleteattack();
