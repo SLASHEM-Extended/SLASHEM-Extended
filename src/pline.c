@@ -133,7 +133,7 @@ pline VA_DECL(const char *, line)
 ) line = " ";
 
 	if (index(line, '%')) {
-	    vsprintf(pbuf,line,VA_ARGS);
+	    vsnprintf(pbuf,sizeof pbuf,line,VA_ARGS);
 	    line = pbuf;
 	}
 
@@ -563,7 +563,7 @@ raw_printf VA_DECL(const char *, line)
 	    raw_print(line);
 	else {
 	    char pbuf[BUFSZ];
-	    vsprintf(pbuf,line,VA_ARGS);
+	    vsnprintf(pbuf,sizeof pbuf,line,VA_ARGS);
 	    raw_print(pbuf);
 	}
 }
@@ -579,7 +579,7 @@ impossible VA_DECL(const char *, s)
 	program_state.in_impossible = 1;
 	{
 	    char pbuf[BUFSZ];
-	    vsprintf(pbuf,s,VA_ARGS);
+	    vsnprintf(pbuf,sizeof pbuf,s,VA_ARGS);
 	    paniclog("impossible", pbuf);
 	}
 	vpline(s,VA_ARGS);
