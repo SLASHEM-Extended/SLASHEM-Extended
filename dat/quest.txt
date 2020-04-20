@@ -41754,36 +41754,37 @@ You have the oddest feeling that this may be the last time you
 are to enter %H.
 %E
 %Cp Erd 00005
-"%p!  I have not seen you in many cycles.  How do you fare?"
+"Welcome to %H."
 %E
 %Cp Erd 00006
-"%nC continues to threaten the circle.  But we hold fast."
+"If thou art planning to take a rest, first see %l."
 %E
 %Cp Erd 00007
-"%lC is growing weak.  The magic required to defend the circle drains us."
+"Many have been the warriors who have perished on this quest. 
+But for thee I wish success, %r."
 %E
 %Cp Erd 00008
-"Remember %i is hard to enter.  Seek the secret
-passageways."
+"Art thou the descendant of %c? Hast thou any proof?"
 %E
 %Cp Erd 00009
-"We must regain %o.  Without it we will be overrun."
+"West of this castle is a town where armor, weapons, and many other items may be 
+purchased."
 %E
 
 %Cp Erd 00010
-"%pC!  I have not seen you in many moons.  How do you fare?"
+"Hurrah! Hurrah! Long live %p!"
 %E
 %Cp Erd 00011
-"Birdsong has returned to the grove, surely this means you have defeated %n."
+"Thou hast brought us peace, again."
 %E
 %Cp Erd 00012
-"%lC seems to have regained some of his strength."
+"Hurrah! Hurrah! Long live %p!"
 %E
 %Cp Erd 00013
-"So, tell us how you entered %i, in case some new evil arises there."
+"Thou hast brought us peace, again."
 %E
 %Cp Erd 00014
-"Is that truely %o that I see you carrying?"
+"Come now, %l awaits."
 %E
 
 %Cc Erd 00015
@@ -41793,77 +41794,54 @@ passageways."
 required abilities to take on this responsibility."
 %E
 %Cp Erd 00016
-"Once again, %p, you stand in our midst.  Are you ready now?"
+"I am glad thou hast returned. All our hopes are riding on thee."
 %E
 %Cp Erd 00017
 "Ah, you are here again, %p.  Allow me to determine your readiness..."
 %E
 %Cc Erd 00018
-"%p!  You have doomed us all.  You fairly radiate %L influences
-and weaken the power we have raised in this circle as a result!
-
-"Begone!  We renounce your %shood with us!  You are an outcast now!"
+"In thy task thou hast failed. Alas, 
+I fear thou art not the one Erdrick 
+predicted would save us. 
+Go now!"
 %E
 %Cc Erd 00019
-"%p, you are yet too inexperienced to withstand the demands of that
-which we need you to do.  %RA might just be able to do this thing.
-
-"Return to us when you have learned more, my %S."
+"Though thou art as brave as thy ancestor, %p, 
+thou cannot defeat %n as a mere %r.
+See me again when thy level has increased."
 %E
 %Cc Erd 00020
-"You have strayed, %p!  You know that %d requires that
-we maintain a pure devotion to things %a!
-
-"You must go from us.  Return when you have purified yourself."
+"Thou hast failed and thou art cursed.
+Leave at once!"
 %E
 %Cc Erd 00021
-"You are indeed ready, %p.  I shall tell you what has transpired,
-and why we so desperately need your help:
-
-"A short time ago, the Uruk-hai tribes of the mountains to the east
-invaded and enslaved the goblin tribes in this area.  The local
-%nt is now only a figurehead, and serves the Uruk-hai Overlord.
-
-"During our last gathering of worship here, we were beset by hordes of
-orcs and goblins, as you witnessed.  In the first onslaught a group,
-headed by %n himself, managed to breach the circle and
-steal %o.
-
-"Since then, we have been besieged.  We do not know how much longer
-we will be able to maintain our magical barriers.
-
-"If we are to survive, you, %p, must infiltrate
-%i.  There, you will find a pathway down, to the
-underground castle of %n.  He has always coveted
-%o, and will surely keep it on his person,
-until he delivers it to the Uruk-hai Overlord.
-
-"Recover %o for us, %p!  Only then will
-the circle of %d be safe."
+"Descendant of %c, listen now to my words. It is told that in ages past %c fought demons
+with a %ot. Then came %n who stole the precious globe and hid it in the
+darkness. Now, %p, thou must help us recover %o and restore peace to our land.
+The %nt must be defeated."
 %E
 %Cp Erd 00025
-"It is rumored that the Uruk-hai have a pact with the Hill Ogres."
+"May the light shine upon thee, %p!"
 %E
 %Cp Erd 00026
-"%nC is strong, but not very smart."
+"I am greatly pleased that thou hast returned, %p."
 %E
 %Cp Erd 00027
 "Use %o, when you find it.  It will help you survive
 to reach us."
 %E
 %Cp Erd 00028
-"Remember, let %d be your guide."
+"Will thou tell me now of thy deeds so they won't be forgotten?"
 %E
 %Cp Erd 00029
 "Call upon %d when you face %n.
 The very act of doing so will infuriate him, and give you advantage."
 %E
 %Cp Erd 00030
-"Though %n is as %C as we, he and his kind have always
-hated us."
+"Take care and tempt not the Fates."
 %E
 %Cp Erd 00031
-"We cannot hold the circle much longer, %p.  Hurry!"
+"Thou art strong enough! Why can thou not defeat %n?"
 %E
 %Cp Erd 00032
 "To infiltrate %i, you must be very stealthy."
@@ -41875,11 +41853,8 @@ hated us."
 "You can triumph, %p, if you trust in %d."
 %E
 %Cc Erd 00035
-You descend into the outer regions of %i.  You can hear
-scuffling sounds in the corridors, and vague mumblings in the distance.
-
-You remember that %ga once told you that there were many secret
-passageways in this complex.
+You notice the keep of a ruined castle rising from the swamp before you. 
+It can only be %i, stronghold of the Dragonlord.
 %E
 %Cp Erd 00036
 Once again, you descend into %i.
@@ -41895,37 +41870,40 @@ Off in the distance, you hear the sounds of a large, raucous gathering.
 Once again, you enter the distorted castle of %n.
 %E
 %Cc Erd 00050
-"So, %c.  %lC has sent you to recover %o.
-
-"Well, I shall keep that bauble.  It pleases me.  You, %c, shall die."
+"Welcome, %p. I am %n--King of Kings. 
+I have been waiting long for one such as thee.
+I give thee now a chance to share this world and to 
+rule half of it if thou will now stand beside 
+me."
 %E
 %Cp Erd 00051
-"Back again, eh?  Well, a mere %r is no threat to me!  Die, %c!"
+"What sayest thou? Will the great warrior stand with me?"
 %E
 %Cp Erd 00052
-"You haven't learned your lesson, %c.  You can't kill me!  You shall die now."
+A %nt draws near! Command?
 %E
 %Cp Erd 00053
 "I shall have %o from you, %r.  Then I shall
 kill you."
 %E
 %Cp Erd 00060
-"Your %d is nothing, %c.  You are mine now!"
+"Thy journey is over. Take now a long, long rest. Hahahaha...."
 %E
 %Cp Erd 00061
 "Run away little %c!  You can never hope to defeat %n!"
 %E
 %Cp Erd 00062
-"My Uruk-hai servants will rip you to shreds!"
+"If thou dies I can bring thee back for another attempt without 
+loss of thy deeds to date."
 %E
 %Cp Erd 00063
-"I shall display your head as a trophy.  What do you think about that wall?"
+"I wouldn't fight if I were you. Even a victory would be hollow."
 %E
 %Cp Erd 00064
-"I shall break your %ls circle, and destroy all the %gP!"
+"Thou art surely missing thy brain."
 %E
 %Cp Erd 00065
-"%d has abandoned you, %c.  You are doomed."
+"Thou art a fool!"
 %E
 %Cp Erd 00066
 "%rA?  %lC sends a mere %r against me?  Hah!"
@@ -41940,30 +41918,17 @@ kill you."
 "You weaken, %c.  I shall kill you now."
 %E
 %Cc Erd 00070
-As you pick up %o, it seems to glow, and a warmth
-fills you completely.  You realize that its power is what has protected
-your %sp against their enemies for so long.
-
-You must now return it to %l without delay -- their lives depend
-on your speed.
+Thou hast found %o. Radiance streams 
+forth as thy hands touch the object and hold it
+aloft. Across the land spreads the brilliance.
 %E
 %Cc Erd 00080
-%nC collapses to the ground, cursing you and %l, then says:
-
-    You have defeated me, %r!  But I curse you one final time, with my
-    dying breath!  You shall die before you leave my castle!
+Thou hast done well in defeating %n.
 %E
 %Cc Erd 00081
-"%p!  You have succeeded!  I feared it was not possible!
-
-"Your aura proclaims that you possess %o!
-
-"I fear, now, that the Uruk-hai will select yet another %nt.
-This will take some time, but if you can recover the Amulet of Yendor
-for %d before that happens, we will be eternally safe.
-
-"Take %o with you.  It will aid in your quest for
-the Amulet."
+"The legends have proven true. Thou art indeed of 
+the line of %c. It is thy right to rule over
+this land. Will thou take my place?"
 %E
 %Cp Erd 00082
 "Welcome, %p.  Have you mastered the art of using %o yet?"
@@ -41973,11 +41938,11 @@ the Amulet."
 of Yendor?"
 %E
 %Cc Erd 00091
-"Utuelyes!  You have recovered the Amulet of Yendor!
+"You have recovered the Amulet of Yendor!
 Now attend to me, %p, and I will tell you what must be done:
 
 "The Amulet has within it magic, the capability to transport you to
-the Astral Plane, where the primary circle of %d resides.
+the Astral Plane, where the primary temple of %d resides.
 
 "To activate this magic, you must travel upwards as far as you can.
 When you reach the temple, sacrifice the Amulet to %d.
@@ -42216,7 +42181,7 @@ are to enter the Slime Paradise.
 "%p!  I have not seen you in many cycles.  How do you fare?"
 %E
 %Cp Sli 00006
-"%nC continues to threaten the circle.  But we hold fast."
+"%nC continues to threaten %H.  But we hold fast."
 %E
 %Cp Sli 00007
 "%lC is growing weak.  The magic required to defend the Slime Paradise drains us."
@@ -42265,7 +42230,8 @@ and weaken the power we have raised in the Slime Paradise as a result!
 %E
 %Cc Sli 00019
 "%p, you are yet too inexperienced to withstand the demands of that
-which we need you to do.  %RA might just be able to do this thing.
+which we need you to do.  One who has attained the title of %R
+might just be able to do this thing.
 
 "Return to us when you have learned more, my %S."
 %E
@@ -42285,7 +42251,7 @@ between the human kingdom and the nearby demihuman settlements.
 "During our last gathering of worship here, we were beset by parties
 of adventurers, as you witnessed.  In the first onslaught a group,
 headed by the legendary hero himself, managed to infiltrate
-the Slime Paradise and steal the Slime Crown.
+%H and steal %o.
 
 "Since then, we have been besieged.  We do not know how much longer
 we will be able to maintain our magical barriers.
@@ -42293,15 +42259,16 @@ we will be able to maintain our magical barriers.
 "If we are to survive, you, %p, must infiltrate
 the village of Humbleton.  There, you will find a pathway down, to the
 Dark Cave of Darkness, where the legendary hero was last sighted.
-He has always coveted the Slime Crown, and will surely keep it
+He has always coveted %o, and will surely keep it
 on his person, until he gets a better piece of headgear and sells it.
 
-"Recover the Slime Crown for us, %s!  Only then will 
+"Recover %o for us, %s!  Only then will 
 the Slime Paradise be safe."
 
 %E
 %Cp Sli 00025
-"It is rumored that the humans, elves, and dwarves have settled their differences under the banner of the legendary hero, and are now united to attack us."
+"It is rumored that the humans, elves, and dwarves have settled their differences 
+under the banner of the legendary hero, and are now united to attack us."
 %E
 %Cp Sli 00026
 "%nC is dense, but not as stupid as he lets on."
@@ -42335,8 +42302,8 @@ to reach us."
 You descend into the outer regions of %i.  You can hear
 scuffling sounds in the corridors, and vague mumblings in the distance.
 
-You remember that %ga once told you that there were many secret
-passageways in this complex.
+You remember that %ga once told you about secret passages in the woods 
+leading into disused sheds in the village.
 %E
 %Cp Sli 00036
 Once again, you descend into %i.
@@ -42349,12 +42316,12 @@ finishing off the construction of a subterranean complex.
 Off in the distance, you hear the sounds of a large, raucous gathering.
 %E
 %Cp Sli 00041
-Once again, you enter the distorted castle of %n.
+Once again, you enter the final level of the Dark Cave of Darkness.
 %E
 %Cc Sli 00050
-"So, %c.  %lC has sent you to recover %o.
+"A slime? I didn't know that you could encounter them in this dungeon."
 
-"Well, I shall keep that bauble.  It pleases me.  You, %c, shall die."
+"Must be some sort of special encounter!"
 %E
 %Cp Sli 00051
 "Back again, eh?  Well, a mere %r is no threat to me!  Die, %c!"
@@ -42367,34 +42334,34 @@ Once again, you enter the distorted castle of %n.
 kill you."
 %E
 %Cp Sli 00060
-"Your %d is nothing, %c.  You are mine now!"
+"I wonder how much EXP the Slime Emperor is worth?"
 %E
 %Cp Sli 00061
-"Run away little %c!  You can never hope to defeat %n!"
+"After I beat you, I'm heading back to the Slime Paradise to do some level grinding!"
 %E
 %Cp Sli 00062
-"My Uruk-hai servants will rip you to shreds!"
+"You weak creature! Get out of my way!"
 %E
 %Cp Sli 00063
-"I shall display your head as a trophy.  What do you think about that wall?"
+"I won't lose to a walking bag of experience like you!"
 %E
 %Cp Sli 00064
-"I shall break your %ls circle, and destroy all the %gP!"
+"Why do I have to keep fighting weak slimes? Give me some dragons!"
 %E
 %Cp Sli 00065
-"%d has abandoned you, %c.  You are doomed."
+"Damn, that dungeon master keeps selecting the weakest monsters for me to encounter."
 %E
 %Cp Sli 00066
-"%rA?  %lC sends a mere %r against me?  Hah!"
+"Hey %p, I used to kill monsters like you, what, 10 levels ago? I was expecting something more challenging now!"
 %E
 %Cp Sli 00067
-"%lC has failed, %c.  %oC will never leave here."
+"Even if you call yourself a %r, you are no match for me."
 %E
 %Cp Sli 00068
-"You really think you can defeat me, eh %c?  You are wrong!"
+"What are you gonna do, splash me with your acid?"
 %E
 %Cp Sli 00069
-"You weaken, %c.  I shall kill you now."
+"I have the cure sickness spell at 0%% fail! I'm not afraid of your sliming touch!"
 %E
 %Cc Sli 00070
 As you pick up %o, it seems to glow, and a warmth
@@ -42407,15 +42374,15 @@ on your speed.
 %Cc Sli 00080
 %nC collapses to the ground, cursing you and %l, then says:
 
-    You have defeated me, %r!  But I curse you one final time, with my
-    dying breath!  You shall die before you leave my castle!
+    Beaten by a slime...I can't believe it! 
+    Looks like I'll have to go back to my last save...
 %E
 %Cc Sli 00081
 "%p!  You have succeeded!  I feared it was not possible!
 
 "Your aura proclaims that you possess %o!
 
-"I fear, now, that the Uruk-hai will select yet another %nt.
+"I fear, now, that the gods of light will select yet another %nt.
 This will take some time, but if you can recover the Amulet of Yendor
 for %d before that happens, we will be eternally safe.
 
@@ -42434,7 +42401,7 @@ of Yendor?"
 Now attend to me, %p, and I will tell you what must be done:
 
 "The Amulet has within it magic, the capability to transport you to
-the Astral Plane, where the primary circle of %d resides.
+the Astral Plane, where the primary temple of %d resides.
 
 "To activate this magic, you must travel upwards as far as you can.
 When you reach the temple, sacrifice the Amulet to %d.

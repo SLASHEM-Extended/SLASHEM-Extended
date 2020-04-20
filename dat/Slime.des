@@ -5,7 +5,7 @@
 #
 #	The "start" level for the quest.
 #
-#	Here you meet your (besieged) class leader, King Arthur
+#	Here you meet your (besieged) class leader, the Slime Emperor
 #	and receive your quest assignment.
 #
 
@@ -44,9 +44,9 @@ ENDMAP
 BRANCH:(14,00,14,00),(0,0,0,0)
 # Stairs
 STAIR:(36,10),down
-# King Arthur
+# The Slime Emperor
 MONSTER:'b',"Slime Emperor",(36,10)
-# The treasure of King Arthur
+# The treasure of the Slime Emperor
 OBJECT:'(',"chest",(36,10)
 # knight guards for the watchrooms
 MONSTER:'b',"globule",(36,11),peaceful
@@ -68,7 +68,7 @@ MONSTER:'@',random,(36,17),hostile
 MONSTER:'@',random,(37,17),hostile
 MONSTER:'@',random,(35,17),hostile
 MONSTER:'h',random,(34,16),hostile
-
+# An adventuring party, named after anagrams of Gundam protagonists.
 MONSTER:'@',"wizard",(68,06),hostile,"Anestus"
 MONSTER:'@',"priest",(68,07),hostile,"Erohe"
 MONSTER:'@',"barbarian",(68,08),hostile,"Dragor"
@@ -97,137 +97,70 @@ FLAGS: hardfloor
 INIT_MAP: '.' , 'P' , false , true , lit , false
 GEOMETRY:center,center
 MAP
-...PPP.........PPPP..............PPPP...
-.PPPP...........PP................PPPP..
-PP.................................PPP..
-....................................PPP.
-.....................................PP.
-.......................................P
-........................................
-PP...................................PPP
-.PPP...............................PPP..
-..PP.............................PPPP...
-..PPP...........................PPPPPP..
-....PPPP.........PPP.........PPPP..PP...
+.....--....TTT|TTTTT.........-------..................TTTTTTTTTTTTTTTTTTTTT
+......--....TT|TTTT--------..|.....|..-----.....------.....----TTTTTT...TTT
+.......|.....T|TTT.|......|..|.....|..|...|..T..|....+.....|..S...TT..T..TT
+.......|.....T|TT..|..|...|..|.....|..|...|.TTT.|....|..T..|..|TT....TTT..T
+......--......|T...--F|...|..|.....|..|...|.TTT.|-----.....--+-TTTTT.TTTT..
+.....--.......|.......|...|..---+---..|...|..T.................TTTTT.TTTTTT
+--.---........|.......--+--...........--+--......-------........TTTT.TTTT..
+..............|..................................|.....|..-----..TTT.TTT...
+................................{................|.....|T.|...|...TT.......
+}}............|.------...........................|.....|T.|...|....TTTT....
+.}}...........|.|....|...........................---+---..---+-...W.TTTTTT.
+..}}..........|.|....+.............................................C.......
+.}}}}.........|.|....|...--+--.....-+---..--+-....------..--+--...W.TTTTT.T
+}}}}}}........|.------...|...|.....|...|..|..|....|...|...|...|....TTT.....
+}}}}}}}.......|..........|...|.....|...|..|..|....|...+...|...|...TT...TT..
+}}}}}}}}......|.------...|...|.....|...|..----....|...|...---+-..TT..T.TTTT
+}}}}}}}}}.....|.|....+...-----.....-----..........-----.........TTT.TT.TT..
+}}}}}}}}}}...T|T------..............................|.......-+-TTTT.TT.T..T
+}}}}}}}}}}}.TT|TT...................................--......|.S......T...TT
+}}}}}}}}}}}}TT-------------------------------------------------TTTTTTTTTTTT
 ENDMAP
 # Dungeon Description
-# The Isle of Glass is a Tor rising out of the swamps surrounding it.
-REGION:(00,00,39,11),lit,"ordinary"
-# The top area of the Tor is a holy site.
-REGION:(09,02,27,09),lit,"temple"
+REGION:(00,00,74,19),lit,"ordinary"
+# Entrance to the Dark Cave of Darkness
+REGION:(00,00,05,06),unlit,"ordinary"
 # Stairs
-STAIR:(38,0),up
-STAIR:(18,05),down
-# The altar atop the Tor and its attendant (creating altar makes the priest).
-ALTAR:(17,05),neutral,shrine
-# Objects
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-OBJECT:random,random,random
-# Random traps
-# All of the avenues are guarded by magic except for the East.
-# South
-TRAP:"magic",(08,11)
-TRAP:"magic",(09,11)
-TRAP:"magic",(10,11)
-TRAP:"magic",(11,11)
-TRAP:"magic",(12,11)
-TRAP:"magic",(13,11)
-TRAP:"magic",(14,11)
-TRAP:"magic",(15,11)
-TRAP:"magic",(16,11)
-TRAP:"magic",(20,11)
-TRAP:"magic",(21,11)
-TRAP:"magic",(22,11)
-TRAP:"magic",(23,11)
-TRAP:"magic",(24,11)
-TRAP:"magic",(25,11)
-TRAP:"magic",(26,11)
-TRAP:"magic",(27,11)
-TRAP:"magic",(28,11)
-# West
-TRAP:"magic",(00,03)
-TRAP:"magic",(00,04)
-TRAP:"magic",(00,05)
-TRAP:"magic",(00,06)
-# North
-TRAP:"magic",(06,00)
-TRAP:"magic",(07,00)
-TRAP:"magic",(08,00)
-TRAP:"magic",(09,00)
-TRAP:"magic",(10,00)
-TRAP:"magic",(11,00)
-TRAP:"magic",(12,00)
-TRAP:"magic",(13,00)
-TRAP:"magic",(14,00)
-TRAP:"magic",(19,00)
-TRAP:"magic",(20,00)
-TRAP:"magic",(21,00)
-TRAP:"magic",(22,00)
-TRAP:"magic",(23,00)
-TRAP:"magic",(24,00)
-TRAP:"magic",(25,00)
-TRAP:"magic",(26,00)
-TRAP:"magic",(27,00)
-TRAP:"magic",(28,00)
-TRAP:"magic",(29,00)
-TRAP:"magic",(30,00)
-TRAP:"magic",(31,00)
-TRAP:"magic",(32,00)
-# Even so, there are magic "sinkholes" around.
-TRAP:"anti magic",random
-TRAP:"anti magic",random
-TRAP:"anti magic",random
-TRAP:"anti magic",random
-TRAP:"anti magic",random
-TRAP:"anti magic",random
-TRAP:"anti magic",random
-# Random monsters.
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'.',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
-MONSTER:'°',random,random,hostile
+STAIR:(73,08),up
+STAIR:(01,02),down
+# Shops and services in the village
+REGION:(25,12,29,16),lit,"armor shop"
+REGION:(35,12,39,16),lit,"weapon shop"
+REGION:(49,06,55,10),lit,"shop"
+REGION:(29,00,35,05),lit,"temple"
+ALTAR:(32,02),noncoaligned,altar
+# A fountain in the village square
+FOUNTAIN:(32,08)
+# Watchmen guarding the gate
+MONSTER:'@',"watchman",(66,10)
+MONSTER:'@',"watchman",(66,12)
+MONSTER:'@',"watch captain",(67,11)
+# The villagers...
+MONSTER:'@',"human",(18,11),random
+MONSTER:'@',"human",(18,16),random
+MONSTER:'@',"human",(23,03),random
+MONSTER:'@',"human",(24,02),random
+MONSTER:'@',"human",(28,09),random
+MONSTER:'@',"human",(36,09),random
+MONSTER:'@',"human",(40,02),random
+MONSTER:'@',"human",(49,02),random
+MONSTER:'@',"human",(49,03),random
+MONSTER:'@',"human",(51,13),random
+MONSTER:'@',"human",(51,14),random
+MONSTER:'@',"human",(61,08),random
+# ...and their livestock.
+MONSTER:'q',"cow",(20,02),random
+MONSTER:'d',"dog",(31,11),random
+MONSTER:'f',"housecat",(41,03),random
+MONSTER:'d',"dog",(53,17),random
 
 #
 #	The "goal" level for the quest.
 #
-#	Here you meet Ixoth your nemesis monster.  You have to
-#	defeat Ixoth in combat to gain the artifact you have
+#	Here you meet the Legendary Hero your nemesis monster.  You have to
+#	defeat the Legendary Hero in combat to gain the artifact you have
 #	been assigned to retrieve.
 #
 
@@ -299,14 +232,16 @@ DOOR:locked,(46,08)
 DOOR:closed,(51,10)
 DOOR:locked,(53,08)
 DOOR:closed,(65,05)
-# Random monsters.
+# The Legendary Hero...
 MONSTER:'@',"Legendary Hero",(37,10),hostile
+# ...and his party.
 MONSTER:'@',"wizard",(36,09),hostile
 MONSTER:'@',"rogue",(36,10),hostile
 MONSTER:'@',"High-elf",(36,11),hostile
 MONSTER:'@',"priest",(37,09),hostile
-MONSTER:'h',random,(37,11),hostile
-
+MONSTER:'h',"random",(37,11),hostile
+# sorry Kahran042, but the dwarf warrior is a quest guardian, so spawning one as an enemy would
+# probably result in the player killing him and then get dinged for murdering a quest friendly...
 
 WALLIFY
 

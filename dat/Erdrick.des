@@ -15,63 +15,60 @@ FLAGS: noteleport,hardfloor
 # This is a kludge to init the level as a lit field.
 INIT_MAP: ' ' , ' ' , false , false , lit , false
 GEOMETRY:center,center
-#123456789012345678901234567890
+#12345678901234567890123456789
 MAP
------------------------------..
-|.....................|.....|..
-|..-..-----------.....|.....|..
-|.....|....\....|.....|.....|..
-|----.|.........|.....|---+--..
-|.....|.........|.....|..T.....
-|---|.-----+-------+------.--..
-|...|.|TTTT.TTTT|...........|..
-|}..|.|TTTT.TTTT|---------..|..
-|.}.+.|TT.....TT|.....|.....|..
-|}.}|.|.........|..|.....|..|..
-|----.|.........----------..|..
-|..........{...........|...-|..
-|--..--.........|......|....|..
-|.....---.....-------..|....|..
-|..-....|.....|........|....|..
-|.......|.....|-+------|-----}.
-|.}}..-.|.....|........|}}}}}}.
-|}}}}...|-...-|........|}}}}}}.
-|}}}}}..|.....|........|}}}}}}.
-----------...----------|}}}}}}.
+-------------------T.TT.T-----
+|T.......|....|...|......|...|
+|T.....T.|....|.-.---..---.-.|
+|.-----T.|....|..............|
+|.|...|..-+------.-----------|
+|.|...|........T|.|..\...|...|
+|.|...|....---.T|.|......|...|
+|.|...|....|.|.T|.|......|...|
+|T--+--....|+|..|.|--..--|...|
+|TT............--.|TT..TT|...|
+..................|T....T|...|
+|TT...T.}}}}}}T--.|..}}..--.-|
+|T---..}}...T}}}|....}}......|
+|.|.......-+-}---.--.}}.--.--|
+|.|--..}}.|.|}|}...|....|....|
+|.|...T}}T|.|}|}}..|-..-|....|
+|.|..|T.}T|.|}|}}}K|....|....|
+|.----..}}---}-------..-------
+|........}}}}}}}}T..|..|..T}}}
+------------}}}}T..........T}}
 ENDMAP
 # Dungeon Description
-REGION:(23,01,27,03),lit,"shop"
-REGION:(13,17,22,19),lit,"temple"
+REGION:(09,00,14,04),lit,"shop"
+REGION:(02,03,06,08),lit,"weapon shop"
+REGION:(25,04,29,11),lit,"temple"
 # Portal arrival point
-BRANCH:(11,20,11,20),(0,0,0,0)
+BRANCH:(25,19,25,19),(0,0,0,0)
 # Stairs
-STAIR:(30,20),down
+STAIR:(00,10),down
 # Doors
-DOOR:closed,(04,09)
-DOOR:closed,(11,06)
-DOOR:closed,(19,06)
-DOOR:closed,(26,04)
-DOOR:closed,(16,16)
-# King Arthur
-MONSTER:'@',"King Lorik",(11,03)
-# The treasure of King Arthur
-OBJECT:'(',"chest",(11,03)
+DOOR:open,(04,08)
+DOOR:open,(10,04)
+DOOR:closed,(12,08)
+DOOR:closed,(11,13)
+# King Lorik
+MONSTER:'@',"King Lorik",(21,05)
+# The treasure of King Lorik
+OBJECT:'(',"chest",(21,05)
 # knight guards for the watchrooms
-MONSTER:'@',"royal guard",(09,05),peaceful
-MONSTER:'@',"royal guard",(13,05),peaceful
-MONSTER:'@',"royal guard",(09,09),peaceful
-MONSTER:'@',"royal guard",(13,09),peaceful
-MONSTER:'@',"royal guard",(09,14),peaceful
-MONSTER:'@',"royal guard",(13,14),peaceful
-MONSTER:'@',"royal guard",(09,19),peaceful
-MONSTER:'@',"royal guard",(13,19),peaceful
+MONSTER:'@',"royal guard",(19,07),peaceful
+MONSTER:'@',"royal guard",(24,07),peaceful
+MONSTER:'@',"royal guard",(19,11),peaceful
+MONSTER:'@',"royal guard",(24,11),peaceful
+MONSTER:'@',"royal guard",(20,16),peaceful
+MONSTER:'@',"royal guard",(23,16),peaceful
 
-MONSTER:'@',"watchman",(02,07),peaceful
-MONSTER:'@',"watch captain",(06,18),peaceful
-MONSTER:'@',"watch captain",(07,17),peaceful
+#other NPCs
+MONSTER:'@',"watchman",(23,01),peaceful
+MONSTER:'@',"shopkeeper",(18,16),peaceful
 
 # Non diggable walls
-NON_DIGGABLE:(00,00,30,20)
+NON_DIGGABLE:(00,00,29,19)
 
 #
 #	The "locate" level for the quest.
@@ -115,21 +112,30 @@ STAIR:(10,01),down
 
 DOOR:locked,(04,08)
 DOOR:locked,(15,08)
-
+# Based on the maze of staircases that makes up most of Charlock in the actual game.
 MONSTER:'m',random,(04,14),hostile,m_feature "staircase down"
 MONSTER:'m',random,(15,14),hostile,m_feature "staircase down"
-
+# A Wizard, Werewolf, Green Dragon, and two Armored Knights.
 MONSTER:'@',"wizard",(10,02),hostile
 MONSTER:'@',"werewolf",(09,04),hostile
 MONSTER:'D',"dragon",(11,04),hostile
 MONSTER:'@',"knight",(08,16),hostile
 MONSTER:'@',"knight",(11,16),hostile
+# Weapons for the knights
+OBJECT: ')',"axe",(08,16)
+OBJECT: ')',"axe",(11,16)
+# Non diggable walls
+NON_DIGGABLE:(00,00,19,20)
+# Traps leading up to the throne room, representing damage floors.
+TRAP:random,(10,07)
+TRAP:random,(10,09)
+TRAP:random,(10,11)
 
 #
 #	The "goal" level for the quest.
 #
-#	Here you meet Ixoth your nemesis monster.  You have to
-#	defeat Ixoth in combat to gain the artifact you have
+#	Here you meet the Dragonlord your nemesis monster.  You have to
+#	defeat the Dragonlord in combat to gain the artifact you have
 #	been assigned to retrieve.
 #
 
@@ -138,42 +144,56 @@ GEOMETRY:center,center
 #123456789012345678901234567890123456789012345678901234567890123456789012345
 #         1         2         3         4         5         6         7    7
 MAP
-}}}}}}}}}}}}---------------------------------------------------}}}}}}}}}}}}}
-}}}}}}}}}}---.........---.........|.........|.........|.......---}}}}}}}}}}}
-}}}}}}}}}}|.....---.....|-.......--...................|.........|}}}}}}}}}}}
-}}}}}}}}}}|.....---.....|.................-----.................|}}}}}}}}}}}
-}}}}}}}}}}---.........---.........--------|...|--------.......---}}}}}}}}}}}
-}}}}}}}}}}}}---.....---...........|  |....-----....------...---..}}}}}}}}}}}
-}}}}}}}}}}}}}}|...---.....-------------...........---...|...|....}}}}}}}}}}}
-}}}}}}}}}}}}}}|...........|...........---...-...---...}.........}}}}}}}}}}}}
-}}}}}}}}}}}}}}|...---------...}.......-----...---....}}}.....}}}}}}}}}}}}}}}
-}}}}}}}}}}}}}}|...|.......|...}}..........+...|.....}}}}}}}......}}}}}}}}}}}
-}}}}}}}}}}}}}}|...|..---..|...}}}.....-----...---..}}}}}.}}}}}}}.}}}}}}}}}}}
-}}}}}}}}}}}}}}|...|..---..|...........---.......|}}}.}}}..}}}}}..}}}}}}}}}}}
-}}}}}}}}}}}}}}|...|.......|------------.......---}}}}}}}........}}}}}}}}}}}}
-}}}}}}}}}}}}}}|...|.......|--...............---}}}}}.}}}....}}}}}}}}}}}}}}}}
-}}}}}}}}}}}}}}|...|..---..|.......-----------}}}}}...}}}}}...}}}}}}}}}}}}}}}
-}}}}}}}}}}}}}}|...|..---..|.....---}}}}}}}}}}}}}...}}}}}.........}}}}}}}}}}}
-}}}}}}}}}}}}---...|.......|...--|}}}--------|}}}}}}}}}}----.---..}}}}}}}}}}}
-}}}}}}}}}}---.....|--..---|.....-----.......------------......|..}}}}}}}}}}}
-}}}}}}}}}}|.......................|.....\.....................|..}}}}}}}}}}}
-}}}}}}}}}}---.......-------...-------.......------------......|..}}}}}}}}}}}
-}}}}}}}}}}}}---------}}}}}-----}}}}}---------}}}}}}}}}}--------..}}}}}}}}}}}
+}}---}}}}}}}}}}---}}
+}--K--}}----}}--.--}
+--...----..----...--
+|..-............-.d|
+--...----------...--
+}--.--....---.--.--}
+}}|.|.....--...|.|}}
+}}|.|.....|}}}....}}
+}}|.|....--}}}}}}...
+}}|.|-+---}}}.}}}}}.
+}}|.|ttt|}}}..}}}}..
+}}|.|t|t|}}..}}}...}
+}}|.|t|t|}}}}}}}.}}}
+}}|.|ttt|-----}....}
+}--.--.--....--.|.|.
+--...|.|......---.|.
+|d.-...|..\.......|.
+--...|.|......---.|.
+}--.--.--....--.---.
+}}---...------}....}
 ENDMAP
 # Stairs
-STAIR:(28,19),up
+STAIR:(05,19),up
 # Non diggable walls
-NON_DIGGABLE:(00,00,75,19)
+NON_DIGGABLE:(00,00,19,19)
 # Objects
-OBJECT:'(',"crystal ball",(40,18),blessed,0,"The Ball of Light"
+OBJECT:'(',"crystal ball",(10,16),blessed,0,"The Ball of Light"
 # Random monsters.
-MONSTER:'D',"Dragonlord",(40,18),hostile
-MONSTER:'D',"japanese dragon",(16,04),hostile
-MONSTER:'D',"kith dragon",(58,03),hostile
-MONSTER:'D',"darth dragon",(59,18),hostile
-MONSTER:''',"stone golem",(38,13),hostile
-
-DOOR:locked,(42,09)
+MONSTER:'D',"Dragonlord",(10,16),hostile
+MONSTER:'D',"japanese dragon",(01,16),hostile
+MONSTER:'D',"kith dragon",(03,01),hostile
+MONSTER:'D',"darth dragon",(18,03),hostile
+MONSTER:''',"stone golem",(08,05),hostile
+# The booby-trapped antechamber
+TRAP: random,(05,10)
+TRAP: random,(06,10)
+TRAP: random,(07,10)
+TRAP: random,(05,11)
+TRAP: random,(07,11)
+TRAP: random,(05,12)
+TRAP: random,(07,12)
+TRAP: random,(05,13)
+TRAP: random,(06,13)
+TRAP: random,(07,13)
+# The treasury
+DOOR:locked,(06,09)
+OBJECT:'(',"chest",(06,07)
+OBJECT:'(',"chest",(07,07)
+OBJECT:'(',"chest",(07,06)
+OBJECT:'(',"chest",(08,06)
 
 #
 #	The "fill" levels for the quest.
