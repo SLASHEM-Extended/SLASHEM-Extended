@@ -3962,6 +3962,9 @@ static NEARDATA const char * const demagoguelines[] = {
 "The democratic system turned out to be a failure, what we need now is a dictatorship with me as the dictator!",
 "Fully one in three jobs in this country is suffering from severe underpayment, insecurity and a host of other issues! My party will correct that by creating new, well-paid, safe jobs and then we'll finally prosper again!",
 "As soon as I'm elected the new head of state, there will be the beginning of a new era. Where other countries are merely surviving, we will PROSPER!",
+"The government's corona restrictions are going too far! I will become the new head of state and relax those rules!",
+"There is no corona virus, it's just a carefully constructed lie by the government because in reality they want to revive the Meshera!",
+"Why do we have to wear those butt-ugly face masks? If I become president, I'll declare covid-19 nonexistant and ban the masks!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4377,6 +4380,12 @@ static NEARDATA const char * const longinglines[] = {
 "Do you like to watch %s crush the spikes in a spiked pit with her very tender stiletto heels?",
 "%s can hang on to a ledge with her heels, because when she'd otherwise fall down, the front portion of her shoe is still on the ledge and the heel latches on so she'll be saved! Isn't that wonderful? You also want to have such high-heeled shoes.",
 "While %s might not be the most attractive woman in the world, her black lady boots with extra thick block heels can walk the dyke, which you definitely consider very erotic.",
+"You want to present your delicate balls to %s while protecting them with tight elasthan pants, because then it feels so great when she kicks them.",
+"It's so much fun to have %s stomp your toes with her 'sister' combat boots because they have very pretty black block heels!",
+"%s bought her pretty black combat boots for 20 euros at the Deichmann shop, yet despite them being so cheap, they can still cause a lot of damage to you with the lovely block heels!",
+"You would feel a terrible sense of loss if %s were to destroy your shoes by using her heels, but I guess it would still somehow feel arousing to you.",
+"You want to have your toes squeezed by %s's high heels for one hour straight.",
+"If you pick a fight with %s's asian block heel sandals, you'll end up with very scratched shins. Wouldn't you agree that you secretly hope that would happen?",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -4710,6 +4719,14 @@ static NEARDATA const char * const hussylines[] = {
 "You're gonna become my next plaything, little gang scholar.",
 "I'll capture you, and then I'll humiliate you with my femininity every day.",
 "Yes, I'm an especially cute girl, but I'm also part of the Hussy Club. I'm looking forward to torturing you once you've been captured by us.",
+"I've instructed the Bang Gang to show no mercy if the gang scholar is spotted.",
+"Why is it taking so long to take out that gang scholar?",
+"You! Gang scholar! Why don't you finally let the Bang Gang defeat you? You stubborn bastard!",
+"Damn, I wanted to go to the nail studio half an hour ago! How much longer does it take for Player 1 to finally fall for our trap?",
+"Girls, there seems to be a shortage of our precious drum stint reluctance perfume! I'll go and buy a dozen bottles or so, you stop that gang scholar in the meantime!",
+"What, Player 1 is wearing a face mask? Hahaha, that won't protect them from our scentful perfume!",
+"That face mask of yours, gang scholar? Will suffocate you once I spray it with my perfume.",
+"I'm chasing after that gang scholar now, they may reach the next dungeon level in no case.",
 };
 
 static NEARDATA const char * const bangganglines[] = {
@@ -4771,6 +4788,15 @@ static NEARDATA const char * const bangganglines[] = {
 "Caesar's Legion will punish you, you mean bastard!",
 "Player 1, soon you'll see what your god looks like - because I'm going to send you to him!",
 "Soon, we will remove you from our lands...",
+"Go to hell, gang scholar!",
+"Player 1, we will infect you with corona virus!",
+"Listen up, Player 1: we have the bioweapon called covid-19, and we won't hesitate to use it on you.",
+"Soon I will test my new rifle on Player 1.",
+"Ahh, that gang scholar is approaching! I've readied my gun, and soon I'll finally get to fire it for the first time!",
+"The situation has become dire! The gang scholar is about to penetrate Anna's sanctum! Quick, everyone, get to the sanctum adn protect it with your lives!",
+"I've just finished another training session and am ready to fight Player 1 now!",
+"Hey, I have both a gun and good martial arts skills! I'll defend the downstair, preventing any gang scholars from getting past me!",
+"I'll express my lit cigarettes in that gang scholar's face.",
 };
 
 static NEARDATA const char * const hussylines_specific[] = {
@@ -4887,6 +4913,9 @@ static NEARDATA const char * const bangganglines_specific[] = {
 "Player 1 might just give up anyway, since we've installed an automatic wall generation mechanism on level %d that can outspeed every digging method.",
 "Okay, the gang scholar can really forget getting past level %d now, because I found a scroll of ragnarok and read it there.",
 "Hey! I've managed to create an elder priest trap on level %d! It will be lots of fun to see that retarded Player 1 trigger it and get tentacled to death!",
+"What? The gang scholar made it to level %d? You let them slip through our trap, you failures! Quick, we have to chase after them!",
+"I've constructed a corona trap that will infect all gang scholars that ever enter dungeon level %d with covid-19.",
+"Come to level %d, Player 1, I'm looking forward to burning your skin with my cigarettes.",
 };
 
 static NEARDATA const char * const bangganglines_femaleonly[] = {
@@ -4951,6 +4980,11 @@ static NEARDATA const char * const bangganglines_femaleonly[] = {
 "My fingernails will eviscerate you!",
 "I can't wait to tear you up with my woman's fingernails and draw lots of blood.",
 "I'll totally rip you to shreds with my female fingernails and gleefully watch you bleed to death.",
+"You'll never grope my butt again! My high heels will scratch you to death and then you can see whether there are women in hell whom you can grope instead!",
+"You will fall because I'll sneeze my female corona viri into your face. No male person will be able to resist them.",
+"Yes, I'm a mean bitch, and I'm damn proud of it. I'll so totally scorch you with my burning cigarette.",
+"I'll bite and scratch you like a wild animal!",
+"I've filed my nails so that they're blade-shaped now! Wanna bet I can stab you to death with them, Player 1?",
 };
 
 static NEARDATA const char * const hussylines_wal[] = {
@@ -5058,6 +5092,16 @@ static NEARDATA const char * const hussylines_wal[] = {
 "That butt-ugly face mask will not protect you from my scentful perfume. In fact, it won't protect you from covid either, but you probably already knew that.",
 "You're wearing one of those hideously ugly face masks? And you call the members of the hola-hola brigade 'ugly'??? Just look in the mirror! You'll wish that your parents never conceived you!",
 "Should have stayed at home, walscholar! Anna and the Hussy Club will make you wish you had listened to the government's regulations!",
+"I've noticed something. That walscholar has dug rather deep already, and may start to become a problem. We'll have to do a pre-emptive strike.",
+"WHAT? One of our fellow hussies was assassinated? That must have been Player 1! We gotta stop that filthy walscholar!",
+"This is it, we're about to face the decisive battle against the walscholars! If we lose now, the entire Hussy Club will be defeated - but I'll make sure that doesn't happen!",
+"Why are all our attempts to stop the walscholars proving ineffective?!",
+"Hey, something's wrong here. The walscholars seem to have gotten stronger. Our usual methods of obstructing them don't work!",
+"This isn't going as well as it did last time! What's keeping the hola-hola brigade for so long, they should have reported Player 1's defeat long ago already!",
+"What? The hola-hola scouts didn't come back? That can only mean one thing: that walscholar must have killed them! Oh, Walt will pay for that...",
+"Uh-oh, I've received a distress call from the hola-hola brigade. They're trying to fight the walscholars but those bastards seem to resist the wouwou taunts.",
+"I think that walscholar cheated! They can't possibly be resisting the hola-hola brigade's taunts for that long!",
+"Listen up, walscholar: I know that you cheated. But I can do that too. From now on I'll use every cheat in the book as long as it helps me stop you.",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -5165,6 +5209,19 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "%s, you and your abnormal friends! I know you were celebrating corona parties with them instead of isolating like a good citizen!",
 "Yes, of course the hola-hola brigade is also wearing face protection. But they're still looking not nearly as ugly as you, %s!",
 "%s, why do you insist on wearing that ridiculous face mask. Real men wear a shemagh for protection!",
+"Damn, %s, how did you get that far? The Hussy Club may lose to you in no case!",
+"Uhh girls? Why did no one stop %s? Now they've gotten farther than any other walscholar before them! We have to use our emergency defense system!",
+"What? %s managed to assassinate one of us? This is intolerable! They're officially the public enemy number one now and we'll do everything to defeat them!",
+"%s! You should have been defeated 20 dungeon levels ago! Why do you keep surviving everything we're throwing at you?",
+"The main target is called %s, but that walscholar has others with them too! Establish a defense force around the main perimeter and don't let anyone get through!",
+"%s, you murderer! You killed all the soldiers of the hola-hola brigade that I've sent to stop you! Their blood is on your hands now!",
+"Wait, maybe the hola-hola brigade didn't understand that %s is the primary target? I'll remind them again!",
+"%s, your end is drawing near! There's no way for you to survive our next attack!",
+"We've been fighting you for a long while now, %s. Surely you are exhausted, and that means you'll start making mistakes, allowing the Hussies to turn the tide of this battle...",
+"I've really planned to do better things today than wasting all my time fighting you, %s. If you don't get defeated soon, I'll call the boss of the hola-hola brigade who will end your pitiful existence.",
+"Even if you keep eluding me, %s, I can at least still do property damage to that stupid Walt guy's school!",
+"%s, last warning! Surrender now, or I and the other Hussies will demolish the school and ruin everything that Walt has created!",
+"%s, that was a mistake. You've tripped the inner perimeter's warning system, and now the automatic perfume dispensers will keep intoxicating you with the feminine scent.",
 };
 
 static NEARDATA const char * const noroelabuying[] = {
@@ -5796,6 +5853,17 @@ static NEARDATA const char * const bosstaunts[] = {
 "calls: 'You there! You have covid-19! Since the government didn't quarantine you yet, I'll now quarantine you permanently!'",
 "starts hacking the game code to nerf your most used spells!",
 "stopped time! You can't move!",
+"suddenly sprays you with a vial of drum stint reluctance perfume!",
+"throws a double free corruption grenade!",
+"extends its fingernails into claws!",
+"enters the IDDQD cheat and is now invulnerable!",
+"enters the IDCLIP cheat and can walk through walls now!",
+"casts world fall!",
+"deletes all your data!",
+"shouts 'IMPERIO!' Suddenly you're affected by an unforgivable curse!",
+"points at you and mutters a curse.",
+"casts a spell at you! You receive death verdict.",
+"snatches your bag of holding and begins rummaging through the assorted items.",
 
 };
 

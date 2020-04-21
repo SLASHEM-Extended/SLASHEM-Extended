@@ -3284,7 +3284,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(410)) {
+			switch (rnd(422)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3696,6 +3696,18 @@ int dieroll;
 			case 408: pline("%s tries to burn you with a cigarette, but you slap %s in the %s for that.", Monnam(mon), mhim(mon), mbodypart(mon, FACE)); break;
 			case 409: pline("Your purple heel sandals clear %s one.", mon_nam(mon)); break;
 			case 410: pline("You ring %s's %s to punish %s for always making bad jokes.", mon_nam(mon), mbodypart(mon, HEAD), mhim(mon)); break;
+			case 411: pline("Your painted fingernails painfully sting %s.", mon_nam(mon)); break;
+			case 412: pline("You rip off %s's ugly face mask.", mon_nam(mon)); break;
+			case 413: pline("You bite %s in the %s and suck some delicious red nectar.", mon_nam(mon), mbodypart(mon, NECK)); break;
+			case 414: pline("You use your fingernails to scratch over %s's back.", mon_nam(mon)); break;
+			case 415: pline("You kick %s in the shins like a little girl.", mon_nam(mon)); break;
+			case 416: pline("%s manages to knock you down, but while laying prone, you perform an upward kick into %s belly!", Monnam(mon), mhis(mon)); break;
+			case 417: pline("Your axe almost manages to decapitate %s, but ends up hitting %s lower body instead.", mon_nam(mon), mhis(mon)); break;
+			case 418: pline("%s realizes that your hard wooden sandals can kick %s shins very painfully!", Monnam(mon), mhis(mon)); break;
+			case 419: pline("Yes, that's how you do it. Well done, you actually managed to land a hit!"); break;
+			case 420: pline("I've not expected you to be able to hit %s at all, but apparently you can do it!", mon_nam(mon)); break;
+			case 421: pline("Your sister combat boots with very pretty black block heels stomp %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, TOE))); break;
+			case 422: pline("You land a very lovely little-girl kick against %s's shin with your black calf-leather sandals!", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -3810,7 +3822,7 @@ int dieroll;
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && !thrown) {
 
-				switch (rnd(592)) {
+				switch (rnd(597)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -4404,6 +4416,11 @@ int dieroll;
 				case 590: pline("%s has overdosed on drugs, and suddenly falls over dead.", Monnam(mon)); break;
 				case 591: pline("You tell %s to 'kys yourself', and %s is actually stupid enough to comply.", m_monnam(mon), mhe(mon)); break;
 				case 592: pline("You smash %s's %s with your wedding ring because you're such a cowardly cunt.", m_monnam(mon), mbodypart(mon, FACE)); break;
+				case 593: pline("With your block heels, you fully finish off %s in melee combat.", mon_nam(mon)); break;
+				case 594: pline("It turns out that %s was infected with covid-19 all the time, and has just passed away due to the disease.", mon_nam(mon)); break;
+				case 595: pline("%s tries to push you into a wall of fire, but you dodge and thereby cause %s to fall in %sself.", Monnam(mon), mhim(mon), mhim(mon)); break;
+				case 596: pline("Suddenly the police comes and arrests %s for not adhering to the social distancing protocols.", mon_nam(mon)); break;
+				case 597: pline("%s accidentally falls into a pool of water, only to discover that the water is really acid, and ends up dissolving completely.", Monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -6699,7 +6716,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(566)) {
+		switch (rnd(588)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -7267,6 +7284,28 @@ register int roll;
 		case 564: pline("%s suddenly dresses up as Pocahontas and points a %s in a specific direction. You're actually stupid enough to start walking in that direction.", Monnam(mdef), mbodypart(mdef, FINGER)); break;
 		case 565: pline("Suddenly %s sinks your ship!", mon_nam(mdef)); break;
 		case 566: pline("%s has eaten from the floating devil fruit and hovers just out of reach of your weapon!", Monnam(mdef)); break;
+		case 567: pline("Your attempt to incinerate %s fails. After all, %s's Japanese, and those are fireproof.", mon_nam(mdef), mhe(mdef)); break;
+		case 568: pline("%s reminds you that you've forgotten to wear a face mask.", Monnam(mdef)); break;
+		case 569: pline("Suddenly %s sneezes into your %s! Oh no! Now you're infected with covid-19!", mon_nam(mdef), body_part(FACE)); break;
+		case 570: pline("As you attempt to attack %s, %s suddenly hangs a used facial tissue into your %s. You don't even want to know how many corona viri you inhaled.", mon_nam(mdef), mhe(mdef), body_part(FACE)); break;
+		case 571: pline("%s goes to your cannonball out of the way!", Monnam(mdef)); break;
+		case 572: pline("%s uses the Emergency Evasion ability to avoid getting hit!", Monnam(mdef)); break;
+		case 573: pline("Hahaha, %s is immune to such attacks.", mon_nam(mdef)); break;
+		case 574: pline("Since you only increased your damage output, but not your to-hit, your attack didn't hit."); break;
+		case 575: pline("It seems that with your low to-hit rating, a well-armored enemy like %s is next to impossible to hit.", mon_nam(mdef)); break;
+		case 576: pline("%s requires a +4 weapon to hit, which you don't have, so all of your attacks are ineffective!", Monnam(mdef)); break;
+		case 577: pline("Whoops - it seems you accidentally misplaced your weapon!"); break;
+		case 578: pline("%s suddenly shouts 'CORONA!' Frightened, you don't manage to get an attack off.", Monnam(mdef)); break;
+		case 579: pline("You almost fell into the tar pit!"); break;
+		case 580: pline("If you continue like this, %s can soon attend your funeral.", Monnam(mdef)); break;
+		case 581: pline("As you charge at %s, you get acquainted with %s spear.", mon_nam(mdef), mhis(mdef)); break;
+		case 582: pline("%s tells you to go smell your own socks.", Monnam(mdef)); break;
+		case 583: pline("You slowly close in on %s with the intention of attacking in melee, but %s stays just out of range while peppering you with arrows.", mon_nam(mdef), mhe(mdef)); break;
+		case 584: pline("You've inhaled too much of %s's Chanel No. 25 perfume, which causes you to suddenly become blind and be unable to fight!", mon_nam(mdef)); break;
+		case 585: pline("%s decides to teach you a lesson by firing lightning spikes at you.", Monnam(mdef)); break;
+		case 586: pline("%s polishes your visage.", Monnam(mdef)); break;
+		case 587: pline("You accidentally charge past %s, who swiftly kicks you in the calf with %s high heels.", mon_nam(mdef), mhis(mdef)); break;
+		case 588: pline("The entire lower part of your arm slides along %s's fingernails, and your blood is squirting in all directions.", mon_nam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 
