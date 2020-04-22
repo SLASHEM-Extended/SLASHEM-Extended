@@ -659,6 +659,40 @@ int verbose;
 		sprintf(buf, flags.showlongstats ? "Swimming Pool:%d " : "Swi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Hell's Bathroom"))
 		sprintf(buf, flags.showlongstats ? "Hell's Bathroom:%d " : "Bat:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GA"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone GA:%d " : "RGA:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GB"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone GB:%d " : "RGB:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GC"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone GC:%d " : "RGC:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GD"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone GD:%d " : "RGD:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GE"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone GE:%d " : "RGE:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TA"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TA:%d " : "RTA:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TB"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TB:%d " : "RTB:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TC"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TC:%d " : "RTC:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TD"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TD:%d " : "RTD:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TE"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TE:%d " : "RTE:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TF"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TF:%d " : "RTF:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TG"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TG:%d " : "RTG:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TH"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TH:%d " : "RTH:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TI"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TI:%d " : "RTI:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TJ"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone TJ:%d " : "RTJ:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone A"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone A:%d " : "RZA:%d ", depth(&u.uz));
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone S"))
+		sprintf(buf, flags.showlongstats ? "Resting Zone S:%d " : "RZS:%d ", depth(&u.uz));
 	else {
 		if (verbose)
 			sprintf(buf, "%s, level %d ",

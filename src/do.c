@@ -4388,6 +4388,10 @@ rerollchaloc:
 
 	}
 
+	/* or whether we left Gehennom - not just Vlad's tower! --Amy */
+	if (In_hell(&u.uz0) && !Inhell) 
+		pline_The("heat and smoke are gone.");
+
 	if (familiar) {
 	    static const char * const fam_msgs[4] = {
 		"You have a sense of deja vu.",
@@ -4427,8 +4431,6 @@ rerollchaloc:
 	/* Final confrontation */
 	if (In_endgame(&u.uz) && newdungeon && u.uhave.amulet && !u.freeplaymode)
 		resurrect();
-	if (newdungeon && In_V_tower(&u.uz) && In_hell(&u.uz0))
-		pline_The("heat and smoke are gone.");
 
 	/* the message from your quest leader */
 	if (!In_quest(&u.uz0) && at_dgn_entrance("The Quest") &&

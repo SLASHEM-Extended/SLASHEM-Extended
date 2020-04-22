@@ -112,6 +112,23 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_sewerplant_dnum;
     xchar   d_gammacaves_dnum;
     xchar   d_mainframe_dnum;
+    xchar   d_restingzone_ga_dnum;
+    xchar   d_restingzone_gb_dnum;
+    xchar   d_restingzone_gc_dnum;
+    xchar   d_restingzone_gd_dnum;
+    xchar   d_restingzone_ge_dnum;
+    xchar   d_restingzone_ta_dnum;
+    xchar   d_restingzone_tb_dnum;
+    xchar   d_restingzone_tc_dnum;
+    xchar   d_restingzone_td_dnum;
+    xchar   d_restingzone_te_dnum;
+    xchar   d_restingzone_tf_dnum;
+    xchar   d_restingzone_tg_dnum;
+    xchar   d_restingzone_th_dnum;
+    xchar   d_restingzone_ti_dnum;
+    xchar   d_restingzone_tj_dnum;
+    xchar   d_restingzone_a_dnum;
+    xchar   d_restingzone_s_dnum;
     d_level	d_lawful_quest_level;
     d_level	d_neutral_quest_level;
     d_level	d_chaotic_quest_level;
@@ -209,6 +226,23 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define mtemple_dnum		(dungeon_topology.d_mtemple_dnum)
 #define slsea_dnum		(dungeon_topology.d_slsea_dnum)
 #define tomb_dnum		(dungeon_topology.d_tomb_dnum)
+#define restingzone_ga_dnum		(dungeon_topology.d_restingzone_ga_dnum)
+#define restingzone_gb_dnum		(dungeon_topology.d_restingzone_gb_dnum)
+#define restingzone_gc_dnum		(dungeon_topology.d_restingzone_gc_dnum)
+#define restingzone_gd_dnum		(dungeon_topology.d_restingzone_gd_dnum)
+#define restingzone_ge_dnum		(dungeon_topology.d_restingzone_ge_dnum)
+#define restingzone_ta_dnum		(dungeon_topology.d_restingzone_ta_dnum)
+#define restingzone_tb_dnum		(dungeon_topology.d_restingzone_tb_dnum)
+#define restingzone_tc_dnum		(dungeon_topology.d_restingzone_tc_dnum)
+#define restingzone_td_dnum		(dungeon_topology.d_restingzone_td_dnum)
+#define restingzone_te_dnum		(dungeon_topology.d_restingzone_te_dnum)
+#define restingzone_tf_dnum		(dungeon_topology.d_restingzone_tf_dnum)
+#define restingzone_tg_dnum		(dungeon_topology.d_restingzone_tg_dnum)
+#define restingzone_th_dnum		(dungeon_topology.d_restingzone_th_dnum)
+#define restingzone_ti_dnum		(dungeon_topology.d_restingzone_ti_dnum)
+#define restingzone_tj_dnum		(dungeon_topology.d_restingzone_tj_dnum)
+#define restingzone_a_dnum		(dungeon_topology.d_restingzone_a_dnum)
+#define restingzone_s_dnum		(dungeon_topology.d_restingzone_s_dnum)
 #define lawful_quest_level	(dungeon_topology.d_lawful_quest_level)
 #define neutral_quest_level	(dungeon_topology.d_neutral_quest_level)
 #define chaotic_quest_level	(dungeon_topology.d_chaotic_quest_level)

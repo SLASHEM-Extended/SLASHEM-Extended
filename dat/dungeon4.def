@@ -187,6 +187,11 @@ BRANCH:         "Frankenstein's Lab" @ (2, 47) up
 BRANCH:	"Angmar" @ (2, 47)
 BRANCH:	"Swimming Pool" @ (2, 47)
 BRANCH:	"Hell's Bathroom" @ (2, 47)
+BRANCH:	"Resting Zone GA" @ (2, 47) up
+BRANCH:	"Resting Zone GB" @ (2, 47) up
+BRANCH:	"Resting Zone GC" @ (2, 47) up
+BRANCH:	"Resting Zone GD" @ (2, 47) up
+BRANCH:	"Resting Zone GE" @ (2, 47) up
 # Half-way down
 LEVEL:          "wizard1" "none" @ (25, 0)
 CHAINLEVEL:     "wizard2" "X" "wizard1" + (1, 0)
@@ -398,10 +403,12 @@ DESCRIPTION:    hellish
 DUNGEON:        "Angmar" "F" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
+BRANCH:	"Resting Zone A" @ (2, 13) up
 
 DUNGEON:        "Swimming Pool" "F" (15, 0)
 ALIGNMENT:      lawful
 DESCRIPTION:    hellish
+BRANCH:	"Resting Zone S" @ (2, 13) up
 
 DUNGEON:        "Hell's Bathroom" "F" (3, 0)
 ALIGNMENT:      chaotic
@@ -456,6 +463,16 @@ DESCRIPTION:    hellish
 BRANCH:         "Forging Chamber" @ (2, 98)
 BRANCH:         "Dead Grounds" @ (2, 98)
 BRANCH:         "Ordered Chaos" @ (2, 98)
+BRANCH:	"Resting Zone TA" @ (2, 98) up
+BRANCH:	"Resting Zone TB" @ (2, 98) up
+BRANCH:	"Resting Zone TC" @ (2, 98) up
+BRANCH:	"Resting Zone TD" @ (2, 98) up
+BRANCH:	"Resting Zone TE" @ (2, 98) up
+BRANCH:	"Resting Zone TF" @ (2, 98) up
+BRANCH:	"Resting Zone TG" @ (2, 98) up
+BRANCH:	"Resting Zone TH" @ (2, 98) up
+BRANCH:	"Resting Zone TI" @ (2, 98) up
+BRANCH:	"Resting Zone TJ" @ (2, 98) up
 
 LEVEL:		"elderp" "P" @ (1, 0)
 
@@ -514,6 +531,24 @@ DESCRIPTION:    hellish
 
 DUNGEON:        "Ordered Chaos" "R" (1, 0)
 DESCRIPTION:    hellish
+
+DUNGEON:        "Resting Zone GA" "R" (1, 0)
+DUNGEON:        "Resting Zone GB" "R" (1, 0)
+DUNGEON:        "Resting Zone GC" "R" (1, 0)
+DUNGEON:        "Resting Zone GD" "R" (1, 0)
+DUNGEON:        "Resting Zone GE" "R" (1, 0)
+DUNGEON:        "Resting Zone TA" "R" (1, 0)
+DUNGEON:        "Resting Zone TB" "R" (1, 0)
+DUNGEON:        "Resting Zone TC" "R" (1, 0)
+DUNGEON:        "Resting Zone TD" "R" (1, 0)
+DUNGEON:        "Resting Zone TE" "R" (1, 0)
+DUNGEON:        "Resting Zone TF" "R" (1, 0)
+DUNGEON:        "Resting Zone TG" "R" (1, 0)
+DUNGEON:        "Resting Zone TH" "R" (1, 0)
+DUNGEON:        "Resting Zone TI" "R" (1, 0)
+DUNGEON:        "Resting Zone TJ" "R" (1, 0)
+DUNGEON:        "Resting Zone A" "R" (1, 0)
+DUNGEON:        "Resting Zone S" "R" (1, 0)
 
 ### The Endgame levels ###
 #

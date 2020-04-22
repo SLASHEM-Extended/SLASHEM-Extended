@@ -3492,6 +3492,16 @@ chargingchoice:
 			if (!strcmp(dungeons[i].dname, "Forging Chamber")) continue;
 			if (!strcmp(dungeons[i].dname, "Dead Grounds")) continue;
 			if (!strcmp(dungeons[i].dname, "Ordered Chaos")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TA")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TB")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TC")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TD")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TE")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TF")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TG")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TH")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TI")) continue;
+			if (!strcmp(dungeons[i].dname, "Resting Zone TJ")) continue;
 		}
 		any.a_int = i+1;
 		add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,

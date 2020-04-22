@@ -2406,6 +2406,9 @@ mk_dgl_extrainfo()
         } else if (In_illusorycastle(&u.uz)) {
             sprintf(tmpdng, "%i|Ill%i", sortval, depth(&u.uz));
 		sortval = 3000 + depth(&u.uz);
+        } else if (In_restingzone(&u.uz)) {
+            sprintf(tmpdng, "%i|Res%i", sortval, depth(&u.uz));
+		sortval = 3000 + depth(&u.uz);
         } else if (In_voiddungeon(&u.uz)) {
             sprintf(tmpdng, "%i|Voi%i", sortval, depth(&u.uz));
 		sortval = 5000 + depth(&u.uz);

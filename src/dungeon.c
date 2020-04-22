@@ -1013,6 +1013,23 @@ init_dungeons()
 	sewerplant_dnum = dname_to_dnum("Sewer Plant");
 	gammacaves_dnum = dname_to_dnum("Gamma Caves");
 	mainframe_dnum = dname_to_dnum("Mainframe");
+	restingzone_ga_dnum = dname_to_dnum("Resting Zone GA");
+	restingzone_gb_dnum = dname_to_dnum("Resting Zone GB");
+	restingzone_gc_dnum = dname_to_dnum("Resting Zone GC");
+	restingzone_gd_dnum = dname_to_dnum("Resting Zone GD");
+	restingzone_ge_dnum = dname_to_dnum("Resting Zone GE");
+	restingzone_ta_dnum = dname_to_dnum("Resting Zone TA");
+	restingzone_tb_dnum = dname_to_dnum("Resting Zone TB");
+	restingzone_tc_dnum = dname_to_dnum("Resting Zone TC");
+	restingzone_td_dnum = dname_to_dnum("Resting Zone TD");
+	restingzone_te_dnum = dname_to_dnum("Resting Zone TE");
+	restingzone_tf_dnum = dname_to_dnum("Resting Zone TF");
+	restingzone_tg_dnum = dname_to_dnum("Resting Zone TG");
+	restingzone_th_dnum = dname_to_dnum("Resting Zone TH");
+	restingzone_ti_dnum = dname_to_dnum("Resting Zone TI");
+	restingzone_tj_dnum = dname_to_dnum("Resting Zone TJ");
+	restingzone_a_dnum = dname_to_dnum("Resting Zone A");
+	restingzone_s_dnum = dname_to_dnum("Resting Zone S");
 /*
 	blackmarket_dnum = dname_to_dnum("The Black Market");
 */
@@ -1767,6 +1784,13 @@ In_tomb(lev) /* are you in the lost tomb? */
 d_level *lev;
 {
 	return((boolean)(lev->dnum == tomb_dnum));
+}
+
+boolean
+In_restingzone(lev) /* are you in one of the resting zone dungeons? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == restingzone_ga_dnum || lev->dnum == restingzone_gb_dnum || lev->dnum == restingzone_gc_dnum || lev->dnum == restingzone_gd_dnum || lev->dnum == restingzone_ge_dnum || lev->dnum == restingzone_ta_dnum || lev->dnum == restingzone_tb_dnum || lev->dnum == restingzone_tc_dnum || lev->dnum == restingzone_td_dnum || lev->dnum == restingzone_te_dnum || lev->dnum == restingzone_tf_dnum || lev->dnum == restingzone_tg_dnum || lev->dnum == restingzone_th_dnum || lev->dnum == restingzone_ti_dnum || lev->dnum == restingzone_tj_dnum || lev->dnum == restingzone_a_dnum || lev->dnum == restingzone_s_dnum));
 }
 
 boolean

@@ -296,6 +296,40 @@ xchar dnum;
 		strcpy(buf, "ORD");
 	else if (In_quest(&u.uz))
 		strcpy(buf, "QUE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone A"))
+		strcpy(buf, "RAZ");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GA"))
+		strcpy(buf, "RGA");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GB"))
+		strcpy(buf, "RGB");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GC"))
+		strcpy(buf, "RGC");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GD"))
+		strcpy(buf, "RGD");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone GE"))
+		strcpy(buf, "RGE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone S"))
+		strcpy(buf, "RSZ");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TA"))
+		strcpy(buf, "RTA");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TB"))
+		strcpy(buf, "RTB");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TC"))
+		strcpy(buf, "RTC");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TD"))
+		strcpy(buf, "RTD");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TE"))
+		strcpy(buf, "RTE");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TF"))
+		strcpy(buf, "RTF");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TG"))
+		strcpy(buf, "RTG");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TH"))
+		strcpy(buf, "RTH");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TI"))
+		strcpy(buf, "RTI");
+	else if (!strcmp(dungeons[u.uz.dnum].dname, "Resting Zone TJ"))
+		strcpy(buf, "RTJ");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market"))
 		strcpy(buf, "SAM");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Subquest"))
