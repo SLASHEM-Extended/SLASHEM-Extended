@@ -2133,6 +2133,7 @@ dosacrifice()
 				 if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
 				 else othergreateffect();
 				 if (dmon && !rn2(200) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
+				 break;
 			  case 13:
 				 pline("He forces you to wear an artifact!");
 				 bad_artifact();
