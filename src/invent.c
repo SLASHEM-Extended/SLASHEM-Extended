@@ -12619,7 +12619,7 @@ boolean knoweverything;
 			case SHADOW_HORN:
 				pline("This instrument can shoot rays of acid."); break;
 			case CHROME_HORN:
-				pline("This instrument cah shoot rays of poison."); break;
+				pline("This instrument can shoot rays of poison."); break;
 			case HORN_OF_PLENTY: 
 				pline("A magic horn that generates food."); break;
 			case WOODEN_HARP: 

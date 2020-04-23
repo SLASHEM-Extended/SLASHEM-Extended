@@ -470,7 +470,7 @@ hornchoice:
 			losehp(damage, buf, KILLED_BY);
 		    }
 		} else {
-		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? AD_DRST-1 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
+		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? 26 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
 			 rn1(6,6), u.ux, u.uy, u.dx, u.dy);
 		}
 		makeknown(instr->otyp);

@@ -8956,7 +8956,6 @@ register int dx,dy;
     struct monst *mblamed = m_at(sx, sy);	/* Apparent aggressor */
     int spell_type = 0;
 
-
       /* LSZ/WWA The Wizard Patch July 96
        * If its a Hero Spell then get its SPE_TYPE
        */
