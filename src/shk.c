@@ -4570,10 +4570,14 @@ coord *mm;
 		(void) makemon(&mons[PM_TEUTON_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 15:
+		(void) makemon(&mons[PM_PAD_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+		break;
 		case 16:
 		(void) makemon(&mons[PM_FRANKISH_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 17:
+		(void) makemon(&mons[PM_GAUCHE_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+		break;
 		case 18:
 		(void) makemon(&mons[PM_BRITISH_SOLDIER], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
@@ -4697,8 +4701,10 @@ coord *mm;
 		case 108:
 		case 109:
 		case 110:
-		case 111:
 		(void) makemon(&mons[PM_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+		break;
+		case 111:
+		(void) makemon(&mons[PM_TWOWEAP_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 		break;
 		case 112:
 		(void) makemon(&mons[PM_EXTRATERRESTRIAL_SERGEANT], mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);

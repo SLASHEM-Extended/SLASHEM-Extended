@@ -215,7 +215,7 @@
 				 (ptr) == &mons[PM_HUMAN])
 #define stationary(ptr)	((ptr)->mflags3 & M3_NONMOVING)
 
-#define canalwaysride(ptr)	((ptr) == &mons[PM_SLOW_HUMPER] || (ptr) == &mons[PM_TLOTTING_HUMPER] || (ptr) == &mons[PM_HUMPER] || (ptr) == &mons[PM_DOMESTIC_HUMPER] || (ptr) == &mons[PM_FAST_HUMPER] || (ptr) == &mons[PM_PETTY_FAST_HUMPER] || (ptr) == &mons[PM_BLITZ_HUMPER] || (ptr) == &mons[PM_WEAPONIZED_HUMPER] || (ptr) == &mons[PM_EFFING_HUMPER] || (ptr) == &mons[PM_TURBO_HUMPER] || (ptr) == &mons[PM_RARE_HUMPER])
+#define canalwaysride(ptr)	((ptr) == &mons[PM_SLOW_HUMPER] || (ptr) == &mons[PM_TLOTTING_HUMPER] || (ptr) == &mons[PM_HUMPER] || (ptr) == &mons[PM_DOMESTIC_HUMPER] || (ptr) == &mons[PM_FAST_HUMPER] || (ptr) == &mons[PM_PETTY_FAST_HUMPER] || (ptr) == &mons[PM_BLITZ_HUMPER] || (ptr) == &mons[PM_WEAPONIZED_HUMPER] || (ptr) == &mons[PM_EFFING_HUMPER] || (ptr) == &mons[PM_TURBO_HUMPER] || (ptr) == &mons[PM_RARE_HUMPER] || (ptr) == &mons[PM_RIDABLE_HUMPER] || (ptr) == &mons[PM_INKA_HUMPER])
 
 #define is_nonmoving(ptr) ( (ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || ((ptr)->mflags3 & M3_NONMOVING) )
 
@@ -279,10 +279,12 @@
 				 ((ptr) == &mons[PM_CORONA_SENTAI]) ? 2 : \
 				 ((ptr) == &mons[PM_LAMP_GOLEM]) ? 2 : \
 				 ((ptr) == &mons[PM_POFF_LICH]) ? 2 : \
+				 ((ptr) == &mons[PM_PILE_OF_LIGHT_RADIUS_COINS]) ? 2 : \
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
 				 ((ptr) == &mons[PM_LIGHT_SHAPE]) ? 3 : \
 				 ((ptr) == &mons[PM_SATANIC_GNOME]) ? 3 : \
+				 ((ptr) == &mons[PM_LANTERN_STALKER]) ? 3 : \
 				 ((ptr) == &mons[PM_CORONA_WRAITH]) ? 3 : \
 				 ((ptr) == &mons[PM_GLOWWORM]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIATION_WORM]) ? 3 : \
@@ -300,10 +302,14 @@
 				 ((ptr) == &mons[PM_LUMINESCENT_FORCE_PATCH]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_FUNGUS]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_PATCH]) ? 3 : \
+				 ((ptr) == &mons[PM_BRIGHTER_SHADOW]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_GLOWING_DRACONIAN]) ? 2 : \
 				 ((ptr) == &mons[PM_UNDERWATER_THREAT]) ? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
+				 ((ptr) == &mons[PM_CAVE_EXPLORER]) ? 1 : \
+				 ((ptr) == &mons[PM_TORCH_CONVERTER]) ? 1 : \
+				 ((ptr) == &mons[PM_UNEXPECTED_LIGHT]) ? 1 : \
 				 ((ptr) == &mons[PM_POFFISH]) ? 1 : \
 				 ((ptr) == &mons[PM_GOBLIN_WHO_CAN_T_SEE_IN_THE_DARK]) ? 1 : \
 				 ((ptr) == &mons[PM_SHOCKING_SPHERE]) ? 1 : \
@@ -327,6 +333,7 @@
 				 (ptr) == &mons[PM_HUMAN_WEREBLACKLIGHT] || \
 				 (ptr) == &mons[PM_CHEATING_BLACK_LIGHT] || \
 				 (ptr) == &mons[PM_FORCE_STALKER] || \
+				 (ptr) == &mons[PM_LANTERN_STALKER] || \
 				 (ptr) == &mons[PM_GREEN_STALKER] || \
 				 (ptr) == &mons[PM_WHITE_STALKER] || \
 				 (ptr) == &mons[PM_RED_STALKER] || \

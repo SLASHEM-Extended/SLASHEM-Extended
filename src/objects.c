@@ -3316,6 +3316,7 @@ OBJECT(OBJ("Amulet of Yendor",	/* note: description == name */
 		OBJ(name,desc), BITS(0,0,spec,0,1,spec,0,0,0,0,0,0,metal), power, \
 		IMPLANT_CLASS, prob, 0, 0, 500, 0, 0, 10 - ac, 0, 20, color, minlvl, 0 )
 
+/* absorption must be first */
 /* first batch: gives up to 10 points of AC and nothing else */
 IMPLANT("implant of absorption",        "saintly",	0,     0,     10,     80,	MT_MYSTERIOUS,	CLR_YELLOW, 1),
 IMPLANT("implant of puncturing",        "fortified",	0,     0,     10,     80,	MT_LIQUID,	CLR_CYAN, 1),
@@ -3456,6 +3457,7 @@ IMPLANT("implant of your momma",        "sniffer",	1,     0,     10,     100,	MT
 IMPLANT("implant of swallowing",        "hair",	1,     0,     10,     100,	MT_PLASTIC,	CLR_BROWN, 1),
 IMPLANT("implant of menstrating",        "moaning",	1,     0,     10,     100,	MT_GLASS,	CLR_WHITE, 1),
 IMPLANT("implant of enforcing",        "underwhelming",	1,     0,     10,     100,	MT_GEMSTONE,	CLR_BROWN, 1),
+/* enforcing must be last */
 
 /* new materials, to ensure that the # of appearances is the same for every material */
 IMPLANT((char *)0, 	"ecumenical", 0, 0, 0, 0, MT_SAND,   CLR_GRAY, 1),

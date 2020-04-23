@@ -1096,6 +1096,8 @@ register int pm;
 	    case PM_LIZARD_EEL:
 	    case PM_EEL_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_RUNE_LIZARD:
+	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:
 	    case PM_SWAMP_LIZARD:
 	    case PM_SPITTING_LIZARD:
@@ -1127,6 +1129,7 @@ register int pm;
 	    case PM_LEGWA:
 	    case PM_BIG_IGUANA:
 	    case PM_HELPFUL_SQUIRREL:
+	    case PM_STAR_SQUIRREL:
 		make_hallucinated(0L,TRUE,0L);
 		make_confused(0L,TRUE);
 		make_stunned(0L,TRUE);
@@ -1249,6 +1252,8 @@ struct monst *mon;
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
 	case PM_GRASS_LIZARD:
+	case PM_RUNE_LIZARD:
+	case PM_SPECTRAL_LIZARD:
       case PM_BLUE_LIZARD:
 	case PM_SWAMP_LIZARD:
 	case PM_SPITTING_LIZARD:
@@ -1904,6 +1909,7 @@ register int pm;
 	    case PM_SQUIRREL:
 	    case PM_KWIRREL:
 	    case PM_HELPFUL_SQUIRREL:
+	    case PM_STAR_SQUIRREL:
 			lesshungry(50);
 		break;
 	    case PM_BIG_IGUANA:
@@ -2850,6 +2856,7 @@ register int pm;
 
 	    case PM_STALKER:
 	    case PM_FORCE_STALKER:
+	    case PM_LANTERN_STALKER:
 	    case PM_GREEN_STALKER:
 	    case PM_RED_STALKER:
 	    case PM_YELLOW_STALKER:
@@ -2974,6 +2981,8 @@ register int pm;
 	    case PM_SCORZARD:
 	    case PM_CAVE_LIZARD:
 	    case PM_GRASS_LIZARD:
+	    case PM_RUNE_LIZARD:
+	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:
 	    case PM_SWAMP_LIZARD:
 	    case PM_SPITTING_LIZARD:
@@ -3270,6 +3279,7 @@ register int pm;
 		break;
 
 	    case PM_CUCKATRICE:
+	    case PM_COCKAHORSE:
 	    case PM_CUP_COCKATRICE:
 
 		change_sex(); /* ignores unchanging (intentional) */
