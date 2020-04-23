@@ -6911,6 +6911,10 @@ A("Porkman's Balls of Steel",				HEAVY_SILVER_BALL, /* silver spells, you take e
 	(SPFX_RESTR|SPFX_REGEN|SPFX_EREGEN|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
+A("Overrated Face Protection",				CORONA_DRAGON_SCALE_MAIL, /* resist fear, weak sight */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

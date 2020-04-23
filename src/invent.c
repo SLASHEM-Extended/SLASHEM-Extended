@@ -19221,6 +19221,8 @@ boolean knoweverything;
 					pline("Artifact specs: +2 to-hit and damage when worn, neutral, combatant quest artifact."); break;
 				case ART_PORKMAN_S_BALLS_OF_STEEL:
 					pline("Artifact specs: regeneration, energy regeneration, silver spells and makes you vulnerable to silver weapons when wielded, chaotic. Porkman, the maniac who streaked SLEX, went ahead and created a 'variant' of SLEX which makes everything piss easy and adds this artifact, except it has no downsides there, every artifact extrinsic in the book, double damage and to top it off it can be NAMED after you wished for the base item. But this is SLEX, where things are and continue to be balanced."); break;
+				case ART_OVERRATED_FACE_PROTECTION:
+					pline("Artifact specs: fear resistance and weak sight when worn. It does not protect against corona, just improves your subjective feeling of fearlessness so that you neglect the social distancing (which does not protect against corona either though)."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

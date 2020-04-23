@@ -3225,13 +3225,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SCR_FEMINISM, "feminizm" },
 	{ WAN_BLEEDING, "krovotecheniye" },
 	{ WAN_UNDRESSING, "razdevaniya" },
+	{ SCR_HEAL_OTHER, "lechit' drugikh" },
+	{ CORONA_DRAGON_SCALES, "cheshuyki korony drakona" },
+	{ CORONA_DRAGON_SCALE_MAIL, "korona drakon'yey cheshui" },
+	{ CORONA_DRAGON_SCALE_SHIELD, "korona shchit iz cheshui drakona" },
 
 	/* todo area */
 
-	{ SCR_HEAL_OTHER, "todo" },
-	{ CORONA_DRAGON_SCALES, "todo" },
-	{ CORONA_DRAGON_SCALE_MAIL, "todo" },
-	{ CORONA_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };
@@ -5845,13 +5845,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SCR_FEMINISM, "feminizm" },
 	{ WAN_BLEEDING, "qon ketishi" },
 	{ WAN_UNDRESSING, "yechintirish" },
+	{ SCR_HEAL_OTHER, "boshqalarni davolaydi" },
+	{ CORONA_DRAGON_SCALES, "quyosh toji ajdaho tarozilari" },
+	{ CORONA_DRAGON_SCALE_MAIL, "quyosh toji miqyosidagi pochta" },
+	{ CORONA_DRAGON_SCALE_SHIELD, "quyosh toji shkalasi qalqoni" },
 
 	/* todo area */
 
-	{ SCR_HEAL_OTHER, "todo" },
-	{ CORONA_DRAGON_SCALES, "todo" },
-	{ CORONA_DRAGON_SCALE_MAIL, "todo" },
-	{ CORONA_DRAGON_SCALE_SHIELD, "todo" },
 
 	{0, "" }
 };
