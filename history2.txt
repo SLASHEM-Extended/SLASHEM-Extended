@@ -1,5 +1,5 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
-
+ 
 2.6.6 - Apr 2020
 - Fixed the calculations for healing symbiotes; they have been bugged since the introduction of symbiotes.
 - The knock spell now only works sometimes when used against an engulfer or steed.
