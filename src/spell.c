@@ -6712,11 +6712,6 @@ secureidchoice:
 
 	case SPE_WHISPERS_FROM_BEYOND:
 
-		identify_pack(0, 0, 0);
-		identify_pack(0, 0, 0);
-		if (rn2(2)) identify_pack(0, 0, 0);
-		if (!rn2(5)) identify_pack(0, 0, 0);
-
 		ABASE(A_INT) -= rnd(2);
 		if (ABASE(A_INT) < ATTRMIN(A_INT)) {
 			u.youaredead = 1;
@@ -6756,14 +6751,42 @@ secureidchoice:
 		}
 		AMAX(A_WIS) = ABASE(A_WIS);
 
+		increasesanity(rnd(1000));
+
 		/* It is not a mistake that INT loss kills you twice while WIS loss only does so once. --Amy */
+
+		/* now identify the stuff because otherwise players could just hangup cheat past the bad effects... gah... */
+		identify_pack(0, 0, 0);
+		identify_pack(0, 0, 0);
+		if (rn2(2)) identify_pack(0, 0, 0);
+		if (!rn2(5)) identify_pack(0, 0, 0);
+whisperchoice:
+		{
+			otmp = getobj(all_count, "secure identify");
+
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to secure identify your objects.");
+				else goto whisperchoice;
+				pline("A feeling of loss comes over you.");
+				break;
+			}
+			if (otmp) {
+				makeknown(otmp->otyp);
+				if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
+				otmp->known = otmp->dknown = otmp->bknown = otmp->rknown = 1;
+				if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
+				learn_egg_type(otmp->corpsenm);
+				prinv((char *)0, otmp, 0L);
+			}
+		}
 
 		break;
 
 	case SPE_STASIS:
+		nomul(-(u.stasistime), "frozen in stasis", FALSE);
 		u.stasistime = rnd(100);
 		pline("You freeze completely.");
-		nomul(-(u.stasistime), "frozen in stasis", FALSE);
 
 		break;
 
@@ -9898,8 +9921,9 @@ controlagain:
 			pline("You see here a %s on the end of your %s.",body_part(FOOT),body_part(LEG));
 		/* Come on sporkhack devteam, this spell could be useful. Let's see if I can make it do something. --Amy */
 			pline("Urgh - your head spins from the vile stench!");
-		    make_confused(HConfusion + d(10,10), FALSE);
+			make_confused(HConfusion + d(10,10), FALSE);
 			turn_allmonsters(); /* This even works on Demogorgon. */
+			badeffect();
 		}
 		break;
 	case SPE_REFLECTION:

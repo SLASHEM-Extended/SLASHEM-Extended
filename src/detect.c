@@ -422,6 +422,7 @@ int		class;		/* an object class, 0 for all */
 					detector->oartifact ) &&
 			detector->blessed);
     int guaranteed = (detector && !(detector->otyp == SPE_DETECT_TREASURE) && !(detector->otyp == SPE_MAP_LEVEL) && !(detector->otyp == SPE_MAGIC_MAPPING));
+    boolean stupiddetect = (detector && (detector->otyp == SPE_DETECT_TREASURE || detector->otyp == SPE_MAGIC_MAPPING));
     int likely = (detector && (detector->otyp == SPE_MAP_LEVEL));
     int ct = 0, ctu = 0;
     register struct obj *obj, *otmp = (struct obj *)0;
@@ -512,9 +513,9 @@ int		class;		/* an object class, 0 for all */
 		    otmp->ox = obj->ox;
 		    otmp->oy = obj->oy;
 		}
-		if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(otmp, 1);
+		if ((guaranteed || (likely && rn2(2)) || !rn2(3)) && !(stupiddetect && isok(obj->ox, obj->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, obj->ox, obj->oy) > 1226) ) ) map_object(otmp, 1);
 	    } else
-		if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(obj, 1);
+		if ((guaranteed || (likely && rn2(2)) || !rn2(3)) && !(stupiddetect && isok(obj->ox, obj->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, obj->ox, obj->oy) > 1226) ) ) map_object(obj, 1);
 	}
     /*
      * If we are mapping all objects, map only the top object of a pile or
@@ -534,9 +535,9 @@ int		class;		/* an object class, 0 for all */
 			    otmp->ox = obj->ox;
 			    otmp->oy = obj->oy;
 			}
-			if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(otmp, 1);
+			if ((guaranteed || (likely && rn2(2)) || !rn2(3)) && !(stupiddetect && isok(obj->ox, obj->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, obj->ox, obj->oy) > 1226) ) ) map_object(otmp, 1);
 		    } else
-			if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(obj, 1);
+			if ((guaranteed || (likely && rn2(2)) || !rn2(3)) && !(stupiddetect && isok(obj->ox, obj->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, obj->ox, obj->oy) > 1226) ) ) map_object(obj, 1);
 		    break;
 		}
 
@@ -549,7 +550,7 @@ int		class;		/* an object class, 0 for all */
 		if (!class && !boulder) otmp = obj;
 		otmp->ox = mtmp->mx;		/* at monster location */
 		otmp->oy = mtmp->my;
-		if (guaranteed || (likely && rn2(2)) || !rn2(3)) map_object(otmp, 1);
+		if ((guaranteed || (likely && rn2(2)) || !rn2(3)) && !(stupiddetect && isok(obj->ox, obj->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, obj->ox, obj->oy) > 1226) ) ) map_object(otmp, 1);
 		break;
 	    }
 	/* Allow a mimic to override the detected objects it is carrying. */
@@ -726,7 +727,7 @@ water_detect()
 }
 
 void
-water_detectX()
+water_detectX() /* for the spell, which is meant to be weaker than the scroll --Amy */
 {
 
     register int zx, zy;
@@ -735,7 +736,7 @@ water_detectX()
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
 	    if ((levl[zx][zy].typ == WATER || levl[zx][zy].typ == POOL || levl[zx][zy].typ == CRYSTALWATER || levl[zx][zy].typ == WATERTUNNEL || levl[zx][zy].typ == WELL || levl[zx][zy].typ == POISONEDWELL || levl[zx][zy].typ == RAINCLOUD || levl[zx][zy].typ == MOAT || levl[zx][zy].typ == FOUNTAIN || levl[zx][zy].typ == SINK || levl[zx][zy].typ == TOILET) && rn2(2)) {
-			show_map_spot(zx, zy);
+			if (!(isok(zx, zy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, zx, zy) > 901) ) ) show_map_spot(zx, zy);
 			detectamount++;
 		}
 
@@ -788,7 +789,7 @@ int mclass;			/* monster class, 0 for all */
 	    if (DEADMONSTER(mtmp)) continue;
 	    if (!mclass || mtmp->data->mlet == mclass ||
 		(mtmp->data == &mons[PM_LONG_WORM] && mclass == S_WORM_TAIL))
-		    if ((mtmp->mx > 0) && ( !(otmp && otmp->oclass == SPBOOK_CLASS) || rn2(2) ) ) {
+		    if ((mtmp->mx > 0) && !(otmp && otmp->oclass == SPBOOK_CLASS && (mtmp && isok(u.ux, u.uy) && isok(mtmp->mx, mtmp->my) && (dist2(u.ux,u.uy,mtmp->mx,mtmp->my) > 101) ) ) && ( !(otmp && otmp->oclass == SPBOOK_CLASS) || rn2(2) ) ) {
 		    	if (mclass && def_monsyms[mclass] == ' ')
 				show_glyph(mtmp->mx,mtmp->my,
 					detected_mon_to_glyph(mtmp));
@@ -922,6 +923,7 @@ outtrapmap:
     return(0);
 }
 
+/* weaker trap detection, from spell; currently only the entrapping spell uses this --Amy */
 int
 trap_detectX(sobj)
 register struct obj *sobj;
@@ -970,17 +972,18 @@ outtrapmap:
 	/* nerf by Amy - only detect 50% of all traps, because trap detection is very powerful if you think about it... */
     u.uinwater = 0;
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap)
-	if (!rn2(4) && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
+	if (!rn2(4) && !(isok(ttmp->tx, ttmp->ty) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, ttmp->tx, ttmp->ty) > 401) ) && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
 	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
-	if (!rn2(4)) sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
+	if (!rn2(4) && !(isok(obj->ox, obj->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, obj->ox, obj->oy) > 401) ))
+		sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
 
     for (door = 0; door < doorindex; door++) {
 	x = doors[door].x;
 	y = doors[door].y;
 	if (levl[x][y].doormask & D_TRAPPED)
-	if (!rn2(4)) sense_trap((struct trap *)0, x, y, sobj && sobj->cursed);
+	if (!rn2(4) && !(isok(x, y) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, x, y) > 401) )) sense_trap((struct trap *)0, x, y, sobj && sobj->cursed);
     }
 
     newsym(u.ux,u.uy);
@@ -1261,7 +1264,7 @@ do_mapping()
 }
 
 void
-do_mappingX()
+do_mappingX() /* magic mapping spell and roadmap cloak - they don't reveal as much info --Amy */
 {
     register int zx, zy;
     int uw = u.uinwater;
@@ -1269,7 +1272,7 @@ do_mappingX()
     u.uinwater = 0;
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
-	    show_map_spotX(zx, zy);
+	    if (!(isok(zx, zy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, zx, zy) > 626) ) ) show_map_spotX(zx, zy);
     exercise(A_WIS, TRUE);
     u.uinwater = uw;
     if (!level.flags.hero_memory || Underwater) {

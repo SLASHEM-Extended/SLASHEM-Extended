@@ -13637,7 +13637,7 @@ boolean knoweverything;
 			case SPE_LIGHT:
 				pline("A spell that lights up dark areas."); break;
 			case SPE_DETECT_MONSTERS:
-				pline("Allows you to see some of the monsters on the current dungeon level."); break;
+				pline("Allows you to see some of the monsters on the current dungeon level, but only those who aren't more than 10 squares away."); break;
 			case SPE_DETECT_FOOD:
 				pline("This spell shows you the food items on the current level."); break;
 			case SPE_ORE_MINING:
@@ -13701,7 +13701,7 @@ boolean knoweverything;
 			case SPE_ENHANCE_BREATH:
 				pline("Casting this buff spell enhances your breath for a while, which requires you to actually be able to breathe via #monster. Regular breaths do extra damage while disintegration breath costs less mana."); break;
 			case SPE_GOUGE_DICK:
-				pline("This spell is only useful if you're currently engulfed by a monster. If that is the case, you will use your penis to gouge a hole in the engulfing monster, paralyzing and heavily damaging it. For some reason this also works if you're female."); break;
+				pline("This spell is only useful if you're currently engulfed by a monster. If that is the case, you will use your penis to gouge a hole in the engulfing monster, paralyzing and heavily damaging it. For some reason this also works if you're female, but then the damage is much lower."); break;
 			case SPE_BODYFLUID_STRENGTHENING:
 				pline("A buff spell that temporarily causes all monsters attacking you in melee to take acid damage."); break;
 			case SPE_GEYSER:
@@ -13725,11 +13725,11 @@ boolean knoweverything;
 			case SPE_IDENTIFY:
 				pline("Casting this spell allows you to identify some objects in your inventory, although they usually won't reveal all of their secrets even if you use it repeatedly, because you're meant to also use other methods of identifying your items. Careful: this spell can sometimes backlash, causing random bad effects or occasionally amnesia!"); break;
 			case SPE_DETECT_TREASURE:
-				pline("This spell detects some of the objects on the current level."); break;
+				pline("This spell detects some of the objects on the current level, as long as they're less than 35 squares away from you."); break;
 			case SPE_MAGIC_MAPPING:
-				pline("A spell that reveals fragments of what the current dungeon level looks like, unless it's a non-mappable special level."); break;
+				pline("A spell that reveals fragments of what the current dungeon level looks like in a 25-square radius centered on you, unless it's a non-mappable special level."); break;
 			case SPE_ENTRAPPING:
-				pline("Casting this spell allows you to detect traps on the level, but each cast only reveals a few of them at once. It may sometimes backfire."); break;
+				pline("Casting this spell allows you to detect traps on the level, but each cast only reveals a few of them at once and only those close by (not more than 20 squares distant). It may sometimes backfire."); break;
 			case SPE_FINGER:
 				pline("This spell fires an invisible beam that shows you the attributes of monsters hit by it."); break;
 			case SPE_CHEMISTRY:
@@ -13738,7 +13738,7 @@ boolean knoweverything;
 #ifdef PHANTOM_CRASH_BUG
 				pline("This spell makes enemies fall over unconscious."); break;
 #else
-				pline("According to the Sporkhack creator, this spell is supposed to be useless. But this is Slash'EM Extended, where it allows you to make enemies fall over unconscious by... well, just see it for yourself. :D"); break;
+				pline("According to the Sporkhack creator, this spell is supposed to be useless. But this is Slash'EM Extended, where it allows you to make enemies fall over unconscious by... well, just see it for yourself. :D Be aware that it will also negatively affect you, though!"); break;
 #endif
 			case SPE_CONFUSE_MONSTER:
 				pline("Your melee attacks can confuse monsters if you cast this spell."); break;
@@ -14209,7 +14209,7 @@ boolean knoweverything;
 			case SPE_NATURE_BEAM:
 				pline("This spell fires powerful rays of fire, cold, lightning or poison (randomly chosen)."); break;
 			case SPE_WHISPERS_FROM_BEYOND:
-				pline("Tries to identify your entire inventory, because unlike ToME, there is no *Identify* effect in this game. There is no 'sanity' stat either, so it permanently reduces your INT and WIS by one or two instead, and if any of those go below 3, you die instantly!"); break;
+				pline("Tries to identify your entire inventory, because unlike ToME, there is no *Identify* effect in this game. It additionally allows you to secure identify one item without fail. There is no 'sanity' stat either (well actually there is, but who cares that this spell causes it to go up), so it permanently reduces your INT and WIS by one or two instead, and if any of those go below 3, you die instantly!"); break;
 			case SPE_STASIS:
 				pline("Both you and all monsters will be frozen in time until the spell effect ends. Protip: cast it to wait out annoying status effects or regenerate your health without being interrupted."); break;
 			case SPE_CRYOGENICS:
@@ -14245,7 +14245,7 @@ boolean knoweverything;
 			case SPE_UNLEVITATE:
 				pline("Probably borderline useless, this spell allows you to stop levitation if it's from a temporary source. It does not get cursed rings or boots of levitation off you, though."); break;
 			case SPE_DETECT_WATER:
-				pline("Tries to detect water sources on the level."); break;
+				pline("Tries to detect water sources on the level. It can only detect those that are at most 30 squares away from you, though."); break;
 			case SPE_APPLY_NAIL_POLISH:
 				pline("A spell that allows you to do your nails! Hopefully you're a woman, because then you'll really like this :-). But even if your character is male, it's just as useful. The more nails you do, the more damage your unarmed attacks can cause, but only if you're not wearing gloves. Being polymorphed into something with claw attacks also allows you to do extra damage."); break;
 			case SPE_ENCHANT:
