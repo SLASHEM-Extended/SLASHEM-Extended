@@ -239,7 +239,7 @@ MONSTER:'@',"wizard",(36,09),hostile
 MONSTER:'@',"rogue",(36,10),hostile
 MONSTER:'@',"High-elf",(36,11),hostile
 MONSTER:'@',"priest",(37,09),hostile
-MONSTER:'h',"random",(37,11),hostile
+MONSTER:'h',random,(37,11),hostile
 # sorry Kahran042, but the dwarf warrior is a quest guardian, so spawning one as an enemy would
 # probably result in the player killing him and then get dinged for murdering a quest friendly...
 
