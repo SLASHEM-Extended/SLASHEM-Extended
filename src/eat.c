@@ -3656,6 +3656,21 @@ register int pm;
 		    nomovemsg = 0;
 		}
 
+		if (evilfriday && dmgtype(ptr, AD_ENCH)) {
+			pline("Harharhar...");
+			attrcurse();
+			pline("Welcome to the evil variant, bitch!");
+		}
+		if (evilfriday && dmgtype(ptr, AD_NGEN)) {
+			pline("Harharhar...");
+			attrcurse();
+			attrcurse();
+			attrcurse();
+			attrcurse();
+			attrcurse();
+			pline("Welcome to the evil variant, bitch!");
+		}
+
 		if (dmgtype(ptr, AD_AGGR)) {
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
