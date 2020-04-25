@@ -1,6 +1,16 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
  
 2.6.6 - Apr 2020
+- Eating disenchanters in evilvariant mode can steal the player's intrinsics.
+- Most detection spells no longer work on the entire level, but in a radius around the player.
+- Fixed the bug where chrome horns were shooting fireballs instead of poison rays.
+- Fixed a fallthrough bug when summoning a demon lord.
+- Added resting zones to Gehennom, the Yendorian Tower and a few other "hellish" dungeons. The player can pray and convert altars in there.
+- Fixed some code execution exploits (thanks to David Mendenhall for discovering them and providing a fix).
+- Some monsters are now immune to time stop.
+- Stationary pets can now actually attack monsters.
+- The Juyo, Shien and Wedi forms can be trained more quickly.
+- The number of monster species exceeds 32768 now; a bunch of variables had to have their types changed to fix the bugs that cropped up.
 - Fixed the calculations for healing symbiotes; they have been bugged since the introduction of symbiotes.
 - The knock spell now only works sometimes when used against an engulfer or steed.
 - Added new effects for thrones and pentagrams.
