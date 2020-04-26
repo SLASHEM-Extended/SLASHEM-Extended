@@ -3287,8 +3287,8 @@ polyskillchance()
 		}
 	}
 
-	else return FALSE;
-
+	/* if we get here, always return false because you didn't succeed on any of the "can perform the action anyway" checks */
+	return FALSE;
 }
 
 /* are you eligible for the "handless" effects of implants? If you don't have hands and aren't a transformer, yes.
