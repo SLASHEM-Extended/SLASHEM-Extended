@@ -1055,7 +1055,7 @@ struct obj *obj;
     }
     oops = (rnd(20) > ACURR(A_INT) || obj->cursed);
     if (oops && (obj->spe > 0)) {
-	switch (rnd(obj->oartifact ? 4 : 5)) {
+	switch (rnd((obj->oartifact && rn2(100)) ? 4 : 5)) {
 	case 1 : pline("%s too much to comprehend!", Tobjnam(obj, "are"));
 	    break;
 	case 2 : pline("%s you!", Tobjnam(obj, "confuse"));
