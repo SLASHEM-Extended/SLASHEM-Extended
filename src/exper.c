@@ -279,13 +279,26 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	if(mtmp->m_lev > 8) tmp += 50;
 	/* Amy edit: high experience levels require lots of XP, but high-level monsters don't give all that much more XP
 	 * than low-level ones? gotta fix that... */
+	if(mtmp->m_lev > 10) {
+		int hilvlmod = (mtmp->m_lev - 9);
+		tmp += (hilvlmod * hilvlmod);
+	}
 	if(mtmp->m_lev > 20) {
 		int hilvlmod = (mtmp->m_lev - 19);
-		tmp += (hilvlmod * hilvlmod);
+		tmp += (hilvlmod * hilvlmod * rnd(10));
+	}
+	if(mtmp->m_lev > 30) {
+		int hilvlmod = (mtmp->m_lev - 29);
+		tmp += (hilvlmod * hilvlmod * 10);
 	}
 	if(mtmp->m_lev > 40) {
 		int hilvlmod = (mtmp->m_lev - 39);
 		tmp += (hilvlmod * hilvlmod * 100);
+	}
+	/* Amy edit again: but it's still not enough... */
+	if (mtmp->m_lev > 0 && tmp > 0) {
+		tmp *= (100 + (mtmp->m_lev * 2));
+		tmp /= 100;
 	}
 
 #ifdef MAIL
