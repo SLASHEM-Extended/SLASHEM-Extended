@@ -1100,6 +1100,20 @@ struct obj *obj;
 	boolean vis = !Blind && !obj->oinvisreal && (!obj->oinvis || See_invisible);
 
 	if(!getdir((char *)0)) return 0;
+
+	if (obj->cursed && !rn2(100)) {
+		useup(obj);
+		change_luck(-2);
+		Your("mirror suddenly shatters into a thousand pieces!");
+		return 2;
+	}
+	if (!rn2(100)) {
+		if (obj->blessed) unbless(obj);
+		else curse(obj);
+		pline("Your mirror seems less effective.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+	}
+
 	if(obj->cursed && !rn2(2)) {
 		if (vis)
 			FunnyHallu ? pline("Trippy messy rainbow colors... wow!") : pline_The("mirror fogs up and doesn't reflect!");
@@ -1218,7 +1232,7 @@ struct obj *obj;
 		(void) mpickobj(mtmp,obj,FALSE);
 		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 	} else if (!is_unicorn(mtmp->data) && !humanoid(mtmp->data) && !mtmp->minvisreal &&
-			(!mtmp->minvis || perceives(mtmp->data)) && rn2(5)) {
+			(!mtmp->minvis || perceives(mtmp->data)) && !resist(mtmp, TOOL_CLASS, 0, 0) && !rn2(5)) {
 		if (vis)
 		    pline("%s is frightened by its reflection.", Monnam(mtmp));
 		monflee(mtmp, d(2,4), FALSE, FALSE);
@@ -5294,6 +5308,7 @@ doapply()
 		break;
 	case MIRROR:
 		res = use_mirror(obj);
+		if (res >= 2) noartispeak = TRUE;
 		break;
 	case SPOON:
 		pline(FunnyHallu ? "Seems like exactly the thing needed to kill everything in one hit." : "It's a finely crafted antique spoon; what do you want to do with it?");

@@ -25148,6 +25148,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your stomach heaves as it is suddenly filled with water!",
 	"You are covered in ravenous insects!",
 	"You got turned, and are now gay.",
+	"Your mirror suddenly shatters into a thousand pieces!",
+	"Your mirror suddenly shatters into a thousand pieces! Oh no, you'll have seven years of bad luck now...",
 
 };
 
