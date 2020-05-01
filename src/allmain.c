@@ -10443,6 +10443,16 @@ past3:
 		}
 	}
 
+	/* depending on the player's speed, you may go back and forth and still end up on the same square when the next
+	 * check on the natalje trap effect happens; make sure to catch those moves and reset the timer --Amy */
+	if (FemtrapActiveNatalje) {
+		if ((u.ux != u.nataljetrapx) || (u.uy != u.nataljetrapy)) {
+			u.nataljetrapturns = moves;
+			u.nataljetrapx = u.ux;
+			u.nataljetrapy = u.uy;
+		}
+	}
+
 	if (practicantterror) {
 		if (u.uconduct.killer >= 1000 && !u.pract_toomanykills) {
 			pline("%s booms: 'You killed too many monsters, you maggot. That's a fine of 1000 zorkmids.'", noroelaname());
