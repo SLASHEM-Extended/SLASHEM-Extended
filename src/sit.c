@@ -334,7 +334,7 @@ dosit()
 			u.bedsleeping = moves + 100;
 			You("go to bed.");
 			if (FunnyHallu) pline("Sleep-bundle-wing!");
-			more_experienced(u.ulevel * 5, 0);
+			more_experienced(u.ulevel * 5 * (deepest_lev_reached(FALSE) + 1), 0);
 			newexplevel();
 			fall_asleep(-rnd(20), TRUE);
 

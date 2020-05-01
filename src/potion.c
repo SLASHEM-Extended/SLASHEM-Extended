@@ -7470,7 +7470,7 @@ dodrink()
 			levl[u.ux][u.uy].typ = CORR;
 			pline("The well dries up!");
 		}
-		more_experienced(1, 0);
+		more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 0);
 		newexplevel();
 		return 1;
 	    }
@@ -7505,7 +7505,7 @@ dodrink()
 			levl[u.ux][u.uy].typ = CORR;
 			pline("The well dries up!");
 		}
-		more_experienced(5, 0);
+		more_experienced(5 * (deepest_lev_reached(FALSE) + 1), 0);
 		newexplevel();
 		return 1;
 

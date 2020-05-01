@@ -1069,7 +1069,7 @@ doforce()		/* try to force a chest with your weapon */
 					levl[x][y].typ = CORR;
 					newsym(x,y);
 					blockorunblock_point(x,y);
-					more_experienced(25, 0);
+					more_experienced(25 * (deepest_lev_reached(FALSE) + 1), 0);
 					newexplevel();
 				}
 				return(1);
