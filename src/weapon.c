@@ -5704,17 +5704,17 @@ struct obj *weapon;
 
 	if (!(PlayerCannotUseSkills)) {
 
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(13);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(9);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon_type(weapon) == P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(4);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(8);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(13);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(20);
-	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(30);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_MASTER) ) bonus += rnd(9);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon_type(weapon) == -P_BOOMERANG && (P_SKILL(P_BOOMERANG) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
 	}
 

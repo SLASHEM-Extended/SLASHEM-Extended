@@ -9531,22 +9531,22 @@ boolean knoweverything;
 				pline("These razor-sharp throwing stars used to be the only weapon to use the shuriken skill. Throw them at enemies to slice them into tiny bits."); break;
 			case NANO_SHURIKEN:
 				pline("This weapon uses the shuriken skill and is meant to be thrown at enemies."); break;
-			case NEEDLE: 
+			case NEEDLE:
 				pline("Needles use the shuriken skill and can be thrown to kill enemies."); break;
-			case CALTROP: 
+			case CALTROP:
 				pline("If you want to train your shuriken skill, throw these at enemies. They deal much less damage than actual shuriken however."); break;
-			case BOOMERANG: 
+			case BOOMERANG:
 #ifdef PHANTOM_CRASH_BUG
 				pline("You can throw this but it flies in a weird pattern, and meleeing monsters with it can cause it to break."); break;
 #else
-				pline("Good luck making this crappy weapon work! The boomerang can theoretically be thrown to hit several enemies in a single turn, but its weird flight pattern means it has situational uses at best and no uses at worst. Using the boomerang in melee will probably cause it to break."); break;
+				pline("Good luck making this crappy weapon work! The boomerang can theoretically be thrown to hit enemies around a corner, but its weird flight pattern means it has situational uses at best and no uses at worst. Occasionally it can come back when thrown. Using the boomerang in melee will probably cause it to break."); break;
 #endif
-			case SILVER_CHAKRAM: 
-				pline("A silver version of the boomerang. If you guessed that this weapon still sucks, you are right."); break;
-			case BATARANG: 
-				pline("This weapon cannot stun the little poison ivies, but it can kill them! :D Joking aside, it's a far stronger version of the boomerang but it still flies in that weird circle pattern and rarely hits what you aim for."); break;
+			case SILVER_CHAKRAM:
+				pline("A silver version of the boomerang. If you guessed that this weapon still sucks, you are right. Like the regular boomerang, there is a chance that it returns to you when thrown."); break;
+			case BATARANG:
+				pline("This weapon cannot stun the little poison ivies, but it can kill them! :D Joking aside, it's a far stronger version of the boomerang but it still flies in that weird circle pattern and rarely hits what you aim for. It will sometimes return to your hand after throwing it."); break;
 			case DARK_BATARANG:
-				pline("The Joker won't stand a chance if you throw this boomerang at him... provided you hit, because it flies in a weird circle pattern."); break;
+				pline("The Joker won't stand a chance if you throw this boomerang at him... provided you hit, because it flies in a weird circle pattern. If you're lucky, it will return to your hand after a throw."); break;
 			case BULLWHIP: 
 #ifdef PHANTOM_CRASH_BUG
 				pline("Pitiful damage, and thick-skinned monsters are immune to it. Applying it allows you to perform certain feats though."); break;

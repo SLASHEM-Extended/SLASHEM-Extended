@@ -1638,24 +1638,51 @@ int thrown;
 		}
 	}
 
+	int boomerangchance = 20;
+
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_BOOMERANG)) {
+
+			case P_BASIC:	boomerangchance = 30; break;
+			case P_SKILLED:	boomerangchance = 35; break;
+			case P_EXPERT:	boomerangchance = 40; break;
+			case P_MASTER:	boomerangchance = 50; break;
+			case P_GRAND_MASTER:	boomerangchance = 60; break;
+			case P_SUPREME_MASTER:	boomerangchance = 70; break;
+			default: boomerangchance = 20; break;
+		}
+
+		if (Race_if(PM_BATMAN)) { /* his batarang usually comes back --Amy */
+			boomerangchance += ((100 - boomerangchance) / 2);
+		}
+	}
+
 	if (u.uswallow) {
 		/* ball is not picked up by monster */
 		if (obj != uball) (void) mpickobj(u.ustuck,obj,FALSE);
 	} else {
 		/* the code following might become part of dropy() */
-		if ((obj->oartifact == ART_MJOLLNIR &&
-			Role_if(PM_VALKYRIE) && rn2(100)) ||
-		    (is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rnd(11)) ) && (Role_if(PM_JEDI) || !rn2(2) || (djemsochance >= rnd(11)) ) &&
-			!(PlayerCannotUseSkills) &&
-		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
+		if (
+			(obj->oartifact == ART_MJOLLNIR && Role_if(PM_VALKYRIE) && rn2(100)) ||
+
+			(is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rnd(11)) ) &&
+			( (Role_if(PM_JEDI) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (!rn2(2) && P_SKILL(weapon_type(obj)) > P_SKILLED) || (djemsochance >= rnd(11)) ) ) ||
+
+			((objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_BOOMERANG) &&
+			((boomerangchance > rn2(100)) || (obj->oartifact && !rn2(3)) ) )
+
+			) {
+
+			boolean boomerfix = (objects[obj->otyp].oc_skill == P_BOOMERANG || objects[obj->otyp].oc_skill == -P_BOOMERANG);
+
 		    /* we must be wearing Gauntlets of Power to get here */
-		    /* or a Jedi with a lightsaber */
+		    /* or a Jedi with a lightsaber or a thrown boomerang */
 		    if (Role_if(PM_JEDI) && u.uen < 5){
 			You("don't have enough force to call %s. You need at least 5 points of mana!", the(xname(obj)));
 		    } else {
 		      if (Role_if(PM_JEDI))
 			u.uen -= 5;
-		    sho_obj_return_to_u(obj);	    /* display its flight */
+			if (!boomerfix) sho_obj_return_to_u(obj);	    /* display its flight */
 
 			/* djem so just trains so damn slowly... so here's an improvement --Amy */
 			if (is_lightsaber(obj)) use_skill(P_DJEM_SO, 1);
@@ -1664,8 +1691,12 @@ int thrown;
 			pline("%s to your hand!", Tobjnam(obj, "return"));
 			obj = addinv(obj);
 			(void) encumber_msg();
-			setuwep(obj, TRUE, TRUE);
-			u.twoweap = twoweap;
+			if (!boomerfix) {
+				setuwep(obj, TRUE, TRUE);
+				u.twoweap = twoweap;
+			} else {
+				setuqwep(obj);
+			}
 			if(cansee(bhitpos.x, bhitpos.y))
 			    newsym(bhitpos.x,bhitpos.y);
 		    } else {
