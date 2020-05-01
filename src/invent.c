@@ -15639,6 +15639,11 @@ boolean knoweverything;
 
 		if (obj->oartifact) {
 
+			if (evilfriday) { /* Ha ha ha! --Amy */
+				touch_artifact(obj, &youmonst);
+				if (!obj) return 0;
+			}
+
 			switch (obj->oartifact) {
 
 				case ART_FIREWALL:
