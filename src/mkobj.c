@@ -3374,7 +3374,7 @@ int x, y;
     register struct obj *gold = g_at(x,y);
 
     if (amount <= 0L)
-	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(5));
+	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(10));
 
 	if (Race_if(PM_VENTURE_CAPITALIST)) {	/* they get extra money, idea by deepy */
 
