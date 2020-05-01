@@ -2897,12 +2897,10 @@ register int pm;
 		/* fall into next case */
 	    case PM_YELLOW_LIGHT:
 		/* fall into next case */
-	    case PM_GIANT_BAT:
 	    case PM_CHICKATRICE:
 		make_stunned(HStun + 30,FALSE);
-		/* fall into next case */
-	    case PM_BAT:
-		make_stunned(HStun + 30,FALSE);
+
+		/* bats are generalized with is_bat now --Amy */
 		break;
 	    case PM_QUANTUM_MECHANIC:
 	    case PM_QUANTUM_CREATURE:
@@ -3654,6 +3652,10 @@ register int pm;
 		    pline("Suddenly you have a nightmare!");
 		    nomul(-5, "scared by a nightmare", TRUE);
 		    nomovemsg = 0;
+		}
+
+		if (is_bat(ptr)) {
+			make_stunned(HStun + 30,FALSE);
 		}
 
 		if (evilfriday && dmgtype(ptr, AD_ENCH)) {
@@ -6438,6 +6440,13 @@ struct obj *otmp;
 
 	if (dmgtype(&mons[mnum], AD_DREA)) {
 		sprintf(buf, "%s like %s could cause nightmares! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (is_bat(&mons[mnum])) {
+		sprintf(buf, "%s like %s could make you batty! %s",
 			foodsmell, it_or_they, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
 		else return 2;
