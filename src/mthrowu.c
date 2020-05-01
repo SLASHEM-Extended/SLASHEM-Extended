@@ -1857,7 +1857,7 @@ boolean special; /* for monsters that can shoot from infinite distance --Amy */
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || closed_door(bx, by))
+            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
@@ -1894,7 +1894,7 @@ register xchar ax, ay, bx, by;
         do {
             /* <bx,by> is guaranteed to eventually converge with <ax,ay> */
             bx += dx, by += dy;
-            if (IS_ROCK(levl[bx][by].typ) || closed_door(bx, by))
+            if (IS_ROCK(levl[bx][by].typ) || IS_WATERTUNNEL(levl[bx][by].typ) || closed_door(bx, by))
                 return FALSE;
         } while (bx != ax || by != ay);
         /* reached target position without encountering obstacle */
