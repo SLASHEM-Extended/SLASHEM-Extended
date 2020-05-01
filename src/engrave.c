@@ -978,6 +978,7 @@ static const char *random_mesg[] = {
 	"This space is definitely not infected with covid-19 yet.",
 	"know when to hold em, know when to fold em, know when to pork'em, know when to run", /* by porkman */
 	"The engraving you have just started reading is the engraving you have just finished reading.",
+	"SLEX is hereby presented to you by Amy Bluecuntwipeofdeath. Or it would be, according to a certain vandal on the roguebasin site.",
 
 };
 
@@ -5336,6 +5337,30 @@ static const char *epitaphs[] = {
 	"Huh. Didn't think the random backfires from the map level spell could be that bad.",
 	"RIP tender yellow-blonde practicant lass, crushed under the weight of Noroela's cruel dictatorship when she ultimately ran out of money with which to pay the fines.",
 	"Amy, even a fresh slex compile has this problem!!!",
+	"How can this be? My char basically steamrollered hordes of ubermonsters and then that lone monster came along and completely obliterated me.",
+	"What? I've been fighting monsters like that one before. How the hell can it be that this particular one hit way harder than the previous ones?",
+	"The stupid confusion just would not end, so I was unable to cast any healing spells!",
+	"Fuck hallucination, I don't have the slot of my wand of teleportation memorized. And when I tried to zap the monsters with one of my wands, of course I ended up picking the wand of healing instead.",
+	"Of course it is only a 1 in 8 chance that confusion makes my spell go in the wrong direction. Of course the RNG still decided that it would do so in this critical situation.",
+	"Noooooo! Something caused me to auto-equip an amulet of strangulation and I had no holy water left!",
+	"Gah, why did my prayer fail? I had specifically used enlightenment 20 turns ago and it said it was safe to pray!",
+	"Whoever put a timer on meteor and frozen orb deserves to have their sexual activity in real life put on a timer.",
+	"The lying character screen told me that Bremm's conviction aura reduced my resistances by 5 percent, so I just ignored it... only to find out that each spark was doing 120 or so damage and before I could react, he had already killed me. BULLSHIT!",
+	"Baal shot me with his orange missile ten times in a row, and then he teleported on top of me to do it!",
+	"Nihlathak, that son of a barbarian whore, was exploding corpse after corpse after corpse all well out of range, but then I suddenly realized that I was standing on a harpy corpse and before I could teleport away, it detonated.",
+	"I did dodge the archer boss's arrow. I really did. But it was an extra strong multiple shots might aura enchanted archer boss and the outside arrow clipped me and I DIED. Geeze-o-man.",
+	"I walked up to the next teleporter and clicked on it. Why? I had no idea. Anyway, I ended up in the middle of a pack of goat demons, they went chop chop, and a few seconds later I was staring at a red screen.",
+	"To my dismay, Duriel completely ignored my hired mercenary meatshield and came directly at me, and instakilled me with his charge.",
+	"That stuuuuupid Lister the Tormentor, why the everloving fuck did they design it so that there is loading lag while his boss pack is spawned? When the lag ended, I was already dead!",
+	"lol warum? weteeff",
+	"NOOOOOOOOO! I SOFTLOCKED THE GAME!!!",
+	"Well this part is dangerous, there is a slight chance that the game crashes. Hopefully it won't happen to m-",
+	"Oh my god. If you ever encounter a shoe monster in SLEX, run. Don't try to kill it, you'll get your butt kicked.",
+	"Gah, did the shopkeeper really have to call that many kops just because I accidentally stole a 10zm item???",
+	"WTF, how long does it take for my character to digest a baluchitherium when polymorphed into a purple worm? My polymorphed form got killed halfway through the digestion process but my char didn't stop digesting, meaning I was helpless and got killed before I got to move again!",
+	"Oh wait, so having autodig on is actually dangerous if you happen to press > while standing next to lava? I never knew!",
+	"Damn you Amy, you made shops way too deadly. I had uncontrolled teleportitis, and when I walked over a potion, my autopickup caused me to pick it up and at the same time I got teleported out! What's that you say? I'm supposed to turn autopickup off? FUCK YOU, I'm not gonna do that! Fix your shit game instead!",
+	"Why is it so special to die to a fire enchanted Bartuc? There's lots of other bosses that could also spawn fire enchanted...",
 
 };
 

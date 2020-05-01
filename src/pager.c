@@ -3965,6 +3965,10 @@ static NEARDATA const char * const demagoguelines[] = {
 "The government's corona restrictions are going too far! I will become the new head of state and relax those rules!",
 "There is no corona virus, it's just a carefully constructed lie by the government because in reality they want to revive the Meshera!",
 "Why do we have to wear those butt-ugly face masks? If I become president, I'll declare covid-19 nonexistant and ban the masks!",
+"The current government keeps making bad decisions yet our people let them get away with that? We need to end their reign, absolutely!",
+"They forget what they have done to us! Will we allow their treatment to go unpunished? Nay, I say! We will not!",
+"Now is the time for action... Those of you who say our revenge will bear no fruit, I want you to think again. What we do is for the sake of the future.",
+"We will track down the devil responsible for our oppression and for setting the world on the path to ruin! We shall execute him in the town square!",
 };
 
 static NEARDATA const char * const longinglines[] = {
@@ -4916,6 +4920,7 @@ static NEARDATA const char * const bangganglines_specific[] = {
 "What? The gang scholar made it to level %d? You let them slip through our trap, you failures! Quick, we have to chase after them!",
 "I've constructed a corona trap that will infect all gang scholars that ever enter dungeon level %d with covid-19.",
 "Come to level %d, Player 1, I'm looking forward to burning your skin with my cigarettes.",
+"Damn, some gang scholar just slipped away from me by using a trapdoor! I used it too and it dumped me on level %d, but they're not there! Guys, see if you can get to the adjacent levels, the enemy has to be on one of those.",
 };
 
 static NEARDATA const char * const bangganglines_femaleonly[] = {
@@ -5102,6 +5107,7 @@ static NEARDATA const char * const hussylines_wal[] = {
 "Uh-oh, I've received a distress call from the hola-hola brigade. They're trying to fight the walscholars but those bastards seem to resist the wouwou taunts.",
 "I think that walscholar cheated! They can't possibly be resisting the hola-hola brigade's taunts for that long!",
 "Listen up, walscholar: I know that you cheated. But I can do that too. From now on I'll use every cheat in the book as long as it helps me stop you.",
+"You can never avoid all the traps. Even if you get lucky for a while, your luck can't hold forever.",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -5222,6 +5228,7 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Even if you keep eluding me, %s, I can at least still do property damage to that stupid Walt guy's school!",
 "%s, last warning! Surrender now, or I and the other Hussies will demolish the school and ruin everything that Walt has created!",
 "%s, that was a mistake. You've tripped the inner perimeter's warning system, and now the automatic perfume dispensers will keep intoxicating you with the feminine scent.",
+"Soon %s will trigger a deadly trap and I can finally go to bed without having to fear some wise-ass walscholar nosing around in areas where they don't belong.",
 };
 
 static NEARDATA const char * const noroelabuying[] = {
@@ -25150,6 +25157,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"You got turned, and are now gay.",
 	"Your mirror suddenly shatters into a thousand pieces!",
 	"Your mirror suddenly shatters into a thousand pieces! Oh no, you'll have seven years of bad luck now...",
+	"Your grafted limbs surge forth.",
+	"Hello, this is Amy BlueCuntFlaps, the creator of SLEX who is really in awe of the person who vandalized the Roguebasin article! You certainly have an IQ of over 160 and will probably be the next President of the United States.",
+	"You collapse because you suddenly stopped dancing.",
+	"You collapse because you suddenly stopped dancing. Why did you do that? You know the first law of dancing, right? It's 'never stand still or you lose'!",
+	"u a unicorn or horse (tame pony named VWScirocco) What, is that a car? How do you drive the car?",
+	"You throw a boomerang. As it tries to fly back to you, the game suddenly segfaults.",
 
 };
 
