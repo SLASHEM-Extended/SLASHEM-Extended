@@ -5985,7 +5985,14 @@ doapply()
 			outrumor(-1,42,TRUE);	/* always false */
 		} else {
 			pline("So many knobs to turn! So many buttons to press!");
-			make_confused(HConfusion+rn2(10),TRUE);
+			/* Amy edit: omg no, we can't allow such an easy guaranteed way for confusion on demand... */
+			if (!rn2(20)) {
+				if (obj->blessed) unbless(obj);
+				else curse(obj);
+				pline("And now the universe seems to be turning inwards on itself! Oh no!");
+			}
+			badeffect();
+			if (!obj->cursed || !rn2(4)) make_confused(HConfusion+rn2(10),TRUE);
 		}
 		break;
 
