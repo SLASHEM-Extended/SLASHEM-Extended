@@ -6486,6 +6486,10 @@ int eqflags;
 
 newbadtry:
 	objtyp = rn2(NUM_OBJECTS);
+
+	if (objtyp == AMULET_OF_STRANGULATION) goto newbadtry;
+	/* too evil, as it means you either have a way of uncursing it or are dead, which isn't what I consider "fun" --Amy */
+
 	if (objects[objtyp].oc_prob < 1) {
 		tryct++;
 		if (tryct < 5000) goto newbadtry;

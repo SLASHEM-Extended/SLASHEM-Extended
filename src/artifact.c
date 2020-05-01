@@ -775,7 +775,7 @@ bad_artifact()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -920,7 +920,7 @@ bad_artifact_xtra()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
