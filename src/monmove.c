@@ -1977,6 +1977,10 @@ convertdone:
 		pline("Urrrrrgh, some really stinky person seems to be nearby! You pass out from the vile stench.");
 		nomul(-(rnd(5)), "unconscious from the stink homer's stench", TRUE);
 	}
+	if (mdat == &mons[PM_HUEPPOGREIFSCH] && multi >= 0 && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+		pline("Oh, damn hueppogreifsch...");
+		nomul(-(rnd(5)), "unconscious from the hueppogreifsch", TRUE);
+	}
 
 	if (mdat == &mons[PM_NOISY_ANNOYANCE] && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		demagogueparole();
