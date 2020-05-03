@@ -380,6 +380,11 @@ nh_timeout()
 		if (u.antitelespelltimeout < 0) u.antitelespelltimeout = 0; /* fail safe */
 	}
 
+	if (u.persiantimer) {
+		u.persiantimer--;
+		if (u.persiantimer < 0) u.persiantimer = 0; /* fail safe */
+	}
+
 	if (u.horsehopturns) {
 		u.horsehopturns--;
 		if (!u.horsehopturns) pline("You can no longer horse hop.");
@@ -964,12 +969,18 @@ nh_timeout()
 
 	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_PERSIAN_BOOTS) && !rn2(1000) ) {
+	if (!u.persiantimer && uarmf && itemhasappearance(uarmf, APP_PERSIAN_BOOTS) && !rn2(1000) ) {
 
 		pline("Your persian boots demand a sacrifice for allowing you to wear them.");
 		pline("You allow them to scratch over the full length of your shins with their zippers.");
-		if (Upolyd) losehp( (u.mhmax / 2) + 2, "persian zipper boots", KILLED_BY);
-		else losehp( (u.uhpmax / 2) + 2, "persian zipper boots", KILLED_BY);
+		if (Upolyd) {
+			losehp( (u.mhmax / 2) + 2, "persian zipper boots", KILLED_BY);
+			u.persiantimer = (u.mhmax / 2) + 2;
+		}
+		else {
+			losehp( (u.uhpmax / 2) + 2, "persian zipper boots", KILLED_BY);
+			u.persiantimer = (u.uhpmax / 2) + 2;
+		}
 		pline("Your %s are covered with deep wounds and you lose lots of %s!", makeplural(body_part(LEG)), body_part(BLOOD) );
 		if (!rn2(5)) {
 			u.uhpmax++;
