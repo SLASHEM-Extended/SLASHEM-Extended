@@ -363,7 +363,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 	}
 
 	/* evil patch idea by aosdict: Moloch's altars can occasionally curse the item. */
-	
+
 	if (!obj->cursed && !rn2(isfriday ? 100 : 500) && !obj->bknown && levl[u.ux][u.uy].altarmask == AM_NONE) curse(obj);
 	if (!rn2(5) && !obj->bknown && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone()) ) curse(obj);
 
@@ -376,6 +376,11 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 			if (!obj->bknown && !objects[obj->otyp].oc_merge)
 				use_skill(P_SPIRITUALITY,3);
 			obj->bknown = 1;
+			/* the more items you test, the more likely you'll recognize BUC on future items --Amy */
+			if (u.bucskill < 2 || !rn2(u.bucskill)) {
+				u.bucskill++;
+				if (u.bucskill > 250) u.bucskill = 250;
+			}
 		}
 	} else {
 		pline("%s %s on the altar.", Doname2(obj),
@@ -383,6 +388,10 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		if (!obj->bknown && !objects[obj->otyp].oc_merge && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) )
 			use_skill(P_SPIRITUALITY,3);
 		obj->bknown = 1;
+		if (u.bucskill < 2 || !rn2(u.bucskill)) {
+			u.bucskill++;
+			if (u.bucskill > 250) u.bucskill = 250;
+		}
 	}
 }
 

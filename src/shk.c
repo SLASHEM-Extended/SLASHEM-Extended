@@ -5946,6 +5946,10 @@ shk_appraisal(slang, shkp)
 			verbalize(basic_damage, ascii_wsdam, ascii_wldam);
 			if (!issoviet) {
 				obj->known = TRUE;
+				if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+					u.weapchantrecskill++;
+					if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+				}
 				verbalize("It is %s", doname(obj));
 			}
 			else pline("Sovetskiy khochet, chtoby vse bylo der'mo, dazhe izmeneniya, kotoryye, ochevidno, vygodny, schitayutsya im zlymi, potomu chto Emi sdelala ikh. Takim obrazom, plyus vashego oruzhiya ne oboznachen khar khar!");
@@ -5965,6 +5969,10 @@ shk_appraisal(slang, shkp)
 
 		if (!issoviet) {
 			obj->known = TRUE;
+			if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+				u.weapchantrecskill++;
+				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+			}
 			verbalize("It is %s", doname(obj));
 		}
 		else pline("Sovetskiy khochet, chtoby vse bylo der'mo, dazhe izmeneniya, kotoryye, ochevidno, vygodny, schitayutsya im zlymi, potomu chto Emi sdelala ikh. Takim obrazom, plyus vashego oruzhiya ne oboznachen khar khar!");

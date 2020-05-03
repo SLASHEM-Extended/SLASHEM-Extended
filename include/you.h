@@ -1517,6 +1517,10 @@ struct you {
 
 	int steedhitchance;	/* default 25%, can be changed via directive */
 
+	int bucskill;	/* how likely you are to recognize an item's BUC at a glance */
+	int enchantrecskill;	/* ditto for the item's + (all except weapons) */
+	int weapchantrecskill;	/* ditto for the item's + (weapons only) */
+
 	int footererlevel;
 
 	int ragnaroktimer;

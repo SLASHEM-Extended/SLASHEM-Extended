@@ -2877,6 +2877,9 @@ boolean shopinit;
 	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->known = TRUE;
 	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->dknown = TRUE;
 	if (otmp && !rn2(1000 - (u.ulevel * (ishaxor ? 20 : 10) ) )) otmp->bknown = TRUE;
+	if (otmp && (u.bucskill > rn2(300)) ) otmp->bknown = TRUE;
+	if (otmp && weapon_type(otmp) == P_NONE && (u.enchantrecskill > rn2(300)) ) otmp->known = TRUE;
+	if (otmp && weapon_type(otmp) != P_NONE && (u.weapchantrecskill > rn2(300)) ) otmp->known = TRUE;
 
 	if (otmp && (otmp->otyp == TIN || otmp->otyp == EGG) && !rn2(100 - (u.ulevel * (ishaxor ? 2 : 1) ) )) otmp->known = TRUE;
 

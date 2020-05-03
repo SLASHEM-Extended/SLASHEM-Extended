@@ -10562,6 +10562,8 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.bucskill = 0;
+	u.enchantrecskill = 0;
 	u.juyofleeing = 1;
 	u.riderhack = 0;
 	u.bodyfluideffect = 0;

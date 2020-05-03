@@ -4298,6 +4298,11 @@ bucchoice:
 			break;
 		}
 		if (otmp) {
+			if (!otmp->bknown && (u.bucskill < 2 || !rn2(u.bucskill)) ) {
+				u.bucskill++;
+				if (u.bucskill > 250) u.bucskill = 250;
+			}
+
 			otmp->bknown = TRUE;
 			if (otmp->blessed || otmp->cursed) pline("Your %s flashes %s.", doname(otmp), hcolor(otmp->blessed ? NH_AMBER : NH_BLACK));
 		}

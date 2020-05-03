@@ -3335,25 +3335,32 @@ int tech_no;
 		break;
             case T_APPRAISAL:
 			if(!uwep) {
-		    You("are not wielding anything!");
-		    return(0);
-		} else if (weapon_type(uwep) == P_NONE) {
-                        You("examine %s.", doname(uwep));
-                                uwep->known = TRUE;
-                                You("discover it is %s",doname(uwep));
-                t_timeout = rnz(2000);
-		} else {
-                        You("examine %s.", doname(uwep));
-                                uwep->known = TRUE;
-                                You("discover it is %s",doname(uwep));
+				You("are not wielding anything!");
+				return(0);
+			} else if (weapon_type(uwep) == P_NONE) {
+				You("examine %s.", doname(uwep));
+				uwep->known = TRUE;
+				You("discover it is %s",doname(uwep));
+				if (u.enchantrecskill < 100 || !rn2(u.enchantrecskill)) {
+					u.enchantrecskill++;
+					if (u.enchantrecskill > 250) u.enchantrecskill = 250;
+				}
+            		t_timeout = rnz(2000);
+			} else {
+				You("examine %s.", doname(uwep));
+				uwep->known = TRUE;
+				You("discover it is %s",doname(uwep));
+				if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+					u.weapchantrecskill++;
+					if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+				}
 
-			if (Race_if(PM_GERTEUT) && is_poisonable(uwep) && !stack_too_big(uwep)) {
-				Your("%s is poisoned.", doname(uwep));
-				uwep->opoisoned = TRUE;
+				if (Race_if(PM_GERTEUT) && is_poisonable(uwep) && !stack_too_big(uwep)) {
+					Your("%s is poisoned.", doname(uwep));
+					uwep->opoisoned = TRUE;
+				}
+				t_timeout = rnz(200);
 			}
-
-                t_timeout = rnz(200);
-		}
 		break;
 
             case T_PHASE_DOOR:
@@ -3408,25 +3415,29 @@ secureidchoice:
 		break;
 
             case T_PRACTICE:
-                if(!uwep || (weapon_type(uwep) == P_NONE)) {
-		    You("are not wielding a weapon!");
-		    return(0);
+			if(!uwep || (weapon_type(uwep) == P_NONE)) {
+			You("are not wielding a weapon!");
+			return(0);
 		} else if(uwep->known == TRUE) {
                     practice_weapon();
 		} else {
-                    if (not_fully_identified(uwep)) {
-                        You("examine %s.", doname(uwep));
-                            if (rnd(15) <= ACURR(A_INT)) {
-                                makeknown(uwep->otyp);
-                                uwep->known = TRUE;
-                                You("discover it is %s",doname(uwep));
-                                } else
-                     pline("Unfortunately, you didn't learn anything new.");
-                    } 
-                /*WAC Added practicing code - in weapon.c*/
-                    practice_weapon();
+			if (not_fully_identified(uwep)) {
+				You("examine %s.", doname(uwep));
+				if (rnd(15) <= ACURR(A_INT)) {
+					makeknown(uwep->otyp);
+					uwep->known = TRUE;
+					if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+						u.weapchantrecskill++;
+						if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+					}
+					You("discover it is %s",doname(uwep));
+				} else
+					pline("Unfortunately, you didn't learn anything new.");
+			} 
+			/*WAC Added practicing code - in weapon.c*/
+			practice_weapon();
 		}
-                t_timeout = rnz(1000);
+			t_timeout = rnz(1000);
 		break;
             case T_SURGERY:
 		if (Hallucination || (Stunned && !Stun_resist) || (Confusion && !Conf_resist) ) {

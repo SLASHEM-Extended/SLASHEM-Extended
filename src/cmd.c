@@ -5451,6 +5451,19 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if (u.bucskill) {
+		sprintf(buf, "%d points of BUC expertise", u.bucskill);
+		you_have(buf);
+	}
+	if (u.enchantrecskill) {
+		sprintf(buf, "%d points of enchantment expertise", u.enchantrecskill);
+		you_have(buf);
+	}
+	if (u.weapchantrecskill) {
+		sprintf(buf, "%d points of weapon enchantment expertise", u.weapchantrecskill);
+		you_have(buf);
+	}
+
 	if (u.hangupamount) {
 		sprintf(buf, "used the hangup function, which means you're either a FILTHY CHEAT0R or you have a shaky internet connection. Hopefully it's the latter so Amy doesn't have to reinstate the hangup penalty.");
 	    	sprintf(eos(buf), " (%d)", u.hangupamount);
@@ -9257,6 +9270,19 @@ int final;
 	if (Race_if(PM_PERVERT)) {
 		sprintf(buf, "prayed the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertpray);
+		dump(youhad, buf);
+	}
+
+	if (u.bucskill) {
+		sprintf(buf, "%d points of BUC expertise", u.bucskill);
+		dump(youhad, buf);
+	}
+	if (u.enchantrecskill) {
+		sprintf(buf, "%d points of enchantment expertise", u.enchantrecskill);
+		dump(youhad, buf);
+	}
+	if (u.weapchantrecskill) {
+		sprintf(buf, "%d points of weapon enchantment expertise", u.weapchantrecskill);
 		dump(youhad, buf);
 	}
 
