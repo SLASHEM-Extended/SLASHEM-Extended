@@ -11374,19 +11374,19 @@ int final;
 		enl_msg(You_, "have wrested wands ", "wrested wands ", buf);
 	}
 	if (u.cnd_firedestroy) {
-		sprintf(buf, "%d items to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
+		sprintf(buf, "%d item%s to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_colddestroy) {
-		sprintf(buf, "%d items to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
+		sprintf(buf, "%d item%s to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_shockdestroy) {
-		sprintf(buf, "%d items to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
+		sprintf(buf, "%d item%s to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_poisondestroy) {
-		sprintf(buf, "%d items to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
+		sprintf(buf, "%d item%s to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
 		enl_msg(You_, "lost ", "lost ", buf);
 	}
 	if (u.cnd_diggingamount) {
@@ -11999,16 +11999,16 @@ int final;
 	sprintf(buf, "%d time%s", u.cnd_wandwresting, plur(u.cnd_wandwresting));
 	dump("  You wrested wands ", buf);
 
-	sprintf(buf, "%d items to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
+	sprintf(buf, "%d item%s to fire damage", u.cnd_firedestroy, plur(u.cnd_firedestroy));
 	dump("  You lost ", buf);
 
-	sprintf(buf, "%d items to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
+	sprintf(buf, "%d item%s to cold damage", u.cnd_colddestroy, plur(u.cnd_colddestroy));
 	dump("  You lost ", buf);
 
-	sprintf(buf, "%d items to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
+	sprintf(buf, "%d item%s to shock damage", u.cnd_shockdestroy, plur(u.cnd_shockdestroy));
 	dump("  You lost ", buf);
 
-	sprintf(buf, "%d items to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
+	sprintf(buf, "%d item%s to poison damage", u.cnd_poisondestroy, plur(u.cnd_poisondestroy));
 	dump("  You lost ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_diggingamount, plur(u.cnd_diggingamount));
