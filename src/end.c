@@ -1657,6 +1657,7 @@ die:
 	} else	taken = FALSE;	/* lint; assert( !bones_ok ); */
 
 	if (!goexplore && !gofreeplay) {
+		delete_savefile(); /* dying during recovery (allmain.c) happens before the savegame file got erased --Amy */
 		clearlocks();
 
 		if (have_windows) display_nhwindow(WIN_MESSAGE, FALSE);

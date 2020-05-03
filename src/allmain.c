@@ -13803,6 +13803,16 @@ boolean new_game;	/* false => restoring an old game */
 	}
 #endif
 
+	if (!new_game && (u.uhp <= 0 && (!Upolyd || u.mh <= 0))) {
+
+		u.youaredead = 1;
+		You("were not healthy enough to survive restoration.");
+		killer_format = NO_KILLER_PREFIX;
+		killer = "restored the game while having no hit points left";
+		done(DIED);
+		u.youaredead = 0;
+	}
+
 	if (!new_game && issoviet) {
 
 		/* In Soviet Russia, modders simply assume that everything the Amy does is bullshit. They do not actually

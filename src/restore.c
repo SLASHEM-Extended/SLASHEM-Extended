@@ -1520,6 +1520,8 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mons[PM_FANNY_S_LOVELY_WINTER_BOOT].mname = tname;
 	*/
 
+	/* who the HELL designed this bullcrap that allows you to hide a death from the logs??? moved to allmain.c --Amy */
+#if 0
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
 	    You("were not healthy enough to survive restoration.");
@@ -1531,6 +1533,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	    u.uz.dlevel = 1;
 	    return(FALSE);
 	}
+#endif
 
 	/* this stuff comes after potential aborted restore attempts */
 	restore_timers(fd, RANGE_GLOBAL, FALSE, 0L);
