@@ -6939,7 +6939,7 @@ ring:
 	}
 	if(obj->owornmask & W_SWAPWEP) {
 		if (u.twoweap)
-			sprintf(eos(bp), flags.simpledescs ? " (%s)" : " (wielded in other %s)", body_part(HAND));
+			sprintf(eos(bp), flags.simpledescs ? " (%s2)" : " (wielded in other %s)", body_part(HAND));
 		else
 			strcat(bp, flags.simpledescs ? " (swap)" : " (alternate weapon; not wielded)");
 	}
