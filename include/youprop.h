@@ -733,6 +733,7 @@
 #define RngeFunnyHallu		(u.uprops[RNGE_FUNNY_HALLU].intrinsic || u.uprops[RNGE_FUNNY_HALLU].extrinsic)
 #define RngePolypiling		(u.uprops[RNGE_POLYPILING].intrinsic || u.uprops[RNGE_POLYPILING].extrinsic)
 #define RngeSapGeneration		(u.uprops[RNGE_SAP_GENERATION].intrinsic || u.uprops[RNGE_SAP_GENERATION].extrinsic)
+#define RngeWealth		(u.uprops[RNGE_WEALTH].intrinsic || u.uprops[RNGE_WEALTH].extrinsic)
 
 /* Hallucination is solely a timeout; its resistance is extrinsic */
 #define HHallucination		u.uprops[HALLUC].intrinsic

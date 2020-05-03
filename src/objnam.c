@@ -382,6 +382,8 @@ int prop;
 			return "polypiling";
 		case RNGE_SAP_GENERATION:
 			return "sap generation";
+		case RNGE_WEALTH:
+			return "wealth";
 		case DIMINISHED_BLEEDING:
 			return "diminished bleeding";
 		case FEMTRAP_FEMMY:

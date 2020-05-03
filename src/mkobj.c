@@ -3375,6 +3375,7 @@ int x, y;
 
     if (amount <= 0L)
 	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(10));
+	if (!rn2(2)) amount += (long)(1 + rnd(level_difficulty()+2) * rnd(10));
 
 	if (Race_if(PM_VENTURE_CAPITALIST)) {	/* they get extra money, idea by deepy */
 
@@ -3386,6 +3387,8 @@ int x, y;
 		if (!rn2(5000)) amount *= 50;
 		if (!rn2(25000)) amount *= 100;
 	}
+
+	if (RngeWealth) amount *= (1 + rnd(2)); /* 2.5 times as much gold on average --Amy */
 
     if (gold) {
 	gold->quan += amount;
