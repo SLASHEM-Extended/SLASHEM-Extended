@@ -1660,6 +1660,9 @@ water_prayer(bless_water)
     /* Praying on a coaligned altar will completely decontaminate you if it was safe to pray --Amy */
     if (bless_water && u.contamination) decontaminate(u.contamination);
 
+    /* and it can also take care of unnaturally low max HP or Pw --Amy */
+    if (bless_water) upnivel(FALSE);
+
     for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 	/* turn water into (un)holy water */
 	if (otmp->otyp == POT_WATER && (bless_water ? !otmp->blessed : !otmp->cursed)) {
