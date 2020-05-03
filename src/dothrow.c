@@ -1638,6 +1638,7 @@ int thrown;
 		}
 	}
 
+	/* boomerang can come back, idea from dnethack, implementation by Amy (chance is less than 100%) */
 	int boomerangchance = 20;
 
 	if (!PlayerCannotUseSkills) {
@@ -1651,6 +1652,19 @@ int thrown;
 			case P_SUPREME_MASTER:	boomerangchance = 70; break;
 			default: boomerangchance = 20; break;
 		}
+
+		switch (P_SKILL(P_DJEM_SO)) {
+
+			case P_BASIC:	boomerangchance +=  2; break;
+			case P_SKILLED:	boomerangchance +=  4; break;
+			case P_EXPERT:	boomerangchance +=  6; break;
+			case P_MASTER:	boomerangchance +=  8; break;
+			case P_GRAND_MASTER:	boomerangchance +=  10; break;
+			case P_SUPREME_MASTER:	boomerangchance +=  12; break;
+			default: break;
+		}
+
+		if (boomerangchance > 90) boomerangchance = 90; /* shouldn't happen */
 
 		if (Race_if(PM_BATMAN)) { /* his batarang usually comes back --Amy */
 			boomerangchance += ((100 - boomerangchance) / 2);
