@@ -5260,6 +5260,30 @@ nivellate()
 			lowerceiling /= 2;
 			upperceiling /= 2;
 		}
+		if (Race_if(PM_YEEK)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_DUFFLEPUD)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_PLAYER_DOLGSMAN)) {
+			lowerceiling *= 3;
+			lowerceiling /= 4;
+			upperceiling *= 3;
+			upperceiling /= 4;
+		}
+		if (Race_if(PM_SPRIGGAN)) {
+			lowerceiling *= 3;
+			lowerceiling /= 4;
+			upperceiling *= 3;
+			upperceiling /= 4;
+		}
+		if (Race_if(PM_PLAYER_FAIRY)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
 		if (Race_if(PM_BACTERIA)) {
 			lowerceiling *= 3;
 			lowerceiling /= 2;
@@ -5374,6 +5398,14 @@ nivellate()
 		if (Role_if(PM_UNBELIEVER)) {
 			lowerceiling /= 5;
 			upperceiling /= 5;
+		}
+		if (Race_if(PM_YEEK)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_DUFFLEPUD)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
 		}
 		if (Race_if(PM_BACTERIA)) {
 			lowerceiling *= 3;
@@ -5518,6 +5550,23 @@ boolean guaranteed;
 		if (Role_if(PM_ORDINATOR)) {
 			ceiling /= 2;
 		}
+		if (Race_if(PM_YEEK)) {
+			ceiling /= 2;
+		}
+		if (Race_if(PM_DUFFLEPUD)) {
+			ceiling /= 2;
+		}
+		if (Race_if(PM_PLAYER_DOLGSMAN)) {
+			ceiling *= 3;
+			ceiling /= 4;
+		}
+		if (Race_if(PM_SPRIGGAN)) {
+			ceiling *= 3;
+			ceiling /= 4;
+		}
+		if (Race_if(PM_PLAYER_FAIRY)) {
+			ceiling /= 2;
+		}
 		if (Race_if(PM_BACTERIA)) {
 			ceiling *= 3;
 			ceiling /= 2;
@@ -5608,6 +5657,12 @@ boolean guaranteed;
 		}
 		if (Role_if(PM_UNBELIEVER)) {
 			ceiling /= 5;
+		}
+		if (Race_if(PM_YEEK)) {
+			ceiling /= 2;
+		}
+		if (Race_if(PM_DUFFLEPUD)) {
+			ceiling /= 2;
 		}
 		if (Race_if(PM_BACTERIA)) {
 			ceiling *= 3;
