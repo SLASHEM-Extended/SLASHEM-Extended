@@ -5671,7 +5671,7 @@ rerollX:
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(28)) {
+			} else switch (rnd(29)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -6294,6 +6294,24 @@ newbossPENT:
 				case 28:
 					decontaminate(100);
 					You_feel("decontaminated.");
+					break;
+				case 29:
+					pline("Wow!  This makes you feel good!");
+					{
+					int i, ii, lim;
+					i = rn2(A_MAX);
+					for (ii = 0; ii < A_MAX; ii++) {
+						lim = AMAX(i);
+						if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+						if (ABASE(i) < lim) {
+							ABASE(i) = lim;
+							flags.botl = 1;
+							break;
+						}
+						if(++i >= A_MAX) i = 0;
+					}
+
+					}
 					break;
 				default:
 					impossible("undefined pentagram effect");
