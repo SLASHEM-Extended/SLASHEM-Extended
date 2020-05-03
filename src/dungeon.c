@@ -2693,9 +2693,9 @@ boolean wantdump;
 	if (printdun) {
 		/* Sokoban lies about dunlev_ureached and we should
 		 * suppress the negative numbers in the endgame.
+		 * Amy edit: fuck that, the branch lengths are always the same anyway so might as well see it
 		 */
-		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 ||
-			mptr->lev.dnum == sokoban_dnum || In_endgame(&mptr->lev))
+		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 || In_endgame(&mptr->lev))
 			sprintf(buf, "%s:", dungeons[mptr->lev.dnum].dname);
 		else
 			sprintf(buf, "%s: levels %d to %d", 
