@@ -2344,6 +2344,7 @@ E boolean chromeprotection(void);
 E int angelshadowstuff(void);
 E void statdebuff(void);
 E void nivellate(void);
+E void upnivel(BOOLEAN_P);
 E void nexus_swap(void);
 
 E boolean hybridragontype(int);

@@ -5534,6 +5534,7 @@ doapply()
 			You("take a white pill from %s and swallow it.",
 				yname(obj));
 			if (can_use) {
+			    upnivel(FALSE);
 			    if (Sick) make_sick(0L, (char *) 0,TRUE ,SICK_ALL);
 			    else if (Blinded > (long)(u.ucreamed+1))
 				make_blinded(u.ucreamed ?

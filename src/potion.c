@@ -5468,6 +5468,213 @@ nivellate()
 	flags.botl = TRUE;
 }
 
+/* up-nivellation: increase the player's max HP or Pw if they're below average for current XL --Amy */
+void
+upnivel(guaranteed)
+boolean guaranteed;
+{
+	if (issoviet && !guaranteed) return; /* lol */
+	if (evilfriday && !guaranteed && rn2(3)) return; /* tough luck */
+	if (u.ulevel < 4) return; /* not available yet */
+
+	boolean nivellevel = u.ulevel;
+	int ceiling = 1;
+	int increaseamount = 1;
+
+	{
+
+		ceiling = (nivellevel * 10);
+
+		if (ACURR(A_CON) < 11) {
+			ceiling *= 4;
+			ceiling /= 5;
+		}
+		if (ACURR(A_CON) < 7) {
+			ceiling /= 2;
+		}
+		if (ACURR(A_CON) > 19) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
+
+		if (Role_if(PM_ASTRONAUT)) {
+			ceiling *= 6;
+			ceiling /= 5;
+		}
+		if (Role_if(PM_BARBARIAN)) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
+		if (Role_if(PM_AUGURER)) {
+			ceiling *= 4;
+			ceiling /= 5;
+		}
+		if (Role_if(PM_BLEEDER)) {
+			ceiling *= 2;
+		}
+		if (Role_if(PM_DRUID)) {
+			ceiling /= 2;
+		}
+		if (Role_if(PM_ORDINATOR)) {
+			ceiling /= 2;
+		}
+		if (Race_if(PM_BACTERIA)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
+		if (Race_if(PM_INKA)) {
+			ceiling *= 6;
+			ceiling /= 5;
+		}
+		if (Race_if(PM_ITAQUE)) {
+			ceiling *= 7;
+			ceiling /= 5;
+		}
+		if (Race_if(PM_PLAYER_CERBERUS)) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
+		if (Race_if(PM_PLAYER_FAIRY)) {
+			ceiling *= 2;
+			ceiling /= 3;
+		}
+		if (Race_if(PM_WEAPONIZED_DINOSAUR)) {
+			ceiling *= 4;
+			ceiling /= 3;
+		}
+		if (Race_if(PM_SHELL)) {
+			ceiling *= 4;
+			ceiling /= 3;
+		}
+		if (Race_if(PM_CARTHAGE)) {
+			ceiling *= 9;
+			ceiling /= 10;
+		}
+		if (Race_if(PM_VIKING)) {
+			ceiling *= 9;
+			ceiling /= 10;
+		}
+
+		if (ceiling < 10) ceiling = 10; /* fail safe */
+
+		if (u.uhpmax < ceiling) {
+			increaseamount = (ceiling / 10);
+			if (increaseamount < 1) increaseamount = 1; /* fail safe */
+			u.uhpmax += increaseamount;
+			if (u.uhpmax > ceiling) u.uhpmax = ceiling; /* fail safe */
+			Your("health was recovered by %d.", increaseamount);
+		}
+
+		if (Upolyd) {
+
+			if (u.mhmax < ceiling) {
+				increaseamount = (ceiling / 10);
+				if (increaseamount < 1) increaseamount = 1; /* fail safe */
+				u.mhmax += increaseamount;
+				if (u.mhmax > ceiling) u.mhmax = ceiling; /* fail safe */
+				Your("polymorphed health was recovered by %d.", increaseamount);
+			}
+
+		}
+
+	}
+	{
+
+		ceiling = (nivellevel * 10);
+
+		if (ACURR(A_WIS) < 11) {
+			ceiling *= 4;
+			ceiling /= 5;
+		}
+		if (ACURR(A_WIS) < 7) {
+			ceiling /= 2;
+		}
+		if (ACURR(A_WIS) > 19) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
+
+		if (Role_if(PM_ALTMER)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
+		if (Role_if(PM_MASTERMIND)) {
+			ceiling *= 4;
+			ceiling /= 3;
+		}
+		if (Role_if(PM_WIZARD)) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
+		if (Role_if(PM_UNBELIEVER)) {
+			ceiling /= 5;
+		}
+		if (Race_if(PM_BACTERIA)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
+		if (Race_if(PM_TROLLOR)) {
+			ceiling *= 2;
+			ceiling /= 3;
+		}
+		if (Race_if(PM_REDGUARD)) {
+			ceiling /= 2;
+		}
+		if (Race_if(PM_YOKUDA)) {
+			ceiling *= 2;
+			ceiling /= 3;
+		}
+		if (Race_if(PM_RODNEYAN)) {
+			ceiling *= 2;
+		}
+		if (Race_if(PM_CARTHAGE)) {
+			ceiling *= 9;
+			ceiling /= 10;
+		}
+		if (Race_if(PM_LICH_WARRIOR)) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
+		if (Race_if(PM_WISP)) {
+			ceiling *= 4;
+			ceiling /= 3;
+		}
+
+		if (ceiling < 10) ceiling = 10; /* fail safe */
+
+		if (u.uenmax < ceiling) {
+			increaseamount = (ceiling / 10);
+			if (increaseamount < 1) increaseamount = 1; /* fail safe */
+			u.uenmax += increaseamount;
+			if (u.uenmax > ceiling) u.uenmax = ceiling; /* fail safe */
+			Your("mana was recovered by %d.", increaseamount);
+		}
+
+	}
+
+	if (uactivesymbiosis) {
+		int symlevel = mons[u.usymbiote.mnum].mlevel;
+		if (symlevel < 6) symlevel = 6;
+		ceiling = (symlevel * 10);
+		if (Role_if(PM_SYMBIANT)) {
+			ceiling *= 2;
+		}
+
+		if (u.usymbiote.mhpmax < ceiling) {
+			increaseamount = (ceiling / 5);
+			if (increaseamount < 1) increaseamount = 1; /* fail safe */
+			u.usymbiote.mhpmax += increaseamount;
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			if (u.usymbiote.mhpmax > ceiling) u.usymbiote.mhpmax = ceiling; /* fail safe */
+
+			Your("symbiote's health was boosted by %d.", increaseamount);
+		}
+
+	}
+
+	flags.botl = TRUE;
+}
+
 /* if you're an angel, shadowstuff items reduce your stats --Amy */
 int
 angelshadowstuff()
@@ -7476,6 +7683,7 @@ dodrink()
 		}
 		more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 0);
 		newexplevel();
+		upnivel(FALSE);
 		return 1;
 	    }
 	    else if (IS_POISONEDWELL(levl[u.ux][u.uy].typ)) {

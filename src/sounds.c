@@ -3072,7 +3072,7 @@ register struct monst *mtmp;
 			menu_item *selected;
 			int n;
 
-			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote) {
+			if (!mtmp->nurse_extrahealth && !mtmp->nurse_decontaminate && !mtmp->nurse_healing && !mtmp->nurse_curesickness && !mtmp->nurse_curesliming && !mtmp->nurse_curesanity && !mtmp->nurse_medicalsupplies && !mtmp->nurse_purchasedrugs && !mtmp->nurse_obtainsymbiote && !mtmp->nurse_fixsymbiote && !mtmp->nurse_shutdownsymbiote && !mtmp->nurse_restoration) {
 				verbalize("Sorry. I'm all out of services.");
 				goto noservices;
 			}
@@ -3102,6 +3102,8 @@ register struct monst *mtmp;
 			if (mtmp->nurse_fixsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 'f', 0, ATR_NONE, "Fix Symbiote", MENU_UNSELECTED);
 			any.a_int = 11;
 			if (mtmp->nurse_shutdownsymbiote) add_menu(tmpwin, NO_GLYPH, &any , 's', 0, ATR_NONE, "Shutdown Symbiote", MENU_UNSELECTED);
+			any.a_int = 12;
+			if (mtmp->nurse_restoration) add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Restoration", MENU_UNSELECTED);
 
 			end_menu(tmpwin, "Services Available:");
 			n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -3378,6 +3380,32 @@ register struct monst *mtmp;
 								if (u.nurseshutdowncost < 1000) u.nurseshutdowncost = 1000; /* fail safe */
 								if (flags.showsymbiotehp) flags.botl = TRUE;
 								break;
+							}
+						}
+
+						break;
+					case 12:
+						if (u.ugold < 2500) {
+							verbalize("Sorry, restoration costs 2500 dollars.");
+							break;
+						}
+						if (u.ulevel < 4) {
+							verbalize("Sorry. You are too frail and inexperienced, and would probably not survive this procedure. Come back when you have gained a few experience levels.");
+							break;
+						}
+						if (issoviet) {
+							verbalize("Otvali! V Sovetskoy Rossli zdorov'ye istoshchayet VAS!");
+							break;
+						}
+						if (u.ugold >= 2500) {
+							verbalize("Restoration is used to fix low HP and Pw maximum values. Generally, this is the case if your maximum is less than ten times your experience level, although for some roles and races the ceiling values may be different. If you give me 2500 dollars, I can give it a try but be warned: if your maximum values are too high, you won't get your money back.");
+							if (yn("Accept the offer?") == 'y') {
+								verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+								u.ugold -= 2500;
+								if (!rn2(10)) mtmp->nurse_restoration = 0;
+								if (u.ualign.type == A_NEUTRAL) adjalign(1);
+								u.cnd_nurseserviceamount++;
+								upnivel(TRUE); /* guaranteed */
 							}
 						}
 

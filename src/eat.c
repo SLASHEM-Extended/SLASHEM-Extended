@@ -3654,6 +3654,12 @@ register int pm;
 		    nomovemsg = 0;
 		}
 
+	/* AD_NIVE can reduce high HP/Pw maximums... but eating them can fix low maximums --Amy */
+		if (dmgtype(ptr, AD_NIVE)) {
+			pline("Wow, a corona antidote!");
+			upnivel(FALSE);
+		}
+
 		if (is_bat(ptr)) {
 			make_stunned(HStun + 30,FALSE);
 		}

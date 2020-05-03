@@ -337,6 +337,7 @@ dosit()
 			more_experienced(u.ulevel * 5 * (deepest_lev_reached(FALSE) + 1), 0);
 			newexplevel();
 			fall_asleep(-rnd(20), TRUE);
+			upnivel(FALSE);
 
 			if (uarmf && uarmf->oartifact == ART_LARISSA_S_GENTLE_SLEEP) {
 				pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
