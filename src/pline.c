@@ -572,22 +572,22 @@ raw_printf VA_DECL(const char *, line)
 /*VARARGS1*/
 void
 impossible VA_DECL(const char *, s)
+	{
+	char pbuf[BUFSZ];
 	VA_START(s);
 	VA_INIT(s, const char *);
 	if (program_state.in_impossible)
 		panic("impossible called impossible");
 	program_state.in_impossible = 1;
-	{
-	    char pbuf[BUFSZ];
-	    vsnprintf(pbuf,sizeof pbuf,s,VA_ARGS);
-	    pbuf[BUFSZ-1] = '\0'; /* sanity */
-	    paniclog("impossible", pbuf);
-	}
+	vsnprintf(pbuf,sizeof pbuf,s,VA_ARGS);
+	pbuf[BUFSZ-1] = '\0'; /* sanity */
+	paniclog("impossible", pbuf);
 	pline("%s", pbuf); /*used to be vpline(s,VA_ARGS); but that was causing funky issues --Amy */
 	pline("Program in disorder. Please inform Amy (Bluescreenofdeath at nethackwiki) about this bug.");
 	pline("The admins can also be contacted on the #em.slashem.me IRC channel (Freenode).");
 	program_state.in_impossible = 0;
 	VA_END();
+	}
 }
 
 const char *
