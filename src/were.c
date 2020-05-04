@@ -235,7 +235,7 @@ register struct monst *mon;
 
 	pm = counter_were(monsndx(mon->data));
 	if(!pm) {
-	    impossible("unknown lycanthrope %s.", mon->data->mname);
+	    impossible("unknown lycanthrope %d.", mon->mnum);
 	    return;
 	}
 
