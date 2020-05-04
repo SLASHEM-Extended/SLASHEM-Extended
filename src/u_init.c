@@ -21041,6 +21041,7 @@ u_init()
 	shamblerplayergl->mflags2 &= ~M2_MERC;				/* no guards */
 	shamblerplayergl->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	shamblerplayergl->mflags2 &= ~M2_PNAME;				/* not a proper name */
+	shamblerplayergl->mflags2 &= ~M2_WERE;				/* no werefoo */
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerb->mlevel += rnd(12)-3;*/				/* shuffle level */
@@ -36111,6 +36112,7 @@ int realityflag;
 	shamblerplayergl->mflags2 &= ~M2_MERC;				/* no guards */
 	shamblerplayergl->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	shamblerplayergl->mflags2 &= ~M2_PNAME;				/* not a proper name */
+	shamblerplayergl->mflags2 &= ~M2_WERE;				/* no werefoo */
 
 	/* what a horrible night to have a curse */
 	/*shamblerplayerb->mlevel += rnd(12)-3;*/				/* shuffle level */
