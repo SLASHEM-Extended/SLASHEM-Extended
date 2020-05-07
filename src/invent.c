@@ -18329,7 +18329,7 @@ boolean knoweverything;
 				case ART_MINOLONG_ELBOW:
 					pline("Artifact specs: beam wands and spells have a longer range while you're wielding it."); break;
 				case ART_ALCHEMICAL_PROHIBITION:
-					pline("Artifact specs: +4 to-hit and +8 damage, fire resistance while carried."); break;
+					pline("Artifact specs: +4 to-hit and +8 damage."); break;
 				case ART_AUNTIE_HILDA:
 					pline("Artifact specs: magic resistance when wielded, neutral."); break;
 				case ART_RED_GAS_BULLET:
@@ -19250,7 +19250,7 @@ boolean knoweverything;
 				case ART_APEC_PRODUCTION:
 					pline("Artifact specs: +3 to-hit and +2 damage. This superior crossbow ammo was made by the APEC Company (Ammunition Producers Exploiting their Customers)."); break;
 				case ART_APEC_EXPLOIT:
-					pline("Artifact specs: +3 to-hit and +2 damage. This superior crossbow ammo was made by the APEC Company (Ammunition Producers Exploiting their Customers)."); break;
+					pline("Artifact specs: +3 to-hit and +2 damage. This superior dart was made by the APEC Company (Ammunition Producers Exploiting their Customers)."); break;
 				case ART_NEZ_SPECIAL_OFFER:
 					pline("Artifact specs: +8 to-hit and +6 damage, also causes monsters to bleed on a hit."); break;
 				case ART_MISTY_S_MELEE_PLEASURE:

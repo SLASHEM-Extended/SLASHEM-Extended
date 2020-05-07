@@ -6334,6 +6334,7 @@ SCROLL((char *)0,               "NO I WILL NOT TOUCH PORKEM WITH A 50 FOOT POLE"
 SCROLL((char *)0,               "YAMROSKOOTR",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "HUGGING SOFT AND GENTLE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "COVID19 ANTIDOTE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "TO MAKE THE CUSTOMER SUFFER FROM SHOPPING",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 
 
 #ifdef MAIL

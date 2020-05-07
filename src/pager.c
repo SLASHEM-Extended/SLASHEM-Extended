@@ -25163,6 +25163,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You collapse because you suddenly stopped dancing. Why did you do that? You know the first law of dancing, right? It's 'never stand still or you lose'!",
 	"u a unicorn or horse (tame pony named VWScirocco) What, is that a car? How do you drive the car?",
 	"You throw a boomerang. As it tries to fly back to you, the game suddenly segfaults.",
+	"You have to use a shopping cart now, which every other supermarket customer touched with their corona-infected hands before. Genius.",
+	"you stop swinging your pick-axe.  You eat a meatball instead!",
+	"You try to put on your amulet of life saving, but zap yourself with a wand of death instead!",
+	"you apply your tin opener... you cut off the shopkeepers toenails! the shopkeeper gets angry...",
+	"*gasp* the neCOBOLnomicon??",
 
 };
 
