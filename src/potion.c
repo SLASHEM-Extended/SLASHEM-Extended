@@ -5711,6 +5711,7 @@ boolean guaranteed;
 		int symlevel = mons[u.usymbiote.mnum].mlevel;
 		if (symlevel < 6) symlevel = 6;
 		ceiling = (symlevel * 10);
+		if (PlayerCannotUseSkills || (P_SKILL(P_SYMBIOSIS) < P_SKILLED)) ceiling = (symlevel * 8);
 		if (Role_if(PM_SYMBIANT)) {
 			ceiling *= 2;
 		}
