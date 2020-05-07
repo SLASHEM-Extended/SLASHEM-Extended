@@ -5946,7 +5946,7 @@ shk_appraisal(slang, shkp)
 			verbalize(basic_damage, ascii_wsdam, ascii_wldam);
 			if (!issoviet) {
 				obj->known = TRUE;
-				if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+				if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
 					u.weapchantrecskill++;
 					if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 				}
@@ -5969,7 +5969,7 @@ shk_appraisal(slang, shkp)
 
 		if (!issoviet) {
 			obj->known = TRUE;
-			if (u.weapchantrecskill < 100 || !rn2(u.weapchantrecskill)) {
+			if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
 				u.weapchantrecskill++;
 				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
 			}
