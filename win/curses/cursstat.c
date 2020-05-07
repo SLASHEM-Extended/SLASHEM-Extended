@@ -639,9 +639,17 @@ linetwo:
     wprintw(win, "%s", buf);
 
 #ifndef GOLDOBJ
-    print_statdiff(flags.supergmmode ? "S" : flags.gmmode ? "G" : "$", &prevau, u.ugold, STAT_GOLD);
+    print_statdiff(
+#ifdef GMMODE
+	flags.supergmmode ? "S" : flags.gmmode ? "G" : 
+#endif
+	"$", &prevau, u.ugold, STAT_GOLD);
 #else
-    print_statdiff(flags.supergmmode ? "S" : flags.gmmode ? "G" : "$", &prevau, money_cnt(invent), STAT_GOLD);
+    print_statdiff(
+#ifdef GMMODE
+	flags.supergmmode ? "S" : flags.gmmode ? "G" :
+#endif
+	"$", &prevau, money_cnt(invent), STAT_GOLD);
 #endif
 
     /* HP/Pw use special coloring rules */

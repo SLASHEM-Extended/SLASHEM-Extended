@@ -2782,8 +2782,10 @@ boolean guaranteed;
 	if (flags.elmstreet) you_are("playing in elm street mode");
 	if (flags.blindfox) you_are("playing in blindfox mode");
 	if (flags.hippie) you_are("playing in hippie mode");
+#ifdef GMMODE
 	if (flags.gmmode) you_are("playing in game master mode");
 	if (flags.supergmmode) you_are("playing in super game master mode");
+#endif
 
 	if ((guaranteed || !rn2(10)) && u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
@@ -6780,8 +6782,10 @@ int final;
 	if (flags.elmstreet) dump(youwere, "playing in elm street mode");
 	if (flags.blindfox) dump(youwere, "playing in blindfox mode");
 	if (flags.hippie) dump(youwere, "playing in hippie mode");
+#ifdef GMMODE
 	if (flags.gmmode) dump(youwere, "playing in game master mode");
 	if (flags.supergmmode) dump(youwere, "playing in super game master mode");
+#endif
 
 	if (u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {

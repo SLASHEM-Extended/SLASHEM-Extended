@@ -143,8 +143,10 @@ struct flag {
 	boolean blindfox; 
 	boolean lostsoul; 
 	boolean uberlostsoul; 
+#ifdef GMMODE
 	boolean gmmode;
 	boolean supergmmode;
+#endif
 	boolean wonderland;
 	boolean elmstreet;
 	boolean zapem;

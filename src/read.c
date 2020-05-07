@@ -11050,6 +11050,7 @@ create_particular()
 
 /* For GM mode (Game Master mode): this allows Amy to interfere with user's games that are played online.
  * She can then send mail to the player that causes a monster specificed by her to spawn somewhere on the level :D */
+#ifdef GMMODE
 void
 gmmode_genesis(specifictype)
 const char *specifictype;
@@ -11086,6 +11087,7 @@ okay:
 	}
 
 }
+#endif /* GMMODE */
 
 #endif /* OVLB */
 

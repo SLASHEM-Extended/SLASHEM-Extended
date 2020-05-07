@@ -2475,7 +2475,9 @@ E boolean cant_create(int *, BOOLEAN_P);
 #ifdef WIZARD
 E struct monst *create_particular(void);
 #endif
+#ifdef GMMODE
 E void gmmode_genesis(const char *);
+#endif
 E void forget_single_object(int);
 E void wandofchaosterrain(void);
 E void wandoffleecyterrain(void);

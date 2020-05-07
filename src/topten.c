@@ -1585,12 +1585,18 @@ gamemode_strcode()
 	if (flags.blindfox) sprintf(eos(string), "blindfox");
 	if (flags.uberlostsoul) sprintf(eos(string), "uberlostsoul");
 	if (flags.lostsoul && !(flags.uberlostsoul)) sprintf(eos(string), "lostsoul");
+#ifdef GMMODE
 	if (flags.gmmode) sprintf(eos(string), "gmmode");
 	if (flags.supergmmode) sprintf(eos(string), "supergmmode");
+#endif
 	if (flags.wonderland) sprintf(eos(string), "wonderland");
 	if (flags.zapem) sprintf(eos(string), "zapm");
 
-	if (!u.freeplaymode && !(flags.gehenna) && !(flags.dudley) && !(flags.gmmode) && !(flags.supergmmode) && !(flags.iwbtg) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
+	if (!u.freeplaymode && !(flags.gehenna) && !(flags.dudley)
+#ifdef GMMODE
+	&& !(flags.gmmode) && !(flags.supergmmode)
+#endif
+	&& !(flags.iwbtg) && !(flags.elmstreet) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul) && !(flags.wonderland) && !(flags.zapem)) sprintf(eos(string), "none");
 
     return (string);
 }

@@ -44,7 +44,7 @@
  * Some combinations make no sense.  See the installation document.
  */
 #define TTY_GRAPHICS		/* good old tty based graphics */
-#define CURSES_GRAPHICS		/* awful curses interface */
+/* #define CURSES_GRAPHICS */		/* awful curses interface */
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */
@@ -590,6 +590,10 @@ typedef unsigned char	uchar;
  * and when turned on, hanging up will have a much more severe penalty. */
 
 /* #define HANGUPPENALTY */
+
+/* game master mode allows watchers to summon monsters, but not all server admins want that...
+ * so it's disabled by default; if GMMODE is defined, it is enabled --Amy */
+/* #define GMMODE */
 
 #define DUMPMSGS 20
 

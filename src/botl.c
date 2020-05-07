@@ -864,7 +864,10 @@ bot2str(char *newbot2)
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
 		sprintf(nb = eos(newbot2), "%c%ld ",
-		  flags.supergmmode ? monsyms[S_SNAKE] : flags.gmmode ? monsyms[S_GNOME] : oc_syms[COIN_CLASS],
+#ifdef GMMODE
+		  flags.supergmmode ? monsyms[S_SNAKE] : flags.gmmode ? monsyms[S_GNOME] : 
+#endif
+		  oc_syms[COIN_CLASS],
 #ifndef GOLDOBJ
 		u.ugold
 #else

@@ -130,7 +130,11 @@ moveloop()
 
 	if (getmonth() == 5) {
 #ifdef PUBLIC_SERVER
-		if (flags.uberlostsoul || flags.lostsoul || flags.gmmode || flags.supergmmode || flags.wonderland || flags.zapem) {
+		if (flags.uberlostsoul || flags.lostsoul
+#ifdef GMMODE
+ || flags.gmmode || flags.supergmmode
+#endif
+		|| flags.wonderland || flags.zapem) {
 			pline("WARNING (PLEASE READ): Junethack is running - but you're using a playing mode that is incompatible with the tournament! The following modes are prohibited: lostsoul, uberlostsoul, gmmode, zapem and wonderland. If you want your games to count, quit this one now, disable all the forbidden options, and start a new game. Please refer to junethack.net for more information. Good luck!");
 		} else {
 			pline("Junethack is running! Please refer to junethack.net for more information. Give it your best shot, and try to score as many trophies as you can! Good luck!");

@@ -326,8 +326,10 @@ static struct Bool_Opt
 	{"elmstreet", &flags.elmstreet, FALSE, DISP_IN_GAME}, 
 	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME}, 
 	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME}, 
+#ifdef GMMODE
 	{"gmmode", &flags.gmmode, FALSE, DISP_IN_GAME}, 
 	{"supergmmode", &flags.supergmmode, FALSE, DISP_IN_GAME}, 
+#endif
 	{"wonderland", &flags.wonderland, FALSE, DISP_IN_GAME}, 
 	{"zapem", &flags.zapem, FALSE, DISP_IN_GAME}, 
 
