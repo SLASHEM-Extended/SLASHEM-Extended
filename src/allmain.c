@@ -9146,11 +9146,11 @@ newboss:
 		    dgn_growths(TRUE, TRUE, TRUE);
 #endif
 
-		    if (u.ublesscnt) {
-				if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
-				else u.ublesscnt--;
-			}
-		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+		if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
+		else if (u.ublesscnt) {
+			u.ublesscnt--;
+		}
+		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
 		if (uarmg && u.ublesscnt && itemhasappearance(uarmg, APP_COMFORTABLE_GLOVES) ) u.ublesscnt--;
 
