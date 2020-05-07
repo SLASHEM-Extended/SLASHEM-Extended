@@ -8601,22 +8601,22 @@ retry:
 						if (frostmon->mhp > frostmon->mhpmax) frostmon->mhp = frostmon->mhpmax;
 						if (u.ualign.type == A_LAWFUL) adjalign(1);
 					}
-					if (u.usteed && frostmon == u.usteed) { /* double healing! */
-						frostmon->mfrozen = 0;
-						frostmon->msleeping = 0;
-						frostmon->masleep = 0;
-						frostmon->mcanmove = 1;
-						frostmon->mflee = 0;
-						frostmon->mcansee = 1;
-						frostmon->mblinded = 0;
-						frostmon->mstun = 0;
-						frostmon->mconf = 0;
-						pline("%s is cured.", Monnam(frostmon));
-						frostmon->mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
-						if (frostmon->mhp > frostmon->mhpmax) frostmon->mhp = frostmon->mhpmax;
-						if (u.ualign.type == A_LAWFUL) adjalign(1);
-					}
 				}
+			}
+			if (u.usteed) {
+				u.usteed->mfrozen = 0;
+				u.usteed->msleeping = 0;
+				u.usteed->masleep = 0;
+				u.usteed->mcanmove = 1;
+				u.usteed->mflee = 0;
+				u.usteed->mcansee = 1;
+				u.usteed->mblinded = 0;
+				u.usteed->mstun = 0;
+				u.usteed->mconf = 0;
+				pline("%s is cured.", Monnam(u.usteed));
+				u.usteed->mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
+				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+				if (u.ualign.type == A_LAWFUL) adjalign(1);
 			}
 
 		}

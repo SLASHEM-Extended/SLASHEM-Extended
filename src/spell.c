@@ -6503,6 +6503,20 @@ secureidchoice:
 				frostmon->mconf = 0;
 				pline("%s is cured.", Monnam(frostmon));
 			}
+
+			if (u.usteed && rn2(2)) {
+				u.usteed->mfrozen = 0;
+				u.usteed->msleeping = 0;
+				u.usteed->masleep = 0;
+				u.usteed->mcanmove = 1;
+				u.usteed->mflee = 0;
+				u.usteed->mcansee = 1;
+				u.usteed->mblinded = 0;
+				u.usteed->mstun = 0;
+				u.usteed->mconf = 0;
+				pline("%s is cured.", Monnam(u.usteed));
+			}
+
 		}
 
 		break;
