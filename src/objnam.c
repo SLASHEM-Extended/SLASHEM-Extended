@@ -6527,15 +6527,15 @@ char *prefix;
 	 */
 	if (obj->oeroded && !iscrys) {
 		switch (obj->oeroded) {
-			case 2:	strcat(prefix, flags.simpledescs ? "2x " : "very "); break;
-			case 3:	strcat(prefix, flags.simpledescs ? "3x " : "thoroughly "); break;
+			case 2:	strcat(prefix, flags.simpledescs ? "2x" : "very "); break;
+			case 3:	strcat(prefix, flags.simpledescs ? "3x" : "thoroughly "); break;
 		}			
 		strcat(prefix, is_rustprone(obj) ? "rusty " : "burnt ");
 	}
 	if (obj->oeroded2 && !iscrys) {
 		switch (obj->oeroded2) {
-			case 2:	strcat(prefix, flags.simpledescs ? "2x " : "very "); break;
-			case 3:	strcat(prefix, flags.simpledescs ? "3x " : "thoroughly "); break;
+			case 2:	strcat(prefix, flags.simpledescs ? "2x" : "very "); break;
+			case 3:	strcat(prefix, flags.simpledescs ? "3x" : "thoroughly "); break;
 		}			
 		strcat(prefix, is_corrodeable(obj) ? (flags.simpledescs ? "etched " : "corroded ") : "rotted ");
 	}
