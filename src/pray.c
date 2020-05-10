@@ -2606,7 +2606,7 @@ dosacrifice()
 	    int nartifacts = nartifact_exist();
 
 	    /* the # of regularly generated artifacts shouldn't screw you over so badly... --Amy */
-	    nartifacts = rn3(nartifacts);
+	    if (nartifacts > 0) nartifacts = rn3(nartifacts);
 
 	    /* you were already in pretty good standing */
 	    /* The player can gain an artifact */
