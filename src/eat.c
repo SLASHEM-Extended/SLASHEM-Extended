@@ -6090,7 +6090,8 @@ static const char *foodwords[] = {
 	"arcanium", "secretion", "poor food", "compost",
 	"eternium", "contamination", "brick wall", "sand",
 	"shadow material", "volcanic glass", "lead", "chrome",
-	"porcelain", "nanomachines",
+	"porcelain", "celestial cloth", "conundrum",
+	"bubbles", "meteoric steel", "nanomachines",
 };
 
 STATIC_OVL const char *

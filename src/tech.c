@@ -7363,6 +7363,10 @@ polyfixchoice:
 					stop_timer(UNPOLY_OBJ, (void *) otmp);
 					otmp->oldtyp = STRANGE_OBJECT;
 					pline("%s is no longer hazy.", Yname2(otmp));
+					if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+						if (!otmp->cursed) bless(otmp);
+						else uncurse(otmp, FALSE);
+					}
 				} else pline("The stack was too big, and therefore nothing happens.");
 
 			}
@@ -7399,6 +7403,10 @@ repairitemchoice:
 						pline("Your %s is in perfect condition again!", xname(otmp));
 						if (otmp->oeroded > 0) { otmp->oeroded = 0; }
 						if (otmp->oeroded2 > 0) { otmp->oeroded2 = 0; }
+						if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+							if (!otmp->cursed) bless(otmp);
+							else uncurse(otmp, FALSE);
+						}
 
 					} else pline("Your %s is still as undamaged as ever.", xname(otmp));
 
@@ -7660,6 +7668,10 @@ definalizechoice:
 				} else if (!stack_too_big(otmp)) {
 					otmp->finalcancel = FALSE;
 					pline("%s is no longer finalized.", Yname2(otmp));
+					if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+						if (!otmp->cursed) bless(otmp);
+						else uncurse(otmp, FALSE);
+					}
 				} else pline("The stack was too big, and therefore nothing happens.");
 
 			}
@@ -7802,6 +7814,10 @@ extrachargechoice:
 							} else {
 								otmp->spe++;
 								pline("Success! Your wand gained an additional charge.");
+								if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+									if (!otmp->cursed) bless(otmp);
+									else uncurse(otmp, FALSE);
+								}
 							}
 					}
 				}

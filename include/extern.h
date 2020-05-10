@@ -2328,6 +2328,7 @@ E const char *bottlename(void);
 E void bad_equipment(int);
 E void bad_equipment_heel(void);
 E void increasesanity(int);
+E boolean conundrumbreak(void);
 E void statdrain(void);
 E void nastytrapcurse(void);
 E void shank_player(void);

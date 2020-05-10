@@ -1303,6 +1303,11 @@ register int amount;
 	if (Race_if(PM_SPARD) && amount > 0) uwep->spe++;
 	if(amount > 0) {
 
+		if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) {
+			if (!uwep->cursed) bless(uwep);
+			else uncurse(uwep, FALSE);
+		}
+
 		if ((uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && !rn2(100) ) {
 			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 		}

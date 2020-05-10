@@ -6196,6 +6196,8 @@ struct obj *weapon;
 
 	/* ceramic weapons are super sharp and deal more damage; this also affects blunt ones because realism sux :P --Amy */
 	if (weapon && objects[weapon->otyp].oc_material == MT_CERAMIC) bonus += 2;
+	/* meteosteel is also high-quality */
+	if (weapon && objects[weapon->otyp].oc_material == MT_METEOSTEEL) bonus += 1;
 
     return bonus;
 }
@@ -6303,6 +6305,7 @@ struct obj *weapon;
 	}
 
 	if (weapon && objects[weapon->otyp].oc_material == MT_CERAMIC) bonus += 2;
+	if (weapon && objects[weapon->otyp].oc_material == MT_METEOSTEEL) bonus += 1;
 
     return bonus;
 }

@@ -156,6 +156,8 @@ struct obj {
 #define newobj(xl)	(struct obj *)alloc((unsigned)(xl) + sizeof(struct obj))
 #define ONAME(otmp)	(((char *)(otmp)->oextra) + (otmp)->oxlth)
 
+#define finalcancelled(otmp)	(otmp->finalcancel || (objects[(otmp)->otyp].oc_material == MT_PWN_BUBBLE))
+
 /* All objects */
 #define is_hazy(otmp)	((otmp)->oldtyp != STRANGE_OBJECT)
 /* [ALI] None of the objects listed here can be picked up by normal monsters.

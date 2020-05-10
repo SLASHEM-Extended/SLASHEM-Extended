@@ -2140,7 +2140,7 @@ boolean weakeffect;
 	if (weakeffect && obj->spe < -1) chancetoresist = (obj->spe) * -1;
 	if (chancetoresist && rn2(chancetoresist)) willresist = TRUE;
 
-	if (obj->finalcancel) return;
+	if (finalcancelled(obj)) return;
 
 	if (stack_too_big(obj)) return;
 
@@ -2730,6 +2730,22 @@ create_polymon(obj, okind)
 		pm_index = PM_LEAD_GOLEM;
 		material = "lead ";
 		break;
+	case MT_CELESTIUM:
+		pm_index = PM_CELESTIUM_GOLEM;
+		material = "celestium ";
+		break;
+	case MT_CONUNDRUM:
+		pm_index = PM_CONUNDRUM_GOLEM;
+		material = "conundrum ";
+		break;
+	case MT_PWN_BUBBLE:
+		pm_index = PM_PWN_BUBBLE_GOLEM;
+		material = "pwn-bubble ";
+		break;
+	case MT_METEOSTEEL:
+		pm_index = PM_METEOSTEEL_GOLEM;
+		material = "meteosteel ";
+		break;
 	case MT_CHROME:
 		pm_index = PM_CHROME_GOLEM;
 		material = "chrome ";
@@ -2957,7 +2973,7 @@ poly_obj(obj, id, degradation)
 
 	if (stack_too_big(obj)) return obj;
 
-	if (obj->finalcancel) return obj;
+	if (finalcancelled(obj)) return obj;
 
 	/* WAC Amulets of Unchanging shouldn't change */
 	if (obj->otyp == AMULET_OF_UNCHANGING)
@@ -10076,6 +10092,11 @@ register int osym, dmgtyp;
 	    switch(dmgtyp) {
 		case AD_COLD:
 
+		    if (!conundrumbreak()) {
+				skip++;
+				break;
+			}
+
 		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {
 				skip++;
 				break;
@@ -10119,6 +10140,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_VENO:
 
+		    if (!conundrumbreak()) {
+				skip++;
+				break;
+			}
+
 		    if(osym == POTION_CLASS) {
 
 			if (obj->otyp == POT_SICKNESS || obj->otyp == POT_POISON || obj->otyp == POT_CYANIDE) {
@@ -10137,6 +10163,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_FIRE:
 		    xresist = (Fire_resistance && obj->oclass != POTION_CLASS);
+
+		    if (!conundrumbreak()) {
+				skip++;
+				break;
+			}
 
 			if (uarmc && uarmc->oartifact == ART_BOWSER_S_FUN_ARENA) {
 				skip++;
@@ -10178,6 +10209,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_ELEC:
 		    xresist = (Shock_resistance && obj->oclass != RING_CLASS);
+
+		    if (!conundrumbreak()) {
+				skip++;
+				break;
+			}
 
 			if (Race_if(PM_PLAYER_DYNAMO)) {
 				skip++;

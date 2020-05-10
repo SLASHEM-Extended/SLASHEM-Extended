@@ -5343,6 +5343,27 @@ find_ac()
 	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_CERAMIC) {
 		uac -= 2;
 	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_METEOSTEEL) {
+		uac -= 1;
+	}
 
 	if (u.negativeprotection) uac += u.negativeprotection;
 

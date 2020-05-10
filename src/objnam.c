@@ -6579,6 +6579,10 @@ char *prefix;
 			(objects[(obj)->otyp].oc_material == MT_ETERNIUM) ? "everlasting " :
 			(objects[(obj)->otyp].oc_material == MT_ETHER) ? "windy " :
 			(objects[(obj)->otyp].oc_material == MT_NANOMACHINE) ? "laser-protected " :
+			(objects[(obj)->otyp].oc_material == MT_CELESTIUM) ? "heavenly " :
+			(objects[(obj)->otyp].oc_material == MT_CONUNDRUM) ? "unravelled " :
+			(objects[(obj)->otyp].oc_material == MT_PWN_BUBBLE) ? "pwning " :
+			(objects[(obj)->otyp].oc_material == MT_METEOSTEEL) ? "super-ammo " :
 			(objects[(obj)->otyp].oc_material == MT_BRICK) ? "rock-solid " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
@@ -6672,6 +6676,10 @@ register struct obj *obj;
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CHROME) strcat(prefix,"8-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CERAMIC) strcat(prefix,"7-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_NANOMACHINE) strcat(prefix,"N-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CELESTIUM) strcat(prefix,"h-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CONUNDRUM) strcat(prefix,"O-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PWN_BUBBLE) strcat(prefix,"W-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_METEOSTEEL) strcat(prefix,"T-");
 	}
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_NECROMANCER)) &&

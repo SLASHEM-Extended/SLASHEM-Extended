@@ -3038,6 +3038,10 @@ struct obj *obj;
 		if (otmp != &zeroobj) {
 			You("cover %s with a thick layer of grease.",
 			    yname(otmp));
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 			if (obj && obj->otyp == LUBRICANT_CAN) otmp->greased += rn2(3);
 			if (otmp->greased < 3) otmp->greased += 1;
 			if (obj && obj->oartifact == ART_VIBE_LUBE) otmp->greased = 3;

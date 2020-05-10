@@ -7467,6 +7467,57 @@ nastytrapcurse()
 
 }
 
+/* conundrum items can make your potions, scrolls etc. break less often --Amy
+ * returns TRUE if item can break, otherwise FALSE */
+boolean
+conundrumbreak()
+{
+	if (uwep && objects[uwep->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarm && objects[uarm->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmc && objects[uarmc->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmh && objects[uarmh->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarms && objects[uarms->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmg && objects[uarmg->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmf && objects[uarmf->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmu && objects[uarmu->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uamul && objects[uamul->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uimplant && objects[uimplant->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uleft && objects[uleft->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (uright && objects[uright->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+	if (ublindf && objects[ublindf->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 /* sanity - yes it's not a bug that you start at 0 sanity and gradually become more sane :P --Amy */
 void
 increasesanity(snamount)
@@ -11038,7 +11089,7 @@ boolean amnesia;
 	}
 	(void) Shk_Your(Your_buf, obj);
 
-	if (obj->finalcancel) return(FALSE);
+	if (finalcancelled(obj)) return(FALSE);
 
 	/* (Rusting shop goods ought to be charged for.) */
 	switch (obj->oclass) {
@@ -12251,14 +12302,14 @@ dodip()
 		if (Blind || Hallucination) obj->dknown = 0;
 
 		/* Amy edit: finalized potions are unlikely to work in alchemy */
-		if (obj->finalcancel && !rn2(3)) {
+		if (finalcancelled(obj) && !rn2(3)) {
 			if (!Blind) pline_The("mixture glows brightly and evaporates.");
 			useup(obj);
 			useup(potion);
 			u.cnd_alchemycount++;
 			return(1);
 		}
-		if (potion->finalcancel && !rn2(3)) {
+		if (finalcancelled(potion) && !rn2(3)) {
 			if (!Blind) pline_The("mixture glows brightly and evaporates.");
 			useup(obj);
 			useup(potion);
@@ -12499,7 +12550,7 @@ dodip()
 		short old_otyp = potion->otyp;
 		boolean old_dknown = FALSE;
 		boolean more_than_one = potion->quan > 1;
-		if (potion && potion->finalcancel) potfinalized = TRUE;
+		if (potion && finalcancelled(potion)) potfinalized = TRUE;
 
 		if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == ARCANE_HORN) && (obj->cursed || (obj->spe < (-rn1(10, 10)))) ) { /* uh-oh */
 			pline("BOOM! The potion explodes!");

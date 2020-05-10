@@ -4383,6 +4383,10 @@ aulechoice:
 		if (otmp) {
 			otmp->oerodeproof = TRUE;
 			pline("Success! Your item is erosionproof now.");
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 		}
 
 		break;
@@ -9981,6 +9985,10 @@ repairarmorchoice:
 				}
 				if (otmp->oeroded > 0) { otmp->oeroded--; }
 				if (otmp->oeroded2 > 0) { otmp->oeroded2--; }
+				if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+					if (!otmp->cursed) bless(otmp);
+					else uncurse(otmp, FALSE);
+				}
 			} else {
 				if (!Blind) {
 					pline("Your %s glows briefly, but looks as new as ever.",xname(otmp));
@@ -10999,7 +11007,7 @@ int spell;
 	    splcaster += (issoviet ? 2 : 1);
 
 	/* Robes are body armour in SLASH'EM */
-	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm)) {
+	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
 
 		/* Amy grepping target: "materialeffect" */
 		switch (objects[(uarm)->otyp].oc_material) {
@@ -11042,7 +11050,7 @@ int spell;
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 12 : 30));
 	}
 
-	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc)) {
+	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
 
 		switch (objects[(uarmc)->otyp].oc_material) {
 			default: break;
@@ -11085,7 +11093,7 @@ int spell;
 
 	}
 
-	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu)) {
+	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
 
 		switch (objects[(uarmu)->otyp].oc_material) {
 			default: break;
@@ -11129,7 +11137,7 @@ int spell;
 	}
 
 	if (uarms && !SpellColorMetal) {
-		if (!is_metallic(uarms) || is_etheritem(uarms)) shieldpenalties /= 3;
+		if (!is_metallic(uarms) || is_etheritem(uarms) || is_meteosteelitem(uarms)) shieldpenalties /= 3;
 
 		switch (objects[(uarms)->otyp].oc_material) {
 			default: break;
@@ -11172,7 +11180,7 @@ int spell;
 
 	}
 
-	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
+	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
 
 		switch (objects[(uarmh)->otyp].oc_material) {
 			default: break;
@@ -11215,7 +11223,7 @@ int spell;
 
 	}
 
-	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg)) {
+	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
 
 		switch (objects[(uarmg)->otyp].oc_material) {
 			default: break;
@@ -11258,7 +11266,7 @@ int spell;
 
 	}
 
-	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf)) {
+	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
 
 		switch (objects[(uarmf)->otyp].oc_material) {
 			default: break;
@@ -11572,10 +11580,26 @@ int spell;
 	if (uarmh && itemhasappearance(uarmh, APP_KNOWLEDGEABLE_HELMET) ) chance += 10;
 	if (uarmc && itemhasappearance(uarmc, APP_SCIENCE_CLOAK) ) chance += 10;
 	if (u.tiksrvzllatdown) chance += 10;
+
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uright && objects[(uright)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_CELESTIUM) chance += 2;
+
 	if (Race_if(PM_PLAYER_FAIRY)) {
 		chance += 33;
 
-		if (uwep && is_metallic(uwep) && !is_etheritem(uwep)) {
+		if (uwep && is_metallic(uwep) && !is_etheritem(uwep) && !is_meteosteelitem(uwep)) {
 
 			switch (objects[(uwep)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11592,7 +11616,7 @@ int spell;
 			}
 		}
 
-		if (u.twoweap && uswapwep && is_metallic(uswapwep) && !is_etheritem(uswapwep)) {
+		if (u.twoweap && uswapwep && is_metallic(uswapwep) && !is_etheritem(uswapwep) && !is_meteosteelitem(uswapwep)) {
 
 			switch (objects[(uswapwep)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11609,7 +11633,7 @@ int spell;
 			}
 		}
 
-		if (uarm && is_metallic(uarm) && !is_etheritem(uarm)) {
+		if (uarm && is_metallic(uarm) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
 
 			switch (objects[(uarm)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11626,7 +11650,7 @@ int spell;
 			}
 		}
 
-		if (uarmc && is_metallic(uarmc) && !is_etheritem(uarmc)) {
+		if (uarmc && is_metallic(uarmc) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
 
 			switch (objects[(uarmc)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11643,7 +11667,7 @@ int spell;
 			}
 		}
 
-		if (uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) {
+		if (uarmh && is_metallic(uarmh) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh)) {
 
 			switch (objects[(uarmh)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11660,7 +11684,7 @@ int spell;
 			}
 		}
 
-		if (uarms && is_metallic(uarms) && !is_etheritem(uarms)) {
+		if (uarms && is_metallic(uarms) && !is_etheritem(uarms) && !is_meteosteelitem(uarms)) {
 
 			switch (objects[(uarms)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11677,7 +11701,7 @@ int spell;
 			}
 		}
 
-		if (uarmg && is_metallic(uarmg) && !is_etheritem(uarmg)) {
+		if (uarmg && is_metallic(uarmg) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
 
 			switch (objects[(uarmg)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11694,7 +11718,7 @@ int spell;
 			}
 		}
 
-		if (uarmf && is_metallic(uarmf) && !is_etheritem(uarmf)) {
+		if (uarmf && is_metallic(uarmf) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
 
 			switch (objects[(uarmf)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11711,7 +11735,7 @@ int spell;
 			}
 		}
 
-		if (uarmu && is_metallic(uarmu) && !is_etheritem(uarmu)) {
+		if (uarmu && is_metallic(uarmu) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
 
 			switch (objects[(uarmu)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11728,7 +11752,7 @@ int spell;
 			}
 		}
 
-		if (uamul && is_metallic(uamul) && !is_etheritem(uamul)) {
+		if (uamul && is_metallic(uamul) && !is_etheritem(uamul) && !is_meteosteelitem(uamul)) {
 
 			switch (objects[(uamul)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11745,7 +11769,7 @@ int spell;
 			}
 		}
 
-		if (uimplant && is_metallic(uimplant) && !is_etheritem(uimplant)) {
+		if (uimplant && is_metallic(uimplant) && !is_etheritem(uimplant) && !is_meteosteelitem(uimplant)) {
 
 			switch (objects[(uimplant)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11762,7 +11786,7 @@ int spell;
 			}
 		}
 
-		if (uleft && is_metallic(uleft) && !is_etheritem(uleft)) {
+		if (uleft && is_metallic(uleft) && !is_etheritem(uleft) && !is_meteosteelitem(uleft)) {
 
 			switch (objects[(uleft)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11779,7 +11803,7 @@ int spell;
 			}
 		}
 
-		if (uright && is_metallic(uright) && !is_etheritem(uright)) {
+		if (uright && is_metallic(uright) && !is_etheritem(uright) && !is_meteosteelitem(uright)) {
 
 			switch (objects[(uright)->otyp].oc_material) {
 				default: chance -= 20; break;
@@ -11796,7 +11820,7 @@ int spell;
 			}
 		}
 
-		if (ublindf && is_metallic(ublindf) && !is_etheritem(ublindf)) {
+		if (ublindf && is_metallic(ublindf) && !is_etheritem(ublindf) && !is_meteosteelitem(ublindf)) {
 
 			switch (objects[(ublindf)->otyp].oc_material) {
 				default: chance -= 20; break;

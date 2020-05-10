@@ -1450,6 +1450,10 @@ int curse_bless;
 		u.cnd_chargingcount++;
 		if (obj->spe >= lim) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
+		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 	    }
 
 	} else if (obj->oclass == SPBOOK_CLASS) {
@@ -1508,6 +1512,10 @@ int curse_bless;
 		if (obj->spe >= 5) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		u.cnd_chargingcount++;
+		if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 	    }
 
 	} else if (obj->oclass == RING_CLASS &&
@@ -1532,6 +1540,10 @@ int curse_bless;
 		if (is_on) Ring_off(obj);
 		obj->spe += s;	/* update the ring while it's off */
 		if (s > 0) u.cnd_chargingcount++;
+		if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 		if (is_on) setworn(obj, mask), Ring_on(obj);
 		/* oartifact: if a touch-sensitive artifact ring is
 		   ever created the above will need to be revised  */
@@ -1550,6 +1562,10 @@ int curse_bless;
 			Your("%s spins %sclockwise for a moment.", xname(obj), s < 0 ? "counter" : "");
 			obj->spe += s;	/* we don't need to take it off because it just affects AC and poly'd stuff */
 			if (s > 0) u.cnd_chargingcount++;
+			if (s > 0 && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 			Your("%s seems unchanged.", xname(obj));
 		}
@@ -1571,6 +1587,10 @@ int curse_bless;
 		else obj->spe += 10;
 		if (obj->spe > 100) obj->spe = 100;
 		if (!is_cursed) u.cnd_chargingcount++;
+		if (!is_cursed && obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, FALSE);
+		}
 
 		break;
 	    case MAGIC_MARKER:
@@ -1616,6 +1636,10 @@ int curse_bless;
 
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    n = rnd(20);		/* 10..20 */
 		    if (rn2(2)) n += rnd(30);
@@ -1628,6 +1652,10 @@ int curse_bless;
 
 			p_glow2(obj, NH_WHITE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case OIL_LAMP:
@@ -1649,6 +1677,10 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->spe = 1;
 		    obj->age += 750;
@@ -1658,6 +1690,10 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case GREEN_LIGHTSABER:
@@ -1689,6 +1725,10 @@ int curse_bless;
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->age += 750;
 		    if (issoviet && obj->age > 1500) {
@@ -1697,6 +1737,10 @@ int curse_bless;
 		    }
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case CRYSTAL_BALL:
@@ -1713,11 +1757,19 @@ int curse_bless;
 		    obj->spe = 6;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    if (obj->spe < 5) {
 			obj->spe++;
 			u.cnd_chargingcount++;
 			p_glow1(obj);
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		    } else {
 				pline("%s", nothing_happens);
 				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -1744,11 +1796,19 @@ int curse_bless;
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 			obj->spe += rnd(20);
 			if (obj->spe > 100) obj->spe = 100;
 			p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 
@@ -1771,11 +1831,19 @@ int curse_bless;
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->spe += rnd(5);
 		    if (obj->spe > 117) obj->spe = 117;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    case MAGIC_FLUTE:
@@ -1802,11 +1870,19 @@ int curse_bless;
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		} else {
 		    obj->spe += rnd(4);
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
 		}
 		break;
 	    default:
@@ -4639,6 +4715,15 @@ enchantarmorchoice:
 				 xname(otmp),
 				 otense(otmp, Blind ? "feel" : "look"));
 			}
+
+			if (!(sobj->cursed)) {
+				if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+					if (!otmp->cursed) bless(otmp);
+					else uncurse(otmp, FALSE);
+				}
+
+			}
+
 			break;
 		}
 		/* elven armor vibrates warningly when enchanted beyond a limit */
@@ -4689,6 +4774,12 @@ enchantarmorchoice:
 			useup(otmp);
 			break;
 		}
+
+		if (!(sobj->cursed) && otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+			if (!otmp->cursed) bless(otmp);
+			else uncurse(otmp, FALSE);
+		}
+
 
 		/* KMH, balance patch -- Restore the NetHack success rate */
 		/* We'll introduce a disenchantment attack later */
@@ -4819,6 +4910,10 @@ repairitemchoice:
 			}
 			if (otmp->oeroded > 0) { otmp->oeroded = 0; }
 			if (otmp->oeroded2 > 0) { otmp->oeroded2 = 0; }
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 
 		} else pline("Your %s is still as undamaged as ever.",xname(otmp));
 
@@ -4857,6 +4952,10 @@ destroyarmorchoice:
 			}
 			otmp->oerodeproof = sobj->cursed;
 			p_glow2(otmp, NH_PURPLE);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 			break;
 		}
 		if(!sobj->cursed || !otmp || !otmp->cursed) {
@@ -4951,6 +5050,10 @@ proofarmorchoice:
 			otmp->oerodeproof = 1;
 			if (!Blind) otmp->rknown = TRUE;
 			p_glow2(otmp, NH_PURPLE);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 		}
 		break;
 	case SPE_CONFUSE_MONSTER:
@@ -5630,7 +5733,7 @@ materialchoice3:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(11)) {
+				switch (rnd(15)) {
 					case 1: changematerial = MT_DRAGON_HIDE; break;
 					case 2: changematerial = MT_SILVER; break;
 					case 3: changematerial = MT_GOLD; break;
@@ -5642,6 +5745,10 @@ materialchoice3:
 					case 9: changematerial = MT_ETERNIUM; break;
 					case 10: changematerial = MT_ETHER; break;
 					case 11: changematerial = MT_NANOMACHINE; break;
+					case 12: changematerial = MT_CELESTIUM; break;
+					case 13: changematerial = MT_CONUNDRUM; break;
+					case 14: changematerial = MT_PWN_BUBBLE; break;
+					case 15: changematerial = MT_METEOSTEEL; break;
 					default: changematerial = MT_MITHRIL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -6558,6 +6665,10 @@ newboss:
 		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
 	      {
 			uwep->oerodeproof = 1;
+			if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) {
+				if (!uwep->cursed) bless(uwep);
+				else uncurse(uwep, FALSE);
+			}
 			if (Blind) {
 			    uwep->rknown = FALSE;
 			    Your("weapon feels warm for a moment.");
@@ -8713,6 +8824,10 @@ randenchchoice:
 				break;
 			}
 			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 0);
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
 		}
 		break;
 
@@ -9178,6 +9293,10 @@ armorspecchoice:
 						p_glow2(otmp, NH_GOLDEN);
 					} else pline("A feeling of loss comes over you.");
 				}
+			}
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
 			}
 		}
 

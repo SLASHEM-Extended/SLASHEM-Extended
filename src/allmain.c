@@ -3504,6 +3504,10 @@ steelingchoice:
 				} else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
+					if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+						if (!steeling->cursed) bless(steeling);
+						else uncurse(steeling, FALSE);
+					}
 				} else pline("The stack was too big and therefore nothing happens...");
 			}
 		}
@@ -3535,13 +3539,17 @@ protectwhatchoice:
 				else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
+					if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+						if (!steeling->cursed) bless(steeling);
+						else uncurse(steeling, FALSE);
+					}
 				} else pline("The stack was too big and therefore nothing happens...");
 			}
 		}
 
 		if (uimplant && uimplant->oartifact == ART_FUKROSION && !rn2(2500) ) {
 			register struct obj *steeling;
-			pline("You may repair a nonerodable object. If you're in a form without hands, the object you pick will also become erosionproof.");
+			pline("You may repair an eroded object. If you're in a form without hands, the object you pick will also become erosionproof.");
 fukrosionchoice:
 			steeling = getobj(all_count, "repair");
 			if (!steeling) {
@@ -3553,6 +3561,10 @@ fukrosionchoice:
 				steeling->oeroded = steeling->oeroded2 = 0;
 				if (powerfulimplants()) steeling->oerodeproof = 1;
 				p_glow2(steeling, NH_PURPLE);
+				if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+					if (!steeling->cursed) bless(steeling);
+					else uncurse(steeling, FALSE);
+				}
 			} else pline("The stack was too big and therefore nothing happens...");
 
 		}

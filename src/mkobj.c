@@ -3625,6 +3625,8 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == MT_LEAD && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_CHROME && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_CERAMIC && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CELESTIUM && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_PWN_BUBBLE && evilfriday) return TRUE;
 
 	if (omat <= MT_WOOD && omat != MT_LIQUID) return TRUE;
 	return FALSE;
@@ -3652,6 +3654,7 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == MT_BONE && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_SHADOWSTUFF && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CELESTIUM && evilfriday) return TRUE;
 
 	if (omat <= MT_WOOD && omat != MT_LIQUID) return TRUE;
 	return FALSE;
@@ -3707,6 +3710,7 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == MT_SAND && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_OBSIDIAN && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_NANOMACHINE && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CONUNDRUM && evilfriday) return TRUE;
 
 	return FALSE;
 }
