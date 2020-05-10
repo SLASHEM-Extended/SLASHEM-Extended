@@ -1155,6 +1155,7 @@ persiadone:
 		pline("But wait...");
 		losexp("failed troll revival", TRUE, FALSE);
 		losexp("failed troll revival", TRUE, FALSE);
+		badeffect();
 		pline("You come back to life!");
 
 		if (wanttodie) {
@@ -1183,6 +1184,8 @@ trolldone:
 		pline("But wait...");
 		losexp("failed felid revival", TRUE, FALSE);
 		losexp("failed felid revival", TRUE, FALSE);
+		badeffect();
+		if (!rn2(5)) reallybadeffect();
 		pline("Thanks to being a felid, you only used up one of your lives, and have %d left!", u.felidlives);
 
 		if (wanttodie) {
