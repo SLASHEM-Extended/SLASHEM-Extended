@@ -4581,6 +4581,7 @@ demonpet()
 	if ((dtmp = makemon(pm, u.ux, u.uy, MM_NOSPECIALS)) != 0)
 	    (void)tamedog(dtmp, (struct obj *)0, FALSE);
 	exercise(A_WIS, TRUE);
+	use_skill(P_SQUEAKING, 1);
 }
 
 /*
