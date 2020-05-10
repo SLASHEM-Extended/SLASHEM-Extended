@@ -2474,9 +2474,9 @@ mk_dgl_extrainfo()
             sprintf(tmpdng, "%i|%s", sortval, "Mol");
 		sortval = 1000 + depth(&u.uz);
         } else {
-		if (depth(&u.uz) < 10) sprintf(tmpdng, "%i|  D%i", sortval, depth(&u.uz));
-		else if (depth(&u.uz) < 100) sprintf(tmpdng, "%i| D%i", sortval, depth(&u.uz));
-            sprintf(tmpdng, "%i|D%i", sortval, depth(&u.uz));
+		if (depth(&u.uz) < 10) sprintf(tmpdng, "%i|%c%cD%i", sortval, ' ', ' ', depth(&u.uz));
+		else if (depth(&u.uz) < 100) sprintf(tmpdng, "%i|%cD%i", sortval, ' ', depth(&u.uz));
+            else sprintf(tmpdng, "%i|D%i", sortval, depth(&u.uz));
         }
 
 #ifdef UNIX
