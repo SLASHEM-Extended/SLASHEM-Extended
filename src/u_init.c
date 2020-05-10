@@ -10565,6 +10565,7 @@ u_init()
 	u.bucskill = 0;
 	u.enchantrecskill = 0;
 	u.juyofleeing = 1;
+	u.controlmiguc = 1;
 	u.riderhack = 0;
 	u.bodyfluideffect = 0;
 	u.garbagecleaned = 0;

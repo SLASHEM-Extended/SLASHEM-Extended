@@ -41,6 +41,31 @@ register struct monst *mtmp;
 	}
 }
 
+/* do the player's missiles, beams etc. pass through a pet instead of hitting it? --Amy
+ * meant to depend on the player's petkeeping skill but should also eventually be an in/extrinsic */
+boolean
+control_magic_works()
+{
+
+	/* petkeeping skill - only if it's turned on (which it is by default, can change via #monster) */
+	if (!PlayerCannotUseSkills && u.controlmiguc) {
+		int contmagchance = 0;
+		switch (P_SKILL(P_PETKEEPING)) {
+	      	case P_BASIC:	contmagchance = 10; break;
+	      	case P_SKILLED:	contmagchance = 20; break;
+	      	case P_EXPERT:	contmagchance = 30; break;
+	      	case P_MASTER:	contmagchance = 40; break;
+	      	case P_GRAND_MASTER:	contmagchance = 50; break;
+	      	case P_SUPREME_MASTER:	contmagchance = 60; break;
+	      	default: break;
+		}
+
+		if (rn2(100) < contmagchance) return TRUE;
+	}
+
+	return FALSE; /* catchall */
+}
+
 STATIC_OVL int
 pet_type()
 {

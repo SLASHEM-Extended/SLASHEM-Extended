@@ -1242,7 +1242,7 @@ xchar x, y;
 	mon = bhit(u.dx, u.dy, range, KICKED_WEAPON,
 		   (int (*)(MONST_P,OBJ_P))0,
 		   (int (*)(OBJ_P,OBJ_P))0,
-		   &kickobj);
+		   &kickobj, TRUE);
 	if (!kickobj)
 	    return 1;		/* object broken (and charged for if costly) */ 
 	if(mon) {

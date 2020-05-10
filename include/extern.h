@@ -536,6 +536,7 @@ E void abuse_dog(struct monst *);
 E void wary_dog(struct monst *, BOOLEAN_P);
 E void makedoghungry(struct monst *, int);
 E boolean befriend_with_obj(struct permonst *, struct obj *);
+E boolean control_magic_works(void);
 
 /* ### dogmove.c ### */
 
@@ -3398,7 +3399,7 @@ E int spell_damage_bonus(int);
 E const char *exclam(int force);
 E void hit(const char *,struct monst *,const char *);
 E void miss(const char *,struct monst *);
-E struct monst *bhit(int,int,int,int,int (*)(MONST_P,OBJ_P), int (*)(OBJ_P,OBJ_P),struct obj **);
+E struct monst *bhit(int,int,int,int,int (*)(MONST_P,OBJ_P), int (*)(OBJ_P,OBJ_P),struct obj **, BOOLEAN_P);
 E struct monst *boomhit(int,int);
 E int burn_floor_paper(int,int,BOOLEAN_P,BOOLEAN_P);
 E void buzz(int,int,XCHAR_P,XCHAR_P,int,int);

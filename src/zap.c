@@ -7528,7 +7528,7 @@ struct obj *obj;
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 
-		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj);
+		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj, TRUE);
 	    }
 
 	}
@@ -7563,7 +7563,7 @@ struct obj *obj;
 		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
-			    bhitm, bhito, &obj);
+			    bhitm, bhito, &obj, TRUE);
 	    }
 	    /* give a clue if obj_zapped */
 	    if (obj_zapped) {
@@ -7914,12 +7914,13 @@ register struct monst *mtmp;
  *  one is revealed for a weapon, but if not a weapon is left up to fhitm().
  */
 struct monst *
-bhit(ddx,ddy,range,weapon,fhitm,fhito,obj_p)
+bhit(ddx,ddy,range,weapon,fhitm,fhito,obj_p,cancontrol)
 register int ddx,ddy,range;		/* direction and range */
 int weapon;				/* see values in hack.h */
 int (*fhitm)(MONST_P, OBJ_P),	/* fns called when mon/obj hit */
     (*fhito)(OBJ_P, OBJ_P);
 struct obj **obj_p;			/* object tossed/used */
+boolean cancontrol;	/* does control magic work on this? --Amy */
 {
 	struct monst *mtmp;
 	struct obj *obj = *obj_p;
@@ -8037,6 +8038,51 @@ struct obj **obj_p;			/* object tossed/used */
 		}
 
 	    if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != 0) {
+
+		/* can the effect pass through a player's pet? --Amy */
+		if (cancontrol && mtmp && mtmp->mtame) {
+			if (!(obj && weapon != ZAPPED_WAND && weapon != INVIS_BEAM && befriend_with_obj(mtmp->data, obj)) ) {
+				boolean willcontrol = FALSE;
+				switch (obj->otyp) {
+					case WAN_CLONE_MONSTER:
+					case SPE_CLONE_MONSTER:
+					case SPE_RANDOM_SPEED:
+					case WAN_SPEED_MONSTER:
+					case WAN_HASTE_MONSTER:
+					case WAN_POLYMORPH:
+					case SPE_POLYMORPH:
+					case WAN_MUTATION:
+					case SPE_MUTATION:
+					case WAN_TELEPORTATION:
+					case SPE_TELEPORT_AWAY:
+					case WAN_MAKE_INVISIBLE:
+					case WAN_MAKE_VISIBLE:
+					case SPE_MAKE_VISIBLE:
+					case WAN_PROBING:
+					case SPE_FINGER:
+					case WAN_HEALING:
+					case WAN_EXTRA_HEALING:
+					case WAN_FULL_HEALING:
+					case SPE_HEALING:
+					case SPE_EXTRA_HEALING:
+					case SPE_FULL_HEALING:
+					case WAN_INCREASE_MAX_HITPOINTS:
+						willcontrol = FALSE;
+						break;
+					default:
+						willcontrol = TRUE;
+						break;
+				}
+
+				if (willcontrol && control_magic_works()) {
+					pline_The("spell passes through %s.", mon_nam(mtmp));
+					/* I know that it's not always a spell. The message is from Elona. --Amy */
+					goto notamonster;
+				}
+
+			}
+		}
+
 		notonhead = (bhitpos.x != mtmp->mx ||
 			     bhitpos.y != mtmp->my);
 		if (weapon != FLASHED_LIGHT) {
@@ -8094,6 +8140,7 @@ struct obj **obj_p;			/* object tossed/used */
 		    newsym(x, y);
 		}
 	    }
+notamonster:
 	    if(fhito) {
 		if(bhitpile(obj,fhito,bhitpos.x,bhitpos.y))
 		    if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) )) range--;
@@ -8275,9 +8322,13 @@ int dx, dy;
 		bhitpos.y += dy;
 		if(MON_AT(bhitpos.x, bhitpos.y)) {
 			mtmp = m_at(bhitpos.x,bhitpos.y);
-			m_respond(mtmp);
-			tmp_at(DISP_END, 0);
-			return(mtmp);
+			if (mtmp && mtmp->mtame && control_magic_works()) {
+				pline_The("boomerang passes through %s.", mon_nam(mtmp));
+			} else {
+				m_respond(mtmp);
+				tmp_at(DISP_END, 0);
+				return(mtmp);
+			}
 		}
 		if(!ZAP_POS(levl[bhitpos.x][bhitpos.y].typ) ||
 		   closed_door(bhitpos.x, bhitpos.y)) {
@@ -9114,6 +9165,12 @@ sigilcontroldirection:
 	    range += zap_over_floor(sx, sy, type, &shopdamage);
 
 	if (mon) {
+
+		if (mon->mtame && control_magic_works()) {
+			pline_The("spell passes through %s.", mon_nam(mon));
+			goto raypassthrough;
+		}
+
         /* WAC Player/Monster Fireball */
             if (abs(type) == ZT_SPELL(ZT_FIRE)) break;
 	    if (type >= 0) mon->mstrategy &= ~STRAT_WAITMASK;
@@ -9234,6 +9291,8 @@ sigilcontroldirection:
 	    } else {
 		miss(fltxt,mon);
 	    }
+raypassthrough: /* if the player's control magic made it pass through --Amy */
+	    ; /* to appease compilers */
 	} else if (sx == u.ux && sy == u.uy && range >= 0) {
 	    nomul(0, 0, FALSE);
 	    if (u.usteed && will_hit_steed() && !mon_reflects(u.usteed, (char *)0)) {

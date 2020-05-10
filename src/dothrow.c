@@ -1561,7 +1561,7 @@ int thrown;
 		mon = bhit(u.dx,u.dy,range,THROWN_WEAPON,
 			   (int (*)(MONST_P,OBJ_P))0,
 			   (int (*)(OBJ_P,OBJ_P))0,
-			   &obj);
+			   &obj, TRUE);
 
 		/* have to do this after bhit() so u.ux & u.uy are correct */
 		if(Is_airlevel(&u.uz) || Levitation)
@@ -3169,7 +3169,7 @@ struct obj *obj;
 			mon = bhit(u.dx, u.dy, range, THROWN_WEAPON,
 				   (int (*)(MONST_P,OBJ_P))0,
 				   (int (*)(OBJ_P,OBJ_P))0,
-				   &obj);
+				   &obj, FALSE);
 			if (!obj)
 			    return 1;
 			if(mon) {

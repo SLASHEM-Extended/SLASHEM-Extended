@@ -1828,6 +1828,15 @@ domonability()
 		pline("Monsters will now be more likely to flee from you when hit, with the chance depending on your Juyo skill!");
 		return 0;
 
+	} else if (!PlayerCannotUseSkills && u.controlmiguc && P_SKILL(P_PETKEEPING) >= P_BASIC && yn("Do you want to turn off the increased chance of your missiles passing through pets?") == 'y') {
+		u.controlmiguc = 0;
+		pline("Your missiles now have the regular chance of hitting your pets.");
+		return 0;
+	} else if (!PlayerCannotUseSkills && !u.controlmiguc && P_SKILL(P_PETKEEPING) >= P_BASIC && yn("You have the petkeeping skill, which allows you to make it more likely that your missiles pass through pets without harming them. That feature is currently deactivated. Do you want to activate it?") == 'y') {
+		u.controlmiguc = 1;
+		pline("Your missiles will now sometimes pass through pets, with the chance depending on your petkeeping skill!");
+		return 0;
+
 	} else if (Role_if(PM_JANITOR) && yn("Do you want to clean up the trash at your location?") == 'y') {
 		register struct obj *objchain, *allchain, *blahchain;
 		register int trashvalue = 0;
