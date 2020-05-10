@@ -2671,8 +2671,8 @@ boolean polearming;
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
 
 			/* Due to segfaults and stuff when trying to make this work in other functions, I'm just deciding that
-			 * any thoroughly eroded stuff you throw will always be destroyed. --Amy */
-		    if ((obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) && !hard_to_destruct(obj)) broken = 1;
+			 * any thoroughly eroded stuff you throw will generally be destroyed much more often. --Amy */
+		    if ((obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) && !rn2(25) && !hard_to_destruct(obj)) broken = 1;
 
 		    if (broken) {
 			if (*u.ushops)
