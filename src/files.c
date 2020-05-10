@@ -696,8 +696,11 @@ touch_whereis()
 
   sprintf(whereis_file,"%s",dump_format_str(WHEREIS_FILE));
   sprintf(whereis_work,
-	  "player=%s:depth=%d:dnum=%d:dname=%s:turns=%ld:score=%ld:role=%s:race=%s:gender=%s:align=%s:amulet=0\n",
-	  plname,
+	  "player=%s%s%s%s:depth=%d:dnum=%d:dname=%s:turns=%ld:score=%ld:role=%s:race=%s:gender=%s:align=%s:amulet=0\n",
+	  plalias[0] ? plalias : plname,
+	  plalias[0] ? " (" : "",
+	  plalias[0] ? plname : "",
+	  plalias[0] ? ")" : "",
 	  depth(&u.uz),
 	  u.uz.dnum,
 	  dungeons[u.uz.dnum].dname,
