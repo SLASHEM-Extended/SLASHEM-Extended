@@ -1611,7 +1611,7 @@ mazexy(cc)	/* find random point in generated corridors,
 		    for (y = 0; y < (y_maze_max>>1) - 1; y++) {
 			cc->x = 3 + 2 * x;
 			cc->y = 3 + 2 * y;
-			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
+			if ((levl[cc->x][cc->y].typ == ROOM) || (levl[cc->x][cc->y].typ == CORR) || (levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
 		    }
 
 		panic("mazexy: can't find a place!");
@@ -1656,7 +1656,7 @@ mazexy_all(cc)	/* mazexy() only returns "even-numbered" squares... --Amy */
 		    for (y = 0; y < (y_maze_max) - 1; y++) {
 			cc->x = 3 + x;
 			cc->y = 3 + y;
-			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
+			if ((levl[cc->x][cc->y].typ == ROOM) || (levl[cc->x][cc->y].typ == CORR) || (levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
 		    }
 
 		panic("mazexy_all: can't find a place!");
