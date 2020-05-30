@@ -89,7 +89,8 @@ struct objclass {
 #define MT_CONUNDRUM		40	/* lithic, can protect destructible consumables */
 #define MT_PWN_BUBBLE		41	/* inedible, acts as if it was finalized */
 #define MT_METEOSTEEL		42	/* metallic, better dmg/AC, doesn't hinder spellcasting */
-#define MT_NANOMACHINE		43	/* inedible, repairs itself */
+#define MT_ANTIDOTIUM		43	/* inedible, helps against corona */
+#define MT_NANOMACHINE		44	/* inedible, repairs itself */
 #define LASTMATERIAL	MT_NANOMACHINE
 /* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 

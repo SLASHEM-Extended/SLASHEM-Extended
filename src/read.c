@@ -5734,7 +5734,7 @@ materialchoice3:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(15)) {
+				switch (rnd(16)) {
 					case 1: changematerial = MT_DRAGON_HIDE; break;
 					case 2: changematerial = MT_SILVER; break;
 					case 3: changematerial = MT_GOLD; break;
@@ -5750,6 +5750,7 @@ materialchoice3:
 					case 13: changematerial = MT_CONUNDRUM; break;
 					case 14: changematerial = MT_PWN_BUBBLE; break;
 					case 15: changematerial = MT_METEOSTEEL; break;
+					case 16: changematerial = MT_ANTIDOTIUM; break;
 					default: changematerial = MT_MITHRIL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;

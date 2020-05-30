@@ -3651,6 +3651,7 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == MT_BRICK) return TRUE;
 	if (objects[otyp].oc_material == MT_SAND) return TRUE;
 	if (objects[otyp].oc_material == MT_NANOMACHINE) return TRUE;
+	if (objects[otyp].oc_material == MT_ANTIDOTIUM) return TRUE;
 	if (objects[otyp].oc_material == MT_BONE && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_SHADOWSTUFF && evilfriday) return TRUE;

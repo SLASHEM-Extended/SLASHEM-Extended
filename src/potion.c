@@ -5214,6 +5214,63 @@ nivellate()
 	int upperceiling = 1;
 	int reduceamount = 1;
 
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium armor prevents you from contracting corona!");
+		return;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium footwear prevents you from contracting corona!");
+		return;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium gloves prevents you from contracting corona!");
+		return;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium helmet prevents you from contracting corona!");
+		return;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium shield prevents you from contracting corona!");
+		return;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium cloak prevents you from contracting corona!");
+		return;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium shirt prevents you from contracting corona!");
+		return;
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium amulet prevents you from contracting corona!");
+		return;
+	}
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium implant prevents you from contracting corona!");
+		return;
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium left ring prevents you from contracting corona!");
+		return;
+	}
+	if (uright && objects[(uright)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium right ring prevents you from contracting corona!");
+		return;
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium blindfold or other tool prevents you from contracting corona!");
+		return;
+	}
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium weapon prevents you from contracting corona!");
+		return;
+	}
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_ANTIDOTIUM && !rn2(10)) {
+		pline("Your antidotium secondary weapon prevents you from contracting corona!");
+		return;
+	}
+
 	/* at very low XLs, we'll be nice... */
 	if (u.ulevel < 3) nivellevel = 3;
 	if (u.ulevel == 3) nivellevel = 4;

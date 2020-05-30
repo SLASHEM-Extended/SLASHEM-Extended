@@ -6091,7 +6091,7 @@ static const char *foodwords[] = {
 	"eternium", "contamination", "brick wall", "sand",
 	"shadow material", "volcanic glass", "lead", "chrome",
 	"porcelain", "celestial cloth", "conundrum",
-	"bubbles", "meteoric steel", "nanomachines",
+	"bubbles", "meteoric steel", "antidote", "nanomachines",
 };
 
 STATIC_OVL const char *
@@ -6749,6 +6749,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (material == MT_ETHER) {
 			pline("The contamination spreads through your body.");
 			contaminate(rnz((level_difficulty() + 40) * 5), TRUE);
+	    }
+	    if (material == MT_ANTIDOTIUM) {
+			pline("It was a covid-19 antidote!");
+			upnivel(TRUE);
 	    }
 	    if (material == MT_VIVA) {
 			pline("Eating radioactive metal is a bad idea.");

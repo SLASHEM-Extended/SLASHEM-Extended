@@ -2698,6 +2698,10 @@ create_polymon(obj, okind)
 	    pm_index = PM_BRICK_GOLEM;
 	    material = "brick ";
 	    break;
+	case MT_ANTIDOTIUM:
+	    pm_index = PM_ANTIDOTIUM_GOLEM;
+	    material = "antidotium ";
+	    break;
 	case MT_TAR:
 	    pm_index = PM_TAR_GOLEM;
 	    material = "tar ";
@@ -3942,6 +3946,7 @@ register struct obj *wand;
 		use_skill(P_DEVICES,1);
 	}
 	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
+	if (objects[(wand)->otyp].oc_material == MT_ANTIDOTIUM) upnivel(TRUE);
 
 	if (Race_if(PM_INKA)) {
 		use_skill(P_DEVICES,1);

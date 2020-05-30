@@ -6584,6 +6584,7 @@ char *prefix;
 			(objects[(obj)->otyp].oc_material == MT_PWN_BUBBLE) ? "pwning " :
 			(objects[(obj)->otyp].oc_material == MT_METEOSTEEL) ? "super-ammo " :
 			(objects[(obj)->otyp].oc_material == MT_BRICK) ? "rock-solid " :
+			(objects[(obj)->otyp].oc_material == MT_ANTIDOTIUM) ? "covid-repellant " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
 		       is_flammable(obj) ? "fireproof " : "stainless "); /* Amy edit: let's use that :-) */
@@ -6680,6 +6681,7 @@ register struct obj *obj;
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CONUNDRUM) strcat(prefix,"O-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PWN_BUBBLE) strcat(prefix,"W-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_METEOSTEEL) strcat(prefix,"T-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ANTIDOTIUM) strcat(prefix,"A-");
 	}
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_NECROMANCER)) &&
