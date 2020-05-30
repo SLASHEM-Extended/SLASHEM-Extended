@@ -15186,6 +15186,8 @@ register struct mkroom *croom;
 
 	/* Put a sink at m.x, m.y */
 	levl[m.x][m.y].typ = WELL;
+	/* occasionally it's a blessed one --Amy */
+	if(!rn2(10)) levl[m.x][m.y].blessedftn = 1;
 
 }
 

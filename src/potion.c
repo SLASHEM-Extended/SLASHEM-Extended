@@ -7826,6 +7826,26 @@ dodrink()
 		u.cnd_wellamount++;
 		if (u.ualign.type == A_NEUTRAL) adjalign(1);
 
+		if (levl[u.ux][u.uy].blessedftn == 1) {
+			pline("Wow, the water was magical!");
+			levl[u.ux][u.uy].blessedftn = 0;
+			int i, ii, lim;
+			i = rn2(A_MAX);
+			for (ii = 0; ii < A_MAX; ii++) {
+				lim = AMAX(i);
+				if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+				if (ABASE(i) < lim) {
+					ABASE(i) = lim;
+					flags.botl = 1;
+					break;
+				}
+				if(++i >= A_MAX) i = 0;
+			}
+			int stattoincrease = rn2(A_MAX);
+			adjattrib(stattoincrease, 1, 0, TRUE);
+			return 1;
+		}
+
 		if (level.flags.lethe) {
 			pline("Whoops, you forgot that it contains lethe water.");
 			if (FunnyHallu) pline("You also forgot whether lethe water can cause amnesia.");
