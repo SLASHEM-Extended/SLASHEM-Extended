@@ -3288,7 +3288,7 @@ int dieroll;
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(5)) {
 
-			switch (rnd(422)) {
+			switch (rnd(423)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -3712,6 +3712,7 @@ int dieroll;
 			case 420: pline("I've not expected you to be able to hit %s at all, but apparently you can do it!", mon_nam(mon)); break;
 			case 421: pline("Your sister combat boots with very pretty black block heels stomp %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, TOE))); break;
 			case 422: pline("You land a very lovely little-girl kick against %s's shin with your black calf-leather sandals!", mon_nam(mon)); break;
+			case 423: pline("You slam shut and %s lost lines.", mon_nam(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	

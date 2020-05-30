@@ -5361,6 +5361,7 @@ static const char *epitaphs[] = {
 	"Oh wait, so having autodig on is actually dangerous if you happen to press > while standing next to lava? I never knew!",
 	"Damn you Amy, you made shops way too deadly. I had uncontrolled teleportitis, and when I walked over a potion, my autopickup caused me to pick it up and at the same time I got teleported out! What's that you say? I'm supposed to turn autopickup off? FUCK YOU, I'm not gonna do that! Fix your shit game instead!",
 	"Why is it so special to die to a fire enchanted Bartuc? There's lots of other bosses that could also spawn fire enchanted...",
+	"Wrong variant, 'udemy certified metasploit framework professional' sounds like a slex monster, not a dnethack one. Learn to tag your post properly next time bro :P",
 
 };
 

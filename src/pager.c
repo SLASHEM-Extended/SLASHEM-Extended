@@ -25168,6 +25168,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You try to put on your amulet of life saving, but zap yourself with a wand of death instead!",
 	"you apply your tin opener... you cut off the shopkeepers toenails! the shopkeeper gets angry...",
 	"*gasp* the neCOBOLnomicon??",
+	"if you want to have multiple lines, shift-lick on the line at the end.", /* sic */
+	"What is the name of the person who is responsible for your current misery? a) Assface, b) Cockwanker, c) Complete Idiot (The correct answer is c, of course.)",
+	"It used to be so that ordering vanilla ice cream would result in you getting some vanilla ice cream. But now, the supposedly vanilla-flavored ice cream tastes like a mix of cinnamon, cappuchino, peppermint and lemon, and only if you pay very close attention you may still feel a tiny bit of vanilla taste in that slurry.",
+	"If I want ice cream that tastes like cinnamon, I order cinnamon ice cream. And you will not see the day on which I voluntarily order cappuchino ice cream. But why is it so that nowadays, ordering vanilla ice cream results in some slurry that tastes like cinnamon and cappuchino and everything else, just not vanilla?!",
+	"You throw the invisible emerald. The invisible emerald hits the unicorn in the face! The unicorn gets angry!",
 
 };
 
