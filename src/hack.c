@@ -4934,6 +4934,17 @@ weight_cap()
 		}
 		if (carrcap < 0) carrcap = 0;
 	}
+	if (Upolyd && !PlayerCannotUseSkills) {
+		switch (P_SKILL(P_POLYMORPHING)) {
+			case P_BASIC: carrcap *= 6; carrcap /= 5; break;
+			case P_SKILLED: carrcap *= 7; carrcap /= 5; break;
+			case P_EXPERT: carrcap *= 8; carrcap /= 5; break;
+			case P_MASTER: carrcap *= 9; carrcap /= 5; break;
+			case P_GRAND_MASTER: carrcap *= 10; carrcap /= 5; break;
+			case P_SUPREME_MASTER: carrcap *= 11; carrcap /= 5; break;
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_A_SPOONFUL_OF_FO_U_RK) return 5000;
 
 	return((int) carrcap);
@@ -4956,7 +4967,7 @@ inv_weight()
 	   mustn't add its weight in twice under that circumstance */
 	/* tried to make gold lighter --Amy */
 	wt = (otmp && otmp->oclass == COIN_CLASS) ? 0 :
-		(int)((u.ugold + 50L) / /*100L*/10000L);
+		(int)((u.ugold + 50L) / /*100L*/1000000L);
 #endif
 	while (otmp) {
 #ifndef GOLDOBJ
