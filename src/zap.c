@@ -9206,7 +9206,7 @@ sigilcontroldirection:
 
 	if (mon) {
 
-		if (mon->mtame && control_magic_works()) {
+		if (mon->mtame && type >= 0 && control_magic_works()) {
 			pline_The("spell passes through %s.", mon_nam(mon));
 			goto raypassthrough;
 		}
@@ -9336,8 +9336,12 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 	} else if (sx == u.ux && sy == u.uy && range >= 0) {
 	    nomul(0, 0, FALSE);
 	    if (u.usteed && will_hit_steed() && !mon_reflects(u.usteed, (char *)0)) {
-		    mon = u.usteed;
-		    goto buzzmonst;
+			if (control_magic_works() && type >= 0) {
+				pline_The("spell passes through %s.", mon_nam(u.usteed));
+			} else {
+				mon = u.usteed;
+				goto buzzmonst;
+			}
 	    } else
 	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) || (Race_if(PM_SPARD) && (zap_hit_player((int) u.uac, 0)) ) || (StrongConflict && (zap_hit_player((int) u.uac, 0)) ) ) {
 
