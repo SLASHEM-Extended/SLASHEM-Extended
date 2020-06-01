@@ -1,6 +1,63 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
+
+2.6.8 - May 2020
+- Fixed the bug with control magic causing hostile rays to pass through pets and the player's own rays never passing through a ridden steed.
+- Life saving as a felid, troll or rodneyan will now fail if the player has less than 11 maximum HP. If the double level drain causes the max HP to be reduced below 11 after the first drain, a bunch of additional bad effects will affect the player.
+- Fixed the SLASH'EM issue where altars on the oracle level cannot be used for sacrificing. This bug didn't manifest in SLASH'EM because altars didn't generate there and outside of wizard mode there was no way to make one appear, but in SLASH'EM it is possible.
+- Gray stones sell for less money, but still cost just as much to buy from a shop.
+- Fixed the bug that would prevent players from seeing through farmland terrain.
+- Poisoned wells and potions of radium or cyanide may now cure lycanthropy.
+- Added a few methods to gain stats.
+- Sleeping in a bed or zapping a chrome wand may now restore a random stat, like an uncursed potion of restore ability. Quaffing from a well may also do it, but with a slight risk of permanently not-fixing the lost stat.
+- Identifying items may now increase the chance that new items of the same type spawn with their enchantment value known.
+- Boosted the training speed of the symbiosis skill.
+- Small monsters spawn with less HP on average.
+- The risk of not displacing a pet when moving into it, which used to be 1 in 7 at all times, goes down with higher petkeeping skill now.
+- In evilvariant mode, protection-stealing attacks can now also steal the player's intrinsic protection.
+- Some RNG values rolled at game start are now less harsh on average.
+- Fixed the issue where wearing a twisted visor helmet could result in excessively long confusion or hallucination timers.
+- Wells in rooms may occasionally be blessed, similar to fountains.
+- Higher polymorphing skill allows a polymorphed character to carry more stuff.
+- Gold weighs a lot less now.
+- Fixed the bug where nano axes were accidentally two-handed.
+
+2.6.7 - May 2020
+- Petkeeping skill now allows the player's projectiles, rays and (invisible) beams to pass through pets with a certain skill-dependant chance. This can be turned on and off via #monster.
+- Thoroughly eroded projectiles are no longer guaranteed to mulch, but rather have a 4% unconditional chance of mulching (and can still mulch due to the regular chance, too, which depends on enchantment and a variety of other factors).
+- Fixed a panic that could occur when a maze level had specific types of walkable terrain.
+- Fixed error message spam when sacrificing corpses while no artifacts have yet been generated.
+- Felid and troll revival now cause random bad effects.
+- If the player gates in a demon by attacking in melee as a demon, the squeaking skill is trained now.
+- Fixed formatting issues with livelogging and extrainfo.
+- Fixed the issue where certain exploding monsters dealt far too much damage.
+- Fixed the bug where the nonprayer nastytrap effect would sometimes not do anything even though it should.
+- When handling a container, the player can now also opt to put items in first and take items out second, instead of being forced to do it the other way around.
+- Fixed the bug where scrolls of heal other wouldn't heal the player's steed.
+- Fixed a SLASH'EM bug that would cause impossible (program in disorder) messages to show the wrong value when using %d and crashing when using %s.
+- Fixed the bug that could cause glorkums to sometimes be bugged lycanthropes.
+- Restoring a game with negative HP no longer automatically starts a new game (which could potentially hide a death from the logs). Instead, the game loads and then kills off the player normally.
+- Appraisal may now increase the chance that new items of that type spawn with their enchantment known.
+- Fixed a bad description when using simpledescs while dual-wielding that would make it impossible to see in inventory which weapon was in what hand.
+- The overview command now also shows the depth for Sokoban.
+- Added some methods to increase max HP and Pw when the maximums are below average for the player's current level.
+- If the player is hurt by worn persian boots, there is now a timer before they can hurt the player again to reduce the potential of being killed with no chance.
+- Thrown boomerangs may now return to the player, depending on skill and other factors.
+- Rebalanced a bunch of spells, including giving back some earlier overnerfs.
+- Mirrors now eventually degrade when used repeatedly, and monsters are also more likely to resist.
+- In evilvariant mode, trying to access the inventory description of a crossaligned artifact can now blast the player.
+- All bats now stun the player when eaten, instead of only the types present in vanilla NetHack.
+- Added some negative effects to applying the hitchhiker's guide to the galaxy.
+- Artifact crystal balls can explode now, although 100 times less likely than non-artifact ones.
+- Effects that force the player to wear a bad cursed item can no longer roll an amulet of strangulation.
+- Doubled random gold drops (but they're still lower than in vanilla NetHack).
+- Monsters give more experience points when killed later on. Other sources of experience points likewise scale instead of being always the same low amount.
+- Spellbook descriptions now also display the spell school.
+- Monsters no longer try unsuccessfully to shoot through water tunnels with ranged attacks.
+- Fixed the oversight that caused the natalje trap effect to not reset itself properly if a very fast player moved back and forth.
  
 2.6.6 - Apr 2020
+- Frenzied monsters with attacks that deal zero physical damage no longer throw error messages.
+- Fixed the function that checks whether a positively enchanted implant lets the player perform an action without hands, so that it now uses the proper success chances.
 - Eating disenchanters in evilvariant mode can steal the player's intrinsics.
 - Most detection spells no longer work on the entire level, but in a radius around the player.
 - Fixed the bug where chrome horns were shooting fireballs instead of poison rays.
