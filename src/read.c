@@ -838,6 +838,7 @@ doread()
 	"I only play SLEX, developed by Amy. Variants of SLEX developed by others are too easy, ascending those would mean nothing to me.",
 	"I used all 8 charges in the wand of wishing despite the developers pleading me to pretend it only had 3!",
 	"I can eat a slime mold", /* by mobileuser */
+	"slex - seeing bugs as features since 2017", /* by K2 */
 
 	    };
 	    char buf[BUFSZ];

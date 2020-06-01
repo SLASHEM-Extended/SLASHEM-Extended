@@ -2527,6 +2527,7 @@ register struct monst *shkp;
 		if (obj->oclass == SCROLL_CLASS) tmp /= 10L;
 		if (obj->oclass == SPBOOK_CLASS) tmp /= 10L;
 		if (obj->oclass == WAND_CLASS) tmp /= 10L;
+	 	if (obj->otyp >= LUCKSTONE && obj->otyp <= SLING_AMMO) tmp /= 10L;	
 	}
 	/* after all, we nuked the thing that should not exist (price id) by making many item types always have the price
 	 * of the most expensive item in that type; if you can sell common scrolls, potions etc. for that price, it's way

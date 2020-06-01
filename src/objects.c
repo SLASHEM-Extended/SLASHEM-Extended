@@ -7689,6 +7689,8 @@ ROCK("flint", "gray",				0, 120,  0,   60, 20, 20, 0, 10, 7, MT_MINERAL, CLR_GRA
 ROCK("lead clump", "gray",			0, 50,  0,   60, 15, 15, 0, 10, 4, MT_LEAD, CLR_GRAY, 1),
 ROCK("bone fragment", "gray",			0, 120, 0,   60, 12, 12, 0, 10, 4, MT_BONE, CLR_GRAY, 1),
 ROCK("sling ammo", "gray",			0, 400,  0,   60, 15, 15, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
+/* sling ammo = last random gray stone, for e.g. shk.c --Amy */
+
 ROCK("rock", (char *)0,				1,3776, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 #undef GEM
 #undef ROCK
