@@ -9428,7 +9428,7 @@ boolean ranged;
 		break;
 	  case AD_LUCK:
 
-		pline("It feels like hurting this monster in melee was a bad idea.");
+		pline("It feels like hurting this monster with that type of attack was a bad idea.");
 		change_luck(-1);
 		/* Yes I know it's different from ADOM, but NetHack is way better than ADOM anyway, so who cares? --Amy */
 
