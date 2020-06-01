@@ -3947,6 +3947,21 @@ register struct obj *wand;
 	}
 	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
 	if (objects[(wand)->otyp].oc_material == MT_ANTIDOTIUM) upnivel(TRUE);
+	if (objects[(wand)->otyp].oc_material == MT_CHROME && !rn2(10)) {
+		int i, ii, lim;
+		i = rn2(A_MAX);
+		for (ii = 0; ii < A_MAX; ii++) {
+			lim = AMAX(i);
+			if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+			if (ABASE(i) < lim) {
+				ABASE(i) = lim;
+				pline("Wow! This makes you feel good!");
+				flags.botl = 1;
+				break;
+			}
+			if(++i >= A_MAX) i = 0;
+		}
+	}
 
 	if (Race_if(PM_INKA)) {
 		use_skill(P_DEVICES,1);

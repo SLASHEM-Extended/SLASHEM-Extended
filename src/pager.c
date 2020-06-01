@@ -25173,6 +25173,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"It used to be so that ordering vanilla ice cream would result in you getting some vanilla ice cream. But now, the supposedly vanilla-flavored ice cream tastes like a mix of cinnamon, cappuchino, peppermint and lemon, and only if you pay very close attention you may still feel a tiny bit of vanilla taste in that slurry.",
 	"If I want ice cream that tastes like cinnamon, I order cinnamon ice cream. And you will not see the day on which I voluntarily order cappuchino ice cream. But why is it so that nowadays, ordering vanilla ice cream results in some slurry that tastes like cinnamon and cappuchino and everything else, just not vanilla?!",
 	"You throw the invisible emerald. The invisible emerald hits the unicorn in the face! The unicorn gets angry!",
+	"Oh no, apparently one of your stats was permanently not restored!",
 
 };
 

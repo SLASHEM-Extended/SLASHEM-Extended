@@ -334,10 +334,24 @@ dosit()
 			u.bedsleeping = moves + 100;
 			You("go to bed.");
 			if (FunnyHallu) pline("Sleep-bundle-wing!");
+			fall_asleep(-rnd(20), TRUE);
 			more_experienced(u.ulevel * 5 * (deepest_lev_reached(FALSE) + 1), 0);
 			newexplevel();
-			fall_asleep(-rnd(20), TRUE);
 			upnivel(FALSE);
+			if (!rn2(5)) {
+				int i, ii, lim;
+				i = rn2(A_MAX);
+				for (ii = 0; ii < A_MAX; ii++) {
+					lim = AMAX(i);
+					if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+					if (ABASE(i) < lim) {
+						ABASE(i) = lim;
+						flags.botl = 1;
+						break;
+					}
+					if(++i >= A_MAX) i = 0;
+				}
+			}
 
 			if (uarmf && uarmf->oartifact == ART_LARISSA_S_GENTLE_SLEEP) {
 				pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");

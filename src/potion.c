@@ -7826,6 +7826,7 @@ dodrink()
 		return 1;
 	    }
 	    else if (IS_WELL(levl[u.ux][u.uy].typ)) {
+
 		You("draw water from a well.");
 		u.cnd_wellamount++;
 		if (u.ualign.type == A_NEUTRAL) adjalign(1);
@@ -7862,6 +7863,29 @@ dodrink()
 		}
 		reducesanity(10);
 		healup(d(2,6) + rnz(u.ulevel), 0, FALSE, FALSE);
+
+		{
+			int i, ii, lim;
+
+			i = rn2(A_MAX);		/* start at a random point */
+			for (ii = 0; ii < A_MAX; ii++) {
+				lim = AMAX(i);
+				if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+				if (ABASE(i) < lim) {
+					if (rn2(10)) {
+						ABASE(i) = lim;
+						pline("Wow! This makes you feel good!");
+					} else {
+						AMAX(i) -= 1;
+						pline("Oh no, apparently one of your stats was permanently not restored!");
+					}
+					flags.botl = 1;
+					break; /* only restore one --Amy */
+				}
+				if(++i >= A_MAX) i = 0;
+			}
+		}
+
 		if (!rn2(isfriday ? 5 : 10)) {
 			levl[u.ux][u.uy].typ = POISONEDWELL;
 			pline("Suddenly the well becomes poisoned...");
