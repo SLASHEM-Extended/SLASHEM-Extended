@@ -3,7 +3,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 2.6.8 - May 2020
 - Fixed the bug with control magic causing hostile rays to pass through pets and the player's own rays never passing through a ridden steed.
 - Life saving as a felid, troll or rodneyan will now fail if the player has less than 11 maximum HP. If the double level drain causes the max HP to be reduced below 11 after the first drain, a bunch of additional bad effects will affect the player.
-- Fixed the SLASH'EM issue where altars on the oracle level cannot be used for sacrificing. This bug didn't manifest in SLASH'EM because altars didn't generate there and outside of wizard mode there was no way to make one appear, but in SLASH'EM it is possible.
+- Fixed the SLASH'EM issue where altars on the oracle level cannot be used for sacrificing. This bug didn't manifest in SLASH'EM because altars didn't generate there and outside of wizard mode there was no way to make one appear, but in SLASH'EM Extended it is possible.
 - Gray stones sell for less money, but still cost just as much to buy from a shop.
 - Fixed the bug that would prevent players from seeing through farmland terrain.
 - Poisoned wells and potions of radium or cyanide may now cure lycanthropy.
