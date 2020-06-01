@@ -21312,6 +21312,31 @@ register int	mmflags;
 	    mtmp->mhpmax = mtmp->mhp = rnd(4);
 	} else {
 	    mtmp->mhpmax = mtmp->mhp = d((int)mtmp->m_lev, weakmon ? (6 + rn2(3)) : 8);
+		/* small things like ants and stuff shouldn't have the same amount of health as big monsters --Amy */
+	    if (verysmall(mtmp->data) && mtmp->mhpmax > 3) {
+		mtmp->mhpmax *= 3;
+		mtmp->mhpmax /= 4;
+		mtmp->mhp *= 3;
+		mtmp->mhp /= 4;
+		if (!rn2(2)) {
+			mtmp->mhpmax *= 3;
+			mtmp->mhpmax /= 4;
+			mtmp->mhp *= 3;
+			mtmp->mhp /= 4;
+		}
+	    }
+	    if (rathersmall(mtmp->data) && !verysmall(mtmp->data) && mtmp->mhpmax > 3) {
+		mtmp->mhpmax *= 7;
+		mtmp->mhpmax /= 8;
+		mtmp->mhp *= 7;
+		mtmp->mhp /= 8;
+		if (!rn2(3)) {
+			mtmp->mhpmax *= 7;
+			mtmp->mhpmax /= 8;
+			mtmp->mhp *= 7;
+			mtmp->mhp /= 8;
+		}
+	    }
 	    
 	    if (is_home_elemental(ptr))
 		mtmp->mhpmax = (mtmp->mhp *= 3);
