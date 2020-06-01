@@ -1930,7 +1930,8 @@ dosacrifice()
     struct monst *orac = NULL;
 
     /* KMH -- offerings to Oracle */
-    if (Is_oracle_level(&u.uz) && !u.uswallow) {
+    /* Amy edit: you stupid head, why did you make this take precedence over standing on an altar */
+    if (Is_oracle_level(&u.uz) && !on_altar() && !u.uswallow) {
 	for(orac = fmon; orac; orac = orac->nmon)
 	    if (orac->data == &mons[PM_ORACLE]) break;
 	if (!orac || distu(orac->mx, orac->my) > 2 || !mon_visible(orac)) {
