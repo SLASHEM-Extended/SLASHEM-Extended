@@ -7925,6 +7925,10 @@ dodrink()
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
 		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
 		poisoned("The water", rn2(A_MAX), "poisoned well", 30);
+		if ((u.ulycn != -1) && !rn2(10)) {
+			you_unwere(TRUE);
+		}
+		
 		if (!rn2(20)) {
 			levl[u.ux][u.uy].typ = CORR;
 			pline("The well dries up!");
@@ -9666,10 +9670,16 @@ peffects(otmp)
 		pline(FunnyHallu ? "This tastes a little bitter; maybe it's some sort of medicine?" : "CN(-) + HCl <==> HCN + Cl(-) ");
 			losehp(d(otmp->cursed ? 4 : 2, otmp->blessed ? 8 : 16),
 					"drinking cyanide", KILLED_BY);
+		if (u.ulycn != -1) {
+			you_unwere(TRUE);
+		}
 		break;
 	case POT_RADIUM:
 		pline(FunnyHallu ? "For some reason, that potion tastes... orange. Yes, the color orange, not the fruit." : "This was radioactive radium!");
 		if (!rn2(3)) make_sick(Sick ? Sick/2L + 1L : 50,"radium potion", TRUE, SICK_VOMITABLE);
+		if ((u.ulycn != -1) && !rn2(3)) {
+			you_unwere(TRUE);
+		}
 		break;
 	case POT_JOLT_COLA:
 		You("are jolted back to your senses.");
