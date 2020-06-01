@@ -2829,7 +2829,11 @@ register int x, y, typ, replacechance;
 	if (ttmp->ttyp != MAGIC_PORTAL) {
 		ttmp->trapdiff = level_difficulty();
 		if (u.trapxtradiff) ttmp->trapdiff += rnd(u.trapxtradiff);
-		if (u.xdifftrapchance > rn2(100)) ttmp->trapdiff += rnd(500);
+		if (u.xdifftrapchance > rn2(100)) {
+			if (rn2(10)) ttmp->trapdiff += rnd(100);
+			else if (rn2(5)) ttmp->trapdiff += rnd(200);
+			else ttmp->trapdiff += rnd(500);
+		}
 		/* we used to have a fail safe for this difficulty level, but I decided we don't need it :P
 		 * after all, most traps will reveal themselves when triggered, and if some nasty ones don't, oh well! --Amy */
 	}

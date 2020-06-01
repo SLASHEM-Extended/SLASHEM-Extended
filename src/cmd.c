@@ -3549,47 +3549,47 @@ boolean guaranteed;
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem2 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem3 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem4 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem5 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem6 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem6].oc_name, obj_descr[u.alwayscurseditem6].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem7 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem8 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem8].oc_name, obj_descr[u.alwayscurseditem8].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem9 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem9].oc_name, obj_descr[u.alwayscurseditem9].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && (u.alwayscurseditem10 != -1) && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem10].oc_name, obj_descr[u.alwayscurseditem10].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
@@ -7424,32 +7424,50 @@ int final;
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem].oc_name, obj_descr[u.alwayscurseditem].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	if (u.alwayscurseditem2 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem2].oc_name, obj_descr[u.alwayscurseditem2].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem3 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem3].oc_name, obj_descr[u.alwayscurseditem3].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem4 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem4].oc_name, obj_descr[u.alwayscurseditem4].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem5 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem5].oc_name, obj_descr[u.alwayscurseditem5].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem6 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem6].oc_name, obj_descr[u.alwayscurseditem6].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem7 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem7].oc_name, obj_descr[u.alwayscurseditem7].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem8 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem8].oc_name, obj_descr[u.alwayscurseditem8].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem9 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem9].oc_name, obj_descr[u.alwayscurseditem9].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.alwayscurseditem10 != -1) {
 	sprintf(buf, "always generated cursed: %s (%s)", obj_descr[u.alwayscurseditem10].oc_name, obj_descr[u.alwayscurseditem10].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
 	sprintf(buf, "always invisible: %s", defsyms[trap_to_defsym(u.invisotrap)].explanation);
 	dump("  The RNG hath decreed that this trap was ", buf );
