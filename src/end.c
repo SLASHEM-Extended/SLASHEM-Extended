@@ -1151,9 +1151,27 @@ detectmonstersdone:
 persiadone:
 
 	/* Troll characters have a chance of reviving. --Amy */
-	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
+	if (Race_if(PM_TROLLOR) && u.uhpmax > 10 && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
 		pline("But wait...");
 		losexp("failed troll revival", TRUE, FALSE);
+		if (u.uhpmax < 11) {
+			int statxx;
+			for (statxx = 0; statxx < A_MAX; statxx++) {
+				ABASE(statxx) -= 1;
+				AMAX(statxx) -= 1;
+			}
+			u.uenmax -= rnz(50);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			evilspellforget();
+			eviltechincrease();
+			evilskilldecrease();
+		}
 		losexp("failed troll revival", TRUE, FALSE);
 		badeffect();
 		pline("You come back to life!");
@@ -1179,10 +1197,28 @@ persiadone:
 trolldone:
 
 	/* Felids have 9 lives --Amy */
-	if (Race_if(PM_FELID) && how < GENOCIDED && u.ulevel > 2 && (u.felidlives > 1) ) {
+	if (Race_if(PM_FELID) && u.uhpmax > 10 && how < GENOCIDED && u.ulevel > 2 && (u.felidlives > 1) ) {
 		u.felidlives--;
 		pline("But wait...");
 		losexp("failed felid revival", TRUE, FALSE);
+		if (u.uhpmax < 11) {
+			int statxx;
+			for (statxx = 0; statxx < A_MAX; statxx++) {
+				ABASE(statxx) -= 1;
+				AMAX(statxx) -= 1;
+			}
+			u.uenmax -= rnz(50);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			skillcaploss();
+			evilspellforget();
+			eviltechincrease();
+			evilskilldecrease();
+		}
 		losexp("failed felid revival", TRUE, FALSE);
 		badeffect();
 		if (!rn2(5)) reallybadeffect();
@@ -1377,7 +1413,7 @@ implantdone:
 	}
 menunosedone:
 
-	if (Race_if(PM_RODNEYAN) && how < GENOCIDED) {
+	if (Race_if(PM_RODNEYAN) && u.uhpmax > 10 && how < GENOCIDED) {
 		pline("But you're Rodney, so your death isn't permanent!");
 
 		if (yn_function("Revive?", ynchars, 'y') == 'y' ) {
@@ -1389,6 +1425,24 @@ menunosedone:
 
 			if (u.ulevel > 2) {
 			    losexp("Rodneyan resurrection", TRUE, FALSE);
+				if (u.uhpmax < 11) {
+					int statxx;
+					for (statxx = 0; statxx < A_MAX; statxx++) {
+						ABASE(statxx) -= 1;
+						AMAX(statxx) -= 1;
+					}
+					u.uenmax -= rnz(50);
+					if (u.uenmax < 0) u.uenmax = 0;
+					if (u.uen > u.uenmax) u.uen = u.uenmax;
+					skillcaploss();
+					skillcaploss();
+					skillcaploss();
+					skillcaploss();
+					skillcaploss();
+					evilspellforget();
+					eviltechincrease();
+					evilskilldecrease();
+				}
 			    losexp("Rodneyan resurrection", TRUE, FALSE);
 			    pline("You reappear in good health!");
 			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
