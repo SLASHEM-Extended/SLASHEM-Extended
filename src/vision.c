@@ -214,7 +214,7 @@ vision_reset()
 	block = TRUE;	/* location (0,y) is always stone; it's !isok() */
 	lev = &levl[1][y];
 	for (x = 1; x < COLNO; x++, lev += ROWNO)
-	    if (block != (IS_ROCK(lev->typ) || does_block(x,y,lev))) {
+	    if (block != ((IS_ROCK(lev->typ) && !(IS_FARMLAND(lev->typ))) || does_block(x,y,lev))) {
 		if(block) {
 		    for(i=dig_left; i<x; i++) {
 			left_ptrs [y][i] = dig_left;
