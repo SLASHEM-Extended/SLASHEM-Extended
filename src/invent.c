@@ -6748,6 +6748,19 @@ struct obj *otmp;
 	else if (otmp->oclass == TOOL_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
       else makeknown(otmp->otyp);
     if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
+	if (!otmp->known) {
+		if (weapon_type(otmp) != P_NONE) {
+			if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+				u.weapchantrecskill++;
+				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+			}
+		} else if (objects[otmp->otyp].oc_charged) {
+			if (u.enchantrecskill < 1 || !rn2(u.enchantrecskill)) {
+				u.enchantrecskill++;
+				if (u.enchantrecskill > 250) u.enchantrecskill = 250;
+			}
+		}
+	}
     otmp->known = otmp->dknown = otmp->bknown = otmp->rknown = 1;
     if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
 	learn_egg_type(otmp->corpsenm);
@@ -6785,7 +6798,22 @@ boolean dumbid;
 	else if (otmp->oclass == TOOL_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
       else if (!rn2(3) && !(dumbid && !otmp->ident_bst)) makeknown(otmp->otyp);
     if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
-    if (!rn2(3) && !(dumbid && !otmp->ident_knw)) otmp->known = 1;
+    if (!rn2(3) && !(dumbid && !otmp->ident_knw)) {
+	if (!otmp->known) {
+		if (weapon_type(otmp) != P_NONE) {
+			if (u.weapchantrecskill < 1 || !rn2(u.weapchantrecskill)) {
+				u.weapchantrecskill++;
+				if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+			}
+		} else if (objects[otmp->otyp].oc_charged) {
+			if (u.enchantrecskill < 1 || !rn2(u.enchantrecskill)) {
+				u.enchantrecskill++;
+				if (u.enchantrecskill > 250) u.enchantrecskill = 250;
+			}
+		}
+	}
+	otmp->known = 1;
+    }
     if (!rn2(3) && !(dumbid && !otmp->ident_dkn)) otmp->dknown = 1;
     if (!rn2(3) && !(dumbid && !otmp->ident_bkn)) otmp->bknown = 1;
     if (!rn2(3) && !(dumbid && !otmp->ident_rkn)) otmp->rknown = 1;
