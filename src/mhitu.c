@@ -7935,6 +7935,10 @@ dopois:
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {
 			u.negativeprotection++;
+			if (evilfriday && u.ublessed > 0) {
+				u.ublessed -= 1;
+				if (u.ublessed < 0) u.ublessed = 0;
+			}
 			You_feel("less protected!");
 		}
 		break;
@@ -10566,6 +10570,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				You_feel("unsafe in here...");
 			if (!rn2(10)) {
 				u.negativeprotection++;
+				if (evilfriday && u.ublessed > 0) {
+					u.ublessed -= 1;
+					if (u.ublessed < 0) u.ublessed = 0;
+				}
 				You_feel("less protected!");
 			}
 			break;
@@ -14233,6 +14241,10 @@ common:
 
 	    case AD_NPRO:
 		u.negativeprotection++;
+		if (evilfriday && u.ublessed > 0) {
+			u.ublessed -= 1;
+			if (u.ublessed < 0) u.ublessed = 0;
+		}
 		You_feel("less protected!");
 		mdamageu(mtmp, tmp);
 		break;
@@ -19074,6 +19086,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
                 pline("%s gives you an excruciating look!", Monnam(mtmp));
 		    stop_occupation();
 			u.negativeprotection++;
+			if (evilfriday && u.ublessed > 0) {
+				u.ublessed -= 1;
+				if (u.ublessed < 0) u.ublessed = 0;
+			}
 		}
 		break;
 

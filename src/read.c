@@ -5772,6 +5772,10 @@ materialchoice3:
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
+				if (evilfriday && u.ublessed > 0) {
+					u.ublessed -= 1;
+					if (u.ublessed < 0) u.ublessed = 0;
+				}
 				You_feel("less protected!");
 				break;
 			case 2: /* wrath */

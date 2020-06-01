@@ -1180,6 +1180,10 @@ Cloak_on()
 
 	if (uarmc && uarmc->oartifact == ART_FILTHY_MORTALS_WILL_DIE) {
 		u.negativeprotection += 10;
+		if (evilfriday && u.ublessed > 0) {
+			u.ublessed -= 10;
+			if (u.ublessed < 0) u.ublessed = 0;
+		}
 		pline("You become more vulnerable, and realize that putting this cloak on was a very bad idea.");
 	}
 
