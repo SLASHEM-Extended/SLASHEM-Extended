@@ -6587,6 +6587,25 @@ shk_offer_price(slang, charge, shkp)
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	u.cnd_shkserviceamount++;
 
+	/* rarely, purchasing a service with very low CHA can increase it --Amy */
+	if (ABASE(A_CHA) < 10) {
+		int chachance = 100;
+		switch (ABASE(A_CHA)) {
+			case 4: chachance = 150; break;
+			case 5: chachance = 200; break;
+			case 6: chachance = 250; break;
+			case 7: chachance = 300; break;
+			case 8: chachance = 350; break;
+			case 9: chachance = 400; break;
+			default: {
+				if (ABASE(A_CHA) < 4) chachance = 100;
+				else chachance = 500;
+				break;
+			}
+		}
+		if (!rn2(chachance)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
+	}
+
 	return(TRUE);
 }
 

@@ -3490,6 +3490,39 @@ register int pm;
 		 * Elliott Kleinrock, October 5, 1990
 		 */
 
+	/* centaurs increase DEX occasionally --Amy */
+
+		if (ptr->mlet == S_CENTAUR) {
+		 if (ABASE(A_DEX) < ATTRMAX(A_DEX)) {
+			if (!rn2(10) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+				You_feel("nimbler!");
+				(void) adjattrib(A_DEX, 1, FALSE, TRUE);
+			}
+		  }
+		}
+
+	/* high-level dragons increase CON occasionally --Amy */
+
+		if (ptr->mlet == S_DRAGON && ptr->mlevel >= 18) {
+		 if (ABASE(A_CON) < ATTRMAX(A_CON)) {
+			if (!rn2(10) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+				You_feel("hardier!");
+				(void) adjattrib(A_CON, 1, FALSE, TRUE);
+			}
+		  }
+		}
+
+	/* very rarely, eating spellcasters increases WIS --Amy */
+
+		if (dmgtype(ptr, AD_SPEL) || dmgtype(ptr, AD_CLRC) || dmgtype(ptr, AD_CAST) ) {
+		 if (ABASE(A_WIS) < ATTRMAX(A_WIS)) {
+			if (!rn2(25) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+				You_feel("wiser!");
+				(void) adjattrib(A_WIS, 1, FALSE, TRUE);
+			}
+		  }
+		}
+
 	/* Charisma is next to impossible to raise, so eating nymphs will help now. --Amy */
 
 		if (ptr->mlet == S_NYMPH) {

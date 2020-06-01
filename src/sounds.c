@@ -24,6 +24,8 @@
  * -- JRN
  */
 
+STATIC_DCL void maybegaincha(void);
+
 #ifdef OVLB
 
 static int domonnoise(struct monst *);
@@ -3120,6 +3122,7 @@ register struct monst *mtmp;
 								u.ugold -= nursehpcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								if (!Upolyd) u.uhpmax++;
 								else u.mhmax++;
 								use_skill(P_SQUEAKING, 1);
@@ -3143,6 +3146,7 @@ register struct monst *mtmp;
 								u.ugold -= nursedecontcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								decontaminate(u.contamination);
 								pline("Now you don't have the %d gold pieces any longer.", nursedecontcost);
 								if (FunnyHallu) pline("You offer a 'thank you' to Captain Obvious.");
@@ -3168,6 +3172,7 @@ register struct monst *mtmp;
 								u.ugold -= 500;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								u.uhp += 50;
 								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 								if (Upolyd) {
@@ -3192,6 +3197,7 @@ register struct monst *mtmp;
 								u.ugold -= 5000;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								You_feel("better.");
 								make_sick(0L, (char *) 0, FALSE, SICK_ALL);
 								break;
@@ -3212,6 +3218,7 @@ register struct monst *mtmp;
 								u.ugold -= 10000;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								FunnyHallu ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
 								Slimed = 0;
 								flags.botl = 1;
@@ -3230,6 +3237,7 @@ register struct monst *mtmp;
 								u.ugold -= nursesanitycost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								reducesanity(u.usanity);
 								break;
 							}
@@ -3245,6 +3253,7 @@ register struct monst *mtmp;
 								if (!rn2(10)) mtmp->nurse_medicalsupplies = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								struct obj *medkit;
 								medkit = mksobj(MEDICAL_KIT, TRUE, FALSE, FALSE);
 								verbalize(medkit ? "A pleasure doing business with you. The medical kit is waiting on the ground below you." : "Whoops. It seems that I don't have supplies for you right now, but for technical reasons I can't give you a refund. Sorry.");
@@ -3267,6 +3276,7 @@ register struct monst *mtmp;
 								if (!rn2(20)) mtmp->nurse_purchasedrugs = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								struct obj *medkit;
 								medkit = mksobj(rn2(2) ? MUSHROOM : PILL, TRUE, FALSE, FALSE);
 								verbalize(medkit ? "Here, your stuff is on the ground. Have fun, but remember: if you call the cops, I'll send my assassins after you!" : "Oh, sorry, I don't have anything for you... but thanks for the money, sucker!");
@@ -3302,6 +3312,7 @@ register struct monst *mtmp;
 								u.ugold -= nursesymbiotecost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								getrandomsymbiote(FALSE);
 
 								u.nursesymbiotecost += 5000;
@@ -3341,6 +3352,7 @@ register struct monst *mtmp;
 								u.ugold -= symhealcost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								uncursesymbiote(TRUE);
 								u.usymbiote.mhp = u.usymbiote.mhpmax;
 								if (flags.showsymbiotehp) flags.botl = TRUE;
@@ -3373,6 +3385,7 @@ register struct monst *mtmp;
 								u.ugold -= nurseshutdowncost;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								use_skill(P_SQUEAKING, 3);
 								u.shutdowntime = 1000;
 
@@ -3405,6 +3418,7 @@ register struct monst *mtmp;
 								if (!rn2(10)) mtmp->nurse_restoration = 0;
 								if (u.ualign.type == A_NEUTRAL) adjalign(1);
 								u.cnd_nurseserviceamount++;
+								maybegaincha();
 								upnivel(TRUE); /* guaranteed */
 							}
 						}
@@ -4466,6 +4480,28 @@ const char *mapping;
 	}
 
 	return 1;
+}
+
+void
+maybegaincha()
+{
+	if (ABASE(A_CHA) < 10) {
+		int chachance = 100;
+		switch (ABASE(A_CHA)) {
+			case 4: chachance = 150; break;
+			case 5: chachance = 200; break;
+			case 6: chachance = 250; break;
+			case 7: chachance = 300; break;
+			case 8: chachance = 350; break;
+			case 9: chachance = 400; break;
+			default: {
+				if (ABASE(A_CHA) < 4) chachance = 100;
+				else chachance = 500;
+				break;
+			}
+		}
+		if (!rn2(chachance)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
+	}
 }
 
 void

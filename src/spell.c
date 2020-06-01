@@ -3723,6 +3723,25 @@ castanyway:
 		use_skill(P_MEMORIZATION, 1);
 	}
 
+	/* if your INT is low, have a very slight chance of increasing it --Amy */
+	if (ABASE(A_INT) < 10) {
+		int intellchance = 500;
+		switch (ABASE(A_INT)) {
+			case 4: intellchance = 600; break;
+			case 5: intellchance = 700; break;
+			case 6: intellchance = 800; break;
+			case 7: intellchance = 900; break;
+			case 8: intellchance = 1000; break;
+			case 9: intellchance = 1000; break;
+			default: {
+				if (ABASE(A_INT) < 4) intellchance = 500;
+				else intellchance = 1000;
+				break;
+			}
+		}
+		if (!rn2(intellchance)) (void) adjattrib(A_INT, 1, FALSE, TRUE);
+	}
+
 	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
 		u.unimanturns++;
 		if (u.unimanturns >= 3) {
