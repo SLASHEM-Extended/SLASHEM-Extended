@@ -828,7 +828,9 @@ boolean talk;
 	}
 	if ((xtime && !old) || (!xtime && old)) flags.botl = TRUE;
 
-	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) xtime *= 5;
+	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) {
+		if (xtime > HConfusion) xtime += ((xtime - HConfusion) * 5);
+	}
 
 	set_itimeout(&HConfusion, xtime);
 	if (xtime && !rn2(1000)) {
@@ -1686,7 +1688,9 @@ long mask;	/* nonzero if resistance status should change by mask */
 			     "Oh wow!  Everything %s so cosmic!";
 	verb = (!Blind) ? "looks" : "feels";
 
-	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) xtime *= 5;
+	if (xtime && (uarmh && itemhasappearance(uarmh, APP_TWISTED_VISOR_HELMET))) {
+		if (xtime > HHallucination) xtime += ((xtime - HHallucination) * 5);
+	}
 
 	if (mask) {
 	    if (HHallucination) changed = TRUE;
