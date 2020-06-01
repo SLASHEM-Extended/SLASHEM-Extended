@@ -7942,7 +7942,7 @@ use_weapon:
 		if (!noattacks(&mons[u.usymbiote.mnum])) {
 			Your("%s symbiote attacks!", mons[u.usymbiote.mnum].mname);
 			u.usymbiosisfastturns++;
-			if (u.usymbiosisfastturns >= 10) {
+			if (u.usymbiosisfastturns >= 4) {
 				u.usymbiosisfastturns = 0;
 				use_skill(P_SYMBIOSIS, 1);
 			}

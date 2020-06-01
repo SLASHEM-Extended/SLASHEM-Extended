@@ -5652,7 +5652,7 @@ newbossO:
 
 		if (uactivesymbiosis) {
 			u.usymbiosisslowturns++;
-			if (u.usymbiosisslowturns >= 100) {
+			if (u.usymbiosisslowturns >= 50) {
 				u.usymbiosisslowturns = 0;
 				use_skill(P_SYMBIOSIS, 1);
 			}
