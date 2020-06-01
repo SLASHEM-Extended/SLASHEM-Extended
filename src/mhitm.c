@@ -7184,7 +7184,10 @@ int attnumber;
 		if (magr->mtame && !rn2(2)) badpeteffect(magr);
 		break;
 	    case AD_SANI:
+
 		if (!rn2(10)) {
+
+
 			magr->mconf = 1;
 			switch (rnd(4)) {
 

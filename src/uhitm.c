@@ -842,7 +842,23 @@ register struct monst *mtmp;
 		 * there's also a chance of displacing a "frozen" monster.
 		 * sleeping monsters might magically walk in their sleep.
 		 */
-		boolean foo = (Punished || !rn2(7) || is_longworm(mtmp->data)),
+
+		/* the stuuuuuuuuuupid pet should be less likely to fail displacing if your skill is high --Amy */
+		int petdisplacechance = 7;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_PETKEEPING)) {
+		      	case P_BASIC:	petdisplacechance = 8; break;
+		      	case P_SKILLED:	petdisplacechance = 9; break;
+		      	case P_EXPERT:	petdisplacechance = 10; break;
+		      	case P_MASTER:	petdisplacechance = 12; break;
+		      	case P_GRAND_MASTER:	petdisplacechance = 15; break;
+		      	case P_SUPREME_MASTER:	petdisplacechance = 20; break;
+		      	default: break;
+			}
+
+		}
+
+		boolean foo = (Punished || !rn2(petdisplacechance) || is_longworm(mtmp->data)),
 			inshop = FALSE;
 		char *p;
 
