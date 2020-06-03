@@ -26,7 +26,7 @@ static long final_fpos;
 
 #define newttentry() (struct toptenentry *) alloc(sizeof(struct toptenentry))
 #define dealloc_ttentry(ttent) free((void *) (ttent))
-#define NAMSZ	20
+#define NAMSZ	10	/* DO NOT change this unless you want to break the topten list, several places in this code depend on it being 10 --Amy */
 #define DTHSZ	1000
 #define ROLESZ   3
 #define PERSMAX	 10000		/* entries per name/uid per char. allowed */
