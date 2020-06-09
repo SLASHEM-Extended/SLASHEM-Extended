@@ -607,6 +607,8 @@ dosounds()
 			"hear water dripping onto metal.",
 			"hear a loud crunching sound.",
 			"hear a ceiling tile fall.",
+			"the scraping of metal on metal.",
+			"chains clinking.",
 			"smell a lot of rust.",
 			"hear a gun clank.",
 			"hear iron oxidize.",
@@ -615,8 +617,9 @@ dosounds()
 			"hear the sound of a toilet latch.",
 			"wonder why the hell this set of messages is called 'library_msg' in the game's source.",
 			"feel that parts of the floor have been washed away.",
+			"the nearby ACME building!",
 		};
-		You("%s", library_msg[rn2(5)+hallu*6]);
+		You("%s", library_msg[rn2(7)+hallu*7]);
 		return;
 	    }
 

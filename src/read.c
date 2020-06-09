@@ -839,6 +839,8 @@ doread()
 	"I used all 8 charges in the wand of wishing despite the developers pleading me to pretend it only had 3!",
 	"I can eat a slime mold", /* by mobileuser */
 	"slex - seeing bugs as features since 2017", /* by K2 */
+	"K2 and Hanh's ballerinas allowed me to fix a very aggravating bug that corrupted the topten file!",
+	"Because of a pair of asian block-heeled sandals, we have very scratched legs!",
 
 	    };
 	    char buf[BUFSZ];

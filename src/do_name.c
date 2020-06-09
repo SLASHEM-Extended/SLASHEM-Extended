@@ -5452,6 +5452,7 @@ static const char * const bogusmons[] = {
 	"Almost Supreme Master",
 	"Combat Boss",
 	"Arev", "U.GUR", "Khaldi", /* armenian */
+	"a stylized eye formed from the letters V, F, and D",
 
 };
 

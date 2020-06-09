@@ -25175,6 +25175,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"You throw the invisible emerald. The invisible emerald hits the unicorn in the face! The unicorn gets angry!",
 	"Oh no, apparently one of your stats was permanently not restored!",
 	"You feel less knowledgable about equipment.",
+	"The ganmbler throws 30 shuriken!",
+	"You hear the scraping of metal on metal.",
+	"You hear chains clinking.",
+	"You hear the nearby ACME building!",
+	"You hear a series of rapid impacts.",
+	"You smell hard work.",
+	"The shopkeeper throws a stack-smashing buffer overflow grenade! The grenade explodes!--More-- Oops... Suddenly the dungeon collapses. Report error to 'flauschie' and it might be possible to rebuild.",
 
 };
 
