@@ -34,6 +34,8 @@ const char *goal;
     putstr(tmpwin, 0, sbuf);
     if (!force)
 	putstr(tmpwin, 0, "Type Space or Escape when you're done.");
+    else
+	putstr(tmpwin, 0, "Press Escape when you're done.");
     putstr(tmpwin, 0, "");
     display_nhwindow(tmpwin, TRUE);
     destroy_nhwindow(tmpwin);

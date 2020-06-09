@@ -1295,7 +1295,7 @@ do_look(quick)
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		pline("Pick an object."); }
 
-	    ans = getpos(&cc, quick, what_is_an_unknown_object);
+	    ans = getpos(&cc, /*quick*/FALSE, what_is_an_unknown_object);
 	    if (ans < 0 || cc.x < 0) {
 		flags.verbose = save_verbose;
 		return 0;	/* done */
