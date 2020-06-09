@@ -11051,7 +11051,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarm->blessed && !issoviet) armorpenalties /= 2;
+		if (uarm && uarm->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 12 : 30));
 	}
@@ -11064,7 +11064,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarm->blessed && !issoviet) armorpenalties /= 2;
+		if (uarm && uarm->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 12 : 30));
 	}
@@ -11093,7 +11093,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmc->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmc && uarmc->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 36 : 50));
 	}
@@ -11106,7 +11106,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmc->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmc && uarmc->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 36 : 50));
 
@@ -11136,7 +11136,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmu->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmu && uarmu->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 72 : 100));
 	}
@@ -11149,7 +11149,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmu->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmu && uarmu->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 72 : 100));
 
@@ -11180,7 +11180,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
-		if (uarms->blessed && !issoviet) armorpenalties /= 2;
+		if (uarms && uarms->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / (issoviet ? 12 : 30));
 	}
@@ -11193,7 +11193,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
 
-		if (uarms->blessed && !issoviet) armorpenalties /= 2;
+		if (uarms && uarms->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / (issoviet ? 12 : 30));
 
@@ -11223,7 +11223,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmh->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmh && uarmh->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmhbon * armorpenalties / (issoviet ? 10 : 20));
 	}
@@ -11236,7 +11236,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmh->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmh && uarmh->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmhbon * armorpenalties / (issoviet ? 10 : 20));
 
@@ -11266,7 +11266,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmg->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmg && uarmg->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / (issoviet ? 10 : 20));
 	}
@@ -11279,7 +11279,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmg->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmg && uarmg->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / (issoviet ? 10 : 20));
 
@@ -11309,7 +11309,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmf->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmf && uarmf->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / (issoviet ? 10 : 20));
 	}
@@ -11323,7 +11323,7 @@ int spell;
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
 
-		if (uarmf->blessed && !issoviet) armorpenalties /= 2;
+		if (uarmf && uarmf->blessed && !issoviet) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / (issoviet ? 10 : 20));
 
