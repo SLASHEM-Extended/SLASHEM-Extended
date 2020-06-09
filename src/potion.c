@@ -7873,7 +7873,7 @@ dodrink()
 				if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 				if (ABASE(i) < lim) {
 					if (rn2(10)) {
-						ABASE(i) = lim;
+						ABASE(i)++;
 						pline("Wow! This makes you feel good!");
 					} else {
 						AMAX(i) -= 1;
