@@ -2256,6 +2256,7 @@ learn()
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 			    use_skill(P_MEMORIZATION, spellev(i));
+			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
 			    incrnknow(i, FALSE);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
@@ -2315,6 +2316,7 @@ learn()
 			spl_book[i].sp_lev = objects[booktype].oc_level;
 			spl_book[i].sp_memorize = TRUE;
 			use_skill(P_MEMORIZATION, spellev(i));
+			if (!rn2(3)) u.uenmax++;
 			u.cnd_spellbookcount++;
 			incrnknow(i, TRUE);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
