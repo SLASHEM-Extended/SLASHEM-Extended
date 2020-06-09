@@ -7051,10 +7051,24 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 	/* ancipital's slow digestion is not supposed to be no digestion --Amy */
 	if (Race_if(PM_ANCIPITAL) && !rn2(20) && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
-	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy */
+	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy
+	 * regenerating ones sap more nutrition if you're less skilled */
 	if (uactivesymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {
 		if (carnivorous(&mons[u.usymbiote.mnum]) || herbivorous(&mons[u.usymbiote.mnum]) || metallivorous(&mons[u.usymbiote.mnum]) || organivorous(&mons[u.usymbiote.mnum]) || lithivorous(&mons[u.usymbiote.mnum])) u.uhunger--;
-		if (regenerates(&mons[u.usymbiote.mnum])) u.uhunger -= 5;
+		if (regenerates(&mons[u.usymbiote.mnum])) {
+
+			if ((u.uhunger >= 2500) || PlayerCannotUseSkills || (P_SKILL(P_SYMBIOSIS) == P_ISRESTRICTED)) {
+				u.uhunger -= 5;
+			} else switch (P_SKILL(P_SYMBIOSIS)) {
+		      	case P_BASIC:	u.uhunger -= (2 + rn2(2)); break;
+		      	case P_SKILLED:	u.uhunger -= 2; break;
+		      	case P_EXPERT:	u.uhunger -= rnd(2); break;
+		      	case P_MASTER:	u.uhunger--; break;
+		      	case P_GRAND_MASTER:	if (!rn2(2)) u.uhunger--; break;
+		      	case P_SUPREME_MASTER:	if (!rn2(3)) u.uhunger--; break;
+		      	default: u.uhunger -= 3; break;
+			}
+		}
 	}
 
 	if (!rn2(2)) {	/* used to be odd turns, but nasty traps that speed up turncount exist --Amy */
