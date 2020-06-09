@@ -70,6 +70,7 @@ static boolean rob_shop(struct monst *);
 static void shk_other_services(void);
 static void shk_identify(char *, struct monst *);
 static void shk_uncurse(char *, struct monst *);
+static void shk_bless(char *, struct monst *);
 static void shk_appraisal(char *, struct monst *);
 static void shk_weapon_works(char *, struct monst *);
 static void shk_armor_works(char *, struct monst *);
@@ -1861,6 +1862,11 @@ shk_other_services()
 	     add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE,
 	         "Establish Credit", MENU_UNSELECTED);
 
+	any.a_int = 8;
+	if (ESHK(shkp)->services & (SHK_BLESS))
+	     add_menu(tmpwin, NO_GLYPH, &any , 'b', 0, ATR_NONE,
+	         "Blessing", MENU_UNSELECTED);
+
 	end_menu(tmpwin, "Services Available:");
 	n = select_menu(tmpwin, PICK_ONE, &selected);
 	destroy_nhwindow(tmpwin);
@@ -1893,6 +1899,10 @@ shk_other_services()
 	        case 7:
 	                shk_estcredit(slang, shkp);
 	                break;
+	        case 8:
+	                shk_bless(slang, shkp);
+	                break;
+
 	        default:
 	                pline ("Unknown Service");
 	                break;
@@ -5849,6 +5859,101 @@ shk_uncurse(slang, shkp)
 		verbalize("All done - safe to handle, now!");
 		if (!stack_too_big(obj)) uncurse(obj, TRUE);
 		else pline("But the stack was so big that the shopkeeper failed to uncurse it.");
+	}
+}
+
+/*
+** FUNCTION shk_bless
+**
+** Bless an item for the customer, by Amy, based on the uncurse code above
+*/
+static void
+shk_bless(slang, shkp)
+	char *slang;
+	struct monst *shkp;
+{
+	struct obj *obj;                /* The object picked            */
+	int charge;                     /* How much to uncurse          */
+	boolean guesswork;              /* Will shkp be guessing?       */
+
+	/* Pick object */
+	if ( !(obj = getobj(identify_types, "bless"))) return;
+
+	/* Will shk be guessing? */
+        if ((guesswork = !shk_obj_match(obj, shkp)))
+	{
+		verbalize("I don't handle that sort of item, but I could try...");
+	}
+
+	/* Charge is same as cost */
+	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops));
+	charge *= 3; /* blessing shouldn't be possible for peanuts! --Amy */
+
+	/* Artifacts cost more to deal with */
+	/* KMH -- Avoid floating-point */
+	if (obj->oartifact) charge = charge * 3 / 2;
+
+	/* Smooth out the charge a bit */
+	shk_smooth_charge(&charge, 50, NOBOUND);
+
+	/* Go ahead? */
+	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	if (!rn2(5)) {
+		ESHK(shkp)->services &= ~SHK_BLESS;
+	}
+
+	/* Shopkeeper responses */
+	/* KMH -- fixed bknown, curse(), bless(), uncurse() */
+	if (!obj->bknown && !Role_if(PM_PRIEST) && !Role_if(PM_NECROMANCER) && !Role_if(PM_CHEVALIER) &&
+	    !no_cheat)
+	{
+		/* Not identified! */
+		pline("%s snickers and says \"Look, I blessed your item!\"", mon_nam(shkp));
+		obj->bknown = FALSE;
+	}
+	else if (obj->cursed) { /* this is not a "super-uncurse" service - it only works on uncursed stuff --Amy */
+		verbalize("The blessing magic only works on items that aren't cursed! Get it uncursed first!");
+	}
+	else if (Confusion)
+	{
+		if (rn2(10)) {
+			You("accidentally point to the wrong item in your confusion.");
+		} else {
+			/* Curse the item! */
+			You("accidentally ask for the item to be cursed");
+			if (!stack_too_big(obj)) {
+				curse(obj);
+				if (obj->cursed && !rn2(3)) obj->hvycurse = TRUE;
+				if (obj->cursed && !rn2(20)) obj->stckcurse = TRUE;
+				if (obj->cursed && !rn2(100)) obj->prmcurse = TRUE;
+			}
+			else pline("But the stack was so big that the shopkeeper failed to curse it.");
+		}
+	}
+
+	/* no special effect if you hallucinate */
+
+	/* Is shopkeeper guessing? */
+	else if (guesswork) /* ported from identify function by Amy, because it makes no sense that they can bless everything */
+	{
+		/*
+		** Blessing successful 1 out of 5 times.  
+		*/
+		if (!rn2(5)) {
+			verbalize("Success!");
+			if (!stack_too_big(obj)) bless(obj);
+			else pline("Whoops, sorry, actually no success because the stack was too big!");
+		} else {
+			verbalize("Sorry.  I guess it's not your lucky day.");
+			return;
+		}
+	}
+	else
+	{
+		verbalize("All done - the gods themselves will watch over your item now!");
+		if (!stack_too_big(obj)) bless(obj);
+		else pline("But the stack was so big that the shopkeeper failed to bless it.");
 	}
 }
 
