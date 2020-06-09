@@ -1856,7 +1856,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(480)) {
+	switch (rnd(481)) {
 
 		case 1:
 		case 2:
@@ -3364,6 +3364,12 @@ newoffmon:
 			}
 			break;
 
+		case 481:
+			if (u.enchantrecskill > 0) u.enchantrecskill--;
+			if (u.weapchantrecskill > 0) u.weapchantrecskill--;
+			You_feel("less knowledgable about equipment.");
+			break;
+
 		default:
 			break;
 	}
@@ -3429,7 +3435,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(117)) {
+	switch (rnd(118)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -4570,6 +4576,12 @@ newoffmonX:
 					if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
 				}
 			}
+			break;
+
+		case 118:
+			if (u.enchantrecskill > 0) u.enchantrecskill--;
+			if (u.weapchantrecskill > 0) u.weapchantrecskill--;
+			You_feel("less knowledgable about equipment.");
 			break;
 
 		default:

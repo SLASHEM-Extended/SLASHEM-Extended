@@ -1295,7 +1295,7 @@ do_look(quick)
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		pline("Pick an object."); }
 
-	    ans = getpos(&cc, /*quick*/FALSE, what_is_an_unknown_object);
+	    ans = getpos(&cc, /*quick*/TRUE, what_is_an_unknown_object);
 	    if (ans < 0 || cc.x < 0) {
 		flags.verbose = save_verbose;
 		return 0;	/* done */
@@ -25174,6 +25174,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"If I want ice cream that tastes like cinnamon, I order cinnamon ice cream. And you will not see the day on which I voluntarily order cappuchino ice cream. But why is it so that nowadays, ordering vanilla ice cream results in some slurry that tastes like cinnamon and cappuchino and everything else, just not vanilla?!",
 	"You throw the invisible emerald. The invisible emerald hits the unicorn in the face! The unicorn gets angry!",
 	"Oh no, apparently one of your stats was permanently not restored!",
+	"You feel less knowledgable about equipment.",
 
 };
 
