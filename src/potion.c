@@ -5333,6 +5333,16 @@ nivellate()
 			lowerceiling /= 2;
 			upperceiling /= 2;
 		}
+		if (Role_if(PM_UNBELIEVER)) {
+			lowerceiling *= 2;
+			upperceiling *= 2;
+		}
+		if (Role_if(PM_WARRIOR)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
 		if (Race_if(PM_YEEK)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
@@ -5363,6 +5373,18 @@ nivellate()
 			upperceiling *= 3;
 			upperceiling /= 2;
 		}
+		if (Race_if(PM_DEVELOPER)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_GIGANT)) {
+			lowerceiling *= 5;
+			lowerceiling /= 4;
+			upperceiling *= 5;
+			upperceiling /= 4;
+		}
 		if (Race_if(PM_INKA)) {
 			lowerceiling *= 6;
 			lowerceiling /= 5;
@@ -5380,6 +5402,12 @@ nivellate()
 			lowerceiling /= 4;
 			upperceiling *= 5;
 			upperceiling /= 4;
+		}
+		if (Race_if(PM_PLAYER_JABBERWOCK)) {
+			lowerceiling *= 4;
+			lowerceiling /= 3;
+			upperceiling *= 4;
+			upperceiling /= 3;
 		}
 		if (Race_if(PM_PLAYER_FAIRY)) {
 			lowerceiling *= 2;
@@ -5462,6 +5490,12 @@ nivellate()
 			upperceiling *= 4;
 			upperceiling /= 3;
 		}
+		if (Role_if(PM_PSYKER)) {
+			lowerceiling *= 5;
+			lowerceiling /= 4;
+			upperceiling *= 5;
+			upperceiling /= 4;
+		}
 		if (Role_if(PM_WIZARD)) {
 			lowerceiling *= 5;
 			lowerceiling /= 4;
@@ -5481,6 +5515,18 @@ nivellate()
 			upperceiling /= 2;
 		}
 		if (Race_if(PM_BACTERIA)) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_BRETON)) {
+			lowerceiling *= 4;
+			lowerceiling /= 3;
+			upperceiling *= 4;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_DEVELOPER)) {
 			lowerceiling *= 3;
 			lowerceiling /= 2;
 			upperceiling *= 3;
@@ -5586,7 +5632,7 @@ boolean guaranteed;
 	int ceiling = 1;
 	int increaseamount = 1;
 
-	{
+	{ /* HP */
 
 		ceiling = (nivellevel * 10);
 
@@ -5623,6 +5669,13 @@ boolean guaranteed;
 		if (Role_if(PM_ORDINATOR)) {
 			ceiling /= 2;
 		}
+		if (Role_if(PM_UNBELIEVER)) {
+			ceiling *= 2;
+		}
+		if (Role_if(PM_WARRIOR)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
 		if (Race_if(PM_YEEK)) {
 			ceiling /= 2;
 		}
@@ -5644,6 +5697,14 @@ boolean guaranteed;
 			ceiling *= 3;
 			ceiling /= 2;
 		}
+		if (Race_if(PM_DEVELOPER)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
+		if (Race_if(PM_GIGANT)) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
 		if (Race_if(PM_INKA)) {
 			ceiling *= 6;
 			ceiling /= 5;
@@ -5655,6 +5716,10 @@ boolean guaranteed;
 		if (Race_if(PM_PLAYER_CERBERUS)) {
 			ceiling *= 5;
 			ceiling /= 4;
+		}
+		if (Race_if(PM_PLAYER_JABBERWOCK)) {
+			ceiling *= 4;
+			ceiling /= 3;
 		}
 		if (Race_if(PM_PLAYER_FAIRY)) {
 			ceiling *= 2;
@@ -5700,7 +5765,7 @@ boolean guaranteed;
 		}
 
 	}
-	{
+	{ /* Pw */
 
 		ceiling = (nivellevel * 10);
 
@@ -5724,6 +5789,10 @@ boolean guaranteed;
 			ceiling *= 4;
 			ceiling /= 3;
 		}
+		if (Role_if(PM_PSYKER)) {
+			ceiling *= 5;
+			ceiling /= 4;
+		}
 		if (Role_if(PM_WIZARD)) {
 			ceiling *= 5;
 			ceiling /= 4;
@@ -5738,6 +5807,14 @@ boolean guaranteed;
 			ceiling /= 2;
 		}
 		if (Race_if(PM_BACTERIA)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
+		if (Race_if(PM_BRETON)) {
+			ceiling *= 4;
+			ceiling /= 3;
+		}
+		if (Race_if(PM_DEVELOPER)) {
 			ceiling *= 3;
 			ceiling /= 2;
 		}
