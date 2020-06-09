@@ -4669,6 +4669,9 @@ secureidchoice:
 					if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
 					    if (ttmp->ttyp == MAGIC_PORTAL) continue;
 						deltrap(ttmp);
+						u.uhpmax++;
+						if (Upolyd) u.mhmax++;
+						flags.botl = TRUE;
 					}
 	
 				}
