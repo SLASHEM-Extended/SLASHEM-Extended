@@ -3947,6 +3947,15 @@ register struct obj *wand;
 	}
 	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
 	if (objects[(wand)->otyp].oc_material == MT_ANTIDOTIUM) upnivel(TRUE);
+	if (objects[(wand)->otyp].oc_material == MT_ARCANIUM) {
+		u.uenmax++;
+		flags.botl = TRUE;
+	}
+	if (objects[(wand)->otyp].oc_material == MT_BRICK) {
+		u.uhpmax++;
+		if (Upolyd) u.mhmax++;
+		flags.botl = TRUE;
+	}
 	if (objects[(wand)->otyp].oc_material == MT_CHROME && !rn2(10)) {
 		int i, ii, lim;
 		i = rn2(A_MAX);
