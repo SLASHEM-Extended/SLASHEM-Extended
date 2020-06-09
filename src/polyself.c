@@ -283,6 +283,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 		(flags.female && urace.individual.f) ? urace.individual.f :
 		(urace.individual.m) ? urace.individual.m : urace.noun);
 	u.cnd_newmancount++;
+	use_skill(P_POLYMORPHING, rnd(5));
 	if (!Upolyd) u.polyformed = 0;
 	if (Slimed) {
 		Your("body transforms, but there is still slime on you.");
@@ -813,7 +814,7 @@ int	mntmp;
 	}
 
 	u.umonnum = mntmp;
-	use_skill(P_POLYMORPHING, mons[mntmp].mlevel + 1);
+	use_skill(P_POLYMORPHING, mons[mntmp].mlevel + 1 + rnd(5));
 
 	set_uasmon();
 
