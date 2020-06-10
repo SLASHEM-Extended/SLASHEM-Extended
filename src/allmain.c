@@ -6290,7 +6290,17 @@ newbossL:
 
 		/* the automatic relocation on certain dungeons can make the game almost unwinnable if you end up in a place
 		 * surrounded by undiggable walls... so those places give relocatitis now :P --Amy */
-		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(1000)) {
+		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(1111)) {
+
+			pline("Suddenly, a void jumpgate appears.");
+			getlin ("Do you want to enter the jumpgate and be teleported to a random location on this level? [y/yes/no]",buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y"))) {
+				pline("Brrrr... it's deathly cold.");
+			      (void) safe_teleds(FALSE);
+			}
+		}
+		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(10000)) {
 
 			pline("Suddenly, a void jumpgate appears and transports you away!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
