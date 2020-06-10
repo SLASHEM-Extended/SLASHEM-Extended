@@ -4344,7 +4344,7 @@ register struct monst *mtmp;
 					if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = SUPERSCROLLER_TRAP;
 					if (rtrap == AUTOMATIC_SWITCHER) rtrap = UNKNOWN_TRAP;
 
-					(void) maketrap(x, y, rtrap, 100);
+					(void) maketrap(x, y, rtrap, 100, FALSE);
 					break;
 					}
 
@@ -4492,7 +4492,7 @@ register struct monst *mtmp;
 					koy = rn2(ROWNO);
 
 					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -7063,7 +7063,7 @@ newkopcube:
 			koy = rn2(ROWNO);
 
 			if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-				(void) maketrap(kox, koy, KOP_CUBE, 0);
+				(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 				break;
 				}
 		}
@@ -8497,7 +8497,7 @@ register boolean silent;
 					koy = rn2(ROWNO);
 
 					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}

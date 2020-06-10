@@ -292,7 +292,7 @@ moveloop()
 				}
 			}
 
-			if (!rn2(monclock) && ishomicider ) makerandomtrap();
+			if (!rn2(monclock) && ishomicider ) makerandomtrap(FALSE);
 
 			xtraclock = 200000;
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
@@ -721,7 +721,7 @@ moveloop()
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-						(void) maketrap(x, y, KOP_CUBE, 0);
+						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -1020,7 +1020,7 @@ moveloop()
 		    if(!rn2( ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 250 :
 			    (depth(&u.uz) > depth(&stronghold_level)) ? 450 : 500)) {
 			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, MM_MAYSLEEP);
-			else makerandomtrap();
+			else makerandomtrap(FALSE);
 			}
 
 	/* still keeping the old monstermaking routine up, but drastically reducing their spawn rate. --Amy */
@@ -2246,7 +2246,7 @@ moveloop()
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-						(void) maketrap(x, y, KOP_CUBE, 0);
+						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -2290,7 +2290,7 @@ moveloop()
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-						(void) maketrap(x, y, KOP_CUBE, 0);
+						(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -2619,11 +2619,11 @@ newbossS:
 			}
 
 			if (ttmp && ttmp->ttyp == SPREADING_TRAP && !rn2(500)) {
-				makerandomtrap();
+				makerandomtrap(FALSE);
 			}
 
 			if (ttmp && ttmp->ttyp == ADJACENT_TRAP && !(t_at(u.ux, u.uy)) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
-				maketrap(u.ux, u.uy, randomtrap(), 100 );
+				maketrap(u.ux, u.uy, randomtrap(), 100, FALSE);
 			}
 
 			if (ttmp && ttmp->ttyp == SUPERTHING_TRAP && (multi >= 0) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
@@ -3035,7 +3035,7 @@ trapsdone:
 					if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 					if (t_at(u.ux + i, u.uy + j)) continue;
 
-					ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100);
+					ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100, FALSE);
 					if (ttmp) {
 						ttmp->tseen = 0;
 						ttmp->hiddentrap = 1;
@@ -3050,7 +3050,7 @@ trapsdone:
 					y = rn2(ROWNO);
 
 					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-							ttmp = maketrap(x, y, randomtrap(), 100);
+							ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
 						if (ttmp) {
 							ttmp->tseen = 0;
 							ttmp->hiddentrap = 1;
@@ -6412,7 +6412,7 @@ newbossB:
 				if (!isok(u.ux + oi, u.uy + oj)) continue;
 				if (levl[u.ux + oi][u.uy + oj].typ <= DBWALL) continue;
 				if (t_at(u.ux + oi, u.uy + oj)) continue;
-			maketrap(u.ux + oi, u.uy + oj, SIN_TRAP, 0);
+			maketrap(u.ux + oi, u.uy + oj, SIN_TRAP, 0, FALSE);
 		    }
 
 		}
@@ -6835,10 +6835,10 @@ newbossB:
 		}
 
 		if (uwep && uwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
-			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
+			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0, FALSE);
 		}
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
-			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
+			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0, FALSE);
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
@@ -6850,7 +6850,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -6865,7 +6865,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -6881,7 +6881,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					shittrap = maketrap(x, y, SHIT_TRAP, 0);
+					shittrap = maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					if (shittrap && !(shittrap->hiddentrap)) {
 						shittrap->tseen = 1;
 					}
@@ -6922,7 +6922,7 @@ newbossB:
 					if (hussytraptype == ACTIVE_SUPERSCROLLER_TRAP) hussytraptype = SUPERSCROLLER_TRAP;
 					if (hussytraptype == AUTOMATIC_SWITCHER) hussytraptype = UNKNOWN_TRAP;
 
-					(void) maketrap(x, y, hussytraptype, 100);
+					(void) maketrap(x, y, hussytraptype, 100, FALSE);
 					break;
 					}
 			}
@@ -6938,7 +6938,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7067,7 +7067,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7082,7 +7082,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, NATALJE_TRAP, 0);
+					(void) maketrap(x, y, NATALJE_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7098,7 +7098,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, FART_TRAP, 0);
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
 			}
@@ -7115,7 +7115,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, FART_TRAP, 0);
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
 			}
@@ -7132,7 +7132,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, FART_TRAP, 0);
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
 					break;
 					}
 			}
@@ -7149,7 +7149,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, HEEL_TRAP, 0);
+					(void) maketrap(x, y, HEEL_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7165,7 +7165,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7180,7 +7180,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7195,7 +7195,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7210,13 +7210,13 @@ newbossB:
 
 		if (Conflict && !rn2(500)) { /* bullshit downside --Amy :P */
 
-			makerandomtrap();
+			makerandomtrap(FALSE);
 
 		}
 
 		if (StrongConflict && !rn2(500)) { /* bullshit downside --Amy :P */
 
-			makerandomtrap();
+			makerandomtrap(FALSE);
 
 		}
 
@@ -7246,7 +7246,7 @@ newbossB:
 				y = rn2(ROWNO);
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					(void) maketrap(x, y, SHIT_TRAP, 0);
+					(void) maketrap(x, y, SHIT_TRAP, 0, FALSE);
 					break;
 					}
 			}
@@ -7658,7 +7658,7 @@ newboss:
 					newsym(chaosx,chaosy);
 					blockorunblock_point(chaosx,chaosy);
 
-					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 				}
 
 			}
@@ -7687,7 +7687,7 @@ newboss:
 					newsym(chaosx,chaosy);
 					blockorunblock_point(chaosx,chaosy);
 
-					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 				}
 
 			}
@@ -7716,7 +7716,7 @@ newboss:
 					newsym(chaosx,chaosy);
 					blockorunblock_point(chaosx,chaosy);
 
-					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 				}
 
 			}
@@ -7735,7 +7735,7 @@ newboss:
 				newsym(chaosx,chaosy);
 				blockorunblock_point(chaosx,chaosy);
 
-				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 
 			}
 
@@ -7753,7 +7753,7 @@ newboss:
 				newsym(chaosx,chaosy);
 				blockorunblock_point(chaosx,chaosy);
 
-				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 
 			}
 
@@ -7771,7 +7771,7 @@ newboss:
 				newsym(chaosx,chaosy);
 				blockorunblock_point(chaosx,chaosy);
 
-				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100);
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
 
 			}
 
@@ -8734,7 +8734,7 @@ newboss:
 		}
 
 		if (!rn2(2000) && uarmc && itemhasappearance(uarmc, APP_HOMICIDAL_CLOAK) ) {
-			makerandomtrap();
+			makerandomtrap(FALSE);
 		}
 
 		if (!rn2(2000) && uarmc && itemhasappearance(uarmc, APP_GRAVITY_CLOAK) ) {

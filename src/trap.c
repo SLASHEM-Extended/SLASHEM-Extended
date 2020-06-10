@@ -2318,20 +2318,22 @@ struct monst *victim;
 }
 
 void
-makerandomtrap_at(x,y)
+makerandomtrap_at(x,y,givehp)
 register int x, y;
+boolean givehp;
 {
 
 	int rtrap;
 	rtrap = randomtrap();
-	maketrap(x,y,rtrap,100);
+	maketrap(x,y,rtrap,100,givehp);
 	return;
 
 }
 
 struct trap *
-maketrap(x,y,typ,replacechance)
+maketrap(x,y,typ,replacechance,givehp)
 register int x, y, typ, replacechance;
+boolean givehp;
 {
 	register struct trap *ttmp;
 	register struct rm *lev;
@@ -2818,6 +2820,10 @@ register int x, y, typ, replacechance;
 	if (ttmp->ttyp == NOWNSIBLE_TRAP) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == KOP_CUBE) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == BOSS_SPAWNER) ttmp->hiddentrap = 1;
+
+	/* can the trap give max HP when untrapped? make sure it's not farmable --Amy */
+	ttmp->giveshp = 0;
+	if (givehp && !rn2(3)) ttmp->giveshp = 1;
 
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
@@ -6269,7 +6275,7 @@ newbossPENT:
 						y = rn2(ROWNO);
 
 						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0);
+								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;
@@ -8712,7 +8718,7 @@ madnesseffect:
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
 				if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
-			maketrap(u.ux + i, u.uy + j, PIT, 0);
+			maketrap(u.ux + i, u.uy + j, PIT, 0, FALSE);
 		    }
 		if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
 
@@ -9542,14 +9548,17 @@ madnesseffect:
 
 		 case UNKNOWN_TRAP: /* randomly transforms into some other trap */
 
+			{
+			boolean cangivehp = trap->giveshp;
 			deltrap(trap);
 
 			int rtrap;
 		      rtrap = randomtrap();
 
-			(void) maketrap(u.ux, u.uy, rtrap, 100);
+			(void) maketrap(u.ux, u.uy, rtrap, 100, cangivehp);
 
 			if ((trap = t_at(u.ux, u.uy)) != 0) dotrap(trap, RECURSIVETRAP);
+			}
 
 		 break;
 
@@ -9565,7 +9574,7 @@ madnesseffect:
 
 			if (!rn2(10)) {
 			deltrap(trap);
-			(void) maketrap(u.ux, u.uy, ROCKTRAP, 0); /* no recursive trap here */
+			(void) maketrap(u.ux, u.uy, ROCKTRAP, 0, FALSE); /* no recursive trap here */
 			}
 
 		 break;
@@ -9649,7 +9658,7 @@ madnesseffect:
 			else {
 			u.cnd_nastytrapamount++;
 			deltrap(trap);
-			(void) maketrap(u.ux, u.uy, SUPERSCROLLER_TRAP, 0);
+			(void) maketrap(u.ux, u.uy, SUPERSCROLLER_TRAP, 0, FALSE);
 			/* no recursive trap - just give the nasty effect here */
 			Superscroller = rnz(nastytrapdur * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) * (monster_difficulty() + 1));
 			(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
@@ -12472,11 +12481,11 @@ madnesseffect:
 	
 				      rtrap = randomtrap();
 	
-					(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+					(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, FALSE);
 				}
 			}
 
-			makerandomtrap();
+			makerandomtrap(FALSE);
 
 			if (TrapCreationProblem) break;
 			u.cnd_nastytrapamount++;
@@ -13829,7 +13838,7 @@ madnesseffect:
 					fily = rn2(ROWNO);
 
 					if (filx && fily && isok(filx, fily) && (levl[filx][fily].typ > DBWALL) && !(t_at(filx, fily)) ) {
-						(void) maketrap(filx, fily, fillertraptype, 0);
+						(void) maketrap(filx, fily, fillertraptype, 0, FALSE);
 					}
 				}
 
@@ -18651,7 +18660,7 @@ boolean force_failure;
 			    if ((mtmp->mhp -= rnd(4)) <= 0) killed(mtmp);
 			} else if (ttype == WEB || ttype == FARTING_WEB) {
 			    if (!webmaker(youmonst.data)) {
-				struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+				struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 				if (ttmp2) {
 				    pline_The("webbing sticks to you. You're caught too!");
 				    dotrap(ttmp2, NOWEBMSG);
@@ -18756,9 +18765,11 @@ struct trap *ttmp;
 	if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!ttmp->madeby_u) {
 		more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
-		u.uhpmax += 3;
-		if (Upolyd) u.mhmax += 3;
-		flags.botl = TRUE;
+		if (ttmp->giveshp) {
+			u.uhpmax += 3;
+			if (Upolyd) u.mhmax += 3;
+			flags.botl = TRUE;
+		}
 		newexplevel();
 	}
 	cnv_trap_obj(LAND_MINE, 1, ttmp);
@@ -18778,9 +18789,11 @@ struct trap *ttmp;
 	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	more_experienced(10 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 1;
-	if (Upolyd) u.mhmax += 1;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	deltrap(ttmp);
 	levl[trapx][trapy].typ = FOUNTAIN;
@@ -18810,9 +18823,11 @@ int exper;
 	else if (exper < 201) hpboost = 12;
 	else if (exper < 401) hpboost = 15;
 	else if (exper < 2402) hpboost = 20;
-	u.uhpmax += hpboost;
-	if (Upolyd) u.mhmax += hpboost;
-	newexplevel();
+	if (ttmp->giveshp) {
+		u.uhpmax += hpboost;
+		if (Upolyd) u.mhmax += hpboost;
+		newexplevel();
+	}
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
@@ -18830,9 +18845,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 2;
-	if (Upolyd) u.mhmax += 2;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 2;
+		if (Upolyd) u.mhmax += 2;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
@@ -18851,9 +18868,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 2;
-	if (Upolyd) u.mhmax += 2;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 2;
+		if (Upolyd) u.mhmax += 2;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(MORNING_STAR, 1, ttmp);
@@ -18872,9 +18891,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 3;
-	if (Upolyd) u.mhmax += 3;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(IRON_CHAIN, 1, ttmp);
@@ -18893,9 +18914,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 3;
-	if (Upolyd) u.mhmax += 3;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!rn2(5)) cnv_trap_obj(POT_ACID, rnd(2), ttmp);
@@ -18915,9 +18938,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(1 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 1;
-	if (Upolyd) u.mhmax += 1;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
@@ -18958,9 +18983,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(5 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 5;
-	if (Upolyd) u.mhmax += 5;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 5;
+		if (Upolyd) u.mhmax += 5;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
@@ -19038,19 +19065,22 @@ struct trap *ttmp;
 			pline("%s's sexy butt looks like it's bleeding, but it instantly stops.", farttrapnames[ttmp->launch_otyp]);
 			return 1;
 		default: /* 20 or higher = disarmed */
+			{
+			boolean cangivehp = ttmp->giveshp;
 			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
 			u.cnd_untrapamount++;
 			more_experienced(500 * (deepest_lev_reached(FALSE) + 1),0);
+			/* always give boost because they're hard to disarm --Amy */
 			u.uhpmax += 25;
 			if (Upolyd) u.mhmax += 25;
 			flags.botl = TRUE;
 			newexplevel();
 			deltrap(ttmp);
-			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0);
+			ttmp = maketrap(trapx, trapy, HEEL_TRAP, 0, cangivehp);
 			if (ttmp && !ttmp->hiddentrap ) ttmp->tseen = 1;
 			newsym(trapx, trapy);
 			return 1;
-
+			}
 	}
 
 }
@@ -19066,9 +19096,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 2;
-	if (Upolyd) u.mhmax += 2;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 2;
+		if (Upolyd) u.mhmax += 2;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!rn2(10)) cnv_trap_obj(POT_WATER, rnd(4), ttmp);
@@ -19088,9 +19120,11 @@ struct trap *ttmp;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
 	more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
-	u.uhpmax += 10;
-	if (Upolyd) u.mhmax += 10;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 10;
+		if (Upolyd) u.mhmax += 10;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 
@@ -19156,9 +19190,11 @@ struct trap *ttmp;
 	if (!rn2(3)) cnv_trap_obj(POT_OIL, 4 - rnl(4), ttmp);
 	else deltrap(ttmp);
 	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
-	u.uhpmax += 5;
-	if (Upolyd) u.mhmax += 5;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 5;
+		if (Upolyd) u.mhmax += 5;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	return 1;
 }
@@ -19197,9 +19233,11 @@ struct trap *ttmp;
 	deltrap(ttmp);
 	newsym(trapx, trapy);
 	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
-	u.uhpmax += 1;
-	if (Upolyd) u.mhmax += 1;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	return 1;
 }
@@ -19216,9 +19254,11 @@ int otyp;
 	You("disarm %s trap.", the_your[ttmp->madeby_u]);
 	u.cnd_untrapamount++;
 	more_experienced(10 * (deepest_lev_reached(FALSE) + 1), 0);
-	u.uhpmax += 1;
-	if (Upolyd) u.mhmax += 1;
-	flags.botl = TRUE;
+	if (ttmp->giveshp) {
+		u.uhpmax += 1;
+		if (Upolyd) u.mhmax += 1;
+		flags.botl = TRUE;
+	}
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(otyp, 50-rnl(50), ttmp);
@@ -19632,7 +19672,7 @@ boolean disarm;
 	if (!rn2(10) || evilfriday) {
 
 		if (isok(u.ux, u.uy) && !(t_at(u.ux, u.uy)) ) {
-			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100);
+			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100, FALSE);
 			if (ttmp) {
 				ttmp->tseen = 0;
 				ttmp->hiddentrap = 1;
@@ -19647,7 +19687,7 @@ boolean disarm;
 			y = rn2(ROWNO);
 
 			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					ttmp = maketrap(x, y, randomtrap(), 0);
+					ttmp = maketrap(x, y, randomtrap(), 0, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;
 					ttmp->hiddentrap = 1;
@@ -19987,7 +20027,7 @@ boulderdone:
 			if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 			if (t_at(u.ux + i, u.uy + j)) continue;
 
-			ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100);
+			ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100, FALSE);
 			if (ttmp) {
 				ttmp->tseen = 0;
 				ttmp->hiddentrap = 1;
@@ -20002,7 +20042,7 @@ boulderdone:
 			y = rn2(ROWNO);
 
 			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					ttmp = maketrap(x, y, randomtrap(), 100);
+					ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;
 					ttmp->hiddentrap = 1;

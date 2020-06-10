@@ -2073,7 +2073,8 @@ selecttrap2:
  */
 
 void
-makerandomtrap()
+makerandomtrap(givehp)
+boolean givehp;
 {
 
 	int rtrap;
@@ -2086,7 +2087,7 @@ makerandomtrap()
 		y = rn2(ROWNO);
 
 		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-			(void) maketrap(x, y, rtrap, 100);
+			(void) maketrap(x, y, rtrap, 100, givehp);
 			break;
 			}
 
@@ -2109,7 +2110,7 @@ makeinvisotrap()
 		y = rn2(ROWNO);
 
 		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-			ttmp = maketrap(x, y, rtrap, 100);
+			ttmp = maketrap(x, y, rtrap, 100, FALSE);
 			if (ttmp) ttmp->hiddentrap = TRUE;
 			break;
 			}
@@ -2135,7 +2136,7 @@ makegirlytrap()
 		y = rn2(ROWNO);
 
 		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-			(void) maketrap(x, y, rtrap, 0);
+			(void) maketrap(x, y, rtrap, 0, TRUE);
 			break;
 			}
 
@@ -2156,7 +2157,7 @@ makespacewarstrap()
 		y = rn2(ROWNO);
 
 		if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-			(void) maketrap(x, y, rtrap, 0);
+			(void) maketrap(x, y, rtrap, 0, FALSE);
 			break;
 			}
 
@@ -2906,7 +2907,7 @@ struct mkroom	*croom;
 	tm.x = x;
 	tm.y = y;
 
-	mktrap(t->type, 1, (struct mkroom*) 0, &tm);
+	mktrap(t->type, 1, (struct mkroom*) 0, &tm, TRUE);
 	/*pline("traptest %d", t->type);*/
     }
 }
@@ -3587,10 +3588,10 @@ schar ftyp, btyp;
 			}
 			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) 
-				(void) maketrap(xx, yy, rndtrap(), 100);
+				(void) maketrap(xx, yy, rndtrap(), 100, TRUE);
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 100 : 200)) {
 				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, MM_MAYSLEEP);
-				else makerandomtrap_at(xx, yy);
+				else makerandomtrap_at(xx, yy, TRUE);
 				}
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 10 : 20)) 
 				(void) mkfeature(xx, yy);
@@ -4280,7 +4281,7 @@ retryrandtype:
 			for(sy = croom->ly; sy <= croom->hy; sy++)
 			if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) ) {
 			    if(rn2(5)) 
-					(void) maketrap(sx, sy, rtrap, 100);
+					(void) maketrap(sx, sy, rtrap, 100, TRUE);
 				if (randomnes == 1) rtrap = randomtrap();
 			}
 
@@ -4340,7 +4341,7 @@ retryrandtype:
 		}
 
 		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE, FALSE);
-		if (!rn2(3)) (void) maketrap(sx, sy, rndtrap(), 100);
+		if (!rn2(3)) (void) maketrap(sx, sy, rndtrap(), 100, TRUE);
 
 		} /* for loop */
 
@@ -4421,11 +4422,11 @@ retryrandtype:
 			if(!rn2(10)) {
 				if(!rn2(10)) {
 					if(!rn2(10)) {
-						(void) maketrap(sx, sy, randominsidetrap(), 100);
+						(void) maketrap(sx, sy, randominsidetrap(), 100, TRUE);
 					}
-					else (void) maketrap(sx, sy, LEVEL_TELEP, 100);
+					else (void) maketrap(sx, sy, LEVEL_TELEP, 100, TRUE);
 				}
-				else (void) maketrap(sx, sy, TELEP_TRAP, 100);
+				else (void) maketrap(sx, sy, TELEP_TRAP, 100, TRUE);
 			}
 
 		}
@@ -4443,7 +4444,7 @@ retryrandtype:
 		for(sy = croom->ly; sy <= croom->hy; sy++) {
 
 			if(!rn2(5) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, BOSS_SPAWNER, 100);
+				(void) maketrap(sx, sy, BOSS_SPAWNER, 100, FALSE);
 		}
 
 	}
@@ -4522,7 +4523,7 @@ retryrandtype:
 				}
 			}
 
-			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))	(void) maketrap(sx, sy, typ2, 100);
+			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10))	(void) maketrap(sx, sy, typ2, 100, TRUE);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE, FALSE);
 			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE, FALSE);
@@ -4551,7 +4552,7 @@ retryrandtype:
 		levl[sx][sy].typ = typ;
 		if (typ == FOUNTAIN) 	level.flags.nfountains++;
 		if (typ == SINK) 	level.flags.nsinks++;
-		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap(), 100);
+		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap(), 100, TRUE);
 		}
 
 	}
@@ -4565,7 +4566,7 @@ retryrandtype:
 		for(sy = croom->ly; sy <= croom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
 		    if(rn2(2)) 
-				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP), 100 );
+				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP), 100, TRUE);
 		}
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
@@ -5978,7 +5979,7 @@ dlb *fd;
 	    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 		maze1xy(&mm, DRY);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 #ifdef BIGSLEX
@@ -5988,7 +5989,7 @@ dlb *fd;
 #endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		    else makerandomtrap_at(mm.x, mm.y);
+		    else makerandomtrap_at(mm.x, mm.y, TRUE);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
@@ -6007,7 +6008,7 @@ dlb *fd;
 			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
-		    (void) maketrap(mm.x, mm.y, trytrap, 100);
+		    (void) maketrap(mm.x, mm.y, trytrap, 100, TRUE);
 	    }
 
 		if (ishaxor) {
@@ -6038,7 +6039,7 @@ dlb *fd;
 	    for (x = rn2(2); x; x--) { if (!(iszapem && !(u.zapemescape)) && (depth(&u.uz) > depth(&medusa_level))) {
 		maze1xy(&mm, DRY);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		} /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 	    }
 #ifdef BIGSLEX
@@ -6048,7 +6049,7 @@ dlb *fd;
 #endif
 		    maze1xy(&mm, WET|DRY);
 		    if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		    else makerandomtrap_at(mm.x, mm.y);
+		    else makerandomtrap_at(mm.x, mm.y, TRUE);
 	    }
 	    for(x = rn2((int) (15 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
@@ -6067,7 +6068,7 @@ dlb *fd;
 			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
-		    (void) maketrap(mm.x, mm.y, trytrap, 100);
+		    (void) maketrap(mm.x, mm.y, trytrap, 100, TRUE);
 	    }
 		}
 

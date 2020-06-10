@@ -11313,7 +11313,7 @@ loveheelover:
 	    case S_KOP:
 
 		if (ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
-			(void) maketrap(mtmp->mx, mtmp->my, KOP_CUBE, 0);
+			(void) maketrap(mtmp->mx, mtmp->my, KOP_CUBE, 0, FALSE);
 		}
 
 		if (ptr == &mons[PM_FREEMASON_CASER]) {
@@ -13324,7 +13324,7 @@ loveheelover:
 		if (ptr == &mons[PM_SMUT_ORC]) {
 			if (!rn2(3)) (void) mongets(mtmp, WAN_SUMMON_SEXY_GIRL);
 			else if (!rn2(2)) (void) mongets(mtmp, SCR_GIRLINESS);
-			else 	(void) maketrap(mtmp->mx, mtmp->my, rn2(2) ? FART_TRAP : HEEL_TRAP, 0);
+			else 	(void) maketrap(mtmp->mx, mtmp->my, rn2(2) ? FART_TRAP : HEEL_TRAP, 0, TRUE);
 		}
 		break;
 
@@ -21551,7 +21551,7 @@ register int	mmflags;
 	if (!rn2(250)) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 	if (ptr == &mons[PM_SCROLLER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP, 0);
+		(void) maketrap(x, y, ACTIVE_SUPERSCROLLER_TRAP, 0, FALSE);
 
 	if (ptr == &mons[PM_BOULDER_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
 		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
@@ -21563,13 +21563,13 @@ register int	mmflags;
 		(void) mksobj_at(nastymusableitem(), x, y, TRUE, FALSE, FALSE);
 
 	if (ptr == &mons[PM_HOLE_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, HOLE, 10);
+		(void) maketrap(x, y, HOLE, 10, TRUE);
 
 	if (ptr == &mons[PM_TRAP_MASTER] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, randomtrap(), 100 );
+		(void) maketrap(x, y, randomtrap(), 100, TRUE);
 
 	if (ptr == &mons[PM_ELONIC_MINE_DOG] && x && y && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, LANDMINE, 10);
+		(void) maketrap(x, y, LANDMINE, 10, TRUE);
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
@@ -21578,7 +21578,7 @@ register int	mmflags;
 
 		rtrap = randomtrap();
 
-		(void) maketrap(x, y, rtrap, 100);
+		(void) maketrap(x, y, rtrap, 100, TRUE);
 
 	}
 
@@ -21590,7 +21590,7 @@ register int	mmflags;
 		if (!rn2(200 / reduceramount)) {
 			int rtrap;
 			rtrap = randomtrap();
-			(void) maketrap(x, y, rtrap, 100);
+			(void) maketrap(x, y, rtrap, 100, TRUE);
 		}
 
 	}
@@ -21601,7 +21601,7 @@ register int	mmflags;
 
 		rtrap = randomtrap();
 
-		(void) maketrap(x, y, rtrap, 100);
+		(void) maketrap(x, y, rtrap, 100, FALSE);
 
 	}
 

@@ -1236,22 +1236,22 @@ boolean	at_stairs;
 		}
 
 		if (!rn2(ishaxor ? 2500 : 5000)) {
-			makerandomtrap();
-			if (!rn2(2)) makerandomtrap();
-			if (!rn2(3)) makerandomtrap();
-			if (!rn2(4)) makerandomtrap();
-			if (!rn2(6)) makerandomtrap();
-			if (!rn2(8)) makerandomtrap();
-			if (!rn2(12)) makerandomtrap();
-			if (!rn2(16)) makerandomtrap();
-			if (!rn2(24)) makerandomtrap();
-			if (!rn2(32)) makerandomtrap();
-			if (!rn2(48)) makerandomtrap();
-			if (!rn2(64)) makerandomtrap();
-			if (!rn2(96)) makerandomtrap();
-			if (!rn2(128)) makerandomtrap();
-			if (!rn2(192)) makerandomtrap();
-			if (!rn2(256)) makerandomtrap();
+			makerandomtrap(FALSE);
+			if (!rn2(2)) makerandomtrap(FALSE);
+			if (!rn2(3)) makerandomtrap(FALSE);
+			if (!rn2(4)) makerandomtrap(FALSE);
+			if (!rn2(6)) makerandomtrap(FALSE);
+			if (!rn2(8)) makerandomtrap(FALSE);
+			if (!rn2(12)) makerandomtrap(FALSE);
+			if (!rn2(16)) makerandomtrap(FALSE);
+			if (!rn2(24)) makerandomtrap(FALSE);
+			if (!rn2(32)) makerandomtrap(FALSE);
+			if (!rn2(48)) makerandomtrap(FALSE);
+			if (!rn2(64)) makerandomtrap(FALSE);
+			if (!rn2(96)) makerandomtrap(FALSE);
+			if (!rn2(128)) makerandomtrap(FALSE);
+			if (!rn2(192)) makerandomtrap(FALSE);
+			if (!rn2(256)) makerandomtrap(FALSE);
 
 		}
 		if (!rn2(10)) pushplayer(TRUE);
@@ -1277,22 +1277,22 @@ boolean	at_stairs;
 		}
 
 		if (!rn2(ishaxor ? 2500 : 5000)) {
-			makerandomtrap();
-			if (!rn2(2)) makerandomtrap();
-			if (!rn2(3)) makerandomtrap();
-			if (!rn2(4)) makerandomtrap();
-			if (!rn2(6)) makerandomtrap();
-			if (!rn2(8)) makerandomtrap();
-			if (!rn2(12)) makerandomtrap();
-			if (!rn2(16)) makerandomtrap();
-			if (!rn2(24)) makerandomtrap();
-			if (!rn2(32)) makerandomtrap();
-			if (!rn2(48)) makerandomtrap();
-			if (!rn2(64)) makerandomtrap();
-			if (!rn2(96)) makerandomtrap();
-			if (!rn2(128)) makerandomtrap();
-			if (!rn2(192)) makerandomtrap();
-			if (!rn2(256)) makerandomtrap();
+			makerandomtrap(FALSE);
+			if (!rn2(2)) makerandomtrap(FALSE);
+			if (!rn2(3)) makerandomtrap(FALSE);
+			if (!rn2(4)) makerandomtrap(FALSE);
+			if (!rn2(6)) makerandomtrap(FALSE);
+			if (!rn2(8)) makerandomtrap(FALSE);
+			if (!rn2(12)) makerandomtrap(FALSE);
+			if (!rn2(16)) makerandomtrap(FALSE);
+			if (!rn2(24)) makerandomtrap(FALSE);
+			if (!rn2(32)) makerandomtrap(FALSE);
+			if (!rn2(48)) makerandomtrap(FALSE);
+			if (!rn2(64)) makerandomtrap(FALSE);
+			if (!rn2(96)) makerandomtrap(FALSE);
+			if (!rn2(128)) makerandomtrap(FALSE);
+			if (!rn2(192)) makerandomtrap(FALSE);
+			if (!rn2(256)) makerandomtrap(FALSE);
 
 		}
 		if (!rn2(10)) pushplayer(TRUE);
@@ -1326,22 +1326,22 @@ boolean	at_stairs;
 			}
 
 			if (!rn2(ishaxor ? 2500 : 5000)) {
-				makerandomtrap();
-				if (!rn2(2)) makerandomtrap();
-				if (!rn2(3)) makerandomtrap();
-				if (!rn2(4)) makerandomtrap();
-				if (!rn2(6)) makerandomtrap();
-				if (!rn2(8)) makerandomtrap();
-				if (!rn2(12)) makerandomtrap();
-				if (!rn2(16)) makerandomtrap();
-				if (!rn2(24)) makerandomtrap();
-				if (!rn2(32)) makerandomtrap();
-				if (!rn2(48)) makerandomtrap();
-				if (!rn2(64)) makerandomtrap();
-				if (!rn2(96)) makerandomtrap();
-				if (!rn2(128)) makerandomtrap();
-				if (!rn2(192)) makerandomtrap();
-				if (!rn2(256)) makerandomtrap();
+				makerandomtrap(FALSE);
+				if (!rn2(2)) makerandomtrap(FALSE);
+				if (!rn2(3)) makerandomtrap(FALSE);
+				if (!rn2(4)) makerandomtrap(FALSE);
+				if (!rn2(6)) makerandomtrap(FALSE);
+				if (!rn2(8)) makerandomtrap(FALSE);
+				if (!rn2(12)) makerandomtrap(FALSE);
+				if (!rn2(16)) makerandomtrap(FALSE);
+				if (!rn2(24)) makerandomtrap(FALSE);
+				if (!rn2(32)) makerandomtrap(FALSE);
+				if (!rn2(48)) makerandomtrap(FALSE);
+				if (!rn2(64)) makerandomtrap(FALSE);
+				if (!rn2(96)) makerandomtrap(FALSE);
+				if (!rn2(128)) makerandomtrap(FALSE);
+				if (!rn2(192)) makerandomtrap(FALSE);
+				if (!rn2(256)) makerandomtrap(FALSE);
 	
 			}
 
@@ -1366,22 +1366,22 @@ boolean	at_stairs;
 		}
 
 			if (!rn2(ishaxor ? 2500 : 5000)) {
-				makerandomtrap();
-				if (!rn2(2)) makerandomtrap();
-				if (!rn2(3)) makerandomtrap();
-				if (!rn2(4)) makerandomtrap();
-				if (!rn2(6)) makerandomtrap();
-				if (!rn2(8)) makerandomtrap();
-				if (!rn2(12)) makerandomtrap();
-				if (!rn2(16)) makerandomtrap();
-				if (!rn2(24)) makerandomtrap();
-				if (!rn2(32)) makerandomtrap();
-				if (!rn2(48)) makerandomtrap();
-				if (!rn2(64)) makerandomtrap();
-				if (!rn2(96)) makerandomtrap();
-				if (!rn2(128)) makerandomtrap();
-				if (!rn2(192)) makerandomtrap();
-				if (!rn2(256)) makerandomtrap();
+				makerandomtrap(FALSE);
+				if (!rn2(2)) makerandomtrap(FALSE);
+				if (!rn2(3)) makerandomtrap(FALSE);
+				if (!rn2(4)) makerandomtrap(FALSE);
+				if (!rn2(6)) makerandomtrap(FALSE);
+				if (!rn2(8)) makerandomtrap(FALSE);
+				if (!rn2(12)) makerandomtrap(FALSE);
+				if (!rn2(16)) makerandomtrap(FALSE);
+				if (!rn2(24)) makerandomtrap(FALSE);
+				if (!rn2(32)) makerandomtrap(FALSE);
+				if (!rn2(48)) makerandomtrap(FALSE);
+				if (!rn2(64)) makerandomtrap(FALSE);
+				if (!rn2(96)) makerandomtrap(FALSE);
+				if (!rn2(128)) makerandomtrap(FALSE);
+				if (!rn2(192)) makerandomtrap(FALSE);
+				if (!rn2(256)) makerandomtrap(FALSE);
 	
 			}
 		if (!rn2(10)) pushplayer(TRUE);

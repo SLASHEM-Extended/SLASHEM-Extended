@@ -1344,7 +1344,7 @@ int trap_type;
 		    if((trap_type == HOLE || trap_type == TRAPDOOR || trap_type == SHAFT_TRAP || trap_type == CURRENT_SHAFT)
 			&& !Can_fall_thru(&u.uz))
 			trap_type = ROCKTRAP;
-		    ttmp = maketrap(xx, yy+dy, trap_type, 100);
+		    ttmp = maketrap(xx, yy+dy, trap_type, 100, TRUE);
 		    if (ttmp) {
 			if (trap_type != ROCKTRAP) ttmp->once = 1;
 			if (trap_engravings[trap_type]) {
@@ -1446,12 +1446,12 @@ specdungeoninit()
 
 		if (isok(x,y) && (In_voiddungeon(&u.uz) && !rn2(10)) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(5)) {
 			levl[x][y].typ = NETHERMIST;
-			maketrap(x, y, GIANT_CHASM, 100);
+			maketrap(x, y, GIANT_CHASM, 100, TRUE);
 		}
 
 		if (isok(x,y) && In_netherrealm(&u.uz) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR || (IS_STWALL(levl[x][y].typ) && !rn2(5)) ) && !rn2(5)) {
 			levl[x][y].typ = NETHERMIST;
-			if (!rn2(5)) maketrap(x, y, GIANT_CHASM, 100);
+			if (!rn2(5)) maketrap(x, y, GIANT_CHASM, 100, TRUE);
 		}
 
 		if (isok(x,y) && In_angmar(&u.uz) && (IS_STWALL(levl[x][y].typ) && !rn2(5))) {
@@ -10806,18 +10806,18 @@ skip1:
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
-			(void) maketrap(x, y, WEB, 25);
+			(void) maketrap(x, y, WEB, 25, TRUE);
 		    }
-		    if (ishomicider) (void) makerandomtrap_at(x, y);
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
 		}
 		if(ishaxor && ((u.uhave.amulet && !u.freeplaymode) || !rn2(3)) ) {
 		    x = somex(croom); y = somey(croom);
 		    if (!ishomicider) { tmonst = makemon((struct permonst *) 0, x, y, MM_MAYSLEEP);
 		    if (tmonst && webmaker(tmonst->data) /*== &mons[PM_GIANT_SPIDER]*/ &&
 			    !occupied(x, y))
-			(void) maketrap(x, y, WEB, 25);
+			(void) maketrap(x, y, WEB, 25, TRUE);
 		    }
-		    if (ishomicider) (void) makerandomtrap_at(x, y);
+		    if (ishomicider) (void) makerandomtrap_at(x, y, TRUE);
 		}
 		/* put traps and mimics inside */
 		goldseen = FALSE;
@@ -10827,11 +10827,11 @@ skip1:
 		/* less traps in the very early game --Amy */
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			while (!rn2(x))
-				mktrap(0,0,croom,(coord*)0);
+				mktrap(0,0,croom,(coord*)0,TRUE);
 
 			if(ishaxor) {
 				while (!rn2(x))
-					mktrap(0,0,croom,(coord*)0);
+					mktrap(0,0,croom,(coord*)0,TRUE);
 			}
 		}
 
@@ -11846,27 +11846,27 @@ mineralize()
 		}
 
 		if ((levl[x][y].typ <= DBWALL && !rn2(100000)) && !t_at(x, y) ) {
-			maketrap(x, y, SUPERTHING_TRAP, 0);
+			maketrap(x, y, SUPERTHING_TRAP, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_SPACEWARS_FIGHTER) && !rn2(10000)) && !t_at(x, y) ) {
-			maketrap(x, y, SUPERTHING_TRAP, 0);
+			maketrap(x, y, SUPERTHING_TRAP, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(5000)) && !t_at(x, y) ) {
-			maketrap(x, y, SUPERTHING_TRAP, 0);
+			maketrap(x, y, SUPERTHING_TRAP, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && !rn2(100000)) && !t_at(x, y) ) {
-			maketrap(x, y, ARABELLA_SPEAKER, 0);
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_SPACEWARS_FIGHTER) && !rn2(5000)) && !t_at(x, y) ) {
-			maketrap(x, y, ARABELLA_SPEAKER, 0);
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
 
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(2500)) && !t_at(x, y) ) {
-			maketrap(x, y, ARABELLA_SPEAKER, 0);
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
 
 		/* Since you can now pick up items from the bottom with swimming, let's reduce the amount of kelp --Amy */
@@ -11875,7 +11875,7 @@ mineralize()
 
 		/* locate level for camperstriker role should be filled end to end with traps on trees */
 		if (levl[x][y].typ == TREE && Role_if(PM_CAMPERSTRIKER) && !rn2(10) && Is_qlocate(&u.uz) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		/* give a random, low, chance that any given square has a trap --Amy */
 
@@ -11884,11 +11884,11 @@ mineralize()
 			int reduceramount = (level_difficulty() / 5);
 			if (reduceramount < 1) reduceramount = 1;
 
-		    	if (!rn2(25000 / reduceramount)) makerandomtrap_at(x, y);
-		    	if (ishaxor && !rn2(25000 / reduceramount)) makerandomtrap_at(x, y);
+		    	if (!rn2(25000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
+		    	if (ishaxor && !rn2(25000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
 
-		    	if (ishomicider && !rn2(10000 / reduceramount)) makerandomtrap_at(x, y);
-		    	if (Role_if(PM_GANG_SCHOLAR) && !rn2(15000 / reduceramount)) makerandomtrap_at(x, y);
+		    	if (ishomicider && !rn2(10000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
+		    	if (Role_if(PM_GANG_SCHOLAR) && !rn2(15000 / reduceramount)) makerandomtrap_at(x, y, TRUE);
 
 		}
 
@@ -12038,9 +12038,9 @@ mineralize()
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
 	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK|MM_MAYSLEEP);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, CURSED_GRAVE, 100);
+			(void) maketrap(x, y, CURSED_GRAVE, 100, FALSE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, randomtrap(), 100);
+			(void) maketrap(x, y, randomtrap(), 100, TRUE);
 		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
 	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK|MM_MAYSLEEP); /* AD_STUN */
 		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
@@ -12071,170 +12071,170 @@ mineralize()
 
 		if ((levl[x][y].typ == POOL && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) ||
 			(levl[x][y].typ == MOAT && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)))
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == LAVAPOOL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == ROOM && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000 )) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == TREE && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == FOUNTAIN && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == THRONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SINK && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == FARMLAND && !rn2((ishaxor && !issuxxor) ? 400 : (issuxxor && !ishaxor) ? 1600 : 800)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if (levl[x][y].typ == WATERTUNNEL && In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !rn2(15) )
 		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE, FALSE);
 
 		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WATERTUNNEL && !rn2((ishaxor && !issuxxor) ? 12 : (issuxxor && !ishaxor) ? 50 : 25)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == CRYSTALWATER && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == MOORLAND && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == URINELAKE && !rn2((ishaxor && !issuxxor) ? 400 : (issuxxor && !ishaxor) ? 1600 : 800)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SHIFTINGSAND && !rn2((ishaxor && !issuxxor) ? 125 : (issuxxor && !ishaxor) ? 500 : 250)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 450 : (issuxxor && !ishaxor) ? 1800 : 900)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 450 : (issuxxor && !ishaxor) ? 1800 : 900)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == PENTAGRAM && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == POISONEDWELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == BURNINGWAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == WOODENTABLE && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == CARVEDBED && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STRAWMATTRESS && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == PAVEDFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, CURSED_GRAVE, 100);
+			(void) maketrap(x, y, CURSED_GRAVE, 100, FALSE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
-			(void) maketrap(x, y, randomtrap(), 100);
+			(void) maketrap(x, y, randomtrap(), 100, TRUE);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
-	    	    makerandomtrap_at(x, y);
+	    	    makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == ALTAR && !rn2((ishaxor && !issuxxor) ? 3 : (issuxxor && !ishaxor) ? 10 : 5)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == ROCKWALL || levl[x][y].typ == GRAVEWALL || levl[x][y].typ == TUNNELWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == SCORR && !rn2((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 		if ((levl[x][y].typ == DOOR && !rn2((ishaxor && !issuxxor) ? 300 : (issuxxor && !ishaxor) ? 1200 : 600)) )
-			makerandomtrap_at(x, y);
+			makerandomtrap_at(x, y, TRUE);
 
 		} /* ishomicider check */
 
@@ -12660,10 +12660,11 @@ register xchar x, y;
 /* make a trap somewhere (in croom if mazeflag = 0 && !tm) */
 /* if tm != null, make trap at that location */
 void
-mktrap(num, mazeflag, croom, tm)
+mktrap(num, mazeflag, croom, tm, cangivehp)
 register int num, mazeflag;
 register struct mkroom *croom;
 coord *tm;
+boolean cangivehp;
 {
 	register int kind;
 	coord m;
@@ -13848,7 +13849,7 @@ selecttrap:
 			(avoid_boulder && sobj_at(BOULDER, m.x, m.y)));
 	}
 
-	(void) maketrap(m.x, m.y, kind, isspecific ? ((u.monstertimefinish % 2) ? 5 : 10) : 100);
+	(void) maketrap(m.x, m.y, kind, isspecific ? ((u.monstertimefinish % 2) ? 5 : 10) : 100, cangivehp);
 	/* Webs can generate on dlvl1, where giant spiders would be totally out of depth. Let's make random spiders. --Amy */
 	if (kind == WEB) (void) makemon( /*&mons[PM_GIANT_SPIDER]*/ mkclass(S_SPIDER,0),
 						m.x, m.y, MM_MAYSLEEP);
@@ -15537,7 +15538,7 @@ int dist;
     case 1: /* fire traps */
 	if (is_waterypool(x,y)) break;
 	lev->typ = ROOM;
-	ttmp = maketrap(x, y, FIRE_TRAP, 0);
+	ttmp = maketrap(x, y, FIRE_TRAP, 0, TRUE);
 	if (ttmp) ttmp->tseen = TRUE;
 	break;
     case 0: /* lit room locations */

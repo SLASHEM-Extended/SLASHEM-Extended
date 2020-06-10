@@ -8783,7 +8783,7 @@ srch:
 				/* avoid stupid mistakes */
 				if((trap == TRAPDOOR || trap == HOLE || trap == SHAFT_TRAP || trap == CURRENT_SHAFT)
 				      && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) trap = ROCKTRAP;
-				(void) maketrap(u.ux, u.uy, trap, 0);
+				(void) maketrap(u.ux, u.uy, trap, 0, TRUE);
 				pline("%s.", An(tname));
 				return(&zeroobj);
 			}

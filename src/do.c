@@ -2575,7 +2575,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -2701,7 +2701,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -2823,7 +2823,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -2941,7 +2941,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -3059,7 +3059,7 @@ rerollchaloc:
 
 					rtrap = randomtrap();
 
-					(void) maketrap(angbandx, angbandy, rtrap, 100);
+					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
 				}
 
@@ -3168,7 +3168,7 @@ rerollchaloc:
 						if (!rn2(150)) (void) mkobj_at(AMULET_CLASS, angbandx, angbandy, TRUE, FALSE);
 						if (!rn2(50)) (void) mkobj_at(TOOL_CLASS, angbandx, angbandy, TRUE, FALSE);
 
-						if (!rn2(1000)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0);
+						if (!rn2(1000)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0, FALSE);
 
 					}
 				}
@@ -3220,7 +3220,7 @@ rerollchaloc:
 					      if (!rn2(50)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
 					      if (!rn2(100)) (void) mkobj_at(RANDOM_CLASS, angbandx, angbandy, TRUE, FALSE);
 
-						if (!rn2(500)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0);
+						if (!rn2(500)) (void) maketrap(angbandx, angbandy, AUTOMATIC_SWITCHER, 0, FALSE);
 
 					}
 				}

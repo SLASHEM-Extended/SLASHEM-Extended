@@ -7127,7 +7127,7 @@ cardtrickchoice:
 			}
 			{
 				struct trap *ttrap;
-				ttrap = maketrap(u.ux, u.uy, S_PRESSING_TRAP, 0);
+				ttrap = maketrap(u.ux, u.uy, S_PRESSING_TRAP, 0, FALSE);
 				if (ttrap && !ttrap->hiddentrap) {
 					ttrap->tseen = 1;
 					ttrap->madeby_u = 1;
@@ -7383,7 +7383,7 @@ polyfixchoice:
 			}
 			{
 				struct trap *ttrap;
-				ttrap = maketrap(u.ux, u.uy, FART_TRAP, 0);
+				ttrap = maketrap(u.ux, u.uy, FART_TRAP, 0, TRUE);
 				if (ttrap) {
 					dotrap(ttrap, 0);
 
@@ -9471,7 +9471,7 @@ blitz_g_slam()
 
 	tmp = (5 + rnd(6) + (techlevX(tech_no) / 5));
 	
-	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT, 0);
+	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT, 0, FALSE);
 	if (chasm) {
 	    if (!is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_clinger(mtmp->data))
 		mtmp->mtrapped = 1;

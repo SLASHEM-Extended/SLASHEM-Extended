@@ -1054,78 +1054,92 @@ nh_timeout()
 
 	if (!rn2(200) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && TrapCreationProblem) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && have_trapcreationstone() ) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(200) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap();
+		makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && TrapCreationProblem) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+
+	}
+
+	if (!rn2(2000) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
+
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+
+	}
+
+	if (!rn2(2000) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
+
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && have_trapcreationstone() ) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
 	if (!rn2(2000) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
-		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 

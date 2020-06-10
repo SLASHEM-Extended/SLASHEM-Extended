@@ -1197,7 +1197,7 @@ int mode;
 			tmpr->typ = CORR;
 			blockorunblock_point(ux+dx,uy+dy);
 			if (!rn2(20) && isok(ux+dx, uy+dy)) {
-				maketrap(ux+dx, uy+dy, randomtrap(), 100 );
+				maketrap(ux+dx, uy+dy, randomtrap(), 100, TRUE);
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				pline("There was a monster hidden underneath the wall!");
 				makemon((struct permonst *)0, ux+dx, uy+dy, MM_ADJACENTOK);

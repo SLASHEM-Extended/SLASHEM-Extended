@@ -5357,14 +5357,14 @@ register struct attack *mattk;
 		break;
 
 	    case AD_WEBS:
-		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(mdef->mx, mdef->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 
 		break;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 
@@ -6229,13 +6229,13 @@ register struct attack *mattk;
 		}
 		goto common;
 	    case AD_WEBS:
-		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(mdef->mx, mdef->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		goto common;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 		goto common;
 		break;
 
@@ -9809,7 +9809,7 @@ boolean ranged;
 
 	  case AD_WEBS: 
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline("You're caught in a web!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -9820,12 +9820,12 @@ boolean ranged;
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 
 	  case AD_TRAP:
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 	  break;
 

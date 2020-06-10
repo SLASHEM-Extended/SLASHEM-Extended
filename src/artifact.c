@@ -3113,7 +3113,7 @@ newboss:
 						y = rn2(ROWNO);
 
 						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0);
+								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;

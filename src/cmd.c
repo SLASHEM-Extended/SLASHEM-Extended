@@ -1780,7 +1780,7 @@ domonability()
 
 		if (!(t_at(u.ux, u.uy))) {
 
-			shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0);
+			shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
 			if (shittrap && !(shittrap->hiddentrap)) {
 				shittrap->tseen = 1;
 			}

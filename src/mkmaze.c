@@ -673,7 +673,7 @@ fixup_special()
 	    for(y = croom->ly; y <= croom->hy; y++) {
 		(void) mkgold((long) rn1(300, 600), x, y);
 		if (!rn2(3) && !is_waterypool(x,y))
-		    (void)maketrap(x, y, rn2(3) ? LANDMINE : SPIKED_PIT, 5);
+		    (void)maketrap(x, y, rn2(3) ? LANDMINE : SPIKED_PIT, 5, TRUE);
 	    }
     } else if (Role_if(PM_PRIEST) && In_quest(&u.uz)) {
 	/* less chance for undead corpses (lured from lower morgues) */
@@ -849,19 +849,19 @@ register const char *s;
 
 		/* spice this boring maze up - seven deadly sins :D --Amy */
 	    mtmp = makemon(&mons[PM_LUST], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_GLUTTONY], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_ENVY], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_PRIDE], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_GREED], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_SLOTH], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 	    mtmp = makemon(&mons[PM_WRATH], 0, 0, NO_MM_FLAGS);
-		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0);
+		if (mtmp) (void) maketrap(mtmp->mx, mtmp->my, SIN_TRAP, 0, FALSE);
 
 
 #undef INVPOS_X_MARGIN
@@ -902,7 +902,7 @@ register const char *s;
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
@@ -912,7 +912,7 @@ register const char *s;
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 	}
 	for(x = rn1(6,7); x; x--) {
 		mazexy_all(&mm);
@@ -924,7 +924,7 @@ register const char *s;
 	for(x = rn1(6,7); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
-			mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
 		}
 	}
 
@@ -957,7 +957,7 @@ register const char *s;
 	for (x = rn2(3); x; x--) {
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon(&mons[PM_MINOTAUR], mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 		}
 	}	 /* cause they would be outta depth when mazes are generated at a shallow level --Amy */
 #ifdef BIGSLEX
@@ -967,7 +967,7 @@ register const char *s;
 #endif
 		mazexy_all(&mm);
 		if (!ishomicider) (void) makemon((struct permonst *) 0, mm.x, mm.y, MM_MAYSLEEP);
-		else makerandomtrap_at(mm.x, mm.y);
+		else makerandomtrap_at(mm.x, mm.y, TRUE);
 	}
 	for(x = rn1(6,7); x; x--) {
 		mazexy_all(&mm);
@@ -979,7 +979,7 @@ register const char *s;
 	for(x = rn1(6,7); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
-			mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
 		}
 
 	}
@@ -1779,7 +1779,7 @@ register xchar x, y, todnum, todlevel;
 {
 	/* a portal "trap" must be matched by a */
 	/* portal in the destination dungeon/dlevel */
-	register struct trap *ttmp = maketrap(x, y, MAGIC_PORTAL, 0);
+	register struct trap *ttmp = maketrap(x, y, MAGIC_PORTAL, 0, FALSE);
 
 	if (!ttmp) {
 		impossible("portal on top of portal??");

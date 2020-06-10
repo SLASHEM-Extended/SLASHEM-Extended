@@ -1840,7 +1840,7 @@ dosearch()
 			y = rn2(ROWNO);
 
 			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-				(void) maketrap(x, y, randomtrap(), 100);
+				(void) maketrap(x, y, randomtrap(), 100, FALSE);
 				break;
 				}
 		}

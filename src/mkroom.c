@@ -857,7 +857,7 @@ struct mkroom *sroom;
 			}
 
 			if(!rn2(25) && !t_at(sx, sy)) {
-				(void) maketrap(sx, sy, MONSTER_CUBE, 100);
+				(void) maketrap(sx, sy, MONSTER_CUBE, 100, FALSE);
 			}
 
 			break;
@@ -893,7 +893,7 @@ struct mkroom *sroom;
 				levl[sx][sy].typ = NETHERMIST;
 			}
 			if(!rn2(4) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, GIANT_CHASM, 100);
+				(void) maketrap(sx, sy, GIANT_CHASM, 100, TRUE);
 			break;
 
 		    case RARITYROOM:
@@ -936,7 +936,7 @@ struct mkroom *sroom;
 				levl[sx][sy].typ = STYXRIVER;
 			}
 			if(!rn2(5) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100);
+				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100, TRUE);
 
 			if(!rn2(20))
 			    (void) mksobj_at(rn2(10) ? CHARGER : SYMBIOTE,sx,sy,TRUE,FALSE, FALSE);
@@ -952,12 +952,12 @@ struct mkroom *sroom;
 
 		    case KOPSTATION:
 			if(!rn2(25) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, KOP_CUBE, 100);
+				(void) maketrap(sx, sy, KOP_CUBE, 100, FALSE);
 			break;
 
 		    case BOSSROOM:
 			if(!rn2(5) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, BOSS_SPAWNER, 100);
+				(void) maketrap(sx, sy, BOSS_SPAWNER, 100, FALSE);
 			break;
 
 		    case HAMLETROOM:
@@ -965,9 +965,9 @@ struct mkroom *sroom;
 				levl[sx][sy].typ = rn2(10) ? GRASSLAND : !rn2(4) ? BURNINGWAGON : !rn2(3) ? WELL : rn2(2) ? POISONEDWELL : WAGON ;
 			}
 			if(!rn2(5) && !t_at(sx, sy)) {
-				if (rn2(10)) (void) maketrap(sx, sy, STATUE_TRAP, 100);
-				else if (rn2(20)) (void) maketrap(sx, sy, MONSTER_CUBE, 100);
-				else (void) maketrap(sx, sy, WARP_ZONE, 100);
+				if (rn2(10)) (void) maketrap(sx, sy, STATUE_TRAP, 100, TRUE);
+				else if (rn2(20)) (void) maketrap(sx, sy, MONSTER_CUBE, 100, FALSE);
+				else (void) maketrap(sx, sy, WARP_ZONE, 100, TRUE);
 			}
 			break;
 
@@ -985,7 +985,7 @@ struct mkroom *sroom;
 				levl[sx][sy].typ = LAVAPOOL;
 			}
 			if (!rn2(10) && !(t_at(sx,sy))) {
-				(void) maketrap(sx, sy, FIRE_TRAP, 100);
+				(void) maketrap(sx, sy, FIRE_TRAP, 100, TRUE);
 			}
 			break;
 
@@ -1164,7 +1164,7 @@ struct mkroom *sroom;
 			    (void) mksobj_at(STATUE, sx, sy, TRUE, FALSE, FALSE);
 
 			if(!rn2(10) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, rn2(50) ? STATUE_TRAP : SATATUE_TRAP, 100);
+				(void) maketrap(sx, sy, rn2(50) ? STATUE_TRAP : SATATUE_TRAP, 100, TRUE);
 
 			if(!rn2(10)) {
 				struct obj *enchantedgear;
@@ -2677,7 +2677,7 @@ mktraproom()
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(5)) 
-				(void) maketrap(sx, sy, rtrap, 100);
+				(void) maketrap(sx, sy, rtrap, 100, TRUE);
 			if (randomnes == 1) rtrap = randomtrap();
 		}
 
@@ -2700,7 +2700,7 @@ mkbossroom()
 	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
 
 		if(!rn2(5) && !t_at(sx, sy))
-			(void) maketrap(sx, sy, BOSS_SPAWNER, 100);
+			(void) maketrap(sx, sy, BOSS_SPAWNER, 100, FALSE);
 	}
 
 	level.flags.has_bossroom = 1;
@@ -2863,11 +2863,11 @@ mkcentraltedium()
 			if(!rn2(10)) {
 				if(!rn2(10)) {
 					if(!rn2(10)) {
-						(void) maketrap(sx, sy, randominsidetrap(), 100);
+						(void) maketrap(sx, sy, randominsidetrap(), 100, TRUE);
 					}
-					else (void) maketrap(sx, sy, LEVEL_TELEP, 100);
+					else (void) maketrap(sx, sy, LEVEL_TELEP, 100, TRUE);
 				}
-				else (void) maketrap(sx, sy, TELEP_TRAP, 100);
+				else (void) maketrap(sx, sy, TELEP_TRAP, 100, TRUE);
 			}
 
 		}
@@ -2896,7 +2896,7 @@ mkrampageroom()
 		}
 
 		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE, FALSE);
-		if (!rn2(3)) (void) maketrap(sx, sy, randomtrap(), 100);
+		if (!rn2(3)) (void) maketrap(sx, sy, randomtrap(), 100, TRUE);
 	}
 
 
@@ -2997,7 +2997,7 @@ mkinsideroom()
 
 				}
 			}
-			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10)) (void) maketrap(sx, sy, typ2, 100);
+			/*else*/ if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 10)) (void) maketrap(sx, sy, typ2, 100, TRUE);
 
 			if (!rn2(1000)) 	(void) mksobj_at(SWITCHER, sx, sy, TRUE, FALSE, FALSE);
 			if (!rn2(Role_if(PM_CAMPERSTRIKER) ? 25 : 100)) 	(void) mksobj_at(UGH_MEMORY_TO_CREATE_INVENTORY, sx, sy, TRUE, FALSE, FALSE);
@@ -3041,7 +3041,7 @@ mkriverroom()
 		levl[sx][sy].typ = typ;
 		if (typ == FOUNTAIN) 	level.flags.nfountains++;
 		if (typ == SINK) 	level.flags.nsinks++;
-		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap(), 100);
+		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap(), 100, TRUE);
 		}
 
 	level.flags.has_riverroom = 1;
@@ -3068,7 +3068,7 @@ mkstatueroom()
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(2)) 
-				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP), 100 );
+				(void) maketrap(sx, sy, (rn2(10) ? STATUE_TRAP : ANIMATION_TRAP), 100, TRUE);
 		}
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)

@@ -4007,19 +4007,19 @@ register struct obj *obj;
 
 			      rtrap = randomtrap();
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}
 		}
 
-		makerandomtrap();
-		if (!rn2(2)) makerandomtrap();
-		if (!rn2(4)) makerandomtrap();
-		if (!rn2(8)) makerandomtrap();
-		if (!rn2(16)) makerandomtrap();
-		if (!rn2(32)) makerandomtrap();
-		if (!rn2(64)) makerandomtrap();
-		if (!rn2(128)) makerandomtrap();
-		if (!rn2(256)) makerandomtrap();
+		makerandomtrap(TRUE);
+		if (!rn2(2)) makerandomtrap(TRUE);
+		if (!rn2(4)) makerandomtrap(TRUE);
+		if (!rn2(8)) makerandomtrap(TRUE);
+		if (!rn2(16)) makerandomtrap(TRUE);
+		if (!rn2(32)) makerandomtrap(TRUE);
+		if (!rn2(64)) makerandomtrap(TRUE);
+		if (!rn2(128)) makerandomtrap(TRUE);
+		if (!rn2(256)) makerandomtrap(TRUE);
 
 		break;
 
@@ -9768,7 +9768,7 @@ boolean *shopdamage;
 
 		    rangemod -= 3;
 		    lev->typ = ROOM;
-		    ttmp = maketrap(x, y, PIT, 0);
+		    ttmp = maketrap(x, y, PIT, 0, FALSE);
 		    if (ttmp) ttmp->tseen = 1;
 		    if (cansee(x,y)) msgtxt = "The water evaporates.";
 		}

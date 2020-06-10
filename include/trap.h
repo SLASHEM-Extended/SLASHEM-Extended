@@ -21,6 +21,7 @@ struct trap {
 	int trapdiff; /* difficulty - this affects your chance of finding it via search command */
 	Bitfield(tseen,1);
 	Bitfield(hiddentrap,1); /* invisible, and I mean really invisible, even if you have see invis --Amy */
+	Bitfield(giveshp,1); /* untrapping it may give +maxHP --Amy */
 	Bitfield(once,1);
 	Bitfield(tdetected,1); /* so things like map amnesia don't allow you to farm searching skill --Amy */
 	Bitfield(madeby_u,1); /* So monsters may take offence when you trap

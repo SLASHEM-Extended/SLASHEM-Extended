@@ -6999,7 +6999,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -7010,15 +7010,15 @@ dopois:
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 
 	    case AD_TRAP: 
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 
@@ -11321,14 +11321,14 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 	      case AD_WEBS: /* No message. Because you can't see the web while engulfed. */
-			(void) maketrap(u.ux, u.uy, WEB, 0);
+			(void) maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-			if (!rn2(8)) makerandomtrap();
+			if (!rn2(8)) makerandomtrap(FALSE);
 			break;
 
 	      case AD_TRAP:
-			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-			else makerandomtrap();
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+			else makerandomtrap(FALSE);
 
 			break;
 
@@ -13802,7 +13802,7 @@ common:
 	    case AD_WEBS: 
 
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -13813,15 +13813,15 @@ common:
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (issoviet || !rn2(2)) makerandomtrap();
+		if (issoviet || !rn2(2)) makerandomtrap(FALSE);
 
 		mdamageu(mtmp, tmp);
 
 		break;
 
 	    case AD_TRAP:
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		mdamageu(mtmp, tmp);
 
@@ -16292,7 +16292,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("%s asks 'How do I shot web?' and spits at you.", Monnam(mtmp));
 		    stop_occupation();
 		{
-			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
+			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0, FALSE);
 			if (ttmp2) {
 				pline_The("webbing sticks to you. You're caught!");
 				dotrap(ttmp2, NOWEBMSG);
@@ -16303,7 +16303,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			}
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 
 		}
 		break;
@@ -16313,8 +16313,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 			pline("%s cackles fiendishly.", Monnam(mtmp));
 			stop_occupation();
-			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
-			else makerandomtrap();
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+			else makerandomtrap(FALSE);
 		}
 		break;
 
@@ -21393,12 +21393,12 @@ dothepassive:
 		}
 		break;
 	    case AD_WEBS:
-		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0);
-		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0, FALSE);
+		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 	    case AD_TRAP:
-		if (t_at(mtmp->mx, mtmp->my) == 0) (void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 0);
-		else makerandomtrap();
+		if (t_at(mtmp->mx, mtmp->my) == 0) (void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 0, FALSE);
+		else makerandomtrap(FALSE);
 
 		break;
 	    case AD_CNCL:

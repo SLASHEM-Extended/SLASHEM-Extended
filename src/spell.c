@@ -3593,7 +3593,7 @@ castanyway:
 
 	if (SpellColorBrown && !(t_at(u.ux, u.uy)) ) {
 		register struct trap *shittrap;
-		shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0);
+		shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
 		if (shittrap && !(shittrap->hiddentrap)) {
 			shittrap->tseen = 1;
 		}
@@ -5693,7 +5693,7 @@ newbossPENT:
 						y = rn2(ROWNO);
 
 						if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0);
+								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;
@@ -8114,21 +8114,21 @@ whisperchoice:
 
 			      rtrap = randomtrap();
 
-				ttmp = maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				ttmp = maketrap(u.ux + i, u.uy + j, rtrap, 100, FALSE);
 				if (ttmp && !rn2(10)) ttmp->hiddentrap = TRUE;
 			}
 		}
 
 		if (rn2(10)) {
-			makerandomtrap();
-			if (!rn2(2)) makerandomtrap();
-			if (!rn2(4)) makerandomtrap();
-			if (!rn2(8)) makerandomtrap();
-			if (!rn2(16)) makerandomtrap();
-			if (!rn2(32)) makerandomtrap();
-			if (!rn2(64)) makerandomtrap();
-			if (!rn2(128)) makerandomtrap();
-			if (!rn2(256)) makerandomtrap();
+			makerandomtrap(FALSE);
+			if (!rn2(2)) makerandomtrap(FALSE);
+			if (!rn2(4)) makerandomtrap(FALSE);
+			if (!rn2(8)) makerandomtrap(FALSE);
+			if (!rn2(16)) makerandomtrap(FALSE);
+			if (!rn2(32)) makerandomtrap(FALSE);
+			if (!rn2(64)) makerandomtrap(FALSE);
+			if (!rn2(128)) makerandomtrap(FALSE);
+			if (!rn2(256)) makerandomtrap(FALSE);
 		} else {
 			makeinvisotrap();
 			if (!rn2(2)) makeinvisotrap();
@@ -8920,7 +8920,7 @@ totemsummonchoice:
 	case SPE_AVALANCHE:
 		{
 			register struct trap *avaltrap;
-			avaltrap = maketrap(u.ux, u.uy, COLLAPSE_TRAP, 0);
+			avaltrap = maketrap(u.ux, u.uy, COLLAPSE_TRAP, 0, FALSE);
 			if (!avaltrap) pline("For some reason, the avalanche does not go off!");
 
 			if (avaltrap && avaltrap->ttyp == COLLAPSE_TRAP) {

@@ -2251,12 +2251,12 @@ badeffect()
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
-				if (!rn2(20)) makerandomtrap();
+				if (!rn2(20)) makerandomtrap(TRUE);
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}
-			makerandomtrap();
-			if (!rn2(3)) makerandomtrap();
+			makerandomtrap(TRUE);
+			if (!rn2(3)) makerandomtrap(TRUE);
 		}
 		break;
 
@@ -2358,7 +2358,7 @@ badeffect()
 					koy = rn2(ROWNO);
 
 					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -2507,7 +2507,7 @@ badeffect()
 		      int bd = rnd(10);
 			if (!rn2(5)) bd += rnz(10);
 
-			while (bd-- >= 0) makerandomtrap();
+			while (bd-- >= 0) makerandomtrap(TRUE);
 
 		}
 		break;
@@ -3677,12 +3677,12 @@ reallybadeffect()
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
-				if (!rn2(20)) makerandomtrap();
+				if (!rn2(20)) makerandomtrap(TRUE);
 
-				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100);
+				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}
-			makerandomtrap();
-			if (!rn2(3)) makerandomtrap();
+			makerandomtrap(TRUE);
+			if (!rn2(3)) makerandomtrap(TRUE);
 		}
 		break;
 
@@ -3748,7 +3748,7 @@ reallybadeffect()
 					koy = rn2(ROWNO);
 
 					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 						break;
 						}
 				}
@@ -3838,7 +3838,7 @@ reallybadeffect()
 		      int bd = rnd(10);
 			if (!rn2(5)) bd += rnz(10);
 
-			while (bd-- >= 0) makerandomtrap();
+			while (bd-- >= 0) makerandomtrap(TRUE);
 
 		}
 		break;
@@ -11379,7 +11379,7 @@ boolean amnesia;
 							koy = rn2(ROWNO);
 
 							if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-								(void) maketrap(kox, koy, KOP_CUBE, 0);
+								(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 								break;
 								}
 						}

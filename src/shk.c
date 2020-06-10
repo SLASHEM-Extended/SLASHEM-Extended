@@ -4866,7 +4866,7 @@ coord *mm;
 				koy = rn2(ROWNO);
 
 				if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
-					(void) maketrap(kox, koy, KOP_CUBE, 0);
+					(void) maketrap(kox, koy, KOP_CUBE, 0, FALSE);
 					break;
 					}
 			}
