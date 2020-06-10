@@ -24,8 +24,6 @@
  * -- JRN
  */
 
-STATIC_DCL void maybegaincha(void);
-
 #ifdef OVLB
 
 static int domonnoise(struct monst *);

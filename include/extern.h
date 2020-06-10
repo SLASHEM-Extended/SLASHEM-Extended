@@ -2757,6 +2757,7 @@ E int dotalk(void);
 E int add_sound_mapping(const char *);
 E void play_sound_for_message(const char *);
 #endif
+E void maybegaincha(void);
 
 /* ### sys/msdos/sound.c ### */
 
