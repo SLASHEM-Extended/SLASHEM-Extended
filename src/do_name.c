@@ -169,7 +169,7 @@ const char *goal;
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		} /* k => matching */
 	    } /* !quitchars */
-	    if (force) goto nxtc;
+	    if (force && !(c == '\032') ) goto nxtc;
 	    pline("Done.");
 	    msg_given = FALSE;	/* suppress clear */
 	    cx = -1;
