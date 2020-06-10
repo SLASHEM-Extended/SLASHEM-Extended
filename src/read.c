@@ -841,6 +841,7 @@ doread()
 	"slex - seeing bugs as features since 2017", /* by K2 */
 	"K2 and Hanh's ballerinas allowed me to fix a very aggravating bug that corrupted the topten file!",
 	"Because of a pair of asian block-heeled sandals, we have very scratched legs!",
+	"using a classic demo escape Manuela I haven't used in... fuck like 10+ years?", /* Demo, on a phone :P */
 
 	    };
 	    char buf[BUFSZ];
