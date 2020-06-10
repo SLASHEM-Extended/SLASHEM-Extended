@@ -9886,81 +9886,103 @@ u_init()
 
 	u.unobtainablegeno = -1;
 
+	register int unobtitemamount = rnd(10); /* pick an # of items that are unobtainable --Amy */
+
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
 
 	u.unobtainable2 = -1;
+	if (unobtitemamount >= 2) {
 	while ( (u.unobtainable2 == -1) || (u.unobtainable2 == GOLD_PIECE) || (u.unobtainable2 == STRANGE_OBJECT) || (u.unobtainable2 == AMULET_OF_YENDOR) || (u.unobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable2 == BELL_OF_OPENING) || (u.unobtainable2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable2].oc_prob < 1) ) u.unobtainable2 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable3 = -1;
+	if (unobtitemamount >= 3) {
 	while ( (u.unobtainable3 == -1) || (u.unobtainable3 == GOLD_PIECE) || (u.unobtainable3 == STRANGE_OBJECT) || (u.unobtainable3 == AMULET_OF_YENDOR) || (u.unobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable3 == BELL_OF_OPENING) || (u.unobtainable3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable3].oc_prob < 1) ) u.unobtainable3 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable4 = -1;
+	if (unobtitemamount >= 4) {
 	while ( (u.unobtainable4 == -1) || (u.unobtainable4 == GOLD_PIECE) || (u.unobtainable4 == STRANGE_OBJECT) || (u.unobtainable4 == AMULET_OF_YENDOR) || (u.unobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable4 == BELL_OF_OPENING) || (u.unobtainable4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable4].oc_prob < 1) ) u.unobtainable4 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable5 = -1;
+	if (unobtitemamount >= 5) {
 	while ( (u.unobtainable5 == -1) || (u.unobtainable5 == GOLD_PIECE) || (u.unobtainable5 == STRANGE_OBJECT) || (u.unobtainable5 == AMULET_OF_YENDOR) || (u.unobtainable5 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable5 == BELL_OF_OPENING) || (u.unobtainable5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable5].oc_prob < 1) ) u.unobtainable5 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable6 = -1;
+	if (unobtitemamount >= 6) {
 	while ( (u.unobtainable6 == -1) || (u.unobtainable6 == GOLD_PIECE) || (u.unobtainable6 == STRANGE_OBJECT) || (u.unobtainable6 == AMULET_OF_YENDOR) || (u.unobtainable6 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable6 == BELL_OF_OPENING) || (u.unobtainable6 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable6].oc_prob < 1) ) u.unobtainable6 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable7 = -1;
+	if (unobtitemamount >= 7) {
 	while ( (u.unobtainable7 == -1) || (u.unobtainable7 == GOLD_PIECE) || (u.unobtainable7 == STRANGE_OBJECT) || (u.unobtainable7 == AMULET_OF_YENDOR) || (u.unobtainable7 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable7 == BELL_OF_OPENING) || (u.unobtainable7 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable7].oc_prob < 1) ) u.unobtainable7 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable8 = -1;
+	if (unobtitemamount >= 8) {
 	while ( (u.unobtainable8 == -1) || (u.unobtainable8 == GOLD_PIECE) || (u.unobtainable8 == STRANGE_OBJECT) || (u.unobtainable8 == AMULET_OF_YENDOR) || (u.unobtainable8 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable8 == BELL_OF_OPENING) || (u.unobtainable8 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable8].oc_prob < 1) ) u.unobtainable8 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable9 = -1;
+	if (unobtitemamount >= 9) {
 	while ( (u.unobtainable9 == -1) || (u.unobtainable9 == GOLD_PIECE) || (u.unobtainable9 == STRANGE_OBJECT) || (u.unobtainable9 == AMULET_OF_YENDOR) || (u.unobtainable9 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable9 == BELL_OF_OPENING) || (u.unobtainable9 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable9].oc_prob < 1) ) u.unobtainable9 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable10 = -1;
+	if (unobtitemamount >= 10) {
 	while ( (u.unobtainable10 == -1) || (u.unobtainable10 == GOLD_PIECE) || (u.unobtainable10 == STRANGE_OBJECT) || (u.unobtainable10 == AMULET_OF_YENDOR) || (u.unobtainable10 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable10 == BELL_OF_OPENING) || (u.unobtainable10 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable10].oc_prob < 1) ) u.unobtainable10 = rn2(NUM_OBJECTS);
+	}
+
+	register int curseitemamount = rnd(10); /* pick an # of items that are always cursed --Amy */
 
 	u.alwayscurseditem = -1;
 	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == u.unobtainable3) || (u.alwayscurseditem == u.unobtainable4) || (u.alwayscurseditem == u.unobtainable5) || (u.alwayscurseditem == u.unobtainable6) || (u.alwayscurseditem == u.unobtainable7) || (u.alwayscurseditem == u.unobtainable8) || (u.alwayscurseditem == u.unobtainable9) || (u.alwayscurseditem == u.unobtainable10) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem2 = -1;
-	if (!rn2(2)) {
+	if (curseitemamount >= 2) {
 	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == u.unobtainable3) || (u.alwayscurseditem2 == u.unobtainable4) || (u.alwayscurseditem2 == u.unobtainable5) || (u.alwayscurseditem2 == u.unobtainable6) || (u.alwayscurseditem2 == u.unobtainable7) || (u.alwayscurseditem2 == u.unobtainable8) || (u.alwayscurseditem2 == u.unobtainable9) || (u.alwayscurseditem2 == u.unobtainable10) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem3 = -1;
-	if (!rn2(4)) {
+	if (curseitemamount >= 3) {
 	while ( (u.alwayscurseditem3 == -1) || (u.alwayscurseditem3 == u.unobtainable) || (u.alwayscurseditem3 == u.unobtainable2) || (u.alwayscurseditem3 == u.unobtainable3) || (u.alwayscurseditem3 == u.unobtainable4) || (u.alwayscurseditem3 == u.unobtainable5) || (u.alwayscurseditem3 == u.unobtainable6) || (u.alwayscurseditem3 == u.unobtainable7) || (u.alwayscurseditem3 == u.unobtainable8) || (u.alwayscurseditem3 == u.unobtainable9) || (u.alwayscurseditem3 == u.unobtainable10) || (u.alwayscurseditem3 == GOLD_PIECE) || (u.alwayscurseditem3 == STRANGE_OBJECT) || (u.alwayscurseditem3 == AMULET_OF_YENDOR) || (u.alwayscurseditem3 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem3 == BELL_OF_OPENING) || (u.alwayscurseditem3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem3].oc_prob < 1) ) u.alwayscurseditem3 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem4 = -1;
-	if (!rn2(6)) {
+	if (curseitemamount >= 4) {
 	while ( (u.alwayscurseditem4 == -1) || (u.alwayscurseditem4 == u.unobtainable) || (u.alwayscurseditem4 == u.unobtainable2) || (u.alwayscurseditem4 == u.unobtainable3) || (u.alwayscurseditem4 == u.unobtainable4) || (u.alwayscurseditem4 == u.unobtainable5) || (u.alwayscurseditem4 == u.unobtainable6) || (u.alwayscurseditem4 == u.unobtainable7) || (u.alwayscurseditem4 == u.unobtainable8) || (u.alwayscurseditem4 == u.unobtainable9) || (u.alwayscurseditem4 == u.unobtainable10) || (u.alwayscurseditem4 == GOLD_PIECE) || (u.alwayscurseditem4 == STRANGE_OBJECT) || (u.alwayscurseditem4 == AMULET_OF_YENDOR) || (u.alwayscurseditem4 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem4 == BELL_OF_OPENING) || (u.alwayscurseditem4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem4].oc_prob < 1) ) u.alwayscurseditem4 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem5 = -1;
-	if (!rn2(9)) {
+	if (curseitemamount >= 5) {
 	while ( (u.alwayscurseditem5 == -1) || (u.alwayscurseditem5 == u.unobtainable) || (u.alwayscurseditem5 == u.unobtainable2) || (u.alwayscurseditem5 == u.unobtainable3) || (u.alwayscurseditem5 == u.unobtainable4) || (u.alwayscurseditem5 == u.unobtainable5) || (u.alwayscurseditem5 == u.unobtainable6) || (u.alwayscurseditem5 == u.unobtainable7) || (u.alwayscurseditem5 == u.unobtainable8) || (u.alwayscurseditem5 == u.unobtainable9) || (u.alwayscurseditem5 == u.unobtainable10) || (u.alwayscurseditem5 == GOLD_PIECE) || (u.alwayscurseditem5 == STRANGE_OBJECT) || (u.alwayscurseditem5 == AMULET_OF_YENDOR) || (u.alwayscurseditem5 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem5 == BELL_OF_OPENING) || (u.alwayscurseditem5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem5].oc_prob < 1) ) u.alwayscurseditem5 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem6 = -1;
-	if (!rn2(12)) {
+	if (curseitemamount >= 6) {
 	while ( (u.alwayscurseditem6 == -1) || (u.alwayscurseditem6 == u.unobtainable) || (u.alwayscurseditem6 == u.unobtainable2) || (u.alwayscurseditem6 == u.unobtainable3) || (u.alwayscurseditem6 == u.unobtainable4) || (u.alwayscurseditem6 == u.unobtainable5) || (u.alwayscurseditem6 == u.unobtainable6) || (u.alwayscurseditem6 == u.unobtainable7) || (u.alwayscurseditem6 == u.unobtainable8) || (u.alwayscurseditem6 == u.unobtainable9) || (u.alwayscurseditem6 == u.unobtainable10) || (u.alwayscurseditem6 == GOLD_PIECE) || (u.alwayscurseditem6 == STRANGE_OBJECT) || (u.alwayscurseditem6 == AMULET_OF_YENDOR) || (u.alwayscurseditem6 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem6 == BELL_OF_OPENING) || (u.alwayscurseditem6 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem6].oc_prob < 1) ) u.alwayscurseditem6 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem7 = -1;
-	if (!rn2(16)) {
+	if (curseitemamount >= 7) {
 	while ( (u.alwayscurseditem7 == -1) || (u.alwayscurseditem7 == u.unobtainable) || (u.alwayscurseditem7 == u.unobtainable2) || (u.alwayscurseditem7 == u.unobtainable3) || (u.alwayscurseditem7 == u.unobtainable4) || (u.alwayscurseditem7 == u.unobtainable5) || (u.alwayscurseditem7 == u.unobtainable6) || (u.alwayscurseditem7 == u.unobtainable7) || (u.alwayscurseditem7 == u.unobtainable8) || (u.alwayscurseditem7 == u.unobtainable9) || (u.alwayscurseditem7 == u.unobtainable10) || (u.alwayscurseditem7 == GOLD_PIECE) || (u.alwayscurseditem7 == STRANGE_OBJECT) || (u.alwayscurseditem7 == AMULET_OF_YENDOR) || (u.alwayscurseditem7 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem7 == BELL_OF_OPENING) || (u.alwayscurseditem7 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem7].oc_prob < 1) ) u.alwayscurseditem7 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem8 = -1;
-	if (!rn2(20)) {
+	if (curseitemamount >= 8) {
 	while ( (u.alwayscurseditem8 == -1) || (u.alwayscurseditem8 == u.unobtainable) || (u.alwayscurseditem8 == u.unobtainable2) || (u.alwayscurseditem8 == u.unobtainable3) || (u.alwayscurseditem8 == u.unobtainable4) || (u.alwayscurseditem8 == u.unobtainable5) || (u.alwayscurseditem8 == u.unobtainable6) || (u.alwayscurseditem8 == u.unobtainable7) || (u.alwayscurseditem8 == u.unobtainable8) || (u.alwayscurseditem8 == u.unobtainable9) || (u.alwayscurseditem8 == u.unobtainable10) || (u.alwayscurseditem8 == GOLD_PIECE) || (u.alwayscurseditem8 == STRANGE_OBJECT) || (u.alwayscurseditem8 == AMULET_OF_YENDOR) || (u.alwayscurseditem8 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem8 == BELL_OF_OPENING) || (u.alwayscurseditem8 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem8].oc_prob < 1) ) u.alwayscurseditem8 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem9 = -1;
-	if (!rn2(25)) {
+	if (curseitemamount >= 9) {
 	while ( (u.alwayscurseditem9 == -1) || (u.alwayscurseditem9 == u.unobtainable) || (u.alwayscurseditem9 == u.unobtainable2) || (u.alwayscurseditem9 == u.unobtainable3) || (u.alwayscurseditem9 == u.unobtainable4) || (u.alwayscurseditem9 == u.unobtainable5) || (u.alwayscurseditem9 == u.unobtainable6) || (u.alwayscurseditem9 == u.unobtainable7) || (u.alwayscurseditem9 == u.unobtainable8) || (u.alwayscurseditem9 == u.unobtainable9) || (u.alwayscurseditem9 == u.unobtainable10) || (u.alwayscurseditem9 == GOLD_PIECE) || (u.alwayscurseditem9 == STRANGE_OBJECT) || (u.alwayscurseditem9 == AMULET_OF_YENDOR) || (u.alwayscurseditem9 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem9 == BELL_OF_OPENING) || (u.alwayscurseditem9 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem9].oc_prob < 1) ) u.alwayscurseditem9 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem10 = -1;
-	if (!rn2(30)) {
+	if (curseitemamount >= 10) {
 	while ( (u.alwayscurseditem10 == -1) || (u.alwayscurseditem10 == u.unobtainable) || (u.alwayscurseditem10 == u.unobtainable2) || (u.alwayscurseditem10 == u.unobtainable3) || (u.alwayscurseditem10 == u.unobtainable4) || (u.alwayscurseditem10 == u.unobtainable5) || (u.alwayscurseditem10 == u.unobtainable6) || (u.alwayscurseditem10 == u.unobtainable7) || (u.alwayscurseditem10 == u.unobtainable8) || (u.alwayscurseditem10 == u.unobtainable9) || (u.alwayscurseditem10 == u.unobtainable10) || (u.alwayscurseditem10 == GOLD_PIECE) || (u.alwayscurseditem10 == STRANGE_OBJECT) || (u.alwayscurseditem10 == AMULET_OF_YENDOR) || (u.alwayscurseditem10 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem10 == BELL_OF_OPENING) || (u.alwayscurseditem10 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem10].oc_prob < 1) ) u.alwayscurseditem10 = rn2(NUM_OBJECTS);
 	}
 
@@ -10280,17 +10302,19 @@ u_init()
 
 	u.musableremovechance = 0;
 	if (!rn2(3)) u.musableremovechance += rnd(20);
-	if (!rn2(3)) u.musableremovechance += rnd(40);
-	if (!rn2(5)) u.musableremovechance += rnd(70);
-	if (!rn2(25)) u.musableremovechance += rnd(90);
+	if (!rn2(5)) u.musableremovechance += rnd(20);
+	if (!rn2(25)) u.musableremovechance += rnd(25);
+	if (!rn2(125)) u.musableremovechance += rnd(25);
+	if (!rn2(125)) u.musableremovechance += rnd(100);
 	if (u.musableremovechance > 90) u.musableremovechance = 90;
 	if (u.musableremovechance < 0) u.musableremovechance = 0;
 
 	u.equipmentremovechance = 0;
-	if (!rn2(3)) u.equipmentremovechance += rnd(13);
-	if (!rn2(4)) u.equipmentremovechance += rnd(30);
-	if (!rn2(6)) u.equipmentremovechance += rnd(50);
-	if (!rn2(30)) u.equipmentremovechance += rnd(70);
+	if (!rn2(3)) u.equipmentremovechance += rnd(10);
+	if (!rn2(6)) u.equipmentremovechance += rnd(20);
+	if (!rn2(15)) u.equipmentremovechance += rnd(20);
+	if (!rn2(120)) u.equipmentremovechance += rnd(20);
+	if (!rn2(120)) u.equipmentremovechance += rnd(100);
 	if (u.equipmentremovechance > 90) u.equipmentremovechance = 90;
 	if (u.equipmentremovechance < 0) u.equipmentremovechance = 0;
 
@@ -10299,106 +10323,119 @@ u_init()
 	if (!rn2(200)) u.bookspawnchance += rnd(20);
 	if (!rn2(2000)) u.bookspawnchance += rnd(50);
 	if (!rn2(20000)) u.bookspawnchance += rnd(70);
+	if (!rn2(20000)) u.bookspawnchance += rnd(100);
 	if (u.bookspawnchance > 90) u.bookspawnchance = 90;
 	if (u.bookspawnchance < 0) u.bookspawnchance = 0;
 
 	u.ringspawnchance = 0;
-	if (!rn2(3)) u.ringspawnchance += rnd(30);
-	if (!rn2(5)) u.ringspawnchance += rnd(50);
-	if (!rn2(30)) u.ringspawnchance += rnd(90);
+	if (!rn2(3)) u.ringspawnchance += rnd(15);
+	if (!rn2(6)) u.ringspawnchance += rnd(30);
+	if (!rn2(30)) u.ringspawnchance += rnd(50);
+	if (!rn2(30)) u.ringspawnchance += rnd(100);
 	if (u.ringspawnchance > 90) u.ringspawnchance = 90;
 	if (u.ringspawnchance < 0) u.ringspawnchance = 0;
 
 	u.amuletspawnchance = 0;
-	if (!rn2(3)) u.amuletspawnchance += rnd(40);
-	if (!rn2(4)) u.amuletspawnchance += rnd(50);
-	if (!rn2(10)) u.amuletspawnchance += rnd(60);
-	if (!rn2(20)) u.amuletspawnchance += rnd(90);
+	if (!rn2(3)) u.amuletspawnchance += rnd(20);
+	if (!rn2(6)) u.amuletspawnchance += rnd(20);
+	if (!rn2(15)) u.amuletspawnchance += rnd(25);
+	if (!rn2(60)) u.amuletspawnchance += rnd(25);
+	if (!rn2(60)) u.amuletspawnchance += rnd(100);
 	if (u.amuletspawnchance > 90) u.amuletspawnchance = 90;
 	if (u.amuletspawnchance < 0) u.amuletspawnchance = 0;
 
 	u.implantspawnchance = 0;
-	if (!rn2(10)) u.implantspawnchance += rnd(20);
-	if (!rn2(25)) u.implantspawnchance += rnd(20);
-	if (!rn2(200)) u.implantspawnchance += rnd(30);
+	if (!rn2(10)) u.implantspawnchance += rnd(10);
+	if (!rn2(25)) u.implantspawnchance += rnd(15);
+	if (!rn2(200)) u.implantspawnchance += rnd(25);
 	if (!rn2(2000)) u.implantspawnchance += rnd(40);
+	if (!rn2(2000)) u.implantspawnchance += rnd(100);
 	if (u.implantspawnchance > 90) u.implantspawnchance = 90;
 	if (u.implantspawnchance < 0) u.implantspawnchance = 0;
 
 	u.weaponspawnchance = 0;
-	if (!rn2(3)) u.weaponspawnchance += rnd(20);
-	if (!rn2(5)) u.weaponspawnchance += rnd(30);
-	if (!rn2(7)) u.weaponspawnchance += rnd(30);
-	if (!rn2(15)) u.weaponspawnchance += rnd(40);
-	if (!rn2(35)) u.weaponspawnchance += rnd(70);
+	if (!rn2(3)) u.weaponspawnchance += rnd(10);
+	if (!rn2(6)) u.weaponspawnchance += rnd(15);
+	if (!rn2(15)) u.weaponspawnchance += rnd(15);
+	if (!rn2(60)) u.weaponspawnchance += rnd(20);
+	if (!rn2(250)) u.weaponspawnchance += rnd(30);
+	if (!rn2(250)) u.weaponspawnchance += rnd(100);
 	if (u.weaponspawnchance > 90) u.weaponspawnchance = 90;
 	if (u.weaponspawnchance < 0) u.weaponspawnchance = 0;
 
 	u.armorspawnchance = 0;
-	if (!rn2(2)) u.armorspawnchance += rnd(25);
-	if (!rn2(4)) u.armorspawnchance += rnd(30);
-	if (!rn2(10)) u.armorspawnchance += rnd(40);
-	if (!rn2(20)) u.armorspawnchance += rnd(50);
-	if (!rn2(40)) u.armorspawnchance += rnd(80);
+	if (!rn2(3)) u.armorspawnchance += rnd(15);
+	if (!rn2(6)) u.armorspawnchance += rnd(15);
+	if (!rn2(12)) u.armorspawnchance += rnd(15);
+	if (!rn2(40)) u.armorspawnchance += rnd(15);
+	if (!rn2(120)) u.armorspawnchance += rnd(30);
+	if (!rn2(120)) u.armorspawnchance += rnd(100);
 	if (u.armorspawnchance > 90) u.armorspawnchance = 90;
 	if (u.armorspawnchance < 0) u.armorspawnchance = 0;
 
 	u.toolspawnchance = 0;
-	if (!rn2(3)) u.toolspawnchance += rnd(20);
-	if (!rn2(5)) u.toolspawnchance += rnd(30);
-	if (!rn2(7)) u.toolspawnchance += rnd(30);
-	if (!rn2(15)) u.toolspawnchance += rnd(40);
-	if (!rn2(35)) u.toolspawnchance += rnd(70);
+	if (!rn2(3)) u.toolspawnchance += rnd(10);
+	if (!rn2(6)) u.toolspawnchance += rnd(10);
+	if (!rn2(15)) u.toolspawnchance += rnd(20);
+	if (!rn2(60)) u.toolspawnchance += rnd(20);
+	if (!rn2(250)) u.toolspawnchance += rnd(30);
+	if (!rn2(250)) u.toolspawnchance += rnd(100);
 	if (u.toolspawnchance > 90) u.toolspawnchance = 90;
 	if (u.toolspawnchance < 0) u.toolspawnchance = 0;
 
 	u.foodspawnchance = 0;
-	if (!rn2(2)) u.foodspawnchance += rnd(10);
-	if (!rn2(3)) u.foodspawnchance += rnd(10);
-	if (!rn2(5)) u.foodspawnchance += rnd(20);
-	if (!rn2(20)) u.foodspawnchance += rnd(30);
-	if (!rn2(100)) u.foodspawnchance += rnd(40);
-	if (!rn2(500)) u.foodspawnchance += rnd(50);
+	if (!rn2(2)) u.foodspawnchance += rnd(5);
+	if (!rn2(4)) u.foodspawnchance += rnd(5);
+	if (!rn2(8)) u.foodspawnchance += rnd(10);
+	if (!rn2(25)) u.foodspawnchance += rnd(20);
+	if (!rn2(100)) u.foodspawnchance += rnd(20);
+	if (!rn2(500)) u.foodspawnchance += rnd(30);
+	if (!rn2(500)) u.foodspawnchance += rnd(100);
 	if (u.foodspawnchance > 90) u.foodspawnchance = 90;
 	if (u.foodspawnchance < 0) u.foodspawnchance = 0;
 
 	u.shopitemreduction = 0;
-	if (rn2(5)) u.shopitemreduction += rnd(80);
-	if (!rn2(5)) u.shopitemreduction += rnd(20);
-	if (!rn2(20)) u.shopitemreduction += rnd(50);
-	if (!rn2(100)) u.shopitemreduction += rnd(100);
+	if (rn2(5)) u.shopitemreduction += rnd(15);
+	if (!rn2(3)) u.shopitemreduction += rnd(15);
+	if (!rn2(6)) u.shopitemreduction += rnd(20);
+	if (!rn2(25)) u.shopitemreduction += rnd(20);
+	if (!rn2(125)) u.shopitemreduction += rnd(20);
+	if (!rn2(125)) u.shopitemreduction += rnd(100);
 	if (u.shopitemreduction > 90) u.shopitemreduction = 90;
 	if (u.shopitemreduction < 0) u.shopitemreduction = 0;
 
 	u.potionspawnchance = 0;
-	if (!rn2(2)) u.potionspawnchance += rnd(15);
-	if (!rn2(3)) u.potionspawnchance += rnd(15);
-	if (!rn2(5)) u.potionspawnchance += rnd(25);
-	if (!rn2(20)) u.potionspawnchance += rnd(40);
-	if (!rn2(100)) u.potionspawnchance += rnd(60);
-	if (!rn2(500)) u.potionspawnchance += rnd(90);
+	if (!rn2(2)) u.potionspawnchance += rnd(10);
+	if (!rn2(4)) u.potionspawnchance += rnd(10);
+	if (!rn2(8)) u.potionspawnchance += rnd(15);
+	if (!rn2(25)) u.potionspawnchance += rnd(15);
+	if (!rn2(100)) u.potionspawnchance += rnd(20);
+	if (!rn2(500)) u.potionspawnchance += rnd(20);
+	if (!rn2(500)) u.potionspawnchance += rnd(100);
 	if (u.potionspawnchance > 90) u.potionspawnchance = 90;
 	if (u.potionspawnchance < 0) u.potionspawnchance = 0;
 
 	u.scrollspawnchance = 0;
-	if (!rn2(2)) u.scrollspawnchance += rnd(20);
-	if (!rn2(3)) u.scrollspawnchance += rnd(20);
-	if (!rn2(5)) u.scrollspawnchance += rnd(20);
-	if (!rn2(10)) u.scrollspawnchance += rnd(20);
-	if (!rn2(20)) u.scrollspawnchance += rnd(20);
-	if (!rn2(50)) u.scrollspawnchance += rnd(20);
-	if (!rn2(200)) u.scrollspawnchance += rnd(50);
-	if (!rn2(900)) u.scrollspawnchance += rnd(90);
+	if (!rn2(2)) u.scrollspawnchance += rnd(10);
+	if (!rn2(4)) u.scrollspawnchance += rnd(10);
+	if (!rn2(8)) u.scrollspawnchance += rnd(10);
+	if (!rn2(16)) u.scrollspawnchance += rnd(10);
+	if (!rn2(35)) u.scrollspawnchance += rnd(10);
+	if (!rn2(90)) u.scrollspawnchance += rnd(10);
+	if (!rn2(200)) u.scrollspawnchance += rnd(15);
+	if (!rn2(900)) u.scrollspawnchance += rnd(15);
+	if (!rn2(900)) u.scrollspawnchance += rnd(100);
 	if (u.scrollspawnchance > 90) u.scrollspawnchance = 90;
 	if (u.scrollspawnchance < 0) u.scrollspawnchance = 0;
 
 	u.wandspawnchance = 0;
 	if (!rn2(3)) u.wandspawnchance += rnd(10);
-	if (!rn2(5)) u.wandspawnchance += rnd(20);
-	if (!rn2(7)) u.wandspawnchance += rnd(30);
-	if (!rn2(10)) u.wandspawnchance += rnd(50);
-	if (!rn2(60)) u.wandspawnchance += rnd(70);
-	if (!rn2(600)) u.wandspawnchance += rnd(90);
+	if (!rn2(6)) u.wandspawnchance += rnd(15);
+	if (!rn2(15)) u.wandspawnchance += rnd(15);
+	if (!rn2(60)) u.wandspawnchance += rnd(15);
+	if (!rn2(240)) u.wandspawnchance += rnd(15);
+	if (!rn2(600)) u.wandspawnchance += rnd(20);
+	if (!rn2(600)) u.wandspawnchance += rnd(100);
 	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
 	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
 
@@ -10407,20 +10444,22 @@ u_init()
 
 	u.concealitemchance = 0;
 	if (!rn2(3)) u.concealitemchance += rnd(20);
-	if (!rn2(5)) u.concealitemchance += rnd(40);
-	if (!rn2(7)) u.concealitemchance += rnd(60);
-	if (!rn2(9)) u.concealitemchance += rnd(80);
+	if (!rn2(5)) u.concealitemchance += rnd(20);
+	if (!rn2(7)) u.concealitemchance += rnd(25);
+	if (!rn2(9)) u.concealitemchance += rnd(25);
+	if (!rn2(9)) u.concealitemchance += rnd(100);
 	if (u.concealitemchance > 90) u.concealitemchance = 90;
 	if (u.concealitemchance < 0) u.concealitemchance = 0;
 
 	u.usefulitemchance = 0;
 	if (!rn2(2)) u.usefulitemchance += rnd(10);
-	if (!rn2(5)) u.usefulitemchance += rnd(20);
-	if (!rn2(25)) u.usefulitemchance += rnd(30);
-	if (!rn2(100)) u.usefulitemchance += rnd(40);
-	if (!rn2(250)) u.usefulitemchance += rnd(50);
-	if (!rn2(750)) u.usefulitemchance += rnd(70);
-	if (!rn2(3250)) u.usefulitemchance += rnd(90);
+	if (!rn2(5)) u.usefulitemchance += rnd(10);
+	if (!rn2(25)) u.usefulitemchance += rnd(10);
+	if (!rn2(100)) u.usefulitemchance += rnd(15);
+	if (!rn2(250)) u.usefulitemchance += rnd(15);
+	if (!rn2(750)) u.usefulitemchance += rnd(15);
+	if (!rn2(3250)) u.usefulitemchance += rnd(15);
+	if (!rn2(3250)) u.usefulitemchance += rnd(100);
 	if (u.usefulitemchance > 90) u.usefulitemchance = 90;
 	if (u.usefulitemchance < 0) u.usefulitemchance = 0;
 
@@ -31579,81 +31618,103 @@ int realityflag;
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
 	u.adrunsattack = rnd(235); /* timerun etc. */
 
+	register int unobtitemamount = rnd(10); /* pick an # of items that are unobtainable --Amy */
+
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
 
 	u.unobtainable2 = -1;
+	if (unobtitemamount >= 2) {
 	while ( (u.unobtainable2 == -1) || (u.unobtainable2 == GOLD_PIECE) || (u.unobtainable2 == STRANGE_OBJECT) || (u.unobtainable2 == AMULET_OF_YENDOR) || (u.unobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable2 == BELL_OF_OPENING) || (u.unobtainable2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable2].oc_prob < 1) ) u.unobtainable2 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable3 = -1;
+	if (unobtitemamount >= 3) {
 	while ( (u.unobtainable3 == -1) || (u.unobtainable3 == GOLD_PIECE) || (u.unobtainable3 == STRANGE_OBJECT) || (u.unobtainable3 == AMULET_OF_YENDOR) || (u.unobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable3 == BELL_OF_OPENING) || (u.unobtainable3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable3].oc_prob < 1) ) u.unobtainable3 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable4 = -1;
+	if (unobtitemamount >= 4) {
 	while ( (u.unobtainable4 == -1) || (u.unobtainable4 == GOLD_PIECE) || (u.unobtainable4 == STRANGE_OBJECT) || (u.unobtainable4 == AMULET_OF_YENDOR) || (u.unobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable4 == BELL_OF_OPENING) || (u.unobtainable4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable4].oc_prob < 1) ) u.unobtainable4 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable5 = -1;
+	if (unobtitemamount >= 5) {
 	while ( (u.unobtainable5 == -1) || (u.unobtainable5 == GOLD_PIECE) || (u.unobtainable5 == STRANGE_OBJECT) || (u.unobtainable5 == AMULET_OF_YENDOR) || (u.unobtainable5 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable5 == BELL_OF_OPENING) || (u.unobtainable5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable5].oc_prob < 1) ) u.unobtainable5 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable6 = -1;
+	if (unobtitemamount >= 6) {
 	while ( (u.unobtainable6 == -1) || (u.unobtainable6 == GOLD_PIECE) || (u.unobtainable6 == STRANGE_OBJECT) || (u.unobtainable6 == AMULET_OF_YENDOR) || (u.unobtainable6 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable6 == BELL_OF_OPENING) || (u.unobtainable6 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable6].oc_prob < 1) ) u.unobtainable6 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable7 = -1;
+	if (unobtitemamount >= 7) {
 	while ( (u.unobtainable7 == -1) || (u.unobtainable7 == GOLD_PIECE) || (u.unobtainable7 == STRANGE_OBJECT) || (u.unobtainable7 == AMULET_OF_YENDOR) || (u.unobtainable7 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable7 == BELL_OF_OPENING) || (u.unobtainable7 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable7].oc_prob < 1) ) u.unobtainable7 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable8 = -1;
+	if (unobtitemamount >= 8) {
 	while ( (u.unobtainable8 == -1) || (u.unobtainable8 == GOLD_PIECE) || (u.unobtainable8 == STRANGE_OBJECT) || (u.unobtainable8 == AMULET_OF_YENDOR) || (u.unobtainable8 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable8 == BELL_OF_OPENING) || (u.unobtainable8 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable8].oc_prob < 1) ) u.unobtainable8 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable9 = -1;
+	if (unobtitemamount >= 9) {
 	while ( (u.unobtainable9 == -1) || (u.unobtainable9 == GOLD_PIECE) || (u.unobtainable9 == STRANGE_OBJECT) || (u.unobtainable9 == AMULET_OF_YENDOR) || (u.unobtainable9 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable9 == BELL_OF_OPENING) || (u.unobtainable9 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable9].oc_prob < 1) ) u.unobtainable9 = rn2(NUM_OBJECTS);
+	}
 
 	u.unobtainable10 = -1;
+	if (unobtitemamount >= 10) {
 	while ( (u.unobtainable10 == -1) || (u.unobtainable10 == GOLD_PIECE) || (u.unobtainable10 == STRANGE_OBJECT) || (u.unobtainable10 == AMULET_OF_YENDOR) || (u.unobtainable10 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable10 == BELL_OF_OPENING) || (u.unobtainable10 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable10].oc_prob < 1) ) u.unobtainable10 = rn2(NUM_OBJECTS);
+	}
+
+	register int curseitemamount = rnd(10); /* pick an # of items that are always cursed --Amy */
 
 	u.alwayscurseditem = -1;
 	while ( (u.alwayscurseditem == -1) || (u.alwayscurseditem == u.unobtainable) || (u.alwayscurseditem == u.unobtainable2) || (u.alwayscurseditem == u.unobtainable3) || (u.alwayscurseditem == u.unobtainable4) || (u.alwayscurseditem == u.unobtainable5) || (u.alwayscurseditem == u.unobtainable6) || (u.alwayscurseditem == u.unobtainable7) || (u.alwayscurseditem == u.unobtainable8) || (u.alwayscurseditem == u.unobtainable9) || (u.alwayscurseditem == u.unobtainable10) || (u.alwayscurseditem == GOLD_PIECE) || (u.alwayscurseditem == STRANGE_OBJECT) || (u.alwayscurseditem == AMULET_OF_YENDOR) || (u.alwayscurseditem == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem == BELL_OF_OPENING) || (u.alwayscurseditem == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem].oc_prob < 1) ) u.alwayscurseditem = rn2(NUM_OBJECTS);
 
 	u.alwayscurseditem2 = -1;
-	if (!rn2(2)) {
+	if (curseitemamount >= 2) {
 	while ( (u.alwayscurseditem2 == -1) || (u.alwayscurseditem2 == u.unobtainable) || (u.alwayscurseditem2 == u.unobtainable2) || (u.alwayscurseditem2 == u.unobtainable3) || (u.alwayscurseditem2 == u.unobtainable4) || (u.alwayscurseditem2 == u.unobtainable5) || (u.alwayscurseditem2 == u.unobtainable6) || (u.alwayscurseditem2 == u.unobtainable7) || (u.alwayscurseditem2 == u.unobtainable8) || (u.alwayscurseditem2 == u.unobtainable9) || (u.alwayscurseditem2 == u.unobtainable10) || (u.alwayscurseditem2 == GOLD_PIECE) || (u.alwayscurseditem2 == STRANGE_OBJECT) || (u.alwayscurseditem2 == AMULET_OF_YENDOR) || (u.alwayscurseditem2 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem2 == BELL_OF_OPENING) || (u.alwayscurseditem2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem2].oc_prob < 1) ) u.alwayscurseditem2 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem3 = -1;
-	if (!rn2(4)) {
+	if (curseitemamount >= 3) {
 	while ( (u.alwayscurseditem3 == -1) || (u.alwayscurseditem3 == u.unobtainable) || (u.alwayscurseditem3 == u.unobtainable2) || (u.alwayscurseditem3 == u.unobtainable3) || (u.alwayscurseditem3 == u.unobtainable4) || (u.alwayscurseditem3 == u.unobtainable5) || (u.alwayscurseditem3 == u.unobtainable6) || (u.alwayscurseditem3 == u.unobtainable7) || (u.alwayscurseditem3 == u.unobtainable8) || (u.alwayscurseditem3 == u.unobtainable9) || (u.alwayscurseditem3 == u.unobtainable10) || (u.alwayscurseditem3 == GOLD_PIECE) || (u.alwayscurseditem3 == STRANGE_OBJECT) || (u.alwayscurseditem3 == AMULET_OF_YENDOR) || (u.alwayscurseditem3 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem3 == BELL_OF_OPENING) || (u.alwayscurseditem3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem3].oc_prob < 1) ) u.alwayscurseditem3 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem4 = -1;
-	if (!rn2(6)) {
+	if (curseitemamount >= 4) {
 	while ( (u.alwayscurseditem4 == -1) || (u.alwayscurseditem4 == u.unobtainable) || (u.alwayscurseditem4 == u.unobtainable2) || (u.alwayscurseditem4 == u.unobtainable3) || (u.alwayscurseditem4 == u.unobtainable4) || (u.alwayscurseditem4 == u.unobtainable5) || (u.alwayscurseditem4 == u.unobtainable6) || (u.alwayscurseditem4 == u.unobtainable7) || (u.alwayscurseditem4 == u.unobtainable8) || (u.alwayscurseditem4 == u.unobtainable9) || (u.alwayscurseditem4 == u.unobtainable10) || (u.alwayscurseditem4 == GOLD_PIECE) || (u.alwayscurseditem4 == STRANGE_OBJECT) || (u.alwayscurseditem4 == AMULET_OF_YENDOR) || (u.alwayscurseditem4 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem4 == BELL_OF_OPENING) || (u.alwayscurseditem4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem4].oc_prob < 1) ) u.alwayscurseditem4 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem5 = -1;
-	if (!rn2(9)) {
+	if (curseitemamount >= 5) {
 	while ( (u.alwayscurseditem5 == -1) || (u.alwayscurseditem5 == u.unobtainable) || (u.alwayscurseditem5 == u.unobtainable2) || (u.alwayscurseditem5 == u.unobtainable3) || (u.alwayscurseditem5 == u.unobtainable4) || (u.alwayscurseditem5 == u.unobtainable5) || (u.alwayscurseditem5 == u.unobtainable6) || (u.alwayscurseditem5 == u.unobtainable7) || (u.alwayscurseditem5 == u.unobtainable8) || (u.alwayscurseditem5 == u.unobtainable9) || (u.alwayscurseditem5 == u.unobtainable10) || (u.alwayscurseditem5 == GOLD_PIECE) || (u.alwayscurseditem5 == STRANGE_OBJECT) || (u.alwayscurseditem5 == AMULET_OF_YENDOR) || (u.alwayscurseditem5 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem5 == BELL_OF_OPENING) || (u.alwayscurseditem5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem5].oc_prob < 1) ) u.alwayscurseditem5 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem6 = -1;
-	if (!rn2(12)) {
+	if (curseitemamount >= 6) {
 	while ( (u.alwayscurseditem6 == -1) || (u.alwayscurseditem6 == u.unobtainable) || (u.alwayscurseditem6 == u.unobtainable2) || (u.alwayscurseditem6 == u.unobtainable3) || (u.alwayscurseditem6 == u.unobtainable4) || (u.alwayscurseditem6 == u.unobtainable5) || (u.alwayscurseditem6 == u.unobtainable6) || (u.alwayscurseditem6 == u.unobtainable7) || (u.alwayscurseditem6 == u.unobtainable8) || (u.alwayscurseditem6 == u.unobtainable9) || (u.alwayscurseditem6 == u.unobtainable10) || (u.alwayscurseditem6 == GOLD_PIECE) || (u.alwayscurseditem6 == STRANGE_OBJECT) || (u.alwayscurseditem6 == AMULET_OF_YENDOR) || (u.alwayscurseditem6 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem6 == BELL_OF_OPENING) || (u.alwayscurseditem6 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem6].oc_prob < 1) ) u.alwayscurseditem6 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem7 = -1;
-	if (!rn2(16)) {
+	if (curseitemamount >= 7) {
 	while ( (u.alwayscurseditem7 == -1) || (u.alwayscurseditem7 == u.unobtainable) || (u.alwayscurseditem7 == u.unobtainable2) || (u.alwayscurseditem7 == u.unobtainable3) || (u.alwayscurseditem7 == u.unobtainable4) || (u.alwayscurseditem7 == u.unobtainable5) || (u.alwayscurseditem7 == u.unobtainable6) || (u.alwayscurseditem7 == u.unobtainable7) || (u.alwayscurseditem7 == u.unobtainable8) || (u.alwayscurseditem7 == u.unobtainable9) || (u.alwayscurseditem7 == u.unobtainable10) || (u.alwayscurseditem7 == GOLD_PIECE) || (u.alwayscurseditem7 == STRANGE_OBJECT) || (u.alwayscurseditem7 == AMULET_OF_YENDOR) || (u.alwayscurseditem7 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem7 == BELL_OF_OPENING) || (u.alwayscurseditem7 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem7].oc_prob < 1) ) u.alwayscurseditem7 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem8 = -1;
-	if (!rn2(20)) {
+	if (curseitemamount >= 8) {
 	while ( (u.alwayscurseditem8 == -1) || (u.alwayscurseditem8 == u.unobtainable) || (u.alwayscurseditem8 == u.unobtainable2) || (u.alwayscurseditem8 == u.unobtainable3) || (u.alwayscurseditem8 == u.unobtainable4) || (u.alwayscurseditem8 == u.unobtainable5) || (u.alwayscurseditem8 == u.unobtainable6) || (u.alwayscurseditem8 == u.unobtainable7) || (u.alwayscurseditem8 == u.unobtainable8) || (u.alwayscurseditem8 == u.unobtainable9) || (u.alwayscurseditem8 == u.unobtainable10) || (u.alwayscurseditem8 == GOLD_PIECE) || (u.alwayscurseditem8 == STRANGE_OBJECT) || (u.alwayscurseditem8 == AMULET_OF_YENDOR) || (u.alwayscurseditem8 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem8 == BELL_OF_OPENING) || (u.alwayscurseditem8 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem8].oc_prob < 1) ) u.alwayscurseditem8 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem9 = -1;
-	if (!rn2(25)) {
+	if (curseitemamount >= 9) {
 	while ( (u.alwayscurseditem9 == -1) || (u.alwayscurseditem9 == u.unobtainable) || (u.alwayscurseditem9 == u.unobtainable2) || (u.alwayscurseditem9 == u.unobtainable3) || (u.alwayscurseditem9 == u.unobtainable4) || (u.alwayscurseditem9 == u.unobtainable5) || (u.alwayscurseditem9 == u.unobtainable6) || (u.alwayscurseditem9 == u.unobtainable7) || (u.alwayscurseditem9 == u.unobtainable8) || (u.alwayscurseditem9 == u.unobtainable9) || (u.alwayscurseditem9 == u.unobtainable10) || (u.alwayscurseditem9 == GOLD_PIECE) || (u.alwayscurseditem9 == STRANGE_OBJECT) || (u.alwayscurseditem9 == AMULET_OF_YENDOR) || (u.alwayscurseditem9 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem9 == BELL_OF_OPENING) || (u.alwayscurseditem9 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem9].oc_prob < 1) ) u.alwayscurseditem9 = rn2(NUM_OBJECTS);
 	}
 
 	u.alwayscurseditem10 = -1;
-	if (!rn2(30)) {
+	if (curseitemamount >= 10) {
 	while ( (u.alwayscurseditem10 == -1) || (u.alwayscurseditem10 == u.unobtainable) || (u.alwayscurseditem10 == u.unobtainable2) || (u.alwayscurseditem10 == u.unobtainable3) || (u.alwayscurseditem10 == u.unobtainable4) || (u.alwayscurseditem10 == u.unobtainable5) || (u.alwayscurseditem10 == u.unobtainable6) || (u.alwayscurseditem10 == u.unobtainable7) || (u.alwayscurseditem10 == u.unobtainable8) || (u.alwayscurseditem10 == u.unobtainable9) || (u.alwayscurseditem10 == u.unobtainable10) || (u.alwayscurseditem10 == GOLD_PIECE) || (u.alwayscurseditem10 == STRANGE_OBJECT) || (u.alwayscurseditem10 == AMULET_OF_YENDOR) || (u.alwayscurseditem10 == CANDELABRUM_OF_INVOCATION) || (u.alwayscurseditem10 == BELL_OF_OPENING) || (u.alwayscurseditem10 == SPE_BOOK_OF_THE_DEAD) || (objects[u.alwayscurseditem10].oc_prob < 1) ) u.alwayscurseditem10 = rn2(NUM_OBJECTS);
 	}
 
@@ -31950,17 +32011,19 @@ int realityflag;
 
 	u.musableremovechance = 0;
 	if (!rn2(3)) u.musableremovechance += rnd(20);
-	if (!rn2(3)) u.musableremovechance += rnd(40);
-	if (!rn2(5)) u.musableremovechance += rnd(70);
-	if (!rn2(25)) u.musableremovechance += rnd(90);
+	if (!rn2(5)) u.musableremovechance += rnd(20);
+	if (!rn2(25)) u.musableremovechance += rnd(25);
+	if (!rn2(125)) u.musableremovechance += rnd(25);
+	if (!rn2(125)) u.musableremovechance += rnd(100);
 	if (u.musableremovechance > 90) u.musableremovechance = 90;
 	if (u.musableremovechance < 0) u.musableremovechance = 0;
 
 	u.equipmentremovechance = 0;
-	if (!rn2(3)) u.equipmentremovechance += rnd(13);
-	if (!rn2(4)) u.equipmentremovechance += rnd(30);
-	if (!rn2(6)) u.equipmentremovechance += rnd(50);
-	if (!rn2(30)) u.equipmentremovechance += rnd(70);
+	if (!rn2(3)) u.equipmentremovechance += rnd(10);
+	if (!rn2(6)) u.equipmentremovechance += rnd(20);
+	if (!rn2(15)) u.equipmentremovechance += rnd(20);
+	if (!rn2(120)) u.equipmentremovechance += rnd(20);
+	if (!rn2(120)) u.equipmentremovechance += rnd(100);
 	if (u.equipmentremovechance > 90) u.equipmentremovechance = 90;
 	if (u.equipmentremovechance < 0) u.equipmentremovechance = 0;
 
@@ -31969,106 +32032,119 @@ int realityflag;
 	if (!rn2(200)) u.bookspawnchance += rnd(20);
 	if (!rn2(2000)) u.bookspawnchance += rnd(50);
 	if (!rn2(20000)) u.bookspawnchance += rnd(70);
+	if (!rn2(20000)) u.bookspawnchance += rnd(100);
 	if (u.bookspawnchance > 90) u.bookspawnchance = 90;
 	if (u.bookspawnchance < 0) u.bookspawnchance = 0;
 
 	u.ringspawnchance = 0;
-	if (!rn2(3)) u.ringspawnchance += rnd(30);
-	if (!rn2(5)) u.ringspawnchance += rnd(50);
-	if (!rn2(30)) u.ringspawnchance += rnd(90);
+	if (!rn2(3)) u.ringspawnchance += rnd(15);
+	if (!rn2(6)) u.ringspawnchance += rnd(30);
+	if (!rn2(30)) u.ringspawnchance += rnd(50);
+	if (!rn2(30)) u.ringspawnchance += rnd(100);
 	if (u.ringspawnchance > 90) u.ringspawnchance = 90;
 	if (u.ringspawnchance < 0) u.ringspawnchance = 0;
 
 	u.amuletspawnchance = 0;
-	if (!rn2(3)) u.amuletspawnchance += rnd(40);
-	if (!rn2(4)) u.amuletspawnchance += rnd(50);
-	if (!rn2(10)) u.amuletspawnchance += rnd(60);
-	if (!rn2(20)) u.amuletspawnchance += rnd(90);
+	if (!rn2(3)) u.amuletspawnchance += rnd(20);
+	if (!rn2(6)) u.amuletspawnchance += rnd(20);
+	if (!rn2(15)) u.amuletspawnchance += rnd(25);
+	if (!rn2(60)) u.amuletspawnchance += rnd(25);
+	if (!rn2(60)) u.amuletspawnchance += rnd(100);
 	if (u.amuletspawnchance > 90) u.amuletspawnchance = 90;
 	if (u.amuletspawnchance < 0) u.amuletspawnchance = 0;
 
 	u.implantspawnchance = 0;
-	if (!rn2(10)) u.implantspawnchance += rnd(20);
-	if (!rn2(25)) u.implantspawnchance += rnd(20);
-	if (!rn2(200)) u.implantspawnchance += rnd(30);
+	if (!rn2(10)) u.implantspawnchance += rnd(10);
+	if (!rn2(25)) u.implantspawnchance += rnd(15);
+	if (!rn2(200)) u.implantspawnchance += rnd(25);
 	if (!rn2(2000)) u.implantspawnchance += rnd(40);
+	if (!rn2(2000)) u.implantspawnchance += rnd(100);
 	if (u.implantspawnchance > 90) u.implantspawnchance = 90;
 	if (u.implantspawnchance < 0) u.implantspawnchance = 0;
 
 	u.weaponspawnchance = 0;
-	if (!rn2(3)) u.weaponspawnchance += rnd(20);
-	if (!rn2(5)) u.weaponspawnchance += rnd(30);
-	if (!rn2(7)) u.weaponspawnchance += rnd(30);
-	if (!rn2(15)) u.weaponspawnchance += rnd(40);
-	if (!rn2(35)) u.weaponspawnchance += rnd(70);
+	if (!rn2(3)) u.weaponspawnchance += rnd(10);
+	if (!rn2(6)) u.weaponspawnchance += rnd(15);
+	if (!rn2(15)) u.weaponspawnchance += rnd(15);
+	if (!rn2(60)) u.weaponspawnchance += rnd(20);
+	if (!rn2(250)) u.weaponspawnchance += rnd(30);
+	if (!rn2(250)) u.weaponspawnchance += rnd(100);
 	if (u.weaponspawnchance > 90) u.weaponspawnchance = 90;
 	if (u.weaponspawnchance < 0) u.weaponspawnchance = 0;
 
 	u.armorspawnchance = 0;
-	if (!rn2(2)) u.armorspawnchance += rnd(25);
-	if (!rn2(4)) u.armorspawnchance += rnd(30);
-	if (!rn2(10)) u.armorspawnchance += rnd(40);
-	if (!rn2(20)) u.armorspawnchance += rnd(50);
-	if (!rn2(40)) u.armorspawnchance += rnd(80);
+	if (!rn2(3)) u.armorspawnchance += rnd(15);
+	if (!rn2(6)) u.armorspawnchance += rnd(15);
+	if (!rn2(12)) u.armorspawnchance += rnd(15);
+	if (!rn2(40)) u.armorspawnchance += rnd(15);
+	if (!rn2(120)) u.armorspawnchance += rnd(30);
+	if (!rn2(120)) u.armorspawnchance += rnd(100);
 	if (u.armorspawnchance > 90) u.armorspawnchance = 90;
 	if (u.armorspawnchance < 0) u.armorspawnchance = 0;
 
 	u.toolspawnchance = 0;
-	if (!rn2(3)) u.toolspawnchance += rnd(20);
-	if (!rn2(5)) u.toolspawnchance += rnd(30);
-	if (!rn2(7)) u.toolspawnchance += rnd(30);
-	if (!rn2(15)) u.toolspawnchance += rnd(40);
-	if (!rn2(35)) u.toolspawnchance += rnd(70);
+	if (!rn2(3)) u.toolspawnchance += rnd(10);
+	if (!rn2(6)) u.toolspawnchance += rnd(10);
+	if (!rn2(15)) u.toolspawnchance += rnd(20);
+	if (!rn2(60)) u.toolspawnchance += rnd(20);
+	if (!rn2(250)) u.toolspawnchance += rnd(30);
+	if (!rn2(250)) u.toolspawnchance += rnd(100);
 	if (u.toolspawnchance > 90) u.toolspawnchance = 90;
 	if (u.toolspawnchance < 0) u.toolspawnchance = 0;
 
 	u.foodspawnchance = 0;
-	if (!rn2(2)) u.foodspawnchance += rnd(10);
-	if (!rn2(3)) u.foodspawnchance += rnd(10);
-	if (!rn2(5)) u.foodspawnchance += rnd(20);
-	if (!rn2(20)) u.foodspawnchance += rnd(30);
-	if (!rn2(100)) u.foodspawnchance += rnd(40);
-	if (!rn2(500)) u.foodspawnchance += rnd(50);
+	if (!rn2(2)) u.foodspawnchance += rnd(5);
+	if (!rn2(4)) u.foodspawnchance += rnd(5);
+	if (!rn2(8)) u.foodspawnchance += rnd(10);
+	if (!rn2(25)) u.foodspawnchance += rnd(20);
+	if (!rn2(100)) u.foodspawnchance += rnd(20);
+	if (!rn2(500)) u.foodspawnchance += rnd(30);
+	if (!rn2(500)) u.foodspawnchance += rnd(100);
 	if (u.foodspawnchance > 90) u.foodspawnchance = 90;
 	if (u.foodspawnchance < 0) u.foodspawnchance = 0;
 
 	u.shopitemreduction = 0;
-	if (rn2(5)) u.shopitemreduction += rnd(80);
-	if (!rn2(5)) u.shopitemreduction += rnd(20);
-	if (!rn2(20)) u.shopitemreduction += rnd(50);
-	if (!rn2(100)) u.shopitemreduction += rnd(100);
+	if (rn2(5)) u.shopitemreduction += rnd(15);
+	if (!rn2(3)) u.shopitemreduction += rnd(15);
+	if (!rn2(6)) u.shopitemreduction += rnd(20);
+	if (!rn2(25)) u.shopitemreduction += rnd(20);
+	if (!rn2(125)) u.shopitemreduction += rnd(20);
+	if (!rn2(125)) u.shopitemreduction += rnd(100);
 	if (u.shopitemreduction > 90) u.shopitemreduction = 90;
 	if (u.shopitemreduction < 0) u.shopitemreduction = 0;
 
 	u.potionspawnchance = 0;
-	if (!rn2(2)) u.potionspawnchance += rnd(15);
-	if (!rn2(3)) u.potionspawnchance += rnd(15);
-	if (!rn2(5)) u.potionspawnchance += rnd(25);
-	if (!rn2(20)) u.potionspawnchance += rnd(40);
-	if (!rn2(100)) u.potionspawnchance += rnd(60);
-	if (!rn2(500)) u.potionspawnchance += rnd(90);
+	if (!rn2(2)) u.potionspawnchance += rnd(10);
+	if (!rn2(4)) u.potionspawnchance += rnd(10);
+	if (!rn2(8)) u.potionspawnchance += rnd(15);
+	if (!rn2(25)) u.potionspawnchance += rnd(15);
+	if (!rn2(100)) u.potionspawnchance += rnd(20);
+	if (!rn2(500)) u.potionspawnchance += rnd(20);
+	if (!rn2(500)) u.potionspawnchance += rnd(100);
 	if (u.potionspawnchance > 90) u.potionspawnchance = 90;
 	if (u.potionspawnchance < 0) u.potionspawnchance = 0;
 
 	u.scrollspawnchance = 0;
-	if (!rn2(2)) u.scrollspawnchance += rnd(20);
-	if (!rn2(3)) u.scrollspawnchance += rnd(20);
-	if (!rn2(5)) u.scrollspawnchance += rnd(20);
-	if (!rn2(10)) u.scrollspawnchance += rnd(20);
-	if (!rn2(20)) u.scrollspawnchance += rnd(20);
-	if (!rn2(50)) u.scrollspawnchance += rnd(20);
-	if (!rn2(200)) u.scrollspawnchance += rnd(50);
-	if (!rn2(900)) u.scrollspawnchance += rnd(90);
+	if (!rn2(2)) u.scrollspawnchance += rnd(10);
+	if (!rn2(4)) u.scrollspawnchance += rnd(10);
+	if (!rn2(8)) u.scrollspawnchance += rnd(10);
+	if (!rn2(16)) u.scrollspawnchance += rnd(10);
+	if (!rn2(35)) u.scrollspawnchance += rnd(10);
+	if (!rn2(90)) u.scrollspawnchance += rnd(10);
+	if (!rn2(200)) u.scrollspawnchance += rnd(15);
+	if (!rn2(900)) u.scrollspawnchance += rnd(15);
+	if (!rn2(900)) u.scrollspawnchance += rnd(100);
 	if (u.scrollspawnchance > 90) u.scrollspawnchance = 90;
 	if (u.scrollspawnchance < 0) u.scrollspawnchance = 0;
 
 	u.wandspawnchance = 0;
 	if (!rn2(3)) u.wandspawnchance += rnd(10);
-	if (!rn2(5)) u.wandspawnchance += rnd(20);
-	if (!rn2(7)) u.wandspawnchance += rnd(30);
-	if (!rn2(10)) u.wandspawnchance += rnd(50);
-	if (!rn2(60)) u.wandspawnchance += rnd(70);
-	if (!rn2(600)) u.wandspawnchance += rnd(90);
+	if (!rn2(6)) u.wandspawnchance += rnd(15);
+	if (!rn2(15)) u.wandspawnchance += rnd(15);
+	if (!rn2(60)) u.wandspawnchance += rnd(15);
+	if (!rn2(240)) u.wandspawnchance += rnd(15);
+	if (!rn2(600)) u.wandspawnchance += rnd(20);
+	if (!rn2(600)) u.wandspawnchance += rnd(100);
 	if (u.wandspawnchance > 90) u.wandspawnchance = 90;
 	if (u.wandspawnchance < 0) u.wandspawnchance = 0;
 
@@ -32077,20 +32153,22 @@ int realityflag;
 
 	u.concealitemchance = 0;
 	if (!rn2(3)) u.concealitemchance += rnd(20);
-	if (!rn2(5)) u.concealitemchance += rnd(40);
-	if (!rn2(7)) u.concealitemchance += rnd(60);
-	if (!rn2(9)) u.concealitemchance += rnd(80);
+	if (!rn2(5)) u.concealitemchance += rnd(20);
+	if (!rn2(7)) u.concealitemchance += rnd(25);
+	if (!rn2(9)) u.concealitemchance += rnd(25);
+	if (!rn2(9)) u.concealitemchance += rnd(100);
 	if (u.concealitemchance > 90) u.concealitemchance = 90;
 	if (u.concealitemchance < 0) u.concealitemchance = 0;
 
 	u.usefulitemchance = 0;
 	if (!rn2(2)) u.usefulitemchance += rnd(10);
-	if (!rn2(5)) u.usefulitemchance += rnd(20);
-	if (!rn2(25)) u.usefulitemchance += rnd(30);
-	if (!rn2(100)) u.usefulitemchance += rnd(40);
-	if (!rn2(250)) u.usefulitemchance += rnd(50);
-	if (!rn2(750)) u.usefulitemchance += rnd(70);
-	if (!rn2(3250)) u.usefulitemchance += rnd(90);
+	if (!rn2(5)) u.usefulitemchance += rnd(10);
+	if (!rn2(25)) u.usefulitemchance += rnd(10);
+	if (!rn2(100)) u.usefulitemchance += rnd(15);
+	if (!rn2(250)) u.usefulitemchance += rnd(15);
+	if (!rn2(750)) u.usefulitemchance += rnd(15);
+	if (!rn2(3250)) u.usefulitemchance += rnd(15);
+	if (!rn2(3250)) u.usefulitemchance += rnd(100);
 	if (u.usefulitemchance > 90) u.usefulitemchance = 90;
 	if (u.usefulitemchance < 0) u.usefulitemchance = 0;
 

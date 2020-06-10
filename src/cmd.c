@@ -3379,47 +3379,47 @@ boolean guaranteed;
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable2 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable3 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable4 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable5 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable5].oc_name, obj_descr[u.unobtainable5].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable6 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable7 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable7].oc_name, obj_descr[u.unobtainable7].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable8 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable8].oc_name, obj_descr[u.unobtainable8].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable9 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable9].oc_name, obj_descr[u.unobtainable9].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+	if ((guaranteed || !rn2(10)) && u.unobtainable10 != -1 && (wizard || (!rn2(10)) || final >= 1 )) {
 		sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable10].oc_name, obj_descr[u.unobtainable10].oc_descr);
 		enl_msg("The RNG hath decreed that this item ", "is ", "was ", buf );
 	}
@@ -7314,32 +7314,50 @@ int final;
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable].oc_name, obj_descr[u.unobtainable].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
 
+	if (u.unobtainable2 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable2].oc_name, obj_descr[u.unobtainable2].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable3 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable3].oc_name, obj_descr[u.unobtainable3].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable4 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable4].oc_name, obj_descr[u.unobtainable4].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable5 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable5].oc_name, obj_descr[u.unobtainable5].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable6 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable6].oc_name, obj_descr[u.unobtainable6].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable7 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable7].oc_name, obj_descr[u.unobtainable7].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable8 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable8].oc_name, obj_descr[u.unobtainable8].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable9 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable9].oc_name, obj_descr[u.unobtainable9].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
+	if (u.unobtainable10 != -1) {
 	sprintf(buf, "never generated: %s (%s)", obj_descr[u.unobtainable10].oc_name, obj_descr[u.unobtainable10].oc_descr);
 	dump("  The RNG hath decreed that this item was ", buf );
+	}
 
 	if (u.unobtainablegeno != -1) {
 		sprintf(buf, "%s (%s)", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
