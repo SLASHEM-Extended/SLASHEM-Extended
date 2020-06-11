@@ -430,6 +430,18 @@ int prop;
 			return "Ludgera's curse";
 		case FEMTRAP_KATI:
 			return "Kati's curse";
+		case FEMTRAP_NELLY:
+			return "Nelly's curse";
+		case FEMTRAP_EVELINE:
+			return "Eveline's curse";
+		case FEMTRAP_KARIN:
+			return "Karin's curse";
+		case FEMTRAP_JUEN:
+			return "Juen's curse";
+		case FEMTRAP_KRISTINA:
+			return "Kristina's curse";
+		case FEMTRAP_LOU:
+			return "Lou's curse";
 		case SCENT_VIEW:
 			return "scent view";
 

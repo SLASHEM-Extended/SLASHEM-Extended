@@ -2514,6 +2514,42 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_NELLY:
+
+			pline("Good thing you survived the dangerous female hug attacks.");
+
+		 break;
+
+		 case FEMTRAP_EVELINE:
+
+			pline("Apparently the women stopped running.");
+
+		 break;
+
+		 case FEMTRAP_KARIN:
+
+			pline("Your nuts no longer have to fear getting kicked by female knees constantly.");
+
+		 break;
+
+		 case FEMTRAP_JUEN:
+
+			pline("You finally took a trick from your emergency bag of tricks to heal your almost broken shins.");
+
+		 break;
+
+		 case FEMTRAP_KRISTINA:
+
+			pline("Finally the damn cigarettes got extinguished.");
+
+		 break;
+
+		 case FEMTRAP_LOU:
+
+			pline("You swear that you'll kill the next asshole who brushes your cloak with their dirty shoes.");
+
+		 break;
+
 		case SICK:
 
 			if (Role_if(PM_COOK) && rn2(2)) {

@@ -1997,6 +1997,12 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case NELLY_TRAP:
+		case EVELINE_TRAP:
+		case KARIN_TRAP:
+		case JUEN_TRAP:
+		case KRISTINA_TRAP:
+		case LOU_TRAP:
 		case ANASTASIA_TRAP:
 		case FILLER_TRAP:
 		case TOXIC_VENOM_TRAP:

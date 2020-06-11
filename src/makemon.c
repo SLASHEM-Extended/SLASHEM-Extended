@@ -11243,6 +11243,9 @@ loveheelover:
 		if (ptr == &mons[PM_ACTUAL_EVIL_PATCH]) {
 			(void) mongets(mtmp, SCR_EVIL_VARIANT);
 		}
+		if (ptr == &mons[PM_TOILET_FEMMY]) {
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+		}
 		if (ptr == &mons[PM_SOBER_THE_DRUNK]) {
 			(void) mongets(mtmp, POT_CONFUSION);
 			(void) mongets(mtmp, POT_CONFUSION);
@@ -11695,6 +11698,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_PUBLIC_PERFORMER]) m_initthrow(mtmp, ROCK, 5);
 		if (mtmp->data == &mons[PM_ROVID]) (void) mongets(mtmp, TRIDENT);
 		if (mtmp->data == &mons[PM_JAPONSES_MONSTER]) (void) mongets(mtmp, OTAMA);
+		if(ptr == &mons[PM_ASIATIC_FEMMY]) {
+			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			(void) mongets(mtmp, LEATHER_PEEP_TOES);
+		}
 
 		break;
 
@@ -11715,6 +11722,10 @@ loveheelover:
 
 		if(ptr == &mons[PM_YITH_DAEMON]) {
 			(void) mongets(mtmp, YITH_TENTACLE);
+		}
+		if(ptr == &mons[PM_CIGARETTE_SMOKING_FEMMY]) {
+			(void) mongets(mtmp, SOFT_SNEAKERS);
+			/*(void) mongets(mtmp, CIGARETTE);*/ /*TODO*/
 		}
 		if(ptr == &mons[PM_UROLOGIST]) {
 			(void) mongets(mtmp, KNIFE);
@@ -12414,6 +12425,10 @@ loveheelover:
 		    }
 		}
 
+		if (ptr == &mons[PM_VEHEMENT_FEMMY]) {
+			(void)mongets(mtmp, FEMININE_PUMPS);
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+		}
 		if (ptr == &mons[PM_MILL_GIANT]) {
 			(void)mongets(mtmp, BATTLE_AXE);
 		}
@@ -13445,6 +13460,9 @@ loveheelover:
 		if (ptr == &mons[PM_REAPERSAN]) {
 			(void) mongets(mtmp, SCYTHE);
 		}
+		if (ptr == &mons[PM_DIRTY_FEMMY]) {
+			(void) mongets(mtmp, SOFT_SNEAKERS);
+		}
 
 		if (ptr == &mons[PM_SILVER_LICH]) {
 			(void) mongets(mtmp, SLING);
@@ -14268,6 +14286,10 @@ loveheelover:
 			(void) mongets(mtmp, WAN_DEATH);
 		}
 
+		if (ptr == &mons[PM_CUTE_FEMMY]) {
+			(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+			(void) mongets(mtmp, WEDGE_SANDALS);
+		}
 		if (ptr == &mons[PM_SECRETION_CLOUD]) {
 			 m_initthrow(mtmp, SECRETION_DAGGER, 5);
 		}
@@ -17794,6 +17816,12 @@ loveheelover:
 	if (ptr == &mons[PM_CRAP_TITAN]) {
 
 		mtmp->crapbonus += 10;
+
+	}
+
+	if (ptr == &mons[PM_TOILET_FEMMY]) {
+
+		mtmp->crapbonus += 20;
 
 	}
 

@@ -217,6 +217,29 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
+			if (FemtrapActiveLou && !rn2(10)) {
+				pline("Eww, %s's dirty footwear brushed your clothing!", mon_nam(mtmp));
+				register struct obj *objX, *objX2;
+				for (objX = invent; objX; objX = objX2) {
+					objX2 = objX->nobj;
+					if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+				}
+			}
+
+			if (FemtrapActiveJuen && humanoid(mtmp->data) && is_female(mtmp->data) && (multi < 0) && !rn2(3)) {
+
+				pline("Ouch! You're in pain!");
+				nomul(-2, "having aching legs", TRUE);
+
+			}
+
+			if (FemtrapActiveJuen && humanoid(mtmp->data) && is_female(mtmp->data) && (multi >= 0) && rn2(2)) {
+
+				pline("Ouch! You're in pain!");
+				nomul(-2, "having aching legs", TRUE);
+
+			}
+
 			if (uarmf && !rn2(3) && itemhasappearance(uarmf, APP_PLOF_HEELS) ) {
 				pline("*plof*");
 				if (uarmf->spe > ((uarmf->oartifact == ART_STEFANJE_S_PROBLEM) ? -50 : -21)) uarmf->spe--;
@@ -232,7 +255,7 @@ on the first floor, especially when you're playing as something with drain resis
 				if (!rn2(20)) badeffect();
 			}
 
-			if (!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
+			if ( ((!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s powerfully kicks you in the nuts, and you moan in lust because you love the pain.", Monnam(mtmp));
@@ -250,6 +273,28 @@ on the first floor, especially when you're playing as something with drain resis
 					if (monsterlev <= 0) monsterlev = 1;
 
 					losehp(d(2,monsterlev), "kick in the nuts", KILLED_BY_AN);
+
+					if (FemtrapActiveKarin && humanoid(mtmp->data) && is_female(mtmp->data) && rn2(3)) {
+						int karincount = 0;
+karinrepeat:
+						if (karincount < (4 + rn2(7)) ) {
+							pline("%s quickly knees you in the nuts again!", Monnam(mtmp));
+							u.cnd_nutkickamount++;
+							if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+							monsterlev = ((mtmp->m_lev) + 1);
+							if (monsterlev <= 0) monsterlev = 1;
+							losehp(d(2,monsterlev), "getting his nuts squashed by a female knee", KILLED_BY);
+							if (!rn2(20)) verbalize("Do you like my sexy knee?");
+						} else {
+							pline("%s massages your aching nuts with her fleecy hands!", Monnam(mtmp));
+							healup(mtmp->m_lev, 0, FALSE, FALSE);
+							if (!rn2(20)) verbalize("I'm sorry for hurting you so much. Here, does that make it feel better?");
+						}
+						karincount++;
+						if (karincount > (6 + rn3(7)) ) karincount = 0;
+						if (rn2(3)) goto karinrepeat;
+					}
+
 				}
 
 			}
@@ -4420,6 +4465,48 @@ elena37:
 
 		if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 					!touch_petrifies(youmonst.data))) || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_HUGS;
+		a->adtyp = AD_PHYS;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+					!touch_petrifies(youmonst.data))) || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (FemtrapActiveKristina && humanoid(mtmp->data) && is_female(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_BURN;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
 		    if (foundyou) {
 			if(tmp > (j = rnd(20+i))) {
 				sum[i] = hitmu(mtmp, a);

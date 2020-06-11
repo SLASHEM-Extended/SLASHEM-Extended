@@ -1285,6 +1285,12 @@ E boolean have_femtrapsarah(void);
 E boolean have_femtrapclaudia(void);
 E boolean have_femtrapludgera(void);
 E boolean have_femtrapkati(void);
+E boolean have_femtrapnelly(void);
+E boolean have_femtrapeveline(void);
+E boolean have_femtrapkarin(void);
+E boolean have_femtrapjuen(void);
+E boolean have_femtrapkristina(void);
+E boolean have_femtraplou(void);
 
 E boolean have_primecurse(void);
 

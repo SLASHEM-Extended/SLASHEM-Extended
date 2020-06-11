@@ -1556,6 +1556,42 @@ have_femtrapkati()
 	return(FALSE);
 }
 
+have_femtrapnelly()
+{
+	if (feminizecheck(23)) return TRUE;
+	return(FALSE);
+}
+
+have_femtrapeveline()
+{
+	if (feminizecheck(24)) return TRUE;
+	return(FALSE);
+}
+
+have_femtrapkarin()
+{
+	if (feminizecheck(25)) return TRUE;
+	return(FALSE);
+}
+
+have_femtrapjuen()
+{
+	if (feminizecheck(26)) return TRUE;
+	return(FALSE);
+}
+
+have_femtrapkristina()
+{
+	if (feminizecheck(27)) return TRUE;
+	return(FALSE);
+}
+
+have_femtraplou()
+{
+	if (feminizecheck(28)) return TRUE;
+	return(FALSE);
+}
+
 boolean
 have_primecurse()
 {

@@ -2006,6 +2006,11 @@ struct monst *mon;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
 	}
+	if (FemtrapActiveEveline && humanoid(mon->data) && is_female(mon->data) && (mmove > 0)) {
+		mmove *= 3;
+		if (mmove == 3) mmove = 4;
+		mmove /= 2;
+	}
 
 	if (mon->data == &mons[PM_YEEK_HARD_WORKER] && !rn2(5)) mmove += 12;
 	if (mon->data == &mons[PM_INDRA] && !rn2(5)) mmove += 12;
@@ -3487,6 +3492,12 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != NELLY_TRAP
+				&& ttmp->ttyp != EVELINE_TRAP
+				&& ttmp->ttyp != KARIN_TRAP
+				&& ttmp->ttyp != JUEN_TRAP
+				&& ttmp->ttyp != KRISTINA_TRAP
+				&& ttmp->ttyp != LOU_TRAP
 				&& ttmp->ttyp != ANASTASIA_TRAP
 				&& ttmp->ttyp != FILLER_TRAP
 				&& ttmp->ttyp != TOXIC_VENOM_TRAP

@@ -1657,7 +1657,7 @@ randenchantment()
 		case 170:
 		case 171:
 		case 172:
-			switch (rnd(22)) {
+			switch (rnd(28)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1680,6 +1680,12 @@ randenchantment()
 			case 20: return FEMTRAP_CLAUDIA;
 			case 21: return FEMTRAP_LUDGERA;
 			case 22: return FEMTRAP_KATI;
+			case 23: return FEMTRAP_NELLY;
+			case 24: return FEMTRAP_EVELINE;
+			case 25: return FEMTRAP_KARIN;
+			case 26: return FEMTRAP_JUEN;
+			case 27: return FEMTRAP_KRISTINA;
+			case 28: return FEMTRAP_LOU;
 			default: return POISON_RES;
 			}
 
@@ -3546,7 +3552,7 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	switch (rnd(22)) {
+	switch (rnd(28)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -3634,6 +3640,30 @@ int duration;
 		case 22:
 			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
 			FemaleTrapMaurah += duration;
+			break;
+		case 23:
+			pline("You fear that the women are going to crush you with a hug.");
+			FemaleTrapNelly += duration;
+			break;
+		case 24:
+			pline("It seems that the women are running faster.");
+			FemaleTrapEveline += duration;
+			break;
+		case 25:
+			pline("All the women want to knee you in the delicate nuts now!");
+			FemaleTrapKarin += duration;
+			break;
+		case 26:
+			pline("Oh no, your shins are almost broken!");
+			FemaleTrapJuen += duration;
+			break;
+		case 27:
+			pline("Urgh, you can already smell the stench of stinking cigarettes!");
+			FemaleTrapKristina += duration;
+			break;
+		case 28:
+			pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
+			FemaleTrapLou += duration;
 			break;
 	}
 }

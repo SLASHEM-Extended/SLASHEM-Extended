@@ -25182,6 +25182,21 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear a series of rapid impacts.",
 	"You smell hard work.",
 	"The shopkeeper throws a stack-smashing buffer overflow grenade! The grenade explodes!--More-- Oops... Suddenly the dungeon collapses. Report error to 'flauschie' and it might be possible to rebuild.",
+	"You fear that the women are going to crush you with a hug.",
+	"It seems that the women are running faster.",
+	"All the women want to knee you in the delicate nuts now!",
+	"Oh no, your shins are almost broken!",
+	"Urgh, you can already smell the stench of stinking cigarettes!",
+	"These damn people want to use your precious clothing to brush off their dirty shoes!",
+	"Good thing you survived the dangerous female hug attacks.",
+	"Apparently the women stopped running.",
+	"Your nuts no longer have to fear getting kicked by female knees constantly.",
+	"You finally took a trick from your emergency bag of tricks to heal your almost broken shins.",
+	"Finally the damn cigarettes got extinguished.",
+	"You swear that you'll kill the next asshole who brushes your cloak with their dirty shoes.",
+	"Ouch! You're in pain!",
+	"Eww, Lou's dirty footwear brushed your clothing!",
+	"Eww, Lou's dirty footwear brushed your clothing! Now your shiny new pair of trousers got dirty because of that bitch!",
 
 };
 

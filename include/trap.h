@@ -590,8 +590,15 @@ extern struct trap *ftrap;
 #define SIMEOUT_TRAP 510
 #define S_PRESSING_TRAP 511
 
-#define TIMERUN_TRAP	512
+#define NELLY_TRAP 512
+#define EVELINE_TRAP 513
+#define KARIN_TRAP 514
+#define JUEN_TRAP 515
+#define KRISTINA_TRAP 516
+#define LOU_TRAP 517
 
-#define TRAPNUM 513
+#define TIMERUN_TRAP	518
+
+#define TRAPNUM 519
 
 #endif /* TRAP_H */

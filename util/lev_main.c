@@ -653,6 +653,13 @@ static struct {
 	{ "simeout", SIMEOUT_TRAP },
 	{ "spressing", S_PRESSING_TRAP },
 
+	{ "nelly", NELLY_TRAP },
+	{ "eveline", EVELINE_TRAP },
+	{ "karin", KARIN_TRAP },
+	{ "juen", JUEN_TRAP },
+	{ "kristina", KRISTINA_TRAP },
+	{ "lou", LOU_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };
