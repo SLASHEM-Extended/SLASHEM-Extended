@@ -1159,8 +1159,7 @@ int spellnum;
     case MGC_DISAPPEAR:		/* makes self invisible */
 	if (!mtmp->minvis && !mtmp->invis_blkd) {
 	    if (canseemon(mtmp))
-		pline("%s suddenly %s!", Monnam(mtmp),
-		      !See_invisible ? "disappears" : "becomes transparent");
+		pline("%s suddenly %s!", Monnam(mtmp), !See_invisible ? "disappears" : "becomes transparent");
 	    mon_set_minvis(mtmp);
 	    dmg = 0;
 	} else
@@ -2244,6 +2243,8 @@ int spellnum;
 	   really make a lot of sense, but lets the player avoid hitting
 	   peaceful monsters by mistake */
 	if (mtmp->mpeaceful && !See_invisible && spellnum == MGC_DISAPPEAR)
+	    return TRUE;
+	if (mtmp->mpeaceful && See_invisible && !StrongSee_invisible && !(mtmp->seeinvisble) && spellnum == MGC_DISAPPEAR)
 	    return TRUE;
 	/* healing when already healed */
 	if (mtmp->mhp == mtmp->mhpmax && spellnum == MGC_CURE_SELF)
