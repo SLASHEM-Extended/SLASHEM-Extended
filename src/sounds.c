@@ -4484,6 +4484,26 @@ const char *mapping;
 }
 
 void
+play_sound_for_message(msg)
+const char* msg;
+{
+	audio_mapping* cursor = soundmap;
+
+	while (cursor) {
+#ifdef USER_SOUNDS_REGEX
+	    if (re_search(&cursor->regex, msg, strlen(msg), 0, 9999, 0) >= 0) {
+#else
+	    if (pmatch(cursor->pattern, msg)) {
+#endif
+		play_usersound(cursor->filename, cursor->volume);
+	    }
+	    cursor = cursor->next;
+	}
+}
+
+#endif /* USER_SOUNDS */
+
+void
 maybegaincha()
 {
 	if (ABASE(A_CHA) < 10) {
@@ -4504,26 +4524,6 @@ maybegaincha()
 		if (!rn2(chachance)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
 	}
 }
-
-void
-play_sound_for_message(msg)
-const char* msg;
-{
-	audio_mapping* cursor = soundmap;
-
-	while (cursor) {
-#ifdef USER_SOUNDS_REGEX
-	    if (re_search(&cursor->regex, msg, strlen(msg), 0, 9999, 0) >= 0) {
-#else
-	    if (pmatch(cursor->pattern, msg)) {
-#endif
-		play_usersound(cursor->filename, cursor->volume);
-	    }
-	    cursor = cursor->next;
-	}
-}
-
-#endif /* USER_SOUNDS */
 
 #endif /* OVLB */
 
