@@ -86,8 +86,10 @@ extern int errno;
 static char fqn_filename_buffer[FQN_NUMBUF][FQN_MAX_FILENAME];
 #endif
 
+#define BONESNAMELEN 20 /* long enough for "bon" + bonedunlvl + filecode + dlevel + ubirthday */
+
 #if !defined(MFLOPPY) && !defined(VMS) && !defined(WIN32)
-char bones[] = "bonesnn.xxx";
+char bones[BONESNAMELEN] = "bonesnn.xxx";
 char lock[PL_NSIZ+14] = "1lock"; /* long enough for uid+name+.99 */
 #else
 # if defined(MFLOPPY)
@@ -95,11 +97,11 @@ char bones[FILENAMELEN];           /* pathname of bones files */
 char lock[FILENAMELEN];            /* pathname of level files */
 # endif
 # if defined(VMS)
-char bones[] = "bonesnn.xxx;1";
+char bones[BONESNAMELEN] = "bonesnn.xxx;1";
 char lock[PL_NSIZ+17] = "1lock"; /* long enough for _uid+name+.99;1 */
 # endif
 # if defined(WIN32)
-char bones[] = "bonesnn.xxx";
+char bones[BONESNAMELEN] = "bonesnn.xxx";
 char lock[PL_NSIZ+25];		/* long enough for username+-+name+.99 */
 # endif
 #endif
