@@ -8787,6 +8787,7 @@ retry:
 		    make_frozen(0L,TRUE);
 		    make_burned(0L,TRUE);
 		    make_dimmed(0L,TRUE);
+		    Glib = 0;
 
 		break;
 	case SPE_CHARGING:

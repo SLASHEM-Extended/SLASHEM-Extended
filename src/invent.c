@@ -13523,7 +13523,7 @@ boolean knoweverything;
 			case SCR_GREATER_MANA_RESTORATION:
 				pline("A powerful mana scroll that restores a lot of your mana. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
 			case SCR_CURE:
-				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, confusion, blindness, stun, numbness, freezing, burn, fear, dimness and hallucination. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, slippery hands, confusion, blindness, stun, numbness, freezing, burn, fear, dimness and hallucination. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
 			case SCR_PHASE_DOOR:
 				pline("Using this scroll will teleport you over a short distance. Of course it doesn't work if you're on a no-teleport level. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
 			case SCR_TRAP_DISARMING:
