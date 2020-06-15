@@ -99,6 +99,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
 };
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0};
+static const char allnoncount[] = { ALL_CLASSES, 0};
 
 #endif	/* OVLB */
 
@@ -648,7 +649,7 @@ dosit()
 			pline("You may fully identify an object!");
 
 secureidchoice:
-			otmp = getobj(all_count, "secure identify");
+			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')

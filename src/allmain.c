@@ -28,6 +28,7 @@ STATIC_PTR void do_fjordefloodingf(int, int, void *);
 #define spellname(spell)	OBJ_NAME(objects[spellid(spell)])
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allowall[] = { ALL_CLASSES, 0 };
 
 static void p_glow2(struct obj *,const char *);
 
@@ -3492,7 +3493,7 @@ trapsdone:
 			register struct obj *steeling;
 			pline("You may rustproof an iron object.");
 steelingchoice:
-			steeling = getobj(all_count, "rustproof");
+			steeling = getobj(allowall, "rustproof");
 			if (!steeling) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to rustproof an item.");
@@ -3517,7 +3518,7 @@ steelingchoice:
 			register struct obj *steeling;
 			pline("You may erodeproof a nonerodable object.");
 protectwhatchoice:
-			steeling = getobj(all_count, "erosionproof");
+			steeling = getobj(allowall, "erosionproof");
 			if (!steeling) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to erosionproof an item.");
@@ -3551,7 +3552,7 @@ protectwhatchoice:
 			register struct obj *steeling;
 			pline("You may repair an eroded object. If you're in a form without hands, the object you pick will also become erosionproof.");
 fukrosionchoice:
-			steeling = getobj(all_count, "repair");
+			steeling = getobj(allowall, "repair");
 			if (!steeling) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to repair/erosionproof an item.");

@@ -30,6 +30,7 @@ static NEARDATA struct obj *book;	/* last/current book being xscribed */
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 #define spellev(spell)		spl_book[spell].sp_lev
 #define spellid(spell)          spl_book[spell].sp_id
@@ -4310,7 +4311,7 @@ manloop:
 
 		pline("Choose an item for BUC identification.");
 bucchoice:
-		otmp = getobj(all_count, "know the BUC of");
+		otmp = getobj(allnoncount, "know the BUC of");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to determine an item's BUC.");
@@ -4393,7 +4394,7 @@ bucchoice:
 
 		pline("Choose an item for erosionproofing.");
 aulechoice:
-		otmp = getobj(all_count, "fooproof");
+		otmp = getobj(allnoncount, "fooproof");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to fooproof an item.");
@@ -5984,7 +5985,7 @@ newbossPENT:
 			register struct obj *idobj;
 
 secureidchoice:
-			idobj = getobj(all_count, "secure identify");
+			idobj = getobj(allnoncount, "secure identify");
 
 			if (!idobj) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -6824,7 +6825,7 @@ secureidchoice:
 		if (!rn2(5)) identify_pack(0, 0, 0);
 whisperchoice:
 		{
-			otmp = getobj(all_count, "secure identify");
+			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -9994,7 +9995,7 @@ controlagain:
 	case SPE_REPAIR_ARMOR:
 		/* removes one level of erosion (both types) for a random piece of armor */
 repairarmorchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 		if (otmp) {
 			if (!(otmp->owornmask & W_ARMOR) ) { /* bug discovered by Heliokopis - did Sporkhack never fix this? */
@@ -10028,7 +10029,7 @@ repairarmorchoice:
 
 		pline("You may choose an artifact in your inventory to reroll. It may not be a worn one though.");
 rerollartifactchoice:
-		otmp = getobj(all_count, "reroll");
+		otmp = getobj(allnoncount, "reroll");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to reroll an artifact.");

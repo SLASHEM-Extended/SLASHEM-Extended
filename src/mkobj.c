@@ -3205,7 +3205,7 @@ register struct obj *otmp;
 void
 uncurse(otmp, guaranteed)
 register struct obj *otmp;
-boolean guaranteed;
+boolean guaranteed; /* can it work even when you have permacurse nastytrap effect? (can still fail if heavily cursed --Amy */
 {
 	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone()) ) return;
 

@@ -65,6 +65,7 @@ STATIC_VAR const char * const blindgas[6] =
 #endif /* OVLB */
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0};
+static const char allnoncount[] = { ALL_CLASSES, 0};
 
 #ifndef OVLB
 
@@ -5027,7 +5028,7 @@ newegomon:
 			pline("You may fully identify an object!");
 
 secureidchoice:
-			identotmp = getobj(all_count, "secure identify");
+			identotmp = getobj(allnoncount, "secure identify");
 
 			if (!identotmp) {
 				if (yn("Really exit with no object selected?") == 'y')

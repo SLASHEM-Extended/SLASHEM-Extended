@@ -124,6 +124,7 @@ boolean	known;
 static NEARDATA const char readable[] = {
 		   SCROLL_CLASS, SPBOOK_CLASS, RING_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 
 #if 0
@@ -4678,7 +4679,7 @@ register struct obj	*sobj;
 
 		pline("You may enchant a worn piece of armor.");
 enchantarmorchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 
 		if(!otmp) {
@@ -4893,7 +4894,7 @@ enchantarmorchoice:
 	    {
 		pline("You may repair a damaged item.");
 repairitemchoice:
-		otmp = getobj(all_count, "magically repair");
+		otmp = getobj(allnoncount, "magically repair");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to repair your items.");
@@ -4934,7 +4935,7 @@ repairitemchoice:
 		if (sobj && sobj->otyp == SCR_DESTROY_ARMOR && sobj->blessed) { /* idea by bhaak */
 			pline("You may enchant a worn piece of armor.");
 destroyarmorchoice:
-			otmp = getobj(all_count, "magically enchant");
+			otmp = getobj(allnoncount, "magically enchant");
 
 			if (otmp && !(otmp->owornmask & W_ARMOR)) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -5035,7 +5036,7 @@ destroyarmorchoice:
 	      {
 		pline("You may enchant a worn piece of armor.");
 proofarmorchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 			if(!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -5637,7 +5638,7 @@ proofarmorchoice:
 
 materialchoice1:
 		{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allnoncount, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");
@@ -5681,7 +5682,7 @@ materialchoice1:
 
 materialchoice2:
 		{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allnoncount, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");
@@ -5726,7 +5727,7 @@ materialchoice2:
 
 materialchoice3:
 		{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allnoncount, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");
@@ -8805,7 +8806,7 @@ retry:
 		known = TRUE;
 		pline("You may charge an object."); /* "this is a scroll of charging" is inappropriate for the spell --Amy */
 chargingchoice:
-		otmp = getobj(all_count, "charge");
+		otmp = getobj(allnoncount, "charge");
 		if (!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to charge your items.");
@@ -8820,7 +8821,7 @@ chargingchoice:
 		pline("You may randomly enchant an object.");
 		if (confused) {
 confusedrandenchchoice:
-			otmp = getobj(all_count, "randomly enchant");
+			otmp = getobj(allnoncount, "randomly enchant");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to randomly enchant objects.");
@@ -8830,7 +8831,7 @@ confusedrandenchchoice:
 			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 1);
 		} else {
 randenchchoice:
-			otmp = getobj(all_count, "randomly enchant");
+			otmp = getobj(allnoncount, "randomly enchant");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to randomly enchant objects.");
@@ -9241,7 +9242,7 @@ randenchchoice:
 			pline("This is a secure identify scroll.");
 
 secureidchoice:
-			otmp = getobj(all_count, "secure identify");
+			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -9265,7 +9266,7 @@ secureidchoice:
 	case SCR_ARMOR_SPECIALIZATION:
 		pline("You may enchant a worn piece of armor.");
 armorspecchoice:
-		otmp = getobj(all_count, "magically enchant");
+		otmp = getobj(allnoncount, "magically enchant");
 		if(!otmp) {
 			if (yn("Really exit with no object selected?") == 'y')
 				pline("You just wasted the opportunity to enchant your armor.");
@@ -9908,7 +9909,7 @@ newoffmon:
 			pline("You found a scroll of secure curse removal.");
 			known = TRUE;
 secremchoice:
-			secrem = getobj(all_count, "uncurse");
+			secrem = getobj(allnoncount, "uncurse");
 			if (!secrem) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to remove curses from an item.");

@@ -35,6 +35,7 @@ static void maybe_tameX(struct monst *);
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 /* 
@@ -3390,7 +3391,7 @@ int tech_no;
 
 secureidchoice:
 			{
-			otmp = getobj(all_count, "secure identify");
+			otmp = getobj(allnoncount, "secure identify");
 
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -6956,7 +6957,7 @@ revid_end:
 
 		case T_CARD_TRICK:
 cardtrickchoice:
-			otmp = getobj(all_count, "duplicate");
+			otmp = getobj(allnoncount, "duplicate");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to duplicate a scroll.");
@@ -7347,7 +7348,7 @@ cardtrickchoice:
 		case T_POLYFIX:
 
 polyfixchoice:
-			otmp = getobj(all_count, "polyfix");
+			otmp = getobj(allnoncount, "polyfix");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to polyfix an item.");
@@ -7389,7 +7390,7 @@ polyfixchoice:
 
 					pline("You may repair a damaged item.");
 repairitemchoice:
-					otmp = getobj(all_count, "magically repair");
+					otmp = getobj(allnoncount, "magically repair");
 					if (!otmp) {
 						if (yn("Really exit with no object selected?") == 'y')
 							pline("You just wasted the opportunity to repair your items.");
@@ -7653,7 +7654,7 @@ repairitemchoice:
 		case T_DEFINALIZE:
 
 definalizechoice:
-			otmp = getobj(all_count, "definalize");
+			otmp = getobj(allnoncount, "definalize");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to definalize an item.");
@@ -7783,7 +7784,7 @@ definalizechoice:
 		case T_EXTRACHARGE:
 
 extrachargechoice:
-			otmp = getobj(all_count, "extracharge");
+			otmp = getobj(allnoncount, "extracharge");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to extracharge a wand.");

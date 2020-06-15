@@ -4860,6 +4860,29 @@ destroyarmorattack()
 
 }
 
+/* allow the player to uncurse a choice item --Amy */
+void
+uncurseoneitem()
+{
+	char allowall[2];
+	allowall[0] = ALL_CLASSES; allowall[1] = '\0';
+	struct obj *obj; /* item to uncurse */
+uncurseagain:
+	if ( !(obj = getobj(allowall, "uncurse"))) {
+		if (yn("Really exit with no object selected?") == 'y')
+			pline("You just wasted the opportunity to uncurse an item.");
+		else goto uncurseagain;
+		pline("A feeling of loss comes over you.");
+		return;
+	}
+	if (!stack_too_big(obj)) {
+		uncurse(obj, TRUE);
+		Your("%s glows brightly.", xname(obj)); /* doesn't reveal BUC; if it wasn't cursed, nothing happens */
+	}
+	else pline("The stack was too big and therefore the uncursing attempt failed.");
+
+}
+
 /* does the player character have anorexia? --Amy */
 boolean
 have_anorexia()

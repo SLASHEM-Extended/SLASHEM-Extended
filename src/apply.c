@@ -9,6 +9,7 @@
 
 static const char tools[] = { TOOL_CLASS, WEAPON_CLASS, WAND_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allowxall[] = { ALL_CLASSES, 0 };
 static const char tools_too[] = { ALL_CLASSES, TOOL_CLASS, POTION_CLASS,
 				  WEAPON_CLASS, WAND_CLASS, GEM_CLASS, 0 };
 static const char tinnables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
@@ -6038,7 +6039,7 @@ doapply()
 		pline("You may change the material of a base item type.");
 materialchoice:
 	    	{
-			struct obj *otmpC = getobj(all_count, "change the material of");
+			struct obj *otmpC = getobj(allowxall, "change the material of");
 			if (!otmpC) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to change an item's material.");

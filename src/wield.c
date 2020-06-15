@@ -51,6 +51,7 @@
 
 /*STATIC_DCL int ready_weapon(struct obj *, BOOLEAN_P);*/
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 /* used by will_weld() */
 /* probably should be renamed */
@@ -249,7 +250,7 @@ swaptech()
 	struct obj *oldswapwep = uswapwep;
 
 swapweaponchoice:
-	otmp = getobj(all_count, "put into your swap weapon slot");
+	otmp = getobj(allnoncount, "put into your swap weapon slot");
 	if (!otmp) {
 		if (yn("Really exit with no object selected?") == 'y')
 			pline("You just wasted the opportunity to put something into your swap weapon slot.");

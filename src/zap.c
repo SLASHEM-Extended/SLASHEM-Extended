@@ -56,6 +56,7 @@ extern const char * const flash_types[];
 STATIC_VAR const char are_blinded_by_the_flash[] = "are blinded by the flash!";
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 const char * const flash_types[] = {	/* also used in buzzmu(mcastu.c) */
 	"magic missile",	/* Wands must be 0-9 */
@@ -3956,6 +3957,9 @@ register struct obj *wand;
 		if (Upolyd) u.mhmax++;
 		flags.botl = TRUE;
 	}
+	if (objects[(wand)->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		uncurseoneitem();
+	}
 	if (objects[(wand)->otyp].oc_material == MT_CHROME && !rn2(10)) {
 		int i, ii, lim;
 		i = rn2(A_MAX);
@@ -4110,7 +4114,7 @@ newboss:
 			pline("You may fully identify an object!");
 
 secureidchoice:
-			otmpSC = getobj(all_count, "secure identify");
+			otmpSC = getobj(allnoncount, "secure identify");
 
 			if (!otmpSC) {
 				if (yn("Really exit with no object selected?") == 'y')
@@ -5027,7 +5031,7 @@ controlagain:
 			known = TRUE;
 			pline("This is a charging wand.");
 chargingchoice:
-			otmp = getobj(all_count, "charge");
+			otmp = getobj(allnoncount, "charge");
 			if (!otmp) {
 				if (yn("Really exit with no object selected?") == 'y')
 					pline("You just wasted the opportunity to charge your items.");

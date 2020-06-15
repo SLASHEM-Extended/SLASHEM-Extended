@@ -55,6 +55,7 @@ int rmtyp;
 #endif
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 void
 dosounds()
@@ -3933,7 +3934,7 @@ noservices:
 							break;
 						}
 						struct obj *repairobj;
-						repairobj = getobj(all_count, "repair");
+						repairobj = getobj(allnoncount, "repair");
 						if (!repairobj) break;
 						if (repairobj) {
 							if (!(repairobj->oeroded) && !(repairobj->oeroded2)) {
@@ -3957,7 +3958,7 @@ noservices:
 							break;
 						}
 						struct obj *proofobj;
-						proofobj = getobj(all_count, "erosionproof");
+						proofobj = getobj(allnoncount, "erosionproof");
 						if (!proofobj) break;
 						if (proofobj) {
 							if (proofobj->oerodeproof) {

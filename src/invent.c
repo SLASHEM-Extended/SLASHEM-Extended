@@ -39,6 +39,7 @@ STATIC_DCL char obj_to_let(struct obj *);
 #define FOLLOW(curr, flags) \
     (((flags) & BY_NEXTHERE) ? (curr)->nexthere : (curr)->nobj)
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 #ifdef OVLB
 
@@ -8453,7 +8454,7 @@ domarkforpet()
 {
 	struct obj *obj;
 	pline("Select an item that you don't want to be dropped if your pet is holding it.");
-	if (!(obj = getobj(all_count,"mark"))) return(0);
+	if (!(obj = getobj(allnoncount,"mark"))) return(0);
 
 	if (obj->unpaid) {
 		pline("You don't own it yet!");
