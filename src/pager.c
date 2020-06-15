@@ -25197,6 +25197,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Ouch! You're in pain!",
 	"Eww, Lou's dirty footwear brushed your clothing!",
 	"Eww, Lou's dirty footwear brushed your clothing! Now your shiny new pair of trousers got dirty because of that bitch!",
+	"You wear a T-shirt around your nose and mouth. You have difficulty breathing, but you can pass through stinking clouds and are immune to gas spores.",
 
 };
 

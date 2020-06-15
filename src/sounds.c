@@ -1775,7 +1775,7 @@ register struct monst *mtmp;
     else if (mtmp->data->msound >= MS_HUMANOID) {
 	if (!canspotmon(mtmp))
 	    map_invisible(mtmp->mx, mtmp->my);
-	verbalize("I'm hungry.");
+	(void) domonnoise(mtmp); /* "I'm hungry" for MS_HUMANOID but different for others --Amy */
 }
 }
 
@@ -3799,6 +3799,26 @@ noservices:
 		};
 
 		verbalize("%s", principal_msgs[rn2(SIZE(principal_msgs))]);
+		}
+		break;
+
+	case MS_BOSS:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "What? It's impossible that they are beating me, I'm the boss of this game after all!";
+			if (Sick) verbl_msg = "I might be running low on health, but unlike you, at least my nose isn't running all the time!";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/5) {
+			verbl_msg = "Argh, my spaceship is falling apart! Quick, someone needs to repair it!";
+			break;
+		}
+		if (mtmp->mtame && !mtmp->isminion && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Dude, get me something to eat! Now! You have 50 turns or you're fired.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Yes, my pet, we're in this together. I'm the boss, you just need to follow my lead and we'll finish off our enemies.";
+			break;
 		}
 		break;
 
