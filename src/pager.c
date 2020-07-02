@@ -25198,6 +25198,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"Eww, Lou's dirty footwear brushed your clothing!",
 	"Eww, Lou's dirty footwear brushed your clothing! Now your shiny new pair of trousers got dirty because of that bitch!",
 	"You wear a T-shirt around your nose and mouth. You have difficulty breathing, but you can pass through stinking clouds and are immune to gas spores.",
+	"Wait a minute, where are your reading glasses?",
+	"You have absolutely no clue what you just read, but you completely agree with every word.",
+	"Hm, the herb growing instructions in this book are fascinating.",
+	"The book contains a detailed recipe for blueberry muffins, complete with the author's signature.",
+	"Lossedom varl logostomatha orgerog xlaaab, lycsadomme o-o.",
+	"You are about to save as a text document. This will lose the formatting. Are you sure you want to continue?",
+
 
 };
 

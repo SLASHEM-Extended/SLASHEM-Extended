@@ -6227,7 +6227,7 @@ register struct obj *obj;
 		}
 
 		if (typ >= GRAY_DRAGON_SCALES && typ <= YELLOW_DRAGON_SCALES) {
-			sprintf(buf, "set of %s", actualn);
+			sprintf(eos(buf), "set of %s", actualn);
 			break;
 		}
 		if(is_boots(obj) || is_gloves(obj)) strcat(buf,"pair of ");
@@ -8598,7 +8598,7 @@ boolean actualwish;
 		register int j = strlen(wrp[i]);
 		if(!strncmpi(bp, wrp[i], j)){
 			oclass = wrpsym[i];
-			if(oclass != AMULET_CLASS) {
+			if(oclass != AMULET_CLASS && oclass != IMPLANT_CLASS) {
 			    bp += j;
 			    if(!strncmpi(bp, " of ", 4)) actualn = bp+4;
 			    /* else if(*bp) ?? */
