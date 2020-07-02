@@ -841,6 +841,7 @@ register struct monst *mtmp;
 register struct obj *gold;
 {
 	boolean msg_given = FALSE;
+	boolean willdelete = FALSE;
 
 	if(!likes_gold(mtmp->data) && !mtmp->isshk && !mtmp->ispriest
 			&& !is_mercenary(mtmp->data)) {
@@ -864,7 +865,8 @@ register struct obj *gold;
 		if (cansee(mtmp->mx, mtmp->my))
 		    pline("%s catches the gold.", Monnam(mtmp));
 #ifndef GOLDOBJ
-		if (!mtmp->isshk || rn2(2)) mtmp->mgold += gold->quan;
+		if (mtmp->isshk && rn2(2)) mtmp->mgold += gold->quan;
+		else willdelete = TRUE;
 #endif
 		if (mtmp->isshk) {
 			long robbed = ESHK(mtmp)->robbed;
@@ -989,6 +991,7 @@ register struct obj *gold;
 			    verbalize("That should do.  Now beat it!");
 		     else verbalize("That's not enough, coward!");
 		}
+
 
 #ifndef GOLDOBJ
 		dealloc_obj(gold);
