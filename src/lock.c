@@ -773,7 +773,7 @@ doforce()		/* try to force a chest with your weapon */
 	   (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) &&
 	    uwep->oclass != ROCK_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS) ||
 	   (objects[uwep->otyp].oc_skill < P_DAGGER) ||
-	   (objects[uwep->otyp].oc_skill > P_LANCE) ||
+	   (objects[uwep->otyp].oc_skill > P_LANCE && uwep->otyp != STEEL_WHIP) ||
 	   uwep->otyp == FLAIL || uwep->otyp == AKLYS
 	   || uwep->otyp == RUBBER_HOSE
 	  ) {

@@ -9619,7 +9619,7 @@ boolean knoweverything;
 				pline("*cue Vampire Killer theme* For some reason, Simon Belmont likes to use this weapon. It's got a totally pitiful damage output, and thick-skinned enemies are even outright immune to it. However, you can apply a bullwhip to perform feats like disarming an enemy."); break;
 #endif
 			case STEEL_WHIP: 
-				pline("A metal version of the bullwhip. While far stronger than a regular bullwhip, this weapon is still a whip and you know that whips suck. Steer clear. It can be applied to bash iron bars."); break;
+				pline("A metal version of the bullwhip. While far stronger than a regular bullwhip, this weapon is still a whip and you know that whips suck. Steer clear. It can be used to bash iron bars, but unlike other antibar weapons it requires the #force command to do so."); break;
 
 			case ETHER_WHIP:
 				pline("For its base type, this weapon certainly isn't that bad damage-wise... but unfortunately it's made of ether, so you'll be contaminated over time while wielding it, which you probably don't want."); break;
