@@ -21158,7 +21158,9 @@ register int	mmflags;
 	/* weak monsters have less HP on average: all those that have neither M2_STRONG nor M2_NASTY and aren't bosses --Amy */
 	boolean weakmon = (ptr && !strongmonst(ptr) && !extra_nasty(ptr) && !(ptr->geno & G_UNIQ));
 
-	if (!rn2(5)) reset_rndmonst(NON_PM);
+	if (!rn2(5)) {
+		reset_rndmonst(NON_PM);
+	}
 
 	/* if caller wants random location, do it here */
 	if(x == 0 && y == 0) {

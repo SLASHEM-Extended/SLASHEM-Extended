@@ -685,6 +685,10 @@ struct mkroom *sroom;
 		aggravatemonsteron = TRUE;
 	}
 
+	if (type == VOIDROOM) {
+		u.heavyaggravation = 1;
+	}
+
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
 	    for(sy = sroom->ly; sy <= sroom->hy; sy++) {
 		if(sroom->irregular) {
@@ -1560,6 +1564,7 @@ struct mkroom *sroom;
 	}
 
 	u.aggravation = 0;
+	u.heavyaggravation = 0;
 
 }
 

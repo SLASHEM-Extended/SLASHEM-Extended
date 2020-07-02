@@ -2082,10 +2082,21 @@ level_difficulty()
 	if (!rn2(20)) retvalue += rno(3);
 
 	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 5 : 3)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 10 : 5)) && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) retvalue /= 5;
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 20 : 10)) && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) {
+		retvalue *= 4;
+		retvalue /= 5;
+	}
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 5 : 3)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) {
+		retvalue *= 3;
+		retvalue /= 5;
+	}
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 10 : 5)) && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) {
+		retvalue *= 2;
+		retvalue /= 5;
+	}
+	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 20 : 10)) && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) {
+		retvalue /= 5;
+	}
 
 	if (retvalue < 1) retvalue = 1;
 
@@ -2139,13 +2150,13 @@ level_difficulty()
 
 	/* skew generation to make very high-level monsters much more unlikely --Amy */
 
-	if (retvalue > 20) retvalue = (19 + rnd(retvalue - 19));
+	if ((retvalue > 20) && rn2(3)) retvalue = (19 + rnd(retvalue - 19));
 
 	/* now skew it even more towards low-level stuff */
 
-	if (retvalue > 1 && retvalue <= 6) retvalue = rnd(retvalue);
-	else if (retvalue > 6 && retvalue <= 11) retvalue = ((retvalue - 5) + rnd(5));
-	else if (retvalue > 11) retvalue = (5 + rnd(retvalue - 5));
+	if (retvalue > 1 && retvalue <= 6 && !rn2(5)) retvalue = rnd(retvalue);
+	else if (retvalue > 6 && retvalue <= 11 && !rn2(4)) retvalue = ((retvalue - 5) + rnd(5));
+	else if (retvalue > 11 && !rn2(3)) retvalue = (5 + rnd(retvalue - 5));
 
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
