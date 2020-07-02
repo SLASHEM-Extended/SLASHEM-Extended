@@ -3566,7 +3566,7 @@ int duration;
 			FemaleTrapLudgera += duration;
 			break;
 		case 4:
-			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
+			pline("You feel like being kicked by sexy girls and cleaning their shoes.");
 			FemaleTrapKati += duration;
 			break;
 		case 5:

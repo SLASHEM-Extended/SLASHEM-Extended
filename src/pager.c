@@ -23667,7 +23667,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You can already imagine the farting noises you're gonna hear.",
 	"Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.",
 	"You'll certainly like to listen to the disgusting toilet noises.",
-	"You feel like being kicked by sexy girls and cleaing their shoes.",
+	"You feel like being kicked by sexy girls and cleaning their shoes.",
 	"Whoops, you're getting really dizzy.",
 	"Are you a blonde by any chance?",
 	"You feel vulnerable to spells!",

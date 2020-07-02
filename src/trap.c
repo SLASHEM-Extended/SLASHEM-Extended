@@ -6600,7 +6600,7 @@ newbossPENT:
 			seetrap(trap);
 
 			pline("Whoops... you seem to have stumbled into a trap that was set by Kati.");
-			pline("You feel like being kicked by sexy girls and cleaing their shoes.");
+			pline("You feel like being kicked by sexy girls and cleaning their shoes.");
 			u.cnd_feminismtrapamount++;
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 			if (Role_if(PM_EMERA)) emerafrenzy();
