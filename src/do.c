@@ -4206,7 +4206,10 @@ rerollchaloc:
 	    register struct trap *ttrap;
 
 	    for (ttrap = ftrap; ttrap; ttrap = ttrap->ntrap)
-		if (ttrap->ttyp == MAGIC_PORTAL) break;
+            /* find the portal with the right destination level (thanks bhaak --Amy) */
+            if (ttrap->ttyp == MAGIC_PORTAL &&
+                u.uz0.dnum == ttrap->dst.dnum &&
+                u.uz0.dlevel == ttrap->dst.dlevel) break;
 
 	    if (!ttrap) panic("goto_level: no corresponding portal!");
 	    seetrap(ttrap);
