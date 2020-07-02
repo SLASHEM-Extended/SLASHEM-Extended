@@ -11603,6 +11603,15 @@ int spell;
 	if (uarmc && itemhasappearance(uarmc, APP_SCIENCE_CLOAK) ) chance += 10;
 	if (u.tiksrvzllatdown) chance += 10;
 
+	skill = P_SKILL(spell_skilltype(spellid(spell)));
+	if (PlayerCannotUseSkills) skill = P_ISRESTRICTED;
+	if (skill >= P_BASIC) chance++;
+	if (skill >= P_SKILLED) chance++;
+	if (skill >= P_EXPERT) chance++;
+	if (skill >= P_MASTER) chance += 5;
+	if (skill >= P_GRAND_MASTER) chance += 5;
+	if (skill >= P_SUPREME_MASTER) chance += 5;
+
 	if (uarm && objects[(uarm)->otyp].oc_material == MT_CELESTIUM) chance += 2;
 	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_CELESTIUM) chance += 2;
 	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_CELESTIUM) chance += 2;
