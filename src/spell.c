@@ -11603,6 +11603,7 @@ int spell;
 	if (uarmc && itemhasappearance(uarmc, APP_SCIENCE_CLOAK) ) chance += 10;
 	if (u.tiksrvzllatdown) chance += 10;
 
+	/* higher spell skill should do SOMEthing --Amy */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
 	if (PlayerCannotUseSkills) skill = P_ISRESTRICTED;
 	if (skill >= P_BASIC) chance++;
