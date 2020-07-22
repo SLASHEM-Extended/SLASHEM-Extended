@@ -10234,6 +10234,14 @@ boolean your_fault;
 			else losehp(rnd( (monster_difficulty() + 3) / 3), "potion of acid", KILLED_BY_AN);
 
 		}
+		if (evilfriday) {
+			register struct obj *objX, *objX2;
+			for (objX = invent; objX; objX = objX2) {
+				objX2 = objX->nobj;
+				if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+			}
+		}
+
 		if (Stoned) fix_petrification();
 		break;
 	case POT_AMNESIA:
