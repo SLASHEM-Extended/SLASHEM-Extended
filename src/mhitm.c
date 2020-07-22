@@ -461,6 +461,9 @@ mattackm(magr, mdef)
 	mattk = getmattk(pa, i, res, &alt_attk);
 	otmp = (struct obj *)0;
 	attk = 1;
+	if (DEADMONSTER(mdef) || DEADMONSTER(magr)) { /* ANOTHER catchall by Amy because it keeps malfunctioning! */
+		break;
+	}
 
 	switch (mattk->aatyp) {
 	    case AT_BREA:
