@@ -3485,7 +3485,7 @@ secureidchoice:
 				use_skill(P_DEVICES,1);
 			}
 
-			pline("Using %s, you dress your wounds.", yname(otmp));
+			pline("Using a bandage, you dress your wounds."); /* read after free fix by Demo */
 			healup(techlevX(tech_no) * (rnd(2)+1) + (rn1(5,5) * techlevX(tech_no)),
 			  0, FALSE, FALSE);
 		    } else {
@@ -3570,6 +3570,10 @@ secureidchoice:
 		    You("decide against that idea.");
 		    return(0);
 		}
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
+		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
 			You("perform a flashy twirl!");
@@ -3609,6 +3613,10 @@ secureidchoice:
 		    /* Hopefully a mistake ;B */
 		    pline("Things may be going badly, but that's extreme.");
 		    return 0;
+		}
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
@@ -4057,6 +4065,10 @@ secureidchoice:
 			pline("Why don't you try wielding something else instead.");
 			return(0);
 		}
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
+		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp || !canspotmon(mtmp)) {
 			if (memory_is_invisible(u.ux + u.dx, u.uy + u.dy))
@@ -4239,8 +4251,12 @@ secureidchoice:
 			You("flex your muscles.");
 			return(0);
 		}
-            	if (!blitz_pummel()) return(0);
-                t_timeout = rnz(2000);
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
+		}
+		    if (!blitz_pummel()) return(0);
+		    t_timeout = rnz(2000);
 		break;
             case T_G_SLAM:
 	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
@@ -4255,8 +4271,12 @@ secureidchoice:
 			You("flex your muscles.");
 			return(0);
 		}
-            	if (!blitz_g_slam()) return(0);
-                t_timeout = rnz(1500);
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
+		}
+			if (!blitz_g_slam()) return(0);
+			t_timeout = rnz(1500);
 		break;
             case T_DASH:
 		if (!getdir((char *)0)) return(0);
@@ -6475,6 +6495,10 @@ revid_end:
 		    pline(flags.female ? "Since you don't have nuts, you cannot try to smash them with your feet either." : "For a moment, you feel the itch to ram your footwear into your own nuts, but then remember that you have a task to complete, and therefore decide against the idea.");
 		    return 0;
 		}
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
+		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
 			You("perform a powerful kick, and listen to very sexy air current noises as your %s whirls through thin air.", body_part(FOOT));
@@ -6511,6 +6535,10 @@ revid_end:
 			/* Hopefully a mistake ;B */
 			pline("Why don't you try wielding something else instead.");
 			return(0);
+		}
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp || !canspotmon(mtmp)) {
@@ -6770,6 +6798,10 @@ revid_end:
 				pline("You can't soften yourself!");
 				return(0);
 			}
+			if (!isok(u.dx, u.dy)) {
+				pline("Invalid target location.");
+				return 0;
+			}
 			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 			if (!mtmp || !canspotmon(mtmp)) {
 				if (memory_is_invisible(u.ux + u.dx, u.uy + u.dy))
@@ -6866,6 +6898,10 @@ revid_end:
 		if (!u.dx && !u.dy) {
 			You("flex your muscles.");
 			return(0);
+		}
+		if (!isok(u.dx, u.dy)) {
+			pline("Invalid target location.");
+			return 0;
 		}
 
             	if (!blitz_draining_punch()) return(0);
@@ -9141,6 +9177,9 @@ doblitz()
 	if (!getdir((char *)0)) return(0);
 	if (!u.dx && !u.dy) {
 		return(0);
+	}
+	if (!isok(u.dx, u.dy)) {
+		return 0;
 	}
 	
 	dx = u.dx;
