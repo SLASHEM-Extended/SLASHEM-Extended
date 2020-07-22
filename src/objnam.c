@@ -6549,7 +6549,7 @@ char *prefix;
 			case 2:	strcat(prefix, flags.simpledescs ? "2x" : "very "); break;
 			case 3:	strcat(prefix, flags.simpledescs ? "3x" : "thoroughly "); break;
 		}			
-		strcat(prefix, is_corrodeable(obj) ? (flags.simpledescs ? "etched " : "corroded ") : "rotted ");
+		strcat(prefix, is_corrodeable(obj) ? (flags.simpledescs ? "eroded " : "corroded ") : "rotted ");
 	}
 	if (obj->otyp == BELL_OF_OPENING) {
 		if (u.bellimbued) strcat(prefix, flags.simpledescs ? "imb " : "imbued ");
