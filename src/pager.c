@@ -25204,6 +25204,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The book contains a detailed recipe for blueberry muffins, complete with the author's signature.",
 	"Lossedom varl logostomatha orgerog xlaaab, lycsadomme o-o.",
 	"You are about to save as a text document. This will lose the formatting. Are you sure you want to continue?",
+	"All those rumors about virology labs and wuhan wet markets?  Lies, to cover up the true role of slex.", /* by jonadab */
+	"The goblin zaps an oak wand! Canapes appear from nowhere!",
 
 
 };

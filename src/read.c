@@ -843,6 +843,7 @@ doread()
 	"K2 and Hanh's ballerinas allowed me to fix a very aggravating bug that corrupted the topten file!",
 	"Because of a pair of asian block-heeled sandals, we have very scratched legs!",
 	"using a classic demo escape Manuela I haven't used in... fuck like 10+ years?", /* Demo, on a phone :P */
+	"super lotsa added sadism hack extended masochism", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];

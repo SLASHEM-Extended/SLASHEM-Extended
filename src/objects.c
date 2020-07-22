@@ -6418,6 +6418,15 @@ SCROLL((char *)0,               "ALTERNATE BETWEEN MASSAGING AND KICKING THE NUT
 SCROLL((char *)0,               "LOL I DONT WEAR A FACE MASK",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 SCROLL((char *)0,               "PAIR OF MALE HIGH HEELS",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 SCROLL((char *)0,               "SAY NO TO RACISM",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
+SCROLL((char *)0,               "ORIANDO KEPI",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "WELL THEN FUCK AT LAST AND BE DONE WITH IT",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "THE GROTTO IS GROTTY BECAUSE YOU CAN NEVER ENTER IT",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "GETS YOU ME THEN FUCKST YOU ME",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "MEIN PAPA SPIELT MIT MEINEM ANUS",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "SIE HAT 20 PAAR HODEN AMPUTIERT",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "BUESCHELMAEDCHENBLOCKABSAETZE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "YOUR VARIANT IS LIKE AN AIRPLANE WITHOUT WINGS",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "SUEDEDAZ MA SEE",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 
 
 #ifdef MAIL

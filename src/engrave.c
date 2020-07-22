@@ -5364,6 +5364,12 @@ static const char *epitaphs[] = {
 	"Wrong variant, 'udemy certified metasploit framework professional' sounds like a slex monster, not a dnethack one. Learn to tag your post properly next time bro :P",
 	"you don't want a cursed luckstone, because you'll likely not be able to pray and your wand of wishing will also not work correctly, but behave more like the virgin on her wedding night: can't find the hole!",
 	"they did that on purpose because they want to maximally piss off me (specifically, they don't care about pissing off anyone else, just me), and nope I'm not paranoid, they're really after me",
+	"The only reason to play SLEX I can imagine is that your supply of acid ran out.", /* by Mandevil */
+	"Oh, you didn't know about slex being the actual cause of COVID.", /* by jonadab */
+	"this game is a fever dream", /* by amateurhour */
+	"the sokosolver floors being bass ackwards is also a pita", /* ditto */
+	"the f in slex stands for fun", /* ditto */
+	"no theories involve you surviving a run of slex all the way through",
 
 };
 
