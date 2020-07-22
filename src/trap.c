@@ -7000,6 +7000,7 @@ newbossPENT:
 	    case DESTROY_ARMOR_TRAP:
 
 		seetrap(trap);
+		if (!rn2(5)) deltrap(trap); /* CAUTION: "trap" might have been dereferenced now */
 		pline("CLICK! You have triggered a trap!");
 
 		{
