@@ -2525,8 +2525,9 @@ register struct monst *shkp;
 	}
 	/* reduce player's ability to gain tons of money from selling common items --Amy */
 	if (tmp > 1) {
-	 	if (obj->otyp == IC && obj->cursed) tmp /= 20L;	
+	 	if (obj->otyp == IC && obj->cursed) tmp /= 20L;
 		if (obj->otyp == IC && !obj->cursed) tmp /= 10L;
+	 	if (obj->otyp == SPOON) tmp /= 100L; /* base price 5000??? ridiculous */
 		if (objects[obj->otyp].oc_skill == P_FIREARM) tmp /= 10L;
 		if (objects[obj->otyp].oc_skill == -P_FIREARM) tmp /= 3L;
 		if (tmp < 1) tmp = 1; /* fail safe */
@@ -2537,7 +2538,7 @@ register struct monst *shkp;
 		if (obj->oclass == SCROLL_CLASS) tmp /= 10L;
 		if (obj->oclass == SPBOOK_CLASS) tmp /= 10L;
 		if (obj->oclass == WAND_CLASS) tmp /= 10L;
-	 	if (obj->otyp >= LUCKSTONE && obj->otyp <= SLING_AMMO) tmp /= 10L;	
+	 	if (obj->otyp >= LUCKSTONE && obj->otyp <= SLING_AMMO) tmp /= 10L;
 	}
 	/* after all, we nuked the thing that should not exist (price id) by making many item types always have the price
 	 * of the most expensive item in that type; if you can sell common scrolls, potions etc. for that price, it's way
