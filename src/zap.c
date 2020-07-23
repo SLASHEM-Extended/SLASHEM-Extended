@@ -2695,9 +2695,21 @@ create_polymon(obj, okind)
 	    pm_index = PM_MITHRIL_GOLEM;
 	    material = "mithril ";
 	    break;
+	case MT_ALLOY:
+	    pm_index = PM_ALLOY_GOLEM;
+	    material = "alloy ";
+	    break;
+	case MT_SCRAP:
+	    pm_index = PM_SCRAP_GOLEM;
+	    material = "scrap ";
+	    break;
 	case MT_BRICK:
 	    pm_index = PM_BRICK_GOLEM;
 	    material = "brick ";
+	    break;
+	case MT_FOAM:
+	    pm_index = PM_FOAM_GOLEM;
+	    material = "foam ";
 	    break;
 	case MT_ANTIDOTIUM:
 	    pm_index = PM_ANTIDOTIUM_GOLEM;

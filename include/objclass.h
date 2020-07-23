@@ -91,7 +91,10 @@ struct objclass {
 #define MT_METEOSTEEL		42	/* metallic, better dmg/AC, doesn't hinder spellcasting */
 #define MT_ANTIDOTIUM		43	/* inedible, helps against corona */
 #define MT_NANOMACHINE		44	/* inedible, repairs itself */
-#define LASTMATERIAL	MT_NANOMACHINE
+#define MT_FOAM		45	/* inedible */
+#define MT_SCRAP		46	/* metallic */
+#define MT_ALLOY		47	/* metallic */
+#define LASTMATERIAL	MT_ALLOY
 /* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 
 #define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_CELESTIUM || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)

@@ -495,7 +495,7 @@ struct obj {
 #define is_heavyweapon(obj)	(bimanual(obj) && objects[(obj)->otyp].oc_skill >= P_DAGGER && objects[(obj)->otyp].oc_skill <= P_WHIP && objects[(obj)->otyp].oc_skill != P_POLEARMS && objects[(obj)->otyp].oc_skill != P_QUARTERSTAFF && !(objects[(obj)->otyp].oc_skill >= P_LANCE && objects[(obj)->otyp].oc_skill <= P_BOOMERANG) )
 
 /* misc */
-#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= MT_LEATHER || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || \
+#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= MT_LEATHER || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_FOAM || \
 				 (otmp)->otyp == RUBBER_HOSE)
 /* note by Amy: it is intentional that secree and compost don't appear here */
 

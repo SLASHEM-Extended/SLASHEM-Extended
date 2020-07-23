@@ -5651,7 +5651,7 @@ materialchoice1:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(14)) {
+				switch (rnd(17)) {
 					case 1: changematerial = MT_LIQUID; break;
 					case 2: changematerial = MT_WAX; break;
 					case 3: changematerial = MT_VEGGY; break;
@@ -5666,6 +5666,9 @@ materialchoice1:
 					case 12: changematerial = MT_POURPOOR; break;
 					case 13: changematerial = MT_SAND; break;
 					case 14: changematerial = MT_CERAMIC; break;
+					case 15: changematerial = MT_FOAM; break;
+					case 16: changematerial = MT_ALLOY; break;
+					case 17: changematerial = MT_SCRAP; break;
 					default: changematerial = MT_PAPER; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;

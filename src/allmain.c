@@ -3535,7 +3535,7 @@ protectwhatchoice:
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (objects[(steeling)->otyp].oc_material >= MT_VIVA && objects[(steeling)->otyp].oc_material <= MT_SAND) 
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material >= MT_CHROME && objects[(steeling)->otyp].oc_material <= MT_NANOMACHINE) 
+				else if (objects[(steeling)->otyp].oc_material >= MT_CHROME && objects[(steeling)->otyp].oc_material <= MT_ALLOY) 
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;

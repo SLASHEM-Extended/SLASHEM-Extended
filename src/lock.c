@@ -1774,6 +1774,8 @@ struct obj *otmp;
 		break;
 	case MT_FLESH:	disposition = "is mashed";
 		break;
+	case MT_FOAM:	disposition = "is mashed";
+		break;
 	case MT_TAR:	disposition = "breaks apart";
 		break;
 	case MT_GLASS:	disposition = "shatters";
