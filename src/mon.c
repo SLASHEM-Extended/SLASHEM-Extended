@@ -5432,6 +5432,7 @@ boolean was_swallowed;			/* digestion */
 	struct permonst *mdat = mon->data;
 	int i, tmp;
 	boolean trolling = 0;
+	boolean hasexploded = 0;
 
 	int monsx, monsy;
 	boolean terrainok = FALSE;
@@ -5516,7 +5517,8 @@ boolean was_swallowed;			/* digestion */
 	    	killer_format = KILLED_BY_AN;
 	    	explode(mon->mx, mon->my, -1, tmp, MON_EXPLODE, EXPL_NOXIOUS);
 	    	if (!trolling) return (FALSE);
-	    } else if (mon->egotype_exploder) {
+	    } else if (mon->egotype_exploder && !hasexploded) {
+		hasexploded = TRUE;
 		tmp = d(2, 1 + (mon->m_lev * 5) );
 		if (was_swallowed && magr) {
 		    if (magr == &youmonst) {
