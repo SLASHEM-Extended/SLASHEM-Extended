@@ -11175,6 +11175,11 @@ aliasagain:
 		}
 	}
 
+	if (!strncmpi(plname, "Glorious Dead", 14)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+
 	init_dungeons();	/* must be before u_init() to avoid rndmonst()
 				 * creating odd monsters for any tins and eggs
 				 * in hero's initial inventory */
