@@ -1343,7 +1343,7 @@ walscholardone:
 		;	/* do nothing */
 	    else if (can_ooze(&youmonst)) {
 		if (mode == DO_MOVE) You("ooze under the door.");
-	    } else if (((tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd)) && flags.eatingwalls ) {
+	    } else if (((tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd)) && flags.eatingdoors ) {
 		/* Eat the door. */
 		if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
 	    } else {
@@ -1488,7 +1488,7 @@ walscholardone:
 	if (mode == DO_MOVE) {
 	    /* tunneling monsters will chew before pushing */
 	    if ( (( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) &&
-		!In_sokoban(&u.uz)) && flags.eatingwalls ) {
+		!In_sokoban(&u.uz)) && flags.eatingboulders ) {
 		if (still_chewing(x,y)) return FALSE;
 	    } else
 		if (moverock() < 0) return FALSE;

@@ -41,7 +41,9 @@ struct flag {
 	boolean  confirm;	/* confirm before hitting tame monsters */
 	boolean  debug;		/* in debugging mode */
 #define wizard	 flags.debug
+	boolean  eatingboulders; /* being a scurrier or similar will eat boulders by moving into them */
 	boolean  eatingconfirm;	/* confirm when eating non-comestibles */
+	boolean  eatingdoors; /* being a scurrier or similar will eat doors by moving into them */
 	boolean  eatingwalls; /* being a scurrier or similar will eat walls by moving into them */
 	boolean  end_own;	/* list all own scores */
 	boolean  explore;	/* in exploration mode */
