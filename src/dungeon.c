@@ -1993,6 +1993,15 @@ level_difficulty()
 		deepestuz = deepest_lev_reached(TRUE);
 	}
 
+	/* since the dungeon in SLEX is pretty deep, let's make the difficulty increase more gentle... --Amy */
+	if (depthuz >= 12) {
+		depthuz *= 4;
+		depthuz /= 5;
+	} else if (depthuz == 7) depthuz = 6;
+	else if (depthuz == 8) depthuz = 7;
+	else if (depthuz == 9) depthuz = 7;
+	else if (depthuz == 10) depthuz = 8;
+	else if (depthuz == 11) depthuz = 8;
 
 	if (In_endgame(&u.uz))
 		retvalue = (110 + (u.ulevel/2) );
