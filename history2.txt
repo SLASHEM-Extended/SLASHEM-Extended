@@ -1,6 +1,36 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.6.8 - May 2020
+- Spoons sell for much less (but still cost the same if the player wants to buy one).
+- Added options "eatingdoors" and "eatingboulders" which player characters with wall-eating capabilities may use to control what they eat by moving into it.
+- Fixed the bug where a monster with the exploder egotype may explode six times in a row.
+- Fixed a dmonsfree error that occasionally happened when monsters with several attacks killed other monsters before all the attacks had been processed.
+- The player can no longer name themselves after a certain artifact.
+- Fixed some read after free errors of certain techniques.
+- The destroy armor trap may now be removed when triggered, with a 1 in 5 chance.
+- In evilvariant mode, being hit by a thrown potion of acid can now corrode the player's items.
+- Heavy status effects are now displayed in the status line when playing with the curses interface.
+- Increasing spellcasting skill levels will now ever so slightly reduce the failure rate of all spells in that school with every skill point.
+- Levels can now have multiple magic portals leading to different areas.
+- Reworked monster difficulty function to make sure that higher-level monsters aren't too rare, while also ensuring that general monster difficulty rises more slowly as the player goes deeper.
+- Gold thrown to a soldier will now always be removed from the game.
+- The steel whip can now be used to force iron bars with the #force command, because applying it has whip effects.
+- Toned down damage of the new sling ammos.
+- Fixed bugs with item selection sometimes not selecting items correctly.
+- The scroll of cure now also fixes glib.
+- Nerfed the damage output of laser swatters.
+- Hopefully fixed the crash that occurs when spacebaring past the character selection screen in curses mode.
+- Fixed a potential buffer overflow with bones file names.
+- Fixed an oversight where peaceful monsters would sometimes cast invisibility and no longer be visible to the player.
+- Bell caves and amulet imbuing dungeons are less RNG as far as teleportitis is concerned.
+- Disarming a trap via manual untrapping or the scroll/wand may now boost the player's max HP.
+- Reading a spellbook successfully may occasionally boost the player's max Pw.
+- Having the symbiosis skill now reduces the hunger rate from having a regenerating symbiote, depending on skill level.
+- Polymorphing skill trains faster now, and also when feeling like a new man.
+- Shopkeepers may now also offer a blessing service, which only works on known-uncursed items.
+- Pressing an invalid direction at a prompt that lets the player move a target cursor to a location of their choice no longer aborts whenever a wrong button is pressed.
+- Fixed a previously introduced crash bug when the player has metal spells.
+- The adult lizard corpse no longer decays.
 - Fixed the bug with control magic causing hostile rays to pass through pets and the player's own rays never passing through a ridden steed.
 - Life saving as a felid, troll or rodneyan will now fail if the player has less than 11 maximum HP. If the double level drain causes the max HP to be reduced below 11 after the first drain, a bunch of additional bad effects will affect the player.
 - Fixed the SLASH'EM issue where altars on the oracle level cannot be used for sacrificing. This bug didn't manifest in SLASH'EM because altars didn't generate there and outside of wizard mode there was no way to make one appear, but in SLASH'EM Extended it is possible.
