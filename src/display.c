@@ -1040,6 +1040,9 @@ newsym(x,y)
 
     if (in_mklev) return;
 
+    if (program_state.done_hup)
+	return;
+
 	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {
 	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
 	return;
@@ -1376,6 +1379,9 @@ newsymX(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
+
+    if (program_state.done_hup)
+	return;
 
 	if (ManlerIsChasing && x == u.manlerx && y == u.manlery) {
 	show_glyph(x, y, GLYPH_MON_OFF + rn2(NUMMONS));
@@ -2568,6 +2574,8 @@ flush_screen(cursor_on_u)
     if (delay_flushing) return;
     if (flushing) return;	/* if already flushing then return */
     flushing = 1;
+    if (program_state.done_hup)
+	return;
 
     for (y = 0; y < ROWNO; y++) {
 	register gbuf_entry *gptr = &gbuf[y][x = gbuf_start[y]];

@@ -220,6 +220,7 @@ E void show_conduct(int);
 #ifdef DUMP_LOG
 E void dump_enlightenment(int);
 E void dump_conduct(int);
+E void end_of_input(void);
 #endif
 E int xytod(SCHAR_P,SCHAR_P);
 E void dtoxy(coord *,int);

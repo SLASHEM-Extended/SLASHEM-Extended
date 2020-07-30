@@ -167,6 +167,8 @@ moveloop()
     youmonst.movement = NORMAL_SPEED;	/* give the hero some movement points */
 
     for(;;) {
+	if (program_state.done_hup)
+            end_of_input();
 	get_nh_event();
 #ifdef POSITIONBAR
 	do_positionbar();

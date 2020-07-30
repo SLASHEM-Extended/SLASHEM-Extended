@@ -101,6 +101,9 @@ pline VA_DECL(const char *, line)
 
 	if (!line || !*line) return;
 
+	if (program_state.done_hup)
+		return;
+
 	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3) && !u.captchahack
 
 #if defined(WIN32)

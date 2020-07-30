@@ -292,9 +292,6 @@ static void add_debug_extended_commands(void);
 #ifdef OVLB
 STATIC_DCL void enlght_line(const char *,const char *,const char *);
 STATIC_DCL char *enlght_combatinc(const char *,int,int,char *);
-#ifdef UNIX
-static void end_of_input(void);
-#endif
 #endif /* OVLB */
 
 static const char* readchar_queue="";
@@ -13499,8 +13496,9 @@ register char *cmd;
 	boolean do_walk, do_rush, prefix_seen, bad_command,
 		firsttime = (cmd == 0);
 
-
 	iflags.menu_requested = FALSE;
+	if (program_state.done_hup)
+		end_of_input();
 	if (firsttime) {
 		flags.nopick = 0;
 		cmd = parse();
@@ -14439,8 +14437,6 @@ parse()
 #endif /* OVL0 */
 #ifdef OVLB
 
-#ifdef UNIX
-static
 void
 end_of_input()
 {
@@ -14452,7 +14448,6 @@ end_of_input()
 	clearlocks();
 	terminate(EXIT_SUCCESS);
 }
-#endif
 
 #endif /* OVLB */
 #ifdef OVL0
