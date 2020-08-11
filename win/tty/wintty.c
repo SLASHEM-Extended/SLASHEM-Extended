@@ -424,6 +424,7 @@ give_up:	/* Quit */
 			if (yn("Use the ones you set in your config file? (example: OPTIONS=hybridangbander)") == 'y') {
 
 				flags.hybridcancel = 1; /* don't give more than the player wanted */
+				flags.randomhybrids = 0;
 				/* every other option will first set all hybridization flags to zero --Amy */
 
 			} else if (yn("Randomized hybridization? (like selecting a random race, this has only a 10% chance of actually adding any hybridization)") == 'y') {
@@ -824,6 +825,7 @@ give_up:	/* Quit */
 			    }
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */
+			flags.randomhybrids = 0;
 
 			} else if (yn("Randomized hybridization (but always add at least one hybrid race)?") == 'y') {
 
@@ -1243,6 +1245,7 @@ give_up:	/* Quit */
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */
+			flags.randomhybrids = 0;
 
 			} else {
 
@@ -1377,6 +1380,7 @@ give_up:	/* Quit */
 				}
 
 			flags.hybridcancel = 1; /* don't give more than the player wanted */
+			flags.randomhybrids = 0;
 
 			}
 
@@ -1387,6 +1391,7 @@ give_up:	/* Quit */
 			flags.hybridization = flags.hybridangbander = flags.hybridaquarian = flags.hybridcurser = flags.hybridhaxor = flags.hybridhomicider = flags.hybridsuxxor = flags.hybridwarper = flags.hybridrandomizer = flags.hybridnullrace = flags.hybridmazewalker = flags.hybridsoviet = flags.hybridxrace = flags.hybridheretic = flags.hybridsokosolver = flags.hybridspecialist = flags.hybridamerican = flags.hybridminimalist = flags.hybridnastinator = flags.hybridrougelike = flags.hybridsegfaulter = flags.hybridironman = flags.hybridamnesiac = flags.hybridproblematic = flags.hybridwindinhabitant = flags.hybridaggravator = flags.hybridevilvariant = flags.hybridlevelscaler = flags.hybriderosator = flags.hybridroommate = flags.hybridextravator = flags.hybridhallucinator = flags.hybridbossrusher = flags.hybriddorian = flags.hybridtechless = flags.hybridblait = flags.hybridgrouper = flags.hybridscriptor = flags.hybridunbalancor = flags.hybridbeacher = flags.hybridstairseeker = flags.hybridmatrayser = flags.hybridfeminizer = 0;
 
 			flags.hybridcancel = 1; /* player answered no to the "do you want hybridization" prompt */
+			flags.randomhybrids = 0;
 		}
 	    }
 
