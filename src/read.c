@@ -844,6 +844,8 @@ doread()
 	"Because of a pair of asian block-heeled sandals, we have very scratched legs!",
 	"using a classic demo escape Manuela I haven't used in... fuck like 10+ years?", /* Demo, on a phone :P */
 	"super lotsa added sadism hack extended masochism", /* by Demo */
+	"that's the intended way to play slex though isn't it? 'quite high'?", /* by bubbles */
+	"gtfo scrubs goml hit #quit if ur bad sucka get rekt", /* by amateurhour */
 
 	    };
 	    char buf[BUFSZ];
