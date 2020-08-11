@@ -241,10 +241,10 @@ struct obj {
 			 !is_unpoisonable_firearm_ammo(otmp))
 #define uslinging()	(uwep && objects[uwep->otyp].oc_skill == P_SLING)
 #define is_weptool(o)	((o)->oclass == TOOL_CLASS && \
-			 objects[(o)->otyp].oc_skill != P_NONE)
+			 (objects[(o)->otyp].oc_skill != P_NONE || ((o)->otyp == TIN_OPENER) || ((o)->otyp == BUDO_NO_SASU) ) )
 
 #define is_weptoolbase(o)	(objects[o].oc_class == TOOL_CLASS && \
-			 objects[o].oc_skill != P_NONE)
+			 (objects[o].oc_skill != P_NONE || (o == TIN_OPENER) || (o == BUDO_NO_SASU) ) )
 
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
