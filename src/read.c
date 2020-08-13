@@ -4878,6 +4878,17 @@ enchantarmorchoice:
 			setworn(otmp, savewornmask);
 
 		}
+		/* and cursed enchant armor is a way to remove the magical enchantment --Amy */
+		if (otmp->enchantment && s < 0) {
+
+			long savewornmask;
+			savewornmask = otmp->owornmask;
+			setworn((struct obj *)0, otmp->owornmask);
+			otmp->enchantment = 0;
+			pline("Your %s lost its magical properties!", xname(otmp) );
+			setworn(otmp, savewornmask);
+
+		}
 
 		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
 		    (special_armor || !rn2(7)))
