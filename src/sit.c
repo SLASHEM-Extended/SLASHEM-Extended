@@ -1174,7 +1174,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(216)) {
+	switch(rnd(218)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -2225,6 +2225,29 @@ attrcurse()			/* remove a random INTRINSIC ability */
 			You_feel("your %s coagulants failing!", body_part(BLOOD));
 			u.cnd_intrinsiclosscount++;
 		}
+		break;
+	case 216: if (HControlMagic & INTRINSIC) {
+			HControlMagic &= ~INTRINSIC;
+			You_feel("unable to control your magic!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HControlMagic & TIMEOUT) {
+			HControlMagic &= ~TIMEOUT;
+			You_feel("unable to control your magic!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 217: if (HExpBoost & INTRINSIC) {
+			HExpBoost &= ~INTRINSIC;
+			You_feel("a loss of experience!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HExpBoost & TIMEOUT) {
+			HExpBoost &= ~TIMEOUT;
+			You_feel("a loss of experience!");
+			u.cnd_intrinsiclosscount++;
+		}
+
 		break;
 	default: break;
 	}

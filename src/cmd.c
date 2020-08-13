@@ -6124,6 +6124,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoControlMagic && (final || u.uprops[DEAC_CONTROL_MAGIC].intrinsic) ) {
+		sprintf(buf, "prevented from having control magic");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_CONTROL_MAGIC].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoExpBoost && (final || u.uprops[DEAC_EXP_BOOST].intrinsic) ) {
+		sprintf(buf, "prevented from having experience boost");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_EXP_BOOST].intrinsic);
+		you_are(buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
@@ -6181,6 +6193,9 @@ boolean guaranteed;
 			break;
 		case STEEL_SHIELD:
 			shieldblockrate = 30;
+			break;
+		case METEORIC_STEEL_SHIELD:
+			shieldblockrate = 32;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
@@ -6566,6 +6581,8 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Technicality) you_have(StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if ((guaranteed || !rn2(10)) && (ScentView || EcholocationActive)) you_have(StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if ((guaranteed || !rn2(10)) && DiminishedBleeding) you_have(StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
+	if ((guaranteed || !rn2(10)) && ControlMagic) you_have(StrongControlMagic ? "strong magic control" : "magic control");
+	if ((guaranteed || !rn2(10)) && ExpBoost) you_have(StrongExpBoost ? "a strong experience boost" : "an experience boost");
 	if ((guaranteed || !rn2(10)) && Psi_resist) you_have(StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", StrongExtra_wpn_practice ? " train skills and attributes much faster" : " train skills and attributes faster");
 	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
@@ -10015,6 +10032,18 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoControlMagic) {
+		sprintf(buf, "prevented from having control magic");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_CONTROL_MAGIC].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoExpBoost) {
+		sprintf(buf, "prevented from having experience boost");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_EXP_BOOST].intrinsic);
+		dump(youwere, buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if (uarms) {
@@ -10072,6 +10101,9 @@ int final;
 			break;
 		case STEEL_SHIELD:
 			shieldblockrate = 30;
+			break;
+		case METEORIC_STEEL_SHIELD:
+			shieldblockrate = 32;
 			break;
 		case CRYSTAL_SHIELD:
 		case RAPIRAPI:
@@ -10421,6 +10453,8 @@ int final;
 	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
+	if (ControlMagic) dump(youhad, StrongControlMagic ? "strong magic control" : "magic control");
+	if (ExpBoost) dump(youhad, StrongExpBoost ? "a strong experience boost" : "an experience boost");
 	if (Psi_resist) dump(youhad, StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if (Extra_wpn_practice) dump("  ", StrongExtra_wpn_practice ? "You could train skills and attributes much faster" : "You could train skills and attributes faster");
 	if (Death_resistance) dump(youhad, "resistance to death rays");

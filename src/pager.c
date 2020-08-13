@@ -25373,6 +25373,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'am I the only person who noticed what a mindless drone you are?'",
 	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'At the ass hangs the hammer, I certainly won't pay 20 euros just because I behaved like a completely normal person.'",
 	"Incoming message for Player 1. The message is from 'Corona nerve head'. It reads: 'You and your stupid 'for each other' hashtag! I don't care about any 'for each other', I'm the only one who counts!'",
+	"You feel unable to control your magic!",
+	"You feel magic-controlled!",
+	"You feel a loss of experience!",
+	"You feel a surge of experience!",
 
 
 };

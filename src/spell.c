@@ -5235,7 +5235,7 @@ addspmagain:
 					break;
 				case 12:
 					pline("Suddenly, you gain a new companion!");
-					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 					break;
 				case 13:
 					{
@@ -9202,7 +9202,7 @@ controlagain:
 		break;
 
 	case SPE_CREATE_FAMILIAR:
-		if (!rn2(5)) (void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		if (!rn2(5)) (void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 		else if (!rn2(2)) {
 			pline("The summoned monster does not seem to be friendly!");
 			(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);

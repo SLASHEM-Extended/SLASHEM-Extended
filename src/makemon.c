@@ -23881,6 +23881,8 @@ rndmonst()
 /*
  *	Find out how many monsters exist in the range we have selected.
  */
+
+		/*pline("maxmlev %d", maxmlev);*/
 	     
 loopback:
 	    /* (`mndx' initialized above) */

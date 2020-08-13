@@ -9288,6 +9288,8 @@ boolean knoweverything;
 				pline("This hammer requires both hands to use, but it does very high amounts of damage and even more if the target is a golem."); break;
 			case BRIDGE_MUZZLE:
 				pline("A one-handed hammer that does rather high damage. It can be applied to bash iron bars."); break;
+			case AIR_PRESSURE_HAMMER:
+				pline("This hammer deals very good damage against small monsters and also isn't that bad against large ones."); break;
 			case INKA_BOOT:
 				pline("Think of the sweet brown leather your sputa will flow down. :-) It uses the hammer skill and does lots of damage to small monsters but almost no damage to large ones. It can be applied to bash iron bars."); break;
 			case SOFT_LADY_SHOE:
@@ -9376,6 +9378,8 @@ boolean knoweverything;
 				pline("This bow can fire several arrows in a single turn. Firing odor shots from it gives a multishot bonus. However, unless you're playing the hussy role, actually hitting things with it will be difficult for you."); break;
 			case META_BOW:
 				pline("The material of this bow is randomized, which doesn't actually affect all that much. Equip some arrows in your quiver and fire away."); break;
+			case BLUE_BOW:
+				pline("This shadowy bow can fire arrows at a slightly higher than normal distance."); break;
 			case WIND_BOW:
 				pline("Wielding this bow makes you very fast, and it can shoot arrows from your quiver."); break;
 			case ODOR_SHOT:
@@ -10171,6 +10175,8 @@ boolean knoweverything;
 				pline("A relatively good suit of armor that resists erosion."); break;
 			case BAR_CHAIN_MAIL:
 				pline("It's a chain mail that cannot rust, although it's still subject to corrosion."); break;
+			case OSFA_CHAIN_MAIL:
+				pline("This particular chain mail can be put on even when you're too big or small to wear armor! One size fits all!"); break;
 			case TAR_CHAIN_MAIL:
 				pline("Chain mail made of lithic material, useful if you want to cast spells and still wear armor."); break;
 			case FULL_LEAD_SUIT:
@@ -11205,6 +11211,8 @@ boolean knoweverything;
 				pline("A good shield that offers solid armor class."); break;
 			case STEEL_SHIELD:
 				pline("This metal shield can deflect lots of attacks."); break;
+			case METEORIC_STEEL_SHIELD:
+				pline("A lightweight shield that gives lots of armor class and chance to block."); break;
 			case CRYSTAL_SHIELD:
 				pline("This glass shield can deflect lots of attacks and also gives MC1."); break;
 			case LARGE_SHIELD:
@@ -12820,6 +12828,8 @@ boolean knoweverything;
 				pline("The unicorn horn can be used as a two-handed melee weapon that uses its own skill, and applying it can cure a variety of bad effects."); break;
 			case DARK_HORN:
 				pline("It's a two-handed melee weapon that uses the unicorn horn skill, but its main use is to be applied, which can cure some bad effects. Every time you apply it, the area around you is darkened."); break;
+			case BUBBLEHORN:
+				pline("This two-handed unicorn horn does very bad melee damage. Its actual purpose is to be applied to fix lost stats; a positively enchanted one may also increase the user's stats."); break;
 			case ARCANE_HORN:
 				pline("This unicorn horn is a two-handed melee weapon that cannot be applied (unlike the regular unicorn horn). Instead, in order to fix troubles with it, you have to hit a monster in melee with it."); break;
 			case TORCH: 
@@ -13391,6 +13401,8 @@ boolean knoweverything;
 				pline("Reading this scroll summons some monsters randomly on the level."); break;
 			case SCR_CREATE_FAMILIAR: 
 				pline("Reading this scroll summons a tame monster that will help you out."); break;
+			case SCR_ALLY:
+				pline("Summons another copy of your starting pet."); break;
 			case SCR_SUMMON_UNDEAD: 
 				pline("This scroll summons undead monsters if read."); break;
 			case SCR_TAMING: 
@@ -13459,12 +13471,16 @@ boolean knoweverything;
 				pline("You somehow managed to get this scroll into your inventory. Congratulations. Why don't you read it then? Maybe you'll think of Maud and forget everything else! :-)"); break;
 			case SCR_ENCHANT_WEAPON: 
 				pline("Your wielded weapon's enchantment goes up if you read this scroll. Beware, if the weapon's enchantment is +6 or higher, the weapon may blow up."); break;
+			case SCR_GREATER_ENCHANT_WEAPON: 
+				pline("This scroll can increase the enchantment of your wielded weapon by several points if you're lucky. However, a weapon that is already +6 or higher may blow up."); break;
 			case SCR_ENCHANT_ARMOR: 
 #ifdef PHANTOM_CRASH_BUG
 				pline("Select an armor to enchant. Armors at +4 or higher may evaporate (elven armors will evaporate at +6 or higher)."); break;
 #else
 				pline("You may select one of your worn pieces of armor to increase its enchantment. Most pieces of armor have a chance to evaporate if they're already enchanted to +4 or higher. Elven armors won't evaporate unless they're at least +6 though."); break;
 #endif
+			case SCR_GREATER_ENCHANT_ARMOR: 
+				pline("Lets you select an armor piece to enchant and tries to increase its enchantment value by one or several points. Armor pieces that are already +4 or higher (+6 or higher if elven) may blow up."); break;
 			case SCR_REMOVE_CURSE:
 				pline("This scroll can uncurse some of the items in your inventory if you read it."); break;
 			case SCR_ALTER_REALITY:
@@ -13595,6 +13611,8 @@ boolean knoweverything;
 #else
 				pline("This scroll can be read to charge an object, which must be in your main inventory and of an item type that can be charged, e.g. a wand. Be careful, recharging an item too many times may cause it to explode."); break;
 #endif
+			case SCR_POWER_CHARGING:
+				pline("Allows you to apply a blessed charging effect to an item of your choice, even if the scroll isn't blessed."); break;
 			case SCR_RANDOM_ENCHANTMENT:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Pick an item to randomly enchant. For best results, use it on a +0 one. Line length restrictions prevent me from elaborating so just trust me on that one."); break;
@@ -14683,6 +14701,8 @@ boolean knoweverything;
 				pline("Zapping this wand allows you to control the flow of one of your spells (you can select which one), which will automatically be cast once per turn without taking time. This will cost more mana than casting the spell normally, though."); break;
 			case WAN_STERILIZE:
 				pline("Prevents breeding and egg hatching for a while."); break;
+			case WAN_RESTORATION:
+				pline("Zap this wand if you need to restore your drained stats. It only restores a single point per zap."); break;
 			case WAN_DEBUGGING:
 				pline("Can be zapped to reboot your character. This means you will unpolymorph if you were polymorphed, and get your stats/level rerolled."); break;
 			case WAN_HYPER_BEAM:

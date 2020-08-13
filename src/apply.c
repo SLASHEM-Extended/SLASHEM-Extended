@@ -2813,6 +2813,64 @@ fixthings:
 	return 0;
 }
 
+boolean
+use_bubble_horn(obj)
+struct obj *obj;
+{
+	int i, ii, lim;
+	int resulteffect = 0;
+
+	if (obj && obj->cursed) {
+		(void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+		return 0;
+	}
+
+	i = rn2(A_MAX);
+	for (ii = 0; ii < A_MAX; ii++) {
+		lim = AMAX(i);
+		if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+		if (ABASE(i) < lim) {
+			if (rn2(3)) {
+				ABASE(i) += 1;
+				pline("This makes you feel better!");
+				flags.botl = 1;
+				resulteffect = 1;
+				break;
+			} else {
+				AMAX(i) -= 1;
+				pline(FunnyHallu ? "Bummer! It just beeps loudly!" : "Damn! It didn't work!");
+				resulteffect = 2;
+				break;
+			}
+		}
+		if(++i >= A_MAX) i = 0;
+
+	}
+
+	if (resulteffect) {
+		obj->spe--;
+		if (obj->spe < 0) {
+			int randospe = abs(obj->spe);
+			if (randospe < rnd(20)) {
+				useup(obj);
+				pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	if (obj->spe > 0) {
+		obj->spe--;
+		adjattrib(rn2(A_MAX), 1, 0, TRUE);
+
+	}
+
+	/* the function has to return something; 0 means the horn is still there */
+	return 0;
+}
+
 /*
  * Timer callback routine: turn figurine into monster
  */
@@ -2849,7 +2907,7 @@ long timeout;
 	}
 
 	cansee_spot = cansee(cc.x, cc.y);
-	mtmp = make_familiar(figurine, cc.x, cc.y, TRUE);
+	mtmp = make_familiar(figurine, cc.x, cc.y, TRUE, FALSE);
 	if (mtmp) {
 	    sprintf(monnambuf, "%s",an(m_monnam(mtmp)));
 	    switch (figurine->where) {
@@ -2969,7 +3027,7 @@ struct obj **optr;
 	    (u.dz < 0 ?
 		"toss the figurine into the air" :
 		"set the figurine on the ground"));
-	(void) make_familiar(obj, cc.x, cc.y, FALSE);
+	(void) make_familiar(obj, cc.x, cc.y, FALSE, FALSE);
 	(void) stop_timer(FIG_TRANSFORM, (void *)obj);
 	useup(obj);
 	*optr = 0;
@@ -4479,6 +4537,7 @@ wand_explode(obj, hero_broke)
     case WAN_SPELLBINDER:
     case WAN_INERTIA_CONTROL:
     case WAN_STERILIZE:
+    case WAN_RESTORATION:
     case WAN_REMOVE_CURSE:
     case WAN_PUNISHMENT:
     case WAN_OPENING:
@@ -5460,6 +5519,9 @@ doapply()
 		break;
 	case UNICORN_HORN:
 		if (use_unicorn_horn(obj)) noartispeak = TRUE;
+		break;
+	case BUBBLEHORN:
+		if (use_bubble_horn(obj)) noartispeak = TRUE;
 		break;
 	case DARK_HORN:
 		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;

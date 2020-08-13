@@ -317,6 +317,9 @@ more_experienced(exp, rexp)
 
 	if ((exp > 0) && Race_if(PM_YEEK)) exp *= 2;
 	if ((exp > 0) && uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) exp *= 2;
+	if (exp > 0) {
+		if (ExpBoost) exp *= (StrongExpBoost ? 3 : 2);
+	}
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && (exp > 1)) exp /= 2;
 	if (Race_if(PM_ETHEREALOID) && (exp > 1)) exp /= 2;
 

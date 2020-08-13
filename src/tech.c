@@ -4801,7 +4801,7 @@ secureidchoice:
 
 	    case T_SUMMON_PET:
 		pline("You summon a pet.");
-		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 
 	      t_timeout = rnz(10000);
 	      break;

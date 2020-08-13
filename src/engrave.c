@@ -1811,6 +1811,7 @@ doengrave()
 		    case WAN_SPELLBINDER:
 		    case WAN_INERTIA_CONTROL:
 		    case WAN_STERILIZE:
+		    case WAN_RESTORATION:
 		    case WAN_REMOVE_CURSE:
 		    case WAN_PUNISHMENT:
 		    case WAN_WISHING:

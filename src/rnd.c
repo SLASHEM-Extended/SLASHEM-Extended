@@ -1058,7 +1058,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(172)) {
+	switch (rnd(174)) {
 
 		case 1:
 		case 2:
@@ -1688,6 +1688,10 @@ randenchantment()
 			case 28: return FEMTRAP_LOU;
 			default: return POISON_RES;
 			}
+		case 173:
+			return CONTROL_MAGIC;
+		case 174:
+			return EXP_BOOST;
 
 		default:
 			return POISON_RES;
@@ -1948,7 +1952,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(66)) {
+	switch (rnd(68)) {
 
 		case 1:
 			return FIRE_RES;
@@ -2082,6 +2086,10 @@ randomdisableproperty()
 			return SCENT_VIEW;
 		case 66:
 			return DIMINISHED_BLEEDING;
+		case 67:
+			return CONTROL_MAGIC;
+		case 68:
+			return EXP_BOOST;
 		default:
 			return POISON_RES;
 	}
@@ -2615,7 +2623,7 @@ deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(129)) {
+	switch (rnd(131)) {
 
 		case 1:
 		case 2:
@@ -2944,6 +2952,14 @@ register int amount;
 			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += amount;
 			pline("You are prevented from having diminished bleeding!");
 			break;
+		case 130:
+			u.uprops[DEAC_CONTROL_MAGIC].intrinsic += amount;
+			pline("You are prevented from having control magic!");
+			break;
+		case 131:
+			u.uprops[DEAC_EXP_BOOST].intrinsic += amount;
+			pline("You are prevented from having EXP boost!");
+			break;
 	}
 
 }
@@ -2952,7 +2968,7 @@ int
 goodimplanteffect(obj)
 struct obj *obj;
 {
-	switch (obj->shirtmessage % 53) {
+	switch (obj->shirtmessage % 55) {
 
 		case 0:
 			return DTBEEM_RES;
@@ -3060,6 +3076,10 @@ struct obj *obj;
 			return SCENT_VIEW;
 		case 52:
 			return DIMINISHED_BLEEDING;
+		case 53:
+			return CONTROL_MAGIC;
+		case 54:
+			return EXP_BOOST;
 		default:
 			return POISON_RES;
 

@@ -1524,6 +1524,7 @@ int thrown;
 
 		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj && obj->otyp == ETHER_BOLT) range += 2;
 
 		if (Race_if(PM_ENGCHIP) && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 2;
@@ -2269,6 +2270,9 @@ boolean polearming;
 				break;
 			case STEEL_SHIELD:
 				shieldblockrate = 40;
+				break;
+			case METEORIC_STEEL_SHIELD:
+				shieldblockrate = 42;
 				break;
 			case CRYSTAL_SHIELD:
 			case RAPIRAPI:

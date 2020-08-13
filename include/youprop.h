@@ -1408,4 +1408,24 @@
 
 #define NoDiminishedBleeding	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic || RngeAids || (u.impossibleproperty == DIMINISHED_BLEEDING) || Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HControlMagic		u.uprops[CONTROL_MAGIC].intrinsic
+#define EControlMagic		u.uprops[CONTROL_MAGIC].extrinsic
+#define IntControlMagic	(HControlMagic)
+#define ExtControlMagic	(EControlMagic)
+
+#define ControlMagic		(((IntControlMagic && u.nonintrinsicproperty != CONTROL_MAGIC) || (ExtControlMagic && u.nonextrinsicproperty != CONTROL_MAGIC)) && !NoControlMagic)
+#define StrongControlMagic	(IntControlMagic && ExtControlMagic && ControlMagic && u.nondoubleproperty != CONTROL_MAGIC)
+
+#define NoControlMagic	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CONTROL_MAGIC].intrinsic || RngeAids || (u.impossibleproperty == CONTROL_MAGIC) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HExpBoost		u.uprops[EXP_BOOST].intrinsic
+#define EExpBoost		u.uprops[EXP_BOOST].extrinsic
+#define IntExpBoost	(HExpBoost)
+#define ExtExpBoost	(EExpBoost)
+
+#define ExpBoost		(((IntExpBoost && u.nonintrinsicproperty != EXP_BOOST) || (ExtExpBoost && u.nonextrinsicproperty != EXP_BOOST)) && !NoExpBoost)
+#define StrongExpBoost	(IntExpBoost && ExtExpBoost && ExpBoost && u.nondoubleproperty != EXP_BOOST)
+
+#define NoExpBoost	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_EXP_BOOST].intrinsic || RngeAids || (u.impossibleproperty == EXP_BOOST) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #endif /* YOUPROP_H */

@@ -2528,6 +2528,7 @@ Shield_on()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
@@ -2712,6 +2713,7 @@ Shield_off()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
 	case SHIELD_OF_REFLECTION:
 	case FLAME_SHIELD:
@@ -4441,7 +4443,7 @@ boolean noisy;
 		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
-    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  &&
+    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  && (otmp->otyp != OSFA_CHAIN_MAIL) &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
 	    (racial_exception(&youmonst, otmp) < 1)) {

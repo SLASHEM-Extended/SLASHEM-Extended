@@ -2647,7 +2647,7 @@ doinvoke()
 					break;
 				case 12:
 					pline("Suddenly, you gain a new companion!");
-					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+					(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 					break;
 				case 13:
 					{
@@ -4493,7 +4493,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(43)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(45)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -5402,6 +5402,46 @@ retrytrinsic:
 					if(!(HDiminishedBleeding & FROMOUTSIDE)) {
 						You_feel("a %s coagulation factor being injected into your body!", body_part(BLOOD));
 						HDiminishedBleeding |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 44:
+				if (intloss) {
+					if (HControlMagic & INTRINSIC) {
+						HControlMagic &= ~INTRINSIC;
+						You_feel("unable to control your magic!");
+						hasmadeachange = 1;
+					}
+					if (HControlMagic & TIMEOUT) {
+						HControlMagic &= ~TIMEOUT;
+						You_feel("unable to control your magic!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HControlMagic & FROMOUTSIDE)) {
+						You_feel("magic-controlled!");
+						HControlMagic |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 45:
+				if (intloss) {
+					if (HExpBoost & INTRINSIC) {
+						HExpBoost &= ~INTRINSIC;
+						You_feel("a loss of experience!");
+						hasmadeachange = 1;
+					}
+					if (HExpBoost & TIMEOUT) {
+						HExpBoost &= ~TIMEOUT;
+						You_feel("a loss of experience!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HExpBoost & FROMOUTSIDE)) {
+						You_feel("a surge of experience!");
+						HExpBoost |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

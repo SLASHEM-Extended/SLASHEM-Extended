@@ -54,6 +54,7 @@ E boolean snuff_candle(struct obj *);
 E boolean snuff_lit(struct obj *);
 E boolean catch_lit(struct obj *);
 E boolean use_unicorn_horn(struct obj *);
+E boolean use_bubble_horn(struct obj *);
 E boolean tinnable(struct obj *);
 E void reset_trapset(void);
 E void fig_transform(void *, long);
@@ -521,7 +522,7 @@ E int dowear2(const char *, const char *);
 /* ### dog.c ### */
 
 E void initedog(struct monst *);
-E struct monst *make_familiar(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
+E struct monst *make_familiar(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,BOOLEAN_P);
 E struct monst *make_helper(int,XCHAR_P,XCHAR_P);
 E struct monst *makedog(void);
 E void update_mlstmv(void);

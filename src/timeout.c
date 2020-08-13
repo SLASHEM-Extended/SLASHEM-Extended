@@ -2841,6 +2841,14 @@ nh_timeout()
 			if (!DiminishedBleeding)
 				pline("Your %s coagulation factor is no longer active.", body_part(BLOOD));
 			break;
+		case CONTROL_MAGIC:
+			if (!ControlMagic)
+				pline("You're no longer controlling your magic.");
+			break;
+		case EXP_BOOST:
+			if (!ExpBoost)
+				pline("Your experience shrine effect has ended.");
+			break;
 		case PLAYERBLEEDING:
 			if (!PlayerBleeds)
 				pline("Your bleeding stops.");
@@ -3103,6 +3111,12 @@ nh_timeout()
 			break;
 		case DEAC_DIMINISHED_BLEEDING:
 			pline("You are no longer prevented from having diminished bleeding.");
+			break;
+		case DEAC_CONTROL_MAGIC:
+			pline("You are no longer prevented from having control magic.");
+			break;
+		case DEAC_EXP_BOOST:
+			pline("You are no longer prevented from having EXP boost.");
 			break;
 
 		}

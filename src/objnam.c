@@ -386,6 +386,10 @@ int prop;
 			return "wealth";
 		case DIMINISHED_BLEEDING:
 			return "diminished bleeding";
+		case CONTROL_MAGIC:
+			return "control magic";
+		case EXP_BOOST:
+			return "EXP boost";
 		case FEMTRAP_FEMMY:
 			return "Femmy's curse";
 		case FEMTRAP_MADELEINE:
@@ -3246,6 +3250,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ METEORIC_STEEL_SHIELD, "todo" },
+	{ OSFA_CHAIN_MAIL, "todo" },
+	{ AIR_PRESSURE_HAMMER, "todo" },
+	{ BUBBLEHORN, "todo" },
+	{ SCR_GREATER_ENCHANT_WEAPON, "todo" },
+	{ SCR_GREATER_ENCHANT_ARMOR, "todo" },
+	{ SCR_POWER_CHARGING, "todo" },
+	{ WAN_RESTORATION, "todo" },
+	{ SCR_ALLY, "todo" },
+	{ BLUE_BOW, "todo" },
 
 	{0, "" }
 };
@@ -5866,6 +5880,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	/* todo area */
 
+	{ METEORIC_STEEL_SHIELD, "todo" },
+	{ OSFA_CHAIN_MAIL, "todo" },
+	{ AIR_PRESSURE_HAMMER, "todo" },
+	{ BUBBLEHORN, "todo" },
+	{ SCR_GREATER_ENCHANT_WEAPON, "todo" },
+	{ SCR_GREATER_ENCHANT_ARMOR, "todo" },
+	{ SCR_POWER_CHARGING, "todo" },
+	{ WAN_RESTORATION, "todo" },
+	{ SCR_ALLY, "todo" },
+	{ BLUE_BOW, "todo" },
 
 	{0, "" }
 };

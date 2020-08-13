@@ -4702,7 +4702,7 @@ secureidchoice:
 			break;
 		case WAN_CREATE_FAMILIAR:
 			known = TRUE;
-			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 			break;
 		case WAN_SUMMON_ELM:
 			known = TRUE;
@@ -4961,6 +4961,25 @@ controlagain:
 
 			You_feel("an anti-sexual aura.");
 			u.sterilized = 20 + rnd(60);
+
+			break;
+
+		case WAN_RESTORATION:
+			known = TRUE;
+
+			int i, ii, lim;
+			i = rn2(A_MAX);
+			for (ii = 0; ii < A_MAX; ii++) {
+				lim = AMAX(i);
+				if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
+				if (ABASE(i) < lim) {
+					ABASE(i) += 1;
+					pline("Wow! This makes you feel good!");
+					flags.botl = 1;
+					break;
+				}
+				if(++i >= A_MAX) i = 0;
+			}
 
 			break;
 

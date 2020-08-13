@@ -688,7 +688,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(151)) {
+	switch (rnd(152)) {
 
 		case 1:
 			return ATHAME;
@@ -921,6 +921,8 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return SPE_REPAIR_WEAPON;
 		case 151:
 			return SCR_MAKE_PENTAGRAM;
+		case 152:
+			return WAN_RESTORATION;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}
@@ -1267,7 +1269,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(171)) {
+	switch (rnd(174)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -1610,6 +1612,12 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return SYMBIOTE;
 		case 171:
 			return SCR_SUPERIOR_MATERIAL;
+		case 172:
+			return SCR_GREATER_ENCHANT_WEAPON;
+		case 173:
+			return SCR_GREATER_ENCHANT_ARMOR;
+		case 174:
+			return SCR_POWER_CHARGING;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 

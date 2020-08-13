@@ -1108,6 +1108,7 @@ doread()
 			case SCR_GREATER_MANA_RESTORATION:
 			case SCR_NASTY_CURSE:
 			case SCR_TERRAFORMING:
+			case SCR_ALLY:
 				cartochance = 15;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 16; break;
@@ -1151,6 +1152,9 @@ doread()
 			case SCR_ALTER_REALITY:
 			case SCR_SECURE_IDENTIFY:
 			case SCR_HYBRIDIZATION:
+			case SCR_GREATER_ENCHANT_ARMOR:
+			case SCR_GREATER_ENCHANT_WEAPON:
+			case SCR_POWER_CHARGING:
 			case SCR_RAGNAROK:
 				cartochance = 5;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
@@ -4904,6 +4908,217 @@ enchantarmorchoice:
 
 		break;
 	    }
+
+	case SCR_GREATER_ENCHANT_ARMOR:
+	    {
+		register schar s;
+		boolean special_armor;
+		boolean same_color;
+
+		pline("You may enchant a worn piece of armor.");
+enchantarmorchoiceX:
+		otmp = getobj(allnoncount, "magically enchant");
+		/*otmp = some_armor(&youmonst);*/
+
+		if(!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to enchant your armor.");
+			else goto enchantarmorchoiceX;
+			strange_feeling(sobj,
+					!Blind ? "Your skin glows then fades." :
+					"Your skin feels warm for a moment.");
+			exercise(A_CON, 1);
+			exercise(A_STR, 1);
+			return(1);
+		}
+		if (!(otmp->owornmask & W_ARMOR) ) {
+
+			strange_feeling(sobj, "You have a feeling of loss.");
+			return(1);
+		}
+
+		if(confused) {
+			otmp->oerodeproof = 1;
+			if(Blind) {
+			    otmp->rknown = FALSE;
+			    Your("%s %s warm for a moment.",
+				xname(otmp), otense(otmp, "feel"));
+			} else {
+			    otmp->rknown = TRUE;
+			    Your("%s %s covered by a %s %s %s!",
+				xname(otmp), otense(otmp, "are"),
+				"shimmering", hcolor(NH_GOLDEN), (is_shield(otmp) ? "layer" : "shield"));
+			}
+			if (otmp->oerodeproof &&
+			    (otmp->oeroded || otmp->oeroded2)) {
+			    otmp->oeroded = otmp->oeroded2 = 0;
+			    Your("%s %s as good as new!",
+				 xname(otmp),
+				 otense(otmp, Blind ? "feel" : "look"));
+			}
+
+			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+				if (!otmp->cursed) bless(otmp);
+				else uncurse(otmp, FALSE);
+			}
+
+			break;
+		}
+		/* elven armor vibrates warningly when enchanted beyond a limit */
+		special_armor = is_elven_armor(otmp) || otmp->otyp == KYRT_SHIRT ||
+		  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
+		  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
+
+		    same_color =
+			(otmp->otyp == SILVER_DRAGON_SCALE_MAIL ||
+			 otmp->otyp == SILVER_DRAGON_SCALES ||
+			 otmp->otyp == SHIELD_OF_REFLECTION);
+		if (Blind) same_color = FALSE;
+
+		/* KMH -- catch underflow */
+		s = otmp->spe;
+
+		if (s > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
+
+			if (otmp->oartifact) {
+				otmp->spe = 0;
+				Your("%s violently %s%s%s for a while, then %s.", xname(otmp),
+				otense(otmp, Blind ? "vibrate" : "glow"),
+			     (!Blind && !same_color) ? " " : nul,
+			     (Blind || same_color) ? nul : hcolor(NH_SILVER),
+				otense(otmp, "fade"));
+
+				break;
+			}
+
+		Your("%s violently %s%s%s for a while, then %s.",
+		     xname(otmp),
+		     otense(otmp, Blind ? "vibrate" : "glow"),
+		     (!Blind && !same_color) ? " " : nul,
+		     (Blind || same_color) ? nul :
+			hcolor(NH_SILVER),
+		     otense(otmp, "evaporate"));
+			if(is_cloak(otmp)) (void) Cloak_off();
+			if(is_boots(otmp)) (void) Boots_off();
+			if(is_helmet(otmp)) (void) Helmet_off();
+			if(is_gloves(otmp)) (void) Gloves_off();
+			if(is_shield(otmp)) (void) Shield_off();
+			if(otmp == uarm) (void) Armor_gone();
+			useup(otmp);
+			break;
+		}
+
+		if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+			if (!otmp->cursed) bless(otmp);
+			else uncurse(otmp, FALSE);
+		}
+
+
+		/* KMH, balance patch -- Restore the NetHack success rate */
+		/* We'll introduce a disenchantment attack later */
+		s = 
+		/* Come on, the evaporation chance is nasty enough. Let's allow enchanting stuff beyond +9. --Amy */
+		    otmp->spe >= 9 ? /*(rn2(otmp->spe) == 0)*/1 : rnd(3-otmp->spe/3);
+		if (s >= 0 && otmp->otyp >= GRAY_DRAGON_SCALES &&
+					otmp->otyp <= YELLOW_DRAGON_SCALES) {
+			/* dragon scales get turned into dragon scale mail */
+			Your("%s merges and hardens!", xname(otmp));
+			setworn((struct obj *)0, W_ARM);
+			/* assumes same order */
+			otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
+						otmp->otyp - GRAY_DRAGON_SCALES;
+
+			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+			otmp->spe++;
+			otmp->blessed = 1;
+			otmp->known = 1;
+			setworn(otmp, W_ARM);
+			break;
+		}
+		if (s >= 0 && otmp->otyp == LIZARD_SCALES) {
+			Your("%s merges and hardens!", xname(otmp));
+			setworn((struct obj *)0, W_ARM);
+			otmp->otyp = LIZARD_SCALE_MAIL;
+
+			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			}
+			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+			otmp->spe++;
+			otmp->blessed = 1;
+			otmp->known = 1;
+			setworn(otmp, W_ARM);
+			break;
+		}
+
+		Your("%s %s%s%s%s for a %s.",
+			xname(otmp),
+		        s == 0 ? "violently " : nul,
+			otense(otmp, Blind ? "vibrate" : "glow"),
+			(!Blind && !same_color) ? " " : nul,
+			(Blind || same_color) ? nul : hcolor(NH_SILVER),
+			  (s*s>1) ? "while" : "moment");
+		otmp->cursed = ( ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && rn2(100)) || (otmp->prmcurse && rn2(10)) || (otmp->hvycurse && rn2(3)) ) ;
+		if (s) {
+			otmp->spe += s;
+			if (Race_if(PM_SPARD) && s > 0) otmp->spe++;
+			known = otmp->known;
+		}
+		/* sometimes, enchanting armor pieces may give them an actual magical enchantment --Amy */
+		if (!otmp->enchantment && !rn2(10) && s > 0) {
+
+			long savewornmask;
+			otmp->enchantment = randenchantment();
+			pline("Your %s seems to have gained special magical properties!", xname(otmp) );
+			savewornmask = otmp->owornmask;
+			setworn((struct obj *)0, otmp->owornmask);
+			setworn(otmp, savewornmask);
+
+		}
+		/* and cursed enchant armor is a way to remove the magical enchantment --Amy */
+		if (otmp->enchantment && s < 0) {
+
+			long savewornmask;
+			savewornmask = otmp->owornmask;
+			setworn((struct obj *)0, otmp->owornmask);
+			otmp->enchantment = 0;
+			pline("Your %s lost its magical properties!", xname(otmp) );
+			setworn(otmp, savewornmask);
+
+		}
+
+		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
+		    (special_armor || !rn2(7)))
+			Your("%s suddenly %s %s.",
+				xname(otmp), otense(otmp, "vibrate"),
+				Blind ? "again" : "unexpectedly");
+
+		if (practicantterror && otmp && otmp->spe >= 5 && !u.pract_enchantarmor) {
+			pline("%s rings out: 'I told you that you may not disguise as a tank! Just for that it costs 1000 zorkmids and 1000 stones now.'", noroelaname());
+			fineforpracticant(1000, 1000, 0);
+			u.pract_enchantarmor = TRUE;
+		}
+
+		break;
+	    }
+
 	case SCR_REPAIR_ITEM:
 	    {
 		pline("You may repair a damaged item.");
@@ -5450,9 +5665,15 @@ proofarmorchoice:
 	case SCR_CREATE_FAMILIAR:
 		known = TRUE;
 		if (confused) create_critters(rn1(7,6), (struct permonst *)0);
-		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 
-		if (sobj->oartifact == ART_FRIEND_CALL)  		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+		if (sobj->oartifact == ART_FRIEND_CALL)  		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+
+		break;
+
+	case SCR_ALLY:
+		known = TRUE;
+		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, TRUE);
 
 		break;
 
@@ -6683,6 +6904,34 @@ newboss:
 				       !uwep ? 1 :
 				       uwep->spe >= 3 ? (rn2(uwep->spe) == 0) :
 				       sobj->blessed ? rnd(2) : 1);*/
+		break;
+	case SCR_GREATER_ENCHANT_WEAPON:
+		if (uwep && stack_too_big(uwep)) {
+			pline("The enchantment failed due to the stack being too big.");
+			break;
+		}
+
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
+			&& confused) {
+		/* oclass check added 10/25/86 GAN */
+			uwep->oerodeproof = 1;
+			if (Blind) {
+			    uwep->rknown = FALSE;
+			    Your("weapon feels warm for a moment.");
+			} else {
+			    uwep->rknown = TRUE;
+			    Your("%s covered by a %s %s %s!",
+				aobjnam(uwep, "are"), "shimmering", hcolor(NH_GOLDEN), "shield");
+			}
+			if (uwep->oerodeproof && (uwep->oeroded || uwep->oeroded2)) {
+			    uwep->oeroded = uwep->oeroded2 = 0;
+			    Your("%s as good as new!",
+				 aobjnam(uwep, Blind ? "feel" : "look"));
+			}
+		/* KMH, balance patch -- Restore the NetHack success rate */
+		} else return !chwepon(sobj, !uwep ? 1 :
+		/* Come on, the evaporation chance is nasty enough. Let's allow enchanting stuff beyond +9. --Amy */
+				       uwep->spe >= 9 ? /*(rn2(uwep->spe) == 0)*/1 : rnd(3-uwep->spe/3));
 		break;
 	case SCR_PROOF_WEAPON: /* scroll added by Amy */
 		if (uwep && stack_too_big(uwep)) {
@@ -8831,6 +9080,28 @@ chargingchoice:
 			break;
 		}
 		recharge(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0));
+		break;
+
+	case SCR_POWER_CHARGING:
+		if (confused) {
+		    You_feel("charged up!");
+		    if (u.uen < u.uenmax)
+			u.uen = rn2(20) ? u.uenmax : (u.uenmax += d(5,4));
+		    else
+			u.uen = (u.uenmax += d(5,4));
+		    flags.botl = 1;
+		    break;
+		}
+		known = TRUE;
+		pline("You may powerfully charge an object.");
+		otmp = getobj(allnoncount, "charge");
+		if (!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to charge your items.");
+			else goto chargingchoice;
+			break;
+		}
+		recharge(otmp, 1);
 		break;
 
 	case SCR_RANDOM_ENCHANTMENT:

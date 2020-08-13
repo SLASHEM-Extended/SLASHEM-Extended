@@ -2156,6 +2156,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		  if (!propellor) propellor = (oselect(mtmp, DARK_ELVEN_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, COMPOST_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, WIND_BOW));
+		  if (!propellor) propellor = (oselect(mtmp, BLUE_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, META_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, BOW));
 		  if (!propellor) propellor = (oselect(mtmp, ORCISH_BOW));
@@ -2296,7 +2297,7 @@ static const NEARDATA short hwep[] = {
 	  LOG, SLEDGE_HAMMER, WHITE_FLOWER_SWORD, VOLCANIC_BROADSWORD, ELEGANT_BROADSWORD,
 	  BLACK_AESTIVALIS, RUNESWORD, MALLET, HEAVY_HAMMER, BRIDGE_MUZZLE,
 	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, HOMING_TORPEDO,
-	  DWARVISH_MATTOCK, SOFT_MATTOCK, YATAGAN, CHROME_BLADE,
+	  DWARVISH_MATTOCK, SOFT_MATTOCK, YATAGAN, CHROME_BLADE, AIR_PRESSURE_HAMMER,
 	  BENT_SABLE, HOE_SABLE, MYTHICAL_SABLE, INKA_BOOT, SOFT_LADY_SHOE,
 	  BLOCK_HEELED_SANDAL, PROSTITUTE_SHOE, LIGHTWHIP, NANO_HAMMER, LASER_SWATTER,
 	  RED_DOUBLE_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER, RED_LIGHTSABER,
@@ -2347,7 +2348,7 @@ static const NEARDATA short hwep[] = {
 	  WAR_HAMMER, MITHRIL_WHIP, CHAINWHIP, FLAME_WHIP, ROSE_WHIP,
 	  SILVER_DAGGER, ELVEN_DAGGER, WOODEN_STAKE, WONDER_DAGGER, DAGGER, 
 	  ORCISH_DAGGER, NOVICE_HAMMER, RAZOR_WHIP,
-	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, CERAMIC_KNIFE,
+	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, CERAMIC_KNIFE, BUBBLEHORN,
 	  COLLUSION_KNIFE, BITUKNIFE, UNKNOWN_KNIFE, MEASURER, STILETTO, KNIFE, TORCH, WORM_TOOTH, OTAMA, CARDBOARD_FAN,
 	  CLOTH_CHAIN
 };
@@ -6379,6 +6380,7 @@ boolean extraskills;
 	if (obj->otyp >= WAN_LIGHT && obj->otyp <= WAN_PSYBEAM) skill = P_DEVICES;
 	if (obj->otyp == SCR_SYMBIOSIS) skill = P_SYMBIOSIS;
 	if (obj->otyp == SCR_CREATE_FAMILIAR) skill = P_PETKEEPING;
+	if (obj->otyp == SCR_ALLY) skill = P_PETKEEPING;
 	if (obj->otyp == SCR_TAMING) skill = P_PETKEEPING;
 	if (obj->otyp == TIN_WHISTLE) skill = P_PETKEEPING;
 	if (obj->otyp == GRASS_WHISTLE) skill = P_PETKEEPING;

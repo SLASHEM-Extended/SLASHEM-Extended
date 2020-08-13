@@ -148,6 +148,7 @@ register struct obj *otmp;
 	case SCR_GREATER_MANA_RESTORATION:
 	case SCR_NASTY_CURSE:
 	case SCR_TERRAFORMING:
+	case SCR_ALLY:
 		return(30);
 	case SCR_GAIN_MANA:
 	case SCR_LOCKOUT:
@@ -171,6 +172,9 @@ register struct obj *otmp;
 	case SCR_SECURE_IDENTIFY:
 	case SCR_ALTER_REALITY:
 	case SCR_HYBRIDIZATION:
+	case SCR_GREATER_ENCHANT_WEAPON:
+	case SCR_GREATER_ENCHANT_ARMOR:
+	case SCR_POWER_CHARGING:
 		return(50);
 	case SCR_RAGNAROK:
 		return(64);

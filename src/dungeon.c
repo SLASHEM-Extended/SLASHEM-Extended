@@ -2170,6 +2170,8 @@ level_difficulty()
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
 
+	/*pline("%d diff", retvalue);*/
+
 	return((xchar) retvalue);
 }
 /* Sadly, we cannot make the sanctum deeper than dlvl 65 thanks to the arbitrary limit of 127 dungeon levels.
@@ -2194,6 +2196,9 @@ monster_difficulty()
 
 	if (tempval < 1) tempval = 1;
 	if (tempval > 125) tempval = 125; /* to be on the safe side */
+
+	/*pline("%d mondiff", tempval);*/
+
 	return((xchar) tempval);
 
 }

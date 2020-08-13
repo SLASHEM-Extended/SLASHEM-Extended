@@ -36,6 +36,7 @@ const struct innate {
 		     {   7, &(HFast), "quick", "slow", TRUE },  
 		     {	15, &(HWarning), "precognitive", "noncognitive", TRUE },  
 		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
+		     {	25, &(HExpBoost), "a surge of experience", "a loss of experience", TRUE },  
 		     {	 0, 0, 0, 0, 0 } },  
 
 	eme_abil[] = { {	 5, &(SanityTrebleEffect), "", "", FALSE },
@@ -170,6 +171,7 @@ const struct innate {
 			{	8, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
 			 {	 10, &(HDeath_resistance), "un-dead", "dead", TRUE },
 			 {	 12, &(HHunger), "very hungry", "less hungry", FALSE },
+		     {	13, &(HExpBoost), "a surge of experience", "a loss of experience", TRUE },  
 		     {   14, &(HAcid_resistance), "warded", "endangered", TRUE },
 		     {   16, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life", TRUE },
 		    { 22,  &(HInfravision), "perceptive", "half blind", TRUE },
@@ -305,6 +307,7 @@ const struct innate {
 			{	12, &(FreeHandLoss), "", "", FALSE },
 		     {  14, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
 			{	15, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	16, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{	17, &(DifficultyIncreased), "", "", FALSE },
 		       {   18, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
 			{	20, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
@@ -321,11 +324,15 @@ const struct innate {
 	cel_abil[] = { {   1, &(BlueSpells), "", "", FALSE },
 			{	5, &(DamageMeterBug), "", "", FALSE },
 			{	9, &(RangCallEffect), "", "", FALSE },
+		     {	10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{	14, &(CrapEffect), "", "", FALSE },
 			{	18, &(PokelieEffect), "", "", FALSE },
 			{	22, &(ExplodingDiceEffect), "", "", FALSE },
 			{	26, &(AutopilotEffect), "", "", FALSE },
 			{	30, &(InterfaceScrewed), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	dea_abil[] = { {	18, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	blo_abil[] = { {   1, &(HWarning), "", "", TRUE },
@@ -386,6 +393,7 @@ const struct innate {
 		     {	4, &(HWarning), "sensitive", "careless", TRUE },
 		     {  6, &(HSearching), "perceptive", "unaware", TRUE },
 			{	7, &(HSleep_resistance), "awake", "tired", TRUE },
+		     {	8, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{	12, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		       {   18, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
@@ -433,6 +441,10 @@ const struct innate {
 			{ 0, 0, 0, 0 } },
 
 	drm_abil[] = { { 7, &(HFast), "quick", "slow" },
+		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			{ 0, 0, 0, 0 } },
+
+	drd_abil[] = { {	15, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{ 0, 0, 0, 0 } },
 
 	fjo_abil[] = { { 1, &(HSwimming), "", "" },
@@ -476,6 +488,7 @@ const struct innate {
 		     {   1, &(HTechnicality), "", "", TRUE },
 			{   3, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {	12, &(HWarning), "sensitive", "careless", TRUE },
+		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	fir_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
@@ -516,6 +529,7 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	hea_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {	1, &(HControlMagic), "", "", TRUE },
 		     {	15, &(HWarning), "sensitive", "careless", TRUE },
 			{   20, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -542,12 +556,14 @@ const struct innate {
 	psn_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HFull_nutrient), "", "", TRUE },
 			{   5, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	25, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	occ_abil[] = { {   10, &(HInfravision), "perceptive", "half blind", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	emn_abil[] = { {   15, &(HPsi_resist), "psionic", "less psionic", TRUE },
+	emn_abil[] = { {	10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			{   15, &(HPsi_resist), "psionic", "less psionic", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	cha_abil[] = { {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
@@ -616,6 +632,7 @@ const struct innate {
 	nec_abil[] = { {   1, &(HDrain_resistance), "", "", TRUE },
 		     {   1, &(HSick_resistance), "", "", TRUE },
 		     {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+		     {	5, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -739,6 +756,7 @@ const struct innate {
 			{	10, &(HWarning), "sensitive", "careless", TRUE },
 			{   10, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {	15, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{  20, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		       {   20, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -753,11 +771,13 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	wiz_abil[] = { {   1, &(HManaleech), "", "", TRUE },
+		     {	4, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			 {	15, &(HWarning), "sensitive", "careless", TRUE },
 		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
-	alt_abil[] = { {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+	alt_abil[] = { {   1, &(HControlMagic), "", "", TRUE },
+			 {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
 			{	7, &(HWarning), "sensitive", "careless", TRUE },
 			{  15, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		       {   25, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
@@ -791,7 +811,8 @@ const struct innate {
 	nib_abil[] = { { 1, &(HSearching), "", "", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
-	dra_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+	dra_abil[] = { {	8, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			 { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	hyb_abil[] = { { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
@@ -1065,6 +1086,7 @@ const struct innate {
 
 	grd_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
 		     {	 1, &(HShock_resistance), "", "", TRUE },
+		     {	 1, &(HControlMagic), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	bat_abil[] = { {  1, &(HFlying), "", "", TRUE },
@@ -1089,6 +1111,7 @@ const struct innate {
 		     {  1, &(HStone_resistance), "", "", TRUE },
 		     {  1, &(HDeath_resistance), "", "", TRUE },
 		     {  1, &(HPsi_resist), "", "", TRUE },
+		     {  1, &(HControlMagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	umb_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
@@ -1098,6 +1121,7 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	dvp_abil[] = { {  1, &(HTechnicality), "", "", TRUE },
+		     {	15, &(HExpBoost), "a surge of experience", "a loss of experience", TRUE },  
 		     {   0, 0, 0, 0, 0 } },
 
 	tur_abil[] = { {  1, &(HFull_nutrient), "", "", TRUE },
@@ -1307,7 +1331,8 @@ const struct innate {
 	cup_abil[] = { { 20, &(HFlying), "weightless", "grounded", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	bac_abil[] = { {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+	bac_abil[] = { {	1, &(HControlMagic), "", "", TRUE },
+			 {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
 		     {	20, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
 		     {   0, 0, 0, 0, 0 } },
 
@@ -1317,16 +1342,22 @@ const struct innate {
 		     {  20, &(HSwimming), "ready to swim","afraid of the water", TRUE },
 			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
 		    { 20,  &(HInfravision), "perceptive", "half blind", TRUE },
+		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	cer_abil[] = { { 1, &(HFire_resistance), "", "", TRUE },
 		     {  1, &(HScentView), "", "", TRUE },
+		     {	12, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	hou_abil[] = { {  1, &(HScentView), "", "", TRUE },
+		     {	3, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	woo_abil[] = { {  1, &(HScentView), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	wis_abil[] = { {  1, &(HControlMagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	exp_abil[] = { {	 1, &(HPsi_resist), "", "", TRUE },
@@ -1365,6 +1396,7 @@ const struct innate {
 
 	sat_abil[] = { {   1, &(HTechnicality), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
+		     {   1, &(HControlMagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	sho_abil[] = { {   1, &(HDiscount_action), "", "", TRUE },
@@ -2111,6 +2143,7 @@ int oldlevel, newlevel;
 	case PM_DQ_SLIME:      abil = sli_abil;	break;
 	case PM_ERDRICK:      abil = erd_abil;	break;
 	case PM_CELLAR_CHILD:      abil = cel_abil;	break;
+	case PM_DEATH_EATER:      abil = dea_abil;	break;
 	case PM_SLAVE_MASTER:      abil = sla_abil;	break;
 	case PM_SUPERMARKET_CASHIER:      abil = sup_abil;	break;
 	case PM_BARD:           abil = brd_abil;	break;
@@ -2201,6 +2234,7 @@ int oldlevel, newlevel;
 	case PM_JUSTICE_KEEPER:		abil = jus_abil;	break;
 	case PM_CARTOMANCER:		abil = car_abil;	break;
 	case PM_DRAGONMASTER:		abil = drm_abil;	break;
+	case PM_DRUID:		abil = drd_abil;	break;
 	case PM_FJORDE:		abil = fjo_abil;	break;
 	case PM_AKLYST:		abil = akl_abil;	break;
 	case PM_MILL_SWALLOWER:		abil = mil_abil;	break;
@@ -2282,6 +2316,7 @@ int oldlevel, newlevel;
 	case PM_PLAYER_CERBERUS:            rabil = cer_abil;	break;
 	case PM_PLAYER_HOUND:            rabil = hou_abil;	break;
 	case PM_WOOKIE:            rabil = woo_abil;	break;
+	case PM_WISP:            rabil = wis_abil;	break;
 	case PM_EXPERT:            rabil = exp_abil;	break;
 	case PM_GIGANT:            rabil = gig_abil;	break;
 	case PM_NYMPH:            rabil = nym_abil;	break;

@@ -42,7 +42,7 @@ register struct monst *mtmp;
 }
 
 /* do the player's missiles, beams etc. pass through a pet instead of hitting it? --Amy
- * meant to depend on the player's petkeeping skill but should also eventually be an in/extrinsic */
+ * meant to depend on the player's petkeeping skill; control magic in/extrinsic affects it too */
 boolean
 control_magic_works()
 {
@@ -62,6 +62,10 @@ control_magic_works()
 
 		if (rn2(100) < contmagchance) return TRUE;
 	}
+
+	/* control magic trinsic cannot be "turned off"; if it annoys you, have to unequip the item or use a gremlin */
+	if (ControlMagic && rn2(5)) return TRUE;
+	if (StrongControlMagic && rn2(5)) return TRUE;
 
 	return FALSE; /* catchall */
 }
@@ -167,10 +171,10 @@ pet_type()
 }
 
 struct monst *
-make_familiar(otmp,x,y,quietly)
+make_familiar(otmp,x,y,quietly,startpet)
 register struct obj *otmp;
 xchar x, y;
-boolean quietly;
+boolean quietly, startpet;
 {
 	struct permonst *pm;
 	struct monst *mtmp = 0;
@@ -191,7 +195,7 @@ boolean quietly;
 			pline(FunnyHallu ? "... into a pile of garbage. Even you know that that's of no use." : "... into a pile of dust.");
 		    break;	/* mtmp is null */
 		}
-	    } else if (!rn2(3)) {
+	    } else if (startpet || !rn2(3)) {
 		pm = &mons[pet_type()];
 	    } else {
 		pm = rndmonst();
