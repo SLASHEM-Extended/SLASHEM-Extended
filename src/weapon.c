@@ -25,100 +25,6 @@ static NEARDATA boolean speed_advance = FALSE;
 
 STATIC_DCL void give_may_advance_msg(int);
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-
 STATIC_OVL void
 give_may_advance_msg(skill)
 int skill;
@@ -141,8 +47,6 @@ int skill;
 	}
 }
 
-#endif	/* OVLB */
-
 STATIC_DCL boolean can_advance(int, BOOLEAN_P);
 STATIC_DCL boolean could_advance(int);
 STATIC_DCL boolean peaked_skill(int);
@@ -159,13 +63,176 @@ STATIC_DCL void skill_advance(int);
 
 #ifdef OVLB
 
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 static NEARDATA const char kebabable[] = {
 	S_XORN, S_DRAGON, S_JABBERWOCK, S_NAGA, S_GIANT, '\0'
 };
+
+const char *
+wpskillname(skill)
+int skill;
+{
+
+	switch (skill) {
+
+		case P_DAGGER:
+			return "dagger";
+		case P_KNIFE:
+			return "knife";
+		case P_AXE:
+			return "axe";
+		case P_PICK_AXE:
+			return "pick-axe";
+		case P_SHORT_SWORD:
+			return "short sword";
+		case P_BROAD_SWORD:
+			return "broadsword";
+		case P_LONG_SWORD:
+			return "long sword";
+		case P_TWO_HANDED_SWORD:
+			return "two-handed sword";
+		case P_SCIMITAR:
+			return "scimitar";
+		case P_SABER:
+			return "saber";
+		case P_CLUB:
+			return "club";
+		case P_PADDLE:
+			return "paddle";
+		case P_MACE:
+			return "mace";
+		case P_MORNING_STAR:
+			return "morning star";
+		case P_FLAIL:
+			return "flail";
+		case P_HAMMER:
+			return "hammer";
+		case P_QUARTERSTAFF:
+			return "quarterstaff";
+		case P_ORB:
+			return "orb";
+		case P_CLAW:
+			return "claw";
+		case P_GRINDER:
+			return "grinder";
+		case P_POLEARMS:
+			return "polearms";
+		case P_SPEAR:
+			return "spear";
+		case P_JAVELIN:
+			return "javelin";
+		case P_TRIDENT:
+			return "trident";
+		case P_LANCE:
+			return "lance";
+		case P_BOW:
+			return "bow";
+		case P_SLING:
+			return "sling";
+		case P_FIREARM:
+			return "firearms";
+		case P_CROSSBOW:
+			return "crossbow";
+		case P_DART:
+			return "dart";
+		case P_SHURIKEN:
+			return "shuriken";
+		case P_BOOMERANG:
+			return "boomerang";
+		case P_WHIP:
+			return "whip";
+		case P_UNICORN_HORN:
+			return "unicorn horn";
+		case P_LIGHTSABER:
+			return "lightsaber";
+		case P_ATTACK_SPELL:
+			return "attack spells";
+		case P_HEALING_SPELL:
+			return "healing spells";
+		case P_DIVINATION_SPELL:
+			return "divination spells";
+		case P_ENCHANTMENT_SPELL:
+			return "enchantment spells";
+		case P_PROTECTION_SPELL:
+			return "protection spells";
+		case P_BODY_SPELL:
+			return "body spells";
+		case P_OCCULT_SPELL:
+			return "occult spells";
+		case P_ELEMENTAL_SPELL:
+			return "elemental spells";
+		case P_CHAOS_SPELL:
+			return "chaos spells";
+		case P_MATTER_SPELL:
+			return "matter spells";
+		case P_BARE_HANDED_COMBAT:
+			return "bare-handed combat";
+		case P_HIGH_HEELS:
+			return "high heels";
+		case P_GENERAL_COMBAT:
+			return "general combat";
+		case P_SHIELD:
+			return "shield";
+		case P_BODY_ARMOR:
+			return "body armor";
+		case P_TWO_HANDED_WEAPON:
+			return "two-handed weapons";
+		case P_POLYMORPHING:
+			return "polymorphing";
+		case P_DEVICES:
+			return "devices";
+		case P_SEARCHING:
+			return "searching";
+		case P_SPIRITUALITY:
+			return "spirituality";
+		case P_PETKEEPING:
+			return "petkeeping";
+		case P_MISSILE_WEAPONS:
+			return "missile weapons";
+		case P_TECHNIQUES:
+			return "techniques";
+		case P_IMPLANTS:
+			return "implants";
+		case P_SEXY_FLATS:
+			return "sexy flats";
+		case P_MEMORIZATION:
+			return "memorization";
+		case P_GUN_CONTROL:
+			return "gun control";
+		case P_SQUEAKING:
+			return "squeaking";
+		case P_SYMBIOSIS:
+			return "symbiosis";
+		case P_SHII_CHO:
+			return "form I (Shii-Cho)";
+		case P_MAKASHI:
+			return "form II (Makashi)";
+		case P_SORESU:
+			return "form III (Soresu)";
+		case P_ATARU:
+			return "form IV (Ataru)";
+		case P_SHIEN:
+			return "form V (Shien)";
+		case P_DJEM_SO:
+			return "form V (Djem So)";
+		case P_NIMAN:
+			return "form VI (Niman)";
+		case P_JUYO:
+			return "form VII (Juyo)";
+		case P_VAAPAD:
+			return "form VII (Vaapad)";
+		case P_WEDI:
+			return "form VII (Wedi)";
+		case P_MARTIAL_ARTS:
+			return "martial arts";
+		case P_TWO_WEAPON_COMBAT:
+			return "two-weapon combat";
+		case P_RIDING:
+			return "riding";
+
+		default: return "unknown";
+	}
+	return "unknown";
+}
 
 /*
  *	hitval returns an integer representing the "to hit" bonuses
@@ -3038,8 +3105,7 @@ jediskip:
     u.skill_record[u.skills_advanced++] = skill;
     /* subtly change the advance message to indicate no more advancement */
     You("are now %s skilled in %s.",
-	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more",
-	P_NAME(skill));
+	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more", wpskillname(skill));
 
 	if (practicantterror && !u.pract_enhancing) {
 		u.pract_enhanceamount++;
@@ -3639,6 +3705,111 @@ jediskip:
 	    	You("learn how to perform use the force luke!");
 	}
 
+	if (skill == P_ORB && P_SKILL(skill) == P_BASIC && !tech_known(T_PACIFY)) {
+	    	learntech(T_PACIFY, FROMOUTSIDE, 1);
+	    	You("learn how to perform pacify!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_SKILLED && !tech_known(T_AFTERBURNER)) {
+	    	learntech(T_AFTERBURNER, FROMOUTSIDE, 1);
+	    	You("learn how to perform afterburner!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_EXPERT && !tech_known(T_BUGGARD)) {
+	    	learntech(T_BUGGARD, FROMOUTSIDE, 1);
+	    	You("learn how to perform buggard!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_MASTER && !tech_known(T_THUNDERSTORM)) {
+	    	learntech(T_THUNDERSTORM, FROMOUTSIDE, 1);
+	    	You("learn how to perform thunderstorm!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_AUTOKILL)) {
+	    	learntech(T_AUTOKILL, FROMOUTSIDE, 1);
+	    	You("learn how to perform autokill!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_CHAIN_THUNDERBOLT)) {
+	    	learntech(T_CHAIN_THUNDERBOLT, FROMOUTSIDE, 1);
+	    	You("learn how to perform chain thunderbolt!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_FLASHING_MISCHIEF)) {
+	    	learntech(T_FLASHING_MISCHIEF, FROMOUTSIDE, 1);
+	    	You("learn how to perform flashing mischief!");
+	}
+	if (skill == P_CLAW && P_SKILL(skill) == P_BASIC && !tech_known(T_KAMEHAMEHA)) {
+	    	learntech(T_KAMEHAMEHA, FROMOUTSIDE, 1);
+	    	You("learn how to perform kamehameha!");
+	}
+	if (skill == P_CLAW && P_SKILL(skill) == P_SKILLED && !tech_known(T_SHADOW_MANTLE)) {
+	    	learntech(T_SHADOW_MANTLE, FROMOUTSIDE, 1);
+	    	You("learn how to perform shadow mantle!");
+	}
+	if (skill == P_CLAW && P_SKILL(skill) == P_EXPERT && !tech_known(T_VACUUM_STAR)) {
+	    	learntech(T_VACUUM_STAR, FROMOUTSIDE, 1);
+	    	You("learn how to perform vacuum star!");
+	}
+	if (skill == P_CLAW && P_SKILL(skill) == P_MASTER && !tech_known(T_BLADE_SHIELD)) {
+	    	learntech(T_BLADE_SHIELD, FROMOUTSIDE, 1);
+	    	You("learn how to perform blade shield!");
+	}
+	if (skill == P_CLAW && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_GREEN_WEAPON)) {
+	    	learntech(T_GREEN_WEAPON, FROMOUTSIDE, 1);
+	    	You("learn how to perform green weapon!");
+	}
+	if (skill == P_GRINDER && P_SKILL(skill) == P_BASIC && !tech_known(T_BALLSLIFF)) {
+	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
+	    	You("learn how to perform ballsliff!");
+	}
+	if (skill == P_GRINDER && P_SKILL(skill) == P_SKILLED && !tech_known(T_POLE_MELEE)) {
+	    	learntech(T_POLE_MELEE, FROMOUTSIDE, 1);
+	    	You("learn how to perform pole melee!");
+	}
+	if (skill == P_GRINDER && P_SKILL(skill) == P_EXPERT && !tech_known(T_CHOP_CHOP)) {
+	    	learntech(T_CHOP_CHOP, FROMOUTSIDE, 1);
+	    	You("learn how to perform chop chop!");
+	}
+	if (skill == P_GRINDER && P_SKILL(skill) == P_MASTER && !tech_known(T_BANISHMENT)) {
+	    	learntech(T_BANISHMENT, FROMOUTSIDE, 1);
+	    	You("learn how to perform banishment!");
+	}
+	if (skill == P_GRINDER && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_PARTICIPATION_LOSS)) {
+	    	learntech(T_PARTICIPATION_LOSS, FROMOUTSIDE, 1);
+	    	You("learn how to perform participation loss!");
+	}
+	if (skill == P_CLAW && P_SKILL(skill) == P_EXPERT && P_SKILL(P_TWO_WEAPON_COMBAT) >= P_EXPERT && !tech_known(T_WEAPON_BLOCKER)) {
+	    	learntech(T_WEAPON_BLOCKER, FROMOUTSIDE, 1);
+	    	You("learn how to perform weapon blocker!");
+	}
+	if (skill == P_TWO_WEAPON_COMBAT && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CLAW) >= P_EXPERT && !tech_known(T_WEAPON_BLOCKER)) {
+	    	learntech(T_WEAPON_BLOCKER, FROMOUTSIDE, 1);
+	    	You("learn how to perform weapon blocker!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MEMORIZATION) >= P_EXPERT && !tech_known(T_EXTRA_MEMORY)) {
+	    	learntech(T_EXTRA_MEMORY, FROMOUTSIDE, 1);
+	    	You("learn how to perform extra memory!");
+	}
+	if (skill == P_MEMORIZATION && P_SKILL(skill) == P_EXPERT && P_SKILL(P_ORB) >= P_EXPERT && !tech_known(T_EXTRA_MEMORY)) {
+	    	learntech(T_EXTRA_MEMORY, FROMOUTSIDE, 1);
+	    	You("learn how to perform extra memory!");
+	}
+	if (skill == P_GRINDER && P_SKILL(skill) == P_EXPERT && P_SKILL(P_LANCE) >= P_EXPERT && !tech_known(T_GRAP_SWAP)) {
+	    	learntech(T_GRAP_SWAP, FROMOUTSIDE, 1);
+	    	You("learn how to perform grap swap!");
+	}
+	if (skill == P_LANCE && P_SKILL(skill) == P_EXPERT && P_SKILL(P_GRINDER) >= P_EXPERT && !tech_known(T_GRAP_SWAP)) {
+	    	learntech(T_GRAP_SWAP, FROMOUTSIDE, 1);
+	    	You("learn how to perform grap swap!");
+	}
+	if (skill == P_GRINDER && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CLAW) >= P_EXPERT && P_SKILL(P_ORB) >= P_EXPERT && !tech_known(T_DIABOLIC_MINION)) {
+	    	learntech(T_DIABOLIC_MINION, FROMOUTSIDE, 1);
+	    	You("learn how to perform diabolic minion!");
+	}
+	if (skill == P_CLAW && P_SKILL(skill) == P_EXPERT && P_SKILL(P_GRINDER) >= P_EXPERT && P_SKILL(P_ORB) >= P_EXPERT && !tech_known(T_DIABOLIC_MINION)) {
+	    	learntech(T_DIABOLIC_MINION, FROMOUTSIDE, 1);
+	    	You("learn how to perform diabolic minion!");
+	}
+	if (skill == P_ORB && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CLAW) >= P_EXPERT && P_SKILL(P_GRINDER) >= P_EXPERT && !tech_known(T_DIABOLIC_MINION)) {
+	    	learntech(T_DIABOLIC_MINION, FROMOUTSIDE, 1);
+	    	You("learn how to perform diabolic minion!");
+	}
+
 	} /* demagogue check */
 
 	if (Role_if(PM_BINDER) || Role_if(PM_ANACHRONOUNBINDER)) {
@@ -3695,6 +3866,15 @@ jediskip:
 		break;
 		case P_QUARTERSTAFF:
 			    HFast |= FROMOUTSIDE; pline("Got speed!"); break;
+		break;
+		case P_ORB:
+			    HControlMagic |= FROMOUTSIDE; pline("Got control magic!"); break;
+		break;
+		case P_CLAW:
+			    HStealth |= FROMOUTSIDE; pline("Got stealth!"); break;
+		break;
+		case P_GRINDER:
+			    HExpBoost |= FROMOUTSIDE; pline("Got EXP boost!"); break;
 		break;
 		case P_POLEARMS:
 			    HShock_resistance |= FROMOUTSIDE; pline("Got shock resistance!"); break;
@@ -3924,6 +4104,21 @@ jediskip:
 		case P_QUARTERSTAFF:
 				if (!tech_known(T_CRIT_STRIKE)) {    	learntech(T_CRIT_STRIKE, FROMOUTSIDE, 1);
 			    	You("learn how to perform critical strike!");
+				}
+		break;
+		case P_ORB:
+				if (!tech_known(T_PREACHING)) {    	learntech(T_PREACHING, FROMOUTSIDE, 1);
+			    	You("learn how to perform preaching!");
+				}
+		break;
+		case P_CLAW:
+				if (!tech_known(T_ON_THE_SAME_TEAM)) {    	learntech(T_ON_THE_SAME_TEAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform on the same team!");
+				}
+		break;
+		case P_GRINDER:
+				if (!tech_known(T_PERMAMORPH)) {    	learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
+			    	You("learn how to perform permamorph!");
 				}
 		break;
 		case P_POLEARMS:
@@ -4238,7 +4433,7 @@ int enhance_skill(boolean want_dump)
 			youmonst.data->mattk[1].aatyp != AT_WEAP)
 		    continue;*/
 
-		if ((len = strlen(P_NAME(i))) > longest)
+		if ((len = strlen(wpskillname(i))) > longest)
 		    longest = len;
 		if (can_advance(i, speedy)) to_advance++;
 		else if (could_advance(i)) eventually_advance++;
@@ -4320,7 +4515,7 @@ restrpasstwo:
 			(void) skill_level_name_max(i, sklnambuftwo);
 
 		 	sprintf(buf2,"%-*s [%s] %s (%d of %d)",
-			    longest, P_NAME(i), sklnambuf, sklnambuftwo, P_ADVANCE(i),
+			    longest, wpskillname(i), sklnambuf, sklnambuftwo, P_ADVANCE(i),
 			    practice_needed_to_advance(P_SKILL(i), i) );
 			dump("    ",buf2);
 			logged=TRUE;
@@ -4330,7 +4525,7 @@ restrpasstwo:
 			(void) skill_level_name_max(i, sklnambuftwo);
 
 		 	sprintf(buf2,"%-*s [%s] %s (%d of %d)",
-			    longest, P_NAME(i), sklnambuf, sklnambuftwo, P_ADVANCE(i),
+			    longest, wpskillname(i), sklnambuf, sklnambuftwo, P_ADVANCE(i),
 			    practice_needed_to_advance(P_SKILL(i), i) );
 			dump("    ",buf2);
 			logged=TRUE;
@@ -4369,12 +4564,12 @@ restrpasstwo:
 		if (wizard || RngeSkillReveal) {
 		    if (!iflags.menu_tab_sep)
 			sprintf(buf, " %s%-*s %-12s %-12s %4d(%4d)",
-			    prefix, longest, P_NAME(i), sklnambuf, sklnambuftwo,
+			    prefix, longest, wpskillname(i), sklnambuf, sklnambuftwo,
 			    P_ADVANCE(i),
 			    practice_needed_to_advance(P_SKILL(i), i));
 		    else
 			sprintf(buf, " %s%s\t%s\t%s\t%5d(%4d)",
-			    prefix, P_NAME(i), sklnambuf, sklnambuftwo,
+			    prefix, wpskillname(i), sklnambuf, sklnambuftwo,
 			    P_ADVANCE(i),
 			    practice_needed_to_advance(P_SKILL(i), i));
 		 } else
@@ -4382,10 +4577,10 @@ restrpasstwo:
 		{
 		    if (!iflags.menu_tab_sep)
 			sprintf(buf, " %s %-*s %s %s",
-			    prefix, longest, P_NAME(i), sklnambuf, sklnambuftwo);
+			    prefix, longest, wpskillname(i), sklnambuf, sklnambuftwo);
 		    else
 			sprintf(buf, " %s%s\t%s\t%s",
-			    prefix, P_NAME(i), sklnambuf, sklnambuftwo);
+			    prefix, wpskillname(i), sklnambuf, sklnambuftwo);
 		}
 		any.a_int = can_advance(i, speedy) ? i+1 : 0;
 		add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE,
@@ -5066,13 +5261,117 @@ int degree;
 			    	learntech(T_ASSUME_SYMBIOTE, FROMOUTSIDE, 1);
 			    	You("learn how to perform assume symbiote!");
 			}
-			if (skill == P_SYMBIOSIS && P_ADVANCE(skill) == 0 && !tech_known(T_GENERATE_OFFSPRING)) {
+			if (skill == P_SYMBIOSIS && P_ADVANCE(P_PETKEEPING) == 0 && !tech_known(T_GENERATE_OFFSPRING)) {
 			    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
 			    	You("learn how to perform generate offspring!");
 			}
-			if (skill == P_PETKEEPING && P_ADVANCE(skill) == 0 && !tech_known(T_GENERATE_OFFSPRING)) {
+			if (skill == P_PETKEEPING && P_ADVANCE(P_SYMBIOSIS) == 0 && !tech_known(T_GENERATE_OFFSPRING)) {
 			    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
 			    	You("learn how to perform generate offspring!");
+			}
+			if (skill == P_ORB && !tech_known(T_PACIFY)) {
+			    	learntech(T_PACIFY, FROMOUTSIDE, 1);
+			    	You("learn how to perform pacify!");
+			}
+			if (skill == P_ORB && !tech_known(T_AFTERBURNER)) {
+			    	learntech(T_AFTERBURNER, FROMOUTSIDE, 1);
+			    	You("learn how to perform afterburner!");
+			}
+			if (skill == P_ORB && !tech_known(T_BUGGARD)) {
+			    	learntech(T_BUGGARD, FROMOUTSIDE, 1);
+			    	You("learn how to perform buggard!");
+			}
+			if (skill == P_ORB && !tech_known(T_THUNDERSTORM)) {
+			    	learntech(T_THUNDERSTORM, FROMOUTSIDE, 1);
+			    	You("learn how to perform thunderstorm!");
+			}
+			if (skill == P_ORB && !tech_known(T_AUTOKILL)) {
+			    	learntech(T_AUTOKILL, FROMOUTSIDE, 1);
+			    	You("learn how to perform autokill!");
+			}
+			if (skill == P_ORB && !tech_known(T_CHAIN_THUNDERBOLT)) {
+			    	learntech(T_CHAIN_THUNDERBOLT, FROMOUTSIDE, 1);
+			    	You("learn how to perform chain thunderbolt!");
+			}
+			if (skill == P_ORB && !tech_known(T_FLASHING_MISCHIEF)) {
+			    	learntech(T_FLASHING_MISCHIEF, FROMOUTSIDE, 1);
+			    	You("learn how to perform flashing mischief!");
+			}
+			if (skill == P_CLAW && !tech_known(T_KAMEHAMEHA)) {
+			    	learntech(T_KAMEHAMEHA, FROMOUTSIDE, 1);
+			    	You("learn how to perform kamehameha!");
+			}
+			if (skill == P_CLAW && !tech_known(T_SHADOW_MANTLE)) {
+			    	learntech(T_SHADOW_MANTLE, FROMOUTSIDE, 1);
+			    	You("learn how to perform shadow mantle!");
+			}
+			if (skill == P_CLAW && !tech_known(T_VACUUM_STAR)) {
+			    	learntech(T_VACUUM_STAR, FROMOUTSIDE, 1);
+			    	You("learn how to perform vacuum star!");
+			}
+			if (skill == P_CLAW && !tech_known(T_BLADE_SHIELD)) {
+			    	learntech(T_BLADE_SHIELD, FROMOUTSIDE, 1);
+			    	You("learn how to perform blade shield!");
+			}
+			if (skill == P_CLAW && !tech_known(T_GREEN_WEAPON)) {
+			    	learntech(T_GREEN_WEAPON, FROMOUTSIDE, 1);
+			    	You("learn how to perform green weapon!");
+			}
+			if (skill == P_GRINDER && !tech_known(T_BALLSLIFF)) {
+			    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
+			    	You("learn how to perform ballsliff!");
+			}
+			if (skill == P_GRINDER && !tech_known(T_POLE_MELEE)) {
+			    	learntech(T_POLE_MELEE, FROMOUTSIDE, 1);
+			    	You("learn how to perform pole melee!");
+			}
+			if (skill == P_GRINDER && !tech_known(T_CHOP_CHOP)) {
+			    	learntech(T_CHOP_CHOP, FROMOUTSIDE, 1);
+			    	You("learn how to perform chop chop!");
+			}
+			if (skill == P_GRINDER && !tech_known(T_BANISHMENT)) {
+			    	learntech(T_BANISHMENT, FROMOUTSIDE, 1);
+			    	You("learn how to perform banishment!");
+			}
+			if (skill == P_GRINDER && !tech_known(T_PARTICIPATION_LOSS)) {
+			    	learntech(T_PARTICIPATION_LOSS, FROMOUTSIDE, 1);
+			    	You("learn how to perform participation loss!");
+			}
+			if (skill == P_CLAW && P_ADVANCE(P_TWO_WEAPON_COMBAT) == 0 && !tech_known(T_WEAPON_BLOCKER)) {
+			    	learntech(T_WEAPON_BLOCKER, FROMOUTSIDE, 1);
+			    	You("learn how to perform weapon blocker!");
+			}
+			if (skill == P_TWO_WEAPON_COMBAT && P_ADVANCE(P_CLAW) == 0 && !tech_known(T_WEAPON_BLOCKER)) {
+			    	learntech(T_WEAPON_BLOCKER, FROMOUTSIDE, 1);
+			    	You("learn how to perform weapon blocker!");
+			}
+			if (skill == P_ORB && P_ADVANCE(P_MEMORIZATION) == 0 && !tech_known(T_EXTRA_MEMORY)) {
+			    	learntech(T_EXTRA_MEMORY, FROMOUTSIDE, 1);
+			    	You("learn how to perform extra memory!");
+			}
+			if (skill == P_MEMORIZATION && P_ADVANCE(P_ORB) == 0 >= P_EXPERT && !tech_known(T_EXTRA_MEMORY)) {
+			    	learntech(T_EXTRA_MEMORY, FROMOUTSIDE, 1);
+			    	You("learn how to perform extra memory!");
+			}
+			if (skill == P_GRINDER && P_ADVANCE(P_LANCE) == 0 && !tech_known(T_GRAP_SWAP)) {
+			    	learntech(T_GRAP_SWAP, FROMOUTSIDE, 1);
+			    	You("learn how to perform grap swap!");
+			}
+			if (skill == P_LANCE && P_ADVANCE(P_GRINDER) == 0 && !tech_known(T_GRAP_SWAP)) {
+			    	learntech(T_GRAP_SWAP, FROMOUTSIDE, 1);
+			    	You("learn how to perform grap swap!");
+			}
+			if (skill == P_GRINDER && P_ADVANCE(P_ORB) == 0 && P_ADVANCE(P_CLAW) == 0 && !tech_known(T_DIABOLIC_MINION)) {
+			    	learntech(T_DIABOLIC_MINION, FROMOUTSIDE, 1);
+			    	You("learn how to perform diabolic minion!");
+			}
+			if (skill == P_CLAW && P_ADVANCE(P_GRINDER) == 0 && P_ADVANCE(P_ORB) == 0 && !tech_known(T_DIABOLIC_MINION)) {
+			    	learntech(T_DIABOLIC_MINION, FROMOUTSIDE, 1);
+			    	You("learn how to perform diabolic minion!");
+			}
+			if (skill == P_ORB && P_ADVANCE(P_CLAW) == 0 && P_ADVANCE(P_GRINDER) == 0 && !tech_known(T_DIABOLIC_MINION)) {
+			    	learntech(T_DIABOLIC_MINION, FROMOUTSIDE, 1);
+			    	You("learn how to perform diabolic minion!");
 			}
 
 		}
@@ -5109,6 +5408,18 @@ int degree;
 
 	/* squeaking and gun control are hard to train for the wrong gender --Amy */
 	if (((skill == P_SQUEAKING && !flags.female) || (skill == P_GUN_CONTROL && flags.female)) && !Role_if(PM_GENDERSTARIST)) {
+		int advchance = 1;
+		if (P_ADVANCE(skill) >= 4320) advchance = 21;
+		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
+		else if (P_ADVANCE(skill) >= 1280) advchance = 8;
+		else if (P_ADVANCE(skill) >= 540) advchance = 5;
+		else if (P_ADVANCE(skill) >= 160) advchance = 3;
+		else if (P_ADVANCE(skill) >= 20) advchance = 2;
+		if (advchance > 1 && rn2(advchance)) return;
+	}
+
+	/* orb, claw and grinder are hard to train for the wrong alignment --Amy */
+	if (((skill == P_ORB && u.ualign.type != A_LAWFUL) || (skill == P_CLAW && u.ualign.type != A_NEUTRAL) || (skill == P_GRINDER && u.ualign.type != A_CHAOTIC)) /* diablist goes here */ ) {
 		int advchance = 1;
 		if (P_ADVANCE(skill) >= 4320) advchance = 21;
 		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
@@ -6514,6 +6825,10 @@ const struct def_skill *class_skill;
 	     * except if you're a genderstarist, then you'll start with both */
 	    if (!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) continue;
 	    if (!Role_if(PM_GENDERSTARIST) && !flags.female && skill == P_SQUEAKING) continue;
+	    /* orb, claw and grinder are alignment-specific at game start except if you're a diablist */
+	    if (u.ualign.type != A_LAWFUL && skill == P_ORB) continue;
+	    if (u.ualign.type != A_NEUTRAL && skill == P_CLAW) continue;
+	    if (u.ualign.type != A_CHAOTIC && skill == P_GRINDER) continue;
 
 	    P_MAX_SKILL(skill) = skmax;
 	    if (P_SKILL(skill) == P_ISRESTRICTED)       /* skill pre-set */
@@ -6530,12 +6845,12 @@ const struct def_skill *class_skill;
 	/* Set skill for all objects in inventory to be basic */
 	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
-	    if (skill != P_NONE && !(!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) && !(!Role_if(PM_GENDERSTARIST) && !flags.female && skill == P_SQUEAKING) ) {
+	    if (skill != P_NONE && !(!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) && !(!Role_if(PM_GENDERSTARIST) && !flags.female && skill == P_SQUEAKING) && !(u.ualign.type != A_LAWFUL && skill == P_ORB) && !(u.ualign.type != A_NEUTRAL && skill == P_CLAW) && !(u.ualign.type != A_CHAOTIC && skill == P_GRINDER) ) {
 		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
 		if (P_MAX_SKILL(skill) < P_EXPERT) { /* edit by Amy: let's make it expert. */
-			if (wizard) pline("Warning: %s should be at least expert.  Fixing...", P_NAME(skill));
+			if (wizard) pline("Warning: %s should be at least expert.  Fixing...", wpskillname(skill));
 			P_MAX_SKILL(skill) = P_EXPERT;
 		}
 		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) && Race_if(PM_TUMBLRER)) P_SKILL(skill) = P_MAX_SKILL(skill);
@@ -7722,7 +8037,7 @@ rerollthree:
 	for (skill = 0; skill < P_NUM_SKILLS; skill++) {
 	    if (!P_RESTRICTED(skill)) {
 		if (P_MAX_SKILL(skill) < P_SKILL(skill)) {
-		    impossible("skill_init: curr > max: %s", P_NAME(skill));
+		    impossible("skill_init: curr > max: %s", wpskillname(skill));
 		    P_MAX_SKILL(skill) = P_SKILL(skill);
 		}
 		if (!Role_if(PM_DEMAGOGUE)) P_ADVANCE(skill) = practice_needed_to_advance(P_SKILL(skill)-1,skill);
@@ -7763,6 +8078,22 @@ rerollthree:
 		P_MAX_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_ADVANCE(P_SQUEAKING) = 0;
+	}
+	/* or if you somehow got the other alignment's skill */
+	if (u.ualign.type != A_CHAOTIC && P_MAX_SKILL(P_GRINDER) >= P_BASIC) {
+		P_MAX_SKILL(P_GRINDER) = P_ISRESTRICTED;
+		P_SKILL(P_GRINDER) = P_ISRESTRICTED;
+		P_ADVANCE(P_GRINDER) = 0;
+	}
+	if (u.ualign.type != A_NEUTRAL && P_MAX_SKILL(P_CLAW) >= P_BASIC) {
+		P_MAX_SKILL(P_CLAW) = P_ISRESTRICTED;
+		P_SKILL(P_CLAW) = P_ISRESTRICTED;
+		P_ADVANCE(P_CLAW) = 0;
+	}
+	if (u.ualign.type != A_LAWFUL && P_MAX_SKILL(P_ORB) >= P_BASIC) {
+		P_MAX_SKILL(P_ORB) = P_ISRESTRICTED;
+		P_SKILL(P_ORB) = P_ISRESTRICTED;
+		P_ADVANCE(P_ORB) = 0;
 	}
 
 	/* If you somehow start with a skill at high enough proficiency, learn the associated techniques
@@ -8129,6 +8460,70 @@ rerollthree:
 	    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
 	}
 
+	if (P_SKILL(P_ORB) >= P_BASIC && !tech_known(T_PACIFY)) {
+	    	learntech(T_PACIFY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ORB) >= P_SKILLED && !tech_known(T_AFTERBURNER)) {
+	    	learntech(T_AFTERBURNER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ORB) >= P_EXPERT && !tech_known(T_BUGGARD)) {
+	    	learntech(T_BUGGARD, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ORB) >= P_MASTER && !tech_known(T_THUNDERSTORM)) {
+	    	learntech(T_THUNDERSTORM, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ORB) >= P_GRAND_MASTER && !tech_known(T_AUTOKILL)) {
+	    	learntech(T_AUTOKILL, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ORB) >= P_GRAND_MASTER && !tech_known(T_CHAIN_THUNDERBOLT)) {
+	    	learntech(T_CHAIN_THUNDERBOLT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ORB) >= P_GRAND_MASTER && !tech_known(T_FLASHING_MISCHIEF)) {
+	    	learntech(T_FLASHING_MISCHIEF, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CLAW) >= P_BASIC && !tech_known(T_KAMEHAMEHA)) {
+	    	learntech(T_KAMEHAMEHA, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CLAW) >= P_SKILLED && !tech_known(T_SHADOW_MANTLE)) {
+	    	learntech(T_SHADOW_MANTLE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CLAW) >= P_EXPERT && !tech_known(T_VACUUM_STAR)) {
+	    	learntech(T_VACUUM_STAR, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CLAW) >= P_MASTER && !tech_known(T_BLADE_SHIELD)) {
+	    	learntech(T_BLADE_SHIELD, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CLAW) >= P_GRAND_MASTER && !tech_known(T_GREEN_WEAPON)) {
+	    	learntech(T_GREEN_WEAPON, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GRINDER) >= P_BASIC && !tech_known(T_BALLSLIFF)) {
+	    	learntech(T_BALLSLIFF, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GRINDER) >= P_SKILLED && !tech_known(T_POLE_MELEE)) {
+	    	learntech(T_POLE_MELEE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GRINDER) >= P_EXPERT && !tech_known(T_CHOP_CHOP)) {
+	    	learntech(T_CHOP_CHOP, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GRINDER) >= P_MASTER && !tech_known(T_BANISHMENT)) {
+	    	learntech(T_BANISHMENT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GRINDER) >= P_GRAND_MASTER && !tech_known(T_PARTICIPATION_LOSS)) {
+	    	learntech(T_PARTICIPATION_LOSS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CLAW) >= P_EXPERT && P_SKILL(P_TWO_WEAPON_COMBAT) >= P_EXPERT && !tech_known(T_WEAPON_BLOCKER)) {
+	    	learntech(T_WEAPON_BLOCKER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ORB) >= P_EXPERT && P_SKILL(P_MEMORIZATION) >= P_EXPERT && !tech_known(T_EXTRA_MEMORY)) {
+	    	learntech(T_EXTRA_MEMORY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GRINDER) >= P_EXPERT && P_SKILL(P_LANCE) >= P_EXPERT && !tech_known(T_GRAP_SWAP)) {
+	    	learntech(T_GRAP_SWAP, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_GRINDER) >= P_EXPERT && P_SKILL(P_CLAW) >= P_EXPERT && P_SKILL(P_ORB) >= P_EXPERT && !tech_known(T_DIABOLIC_MINION)) {
+	    	learntech(T_DIABOLIC_MINION, FROMOUTSIDE, 1);
+	}
+
 	} /* demagogue check */
 
 }
@@ -8234,6 +8629,15 @@ doubleskilltraining()
 		acquiredskill = 1; }
 	else if (P_ADVANCE(P_QUARTERSTAFF) && !(P_RESTRICTED(P_QUARTERSTAFF)) && yn("Do you want to train the quarterstaff skill?")=='y') {
 		P_ADVANCE(P_QUARTERSTAFF) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_ORB) && !(P_RESTRICTED(P_ORB)) && yn("Do you want to train the orb skill?")=='y') {
+		P_ADVANCE(P_ORB) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_CLAW) && !(P_RESTRICTED(P_CLAW)) && yn("Do you want to train the claw skill?")=='y') {
+		P_ADVANCE(P_CLAW) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_GRINDER) && !(P_RESTRICTED(P_GRINDER)) && yn("Do you want to train the grinder skill?")=='y') {
+		P_ADVANCE(P_GRINDER) *= 2;
 		acquiredskill = 1; }
 	else if (P_ADVANCE(P_POLEARMS) && !(P_RESTRICTED(P_POLEARMS)) && yn("Do you want to train the polearms skill?")=='y') {
 		P_ADVANCE(P_POLEARMS) *= 2;
@@ -8457,6 +8861,12 @@ unrestrictskillchoice()
 		    unrestrict_weapon_skill(P_HAMMER);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_QUARTERSTAFF) && yn("Do you want to learn the quarterstaff skill?")=='y') {
 		    unrestrict_weapon_skill(P_QUARTERSTAFF);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_ORB) && yn("Do you want to learn the orb skill?")=='y') {
+		    unrestrict_weapon_skill(P_ORB);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_CLAW) && yn("Do you want to learn the claw skill?")=='y') {
+		    unrestrict_weapon_skill(P_CLAW);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_GRINDER) && yn("Do you want to learn the grinder skill?")=='y') {
+		    unrestrict_weapon_skill(P_GRINDER);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_POLEARMS) && yn("Do you want to learn the polearms skill?")=='y') {
 		    unrestrict_weapon_skill(P_POLEARMS);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_SPEAR) && yn("Do you want to learn the spear skill?")=='y') {
@@ -8641,6 +9051,15 @@ additionalskilltraining()
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_QUARTERSTAFF)) && yn("Do you want to train the quarterstaff skill?")=='y') {
 		P_ADVANCE(P_QUARTERSTAFF) += rnd(10);
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_ORB)) && yn("Do you want to train the orb skill?")=='y') {
+		P_ADVANCE(P_ORB) += rnd(10);
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_CLAW)) && yn("Do you want to train the claw skill?")=='y') {
+		P_ADVANCE(P_CLAW) += rnd(10);
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_GRINDER)) && yn("Do you want to train the grinder skill?")=='y') {
+		P_ADVANCE(P_GRINDER) += rnd(10);
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_POLEARMS)) && yn("Do you want to train the polearms skill?")=='y') {
 		P_ADVANCE(P_POLEARMS) += rnd(10);
@@ -8838,9 +9257,9 @@ practice_weapon()
 		delay=-10;
 		set_occupation(practice, "practicing", 0);
 	} else if (P_SKILL(weapon_type(uwep)) >= P_MAX_SKILL(weapon_type(uwep)))
-		You("cannot increase your skill in %s.", P_NAME(weapon_type(uwep)));
+		You("cannot increase your skill in %s.", wpskillname(weapon_type(uwep)));
 	else You("cannot learn much about %s right now.",
-                P_NAME(weapon_type(uwep)));
+                wpskillname(weapon_type(uwep)));
                 
 }
 
@@ -8879,7 +9298,7 @@ eviltryagain:
 	else P_ADVANCE(pickskill) -= lossamount;
 
 	if (!P_RESTRICTED(pickskill)) {
-		pline("Your %s skill falls off, and you're much less skilled than before.", P_NAME(pickskill));
+		pline("Your %s skill falls off, and you're much less skilled than before.", wpskillname(pickskill));
 
 		tryct = 2000;
 		tryct2 = 10;
@@ -9256,7 +9675,7 @@ int lossamount;
 	else P_ADVANCE(pickskill) -= lossamount;
 
 	if (!P_RESTRICTED(pickskill)) {
-		pline("Your %s skill deteriorates.", P_NAME(pickskill));
+		pline("Your %s skill deteriorates.", wpskillname(pickskill));
 
 		tryct = 2000;
 		tryct2 = 10;

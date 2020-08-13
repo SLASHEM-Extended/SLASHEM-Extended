@@ -19,105 +19,6 @@
 
 #define CMD_TRAVEL (char)0x90
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 #ifdef DEBUG
 /*
  * only one "wiz_debug_cmd" routine should be available (in whatever
@@ -2985,65 +2886,65 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && u.untrainableskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.untrainableskill));
+		sprintf(buf, " %s", wpskillname(u.untrainableskill));
 		enl_msg("The following skill ", "cannot be trained at all:", "could not be trained at all:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.halfspeedskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.halfspeedskill));
+		sprintf(buf, " %s", wpskillname(u.halfspeedskill));
 		enl_msg("The following skill ", "is trained at half the usual rate:", "was trained at half the usual rate:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.fifthspeedskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
+		sprintf(buf, " %s", wpskillname(u.fifthspeedskill));
 		enl_msg("The following skill ", "is trained at one fifth the usual rate:", "was trained at one fifth the usual rate:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.basiclimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.basiclimitskill));
+		sprintf(buf, " %s", wpskillname(u.basiclimitskill));
 		enl_msg("The following skill ", "is limited to basic proficiency:", "was limited to basic proficiency:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.skilledlimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
+		sprintf(buf, " %s", wpskillname(u.skilledlimitskill));
 		enl_msg("The following skill ", "is limited to skilled proficiency:", "was limited to skilled proficiency:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.expertlimitskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.expertlimitskill));
+		sprintf(buf, " %s", wpskillname(u.expertlimitskill));
 		enl_msg("The following skill ", "is limited to expert proficiency:", "was limited to expert proficiency:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.earlytrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.earlytrainingskill), u.earlytrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
 		if (u.earlytrainingblown) {
-			sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
+			sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.earlytrainingskill));
 			you_have(buf);
 		}
 	}
 
 	if ((guaranteed || !rn2(10)) && u.frtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.frtrainingskill), u.frtrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
 		if (u.frtrainingblown) {
-			sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.frtrainingskill));
+			sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.frtrainingskill));
 			you_have(buf);
 		}
 	}
 
 	if ((guaranteed || !rn2(10)) && u.latetrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.latetrainingskill), u.latetrainingtimer);
 		enl_msg("The following skill ", "becomes untrainable after a while:", "became untrainable after a while:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.lavtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.lavtrainingskill), u.lavtrainingtimer);
 		enl_msg("The following skill ", "can't be trained before a certain turn number is reached:", "couldn't be trained before a certain turn number is reached:", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.slowtrainingskill && (wizard || (!rn2(10)) || final >= 1 ) ) {
-		sprintf(buf, " %s", P_NAME(u.slowtrainingskill));
+		sprintf(buf, " %s", wpskillname(u.slowtrainingskill));
 		enl_msg("The following skill ", "becomes harder to train at higher skill levels:", "became harder to train at higher skill levels:", buf);
 	}
 
@@ -3602,17 +3503,17 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias1 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias1), u.spellbookchance1);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias1), u.spellbookchance1);
 		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias2 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias2), u.spellbookchance2);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias2), u.spellbookchance2);
 		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) && u.spellbookbias3 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias3), u.spellbookchance3);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias3), u.spellbookchance3);
 		enl_msg("The spell school whose books are more common ", "is ", "was ", buf );
 	}
 
@@ -7038,67 +6939,67 @@ int final;
 	}
 
 	if (u.untrainableskill) {
-		sprintf(buf, " %s", P_NAME(u.untrainableskill));
+		sprintf(buf, " %s", wpskillname(u.untrainableskill));
 		dump("  The following skill could not be trained at all:", buf);
 	}
 
 	if (u.halfspeedskill) {
-		sprintf(buf, " %s", P_NAME(u.halfspeedskill));
+		sprintf(buf, " %s", wpskillname(u.halfspeedskill));
 		dump("  The following skill was trained at half the usual rate:", buf);
 	}
 
 	if (u.fifthspeedskill) {
-		sprintf(buf, " %s", P_NAME(u.fifthspeedskill));
+		sprintf(buf, " %s", wpskillname(u.fifthspeedskill));
 		dump("  The following skill was trained at one fifth the usual rate:", buf);
 	}
 
 	if (u.basiclimitskill) {
-		sprintf(buf, " %s", P_NAME(u.basiclimitskill));
+		sprintf(buf, " %s", wpskillname(u.basiclimitskill));
 		dump("  The following skill was limited to basic proficiency:", buf);
 	}
 
 	if (u.skilledlimitskill) {
-		sprintf(buf, " %s", P_NAME(u.skilledlimitskill));
+		sprintf(buf, " %s", wpskillname(u.skilledlimitskill));
 		dump("  The following skill was limited to skilled proficiency:", buf);
 	}
 
 	if (u.expertlimitskill) {
-		sprintf(buf, " %s", P_NAME(u.expertlimitskill));
+		sprintf(buf, " %s", wpskillname(u.expertlimitskill));
 		dump("  The following skill was limited to expert proficiency:", buf);
 	}
 
 	if (u.earlytrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.earlytrainingskill), u.earlytrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.earlytrainingskill), u.earlytrainingtimer);
 		dump("  The following skill became untrainable if you tried to train it too early:", buf);
 	}
 
 	if (u.earlytrainingblown) {
-		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
+		sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.earlytrainingskill));
 		dump(youhad, buf);
 	}
 
 	if (u.frtrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.frtrainingskill), u.frtrainingtimer);
 		dump("  The following skill became untrainable if you tried to train it too early:", buf);
 	}
 
 	if (u.frtrainingblown) {
-		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.frtrainingskill));
+		sprintf(buf, "blown your chance of training the %s skill", wpskillname(u.frtrainingskill));
 		dump(youhad, buf);
 	}
 
 	if (u.latetrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.latetrainingskill), u.latetrainingtimer);
 		dump("  The following skill became untrainable after a while:", buf);
 	}
 
 	if (u.lavtrainingskill) {
-		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
+		sprintf(buf, " %s (turn %d)", wpskillname(u.lavtrainingskill), u.lavtrainingtimer);
 		dump("  The following skill couldn't be trained before a certain turn number is reached:", buf);
 	}
 
 	if (u.slowtrainingskill) {
-		sprintf(buf, " %s", P_NAME(u.slowtrainingskill));
+		sprintf(buf, " %s", wpskillname(u.slowtrainingskill));
 		dump("  The following skill became harder to train at higher skill levels:", buf);
 	}
 
@@ -7544,17 +7445,17 @@ int final;
 	dump("  The RNG hath decreed that this trap was ", buf );
 
 	if (u.spellbookbias1 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias1), u.spellbookchance1);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias1), u.spellbookchance1);
 		dump("  The spell school whose books are more common was ", buf );
 	}
 
 	if (u.spellbookbias2 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias2), u.spellbookchance2);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias2), u.spellbookchance2);
 		dump("  The spell school whose books are more common was ", buf );
 	}
 
 	if (u.spellbookbias3 != -1) {
-		sprintf(buf, "%s (freq bonus %d)", P_NAME(u.spellbookbias3), u.spellbookchance3);
+		sprintf(buf, "%s (freq bonus %d)", wpskillname(u.spellbookbias3), u.spellbookchance3);
 		dump("  The spell school whose books are more common was ", buf );
 	}
 

@@ -5443,8 +5443,8 @@ find_ac()
 	 * don't suffer from low to-hit like dual-wielded one-handed weapons do. These are basically all two-handers that
 	 * are meant to be used in melee, so e.g. bows are unaffected but also polearms because those are already balanced
 	 * by the fact that their damage is only mediocre and they're not effective without riding.
-	 * Additionally, quarterstaff and unicorn horn are exempt because they don't get big damage bonuses and shouldn't
-	 * be made completely pointless just because I'm trying to balance the heavy hitters.
+	 * Additionally, quarterstaff, grinder and unicorn horn are exempt because they don't get big damage bonuses and
+	 * shouldn't be made completely pointless just because I'm trying to balance the heavy hitters.
 	 * And double lightsabers are exempt because it's already enough of a hassle to manage power for them. --Amy */
 	if (uwep && is_heavyweapon(uwep)) {
 

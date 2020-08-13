@@ -17,105 +17,6 @@ STATIC_DCL struct artifact artilist[];
  */
 
 
-#ifndef OVLB
-
-STATIC_DCL NEARDATA const short skill_names_indices[];
-STATIC_DCL NEARDATA const char *odd_skill_names[];
-
-#else	/* OVLB */
-
-/* KMH, balance patch -- updated */
-STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
-	0,                DAGGER,         KNIFE,        AXE,
-	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
-	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
-	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
-	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
-	JAVELIN,          TRIDENT,        LANCE,        BOW,
-	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
-	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
-	PN_LIGHTSABER,
-	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
-	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
-	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
-	PN_OCCULT_SPELL,
-	PN_ELEMENTAL_SPELL,
-	PN_CHAOS_SPELL,
-	PN_MATTER_SPELL,
-	PN_BARE_HANDED,	PN_HIGH_HEELS,
-	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
-	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
-	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
-	PN_MEMORIZATION,	PN_GUN_CONTROL,	PN_SQUEAKING,	PN_SYMBIOSIS,
-	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
-	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
-	PN_MARTIAL_ARTS, 
-	PN_TWO_WEAPONS,
-	PN_RIDING,
-};
-
-
-STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
-    "no skill",
-    "polearms",
-    "saber",
-    "hammer",
-    "whip",
-    "paddle",
-    "firearms",
-    "attack spells",
-    "healing spells",
-    "divination spells",
-    "enchantment spells",
-    "protection spells",
-    "body spells",
-    "occult spells",
-    "elemental spells",
-    "chaos spells",
-    "matter spells",
-    "bare-handed combat",
-    "high heels",
-    "general combat",
-    "shield",
-    "body armor",
-    "two-handed weapons",
-    "polymorphing",
-    "devices",
-    "searching",
-    "spirituality",
-    "petkeeping",
-    "missile weapons",
-    "techniques",
-    "implants",
-    "sexy flats",
-    "memorization",
-    "gun control",
-    "squeaking",
-    "symbiosis",
-    "form I (Shii-Cho)",
-    "form II (Makashi)",
-    "form III (Soresu)",
-    "form IV (Ataru)",
-    "form V (Shien)",
-    "form V (Djem So)",
-    "form VI (Niman)",
-    "form VII (Juyo)",
-    "form VII (Vaapad)",
-    "form VIII (Wedi)",
-    "martial arts",
-    "riding",
-    "two-weapon combat",
-    "lightsaber"
-};
-
-#endif	/* OVLB */
-
-#define P_NAME(type) (skill_names_indices[type] > 0 ? \
-		      OBJ_NAME(objects[skill_names_indices[type]]) : \
-			odd_skill_names[-skill_names_indices[type]])
-
 extern boolean notonhead;	/* for long worms */
 
 #define get_artifact(o) \
@@ -3027,7 +2928,7 @@ doinvoke()
 							}
 
 							P_MAX_SKILL(skillnumber) = maxcap;
-							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
+							pline("You can now learn the %s skill, with a new cap of %s.", wpskillname(skillnumber), maxcap == P_SUPREME_MASTER ? "supreme master" : maxcap == P_GRAND_MASTER ? "grand master" : maxcap == P_MASTER ? "master" : maxcap == P_EXPERT ? "expert" : maxcap == P_SKILLED ? "skilled" : "basic");
 						} else {
 							pline("Nothing happens...");
 							if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {

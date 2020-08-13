@@ -3281,6 +3281,7 @@ E void dataskilldecrease(void);
 E void doubleskilltraining(void);
 E void additionalskilltraining(void);
 E void unrestrictskillchoice(void);
+E const char *wpskillname(int);
 
 /* ### were.c ### */
 
