@@ -8915,6 +8915,32 @@ boolean knoweverything;
 				pline("A paddle that does superb damage against small foes but next to no damage against large foes."); break;
 			case SILVER_MACE:
 				pline("The main use of this mace is to bash undead, which take extra damage from it."); break;
+			case EAGLE_BALL:
+				pline("The basic orb that deals negligible damage in melee but may drain the target's HP or mana."); break;
+			case JARED_STONE:
+				pline("This orb-class weapon deals rather low damage. It may drain HP or mana from targets."); break;
+			case LIGHTBULB:
+				pline("According to Amy's brother, finding this weapon will save your run because it means you don't have to give up yet even when you were planning to. Apart from that, it's an orb-class weapon that deals mediocre damage and drains HP or mana from the target."); break;
+			case HEATH_BALL:
+				pline("For an orb, this thing does relatively good damage, but it's still a rather weak weapon. It may come in handy by draining HP or mana from enemies."); break;
+			case CIGARETTE:
+				pline("Smoking kills. But if you insist, you can use this orb-class weapon to whack enemies and deal d5 damage as well as potentially drain HP or mana from the opponent."); break;
+			case GRINDER:
+				pline("This is a heavy two-handed weapon that uses the grinder skill and can hit several targets in melee. You can also apply it at a monster standing two squares away, which likewise causes it to possibly hit several targets at once."); break;
+			case HEAVY_GRINDER:
+				pline("A stronger grinder that can be applied like a polearm to hit several targets, but is also effective in melee where it can likewise hit several targets."); break;
+			case VARIED_GRINDER:
+				pline("The material of this particular grinder is randomized. You can use it in melee, where it might hit several targets, or apply it like a polearm where it can do the same."); break;
+			case QATAR:
+				pline("A standard claw that deals some damage in melee."); break;
+			case LOWER_ARM_BLADE:
+				pline("This claw-class weapon deals solid melee damage."); break;
+			case CESTUS:
+				pline("Claw-class weapon that is rather ineffective versus small targets but does great damage versus large ones."); break;
+			case BELL_CLAWS:
+				pline("These claws aren't very effective if the target is large, but they're surprisingly useful against small ones."); break;
+			case CAMO_QATAR:
+				pline("A claw that is made of a random material. Its damage output is average."); break;
 			case MACE:
 				pline("A mace. It's quite a weak weapon, actually."); break;
 			case BATLETH:
@@ -12759,6 +12785,8 @@ boolean knoweverything;
 				pline("This laser-powered hammer deals much more damage if you turn it on, but will eventually run out of power."); break;
 			case LIGHTWHIP:
 				pline("It's a whip, which is generally not considered a good type of melee weapon, but this one is laser-powered. Turn it on to make it into an awesome weapon. However, it'll eventually run out of energy."); break;
+			case ELECTRIC_CIGARETTE:
+				pline("This thing uses the orb skill, but doesn't do much damage if it's not turned on. Also you will get addicted and may develop cancer from using it :-P"); break;
 			case EXPENSIVE_CAMERA: 
 				pline("A tool that can be used to photograph monsters."); break;
 			case MIRROR: 

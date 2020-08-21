@@ -1622,6 +1622,7 @@ int curse_bless;
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
 	    case LIGHTWHIP:
+	    case ELECTRIC_CIGARETTE:
 
 		if (is_cursed) {
 		    if (obj->lamplit) {

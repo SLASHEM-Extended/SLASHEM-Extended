@@ -97,7 +97,7 @@ NEARDATA struct objclass objects[] = {
 WEAPON("orcish dagger", "crude dagger",
 	0, 1, 0,  50, 4,  4,  2,  1, 1, P,   P_DAGGER, MT_IRON, CLR_BLACK, 1),
 WEAPON("dagger", (char *)0,
-	1, 1, 0,  80, 4,  4,  3,  2, 1, P,   P_DAGGER, MT_IRON, HI_METAL, 2),
+	1, 1, 0,  70, 4,  4,  3,  2, 1, P,   P_DAGGER, MT_IRON, HI_METAL, 2),
 WEAPON("radioactive dagger", (char *)0,
 	1, 1, 0,  5, 4,  4,  3,  2, 1, P,   P_DAGGER, MT_VIVA, CLR_ORANGE, 10),
 WEAPON("droven dagger", "obsidian dagger",
@@ -114,7 +114,7 @@ WEAPON("silver dagger", (char *)0,
 	/* WAC silver dagger now pierces, to be same as other daggers
         allows it to be thrown without penalty as well*/
 WEAPON("elven dagger", "runed dagger",
-	0, 1, 0,  58, 4,  4,  3,  3, 1, P,   P_DAGGER, MT_WOOD, HI_METAL, 10),
+	0, 1, 0,  48, 4,  4,  3,  3, 1, P,   P_DAGGER, MT_WOOD, HI_METAL, 10),
 WEAPON("dark elven dagger", "black runed dagger",
 	0, 1, 0,  20, 4,  4,  4,  4, 1, P,   P_DAGGER, MT_WOOD, CLR_BLACK, 15),
 WEAPON("secretion dagger", (char *)0,
@@ -161,7 +161,7 @@ WEAPON("tooth of an algolian suntiger",	"very sharp tooth",
 
 /* Axes */
 WEAPON("axe", (char *)0,
-	1, 0, 0, 277, 24,  8,  8,  4, 0, S,   P_AXE, MT_IRON, HI_METAL, 2),
+	1, 0, 0, 257, 24,  8,  8,  4, 0, S,   P_AXE, MT_IRON, HI_METAL, 2),
 WEAPON("nano axe", (char *)0,
 	1, 0, 0, 10, 48, 40,  12,  9, 0, S,   P_AXE, MT_NANOMACHINE, CLR_RED, 15),
 WEAPON("sharp axe", (char *)0,
@@ -194,7 +194,7 @@ WEAPON("eternium mattock", (char *)0,
 WEAPON("orcish short sword", "crude short sword",
 	0, 0, 0, 28, 12, 10,  5,  8, 0, P,   P_SHORT_SWORD, MT_IRON, CLR_BLACK, 1),
 WEAPON("short sword", (char *)0,
-	1, 0, 0, 186, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_IRON, HI_METAL, 2),
+	1, 0, 0, 166, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_IRON, HI_METAL, 2),
 WEAPON("sand sword", (char *)0,
 	1, 0, 0, 20, 12, 10,  6,  8, 0, P,   P_SHORT_SWORD, MT_SAND, CLR_BROWN, 2),
 WEAPON("short blade", (char *)0,
@@ -221,7 +221,7 @@ WEAPON("vibroblade", "gray short sword",
 WEAPON("paper sword", (char *)0,
 	1, 0, 0, 20, 10, 2,  6,  9, 0, S,   P_BROAD_SWORD, MT_PAPER, CLR_WHITE, 1),
 WEAPON("broadsword", (char *)0,
-	1, 0, 0, 128, 30, 10,  7,  10, 0, S,   P_BROAD_SWORD, MT_IRON, HI_METAL, 4),
+	1, 0, 0, 118, 30, 10,  7,  10, 0, S,   P_BROAD_SWORD, MT_IRON, HI_METAL, 4),
 						/* +d4 small, +1 large */
 WEAPON("volcanic broadsword", (char *)0,
 	1, 0, 0,  2, 30, 10, 10, 12, 1, S, P_BROAD_SWORD, MT_OBSIDIAN, CLR_BLACK, 12),
@@ -274,7 +274,7 @@ WEAPON("great houchou", (char *)0,
 
 /* Two-handed swords */
 WEAPON("two-handed sword", (char *)0,
-	1, 0, 1, 134,60, 50, 15,  8, 0, S,   P_TWO_HANDED_SWORD, MT_IRON, HI_METAL, 8),
+	1, 0, 1, 124,60, 50, 15,  8, 0, S,   P_TWO_HANDED_SWORD, MT_IRON, HI_METAL, 8),
 	/* +2d6 large */
 WEAPON("shadowblade", (char *)0,
 	1, 0, 1, 4, 60, 50, 15, 15, 0, S,   P_TWO_HANDED_SWORD, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 15),
@@ -344,7 +344,7 @@ WEAPON("golden saber", (char *)0,
 
 /* Clubs */
 WEAPON("club", (char *)0,
-	1, 0, 0, 165, 12,  3,  6,  3, 0, B,   P_CLUB, MT_WOOD, HI_WOOD, 1),
+	1, 0, 0, 145, 12,  3,  6,  3, 0, B,   P_CLUB, MT_WOOD, HI_WOOD, 1),
 WEAPON("natural stick", (char *)0,
 	1, 0, 0, 12, 12,  3,  6,  3, 0, B,   P_CLUB, MT_INKA, CLR_BROWN, 2),
 WEAPON("aklys", "thonged club",
@@ -404,12 +404,41 @@ WEAPON("otama", (char *)0,
 WEAPON("telephone", (char *)0, /* applying a positively enchanted one disenchants it and summons a tame demon */
 	1, 0, 0,  5, 2, 50, 6, 6, 2, B,   P_PADDLE, MT_PAPER, CLR_BRIGHT_BLUE, 5),
 
+WEAPON("eagle ball", (char *)0,
+	1, 0, 0, 64, 2, 5,  2, 2, 0, B,   P_ORB, MT_PLASTIC, CLR_ORANGE, 1),
+WEAPON("jared stone", (char *)0,
+	1, 0, 0, 20, 2, 20, 4, 4, 0, B,   P_ORB, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 10),
+WEAPON("lightbulb", (char *)0,
+	1, 0, 0,  5, 2, 50, 6, 6, 0, B,   P_ORB, MT_GLASS, CLR_GRAY, 20),
+WEAPON("heath ball", (char *)0,
+	1, 0, 0,  1, 2, 200, 7, 7, 0, B,   P_ORB, MT_CELESTIUM, CLR_GRAY, 50),
+WEAPON("cigarette", (char *)0,
+	1, 0, 0, 10, 2, 20, 5, 5, 0, B,   P_ORB, MT_IRON, CLR_WHITE, 8),
+
+WEAPON("grinder", (char *)0,
+	1, 0, 1, 70, 100, 20, 6, 6, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 1),
+WEAPON("heavy grinder", (char *)0,
+	1, 0, 1, 20, 120, 150, 8, 8, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 20),
+WEAPON("varied grinder", (char *)0,
+	1, 0, 1, 10, 100, 20, 7, 7, 0, P,   P_GRINDER, MT_IRON, CLR_MAGENTA, 10),
+
+WEAPON("qatar", (char *)0,
+	1, 0, 0, 69, 8, 10, 7, 7, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 1),
+WEAPON("lower arm blade", (char *)0,
+	1, 0, 0, 15, 8, 20, 9, 9, 0, P,   P_CLAW, MT_METAL, CLR_BLACK, 9),
+WEAPON("cestus", (char *)0,
+	1, 0, 0, 5, 8, 50, 4, 15, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 15),
+WEAPON("bell claws", (char *)0,
+	1, 0, 0, 1, 8, 100, 15, 6, 0, P,   P_CLAW, MT_ALLOY, CLR_CYAN, 24),
+WEAPON("camo qatar", (char *)0,
+	1, 0, 0, 10, 8, 35, 8, 8, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 10),
+
 /* Maces */
 WEAPON("silver mace", (char *)0,
-	1, 0, 0, 70, 12, 65,  6,  7, 0, B,   P_MACE, MT_SILVER, HI_SILVER, 15),
+	1, 0, 0, 60, 12, 65,  6,  7, 0, B,   P_MACE, MT_SILVER, HI_SILVER, 15),
 	/* STEPHEN WHITE'S NEW CODE */
 WEAPON("mace", (char *)0,
-	1, 0, 0, 135, 12,  5,  6,  7, 0, B,   P_MACE, MT_IRON, HI_METAL, 2),
+	1, 0, 0, 115, 12,  5,  6,  7, 0, B,   P_MACE, MT_IRON, HI_METAL, 2),
 	/* +1 small */
 WEAPON("ornate mace", (char *)0,
 	1, 0, 0, 10,  12,  5,  6,  6, 0, B,   P_MACE, MT_GOLD, HI_METAL, 6),
@@ -439,7 +468,7 @@ WEAPON("backhand mace", (char *)0,
 
 /* Morning stars */
 WEAPON("morning star", (char *)0,
-	1, 0, 0, 135, 48, 10,  4, 12, 0, B,   P_MORNING_STAR, MT_IRON, HI_METAL, 5),
+	1, 0, 0, 125, 48, 10,  4, 12, 0, B,   P_MORNING_STAR, MT_IRON, HI_METAL, 5),
 						/* +d4 small, +1 large */
 
 WEAPON("asterisk", (char *)0,
@@ -465,7 +494,7 @@ WEAPON("yesterday star", (char *)0,
 
 /* Flails */
 WEAPON("flail", (char *)0,
-	1, 0, 0, 140, 7,  4,  6,  4, 1, B,   P_FLAIL, MT_IRON, HI_METAL, 1),
+	1, 0, 0, 120, 7,  4,  6,  4, 1, B,   P_FLAIL, MT_IRON, HI_METAL, 1),
 	/* +1 small, +1d4 large */
 WEAPON("flogger", (char *)0,
 	1, 0, 0, 40, 7,  4,  6,  4, 1, B,   P_FLAIL, MT_LEATHER, CLR_BROWN, 1),
@@ -491,7 +520,7 @@ WEAPON("obsid", (char *)0,
 
 /* Hammers */
 WEAPON("war hammer", (char *)0,
-	1, 0, 0, 98, 20,  5,  7,  7, 0, B,   P_HAMMER, MT_IRON, HI_METAL, 1),
+	1, 0, 0, 88, 20,  5,  7,  7, 0, B,   P_HAMMER, MT_IRON, HI_METAL, 1),
 	/* +1 small */
 WEAPON("air pressure hammer", (char *)0,
 	1, 0, 0, 2,  30,  40,  12,  9, 0, B,   P_HAMMER, MT_PWN_BUBBLE, CLR_WHITE, 20),
@@ -696,9 +725,9 @@ WEAPON("bec de corbin", "beaked polearm",
 
 /* Spears */
 WEAPON("orcish spear", "crude spear",
-	0, 1, 0, 80, 12,  3,  5,  7, 0, P,   P_SPEAR, MT_IRON, CLR_BLACK, 1),
+	0, 1, 0, 70, 12,  3,  5,  7, 0, P,   P_SPEAR, MT_IRON, CLR_BLACK, 1),
 WEAPON("spear", (char *)0,
-	1, 1, 0, 142, 12,  3,  6,  8, 0, P,   P_SPEAR, MT_IRON, HI_METAL, 3),
+	1, 1, 0, 122, 12,  3,  6,  8, 0, P,   P_SPEAR, MT_IRON, HI_METAL, 3),
 WEAPON("brittle spear", (char *)0,
 	1, 1, 0, 20, 50,  1,  5,  5, 0, P,   P_SPEAR, MT_POURPOOR, HI_METAL, 1),
 WEAPON("silk spear", (char *)0,
@@ -750,7 +779,7 @@ WEAPON("stack javelin", (char *)0,
 
 /* Tridents */
 WEAPON("trident", (char *)0,
-	1, 0, 0, 79, 10,  5,  6,  4, 1, P,   P_TRIDENT, MT_IRON, HI_METAL, 1),
+	1, 0, 0, 69, 10,  5,  6,  4, 1, P,   P_TRIDENT, MT_IRON, HI_METAL, 1),
 	/* +1 small, +2d4 large */
 WEAPON("fourdent", (char *)0,
 	1, 0, 0, 12, 10,  5,  6,  4, 3, P,   P_TRIDENT, MT_BONE, CLR_WHITE, 3),
@@ -799,13 +828,13 @@ WEAPON("spec lance", (char *)0,
 
 /* Bows (and arrows) */
 /* KMH, balance patch -- damage of launchers restored to d2 big and small */
-BOW("orcish bow", "crude bow",	0, 1, 90, 12, 60, 0, MT_WOOD, P_BOW, CLR_BLACK, 1),
-BOW("bow", (char *)0,			1, 1, 129, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 3),
+BOW("orcish bow", "crude bow",	0, 1, 80, 12, 60, 0, MT_WOOD, P_BOW, CLR_BLACK, 1),
+BOW("bow", (char *)0,			1, 1, 119, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 3),
 BOW("blue bow", (char *)0,		1, 1, 10, 12, 60, 0, MT_SHADOWSTUFF, P_BOW, CLR_BRIGHT_BLUE, 25),
 BOW("meta bow", (char *)0,		1, 1, 30, 12, 60, 0, MT_WOOD, P_BOW, CLR_CYAN, 3),
 BOW("wind bow", (char *)0,		1, 1, 10, 12, 60, 0, MT_ETHER, P_BOW, HI_WOOD, 20), /* very fast speed when wielded */
 BOW("compost bow", (char *)0,		1, 1, 18, 12, 60, 0, MT_COMPOST, P_BOW, CLR_BROWN, 8),
-BOW("elven bow", "runed bow",	0, 1, 90, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 6),
+BOW("elven bow", "runed bow",	0, 1, 70, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 6),
 BOW("dark elven bow",  "black runed bow", 0, 1, 20, 12, 60, 1, MT_WOOD, P_BOW, CLR_BLACK, 12),
 BOW("yumi", "long bow",			0, 1, 20, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 5),
 BOW("droven bow", "spider-legged bow",	0, 0, 10, 12, 60, 5, MT_GLASS, P_BOW, CLR_BLACK, 25),
@@ -841,7 +870,7 @@ PROJECTILE("wonder arrow", (char *)0,
 	1, 50, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, CLR_MAGENTA, 2),
 
 /* Slings */
-BOW("sling", (char *)0,		1, 0, 320,  2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
+BOW("sling", (char *)0,		1, 0, 290,  2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
 BOW("metal sling", (char *)0,	1, 0, 40,  2, 20, 2, MT_METAL, P_SLING, CLR_CYAN, 3),
 BOW("inka sling", (char *)0,	1, 0, 20,  2, 20, 5, MT_INKA, P_SLING, CLR_BROWN, 3),
 BOW("catapult", (char *)0,	1, 1,  10,  2, 250, 5, MT_METAL, P_SLING, CLR_BLACK, 40),
@@ -901,7 +930,7 @@ BULLET("stick of dynamite", "red stick",
 
 /* Crossbows (and bolts) */
 /* Crossbow range is now independant of strength */
-GUN("crossbow", (char *)0,				1, 1, 300, 20, 40, 12, -1, 1, WP_GENERIC, MT_WOOD, P_CROSSBOW, HI_WOOD, 1),
+GUN("crossbow", (char *)0,				1, 1, 280, 20, 40, 12, -1, 1, WP_GENERIC, MT_WOOD, P_CROSSBOW, HI_WOOD, 1),
 GUN("ballista", (char *)0,				1, 1,  10, 20, 40, 15, -2, 1, WP_GENERIC, MT_MITHRIL, P_CROSSBOW, CLR_CYAN, 10),
 GUN("zoom shot crossbow", (char *)0,		1, 1,   6, 20, 80, 20, -1, 1, WP_GENERIC, MT_WAX, P_CROSSBOW, CLR_WHITE, 15),
 GUN("power crossbow", (char *)0,			1, 1,  50, 20, 40, 12, 1, 1, WP_GENERIC, MT_WOOD, P_CROSSBOW, HI_WOOD, 10),
@@ -3871,7 +3900,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  100, 0,100, MT_COPPER, CLR_YELLOW, 
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 405,  0,  10, MT_METAL, HI_METAL, 1),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 395,  0,  10, MT_METAL, HI_METAL, 1),
 TOOL("grass whistle", "whistle",  0, 0, 0, 0, 60,  0,  10, MT_WOOD, HI_METAL, 1),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 240,  0,  10, MT_METAL, HI_METAL, 10),
 TOOL("dark magic whistle", "whistle",0, 0, 1, 0, 10,  0,  10, MT_METAL, HI_METAL, 20),
@@ -3965,6 +3994,8 @@ WEPTOOL("nano hammer",  (char *)0,
 	1, 0, 1, 0,  2, 24, 500, 12,  12, 0, WHACK, P_HAMMER, MT_NANOMACHINE, CLR_BRIGHT_GREEN, 18),
 WEPTOOL("lightwhip",  (char *)0,
 	1, 0, 1, 0,  5, 24, 500, 18,  6, 0, WHACK, P_WHIP, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 10),
+WEPTOOL("electric cigarette",  (char *)0,
+	1, 0, 1, 0,  10, 2, 500, 2,  2, 0, WHACK, P_ORB, MT_ETHER, CLR_BRIGHT_BLUE, 10),
 
 WEPTOOL("yellow lightsaber",  "lightsaber",
 	0, 0, 1, 0,  10, 24, 500, 6,  6, 0, SLASH, P_LIGHTSABER, MT_PLATINUM, HI_METAL, 5),

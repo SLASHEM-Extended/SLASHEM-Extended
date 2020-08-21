@@ -8331,6 +8331,8 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 4; }
 					else if (yn("Do you want to switch to a lightwhip?")=='y') {
 						    madechoice = 1; sabertype = 5; }
+					else if (yn("Do you want to switch to an electric cigarette?")=='y') {
+						    madechoice = 1; sabertype = 6; }
 
 				}
 
@@ -8355,8 +8357,10 @@ extrachargechoice:
 					uwep->otyp = LASER_SWATTER;
 				} else if (sabertype == 4) {
 					uwep->otyp = NANO_HAMMER;
-				} else /* sabertype == 5 */
+				} else if (sabertype == 5) { /* sabertype == 5 */
 					uwep->otyp = LIGHTWHIP;
+				} else /* sabertype == 6 */
+					uwep->otyp = ELECTRIC_CIGARETTE;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

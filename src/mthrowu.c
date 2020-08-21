@@ -578,6 +578,11 @@ const char *name;	/* if null, then format `obj' */
 			}
 		}
 
+		if (obj && objects[obj->otyp].oc_skill == P_GRINDER) {
+			You("are grinded!");
+			losehp(rnd(10), "grinding", KILLED_BY);
+		}
+
 		return(1);
 	}
 }
@@ -1041,6 +1046,8 @@ blockingdone:
 	    if (mtmp->mtame && mon) {
 		if (mon->m_lev >= 5) damage += ((mon->m_lev - 4) / 2);
 		if (otmp->otyp == TAIL_SPIKES) damage += rnd((mon->m_lev * 2) + 30);
+		if (otmp->otyp == DART_OF_DISINTEGRATION) damage += rnd(50);
+		if (otmp && objects[otmp->otyp].oc_skill == P_GRINDER) damage + rnd(10);
 	    }
             if (otmp->otyp == SPOON) {
             pline("The spoon flashes brightly as it hits %s.",

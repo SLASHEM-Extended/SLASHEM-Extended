@@ -2259,6 +2259,7 @@ boolean shopinit;
 		case LASER_SWATTER:
 		case NANO_HAMMER:
 		case LIGHTWHIP:
+		case ELECTRIC_CIGARETTE:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->lamplit = 0;

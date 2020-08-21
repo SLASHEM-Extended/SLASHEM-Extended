@@ -3261,6 +3261,21 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SCR_ALLY, "todo" },
 	{ BLUE_BOW, "todo" },
 
+	{ EAGLE_BALL, "todo" },
+	{ JARED_STONE, "todo" },
+	{ LIGHTBULB, "todo" },
+	{ HEATH_BALL, "todo" },
+	{ CIGARETTE, "todo" },
+	{ ELECTRIC_CIGARETTE, "todo" },
+	{ GRINDER, "todo" },
+	{ HEAVY_GRINDER, "todo" },
+	{ VARIED_GRINDER, "todo" },
+	{ QATAR, "todo" },
+	{ LOWER_ARM_BLADE, "todo" },
+	{ CESTUS, "todo" },
+	{ BELL_CLAWS, "todo" },
+	{ CAMO_QATAR, "todo" },
+
 	{0, "" }
 };
 
@@ -5890,6 +5905,21 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ WAN_RESTORATION, "todo" },
 	{ SCR_ALLY, "todo" },
 	{ BLUE_BOW, "todo" },
+
+	{ EAGLE_BALL, "todo" },
+	{ JARED_STONE, "todo" },
+	{ LIGHTBULB, "todo" },
+	{ HEATH_BALL, "todo" },
+	{ CIGARETTE, "todo" },
+	{ ELECTRIC_CIGARETTE, "todo" },
+	{ GRINDER, "todo" },
+	{ HEAVY_GRINDER, "todo" },
+	{ VARIED_GRINDER, "todo" },
+	{ QATAR, "todo" },
+	{ LOWER_ARM_BLADE, "todo" },
+	{ CESTUS, "todo" },
+	{ BELL_CLAWS, "todo" },
+	{ CAMO_QATAR, "todo" },
 
 	{0, "" }
 };

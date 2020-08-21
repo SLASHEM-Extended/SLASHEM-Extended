@@ -11725,7 +11725,7 @@ loveheelover:
 		}
 		if(ptr == &mons[PM_CIGARETTE_SMOKING_FEMMY]) {
 			(void) mongets(mtmp, SOFT_SNEAKERS);
-			/*(void) mongets(mtmp, CIGARETTE);*/ /*TODO*/
+			(void) mongets(mtmp, CIGARETTE);
 		}
 		if(ptr == &mons[PM_UROLOGIST]) {
 			(void) mongets(mtmp, KNIFE);

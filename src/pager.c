@@ -25379,7 +25379,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel magic-controlled!",
 	"You feel a loss of experience!",
 	"You feel a surge of experience!",
-
+	"You are grinded!",
+	"You are grinded! Someone is leveling up their skills by repeatedly attacking you.",
 
 };
 
