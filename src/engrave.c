@@ -5373,6 +5373,8 @@ static const char *epitaphs[] = {
 	"the f in slex stands for fun", /* ditto */
 	"no theories involve you surviving a run of slex all the way through",
 	"dude this game, it's like a fever dream. That trap gave me a feminism curse which meant any feminine creatures made me fart, and the mummy kept stroking me twice per turn unleashing every possible fart effect so I'm just there farting myself to sleep over and over as they're stroking me to death", /* by amateurhour */
+	"Amy a tiny asian girl paralysed me and kicked my shins over and over for ages till I died", /* ditto */
+	"Oh no, I only have one energiud remaining!",
 
 };
 
