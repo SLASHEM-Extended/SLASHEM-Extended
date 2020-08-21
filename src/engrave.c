@@ -979,6 +979,7 @@ static const char *random_mesg[] = {
 	"know when to hold em, know when to fold em, know when to pork'em, know when to run", /* by porkman */
 	"The engraving you have just started reading is the engraving you have just finished reading.",
 	"SLEX is hereby presented to you by Amy Bluecuntwipeofdeath. Or it would be, according to a certain vandal on the roguebasin site.",
+	"fleecy bundle is an anagram of bully defence",
 
 };
 

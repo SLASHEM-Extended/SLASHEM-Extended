@@ -5122,6 +5122,7 @@ static NEARDATA const char * const hussylines_wal[] = {
 "You can never avoid all the traps. Even if you get lucky for a while, your luck can't hold forever.",
 "The radar shows all the walscholars hanging out on shallow dungeon levels. That's good, I can sit back and watch some TV.",
 "Why am I even wasting my time looking what those walscholars are doing? With their current pace, it'll take hours until they even get to Gehennom.",
+"Just give up your search for the magic portal, you noobish walscholar! What do you think you're going to get if you find it, besides the fact that you won't find it anyway because you're much too stupid?",
 };
 
 static NEARDATA const char * const hussylines_wal_specific[] = {
@@ -5245,6 +5246,7 @@ static NEARDATA const char * const hussylines_wal_specific[] = {
 "Soon %s will trigger a deadly trap and I can finally go to bed without having to fear some wise-ass walscholar nosing around in areas where they don't belong.",
 "Yes, that's right, stay on early dungeon levels, %s. Our snares will catch you anyway, but with the added benefit of you not even getting close enough to Anna's sanctum to become a threat.",
 "%s, why are you taking so long to make any progress? Do you want to bore me to death so I stop watching the radar? Not gonna fall for that.",
+"Oh man, is %s actually wasting time walking over every single square in every upper level because of some retarded portal... I won't even watch them for the next few hours.",
 };
 
 static NEARDATA const char * const noroelabuying[] = {
