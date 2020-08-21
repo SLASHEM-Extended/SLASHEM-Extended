@@ -3565,7 +3565,7 @@ const char *mesg;
 {
 	if (program_state.done_hup) {
 		morc = '\033';
-		return;
+		return 0;
 	}
 
     /* "menu" without selection; use ordinary pline, no more() */
