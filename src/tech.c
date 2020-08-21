@@ -2571,7 +2571,7 @@ dotech()
 			break;
 
 		case T_CUTTHROAT:
-			pline("You need a blade to use this technique. Doing so allows you to severely hurt an adjacent non-headless monster; high technique levels sometimes even allow you to instakill the monster.");
+			pline("You need a blade to use this technique. Doing so allows you to severely hurt an adjacent non-headless monster; high technique levels sometimes even allow you to instakill the monster, but only if the monster's level isn't too high relative to the technique's level.");
 			break;
 
 		case T_BLESSING:
@@ -3842,7 +3842,7 @@ secureidchoice:
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
 			You("attack...nothing!");
-			t_timeout = rnz(1500);
+			t_timeout = rnz(6000);
 		} else {
 		    int oldhp = mtmp->mhp;
 
@@ -3852,8 +3852,10 @@ secureidchoice:
 			    You_cant("perform cutthroat on %s!", mon_nam(mtmp));
 			else {
 			    int tmp = 0;
+			    int severlevel = techlevX(tech_no) * 2;
+			    if (severlevel < 1) severlevel = 1; /* fail safe */
 
-			    if (rn2(8) < (techlevX(tech_no)/10 + 1)) {
+			    if ((rn2(8) < (techlevX(tech_no)/10 + 1)) && (mtmp->m_lev <= rnd(severlevel)) ) {
 				You("sever %s head!", s_suffix(mon_nam(mtmp)));
 				tmp = mtmp->mhp;
 			    } else {
@@ -3861,7 +3863,7 @@ secureidchoice:
 				tmp = mtmp->mhp / 2;
 			    }
 			    tmp += techlevX(tech_no);
-			    t_timeout = rnz(1500);
+			    t_timeout = rnz(6000);
 			    hurtmon(mtmp, tmp);
 			}
 		    }
