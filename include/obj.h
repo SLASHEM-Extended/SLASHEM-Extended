@@ -237,7 +237,7 @@ struct obj {
 			 (is_bullet(otmp) || (otmp)->otyp == STICK_OF_DYNAMITE)
 #define is_poisonable(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 (objects[(otmp)->otyp].oc_skill <= P_SABER || \
-			 (objects[(otmp)->otyp].oc_skill >= P_POLEARMS && \
+			 (objects[(otmp)->otyp].oc_skill >= P_CLAW && \
 			 objects[(otmp)->otyp].oc_skill <= P_LANCE)) && \
 			 !is_unpoisonable_firearm_ammo(otmp))
 #define uslinging()	(uwep && objects[uwep->otyp].oc_skill == P_SLING)

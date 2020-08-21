@@ -1913,6 +1913,10 @@ int dieroll;
 
 			}
 
+			if (obj && objects[obj->otyp].oc_skill == P_CLAW) {
+				if (mon->mflee || !(mon->mcanmove)) tmp += rnd(10);
+			}
+
 			/* empath can feel the monster's psyche sometimes --Amy */
 			if (Role_if(PM_EMPATH) && !rn2(20)) {
 				You("probe %s!", mon_nam(mon));
@@ -7630,6 +7634,65 @@ use_weapon:
 					if (uwep->spe < 12 && !rn2(eliteupgradechance)) {
 						uwep->spe++;
 						pline("Your weapon seems more effective.");
+					}
+				}
+
+				if (uwep && objects[uwep->otyp].oc_skill == P_GRINDER) {
+					int grindirection = 0;
+					if (u.dx > 0 && u.dy == 0) grindirection = 1; /* east */
+					if (u.dx > 0 && u.dy > 0) grindirection = 2; /* southeast */
+					if (u.dx == 0 && u.dy < 0) grindirection = 3; /* north */
+					if (u.dx < 0 && u.dy < 0) grindirection = 4; /* northwest */
+					if (u.dx < 0 && u.dy == 0) grindirection = 5; /* west */
+					if (u.dx < 0 && u.dy > 0) grindirection = 6; /* southwest */
+					if (u.dx == 0 && u.dy > 0) grindirection = 7; /* south */
+					if (u.dx > 0 && u.dy < 0) grindirection = 8; /* northeast */
+					grinderattack(grindirection);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+
+				}
+
+				if (uwep && objects[uwep->otyp].oc_skill == P_ORB) {
+					int suckingchance = 12;
+					if (uwep && uwep->otyp == JARED_STONE) suckingchance = 11;
+					if (uwep && uwep->otyp == CIGARETTE) suckingchance = 11;
+					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE) suckingchance = 10;
+					if (uwep && uwep->otyp == LIGHTBULB) suckingchance = 10;
+					if (uwep && uwep->otyp == HEATH_BALL) suckingchance = 9;
+					if (uwep && uwep->otyp == CIGARETTE && !rn2(250)) {
+						You("inhale some cancerogenous smoke!");
+						if (FunnyHallu) pline("Why are you such an idiot and smoke, anyway?");
+						badeffect();
+					}
+					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE && !rn2(250)) {
+						pline("Kaboom! Your cigarette suddenly causes an explosion.");
+						struct obj *dynamite;
+						dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
+						if (dynamite) {
+							if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+							else {
+								dynamite->quan = 1;
+								dynamite->owt = weight(dynamite);
+								dropy(dynamite);
+								attach_bomb_blow_timeout(dynamite, 0, 0);
+							}
+							if (!rn2(10)) {
+								You("inhale some cancerogenous smoke!");
+								if (FunnyHallu) pline("Why are you such an idiot and smoke, anyway?");
+								badeffect();
+							}
+						}
+					}
+					if (!rn2(suckingchance)) {
+						You("suck some health from the target.");
+						healup(rnd(objects[uwep->otyp].oc_wldam), 0, FALSE, FALSE);
+						flags.botl = TRUE;
+					} else if (!rn2(suckingchance)) {
+						You("suck some mana from the target.");
+						u.uen += rnd(objects[uwep->otyp].oc_wldam);
+						if (u.uen > u.uenmax) u.uen = u.uenmax;
+						flags.botl = TRUE;
 					}
 				}
 				if (uwep && uwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {

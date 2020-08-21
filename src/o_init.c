@@ -1651,6 +1651,9 @@ register char oclass;
 	objects[MYSTERY_PICK].oc_material = rn2(LASTMATERIAL + 1);
 	objects[MYSTERY_LIGHTSABER].oc_material = rn2(LASTMATERIAL + 1);
 	objects[SLING_AMMO].oc_material = rn2(LASTMATERIAL + 1);
+	objects[CIGARETTE].oc_material = rn2(LASTMATERIAL + 1);
+	objects[VARIED_GRINDER].oc_material = rn2(LASTMATERIAL + 1);
+	objects[CAMO_QATAR].oc_material = rn2(LASTMATERIAL + 1);
 
 	/* shuffle descriptions */
 	shuffle_all();

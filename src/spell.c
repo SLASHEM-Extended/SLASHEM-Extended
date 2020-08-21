@@ -10949,7 +10949,7 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -10962,7 +10962,7 @@ int spell;
 	}
 	if (SpellColorMetal && (!uarm || !is_metallic(uarm))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -10992,7 +10992,7 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11005,7 +11005,7 @@ int spell;
 	}
 	if (SpellColorMetal && (!uarmc || !is_metallic(uarmc))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11036,7 +11036,7 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11049,7 +11049,7 @@ int spell;
 	}
 	if (SpellColorMetal && (!uarmu || !is_metallic(uarmu))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11081,7 +11081,7 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) shieldpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			shieldpenalties *= 4;
 			shieldpenalties /= 5;
 		}
@@ -11094,7 +11094,7 @@ int spell;
 	}
 	if (SpellColorMetal && (!uarms || !is_metallic(uarms))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			shieldpenalties *= 4;
 			shieldpenalties /= 5;
 		}
@@ -11125,7 +11125,7 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11138,7 +11138,7 @@ int spell;
 	}
 	if (SpellColorMetal && (!uarmh || !is_metallic(uarmh))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11169,7 +11169,7 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11182,7 +11182,7 @@ int spell;
 	}
 	if (SpellColorMetal && (!uarmg || !is_metallic(uarmg))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11213,7 +11213,7 @@ int spell;
 		}
 		if (Race_if(PM_BOVER)) armorpenalties *= 3;
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}
@@ -11227,7 +11227,7 @@ int spell;
 
 	if (SpellColorMetal && (!uarmf || !is_metallic(uarmf))) {
 
-		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF || weapon_type(uwep) == P_ORB)) {
 			armorpenalties *= 4;
 			armorpenalties /= 5;
 		}

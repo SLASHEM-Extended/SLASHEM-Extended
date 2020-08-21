@@ -8932,15 +8932,15 @@ boolean knoweverything;
 			case VARIED_GRINDER:
 				pline("The material of this particular grinder is randomized. You can use it in melee, where it might hit several targets, or apply it like a polearm where it can do the same."); break;
 			case QATAR:
-				pline("A standard claw that deals some damage in melee."); break;
+				pline("A standard claw that deals some damage in melee. It's very effective against fleeing or paralyzed enemies."); break;
 			case LOWER_ARM_BLADE:
-				pline("This claw-class weapon deals solid melee damage."); break;
+				pline("This claw-class weapon deals solid melee damage. If the enemy is fleeing or unable to move, it deals extra damage."); break;
 			case CESTUS:
-				pline("Claw-class weapon that is rather ineffective versus small targets but does great damage versus large ones."); break;
+				pline("Claw-class weapon that is rather ineffective versus small targets but does great damage versus large ones. It does bonus damage to fleeing monsters, as well as those that have been prevented from acting."); break;
 			case BELL_CLAWS:
-				pline("These claws aren't very effective if the target is large, but they're surprisingly useful against small ones."); break;
+				pline("These claws aren't very effective if the target is large, but they're surprisingly useful against small ones. Like all claw-class weapons, it's especially good versus fleeing or paralyzed targets."); break;
 			case CAMO_QATAR:
-				pline("A claw that is made of a random material. Its damage output is average."); break;
+				pline("A claw that is made of a random material. Its damage output is average. Paralyze your target first or make it turn to flee, and it'll deal even more damage."); break;
 			case MACE:
 				pline("A mace. It's quite a weak weapon, actually."); break;
 			case BATLETH:

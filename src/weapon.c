@@ -9289,6 +9289,177 @@ practice_weapon()
 }
 
 void
+grinderattack(direction)
+int direction;
+/* 1 = east, 2 = southeast, 3 = north, 4 = northwest, 5 = west, 6 = southwest, 7 = south, 8 = northeast */
+{
+	int grndax, grnday, grndbx, grndby, grndcx, grndcy, grnddx, grnddy;
+	struct monst *mtmp;
+	int grindingdamage = 1;
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_GRINDER)) {
+			default: break;
+			case P_BASIC:
+				grindingdamage += 1;
+				break;
+			case P_SKILLED:
+				grindingdamage += 2;
+				break;
+			case P_EXPERT:
+				grindingdamage += 3;
+				break;
+			case P_MASTER:
+				grindingdamage += 4;
+				break;
+			case P_GRAND_MASTER:
+				grindingdamage += 5;
+				break;
+			case P_SUPREME_MASTER:
+				grindingdamage += 6;
+				break;
+		}
+		switch (P_SKILL(P_AXE)) {
+			default: break;
+			case P_BASIC:
+				grindingdamage += 1;
+				break;
+			case P_SKILLED:
+				grindingdamage += 2;
+				break;
+			case P_EXPERT:
+				grindingdamage += 3;
+				break;
+			case P_MASTER:
+				grindingdamage += 4;
+				break;
+			case P_GRAND_MASTER:
+				grindingdamage += 5;
+				break;
+			case P_SUPREME_MASTER:
+				grindingdamage += 6;
+				break;
+		}
+	}
+	if (uwep && objects[uwep->otyp].oc_skill == P_GRINDER && uwep->spe > 0) grindingdamage += uwep->spe;
+
+	if (grindingdamage > 1) grindingdamage = rnd(grindingdamage);
+
+	switch (direction) {
+
+		case 1:
+			grndax = u.ux + 1;
+			grnday = u.uy;
+			grndbx = u.ux + 2;
+			grndby = u.uy;
+			grndcx = u.ux + 1;
+			grndcy = u.uy + 1;
+			grnddx = u.ux + 1;
+			grnddy = u.uy - 1;
+			break;
+		case 2:
+			grndax = u.ux + 1;
+			grnday = u.uy + 1;
+			grndbx = u.ux + 1;
+			grndby = u.uy;
+			grndcx = u.ux;
+			grndcy = u.uy + 1;
+			grnddx = u.ux + 2;
+			grnddy = u.uy + 2;
+			break;
+		case 3:
+			grndax = u.ux;
+			grnday = u.uy - 1;
+			grndbx = u.ux;
+			grndby = u.uy - 2;
+			grndcx = u.ux - 1;
+			grndcy = u.uy - 1;
+			grnddx = u.ux + 1;
+			grnddy = u.uy - 1;
+			break;
+		case 4:
+			grndax = u.ux - 1;
+			grnday = u.uy - 1;
+			grndbx = u.ux - 1;
+			grndby = u.uy;
+			grndcx = u.ux;
+			grndcy = u.uy - 1;
+			grnddx = u.ux - 2;
+			grnddy = u.uy - 2;
+			break;
+		case 5:
+			grndax = u.ux - 1;
+			grnday = u.uy;
+			grndbx = u.ux - 2;
+			grndby = u.uy;
+			grndcx = u.ux - 1;
+			grndcy = u.uy + 1;
+			grnddx = u.ux - 1;
+			grnddy = u.uy - 1;
+			break;
+		case 6:
+			grndax = u.ux - 1;
+			grnday = u.uy + 1;
+			grndbx = u.ux - 1;
+			grndby = u.uy;
+			grndcx = u.ux;
+			grndcy = u.uy + 1;
+			grnddx = u.ux - 2;
+			grnddy = u.uy + 2;
+			break;
+		case 7:
+			grndax = u.ux;
+			grnday = u.uy + 1;
+			grndbx = u.ux;
+			grndby = u.uy + 2;
+			grndcx = u.ux - 1;
+			grndcy = u.uy + 1;
+			grnddx = u.ux + 1;
+			grnddy = u.uy + 1;
+			break;
+		case 8:
+			grndax = u.ux + 1;
+			grnday = u.uy - 1;
+			grndbx = u.ux + 1;
+			grndby = u.uy;
+			grndcx = u.ux;
+			grndcy = u.uy - 1;
+			grnddx = u.ux + 2;
+			grnddy = u.uy - 2;
+			break;
+		default:
+			grndax = -1;
+			grnday = -1;
+			grndbx = -1;
+			grndby = -1;
+			grndcx = -1;
+			grndcy = -1;
+			grnddx = -1;
+			grnddy = -1;
+			impossible("grinder attack %d used", direction);
+			break;
+
+	}
+
+	if (isok(grndax, grnday) && (mtmp = m_at(grndax, grnday)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+		Your("weapon grinds %s!", mon_nam(mtmp));
+		hurtmon(mtmp, grindingdamage);
+	}
+	if (isok(grndbx, grndby) && (mtmp = m_at(grndbx, grndby)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+		Your("weapon grinds %s!", mon_nam(mtmp));
+		hurtmon(mtmp, grindingdamage);
+	}
+	if (isok(grndcx, grndcy) && (mtmp = m_at(grndcx, grndcy)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+		Your("weapon grinds %s!", mon_nam(mtmp));
+		hurtmon(mtmp, grindingdamage);
+	}
+	if (isok(grnddx, grnddy) && (mtmp = m_at(grnddx, grnddy)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+		Your("weapon grinds %s!", mon_nam(mtmp));
+		hurtmon(mtmp, grindingdamage);
+	}
+
+}
+
+void
 setmnotwielded(mon,obj)
 register struct monst *mon;
 register struct obj *obj;

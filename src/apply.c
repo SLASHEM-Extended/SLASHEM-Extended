@@ -3892,6 +3892,7 @@ STATIC_OVL int
 use_pole (obj)
 	struct obj *obj;
 {
+	int grindx, grindy;
 	int res = 0, typ, max_range;
 	int min_range = obj->otyp == FISHING_POLE ? 1 : 4;
 	coord cc;
@@ -4180,13 +4181,31 @@ use_pole (obj)
 
 	    bhitpos = cc;
 	    check_caitiff(mtmp);
+	    grindx = mtmp->mx;
+	    grindy = mtmp->my;
+
 	    (void) thitmonst(mtmp, uwep, 1, TRUE);
+
+
 	    /* check the monster's HP because thitmonst() doesn't return
 	     * an indication of whether it hit.  Not perfect (what if it's a
 	     * non-silver weapon on a shade?)
 	     */
 	    if (mtmp->mhp < oldhp) {
 		u.uconduct.weaphit++;
+
+			if (obj && objects[obj->otyp].oc_skill == P_GRINDER) {
+				int grindirection = 0;
+				if (grindx > u.ux && grindy == u.uy) grindirection = 1; /* east */
+				if (grindx > u.ux && grindy > u.uy) grindirection = 2; /* southeast */
+				if (grindx == u.ux && grindy < u.uy) grindirection = 3; /* north */
+				if (grindx < u.ux && grindy < u.uy) grindirection = 4; /* northwest */
+				if (grindx < u.ux && grindy == u.uy) grindirection = 5; /* west */
+				if (grindx < u.ux && grindy > u.uy) grindirection = 6; /* southwest */
+				if (grindx == u.ux && grindy > u.uy) grindirection = 7; /* south */
+				if (grindx > u.ux && grindy < u.uy) grindirection = 8; /* northeast */
+				grinderattack(grindirection);
+			}
 
 		    if (obj && obj->oartifact == ART_RIGHTLASH_LEFT && !rn2(100) && obj->spe < 15) {
 			obj->spe++;

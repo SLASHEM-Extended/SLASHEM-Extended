@@ -2877,6 +2877,7 @@ E void techcapincrease(int);
 E void eviltechincrease(void);
 E int get_tech_no(int);
 E int techlevX(int);
+E void hurtmon(struct monst *,int);
 
 /* ### teleport.c ### */
 
@@ -3282,6 +3283,7 @@ E void doubleskilltraining(void);
 E void additionalskilltraining(void);
 E void unrestrictskillchoice(void);
 E const char *wpskillname(int);
+E void grinderattack(int);
 
 /* ### were.c ### */
 

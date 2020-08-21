@@ -13,7 +13,6 @@ static boolean gettech(int *);
 static boolean dotechmenu(int, int *);
 static void doblitzlist(void);
 static int techeffects(int);
-static void hurtmon(struct monst *,int);
 static int mon_to_zombie(int);
 STATIC_PTR int tinker(void);
 STATIC_PTR int charge_saber(void);
@@ -8926,7 +8925,7 @@ int whichtech;
 
 }
 
-static void
+void
 hurtmon(mtmp, tmp)
 struct monst *mtmp;
 int tmp;
