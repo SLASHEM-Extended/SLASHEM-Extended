@@ -2116,9 +2116,9 @@ learntech(tech, mask, tlevel)
 	/* Amy note: some techs are given only if you're the correct alignment when leveling up
 	 * diablist for alignment-specific techs goes here */
 	if (tlevel > 0) {
-		if (i == T_PREACHING && u.ualign.type != A_LAWFUL) return;
-		if (i == T_ON_THE_SAME_TEAM && u.ualign.type != A_NEUTRAL) return;
-		if (i == T_PERMAMORPH && u.ualign.type != A_CHAOTIC) return;
+		if (i == T_PREACHING && mask != FROMOUTSIDE && u.ualign.type != A_LAWFUL) return;
+		if (i == T_ON_THE_SAME_TEAM && mask != FROMOUTSIDE && u.ualign.type != A_NEUTRAL) return;
+		if (i == T_PERMAMORPH && mask != FROMOUTSIDE && u.ualign.type != A_CHAOTIC) return;
 	}
 
 	if (tlevel > 0) {
