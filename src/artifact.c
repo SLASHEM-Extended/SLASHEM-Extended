@@ -3299,7 +3299,7 @@ chargingchoice:
 		/* The eye is never blind ... */
 		if (couldsee(mtmp->mx, mtmp->my) && !is_undead(mtmp->data)) {
 		    pline("%s screams in agony!", Monnam(mtmp));
-		    mtmp->mhp /= 3;
+		    mtmp->mhp -= (mtmp->mhp / 3); /* nerf by Amy :P */
 		    if (mtmp->mhp < 1) mtmp->mhp = 1;
 		}
 	    }
