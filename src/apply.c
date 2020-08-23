@@ -4194,7 +4194,7 @@ use_pole (obj)
 	    if (mtmp->mhp < oldhp) {
 		u.uconduct.weaphit++;
 
-			if (obj && objects[obj->otyp].oc_skill == P_GRINDER) {
+			if (obj && objects[obj->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER)) {
 				int grindirection = 0;
 				if (grindx > u.ux && grindy == u.uy) grindirection = 1; /* east */
 				if (grindx > u.ux && grindy > u.uy) grindirection = 2; /* southeast */

@@ -3254,15 +3254,15 @@ dotech()
 			break;
 
 		case T_AUTOKILL:
-			pline("Shoots highly damaging lightning bolts in all eight directions.");
+			pline("Shoots highly damaging lightning bolts in all eight directions. This technique sets a timeout for all of the following techniques: autokill, chain thunderbolt and flashing mischief.");
 			break;
 
 		case T_CHAIN_THUNDERBOLT:
-			pline("Shoots an invisible globe in a direction of your choosing, which will travel for 8 squares or until it hits a terrain obstacle. At the target destination, it shoots highly damaging lightning bolts in all eight directions.");
+			pline("Shoots an invisible globe in a direction of your choosing, which will travel for 8 squares or until it hits a terrain obstacle. At the target destination, it shoots highly damaging lightning bolts in all eight directions. This technique sets a timeout for all of the following techniques: autokill, chain thunderbolt and flashing mischief.");
 			break;
 
 		case T_FLASHING_MISCHIEF:
-			pline("Shoots an invisible globe in a direction of your choosing, which will travel for 8 squares or until it hits a terrain obstacle. For each square it travels, the globe shoots a highly damaging lightning bolt in a random direction.");
+			pline("Shoots an invisible globe in a direction of your choosing, which will travel for 8 squares or until it hits a terrain obstacle. For each square it travels, the globe shoots a highly damaging lightning bolt in a random direction. This technique sets a timeout for all of the following techniques: autokill, chain thunderbolt and flashing mischief.");
 			break;
 
 		case T_KAMEHAMEHA:
@@ -3298,7 +3298,7 @@ dotech()
 			break;
 
 		case T_BANISHMENT:
-			pline("Allows you to banish an adjacent monster, sending it to a random dungeon level.");
+			pline("Allows you to banish an adjacent monster, sending it to a random dungeon level. Careful: if the demigod event has already been triggered, it only teleports the monster on the current level!");
 			break;
 
 		case T_PARTICIPATION_LOSS:
@@ -7960,7 +7960,7 @@ repairitemchoice:
 			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 			if (!mtmp) {
 				pline("There is no monster in that direction. Nothing happens.");
-			} else if (mtmp->isshk == 0 && mtmp3->mtame == 0 && mtmp3->mpeaceful == 0 && mtmp3->mfrenzied == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
+			} else if (mtmp->isshk == 0 && mtmp->mtame == 0 && mtmp->mpeaceful == 0 && mtmp->mfrenzied == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
 				&& mtmp->isgyp == 0
 		&& mtmp->data != &mons[PM_SHOPKEEPER] && humanoid(mtmp->data) && mtmp->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp->data != &mons[PM_BLACK_MARKETEER] && mtmp->data != &mons[PM_ALIGNED_PRIEST] && mtmp->data != &mons[PM_MASTER_PRIEST] && mtmp->data != &mons[PM_ELITE_PRIEST] && mtmp->data != &mons[PM_HIGH_PRIEST] && mtmp->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD]
 			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
@@ -8182,6 +8182,7 @@ repairitemchoice:
 
 				if (mtmp) {
 					pline("The projectile hits %s!", mon_nam(mtmp));
+					wakeup(mtmp); /* turn the monster hostile */
 					hurtmon(mtmp, melteestrength);
 					break;
 				}
@@ -8267,7 +8268,29 @@ repairitemchoice:
 			break;
 
 		case T_BALLSLIFF:
-			pline("todo");
+
+			if (!uwep) {
+				You("can't use this technique without a weapon!");
+				return(0);
+			}
+
+			if (uwep && uwep->oclass != BALL_CLASS) {
+				You("aren't wielding a ball!");
+				return(0);
+			}
+
+			You("try to repair your ball...");
+			if (!uwep->oeroded && !uwep->oeroded2) pline("But it wasn't damaged to begin with.");
+
+			if (uwep->oeroded > 0) {
+				uwep->oeroded--;
+			}
+			if (uwep->oeroded2 > 0) {
+				uwep->oeroded2--;
+			}
+
+		      t_timeout = rnz(20000);
+
 			break;
 
 		case T_POLE_MELEE:
@@ -8278,15 +8301,100 @@ repairitemchoice:
 			break;
 
 		case T_CHOP_CHOP:
-			pline("todo");
+
+			if (!uwep) {
+				You("can't use this technique without a weapon!");
+				return(0);
+			}
+
+			if (uwep && weapon_type(uwep) != P_AXE) {
+				pline("That only works if your wielded weapon is an axe, and currently it's not!");
+				return 0;
+			}
+
+			{
+				register struct monst *nexusmon, *nextmon;
+
+				for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				    nextmon = nexusmon->nmon; /* trap might kill mon */
+				    if (DEADMONSTER(nexusmon)) continue;
+
+				    if (!monnear(nexusmon, u.ux, u.uy)) continue;
+					You("chop %s!", mon_nam(nexusmon));
+					wakeup(nexusmon); /* monster becomes hostile */
+					if (bigmonst(nexusmon->data)) hurtmon(nexusmon, (objects[uwep->otyp].oc_wldam) + ((uwep->spe > 0) ? uwep->spe : 0));
+					else hurtmon(nexusmon, (objects[uwep->otyp].oc_wsdam) + ((uwep->spe > 0) ? uwep->spe : 0));
+				}
+			}
+
+		      t_timeout = rnz(7500);
 			break;
 
 		case T_BANISHMENT:
-			pline("todo");
+		    	if (!getdir((char *)0)) return 0;
+			if (!u.dx && !u.dy) {
+			    pline("Nah. You can't use that on yourself. You'll have to target a monster instead.");
+			    return 0;
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+				return 0;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				pline("That was a waste, man. The target square didn't contain a monster!");
+			} else {
+				if (u.uevent.udemigod && !u.freeplaymode) {
+					u_teleport_mon(mtmp, TRUE);
+				} else {
+					u_teleport_monB(mtmp, TRUE);
+				}
+			}
+
+		      t_timeout = rnz(50000);
+
 			break;
 
 		case T_PARTICIPATION_LOSS:
-			pline("todo");
+
+		    	if (!getdir((char *)0)) return 0;
+			if (!u.dx && !u.dy) {
+				char buf[BUFSZ];
+			    pline("Do you REALLY want to do that???");
+				getlin ("If you answer yes now, you lose the game! [yes/no]",buf);
+				(void) lcase (buf);
+				if (!(strcmp (buf, "yes"))) {
+					u.youaredead = 1;
+					u.youarereallydead = 1;
+					killer = "being wiped from existence";
+					killer_format = KILLED_BY;
+					done(DIED);
+					pline("Unfortunately, you still don't exist anymore.");
+					done(DIED);
+					done(ESCAPED); /* you don't get to escape from this death! --Amy */
+
+				}
+
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+				return 0;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				pline("That was a waste, man. The target square didn't contain a monster!");
+			} else if (mtmp->isshk == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
+				&& mtmp->isgyp == 0
+		&& mtmp->data != &mons[PM_SHOPKEEPER] && mtmp->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp->data != &mons[PM_BLACK_MARKETEER] && mtmp->data != &mons[PM_ALIGNED_PRIEST] && mtmp->data != &mons[PM_MASTER_PRIEST] && mtmp->data != &mons[PM_ELITE_PRIEST] && mtmp->data != &mons[PM_HIGH_PRIEST] && mtmp->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD]
+			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+				mongone(mtmp);
+				pline("*poof*");
+			} else {
+				pline("Dude you're such a noob who apparently doesn't read descriptions or you'd have known that this particular monster is immune.");
+			}
+
+		      t_timeout = rnz(250000);
+
 			break;
 
 		case T_WEAPON_BLOCKER:
@@ -8302,7 +8410,9 @@ repairitemchoice:
 			break;
 
 		case T_EXTRA_MEMORY:
-			pline("todo");
+
+			extramemory(); /* spell.c */
+		      t_timeout = rnz(20000);
 			break;
 
 		case T_GRAP_SWAP:
@@ -9018,6 +9128,33 @@ extrachargechoice:
 
 			for (i = 0; i < MAXTECH; i++) {
 			    if (techid(i) == T_LEGSCRATCH_ATTACK || techid(i) == T_GROUND_STOMP || techid(i) == T_ASIAN_KICK )
+				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
+			}
+
+		}
+
+		if (techid(tech_no) == T_AUTOKILL) {
+
+			for (i = 0; i < MAXTECH; i++) {
+			    if (techid(i) == T_CHAIN_THUNDERBOLT || techid(i) == T_FLASHING_MISCHIEF )
+				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
+			}
+
+		}
+
+		if (techid(tech_no) == T_CHAIN_THUNDERBOLT) {
+
+			for (i = 0; i < MAXTECH; i++) {
+			    if (techid(i) == T_AUTOKILL || techid(i) == T_FLASHING_MISCHIEF )
+				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
+			}
+
+		}
+
+		if (techid(tech_no) == T_FLASHING_MISCHIEF) {
+
+			for (i = 0; i < MAXTECH; i++) {
+			    if (techid(i) == T_CHAIN_THUNDERBOLT || techid(i) == T_AUTOKILL )
 				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
 			}
 

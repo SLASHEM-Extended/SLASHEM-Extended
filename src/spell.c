@@ -12160,6 +12160,46 @@ addsomespellmemory()
 	return (FALSE);
 }
 
+void
+extramemory()
+{
+	if (spellid(0) == NO_SPELL) {
+		You("don't know any spells, and therefore you cannot add spell memory to them either.");
+		return;
+	}
+
+	pline("Choose a spell to add spell memory.");
+addxtragain:
+	if (!addsomespellmemoryX()) {
+		if (yn("Really exit with no spell selected?") == 'y')
+			pline("You just wasted the opportunity to add memory to a spell.");
+		else goto addxtragain;
+	}
+}
+
+boolean
+addsomespellmemoryX()
+{
+	int spell_no;
+
+	if (getspell(&spell_no, FALSE)) {
+		if (spellid(spell_no) != NO_SPELL) {
+			if (rn2(20) && spellknow(spell_no) <= 0) {
+				pline("Your attempt to regain knowledge of that forgotten spell fails.");
+				return (TRUE);
+			}
+			pline("Your knowledge of the %s spell increases.", spellname(spell_no));
+			boostknow(spell_no, rnd(5000));
+			return (TRUE);
+		} else {
+			You("decided to not add memory to any spell after all.");
+			return (FALSE);
+		}
+
+	}
+	return (FALSE);
+}
+
 /* Assumes u.dx, u.dy already set up */
 static int
 spell_dash()

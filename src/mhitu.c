@@ -2130,6 +2130,8 @@ mattacku(mtmp)
 
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 
+	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) tmp -= rnd(20);
+
 	if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
 
 	if (Conflict) tmp += rnd(1 + mlevfortohit);

@@ -1324,6 +1324,7 @@ int dieroll;
 	boolean pieks = 0;
 	if (thrown == 1 && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
 	if (thrown == 1 && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
+	if (thrown == 1 && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
 	if (thrown == 1 && obj->otyp == GRAPPLING_HOOK) pieks = 1;
 
 	if (thrown == 1) launcher = uwep;
@@ -1588,7 +1589,7 @@ int dieroll;
 		    /* or strike with a missile in your hand... */
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
-		    (!thrown && !u.usteed && is_pole(obj)) ||
+		    (!thrown && !u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(obj)) ||
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
 		    /* or throw a missile without the proper bow... */
@@ -1608,7 +1609,7 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if ((is_launcher(obj) || is_missile(obj) || (is_pole(obj) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
+		    if ((is_launcher(obj) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
@@ -1983,7 +1984,7 @@ int dieroll;
 			odorobj = TRUE;
 		    }
 		    if (u.usteed && !thrown && tmp > 0 &&
-			    weapon_type(obj) == P_LANCE && mon != u.ustuck) {
+			    weapon_type(obj) == (tech_inuse(T_GRAP_SWAP) ? P_GRINDER : P_LANCE) && mon != u.ustuck) {
 			jousting = joust(mon, obj);
 			/* exercise skill even for minimal damage hits */
 			if (jousting) valid_weapon_attack = TRUE;
@@ -2705,9 +2706,9 @@ int dieroll;
 	    wep = PROJECTILE(obj) ? launcher : obj;
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
 
-		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
@@ -2903,7 +2904,7 @@ int dieroll;
 				}
 
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
-				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !u.usteed) && bimanual(wep)) {
+				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) && bimanual(wep)) {
 					u.utwohandedcombatturns++;
 					if (u.utwohandedcombatturns >= 3) {
 						u.utwohandedcombatturns = 0;
@@ -7638,7 +7639,7 @@ use_weapon:
 					}
 				}
 
-				if (uwep && objects[uwep->otyp].oc_skill == P_GRINDER) {
+				if (uwep && objects[uwep->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER)) {
 					int grindirection = 0;
 					if (u.dx > 0 && u.dy == 0) grindirection = 1; /* east */
 					if (u.dx > 0 && u.dy > 0) grindirection = 2; /* southeast */

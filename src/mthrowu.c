@@ -58,6 +58,10 @@ const char *name;	/* if null, then format `obj' */
 
 	int extrachance = 1;
 
+	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) {
+		shieldblockrate = 25;
+	}
+
 	if (uarms) {
 
 		switch (uarms->otyp) {
@@ -277,7 +281,7 @@ const char *name;	/* if null, then format `obj' */
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
-	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
+	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= BULLET && obj->otyp <= GAS_GRENADE);
 
@@ -334,15 +338,25 @@ const char *name;	/* if null, then format `obj' */
 
 	} else if (!rn2(extrachance) && (rnd(100) < shieldblockrate) ) {
 
-			/* a good shield allows you to block projectiles --Amy */
-			if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
-			else You("block %s with your shield.", onm);
-			use_skill(P_SHIELD, 1);
+			if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) {
 
-			u.ubodyarmorturns++;
-			if (u.ubodyarmorturns >= 5) {
-				u.ubodyarmorturns = 0;
-				use_skill(P_BODY_ARMOR, 1);
+				Your("weapons block a projectile.");
+				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);
+				use_skill(P_TWO_WEAPON_COMBAT, 1);
+
+			} else {
+
+				/* a good shield allows you to block projectiles --Amy */
+				if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
+				else You("block %s with your shield.", onm);
+				use_skill(P_SHIELD, 1);
+
+				u.ubodyarmorturns++;
+				if (u.ubodyarmorturns >= 5) {
+					u.ubodyarmorturns = 0;
+					use_skill(P_BODY_ARMOR, 1);
+				}
+
 			}
 
 			return(0);

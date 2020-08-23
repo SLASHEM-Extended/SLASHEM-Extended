@@ -1941,6 +1941,81 @@ moveloop()
 			turn_allmonsters();
 		}
 
+		if (tech_inuse(T_AFTERBURNER) && u.umoved) {
+			buzz(21, 2 + (GushLevel / 10), u.ux, u.uy, -u.dx, -u.dy);
+		}
+		if (tech_inuse(T_BUGGARD)) {
+		    int i, j, bd = 2;
+		    struct monst *mtmp;
+		    int buggardchance = 20;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				if (mtmp->data->msize >= MZ_HUGE) buggardchance = 2;
+				else if (!rathersmall(mtmp->data)) buggardchance = 4;
+				else if (!verysmall(mtmp->data)) buggardchance = 8;
+				else buggardchance = 20;
+				if (!rn2(buggardchance)) {
+					pline("%s is hit by an icicle!", Monnam(mtmp));
+					wakeup(mtmp); /* monster becomes hostile */
+					if (resists_cold(mtmp)) continue;
+					if (!rn2(5) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) ) {
+						mon_adjust_speed(mtmp, -1, (struct obj *)0);
+						m_dowear(mtmp, FALSE); /* might want speed boots */
+					}
+					hurtmon(mtmp, rnd(15 + GushLevel));
+				}
+			}
+
+		    }
+
+		}
+
+		if (tech_inuse(T_THUNDERSTORM) && !rn2(10)) {
+		    int i, j, bd = 3;
+		    struct monst *mtmp, *targetmon;
+		    int amountoftargets = 0;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				amountoftargets++;
+				if (amountoftargets < 2 || !rn2(amountoftargets)) {
+					targetmon = mtmp;
+				}
+			}
+
+		    }
+
+		    if (amountoftargets && targetmon) {
+				pline("%s is hit by lightning!", Monnam(targetmon));
+				wakeup(targetmon); /* monster becomes hostile */
+				if (resists_elec(targetmon)) continue;
+				hurtmon(targetmon, rnd(50 + (GushLevel * 2)));
+
+		    }
+
+		}
+
+		if (tech_inuse(T_BLADE_SHIELD) && !rn2(10)) {
+		    int i, j, bd = 1;
+		    struct monst *mtmp;
+		    int amountoftargets = 0;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				pline("%s is slit by the blade!", Monnam(mtmp));
+				hurtmon(mtmp, rnd(5 + (GushLevel / 6)));
+
+			}
+
+		    }
+
+			if (evilfriday && multi >= 0) nomul(-2, "having blade shield active", TRUE);
+		}
+
 		if (!u.uinwater) u.udrowning = FALSE;
 		if (u.udrowning) {
 			if (isok(u.ux, u.uy) && is_crystalwater(u.ux, u.uy)) crystaldrown();

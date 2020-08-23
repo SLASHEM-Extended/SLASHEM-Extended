@@ -9340,7 +9340,7 @@ int direction;
 				break;
 		}
 	}
-	if (uwep && objects[uwep->otyp].oc_skill == P_GRINDER && uwep->spe > 0) grindingdamage += uwep->spe;
+	if (uwep && objects[uwep->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER) && uwep->spe > 0) grindingdamage += uwep->spe;
 
 	if (grindingdamage > 1) grindingdamage = rnd(grindingdamage);
 

@@ -2809,6 +2809,7 @@ E boolean studyspell(void);
 E boolean inertiacontrolspell(void);
 E boolean dememorizespell(void);
 E boolean addsomespellmemory(void);
+E boolean addsomespellmemoryX(void);
 E void initialspell(struct obj *);
 E void castinertiaspell(void);
 E void wonderspell(void);
@@ -2817,6 +2818,7 @@ E boolean mastermindsave(void);
 E void removeforgottenspell(void);
 E void evilspellforget(void);
 E int dodeletespell(void);
+E void extramemory(void);
 
 /* ### steal.c ### */
 
