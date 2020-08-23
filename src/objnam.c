@@ -6185,8 +6185,10 @@ register struct obj *obj;
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) obj->bknown = TRUE;
 
 	/* We could put a switch(obj->oclass) here but currently only this one case exists */
-	if (obj->oclass == WEAPON_CLASS && obj->opoisoned)
-		strcpy(buf, flags.simpledescs ? "pois " : "poisoned ");
+	if (obj->oclass == WEAPON_CLASS && obj->opoisoned) {
+		if (obj->superpoison) strcpy(buf, flags.simpledescs ? "xpois " : "superpoisoned ");
+		else strcpy(buf, flags.simpledescs ? "pois " : "poisoned ");
+	}
 
 	/*if (obj_is_pname(obj))
 	    goto nameit;*/
@@ -6661,6 +6663,7 @@ doname(obj)
 register struct obj *obj;
 {
 	boolean ispoisoned = FALSE;
+	boolean issuperpoisoned = FALSE;
 	char prefix[PREFIX];
 	char tmpbuf[PREFIX+1];
 	/* when we have to add something at the start of prefix instead of the
@@ -6680,6 +6683,11 @@ register struct obj *obj;
 	if (!strncmp(bp, "poisoned ", 9) && obj->opoisoned) {
 		bp += 9;
 		ispoisoned = TRUE;
+	}
+	if (!strncmp(bp, "superpoisoned ", 14) && obj->superpoison) {
+		bp += 14;
+		ispoisoned = TRUE;
+		issuperpoisoned = TRUE;
 	}
 
 	if(obj->quan != 1L)
@@ -6825,8 +6833,10 @@ register struct obj *obj;
 
 		break;
 	case WEAPON_CLASS:
-		if(ispoisoned && !PlayerUninformation)
-			strcat(prefix, flags.simpledescs ? "pois " : "poisoned ");
+		if(ispoisoned && !PlayerUninformation) {
+			if (issuperpoisoned) strcat(prefix, flags.simpledescs ? "xpois " : "superpoisoned ");
+			else strcat(prefix, flags.simpledescs ? "pois " : "poisoned ");
+		}
 plus:
 		add_erosion_words(obj, prefix);
 		if (Hallucination)

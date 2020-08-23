@@ -7951,6 +7951,8 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->morgcurse != otmp->morgcurse || obj->evilcurse != otmp->evilcurse || obj->bbrcurse != otmp->bbrcurse ||
 	    obj->no_charge != otmp->no_charge ||
 	    obj->selfmade != otmp->selfmade  ||
+	    obj->opoisoned != otmp->opoisoned ||
+	    obj->superpoison != otmp->superpoison ||
 	    obj->obrittle != otmp->obrittle ||
 	    obj->obrittle2 != otmp->obrittle2 ||
 	    obj->finalcancel != otmp->finalcancel ||

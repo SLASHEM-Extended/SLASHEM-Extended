@@ -2115,9 +2115,9 @@ learntech(tech, mask, tlevel)
 	/* Amy note: some techs are given only if you're the correct alignment when leveling up
 	 * diablist for alignment-specific techs goes here */
 	if (tlevel > 0) {
-		if (i == T_PREACHING && mask != FROMOUTSIDE && u.ualign.type != A_LAWFUL) return;
-		if (i == T_ON_THE_SAME_TEAM && mask != FROMOUTSIDE && u.ualign.type != A_NEUTRAL) return;
-		if (i == T_PERMAMORPH && mask != FROMOUTSIDE && u.ualign.type != A_CHAOTIC) return;
+		if (tech == T_PREACHING && mask != FROMOUTSIDE && u.ualign.type != A_LAWFUL) return;
+		if (tech == T_ON_THE_SAME_TEAM && mask != FROMOUTSIDE && u.ualign.type != A_NEUTRAL) return;
+		if (tech == T_PERMAMORPH && mask != FROMOUTSIDE && u.ualign.type != A_CHAOTIC) return;
 	}
 
 	if (tlevel > 0) {
@@ -3226,99 +3226,99 @@ dotech()
 			break;
 
 		case T_PREACHING:
-			pline("todo");
+			pline("Using this technique breaks the atheist conduct and slightly increases your alignment record, but not above the current maximum.");
 			break;
 
 		case T_ON_THE_SAME_TEAM:
-			pline("todo");
+			pline("Tries to pacify hostile neutral-aligned monsters next to you, but they get a resistance roll.");
 			break;
 
 		case T_PERMAMORPH:
-			pline("todo");
+			pline("This powerful technique lets you target an adjacent monster and tries to polymorph it, although it can resist via monster magic resistance and those that have player-style magic resistance are outright immune. If you're successful in polymorphing it, the monster's polymorph will be semi-permanent.");
 			break;
 
 		case T_PACIFY:
-			pline("todo");
+			pline("Targets an adjacent humanoid monster and tries to turn it peaceful, although it can also resist. Shopkeepers, guards, temple priests and unique monsters are immune.");
 			break;
 
 		case T_AFTERBURNER:
-			pline("todo");
+			pline("For a few turns after using this technique, it shoots fire bolts in the direction you came from.");
 			break;
 
 		case T_BUGGARD:
-			pline("todo");
+			pline("Deals cold damage and tries to slow targets in a 5x5 area near you, although it doesn't always hit. This technique lasts for a few turns before it ends.");
 			break;
 
 		case T_THUNDERSTORM:
-			pline("todo");
+			pline("Lasts for a while and periodically deals lightning damage to nearby monsters.");
 			break;
 
 		case T_AUTOKILL:
-			pline("todo");
+			pline("Shoots highly damaging lightning bolts in all eight directions.");
 			break;
 
 		case T_CHAIN_THUNDERBOLT:
-			pline("todo");
+			pline("Shoots an invisible globe in a direction of your choosing, which will travel for 8 squares or until it hits a terrain obstacle. At the target destination, it shoots highly damaging lightning bolts in all eight directions.");
 			break;
 
 		case T_FLASHING_MISCHIEF:
-			pline("todo");
+			pline("Shoots an invisible globe in a direction of your choosing, which will travel for 8 squares or until it hits a terrain obstacle. For each square it travels, the globe shoots a highly damaging lightning bolt in a random direction.");
 			break;
 
 		case T_KAMEHAMEHA:
-			pline("todo");
+			pline("A single-target ranged attack that travels in the chosen direction for 8 squares, but not through terrain obstacles, and deals damage to the first monster it hits.");
 			break;
 
 		case T_SHADOW_MANTLE:
-			pline("todo");
+			pline("Darkens the area and blinds nearby monsters.");
 			break;
 
 		case T_VACUUM_STAR:
-			pline("todo");
+			pline("Creates throwing stars out of thin air.");
 			break;
 
 		case T_BLADE_SHIELD:
-			pline("todo");
+			pline("This technique lasts for a while and periodically deals damage to hostile monsters adjacent to you.");
 			break;
 
 		case T_GREEN_WEAPON:
-			pline("todo");
+			pline("Requires you to be wielding a claw, which will be badly poisoned, making it less likely to lose its poisoning compared to regular poisoned weapons.");
 			break;
 
 		case T_BALLSLIFF:
-			pline("todo");
+			pline("This technique only works if you're wielding a heavy iron ball, or another type of heavy ball as a weapon, and repairs a bit of damage on the ball.");
 			break;
 
 		case T_POLE_MELEE:
-			pline("todo");
+			pline("For a while, your polearms and lances are effective at close range after you've used this technique.");
 			break;
 
 		case T_CHOP_CHOP:
-			pline("todo");
+			pline("In order to use this technique, you have to be wielding an axe, which will hit all adjacent monsters. Be careful, it can also hit peaceful targets!");
 			break;
 
 		case T_BANISHMENT:
-			pline("todo");
+			pline("Allows you to banish an adjacent monster, sending it to a random dungeon level.");
 			break;
 
 		case T_PARTICIPATION_LOSS:
-			pline("todo");
+			pline("This extremely powerful technique lets you delete an adjacent monster from the game, but it doesn't work against bosses, shopkeepers or temple priests. Be aware that the monster's inventory is deleted with it (macguffins will drop to the floor to prevent the game from becoming unwinnable).");
 			break;
 
 		case T_WEAPON_BLOCKER:
-			pline("todo");
+			pline("A technique that lasts for a while, but requires you to be dual-wielding. While active, you have a chance of using your weapons to block melee attacks and projectiles.");
 			break;
 
 		case T_EXTRA_MEMORY:
-			pline("todo");
+			pline("You can select a spell and increase its memory with this technique. It has a minuscule chance of working on a forgotten spell, allowing you to cast it again, but most of the time, using it on a forgotten spell will simply fail.");
 			break;
 
 		case T_GRAP_SWAP:
-			pline("todo");
+			pline("Temporarily makes your grinder work like a lance and your lance will work like a grinder. Or if that sounds like Chinese to you, it means that you can joust with a grinder and grind with a lance.");
 			break;
 
 		case T_DIABOLIC_MINION:
-			pline("todo");
+			pline("If you use this technique, a random tame Diablo monster is summoned.");
 			break;
 
 
@@ -3786,7 +3786,7 @@ secureidchoice:
 		    You("decide against that idea.");
 		    return(0);
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -3834,7 +3834,7 @@ secureidchoice:
 		    pline("Things may be going badly, but that's extreme.");
 		    return 0;
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -4287,7 +4287,7 @@ secureidchoice:
 			pline("Why don't you try wielding something else instead.");
 			return(0);
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -4473,7 +4473,7 @@ secureidchoice:
 			You("flex your muscles.");
 			return(0);
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -4493,7 +4493,7 @@ secureidchoice:
 			You("flex your muscles.");
 			return(0);
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -6717,7 +6717,7 @@ revid_end:
 		    pline(flags.female ? "Since you don't have nuts, you cannot try to smash them with your feet either." : "For a moment, you feel the itch to ram your footwear into your own nuts, but then remember that you have a task to complete, and therefore decide against the idea.");
 		    return 0;
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -6758,7 +6758,7 @@ revid_end:
 			pline("Why don't you try wielding something else instead.");
 			return(0);
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -7020,7 +7020,7 @@ revid_end:
 				pline("You can't soften yourself!");
 				return(0);
 			}
-			if (!isok(u.dx, u.dy)) {
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 				pline("Invalid target location.");
 				return 0;
 			}
@@ -7121,7 +7121,7 @@ revid_end:
 			You("flex your muscles.");
 			return(0);
 		}
-		if (!isok(u.dx, u.dy)) {
+		if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 			pline("Invalid target location.");
 			return 0;
 		}
@@ -7864,63 +7864,406 @@ repairitemchoice:
 			break;
 
 		case T_PREACHING:
-			pline("todo");
+			if (Race_if(PM_MACTHEIST)) {
+				pline("As an atheist, you cannot use such a technique.");
+				return 0;
+			}
+
+			u.uconduct.gnostic++;	/* you just communicated with your god */
+			if (Race_if(PM_MAGYAR)) {
+				You_feel("bad about breaking the atheist conduct.");
+				badeffect();
+			}
+			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 5 : 1);
+			adjalign(5 + techlevX(tech_no) / 3);
+			You_feel("pious.");
+			t_timeout = rnz(4000);
 			break;
 
 		case T_ON_THE_SAME_TEAM:
-			pline("todo");
+
+			if (u.uswallow) {
+			    pline("That doesn't work while you're engulfed!");
+				return 0;
+			}
+
+			{
+
+			int k, l;
+			struct monst *mtmp3;
+			pline("You try to pacify monsters!");
+
+		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->mpeaceful == 0 && mtmp3->mfrenzied == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !resist(mtmp3, RING_CLASS, 0, NOTELL) && !(mtmp3->data->geno & G_UNIQ) )
+
+			{
+
+				if (mtmp3->data->maligntyp == 0) {
+					pline("%s looks calmer.", mon_nam(mtmp3));
+					mtmp3->mpeaceful = 1;
+				}
+
+				else pline("%s can't be dominated with this method!", mon_nam(mtmp3));
+
+			} /* monster is catchable loop */
+		    } /* for loop */
+
+			} /* variable definition bracket */
+
+			t_timeout = rnz(6000);
 			break;
 
 		case T_PERMAMORPH:
-			pline("todo");
+
+		    	if (!getdir((char *)0)) return 0;
+			if (!u.dx && !u.dy) {
+			    pline("This technique is for polymorphing monsters, not yourself.");
+			    return 0;
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+				return 0;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				You("were such a noob and wasted this powerful technique by aiming it at thin air! Why didn't you target a monster instead?");
+			} else if (mtmp->isshk == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
+				&& mtmp->isgyp == 0
+		&& mtmp->data != &mons[PM_SHOPKEEPER] && !resists_magm(mtmp) && mtmp->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp->data != &mons[PM_BLACK_MARKETEER] && mtmp->data != &mons[PM_ALIGNED_PRIEST] && mtmp->data != &mons[PM_MASTER_PRIEST] && mtmp->data != &mons[PM_ELITE_PRIEST] && mtmp->data != &mons[PM_HIGH_PRIEST] && mtmp->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD]
+			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+				if (!resist(mtmp, WAND_CLASS, 0, NOTELL)) {
+					(void) mon_spec_polyX(mtmp, (struct permonst *)0, 0L, FALSE, TRUE, FALSE, FALSE);
+				} else {
+					pline("%s resists! Hahahahahahaha! Now you can wait for an eternity before the technique becomes available again.", Monnam(mtmp));
+				}
+			} else {
+				pline("What a shame - you apparently targetted a monster that is immune, and therefore nothing happens.");
+			}
+
+		      t_timeout = rnz(75000);
+
 			break;
 
 		case T_PACIFY:
-			pline("todo");
+		    	if (!getdir((char *)0)) return 0;
+			if (!u.dx && !u.dy) {
+			    pline("You cannot pacify yourself.");
+			    return 0;
+			}
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
+				pline("Invalid target location.");
+				return 0;
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp) {
+				pline("There is no monster in that direction. Nothing happens.");
+			} else if (mtmp->isshk == 0 && mtmp3->mtame == 0 && mtmp3->mpeaceful == 0 && mtmp3->mfrenzied == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
+				&& mtmp->isgyp == 0
+		&& mtmp->data != &mons[PM_SHOPKEEPER] && humanoid(mtmp->data) && mtmp->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp->data != &mons[PM_BLACK_MARKETEER] && mtmp->data != &mons[PM_ALIGNED_PRIEST] && mtmp->data != &mons[PM_MASTER_PRIEST] && mtmp->data != &mons[PM_ELITE_PRIEST] && mtmp->data != &mons[PM_HIGH_PRIEST] && mtmp->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD]
+			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+				if (!resist(mtmp, WAND_CLASS, 0, NOTELL)) {
+					int pacifychance = 10;
+					if (!PlayerCannotUseSkills) {
+						switch (P_SKILL(P_ORB)) {
+							default: break;
+							case P_BASIC:
+							pacifychance += 5;
+							break;
+						case P_SKILLED:
+							pacifychance += 10;
+							break;
+						case P_EXPERT:
+							pacifychance += 15;
+							break;
+						case P_MASTER:
+							pacifychance += 20;
+							break;
+						case P_GRAND_MASTER:
+							pacifychance += 25;
+							break;
+						case P_SUPREME_MASTER:
+							pacifychance += 30;
+							break;
+						}
+					}
+					if (u.ualign.record < -20) pacifychance -= 50;
+					else if (u.ualign.record < -10) pacifychance -= 20;
+					else if (u.ualign.record < 0) pacifychance -= 10;
+					else if (u.ualign.record > 4 && u.ualign.record < 10) pacifychance += 5;
+					else if (u.ualign.record > 9 && u.ualign.record < 14) pacifychance += 10;
+					else if (u.ualign.record > 14 && u.ualign.record < 20) pacifychance += 15;
+					else if (u.ualign.record > 19 && u.ualign.record < 40) pacifychance += 20;
+					else if (u.ualign.record > 39 && u.ualign.record < 60) pacifychance += 30;
+					else if (u.ualign.record > 59 && u.ualign.record < 80) pacifychance += 40;
+					else if (u.ualign.record > 79 && u.ualign.record < 100) pacifychance += 50;
+					else if (u.ualign.record > 99 && u.ualign.record < 120) pacifychance += 60;
+					else if (u.ualign.record > 119 && u.ualign.record < 140) pacifychance += 70;
+					else if (u.ualign.record > 139) pacifychance += 80;
+
+					if (rn2(100) < pacifychance) {
+						mtmp->mpeaceful = 1;
+						pline("%s looks calmer.", mon_nam(mtmp));
+					} else {
+						pline("%s resists the attempt.", Monnam(mtmp));
+					}
+
+				} else {
+					pline("%s is as angry as before.", Monnam(mtmp));
+				}
+			} else {
+				pline("That monster is immune.");
+			}
+
+		      t_timeout = rnz(5000);
 			break;
 
 		case T_AFTERBURNER:
-			pline("todo");
+			num = 5 + (techlevX(tech_no) / 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You've activated your afterburner.");
+		      t_timeout = rnz(6000);
 			break;
 
 		case T_BUGGARD:
-			pline("todo");
+			num = 20 + techlevX(tech_no);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You've summoned a blizzard!");
+		      t_timeout = rnz(8000);
 			break;
 
 		case T_THUNDERSTORM:
-			pline("todo");
+			num = 60 + (techlevX(tech_no) * 20);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You've conjured a thunderstorm!");
+		      t_timeout = rnz(12000);
 			break;
 
 		case T_AUTOKILL:
-			pline("todo");
+
+			{
+			int melteestrength = 5 + (techlevX(tech_no) / 4);
+
+			buzz(15, melteestrength, u.ux, u.uy, -1, 0);
+			buzz(15, melteestrength, u.ux, u.uy, 1, 0);
+			buzz(15, melteestrength, u.ux, u.uy, -1, 1);
+			buzz(15, melteestrength, u.ux, u.uy, 1, 1);
+			buzz(15, melteestrength, u.ux, u.uy, 0, 1);
+			buzz(15, melteestrength, u.ux, u.uy, -1, -1);
+			buzz(15, melteestrength, u.ux, u.uy, 1, -1);
+			buzz(15, melteestrength, u.ux, u.uy, 0, -1);
+
+			}
+		      t_timeout = rnz(10000);
+
 			break;
 
 		case T_CHAIN_THUNDERBOLT:
-			pline("todo");
+
+			{
+			int melteestrength = 5 + (techlevX(tech_no) / 4);
+			int ctx, cty;
+			ctx = u.ux, cty = u.uy;
+
+		    	if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				You("really shouldn't be aiming that at yourself.");
+				return(0);
+			}
+			for(i = 0; i < 8; i++) {
+				if (!isok(ctx + u.dx, cty + u.dy)) break;
+				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
+
+				ctx += u.dx;
+				cty += u.dy;
+			}
+
+			if (ctx == u.ux && cty == u.uy) {
+				pline("The effect dissipated because you didn't aim properly!");
+				return(0);
+			}
+			if (!isok(ctx, cty)) { /* shouldn't happen */
+				pline("The effect dissipated because it travelled off the map.");
+				return(0);
+			}
+
+			buzz(15, melteestrength, ctx, cty, -1, 0);
+			buzz(15, melteestrength, ctx, cty, 1, 0);
+			buzz(15, melteestrength, ctx, cty, -1, 1);
+			buzz(15, melteestrength, ctx, cty, 1, 1);
+			buzz(15, melteestrength, ctx, cty, 0, 1);
+			buzz(15, melteestrength, ctx, cty, -1, -1);
+			buzz(15, melteestrength, ctx, cty, 1, -1);
+			buzz(15, melteestrength, ctx, cty, 0, -1);
+			}
+
+		      t_timeout = rnz(10000);
 			break;
 
 		case T_FLASHING_MISCHIEF:
-			pline("todo");
+
+			{
+			int melteestrength = 5 + (techlevX(tech_no) / 4);
+			int ctx, cty;
+			ctx = u.ux, cty = u.uy;
+
+		    	if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				You("really shouldn't be aiming that at yourself.");
+				return(0);
+			}
+			for(i = 0; i < 8; i++) {
+				if (!isok(ctx + u.dx, cty + u.dy)) break;
+				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
+
+				ctx += u.dx;
+				cty += u.dy;
+
+				if (isok(ctx, cty)) {
+					switch (rnd(8)) {
+						case 1:
+							buzz(15, melteestrength, ctx, cty, -1, 0);
+							break;
+						case 2:
+							buzz(15, melteestrength, ctx, cty, 1, 0);
+							break;
+						case 3:
+							buzz(15, melteestrength, ctx, cty, -1, 1);
+							break;
+						case 4:
+							buzz(15, melteestrength, ctx, cty, 1, 1);
+							break;
+						case 5:
+							buzz(15, melteestrength, ctx, cty, 0, 1);
+							break;
+						case 6:
+							buzz(15, melteestrength, ctx, cty, -1, -1);
+							break;
+						case 7:
+							buzz(15, melteestrength, ctx, cty, 1, -1);
+							break;
+						case 8:
+							buzz(15, melteestrength, ctx, cty, 0, -1);
+							break;
+
+					}
+				}
+			}
+
+			}
+
+		      t_timeout = rnz(10000);
 			break;
 
 		case T_KAMEHAMEHA:
-			pline("todo");
+
+			{
+			int melteestrength = rnd(20 + techlevX(tech_no));
+			int ctx, cty;
+			ctx = u.ux, cty = u.uy;
+
+		    	if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				You("can't direct that at yourself.");
+				return(0);
+			}
+			verbalize("Kamehameha!");
+
+			for(i = 0; i < 8; i++) {
+				if (!isok(ctx + u.dx, cty + u.dy)) break;
+				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
+
+				ctx += u.dx;
+				cty += u.dy;
+
+				mtmp = m_at(ctx, cty);
+
+				if (mtmp) {
+					pline("The projectile hits %s!", mon_nam(mtmp));
+					hurtmon(mtmp, melteestrength);
+					break;
+				}
+
+			}
+
+			}
+
+		      t_timeout = rnz(2000);
 			break;
 
 		case T_SHADOW_MANTLE:
-			pline("todo");
+
+			litroomlite(FALSE);
+
+			{
+
+		    int i, j, bd = 2;
+		    struct monst *mtmp;
+
+		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				wakeup(mtmp); /* monster becomes hostile */
+				mtmp->mcansee = 0;
+				mtmp->mblinded = rnd(20 + techlevX(tech_no));
+				pline("%s is blinded!", Monnam(mtmp));
+			}
+
+		    }
+
+			}
+
+		      t_timeout = rnz(5000);
+
 			break;
 
 		case T_VACUUM_STAR:
-			pline("todo");
+
+			You("create throwing stars.");
+			{
+			struct obj *uammo;
+
+			uammo = mksobj(SHURIKEN, TRUE, FALSE, FALSE);
+			if (uammo) {
+				uammo->quan = rnd(40 + (3 * techlevX(tech_no)));
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			}
+
+		      t_timeout = rnz(12000);
+
 			break;
 
 		case T_BLADE_SHIELD:
-			pline("todo");
+			num = 20 + techlevX(tech_no);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Blade shield activated.");
+		      t_timeout = rnz(3000);
 			break;
 
 		case T_GREEN_WEAPON:
-			pline("todo");
+
+			if (!uwep) {
+				You("can't use this technique without a weapon!");
+				return(0);
+			}
+
+			if (uwep && weapon_type(uwep) != P_CLAW) {
+				pline("That only works if your wielded weapon is a claw, and currently it's not!");
+				return 0;
+			}
+
+			uwep->opoisoned = TRUE;
+			uwep->superpoison = TRUE;
+			Your("claw became green.");
+
+		      t_timeout = rnz(10000);
 			break;
 
 		case T_BALLSLIFF:
@@ -7928,7 +8271,10 @@ repairitemchoice:
 			break;
 
 		case T_POLE_MELEE:
-			pline("todo");
+			num = 100 + (techlevX(tech_no) * 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("For a while, your polearms and lances are effective in melee range.");
+		      t_timeout = rnz(5000);
 			break;
 
 		case T_CHOP_CHOP:
@@ -7944,7 +8290,15 @@ repairitemchoice:
 			break;
 
 		case T_WEAPON_BLOCKER:
-			pline("todo");
+			if (!u.twoweap || !uwep || !uswapwep) {
+				pline("You need to be wielding two weapons at the same time for that!");
+				return(0);
+			}
+
+			num = 100 + (techlevX(tech_no) * 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your weapons become capable of blocking attacks.");
+		      t_timeout = rnz(3000);
 			break;
 
 		case T_EXTRA_MEMORY:
@@ -7952,11 +8306,37 @@ repairitemchoice:
 			break;
 
 		case T_GRAP_SWAP:
-			pline("todo");
+			num = 1000 + (techlevX(tech_no) * 50);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("For a while, your grinders will work like lances while your lances will work like grinders.");
+		      t_timeout = rnz(7000);
 			break;
 
 		case T_DIABOLIC_MINION:
-			pline("todo");
+		t_timeout = rnz(10000);
+
+		{
+			struct permonst *shoe = 0;
+			int attempts = 0;
+			struct monst *shoemonst;
+
+			do {
+				shoe = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!shoe || (shoe && !is_diablomonster(shoe))) && attempts < 50000);
+
+			if (shoe && is_diablomonster(shoe) ) {
+				pline("You summoned some diabolic monster!");
+				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
+				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
+			} else if (shoe) {
+				pline("Some weirdness caused a different monster to appear. It's not what you expected.");
+				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
+				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
+			} else pline("It seems that the world of Sanctuary has run out of monsters.");
+		}
 			break;
 
 		case T_UNDERTOW:
@@ -7965,7 +8345,7 @@ repairitemchoice:
 				pline("You're way too busy right now!");
 				return (0);
 			}
-			if (!isok(u.ux, u.uy)) {
+			if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 				pline("It seems that you're in a location where you're not allowed to be...");
 				return (0);
 			}
@@ -8798,6 +9178,27 @@ tech_timeout()
 		    case T_ESCROBISM:
 			pline("Escrobism is no longer active.");
 			break;
+		    case T_AFTERBURNER:
+			pline("Your afterburner is depleted.");
+			break;
+		    case T_BUGGARD:
+			pline("Damn, the buggard effect has ended already! Curse those developers that made its duration so short relative to its long timer!");
+			break;
+		    case T_THUNDERSTORM:
+			pline("Your thunderstorm flashes for one last time and ceases.");
+			break;
+		    case T_BLADE_SHIELD:
+			pline("Blade shield effect has ended. At least now it no longer disrupts your attacks.");
+			break;
+		    case T_POLE_MELEE:
+			pline("Your polearms and lances are no longer effective at close range.");
+			break;
+		    case T_WEAPON_BLOCKER:
+			pline("Thankfully, weapon blocker is temporary here and has just ended. You got very annoyed by the block lock effect anyway.");
+			break;
+		    case T_GRAP_SWAP:
+			pline("The effects of your grinders and lances are no longer swapped.");
+			break;
 		    case T_POWERBIOSIS:
 			pline("Your symbiote's awesome power fades.");
 			break;
@@ -9509,7 +9910,7 @@ doblitz()
 	if (!u.dx && !u.dy) {
 		return(0);
 	}
-	if (!isok(u.dx, u.dy)) {
+	if (!isok(u.ux + u.dx, u.uy + u.dy)) {
 		return 0;
 	}
 	

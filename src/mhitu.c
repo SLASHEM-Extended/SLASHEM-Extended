@@ -6196,8 +6196,9 @@ hitmu(mtmp, mattk)
 			    poisoned(simple_typename(otmp->otyp), A_STR,
 				    killer_xname(otmp), 10);
 			    if (nopoison < 2) nopoison = 2;
-			    if (!rn2(nopoison)) {
+			    if (!rn2(nopoison) && (!otmp->superpoison || !rn2(10)) ) {
 				otmp->opoisoned = FALSE;
+				otmp->superpoison = FALSE;
 				pline("%s %s no longer poisoned.",
 				       s_suffix(Monnam(mtmp)),
 				       aobjnam(otmp, "are"));
@@ -9911,8 +9912,9 @@ dopois:
 			    poisoned(obj_typename(otmp->otyp), A_STR,
 				    killer_xname(otmp), 10);
 			    if (nopoison < 2) nopoison = 2;
-			    if (!rn2(nopoison)) {
+			    if (!rn2(nopoison) && (!otmp->superpoison || !rn2(10)) ) {
 				otmp->opoisoned = FALSE;
+				otmp->superpoison = FALSE;
 				pline("%s %s no longer poisoned.",
 				       s_suffix(Monnam(mtmp)),
 				       aobjnam(otmp, "are"));

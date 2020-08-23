@@ -2973,8 +2973,9 @@ int dieroll;
 		You_feel("like an evil coward for using a poisoned weapon.");
 		adjalign(-5);
 	    }
-	    if (obj && obj->opoisoned && !rn2(nopoison) && !stack_too_big(obj) ) {
+	    if (obj && obj->opoisoned && !rn2(nopoison) && (!obj->superpoison || !rn2(10)) && !stack_too_big(obj) ) {
 		obj->opoisoned = FALSE;
+		obj->superpoison = FALSE;
 		Your("%s %s no longer poisoned.", xname(obj),
 		     otense(obj, "are"));
 	    }

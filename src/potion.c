@@ -12533,6 +12533,20 @@ dodip()
 		if (!stack_too_big(obj)) obj->opoisoned = TRUE;
 		else pline("Unfortunately there wasn't enough poison in there.");
 		goto poof;
+	    } else if( (potion->otyp == POT_CYANIDE) && !obj->superpoison) {
+		char buf[BUFSZ];
+		if (potion->quan > 1L)
+		    sprintf(buf, "One of %s", the(xname(potion)));
+		else
+		    strcpy(buf, The(xname(potion)));
+		pline("%s forms a very poisonous coating on %s.",
+		      buf, the(xname(obj)));
+		if (!stack_too_big(obj)) {
+			obj->opoisoned = TRUE;
+			obj->superpoison = TRUE;
+		}
+		else pline("Unfortunately there wasn't enough poison in there.");
+		goto poof;
 	    } else if(obj->opoisoned &&
 		      (potion->otyp == POT_HEALING ||
 		       potion->otyp == POT_EXTRA_HEALING ||

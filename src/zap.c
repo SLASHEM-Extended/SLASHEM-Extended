@@ -3169,6 +3169,8 @@ poly_obj(obj, id, degradation)
 	/* KMH, balance patch -- new macro */
 	if (obj->opoisoned && is_poisonable(otmp))
 		otmp->opoisoned = TRUE;
+	if (obj->superpoison && is_poisonable(otmp))
+		otmp->superpoison = TRUE;
 
 	if (id == STRANGE_OBJECT && obj->otyp == CORPSE) {
 		unpoly = FALSE;	/* WAC - don't bother */

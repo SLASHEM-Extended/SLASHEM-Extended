@@ -103,6 +103,7 @@ struct obj {
 #define odrained olocked	/* drained corpse */
 	Bitfield(obroken,1);	/* lock has been broken */
 	Bitfield(otrapped,1);	/* container is trapped */
+	Bitfield(superpoison,1);	/* for poisoned weapons: stronger poison (less likely to wear off) */
 				/* or accidental tripped rolling boulder trap */
 #define opoisoned otrapped	/* object (weapon) is coated with poison */
 

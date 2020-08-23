@@ -25385,6 +25385,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You inhale some cancerogenous smoke! Why are you such an idiot and smoke, anyway?",
 	"Kaboom! Your cigarette suddenly causes an explosion.",
 	"Kaboom! Your cigarette suddenly causes an explosion. (Smoking kills. Keep doing it and eventually the explosion will blow off your face.)",
+	"You feel pious.",
 
 };
 

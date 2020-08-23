@@ -1990,8 +1990,10 @@ boolean shopinit;
 
 		if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
-		if (is_poisonable(otmp) && !rn2(100))
+		if (is_poisonable(otmp) && !rn2(100)) {
 			otmp->opoisoned = 1;
+			if (!rn2(100)) otmp->superpoison = 1;
+		}
 		if (!rn2(400)) otmp->oerodeproof = 1;
 		if (!rn2(400)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
