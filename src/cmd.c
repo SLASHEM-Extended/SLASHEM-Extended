@@ -10593,12 +10593,16 @@ minimal_enlightenment()
 
 		sprintf(eos(statline), "You are %s, a %s %s %s%s %s.", playeraliasname, align_str(u.ualign.type), (flags.female ? "female" : "male"), xtrabuf, urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
-		if (!Upolyd) sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
-		else sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);
+		sprintf(eos(statline), " Level %d", u.ulevel);
+
+		if (!Upolyd) sprintf(eos(statline), " HP %d (max %d)", u.uhp, u.uhpmax);
+		else sprintf(eos(statline), " HP %d (max %d)", u.mh, u.mhmax);
 
 		sprintf(eos(statline), " Pw %d (max %d)", u.uen, u.uenmax);
 
 		sprintf(eos(statline), " AC %d", u.uac);
+
+		sprintf(eos(statline), " Score %ld", botl_score());
 
 		sprintf(eos(statline), " Current status effects: ");
 
