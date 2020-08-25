@@ -5976,6 +5976,7 @@ register const char *let,*word;
 			|| otmp->otyp == T_SHIRT
 			|| otmp->otyp == STRIPED_SHIRT
 			|| otmp->otyp == PRINTED_SHIRT
+			|| otmp->otyp == FOAM_SHIRT
 			|| otmp->otyp == BATH_TOWEL
 			|| otmp->otyp == PLUGSUIT
 			|| otmp->otyp == SWIMSUIT
@@ -8741,6 +8742,8 @@ boolean knoweverything;
 				pline("A crappy knife that can be turned into a very powerful knife if enchanted. It can be thrown."); break;
 			case KNIFE:
 				pline("A totally piece of crap weapon. It can be thrown."); break;
+			case VICTIM_KNIFE:
+				pline("It's a sucky knife. It can be thrown."); break;
 			case CERAMIC_KNIFE:
 				pline("As long as it's in good condition, this knife will deal respectable damage. It can be thrown."); break;
 			case TENNIS_RACKET:
@@ -8759,6 +8762,10 @@ boolean knoweverything;
 				pline("This razor-sharp knife cuts meat like butter. It can be thrown."); break;
 			case AXE:
 				pline("A standard axe that does moderate damage. It can be used to chop down trees."); break;
+			case QUALITY_AXE:
+				pline("One-handed axe made of a useful material, although the damage output is rather low. It can be used to chop down trees."); break;
+			case INFERNAL_AXE:
+				pline("A good one-handed axe. It can be used to chop down trees."); break;
 			case NANO_AXE:
 				pline("A rather strong one-handed axe. It can be used to chop down trees."); break;
 			case OBSIDIAN_AXE:
@@ -8779,6 +8786,8 @@ boolean knoweverything;
 				pline("The weakest short sword in the game. It is inferior to other short swords in every way."); break;
 			case SHORT_SWORD:
 				pline("A basic short sword that doesn't deal a lot of damage."); break;
+			case TRASH_SWORD:
+				pline("This short sword is made of a particularly bad material and doesn't deal much damage."); break;
 			case SHORT_BLADE:
 				pline("Only marginally stronger than a short sword."); break;
 			case SAND_SWORD:
@@ -8831,9 +8840,11 @@ boolean knoweverything;
 				pline("The most powerful of the long swords. It can be applied to bash iron bars."); break;
 			case TWO_HANDED_SWORD: 
 				pline("It's heavy and requires both hands, but does quite a lot of damage."); break;
+			case CUDSWORD:
+				pline("For a two-handed sword, this weapon is relatively weak."); break;
 			case ROMAN_SWORD:
 				pline("This damaging two-handed sword is pretty powerful."); break;
-			case TSURUGI: 
+			case TSURUGI:
 				pline("A long samurai sword that can only be wielded with both hands. It does lots of damage."); break;
 			case CHAINSWORD: 
 				pline("A golden two-handed sword that deals enormous amounts of damage."); break;
@@ -8847,6 +8858,8 @@ boolean knoweverything;
 				pline("It doesn't actually bisect enemies, but it deals a ton and a half of damage. Basically, it's like you were wielding a tank. It requires both hands though."); break;
 			case SCIMITAR: 
 				pline("A light but useful blade, the scimitar can outdamage a standard short sword."); break;
+			case BUBBLETAR:
+				pline("One-handed scimitar that deals mediocre damage."); break;
 			case MYTHICAL_SABLE:
 				pline("For a scimitar, this thing actually has quite good damage output."); break;
 			case DESERT_SWORD:
@@ -8855,10 +8868,16 @@ boolean knoweverything;
 				pline("A scimitar that's especially useful against small enemies."); break;
 			case BENT_SABLE: 
 				pline("This sharpened scimitar is actually very useful for quickly cutting up your enemies."); break;
-			case HIGH_ELVEN_WARSWORD: 
+			case HIGH_ELVEN_WARSWORD:
 				pline("An elven scimitar that does more damage than a regular scimitar and also hits more often."); break;
-			case RAPIER: 
+			case RAPIER:
 				pline("A basic saber that's not stronger than a short sword."); break;
+			case GREEN_SABER:
+				pline("Moderately damaging saber-class weapon."); break;
+			case CROW_QUILL:
+				pline("This foamy saber does low damage."); break;
+			case RAKUYO:
+				pline("A saber made of meteoric steel that deals moderate damage."); break;
 			case ETERNIUM_SABER:
 				pline("It's a saber that doesn't do all that much damage."); break;
 			case IRON_SABER: 
@@ -8871,6 +8890,10 @@ boolean knoweverything;
 				pline("A rare saber made of pure gold. It can do good damage. It can be applied to bash iron bars."); break;
 			case CLUB: 
 				pline("Don't bother with this weapon. The club just doesn't ever deal any meaningful damage."); break;
+			case ALLOY_CLUB:
+				pline("A sucky club made of metal."); break;
+			case JAGGED_TOOTH_CLUB:
+				pline("Slightly stronger than a regular club, but made of inferior metal."); break;
 			case DARKNESS_CLUB:
 				pline("It sure deals more damage than the regular club, but hitting things with it also makes areas dark."); break;
 			case AKLYS:
@@ -8945,6 +8968,8 @@ boolean knoweverything;
 				pline("A claw that is made of a random material. Its damage output is average. Paralyze your target first or make it turn to flee, and it'll deal even more damage."); break;
 			case MACE:
 				pline("A mace. It's quite a weak weapon, actually."); break;
+			case KAMEREL_VAJRA:
+				pline("Hell if I knew what that weird name is supposed to mean. Anyway, it's a rather weak mace."); break;
 			case BATLETH:
 				pline("The klingons invented this weapon, and I have no real idea what it's supposed to represent so I decided to make it a mace-class weapon. Its damage output is mediocre."); break;
 			case ELITE_BATLETH:
@@ -8959,6 +8984,10 @@ boolean knoweverything;
 				pline("If you want a mace that does respectable damage, use this one."); break;
 			case MORNING_STAR:
 				pline("The morning star can be used to whack enemies. Its damage output is mediocre."); break;
+			case METAL_STAR:
+				pline("Relatively good damage output, this one-handed morning star can be used in melee."); break;
+			case STONE_STAR:
+				pline("This one-handed morning star not only does relatively good damage but is also made of a superior material."); break;
 			case CALCULATOR:
 				pline("A rather powerful morning star."); break;
 			case BRONZE_MORNING_STAR:
@@ -8989,47 +9018,55 @@ boolean knoweverything;
 				pline("A strong flail that does good damage and has good to-hit. It can be applied to bash iron bars."); break;
 			case WAR_HAMMER: 
 				pline("A relatively weak hammer."); break;
-			case SLEDGE_HAMMER: 
+			case MARBLE_CHUNK:
+				pline("This massive one-handed hammer deals quite good damage."); break;
+			case SLEDGE_HAMMER:
 				pline("This two-handed hammer can be used to crush annoying critters."); break;
-			case HEAVY_HAMMER: 
+			case HEAVY_HAMMER:
 				pline("This hammer is a definite improvement of the standard war hammer that does good damage."); break;
-			case MALLET: 
+			case MALLET:
 				pline("A huge hammer made of massive wood that is very useful for bashing down enemies. It can be applied to bash iron bars."); break;
-			case WEDGED_LITTLE_GIRL_SANDAL: 
+			case WEDGED_LITTLE_GIRL_SANDAL:
 				pline("It's a wedge-heeled sandal. Whacking it over the head of an enemy might deal a bit of damage. It uses the hammer skill. It can be applied to bash iron bars."); break;
-			case SOFT_GIRL_SNEAKER: 
+			case SOFT_GIRL_SNEAKER:
 				pline("Made of soft leather, this piece of footwear is not a powerful melee weapon. Good to-hit though. It uses the hammer skill."); break;
-			case STURDY_PLATEAU_BOOT_FOR_GIRLS: 
+			case STURDY_PLATEAU_BOOT_FOR_GIRLS:
 				pline("A heavy plateau boot that can be swung at monsters to whack them for mediocre damage. It uses the hammer skill."); break;
-			case HUGGING_BOOT: 
+			case HUGGING_BOOT:
 				pline("This thick winter boot is made of unyielding material, making it a useful weapon for bonking enemies' heads. It uses the hammer skill. It can be applied to bash iron bars."); break;
 			case BLOCK_HEELED_SANDAL:
 				pline("A very beautiful female sandal that can smash enemies' heads. It uses the hammer skill. It can be applied to bash iron bars."); break;
-			case BLOCK_HEELED_COMBAT_BOOT: 
+			case BLOCK_HEELED_COMBAT_BOOT:
 				pline("A very fleecy lady's boot with a massive block heel. Seems like you can bash enemies' skulls with it. It uses the hammer skill. It can be applied to bash iron bars."); break;
-			case WOODEN_GETA: 
+			case WOODEN_GETA:
 				pline("This piece of Japanese footwear is made of extremely hard wood. Striking the head of an enemy with it might leave them with a big dent. It uses the hammer skill."); break;
-			case LACQUERED_DANCING_SHOE: 
+			case LACQUERED_DANCING_SHOE:
 				pline("This ladies' shoe looks expensive. Wielding it to bash enemies might have some uses. It uses the hammer skill."); break;
-			case HIGH_HEELED_SANDAL: 
+			case HIGH_HEELED_SANDAL:
 				pline("A sexy sandal; its heel looks sweet but can actually be used to smash things. It uses the hammer skill. It can be applied to bash iron bars."); break;
-			case SEXY_LEATHER_PUMP: 
+			case SEXY_LEATHER_PUMP:
 				pline("This beautiful lilac women's shoe looks very tender. However, the funneled heel can actually cause a lot of damage if it is struck on somebody's head. It uses the hammer skill. It can be applied to bash iron bars."); break;
-			case SPIKED_BATTLE_BOOT: 
+			case SPIKED_BATTLE_BOOT:
 				pline("A heavy boot with spikes made of steel. Excellent for bashing monsters. It uses the hammer skill."); break;
 			case PROSTITUTE_SHOE:
 				pline("A very elegant lady shoe that has a massive heel (mmmmmmmm!) which allows it to be used as a melee weapon. It uses the hammer skill."); break;
-			case QUARTERSTAFF: 
+			case QUARTERSTAFF:
 				pline("The basic quarterstaff is a two-handed weapon that does pitiful damage compared to other two-handers."); break;
-			case SILVER_KHAKKHARA: 
+			case CONTRO_STAFF:
+				pline("A two-handed quarterstaff that deals moderate damage and also grants control magic when wielded."); break;
+			case SILVER_KHAKKHARA:
 				pline("Don't bother unless you're looking for a quarterstaff that does extra damage to undead and demons."); break;
-			case RUNED_ROD: 
+			case RUNED_ROD:
 				pline("Slightly better than a quarterstaff and made of iron, but still a weak two-handed weapon."); break;
-			case STAR_ROD: 
+			case STAR_ROD:
 				pline("A platinum quarterstaff that requires two hands and doesn't do all that much damage."); break;
-			case FIRE_HOOK: 
+			case FIRE_HOOK:
 				pline("This iron quarterstaff does usable damage but it's not great either."); break;
-			case PLATINUM_FIRE_HOOK: 
+			case FOAMY_STAFF:
+				pline("A particularly crappy, flimsy quarterstaff."); break;
+			case FLINDBAR:
+				pline("A rather scrappy two-handed quarterstaff."); break;
+			case PLATINUM_FIRE_HOOK:
 				pline("Quarterstaff that does usable damage."); break;
 			case BO_STAFF:
 				pline("A two-handed quarterstaff with medium damage output."); break;
@@ -9059,6 +9096,10 @@ boolean knoweverything;
 				pline("A reliable two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case BARDICHE:
 				pline("A heavy two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case INFERNAL_BARDICHE:
+				pline("A lithic two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case INFERNAL_ANCUS:
+				pline("A chunk-shaped two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case LONG_POLE:
 				pline("A very long two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case SHARP_POLE:
@@ -9067,6 +9108,12 @@ boolean knoweverything;
 				pline("A dicey two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case PITCHFORK:
 				pline("A gardening two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case CELESTIAL_POLE:
+				pline("A heavenly two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case ZEBES_POLE:
+				pline("An extraterrestrial two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case CRYPTIC_POLE:
+				pline("An unknown two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case HALBERD:
 				pline("A massive two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case BLACK_HALBERD:
@@ -9097,7 +9144,9 @@ boolean knoweverything;
 				pline("The weakest of the spears. It can be thrown."); break;
 			case SPEAR: 
 				pline("A standard spear. It can be thrown."); break;
-			case DROVEN_SPEAR: 
+			case CRAPPY_SPEAR:
+				pline("Spear-class weapon made of scrap metal. It can be thrown."); break;
+			case DROVEN_SPEAR:
 				pline("This spear deals great damage but will break if you throw it. It is two-handed."); break;
 			case CERAMIC_SPEAR:
 				pline("This spear does good damage, but will degrade quickly and then its damage output is much worse. It can be thrown."); break;
@@ -9129,6 +9178,8 @@ boolean knoweverything;
 				pline("A very strong javelin that does lots of damage. It can be thrown. It can be applied to bash iron bars."); break;
 			case TRIDENT: 
 				pline("The trident does sucky damage but has bonuses versus eels."); break;
+			case SHOOMDENT:
+				pline("The base damage of this trident isn't all that bad and it also has a bonus against eels, but is rather flimsy."); break;
 			case TWO_HANDED_TRIDENT: 
 				pline("A relatively damaging trident that does bonus damage versus eels, however it also requires both hands to use."); break;
 			case STYGIAN_PIKE: 
@@ -9343,6 +9394,8 @@ boolean knoweverything;
 				pline("This crossbow bolt does slightly more damage than a regular one."); break;
 			case PIN_BOLT:
 				pline("A crossbow bolt that does low damage."); break;
+			case INFERIOR_BOLT:
+				pline("This crossbow bolt deals slightly less damage than a regular crossbow bolt."); break;
 			case INKA_STINGER:
 				pline("These darts have a high chance to hit, and are meant to be thrown."); break;
 			case RANDOM_DART:
@@ -9355,6 +9408,8 @@ boolean knoweverything;
 				pline("These shuriken can be thrown at enemies."); break;
 			case CUBIC_STAR:
 				pline("Using these shuriken as a thrown weapon may prove effective against some targets."); break;
+			case MYSTERY_SHURIKEN:
+				pline("This shuriken deals quite good damage when thrown at an enemy."); break;
 			case WINDMILL_BLADE:
 				pline("It's a particularly damaging shuriken that's also made of noneroding material."); break;
 			case INKA_SHACKLE:
@@ -9365,6 +9420,10 @@ boolean knoweverything;
 				pline("Well, do you want to engage in some hot BDSM action? Then this whip is for you. It deals rather good small damage considering that whips are generally sucky, and also has a to-hit bonus. Then again, there might be other weapon types that are more effective."); break;
 			case SECRET_WHIP:
 				pline("It's an incredibly sucky weapon that has good to-hit but does very low damage, however there's a hidden quality to it: while wielding it, you take less physical damage than otherwise."); break;
+			case VIPERWHIP:
+				pline("This whip is moderately powerful but certainly not great."); break;
+			case HEAVENLY_WHIP:
+				pline("A quite damaging whip-class weapon. If you insist on using a whip, this might actually be one of the best choices available."); break;
 			case MARE_TRIDENT: 
 				pline("This trident is made of silver, and does extra damage to eels."); break;
 			case LANCE: 
@@ -10076,6 +10135,8 @@ boolean knoweverything;
 				pline("Yeah I know, this makes no sense... but what did you expect, this is SLEX! It doesn't have to make sense :-P Anyway, this armor piece can be worn in the shirt slot. It can be read."); break;
 			case PRINTED_SHIRT: 
 				pline("It's an extra piece of armor that goes in the shirt slot. It can be read."); break;
+			case FOAM_SHIRT: 
+				pline("A very cuddly shirt. It can be read."); break;
 			case METAL_SHIRT:
 				pline("This shirt grants poison resistance when worn. It can be read."); break;
 			case RED_STRING:
@@ -10098,6 +10159,10 @@ boolean knoweverything;
 				pline("A very heavy plate mail that offers less protection than regular plate mail."); break;
 			case RIBBED_PLATE_MAIL:
 				pline("This very strong armor is resistant to rust and corrosion."); break;
+			case BARNACLE_ARMOR:
+				pline("Equivalent armor-wise to a splint mail, but made of a better material."); break;
+			case GIANT_SEA_ANEMONE:
+				pline("This edible armor is actually as weak as a crappy leather armor."); break;
 			case WONDER_PLATE:
 				pline("Hmm, I wonder what material this suit of armor is made from. It provides very good armor class and 2 points of magic cancellation."); break;
 			case METAL_LAMELLAR_ARMOR:
@@ -10128,6 +10193,12 @@ boolean knoweverything;
 				pline("This suit is rather mediocre."); break;
 			case SILK_MAIL:
 				pline("A weak suit of armor."); break;
+			case FIELD_PLATE:
+				pline("Plate mail made of meteoric steel. It offers quite a bunch of protection."); break;
+			case STRIPE_MAIL:
+				pline("This relatively good armor is equivalent to a banded mail."); break;
+			case POISON_REPELLANT_ARMOR:
+				pline("Only offers 3 AC and 1 MC (equivalent to a splint mail), but also poison resistance."); break;
 			case HEAVY_MAIL:
 				pline("This suit of armor weighs a hell of a lot and offers only three points of armor class."); break;
 			case CLOAK_OF_PEACE:
@@ -10270,10 +10341,20 @@ boolean knoweverything;
 				pline("If you wear this robe, you will be permanently stunned. They are usually generated cursed."); break;
 			case ROBE_OF_MAGIC_RESISTANCE:
 				pline("A robe that provides magic resistance."); break;
+			case ROBE_OF_ANTI_CURSING:
+				pline("This powerful robe protects you from the 'curse items' effect."); break;
+			case ROBE_OF_DRAIN_RESISTANCE:
+				pline("A robe that grants resistance to level drain."); break;
+			case ROBE_OF_DEATH_RESISTANCE:
+				pline("You become immune to the touch of death while wearing this robe, and death rays also cannot affect you anymore."); break;
+			case ROBE_OF_INFRAVISION:
+				pline("When wearing this robe, you can see warm-blooded creatures in dark areas."); break;
 			case ROBE_OF_PERMANENCE:
 				pline("This robe provides several elemental resistances when worn!"); break;
 			case ROBE_OF_SPELL_POWER:
 				pline("Your spells will be much easier to cast while you wear this."); break;
+			case ROBE_OF_CONTROL:
+				pline("It's a magical robe that allows your spells to pass through pets instead of hurting them."); break;
 			case ROBE_OF_FAST_CASTING:
 				pline("Grants energy regeneration when worn."); break;
 			case ROBE_OF_ENERGY_SUCTION:
@@ -10338,6 +10419,8 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as death resistance."); break;
 			case CORONA_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as sustain ability."); break;
+			case CONTRO_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as control magic."); break;
 			case HEROIC_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALE_MAIL: 
@@ -10408,6 +10491,8 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as death resistance."); break;
 			case CORONA_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as sustain ability."); break;
+			case CONTRO_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as control magic."); break;
 			case HEROIC_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALES: 
@@ -10474,6 +10559,10 @@ boolean knoweverything;
 				pline("Wearing this cloak grants cold resistance and 3 points of magic cancellation."); break;
 			case TROLL_HIDE: 
 				pline("Wearing this cloak grants regeneration and 3 points of magic cancellation."); break;
+			case CLOAK_OF_MAGIC_CONTROL:
+				pline("While wearing this cloak, you have control magic and also 3 points of magic cancellation."); break;
+			case CLOAK_OF_EXPERIENCE:
+				pline("A rare cloak type that doubles any experience you gain, and also gives 3 points of magic cancellation."); break;
 			case CLOAK_OF_GROUNDING: 
 				pline("Wearing this cloak grants shock resistance and medium magic cancellation."); break;
 
@@ -11232,6 +11321,8 @@ boolean knoweverything;
 				pline("A shield made from dragon hide that provides death resistance as well as protection."); break;
 			case CORONA_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides sustain ability as well as protection."); break;
+			case CONTRO_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides sustain ability as well as control magic."); break;
 			case HEROIC_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides diminished bleeding as well as protection."); break;
 			case STONE_DRAGON_SCALE_SHIELD:
@@ -11377,6 +11468,8 @@ boolean knoweverything;
 				pline("According to jonadab these things are ugly, and therefore wearing them will reduce your charisma."); break;
 			case BOOTS_OF_FREEDOM:
 				pline("A pair of very comfortable boots that cause attempts to paralyze you to fail."); break;
+			case PASSTHROUGH_BOOTS:
+				pline("Wearing this pair of boots allows projectiles and spells fired by you to sometimes pass through pets instead of hurting them."); break;
 			case BOOTS_OF_TOTAL_STABILITY:
 				pline("These lovely boots are a possible way to become disintegration resistant."); break;
 			case BOOTS_OF_DISPLACEMENT:
@@ -11864,6 +11957,8 @@ boolean knoweverything;
 				pline("You can resist cold if you wear this ring."); break;
 			case RIN_FEAR_RESISTANCE: 
 				pline("You can resist fear if you wear this ring."); break;
+			case RIN_MAGIC_CONTROL: 
+				pline("Are you annoyed that pets constantly step into your line of fire? Wear this ring, and 4 out of 5 times your projectiles and spells will harmlessly pass through them!"); break;
 			case RIN_GAIN_CONSTITUTION: 
 				pline("Wearing this ring increases your constitution by its enchantment value."); break;
 			case RIN_GAIN_DEXTERITY: 
@@ -12465,6 +12560,8 @@ boolean knoweverything;
 				pline("If you wear this amulet, you only have 10 turns to live before it kills you. It is usually generated cursed."); break;
 			case AMULET_OF_PREMATURE_DEATH:
 				pline("Wanna die? Wear this! :-P"); break;
+			case AMULET_OF_MAGIC_CONTROL:
+				pline("Grants control magic while worn, i.e. your spells and missiles sometimes pass through pets instead of hitting them."); break;
 			case AMULET_VERSUS_CURSES:
 				pline("This amulet, when worn, is one of very few ways to resist the generic 'curse items' effect. It has been invented by Chris_ANG."); break;
 			case AMULET_OF_UNCHANGING:
@@ -12633,6 +12730,8 @@ boolean knoweverything;
 				pline("This pick-axe can be applied to dig through walls, boulders or the floor, and it does a little more damage than a regular pick-axe."); break;
 			case BRONZE_PICK:
 				pline("This one-handed pick-axe does relatively good damage for its class, but its real use is to dig through walls or other obstacles, which is done by applying it."); break;
+			case CONUNDRUM_PICK:
+				pline("Quite damaging one-handed pick-axe that can also be applied to dig through walls and certain other obstacles."); break;
 			case GUITAR:
 				pline("A heavy two-handed weapon that uses the unicorn horn skill. Applying it will play music."); break;
 			case PIANO:
@@ -12757,6 +12856,8 @@ boolean knoweverything;
 				pline("The unicorn horn can be used as a two-handed melee weapon that uses its own skill, and applying it can cure a variety of bad effects."); break;
 			case DARK_HORN:
 				pline("It's a two-handed melee weapon that uses the unicorn horn skill, but its main use is to be applied, which can cure some bad effects. Every time you apply it, the area around you is darkened."); break;
+			case SKY_HORN:
+				pline("This two-handed unicorn horn deals more damage in melee compared to a regular one, and can also be applied to fix certain afflictions."); break;
 			case BUBBLEHORN:
 				pline("This two-handed unicorn horn does very bad melee damage. Its actual purpose is to be applied to fix lost stats; a positively enchanted one may also increase the user's stats."); break;
 			case ARCANE_HORN:
@@ -14856,6 +14957,8 @@ boolean knoweverything;
 #endif
 			case FLINT:
 				pline("A projectile meant to be in conjunction with a sling to do damage to enemies."); break;
+			case CONUNDRUM_NUGGET:
+				pline("You can fire this ammo with a sling to deal damage to enemies. It's especially effective against large targets."); break;
 			case SMALL_PIECE_OF_UNREFINED_MITHR:
 				pline("It's just a disguised rock that can be fired with a sling, and the main purpose it serves is to re-obscure the identification of actually useful gray stones..."); break;
 			case SILVER_SLINGSTONE:
@@ -15402,8 +15505,10 @@ boolean knoweverything;
 			case IMPOSSIBLY_HEAVY_IRON_BALL: 
 				pline("You probably won't be able to lift this ball. It seems you somehow managed to get it into your inventory, but now you're probably overburdened and cannot move unless you drop it."); break;
 
-			case HEAVY_STONE_BALL: 
+			case HEAVY_STONE_BALL:
 				pline("This ball is made of stone. It uses the flail skill."); break;
+			case HEAVY_ALLOY_BALL:
+				pline("This ball is made of alloy. It uses the flail skill."); break;
 			case HEAVY_GLASS_BALL: 
 				pline("A breakable ball of glass, which you can swing at enemies to deal good damage. This uses the flail skill."); break;
 			case HEAVY_GOLD_BALL: 
@@ -15416,6 +15521,8 @@ boolean knoweverything;
 				pline("A rather flimsy ball that can be used as a weapon. The associated weapon skill is flail."); break;
 			case HEAVY_CHROME_BALL:
 				pline("This rather heavy ball deals good damage and depends on the flail skill."); break;
+			case HEAVY_SCRAP_BALL:
+				pline("A damaging ball that uses the flail skill."); break;
 			case HEAVY_NANO_BALL:
 				pline("A very powerful ball made of a rare material, which uses the flail skill."); break;
 			case IMPOSSIBLY_HEAVY_SAND_BALL:
@@ -15436,10 +15543,16 @@ boolean knoweverything;
 				pline("Ever felt like hitting monsters with a huge ball made of solid wood? Then use this flail-class weapon."); break;
 			case HEAVY_COPPER_BALL:
 				pline("This ball weighs much, but also deals much damage, and depends on the flail skill."); break;
+			case HEAVY_ANTIDOTE_BALL:
+				pline("An antidotium ball that uses the flail skill and deals quite a lot of damage."); break;
+			case HEAVY_METEORIC_BALL:
+				pline("This particular ball deals great damage. It uses the flail skill."); break;
 			case HEAVY_SILVER_BALL:
 				pline("Yeah I know, it's a flail-class weapon that has huge base damage and is made of silver to boot. Go ahead and smash those demons in Gehennom with it!"); break;
 			case IMPOSSIBLY_HEAVY_OBSIDIAN_BALL:
 				pline("Theoretically this ball can be used as a flail weapon, but in practice it weighs much more than the maximum carry capacity so I expect you to not be able to actually equip it."); break;
+			case IMPOSSIBLY_HEAVY_ALLOY_BALL:
+				pline("Not sure how you got this ball into your inventory. It can deal d60 damage as a weapon and uses the flail skill, in case you somehow find a way to actually wield it."); break;
 			case BULKY_POURPOOR_BALL:
 				pline("A two-handed ball that deals a lot of melee damage. It uses the flail skill."); break;
 			case BULKY_GEMSTONE_BALL:
@@ -15487,6 +15600,17 @@ boolean knoweverything;
 				pline("A very heavy and very fleecy ball that can be used as a weapon, which will be more effective if you have the flail skill."); break;
 			case IMPOSSIBLY_HEAVY_NUCLEAR_BALL:
 				pline("Congratulations, you're probably overloaded now. If you can somehow wield and swing this thing, it will do a ton of damage, but my suspicion is that you're better off dropping it."); break;
+
+			case HEAVY_BUBBLE_BALL:
+				pline("This flail-class weapon is heavy, despite being made of bubbles."); break;
+			case HEAVY_FOAM_BALL:
+				pline("A ball that weighs quite a lot for being made of such a light material, and deals rather high damage. It uses the flail skill."); break;
+			case HEAVY_CELESTIAL_BALL:
+				pline("If you can wield this quite heavy ball, it can deal great damage and uses the flail skill."); break;
+			case HEAVY_ZEBETITE_BALL:
+				pline("An extraterrestrial ball whose weight is prohibitively high but if you decide to wield it, its high damage is increased by your flail skill."); break;
+			case IMPOSSIBLY_HEAVY_FOAM_BALL:
+				pline("This ball weighs so much that it probably means it has an impossibly high material density, because foam is actually very lightweight. Theoretically it can be wielded to deal tons of damage and also uses the flail skill, but it's very unlikely that you have the required amount of carry capacity."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
@@ -15598,6 +15722,27 @@ boolean knoweverything;
 				pline("A chain made of mysterious material that does a medium amount of damage."); break;
 			case LIQUID_CHAIN:
 				pline("A chain made of liquid material that does a medium amount of damage."); break;
+
+			case ALLOY_CHAIN:
+				pline("A chain made of metallic alloy that deals low damage."); break;
+			case SCRAP_CHAIN:
+				pline("It's a chain that deals moderately low damage."); break;
+			case ANTIDOTE_SCOURGE:
+				pline("A heavy chain that does good damage in melee."); break;
+			case METEORIC_NUNCHIAKU:
+				pline("Very heavy and very damaging melee weapon."); break;
+			case ALLOY_HOSTAGE_CHAIN:
+				pline("If you can actually wield this flail-class weapon, it'll deal very high damage in melee."); break;
+			case BUBBLE_CHAIN:
+				pline("A chain made of bubbles that deals low damage."); break;
+			case FOAM_CHAIN:
+				pline("Heavy foam chain that deals mediocre damage."); break;
+			case CELESTIAL_SCOURGE:
+				pline("A quite heavy flail-class weapon that deals good damage."); break;
+			case ZEBETITE_NUNCHIAKU:
+				pline("If you wield this very heavy flail-class weapon, it deals high damage in melee."); break;
+			case FOAM_HOSTAGE_CHAIN:
+				pline("Flimsy, yet very heavy, this flail can be a really effective weapon if you can handle its weight."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 

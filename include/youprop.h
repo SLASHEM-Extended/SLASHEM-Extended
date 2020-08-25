@@ -1411,7 +1411,7 @@
 #define HControlMagic		u.uprops[CONTROL_MAGIC].intrinsic
 #define EControlMagic		u.uprops[CONTROL_MAGIC].extrinsic
 #define IntControlMagic	(HControlMagic)
-#define ExtControlMagic	(EControlMagic)
+#define ExtControlMagic	(EControlMagic || (uwep && uwep->otyp == CONTRO_STAFF))
 
 #define ControlMagic		(((IntControlMagic && u.nonintrinsicproperty != CONTROL_MAGIC) || (ExtControlMagic && u.nonextrinsicproperty != CONTROL_MAGIC)) && !NoControlMagic)
 #define StrongControlMagic	(IntControlMagic && ExtControlMagic && ControlMagic && u.nondoubleproperty != CONTROL_MAGIC)

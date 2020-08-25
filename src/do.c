@@ -604,6 +604,9 @@ giveback:
 	      case RIN_JUMPING:
 		    pline("The sink jumps up and down!");
 		    break;
+	      case RIN_MAGIC_CONTROL:
+		    pline("The water flow seems controlled!");
+		    break;
 	      case RIN_ILLNESS:
 		    pline("The sink is overgrown with fungus.");
 		    break;
@@ -970,6 +973,9 @@ register struct obj *obj;
 		break;
 	case AMULET_VERSUS_DEATH_SPELL:
 		pline_The("toilet no longer fears death.");
+		break;
+	case AMULET_OF_MAGIC_CONTROL:
+		pline_The("button seems very easy to control.");
 		break;
 	case AMULET_OF_QUICK_ATTACK:
 		pline_The("toilet flushes twice.");
