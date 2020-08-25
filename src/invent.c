@@ -8708,7 +8708,7 @@ boolean knoweverything;
 #ifdef PHANTOM_CRASH_BUG
 		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown" );
 #else
-		pline("%s - This is a weapon. Color: %s. Material: %s. Appearance: %s. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown" );
+		pline("%s - This is a weapon. Color: %s. Material: %s. Appearance: %s. Skill: %s. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", wpskillname(objects[obj->otyp].oc_subtyp) );
 #endif
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { 

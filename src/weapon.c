@@ -71,6 +71,7 @@ const char *
 wpskillname(skill)
 int skill;
 {
+	skill = abs(skill); /* for darts and stuff --Amy */
 
 	switch (skill) {
 
