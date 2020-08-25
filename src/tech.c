@@ -7906,7 +7906,7 @@ repairitemchoice:
 					mtmp3->mpeaceful = 1;
 				}
 
-				else pline("%s can't be dominated with this method!", mon_nam(mtmp3));
+				else pline("%s can't be pacified with this method!", mon_nam(mtmp3));
 
 			} /* monster is catchable loop */
 		    } /* for loop */
