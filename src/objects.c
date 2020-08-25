@@ -3411,6 +3411,13 @@ AMULET((char *)0, "alloy", 0, 0, MT_ALLOY,    CLR_ORANGE, 1),
 AMULET((char *)0, "bimetal", 0, 0, MT_ALLOY,    CLR_WHITE, 1),
 AMULET((char *)0, "melded", 0, 0, MT_ALLOY,    CLR_RED, 1),
 AMULET((char *)0, "welding", 0, 0, MT_ALLOY,    CLR_CYAN, 1),
+AMULET((char *)0, "multilinear", 0, 0, 0,    CLR_BRIGHT_GREEN, 1),
+AMULET((char *)0, "dotted", 0, 0, MT_FOAM,    CLR_YELLOW, 1),
+AMULET((char *)0, "counterclockwise-rotated", 0, 0, MT_SAND,    CLR_ORANGE, 1),
+AMULET((char *)0, "clockwise-rotated", 0, 0, MT_SILK,    CLR_WHITE, 1),
+AMULET((char *)0, "long-lashed", 0, 0, MT_FLESH,    CLR_WHITE, 1),
+AMULET((char *)0, "clawmark", 0, 0, MT_CERAMIC,    CLR_GRAY, 1),
+AMULET((char *)0, "vesica piscis", 0, 0, MT_LIQUID,    CLR_BRIGHT_GREEN, 1),
 
 OBJECT(OBJ("cheap plastic imitation of the Amulet of Yendor",
 	"Amulet of Yendor"), BITS(0,0,1,0,0,0,0,0,0,0,0,0,MT_PLASTIC), 0,
@@ -6562,6 +6569,13 @@ SCROLL((char *)0,               "THAT WOULDNT HAVE HAPPENED WITH A SKY BLUE HEEL
 SCROLL((char *)0,               "PEE IS STORED IN THE BALLS",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "DOCTOR WOMANEL FIELD",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
 SCROLL((char *)0,               "DEATH BREATH IS THE BEST BREATH",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "WE WANT TO PLAY A KICKING GAME WITH LEATHER PEEPTOES",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
+SCROLL((char *)0,               "HOCUS POCUS",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "THE SCORPION IS USING A FLASHLIGHT",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
+SCROLL((char *)0,               "MISTER SUNSHINE OF MELLENWAH",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "THE TREE DEMON WILL FOLLOW YOU",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "FIRE BREATHING GRAY DRAGON",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
+SCROLL((char *)0,               "WITHOUT GREATER EVASION YOU ALWAYS GET HIT",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 
 
 #ifdef MAIL
@@ -7237,6 +7251,13 @@ SPELL((char *)0,         "titanic",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_CYAN, 1),
 SPELL((char *)0,         "arrow-patterned",  P_NONE, 0, 0, 0, 1, 0, CLR_BROWN, 1),
 SPELL((char *)0,         "palm-patterned",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_GREEN, 1),
 SPELL((char *)0,         "tombstone-patterned",  P_NONE, 0, 0, 0, 1, 0, CLR_GRAY, 1),
+SPELL((char *)0,         "smoking",  P_NONE, 0, 0, 0, 1, 0, CLR_ORANGE, 1),
+SPELL((char *)0,         "frosted",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_CYAN, 1),
+SPELL((char *)0,         "coalescing",  P_NONE, 0, 0, 0, 1, 0, CLR_CYAN, 1),
+SPELL((char *)0,         "weeping-eyed",  P_NONE, 0, 0, 0, 1, 0, CLR_BRIGHT_GREEN, 1),
+SPELL((char *)0,         "thrice-sealed",  P_NONE, 0, 0, 0, 1, 0, CLR_RED, 1),
+SPELL((char *)0,         "six-sworn",  P_NONE, 0, 0, 0, 1, 0, CLR_MAGENTA, 1),
+SPELL((char *)0,         "sword-crossed",  P_NONE, 0, 0, 0, 1, 0, CLR_GRAY, 1),
 SPELL("blank paper",	 "plain",		P_NONE, 150,  0, 0, 0, 0, HI_PAPER, 1),
 	/* ...Blank spellbook must come last because it retains its description */
 OBJECT(OBJ("Book of the Dead", "papyrus"),
@@ -7754,6 +7775,10 @@ WAND((char *)0,        "grandpa",  0, 500, 1, 0,        MT_ALLOY,     CLR_ORANGE
 WAND((char *)0,        "factory",  0, 500, 1, 0,        MT_ALLOY,     CLR_RED, 1),
 WAND((char *)0,        "sheltered",  0, 500, 1, 0,        MT_ALLOY,     CLR_GRAY, 1),
 WAND((char *)0,        "soldered",  0, 500, 1, 0,        MT_ALLOY,     CLR_CYAN, 1),
+WAND((char *)0,        "bipartite",  0, 500, 1, 0,        MT_METEOSTEEL,     CLR_GRAY, 1),
+WAND((char *)0,        "crossed",  0, 500, 1, 0,        MT_WOOD,     CLR_BROWN, 1),
+WAND((char *)0,        "rapturous",  0, 500, 1, 0,        MT_METAL,     CLR_BRIGHT_BLUE, 1),
+WAND((char *)0,        "curling",  0, 500, 1, 0,        MT_POURPOOR,     CLR_BRIGHT_BLUE, 1),
 
 #undef WAND
 

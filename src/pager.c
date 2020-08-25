@@ -25386,6 +25386,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Kaboom! Your cigarette suddenly causes an explosion.",
 	"Kaboom! Your cigarette suddenly causes an explosion. (Smoking kills. Keep doing it and eventually the explosion will blow off your face.)",
 	"You feel pious.",
+	"Aesh Krau Hoon Uur Naen Vaul (no I don't know what that is supposed to mean either, but apparently words of power or something?)",
 
 };
 
