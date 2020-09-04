@@ -1082,6 +1082,7 @@ door_info	: ',' string
 			}
 			else
 			    tmpdoor[ndoor]->arti_key = token;
+			free($2);
 		  }
 		;
 

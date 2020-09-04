@@ -1988,6 +1988,7 @@ case 164:
 			}
 			else
 			    tmpdoor[ndoor]->arti_key = token;
+			free(yyvsp[0].map);
 		  }
 break;
 case 165:
