@@ -2922,6 +2922,20 @@ Armor_on()
 		curse(uarm);
 		uarm->hvycurse = 1;
 	}
+	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_WRONG_TURN) {
+
+		int mntmp;
+
+		curse(uarm);
+		uarm->hvycurse = 1;
+
+		do {
+			mntmp = rn2(NUMMONS);
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || !polyok(&mons[mntmp]) || (!(is_undead(&mons[mntmp])) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || (is_jonadabmonster(&mons[mntmp]) && rn2(20)) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+
+		u.wormpolymorph = mntmp;
+		polyself(FALSE);
+	}
 
 	if (uarm && uarm->oartifact == ART_RNG_S_FUN && uarm->spe == 0) {
 		if (!rn2(2)) uarm->spe = rnd(5);
@@ -5249,6 +5263,9 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) uac -= 5;
 	if (Race_if(PM_HYPOTHERMIC) && uarmc) uac -= 3;
+	if (uarm && uarm->oartifact == ART_UBERGAGE) uac -= 4;
+	if (uarm && uarm->oartifact == ART_PEOPLE_COAT) uac -= 5;
+	if (uarms && uarms->oartifact == ART_NORSE_MITHRIL) uac -= 5;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {

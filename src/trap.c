@@ -17584,6 +17584,8 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && itemhasappearance(uarmh, APP_SCUBA_HELMET) ) continue;
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FOAMONIA_WATER ) continue;
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) continue;

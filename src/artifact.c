@@ -1054,7 +1054,7 @@ register boolean mod;
 			 * Holy Spear of Light on creation.
 			 */
 			if (!artiexist[m] && artifact_light(otmp) &&
-			  otmp->oartifact != ART_SUNSWORD)
+			  otmp->oartifact != ART_SUNSWORD && otmp->oartifact != ART_SUNSCREEN && otmp->oartifact != ART_SUNTINOPENER && otmp->oartifact != ART_SUNRUBBERHOSE)
 			    begin_burn(otmp, FALSE);
 			/*otmp->quan = 1;*/ /* guarantee only one of this artifact */ /* Amy edit: artifact ammo should not suck... */
 /* Artifacts are immune to unpolypile --ALI */
@@ -2089,7 +2089,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -3651,6 +3651,9 @@ artifact_light(obj)
 {
     return get_artifact(obj) && (obj->oartifact == ART_SUNSWORD ||
 	    obj->oartifact == ART_HOLY_SPEAR_OF_LIGHT ||
+	    obj->oartifact == ART_SUNSCREEN ||
+	    obj->oartifact == ART_SUNTINOPENER ||
+	    obj->oartifact == ART_SUNRUBBERHOSE ||
 	    obj->oartifact == ART_CANDLE_OF_ETERNAL_FLAME);
 }
 

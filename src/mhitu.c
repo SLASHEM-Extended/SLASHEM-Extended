@@ -7482,7 +7482,7 @@ dopois:
 
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !u.ustuck && !sticks(youmonst.data)) {
+		if (uncancelled && !u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -10104,6 +10104,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE && mtmp->data->msize < MZ_HUGE) return(0);
+		if (uwep && uwep->oartifact == ART_PEEPLUE) return(0);
 		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
@@ -11775,7 +11776,7 @@ do_stone2:
 		break;
 	    case AD_STCK:
 	    pline("You are covered with some sticky substance!");
-		if (!u.ustuck && !sticks(youmonst.data)) {
+		if (!u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -16369,7 +16370,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_STCK:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
 		{ 
-			if (!u.ustuck && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s gazes to hold you in place!", Monnam(mtmp));
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -21032,6 +21033,16 @@ register struct attack *mattk;
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(10)) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarm && uarm->oartifact == ART_AWAY_HAMM_ARMOR && !rn2(1000)) {
+		pline("Your armor suddenly bites %s!", mon_nam(mtmp));
+		if((mtmp->mhp -= rnd(100)) <= 0) {
+			pline("%s is instakilled!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;

@@ -8161,6 +8161,7 @@ repairitemchoice:
 
 			{
 			int melteestrength = rnd(20 + techlevX(tech_no));
+			if (uwep && uwep->oartifact == ART_CAMOHAMEHA) melteestrength *= 2;
 			int ctx, cty;
 			ctx = u.ux, cty = u.uy;
 
@@ -8171,7 +8172,7 @@ repairitemchoice:
 			}
 			verbalize("Kamehameha!");
 
-			for(i = 0; i < 8; i++) {
+			for(i = 0; i < ((uwep && uwep->oartifact == ART_CAMOHAMEHA) ? 13 : 8); i++) {
 				if (!isok(ctx + u.dx, cty + u.dy)) break;
 				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
 

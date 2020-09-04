@@ -99,7 +99,7 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	 * *whenever* Sunsword is unwielded, from whatever cause.
 	 */
 	setworn(obj, W_WEP);
-	if (uwep == obj && olduwep && olduwep->oartifact == ART_SUNSWORD &&
+	if (uwep == obj && olduwep && (olduwep->oartifact == ART_SUNSWORD || olduwep->oartifact == ART_SUNSCREEN || olduwep->oartifact == ART_SUNTINOPENER || olduwep->oartifact == ART_SUNRUBBERHOSE) &&
 		olduwep->lamplit) {
 	    end_burn(olduwep, FALSE);
 	    if (!Blind) pline("%s glowing.", Tobjnam(olduwep, "stop"));
@@ -123,6 +123,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		uwep->spe += rne(2);
 		pline_The("trident glows in your %s for a moment.", body_part(HAND));
 		if (uwep->spe > 120) uwep->spe = 120; /* fail safe */
+	}
+
+	if (uwep && uwep->oartifact == ART_WHY_ALWAYS_CONUNDRUM && objects[uwep->otyp].oc_material == MT_CONUNDRUM) {
+		objects[uwep->otyp].oc_material = rn2(LASTMATERIAL + 1);
+		Your("weapon's material morphs to a different one!");
 	}
 
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
@@ -477,7 +482,7 @@ boolean put_away;
 	    /* KMH -- Talking artifacts are finally implemented */
 	    arti_speak(wep);
 
-	    if (wep->oartifact == ART_SUNSWORD && !wep->lamplit) {
+	    if ((wep->oartifact == ART_SUNSWORD || wep->oartifact == ART_SUNSCREEN || wep->oartifact == ART_SUNTINOPENER || wep->oartifact == ART_SUNRUBBERHOSE) && !wep->lamplit) {
 		begin_burn(wep, FALSE);
 		if (!Blind)
 		    pline("%s to glow brilliantly!", Tobjnam(wep, "begin"));

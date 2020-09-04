@@ -2643,6 +2643,7 @@ int dieroll;
 
 		if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) tmp += 3;
 		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
+		if (uwep && uwep->oartifact == ART_GARY_S_RIVALRY) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) tmp += 2;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
@@ -7638,6 +7639,17 @@ use_weapon:
 				}
 
 				if (uwep && objects[uwep->otyp].oc_material == MT_COMPOST && uwep->spe < 0 && !rn2(500)) {
+					uwep->spe++;
+					pline("Your weapon repairs itself a bit!");
+				}
+
+				if (uwep && uwep->oartifact == ART_ELVIN_S_PRESS && !u.twoweap && !rn2(100)) {
+					TimeStopped += rnd(3);
+					pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+
+				}
+
+				if (uwep && uwep->oartifact == ART_SHARPENING_SLAT && !rn2(100) && uwep->spe < 0) {
 					uwep->spe++;
 					pline("Your weapon repairs itself a bit!");
 				}

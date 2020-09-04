@@ -5162,6 +5162,15 @@ controlagain:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_REDWOOD_STINKER && isok(u.ux, u.uy) && !rn2(1000)) {
+			(void) create_gas_cloud(u.ux, u.uy, 3, 8);
+			pline("Eww, your cigarettes stink ten miles against the wind!");
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_REDWOOD_STINKER && isok(u.ux, u.uy) && !rn2(1000)) {
+			(void) create_gas_cloud(u.ux, u.uy, 3, 8);
+			pline("Eww, your cigarettes stink ten miles against the wind!");
+		}
+
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 		/* feminist aggravation idea by bugsniper */
 
@@ -5192,13 +5201,77 @@ newbossF:
 				goto newbossF;
 			}
 
-			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
 			u.cnd_aggravateamount++;
 
 			} /* while (aggroamount) */
 
 			pline("Several angry females come out of a portal.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
+		if (uleft && uleft->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
+
+		}
+
+		if (uright && uright->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+			if (pm && !(pm->msound == MS_SUPERMAN) && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+			u.aggravation = 0;
 
 		}
 

@@ -2554,6 +2554,8 @@ int x;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
+		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -2640,6 +2642,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) tmp += 10;
 		if (uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE) tmp += 5;
 		if (Race_if(PM_CUPID)) tmp += 5;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) tmp += 3;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2718,6 +2722,7 @@ int x;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -2756,6 +2761,7 @@ int x;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2783,6 +2789,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
+		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

@@ -6815,6 +6815,246 @@ A("Common Shotter",				SLING_AMMO,
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
+A("Jarmen Cheatertype Kell",				BLUE_BOW, /* invis when wielded */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
+
+A("Elvin's Press",				AIR_PRESSURE_HAMMER, /* 1 in 100 chance when hitting something with it that you trigger d3 turns of time stop */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Tubhackor",				BUBBLEHORN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sorc Tendency",				EAGLE_BALL,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Poison Burst",				QATAR, /* always poisoned, resist poison when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Acceleration Claw",				LOWER_ARM_BLADE, /* speed when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ironbox",				CESTUS,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Camohameha",				CAMO_QATAR, /* double damage and +5 range for kamehameha tech when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ubergage",				FIELD_PLATE, /* +4 AC and +3 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Garyx",				CONTRO_DRAGON_SCALE_MAIL, /* +1 all stats when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hitec Neo",				CLOAK_OF_EXPERIENCE, /* technicality */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Floatover",				PASSTHROUGH_BOOTS, /* flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("People Coat",				GIANT_SEA_ANEMONE, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Away-Hamm Armor",				BARNACLE_ARMOR, /* 1 in 1000 chance that a monster attacking you in melee takes d100 damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Susanne's Headsmasher",				MARBLE_CHUNK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Iron Ball of Ball Ironing",				HEAVY_IRON_BALL,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_MALE,
+	FIRE(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Gary's Rivalry",				CONTRO_STAFF, /* player can walk over farmland, magical breathing, items don't get wet, +2 increase damage when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 8000L ),
+
+A("Sunscreen",				LONG_SWORD, /* blindness resistance, emits light */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Real Life Effector",				RIN_MOOD, /* 1 in 2000 chance to spawn a MS_SUPERMAN somewhere on the level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Avada Porkavra",				WAN_DEATH, /* fires death rays in all directions but also loses d8 charges every time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Blue Shirt of Death",				FOAM_SHIRT, /* hyperbluewalls, death ray resistance */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Redwood Stinker",				CIGARETTE, /* 1 in 1000 chance of creating a stinking cloud */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Peeplue",				ELECTRIC_CIGARETTE, /* +2 kick damage and player cannot be engulfed; if under the effect of a juen trap, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Natalia's Mark",				BELL_CLAWS, /* very fast speed */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(20, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Suntinopener",				TIN_OPENER, /* emits light */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sunrubberhose",				RUBBER_HOSE, /* emits light */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Neutron Star",				BUBBLETAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Staff of Necromancy",				FOAMY_STAFF, /* curse resistance when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	DRLI(0, 0), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Nude And Free",				PETA_COMPLIANT_SHIRT, /* free action if you're not wearing a suit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ziratha's Iron Sights",				SNIPER_RIFLE, /* increased vision, infravision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Piece of Sky",				EAGLE_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Drama Staff",				JARED_STONE, /* conflict, farlook bug, hostility, wakeup call */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Save Your Run",				LIGHTBULB,
+	(SPFX_RESTR|SPFX_REGEN|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("What You Really Needed",				LIGHTBULB,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Frozen Orb",				HEATH_BALL,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	COLD(0, 16), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Clever Cleaver",				GRINDER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Jinada",				LOWER_ARM_BLADE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Counterstrike Cestus",				CESTUS, /* resist shock, control magic, discount action */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Norse Mithril",				METEORIC_STEEL_SHIELD, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Compliant Armor",				OSFA_CHAIN_MAIL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Rishrash Saw",				VARIED_GRINDER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wrong Turn",				ROBE_OF_DEATH_RESISTANCE, /* heavily autocurses, putting it on turns you into an undead creature and it doesn't fall off if you become something too big */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hellpit Flame",				INFERNAL_AXE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Straight Outta Coding Hell",				INFERNAL_BARDICHE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Weight Anchor",				INFERNAL_ANCUS, /* +200 weight */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Sharpening Slat",				FLINDBAR, /* if you hit something and it's negatively enchanted, 1 in 100 chance of repairing one point of enchantment */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Dolores's Sadism",				CROW_QUILL, /* diminished bleeding */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Covetor Saber",				RAKUYO, /* teleportitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Greenlings Lash",				VIPERWHIP, /* deals poison damage like dirge */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Valensina's Blade",				VICTIM_KNIFE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Meager Curd",				CUDSWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Big Smoke's Murder Car",				GREEN_SABER, /* very fast speed */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Brass Cup",				METAL_STAR,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(0, 4), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shrinekeeper",				CELESTIAL_POLE,
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("War Declaration",				ZEBES_POLE, /* deals poison damage like dirge */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Why Always Conundrum",				CRYPTIC_POLE, /* wielding it sets it to a random material if it was conundrum */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Foamonia Water",				SHOOMDENT, /* magical breathing, swimming, items don't get wet */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Falling Perseis",				HEAVY_METEORIC_BALL,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Latchstack",				HEAVY_BUBBLE_BALL, /* player cannot be grabbed by AD_STCK and similar */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("High Oriental Praise",				FOAM_CHAIN, /* 95% chance to resist MS_STENCH, unbreathing, +3 CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 A("Bowser's Fun Arena",				ORCISH_CLOAK, /* initialized to always be volcanic cloak, protects your items from fire */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),

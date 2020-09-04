@@ -3996,6 +3996,21 @@ register struct obj *wand;
 		if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,1);
 	}
 
+	if (wand && wand->oartifact == ART_AVADA_PORKAVRA) {
+		verbalize("Avada Porkavra!");
+		wand->spe -= rnd(8);
+
+		buzz(14, 1, u.ux, u.uy, -1, 0);
+		buzz(14, 1, u.ux, u.uy, 1, 0);
+		buzz(14, 1, u.ux, u.uy, -1, 1);
+		buzz(14, 1, u.ux, u.uy, 1, 1);
+		buzz(14, 1, u.ux, u.uy, 0, 1);
+		buzz(14, 1, u.ux, u.uy, -1, -1);
+		buzz(14, 1, u.ux, u.uy, 1, -1);
+		buzz(14, 1, u.ux, u.uy, 0, -1);
+
+	}
+
 	return 1;
 }
 

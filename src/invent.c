@@ -19493,6 +19493,125 @@ boolean knoweverything;
 				case ART_OVERRATED_FACE_PROTECTION:
 					pline("Artifact specs: fear resistance and weak sight when worn. It does not protect against corona, just improves your subjective feeling of fearlessness so that you neglect the social distancing (which does not protect against corona either though)."); break;
 
+				case ART_JARMEN_CHEATERTYPE_KELL:
+					pline("Artifact specs: regeneration and invisibility when wielded, chaotic."); break;
+				case ART_ELVIN_S_PRESS:
+					pline("Artifact specs: if you hit something with it in melee and aren't currently dual-wielding, 1 in 100 chance to stop time for a few turns."); break;
+				case ART_TUBHACKOR:
+					pline("Artifact specs: +8 damage. Hopefully we'll see the Tubhack/Bubblehack variant one day *bubblebubblebubble*!"); break;
+				case ART_SORC_TENDENCY:
+					pline("Artifact specs: energy regeneration when wielded."); break;
+				case ART_POISON_BURST:
+					pline("Artifact specs: poison resistance when wielded, and deals extra poison damage."); break;
+				case ART_ACCELERATION_CLAW:
+					pline("Artifact specs: +8 to-hit and +2 damage, very fast speed when wielded."); break;
+				case ART_IRONBOX:
+					pline("Artifact specs: +5 to-hit and +8 damage."); break;
+				case ART_CAMOHAMEHA:
+					pline("Artifact specs: +4 damage. If you use the kamehameha technique while wielded, the tech deals double damage and has +5 range, which is of course only useful if you actually know that tech."); break;
+				case ART_UBERGAGE:
+					pline("Artifact specs: +4 AC and +3 strength when worn."); break;
+				case ART_GARYX:
+					pline("Artifact specs: +1 all stats when worn."); break;
+				case ART_HITEC_NEO:
+					pline("Artifact specs: technicality when worn."); break;
+				case ART_FLOATOVER:
+					pline("Artifact specs: flying when worn."); break;
+				case ART_PEOPLE_COAT:
+					pline("Artifact specs: +5 AC when worn."); break;
+				case ART_AWAY_HAMM_ARMOR:
+					pline("Artifact specs: if a monster attacks you in melee, 1 in 1000 chance that the monster takes d100 points of damage."); break;
+				case ART_SUSANNE_S_HEADSMASHER:
+					pline("Artifact specs: +10 damage. Susanne likes to use this weapon to smash male skulls."); break;
+				case ART_IRON_BALL_OF_BALL_IRONING:
+					pline("Artifact specs: +5 to-hit and +12 fire damage to monsters that are always male. This weapon was an idea by Demo who wants to be able to iron other guys' balls."); break;
+				case ART_GARY_S_RIVALRY:
+					pline("Artifact specs: when wielded, you can walk over farmland and have magical breathing, plus it protects your items from water and gives +2 increase damage to all your attacks."); break;
+				case ART_SUNSCREEN:
+					pline("Artifact specs: blindness resistance and emits light when wielded."); break;
+				case ART_REAL_LIFE_EFFECTOR:
+					pline("Artifact specs: This artifact is capable of affecting real life if you use it, because the devious Amy found a way to write code that can do so :-P"); break;
+				case ART_AVADA_PORKAVRA:
+					pline("Artifact specs: Porkman wanted this artifact, so I implemented it; when zapped, it fires death rays in all directions but also wastes d8 additional charges. Yes, Porkman, in case you ever read this, I know you wouldn't have added the downside, but I'm not you :P Love you, Amy"); break;
+				case ART_BLUE_SHIRT_OF_DEATH:
+					pline("Artifact specs: hyperbluewalls, cold and death resistance when worn. This artifact was suggested by Tone."); break;
+				case ART_REDWOOD_STINKER:
+					pline("Artifact specs: eww, you stinking smoker, why don't you at least smoke another brand that stinks less badly... :-P It creates stinking clouds every once in a while."); break;
+				case ART_PEEPLUE:
+					pline("Artifact specs: +2 kick damage and you cannot be engulfed while wielding it. If you're currently affected by the juen trap effect, you also have free action. Yes, I'm aware that this is an oddly specific condition that won't be fulfilled most of the time."); break;
+				case ART_NATALIA_S_MARK:
+					pline("Artifact specs: +20 to-hit and +10 damage to fire-susceptible monsters and very fast speed while wielded."); break;
+				case ART_SUNTINOPENER:
+					pline("Artifact specs: emits light when wielded. K2 suggested this artifact."); break;
+				case ART_SUNRUBBERHOSE:
+					pline("Artifact specs: emits light when wielded. K2 suggested this artifact."); break;
+				case ART_NEUTRON_STAR:
+					pline("Artifact specs: +4 damage. This artifact was suggested by rikersan."); break;
+				case ART_STAFF_OF_NECROMANCY:
+					pline("Artifact specs: double drain life damage, grants cold and curse resistance when wielded."); break;
+				case ART_NUDE_AND_FREE:
+					pline("Artifact specs: if you wear it without a suit over it (cloak is okay), you have free action."); break;
+				case ART_ZIRATHA_S_IRON_SIGHTS:
+					pline("Artifact specs: improves vision range and grants infravision when wielded."); break;
+				case ART_PIECE_OF_SKY:
+					pline("Artifact specs: +5 to-hit and +6 damage."); break;
+				case ART_DRAMA_STAFF:
+					pline("Artifact specs: conflict, farlook bug, hostility and wakeup call when wielded. Everyone's going to be attacking everyone, including you!"); break;
+				case ART_SAVE_YOUR_RUN:
+					pline("Artifact specs: regeneration and fire resistance when wielded. You should wield this weapon to save your run, because otherwise you'll get a game over soon."); break;
+				case ART_WHAT_YOU_REALLY_NEEDED:
+					pline("Artifact specs: +2 to-hit and +8 damage, energy regeneration when wielded. You really needed this artifact weapon and are glad that you've found it now."); break;
+				case ART_FROZEN_ORB:
+					pline("Artifact specs: +16 damage to cold-susceptible monsters and cold resistance when wielded. According to someone on battle.net, frozen orb does so-so many hundred damage but when I asked him 'really?', he told me 'no' because seriously, no orb-class weapon deals that much damage."); break;
+				case ART_CLEVER_CLEAVER:
+					pline("Artifact specs: +3 to-hit and +6 damage. Don't worry, this isn't the variant that calls itself Nethack 3.6, so it won't hit peaceful monsters."); break;
+				case ART_JINADA:
+					pline("Artifact specs: +10 damage. Maxlunar wanted me to add this artifact."); break;
+				case ART_COUNTERSTRIKE_CESTUS:
+					pline("Artifact specs: +10 to-hit and +2 damage, shock resistance, control magic and discount action when wielded."); break;
+				case ART_NORSE_MITHRIL:
+					pline("Artifact specs: improves your armor class by another 5 points. In Castle of the Winds, the meteoric steel material was originally mithril but apparently that got changed when the game (which was originally yet another D&D clone) received its norse theme."); break;
+				case ART_COMPLIANT_ARMOR:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_RISHRASH_SAW:
+					pline("Artifact specs: +6 damage."); break;
+				case ART_WRONG_TURN:
+					pline("Artifact specs: heavily autocurses, and putting it on turns you into an undead creature! Also, even if the creature you become is too big for wearing armor, it won't come off again."); break;
+				case ART_HELLPIT_FLAME:
+					pline("Artifact specs: +10 damage to fire-susceptible monsters."); break;
+				case ART_STRAIGHT_OUTTA_CODING_HELL:
+					pline("Artifact specs: +2 to-hit and +4 damage."); break;
+				case ART_WEIGHT_ANCHOR:
+					pline("Artifact specs: +12 damage, but your carried weight is also increased by 200 so you can carry less other stuff."); break;
+				case ART_SHARPENING_SLAT:
+					pline("Artifact specs: +6 damage. If this weapon is negatively enchanted, hitting something with it has a tiny little chance of repairing one point of enchantment, so eventually it can reach +0 again."); break;
+				case ART_DOLORES_S_SADISM:
+					pline("Artifact specs: +2 drain life damage, can drain monsters' levels, diminished bleeding when wielded. If you ask Harry Potter what he thinks of this weapon, he'll curse the Idiocy of Magic to hell."); break;
+				case ART_COVETOR_SABER:
+					pline("Artifact specs: +10 damage, teleportitis when wielded."); break;
+				case ART_VALENSINA_S_BLADE:
+					pline("Artifact specs: +2 to-hit and +6 damage. Valensina likes to just leave this knife lying around openly for everyone to see. Cool."); break;
+				case ART_MEAGER_CURD:
+					pline("Artifact specs: +2 to-hit and +2 damage."); break;
+				case ART_BIG_SMOKE_S_MURDER_CAR:
+					pline("Artifact specs: very fast speed, can behead targets."); break;
+				case ART_BRASS_CUP:
+					pline("Artifact specs: +4 damage, shock resistance when wielded."); break;
+				case ART_SHRINEKEEPER:
+					pline("Artifact specs: regeneration when wielded."); break;
+				case ART_WAR_DECLARATION:
+					pline("Artifact specs: +2 to-hit and +8 damage, deals extra poison damage."); break;
+				case ART_WHY_ALWAYS_CONUNDRUM:
+					pline("Artifact specs: +6 damage. If you wield it and its material is currently 'conundrum', it sets itself to another random material; be aware that this affects all weapons of the same base type in your game."); break;
+				case ART_FOAMONIA_WATER:
+					pline("Artifact specs: +2 to-hit and +4 damage, magical breathing and swimming when wielded and protects your items from getting wet."); break;
+				case ART_FALLING_PERSEIS:
+					pline("Artifact specs: acts as a luckstone."); break;
+				case ART_LATCHSTACK:
+					pline("Artifact specs: +6 damage, prevents you from some grabbing attacks."); break;
+				case ART_HIGH_ORIENTAL_PRAISE:
+					pline("Artifact specs: unbreathing and +3 charisma when wielded and has a high chance of protecting you from feminine perfume. You should offer your high praises to the creator of this item."); break;
+
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
 			}

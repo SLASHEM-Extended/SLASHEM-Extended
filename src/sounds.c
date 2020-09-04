@@ -2488,6 +2488,8 @@ register struct monst *mtmp;
 
 					if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 						pline("But the gas mask protects you from the effects.");
+					} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
+						pline("But you actually enjoy the lovely scent.");
 					} else {
 						badeffect();
 						if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
@@ -2525,6 +2527,8 @@ register struct monst *mtmp;
 
 			if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
 				pline("But the gas mask protects you from the effects.");
+			} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
+				pline("But you actually enjoy the lovely scent.");
 			} else {
 				badeffect();
 				if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
