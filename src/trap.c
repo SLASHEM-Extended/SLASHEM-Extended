@@ -2732,6 +2732,7 @@ boolean givehp;
 	else if (ttmp->ttyp == ARABELLA_SPEAKER && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
+	ttmp->artionce = 0;
 	ttmp->tdetected = 0;
 	ttmp->trapdiff = 0; /* difficulty: higher values make it less likely for you to find it */
 	if (ttmp->ttyp != MAGIC_PORTAL) {
@@ -3276,7 +3277,7 @@ unsigned trflags;
 		if (uwep->blessed && !rn2(4)) goup = 1;
 		if (uwep->cursed && !rn2(4)) goup = 0;
 
-		if (goup && uwep->spe < 10) uwep->spe++;
+		if (goup && trap && !(trap->artionce) && uwep->spe < 10) uwep->spe++;
 		if (!goup && uwep->spe > -20) uwep->spe--;
 
 		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
@@ -3287,7 +3288,7 @@ unsigned trflags;
 		if (uwep->blessed && !rn2(4)) goup = 1;
 		if (uwep->cursed && !rn2(4)) goup = 0;
 
-		if (goup && uwep->spe < 10) uwep->spe++;
+		if (goup && trap && !(trap->artionce) && uwep->spe < 10) uwep->spe++;
 		if (!goup && uwep->spe > -20) uwep->spe--;
 
 		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
@@ -3298,7 +3299,7 @@ unsigned trflags;
 		if (uwep->blessed && !rn2(4)) goup = 1;
 		if (uwep->cursed && !rn2(4)) goup = 0;
 
-		if (goup && uwep->spe < 10) uwep->spe++;
+		if (goup && trap && !(trap->artionce) && uwep->spe < 10) uwep->spe++;
 		if (!goup && uwep->spe > -20) uwep->spe--;
 
 		/* No message, because you're not supposed to know that you just triggered a trap. --Amy */
@@ -3312,6 +3313,8 @@ unsigned trflags;
 		done(DIED);
 		u.youaredead = 0;
 	}
+
+	if (trap) trap->artionce = TRUE;
 
 	switch(ttype) {
 	    case ARROW_TRAP:

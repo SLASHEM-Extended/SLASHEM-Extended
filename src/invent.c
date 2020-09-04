@@ -17734,7 +17734,7 @@ boolean knoweverything;
 				case ART_ARABELLA_S_LIGHTNINGROD:
 					pline("Artifact specs: Apparently it's what Arabella uses to be safe from her own cursed items, so she can safely prepare them until they're ready to be used on hapless victims. Neutral."); break;
 				case ART_KA_BLAMMO:
-					pline("Artifact specs: If you trigger a trap while wielding it, its enchantment may go up or down, although it won't go above +10 or below -20. Bless it to increase the chance of the enchantment going up! If it's cursed, the chance of the enchantment going down is increased instead."); break;
+					pline("Artifact specs: If you trigger a trap while wielding it, its enchantment may go up or down, although it won't go above +10 or below -20. Bless it to increase the chance of the enchantment going up! If it's cursed, the chance of the enchantment going down is increased instead. Also, the enchantment can only go up if you haven't triggered that particular trap before."); break;
 				case ART_RNG_S_FUN:
 					pline("Artifact specs: putting it on while it's +0 will randomize its enchantment value to something between -5 and +5."); break;
 				case ART_YOU_RE_THE_BEST:
@@ -18050,7 +18050,7 @@ boolean knoweverything;
 				case ART_ARABELLA_S_WAND_BOOSTER:
 					pline("Artifact specs: You're not sure how it would boost wands, but it definitely grants magic resistance when worn."); break;
 				case ART_INTELLIGENT_POPE:
-					pline("Artifact specs: if you trigger a trap while wielding it, its enchantment will go up or down. If it's blessed, positive enchantment is more likely; cursed, and negative enchantment is more likely."); break;
+					pline("Artifact specs: if you trigger a trap while wielding it, its enchantment will go up or down. If it's blessed, positive enchantment is more likely; cursed, and negative enchantment is more likely. Positive enchantment will only ever be granted by traps that you haven't triggered before, though, or otherwise you could just camp a pit or something, you exploit exploiter. :-P"); break;
 				case ART_RNG_S_PRIDE:
 					pline("Artifact specs: Putting it on while it's +0 will set its enchantment to a random value."); break;
 				case ART_RNG_S_JOY:
@@ -18270,7 +18270,7 @@ boolean knoweverything;
 				case ART_MYSTERIOUS_MAGIC:
 					pline("Artifact specs: energy regeneration and weakened magic effects when worn."); break;
 				case ART_BANGCOCK:
-					pline("Artifact specs: if you trigger a trap while wielding it, its enchantment will go up or down; if it's blessed, positive enchantments are more likely, and if it's cursed, negative enchantments are more likely."); break;
+					pline("Artifact specs: if you trigger a trap while wielding it, its enchantment will go up or down; if it's blessed, positive enchantments are more likely, and if it's cursed, negative enchantments are more likely. In order to prevent you from exploiting the hell out of it, positive enchantment can only occur if the trap has not been triggered before."); break;
 				case ART_RNG_S_COMPLETION:
 					pline("Artifact specs: Putting it on while it's +0 will set its enchantment to a random value."); break;
 				case ART_RNG_S_BEAUTY:
