@@ -1501,7 +1501,7 @@ walscholardone:
 		    !(tunnels(youmonst.data) && !needspick(youmonst.data)) &&
 		    !(Race_if(PM_SCURRIER) && !Upolyd) &&
 		    !(uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) &&
-		    !carrying(PICK_AXE) && !carrying(CONGLOMERATE_PICK) && !carrying(MYSTERY_PICK) &&
+		    !carrying(PICK_AXE) && !carrying(CONGLOMERATE_PICK) && !carrying(CONUNDRUM_PICK) && !carrying(MYSTERY_PICK) &&
 		    !carrying(BRONZE_PICK) && !carrying(NANO_PICK) && !carrying(BRICK_PICK) && !carrying(DWARVISH_MATTOCK) &&
 		    !((obj = carrying(WAN_DIGGING)) &&
 		      !objects[obj->otyp].oc_name_known))

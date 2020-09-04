@@ -488,6 +488,7 @@ struct obj {
 				 (obj)->otyp == MANASTONE || \
 				 (obj)->otyp == SMALL_PIECE_OF_UNREFINED_MITHR || \
 				 (obj)->otyp == SILVER_SLINGSTONE || \
+				 (obj)->otyp == CONUNDRUM_NUGGET || \
 				 (obj)->otyp == STONE_OF_MAGIC_RESISTANCE || \
 				 (obj)->otyp == LOADBOULDER || \
 				 (obj)->otyp == STARLIGHTSTONE || \

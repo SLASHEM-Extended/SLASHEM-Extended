@@ -276,11 +276,15 @@ struct monst *mon;
 	if (otmp->otyp == BRICK_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == METAL_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == WAX_CHAIN && thick_skinned(ptr)) tmp += 4;
+	if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr)) tmp += 4;
+	if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) tmp += 6;
 	if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr)) tmp += 8;
+	if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr)) tmp += 8;
+	if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == PAPER_CHAIN && thick_skinned(ptr)) tmp += 8;
 	if (otmp->otyp == PLASTIC_CHAIN && thick_skinned(ptr)) tmp += 8;
@@ -293,6 +297,8 @@ struct monst *mon;
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) tmp += 15;
+	if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr)) tmp += 15;
+	if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == CHROME_SCOURGE && thick_skinned(ptr)) tmp += 15;
 	if (otmp->otyp == SHADOW_SCOURGE && thick_skinned(ptr)) tmp += 15;
@@ -307,6 +313,8 @@ struct monst *mon;
 	if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
 	if (otmp->otyp == SILVER_NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
 	if (otmp->otyp == LEATHER_NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
+	if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
+	if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr)) tmp += 24;
 	if (otmp->otyp == MITHRIL_LASH && thick_skinned(ptr)) tmp += 28;
 	if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
@@ -314,6 +322,8 @@ struct monst *mon;
 	if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == SAND_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
+	if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
+	if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == ETHER_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 	if (otmp->otyp == OBSIDIAN_HOSTAGE_CHAIN && thick_skinned(ptr)) tmp += 32;
 
@@ -749,6 +759,8 @@ struct monst *mon;
 		if (otmp->otyp == BRICK_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == METAL_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == WAX_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
+		if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
+		if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(6);
 		if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
@@ -757,6 +769,8 @@ struct monst *mon;
 		if (otmp->otyp == COMPOST_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == PAPER_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == PLASTIC_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == WOOD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == TAR_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == WONDER_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
@@ -770,6 +784,8 @@ struct monst *mon;
 		if (otmp->otyp == CHROME_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == SHADOW_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == COPPER_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == SILK_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == FLESH_LASH && thick_skinned(ptr)) bonus += rnd(20);
 		if (otmp->otyp == NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
@@ -780,6 +796,8 @@ struct monst *mon;
 		if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 		if (otmp->otyp == SILVER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 		if (otmp->otyp == LEATHER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+		if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+		if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 		if (otmp->otyp == MITHRIL_LASH && thick_skinned(ptr)) bonus += rnd(28);
 		if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 		if (otmp->otyp == GLASS_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
@@ -788,6 +806,8 @@ struct monst *mon;
 		if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 		if (otmp->otyp == SAND_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 		if (otmp->otyp == ETHER_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+		if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+		if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 		if (otmp->otyp == OBSIDIAN_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 
 	    /* KMH -- Paddles are effective against insects */
@@ -1179,6 +1199,8 @@ struct monst *mon;
 		if (otmp->otyp == BRICK_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == METAL_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == WAX_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
+		if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
+		if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(6);
 		if (otmp->otyp == ROTATING_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
@@ -1189,6 +1211,8 @@ struct monst *mon;
 		if (otmp->otyp == PLASTIC_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == WOOD_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == TAR_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
+		if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr)) bonus += rnd(8);
 		if (otmp->otyp == WONDER_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
 		if (otmp->otyp == LIQUID_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
 		if (otmp->otyp == NULL_CHAIN && thick_skinned(ptr)) bonus += rnd(12);
@@ -1198,6 +1222,8 @@ struct monst *mon;
 		if (otmp->otyp == GRANITE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == DISGUSTING_CHAIN && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == CHROME_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
+		if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == SHADOW_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == COPPER_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
 		if (otmp->otyp == SILK_SCOURGE && thick_skinned(ptr)) bonus += rnd(15);
@@ -1209,6 +1235,8 @@ struct monst *mon;
 		if (otmp->otyp == NANO_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 		if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 		if (otmp->otyp == SILVER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+		if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
+		if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 		if (otmp->otyp == LEATHER_NUNCHIAKU && thick_skinned(ptr)) bonus += rnd(24);
 		if (otmp->otyp == MITHRIL_LASH && thick_skinned(ptr)) bonus += rnd(28);
 		if (otmp->otyp == HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
@@ -1218,6 +1246,8 @@ struct monst *mon;
 		if (otmp->otyp == NUCLEAR_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 		if (otmp->otyp == SAND_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 		if (otmp->otyp == ETHER_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+		if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
+		if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 		if (otmp->otyp == OBSIDIAN_HOSTAGE_CHAIN && thick_skinned(ptr)) bonus += rnd(32);
 
 		if (otmp->oclass == BALL_CLASS && RngePunishment) bonus += 5;
@@ -1266,6 +1296,18 @@ struct monst *mon;
 	if (otmp->otyp == WAX_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(4);
 	if (otmp->otyp == WAX_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
+	if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
+	if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
+	if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(3);
+	if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (otmp->otyp == ALLOY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(5);
+
+	if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
+	if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
+	if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(3);
+	if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(5);
+
 	if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
 	if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
 	if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(3);
@@ -1289,6 +1331,18 @@ struct monst *mon;
 	if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(6);
 	if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(8);
 	if (otmp->otyp == GOLD_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(10);
+
+	if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(2);
+	if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(4);
+	if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(6);
+	if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (otmp->otyp == SCRAP_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(10);
+
+	if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(2);
+	if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(4);
+	if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(6);
+	if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(8);
+	if (otmp->otyp == FOAM_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(10);
 
 	if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(2);
 	if (otmp->otyp == CLAY_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(4);
@@ -1355,6 +1409,18 @@ struct monst *mon;
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(9);
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(12);
 	if (otmp->otyp == SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
+	if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(3);
+	if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(6);
+	if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(9);
+	if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (otmp->otyp == ANTIDOTE_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
+	if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(3);
+	if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(6);
+	if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(9);
+	if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (otmp->otyp == CELESTIAL_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
 	if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(3);
 	if (otmp->otyp == ELYSIUM_SCOURGE && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(6);
@@ -1434,6 +1500,18 @@ struct monst *mon;
 	if (otmp->otyp == NANO_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(16);
 	if (otmp->otyp == NANO_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(20);
 
+	if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(4);
+	if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(8);
+	if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(12);
+	if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(16);
+	if (otmp->otyp == METEORIC_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(20);
+
+	if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(4);
+	if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(8);
+	if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(12);
+	if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(16);
+	if (otmp->otyp == ZEBETITE_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(20);
+
 	if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(4);
 	if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(8);
 	if (otmp->otyp == LEAD_NUNCHIAKU && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(12);
@@ -1475,6 +1553,18 @@ struct monst *mon;
 	if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(15);
 	if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(20);
 	if (otmp->otyp == MINERAL_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(25);
+
+	if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(5);
+	if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(10);
+	if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(15);
+	if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(20);
+	if (otmp->otyp == ALLOY_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(25);
+
+	if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(5);
+	if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(10);
+	if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(15);
+	if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(20);
+	if (otmp->otyp == FOAM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(25);
 
 	if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += rnd(5);
 	if (otmp->otyp == ELYSIUM_HOSTAGE_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(10);
@@ -2168,7 +2258,7 @@ static NEARDATA const int rwep[] =
 	RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, SOFT_STAR,
 	DARK_ELVEN_DAGGER, WONDER_DAGGER, DAGGER, ORCISH_DAGGER,
 	SURVIVAL_KNIFE, COLLUSION_KNIFE, CERAMIC_KNIFE, BITUKNIFE, UNKNOWN_KNIFE, MEASURER, STILETTO, KNIFE, VICTIM_KNIFE,
-	LOADSTONE, SILVER_SLINGSTONE, VOLCANIC_GLASS_FRAGMENT, FLINT, 
+	LOADSTONE, CONUNDRUM_NUGGET, SILVER_SLINGSTONE, VOLCANIC_GLASS_FRAGMENT, FLINT, 
 	LEAD_CLUMP, SLING_AMMO, BONE_FRAGMENT,
 	SMALL_PIECE_OF_UNREFINED_MITHR, TALC, GRAPHITE, ROCK, 
 	STONE_OF_MAGIC_RESISTANCE, 
@@ -2397,19 +2487,19 @@ static const NEARDATA short hwep[] = {
 	  CORPSE,  /* cockatrice corpse */
 	  IMPOSSIBLY_HEAVY_IRON_BALL, IMPOSSIBLY_HEAVY_MINERAL_BALL, IMPOSSIBLY_HEAVY_GLASS_BALL,
 	  IMPOSSIBLY_HEAVY_NUCLEAR_BALL, IMPOSSIBLY_HEAVY_ELYSIUM_BALL, IMPOSSIBLY_HEAVY_SAND_BALL,
-	  IMPOSSIBLY_HEAVY_ETHER_BALL, IMPOSSIBLY_HEAVY_OBSIDIAN_BALL,
+	  IMPOSSIBLY_HEAVY_ETHER_BALL, IMPOSSIBLY_HEAVY_OBSIDIAN_BALL, IMPOSSIBLY_HEAVY_ALLOY_BALL,
 
 	  BULKY_MITHRIL_BALL,
 
 	  EXTREMELY_HEAVY_IRON_BALL, HEAVY_ELASTHAN_BALL, HEAVY_CONCRETE_BALL, HEAVY_CONUNDRUM_BALL, HEAVY_NANO_BALL,
-	  HEAVY_LEAD_BALL, HEAVY_SILVER_BALL,
+	  HEAVY_LEAD_BALL, HEAVY_SILVER_BALL, HEAVY_METEORIC_BALL, HEAVY_ZEBETITE_BALL,
 
 	  BULKY_FLESH_BALL,
 
 	  HEAVY_LEATHER_BALL,
 
 	  REALLY_HEAVY_IRON_BALL, DISGUSTING_BALL, HEAVY_ELYSIUM_BALL, HEAVY_GRANITE_BALL, HEAVY_CHROME_BALL,
-	  HEAVY_SHADOW_BALL, HEAVY_COPPER_BALL,
+	  HEAVY_SHADOW_BALL, HEAVY_COPPER_BALL, HEAVY_ANTIDOTE_BALL, HEAVY_CELESTIAL_BALL,
 
 	  BULKY_GEMSTONE_BALL,
 
@@ -2418,23 +2508,23 @@ static const NEARDATA short hwep[] = {
 	  HEAVY_SILK_BALL,
 
 	  QUITE_HEAVY_IRON_BALL, HEAVY_COMPOST_BALL, HEAVY_GOLD_BALL, HEAVY_CLAY_BALL, HEAVY_PAPER_BALL, HEAVY_PLASTIC_BALL,
-	  HEAVY_WOOD_BALL,
+	  HEAVY_WOOD_BALL, HEAVY_SCRAP_BALL, HEAVY_FOAM_BALL,
 
 	  BULKY_POURPOOR_BALL,
 
 	  HEAVY_TAR_BALL,
 
 	  HEAVY_IRON_BALL, VERY_HEAVY_BALL, HEAVY_GLASS_BALL, HEAVY_STONE_BALL, HEAVY_BRICK_BALL, HEAVY_METAL_BALL,
-	  HEAVY_WAX_BALL,
+	  HEAVY_WAX_BALL, HEAVY_ALLOY_BALL, HEAVY_BUBBLE_BALL,
 
 	  HEAVY_CLOTH_BALL,
 
 	  NUCLEAR_HOSTAGE_CHAIN, ELYSIUM_HOSTAGE_CHAIN, MINERAL_HOSTAGE_CHAIN, GLASS_HOSTAGE_CHAIN, HOSTAGE_CHAIN,
-	  SAND_HOSTAGE_CHAIN, ETHER_HOSTAGE_CHAIN, OBSIDIAN_HOSTAGE_CHAIN,
+	  SAND_HOSTAGE_CHAIN, ETHER_HOSTAGE_CHAIN, OBSIDIAN_HOSTAGE_CHAIN, FOAM_HOSTAGE_CHAIN, ALLOY_HOSTAGE_CHAIN,
 	  MITHRIL_LASH,
 
 	  ELASTHAN_CHAIN, CONCRETE_NUNCHIAKU, CONUNDRUM_NUNCHIAKU, NUNCHIAKU, NANO_NUNCHIAKU, LEAD_NUNCHIAKU,
-	  SILVER_NUNCHIAKU,
+	  SILVER_NUNCHIAKU, METEORIC_NUNCHIAKU, ZEBETITE_NUNCHIAKU,
 	  FLESH_LASH,
 
 	  COLOSSUS_BLADE, THUNDER_HAMMER, STEEL_CAPPED_SANDAL,
@@ -2450,7 +2540,7 @@ static const NEARDATA short hwep[] = {
 	  MYSTERY_LIGHTSABER, BLUE_LIGHTSABER, VIOLET_LIGHTSABER, WHITE_LIGHTSABER, YELLOW_LIGHTSABER,
 	  GREEN_LIGHTSABER, PIANO, DESERT_SWORD,
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT,
-	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW,
+	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN,
 	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, CHEMISTRY_SPACE_AXE, PLATINUM_SABER,
 	  GOLDEN_SABER, ETERNIUM_SABER, CRYPTIC_SABER, TWO_HANDED_FLAIL, BOAT_OAR,
 	  MASSIVE_STAFF, BATTLE_STAFF, BACKHAND_MACE, OLDEST_STAFF,
@@ -2462,14 +2552,16 @@ static const NEARDATA short hwep[] = {
 	  DROVEN_SPEAR, MEATSWORD, BIDENHANDER, DIAMOND_SMASHER, GRINDER,
 
 	  DISGUSTING_CHAIN, GRANITE_SCOURGE, ELYSIUM_SCOURGE, SCOURGE, CHROME_SCOURGE, SHADOW_SCOURGE, COPPER_SCOURGE,
+	  ANTIDOTE_SCOURGE, CELESTIAL_SCOURGE,
 	  GEMSTONE_LASH,
 	  WONDER_CHAIN, NULL_CHAIN, LIQUID_CHAIN,
 	  LEATHER_NUNCHIAKU,
-	  COMPOST_CHAIN, CLAY_CHAIN, GOLD_CHAIN, ROTATING_CHAIN, PAPER_CHAIN, PLASTIC_CHAIN, WOOD_CHAIN,
+	  COMPOST_CHAIN, CLAY_CHAIN, GOLD_CHAIN, ROTATING_CHAIN, PAPER_CHAIN, PLASTIC_CHAIN, WOOD_CHAIN, SCRAP_CHAIN,
+	  FOAM_CHAIN,
 	  POURPOOR_LASH,
 	  SILK_SCOURGE,
-	  HEAVY_CHAIN, GLASS_CHAIN, STONE_CHAIN, IRON_CHAIN, BRICK_CHAIN, METAL_CHAIN, WAX_CHAIN,
-	  TAR_CHAIN,
+	  HEAVY_CHAIN, GLASS_CHAIN, STONE_CHAIN, IRON_CHAIN, BRICK_CHAIN, METAL_CHAIN, WAX_CHAIN, ALLOY_CHAIN,
+	  TAR_CHAIN, BUBBLE_CHAIN,
 
 	  INKUTLASS, GREEN_SABER, RAPIER, ARCANE_RAPIER, LEATHER_SABER,
 	  DOGSHIT_BOOT, CHROME_STAFF, CONTRO_STAFF, CALCULATOR, ELITE_BATLETH, RAKUYO, CROW_QUILL,
@@ -2490,7 +2582,7 @@ static const NEARDATA short hwep[] = {
 	  FIRE_STICK, TROUTSTAFF, FLINDBAR, QUARTERSTAFF, RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, FOAMY_STAFF,
 	  INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, PAPER_SWORD, QATAR,
 	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD,
-	  NATURAL_STICK, BONE_CLUB, CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR,
+	  NATURAL_STICK, BONE_CLUB, CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR, CONUNDRUM_PICK,
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET,
 	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, JARED_STONE,
 	  TELEPHONE, FUTON_SWATTER, MAGICAL_PAINTBRUSH, BROOM, MOP, ORNATE_MACE,
@@ -2632,6 +2724,7 @@ register struct monst *mon;
 			break;
 		case NEED_PICK_AXE:
 			obj = m_carrying(mon, PICK_AXE);
+			if (!obj) obj = m_carrying(mon, CONUNDRUM_PICK);
 			if (!obj) obj = m_carrying(mon, CONGLOMERATE_PICK);
 			if (!obj) obj = m_carrying(mon, MYSTERY_PICK);
 			if (!obj) obj = m_carrying(mon, BRONZE_PICK);
@@ -2672,6 +2765,7 @@ register struct monst *mon;
 			if (!obj) obj = m_carrying(mon, BATTLE_AXE);
 			if (!obj || which_armor(mon, W_ARMS)) {
 			    obj = m_carrying(mon, PICK_AXE);
+			    if (!obj) obj = m_carrying(mon, CONUNDRUM_PICK);
 			    if (!obj) obj = m_carrying(mon, CONGLOMERATE_PICK);
 			    if (!obj) obj = m_carrying(mon, MYSTERY_PICK);
 			    if (!obj) obj = m_carrying(mon, BRONZE_PICK);
@@ -6394,6 +6488,12 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
 	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
 	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
+
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(16);
+	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(20);
 
 	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += rnd(4);
 	if (weapon && weapon->otyp == MYSTERY_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(8);

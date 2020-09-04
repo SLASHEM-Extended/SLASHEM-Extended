@@ -2138,6 +2138,16 @@ int dieroll;
 		    case HEAVY_LEAD_BALL:
 		    case IMPOSSIBLY_HEAVY_ETHER_BALL:
 		    case HEAVY_WAX_BALL:
+		    case HEAVY_ALLOY_BALL:
+		    case HEAVY_SCRAP_BALL:
+		    case HEAVY_ANTIDOTE_BALL:
+		    case HEAVY_METEORIC_BALL:
+		    case IMPOSSIBLY_HEAVY_ALLOY_BALL:
+		    case HEAVY_BUBBLE_BALL:
+		    case HEAVY_FOAM_BALL:
+		    case HEAVY_CELESTIAL_BALL:
+		    case HEAVY_ZEBETITE_BALL:
+		    case IMPOSSIBLY_HEAVY_FOAM_BALL:
 		    case HEAVY_WOOD_BALL:
 		    case HEAVY_COPPER_BALL:
 		    case HEAVY_SILVER_BALL:
@@ -2164,6 +2174,16 @@ int dieroll;
 		    case LEAD_NUNCHIAKU:
 		    case ETHER_HOSTAGE_CHAIN:
 		    case WAX_CHAIN:
+		    case ALLOY_CHAIN:
+		    case SCRAP_CHAIN:
+		    case ANTIDOTE_SCOURGE:
+		    case METEORIC_NUNCHIAKU:
+		    case ALLOY_HOSTAGE_CHAIN:
+		    case BUBBLE_CHAIN:
+		    case FOAM_CHAIN:
+		    case CELESTIAL_SCOURGE:
+		    case ZEBETITE_NUNCHIAKU:
+		    case FOAM_HOSTAGE_CHAIN:
 		    case WOOD_CHAIN:
 		    case COPPER_SCOURGE:
 		    case SILVER_NUNCHIAKU:

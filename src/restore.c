@@ -1577,7 +1577,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	setuwep(otmp,FALSE,FALSE);	/* (don't need any null check here) */
 	/* Amy edit: autocursing shit shouldn't autocurse here! */
 	/* KMH, balance patch -- added fishing pole */
-	if (!uwep || uwep->otyp == PICK_AXE || uwep->otyp == CONGLOMERATE_PICK || uwep->otyp == MYSTERY_PICK || uwep->otyp == BRONZE_PICK || uwep->otyp == BRICK_PICK || uwep->otyp == NANO_PICK || uwep->otyp == GRAPPLING_HOOK ||
+	if (!uwep || uwep->otyp == PICK_AXE || uwep->otyp == CONGLOMERATE_PICK || uwep->otyp == CONUNDRUM_PICK || uwep->otyp == MYSTERY_PICK || uwep->otyp == BRONZE_PICK || uwep->otyp == BRICK_PICK || uwep->otyp == NANO_PICK || uwep->otyp == GRAPPLING_HOOK ||
 		     uwep->otyp == FISHING_POLE)
 	    unweapon = TRUE;
 
