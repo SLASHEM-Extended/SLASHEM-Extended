@@ -1273,7 +1273,10 @@ register struct monst *mtmp;
 	if (mtmp->hominglazer) {
 		mtmp->hominglazer++;
 		/* it can only be charged for so long, and then the monster needs to charge it again */
-		if (mtmp->hominglazer > 200) mtmp->hominglazer = 0;
+		if (mtmp->hominglazer > 200) {
+			mtmp->hominglazer = 0;
+			You_hear("a sparking sound.");
+		}
 	}
 
 	/* monsters whose butts were bashed by you will slowly recover --Amy */

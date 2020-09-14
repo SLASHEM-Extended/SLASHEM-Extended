@@ -25433,6 +25433,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'G-cheater'. It reads: 'The air that is coming out of the butt!'",
 	"Your weapon's material morphs to a different one!",
 	"Your weapon's material morphs to a different one! Now it's made of paper and will burn up quickly, plus it's no longer effective against thick-skinned monsters.",
+	"You hear a sparking sound.",
+	"You hear a sparking sound. This means that a monster outside of your line of sight has just started to load a super-mega-hyper-dyper laser cannon.",
 
 };
 
