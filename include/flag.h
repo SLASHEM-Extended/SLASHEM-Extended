@@ -245,6 +245,7 @@ struct flag {
 	boolean hybridstairseeker;
 	boolean hybridmatrayser;
 	boolean hybridfeminizer;
+	boolean hybridchallenger;
 
 	boolean hybridcancel;	/* to make sure players don't get hybrid races if they explicitly don't want any */
 	boolean randomhybrids;	/* turn it off if you don't want random hybrid races */

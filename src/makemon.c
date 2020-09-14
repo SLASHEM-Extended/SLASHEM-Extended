@@ -24731,6 +24731,14 @@ loopback:
 		if (ct > 0 && (Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(ptr) )) ct += 50;
 		if (ct > 0 && (Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(ptr) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(ptr) )) ct += 12;
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_STENCH) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_WHORE) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_FART_QUIET) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_FART_LOUD) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_FART_NORMAL) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_SHOE) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_CONVERT) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (ischallenger && (ptr->msound == MS_HCALIEN) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -25908,6 +25916,14 @@ int     spc;
 		if ((Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(&mons[last]) )) num += 50;
 		if ((Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(&mons[last]) )) num += 10;
 		if ((Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(&mons[last]) )) num += 12;
+		if ((ischallenger && (mons[last].msound == MS_STENCH) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[last].msound == MS_WHORE) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[last].msound == MS_FART_QUIET) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[last].msound == MS_FART_LOUD) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[last].msound == MS_FART_NORMAL) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[last].msound == MS_SHOE) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[last].msound == MS_CONVERT) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[last].msound == MS_HCALIEN) )) num += ((mons[last].geno & G_FREQ) * 4);
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -26760,6 +26776,14 @@ int     spc;
 		if ((Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(&mons[first]) )) num -= 50;
 		if ((Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(&mons[first]) )) num -= 10;
 		if ((Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(&mons[first]) )) num -= 12;
+		if ((ischallenger && (mons[first].msound == MS_STENCH) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[first].msound == MS_WHORE) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[first].msound == MS_FART_QUIET) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[first].msound == MS_FART_LOUD) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[first].msound == MS_FART_NORMAL) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[first].msound == MS_SHOE) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[first].msound == MS_CONVERT) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((ischallenger && (mons[first].msound == MS_HCALIEN) )) num -= ((mons[first].geno & G_FREQ) * 4);
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 

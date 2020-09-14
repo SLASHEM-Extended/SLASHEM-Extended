@@ -5455,6 +5455,21 @@ const struct Race races[] = {
 	{  8, 0,  0, 6,  7, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
 },
+{	"challenger", "challenger", "challenge", "Cha",
+	{0, 0},
+	PM_CHALLENGER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"chiquai", "chiquai", "chiquai gavenmengte", "Chu",
 	{0, 0},
 	PM_CHIQUAI, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -9212,7 +9227,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(42)) {
+			switch (rnd(43)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -9298,12 +9313,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridmatrayser = 1; break;
 				case 42:
 					flags.hybridfeminizer = 1; break;
+				case 43:
+					flags.hybridchallenger = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(42)) {
+				switch (rnd(43)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -9430,6 +9447,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 42:
 						if (!(flags.hybridfeminizer)) {flags.hybridfeminizer = 1; flags.hybridization++; break;
+						}
+					case 43:
+						if (!(flags.hybridchallenger)) {flags.hybridchallenger = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -9587,7 +9607,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(42)) {
+			switch (rnd(43)) {
 
 			case 1:
 				if (flags.hybridangbander) {
@@ -9925,6 +9945,14 @@ int type;
 					pline("You no longer have the feminizer hybrid race.");
 				}
 				break;
+			case 43:
+				if (flags.hybridchallenger) {
+					tryct = 1000;
+					flags.hybridchallenger = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the challenger hybrid race.");
+				}
+				break;
 
 			} /* end switch case */
 		}
@@ -9933,7 +9961,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(42)) {
+			switch (rnd(43)) {
 
 			case 1:
 				if (!flags.hybridangbander) {
@@ -10269,6 +10297,14 @@ int type;
 					flags.hybridfeminizer = TRUE;
 					flags.hybridization++;
 					pline("You now have the feminizer hybrid race.");
+				}
+				break;
+			case 43:
+				if (!flags.hybridchallenger) {
+					tryct = 1000;
+					flags.hybridchallenger = TRUE;
+					flags.hybridization++;
+					pline("You now have the challenger hybrid race.");
 				}
 				break;
 

@@ -539,6 +539,7 @@ bot1()
 		if (flags.hybridstairseeker) sprintf(nb = eos(nb), "i");
 		if (flags.hybridmatrayser) sprintf(nb = eos(nb), "m");
 		if (flags.hybridfeminizer) sprintf(nb = eos(nb), "f");
+		if (flags.hybridchallenger) sprintf(nb = eos(nb), "n");
 	}
 
 	if (flags.showscore)
