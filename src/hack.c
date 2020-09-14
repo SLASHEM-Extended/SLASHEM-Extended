@@ -1920,6 +1920,7 @@ domove()
 	const char *predicament;
 	boolean displacer = FALSE;	/* defender attempts to displace you */
 	boolean peacedisplacer = FALSE;
+	boolean canexistonsquare = TRUE;
 
 	u_wipe_engr(rnd(5));
 
@@ -2206,6 +2207,30 @@ domove()
 		}
 	    }
 	}
+
+	/* Amy feature: safety question when displacing pets into liquids, impossible to do it to non-pets (too cheesy) */
+	if (mtmp && (displacer || peacedisplacer || mtmp->mtame)) {
+		boolean inpool, inlava;
+
+		inpool = (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy)) && !is_flyer(mtmp->data) && !(is_urinelake(u.ux, u.uy)) && !(is_moorland(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
+		inlava = is_lava(u.ux, u.uy) && !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
+
+		if (inpool || inlava) canexistonsquare = FALSE;
+	}
+
+	if (!canexistonsquare) {
+		if (mtmp && !mtmp->mtame) {
+			You("cannot displace that monster into a harmful liquid!");
+			return;
+		} else if (mtmp && mtmp->mtame) {
+			if (!(ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone())) {
+				if (yn("Really displace the pet into a harmful liquid?") != 'y') {
+					return;
+				}
+			}
+		}
+	}
+
 	/* specifying 'F' with no monster wastes a turn */
 	if (flags.forcefight ||
 	    /* remembered an 'I' && didn't use a move command */
@@ -2701,6 +2726,7 @@ peacedisplace:
 
  	/* now move the hero */
 	mtmp = m_at(x, y);
+
 	u.ux += u.dx;
 	u.uy += u.dy;
 
