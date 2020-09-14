@@ -6674,6 +6674,10 @@ SCROLL((char *)0,               "MISTER SUNSHINE OF MELLENWAH",  P_NONE,     1, 
 SCROLL((char *)0,               "THE TREE DEMON WILL FOLLOW YOU",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
 SCROLL((char *)0,               "FIRE BREATHING GRAY DRAGON",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 SCROLL((char *)0,               "WITHOUT GREATER EVASION YOU ALWAYS GET HIT",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "YOU MOVED FOR 0DOT2 ST",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "I WEAR NOTHING EXCEPT WEDGE SANDALS AND PANTS",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "LOCKE COMES AND DOES EVIL THINGS TO BRIENNE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "OUI TRES BIEN MERCI BEAUCOUP",  P_NONE,     1,   0, 300, CLR_RED, 1),
 
 
 #ifdef MAIL
