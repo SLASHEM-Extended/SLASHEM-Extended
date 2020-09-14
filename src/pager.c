@@ -25435,6 +25435,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your weapon's material morphs to a different one! Now it's made of paper and will burn up quickly, plus it's no longer effective against thick-skinned monsters.",
 	"You hear a sparking sound.",
 	"You hear a sparking sound. This means that a monster outside of your line of sight has just started to load a super-mega-hyper-dyper laser cannon.",
+	"Marian's odor reminds you of an oriental brothel! What an intrusive perfume is she using, anyway?",
 
 };
 

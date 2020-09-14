@@ -1998,7 +1998,7 @@ convertdone:
 	}
 
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
-		switch (rnd(9)) {
+		switch (rnd(10)) {
 
 			case 1:
 				pline("Urgh! You inhale the vile stench that emanates from %s!", mon_nam(mtmp));
@@ -2026,6 +2026,9 @@ convertdone:
 				break;
 			case 9:
 				pline("%s's perfume is so scentful that %s reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh!", Monnam(mtmp), mhe(mtmp));
+				break;
+			case 10:
+				pline("%s's odor reminds you of an oriental brothel! What an intrusive perfume is %s using, anyway?", Monnam(mtmp), mhe(mtmp));
 				break;
 
 		}
