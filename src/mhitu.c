@@ -4519,6 +4519,27 @@ elena37:
 
 	}
 
+	if (FemtrapActiveAlmut && humanoid(mtmp->data) && is_female(mtmp->data)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_KICK;
+		a->adtyp = AD_GLIB;
+		a->damn = 1;
+		a->damd = 1;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_radiator) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];

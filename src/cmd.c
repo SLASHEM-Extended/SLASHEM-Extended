@@ -5384,6 +5384,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && FemtrapActiveAlmut) {
+		sprintf(buf, "possessed by the ghost of Almut.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapAlmut);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveJulietta) {
+		sprintf(buf, "possessed by the ghost of Julietta.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapJulietta);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && Race_if(PM_PERVERT)) {
 		sprintf(buf, "had sex the last time this many turns ago:");
 		sprintf(eos(buf), " %d", u.pervertsex);
@@ -9295,6 +9307,18 @@ int final;
 	if (FemtrapActiveLou) {
 		sprintf(buf, "possessed by the ghost of Lou.");
 	      sprintf(eos(buf), " (%ld)", FemaleTrapLou);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveAlmut) {
+		sprintf(buf, "possessed by the ghost of Almut.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapAlmut);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveJulietta) {
+		sprintf(buf, "possessed by the ghost of Julietta.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapJulietta);
 		dump(youwere, buf);
 	}
 

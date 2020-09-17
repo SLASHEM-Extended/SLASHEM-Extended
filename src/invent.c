@@ -1494,6 +1494,18 @@ have_femtraplou()
 	return(FALSE);
 }
 
+have_femtrapalmut()
+{
+	if (feminizecheck(29)) return TRUE;
+	return(FALSE);
+}
+
+have_femtrapjulietta()
+{
+	if (feminizecheck(30)) return TRUE;
+	return(FALSE);
+}
+
 boolean
 have_primecurse()
 {

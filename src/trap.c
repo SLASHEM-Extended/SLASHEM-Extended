@@ -11963,6 +11963,43 @@ madnesseffect:
 
 		 break;
 
+		 case ALMUT_TRAP:
+
+			if (FemaleTrapAlmut) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Almut.");
+			pline("The girls feel like kicking your hands bloodily with their sneakers!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapAlmut = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapAlmut += 100;
+			if (!rn2(3)) FemaleTrapAlmut += rnz(500);
+
+		 break;
+
+		 case JULIETTA_TRAP:
+
+			if (FemaleTrapJulietta) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Julietta.");
+			pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJulietta = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJulietta += 100;
+			if (!rn2(3)) FemaleTrapJulietta += rnz(500);
+
+			pline("Julietta rolls the dice to randomly select a punishment for you...");
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+
+		 break;
+
 		 case ANASTASIA_TRAP:
 
 			if (FemaleTrapAnastasia) break;
@@ -16058,6 +16095,8 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case KARIN_TRAP:
 		case JUEN_TRAP:
 		case KRISTINA_TRAP:
+		case ALMUT_TRAP:
+		case JULIETTA_TRAP:
 		case LOU_TRAP:
 		case ANASTASIA_TRAP:
 		case FILLER_TRAP:

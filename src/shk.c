@@ -4068,6 +4068,8 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != KARIN_TRAP
 				&& ttmp->ttyp != JUEN_TRAP
 				&& ttmp->ttyp != KRISTINA_TRAP
+				&& ttmp->ttyp != ALMUT_TRAP
+				&& ttmp->ttyp != JULIETTA_TRAP
 				&& ttmp->ttyp != LOU_TRAP
 				&& ttmp->ttyp != ANASTASIA_TRAP
 				&& ttmp->ttyp != FILLER_TRAP

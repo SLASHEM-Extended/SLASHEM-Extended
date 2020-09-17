@@ -1293,6 +1293,8 @@ E boolean have_femtrapkarin(void);
 E boolean have_femtrapjuen(void);
 E boolean have_femtrapkristina(void);
 E boolean have_femtraplou(void);
+E boolean have_femtrapalmut(void);
+E boolean have_femtrapjulietta(void);
 
 E boolean have_primecurse(void);
 

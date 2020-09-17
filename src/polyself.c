@@ -2002,6 +2002,8 @@ dospinweb()
 		case KARIN_TRAP:
 		case JUEN_TRAP:
 		case KRISTINA_TRAP:
+		case ALMUT_TRAP:
+		case JULIETTA_TRAP:
 		case LOU_TRAP:
 		case ANASTASIA_TRAP:
 		case FILLER_TRAP:

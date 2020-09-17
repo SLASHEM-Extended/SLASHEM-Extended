@@ -5171,6 +5171,11 @@ controlagain:
 			pline("Eww, your cigarettes stink ten miles against the wind!");
 		}
 
+		if (FemtrapActiveJulietta && !rn2(2000)) {
+			pline("Julietta rolls the dice to randomly select a punishment for you...");
+			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+		}
+
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 		/* feminist aggravation idea by bugsniper */
 
@@ -5327,7 +5332,7 @@ newbossF:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(28); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(30); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 

@@ -25486,6 +25486,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Ludgera'. It reads: 'Nobody will ever figure out that my hideout also houses the secret entrance.'",
 	"Incoming message for Player 1. The message is from 'Katharina'. It reads: 'I'm still a virgin. Please forgive me for acting like one.'",
 	"Incoming message for Player 1. The message is from 'Katharina'. It reads: 'I'm a young woman. You should respect me and accomodate for my needs.'",
+	"Apparently you managed to save yourself from the bloodthirsty girl turn shoes.",
+	"It seems that Julietta finally got bored and decides to annoy other people instead of you.",
+	"The girls feel like kicking your hands bloodily with their sneakers!",
+	"Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.",
+	"Julietta rolls the dice to randomly select a punishment for you...",
+	"Julietta rolls the dice to randomly select a punishment for you... You're shackled! Now the only thing you can do is hope that she frees you again, but she's actually in the mood to kill you instead!",
 
 };
 

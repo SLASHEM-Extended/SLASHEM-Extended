@@ -2550,6 +2550,18 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_ALMUT:
+
+			pline("Apparently you managed to save yourself from the bloodthirsty girl turn shoes.");
+
+		 break;
+
+		 case FEMTRAP_JULIETTA:
+
+			pline("It seems that Julietta finally got bored and decides to annoy other people instead of you.");
+
+		 break;
+
 		case SICK:
 
 			if (Role_if(PM_COOK) && rn2(2)) {

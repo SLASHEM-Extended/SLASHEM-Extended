@@ -13771,6 +13771,12 @@ selecttrap:
 		    case LOU_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case ALMUT_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case JULIETTA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
 
 		    case PREMATURE_DEATH_TRAP:
 			if (rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap;

@@ -1629,6 +1629,12 @@ selecttrap:
 		    case LOU_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case ALMUT_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case JULIETTA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap;
+			break;
 
 		    case PREMATURE_DEATH_TRAP:
 			if (rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap;
@@ -2064,6 +2070,8 @@ selecttrap2:
 	      if (rtrap == JUEN_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == KRISTINA_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == LOU_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == ALMUT_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(5) && !NastyTrapNation) goto selecttrap2;
+	      if (rtrap == JULIETTA_TRAP && !Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && rn2(10) && !NastyTrapNation) goto selecttrap2;
 
 	      if (rtrap == PREMATURE_DEATH_TRAP && rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap2;
 	      if (rtrap == RAGNAROK_TRAP && rn2(evilfriday ? 64 : 640) && !NastyTrapNation) goto selecttrap2;

@@ -598,8 +598,11 @@ extern struct trap *ftrap;
 #define KRISTINA_TRAP 516
 #define LOU_TRAP 517
 
-#define TIMERUN_TRAP	518
+#define ALMUT_TRAP 518
+#define JULIETTA_TRAP 519
 
-#define TRAPNUM 519
+#define TIMERUN_TRAP	520
+
+#define TRAPNUM 521
 
 #endif /* TRAP_H */

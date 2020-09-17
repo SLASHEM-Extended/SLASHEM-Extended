@@ -1657,7 +1657,7 @@ randenchantment()
 		case 170:
 		case 171:
 		case 172:
-			switch (rnd(28)) {
+			switch (rnd(30)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -1686,6 +1686,8 @@ randenchantment()
 			case 26: return FEMTRAP_JUEN;
 			case 27: return FEMTRAP_KRISTINA;
 			case 28: return FEMTRAP_LOU;
+			case 29: return FEMTRAP_ALMUT;
+			case 30: return FEMTRAP_JULIETTA;
 			default: return POISON_RES;
 			}
 		case 173:
@@ -3572,7 +3574,7 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	switch (rnd(28)) {
+	switch (rnd(30)) {
 		case 1:
 			pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -3684,6 +3686,14 @@ int duration;
 		case 28:
 			pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
 			FemaleTrapLou += duration;
+			break;
+		case 29:
+			pline("The girls feel like kicking your hands bloodily with their sneakers!");
+			FemaleTrapAlmut += duration;
+			break;
+		case 30:
+			pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
+			FemaleTrapJulietta += duration;
 			break;
 	}
 }
