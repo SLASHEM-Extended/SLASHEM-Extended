@@ -2894,7 +2894,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 		 ((is_moorland(nx,ny)) || (is_urinelake(nx,ny)) && rn2(2)) ||
 		 (is_shiftingsand(nx,ny) && wantpool) ||
 		 (is_lava(nx,ny) && wantlava) || (is_styxriver(nx,ny) && wantlava) || poolok) &&
-	       (lavaok || wantlava || (!is_lava(nx,ny) && !is_styxriver(nx,ny)) )) {
+	       (lavaok || wantlava || (!is_lava(nx,ny) ) )) {
 		int dispx, dispy;
 		boolean monseeu = (mon->mcansee && (!Invis || perceives(mdat) || (!StrongInvis && rn2(3)) ));
 		boolean checkobj = OBJ_AT(nx,ny);
