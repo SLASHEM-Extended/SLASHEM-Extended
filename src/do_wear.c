@@ -941,6 +941,14 @@ Cloak_on()
 	case DUMMY_CLOAK_AJ:
 	case DUMMY_CLOAK_AK:
 	case DUMMY_CLOAK_AL:
+	case DUMMY_CLOAK_AM:
+	case DUMMY_CLOAK_AN:
+	case DUMMY_CLOAK_AO:
+	case DUMMY_CLOAK_AP:
+	case DUMMY_CLOAK_AQ:
+	case DUMMY_CLOAK_AR:
+	case DUMMY_CLOAK_AS:
+	case DUMMY_CLOAK_AT:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -1398,6 +1406,14 @@ Cloak_off()
 	case DUMMY_CLOAK_AJ:
 	case DUMMY_CLOAK_AK:
 	case DUMMY_CLOAK_AL:
+	case DUMMY_CLOAK_AM:
+	case DUMMY_CLOAK_AN:
+	case DUMMY_CLOAK_AO:
+	case DUMMY_CLOAK_AP:
+	case DUMMY_CLOAK_AQ:
+	case DUMMY_CLOAK_AR:
+	case DUMMY_CLOAK_AS:
+	case DUMMY_CLOAK_AT:
 	case ANTI_DISQUIET_CLOAK:
 	case HUGGING_GOWN:
 	case COCLOAK:
@@ -1810,6 +1826,15 @@ Helmet_on()
 	case DUMMY_HELMET_S:
 	case DUMMY_HELMET_T:
 	case DUMMY_HELMET_U:
+	case DUMMY_HELMET_V:
+	case DUMMY_HELMET_W:
+	case DUMMY_HELMET_X:
+	case DUMMY_HELMET_Y:
+	case DUMMY_HELMET_Z:
+	case DUMMY_HELMET_AA:
+	case DUMMY_HELMET_AB:
+	case DUMMY_HELMET_AC:
+	case DUMMY_HELMET_AD:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
 	default: impossible(unknown_type_long, c_helmet, uarmh->otyp);
@@ -2040,6 +2065,15 @@ Helmet_off()
 	case DUMMY_HELMET_S:
 	case DUMMY_HELMET_T:
 	case DUMMY_HELMET_U:
+	case DUMMY_HELMET_V:
+	case DUMMY_HELMET_W:
+	case DUMMY_HELMET_X:
+	case DUMMY_HELMET_Y:
+	case DUMMY_HELMET_Z:
+	case DUMMY_HELMET_AA:
+	case DUMMY_HELMET_AB:
+	case DUMMY_HELMET_AC:
+	case DUMMY_HELMET_AD:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
@@ -2203,6 +2237,27 @@ Gloves_on()
 	case DUMMY_GLOVES_J:
 	case DUMMY_GLOVES_K:
 	case DUMMY_GLOVES_L:
+	case DUMMY_GLOVES_M:
+	case DUMMY_GLOVES_N:
+	case DUMMY_GLOVES_O:
+	case DUMMY_GLOVES_P:
+	case DUMMY_GLOVES_Q:
+	case DUMMY_GLOVES_R:
+	case DUMMY_GLOVES_S:
+	case DUMMY_GLOVES_T:
+	case DUMMY_GLOVES_U:
+	case DUMMY_GLOVES_V:
+	case DUMMY_GLOVES_W:
+	case DUMMY_GLOVES_X:
+	case DUMMY_GLOVES_Y:
+	case DUMMY_GLOVES_Z:
+	case DUMMY_GLOVES_AA:
+	case DUMMY_GLOVES_AB:
+	case DUMMY_GLOVES_AC:
+	case DUMMY_GLOVES_AD:
+	case DUMMY_GLOVES_AE:
+	case DUMMY_GLOVES_AF:
+	case DUMMY_GLOVES_AG:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -2453,6 +2508,27 @@ Gloves_off()
 	case DUMMY_GLOVES_J:
 	case DUMMY_GLOVES_K:
 	case DUMMY_GLOVES_L:
+	case DUMMY_GLOVES_M:
+	case DUMMY_GLOVES_N:
+	case DUMMY_GLOVES_O:
+	case DUMMY_GLOVES_P:
+	case DUMMY_GLOVES_Q:
+	case DUMMY_GLOVES_R:
+	case DUMMY_GLOVES_S:
+	case DUMMY_GLOVES_T:
+	case DUMMY_GLOVES_U:
+	case DUMMY_GLOVES_V:
+	case DUMMY_GLOVES_W:
+	case DUMMY_GLOVES_X:
+	case DUMMY_GLOVES_Y:
+	case DUMMY_GLOVES_Z:
+	case DUMMY_GLOVES_AA:
+	case DUMMY_GLOVES_AB:
+	case DUMMY_GLOVES_AC:
+	case DUMMY_GLOVES_AD:
+	case DUMMY_GLOVES_AE:
+	case DUMMY_GLOVES_AF:
+	case DUMMY_GLOVES_AG:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
