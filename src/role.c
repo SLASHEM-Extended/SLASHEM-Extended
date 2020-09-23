@@ -5939,7 +5939,7 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
-{	"etheraloid", "etheraloidic", "etheraloid-kind", "Eth",
+{	"etherealoid", "etherealoidic", "etherealoid-kind", "Eth",
 	{0, 0},
 	PM_ETHEREALOID, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
@@ -6650,6 +6650,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  0, 2 },	/* Hit points */
 	{  0, 0,  10, 0, 10, 0 },		/* Energy */
+},
+{	"incorporealoid", "incorporealoidic", "incorporealoid-kind", "Ico",
+	{0, 0},
+	PM_INCORPOREALOID, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC|MH_ELF|MH_HUMAN|MH_DWARF|MH_HOBBIT|MH_WERE|MH_VAMPIRE,
+	/*  Str    Int Wis Dex Con Cha */
+	{    3,     3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{   18,    18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  3, 0,  3, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"indraenian", "indraenian", "indraenia", "Ind",
 	{0, 0},

@@ -227,6 +227,7 @@ register struct obj *obj;
 
 	/* and also Demo's etherealoid */
 	if (Race_if(PM_ETHEREALOID) && !Upolyd) return 0;
+	if (Race_if(PM_INCORPOREALOID) && !Upolyd) return 0;
 
 	/* Spirits can't eat corpses --Amy */
 	if (Race_if(PM_SPIRIT) && obj->otyp == CORPSE && !Upolyd) return 0;

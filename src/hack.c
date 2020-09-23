@@ -1442,7 +1442,7 @@ walscholardone:
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_INCORPOREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;

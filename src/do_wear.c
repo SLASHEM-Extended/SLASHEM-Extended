@@ -4488,6 +4488,12 @@ boolean noisy;
 		return 0;
 	}
 
+	if (Race_if(PM_INCORPOREALOID) && !Upolyd && (is_boots(otmp) || is_gloves(otmp) || is_shield(otmp) || is_cloak(otmp) || is_helmet(otmp) || is_suit(otmp) || is_shirt(otmp))) {
+		if (noisy) pline("Too bad! As an incorporealoid, you cannot wear armor.");
+		/* and since you cannot polymorph, well... --Amy */
+		return 0;
+	}
+
 	if (!is_cloak(otmp) && !is_boots(otmp) && !(otmp->oartifact == ART_ELONA_S_SNAIL_TRAIL) && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
 		if (noisy) pline("As a snail, the only types of armor you can wear are cloaks and boots.");
 		return 0;
@@ -5047,6 +5053,7 @@ find_ac()
 
 	if (Race_if(PM_HUMAN_WRAITH)) uac -= u.ulevel;
 	if (Race_if(PM_ETHEREALOID)) uac -= u.ulevel;
+	if (Race_if(PM_INCORPOREALOID)) uac -= u.ulevel;
 	if (Race_if(PM_TURTLE)) uac -= u.ulevel;
 	if (Race_if(PM_LOWER_ENT)) uac -= u.ulevel;
 	if (Race_if(PM_KUTAR)) uac -= (u.ulevel / 3);

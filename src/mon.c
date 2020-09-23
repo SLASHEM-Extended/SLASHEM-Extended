@@ -5810,6 +5810,7 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (Race_if(PM_ETHEREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
+	if (Race_if(PM_INCORPOREALOID) && !rn2(2)) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	/* Demo wants a complicated calculation for how many HP the etherealoid gains from a kill... I took the easy way out */
 
 	if (uwep && uwep->oartifact == ART_GOLDIFICATION && mtmp->m_lev > 0) {

@@ -315,6 +315,9 @@ boolean forcecontrol;
 		newman();
 		return;
 	}
+	if (Race_if(PM_INCORPOREALOID)) { /* cannot polymorph at all, because amateurhour wants it so --Amy */
+		return;
+	}
 	/* and you should be grateful, because in vanilla the game would just have ended... */
 
 	/* [Tom] I made the chance of dying from Con check only possible for

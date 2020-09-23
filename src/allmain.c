@@ -9401,12 +9401,12 @@ newboss:
 			else if (Regeneration ||
 				    (wtcap < MOD_ENCUMBER && !(moves%/*20*/regenrate))) {
 			    flags.botl = 1;
-				if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+				if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 				}
-				if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+				if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -9484,7 +9484,7 @@ newboss:
   				if (heal > efflev-9) heal = efflev-9;
 			    }
 			    flags.botl = 1;
-			    if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp += heal;
 					if (Race_if(PM_PIERCER)) u.uhp += heal;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -9493,12 +9493,12 @@ newboss:
 			     (efflev <= 9 &&
 			      !(moves % ((MAXULEV+12) / (GushLevel+2) + 1)))) {
 			    flags.botl = 1;
-			    if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp++;
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
-			    if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp++;
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -9514,25 +9514,25 @@ newboss:
 
 		    }
 
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.uhp += rnd(5 + (GushLevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.mh += rnd(5 + (GushLevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) ) {
 				u.uhp++;
 				if (Race_if(PM_PIERCER)) u.uhp++;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) && Upolyd ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) && Upolyd ) {
 				u.mh++;
 				if (Race_if(PM_PIERCER)) u.mh++;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -9540,13 +9540,13 @@ newboss:
 			}
 
 			/* nice patch addition by Amy - sometimes regenerate more */
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.uhp += rnz(2 + GushLevel);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.mh += rnz(2 + GushLevel);
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -10616,6 +10616,7 @@ past3:
 
 	/* etherealoid should have xray vision; doesn't stack with artifacts */
 	if (Race_if(PM_ETHEREALOID)) u.xray_range = 3;
+	if (Race_if(PM_INCORPOREALOID)) u.xray_range = 3;
 
 	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
