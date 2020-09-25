@@ -1153,7 +1153,7 @@ moveloop()
 				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1456,7 +1456,7 @@ moveloop()
 			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -6977,7 +6977,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !Flying && !Levitation) {
+		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
 			Norep("Walking on paved floor makes lots of noise.");
 			wake_nearby();
 

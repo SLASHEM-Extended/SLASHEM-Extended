@@ -3317,6 +3317,7 @@ E void uswapwepgone(void);
 E void uqwepgone(void);
 E void untwoweapon(void);
 E void erode_obj(struct obj *,BOOLEAN_P,BOOLEAN_P);
+E void wither_obj(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E int chwepon(struct obj *,int);
 E int welded(struct obj *);
 E void weldmsg(struct obj *);

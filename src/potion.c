@@ -1168,7 +1168,7 @@ playerwearshighheels()
 
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
-	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf && RngeIrregularity) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == HIGH_SCORING_HEELS)) return TRUE;
+	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf && RngeIrregularity) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == HIGH_SCORING_HEELS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1186,6 +1186,8 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_ANKLE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SHADOWY_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_DYKE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_EROTIC_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_ORGASM_PUMPS)) return TRUE;
@@ -1196,7 +1198,10 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_SKI_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FEELGOOD_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FETISH_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ANKLE_STRAP_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FILIGREE_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BONE_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_LOLITA_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
@@ -1276,7 +1281,7 @@ struct obj *otmp;
 {
 	if (!otmp) return FALSE;
 
-	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == LADY_BOOTS || (otmp)->otyp == ITALIAN_HEELS || (otmp)->otyp == STILETTO_SANDALS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS) return TRUE;
+	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == EVELINE_WEDGE_SANDALS || (otmp)->otyp == MADELEINE_PLATEAU_BOOTS || (otmp)->otyp == KATHARINA_PLATFORM_BOOTS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == WENDY_LEATHER_PUMPS || (otmp)->otyp == NELLY_LADY_PUMPS || (otmp)->otyp == CLAUDIA_WOODEN_SANDALS || (otmp)->otyp == SANDRA_COMBAT_BOOTS || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == JUEN_PEEP_TOES || (otmp)->otyp == JULIETTA_PEEP_TOES || (otmp)->otyp == FEMMY_STILETTO_BOOTS || (otmp)->otyp == LADY_BOOTS || (otmp)->otyp == ELENA_COMBAT_BOOTS || (otmp)->otyp == NADJA_BUCKLED_LADY_SHOES || (otmp)->otyp == THAI_COMBAT_BOOTS || (otmp)->otyp == MELTEM_COMBAT_BOOTS || (otmp)->otyp == NATALJE_BLOCK_HEEL_SANDALS || (otmp)->otyp == ITALIAN_HEELS || (otmp)->otyp == STILETTO_SANDALS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS) return TRUE;
 
 	if (OBJ_DESCR(objects[otmp->otyp])) {
 		if (itemhasappearance(otmp, APP_IRREGULAR_BOOTS)) return TRUE;
@@ -1293,6 +1298,8 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_ANKLE_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SHADOWY_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_DYKE_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_BEAUTIFUL_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_EROTIC_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_ORGASM_PUMPS)) return TRUE;
@@ -1303,7 +1310,10 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_SKI_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_FEELGOOD_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_FETISH_HEELS)) return TRUE;
+		if (itemhasappearance(otmp, APP_ANKLE_STRAP_SANDALS)) return TRUE;
+		if (itemhasappearance(otmp, APP_FILIGREE_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_VELVET_PUMPS)) return TRUE;
+		if (itemhasappearance(otmp, APP_BONE_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_BUFFALO_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_LOLITA_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
@@ -1321,7 +1331,7 @@ boolean
 ishighheeledb(number)
 int number;
 {
-	if (number == WEDGE_SANDALS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == ITALIAN_HEELS || number == LADY_BOOTS || number == STILETTO_SANDALS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS) return TRUE;
+	if (number == WEDGE_SANDALS || number == EVELINE_WEDGE_SANDALS || number == MADELEINE_PLATEAU_BOOTS || number == KATHARINA_PLATFORM_BOOTS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == WENDY_LEATHER_PUMPS || number == NELLY_LADY_PUMPS || number == CLAUDIA_WOODEN_SANDALS || number == SANDRA_COMBAT_BOOTS || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == JUEN_PEEP_TOES || number == JULIETTA_PEEP_TOES || number == FEMMY_STILETTO_BOOTS || number == ITALIAN_HEELS || number == LADY_BOOTS || number == ELENA_COMBAT_BOOTS || number == NADJA_BUCKLED_LADY_SHOES || number == THAI_COMBAT_BOOTS || number == MELTEM_COMBAT_BOOTS || number == NATALJE_BLOCK_HEEL_SANDALS || number == STILETTO_SANDALS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS) return TRUE;
 
 	if (OBJ_DESCR(objects[number])) {
 
@@ -1339,6 +1349,8 @@ int number;
 		if (itemnumwithappearance(number, APP_ANKLE_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SHADOWY_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_DYKE_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_BEAUTIFUL_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_EROTIC_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_ORGASM_PUMPS)) return TRUE;
@@ -1349,7 +1361,10 @@ int number;
 		if (itemnumwithappearance(number, APP_SKI_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_FEELGOOD_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_FETISH_HEELS)) return TRUE;
+		if (itemnumwithappearance(number, APP_ANKLE_STRAP_SANDALS)) return TRUE;
+		if (itemnumwithappearance(number, APP_FILIGREE_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_VELVET_PUMPS)) return TRUE;
+		if (itemnumwithappearance(number, APP_BONE_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_BUFFALO_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_LOLITA_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
@@ -1371,7 +1386,7 @@ playerwearssexyflats()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
+	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1400,6 +1415,8 @@ playerwearssexyflats()
 		if (itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_KOREAN_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_GENTLE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FLUFFY_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_UNISEX_PUMPS)) return TRUE;
 
 	}
 
@@ -1413,7 +1430,7 @@ maybestilettoheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == KILLER_HEELS)) return TRUE;
+	if ((uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == KILLER_HEELS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1423,6 +1440,8 @@ maybestilettoheels()
 		if (itemhasappearance(uarmf, APP_SHARP_EDGED_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PRINTED_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FETISH_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_ANKLE_STRAP_SANDALS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_FILIGREE_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) return TRUE;
 
 	}
@@ -1437,7 +1456,7 @@ maybeconeheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == FEMININE_PUMPS) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS)) return TRUE;
+	if ((uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1451,6 +1470,7 @@ maybeconeheels()
 		if (itemhasappearance(uarmf, APP_FEELGOOD_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_FEMMY_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_VELVET_PUMPS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_BONE_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SEXY_HEELS)) return TRUE;
 
 	}
@@ -1465,12 +1485,14 @@ maybeblockheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == HIGH_SCORING_HEELS)) return TRUE;
+	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == HIGH_SCORING_HEELS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
 		if (itemhasappearance(uarmf, APP_CLUNKY_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_DYKE_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PLOF_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_EROTIC_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SPUTA_BOOTS)) return TRUE;
@@ -1489,7 +1511,7 @@ maybewedgeheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == HIGH_HEELED_SKIERS)) return TRUE;
+	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == HIGH_HEELED_SKIERS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 

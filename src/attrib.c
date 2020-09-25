@@ -2702,6 +2702,9 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_BUSINESS_SHOES)) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) tmp -= 5;
+		if (uarmf && itemhasappearance(uarmf, APP_UGLY_BOOTS)) tmp -= 2;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 

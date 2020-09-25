@@ -721,7 +721,7 @@ register struct monst *mtmp;
 
 	if (is_table(u.ux, u.uy)) tmp += 3;
 
-	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(20);

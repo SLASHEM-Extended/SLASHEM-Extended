@@ -1221,6 +1221,103 @@ boolean fade_scrolls;
 	}
 }
 
+void
+wither_obj(target, acid_dmg, fade_scrolls)
+struct obj *target;
+boolean acid_dmg;
+boolean fade_scrolls;
+{
+	int erosion;
+	struct monst *victim;
+	boolean vismon;
+	boolean visobj;
+
+	if (!target)
+	    return;
+	victim = carried(target) ? &youmonst :
+	    mcarried(target) ? target->ocarry : (struct monst *)0;
+	vismon = victim && (victim != &youmonst) && canseemon(victim);
+	visobj = !victim && cansee(bhitpos.x, bhitpos.y); /* assume thrown */
+
+	erosion = (rn2(2) ? target->oeroded2 : target->oeroded);
+
+	if (stack_too_big(target)) return;
+
+	if (target->oartifact && rn2(4)) return;
+
+	if (itemhasappearance(target, APP_BRAND_NEW_GLOVES) && rn2(4) ) return;
+
+	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
+
+	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
+
+	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;
+
+	if (target->greased && (!issoviet || !rn2(2)) ) {
+	    grease_protect(target,(char *)0,victim);
+	} else if (target->oclass == SCROLL_CLASS) {
+	    if(fade_scrolls && target->otyp != SCR_BLANK_PAPER && !target->oartifact && target->otyp != SCR_HEALING && target->otyp != SCR_EXTRA_HEALING && target->otyp != SCR_STANDARD_ID && target->otyp != SCR_HEAL_OTHER && target->otyp != SCR_MANA && target->otyp != SCR_GREATER_MANA_RESTORATION && target->otyp != SCR_CURE && target->otyp != SCR_PHASE_DOOR
+#ifdef MAIL
+	    && target->otyp != SCR_MAIL
+#endif
+					)
+	    {
+		if (!Blind) {
+		    if (victim == &youmonst)
+			Your("%s.", aobjnam(target, "fade"));
+		    else if (vismon)
+			pline("%s's %s.", Monnam(victim),
+			      aobjnam(target, "fade"));
+		    else if (visobj)
+			pline_The("%s.", aobjnam(target, "fade"));
+		}
+		target->otyp = SCR_BLANK_PAPER;
+		target->spe = 0;
+	    }
+	} else if (is_unwitherable(target) || (Race_if(PM_CHIQUAI) && rn2(4)) ) {
+	    if (flags.verbose || !(target->oerodeproof && target->rknown)) {
+		if (victim == &youmonst)
+		    Your("%s not affected.", aobjnam(target, "are"));
+		else if (vismon)
+		    pline("%s's %s not affected.", Monnam(victim),
+			aobjnam(target, "are"));
+		/* no message if not carried */
+	    }
+	    if (target->oerodeproof) target->rknown = TRUE;
+	} else if (erosion < MAX_ERODE) {
+	    if (victim == &youmonst) {
+		Your("%s%s!", aobjnam(target, acid_dmg ? "corrode" : "rust"),
+		    erosion+1 == MAX_ERODE ? " completely" :
+		    erosion ? " further" : "");
+		if (issoviet && target->greased) pline("Sovetskiy khochet vash detal' byt' povrezhden, nesmotrya na smazku, potomu chto on takoy mudak!");
+	    } else if (vismon)
+		pline("%s's %s%s!", Monnam(victim),
+		    aobjnam(target, acid_dmg ? "corrode" : "rust"),
+		    erosion+1 == MAX_ERODE ? " completely" :
+		    erosion ? " further" : "");
+	    else if (visobj)
+		pline_The("%s%s!",
+		    aobjnam(target, acid_dmg ? "corrode" : "rust"),
+		    erosion+1 == MAX_ERODE ? " completely" :
+		    erosion ? " further" : "");
+	    if (acid_dmg)
+		target->oeroded2++;
+	    else
+		target->oeroded++;
+	} else {
+
+		    if (victim == &youmonst && !hard_to_destruct(target) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) ) {
+			pline("One of your items got vaporized!"),
+			remove_worn_item(target, FALSE);
+			if (target == uball) unpunish();
+			useupall(target);
+			uwepgone();
+			update_inventory();
+		    }
+
+	}
+}
+
 int
 chwepon(otmp, amount)
 register struct obj *otmp;

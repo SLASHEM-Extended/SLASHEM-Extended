@@ -25494,6 +25494,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Julietta rolls the dice to randomly select a punishment for you... You're shackled! Now the only thing you can do is hope that she frees you again, but she's actually in the mood to kill you instead!",
 	"You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.",
 	"Oh no, the master of nasty traps is laying out her snares to get you!",
+	"Lydia scratches your butt-ugly business shoes with her high heels.",
+	"Lydia scratches your butt-ugly business shoes with her high heels. Serves you right for wearing them, you should don some good-looking pair instead.",
+	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse.",
+	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse. (Thank you, Captain Obvious.)",
 
 };
 

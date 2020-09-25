@@ -300,6 +300,15 @@ karinrepeat:
 			}
 
 			struct obj *footwear = which_armor(mtmp, W_ARMF);
+
+			if (uarmf && itemhasappearance(uarmf, APP_BUSINESS_SHOES) && humanoid(mtmp->data) && is_female(mtmp->data) && footwear && ishighheeled(footwear)) {
+				pline("%s scratches your butt-ugly business shoes with her high heels.", Monnam(mtmp));
+				if (FunnyHallu) pline("Serves you right for wearing them, you should don some good-looking pair instead.");
+				if (uarmf) wither_obj(uarmf, TRUE, FALSE);
+
+			}
+
+
 			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == WEDGE_SANDALS) || mtmp->data == &mons[PM_ANIMATED_WEDGE_SANDAL] || mtmp->data == &mons[PM_WEREWEDGESANDAL] || mtmp->data == &mons[PM_HUMAN_WEREWEDGESANDAL]) ) {
 elenaWDG:
 				u.cnd_shoedamageamount++;
