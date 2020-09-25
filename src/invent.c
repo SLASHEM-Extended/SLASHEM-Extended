@@ -1507,6 +1507,13 @@ have_femtrapjulietta()
 }
 
 boolean
+have_femtraparabella()
+{
+	if (feminizecheck(31)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;

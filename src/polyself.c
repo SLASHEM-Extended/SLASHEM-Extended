@@ -2000,6 +2000,7 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case ARABELLA_TRAP:
 		case NELLY_TRAP:
 		case EVELINE_TRAP:
 		case KARIN_TRAP:

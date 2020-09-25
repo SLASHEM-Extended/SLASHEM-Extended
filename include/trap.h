@@ -600,9 +600,10 @@ extern struct trap *ftrap;
 
 #define ALMUT_TRAP 518
 #define JULIETTA_TRAP 519
+#define ARABELLA_TRAP 520
 
-#define TIMERUN_TRAP	520
+#define TIMERUN_TRAP	521
 
-#define TRAPNUM 521
+#define TRAPNUM 522
 
 #endif /* TRAP_H */

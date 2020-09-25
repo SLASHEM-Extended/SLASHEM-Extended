@@ -1547,6 +1547,7 @@ struct you {
 	boolean polyprotected;
 
 	boolean wingyellowhack;
+	boolean arabellahack;
 
 	boolean captchahack;
 

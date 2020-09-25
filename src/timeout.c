@@ -2400,6 +2400,12 @@ nh_timeout()
 
 		 break;
 
+		 case FEMTRAP_ARABELLA:
+
+			pline("You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.");
+
+		 break;
+
 		 case FEMTRAP_SARAH:
 
 			pline("Apparently the farting gas is depleted.");

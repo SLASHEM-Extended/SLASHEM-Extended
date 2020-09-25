@@ -2626,7 +2626,7 @@ SHIELD("shield of reflection", "polished silver shield",
 BOOTS("plasteel boots", "white boots", /* these things were crashing the game for binders and certain other chars! */
 		0, 0,  0,         10, 2, 2,  25,  8, 9, MT_PLASTIC, CLR_WHITE, 40, 0),
 BOOTS("low boots", "walking shoes",
-		0, 0,  0,	  105, 2, 4,  8,  9, 0, MT_LEATHER, HI_LEATHER, 1, 0),
+		0, 0,  0,	  104, 2, 4,  8,  9, 0, MT_LEATHER, HI_LEATHER, 1, 0),
 BOOTS("iron shoes", "hard shoes",
 		0, 0,  0,	  63, 2, 20, 16,  8, 0, MT_IRON, HI_METAL, 1, 0),
 BOOTS("gnomish boots", "little black boots",
@@ -2892,6 +2892,8 @@ BOOTS("Almut sneakers", "comfortable sneakers",
 		0, 0,  FEMTRAP_ALMUT,   	1, 2, 8, 50, 8, 0, MT_LEATHER, CLR_WHITE, 1, 0),
 BOOTS("Julietta peep-toes", "unisex sneakers",
 		0, 0,  FEMTRAP_JULIETTA,   	1, 2, 8, 50, 9, 5, MT_TAR, CLR_MAGENTA, 1, 0),
+BOOTS("Arabella hugging boots", "bone heels",
+		0, 0,  FEMTRAP_ARABELLA,   	1, 2, 8, 50, 7, 1, MT_BONE, CLR_ORANGE, 1, APP_BONE_HEELS),
 
 BOOTS("high stilettos", "block-heeled boots",
 		0, 1,  0,  50, 2, 8, 50,  9, 1, MT_LEATHER, CLR_BLACK, 10, APP_BLOCK_HEELED_BOOTS),
@@ -6815,6 +6817,8 @@ SCROLL((char *)0,               "YOU MOVED FOR 0DOT2 ST",  P_NONE,     1,   0, 3
 SCROLL((char *)0,               "I WEAR NOTHING EXCEPT WEDGE SANDALS AND PANTS",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "LOCKE COMES AND DOES EVIL THINGS TO BRIENNE",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "OUI TRES BIEN MERCI BEAUCOUP",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "HAENDE HOCH IHR BAMBINIS",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "SEND SOME ASSASSINS AFTER THE CERSEI MONSTER",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
 
 
 #ifdef MAIL

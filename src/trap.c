@@ -11861,6 +11861,23 @@ madnesseffect:
 
 		 break;
 
+		 case ARABELLA_TRAP:
+
+			if (FemaleTrapArabella) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Arabella.");
+			pline("Oh no, the master of nasty traps is laying out her snares to get you!");
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapArabella = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapArabella += 100;
+			if (!rn2(3)) FemaleTrapArabella += rnz(500);
+
+		 break;
+
 		 case NELLY_TRAP:
 
 			if (FemaleTrapNelly) break;
@@ -16090,6 +16107,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case ARABELLA_TRAP:
 		case NELLY_TRAP:
 		case EVELINE_TRAP:
 		case KARIN_TRAP:

@@ -5332,7 +5332,7 @@ newbossF:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(30); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(31); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -6995,6 +6995,23 @@ newbossB:
 		}
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
 			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0, FALSE);
+		}
+
+		u.arabellahack = 0; /* fail safe */
+		if (FemtrapActiveArabella && !rn2(100)) {
+			u.arabellahack = 1;
+
+			int x, y;
+
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (x && y && isok(x, y) && !(t_at(x, y)) ) {
+				(void) maketrap(x, y, randomtrap(), 0, FALSE);
+				break;
+				}
+			u.arabellahack = 0;
+
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {

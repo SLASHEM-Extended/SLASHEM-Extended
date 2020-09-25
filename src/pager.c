@@ -25492,6 +25492,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.",
 	"Julietta rolls the dice to randomly select a punishment for you...",
 	"Julietta rolls the dice to randomly select a punishment for you... You're shackled! Now the only thing you can do is hope that she frees you again, but she's actually in the mood to kill you instead!",
+	"You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.",
+	"Oh no, the master of nasty traps is laying out her snares to get you!",
 
 };
 
