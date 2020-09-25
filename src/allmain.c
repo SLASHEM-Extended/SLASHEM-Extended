@@ -11622,7 +11622,7 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
-	if (new_game) pline("Message of the day: This is a bleeding-edge development version of SLEX. Playtesters are welcome. You can help me in particular by playing the new roles and races that have been added lately. If you encounter any bugs or weirdness while playing, please notify me, the best way of contacting me is via the #em.slashem.me IRC channel (Freenode). --Amy");
+	if (new_game) pline("Message of the day: There are three new weapon types that were added recently. They are orb, claw and grinder. Not many roles can learn them, but if you do play one that can, feel free to tell me what you think of them! --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
@@ -14349,8 +14349,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.hangupcheat = 0;
 		u.hangupparalysis = 0;
 #else
-		pline("You hanged up during your last session! As an anti-cheat measure, you're paralyzed for a few turns, and your act of hanging up is being tracked. Your dumplog file will show how many times you've hanged up and if your ascension dumplog shows 200 hangups, everyone will know what you've been up to... But as long as you didn't actually try to cheat, there will be no other consequences because I give you the benefit of the doubt (after all, your internet connection might just have died, and it would be unfair to penalize you for that).");
-		pline("But if I discover, by watching your ttyrec, that you were actually cheating, I can also recompile the game with the HANGUPPENALTY flag defined, and then you'll actually start getting severe penalties for every hangup. In really severe cases I might even put your username on a blacklist, meaning that specifically you would get penalties while others would not. So, better be a honest player and then I don't have to take such measures. Anyway, have fun playing!  --Amy");
+		pline("You hanged up during your last session! As an anti-cheat measure, you're paralyzed for a few turns, and your act of hanging up is being tracked. Your dumplog file will show how many times you've hanged up. --Amy");
 		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat", FALSE);
 		u.hangupcheat = 0;
 		u.hangupparalysis = 0;
