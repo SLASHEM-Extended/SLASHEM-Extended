@@ -5375,6 +5375,13 @@ static const char *epitaphs[] = {
 	"dude this game, it's like a fever dream. That trap gave me a feminism curse which meant any feminine creatures made me fart, and the mummy kept stroking me twice per turn unleashing every possible fart effect so I'm just there farting myself to sleep over and over as they're stroking me to death", /* by amateurhour */
 	"Amy a tiny asian girl paralysed me and kicked my shins over and over for ages till I died", /* ditto */
 	"Oh no, I only have one energiud remaining!",
+	"Here lies Eddard Stark the Cunning. Apparently he wasn't cunning enough to predict that the evil monster Cersei would try to kill him.",
+	"Here lies Robb Stark, King of the North. THE Theon took over his kingdom and killed Robb in the process.",
+	"Here lies Julyne Stark's virginity, killed by Locke's penis.",
+	"Here lies King Joffrey the Mad. Julyne Stark slit his throat and the entire kingdom rejoiced.",
+	"Here lies Brienne Stark, who doesn't even exist. Who is that supposed to be? She's not a character from the show. Now Julyne Stark, *she* is a canon character. But Brienne? Never heard of her.",
+	"Here lies Catelyn Stark. The evil Lannister assholes wanted her to die even though she hadn't harmed anyone.",
+	"This is the Game of Thrones mass grave, because everyone dies in the end anyway so we just shoveled all the corpses into one single tomb.",
 
 };
 

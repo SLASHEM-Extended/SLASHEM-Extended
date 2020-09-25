@@ -747,6 +747,9 @@ doread()
 	"super lotsa added sadism hack extended masochism", /* by Demo */
 	"that's the intended way to play slex though isn't it? 'quite high'?", /* by bubbles */
 	"gtfo scrubs goml hit #quit if ur bad sucka get rekt", /* by amateurhour */
+	"House Stark! We will push that evil monster Cersei off the throne and take it for ourselves!",
+	"This shirt is worn by some weirdo who isn't a big fan of House Stark and therefore the shirt shows a golden lion instead.",
+	"Today, the wolf managed to defeat the lion. House Lannister is going DOWN and the Starks will be victorious!",
 
 	    };
 	    char buf[BUFSZ];
