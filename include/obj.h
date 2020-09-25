@@ -420,6 +420,23 @@ struct obj {
 /* Gnomish gear */
 #define is_gnomish_obj(otmp)	(is_gnomish_armor(otmp))
 
+/* items that break when thrown even if you change their material to something else --Amy */
+#define is_vitric(otmp) ((otmp)->otyp == CRYSTAL_SWORD\
+				|| (otmp)->otyp == DIAMOND_SMASHER\
+				|| (otmp)->otyp == LIGHTBULB\
+				|| (otmp)->otyp == DROVEN_BOW\
+				|| (otmp)->otyp == DROVEN_CROSSBOW\
+				|| (otmp)->otyp == BULLETPROOF_CHAINWHIP\
+				|| (otmp)->otyp == DROVEN_DAGGER\
+				|| (otmp)->otyp == OBSIDIAN_AXE\
+				|| (otmp)->otyp == DROVEN_SHORT_SWORD\
+				|| (otmp)->otyp == VOLCANIC_BROADSWORD\
+				|| (otmp)->otyp == DROVEN_GREATSWORD\
+				|| (otmp)->otyp == DROVEN_SPEAR\
+				|| (otmp)->otyp == DROVEN_LANCE\
+				|| (otmp)->otyp == DROVEN_ARROW\
+				|| (otmp)->otyp == DROVEN_BOLT)
+
 /* Light sources */
 #define Is_candle(otmp)	((otmp)->otyp == TALLOW_CANDLE || \
 			 (otmp)->otyp == WAX_CANDLE || \

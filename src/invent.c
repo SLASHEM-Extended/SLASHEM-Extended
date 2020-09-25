@@ -8781,7 +8781,7 @@ boolean knoweverything;
 			case NANO_AXE:
 				pline("A rather strong one-handed axe. It can be used to chop down trees."); break;
 			case OBSIDIAN_AXE:
-				pline("This glass axe does good damage to large monsters. It can be used to chop down trees."); break;
+				pline("This glass axe does good damage to large monsters. It can be used to chop down trees. If you somehow get the bright idea of throwing it, it'll break, even if you changed its material to something else."); break;
 			case SHARP_AXE:
 				pline("It's a rather plain one-handed axe. It can be used to chop down trees."); break;
 			case MOON_AXE:
@@ -8867,7 +8867,7 @@ boolean knoweverything;
 			case BASTERD_SWORD: 
 				pline("This huge fucking sword can make short work of anything that tries to oppose you. However, you have to wield it with two hands."); break;
 			case DROVEN_GREATSWORD: 
-				pline("It doesn't actually bisect enemies, but it deals a ton and a half of damage. Basically, it's like you were wielding a tank. It requires both hands though."); break;
+				pline("It doesn't actually bisect enemies, but it deals a ton and a half of damage. Basically, it's like you were wielding a tank. It requires both hands though. Do not throw it, because it'll break if you do, even if you changed its material to something else."); break;
 			case SCIMITAR: 
 				pline("A light but useful blade, the scimitar can outdamage a standard short sword."); break;
 			case BUBBLETAR:
@@ -8957,7 +8957,7 @@ boolean knoweverything;
 			case JARED_STONE:
 				pline("This orb-class weapon deals rather low damage. It may drain HP or mana from targets."); break;
 			case LIGHTBULB:
-				pline("According to Amy's brother, finding this weapon will save your run because it means you don't have to give up yet even when you were planning to. Apart from that, it's an orb-class weapon that deals mediocre damage and drains HP or mana from the target."); break;
+				pline("According to Amy's brother, finding this weapon will save your run because it means you don't have to give up yet even when you were planning to. Apart from that, it's an orb-class weapon that deals mediocre damage and drains HP or mana from the target. Do not throw it - it'll break if you do!"); break;
 			case HEATH_BALL:
 				pline("For an orb, this thing does relatively good damage, but it's still a rather weak weapon. It may come in handy by draining HP or mana from enemies."); break;
 			case CIGARETTE:
@@ -9563,7 +9563,7 @@ boolean knoweverything;
 			case CROSSBOW:
 				pline("The crossbow is a two-handed ranged weapon that fires bolts, doing respectable damage. Put a stack of bolts in your quiver to fire."); break;
 			case DROVEN_CROSSBOW:
-				pline("A more accurate, one-handed version of the crossbow. Use it to fire bolts at your enemies."); break;
+				pline("A more accurate, one-handed version of the crossbow. Use it to fire bolts at your enemies. Be aware that this weapon is made of vitric material, so it breaks if you for some weird reason throw it."); break;
 			case POWER_CROSSBOW:
 				pline("Two-handed crossbow that can fire more quickly than a regular one, but will hit targets less often."); break;
 			case DEMON_CROSSBOW:
@@ -9573,7 +9573,7 @@ boolean knoweverything;
 			case HELO_CROSSBOW:
 				pline("Want to snipe with a crossbow? Now you can! This thing has a huge range."); break;
 			case DROVEN_BOW:
-				pline("A more accurate, one-handed version of the bow. Use it to fire arrows at your enemies."); break;
+				pline("A more accurate, one-handed version of the bow. Use it to fire arrows at your enemies. Be aware that this weapon is made of vitric material, so it breaks if you for some weird reason throw it."); break;
 			case CROSSBOW_BOLT:
 				pline("This is the ammunition used by crossbows. Put it in your quiver while having a wielded crossbow and fire away. They do solid damage, too."); break;
 			case DROVEN_BOLT:

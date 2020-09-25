@@ -912,6 +912,7 @@ struct obj *obj;			/* only scatter this obj        */
 	    } else if ((scflags & MAY_DESTROY) && (!rn2(10)
 			|| (objects[otmp->otyp].oc_material == MT_GLASS
 			|| objects[otmp->otyp].oc_material == MT_OBSIDIAN
+			|| is_vitric(otmp)
 			|| otmp->otyp == EGG))) {
 		if (breaks(otmp, (xchar)sx, (xchar)sy)) used_up = TRUE;
 	    }

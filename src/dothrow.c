@@ -3044,13 +3044,14 @@ boolean from_invent;
 /*
  * Check to see if obj is going to break, but don't actually break it.
  * Return 0 if the object isn't going to break, 1 if it is.
+ * Amy edit: artifacts no longer completely immune, muahahahaha!
  */
 boolean
 breaktest(obj)
 struct obj *obj;
 {
 	if (obj_resists(obj, 1, 99)) return 0;
-	if ((objects[obj->otyp].oc_material == MT_GLASS || objects[obj->otyp].oc_material == MT_OBSIDIAN) && !obj->oartifact &&
+	if ((objects[obj->otyp].oc_material == MT_GLASS || objects[obj->otyp].oc_material == MT_OBSIDIAN || is_vitric(obj)) && (!obj->oartifact || !rn2(10)) &&
 		obj->oclass != GEM_CLASS)
 	    return 1;
 	switch (obj->oclass == POTION_CLASS ? POT_WATER : obj->otyp) {
