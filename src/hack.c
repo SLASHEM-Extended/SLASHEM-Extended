@@ -2208,6 +2208,13 @@ domove()
 	    }
 	}
 
+	/* fucked up bug where we can reach here even when engulfed and waste a turn... --Amy
+	 * This could crash the game if the player is punished, which we'll prevent by just aborting the player's move */
+	if(u.uswallow) {
+		pline("Caution: You seem to have encountered the bug where moving into an engulfer wastes a turn. In order to attack the monster, prefix your movement with F (shift-f), please. Sorry for the inconvenience. --Amy");
+		return;
+	}
+
 	/* Amy feature: safety question when displacing pets into liquids, impossible to do it to non-pets (too cheesy) */
 	if (mtmp && (displacer || peacedisplacer || mtmp->mtame)) {
 		boolean inpool, inlava;
