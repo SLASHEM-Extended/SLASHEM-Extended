@@ -2387,6 +2387,12 @@ E boolean maybewedgeheels(void);
 E boolean playerextrinsicaggravatemon(void);
 E boolean automore_active(void);
 
+E boolean playerextrinsicfireres(void);
+E boolean playerextrinsiccoldres(void);
+E boolean playerextrinsicshockres(void);
+E boolean playerextrinsicpoisonres(void);
+E boolean playerextrinsicspeed(void);
+
 E boolean itemhasappearance(struct obj *, int);
 E boolean itemnumwithappearance(int, int);
 

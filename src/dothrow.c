@@ -1272,6 +1272,7 @@ boolean hitsroof;
 	if (dmg > 0 && Race_if(PM_RUSMOT)) dmg += 2;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) dmg += 2;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_SNAILHUNT) dmg += 1;
+	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) dmg += 2;
 
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1963,6 +1964,7 @@ boolean polearming;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
 	if (Race_if(PM_SERB)) tmp += 1;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 

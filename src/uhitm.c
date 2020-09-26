@@ -692,6 +692,7 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
+	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -2671,6 +2672,7 @@ int dieroll;
 		if (Race_if(PM_RUSMOT)) tmp += 2;
 		if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_SNAILHUNT) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp += 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

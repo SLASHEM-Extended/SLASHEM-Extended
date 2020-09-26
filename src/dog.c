@@ -1310,7 +1310,7 @@ boolean guaranteed;
 		return((struct monst *)0);
 	}
 
-	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || have_hatestone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) || Role_if(PM_GANG_SCHOLAR) ) {
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || have_hatestone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) || Role_if(PM_GANG_SCHOLAR) ) {
         	pline("%s hates you too much!", Monnam(mtmp));
 		return((struct monst *)0);
 	}

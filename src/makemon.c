@@ -24740,6 +24740,7 @@ loopback:
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_SHOE) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_CONVERT) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_HCALIEN) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(ptr, AD_WEEP) )) ct += 20;
 
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (ptr->msound == MS_STENCH))) ct += 10;
 
@@ -25926,6 +25927,7 @@ int     spc;
 		if ((ischallenger && (mons[last].msound == MS_SHOE) )) num += ((mons[last].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[last].msound == MS_CONVERT) )) num += ((mons[last].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[last].msound == MS_HCALIEN) )) num += ((mons[last].geno & G_FREQ) * 4);
+		if ((uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(&mons[last], AD_WEEP) )) num += 20;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[last].msound == MS_STENCH))) num += 10;
 
@@ -26787,6 +26789,7 @@ int     spc;
 		if ((ischallenger && (mons[first].msound == MS_SHOE) )) num -= ((mons[first].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[first].msound == MS_CONVERT) )) num -= ((mons[first].geno & G_FREQ) * 4);
 		if ((ischallenger && (mons[first].msound == MS_HCALIEN) )) num -= ((mons[first].geno & G_FREQ) * 4);
+		if ((uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && dmgtype(&mons[first], AD_WEEP) )) num -= 20;
 
 		if ((uarmc && uarmc->oartifact == ART_PHEROMONE_CASE && (mons[first].msound == MS_STENCH))) num -= 10;
 
@@ -27676,6 +27679,7 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) return FALSE;
 	if (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) return FALSE;
+	if (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) return FALSE;
 	if (ptr->msound == MS_NEMESIS)	return FALSE;
 	if (u.kyliemode) return FALSE;
 	if (RngeUnlikability) return FALSE;

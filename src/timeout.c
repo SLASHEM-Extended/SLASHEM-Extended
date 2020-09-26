@@ -753,6 +753,24 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && uarmf && uarmf->oartifact == ART_OUU_EECH && !rn2(100) && multi >= 0) {
+		You("slip with your stiletto heels and crash into the floor. Ouch!");
+		nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
+		nomovemsg = "Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?";
+
+		if (!rn2(uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+			if (rn2(50)) {
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+				if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+			} else {
+				You_feel("dizzy!");
+				forget(1 + rn2(5));
+			}
+		}
+
+	}
+
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
 	if (u.umoved && PlayerInHighHeels && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 

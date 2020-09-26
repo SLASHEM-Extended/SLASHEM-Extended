@@ -3106,6 +3106,8 @@ boolean pick;
 			You("fly out of the water.");
 		else if (uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK) && !is_crystalwater(u.ux,u.uy))
 			You("fly out of the water.");
+		else if (uarmf && uarmf->oartifact == ART_RUBBER_LOVE && !is_crystalwater(u.ux,u.uy))
+			You("float on top of the water.");
 		else if ((Wwalking || Race_if(PM_KORONST)) && !is_crystalwater(u.ux,u.uy))
 			You("slowly rise above the surface.");
 /*              else if (Swimming)
@@ -3120,7 +3122,7 @@ boolean pick;
 		}
 	}
 stillinwater:;
-	if (!Levitation && !u.ustuck && !Flying && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) {
+	if (!Levitation && !u.ustuck && !Flying && !(uarmf && uarmf->oartifact == ART_RUBBER_LOVE) && !(uarmc && itemhasappearance(uarmc, APP_FLIER_CLOAK)) ) {
 	    /* limit recursive calls through teleds() */
 	    if ((is_drowningpool(u.ux, u.uy) && !(is_crystalwater(u.ux,u.uy))) || is_lava(u.ux, u.uy)) {
 		if (u.usteed && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) &&

@@ -191,7 +191,7 @@ on the first floor, especially when you're playing as something with drain resis
 			break;
 		case AT_KICK:
 			pline("%s kicks you%c", Monnam(mtmp),
-				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
+				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) ? '.' : (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : '!');
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
@@ -229,14 +229,16 @@ on the first floor, especially when you're playing as something with drain resis
 			if (FemtrapActiveJuen && humanoid(mtmp->data) && is_female(mtmp->data) && (multi < 0) && !rn2(3)) {
 
 				pline("Ouch! You're in pain!");
-				nomul(-2, "having aching legs", TRUE);
+				if (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) nomul(-3, "having aching legs", TRUE);
+				else nomul(-2, "having aching legs", TRUE);
 
 			}
 
 			if (FemtrapActiveJuen && humanoid(mtmp->data) && is_female(mtmp->data) && (multi >= 0) && rn2(2)) {
 
 				pline("Ouch! You're in pain!");
-				nomul(-2, "having aching legs", TRUE);
+				if (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) nomul(-3, "having aching legs", TRUE);
+				else nomul(-2, "having aching legs", TRUE);
 
 			}
 
@@ -2307,7 +2309,7 @@ mattacku(mtmp)
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
-					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
+					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) && !(uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
 					sum[i] = hitmu(mtmp, mattk);
 				} else
 				    missmu(mtmp, tmp, j, mattk);
@@ -19536,6 +19538,11 @@ register int n;
 	}
 
 	if (Race_if(PM_PLAYER_SKELETON) && rn2(3) && !(hit_as_two(mtmp) || hit_as_three(mtmp) || hit_as_four(mtmp) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > 1) ) ) {
+		pline("The attack doesn't seem to harm you.");
+		n = 0;
+	}
+
+	if (uarmf && uarmf->oartifact == ART_STAR_SOLES && !Race_if(PM_PLAYER_SKELETON) && rn2(3) && !(hit_as_one(mtmp) || hit_as_two(mtmp) || hit_as_three(mtmp) || hit_as_four(mtmp) || (MON_WEP(mtmp) && (MON_WEP(mtmp))->spe > 0) ) ) {
 		pline("The attack doesn't seem to harm you.");
 		n = 0;
 	}

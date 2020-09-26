@@ -1153,7 +1153,7 @@ moveloop()
 				if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1456,7 +1456,7 @@ moveloop()
 			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+			if (is_sand(u.ux,u.uy) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !Race_if(PM_DUTHOL) && !sandprotection() && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
@@ -1728,6 +1728,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmh && (uarmh->oartifact == ART_FIRST_PLACE_GUARANTEED) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2143,6 +2144,8 @@ moveloop()
 		if (u.uprops[CURSED_PARTS].extrinsic && !rn2(500)) bad_equipment(0);
 
 		if (have_cursedpartstone() && !rn2(500)) bad_equipment(0);
+
+		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK && !rn2(500)) bad_equipment(0);
 
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment(0);
 
@@ -2828,10 +2831,10 @@ newbossBQ:
 				goto newbossBQ;
 			}
 
-			if (pm) (blonde = makemon(pm, 0, 0, NO_MM_FLAGS));
+			if (pm) (blonde = makemon(pm, u.ux, u.uy, NO_MM_FLAGS));
 
 			if (blonde) {
-				tamedog(blonde, (struct obj *) 0, FALSE);
+				tamedog(blonde, (struct obj *) 0, TRUE);
 				pline("Suddenly, you gain a new sexy pet!");
 			}
 		}
@@ -7008,7 +7011,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
+		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
 			Norep("Walking on paved floor makes lots of noise.");
 			wake_nearby();
 
@@ -7043,6 +7046,11 @@ newbossB:
 				}
 			u.arabellahack = 0;
 
+		}
+
+		if (uarmf && uarmf->oartifact == ART_WASTEFUL_PLAYER && !rn2(1000)) {
+			antimatter_damage(invent, FALSE, FALSE);
+			Your("stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers.");
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
@@ -7899,6 +7907,35 @@ newboss:
 		}
 
 		if (have_badpartstone() && !rn2(20) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				boolean neighborbad = 0;
+				int bpx, bpy;
+
+				for (bpx= -1; bpx<=1; bpx++) for(bpy= -1; bpy<=1; bpy++) {
+					if (!bpx && !bpy) continue;
+					if (!isok(chaosx+bpx, chaosy+bpy)) continue;
+					if (levl[chaosx+bpx][chaosy+bpy].typ == DOOR || levl[chaosx+bpx][chaosy+bpy].typ == CORR || levl[chaosx+bpx][chaosy+bpy].typ == ROOM || levl[chaosx+bpx][chaosy+bpy].typ == STAIRS || levl[chaosx+bpx][chaosy+bpy].typ == LADDER) neighborbad = 1;
+				}
+
+				if (!neighborbad) {
+					levl[chaosx][chaosy].typ = randomwalltype();
+					del_engr_at(chaosx,chaosy);
+					newsym(chaosx,chaosy);
+					blockorunblock_point(chaosx,chaosy);
+
+					if (!rn2(40) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
+				}
+
+			}
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK && !rn2(20) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
 			chaosy = rn2(ROWNO);
@@ -10453,6 +10490,14 @@ past3:
 			/* the uberquasit REALLY doesn't want you to ride it --Amy */
 			if (u.usteed && u.usteed->mnum == PM_ULTRA_EVIL_QUASIT) {
 				dismount_steed(DISMOUNT_FELL);
+			}
+
+			if (uarmf && uarmf->oartifact == ART_STRONG_GETAWAY_DESIRE && !rn2(5000)) {
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(iszapem && !(u.zapemescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz)) ) level_tele();
+				else You_feel("very disoriented but decide to move on.");
+
 			}
 
 			if (u.usteed && !rn2(5000) ) {

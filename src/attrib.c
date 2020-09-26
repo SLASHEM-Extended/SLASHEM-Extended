@@ -2575,6 +2575,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
@@ -2656,6 +2657,9 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_DEEP_SIGH) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_OUU_EECH) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_TOTALLY_THE_SEXY_BITCH) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2704,6 +2708,7 @@ int x;
 		}
 
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
@@ -2746,6 +2751,7 @@ int x;
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2778,12 +2784,14 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
@@ -2827,6 +2835,7 @@ int x;
 		if (PlayerBleeds > 100) tmp -= 2;
 
 		if (AllStatsAreLower) tmp -= 10;
+		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();

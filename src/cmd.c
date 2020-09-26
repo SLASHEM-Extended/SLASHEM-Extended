@@ -1401,23 +1401,25 @@ domonability()
 			return TRUE;
 		} else {
 			delay = (uarmf->spe < -10) ? (-((uarmf->spe + 51) * 3)) : (-((uarmf->spe + 23) * 10));
-			set_occupation(stefanjerepair, "repairing their 'Stefanje' sandals", 0);
+			set_occupation(stefanjerepair, "repairing your 'Stefanje' sandals", 0);
 			return TRUE;
 		}
 	} else if (uarmf && uarmf->oartifact == ART_ENDLESS_DESEAMING && yn("Do you want to clean the dog shit from your Anastasia shoes?")=='y') {
 		if (!uarmf->oeroded && !uarmf->oeroded2) {
-
+			pline("Your shoes currently don't have any shit on their soles and therefore don't need cleaning.");
+			return TRUE;
 		} else {
-			delay = rn1(50, 50);
-			set_occupation(deseamshoes, "deseaming their Anastasia shoes", 0);
+			delay = -(rn1(50, 50));
+			set_occupation(deseamshoes, "deseaming your Anastasia shoes", 0);
 			return TRUE;
 		}
 	} else if (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR && yn("Do you want to clean the dog shit from your Kati shoes?")=='y') {
 		if (!uarmf->oeroded && !uarmf->oeroded2) {
-
+			pline("Your shoes currently don't have any shit on their soles and therefore don't need cleaning.");
+			return TRUE;
 		} else {
-			delay = rn1(50, 50);
-			set_occupation(deseamshoes, "deseaming their Kati shoes", 0);
+			delay = -rn1(50, 50);
+			set_occupation(deseamshoes, "deseaming your Kati shoes", 0);
 			return TRUE;
 		}
 
@@ -13507,7 +13509,7 @@ register char *cmd;
 	}
 
 	/* Autopilot means your char does random things depending on your contamination --Amy */
-	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
+	if (*cmd && (AutopilotEffect || u.uprops[AUTOPILOT_EFFECT].extrinsic || have_autopilotstone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) ) ) {
 		int autopilotchance = u.contamination;
 		if (isevilvariant && (autopilotchance > 900)) autopilotchance = 900;
 		else if (!isevilvariant && (autopilotchance > 500)) autopilotchance = 500;
@@ -14640,7 +14642,12 @@ char def;
 STATIC_PTR int
 stefanjerepair()
 {
-	if (delay) {
+	if (delay > 0) {
+		impossible("stefanje repair delay greater than zero! (%d)", delay);
+		delay = 0;
+	}
+
+	if (delay < 0) {
 		delay++;
 		return(1);
 	} else {
@@ -14657,7 +14664,12 @@ stefanjerepair()
 STATIC_PTR int
 deseamshoes()
 {
-	if (delay) {
+	if (delay > 0) {
+		impossible("deseamshoes delay greater than zero! (%d)", delay);
+		delay = 0;
+	}
+
+	if (delay < 0) {
 		delay++;
 		return(1);
 	} else {

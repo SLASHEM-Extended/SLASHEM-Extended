@@ -37,7 +37,9 @@ register boolean clumsy;
 	boolean trapkilled = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) dmg += 2;
+	if (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) dmg += 3;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)

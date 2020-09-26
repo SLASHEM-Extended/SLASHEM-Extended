@@ -154,7 +154,7 @@ lookat(x, y, buf, monbuf)
 			(how & 4) ? "monster detection" : "");
 	}
 
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -322,7 +322,7 @@ lookat(x, y, buf, monbuf)
 
 		/* tell player what the terrain is, as long as no nasty trap effects are active and the tile has
 		 * already been seen, because this information really should be available to the player --Amy */
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -472,6 +472,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mtmp->data->geno & G_UNIQ))
+		    ways_seen++;
 		if (Role_if(PM_PALADIN) && is_demon(mtmp->data))
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data))
@@ -532,7 +534,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mtmp->data->mlet == S_BLOB || mtmp->data->mlet == S_WORM) )
 		    ways_seen++;
-		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_MONKEY || mtmp->data->mlet == S_ZOUTHERN) )
+		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) )
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
 		    ways_seen++;
@@ -598,6 +600,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mtmp->data) || mtmp->egotype_covetous) ) {
 			strcat(monbuf, "warned of covetous monsters");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mtmp->data->geno & G_UNIQ) ) {
+			strcat(monbuf, "warned of bosses");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (Role_if(PM_PALADIN) && is_demon(mtmp->data)) {
@@ -725,7 +731,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "snailhunt");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_MONKEY || mtmp->data->mlet == S_ZOUTHERN) ) {
+		    if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) ) {
 			strcat(monbuf, "camelic scent");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -908,7 +914,7 @@ lookat(x, y, buf, monbuf)
 
 	strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
 
-	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -1058,7 +1064,7 @@ lookat(x, y, buf, monbuf)
 	break;
 	} /* switch end */
 
-	if (!Hallucination && levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+	if (!Hallucination && levl[x][y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 		register struct trap *seethetrap;
 		register int tt;
 		if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
@@ -1474,7 +1480,7 @@ do_look(quick)
 			strcat(out_str, " co-located with a boulder");
 
 		/* guh, need to paste all the code here too... --Amy */
-		if (from_screen && levl[cc.x][cc.y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+		if (from_screen && levl[cc.x][cc.y].seenv && !(SpellColorOrange || SpellColorPlatinum || SpellColorBrightCyan || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmf && uarmf->oartifact == ART_STAR_SOLES) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 			if (IS_TREE(levl[cc.x][cc.y].typ))
 			    sprintf(eos(out_str), ", on a tree");
 			else if (IS_IRONBAR(levl[cc.x][cc.y].typ))
@@ -25510,6 +25516,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Lydia scratches your butt-ugly business shoes with her high heels. Serves you right for wearing them, you should don some good-looking pair instead.",
 	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse.",
 	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse. (Thank you, Captain Obvious.)",
+	"Your stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers."
+	"You slip with your stiletto heels and crash into the floor. Ouch! Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?",
+	"Incoming message for Player 1. The message is from 'Elena'. It reads: 'I'm a very attractive young woman, and I enjoy acting like one.'",
 
 };
 
