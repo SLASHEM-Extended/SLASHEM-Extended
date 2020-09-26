@@ -2561,10 +2561,12 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
 		if (uarm && uarm->otyp == ROBE_OF_WEAKNESS) tmp -= 3;
+		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2649,6 +2651,11 @@ int x;
 		if (Race_if(PM_CUPID)) tmp += 5;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) tmp += 3;
+		if (uarmf && itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) tmp += 7;
+		if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_DEEP_SIGH) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE) tmp += 10;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -2696,8 +2703,6 @@ int x;
 
 		}
 
-		if (uarmf && itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) tmp += 5;
-
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
@@ -2705,6 +2710,8 @@ int x;
 		if (uarmf && itemhasappearance(uarmf, APP_BUSINESS_SHOES)) tmp -= 5;
 		if (uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) tmp -= 5;
 		if (uarmf && itemhasappearance(uarmf, APP_UGLY_BOOTS)) tmp -= 2;
+		if (uarmf && uarmf->oartifact == ART_CARMARK) tmp -= 5;
+		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp -= 5;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 
@@ -2770,6 +2777,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -2808,6 +2816,8 @@ int x;
 			if (uarms && is_metallic(uarms)) tmp++;
 			if (uarmg && is_metallic(uarmg)) tmp++;
 		}
+
+		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;

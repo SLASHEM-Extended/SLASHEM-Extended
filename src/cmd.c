@@ -203,6 +203,7 @@ STATIC_DCL boolean help_dir(CHAR_P,const char *);
 STATIC_PTR int domenusystem(void); /* WAC the menus*/
 
 STATIC_PTR int stefanjerepair(void);
+STATIC_PTR int deseamshoes(void);
 static NEARDATA schar delay;            /* moves left for stefanje repairs */
 
 #ifdef OVL1
@@ -1400,9 +1401,26 @@ domonability()
 			return TRUE;
 		} else {
 			delay = (uarmf->spe < -10) ? (-((uarmf->spe + 51) * 3)) : (-((uarmf->spe + 23) * 10));
-			set_occupation(stefanjerepair, "repairing your 'Stefanje' sandals", 0);
+			set_occupation(stefanjerepair, "repairing their 'Stefanje' sandals", 0);
 			return TRUE;
 		}
+	} else if (uarmf && uarmf->oartifact == ART_ENDLESS_DESEAMING && yn("Do you want to clean the dog shit from your Anastasia shoes?")=='y') {
+		if (!uarmf->oeroded && !uarmf->oeroded2) {
+
+		} else {
+			delay = rn1(50, 50);
+			set_occupation(deseamshoes, "deseaming their Anastasia shoes", 0);
+			return TRUE;
+		}
+	} else if (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR && yn("Do you want to clean the dog shit from your Kati shoes?")=='y') {
+		if (!uarmf->oeroded && !uarmf->oeroded2) {
+
+		} else {
+			delay = rn1(50, 50);
+			set_occupation(deseamshoes, "deseaming their Kati shoes", 0);
+			return TRUE;
+		}
+
 	} else if (issokosolver && !u.sokosolveboulder && yn("Do you want to create a boulder?")=='y' ) {
 		u.sokosolveboulder = rnz(1000);
 		if (!PlayerCannotUseSkills && u.sokosolveboulder >= 2) {
@@ -14632,6 +14650,34 @@ stefanjerepair()
 		} else {
 			pline("Somehow, your 'Stefanje' sandals are no longer there...");
 		}
+		return(0);
+	}
+}
+
+STATIC_PTR int
+deseamshoes()
+{
+	if (delay) {
+		delay++;
+		return(1);
+	} else {
+		if (!uarmf) {
+			pline("It seems that someone removed your shoes!");
+			return(0);
+		}
+		if (uarmf && !(uarmf->oartifact == ART_ENDLESS_DESEAMING) && !(uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR)) {
+			pline("It seems that someone replaced your shoes with different ones!");
+			return(0);
+		}
+
+		if (uarmf && uarmf->oeroded) {
+			uarmf->oeroded--;
+			pline("You cleaned some of the dog shit from your shoes.");
+		} else if (uarmf && uarmf->oeroded2) {
+			uarmf->oeroded2--;
+			pline("You cleaned some of the dog shit from your shoes.");
+		}
+
 		return(0);
 	}
 }

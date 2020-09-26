@@ -3420,6 +3420,118 @@ find_mary_janes()
     return -1;	/* not 0, or caller would try again each move */
 }
 
+int
+find_business_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BUSINESS_SHOES)) return i;
+    }
+
+    impossible("business shoes not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_filigree_stilettos()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FILIGREE_STILETTOS)) return i;
+    }
+
+    impossible("filigree stilettos not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_ugly_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_UGLY_BOOTS)) return i;
+    }
+
+    impossible("ugly boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_unisex_pumps()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_UNISEX_PUMPS)) return i;
+    }
+
+    impossible("unisex pumps not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_cuddle_cloth_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_CUDDLE_CLOTH_BOOTS)) return i;
+    }
+
+    impossible("cuddle cloth boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_garden_slippers()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_GARDEN_SLIPPERS)) return i;
+    }
+
+    impossible("garden slippers not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_dyke_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DYKE_BOOTS)) return i;
+    }
+
+    impossible("dyke boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_ankle_strap_sandals()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ANKLE_STRAP_SANDALS)) return i;
+    }
+
+    impossible("ankle strap sandals not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
 void
 oinit()			/* level dependent initialization */
 {

@@ -483,6 +483,15 @@ hack_artifacts()
 	artilist[ART_USE_THE_NORMALNESS_TURNS].otyp = find_fungal_sandals();
 	artilist[ART_UNFELLABLE_TREE].otyp = find_standing_footwear();
 
+	artilist[ART_CARMARK].otyp = find_business_shoes();
+	artilist[ART_ANITA_S_RASHLUST].otyp = find_filigree_stilettos();
+	artilist[ART_JONADAB_S_EVERYDAY_WEAR].otyp = find_ugly_boots();
+	artilist[ART_AMATEURSPORTS].otyp = find_unisex_pumps();
+	artilist[ART_RONJA_S_FEMALE_PUSHING].otyp = find_cuddle_cloth_boots();
+	artilist[ART_SNAILHUNT].otyp = find_garden_slippers();
+	artilist[ART_ANTJE_S_POWERSTRIDE].otyp = find_dyke_boots();
+	artilist[ART_NADINE_S_CUTENESS].otyp = find_ankle_strap_sandals();
+
 #if 0
 	/* Fix up the gifts */
 	if (urole.gift1arti) {

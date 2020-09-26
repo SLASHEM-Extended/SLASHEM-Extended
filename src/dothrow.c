@@ -1271,6 +1271,7 @@ boolean hitsroof;
 	if (dmg > 0 && Race_if(PM_SERB)) dmg += 1;
 	if (dmg > 0 && Race_if(PM_RUSMOT)) dmg += 2;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) dmg += 2;
+	if (dmg > 0 && uarmf && uarmf->oartifact == ART_SNAILHUNT) dmg += 1;
 
 	if (dmg > 0 && Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;

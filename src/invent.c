@@ -19790,6 +19790,85 @@ boolean knoweverything;
 				case ART_HIGH_ORIENTAL_PRAISE:
 					pline("Artifact specs: unbreathing and +3 charisma when wielded and has a high chance of protecting you from feminine perfume. You should offer your high praises to the creator of this item."); break;
 
+				case ART_CARMARK:
+					pline("Artifact specs: makes you very fast, -5 charisma because they're hideously ugly, and shopkeepers will charge you double the price."); break;
+				case ART_ANITA_S_RASHLUST:
+					pline("Artifact specs: resist disintegration and death when worn and grants diminished bleeding."); break;
+				case ART_JONADAB_S_EVERYDAY_WEAR:
+					pline("Artifact specs: improves your spellcasting chances by a little bit."); break;
+				case ART_AMATEURSPORTS:
+					pline("Artifact specs: makes you very fast and +3 dexterity when worn. The base item type was suggested by amateurhour."); break;
+				case ART_RONJA_S_FEMALE_PUSHING:
+					pline("Artifact specs: death resistance when worn and allows your kick to occasionally push back the monster in a very female way."); break;
+				case ART_SNAILHUNT:
+					pline("Artifact specs: +1 increase damage and swimming when worn and displays all blobs and worms on the current dungeon level."); break;
+				case ART_ANTJE_S_POWERSTRIDE:
+					pline("Artifact specs: resist cold, death and disintegration when worn, +10 strength but -5 charisma, makes you thick-skinned and prevents you from squeezing through diagonal passages."); break;
+				case ART_NADINE_S_CUTENESS:
+					pline("Artifact specs: discount action and death resistance when worn. Nadine looks super cute while wearing these and I'm pretty sure you will too. :-)"); break;
+				case ART_BEAUTYQUEAK:
+					pline("Artifact specs: full nutrients when worn and occasionally a tame farting monster will spawn next to you."); break;
+				case ART_LITTLE_BUT_ROBUST:
+					pline("Artifact specs: disintegration resistance when worn."); break;
+				case ART_EVERYTHING_IS_GREEN:
+					pline("Artifact specs: resist poison and acid when worn and allows you to walk through trees."); break;
+				case ART_ENDLESS_DESEAMING:
+					pline("Artifact specs: resist cold, fire, shock and stun when worn, and you can #monster to attempt to repair them."); break;
+				case ART_FAR_EAST_RELATION:
+					pline("Artifact specs: resist cold, swimming, unbreathing and fear factor when worn, reduces your strength and constitution by 3."); break;
+				case ART_CAMELIC_SCENT:
+					pline("Artifact specs: scent view, wakeup call, +7 charisma and displays all monkeys and zouthern animals when worn."); break;
+				case ART_AIRSHIP_DANCING:
+					pline("Artifact specs: resist psi and allows you to jump when worn, +5 charisma and your kick does +2 damage."); break;
+				case ART_DEEP_SIGH:
+					pline("Artifact specs: resist cold and disintegration when worn and +5 charisma."); break;
+				case ART_FINAL_CHALLENGE:
+					pline("Artifact specs: resist disintegration and death when worn and +10 charisma. Kicking a male monster with them has a chance of paralyzing it, and if a male monster tries to have sex with you, there's always the possibility for you to decline."); break;
+				case ART_LITTLE_BITCH_IS_RUCTIOUS:
+					pline("Artifact specs: resist death and fear when worn and +3 kick damage."); break;
+				case ART_HIT_THEIR_HANDS:
+					pline("Artifact specs: resist cold, glib combat and manaleech when worn."); break;
+				case ART_TOTALLY_THE_SEXY_BITCH:
+					pline("Artifact specs: resist sleep, free action and +5 charisma when worn, but all monsters spawn hostile."); break;
+				case ART_THICK_FARTING_GIRL:
+					pline("Artifact specs: resist sleep, petrification and acid, half physical damage and makes you thick-skinned when worn, but your sexy female butt cheeks (which are beautifully thick) will fart every once in a while."); break;
+				case ART_CRASHING_YOUR_SISTER_S_WED:
+					pline("Artifact specs: resist psi and confusion, discount action and control magic when worn, +2 increase damage but -5 increase accuracy. Chaotic."); break;
+				case ART_STAR_SOLES:
+					pline("Artifact specs: half physical damage, wonderlegs and starlit sky effect when worn. Monsters will need a +1 or better weapon to hit you effectively while you're wearing these but all of your stats are reduced by two."); break;
+				case ART_WHAT_A_CUDDLY_COLOR:
+					pline("Artifact specs: resist cold, petrification and shock when worn. Don't you agree that dark blue is a cuddly color? <3"); break;
+				case ART_STRONG_GETAWAY_DESIRE:
+					pline("Artifact specs: resist petrification and levelportitis when worn, makes it more likely for monsters with weeping attacks to spawn."); break;
+				case ART_WILD_SEX_GAME:
+					pline("Artifact specs: resist disintegration and drunken boxing when worn, +2 kick damage but you cannot have half physical damage."); break;
+				case ART_FIRST_PLACE_GUARANTEED:
+					pline("Artifact specs: shock resistance and very fast speed when worn, adds extra speed on top of that to make you even faster."); break;
+				case ART_RUBBER_LOVE:
+					pline("Artifact specs: stealth and stun resistance when worn, prevents you from falling into water or lava."); break;
+				case ART_FIND_THE_SECRET_COURSE:
+					pline("Artifact specs: searching and magic resistance when worn."); break;
+				case ART_THAT_S_SUPER_UNFAIR:
+					pline("Artifact specs: resist petrification when worn but causes heaps of shit to spawn. You can #monster to try to repair them."); break;
+				case ART_FINAL_EXAM_TIME:
+					pline("Artifact specs: resist disintegration and cold when worn, dims you and also gives dimmopathy, displays all boss monsters on the current level."); break;
+				case ART_EVERYWHERE_AT_ONCE:
+					pline("Artifact specs: teleport control, resist petrification and acid, prevents slowness when walking on sand or noise when walking on paved floor, +3 dexterity and aggravate monster."); break;
+				case ART_TOO_MUCH_BRAVERY:
+					pline("Artifact specs: resist fear, cold and petrification, disables stealth and prevents you from taming monsters."); break;
+				case ART_SHIN_KICKING_GAME:
+					pline("Artifact specs: regeneration and death resistance when worn, your kick does +5 damage but if a female monster kicks you, you'll be paralyzed for another turn."); break;
+				case ART_BITCHSMOKE:
+					pline("Artifact specs: resist fire, burnopathy and aggravate monster when worn. Don't be such a filthy smoker bitch :-P"); break;
+				case ART_WASTEFUL_PLAYER:
+					pline("Artifact specs: your items will randomly be withered while wearing them. Meaning that you probably shouldn't be wearing these shoes because they have no redeeming qualities, although I guess they could allow you to destroy unwanted items if you want long enough?"); break;
+				case ART_DON_T_FALL_INTO_THE_ABYSS:
+					pline("Artifact specs: flying, glib combat, cold resistance and 10%% improved spellcasting chances when worn, but you cannot have fear resistance and are affected by the fear status effect while wearing them."); break;
+				case ART_OUU_EECH:
+					pline("Artifact specs: +10 charisma but since walking with them is so difficult, you sometimes crash into the floor."); break;
+				case ART_ARABELLA_S_GIRL_KICK:
+					pline("Artifact specs: This awesome pair of boots makes you resistant to petrification, sleep and psi. It also grants free action, control magic, curse resistance, diminished bleeding and stealth when worn, and half physical and spell damage! To top it off, they even make you look super cute and sexy, which increases your charisma by 5. What could possibly go wrong? They certainly have no downsides."); break;
+
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
 			}

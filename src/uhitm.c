@@ -2670,6 +2670,7 @@ int dieroll;
 		if (Race_if(PM_MONGUNG)) tmp += 3;
 		if (Race_if(PM_RUSMOT)) tmp += 2;
 		if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
+		if (uarmf && uarmf->oartifact == ART_SNAILHUNT) tmp += 1;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

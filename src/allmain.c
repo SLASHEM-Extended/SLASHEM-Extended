@@ -2805,6 +2805,37 @@ trapsdone:
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_BEAUTYQUEAK && !rn2(10000)) {
+			register struct monst *blonde;
+
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+newbossBQ:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossBQ;
+			}
+			if (pm && !(pm->msound == MS_FART_NORMAL) && rn2(50) ) {
+				attempts = 0;
+				goto newbossBQ;
+			}
+
+			if (pm) (blonde = makemon(pm, 0, 0, NO_MM_FLAGS));
+
+			if (blonde) {
+				tamedog(blonde, (struct obj *) 0, FALSE);
+				pline("Suddenly, you gain a new sexy pet!");
+			}
+		}
+
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && !rn2(1000)) {
 			acqo = mkobj_at(WEAPON_CLASS, u.ux, u.uy, FALSE, FALSE);
 			if (acqo) pline("Someting appeared on the ground beneath you!");

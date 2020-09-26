@@ -530,6 +530,10 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) )
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mtmp->data->mlet == S_BLOB || mtmp->data->mlet == S_WORM) )
+		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_MONKEY || mtmp->data->mlet == S_ZOUTHERN) )
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS)
@@ -715,6 +719,14 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) ) {
 			strcat(monbuf, "bugnose");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mtmp->data->mlet == S_BLOB || mtmp->data->mlet == S_WORM) ) {
+			strcat(monbuf, "snailhunt");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_MONKEY || mtmp->data->mlet == S_ZOUTHERN) ) {
+			strcat(monbuf, "camelic scent");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN) {

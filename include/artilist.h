@@ -7155,6 +7155,162 @@ A("Overrated Face Protection",				CORONA_DRAGON_SCALE_MAIL, /* resist fear, weak
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
 
+A("Carmark",				LOW_BOOTS, /* initialized to always be business shoes, -5 CHA, very fast speed, shopkeepers charge you double the price */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Anita's Rashlust",				LOW_BOOTS, /* initialized to always be filigree stilettos, resist disintegration and death rays, diminished bleeding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Jonadab's Everyday Wear",				LOW_BOOTS, /* initialized to always be ugly boots, 5% better spellcasting chances */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Amateursports",				LOW_BOOTS, /* initialized to always be unisex pumps, very fast speed, +3 DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ronja's Female Pushing",				LOW_BOOTS, /* initialized to always be cuddle cloth boots, death resistance, kick should push monsters back more often */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Snailhunt",				LOW_BOOTS, /* initialized to always be garden slippers, displays all 'b' and 'w', +1 increase damage, swimming */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Antje's Powerstride",				LOW_BOOTS, /* initialized to always be dyke boots, resist cold, death and disintegration, +10 STR, -5 CHA, makes you thick-skinned and too big to fit through diagonal passages */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Nadine's Cuteness",				LOW_BOOTS, /* initialized to always be ankle strap sandals, discount action, death resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Beautyqueak",				FEMMY_STILETTO_BOOTS, /* 1 in 10000 per turn to spawn a tame MS_FART_NORMAL, full nutrients */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Little But Robust",				MADELEINE_PLATEAU_BOOTS, /* disintegration resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Everything Is Green",				MARLENA_HIKING_BOOTS, /* poison and acid resistance, can walk through trees */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Endless Deseaming",				ANASTASIA_DANCING_SHOES, /* can #monster to repair them, resist cold, fire and shock, stun resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Far East Relation",				JESSICA_LADY_SHOES, /* resist cold, swimming, unbreathing, -3 STR and CON, fear factor */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Camelic Scent",				SOLVEJG_MOCASSINS, /* scent view, displays all 'z' and 'Y', +7 CHA, wakeup call effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Airship Dancing",				WENDY_LEATHER_PUMPS, /* resist psi, jumping, +5 CHA, +2 kicking damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Deep Sigh",				KATHARINA_PLATFORM_BOOTS, /* resist cold and disintegration, +5 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Final Challenge",				ELENA_COMBAT_BOOTS, /* resist disintegration and death, +10 CHA, kicking a male monster has 1 in 5 chance to paralyze it for 1d5 turns, can always resist taking off stuff when seduced by a male AD_SSEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Little Bitch is ructious",				THAI_COMBAT_BOOTS, /* resist death and fear, +3 kicking damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hit Their Hands",				ELIF_SNEAKERS, /* glib combat, resist cold, manaleech */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Totally The Sexy Bitch",				NADJA_BUCKLED_LADY_SHOES, /* resist sleep, +5 CHA, monsters always spawn hostile, free action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Thick Farting Girl",				SANDRA_COMBAT_BOOTS, /* resist sleep, petrification and acid, makes you thick-skinned, you have to fart every once in a while */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Crashing Your Sister's Wedding",				NATALJE_BLOCK_HEEL_SANDALS, /* resist psi and confusion, discount action, +2 increase damage, -5 increase accuracy, control magic */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 15000L ),
+
+A("Star Soles",				JEANETTA_GIRL_BOOTS, /* starlight sky trap effect, wonderlegs, monsters need a +1 weapon to hit you effectively, -2 all stats */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("What A Cuddly Color",				YVONNE_GIRL_SNEAKERS, /* resist cold, petrification and shock */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Strong Getaway Desire",				MAURAH_HUGGING_BOOTS, /* levelteleportitis, monsters with AD_WEEP have +20 spawn freq, resist petrification */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Wild Sex Game",				MELTEM_COMBAT_BOOTS, /* resist disintegration, disables half physical damage, +2 kicking damage, drunken boxing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("First Place Guaranteed",				SARAH_HUGGING_BOOTS, /* very fast speed plus extra speed on top of that, resist shock */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Rubber Love",				CLAUDIA_WOODEN_SANDALS, /* you don't fall into water or lava, resist stun */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Find The Secret Course",				LUDGERA_HIKING_BOOTS, /* magic resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("That's Super Unfair",				KATI_GIRL_BOOTS, /* resist petrification, replicates anastasia trap effect, can #monster to repair them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Final Exam Time",				NELLY_LADY_PUMPS, /* resist disintegration and cold, displays all G_UNIQ, dimness and dimmopathy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Everywhere At Once",				EVELINE_WEDGE_SANDALS, /* no slowness from walking on sand, no noise on paved floor, resist petrification and acid, +3 DEX, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Too Much Bravery",				KARIN_LADY_SANDALS, /* resist fear, cold and petrification, disables stealth, pethate trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Shin Kicking Game",				JUEN_PEEP_TOES, /* +5 kicking damage, but if a female monster kicks you, you're paralyzed for one more turn; death resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bitchsmoke",				KRISTINA_PLATFORM_SNEAKERS, /* resist fire, burnopathy, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wasteful Player",				LOU_SNEAKERS, /* 1 in 1000 chance per turn that your items are randomly withered, but the shoes themselves cannot be hit by that effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Don't Fall Into The Abyss",				ALMUT_SNEAKERS, /* flying, glib combat, resist cold, 10% improved spellcasting chances, disables resist fear and gives fear status */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ouu-eech",				JULIETTA_PEEP_TOES, /* you sometimes crash into the floor regardless of skill, +10 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Arabella's Girl Kick",				ARABELLA_HUGGING_BOOTS, /* resist petrification, sleep and psi, free action, control magic, versus curses, diminished bleeding, +5 CHA, bad part, cursed parts, brown spells, soiltype effect, autopilot */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_HSPDAM|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

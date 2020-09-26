@@ -37,6 +37,8 @@ register boolean clumsy;
 	boolean trapkilled = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) dmg += 2;
+	if (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) dmg += 3;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
@@ -391,6 +393,24 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_RONJA_S_FEMALE_PUSHING && !rn2(10)) {
+		/* see if the monster has a place to move into */
+		mdx = mon->mx + u.dx;
+		mdy = mon->my + u.dy;
+		if(goodpos(mdx, mdy, mon, 0)) {
+			pline("%s is pushed back by your fleecy block heels.", Monnam(mon));
+			if (m_in_out_region(mon, mdx, mdy)) {
+			    remove_monster(mon->mx, mon->my);
+			    newsym(mon->mx, mon->my);
+			    place_monster(mon, mdx, mdy);
+			    newsym(mon->mx, mon->my);
+			    set_apparxy(mon);
+			    if (mintrap(mon) == 2) trapkilled = TRUE;
+			}
+		}
+
+	}
+
 	if (uarmf && (itemhasappearance(uarmf, APP_PLATFORM_BOOTS) || itemhasappearance(uarmf, APP_PLATEAU_BOOTS)) && !rn2(3) ) {
 		if (!mon->mstun) 	{
 			if (rn2(3)) pline("%s is stunned by your strong kick!", Monnam(mon));
@@ -483,6 +503,14 @@ register boolean clumsy;
 		mon->mstun = TRUE;
 		mon->mcanmove = 0;
 		mon->mfrozen = rnd(10);
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
+	if (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && !rn2(5) && !(mon->female) && !is_neuter(mon->data) && mon->mcanmove) {
+		pline("Your sexy block heels fully kick %s in the nuts.", mon_nam(mon));
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(5);
 		mon->mstrategy &= ~STRAT_WAITFORU;
 
 	}

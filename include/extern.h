@@ -2044,6 +2044,14 @@ E int find_marji_shoes(void);
 E int find_mary_janes(void);
 E int find_visored_helmet(void);
 E int find_orange_visored_helmet(void);
+E int find_business_shoes(void);
+E int find_filigree_stilettos(void);
+E int find_ugly_boots(void);
+E int find_unisex_pumps(void);
+E int find_cuddle_cloth_boots(void);
+E int find_garden_slippers(void);
+E int find_dyke_boots(void);
+E int find_ankle_strap_sandals(void);
 
 E void oinit(void);
 E void savenames(int,int);
