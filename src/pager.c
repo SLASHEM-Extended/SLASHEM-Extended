@@ -25519,6 +25519,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers."
 	"You slip with your stiletto heels and crash into the floor. Ouch! Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?",
 	"Incoming message for Player 1. The message is from 'Elena'. It reads: 'I'm a very attractive young woman, and I enjoy acting like one.'",
+	"the orc blockes your skill with its expert!",
+	"you lash out with a sharpened skill...",
+	"You gain intrinsics if you are skilled in skills.",
+	"Why is Eddard Stark not called Edward? Why is Petyr Baelish not called Peter? And most of all, what's up with the name Joffrey, is that a cross between Jeffrey and Geoffrey?",
+	"if someone sits in one place and doesn't move for long enough that their muscle mass vanishes, they should say 'atrophy get'", /* by aosdict */
 
 };
 
