@@ -21236,27 +21236,44 @@ dothepassive:
 	    case AD_PLYS: /* Floating eye */
 
 		if (dmgtype(mtmp->data, AD_PLYS)) return 1;
+		if (mtmp->m_lev > 1 && (rnd(mtmp->m_lev) > u.ulevel)) return 1;
 
 		if (tmp > 127) tmp = 127;
 		if (u.umonnum == PM_FLOATING_EYE) {
 		    /*if (!rn2(4)) tmp = 127;*/
-		    if (mtmp->mcansee && haseyes(mtmp->data) && rn2(3) &&
+		    if (mtmp->mcansee && haseyes(mtmp->data) && !rn2(3) &&
 				(perceives(mtmp->data) || !Invis)) {
 			if (Blind)
 			    pline("As a blind %s, you cannot defend yourself.", youmonst.data->mname);
 		        else {
+				int parlyzdur = tmp;
+				if (parlyzdur > 3) {
+					parlyzdur = rnd(parlyzdur);
+					if (parlyzdur < 3) parlyzdur = 3;
+				}
+				if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+				if (parlyzdur > 127) parlyzdur = 127;
+
 			    if (mon_reflects(mtmp, "Your gaze is reflected by %s %s."))
 				return 1;
 			    pline("%s is frozen by your gaze!", Monnam(mtmp));
 			    mtmp->mcanmove = 0;
-			    mtmp->mfrozen = tmp;
+			    mtmp->mfrozen = parlyzdur;
 			    return 3;
 			}
 		    }
-		} else { /* gelatinous cube */
+		} else if (!rn2(3)) { /* gelatinous cube */
+			int parlyzdur = tmp;
+			if (parlyzdur > 3) {
+				parlyzdur = rnd(parlyzdur);
+				if (parlyzdur < 3) parlyzdur = 3;
+			}
+			if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    pline("%s is frozen by you.", Monnam(mtmp));
 		    mtmp->mcanmove = 0;
-		    mtmp->mfrozen = tmp;
+		    mtmp->mfrozen = parlyzdur;
 		    return 3;
 		}
 		return 1;
@@ -21322,10 +21339,21 @@ dothepassive:
 		break;
 
 	    case AD_SLEE:
-		if (!mtmp->msleeping && sleep_monst(mtmp, rnd(10), -1)) {
+		{
+		int parlyzdur = tmp;
+		if (parlyzdur > 3) {
+			parlyzdur = rnd(parlyzdur);
+			if (parlyzdur < 3) parlyzdur = 3;
+		}
+		if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		if (parlyzdur > 127) parlyzdur = 127;
+
+		if (!mtmp->msleeping && !rn2(3) && !(mtmp->m_lev > 1 && (rnd(mtmp->m_lev) > u.ulevel)) && sleep_monst(mtmp, parlyzdur, -1)) {
 		    pline("%s is put to sleep.", Monnam(mtmp));
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 		    slept_monst(mtmp);
+		}
+
 		}
 		break;
 
@@ -21351,10 +21379,18 @@ dothepassive:
 		    if (mtmp->mspeed != oldspeed)
 			pline("%s slows down.", Monnam(mtmp));
 		}
-		if(!rn2(3) && mtmp->mcanmove && !(dmgtype(mtmp->data, AD_PLYS))) {
+		if(!rn2(10) && !(mtmp->m_lev > 1 && (rnd(mtmp->m_lev) > u.ulevel)) && mtmp->mcanmove && !(dmgtype(mtmp->data, AD_PLYS))) {
+			int parlyzdur = tmp;
+			if (parlyzdur > 3) {
+				parlyzdur = rnd(parlyzdur);
+				if (parlyzdur < 3) parlyzdur = 3;
+			}
+			if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+			if (parlyzdur > 127) parlyzdur = 127;
+
 		    pline("%s is paralyzed.", Monnam(mtmp));
 		    mtmp->mcanmove = 0;
-		    mtmp->mfrozen = rnd(10);
+		    mtmp->mfrozen = parlyzdur;
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 		}
 		break;

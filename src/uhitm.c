@@ -5561,17 +5561,25 @@ register struct attack *mattk;
 		} else tmp = 0;
 		break;
 	    case AD_PLYS:
-		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
+		    int parlyzdur = rnd(4);
+		    if (tmp > 4 && !rn2(3)) parlyzdur = rnd(tmp);
+		    if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		    if (parlyzdur > 127) parlyzdur = 127;
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		}
 		break;
 	    case AD_TCKL:
-		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(5) && tmp < mdef->mhp) {
 		    if (!Blind) You("mercilessly tickle %s!", mon_nam(mdef));
+		    int parlyzdur = rnd(3);
+		    if (tmp > 3 && !rn2(5)) parlyzdur = rnd(tmp);
+		    if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		    if (parlyzdur > 127) parlyzdur = 127;
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		}
 		break;
 	    case AD_BLEE:
@@ -5600,15 +5608,23 @@ register struct attack *mattk;
 		    }
 		}
 
-		if (rn2(2) && !negated && !mdef->msleeping && /* drow nerf --Amy */
-			(mattk->aatyp != AT_WEAP || barehanded_hit) &&
-			sleep_monst(mdef, rnd(10), -1)) {
+		{
+		int parlyzdur = rnd(5);
+		if (tmp > 5 && !rn2(3)) parlyzdur = rnd(tmp);
+		if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		if (parlyzdur > 127) parlyzdur = 127;
+
+		if (rn2(2) && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !negated && !mdef->msleeping && /* drow nerf --Amy */
+			(mattk->aatyp != AT_WEAP || barehanded_hit) && sleep_monst(mdef, parlyzdur, -1)) {
 		    if (!Blind)
 			pline("%s is put to sleep by you!", Monnam(mdef));
 		    slept_monst(mdef);
 		}
 		else
 		    tmp = 0;
+
+		}
+
 		break;
 	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
 	    case AD_LITT:
@@ -5642,10 +5658,16 @@ register struct attack *mattk;
 		    if (mdef->mspeed != oldspeed && canseemon(mdef))
 			pline("%s slows down.", Monnam(mdef));
 		}
-		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(mdef->m_lev > 1 && (rnd(mdef->m_lev) > u.ulevel)) && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(10) && tmp < mdef->mhp) {
+
+		    int parlyzdur = rnd(4);
+		    if (tmp > 4 && !rn2(3)) parlyzdur = rnd(tmp);
+		    if (parlyzdur > 1) parlyzdur = rnd(parlyzdur);
+		    if (parlyzdur > 127) parlyzdur = 127;
+
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
 		    mdef->mcanmove = 0;
-		    mdef->mfrozen = rnd(10);
+		    mdef->mfrozen = parlyzdur;
 		}
 		break;
 	    case AD_NUMB:
