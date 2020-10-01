@@ -5382,6 +5382,7 @@ static const char *epitaphs[] = {
 	"Here lies Brienne Stark, who doesn't even exist. Who is that supposed to be? She's not a character from the show. Now Julyne Stark, *she* is a canon character. But Brienne? Never heard of her.",
 	"Here lies Catelyn Stark. The evil Lannister assholes wanted her to die even though she hadn't harmed anyone.",
 	"This is the Game of Thrones mass grave, because everyone dies in the end anyway so we just shoveled all the corpses into one single tomb.",
+	"if u dont have double motivation ur game can suddenly end at any time", /* by amateurhour */
 
 };
 
