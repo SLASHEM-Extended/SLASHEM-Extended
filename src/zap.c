@@ -3693,6 +3693,7 @@ struct obj *obj, *otmp;
 	case SPE_GIANT_FOOT:
 	case SPE_ARMOR_SMASH:
 	case SPE_BLOOD_STREAM:
+	case SPE_CONVERGE_BREATH:
 	case SPE_SHINING_WAVE:
 	case SPE_STRANGLING:
 	case SPE_PARTICLE_CANNON:
@@ -6001,6 +6002,10 @@ boolean ordinary;
 			You("blast yourself with magical energy!");
 			damage = d(15,10);
 		   break;
+		case SPE_CONVERGE_BREATH:
+			You("damage yourself with the breath attack!");
+			damage = d(10,10);
+		   break;
 		case SPE_ELEMENTAL_BEAM:
 			You("blast yourself with elemental energy!");
 			damage = d(12,10);
@@ -7598,6 +7603,8 @@ struct obj *obj;
 		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_CHROMATIC_BEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp == SPE_CONVERGE_BREATH)
+		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_ELEMENTAL_BEAM)
 		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_NATURE_BEAM)
@@ -7753,6 +7760,17 @@ struct obj *obj;
 	    else if (otyp == SPE_CHROMATIC_BEAM) {
 		int damagetype = 20 + rn2(9);
 		buzz((int)(damagetype), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == SPE_CONVERGE_BREATH) {
+		int damagetype = 20 + rn2(9);
+		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 

@@ -1261,6 +1261,8 @@ struct you {
 
 	char	aliasname[PL_NSIZ];
 
+	int echolocationspell;	/* timeout when you cast echolocation */
+
 	int graundweight;		/* increased encumbrance that times out very slowly */
 
 	int randomquestlevels;	/* chance to get quest levels instead of random ones */

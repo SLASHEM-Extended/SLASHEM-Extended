@@ -421,8 +421,8 @@ int		class;		/* an object class, 0 for all */
 				    detector->oclass == SPBOOK_CLASS ||
 					detector->oartifact ) &&
 			detector->blessed);
-    int guaranteed = (detector && !(detector->otyp == SPE_DETECT_TREASURE) && !(detector->otyp == SPE_MAP_LEVEL) && !(detector->otyp == SPE_MAGIC_MAPPING));
-    boolean stupiddetect = (detector && (detector->otyp == SPE_DETECT_TREASURE || detector->otyp == SPE_MAGIC_MAPPING));
+    int guaranteed = (detector && !(detector->otyp == SPE_DETECT_TREASURE) && !(detector->otyp == SPE_RANDOM_DETECTION) && !(detector->otyp == SPE_MAP_LEVEL) && !(detector->otyp == SPE_MAGIC_MAPPING));
+    boolean stupiddetect = (detector && (detector->otyp == SPE_DETECT_TREASURE || detector->otyp == SPE_RANDOM_DETECTION || detector->otyp == SPE_MAGIC_MAPPING));
     int likely = (detector && (detector->otyp == SPE_MAP_LEVEL));
     int ct = 0, ctu = 0;
     register struct obj *obj, *otmp = (struct obj *)0;

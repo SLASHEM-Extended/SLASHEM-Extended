@@ -14170,7 +14170,7 @@ boolean knoweverything;
 			case SPE_ECHOLOCATION:
 				pline("Grants temporary echolocation, which displays monsters that make noise."); break;
 			case SPE_RANDOM_DETECTION:
-				pline("You may randomly detect objects, monsters, traps or other stuff when casting this, but only in a certain radius."); break;
+				pline("You may randomly detect objects, monsters, traps or other stuff when casting this, but only in a certain radius. It can also backfire when cast."); break;
 			case SPE_SWAP_POSITION:
 				pline("If you cast this spell, the next monster you move into will be displaced instead of attacked. You only have 3 turns after casting it or the effect dissipates."); break;
 			case SPE_SHUFFLE_MONSTER:

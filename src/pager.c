@@ -25530,6 +25530,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You gain intrinsics if you are skilled in skills.",
 	"Why is Eddard Stark not called Edward? Why is Petyr Baelish not called Peter? And most of all, what's up with the name Joffrey, is that a cross between Jeffrey and Geoffrey?",
 	"if someone sits in one place and doesn't move for long enough that their muscle mass vanishes, they should say 'atrophy get'", /* by aosdict */
+	"You magically regain consciousness!",
 
 };
 

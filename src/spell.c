@@ -3163,6 +3163,7 @@ boolean atme;
 	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 5;
 	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 5;
 	if (spellid(spell) == SPE_FIXING) energy *= 3;
+	if (spellid(spell) == SPE_CONVERGE_BREATH) energy *= 4;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
 	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
@@ -3792,6 +3793,7 @@ castanyway:
 	case SPE_DISINTEGRATION:
 	case SPE_DISINTEGRATION_BEAM:
 	case SPE_CHROMATIC_BEAM:
+	case SPE_CONVERGE_BREATH:
 	case SPE_ELEMENTAL_BEAM:
 	case SPE_NATURE_BEAM:
 	case SPE_PETRIFY:
@@ -3803,6 +3805,15 @@ castanyway:
 		if (pseudo->otyp == SPE_PARTICLE_CANNON) {
 			if (u.gaugetimer) {
 				You("need to wait %d more turns to refill your gauge. The particle cannon can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+				break;
+			} else {
+				u.gaugetimer = 50;
+			}
+		}
+
+		if (pseudo->otyp == SPE_CONVERGE_BREATH) {
+			if (u.gaugetimer) {
+				You("need to wait %d more turns to refill your gauge. Converge breath can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
 				break;
 			} else {
 				u.gaugetimer = 50;
@@ -4291,6 +4302,32 @@ bucchoice:
 
 		break;
 
+	case SPE_RANDOM_DETECTION:
+
+		switch (rnd(4)) {
+			case 1:
+				trap_detectX((struct obj *)0);
+				break;
+			case 2:
+				You("fail to detect anything.");
+				break;
+			case 3:
+				object_detect(pseudo, 0);
+				break;
+			case 4:
+				monster_detect(pseudo, 0);
+				break;
+		}
+
+		exercise(A_WIS, TRUE);
+
+		if (!rn2(5)) {
+			pline("The spell backlashes!");
+			badeffect();
+		}
+
+		break;
+
 	case SPE_AULE_SMITHING:
 
 		pline("Choose an item for erosionproofing.");
@@ -4393,6 +4430,93 @@ aulechoice:
 		ragnarok(TRUE);
 		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 		u.ragnarokspelltimeout += 1000; /* can't use it again for a while */
+
+		break;
+
+	case SPE_IMPACT_GUNFIRE:
+
+		if (u.gaugetimer) {
+			You("need to wait %d more turns to refill your gauge. Impact Gunfire can be used again at turn %d.", u.gaugetimer, (moves + u.gaugetimer));
+			break;
+		} else {
+			u.gaugetimer = 50;
+		}
+
+		{
+			register struct obj *opbullet;
+			int opbonus = 0;
+			int opdamage = 0;
+			int ctx, cty;
+			int i;
+			ctx = u.ux, cty = u.uy;
+
+			coord cc;
+			struct monst *psychmonst;
+
+			opbullet = carrying(BULLET);
+			if (!opbullet) opbullet = carrying(SILVER_BULLET);
+			if (!opbullet) opbullet = carrying(LEAD_BULLET);
+			if (!opbullet) {
+				pline("There are no bullets, and therefore you can't shoot!");
+				break;
+			}
+
+			opdamage = d(8, 12) + (spell_damage_bonus(spellid(spell)) * 6);
+
+			if (opbullet) {
+				if (opbullet->spe > 0) opbonus = opbullet->spe;
+
+				if (opbullet->quan > 1) {
+					opbullet->quan--;
+					opbullet->owt = weight(opbullet);
+				}
+				else useup(opbullet);
+
+			}
+
+			if (opdamage > 1) opdamage = rnd(opdamage);
+			opdamage += (opbonus * rnd(25));
+
+		    	if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				You("can't direct that at yourself.");
+				break;
+			}
+
+			for(i = 0; i < 8; i++) {
+				if (!isok(ctx + u.dx, cty + u.dy)) break;
+				if (levl[ctx + u.dx][cty + u.dy].typ < POOL) break;
+
+				ctx += u.dx;
+				cty += u.dy;
+
+				psychmonst = m_at(ctx, cty);
+
+				if (psychmonst) {
+					pline("Pouchschieau! Your projectile blasts %s!", mon_nam(psychmonst));
+					if (noncorporeal(psychmonst->data)) { /* ghosts are hard to hit... */
+						if (opdamage > 1) opdamage /= 2;
+						pline("%s resists the attack!", Monnam(psychmonst));
+						/* but isn't immune --Amy */
+					}
+					psychmonst->mhp -= opdamage;
+					if (psychmonst->mhp < 1) {
+						pline("%s is blown to bits.", Monnam(psychmonst));
+						xkilled(psychmonst,0);
+					} else {
+						wakeup(psychmonst); /* make them hostile */
+						if (psychmonst->mcanmove) {
+							psychmonst->mcanmove = 0;
+							psychmonst->mfrozen = 2;
+							pline("%s is paralyzed.", Monnam(psychmonst));
+						}
+					}
+					break;
+				}
+
+			}
+
+		}
 
 		break;
 
@@ -6833,6 +6957,29 @@ whisperchoice:
 			pline("The spell backlashes!");
 			badeffect();
 		}
+
+		break;
+
+	case SPE_RELOCATION:
+		if (u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued) {
+			pline("The amulet prevents you from using that spell.");
+			break;
+		}
+		if (In_endgame(&u.uz)) {
+			pline("That sort of magic doesn't work on the Planes.");
+			break;
+		}
+
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+		u.uenmax -= 5;
+		if (u.uenmax < 0) u.uenmax = 0;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+	      (void) safe_teleds(FALSE);
 
 		break;
 
@@ -9290,6 +9437,41 @@ controlagain:
 			}
 		}
 		break;
+	case SPE_COAGULATION:
+		if(!(HDiminishedBleeding & INTRINSIC)) {
+			pline("Your %s is boiling!", body_part(BLOOD));
+			incr_itimeout(&HDiminishedBleeding, HDiminishedBleeding ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+	case SPE_CURE_PARALYSIS:
+		if (multi < 0) {
+			multi = -1;
+			You("magically regain consciousness!");
+		} else You("weren't paralyzed to begin with, so there was nothing to cure.");
+		break;
+	case SPE_SMELL_MONSTER:
+		if(!(HScentView & INTRINSIC)) {
+			pline("Your %s is suddenly very sensitive!", body_part(NOSE));
+			incr_itimeout(&HScentView, HScentView ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+	case SPE_ECHOLOCATION:
+		pline("Your ears are suddenly very sensitive!");
+		if (u.echolocationspell) u.echolocationspell += (rnd(5) + spell_damage_bonus(spellid(spell)));
+		else u.echolocationspell += (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10);
+		break;
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
 			You_feel("resistant to sickness.");
@@ -10171,6 +10353,13 @@ rerollX:
 
 	}
 
+	if (pseudo && (pseudo->otyp == SPE_RELOCATION) && !rn2(role_skill == P_SUPREME_MASTER ? 9 : role_skill == P_GRAND_MASTER ? 8 : role_skill == P_MASTER ? 7 : role_skill == P_EXPERT ? 6 : role_skill == P_SKILLED ? 5 : 4) ) {
+
+		boostknow(spell, -(rnd(10000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
 	if (pseudo && pseudo->otyp == SPE_ADD_SPELL_MEMORY) {
 
 		boostknow(spell, -500);
@@ -10261,6 +10450,12 @@ rerollX:
 	 * so I decided that it just takes 50 turns to reload --Amy */
 	if (pseudo && (pseudo->otyp == SPE_PARTICLE_CANNON)) {
 		pline("The particle cannon can be used again at turn %d.", (moves + u.gaugetimer));
+	}
+	if (pseudo && (pseudo->otyp == SPE_CONVERGE_BREATH)) {
+		pline("Converge Breath can be used again at turn %d.", (moves + u.gaugetimer));
+	}
+	if (pseudo && (pseudo->otyp == SPE_IMPACT_GUNFIRE)) {
+		pline("Impact Gunfire can be used again at turn %d.", (moves + u.gaugetimer));
 	}
 	if (pseudo && (pseudo->otyp == SPE_ONE_POINT_SHOOT)) {
 		pline("One Point Shoot can be used again at turn %d.", (moves + u.gaugetimer));

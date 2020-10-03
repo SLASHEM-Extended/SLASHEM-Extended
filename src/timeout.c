@@ -346,6 +346,18 @@ nh_timeout()
 		if (PlayerBleeds < 0) PlayerBleeds = 0; /* fail safe */
 	}
 
+	if (u.echolocationspell) {
+		u.echolocationspell--;
+		if (!u.echolocationspell) You("no longer have echolocation.");
+		if (u.echolocationspell < 0) u.echolocationspell = 0; /* fail safe */
+	}
+
+	if (u.gaugetimer) {
+		u.gaugetimer--;
+		if (!u.gaugetimer) Your("gauge is full again.");
+		if (u.gaugetimer < 0) u.gaugetimer = 0; /* fail safe */
+	}
+
 	if (u.garbagetrucktime) {
 		u.garbagetrucktime--;
 		if (u.garbagetrucktime < 0) u.garbagetrucktime = 0; /* fail safe */
