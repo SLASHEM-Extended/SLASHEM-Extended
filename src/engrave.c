@@ -980,6 +980,7 @@ static const char *random_mesg[] = {
 	"The engraving you have just started reading is the engraving you have just finished reading.",
 	"SLEX is hereby presented to you by Amy Bluecuntwipeofdeath. Or it would be, according to a certain vandal on the roguebasin site.",
 	"fleecy bundle is an anagram of bully defence",
+	"Locke's men bind Julyne Stark to a tree, and then Locke pulls out his most devastating weapon which is roughly wand-shaped, using it to rob Julyne of something that she can't ever get back.",
 
 };
 
@@ -5383,6 +5384,8 @@ static const char *epitaphs[] = {
 	"Here lies Catelyn Stark. The evil Lannister assholes wanted her to die even though she hadn't harmed anyone.",
 	"This is the Game of Thrones mass grave, because everyone dies in the end anyway so we just shoveled all the corpses into one single tomb.",
 	"if u dont have double motivation ur game can suddenly end at any time", /* by amateurhour */
+	"Here lies Jaime Lannister's left hand, cut off by Locke. Because Locke is evil with a capital E.",
+	"Here lies Bran's ability to move his legs. While Cersei is an evil monster, one of her only good deeds was to push that loser out the window. He broke his legs so badly that he ended up handicapped for the rest of his pathetic life.",
 
 };
 
